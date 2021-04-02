@@ -1,0 +1,187 @@
+template:
+  params:
+    bootswatch: cosmo
+  opengraph:
+    image:
+      src: https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico
+    twitter:
+      site: "@cfbfastR"
+      card: summary_large_image
+title: cfbfastR
+url: http://saiemgilani.github.io/cfbfastR
+
+authors:
+  Saiem Gilani:
+   href: https://twitter.com/saiemgilani
+  Jared Lee:
+   href: https://twitter.com/JaredDLee
+  Eric Hess:
+   href: https://twitter.com/arbitanalytics 
+  Nate Manzo:
+   href: https://twitter.com/cfbNate
+  Michael Egle:
+   href: https://twitter.com/deceptivespeed_
+  
+home:
+navbar:
+  icon: https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico
+  title: "cfbfastR"
+  left:
+    - icon: fa-home
+      href: index.html
+    - icon: fa-question-circle-o
+      text: "Tutorials"
+      menu:
+      - text: Vignettes
+        href: articles/index.html
+      - text: Introductory
+      - text: CFB Analytics with cfbfastR
+        href: articles/intro.html
+      - text: Animated Win Probability Plots
+        href: articles/animated-wp-plotting.html
+      - text: Fourth Down Tendency Plots
+        href: articles/fourth-down-plot-tutorial.html
+      - text: Rolling EPA Graphs
+        href: articles/rolling-epa-graph.html
+      - text: Visualizing Team Talent with Player Recruit Rankings
+        href: articles/nth-rated-recruit.html
+      - text: Expected Points Model Fundamentals
+      - text: "Part 1 - Model Definition"
+        href: articles/college-football-expected-points-model-fundamentals-part-i.html
+      - text: "Part 2 - Regression Models"
+        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
+      - text: "Part 3 - History of Expected Points Models"
+        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+    - icon: fa-file-code-o
+      text: "Functions"
+      href: reference/index.html
+    - icon: fa-newspaper-o
+      text: "News"
+      href: news/index.html
+    - icon: fa-database
+      text: "Data"
+      href: https://github.com/saiemgilani/cfbfastR-data
+  right:
+   - icon: fab fa-twitter fa-lg
+     href: https://twitter.com/cfbfastR
+   - icon: fab fa-github fa-lg
+     text: "GitHub"
+     href: https://github.com/saiemgilani/cfbfastR/
+reference:
+  - subtitle: Games Data Functions
+    desc: Functions exported by cfbfastR sourced from games endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_calendar`'
+      - '`cfbd_game_info`'
+      - '`cfbd_game_records`'
+      - '`cfbd_game_team_stats`'
+      - '`cfbd_game_player_stats`'
+      - '`cfbd_game_box_advanced`'
+      - '`cfbd_game_media`'
+      - '`cfbd_betting_lines`'
+      - '`cfbd_game_box_advanced`'
+  - subtitle: Drives Data Function
+    desc: Functions exported by cfbfastR sourced from drives endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_drives`'
+  - subtitle: Plays Data Functions
+    desc: Functions exported by cfbfastR sourced from plays endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_pbp_data`'
+      - '`cfbd_play_types`'
+      - '`cfbd_play_type_df`'
+      - '`cfbd_play_stats_player`'
+      - '`cfbd_play_stats_types`'
+  - subtitle: Teams Functions
+    desc: Functions exported by cfbfastR sourced from the teams endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_team_info`'
+      - '`cfbd_team_matchup`'
+      - '`cfbd_team_matchup_records`'
+      - '`cfbd_team_roster`'
+      - '`cfbd_team_talent`'
+  - subtitle: Players Functions
+    desc: Functions exported by cfbfastR sourced from the teams endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_player_info`'
+      - '`cfbd_player_usage`'
+      - '`cfbd_player_returning`'
+  - subtitle: Stats Functions
+    desc: Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_stats_categories`'
+      - '`cfbd_stats_season_team`'
+      - '`cfbd_stats_game_advanced`'
+      - '`cfbd_stats_season_advanced`'
+      - '`cfbd_stats_season_player`'
+  - subtitle: Conference Functions
+    desc: Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API
+    contents:
+      - '`cfbd_conferences`'
+      - '`cfbd_conf_types_df`'
+  - subtitle: Rankings and Ratings Functions
+    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    contents:
+      - '`cfbd_rankings`'
+      - '`cfbd_ratings_sp`'
+      - '`cfbd_ratings_sp_conference`'
+      - '`cfbd_ratings_srs`'
+      - '`espn_ratings_fpi`'
+  - subtitle: Recruiting functions
+    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    contents:
+      - '`cfbd_recruiting_player`'
+      - '`cfbd_recruiting_team`'
+      - '`cfbd_recruiting_position`'
+  - subtitle: Metrics Functions
+    desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
+    contents:
+      - '`cfbd_metrics_ppa_predicted`'
+      - '`cfbd_metrics_ppa_teams`'
+      - '`cfbd_metrics_ppa_games`'
+      - '`cfbd_metrics_ppa_players_season`'
+      - '`cfbd_metrics_ppa_players_games`'
+      - '`cfbd_metrics_wp`'
+      - '`espn_metrics_wp`'
+      - '`cfbd_metrics_wp_pregame`'
+  - subtitle: School Functions
+    desc: Functions exported by cfbfastR sourced from venues and coaches endpoints of the CollegeFootballData API
+    contents:
+      - '`cfbd_venues`'
+      - '`cfbd_coaches`'
+  # - subtitle: Plotting Functions
+  #   desc: Plotting play-by-play sequences and game win probability charts
+  #   contents:
+  #     - '`plot_wpa`'
+  #     - '`plot_pbp_sequencing`'
+  #     - '`plot_away_travel`'
+  - subtitle: Internals
+    desc: Internal functions and helpers
+    contents:
+      - '`ep_fg_model_select`'
+      - '`get_preds_ep`'
+      - '`create_epa`'
+      - '`epa_fg_probs`'
+      - '`create_wpa_naive`'
+      - '`create_wpa_betting`'
+      - '`add_betting_cols`'
+      - '`clean_drive_info`'
+      - '`penalty_detection`'
+      - '`add_play_counts`'
+      - '`clean_pbp_dat`'
+      - '`clean_drive_dat`'
+      - '`prep_epa_df_after`'
+      - '`ep_model_select`'
+      - '`ep_model_select_check`'
+      - '`wp_model_select`'
+      - '`wp_model_select_check`'
+      - '`penalty_detection_select`'
+      - '`add_play_counts_select`'
+      - '`clean_pbp_dat_select`'
+      - '`clean_drive_dat_select`'
+      - '`add_player_cols_select`'
+      - '`add_yardage_select`'
+      - '`prep_epa_df_after_select`'
+      - '`prep_df_pbp_overview`'
+      - '`check_internet`'
+

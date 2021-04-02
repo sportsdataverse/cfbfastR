@@ -1,0 +1,87 @@
+---
+title: "Creating Fourth Down Tendency Plots Using cfbfastR"
+author: "Michael Egle | @deceptivespeed_"
+date: "9/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Hey everyone, my name is Michael (known as @deceptivespeed_ on twitter) and over the summer I worked on a daily series of plots using ```ggplot``` and the ```cfbfastR``` package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they're put together. If you haven't already, you should read the introduction tutorial that Parker made to get used to the data and download the package.
+
+First, we'll have to import the necessary packages
+```{r}
+library(tidyverse)
+library(cfbfastR)
+```
+
+
+Originally, I wrote this code for years from 2014-2019 but for the sake of runtime, we'll just do last season (feel free to alter the code to include past years). This code might look a little familiar if you did Parker's tutorial, it'll take a while to run.
+```{r, warning = FALSE}
+pbp19 <- data.frame()
+seasons <- 2019
+pbp19 <- purrr::map_df(seasons, function(x) {
+  readRDS(
+    url(
+      glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/data/rds/pbp_players_pos_{x}.rds")
+    )
+  )
+})
+
+```
+
+Next, we'll need to get the coaching information, so we'll use the ```cfbd_coaches``` function:
+```{r}
+coaches <- cfbd_coaches(year = 2019)
+coaches <- coaches %>%
+  mutate(coach = paste(first_name, last_name, sep = " ")) %>%
+  filter(games >= 6) %>%
+  select(coach, school, year)
+```
+
+Since interim coaches are included in the coaches dataframe, we'll set the cutoff at coaching 6 or more games.
+
+We only have a couple more steps to make our graph. Next, we need to add our coaches to the ```pbp``` dataframe using join functions
+```{r}
+pbp19 <- pbp19 %>%
+  inner_join(coaches, by = c("offense_play" = "school", "year" = "year"))
+```
+
+Now we can filter down to only fourth down plays, then we'll add columns to determine if the play was a punt, FGA, or the team went for it.
+```{r}
+down4 <- pbp19 %>%
+  filter(down == 4) %>%
+  mutate(fga = ifelse(str_detect(play_type, "Field Goal"),
+                      1, 0),
+         punt = ifelse(play_type == "Punt", 1, 0),
+         attempt = ifelse(rush == 1 | pass == 1, 1, 0),
+         play = case_when(fga == 1 ~ "FG Attempt",
+                          punt == 1 ~ "Punt",
+                          attempt == 1 ~ "Go"))
+```
+
+And now we've got all the info we need to make the graph! The code below is listed for current Big 12 head (Except Dave Aranda since he has no HC experience) coaches, but you can alter it to show whicher coaches you want.
+```{r}
+down4 %>%
+  filter(!is.na(play)) %>%
+  filter(coach %in% c("Matt Campbell", "Tom Herman", "Lincoln Riley", "Chris Klieman", "Matt Wells",
+                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Matt Rhule")) %>%
+  filter(distance <= 5, distance > 0) %>%
+  ggplot(aes(x = distance, y = 100 - yards_to_goal, color = play)) +
+  geom_jitter() +
+  facet_wrap(. ~ coach) +
+  theme_bw() +
+  labs(x = "Yards to Go",
+       title = "Big 12 Coaches's Fourth Down Tendencies | CFP Era",
+       subtitle = "Data from @cfbfastR",
+       caption = "Visualization by Michael Egle (@deceptivespeed_)",
+       color = "Decision") +
+  scale_y_continuous(labels = c("Own 20", "Own 40", "Opp 40",
+                               "Opp 20", "Endzone"),
+                     breaks = c(20, 40, 60, 80, 100)) +
+  theme(axis.title.y = element_blank())
+```
+
+Looks good! Small sample size but can easily be built upon. Hopefully you found this tutorial helpful and can make some more cool CFB related visualizations with ```ggplot2```

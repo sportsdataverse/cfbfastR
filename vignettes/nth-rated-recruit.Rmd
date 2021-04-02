@@ -1,0 +1,75 @@
+---
+title: "Visualizing Team Talent from Player Recruiting Rankings"
+author: "Eric Hess - Arbitrary Analytics (@arbitanalytics)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+Hi ```cfbfastR``` users, I'm Eric Hess and I run the [Twitter account](https://twitter.com/arbitanalytics) and blog called [Arbitrary Analytics](https://arbitraryanalytics.com/). My work focuses on sports analytics mainly for Nebraska and the Big Ten. Today, I'm going to walk through how I used the ```cfbfastR``` package to make a simple plot of recent recruiting classes. The final output will give you a quick way to visually approximate how much talent each school has recruited. I'm going to assume you have a basic understanding of working with R and that your development environment is already setup.
+
+We start by loading the packages we need. The ```cfbfastR``` package will provide us with our source of data. The ```dplyr``` package gives us handy data manipulation tools and the ever useful pipe (```%>%```) syntax. Finally, ```ggplot2``` will allow us to make a simple, functional graph of our results.
+
+```{r packages}
+library(cfbfastR)
+library(dplyr)
+library(ggplot2)
+```
+
+To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```). I also have the loop pause for 5 seconds between each team. While this causes the function to take a little longer to run it also helps with server load on the back end.
+
+```{r cfb}
+teams <- cfbd_team_info(conference = "B1G")
+all.recruits <- do.call("rbind", apply(teams, 1, function(x) {
+  t <- as.character(x["school"])
+  team.2017 <- cfbd_recruiting_player(year = 2017, team = t, recruit_type = "HighSchool")
+  team.2018 <- cfbd_recruiting_player(year = 2018, team = t, recruit_type = "HighSchool")
+  team.2019 <- cfbd_recruiting_player(year = 2019, team = t, recruit_type = "HighSchool")
+  team.2020 <- cfbd_recruiting_player(year = 2020, team = t, recruit_type = "HighSchool")
+  
+  all.team <- rbind(team.2017, team.2018, team.2019, team.2020)
+  Sys.sleep(5)
+  return(all.team)
+}))
+
+```
+
+The next step is cleaning the data. The ```cfbd_recruiting_player()``` function gives us 14 pieces of data for each player. Our graph is going to focus on just the rating and what school they committed to. I'm going to keep the player name as well as a check field so I can go back and check my data set more quickly if I have any errors. The next line uses ```dplyr``` syntax to give me just the highest rated 85 recruits in order by their rating. I use this info to assign a ranking for each school's 1-nth recruit. Finally, I use the teams data frame again so each recruits school information can be used on our graph.
+
+```{r cleaning}
+recruits.limited <- all.recruits %>% select(name, rating, committed_to)
+recruits.sorted <- recruits.limited %>% group_by(committed_to) %>% top_n(85, rating) %>% arrange(committed_to, -rating)
+recruits.sorted <- recruits.sorted %>% group_by(committed_to) %>% mutate(num = row_number())
+recruits.final <- merge(recruits.sorted, teams, by.x = "committed_to", by.y = "school")
+```
+
+If you follow the Big Ten you know a lot of schools have a shade of red as their primary color. This can make some plots hard to read. Because of this I'm filtering down my data to look at just recruits who committed to a Big Ten West division school. For ```ggplot2``` to use a manually defined color set, I must get a vector of colors that I want, each team's primary color, and assign each value a name corresponding to the school I'm interested in.
+
+```{r final}
+big.ten.west <- recruits.final %>% filter(division == "West")
+big.ten.west.teams <- teams %>% filter(division == "West")
+
+big.ten.west.colors <- big.ten.west.teams$color
+names(big.ten.west.colors) <- big.ten.west.teams$school
+```
+
+Now that we have our data collected and cleaned we finally get to the fun part - plotting. We plot each player's rating based on the ranking of commit they are to a school. We also tell ggplot to use the manual color values we defined earlier. I added some extra horizontal lines to approximate the ratings of 3, 4, and 5 star recruits.
+
+```{r plot}
+ggplot(big.ten.west, aes(x=num, y=rating, color = committed_to)) + 
+  geom_line(size = 1.2) +
+  scale_color_manual(values = big.ten.west.colors) +
+  geom_hline(yintercept = c(.9834, .8901, .7964), linetype = "dashed") +
+  annotate("text", label = "~ 5 Star", y = .99, x = 80) +
+  annotate("text", label = "~ 4 Star", y = .90, x = 80) +
+  annotate("text", label = "~ 3 Star", y = .81, x = 10) +
+  labs(y = "Player Rating",
+       x = "Player Rank",
+       title = "nth Ranked High School Recruit",
+       subtitle = "Top 85 High School Signees 2017-2020 by Big Ten West Program",
+       caption = "Graph by @arbitanalytics, Data from @cfbfastR")
+```
+
+From this graph we can see how well teams have recruited the last four years. A large gap between two of the lines shows that one team has recruited much more talent at that relative position of recruiting. In the Big Ten West graph above, we can see that Nebraska and Wisconsin recruit similar top level recruits. Both schools top 5 recruits are 0.95 rated or higher. However, Nebraska's classes are much stronger from the 10th recruit on. While this graphic oversimplifies the team building process (excluding transfers, walk-ons, etc.), it gives the reader a good feel for the talent level at a program in a quick glance.

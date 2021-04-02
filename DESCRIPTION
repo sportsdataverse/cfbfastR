@@ -1,0 +1,47 @@
+Package: cfbfastR
+Title: Functions to Access College Football Play by Play Data
+Version: 0.1.0
+Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('cre', 'aut')),
+             person('Akshay', 'Easwaran', email = 'akeaswaran@me.com', role = c('aut')),
+             person('Jared','Lee', email = '13jaredlee@gmail.com', role = c('aut')),
+             person('Eric','Hess', email = 'eric.hess.13@gmail.com', role = c('aut')),
+             person('Michael','Egle', email = 'mjegle@iastate.edu', role = c('ctb')),
+             person('Nate','Manzo', email = 'natem67@gmail.com', role = c('ctb'))
+             )
+Description: An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the cfbfastR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
+License: MIT + file LICENSE
+URL: https://saiemgilani.github.io/cfbfastR/ (website), https://www.github.com/saiemgilani/cfbfastR (devel)
+BugReports: http://www.github.com/saiemgilani/cfbfastR/issues
+Encoding: UTF-8
+Depends: 
+    R (>= 3.5.0)
+Imports: 
+    assertthat,
+    attempt,
+    curl,
+    dplyr,
+    ggplot2,
+    glue,
+    httr,
+    janitor,
+    jsonlite,
+    magrittr,
+    purrr,
+    rlang,
+    stringi,
+    stringr,
+    tibble,
+    tidyr,
+    utils
+Suggests: 
+    DBI,
+    furrr,
+    future,
+    rmarkdown,
+    RSQLite,
+    testthat,
+    ggrepel,
+    mgcv,
+    nnet
+LazyData: true
+RoxygenNote: 7.1.1
