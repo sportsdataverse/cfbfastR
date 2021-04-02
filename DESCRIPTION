@@ -26,6 +26,8 @@ Imports:
     janitor,
     jsonlite,
     magrittr,
+    mgcv,
+    nnet
     purrr,
     rlang,
     stringi,
