@@ -85,13 +85,13 @@ Defense: defensive, fumbles, interceptions\cr
 Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 }
 \value{
-A data frame with 38 values:
+cfbd_stats_categories A data frame with 38 values:
 \describe{
   \item{name}{Statistics Categories}
   ...
 }
 
-A data frame with 60 variables:
+cfbd_stats_game_advanced - A data frame with 60 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{week}}{integer.}
@@ -155,7 +155,7 @@ A data frame with 60 variables:
   \item{\code{def_passing_plays_explosiveness}}{double.}
 }
 
-A data frame with 79 variables:
+cfbd_stats_season_advanced - A data frame with 79 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{team}}{character.}
@@ -238,7 +238,7 @@ A data frame with 79 variables:
   \item{\code{def_passing_plays_explosiveness}}{double.}
 }
 
-A data frame with 59 variables:
+cfbd_stats_season_player - A data frame with 59 variables:
 \describe{
   \item{\code{team}}{character.}
   \item{\code{conference}}{character.}
@@ -301,7 +301,7 @@ A data frame with 59 variables:
   \item{\code{punt_returns_long}}{double.}
 }
 
-A data frame with 46 variables:
+cfbd_stats_season_team - A data frame with 46 variables:
 \describe{
   \item{\code{games}}{integer.}
   \item{\code{team}}{character.}

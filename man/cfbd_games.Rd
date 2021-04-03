@@ -104,7 +104,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
 }
 \value{
-A data frame with 22 variables:
+cfbd_game_info - A data frame with 22 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{season}}{integer.}
@@ -130,7 +130,7 @@ A data frame with 22 variables:
   \item{\code{excitement_index}}{character.}
 }
 
-A data frame with 13 variables:
+cfbd_game_media - A data frame with 13 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{season}}{integer.}
@@ -147,7 +147,7 @@ A data frame with 13 variables:
   \item{\code{web}}{list.}
 }
 
-A data frame with 2 rows and 69 variables:
+cfbd_game_box_advanced - A data frame with 2 rows and 69 variables:
 \describe{
   \item{\code{team}}{character.}
   \item{\code{plays}}{double.}
@@ -220,7 +220,7 @@ A data frame with 2 rows and 69 variables:
   \item{\code{field_pos_avg_starting_predicted_pts}}{double.}
 }
 
-A data frame with 32 variables:
+cfbd_game_player_stats - A data frame with 32 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{team}}{character.}
@@ -256,7 +256,7 @@ A data frame with 32 variables:
   \item{\code{qb_hur}}{double.}
 }
 
-A data frame with 20 variables:
+cfbd_game_records - A data frame with 20 variables:
 \describe{
   \item{\code{year}}{integer.}
   \item{\code{team}}{character.}
@@ -280,7 +280,7 @@ A data frame with 20 variables:
   \item{\code{away_ties}}{integer.}
 }
 
-A data frame with 78 variables:
+cfbd_game_team_stats - A data frame with 78 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{school}}{character.}

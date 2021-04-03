@@ -80,7 +80,7 @@ Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_pla
 Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function}
 }
 \value{
-A data frame with 54 variables:
+cfbd_play_stats_player - A data frame with 54 variables:
 \describe{
   \item{\code{play_id}}{character.}
   \item{\code{game_id}}{integer.}
@@ -138,13 +138,13 @@ A data frame with 54 variables:
   \item{\code{pass_breakup_stat}}{logical.}
 }
 
-A data frame with 22 rows and 2 variables:
+cfbd_play_stats_types - A data frame with 22 rows and 2 variables:
 \describe{
   \item{play_stat_type_id}{Referencing play stat type ID}
   \item{name}{Type of play stats}
 }
 
-A data frame with 48 rows and 3 variables:
+cfbd_play_types - A data frame with 48 rows and 3 variables:
 \describe{
   \item{play_type_id}{Referencing play type id}
   \item{text}{play type description}

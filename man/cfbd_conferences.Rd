@@ -10,7 +10,7 @@
 cfbd_conferences()
 }
 \value{
-A data frame with 11 rows and 4 variables:
+cfbd_conferences - A data frame with 11 rows and 4 variables:
 \describe{
   \item{conference_id}{Referencing conference id}
   \item{name}{Conference name}

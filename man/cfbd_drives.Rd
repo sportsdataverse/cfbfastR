@@ -45,7 +45,7 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 }
 \value{
-A data frame with 23 variables as follows:
+cfbd_drives - A data frame with 23 variables as follows:
 \describe{
   \item{\code{offense}}{character. Drive offense.}
   \item{\code{offense_conference}}{character. Drive offense's conference.}

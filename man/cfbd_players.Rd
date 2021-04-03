@@ -50,7 +50,7 @@ Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_pla
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 }
 \value{
-A data frame with 12 variables:
+cfbd_player_info - A data frame with 12 variables:
 \describe{
   \item{\code{athlete_id}}{character. Unique player identifier `athlete_id`.}
   \item{\code{team}}{character. Team of the player.}
@@ -66,7 +66,7 @@ A data frame with 12 variables:
   \item{\code{team_color_secondary}}{character. Player team secondary color.}
 }
 
-A data frame with 15 variables:
+cfbd_player_returning - A data frame with 15 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{team}}{character.}
@@ -85,7 +85,7 @@ A data frame with 15 variables:
   \item{\code{rushing_usage}}{double.}
 }
 
-A data frame with 14 variables:
+cfbd_player_usage - A data frame with 14 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{athlete_id}}{character.}

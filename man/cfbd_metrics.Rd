@@ -115,7 +115,7 @@ Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_pla
 Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
 }
 \value{
-A data frame with 18 variables:
+cfbd_metrics_ppa_games - A data frame with 18 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{season}}{integer.}
@@ -137,7 +137,7 @@ A data frame with 18 variables:
   \item{\code{def_third_down}}{character.}
 }
 
-A data frame with 18 variables:
+cfbd_metrics_ppa_games - A data frame with 18 variables:
 \describe{
   \item{\code{game_id}}{integer.}
   \item{\code{season}}{integer.}
@@ -159,7 +159,7 @@ A data frame with 18 variables:
   \item{\code{def_third_down}}{character.}
 }
 
-A data frame with 9 variables:
+cfbd_metrics_ppa_players_games - A data frame with 9 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{week}}{integer.}
@@ -172,7 +172,7 @@ A data frame with 9 variables:
   \item{\code{avg_PPA_rush}}{double.}
 }
 
-A data frame with 23 variables:
+cfbd_metrics_ppa_players_season - A data frame with 23 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{id}}{character.}
@@ -199,13 +199,13 @@ A data frame with 23 variables:
   \item{\code{total_PPA_passing_downs}}{double.}
 }
 
-A data frame with 2 variables:
+cfbd_metrics_ppa_predicted - A data frame with 2 variables:
 \describe{
   \item{\code{yard_line}}{integer.}
   \item{\code{predicted_points}}{character.}
 }
 
-A data frame with 21 variables:
+cfbd_metrics_ppa_teams - A data frame with 21 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{conference}}{character.}
@@ -230,7 +230,7 @@ A data frame with 21 variables:
   \item{\code{def_cumulative_rushing}}{character.}
 }
 
-A data frame with 9 variables:
+cfbd_metrics_wp_pregame - A data frame with 9 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{season_type}}{character.}
@@ -243,7 +243,7 @@ A data frame with 9 variables:
   \item{\code{away_win_prob}}{double.}
 }
 
-A data frame with 16 variables:
+cfbd_metrics_wp - A data frame with 16 variables:
 \describe{
   \item{\code{play_id}}{character.}
   \item{\code{play_text}}{character.}
@@ -263,7 +263,7 @@ A data frame with 16 variables:
   \item{\code{yard_line}}{integer.}
 }
 
-A data frame with 5 variables:
+espn_metrics_wp - A data frame with 5 variables:
 \describe{
   \item{\code{espn_game_id}}{character.}
   \item{\code{play_id}}{character.}

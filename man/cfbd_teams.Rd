@@ -51,7 +51,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
 \value{
-A data frame with 12 variables:
+cfbd_team_info - A data frame with 12 variables:
 \describe{
   \item{\code{team_id}}{integer.}
   \item{\code{school}}{character.}
@@ -67,7 +67,7 @@ A data frame with 12 variables:
   \item{\code{logos}}{list.}
 }
 
-A data frame with 7 variables:
+cfbd_team_matchup_records - A data frame with 7 variables:
 \describe{
   \item{\code{start_year}}{character.}
   \item{\code{end_year}}{character.}
@@ -78,7 +78,7 @@ A data frame with 7 variables:
   \item{\code{ties}}{character.}
 }
 
-A data frame with 11 variables:
+cfbd_team_matchup - A data frame with 11 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{week}}{integer.}
@@ -93,7 +93,7 @@ A data frame with 11 variables:
   \item{\code{winner}}{character.}
 }
 
-A data frame with 12 variables:
+cfbd_team_roster - A data frame with 12 variables:
 \describe{
   \item{\code{athlete_id}}{character.}
   \item{\code{first_name}}{character.}
@@ -109,7 +109,7 @@ A data frame with 12 variables:
   \item{\code{team}}{character.}
 }
 
-A data frame with 3 variables:
+cfbd_team_talent - A data frame with 3 variables:
 \describe{
   \item{\code{year}}{integer.}
   \item{\code{school}}{character.}
