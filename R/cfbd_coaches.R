@@ -8,7 +8,7 @@
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
 #' @param min_year (\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).
 #' @param max_year (\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY}).
-#' @return A data frame with coach information with the following columns:
+#' @return cfbd_coaches - A data frame with coach information with the following columns:
 #' \describe{
 #'   \item{\code{first_name}}{character. First name of coach.}
 #'   \item{\code{last_name}}{character. Last name of coach.}

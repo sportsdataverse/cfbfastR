@@ -6,7 +6,7 @@ NULL
 #' This function identifies all Stats Categories identified in the regular stats endpoint.
 #'
 #' @rdname cfbd_stats
-#' @return A data frame with 38 values:
+#' @return cfbd_stats_categories A data frame with 38 values:
 #' \describe{
 #'   \item{name}{Statistics Categories}
 #'   ...
@@ -75,7 +75,7 @@ cfbd_stats_categories <- function(){
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param season_type (\emph{String} default both): Select Season Type: regular, postseason, or both.
 #'
-#' @return A data frame with 60 variables:
+#' @return cfbd_stats_game_advanced - A data frame with 60 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{week}}{integer.}
@@ -281,7 +281,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
-#' @return A data frame with 79 variables:
+#' @return cfbd_stats_season_advanced - A data frame with 79 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -503,7 +503,7 @@ cfbd_stats_season_advanced <- function(year,
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns\cr
 #'
-#' @return A data frame with 59 variables:
+#' @return cfbd_stats_season_player - A data frame with 59 variables:
 #' \describe{
 #'   \item{\code{team}}{character.}
 #'   \item{\code{conference}}{character.}
@@ -753,7 +753,7 @@ cfbd_stats_season_player <- function(year,
 #' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
-#' @return A data frame with 46 variables:
+#' @return cfbd_stats_season_team - A data frame with 46 variables:
 #' \describe{
 #'   \item{\code{games}}{integer.}
 #'   \item{\code{team}}{character.}

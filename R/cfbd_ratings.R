@@ -10,7 +10,7 @@ NULL
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
 #'
-#' @return A data frame with 9 variables:
+#' @return cfbd_rankings - A data frame with 9 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{season_type}}{character.}
@@ -117,7 +117,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = 'regular'){
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
 #'
-#' @return A data frame with 26 variables:
+#' @return cfbd_ratings_sp - A data frame with 26 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -262,7 +262,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL){
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
-#' @return A data frame with 25 variables:
+#' @return cfbd_ratings_sp_conference - A data frame with 25 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{conference}}{character.}
@@ -339,9 +339,13 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL){
   # Check for internet
   check_internet()
 
+  # Check for CFBD API key
+  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  
   # Create the GET request and set response as res
-  res <- httr::GET(full_url)
-
+  res <- httr::RETRY("GET", full_url,
+                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  
   # Check the result
   check_status(res)
 
@@ -349,7 +353,10 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL){
   tryCatch(
     expr ={
       # Get the content and return it as data.frame
-      df = jsonlite::fromJSON(full_url, flatten=TRUE) %>%
+      df = res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten=TRUE) %>% 
+        as.data.frame() %>%
         dplyr::rename(
           second_order_wins = .data$secondOrderWins,
           offense_rating = .data$offense.rating,
@@ -399,7 +406,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL){
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
-#' @return A data frame with 6 variables:
+#' @return cfbd_ratings_srs - A data frame with 6 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{team}}{character.}

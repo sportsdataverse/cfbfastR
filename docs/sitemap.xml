@@ -34,9 +34,6 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_espn_wp.html</loc>
-  </url>
-  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html</loc>
   </url>
   <url>
@@ -47,9 +44,6 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_fpi.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting.html</loc>
@@ -80,6 +74,9 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/create_wpa_naive.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/data.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/epa_fg_probs.html</loc>

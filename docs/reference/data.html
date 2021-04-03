@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CFB Venue Information — cfbd_venues • cfbfastR</title>
+<title>CFBD Data — data • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="CFB Venue Information — cfbd_venues" />
-<meta property="og:description" content="Pulls all college football venues and data on capacity, grass, city/state, location,
-elevation, dome, timezone and construction year" />
+<meta property="og:title" content="CFBD Data — data" />
+<meta property="og:description" content="CFBD Data
+College Football Mapping for Play Types
+College Football Conference" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbfastR" />
@@ -187,47 +188,46 @@ elevation, dome, timezone and construction year" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CFB Venue Information</h1>
+    <h1>CFBD Data</h1>
     
-    <div class="hidden name"><code>cfbd_venues.Rd</code></div>
+    <div class="hidden name"><code>data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Pulls all college football venues and data on capacity, grass, city/state, location,
-elevation, dome, timezone and construction year</p>
+    <p>CFBD Data</p>
+<p>College Football Mapping for Play Types</p>
+<p>College Football Conference</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_venues</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='va'>cfbd_play_type_df</span>
+
+<span class='va'>cfbd_conf_types_df</span></pre>
 
 
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><a href='https://api.collegefootballdata.com/venues'>https://api.collegefootballdata.com/venues</a></p>
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A data frame with 335 rows and 13 variables:</p><dl>
-  <dt><code>venue_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>name</code></dt><dd><p>character.</p></dd>
-  <dt><code>capacity</code></dt><dd><p>integer.</p></dd>
-  <dt><code>grass</code></dt><dd><p>logical.</p></dd>
-  <dt><code>city</code></dt><dd><p>character.</p></dd>
-  <dt><code>state</code></dt><dd><p>character.</p></dd>
-  <dt><code>zip</code></dt><dd><p>character.</p></dd>
-  <dt><code>country_code</code></dt><dd><p>character.</p></dd>
-  <dt><code>location</code></dt><dd><p>list.</p></dd>
-  <dt><code>elevation</code></dt><dd><p>character.</p></dd>
-  <dt><code>year_constructed</code></dt><dd><p>integer.</p></dd>
-  <dt><code>dome</code></dt><dd><p>logical.</p></dd>
-  <dt><code>timezone</code></dt><dd><p>character.</p></dd>
+    <p>A data frame with 45 rows and 3 variables:</p><dl>
+  <dt>id</dt><dd><p>Referencing play id</p></dd>
+  <dt>text</dt><dd><p>play type description</p></dd>
+  <dt>abbreviation</dt><dd><p>play type abbreviation used for function call</p></dd>
+  ...
 
 </dl>
 
+<p>A data frame with 11 rows and 4 variables:</p><dl>
+  <dt>id</dt><dd><p>Referencing conference id</p></dd>
+  <dt>name</dt><dd><p>Conference name</p></dd>
+  <dt>short_name</dt><dd><p>Short name for Conference</p></dd>
+  <dt>abbreviation</dt><dd><p>Conference abbreviation</p></dd>
+  ...
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>cfbd_venues</span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>&lt;https://api.collegefootballdata.com&gt;</p>
+<p>&lt;https://api.collegefootballdata.com&gt;</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

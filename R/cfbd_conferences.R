@@ -1,7 +1,7 @@
 #' CFB Conference Information
 #'
 #' Pulls all college football conferences and returns as data frame the following fields:
-#' @return A data frame with 11 rows and 4 variables:
+#' @return cfbd_conferences - A data frame with 11 rows and 4 variables:
 #' \describe{
 #'   \item{conference_id}{Referencing conference id}
 #'   \item{name}{Conference name}

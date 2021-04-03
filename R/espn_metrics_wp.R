@@ -1,11 +1,12 @@
 #' Get win probability chart data from ESPN
 #' Graciously contributed by MrCaseB:
 #' @source \url{https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07}
+#' @rdname cfbd_metrics
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
 #'
-#' @return A data frame with 5 variables:
+#' @return espn_metrics_wp - A data frame with 5 variables:
 #' \describe{
 #'   \item{\code{espn_game_id}}{character.}
 #'   \item{\code{play_id}}{character.}
@@ -25,10 +26,10 @@
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_metrics_espn_wp(game_id = 401114164)
+#'   espn_metrics_wp(game_id = 401114164)
 #' }
 
-cfbd_metrics_espn_wp <- function(game_id) {
+espn_metrics_wp <- function(game_id) {
 
   args <- list(game_id = game_id)
 

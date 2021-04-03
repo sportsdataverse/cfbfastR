@@ -24,7 +24,7 @@ NULL
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
 #'  * Special Teams: 'K', 'P'\cr
 #'
-#' @return A data frame with 14 variables:
+#' @return cfbd_recruiting_player - A data frame with 14 variables:
 #' \describe{
 #'   \item{\code{recruit_type}}{character.}
 #'   \item{\code{year}}{integer.}
@@ -172,7 +172,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
-#' @return A data frame with 7 variables:
+#' @return cfbd_recruiting_position - A data frame with 7 variables:
 #' \describe{
 #'   \item{\code{team}}{character.}
 #'   \item{\code{conference}}{character.}
@@ -298,7 +298,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #'
-#' @return A data frame with 4 variables:
+#' @return cfbd_recruiting_team - A data frame with 4 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{rank}}{integer.}

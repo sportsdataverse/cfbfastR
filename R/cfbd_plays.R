@@ -146,7 +146,7 @@ cfbd_plays <- function(year=2020,
 #' Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
 #'
-#' @return A data frame with 54 variables:
+#' @return cfbd_play_stats_player - A data frame with 54 variables:
 #' \describe{
 #'   \item{\code{play_id}}{character.}
 #'   \item{\code{game_id}}{integer.}
@@ -465,7 +465,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
 #' College Football Mapping for Play Stats Types
 #' @rdname cfbd_play
-#' @return A data frame with 22 rows and 2 variables:
+#' @return cfbd_play_stats_types - A data frame with 22 rows and 2 variables:
 #' \describe{
 #'   \item{play_stat_type_id}{Referencing play stat type ID}
 #'   \item{name}{Type of play stats}
@@ -524,7 +524,7 @@ cfbd_play_stats_types <- function(){
 
 #' College Football Mapping for Play Types
 #' @rdname cfbd_play
-#' @return A data frame with 48 rows and 3 variables:
+#' @return cfbd_play_types - A data frame with 48 rows and 3 variables:
 #' \describe{
 #'   \item{play_type_id}{Referencing play type id}
 #'   \item{text}{play type description}

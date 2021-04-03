@@ -1,5 +1,6 @@
 #' Get FPI historical rating data (most recent of each year)
 #' Adapted from sabinanalytic's fork of the cfbfastR repo 
+#' @rdname cfbd_ratings
 #' @source \url{https://github.com/sabinanalytics/cfbfastR/blob/master/R/cfbd_ratings_fpi.R}
 #' @param year Year
 #' @return A data frame with 20 variables:
@@ -38,10 +39,10 @@
 #' @export
 #' @examples
 #'
-#' cfbd_ratings_fpi(year=2018)
+#' espn_ratings_fpi(year=2018)
 #' 
 
-cfbd_ratings_fpi <- function(year = 2019) {
+espn_ratings_fpi <- function(year = 2019) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
   
   # Small error handling to guide the limits on years
