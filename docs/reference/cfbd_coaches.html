@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -137,12 +137,70 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -151,12 +209,22 @@
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -170,7 +238,6 @@
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -238,21 +305,21 @@
     <p><a href='https://api.collegefootballdata.com/coaches'>https://api.collegefootballdata.com/coaches</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_coaches - A data frame with coach information with the following columns:</p><dl>
-  <dt><code>first_name</code></dt><dd><p>character. First name of coach.</p></dd>
-  <dt><code>last_name</code></dt><dd><p>character. Last name of coach.</p></dd>
-  <dt><code>school</code></dt><dd><p>character. School of coach.</p></dd>
-  <dt><code>year</code></dt><dd><p>integer. Season of record.</p></dd>
-  <dt><code>games</code></dt><dd><p>integer. Games as coach.</p></dd>
-  <dt><code>wins</code></dt><dd><p>integer. Wins for the season.</p></dd>
-  <dt><code>losses</code></dt><dd><p>integer. Losses for the season.</p></dd>
-  <dt><code>ties</code></dt><dd><p>integer. Ties for the season.</p></dd>
-  <dt><code>preseason_rank</code></dt><dd><p>integer. Preseason rank for the school of coach.</p></dd>
-  <dt><code>postseason_rank</code></dt><dd><p>integer. Postseason rank for the school of coach.</p></dd>
-  <dt><code>srs</code></dt><dd><p>character. Simple Rating System adjustment for team.</p></dd>
-  <dt><code>sp_overall</code></dt><dd><p>character. Bill Connelly's SP+ overall for team.</p></dd>
-  <dt><code>sp_offense</code></dt><dd><p>character. Bill Connelly's SP+ offense for team.</p></dd>
-  <dt><code>sp_defense</code></dt><dd><p>character. Bill Connelly's SP+ defense for team.</p></dd>
+    <p><code>cfbfastR::cfbd_coaches()</code> - A data frame with coach information with the following columns:</p><dl>
+<dt><code>first_name</code></dt><dd><p>character. First name of coach.</p></dd>
+<dt><code>last_name</code></dt><dd><p>character. Last name of coach.</p></dd>
+<dt><code>school</code></dt><dd><p>character. School of coach.</p></dd>
+<dt><code>year</code></dt><dd><p>integer. Season of record.</p></dd>
+<dt><code>games</code></dt><dd><p>integer. Games as coach.</p></dd>
+<dt><code>wins</code></dt><dd><p>integer. Wins for the season.</p></dd>
+<dt><code>losses</code></dt><dd><p>integer. Losses for the season.</p></dd>
+<dt><code>ties</code></dt><dd><p>integer. Ties for the season.</p></dd>
+<dt><code>preseason_rank</code></dt><dd><p>integer. Preseason rank for the school of coach.</p></dd>
+<dt><code>postseason_rank</code></dt><dd><p>integer. Postseason rank for the school of coach.</p></dd>
+<dt><code>srs</code></dt><dd><p>character. Simple Rating System adjustment for team.</p></dd>
+<dt><code>sp_overall</code></dt><dd><p>character. Bill Connelly's SP+ overall for team.</p></dd>
+<dt><code>sp_offense</code></dt><dd><p>character. Bill Connelly's SP+ offense for team.</p></dd>
+<dt><code>sp_defense</code></dt><dd><p>character. Bill Connelly's SP+ defense for team.</p></dd>
 
 </dl>
 
@@ -260,7 +327,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfbd_coaches</span><span class='op'>(</span>first <span class='op'>=</span> <span class='st'>"Nick"</span>, last <span class='op'>=</span> <span class='st'>"Saban"</span>, team <span class='op'>=</span> <span class='st'>'alabama'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-03 05:01:45: Scraping coaches data...</span></div><div class='output co'>#&gt;     first_name   last_name  school year games wins losses ties preseason_rank
+</div><div class='output co'>#&gt; <span class='message'>2021-04-04 03:51:27: Scraping coaches data...</span></div><div class='output co'>#&gt;     first_name   last_name  school year games wins losses ties preseason_rank
 #&gt; 1           M.     Griffin Alabama 1900     5    2      3    0              0
 #&gt; 2         G.H.      Harvey Alabama 1901     5    2      1    2              0
 #&gt; 3          Eli      Abbott Alabama 1902     8    4      4    0              0

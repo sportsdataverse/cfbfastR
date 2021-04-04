@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -94,12 +94,70 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -108,12 +166,22 @@
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -127,7 +195,6 @@
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -184,7 +251,7 @@
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-03 05:02:25: Scraping coaches data...</code></pre>
+<pre><code>## 2021-04-04 03:52:06: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>coach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">first_name</span>, <span class="va">last_name</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>

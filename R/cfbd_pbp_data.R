@@ -1,8 +1,10 @@
+#' CFBD Play by Play Data
+#'
+#' @name cfbd_pbp_data
+NULL
 #' Extract CFB (D-I) Play by Play Data - For plays
-#'
-#' Extracts raw game by game data. \cr
+#' @rdname cfbd_pbp_data
 #' @source \url{https://api.collegefootballdata.com/plays}
-#'
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
@@ -705,7 +707,6 @@ cfbd_pbp_data <- function(year,
 
 #' Adds play counts to Play-by-Play data
 #' Adds play counts to Play-by-Play data pulled from the API's raw game data
-#'
 #' @param play_df (\emph{data.frame} required): Adds play counts to Play-by-Play dataframe, as pulled from `cfbd_pbp_data()`
 #' @details Requires the following columns to be present
 #' \describe{

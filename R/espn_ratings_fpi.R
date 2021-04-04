@@ -1,6 +1,9 @@
+#' ESPN Ratings
+#' @name espn_ratings
+NULL
 #' Get FPI historical rating data (most recent of each year)
 #' Adapted from sabinanalytic's fork of the cfbfastR repo 
-#' @rdname cfbd_ratings
+#' @rdname espn_ratings
 #' @source \url{https://github.com/sabinanalytics/cfbfastR/blob/master/R/cfbd_ratings_fpi.R}
 #' @param year Year
 #' @return A data frame with 20 variables:

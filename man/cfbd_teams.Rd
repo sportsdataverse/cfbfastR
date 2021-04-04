@@ -51,69 +51,69 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
 \value{
-cfbd_team_info - A data frame with 12 variables:
+\code{\link[cfbfastR:cfbd_team_info]{cfbfastR::cfbd_team_info()}} - A data frame with 12 variables:
 \describe{
-  \item{\code{team_id}}{integer.}
-  \item{\code{school}}{character.}
-  \item{\code{mascot}}{character.}
-  \item{\code{abbreviation}}{character.}
-  \item{\code{alt_name1}}{character.}
-  \item{\code{alt_name2}}{character.}
-  \item{\code{alt_name3}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{division}}{character.}
-  \item{\code{color}}{character.}
-  \item{\code{alt_color}}{character.}
-  \item{\code{logos}}{list.}
+\item{\code{team_id}}{integer.}
+\item{\code{school}}{character.}
+\item{\code{mascot}}{character.}
+\item{\code{abbreviation}}{character.}
+\item{\code{alt_name1}}{character.}
+\item{\code{alt_name2}}{character.}
+\item{\code{alt_name3}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{division}}{character.}
+\item{\code{color}}{character.}
+\item{\code{alt_color}}{character.}
+\item{\code{logos}}{list.}
 }
 
-cfbd_team_matchup_records - A data frame with 7 variables:
+\code{\link[cfbfastR:cfbd_team_matchup_records]{cfbfastR::cfbd_team_matchup_records()}} - A data frame with 7 variables:
 \describe{
-  \item{\code{start_year}}{character.}
-  \item{\code{end_year}}{character.}
-  \item{\code{team1}}{character.}
-  \item{\code{team1_wins}}{character.}
-  \item{\code{team2}}{character.}
-  \item{\code{team2_wins}}{character.}
-  \item{\code{ties}}{character.}
+\item{\code{start_year}}{character.}
+\item{\code{end_year}}{character.}
+\item{\code{team1}}{character.}
+\item{\code{team1_wins}}{character.}
+\item{\code{team2}}{character.}
+\item{\code{team2_wins}}{character.}
+\item{\code{ties}}{character.}
 }
 
-cfbd_team_matchup - A data frame with 11 variables:
+\code{\link[cfbfastR:cfbd_team_matchup]{cfbfastR::cfbd_team_matchup()}} - A data frame with 11 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{week}}{integer.}
-  \item{\code{season_type}}{character.}
-  \item{\code{date}}{character.}
-  \item{\code{neutral_site}}{logical.}
-  \item{\code{venue}}{character.}
-  \item{\code{home_team}}{character.}
-  \item{\code{home_score}}{integer.}
-  \item{\code{away_team}}{character.}
-  \item{\code{away_score}}{integer.}
-  \item{\code{winner}}{character.}
+\item{\code{season}}{integer.}
+\item{\code{week}}{integer.}
+\item{\code{season_type}}{character.}
+\item{\code{date}}{character.}
+\item{\code{neutral_site}}{logical.}
+\item{\code{venue}}{character.}
+\item{\code{home_team}}{character.}
+\item{\code{home_score}}{integer.}
+\item{\code{away_team}}{character.}
+\item{\code{away_score}}{integer.}
+\item{\code{winner}}{character.}
 }
 
-cfbd_team_roster - A data frame with 12 variables:
+\code{\link[cfbfastR:cfbd_team_roster]{cfbfastR::cfbd_team_roster()}} - A data frame with 12 variables:
 \describe{
-  \item{\code{athlete_id}}{character.}
-  \item{\code{first_name}}{character.}
-  \item{\code{last_name}}{character.}
-  \item{\code{weight}}{integer.}
-  \item{\code{height}}{integer.}
-  \item{\code{jersey}}{integer.}
-  \item{\code{year}}{integer.}
-  \item{\code{position}}{character.}
-  \item{\code{home_city}}{character.}
-  \item{\code{home_state}}{character.}
-  \item{\code{home_country}}{character.}
-  \item{\code{team}}{character.}
+\item{\code{athlete_id}}{character.}
+\item{\code{first_name}}{character.}
+\item{\code{last_name}}{character.}
+\item{\code{weight}}{integer.}
+\item{\code{height}}{integer.}
+\item{\code{jersey}}{integer.}
+\item{\code{year}}{integer.}
+\item{\code{position}}{character.}
+\item{\code{home_city}}{character.}
+\item{\code{home_state}}{character.}
+\item{\code{home_country}}{character.}
+\item{\code{team}}{character.}
 }
 
-cfbd_team_talent - A data frame with 3 variables:
+\code{\link[cfbfastR:cfbd_team_talent]{cfbfastR::cfbd_team_talent()}} - A data frame with 3 variables:
 \describe{
-  \item{\code{year}}{integer.}
-  \item{\code{school}}{character.}
-  \item{\code{talent}}{double.}
+\item{\code{year}}{integer.}
+\item{\code{school}}{character.}
+\item{\code{talent}}{double.}
 }
 }
 \description{

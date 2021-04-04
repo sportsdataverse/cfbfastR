@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -94,12 +94,70 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">
@@ -108,12 +166,22 @@
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -127,7 +195,6 @@
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -144,30 +211,56 @@
   <div class="contents col-md-9">
 <div id="cfbfastr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#cfbfastr" class="anchor"></a>cfbfastR</h1></div>
+<a href="#cfbfastr" class="anchor"></a><strong>cfbfastR</strong>
+</h1></div>
 <!-- badges: start -->
 
+<!-- badges: end -->
 <p>The goal of cfbfastR is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<a href="#installation" class="anchor"></a><strong>Installation</strong>
+</h2>
 <p>You can install the released version of cfbfastR from <a href="https://github.com/saiemgilani/cfbfastR">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Then can install using the devtools package from the following:</span>
 
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="our-authors" class="section level2">
+<h2 class="hasAnchor">
+<a href="#our-authors" class="anchor"></a><strong>Our Authors</strong>
+</h2>
+<ul>
+<li><p><a href="https://twitter.com/saiemgilani">Saiem Gilani</a><br><a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?logo=twitter&amp;style=for-the-badge" alt="saiemgilani"></a></p></li>
+<li><p><a href="https://twitter.com/akeaswaran">Akshay Easwaran</a><br><a href="https://twitter.com/akeaswaran" target="blank"><img src="https://img.shields.io/twitter/follow/akeaswaran?logo=twitter&amp;style=for-the-badge" alt="akeaswaran"></a></p></li>
+<li><p><a href="https://twitter.com/JaredDLee">Jared Lee</a>  <a href="https://twitter.com/JaredDLee" target="blank"><img src="https://img.shields.io/twitter/follow/JaredDLee?logo=twitter&amp;style=for-the-badge" alt="JaredDLee"></a></p></li>
+<li><p><a href="https://twitter.com/arbitanalytics">Eric Hess</a>  <a href="https://twitter.com/arbitanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/arbitanalytics?logo=twitter&amp;style=for-the-badge" alt="arbitanalytics"></a></p></li>
+</ul>
+</div>
 <div id="our-contributors-theyre-awesome" class="section level2">
 <h2 class="hasAnchor">
 <a href="#our-contributors-theyre-awesome" class="anchor"></a><strong>Our Contributors (they’re awesome)</strong>
 </h2>
 <ul>
-<li><a href="https://twitter.com/cfbnate">Nate Manzo</a></li>
-<li><a href="https://twitter.com/deceptivespeed_">Michael Egle</a></li>
 <li>
-<del><a href="https://twitter.com/arbitanalytics">Eric Hess</a></del> (Now an author)</li>
+<a href="https://twitter.com/cfbnate">Nate Manzo</a><br><a href="https://twitter.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?logo=twitter&amp;style=for-the-badge" alt="cfbnate"></a>
+</li>
 <li>
-<del><a href="https://twitter.com/JaredDLee">Jared Lee</a></del> (Now an author)</li>
+<a href="https://twitter.com/deceptivespeed_">Michael Egle</a><br><a href="https://twitter.com/deceptivespeed_" target="blank"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?logo=twitter&amp;style=for-the-badge" alt="deceptivespeed_"></a>
+</li>
+<li>
+<a href="https://twitter.com/CFBNumbers">Jason DeLoach</a><br><a href="https://twitter.com/CFBNumbers" target="blank"><img src="https://img.shields.io/twitter/follow/CFBNumbers?logo=twitter&amp;style=for-the-badge" alt="CFBNumbers"></a>
+</li>
+<li>
+<a href="https://twitter.com/Tejseth41">Tej Seth</a><br><a href="https://twitter.com/Tejseth41" target="blank"><img src="https://img.shields.io/twitter/follow/Tejseth41?logo=twitter&amp;style=for-the-badge" alt="Tejseth41"></a>
+</li>
+<li>
+<a href="https://twitter.com/ConorMcQ5">Conor McQuiston</a><br><a href="https://twitter.com/ConorMcQ5" target="blank"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?logo=twitter&amp;style=for-the-badge" alt="ConorMcQ5"></a>
+</li>
+<li>
+<a href="https://twitter.com/_TanHo">Tan Ho</a><br><a href="https://twitter.com/_TanHo" target="blank"><img src="https://img.shields.io/twitter/follow/_TanHo?logo=twitter&amp;style=for-the-badge" alt="_TanHo"></a>
+</li>
 </ul>
 </div>
 <div id="special-thanks" class="section level2">
@@ -214,7 +307,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://twitter.com/cfbfastR"><img src="https://img.shields.io/twitter/follow/cfbfastR?style=social" alt="Twitter Follow"></a></li>
+<li><a href="https://twitter.com/cfbfastR"><img src="https://img.shields.io/twitter/follow/cfbfastR?style=for-the-badge&amp;logo=twitter" alt="Twitter Follow"></a></li>
 </ul>
 </div>
 </div>

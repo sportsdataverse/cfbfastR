@@ -90,7 +90,7 @@ At least one of year or team must be specified for the function to run" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -142,12 +142,70 @@ At least one of year or team must be specified for the function to run" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -156,12 +214,22 @@ At least one of year or team must be specified for the function to run" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -175,7 +243,6 @@ At least one of year or team must be specified for the function to run" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -244,10 +311,11 @@ or 'PrepSchool'  - For position group information</p></td>
     </tr>
     <tr>
       <th>position</th>
-      <td><p>(<em>String</em> optional): Position Group  - options include:<br />
-* Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'<br />
-* Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'<br />
-* Special Teams: 'K', 'P'<br /></p></td>
+      <td><p>(<em>String</em> optional): Position Group  - options include:<br /></p><ul>
+<li><p>Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'<br /></p></li>
+<li><p>Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'<br /></p></li>
+<li><p>Special Teams: 'K', 'P'<br /></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>start_year</th>
@@ -272,40 +340,40 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <p><a href='https://api.collegefootballdata.com/recruiting/teams'>https://api.collegefootballdata.com/recruiting/teams</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_recruiting_player - A data frame with 14 variables:</p><dl>
-  <dt><code>recruit_type</code></dt><dd><p>character.</p></dd>
-  <dt><code>year</code></dt><dd><p>integer.</p></dd>
-  <dt><code>ranking</code></dt><dd><p>integer.</p></dd>
-  <dt><code>name</code></dt><dd><p>character.</p></dd>
-  <dt><code>school</code></dt><dd><p>character.</p></dd>
-  <dt><code>committed_to</code></dt><dd><p>character.</p></dd>
-  <dt><code>position</code></dt><dd><p>character.</p></dd>
-  <dt><code>height</code></dt><dd><p>double.</p></dd>
-  <dt><code>weight</code></dt><dd><p>integer.</p></dd>
-  <dt><code>stars</code></dt><dd><p>integer.</p></dd>
-  <dt><code>rating</code></dt><dd><p>double.</p></dd>
-  <dt><code>city</code></dt><dd><p>character.</p></dd>
-  <dt><code>state_province</code></dt><dd><p>character.</p></dd>
-  <dt><code>country</code></dt><dd><p>character.</p></dd>
+    <p><code>cfbfastR::cfbd_recruiting_player()</code> - A data frame with 14 variables:</p><dl>
+<dt><code>recruit_type</code></dt><dd><p>character.</p></dd>
+<dt><code>year</code></dt><dd><p>integer.</p></dd>
+<dt><code>ranking</code></dt><dd><p>integer.</p></dd>
+<dt><code>name</code></dt><dd><p>character.</p></dd>
+<dt><code>school</code></dt><dd><p>character.</p></dd>
+<dt><code>committed_to</code></dt><dd><p>character.</p></dd>
+<dt><code>position</code></dt><dd><p>character.</p></dd>
+<dt><code>height</code></dt><dd><p>double.</p></dd>
+<dt><code>weight</code></dt><dd><p>integer.</p></dd>
+<dt><code>stars</code></dt><dd><p>integer.</p></dd>
+<dt><code>rating</code></dt><dd><p>double.</p></dd>
+<dt><code>city</code></dt><dd><p>character.</p></dd>
+<dt><code>state_province</code></dt><dd><p>character.</p></dd>
+<dt><code>country</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_recruiting_position - A data frame with 7 variables:</p><dl>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>position_group</code></dt><dd><p>character.</p></dd>
-  <dt><code>avg_rating</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_rating</code></dt><dd><p>double.</p></dd>
-  <dt><code>commits</code></dt><dd><p>integer.</p></dd>
-  <dt><code>avg_stars</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_recruiting_position()</code> - A data frame with 7 variables:</p><dl>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>position_group</code></dt><dd><p>character.</p></dd>
+<dt><code>avg_rating</code></dt><dd><p>double.</p></dd>
+<dt><code>total_rating</code></dt><dd><p>double.</p></dd>
+<dt><code>commits</code></dt><dd><p>integer.</p></dd>
+<dt><code>avg_stars</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_recruiting_team - A data frame with 4 variables:</p><dl>
-  <dt><code>year</code></dt><dd><p>integer.</p></dd>
-  <dt><code>rank</code></dt><dd><p>integer.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>points</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_recruiting_team()</code> - A data frame with 4 variables:</p><dl>
+<dt><code>year</code></dt><dd><p>integer.</p></dd>
+<dt><code>rank</code></dt><dd><p>integer.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>points</code></dt><dd><p>character.</p></dd>
 
 </dl>
 

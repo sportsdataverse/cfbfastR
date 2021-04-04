@@ -13,7 +13,7 @@ NULL
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return cfbd_metrics_ppa_games - A data frame with 18 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{season}}{integer.}
@@ -153,7 +153,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return cfbd_metrics_ppa_games - A data frame with 18 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{season}}{integer.}
@@ -299,7 +299,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return cfbd_metrics_ppa_players_games - A data frame with 9 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_players_games]{cfbfastR::cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{week}}{integer.}
@@ -446,7 +446,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return cfbd_metrics_ppa_players_season - A data frame with 23 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_players_season]{cfbfastR::cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{id}}{character.}
@@ -603,7 +603,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' @param down (\emph{Integer} required): Down filter
 #' @param distance (\emph{Integer} required): Distance filter
 #'
-#' @return cfbd_metrics_ppa_predicted - A data frame with 2 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_predicted]{cfbfastR::cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
 #' \describe{
 #'   \item{\code{yard_line}}{integer.}
 #'   \item{\code{predicted_points}}{character.}
@@ -695,7 +695,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return cfbd_metrics_ppa_teams - A data frame with 21 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_teams]{cfbfastR::cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{conference}}{character.}
@@ -829,7 +829,7 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
 #' @param team (\emph{String} optional): D-I Team
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
 #'
-#' @return cfbd_metrics_wp_pregame - A data frame with 9 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_wp_pregame]{cfbfastR::cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{season_type}}{character.}
@@ -936,7 +936,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
 #'
-#' @return cfbd_metrics_wp - A data frame with 16 variables:
+#' @return \code{\link[cfbfastR:cfbd_metrics_wp]{cfbfastR::cfbd_metrics_wp()}} - A data frame with 16 variables:
 #' \describe{
 #'   \item{\code{play_id}}{character.}
 #'   \item{\code{play_text}}{character.}

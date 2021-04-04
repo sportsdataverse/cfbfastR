@@ -13,10 +13,7 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/add_yardage.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_betting_lines.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_calendar.html</loc>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_betting.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_coaches.html</loc>
@@ -80,6 +77,12 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/epa_fg_probs.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/penalty_detection.html</loc>

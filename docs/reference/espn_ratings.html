@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get FPI historical rating data (most recent of each year)
-Adapted from sabinanalytic's fork of the cfbfastR repo — cfbd_ratings_fpi • cfbfastR</title>
+<title>ESPN Ratings — espn_ratings • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -49,9 +48,9 @@ Adapted from sabinanalytic's fork of the cfbfastR repo — cfbd_ratings_fpi • 
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get FPI historical rating data (most recent of each year)
-Adapted from sabinanalytic's fork of the cfbfastR repo — cfbd_ratings_fpi" />
-<meta property="og:description" content="Get FPI historical rating data (most recent of each year)
+<meta property="og:title" content="ESPN Ratings — espn_ratings" />
+<meta property="og:description" content="ESPN Ratings
+Get FPI historical rating data (most recent of each year)
 Adapted from sabinanalytic's fork of the cfbfastR repo" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -88,7 +87,7 @@ Adapted from sabinanalytic's fork of the cfbfastR repo" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -140,12 +139,70 @@ Adapted from sabinanalytic's fork of the cfbfastR repo" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -154,12 +211,22 @@ Adapted from sabinanalytic's fork of the cfbfastR repo" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -173,7 +240,6 @@ Adapted from sabinanalytic's fork of the cfbfastR repo" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -189,18 +255,18 @@ Adapted from sabinanalytic's fork of the cfbfastR repo" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get FPI historical rating data (most recent of each year)
-Adapted from sabinanalytic's fork of the cfbfastR repo</h1>
+    <h1>ESPN Ratings</h1>
     
-    <div class="hidden name"><code>cfbd_ratings_fpi.Rd</code></div>
+    <div class="hidden name"><code>espn_ratings.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get FPI historical rating data (most recent of each year)
+    <p>ESPN Ratings</p>
+<p>Get FPI historical rating data (most recent of each year)
 Adapted from sabinanalytic's fork of the cfbfastR repo</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_ratings_fpi</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>espn_ratings_fpi</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -217,33 +283,33 @@ Adapted from sabinanalytic's fork of the cfbfastR repo</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame with 20 variables:</p><dl>
-  <dt><code>year</code></dt><dd><p>double.</p></dd>
-  <dt><code>id</code></dt><dd><p>character.</p></dd>
-  <dt><code>name</code></dt><dd><p>character.</p></dd>
-  <dt><code>abbr</code></dt><dd><p>character.</p></dd>
-  <dt><code>row_n</code></dt><dd><p>integer.</p></dd>
-  <dt><code>fpi</code></dt><dd><p>character.</p></dd>
-  <dt><code>fpi_rk</code></dt><dd><p>character.</p></dd>
-  <dt><code>trend</code></dt><dd><p>character.</p></dd>
-  <dt><code>proj_w</code></dt><dd><p>character.</p></dd>
-  <dt><code>proj_l</code></dt><dd><p>character.</p></dd>
-  <dt><code>win_out</code></dt><dd><p>double.</p></dd>
-  <dt><code>win_6</code></dt><dd><p>double.</p></dd>
-  <dt><code>win_div</code></dt><dd><p>double.</p></dd>
-  <dt><code>playoff</code></dt><dd><p>double.</p></dd>
-  <dt><code>nc_game</code></dt><dd><p>double.</p></dd>
-  <dt><code>nc_win</code></dt><dd><p>double.</p></dd>
-  <dt><code>win_conf</code></dt><dd><p>double.</p></dd>
-  <dt><code>w</code></dt><dd><p>character.</p></dd>
-  <dt><code>l</code></dt><dd><p>character.</p></dd>
-  <dt><code>t</code></dt><dd><p>character.</p></dd>
+<dt><code>year</code></dt><dd><p>double.</p></dd>
+<dt><code>id</code></dt><dd><p>character.</p></dd>
+<dt><code>name</code></dt><dd><p>character.</p></dd>
+<dt><code>abbr</code></dt><dd><p>character.</p></dd>
+<dt><code>row_n</code></dt><dd><p>integer.</p></dd>
+<dt><code>fpi</code></dt><dd><p>character.</p></dd>
+<dt><code>fpi_rk</code></dt><dd><p>character.</p></dd>
+<dt><code>trend</code></dt><dd><p>character.</p></dd>
+<dt><code>proj_w</code></dt><dd><p>character.</p></dd>
+<dt><code>proj_l</code></dt><dd><p>character.</p></dd>
+<dt><code>win_out</code></dt><dd><p>double.</p></dd>
+<dt><code>win_6</code></dt><dd><p>double.</p></dd>
+<dt><code>win_div</code></dt><dd><p>double.</p></dd>
+<dt><code>playoff</code></dt><dd><p>double.</p></dd>
+<dt><code>nc_game</code></dt><dd><p>double.</p></dd>
+<dt><code>nc_win</code></dt><dd><p>double.</p></dd>
+<dt><code>win_conf</code></dt><dd><p>double.</p></dd>
+<dt><code>w</code></dt><dd><p>character.</p></dd>
+<dt><code>l</code></dt><dd><p>character.</p></dd>
+<dt><code>t</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfbd_ratings_fpi</span><span class='op'>(</span>year<span class='op'>=</span><span class='fl'>2018</span><span class='op'>)</span>
+<span class='fu'>espn_ratings_fpi</span><span class='op'>(</span>year<span class='op'>=</span><span class='fl'>2018</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Scraping FPI totals for 2018!</span></div><div class='output co'>#&gt;     year   id            name  abbr row_n   fpi fpi_rk trend proj_w proj_l
 #&gt; 1   2018  228         Clemson  CLEM     1  32.7      1   1.0   15.0    0.0
 #&gt; 2   2018  333         Alabama   ALA     2  30.1      2  -1.0   14.0    1.0
@@ -518,7 +584,7 @@ Adapted from sabinanalytic's fork of the cfbfastR repo</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, Akshay Easwaran, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/arbitanalytics'>Eric Hess</a>.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/akeaswaran'>Akshay Easwaran</a>, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/arbitanalytics'>Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown">

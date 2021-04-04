@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -137,12 +137,70 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -151,12 +209,22 @@
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -170,7 +238,6 @@
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -292,269 +359,269 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 <p><a href='https://api.collegefootballdata.com/stats/season'>https://api.collegefootballdata.com/stats/season</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_stats_categories A data frame with 38 values:</p><dl>
-  <dt>name</dt><dd><p>Statistics Categories</p></dd>
-  ...
+    <p><code>cfbfastR::cfbd_stats_categories()</code> A data frame with 38 values:</p><dl>
+<dt>name</dt><dd><p>Statistics Categories</p></dd>
+...
 
 </dl>
 
-<p>cfbd_stats_game_advanced - A data frame with 60 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>opponent</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_plays</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_drives</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_power_success</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_stuff_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_line_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_line_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_second_lvl_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_open_field_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_plays</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_drives</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_power_success</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_stuff_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_line_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_line_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_second_lvl_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_open_field_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_stats_game_advanced()</code> - A data frame with 60 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>opponent</code></dt><dd><p>character.</p></dd>
+<dt><code>off_plays</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_drives</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_power_success</code></dt><dd><p>double.</p></dd>
+<dt><code>off_stuff_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_line_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>off_line_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>off_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_open_field_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_plays</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_drives</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_power_success</code></dt><dd><p>double.</p></dd>
+<dt><code>def_stuff_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_line_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>def_line_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>def_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_open_field_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>def_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_stats_season_advanced - A data frame with 79 variables:</p><dl>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_plays</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_drives</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_power_success</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_stuff_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_line_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_line_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_second_lvl_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_open_field_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>off_pts_per_opp</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_field_pos_avg_start</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_field_pos_avg_predicted_points</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_havoc_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_havoc_front_seven</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_havoc_db</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_standard_downs_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>off_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_plays</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_drives</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_power_success</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_stuff_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_line_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_line_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_second_lvl_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_open_field_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_pts_per_opp</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_field_pos_avg_start</code></dt><dd><p>integer.</p></dd>
-  <dt><code>def_field_pos_avg_predicted_points</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_havoc_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_havoc_front_seven</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_havoc_db</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_standard_downs_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>def_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_stats_season_advanced()</code> - A data frame with 79 variables:</p><dl>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>off_plays</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_drives</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_power_success</code></dt><dd><p>double.</p></dd>
+<dt><code>off_stuff_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_line_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>off_line_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>off_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_open_field_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>off_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>off_pts_per_opp</code></dt><dd><p>double.</p></dd>
+<dt><code>off_field_pos_avg_start</code></dt><dd><p>double.</p></dd>
+<dt><code>off_field_pos_avg_predicted_points</code></dt><dd><p>double.</p></dd>
+<dt><code>off_havoc_total</code></dt><dd><p>double.</p></dd>
+<dt><code>off_havoc_front_seven</code></dt><dd><p>double.</p></dd>
+<dt><code>off_havoc_db</code></dt><dd><p>double.</p></dd>
+<dt><code>off_standard_downs_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>off_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_plays</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_drives</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_power_success</code></dt><dd><p>double.</p></dd>
+<dt><code>def_stuff_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_line_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>def_line_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>def_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_open_field_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>def_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_pts_per_opp</code></dt><dd><p>double.</p></dd>
+<dt><code>def_field_pos_avg_start</code></dt><dd><p>integer.</p></dd>
+<dt><code>def_field_pos_avg_predicted_points</code></dt><dd><p>double.</p></dd>
+<dt><code>def_havoc_total</code></dt><dd><p>double.</p></dd>
+<dt><code>def_havoc_front_seven</code></dt><dd><p>double.</p></dd>
+<dt><code>def_havoc_db</code></dt><dd><p>double.</p></dd>
+<dt><code>def_standard_downs_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>def_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_stats_season_player - A data frame with 59 variables:</p><dl>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>player</code></dt><dd><p>character.</p></dd>
-  <dt><code>category</code></dt><dd><p>character.</p></dd>
-  <dt><code>passing_completions</code></dt><dd><p>double.</p></dd>
-  <dt><code>passing_att</code></dt><dd><p>double.</p></dd>
-  <dt><code>passing_pct</code></dt><dd><p>double.</p></dd>
-  <dt><code>passing_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>passing_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>passing_int</code></dt><dd><p>double.</p></dd>
-  <dt><code>passing_ypa</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_car</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_ypc</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_long</code></dt><dd><p>double.</p></dd>
-  <dt><code>receiving_rec</code></dt><dd><p>double.</p></dd>
-  <dt><code>receiving_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>receiving_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>receiving_ypr</code></dt><dd><p>double.</p></dd>
-  <dt><code>receiving_long</code></dt><dd><p>double.</p></dd>
-  <dt><code>fumbles_fum</code></dt><dd><p>double.</p></dd>
-  <dt><code>fumbles_rec</code></dt><dd><p>double.</p></dd>
-  <dt><code>fumbles_lost</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_solo</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_tot</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_tfl</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_sacks</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_qb_hur</code></dt><dd><p>double.</p></dd>
-  <dt><code>interceptions_int</code></dt><dd><p>double.</p></dd>
-  <dt><code>interceptions_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>interceptions_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>interceptions_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_pd</code></dt><dd><p>double.</p></dd>
-  <dt><code>defensive_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_fgm</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_fga</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_pct</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_xpa</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_xpm</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_pts</code></dt><dd><p>double.</p></dd>
-  <dt><code>kicking_long</code></dt><dd><p>double.</p></dd>
-  <dt><code>kick_returns_no</code></dt><dd><p>double.</p></dd>
-  <dt><code>kick_returns_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>kick_returns_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>kick_returns_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>kick_returns_long</code></dt><dd><p>double.</p></dd>
-  <dt><code>punting_no</code></dt><dd><p>double.</p></dd>
-  <dt><code>punting_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>punting_ypp</code></dt><dd><p>double.</p></dd>
-  <dt><code>punting_long</code></dt><dd><p>double.</p></dd>
-  <dt><code>punting_in_20</code></dt><dd><p>double.</p></dd>
-  <dt><code>punting_tb</code></dt><dd><p>double.</p></dd>
-  <dt><code>punt_returns_no</code></dt><dd><p>double.</p></dd>
-  <dt><code>punt_returns_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>punt_returns_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>punt_returns_td</code></dt><dd><p>double.</p></dd>
-  <dt><code>punt_returns_long</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_stats_season_player()</code> - A data frame with 59 variables:</p><dl>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
+<dt><code>player</code></dt><dd><p>character.</p></dd>
+<dt><code>category</code></dt><dd><p>character.</p></dd>
+<dt><code>passing_completions</code></dt><dd><p>double.</p></dd>
+<dt><code>passing_att</code></dt><dd><p>double.</p></dd>
+<dt><code>passing_pct</code></dt><dd><p>double.</p></dd>
+<dt><code>passing_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>passing_td</code></dt><dd><p>double.</p></dd>
+<dt><code>passing_int</code></dt><dd><p>double.</p></dd>
+<dt><code>passing_ypa</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_car</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_td</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_ypc</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_long</code></dt><dd><p>double.</p></dd>
+<dt><code>receiving_rec</code></dt><dd><p>double.</p></dd>
+<dt><code>receiving_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>receiving_td</code></dt><dd><p>double.</p></dd>
+<dt><code>receiving_ypr</code></dt><dd><p>double.</p></dd>
+<dt><code>receiving_long</code></dt><dd><p>double.</p></dd>
+<dt><code>fumbles_fum</code></dt><dd><p>double.</p></dd>
+<dt><code>fumbles_rec</code></dt><dd><p>double.</p></dd>
+<dt><code>fumbles_lost</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_solo</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_tot</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_tfl</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_sacks</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_qb_hur</code></dt><dd><p>double.</p></dd>
+<dt><code>interceptions_int</code></dt><dd><p>double.</p></dd>
+<dt><code>interceptions_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>interceptions_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>interceptions_td</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_pd</code></dt><dd><p>double.</p></dd>
+<dt><code>defensive_td</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_fgm</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_fga</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_pct</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_xpa</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_xpm</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_pts</code></dt><dd><p>double.</p></dd>
+<dt><code>kicking_long</code></dt><dd><p>double.</p></dd>
+<dt><code>kick_returns_no</code></dt><dd><p>double.</p></dd>
+<dt><code>kick_returns_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>kick_returns_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>kick_returns_td</code></dt><dd><p>double.</p></dd>
+<dt><code>kick_returns_long</code></dt><dd><p>double.</p></dd>
+<dt><code>punting_no</code></dt><dd><p>double.</p></dd>
+<dt><code>punting_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>punting_ypp</code></dt><dd><p>double.</p></dd>
+<dt><code>punting_long</code></dt><dd><p>double.</p></dd>
+<dt><code>punting_in_20</code></dt><dd><p>double.</p></dd>
+<dt><code>punting_tb</code></dt><dd><p>double.</p></dd>
+<dt><code>punt_returns_no</code></dt><dd><p>double.</p></dd>
+<dt><code>punt_returns_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>punt_returns_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>punt_returns_td</code></dt><dd><p>double.</p></dd>
+<dt><code>punt_returns_long</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_stats_season_team - A data frame with 46 variables:</p><dl>
-  <dt><code>games</code></dt><dd><p>integer.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>games</code></dt><dd><p>integer.</p></dd>
-  <dt><code>time_of_poss_total</code></dt><dd><p>integer.</p></dd>
-  <dt><code>time_of_poss_pg</code></dt><dd><p>double.</p></dd>
-  <dt><code>pass_comps</code></dt><dd><p>integer.</p></dd>
-  <dt><code>pass_atts</code></dt><dd><p>integer.</p></dd>
-  <dt><code>completion_pct</code></dt><dd><p>double.</p></dd>
-  <dt><code>net_pass_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>pass_ypa</code></dt><dd><p>double.</p></dd>
-  <dt><code>pass_ypr</code></dt><dd><p>double.</p></dd>
-  <dt><code>pass_TDs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>interceptions</code></dt><dd><p>integer.</p></dd>
-  <dt><code>int_pct</code></dt><dd><p>double.</p></dd>
-  <dt><code>rush_atts</code></dt><dd><p>integer.</p></dd>
-  <dt><code>rush_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>rush_TDs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>rush_ypc</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>fumbles_lost</code></dt><dd><p>integer.</p></dd>
-  <dt><code>turnovers</code></dt><dd><p>integer.</p></dd>
-  <dt><code>turnovers_pg</code></dt><dd><p>double.</p></dd>
-  <dt><code>first_downs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>third_downs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>third_down_convs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>third_conv_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>fourth_down_convs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>fourth_downs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>fourth_conv_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>penalties</code></dt><dd><p>integer.</p></dd>
-  <dt><code>penalty_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>penalties_pg</code></dt><dd><p>double.</p></dd>
-  <dt><code>penalty_yds_pg</code></dt><dd><p>double.</p></dd>
-  <dt><code>yards_per_penalty</code></dt><dd><p>double.</p></dd>
-  <dt><code>kick_returns</code></dt><dd><p>integer.</p></dd>
-  <dt><code>kick_return_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>kick_return_TDs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>kick_return_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>punt_returns</code></dt><dd><p>integer.</p></dd>
-  <dt><code>punt_return_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>punt_return_TDs</code></dt><dd><p>integer.</p></dd>
-  <dt><code>punt_return_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>passes_intercepted</code></dt><dd><p>integer.</p></dd>
-  <dt><code>passes_intercepted_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>passes_intercepted_TDs</code></dt><dd><p>integer.</p></dd>
+<p><code>cfbfastR::cfbd_stats_season_team()</code> - A data frame with 46 variables:</p><dl>
+<dt><code>games</code></dt><dd><p>integer.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>games</code></dt><dd><p>integer.</p></dd>
+<dt><code>time_of_poss_total</code></dt><dd><p>integer.</p></dd>
+<dt><code>time_of_poss_pg</code></dt><dd><p>double.</p></dd>
+<dt><code>pass_comps</code></dt><dd><p>integer.</p></dd>
+<dt><code>pass_atts</code></dt><dd><p>integer.</p></dd>
+<dt><code>completion_pct</code></dt><dd><p>double.</p></dd>
+<dt><code>net_pass_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>pass_ypa</code></dt><dd><p>double.</p></dd>
+<dt><code>pass_ypr</code></dt><dd><p>double.</p></dd>
+<dt><code>pass_TDs</code></dt><dd><p>integer.</p></dd>
+<dt><code>interceptions</code></dt><dd><p>integer.</p></dd>
+<dt><code>int_pct</code></dt><dd><p>double.</p></dd>
+<dt><code>rush_atts</code></dt><dd><p>integer.</p></dd>
+<dt><code>rush_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>rush_TDs</code></dt><dd><p>integer.</p></dd>
+<dt><code>rush_ypc</code></dt><dd><p>double.</p></dd>
+<dt><code>total_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>fumbles_lost</code></dt><dd><p>integer.</p></dd>
+<dt><code>turnovers</code></dt><dd><p>integer.</p></dd>
+<dt><code>turnovers_pg</code></dt><dd><p>double.</p></dd>
+<dt><code>first_downs</code></dt><dd><p>integer.</p></dd>
+<dt><code>third_downs</code></dt><dd><p>integer.</p></dd>
+<dt><code>third_down_convs</code></dt><dd><p>integer.</p></dd>
+<dt><code>third_conv_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>fourth_down_convs</code></dt><dd><p>integer.</p></dd>
+<dt><code>fourth_downs</code></dt><dd><p>integer.</p></dd>
+<dt><code>fourth_conv_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>penalties</code></dt><dd><p>integer.</p></dd>
+<dt><code>penalty_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>penalties_pg</code></dt><dd><p>double.</p></dd>
+<dt><code>penalty_yds_pg</code></dt><dd><p>double.</p></dd>
+<dt><code>yards_per_penalty</code></dt><dd><p>double.</p></dd>
+<dt><code>kick_returns</code></dt><dd><p>integer.</p></dd>
+<dt><code>kick_return_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>kick_return_TDs</code></dt><dd><p>integer.</p></dd>
+<dt><code>kick_return_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>punt_returns</code></dt><dd><p>integer.</p></dd>
+<dt><code>punt_return_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>punt_return_TDs</code></dt><dd><p>integer.</p></dd>
+<dt><code>punt_return_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>passes_intercepted</code></dt><dd><p>integer.</p></dd>
+<dt><code>passes_intercepted_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>passes_intercepted_TDs</code></dt><dd><p>integer.</p></dd>
 
 </dl>
 

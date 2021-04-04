@@ -11,5 +11,8 @@ cfbd_key()
 has_cfbd_key()
 }
 \description{
-CFBD API Key Registration
+Save your API Key as a system environment variable \code{CFBD_API_KEY}
+}
+\details{
+To get access to an API key, follow the instructions at \url{https://collegefootballdata.com/key}
 }

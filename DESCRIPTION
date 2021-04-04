@@ -1,12 +1,16 @@
 Package: cfbfastR
 Title: Functions to Access College Football Play by Play Data
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('cre', 'aut')),
              person('Akshay', 'Easwaran', email = 'akeaswaran@me.com', role = c('aut')),
              person('Jared','Lee', email = '13jaredlee@gmail.com', role = c('aut')),
              person('Eric','Hess', email = 'eric.hess.13@gmail.com', role = c('aut')),
              person('Michael','Egle', email = 'mjegle@iastate.edu', role = c('ctb')),
-             person('Nate','Manzo', email = 'natem67@gmail.com', role = c('ctb'))
+             person('Nate','Manzo', email = 'natem67@gmail.com', role = c('ctb')),
+             person('Jason','DeLoach', email = 'jdeloach5@gmail.com', role = c('ctb')),
+             person('Tej', 'Seth', email = 'tejseth@umich.edu', role = c('ctb')),
+             person('Conor','McQuiston', email = 'mcqconor@umich.edu', role = c('ctb')),
+             person('Tan', 'Ho', email = 'tan@tanho.ca', role = c('ctb'))
              )
 Description: An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the cfbfastR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
 License: MIT + file LICENSE
@@ -45,3 +49,4 @@ Suggests:
     ggrepel
 LazyData: true
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)

@@ -13,7 +13,7 @@ NULL
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
 #'
-#' @return cfbd_team_info - A data frame with 12 variables:
+#' @return \code{\link[cfbfastR:cfbd_team_info]{cfbfastR::cfbd_team_info()}} - A data frame with 12 variables:
 #' \describe{
 #'   \item{\code{team_id}}{integer.}
 #'   \item{\code{school}}{character.}
@@ -127,7 +127,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
 #'
-#' @return cfbd_team_matchup_records - A data frame with 7 variables:
+#' @return \code{\link[cfbfastR:cfbd_team_matchup_records]{cfbfastR::cfbd_team_matchup_records()}} - A data frame with 7 variables:
 #' \describe{
 #'   \item{\code{start_year}}{character.}
 #'   \item{\code{end_year}}{character.}
@@ -257,7 +257,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
 #'
-#' @return cfbd_team_matchup - A data frame with 11 variables:
+#' @return \code{\link[cfbfastR:cfbd_team_matchup]{cfbfastR::cfbd_team_matchup()}} - A data frame with 11 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{week}}{integer.}
@@ -386,7 +386,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @param team (\emph{String} optional): Team, select a valid team in D-I football
 #'
 #'
-#' @return cfbd_team_roster - A data frame with 12 variables:
+#' @return \code{\link[cfbfastR:cfbd_team_roster]{cfbfastR::cfbd_team_roster()}} - A data frame with 12 variables:
 #' \describe{
 #'   \item{\code{athlete_id}}{character.}
 #'   \item{\code{first_name}}{character.}
@@ -486,7 +486,7 @@ cfbd_team_roster <- function(year, team = NULL){
 #'
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
 #'
-#' @return cfbd_team_talent - A data frame with 3 variables:
+#' @return \code{\link[cfbfastR:cfbd_team_talent]{cfbfastR::cfbd_team_talent()}} - A data frame with 3 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{school}}{character.}

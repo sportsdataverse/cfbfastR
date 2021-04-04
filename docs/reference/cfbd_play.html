@@ -89,7 +89,7 @@ College Football Mapping for Play Types" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -141,12 +141,70 @@ College Football Mapping for Play Types" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -155,12 +213,22 @@ College Football Mapping for Play Types" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -174,7 +242,6 @@ College Football Mapping for Play Types" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -302,74 +369,75 @@ Can be found using the <code>cfbfastR::cfbd_play_stats_types()</code> function</
 <p><a href='https://api.collegefootballdata.com/play/types'>https://api.collegefootballdata.com/play/types</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_play_stats_player - A data frame with 54 variables:</p><dl>
-  <dt><code>play_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>opponent</code></dt><dd><p>character.</p></dd>
-  <dt><code>team_score</code></dt><dd><p>integer.</p></dd>
-  <dt><code>opponent_score</code></dt><dd><p>integer.</p></dd>
-  <dt><code>drive_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>period</code></dt><dd><p>integer.</p></dd>
-  <dt><code>yards_to_goal</code></dt><dd><p>integer.</p></dd>
-  <dt><code>down</code></dt><dd><p>integer.</p></dd>
-  <dt><code>distance</code></dt><dd><p>integer.</p></dd>
-  <dt><code>reception_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>reception_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>reception_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>completion_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>completion_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>completion_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>rush_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>rush_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>rush_yds</code></dt><dd><p>integer.</p></dd>
-  <dt><code>interception_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>interception_thrown_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_thrown_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_thrown_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>touchdown_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>touchdown_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>touchdown_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>incompletion_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>incompletion_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>incompletion_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>target_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>target_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>target_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>fumble_recovered_player_id</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_recovered_player</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_recovered_stat</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_forced_player_id</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_forced_player</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_forced_stat</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_player_id</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_player</code></dt><dd><p>logical.</p></dd>
-  <dt><code>fumble_stat</code></dt><dd><p>logical.</p></dd>
-  <dt><code>sack_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>sack_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>sack_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>sack_taken_player_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>sack_taken_player</code></dt><dd><p>character.</p></dd>
-  <dt><code>sack_taken_stat</code></dt><dd><p>integer.</p></dd>
-  <dt><code>pass_breakup_player_id</code></dt><dd><p>logical.</p></dd>
-  <dt><code>pass_breakup_player</code></dt><dd><p>logical.</p></dd>
-  <dt><code>pass_breakup_stat</code></dt><dd><p>logical.</p></dd>
+    <p><code>cfbfastR::cfbd_plays()</code></p>
+<p><code>cfbfastR::cfbd_play_stats_player()</code> - A data frame with 54 variables:</p><dl>
+<dt><code>play_id</code></dt><dd><p>character.</p></dd>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>opponent</code></dt><dd><p>character.</p></dd>
+<dt><code>team_score</code></dt><dd><p>integer.</p></dd>
+<dt><code>opponent_score</code></dt><dd><p>integer.</p></dd>
+<dt><code>drive_id</code></dt><dd><p>character.</p></dd>
+<dt><code>period</code></dt><dd><p>integer.</p></dd>
+<dt><code>yards_to_goal</code></dt><dd><p>integer.</p></dd>
+<dt><code>down</code></dt><dd><p>integer.</p></dd>
+<dt><code>distance</code></dt><dd><p>integer.</p></dd>
+<dt><code>reception_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>reception_player</code></dt><dd><p>character.</p></dd>
+<dt><code>reception_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>completion_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>completion_player</code></dt><dd><p>character.</p></dd>
+<dt><code>completion_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>rush_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>rush_player</code></dt><dd><p>character.</p></dd>
+<dt><code>rush_yds</code></dt><dd><p>integer.</p></dd>
+<dt><code>interception_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_player</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>interception_thrown_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_thrown_player</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_thrown_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>touchdown_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>touchdown_player</code></dt><dd><p>character.</p></dd>
+<dt><code>touchdown_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>incompletion_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>incompletion_player</code></dt><dd><p>character.</p></dd>
+<dt><code>incompletion_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>target_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>target_player</code></dt><dd><p>character.</p></dd>
+<dt><code>target_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>fumble_recovered_player_id</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_recovered_player</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_recovered_stat</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_forced_player_id</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_forced_player</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_forced_stat</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_player_id</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_player</code></dt><dd><p>logical.</p></dd>
+<dt><code>fumble_stat</code></dt><dd><p>logical.</p></dd>
+<dt><code>sack_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>sack_player</code></dt><dd><p>character.</p></dd>
+<dt><code>sack_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>sack_taken_player_id</code></dt><dd><p>character.</p></dd>
+<dt><code>sack_taken_player</code></dt><dd><p>character.</p></dd>
+<dt><code>sack_taken_stat</code></dt><dd><p>integer.</p></dd>
+<dt><code>pass_breakup_player_id</code></dt><dd><p>logical.</p></dd>
+<dt><code>pass_breakup_player</code></dt><dd><p>logical.</p></dd>
+<dt><code>pass_breakup_stat</code></dt><dd><p>logical.</p></dd>
 
 </dl>
 
-<p>cfbd_play_stats_types - A data frame with 22 rows and 2 variables:</p><dl>
-  <dt>play_stat_type_id</dt><dd><p>Referencing play stat type ID</p></dd>
-  <dt>name</dt><dd><p>Type of play stats</p></dd>
+<p><code>cfbfastR::cfbd_play_stats_types()</code> - A data frame with 22 rows and 2 variables:</p><dl>
+<dt>play_stat_type_id</dt><dd><p>Referencing play stat type ID</p></dd>
+<dt>name</dt><dd><p>Type of play stats</p></dd>
 
 </dl>
 
-<p>cfbd_play_types - A data frame with 48 rows and 3 variables:</p><dl>
-  <dt>play_type_id</dt><dd><p>Referencing play type id</p></dd>
-  <dt>text</dt><dd><p>play type description</p></dd>
-  <dt>abbreviation</dt><dd><p>play type abbreviation used for function call</p></dd>
+<p><code>cfbfastR::cfbd_play_types()</code> - A data frame with 48 rows and 3 variables:</p><dl>
+<dt>play_type_id</dt><dd><p>Referencing play type id</p></dd>
+<dt>text</dt><dd><p>play type description</p></dd>
+<dt>abbreviation</dt><dd><p>play type abbreviation used for function call</p></dd>
 
 </dl>
 

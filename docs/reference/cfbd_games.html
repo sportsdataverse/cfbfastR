@@ -51,6 +51,7 @@
 <meta property="og:title" content="CFBD Games Endpoint — cfbd_games" />
 <meta property="og:description" content="CFBD Games Endpoint
 Get results information from games
+Calendar - Returns calendar of weeks by season
 Get Game media information (TV, radio, etc)
 Get game advanced box score information
 Get results information from games
@@ -91,7 +92,7 @@ Get Team Statistics by Game" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -143,12 +144,70 @@ Get Team Statistics by Game" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -157,12 +216,22 @@ Get Team Statistics by Game" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -176,7 +245,6 @@ Get Team Statistics by Game" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -200,6 +268,7 @@ Get Team Statistics by Game" />
     <div class="ref-description">
     <p>CFBD Games Endpoint</p>
 <p>Get results information from games</p>
+<p>Calendar - Returns calendar of weeks by season</p>
 <p>Get Game media information (TV, radio, etc)</p>
 <p>Get game advanced box score information</p>
 <p>Get results information from games</p>
@@ -218,6 +287,8 @@ Get Team Statistics by Game" />
   game_id <span class='op'>=</span> <span class='cn'>NULL</span>,
   quarter_scores <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
+
+<span class='fu'>cfbd_calendar</span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>
 
 <span class='fu'>cfbd_game_media</span><span class='op'>(</span>
   <span class='va'>year</span>,
@@ -288,12 +359,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <tr>
       <th>game_id</th>
       <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game<br />
-Can be found using the <code>cfbfastR::cfbd_game_info()</code> function</p></td>
+Can be found using the <code>cfbd_game_info()</code> function</p></td>
     </tr>
     <tr>
       <th>quarter_scores</th>
       <td><p>(<em>Logical</em> default FALSE): This is a parameter to return the
-list columns that give the score at each quarter: home_line_scores and away_line scores.<br />
+list columns that give the score at each quarter: <code>home_line_scores</code> and <code>away_line_scores</code>.<br />
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.</p></td>
     </tr>
     <tr>
@@ -302,7 +373,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
     </tr>
     <tr>
       <th>long</th>
-      <td><p>(<em>Logical</em> default `FALSE`): Return the data in a long format.</p></td>
+      <td><p>(<em>Logical</em> default <code>FALSE</code>): Return the data in a long format.</p></td>
     </tr>
     <tr>
       <th>category</th>
@@ -320,6 +391,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='https://api.collegefootballdata.com/games'>https://api.collegefootballdata.com/games</a></p>
+<p><a href='https://api.collegefootballdata.com/calendar'>https://api.collegefootballdata.com/calendar</a></p>
 <p><a href='https://api.collegefootballdata.com/games/media'>https://api.collegefootballdata.com/games/media</a></p>
 <p><a href='https://api.collegefootballdata.com/game/box/advanced'>https://api.collegefootballdata.com/game/box/advanced</a></p>
 <p><a href='https://api.collegefootballdata.com/games/players'>https://api.collegefootballdata.com/games/players</a></p>
@@ -327,261 +399,262 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 <p><a href='https://api.collegefootballdata.com/games/teams'>https://api.collegefootballdata.com/games/teams</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_game_info - A data frame with 22 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season_type</code></dt><dd><p>character.</p></dd>
-  <dt><code>start_date</code></dt><dd><p>character.</p></dd>
-  <dt><code>start_time_tbd</code></dt><dd><p>logical.</p></dd>
-  <dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
-  <dt><code>conference_game</code></dt><dd><p>logical.</p></dd>
-  <dt><code>attendance</code></dt><dd><p>integer.</p></dd>
-  <dt><code>venue_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>venue</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_points</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_post_win_prob</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_points</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_post_win_prob</code></dt><dd><p>character.</p></dd>
-  <dt><code>excitement_index</code></dt><dd><p>character.</p></dd>
+    <p><code>cfbd_game_info()</code> - A data frame with 22 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>season_type</code></dt><dd><p>character.</p></dd>
+<dt><code>start_date</code></dt><dd><p>character.</p></dd>
+<dt><code>start_time_tbd</code></dt><dd><p>logical.</p></dd>
+<dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
+<dt><code>conference_game</code></dt><dd><p>logical.</p></dd>
+<dt><code>attendance</code></dt><dd><p>integer.</p></dd>
+<dt><code>venue_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>venue</code></dt><dd><p>character.</p></dd>
+<dt><code>home_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_team</code></dt><dd><p>character.</p></dd>
+<dt><code>home_conference</code></dt><dd><p>character.</p></dd>
+<dt><code>home_points</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_post_win_prob</code></dt><dd><p>character.</p></dd>
+<dt><code>away_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_team</code></dt><dd><p>character.</p></dd>
+<dt><code>away_conference</code></dt><dd><p>character.</p></dd>
+<dt><code>away_points</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_post_win_prob</code></dt><dd><p>character.</p></dd>
+<dt><code>excitement_index</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_game_media - A data frame with 13 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season_type</code></dt><dd><p>character.</p></dd>
-  <dt><code>start_time</code></dt><dd><p>character.</p></dd>
-  <dt><code>is_start_time_tbd</code></dt><dd><p>logical.</p></dd>
-  <dt><code>home_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>tv</code></dt><dd><p>list.</p></dd>
-  <dt><code>radio</code></dt><dd><p>logical.</p></dd>
-  <dt><code>web</code></dt><dd><p>list.</p></dd>
+<p><code>cfbd_calendar()</code> :</p>
+<p><code>cfbd_game_media()</code> - A data frame with 13 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>season_type</code></dt><dd><p>character.</p></dd>
+<dt><code>start_time</code></dt><dd><p>character.</p></dd>
+<dt><code>is_start_time_tbd</code></dt><dd><p>logical.</p></dd>
+<dt><code>home_team</code></dt><dd><p>character.</p></dd>
+<dt><code>home_conference</code></dt><dd><p>character.</p></dd>
+<dt><code>away_team</code></dt><dd><p>character.</p></dd>
+<dt><code>away_conference</code></dt><dd><p>character.</p></dd>
+<dt><code>tv</code></dt><dd><p>list.</p></dd>
+<dt><code>radio</code></dt><dd><p>logical.</p></dd>
+<dt><code>web</code></dt><dd><p>list.</p></dd>
 
 </dl>
 
-<p>cfbd_game_box_advanced - A data frame with 2 rows and 69 variables:</p><dl>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>plays</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_overall_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_overall_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_overall_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_overall_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_overall_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_passing_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_passing_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_passing_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_passing_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_passing_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_rushing_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_rushing_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_rushing_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_rushing_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>ppa_rushing_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_plays</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_overall_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_overall_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_overall_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_overall_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_overall_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_passing_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_passing_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_passing_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_passing_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_passing_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_rushing_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_rushing_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_rushing_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_rushing_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>cumulative_ppa_rushing_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_overall_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_overall_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_overall_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_overall_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_overall_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_standard_downs_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_standard_downs_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_standard_downs_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_standard_downs_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_standard_downs_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_passing_downs_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_passing_downs_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_passing_downs_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_passing_downs_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>success_rates_passing_downs_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>explosiveness_overall_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>explosiveness_overall_quarter1</code></dt><dd><p>double.</p></dd>
-  <dt><code>explosiveness_overall_quarter2</code></dt><dd><p>double.</p></dd>
-  <dt><code>explosiveness_overall_quarter3</code></dt><dd><p>double.</p></dd>
-  <dt><code>explosiveness_overall_quarter4</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_power_success</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_stuff_rate</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_line_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_line_yd_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_second_lvl_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_second_lvl_yd_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_open_field_yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>rushing_open_field_yd_avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>havoc_total</code></dt><dd><p>double.</p></dd>
-  <dt><code>havoc_front_seven</code></dt><dd><p>double.</p></dd>
-  <dt><code>havoc_db</code></dt><dd><p>double.</p></dd>
-  <dt><code>scoring_opps_opportunities</code></dt><dd><p>double.</p></dd>
-  <dt><code>scoring_opps_points</code></dt><dd><p>double.</p></dd>
-  <dt><code>scoring_opps_pts_per_opp</code></dt><dd><p>double.</p></dd>
-  <dt><code>field_pos_avg_start</code></dt><dd><p>double.</p></dd>
-  <dt><code>field_pos_avg_starting_predicted_pts</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_game_box_advanced()</code> - A data frame with 2 rows and 69 variables:</p><dl>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>plays</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_overall_total</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_overall_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_overall_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_overall_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_overall_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_passing_total</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_passing_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_passing_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_passing_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_passing_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_rushing_total</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_rushing_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_rushing_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_rushing_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>ppa_rushing_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_plays</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_overall_total</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_passing_total</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_rushing_total</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_overall_total</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_overall_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_overall_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_overall_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_overall_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_standard_downs_total</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_standard_downs_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_standard_downs_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_standard_downs_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_standard_downs_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_passing_downs_total</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_passing_downs_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_passing_downs_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_passing_downs_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>success_rates_passing_downs_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>explosiveness_overall_total</code></dt><dd><p>double.</p></dd>
+<dt><code>explosiveness_overall_quarter1</code></dt><dd><p>double.</p></dd>
+<dt><code>explosiveness_overall_quarter2</code></dt><dd><p>double.</p></dd>
+<dt><code>explosiveness_overall_quarter3</code></dt><dd><p>double.</p></dd>
+<dt><code>explosiveness_overall_quarter4</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_power_success</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_stuff_rate</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_line_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_line_yd_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_second_lvl_yd_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_open_field_yds</code></dt><dd><p>double.</p></dd>
+<dt><code>rushing_open_field_yd_avg</code></dt><dd><p>double.</p></dd>
+<dt><code>havoc_total</code></dt><dd><p>double.</p></dd>
+<dt><code>havoc_front_seven</code></dt><dd><p>double.</p></dd>
+<dt><code>havoc_db</code></dt><dd><p>double.</p></dd>
+<dt><code>scoring_opps_opportunities</code></dt><dd><p>double.</p></dd>
+<dt><code>scoring_opps_points</code></dt><dd><p>double.</p></dd>
+<dt><code>scoring_opps_pts_per_opp</code></dt><dd><p>double.</p></dd>
+<dt><code>field_pos_avg_start</code></dt><dd><p>double.</p></dd>
+<dt><code>field_pos_avg_starting_predicted_pts</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_game_player_stats - A data frame with 32 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_away</code></dt><dd><p>character.</p></dd>
-  <dt><code>points</code></dt><dd><p>integer.</p></dd>
-  <dt><code>category</code></dt><dd><p>character.</p></dd>
-  <dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>name</code></dt><dd><p>character.</p></dd>
-  <dt><code>c_att</code></dt><dd><p>character.</p></dd>
-  <dt><code>yds</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg</code></dt><dd><p>double.</p></dd>
-  <dt><code>td</code></dt><dd><p>double.</p></dd>
-  <dt><code>int</code></dt><dd><p>double.</p></dd>
-  <dt><code>qbr</code></dt><dd><p>double.</p></dd>
-  <dt><code>car</code></dt><dd><p>double.</p></dd>
-  <dt><code>long</code></dt><dd><p>double.</p></dd>
-  <dt><code>rec</code></dt><dd><p>double.</p></dd>
-  <dt><code>no</code></dt><dd><p>double.</p></dd>
-  <dt><code>fg</code></dt><dd><p>character.</p></dd>
-  <dt><code>pct</code></dt><dd><p>double.</p></dd>
-  <dt><code>xp</code></dt><dd><p>character.</p></dd>
-  <dt><code>pts</code></dt><dd><p>double.</p></dd>
-  <dt><code>tb</code></dt><dd><p>double.</p></dd>
-  <dt><code>in_20</code></dt><dd><p>double.</p></dd>
-  <dt><code>fum</code></dt><dd><p>double.</p></dd>
-  <dt><code>lost</code></dt><dd><p>double.</p></dd>
-  <dt><code>tot</code></dt><dd><p>double.</p></dd>
-  <dt><code>solo</code></dt><dd><p>double.</p></dd>
-  <dt><code>sacks</code></dt><dd><p>double.</p></dd>
-  <dt><code>tfl</code></dt><dd><p>double.</p></dd>
-  <dt><code>pd</code></dt><dd><p>double.</p></dd>
-  <dt><code>qb_hur</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_game_player_stats()</code> - A data frame with 32 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>home_away</code></dt><dd><p>character.</p></dd>
+<dt><code>points</code></dt><dd><p>integer.</p></dd>
+<dt><code>category</code></dt><dd><p>character.</p></dd>
+<dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
+<dt><code>name</code></dt><dd><p>character.</p></dd>
+<dt><code>c_att</code></dt><dd><p>character.</p></dd>
+<dt><code>yds</code></dt><dd><p>double.</p></dd>
+<dt><code>avg</code></dt><dd><p>double.</p></dd>
+<dt><code>td</code></dt><dd><p>double.</p></dd>
+<dt><code>int</code></dt><dd><p>double.</p></dd>
+<dt><code>qbr</code></dt><dd><p>double.</p></dd>
+<dt><code>car</code></dt><dd><p>double.</p></dd>
+<dt><code>long</code></dt><dd><p>double.</p></dd>
+<dt><code>rec</code></dt><dd><p>double.</p></dd>
+<dt><code>no</code></dt><dd><p>double.</p></dd>
+<dt><code>fg</code></dt><dd><p>character.</p></dd>
+<dt><code>pct</code></dt><dd><p>double.</p></dd>
+<dt><code>xp</code></dt><dd><p>character.</p></dd>
+<dt><code>pts</code></dt><dd><p>double.</p></dd>
+<dt><code>tb</code></dt><dd><p>double.</p></dd>
+<dt><code>in_20</code></dt><dd><p>double.</p></dd>
+<dt><code>fum</code></dt><dd><p>double.</p></dd>
+<dt><code>lost</code></dt><dd><p>double.</p></dd>
+<dt><code>tot</code></dt><dd><p>double.</p></dd>
+<dt><code>solo</code></dt><dd><p>double.</p></dd>
+<dt><code>sacks</code></dt><dd><p>double.</p></dd>
+<dt><code>tfl</code></dt><dd><p>double.</p></dd>
+<dt><code>pd</code></dt><dd><p>double.</p></dd>
+<dt><code>qb_hur</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_game_records - A data frame with 20 variables:</p><dl>
-  <dt><code>year</code></dt><dd><p>integer.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>division</code></dt><dd><p>character.</p></dd>
-  <dt><code>total_games</code></dt><dd><p>integer.</p></dd>
-  <dt><code>total_wins</code></dt><dd><p>integer.</p></dd>
-  <dt><code>total_losses</code></dt><dd><p>integer.</p></dd>
-  <dt><code>total_ties</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference_games</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference_wins</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference_losses</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference_ties</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_games</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_wins</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_losses</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_ties</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_games</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_wins</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_losses</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_ties</code></dt><dd><p>integer.</p></dd>
+<p><code>cfbd_game_records()</code> - A data frame with 20 variables:</p><dl>
+<dt><code>year</code></dt><dd><p>integer.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>division</code></dt><dd><p>character.</p></dd>
+<dt><code>total_games</code></dt><dd><p>integer.</p></dd>
+<dt><code>total_wins</code></dt><dd><p>integer.</p></dd>
+<dt><code>total_losses</code></dt><dd><p>integer.</p></dd>
+<dt><code>total_ties</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference_games</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference_wins</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference_losses</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference_ties</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_games</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_wins</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_losses</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_ties</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_games</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_wins</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_losses</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_ties</code></dt><dd><p>integer.</p></dd>
 
 </dl>
 
-<p>cfbd_game_team_stats - A data frame with 78 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>school</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_away</code></dt><dd><p>character.</p></dd>
-  <dt><code>points</code></dt><dd><p>integer.</p></dd>
-  <dt><code>total_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>net_passing_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>completion_attempts</code></dt><dd><p>character.</p></dd>
-  <dt><code>passing_tds</code></dt><dd><p>character.</p></dd>
-  <dt><code>yards_per_pass</code></dt><dd><p>character.</p></dd>
-  <dt><code>passes_intercepted</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_tds</code></dt><dd><p>character.</p></dd>
-  <dt><code>rushing_attempts</code></dt><dd><p>character.</p></dd>
-  <dt><code>rushing_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>rush_tds</code></dt><dd><p>character.</p></dd>
-  <dt><code>yards_per_rush_attempt</code></dt><dd><p>character.</p></dd>
-  <dt><code>first_downs</code></dt><dd><p>character.</p></dd>
-  <dt><code>third_down_eff</code></dt><dd><p>character.</p></dd>
-  <dt><code>fourth_down_eff</code></dt><dd><p>character.</p></dd>
-  <dt><code>punt_returns</code></dt><dd><p>character.</p></dd>
-  <dt><code>punt_return_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>punt_return_tds</code></dt><dd><p>character.</p></dd>
-  <dt><code>kick_return_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>kick_return_tds</code></dt><dd><p>character.</p></dd>
-  <dt><code>kick_returns</code></dt><dd><p>character.</p></dd>
-  <dt><code>kicking_points</code></dt><dd><p>character.</p></dd>
-  <dt><code>fumbles_recovered</code></dt><dd><p>character.</p></dd>
-  <dt><code>fumbles_lost</code></dt><dd><p>character.</p></dd>
-  <dt><code>total_fumbles</code></dt><dd><p>character.</p></dd>
-  <dt><code>tackles</code></dt><dd><p>character.</p></dd>
-  <dt><code>tackles_for_loss</code></dt><dd><p>character.</p></dd>
-  <dt><code>sacks</code></dt><dd><p>character.</p></dd>
-  <dt><code>qb_hurries</code></dt><dd><p>character.</p></dd>
-  <dt><code>interceptions</code></dt><dd><p>character.</p></dd>
-  <dt><code>passes_deflected</code></dt><dd><p>character.</p></dd>
-  <dt><code>turnovers</code></dt><dd><p>character.</p></dd>
-  <dt><code>defensive_tds</code></dt><dd><p>character.</p></dd>
-  <dt><code>total_penalties_yards</code></dt><dd><p>character.</p></dd>
-  <dt><code>possession_time</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_away_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>points_allowed</code></dt><dd><p>integer.</p></dd>
-  <dt><code>total_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>net_passing_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>completion_attempts_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>passing_tds_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>yards_per_pass_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>passes_intercepted_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>interception_tds_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>rushing_attempts_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>rushing_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>rush_tds_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>yards_per_rush_attempt_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>first_downs_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>third_down_eff_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>fourth_down_eff_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>punt_returns_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>punt_return_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>punt_return_tds_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>kick_return_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>kick_return_tds_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>kick_returns_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>kicking_points_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>fumbles_recovered_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>fumbles_lost_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>total_fumbles_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>tackles_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>tackles_for_loss_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>sacks_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>qb_hurries_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>interceptions_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>passes_deflected_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>turnovers_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>defensive_tds_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>total_penalties_yards_allowed</code></dt><dd><p>character.</p></dd>
-  <dt><code>possession_time_allowed</code></dt><dd><p>character.</p></dd>
+<p><code>cfbd_game_team_stats</code> - A data frame with 78 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>school</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>home_away</code></dt><dd><p>character.</p></dd>
+<dt><code>points</code></dt><dd><p>integer.</p></dd>
+<dt><code>total_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>net_passing_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>completion_attempts</code></dt><dd><p>character.</p></dd>
+<dt><code>passing_tds</code></dt><dd><p>character.</p></dd>
+<dt><code>yards_per_pass</code></dt><dd><p>character.</p></dd>
+<dt><code>passes_intercepted</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_tds</code></dt><dd><p>character.</p></dd>
+<dt><code>rushing_attempts</code></dt><dd><p>character.</p></dd>
+<dt><code>rushing_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>rush_tds</code></dt><dd><p>character.</p></dd>
+<dt><code>yards_per_rush_attempt</code></dt><dd><p>character.</p></dd>
+<dt><code>first_downs</code></dt><dd><p>character.</p></dd>
+<dt><code>third_down_eff</code></dt><dd><p>character.</p></dd>
+<dt><code>fourth_down_eff</code></dt><dd><p>character.</p></dd>
+<dt><code>punt_returns</code></dt><dd><p>character.</p></dd>
+<dt><code>punt_return_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>punt_return_tds</code></dt><dd><p>character.</p></dd>
+<dt><code>kick_return_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>kick_return_tds</code></dt><dd><p>character.</p></dd>
+<dt><code>kick_returns</code></dt><dd><p>character.</p></dd>
+<dt><code>kicking_points</code></dt><dd><p>character.</p></dd>
+<dt><code>fumbles_recovered</code></dt><dd><p>character.</p></dd>
+<dt><code>fumbles_lost</code></dt><dd><p>character.</p></dd>
+<dt><code>total_fumbles</code></dt><dd><p>character.</p></dd>
+<dt><code>tackles</code></dt><dd><p>character.</p></dd>
+<dt><code>tackles_for_loss</code></dt><dd><p>character.</p></dd>
+<dt><code>sacks</code></dt><dd><p>character.</p></dd>
+<dt><code>qb_hurries</code></dt><dd><p>character.</p></dd>
+<dt><code>interceptions</code></dt><dd><p>character.</p></dd>
+<dt><code>passes_deflected</code></dt><dd><p>character.</p></dd>
+<dt><code>turnovers</code></dt><dd><p>character.</p></dd>
+<dt><code>defensive_tds</code></dt><dd><p>character.</p></dd>
+<dt><code>total_penalties_yards</code></dt><dd><p>character.</p></dd>
+<dt><code>possession_time</code></dt><dd><p>character.</p></dd>
+<dt><code>conference_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>home_away_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>points_allowed</code></dt><dd><p>integer.</p></dd>
+<dt><code>total_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>net_passing_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>completion_attempts_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>passing_tds_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>yards_per_pass_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>passes_intercepted_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>interception_tds_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>rushing_attempts_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>rushing_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>rush_tds_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>yards_per_rush_attempt_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>first_downs_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>third_down_eff_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>fourth_down_eff_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>punt_returns_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>punt_return_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>punt_return_tds_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>kick_return_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>kick_return_tds_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>kick_returns_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>kicking_points_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>fumbles_recovered_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>fumbles_lost_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>total_fumbles_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>tackles_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>tackles_for_loss_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>sacks_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>qb_hurries_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>interceptions_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>passes_deflected_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>turnovers_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>defensive_tds_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>total_penalties_yards_allowed</code></dt><dd><p>character.</p></dd>
+<dt><code>possession_time_allowed</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
@@ -589,7 +662,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfbd_game_info</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-03 05:01:45: Scraping game info data...</span></div><div class='output co'>#&gt;      game_id season week season_type               start_date start_time_tbd
+</div><div class='output co'>#&gt; <span class='message'>2021-04-04 03:51:28: Scraping game info data...</span></div><div class='output co'>#&gt;      game_id season week season_type               start_date start_time_tbd
 #&gt; 1  401013357   2018    1     regular 2018-08-25T21:30:00.000Z             NA
 #&gt; 2  401014972   2018    1     regular 2018-08-25T23:00:00.000Z             NA
 #&gt; 3  401022510   2018    1     regular 2018-08-25T23:30:00.000Z             NA
@@ -1124,7 +1197,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt; 87      0.04404470034418717       3.8470693333
 #&gt; 88       0.6875322954307215   3.91834934429999</div><div class='input'>
 <span class='fu'>cfbd_game_info</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>7</span>, conference <span class='op'>=</span> <span class='st'>'Ind'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-03 05:01:46: Scraping game info data...</span></div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
+</div><div class='output co'>#&gt; <span class='message'>2021-04-04 03:51:28: Scraping game info data...</span></div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
 #&gt; 1 401013452   2018    7     regular 2018-10-13T18:00:00.000Z             NA
 #&gt; 2 401013148   2018    7     regular 2018-10-13T18:30:00.000Z             NA
 #&gt; 3 401013370   2018    7     regular 2018-10-13T19:30:00.000Z             NA
@@ -1156,7 +1229,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt; 5 1.08305180749999</div><div class='input'>
 <span class='co'>#7 OTs LSU @ TAMU</span>
 <span class='fu'>cfbd_game_info</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>13</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, quarter_scores<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-03 05:01:46: Scraping game info data...</span></div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
+</div><div class='output co'>#&gt; <span class='message'>2021-04-04 03:51:28: Scraping game info data...</span></div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
 #&gt; 1 401012356   2018   13     regular 2018-11-25T00:30:00.000Z             NA
 #&gt;   neutral_site conference_game attendance venue_id      venue home_id home_team
 #&gt; 1        FALSE            TRUE          0     3795 Kyle Field     245 Texas A&amp;M
@@ -1174,9 +1247,12 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt; 1              3              6               8               6
 #&gt;    away_post_win_prob excitement_index
 #&gt; 1 0.32137418431169773    14.1962593954</div><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>cfbd_calendar</span><span class='op'>(</span><span class='fl'>2019</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='fu'>cfbd_game_media</span><span class='op'>(</span><span class='fl'>2019</span>, week <span class='op'>=</span> <span class='fl'>4</span>, conference <span class='op'>=</span> <span class='st'>'ACC'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-03 05:01:46: Scraping game media data...</span></div><div class='output co'>#&gt;      game_id season week season_type               start_time is_start_time_tbd
+</div><div class='output co'>#&gt; <span class='message'>2021-04-04 03:51:28: Scraping game media data...</span></div><div class='output co'>#&gt;      game_id season week season_type               start_time is_start_time_tbd
 #&gt; 1  401112456   2019    4     regular 2019-09-21T23:30:00.000Z                NA
 #&gt; 2  401112461   2019    4     regular 2019-09-21T19:30:00.000Z                NA
 #&gt; 3  401112463   2019    4     regular 2019-09-21T23:00:00.000Z                NA
@@ -1211,7 +1287,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt; 10      ESPNU    NA  NULL</div><div class='input'>
 
 <span class='fu'>cfbd_game_box_advanced</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401114233</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-03 05:01:46: Scraping game advanced box score data for game_id '401114233'...</span></div><div class='output co'>#&gt;                 team ppa_plays ppa_overall_total ppa_overall_quarter1
+</div><div class='output co'>#&gt; <span class='message'>2021-04-04 03:51:28: Scraping game advanced box score data for game_id '401114233'...</span></div><div class='output co'>#&gt;                 team ppa_plays ppa_overall_total ppa_overall_quarter1
 #&gt; 1 Eastern Washington        45           -0.2013               -0.569
 #&gt; 2         Washington        53            0.6661                0.755
 #&gt;   ppa_overall_quarter2 ppa_overall_quarter3 ppa_overall_quarter4

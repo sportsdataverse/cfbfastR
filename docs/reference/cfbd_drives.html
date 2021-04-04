@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -137,12 +137,70 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -151,12 +209,22 @@
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -170,7 +238,6 @@
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -259,30 +326,30 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <p><a href='https://api.collegefootballdata.com/drives'>https://api.collegefootballdata.com/drives</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_drives - A data frame with 23 variables as follows:</p><dl>
-  <dt><code>offense</code></dt><dd><p>character. Drive offense.</p></dd>
-  <dt><code>offense_conference</code></dt><dd><p>character. Drive offense's conference.</p></dd>
-  <dt><code>defense</code></dt><dd><p>character. Drive defense.</p></dd>
-  <dt><code>defense_conference</code></dt><dd><p>character. Drive defense's conference.</p></dd>
-  <dt><code>game_id</code></dt><dd><p>integer. Unique game identifier - `game_id`.</p></dd>
-  <dt><code>drive_id</code></dt><dd><p>character. Unique drive identifier - `drive_id`.</p></dd>
-  <dt><code>drive_number</code></dt><dd><p>integer. Drive number in game.</p></dd>
-  <dt><code>scoring</code></dt><dd><p>logical. Drive ends in a score.</p></dd>
-  <dt><code>start_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive starts.</p></dd>
-  <dt><code>start_yardline</code></dt><dd><p>integer.  Yard line at the drive start.</p></dd>
-  <dt><code>start_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at the drive start.</p></dd>
-  <dt><code>end_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive ends.</p></dd>
-  <dt><code>end_yardline</code></dt><dd><p>integer. Yard line at drive end.</p></dd>
-  <dt><code>end_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at drive end.</p></dd>
-  <dt><code>plays</code></dt><dd><p>integer. Number of drive plays.</p></dd>
-  <dt><code>yards</code></dt><dd><p>integer. Total drive yards.</p></dd>
-  <dt><code>drive_result</code></dt><dd><p>character. Result of the drive description.</p></dd>
-  <dt><code>time_minutes_start</code></dt><dd><p>integer. Minutes at drive start.</p></dd>
-  <dt><code>time_seconds_start</code></dt><dd><p>integer. Seconds at drive start.</p></dd>
-  <dt><code>time_minutes_end</code></dt><dd><p>integer. Minutes at drive end.</p></dd>
-  <dt><code>time_seconds_end</code></dt><dd><p>integer. Seconds at drive end.</p></dd>
-  <dt><code>time_minutes_elapsed</code></dt><dd><p>double. Minutes elapsed during drive.</p></dd>
-  <dt><code>time_seconds_elapsed</code></dt><dd><p>integer. Seconds elapsed during drive.</p></dd>
+    <p><code>cfbfastR::cfbd_drives()</code> - A data frame with 23 variables as follows:</p><dl>
+<dt><code>offense</code></dt><dd><p>character. Drive offense.</p></dd>
+<dt><code>offense_conference</code></dt><dd><p>character. Drive offense's conference.</p></dd>
+<dt><code>defense</code></dt><dd><p>character. Drive defense.</p></dd>
+<dt><code>defense_conference</code></dt><dd><p>character. Drive defense's conference.</p></dd>
+<dt><code>game_id</code></dt><dd><p>integer. Unique game identifier - <code>game_id</code>.</p></dd>
+<dt><code>drive_id</code></dt><dd><p>character. Unique drive identifier - <code>drive_id</code>.</p></dd>
+<dt><code>drive_number</code></dt><dd><p>integer. Drive number in game.</p></dd>
+<dt><code>scoring</code></dt><dd><p>logical. Drive ends in a score.</p></dd>
+<dt><code>start_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive starts.</p></dd>
+<dt><code>start_yardline</code></dt><dd><p>integer.  Yard line at the drive start.</p></dd>
+<dt><code>start_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at the drive start.</p></dd>
+<dt><code>end_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive ends.</p></dd>
+<dt><code>end_yardline</code></dt><dd><p>integer. Yard line at drive end.</p></dd>
+<dt><code>end_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at drive end.</p></dd>
+<dt><code>plays</code></dt><dd><p>integer. Number of drive plays.</p></dd>
+<dt><code>yards</code></dt><dd><p>integer. Total drive yards.</p></dd>
+<dt><code>drive_result</code></dt><dd><p>character. Result of the drive description.</p></dd>
+<dt><code>time_minutes_start</code></dt><dd><p>integer. Minutes at drive start.</p></dd>
+<dt><code>time_seconds_start</code></dt><dd><p>integer. Seconds at drive start.</p></dd>
+<dt><code>time_minutes_end</code></dt><dd><p>integer. Minutes at drive end.</p></dd>
+<dt><code>time_seconds_end</code></dt><dd><p>integer. Seconds at drive end.</p></dd>
+<dt><code>time_minutes_elapsed</code></dt><dd><p>double. Minutes elapsed during drive.</p></dd>
+<dt><code>time_seconds_elapsed</code></dt><dd><p>integer. Seconds elapsed during drive.</p></dd>
 
 </dl>
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column — clean_drive_info • cfbfastR</title>
+Cleans CFB (D-I) Drive-By-Drive Data to create pts_drive column — clean_drive_info • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -50,9 +50,9 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column — clean_driv
   
 
 <meta property="og:title" content="Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column — clean_drive_info" />
+Cleans CFB (D-I) Drive-By-Drive Data to create pts_drive column — clean_drive_info" />
 <meta property="og:description" content="Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column" />
+Cleans CFB (D-I) Drive-By-Drive Data to create pts_drive column" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbfastR" />
@@ -88,7 +88,7 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -140,12 +140,70 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -154,12 +212,22 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -173,7 +241,6 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -190,14 +257,14 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</h1>
+Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column</h1>
     
     <div class="hidden name"><code>clean_drive_info.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p>
+Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column</p>
     </div>
 
     <pre class="usage"><span class='fu'>clean_drive_info</span><span class='op'>(</span><span class='va'>drive_df</span><span class='op'>)</span></pre>
@@ -207,14 +274,14 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>drive_df</th>
-      <td><p>(<em>data.frame</em> required) Drive dataframe pulled from API via the `cfbd_drives()` function</p></td>
+      <td><p>(<em>data.frame</em> required) Drive dataframe pulled from API via the <code><a href='cfbd_drives.html'>cfbd_drives()</a></code> function</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The original `drive_df` with the following columns appended to it:</p><dl>
-<dt>drive_id</dt><dd><p>Returned as `drive_id` from original variable `drive_id`</p></dd>
+    <p>The original <code>drive_df</code> with the following columns appended to it:</p><dl>
+<dt>drive_id</dt><dd><p>Returned as <code>drive_id</code> from original variable <code>drive_id</code></p></dd>
 <dt>pts_drive</dt><dd><p>End result of the drive</p></dd>
 <dt>scoring</dt><dd><p>Logical flag for if drive was a scoring drive updated</p></dd>
 
@@ -222,8 +289,8 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:</p><ul>
-<li><p>drive_idReturned as `drive_id`</p></li>
+    <p>Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column. Requires the following columns be present:</p><ul>
+<li><p>drive_idReturned as <code>drive_id</code></p></li>
 <li><p>drive_resultEnd result of the drive</p></li>
 <li><p>scoringLogical flag for if drive was a scoring drive</p></li>
 <li><p>game_idUnique game identifier</p></li>

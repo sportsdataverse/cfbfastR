@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -136,12 +136,70 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -150,12 +208,22 @@
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -169,7 +237,6 @@
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -200,6 +267,44 @@
       
       <tr>
         <th colspan="2">
+          <h3 id="section-college-football-data-api-key-function" class="hasAnchor"><a href="#section-college-football-data-api-key-function" class="anchor"></a>College Football Data API Key Function</h3>
+          <p class="section-desc"><p>Functions for using your API key.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="register_cfbd.html">cfbd_key()</a></code> <code><a href="register_cfbd.html">has_cfbd_key()</a></code> </p>
+        </td>
+        <td><p>CFBD API Key Registration</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-play-by-play-data-function" class="hasAnchor"><a href="#section-play-by-play-data-function" class="anchor"></a>Play-by-Play Data Function</h3>
+          <p class="section-desc"><p>Functions exported by cfbfastR which return Expected Points and Win Probability model outputs.</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code> </p>
+        </td>
+        <td><p>CFBD Play by Play Data</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
           <h3 id="section-games-data-functions" class="hasAnchor"><a href="#section-games-data-functions" class="anchor"></a>Games Data Functions</h3>
           <p class="section-desc"><p>Functions exported by cfbfastR sourced from games endpoint of the CollegeFootballData API</p></p>
         </th>
@@ -211,22 +316,9 @@
       <tr>
         
         <td>
-          <p><code><a href="cfbd_calendar.html">cfbd_calendar()</a></code> </p>
-        </td>
-        <td><p>Calendar
-Returns calendar of weeks by season</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_games.html">cfbd_game_info()</a></code> <code><a href="cfbd_games.html">cfbd_game_media()</a></code> <code><a href="cfbd_games.html">cfbd_game_box_advanced()</a></code> <code><a href="cfbd_games.html">cfbd_game_player_stats()</a></code> <code><a href="cfbd_games.html">cfbd_game_records()</a></code> <code><a href="cfbd_games.html">cfbd_game_team_stats()</a></code> </p>
+          <p><code><a href="cfbd_games.html">cfbd_game_info()</a></code> <code><a href="cfbd_games.html">cfbd_calendar()</a></code> <code><a href="cfbd_games.html">cfbd_game_media()</a></code> <code><a href="cfbd_games.html">cfbd_game_box_advanced()</a></code> <code><a href="cfbd_games.html">cfbd_game_player_stats()</a></code> <code><a href="cfbd_games.html">cfbd_game_records()</a></code> <code><a href="cfbd_games.html">cfbd_game_team_stats()</a></code> </p>
         </td>
         <td><p>CFBD Games Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_betting_lines.html">cfbd_betting_lines()</a></code> </p>
-        </td>
-        <td><p>Get Betting information from games</p></td>
       </tr>
     </tbody><tbody>
       
@@ -262,21 +354,9 @@ Returns calendar of weeks by season</p></td>
       <tr>
         
         <td>
-          <p><code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code> </p>
-        </td>
-        <td><p>Extract CFB (D-I) Play by Play Data - For plays</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="cfbd_play.html">cfbd_plays()</a></code> <code><a href="cfbd_play.html">cfbd_play_stats_player()</a></code> <code><a href="cfbd_play.html">cfbd_play_stats_types()</a></code> <code><a href="cfbd_play.html">cfbd_play_types()</a></code> </p>
         </td>
         <td><p>CFBD Plays Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data.html">cfbd_play_type_df</a></code> <code><a href="data.html">cfbd_conf_types_df</a></code> </p>
-        </td>
-        <td><p>CFBD Data</p></td>
       </tr>
     </tbody><tbody>
       
@@ -339,31 +419,6 @@ Returns calendar of weeks by season</p></td>
       
       <tr>
         <th colspan="2">
-          <h3 id="section-conference-functions" class="hasAnchor"><a href="#section-conference-functions" class="anchor"></a>Conference Functions</h3>
-          <p class="section-desc"><p>Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API</p></p>
-        </th>
-      </tr>
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cfbd_conferences.html">cfbd_conferences()</a></code> </p>
-        </td>
-        <td><p>CFB Conference Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data.html">cfbd_play_type_df</a></code> <code><a href="data.html">cfbd_conf_types_df</a></code> </p>
-        </td>
-        <td><p>CFBD Data</p></td>
-      </tr>
-    </tbody><tbody>
-      
-      <tr>
-        <th colspan="2">
           <h3 id="section-rankings-and-ratings-functions" class="hasAnchor"><a href="#section-rankings-and-ratings-functions" class="anchor"></a>Rankings and Ratings Functions</h3>
           <p class="section-desc"><p>Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API</p></p>
         </th>
@@ -375,9 +430,40 @@ Returns calendar of weeks by season</p></td>
       <tr>
         
         <td>
-          <p><code><a href="cfbd_ratings.html">cfbd_rankings()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp_conference()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_srs()</a></code> <code><a href="cfbd_ratings.html">espn_ratings_fpi()</a></code> </p>
+          <p><code><a href="cfbd_ratings.html">cfbd_rankings()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp_conference()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_srs()</a></code> </p>
         </td>
         <td><p>CFBD Ratings and Rankings Endpoints</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="espn_ratings.html">espn_ratings_fpi()</a></code> </p>
+        </td>
+        <td><p>ESPN Ratings</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-metrics-functions" class="hasAnchor"><a href="#section-metrics-functions" class="anchor"></a>Metrics Functions</h3>
+          <p class="section-desc"><p>Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> </p>
+        </td>
+        <td><p>CFBD Metrics Endpoint</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="espn_metrics.html">espn_metrics_wp()</a></code> </p>
+        </td>
+        <td><p>ESPN Metrics</p></td>
       </tr>
     </tbody><tbody>
       
@@ -397,25 +483,6 @@ Returns calendar of weeks by season</p></td>
           <p><code><a href="cfbd_recruiting.html">cfbd_recruiting_player()</a></code> <code><a href="cfbd_recruiting.html">cfbd_recruiting_position()</a></code> <code><a href="cfbd_recruiting.html">cfbd_recruiting_team()</a></code> </p>
         </td>
         <td><p>CFBD Recruiting Endpoint</p></td>
-      </tr>
-    </tbody><tbody>
-      
-      <tr>
-        <th colspan="2">
-          <h3 id="section-metrics-functions" class="hasAnchor"><a href="#section-metrics-functions" class="anchor"></a>Metrics Functions</h3>
-          <p class="section-desc"><p>Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API</p></p>
-        </th>
-      </tr>
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> <code><a href="cfbd_metrics.html">espn_metrics_wp()</a></code> </p>
-        </td>
-        <td><p>CFBD Metrics Endpoint</p></td>
       </tr>
     </tbody><tbody>
       
@@ -446,6 +513,25 @@ Returns calendar of weeks by season</p></td>
       
       <tr>
         <th colspan="2">
+          <h3 id="section-conference-functions" class="hasAnchor"><a href="#section-conference-functions" class="anchor"></a>Conference Functions</h3>
+          <p class="section-desc"><p>Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="cfbd_conferences.html">cfbd_conferences()</a></code> </p>
+        </td>
+        <td><p>CFB Conference Information</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
           <h3 id="section-internals" class="hasAnchor"><a href="#section-internals" class="anchor"></a>Internals</h3>
           <p class="section-desc"><p>Internal functions and helpers</p></p>
         </th>
@@ -457,16 +543,9 @@ Returns calendar of weeks by season</p></td>
       <tr>
         
         <td>
-          <p><code><a href="cfbd_betting_lines.html">cfbd_betting_lines()</a></code> </p>
+          <p><code><a href="cfbd_betting.html">cfbd_betting_lines()</a></code> </p>
         </td>
-        <td><p>Get Betting information from games</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_calendar.html">cfbd_calendar()</a></code> </p>
-        </td>
-        <td><p>Calendar
-Returns calendar of weeks by season</p></td>
+        <td><p>CFBD Betting Endpoint</p></td>
       </tr><tr>
         
         <td>
@@ -488,13 +567,13 @@ Returns calendar of weeks by season</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="cfbd_games.html">cfbd_game_info()</a></code> <code><a href="cfbd_games.html">cfbd_game_media()</a></code> <code><a href="cfbd_games.html">cfbd_game_box_advanced()</a></code> <code><a href="cfbd_games.html">cfbd_game_player_stats()</a></code> <code><a href="cfbd_games.html">cfbd_game_records()</a></code> <code><a href="cfbd_games.html">cfbd_game_team_stats()</a></code> </p>
+          <p><code><a href="cfbd_games.html">cfbd_game_info()</a></code> <code><a href="cfbd_games.html">cfbd_calendar()</a></code> <code><a href="cfbd_games.html">cfbd_game_media()</a></code> <code><a href="cfbd_games.html">cfbd_game_box_advanced()</a></code> <code><a href="cfbd_games.html">cfbd_game_player_stats()</a></code> <code><a href="cfbd_games.html">cfbd_game_records()</a></code> <code><a href="cfbd_games.html">cfbd_game_team_stats()</a></code> </p>
         </td>
         <td><p>CFBD Games Endpoint</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> <code><a href="cfbd_metrics.html">espn_metrics_wp()</a></code> </p>
+          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> </p>
         </td>
         <td><p>CFBD Metrics Endpoint</p></td>
       </tr><tr>
@@ -502,7 +581,7 @@ Returns calendar of weeks by season</p></td>
         <td>
           <p><code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code> </p>
         </td>
-        <td><p>Extract CFB (D-I) Play by Play Data - For plays</p></td>
+        <td><p>CFBD Play by Play Data</p></td>
       </tr><tr>
         
         <td>
@@ -518,7 +597,7 @@ Returns calendar of weeks by season</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="cfbd_ratings.html">cfbd_rankings()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp_conference()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_srs()</a></code> <code><a href="cfbd_ratings.html">espn_ratings_fpi()</a></code> </p>
+          <p><code><a href="cfbd_ratings.html">cfbd_rankings()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp_conference()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_srs()</a></code> </p>
         </td>
         <td><p>CFBD Ratings and Rankings Endpoints</p></td>
       </tr><tr>
@@ -560,6 +639,18 @@ Returns calendar of weeks by season</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="espn_metrics.html">espn_metrics_wp()</a></code> </p>
+        </td>
+        <td><p>ESPN Metrics</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="espn_ratings.html">espn_ratings_fpi()</a></code> </p>
+        </td>
+        <td><p>ESPN Ratings</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="register_cfbd.html">cfbd_key()</a></code> <code><a href="register_cfbd.html">has_cfbd_key()</a></code> </p>
         </td>
         <td><p>CFBD API Key Registration</p></td>
@@ -589,7 +680,7 @@ This is only for D1 football</p></td>
           <p><code><a href="clean_drive_info.html">clean_drive_info()</a></code> </p>
         </td>
         <td><p>Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p></td>
+Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column</p></td>
       </tr><tr>
         
         <td>

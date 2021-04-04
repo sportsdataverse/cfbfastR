@@ -13,7 +13,7 @@ create_wpa_naive(df, wp_model = cfbfastR:::wp_model)
 \item{wp_model}{(\emph{model} default cfbfastR:wp_model): Win Probability (WP) Model}
 }
 \value{
-The original `df` with the following columns appended to it:
+The original \code{df} with the following columns appended to it:
 \describe{
 \item{wp_before}{}
 \item{def_wp_before}{}

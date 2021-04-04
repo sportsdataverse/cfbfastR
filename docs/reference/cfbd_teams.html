@@ -94,7 +94,7 @@ Extracts team talent composite as sourced from 247 rankings" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -146,12 +146,70 @@ Extracts team talent composite as sourced from 247 rankings" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -160,12 +218,22 @@ Extracts team talent composite as sourced from 247 rankings" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -179,7 +247,6 @@ Extracts team talent composite as sourced from 247 rankings" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -272,68 +339,68 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 <p><a href='https://api.collegefootballdata.com/talent'>https://api.collegefootballdata.com/talent</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_team_info - A data frame with 12 variables:</p><dl>
-  <dt><code>team_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>school</code></dt><dd><p>character.</p></dd>
-  <dt><code>mascot</code></dt><dd><p>character.</p></dd>
-  <dt><code>abbreviation</code></dt><dd><p>character.</p></dd>
-  <dt><code>alt_name1</code></dt><dd><p>character.</p></dd>
-  <dt><code>alt_name2</code></dt><dd><p>character.</p></dd>
-  <dt><code>alt_name3</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>division</code></dt><dd><p>character.</p></dd>
-  <dt><code>color</code></dt><dd><p>character.</p></dd>
-  <dt><code>alt_color</code></dt><dd><p>character.</p></dd>
-  <dt><code>logos</code></dt><dd><p>list.</p></dd>
+    <p><code>cfbfastR::cfbd_team_info()</code> - A data frame with 12 variables:</p><dl>
+<dt><code>team_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>school</code></dt><dd><p>character.</p></dd>
+<dt><code>mascot</code></dt><dd><p>character.</p></dd>
+<dt><code>abbreviation</code></dt><dd><p>character.</p></dd>
+<dt><code>alt_name1</code></dt><dd><p>character.</p></dd>
+<dt><code>alt_name2</code></dt><dd><p>character.</p></dd>
+<dt><code>alt_name3</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>division</code></dt><dd><p>character.</p></dd>
+<dt><code>color</code></dt><dd><p>character.</p></dd>
+<dt><code>alt_color</code></dt><dd><p>character.</p></dd>
+<dt><code>logos</code></dt><dd><p>list.</p></dd>
 
 </dl>
 
-<p>cfbd_team_matchup_records - A data frame with 7 variables:</p><dl>
-  <dt><code>start_year</code></dt><dd><p>character.</p></dd>
-  <dt><code>end_year</code></dt><dd><p>character.</p></dd>
-  <dt><code>team1</code></dt><dd><p>character.</p></dd>
-  <dt><code>team1_wins</code></dt><dd><p>character.</p></dd>
-  <dt><code>team2</code></dt><dd><p>character.</p></dd>
-  <dt><code>team2_wins</code></dt><dd><p>character.</p></dd>
-  <dt><code>ties</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_team_matchup_records()</code> - A data frame with 7 variables:</p><dl>
+<dt><code>start_year</code></dt><dd><p>character.</p></dd>
+<dt><code>end_year</code></dt><dd><p>character.</p></dd>
+<dt><code>team1</code></dt><dd><p>character.</p></dd>
+<dt><code>team1_wins</code></dt><dd><p>character.</p></dd>
+<dt><code>team2</code></dt><dd><p>character.</p></dd>
+<dt><code>team2_wins</code></dt><dd><p>character.</p></dd>
+<dt><code>ties</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_team_matchup - A data frame with 11 variables:</p><dl>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season_type</code></dt><dd><p>character.</p></dd>
-  <dt><code>date</code></dt><dd><p>character.</p></dd>
-  <dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
-  <dt><code>venue</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_score</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_score</code></dt><dd><p>integer.</p></dd>
-  <dt><code>winner</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_team_matchup()</code> - A data frame with 11 variables:</p><dl>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>season_type</code></dt><dd><p>character.</p></dd>
+<dt><code>date</code></dt><dd><p>character.</p></dd>
+<dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
+<dt><code>venue</code></dt><dd><p>character.</p></dd>
+<dt><code>home_team</code></dt><dd><p>character.</p></dd>
+<dt><code>home_score</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_team</code></dt><dd><p>character.</p></dd>
+<dt><code>away_score</code></dt><dd><p>integer.</p></dd>
+<dt><code>winner</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_team_roster - A data frame with 12 variables:</p><dl>
-  <dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>first_name</code></dt><dd><p>character.</p></dd>
-  <dt><code>last_name</code></dt><dd><p>character.</p></dd>
-  <dt><code>weight</code></dt><dd><p>integer.</p></dd>
-  <dt><code>height</code></dt><dd><p>integer.</p></dd>
-  <dt><code>jersey</code></dt><dd><p>integer.</p></dd>
-  <dt><code>year</code></dt><dd><p>integer.</p></dd>
-  <dt><code>position</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_city</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_state</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_country</code></dt><dd><p>character.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_team_roster()</code> - A data frame with 12 variables:</p><dl>
+<dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
+<dt><code>first_name</code></dt><dd><p>character.</p></dd>
+<dt><code>last_name</code></dt><dd><p>character.</p></dd>
+<dt><code>weight</code></dt><dd><p>integer.</p></dd>
+<dt><code>height</code></dt><dd><p>integer.</p></dd>
+<dt><code>jersey</code></dt><dd><p>integer.</p></dd>
+<dt><code>year</code></dt><dd><p>integer.</p></dd>
+<dt><code>position</code></dt><dd><p>character.</p></dd>
+<dt><code>home_city</code></dt><dd><p>character.</p></dd>
+<dt><code>home_state</code></dt><dd><p>character.</p></dd>
+<dt><code>home_country</code></dt><dd><p>character.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_team_talent - A data frame with 3 variables:</p><dl>
-  <dt><code>year</code></dt><dd><p>integer.</p></dd>
-  <dt><code>school</code></dt><dd><p>character.</p></dd>
-  <dt><code>talent</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_team_talent()</code> - A data frame with 3 variables:</p><dl>
+<dt><code>year</code></dt><dd><p>integer.</p></dd>
+<dt><code>school</code></dt><dd><p>character.</p></dd>
+<dt><code>talent</code></dt><dd><p>double.</p></dd>
 
 </dl>
 

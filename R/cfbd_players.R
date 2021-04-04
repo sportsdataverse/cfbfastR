@@ -13,7 +13,7 @@ NULL
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).\cr
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
-#' @return cfbd_player_info - A data frame with 12 variables:
+#' @return \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} - A data frame with 12 variables:
 #' \describe{
 #'   \item{\code{athlete_id}}{character. Unique player identifier `athlete_id`.}
 #'   \item{\code{team}}{character. Team of the player.}
@@ -141,7 +141,7 @@ cfbd_player_info <- function(search_term,
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @return cfbd_player_returning - A data frame with 15 variables:
+#' @return \code{\link[cfbfastR:cfbd_player_returning]{cfbfastR::cfbd_player_returning()}} - A data frame with 15 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -277,7 +277,7 @@ cfbd_player_returning <- function(year = 2019,
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @return cfbd_player_usage - A data frame with 14 variables:
+#' @return \code{\link[cfbfastR:cfbd_player_usage]{cfbfastR::cfbd_player_usage()}} - A data frame with 14 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{athlete_id}}{character.}

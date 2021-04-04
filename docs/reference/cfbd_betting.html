@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get win probability chart data from ESPN
-Graciously contributed by MrCaseB: — cfbd_metrics_espn_wp • cfbfastR</title>
+<title>CFBD Betting Endpoint — cfbd_betting • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -49,10 +48,9 @@ Graciously contributed by MrCaseB: — cfbd_metrics_espn_wp • cfbfastR</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get win probability chart data from ESPN
-Graciously contributed by MrCaseB: — cfbd_metrics_espn_wp" />
-<meta property="og:description" content="Get win probability chart data from ESPN
-Graciously contributed by MrCaseB:" />
+<meta property="og:title" content="CFBD Betting Endpoint — cfbd_betting" />
+<meta property="og:description" content="CFBD Betting Endpoint
+Get Betting information from games" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbfastR" />
@@ -88,7 +86,7 @@ Graciously contributed by MrCaseB:" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -140,12 +138,70 @@ Graciously contributed by MrCaseB:" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -154,12 +210,22 @@ Graciously contributed by MrCaseB:" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -173,7 +239,6 @@ Graciously contributed by MrCaseB:" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -189,47 +254,102 @@ Graciously contributed by MrCaseB:" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get win probability chart data from ESPN
-Graciously contributed by MrCaseB:</h1>
+    <h1>CFBD Betting Endpoint</h1>
     
-    <div class="hidden name"><code>cfbd_metrics_espn_wp.Rd</code></div>
+    <div class="hidden name"><code>cfbd_betting.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get win probability chart data from ESPN
-Graciously contributed by MrCaseB:</p>
+    <p>CFBD Betting Endpoint</p>
+<p>Get Betting information from games</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_metrics_espn_wp</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>
+  game_id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  year <span class='op'>=</span> <span class='cn'>NULL</span>,
+  week <span class='op'>=</span> <span class='cn'>NULL</span>,
+  season_type <span class='op'>=</span> <span class='st'>"regular"</span>,
+  team <span class='op'>=</span> <span class='cn'>NULL</span>,
+  home_team <span class='op'>=</span> <span class='cn'>NULL</span>,
+  away_team <span class='op'>=</span> <span class='cn'>NULL</span>,
+  conference <span class='op'>=</span> <span class='cn'>NULL</span>,
+  line_provider <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>game_id</th>
-      <td><p>(<em>Integer</em> required): Game ID filter for querying a single game<br />
+      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game
 Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info()</a></code> function</p></td>
+    </tr>
+    <tr>
+      <th>year</th>
+      <td><p>(<em>Integer</em> required): Year, 4 digit format(<em>YYYY</em>)</p></td>
+    </tr>
+    <tr>
+      <th>week</th>
+      <td><p>(<em>Integer</em> optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)</p></td>
+    </tr>
+    <tr>
+      <th>season_type</th>
+      <td><p>(<em>String</em> default regular): Select Season Type: regular or postseason</p></td>
+    </tr>
+    <tr>
+      <th>team</th>
+      <td><p>(<em>String</em> optional): D-I Team</p></td>
+    </tr>
+    <tr>
+      <th>home_team</th>
+      <td><p>(<em>String</em> optional): Home D-I Team</p></td>
+    </tr>
+    <tr>
+      <th>away_team</th>
+      <td><p>(<em>String</em> optional): Away D-I Team</p></td>
+    </tr>
+    <tr>
+      <th>conference</th>
+      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference<br />
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br />
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<br /></p></td>
+    </tr>
+    <tr>
+      <th>line_provider</th>
+      <td><p>(<em>String</em> optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07'>https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07</a></p>
+    <p><a href='https://api.collegefootballdata.com/lines'>https://api.collegefootballdata.com/lines</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with 5 variables:</p><dl>
-  <dt><code>espn_game_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>play_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>seconds_left</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_win_percentage</code></dt><dd><p>double.</p></dd>
-  <dt><code>away_win_percentage</code></dt><dd><p>double.</p></dd>
+    <p>Betting information for games with the following columns:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer. Unique game identifier - <code>game_id</code>.</p></dd>
+<dt><code>season</code></dt><dd><p>integer. Season parameter.</p></dd>
+<dt><code>season_type</code></dt><dd><p>character. Season Type (regular, postseason, both).</p></dd>
+<dt><code>week</code></dt><dd><p>integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).</p></dd>
+<dt><code>home_team</code></dt><dd><p>character. Home D-I Team.</p></dd>
+<dt><code>home_conference</code></dt><dd><p>character. Home D-I Conference.</p></dd>
+<dt><code>home_score</code></dt><dd><p>integer. Home Score.</p></dd>
+<dt><code>away_team</code></dt><dd><p>character. Away D-I Team.</p></dd>
+<dt><code>away_conference</code></dt><dd><p>character. Away D-I Conference.</p></dd>
+<dt><code>away_score</code></dt><dd><p>integer. Away Score.</p></dd>
+<dt><code>provider</code></dt><dd><p>character. Line provider.</p></dd>
+<dt><code>spread</code></dt><dd><p>character. Spread for the game.</p></dd>
+<dt><code>formatted_spread</code></dt><dd><p>character. Formatted spread for the game.</p></dd>
+<dt><code>over_under</code></dt><dd><p>character. Over/Under for the game.</p></dd>
 
 </dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>cfbd_metrics_espn_wp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401114164</span><span class='op'>)</span>
+<span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>12</span>, team <span class='op'>=</span> <span class='st'>'Florida State'</span><span class='op'>)</span>
+
+<span class='co'>#7 OTs LSU at TAMU</span>
+<span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>13</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, conference <span class='op'>=</span> <span class='st'>'SEC'</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
@@ -243,7 +363,7 @@ Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info(
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, Akshay Easwaran, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/arbitanalytics'>Eric Hess</a>.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/akeaswaran'>Akshay Easwaran</a>, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/arbitanalytics'>Eric Hess</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -9,25 +9,25 @@
 \format{
 A data frame with 45 rows and 3 variables:
 \describe{
-  \item{id}{Referencing play id}
-  \item{text}{play type description}
-  \item{abbreviation}{play type abbreviation used for function call}
-  ...
+\item{id}{Referencing play id}
+\item{text}{play type description}
+\item{abbreviation}{play type abbreviation used for function call}
+...
 }
 
 A data frame with 11 rows and 4 variables:
 \describe{
-  \item{id}{Referencing conference id}
-  \item{name}{Conference name}
-  \item{short_name}{Short name for Conference}
-  \item{abbreviation}{Conference abbreviation}
-  ...
+\item{id}{Referencing conference id}
+\item{name}{Conference name}
+\item{short_name}{Short name for Conference}
+\item{abbreviation}{Conference abbreviation}
+...
 }
 }
 \source{
-<https://api.collegefootballdata.com>
+\url{https://api.collegefootballdata.com}
 
-<https://api.collegefootballdata.com>
+\url{https://api.collegefootballdata.com}
 }
 \usage{
 cfbd_play_type_df

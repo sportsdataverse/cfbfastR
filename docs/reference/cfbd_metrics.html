@@ -57,9 +57,7 @@ Get player season averages for Predicted Points Added (PPA)
 Calculate Predicted Points using Down and Distance
 Get team averages for Predicted Points Added (PPA)
 Get Pre-game Win Probability Data from API
-Get win probability chart data from API
-Get win probability chart data from ESPN
-Graciously contributed by MrCaseB:" />
+Get win probability chart data from API" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbfastR" />
@@ -95,7 +93,7 @@ Graciously contributed by MrCaseB:" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -147,12 +145,70 @@ Graciously contributed by MrCaseB:" />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../reference/index.html">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-file-code-o"></span>
      
     Functions
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">Reference</a>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_games.html">Games</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_play.html">Plays</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_drives.html">Drives</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_teams.html">Teams</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_players.html">Players</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_stats.html">Statistics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_metrics.html">Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_ratings.html">Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_betting.html">Betting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_recruiting.html">Recruiting</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_coaches.html">Coaches</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_conferences.html">Conferences</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_venues.html">Venues</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">
@@ -161,12 +217,22 @@ Graciously contributed by MrCaseB:" />
     News
   </a>
 </li>
-<li>
-  <a href="https://github.com/saiemgilani/cfbfastR-data">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-database"></span>
      
     Data
+     
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -180,7 +246,6 @@ Graciously contributed by MrCaseB:" />
   <a href="https://github.com/saiemgilani/cfbfastR/">
     <span class="fab fa-github fa-lg"></span>
      
-    GitHub
   </a>
 </li>
       </ul>
@@ -211,8 +276,6 @@ Graciously contributed by MrCaseB:" />
 <p>Get team averages for Predicted Points Added (PPA)</p>
 <p>Get Pre-game Win Probability Data from API</p>
 <p>Get win probability chart data from API</p>
-<p>Get win probability chart data from ESPN
-Graciously contributed by MrCaseB:</p>
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_metrics_ppa_games</span><span class='op'>(</span>
@@ -267,9 +330,7 @@ Graciously contributed by MrCaseB:</p>
   season_type <span class='op'>=</span> <span class='st'>"regular"</span>
 <span class='op'>)</span>
 
-<span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span>
-
-<span class='fu'>espn_metrics_wp</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span></pre>
+<span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -299,10 +360,11 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
     <tr>
       <th>position</th>
       <td><p>(<em>string</em> optional): Position abbreviation of the player you are searching for.<br />
-Position Group  - options include:<br />
- * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR<br />
- * Defense: DB, CB, S, LB,  DE, DT, NT, DL<br />
- * Special Teams: K, P, LS, PK<br /></p></td>
+Position Group  - options include:<br /></p><ul>
+<li><p>Offense: QB, RB, FB, TE,  OL, G, OT, C, WR<br /></p></li>
+<li><p>Defense: DB, CB, S, LB,  DE, DT, NT, DL<br /></p></li>
+<li><p>Special Teams: K, P, LS, PK<br /></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>athlete_id</th>
@@ -339,163 +401,153 @@ Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info(
 <p><a href='https://api.collegefootballdata.com/ppa/predicted'>https://api.collegefootballdata.com/ppa/predicted</a></p>
 <p><a href='https://api.collegefootballdata.com/ppa/teams'>https://api.collegefootballdata.com/ppa/teams</a></p>
 <p><a href='https://api.collegefootballdata.com/metrics/wp'>https://api.collegefootballdata.com/metrics/wp</a></p>
-<p><a href='https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07'>https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_metrics_ppa_games - A data frame with 18 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>opponent</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_overall</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_overall</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
+    <p><code>cfbfastR::cfbd_metrics_ppa_games()</code> - A data frame with 18 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>opponent</code></dt><dd><p>character.</p></dd>
+<dt><code>off_overall</code></dt><dd><p>character.</p></dd>
+<dt><code>off_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_overall</code></dt><dd><p>character.</p></dd>
+<dt><code>def_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_ppa_games - A data frame with 18 variables:</p><dl>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>opponent</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_overall</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_overall</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_ppa_games()</code> - A data frame with 18 variables:</p><dl>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>opponent</code></dt><dd><p>character.</p></dd>
+<dt><code>off_overall</code></dt><dd><p>character.</p></dd>
+<dt><code>off_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_overall</code></dt><dd><p>character.</p></dd>
+<dt><code>def_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_ppa_players_games - A data frame with 9 variables:</p><dl>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>name</code></dt><dd><p>character.</p></dd>
-  <dt><code>position</code></dt><dd><p>character.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>opponent</code></dt><dd><p>character.</p></dd>
-  <dt><code>avg_PPA_all</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_pass</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_rush</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_ppa_players_games()</code> - A data frame with 9 variables:</p><dl>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>name</code></dt><dd><p>character.</p></dd>
+<dt><code>position</code></dt><dd><p>character.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>opponent</code></dt><dd><p>character.</p></dd>
+<dt><code>avg_PPA_all</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_pass</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_rush</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_ppa_players_season - A data frame with 23 variables:</p><dl>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>id</code></dt><dd><p>character.</p></dd>
-  <dt><code>name</code></dt><dd><p>character.</p></dd>
-  <dt><code>position</code></dt><dd><p>character.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>countable_plays</code></dt><dd><p>integer.</p></dd>
-  <dt><code>avg_PPA_all</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_pass</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_rush</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_first_down</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_second_down</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_third_down</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_standard_downs</code></dt><dd><p>double.</p></dd>
-  <dt><code>avg_PPA_passing_downs</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_all</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_pass</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_rush</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_first_down</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_second_down</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_third_down</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_standard_downs</code></dt><dd><p>double.</p></dd>
-  <dt><code>total_PPA_passing_downs</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_ppa_players_season()</code> - A data frame with 23 variables:</p><dl>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>id</code></dt><dd><p>character.</p></dd>
+<dt><code>name</code></dt><dd><p>character.</p></dd>
+<dt><code>position</code></dt><dd><p>character.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>countable_plays</code></dt><dd><p>integer.</p></dd>
+<dt><code>avg_PPA_all</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_pass</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_rush</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_first_down</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_second_down</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_third_down</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_standard_downs</code></dt><dd><p>double.</p></dd>
+<dt><code>avg_PPA_passing_downs</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_all</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_pass</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_rush</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_first_down</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_second_down</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_third_down</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_standard_downs</code></dt><dd><p>double.</p></dd>
+<dt><code>total_PPA_passing_downs</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_ppa_predicted - A data frame with 2 variables:</p><dl>
-  <dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
-  <dt><code>predicted_points</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_ppa_predicted()</code> - A data frame with 2 variables:</p><dl>
+<dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
+<dt><code>predicted_points</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_ppa_teams - A data frame with 21 variables:</p><dl>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>conference</code></dt><dd><p>character.</p></dd>
-  <dt><code>team</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_overall</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_cumulative_total</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_cumulative_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>off_cumulative_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_overall</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_cumulative_total</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_cumulative_passing</code></dt><dd><p>character.</p></dd>
-  <dt><code>def_cumulative_rushing</code></dt><dd><p>character.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_ppa_teams()</code> - A data frame with 21 variables:</p><dl>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>conference</code></dt><dd><p>character.</p></dd>
+<dt><code>team</code></dt><dd><p>character.</p></dd>
+<dt><code>off_overall</code></dt><dd><p>character.</p></dd>
+<dt><code>off_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
+<dt><code>off_cumulative_total</code></dt><dd><p>character.</p></dd>
+<dt><code>off_cumulative_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>off_cumulative_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_overall</code></dt><dd><p>character.</p></dd>
+<dt><code>def_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
+<dt><code>def_cumulative_total</code></dt><dd><p>character.</p></dd>
+<dt><code>def_cumulative_passing</code></dt><dd><p>character.</p></dd>
+<dt><code>def_cumulative_rushing</code></dt><dd><p>character.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_wp_pregame - A data frame with 9 variables:</p><dl>
-  <dt><code>season</code></dt><dd><p>integer.</p></dd>
-  <dt><code>season_type</code></dt><dd><p>character.</p></dd>
-  <dt><code>week</code></dt><dd><p>integer.</p></dd>
-  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_team</code></dt><dd><p>character.</p></dd>
-  <dt><code>spread</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_win_prob</code></dt><dd><p>double.</p></dd>
-  <dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_wp_pregame()</code> - A data frame with 9 variables:</p><dl>
+<dt><code>season</code></dt><dd><p>integer.</p></dd>
+<dt><code>season_type</code></dt><dd><p>character.</p></dd>
+<dt><code>week</code></dt><dd><p>integer.</p></dd>
+<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_team</code></dt><dd><p>character.</p></dd>
+<dt><code>away_team</code></dt><dd><p>character.</p></dd>
+<dt><code>spread</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_win_prob</code></dt><dd><p>double.</p></dd>
+<dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
 
 </dl>
 
-<p>cfbd_metrics_wp - A data frame with 16 variables:</p><dl>
-  <dt><code>play_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>play_text</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_id</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away</code></dt><dd><p>character.</p></dd>
-  <dt><code>spread</code></dt><dd><p>character.</p></dd>
-  <dt><code>home_ball</code></dt><dd><p>logical.</p></dd>
-  <dt><code>home_score</code></dt><dd><p>integer.</p></dd>
-  <dt><code>away_score</code></dt><dd><p>integer.</p></dd>
-  <dt><code>down</code></dt><dd><p>integer.</p></dd>
-  <dt><code>distance</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_win_prob</code></dt><dd><p>character.</p></dd>
-  <dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
-  <dt><code>play_number</code></dt><dd><p>integer.</p></dd>
-  <dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
-
-</dl>
-
-<p>espn_metrics_wp - A data frame with 5 variables:</p><dl>
-  <dt><code>espn_game_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>play_id</code></dt><dd><p>character.</p></dd>
-  <dt><code>seconds_left</code></dt><dd><p>integer.</p></dd>
-  <dt><code>home_win_percentage</code></dt><dd><p>double.</p></dd>
-  <dt><code>away_win_percentage</code></dt><dd><p>double.</p></dd>
+<p><code>cfbfastR::cfbd_metrics_wp()</code> - A data frame with 16 variables:</p><dl>
+<dt><code>play_id</code></dt><dd><p>character.</p></dd>
+<dt><code>play_text</code></dt><dd><p>character.</p></dd>
+<dt><code>home_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>home</code></dt><dd><p>character.</p></dd>
+<dt><code>away_id</code></dt><dd><p>integer.</p></dd>
+<dt><code>away</code></dt><dd><p>character.</p></dd>
+<dt><code>spread</code></dt><dd><p>character.</p></dd>
+<dt><code>home_ball</code></dt><dd><p>logical.</p></dd>
+<dt><code>home_score</code></dt><dd><p>integer.</p></dd>
+<dt><code>away_score</code></dt><dd><p>integer.</p></dd>
+<dt><code>down</code></dt><dd><p>integer.</p></dd>
+<dt><code>distance</code></dt><dd><p>integer.</p></dd>
+<dt><code>home_win_prob</code></dt><dd><p>character.</p></dd>
+<dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
+<dt><code>play_number</code></dt><dd><p>integer.</p></dd>
+<dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
 
 </dl>
 
@@ -526,9 +578,6 @@ Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info(
 <span class='op'>}</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401012356</span><span class='op'>)</span>
-<span class='op'>}</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>espn_metrics_wp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401114164</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

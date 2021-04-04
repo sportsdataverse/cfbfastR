@@ -1,4 +1,10 @@
+#' CFBD Betting Endpoint
+#'
+#' @name cfbd_betting
+NULL
 #' Get Betting information from games
+#'
+#' @rdname cfbd_betting
 #'
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
 #' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
