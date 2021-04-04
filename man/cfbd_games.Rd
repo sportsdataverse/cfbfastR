@@ -91,7 +91,7 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
-Can be found using the \code{cfbd_game_info()} function}
+Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
 
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
 list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.\cr
@@ -109,7 +109,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
 }
 \value{
-\code{\link[cfbfastR]{cfbd_game_info()}} - A data frame with 22 variables:
+\code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} - A data frame with 22 variables:
 \describe{
 \item{\code{game_id}}{integer.}
 \item{\code{season}}{integer.}
@@ -135,9 +135,9 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{excitement_index}}{character.}
 }
 
-\code{\link[cfbfastR]{cfbd_calendar()}} :
+\code{\link[cfbfastR:cfbd_calendar]{cfbfastR::cfbd_calendar()}} A data frame with 5 variables:
 
-\code{\link[cfbfastR]{cfbd_game_media()}} - A data frame with 13 variables:
+\code{\link[cfbfastR:cfbd_game_media]{cfbfastR::cfbd_game_media()}} - A data frame with 13 variables:
 \describe{
 \item{\code{game_id}}{integer.}
 \item{\code{season}}{integer.}
@@ -154,7 +154,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{web}}{list.}
 }
 
-\code{\link[cfbfastR]{cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
+\code{\link[cfbfastR:cfbd_game_box_advanced]{cfbfastR::cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
 \describe{
 \item{\code{team}}{character.}
 \item{\code{plays}}{double.}
@@ -227,7 +227,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{field_pos_avg_starting_predicted_pts}}{double.}
 }
 
-\code{\link[cfbfastR]{cfbd_game_player_stats()}} - A data frame with 32 variables:
+\code{\link[cfbfastR:cfbd_game_player_stats]{cfbfastR::cfbd_game_player_stats()}} - A data frame with 32 variables:
 \describe{
 \item{\code{game_id}}{integer.}
 \item{\code{team}}{character.}
@@ -263,7 +263,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{qb_hur}}{double.}
 }
 
-\code{\link[cfbfastR]{cfbd_game_records()}} - A data frame with 20 variables:
+\code{\link[cfbfastR:cfbd_game_records]{cfbfastR::cfbd_game_records()}} - A data frame with 20 variables:
 \describe{
 \item{\code{year}}{integer.}
 \item{\code{team}}{character.}
@@ -287,7 +287,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{away_ties}}{integer.}
 }
 
-\code{\link[cfbfastR]{cfbd_game_team_stats}} - A data frame with 78 variables:
+\code{\link[cfbfastR:cfbd_game_team_stats]{cfbfastR::cfbd_game_team_stats()}} - A data frame with 78 variables:
 \describe{
 \item{\code{game_id}}{integer.}
 \item{\code{school}}{character.}

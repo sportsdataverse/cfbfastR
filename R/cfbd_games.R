@@ -12,13 +12,13 @@ NULL
 #' @param away_team (\emph{String} optional): Away D-I Team
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
 #' @param quarter_scores (\emph{Logical} default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #'
-#' @return \code{\link[cfbfastR]{cfbd_game_info()}} - A data frame with 22 variables:
+#' @return \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} - A data frame with 22 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{season}}{integer.}
@@ -186,7 +186,7 @@ cfbd_game_info <- function(year,
 #' @rdname cfbd_games
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #'
-#' @return \code{\link[cfbfastR]{cfbd_calendar()}} :
+#' @return \code{\link[cfbfastR:cfbd_calendar]{cfbfastR::cfbd_calendar()}} A data frame with 5 variables:
 #' @source \url{https://api.collegefootballdata.com/calendar}
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
@@ -262,7 +262,7 @@ cfbd_calendar <- function(year) {
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
 #'
-#' @return \code{\link[cfbfastR]{cfbd_game_media()}} - A data frame with 13 variables:
+#' @return \code{\link[cfbfastR:cfbd_game_media]{cfbfastR::cfbd_game_media()}} - A data frame with 13 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{season}}{integer.}
@@ -391,9 +391,9 @@ cfbd_game_media <- function(year,
 #' Get game advanced box score information
 #' @rdname cfbd_games
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
-#' Can be found using the ```cfbd_game_info()``` function
+#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
 #' @param long (\emph{Logical} default `FALSE`): Return the data in a long format.
-#' @return \code{\link[cfbfastR]{cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
+#' @return \code{\link[cfbfastR:cfbd_game_box_advanced]{cfbfastR::cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
 #' \describe{
 #'   \item{\code{team}}{character.}
 #'   \item{\code{plays}}{double.}
@@ -601,9 +601,9 @@ cfbd_game_box_advanced<- function(game_id, long = FALSE) {
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the ```cfbd_game_info()``` function
+#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
 #'
-#' @return \code{\link[cfbfastR]{cfbd_game_player_stats()}} - A data frame with 32 variables:
+#' @return \code{\link[cfbfastR:cfbd_game_player_stats]{cfbfastR::cfbd_game_player_stats()}} - A data frame with 32 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -808,7 +808,7 @@ cfbd_game_player_stats<- function(year,
 #' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @return \code{\link[cfbfastR]{cfbd_game_records()}} - A data frame with 20 variables:
+#' @return \code{\link[cfbfastR:cfbd_game_records]{cfbfastR::cfbd_game_records()}} - A data frame with 20 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -943,10 +943,10 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL) {
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
-#' Can be found using the ```cfbd_game_info()``` function
+#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
 #' @param rows_per_team (\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
-#' @return \code{\link[cfbfastR]{cfbd_game_team_stats}} - A data frame with 78 variables:
+#' @return \code{\link[cfbfastR:cfbd_game_team_stats]{cfbfastR::cfbd_game_team_stats()}} - A data frame with 78 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{school}}{character.}
