@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Functions to Access College Football Play by Play Data • cfbfastR</title>
+<title>An R package to quickly obtain clean and tidy College Football play by play data • cfbfastR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="Functions to Access College Football Play by Play Data">
+<meta property="og:title" content="An R package to quickly obtain clean and tidy College Football play by play data">
 <meta property="og:description" content="An R package for working with College Football Data. It is an R API wrapper around &lt;https://collegefootballdata.com/&gt; made available by the cfbfastR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).">
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico">
 <meta name="twitter:card" content="summary_large_image">
@@ -50,53 +50,19 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa-home"></span>
+    <span class=" https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico"></span>
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-question-circle-o"></span>
-     
-    Tutorials
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/index.html">Vignettes</a>
-    </li>
-    <li class="dropdown-header">Introductory</li>
-    <li>
-      <a href="articles/intro.html">CFB Analytics with cfbfastR</a>
-    </li>
-    <li>
-      <a href="articles/animated-wp-plotting.html">Animated Win Probability Plots</a>
-    </li>
-    <li>
-      <a href="articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
-    </li>
-    <li>
-      <a href="articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
-    </li>
-    <li>
-      <a href="articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
-    </li>
-    <li class="dropdown-header">Expected Points Model Fundamentals</li>
-    <li>
-      <a href="articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
-    </li>
-    <li>
-      <a href="articles/college-football-expected-points-model-fundamentals-part-ii.html">Part 2 - Regression Models</a>
-    </li>
-    <li>
-      <a href="articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
-    </li>
-  </ul>
+  <a href="index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-file-code-o"></span>
+    <span class="fas fa-file-code fa-lg"></span>
      
     Functions
      
@@ -104,7 +70,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="reference/index.html">Reference</a>
+      <a href="reference/index.html">Function Index</a>
     </li>
     <li>
       <a href="reference/register_cfbd.html">CFBD API Keys</a>
@@ -161,16 +127,58 @@
 </li>
 <li>
   <a href="news/index.html">
-    <span class="fas fa-newspaper-o"></span>
+    <span class="fas fa-newspaper fa-lg"></span>
      
-    News
+     News
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+    <span class="fas fa-book-reader"></span>
      
-    Data
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/index.html">Vignettes</a>
+    </li>
+    <li class="dropdown-header">Introductory</li>
+    <li>
+      <a href="articles/intro.html">CFB Analytics with cfbfastR</a>
+    </li>
+    <li>
+      <a href="articles/animated-wp-plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
+    </li>
+    <li>
+      <a href="articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
+    </li>
+    <li>
+      <a href="articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
+    </li>
+    <li class="dropdown-header">Expected Points Model Fundamentals</li>
+    <li>
+      <a href="articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
+    </li>
+    <li>
+      <a href="articles/college-football-expected-points-model-fundamentals-part-ii.html">Part 2 - Regression Models</a>
+    </li>
+    <li>
+      <a href="articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database fa-lg"></span>
+     
+     Data
      
     <span class="caret"></span>
   </a>
@@ -183,17 +191,16 @@
     </li>
   </ul>
 </li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://twitter.com/cfbfastR">
-    <span class="fab fa-twitter fa-lg"></span>
+  <a href="http://gameonpaper.com/cfb">
+    <span class="fas fa-football-ball fa-lg"></span>
      
+     Games
   </a>
 </li>
 <li>
-  <a href="https://github.com/saiemgilani/cfbfastR/">
-    <span class="fab fa-github fa-lg"></span>
+  <a href="http://twitter.com/cfbfastR">
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -221,7 +228,7 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a><strong>Installation</strong>
 </h2>
-<p>You can install the released version of <code>cfbfastR</code> from <a href="https://github.com/saiemgilani/cfbfastR">GitHub</a> with:</p>
+<p>You can install the released version of <a href="https://github.com/saiemgilani/cfbfastR/"><strong><code>cfbfastR</code></strong></a> from <a href="https://github.com/saiemgilani/cfbfastR">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Then can install using the devtools package from the following:</span>
 
@@ -238,9 +245,13 @@
 <div id="function-naming-convention-change" class="section level4">
 <h4 class="hasAnchor">
 <a href="#function-naming-convention-change" class="anchor"></a>Function Naming Convention Change</h4>
-<p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR).</p>
-<p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p>
-<p>Data generated from any of the <a href="https://saiemgilani.github.io/cfbfastR/"><code>cfbfastR</code></a> methods will use <code>cfb_</code></p>
+<p>All functions sourced from the <a href="https://collegefootballdata.com/">College Football Data API</a> will start with <strong><code>cfbd_</code></strong> as opposed to <strong><code>cfb_</code></strong> (as in cfbscrapR).</p>
+<p>Similarly, data and metrics sourced from ESPN will begin with <strong><code>espn_</code></strong> as opposed to <strong><code>cfb_</code></strong>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><strong><code>espn_ratings_fpi()</code></strong></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><strong><code>espn_metrics_wp()</code></strong></a></p>
+<p>Data generated from any of the <a href="https://saiemgilani.github.io/cfbfastR/"><strong><code>cfbfastR</code></strong></a> methods will use <strong><code>cfb_</code></strong></p>
+</div>
+<div id="collegefootballdata-api-key" class="section level4">
+<h4 class="hasAnchor">
+<a href="#collegefootballdata-api-key" class="anchor"></a>CollegeFootballData API Key</h4>
 <p>The <a href="https://collegefootballdata.com/">CollegeFootballData API</a> now requires an API key, here’s a quick run-down:</p>
 <ul>
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key">College Football Data Key Registration.</a></p></li>
@@ -306,6 +317,10 @@
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Report a bug at <br><a href="http://www.github.com/saiemgilani/cfbfastR/issues">http://​www.github.com/​saiemgilani/​cfbfastR/​issues</a>
+</li>
+<li>cfbfastR beginner's guide at <br><a href="articles/intro.html">articles/​intro.html</a>
+</li>
+<li>cfbfastR stats landing page at <br><a href="https://gameonpaper.com/cfb/">https://​gameonpaper.com/​cfb/​</a>
 </li>
 </ul>
 </div>

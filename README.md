@@ -20,7 +20,8 @@ an R API wrapper around <https://collegefootballdata.com/>.
 
 ## **Installation**
 
-You can install the released version of `cfbfastR` from
+You can install the released version of
+[**`cfbfastR`**](https://github.com/saiemgilani/cfbfastR/) from
 [GitHub](https://github.com/saiemgilani/cfbfastR) with:
 
 ``` r
@@ -35,18 +36,22 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 #### Function Naming Convention Change
 
-All functions sourced from the College Football Data API will start with
-`cfbd_` as opposed to `cfb_` (as in cfbscrapR).
+All functions sourced from the [College Football Data
+API](https://collegefootballdata.com/) will start with **`cfbd_`** as
+opposed to **`cfb_`** (as in cfbscrapR).
 
-Similarly, data and metrics sourced from ESPN will begin with `espn_` as
-opposed to `cfb_`. In particular, the two functions are now
-[`espn_ratings_fpi()`](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html)
+Similarly, data and metrics sourced from ESPN will begin with
+**`espn_`** as opposed to **`cfb_`**. In particular, the two functions
+are now
+[**`espn_ratings_fpi()`**](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html)
 and
-[`espn_metrics_wp()`](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html)
+[**`espn_metrics_wp()`**](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html)
 
 Data generated from any of the
-[`cfbfastR`](https://saiemgilani.github.io/cfbfastR/) methods will use
-`cfb_`
+[**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) methods will
+use **`cfb_`**
+
+#### CollegeFootballData API Key
 
 The [CollegeFootballData API](https://collegefootballdata.com/) now
 requires an API key, here’s a quick run-down:
