@@ -50,53 +50,19 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home"></span>
+    <span class=" https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico"></span>
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-question-circle-o"></span>
-     
-    Tutorials
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/index.html">Vignettes</a>
-    </li>
-    <li class="dropdown-header">Introductory</li>
-    <li>
-      <a href="../articles/intro.html">CFB Analytics with cfbfastR</a>
-    </li>
-    <li>
-      <a href="../articles/animated-wp-plotting.html">Animated Win Probability Plots</a>
-    </li>
-    <li>
-      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
-    </li>
-    <li>
-      <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
-    </li>
-    <li>
-      <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
-    </li>
-    <li class="dropdown-header">Expected Points Model Fundamentals</li>
-    <li>
-      <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
-    </li>
-    <li>
-      <a href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">Part 2 - Regression Models</a>
-    </li>
-    <li>
-      <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
-    </li>
-  </ul>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-file-code-o"></span>
+    <span class="fas fa-file-code fa-lg"></span>
      
     Functions
      
@@ -104,7 +70,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../reference/index.html">Reference</a>
+      <a href="../reference/index.html">Function Index</a>
     </li>
     <li>
       <a href="../reference/register_cfbd.html">CFBD API Keys</a>
@@ -161,16 +127,58 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fas fa-newspaper-o"></span>
+    <span class="fas fa-newspaper fa-lg"></span>
      
-    News
+     News
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+    <span class="fas fa-book-reader"></span>
      
-    Data
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/index.html">Vignettes</a>
+    </li>
+    <li class="dropdown-header">Introductory</li>
+    <li>
+      <a href="../articles/intro.html">CFB Analytics with cfbfastR</a>
+    </li>
+    <li>
+      <a href="../articles/animated-wp-plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
+    </li>
+    <li>
+      <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
+    </li>
+    <li>
+      <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
+    </li>
+    <li class="dropdown-header">Expected Points Model Fundamentals</li>
+    <li>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
+    </li>
+    <li>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">Part 2 - Regression Models</a>
+    </li>
+    <li>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database fa-lg"></span>
+     
+     Data
      
     <span class="caret"></span>
   </a>
@@ -183,17 +191,16 @@
     </li>
   </ul>
 </li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://twitter.com/cfbfastR">
-    <span class="fab fa-twitter fa-lg"></span>
+  <a href="http://gameonpaper.com/cfb">
+    <span class="fas fa-football-ball fa-lg"></span>
      
+     Games
   </a>
 </li>
 <li>
-  <a href="https://github.com/saiemgilani/cfbfastR/">
-    <span class="fab fa-github fa-lg"></span>
+  <a href="http://twitter.com/cfbfastR">
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -251,7 +258,7 @@
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-05 05:19:17: Scraping coaches data...</code></pre>
+<pre><code>## 2021-04-05 10:59:16: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>coach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">first_name</span>, <span class="va">last_name</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>

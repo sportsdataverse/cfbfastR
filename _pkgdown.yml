@@ -1,3 +1,7 @@
+url: http://saiemgilani.github.io/cfbfastR
+
+title: cfbfastR
+
 template:
   params:
     bootswatch: cosmo
@@ -7,65 +11,73 @@ template:
     twitter:
       site: "@cfbfastR"
       card: summary_large_image
-title: cfbfastR
-url: http://saiemgilani.github.io/cfbfastR
-
+      
+toc:
+  depth: 3
+  
 authors:
   Saiem Gilani:
-   href: https://twitter.com/saiemgilani
+    href: https://twitter.com/saiemgilani
   Akshay Easwaran:
-   href: https://twitter.com/akeaswaran
+    href: https://twitter.com/akeaswaran
   Jared Lee:
-   href: https://twitter.com/JaredDLee
+    href: https://twitter.com/JaredDLee
   Eric Hess:
-   href: https://twitter.com/arbitanalytics 
+    href: https://twitter.com/arbitanalytics 
   Nate Manzo:
-   href: https://twitter.com/cfbNate
+    href: https://twitter.com/cfbNate
   Michael Egle:
-   href: https://twitter.com/deceptivespeed_
+    href: https://twitter.com/deceptivespeed_
   Jason DeLoach:
-   href: https://twitter.com/CFBNumbers
+    href: https://twitter.com/CFBNumbers
   Tej Seth:
-   href: https://twitter.com/TejSeth41
+    href: https://twitter.com/TejSeth41
   Conor McQuiston:
-   href: https://twitter.com/ConorMcQ5
+    href: https://twitter.com/ConorMcQ5
   Tan Ho:
-   href: https://twitter.com/_TanHo
+    href: https://twitter.com/_TanHo
   
 home:
+  title: An R package to quickly obtain clean and tidy College Football play by play data
+  links:
+  - text: cfbfastR beginner's guide
+    href: articles/intro.html
+  - text: cfbfastR stats landing page
+    href: https://gameonpaper.com/cfb/
+    
 navbar:
-  icon: https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico
-  title: "cfbfastR"
-  left:
-    - icon: fa-home
+  structure:
+    left:  [logo, home, intro, reference, news, articles]
+    right: [data, games, twitter, github]
+  components:
+    logo: 
+      icon: https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico
       href: index.html
-    - icon: fa-question-circle-o
-      text: "Tutorials"
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: http://twitter.com/cfbfastR
+    news:
+      icon: "fas fa-newspaper fa-lg"
+      text: " News"
+      href: news/index.html
+    data:
+      icon: "fas fa-database fa-lg"
+      text: " Data"
       menu:
-      - text: Vignettes
-        href: articles/index.html
-      - text: Introductory
-      - text: CFB Analytics with cfbfastR
-        href: articles/intro.html
-      - text: Animated Win Probability Plots
-        href: articles/animated-wp-plotting.html
-      - text: Fourth Down Tendency Plots
-        href: articles/fourth-down-plot-tutorial.html
-      - text: Rolling EPA Graphs
-        href: articles/rolling-epa-graph.html
-      - text: Visualizing Team Talent with Player Recruit Rankings
-        href: articles/nth-rated-recruit.html
-      - text: Expected Points Model Fundamentals
-      - text: "Part 1 - Model Definition"
-        href: articles/college-football-expected-points-model-fundamentals-part-i.html
-      - text: "Part 2 - Regression Models"
-        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
-      - text: "Part 3 - History of Expected Points Models"
-        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
-    - icon: fa-file-code-o
+      - text: "Data Repository"
+        href: https://github.com/saiemgilani/cfbfastR-data
+      - text: "Raw Data Repository"
+        href: https://github.com/saiemgilani/cfbfastR-raw
+    games:
+      icon: "fas fa-football-ball fa-lg"
+      text: " Games"
+      href: http://gameonpaper.com/cfb
+    reference:
+      icon: "fas fa-code fa-lg"
       text: "Functions"
+      href: reference/index.html
       menu:
-      - text: "Reference"
+      - text: "Function Index"
         href: reference/index.html
       - text: "CFBD API Keys"
         href: reference/register_cfbd.html
@@ -101,21 +113,123 @@ navbar:
         href: reference/cfbd_conferences.html
       - text: "Venues"
         href: reference/cfbd_venues.html
-    - icon: fa-newspaper-o
-      text: "News"
-      href: news/index.html
-    - icon: fa-database
-      text: "Data"
+    articles:
+      icon: "fas fa-book-reader"
+      text: "Articles"
       menu:
-      - text: "Data Repository"
-        href: https://github.com/saiemgilani/cfbfastR-data
-      - text: "Raw Data Repository"
-        href: https://github.com/saiemgilani/cfbfastR-raw
-  right:
-   - icon: fab fa-twitter fa-lg
-     href: https://twitter.com/cfbfastR
-   - icon: fab fa-github fa-lg
-     href: https://github.com/saiemgilani/cfbfastR/
+      - text: Vignettes
+        href: articles/index.html
+      - text: Introductory
+      - text: CFB Analytics with cfbfastR
+        href: articles/intro.html
+      - text: Animated Win Probability Plots
+        href: articles/animated-wp-plotting.html
+      - text: Fourth Down Tendency Plots
+        href: articles/fourth-down-plot-tutorial.html
+      - text: Rolling EPA Graphs
+        href: articles/rolling-epa-graph.html
+      - text: Visualizing Team Talent with Player Recruit Rankings
+        href: articles/nth-rated-recruit.html
+      - text: Expected Points Model Fundamentals
+      - text: "Part 1 - Model Definition"
+        href: articles/college-football-expected-points-model-fundamentals-part-i.html
+      - text: "Part 2 - Regression Models"
+        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
+      - text: "Part 3 - History of Expected Points Models"
+        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+    network:
+      icon: "fas fa-project-diagram"
+      text: SportsDataverse
+      menu:
+      - text: kenpomR
+        href: https://saiemgilani.github.io/kenpomR/
+      - text: wehoop
+        href: https://saiemgilani.github.io/wehoop/
+      - text: cfbrecruitR
+        href: https://saiemgilani.github.io/cfbrecruitR/
+    
+  # title: "cfbfastR"
+  #   
+  # left:
+  #   - icon: fa-home
+  #     href: index.html
+  #   - icon: fa-question-circle-o
+  #     text: "Tutorials"
+  #     menu:
+  #     - text: Vignettes
+  #       href: articles/index.html
+  #     - text: Introductory
+  #     - text: CFB Analytics with cfbfastR
+  #       href: articles/intro.html
+  #     - text: Animated Win Probability Plots
+  #       href: articles/animated-wp-plotting.html
+  #     - text: Fourth Down Tendency Plots
+  #       href: articles/fourth-down-plot-tutorial.html
+  #     - text: Rolling EPA Graphs
+  #       href: articles/rolling-epa-graph.html
+  #     - text: Visualizing Team Talent with Player Recruit Rankings
+  #       href: articles/nth-rated-recruit.html
+  #     - text: Expected Points Model Fundamentals
+  #     - text: "Part 1 - Model Definition"
+  #       href: articles/college-football-expected-points-model-fundamentals-part-i.html
+  #     - text: "Part 2 - Regression Models"
+  #       href: articles/college-football-expected-points-model-fundamentals-part-ii.html
+  #     - text: "Part 3 - History of Expected Points Models"
+  #       href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+  #   - icon: fa-file-code-o
+  #     text: "Functions"
+  #     menu:
+  #     - text: "Reference"
+  #       href: reference/index.html
+  #     - text: "CFBD API Keys"
+  #       href: reference/register_cfbd.html
+  #     - text: "Play-by-Play Data"
+  #       href: reference/cfbd_pbp_data.html
+  #     - text: "Games"
+  #       href: reference/cfbd_games.html
+  #     - text: "Plays"
+  #       href: reference/cfbd_play.html
+  #     - text: "Drives"
+  #       href: reference/cfbd_drives.html
+  #     - text: "Teams"
+  #       href: reference/cfbd_teams.html
+  #     - text: "Players"
+  #       href: reference/cfbd_players.html
+  #     - text: "Statistics"
+  #       href: reference/cfbd_stats.html
+  #     - text: "Metrics"
+  #       href: reference/cfbd_metrics.html
+  #     - text: "ESPN Metrics"
+  #       href: reference/espn_metrics.html
+  #     - text: "Ratings"
+  #       href: reference/cfbd_ratings.html
+  #     - text: "ESPN Ratings"
+  #       href: reference/espn_ratings.html
+  #     - text: "Betting"
+  #       href: reference/cfbd_betting.html
+  #     - text: "Recruiting"
+  #       href: reference/cfbd_recruiting.html
+  #     - text: "Coaches"
+  #       href: reference/cfbd_coaches.html
+  #     - text: "Conferences"
+  #       href: reference/cfbd_conferences.html
+  #     - text: "Venues"
+  #       href: reference/cfbd_venues.html
+  #   - icon: fa-newspaper-o
+  #     text: "News"
+  #     href: news/index.html
+  #   - icon: fa-database
+  #     text: "Data"
+  #     menu:
+  #     - text: "Data Repository"
+  #       href: https://github.com/saiemgilani/cfbfastR-data
+  #     - text: "Raw Data Repository"
+  #       href: https://github.com/saiemgilani/cfbfastR-raw
+  # right:
+  #  - icon: fab fa-twitter fa-lg
+  #    href: https://twitter.com/cfbfastR
+  #  - icon: fab fa-github fa-lg
+  #    href: https://github.com/saiemgilani/cfbfastR/
 reference:
   - subtitle: College Football Data API Key
     desc: Functions for using your API key.
@@ -137,33 +251,33 @@ reference:
     desc: Functions exported by cfbfastR sourced from plays endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_play`'
-  - subtitle: Teams
+  - subtitle: Teams Data
     desc: Functions exported by cfbfastR sourced from the teams endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_teams`'
-  - subtitle: Players
+  - subtitle: Players Data
     desc: Functions exported by cfbfastR sourced from the teams endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_players`'
-  - subtitle: Stats
+  - subtitle: Stats Data
     desc: Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_stats`'
-  - subtitle: Rankings and Ratings
+  - subtitle: Rankings and Ratings Data
     desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_ratings`'
       - '`espn_ratings_fpi`'
-  - subtitle: Metrics
+  - subtitle: Metrics Data
     desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_metrics`'
       - '`espn_metrics_wp`'
-  - subtitle: Recruiting
+  - subtitle: Recruiting Data
     desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_recruiting`'
-  - subtitle: Schools
+  - subtitle: Schools Data
     desc: Functions exported by cfbfastR sourced from venues, conferences, and coaches endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_venues`'
