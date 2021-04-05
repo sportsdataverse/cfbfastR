@@ -256,12 +256,36 @@
       
     </div>
 
-    <div id="cfbfastr-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#cfbfastr-010" class="anchor"></a>cfbfastR 0.1.0</h1>
+    <div id="cfbfastr-100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#cfbfastr-100" class="anchor"></a>cfbfastR 1.0.0</h1>
+<div id="v100" class="section level3">
+<h3 class="hasAnchor">
+<a href="#v100" class="anchor"></a><strong>v1.0.0</strong>
+</h3>
+<div id="function-naming-convention-change" class="section level4">
+<h4 class="hasAnchor">
+<a href="#function-naming-convention-change" class="anchor"></a>Function Naming Convention Change</h4>
 <ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
+<li><p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR).</p></li>
+<li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
+<li><p>Data generated from any of the <code>cfbfastR</code> methods will use <code>cfb_</code></p></li>
 </ul>
+</div>
+<div id="college-football-data-api-keys" class="section level4">
+<h4 class="hasAnchor">
+<a href="#college-football-data-api-keys" class="anchor"></a>College Football Data API Keys</h4>
+<p>The <a href="https://collegefootballdata.com/">CollegeFootballData API</a> now requires an API key, here’s a quick run-down:</p>
+<ul>
+<li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key">College Football Data Key Registration.</a></p></li>
+<li><p>Using the key: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> using a command like the following.</p></li>
+</ul>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")</a></code></pre>
+<ul>
+<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</li>
+</ul>
+</div>
+</div>
 </div>
   </div>
 
