@@ -12,6 +12,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
     steps:
       - uses: actions/checkout@v2
 
