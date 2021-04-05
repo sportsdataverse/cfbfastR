@@ -65,6 +65,8 @@ The [CollegeFootballData API](https://collegefootballdata.com/) now requires an 
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
+* You can also save this more permanently by adding `CFBD_API_KEY=yourkeyhere` to your .REnviron file (easily accessed via `usethis::edit_r_environ()`). 
+
 * Added [API Key methods](https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html). If you forget to set your environment variable, functions will give you a warning and ask for one. 
 
 
