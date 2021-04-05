@@ -251,7 +251,7 @@
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-04 08:50:14: Scraping coaches data...</code></pre>
+<pre><code>## 2021-04-05 00:33:52: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>coach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">first_name</span>, <span class="va">last_name</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
