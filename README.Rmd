@@ -32,7 +32,7 @@ opts_template$set(stripfigure = list(fig.height = 8, out.width = "95%"))
 
 <!-- badges: end -->
 
-The goal of [```cfbfastR```](https://saiemgilani.github.io/cfbfastR/) is to provide the community with an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/).
+The goal of [**```cfbfastR```**](https://saiemgilani.github.io/cfbfastR/) is to provide the community with an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/).
 
 ## **Installation**
 
@@ -44,10 +44,8 @@ You can install the released version of [**```cfbfastR```**](https://github.com/
 devtools::install_github(repo = "saiemgilani/cfbfastR")
 ```
 ## **Breaking Changes**
-
 ### **v1.0.0**
-
-#### Function Naming Convention Change 
+#### **Function Naming Convention Change**
 
 All functions sourced from the [College Football Data API](https://collegefootballdata.com/) will start with **`cfbd_`** as opposed to **`cfb_`** (as in cfbscrapR). 
 
@@ -55,7 +53,7 @@ Similarly, data and metrics sourced from ESPN will begin with **`espn_`** as opp
 
 Data generated from any of the [**```cfbfastR```**](https://saiemgilani.github.io/cfbfastR/) methods will use **`cfb_`**
 
-#### CollegeFootballData API Key
+#### **CollegeFootballData API Keys**
 
 The [CollegeFootballData API](https://collegefootballdata.com/) now requires an API key, here's a quick run-down:
 

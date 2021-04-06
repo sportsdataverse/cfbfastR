@@ -14,9 +14,9 @@ Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfa
 
 <!-- badges: end -->
 
-The goal of [`cfbfastR`](https://saiemgilani.github.io/cfbfastR/) is to
-provide the community with an R package for working with CFB data. It is
-an R API wrapper around <https://collegefootballdata.com/>.
+The goal of [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) is
+to provide the community with an R package for working with CFB data. It
+is an R API wrapper around <https://collegefootballdata.com/>.
 
 ## **Installation**
 
@@ -34,7 +34,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 ### **v1.0.0**
 
-#### Function Naming Convention Change
+#### **Function Naming Convention Change**
 
 All functions sourced from the [College Football Data
 API](https://collegefootballdata.com/) will start with **`cfbd_`** as
@@ -51,7 +51,7 @@ Data generated from any of the
 [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) methods will
 use **`cfb_`**
 
-#### CollegeFootballData API Key
+#### **CollegeFootballData API Keys**
 
 The [CollegeFootballData API](https://collegefootballdata.com/) now
 requires an API key, here’s a quick run-down:
@@ -68,6 +68,10 @@ requires an API key, here’s a quick run-down:
 ``` r
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
+
+  - You can also save this more permanently by adding
+    `CFBD_API_KEY=yourkeyhere` to your .REnviron file (easily accessed
+    via `usethis::edit_r_environ()`).
 
   - Added [API Key
     methods](https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html).

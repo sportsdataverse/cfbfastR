@@ -50,21 +50,15 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class=" https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-file-code fa-lg"></span>
+    <span class="fas fa-code"></span>
      
-    Functions
+    Funcs
      
     <span class="caret"></span>
   </a>
@@ -127,7 +121,7 @@
 </li>
 <li>
   <a href="news/index.html">
-    <span class="fas fa-newspaper fa-lg"></span>
+    <span class="fas fa-newspaper"></span>
      
      News
   </a>
@@ -172,11 +166,9 @@
     </li>
   </ul>
 </li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database fa-lg"></span>
+    <span class="fas fa-database"></span>
      
      Data
      
@@ -193,14 +185,45 @@
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
-    <span class="fas fa-football-ball fa-lg"></span>
+    <span class="fas fa-football-ball"></span>
      
-     Games
+     GP
   </a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-project-diagram"></span>
+     
+    SDV
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="https://sportsdataverse.org/">SportsDataverse</a>
+    </li>
+    <li>
+      <a href="https://saiemgilani.github.io/kenpomR/">kenpomR</a>
+    </li>
+    <li>
+      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+    </li>
+    <li>
+      <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
 <li>
   <a href="http://twitter.com/cfbfastR">
     <span class="fab fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbfastR/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -223,7 +246,7 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of <a href="https://saiemgilani.github.io/cfbfastR/"><code>cfbfastR</code></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
+<p>The goal of <a href="https://saiemgilani.github.io/cfbfastR/"><strong><code>cfbfastR</code></strong></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a><strong>Installation</strong>
@@ -244,14 +267,16 @@
 </h3>
 <div id="function-naming-convention-change" class="section level4">
 <h4 class="hasAnchor">
-<a href="#function-naming-convention-change" class="anchor"></a>Function Naming Convention Change</h4>
+<a href="#function-naming-convention-change" class="anchor"></a><strong>Function Naming Convention Change</strong>
+</h4>
 <p>All functions sourced from the <a href="https://collegefootballdata.com/">College Football Data API</a> will start with <strong><code>cfbd_</code></strong> as opposed to <strong><code>cfb_</code></strong> (as in cfbscrapR).</p>
 <p>Similarly, data and metrics sourced from ESPN will begin with <strong><code>espn_</code></strong> as opposed to <strong><code>cfb_</code></strong>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><strong><code>espn_ratings_fpi()</code></strong></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><strong><code>espn_metrics_wp()</code></strong></a></p>
 <p>Data generated from any of the <a href="https://saiemgilani.github.io/cfbfastR/"><strong><code>cfbfastR</code></strong></a> methods will use <strong><code>cfb_</code></strong></p>
 </div>
-<div id="collegefootballdata-api-key" class="section level4">
+<div id="collegefootballdata-api-keys" class="section level4">
 <h4 class="hasAnchor">
-<a href="#collegefootballdata-api-key" class="anchor"></a>CollegeFootballData API Key</h4>
+<a href="#collegefootballdata-api-keys" class="anchor"></a><strong>CollegeFootballData API Keys</strong>
+</h4>
 <p>The <a href="https://collegefootballdata.com/">CollegeFootballData API</a> now requires an API key, here’s a quick run-down:</p>
 <ul>
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key">College Football Data Key Registration.</a></p></li>
@@ -260,7 +285,8 @@
 <!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></code></pre></div>
 <ul>
-<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</li>
+<li><p>You can also save this more permanently by adding <code>CFBD_API_KEY=yourkeyhere</code> to your .REnviron file (easily accessed via <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code>).</p></li>
+<li><p>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</p></li>
 </ul>
 </div>
 </div>

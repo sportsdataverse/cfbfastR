@@ -13,7 +13,7 @@ Hi ```cfbfastR``` users, I'm Eric Hess and I run the [Twitter account](https://t
 We start by loading the packages we need. The ```cfbfastR``` package will provide us with our source of data. The ```dplyr``` package gives us handy data manipulation tools and the ever useful pipe (```%>%```) syntax. Finally, ```ggplot2``` will allow us to make a simple, functional graph of our results.
 
 ```{r packages}
-library(cfbfastR)
+# library(cfbfastR)
 library(dplyr)
 library(ggplot2)
 ```
@@ -21,13 +21,13 @@ library(ggplot2)
 To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```). I also have the loop pause for 5 seconds between each team. While this causes the function to take a little longer to run it also helps with server load on the back end.
 
 ```{r cfb}
-teams <- cfbd_team_info(conference = "B1G")
+teams <- cfbfastR::cfbd_team_info(conference = "B1G")
 all.recruits <- do.call("rbind", apply(teams, 1, function(x) {
   t <- as.character(x["school"])
-  team.2017 <- cfbd_recruiting_player(year = 2017, team = t, recruit_type = "HighSchool")
-  team.2018 <- cfbd_recruiting_player(year = 2018, team = t, recruit_type = "HighSchool")
-  team.2019 <- cfbd_recruiting_player(year = 2019, team = t, recruit_type = "HighSchool")
-  team.2020 <- cfbd_recruiting_player(year = 2020, team = t, recruit_type = "HighSchool")
+  team.2017 <- cfbfastR::cfbd_recruiting_player(year = 2017, team = t, recruit_type = "HighSchool")
+  team.2018 <- cfbfastR::cfbd_recruiting_player(year = 2018, team = t, recruit_type = "HighSchool")
+  team.2019 <- cfbfastR::cfbd_recruiting_player(year = 2019, team = t, recruit_type = "HighSchool")
+  team.2020 <- cfbfastR::cfbd_recruiting_player(year = 2020, team = t, recruit_type = "HighSchool")
   
   all.team <- rbind(team.2017, team.2018, team.2019, team.2020)
   Sys.sleep(5)
@@ -57,7 +57,7 @@ names(big.ten.west.colors) <- big.ten.west.teams$school
 
 Now that we have our data collected and cleaned we finally get to the fun part - plotting. We plot each player's rating based on the ranking of commit they are to a school. We also tell ggplot to use the manual color values we defined earlier. I added some extra horizontal lines to approximate the ratings of 3, 4, and 5 star recruits.
 
-```{r plot}
+```{r recruit_plot}
 ggplot(big.ten.west, aes(x=num, y=rating, color = committed_to)) + 
   geom_line(size = 1.2) +
   scale_color_manual(values = big.ten.west.colors) +

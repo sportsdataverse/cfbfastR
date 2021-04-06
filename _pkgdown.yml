@@ -39,6 +39,8 @@ authors:
   
 home:
   title: An R package to quickly obtain clean and tidy College Football play by play data
+  icon: fa-home
+  href: index.html
   links:
   - text: cfbfastR beginner's guide
     href: articles/intro.html
@@ -47,21 +49,18 @@ home:
     
 navbar:
   structure:
-    left:  [logo, home, intro, reference, news, articles]
-    right: [data, games, twitter, github]
+    left:  [home, intro, reference, news, articles, data, games, network]
+    right: [twitter, github]
   components:
-    logo: 
-      icon: https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico
-      href: index.html
     twitter:
       icon: "fab fa-twitter fa-lg"
       href: http://twitter.com/cfbfastR
     news:
-      icon: "fas fa-newspaper fa-lg"
+      icon: "fas fa-newspaper"
       text: " News"
       href: news/index.html
     data:
-      icon: "fas fa-database fa-lg"
+      icon: "fas fa-database"
       text: " Data"
       menu:
       - text: "Data Repository"
@@ -69,12 +68,12 @@ navbar:
       - text: "Raw Data Repository"
         href: https://github.com/saiemgilani/cfbfastR-raw
     games:
-      icon: "fas fa-football-ball fa-lg"
-      text: " Games"
+      icon: "fas fa-football-ball"
+      text: " GP"
       href: http://gameonpaper.com/cfb
     reference:
-      icon: "fas fa-code fa-lg"
-      text: "Functions"
+      icon: "fas fa-code"
+      text: "Funcs"
       href: reference/index.html
       menu:
       - text: "Function Index"
@@ -139,14 +138,19 @@ navbar:
         href: articles/college-football-expected-points-model-fundamentals-part-iii.html
     network:
       icon: "fas fa-project-diagram"
-      text: SportsDataverse
+      text: SDV
       menu:
+      - text: SportsDataverse
+        href: https://sportsdataverse.org/
       - text: kenpomR
         href: https://saiemgilani.github.io/kenpomR/
       - text: wehoop
         href: https://saiemgilani.github.io/wehoop/
       - text: cfbrecruitR
         href: https://saiemgilani.github.io/cfbrecruitR/
+    github:
+      icon: "fab fa-github fa-lg"
+      href: https://github.com/saiemgilani/cfbfastR/
     
   # title: "cfbfastR"
   #   
