@@ -30,7 +30,9 @@ message_completed <- function(x, in_builder = FALSE) {
 
 # custom mode function from https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode/8189441
 custom_mode <- function(x, na.rm = TRUE) {
-  if(na.rm){x <- x[!is.na(x)]}
+  if (na.rm) {
+    x <- x[!is.na(x)]
+  }
   ux <- unique(x)
   return(ux[which.max(tabulate(match(x, ux)))])
 }
@@ -64,13 +66,13 @@ load_pbp <- function(seasons, in_db = FALSE, ...) {
     lubridate::year(lubridate::today("America/New_York")),
     lubridate::year(lubridate::today("America/New_York")) - 1
   )
-  
+
   if (!all(seasons %in% 1999:most_recent)) {
     usethis::ui_stop("Please pass valid seasons between 1999 and {most_recent}")
   }
-  
+
   season_count <- length(seasons)
-  
+
   if (season_count >= 10 & !requireNamespace("furrr", quietly = TRUE)) {
     pp <- FALSE
     usethis::ui_info("It is recommended to use parallel processing when trying to load {season_count} seasons but the package {usethis::ui_value('furrr')} is not installed.\nPlease consider installing it with {usethis::ui_code('install.packages(\"furrr\")')}. Will go on sequentially...")
@@ -79,10 +81,10 @@ load_pbp <- function(seasons, in_db = FALSE, ...) {
   } else {
     pp <- FALSE
   }
-  
+
   progressr::with_progress({
     p <- progressr::progressor(along = seasons)
-    
+
     if (pp == TRUE & !in_db) {
       future::plan("multiprocess")
       out <- furrr::future_map_dfr(seasons, single_season, p, ...)
@@ -90,7 +92,7 @@ load_pbp <- function(seasons, in_db = FALSE, ...) {
       out <- purrr::map_dfr(seasons, single_season, p, ...)
     }
   })
-  
+
   return(out)
 }
 
@@ -107,4 +109,3 @@ single_season <- function(season, p, dbConnection = NULL, tablename = NULL) {
   p(sprintf("season=%g", season))
   return(out)
 }
-

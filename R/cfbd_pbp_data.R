@@ -460,7 +460,7 @@ cfbd_pbp_data <- function(year,
   raw_play_df <- do.call(data.frame, raw_play_df)
 
   if (nrow(raw_play_df) == 0) {
-    if(verbose){
+    if (verbose) {
       warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
               for this one week or team.")
     }
@@ -486,7 +486,7 @@ cfbd_pbp_data <- function(year,
           dplyr::left_join(game_spread, by = c("game_id"))
       },
       error = function(e) {
-        if(verbose){
+        if (verbose) {
           message(glue::glue("{Sys.time()} - game_id : Invalid arguments or no betting lines data available!"))
         }
       },
@@ -541,7 +541,7 @@ cfbd_pbp_data <- function(year,
 
   if (epa_wpa) {
     if (year <= 2005) {
-      if(verbose){
+      if (verbose) {
         warning(
           "Data Quality prior to 2005 is not as consistent. This can affect the EPA/WPA values, proceed with caution."
         )
@@ -552,7 +552,7 @@ cfbd_pbp_data <- function(year,
     g_ids <- sort(unique(play_df$game_id))
     game_count <- length(g_ids)
     builder <- TRUE
-    
+
     if (game_count > 1) {
       usethis::ui_todo("Start download of {game_count} games...")
     } else {
@@ -578,7 +578,8 @@ cfbd_pbp_data <- function(year,
               create_wpa_naive()
             p(sprintf("x=%s", as.integer(x)))
             return(play_df)
-          })
+          }
+        )
       })
     )
 
