@@ -1,11 +1,13 @@
 context("CFB Metrics PPA Games")
 
-x <- cfbd_metrics_ppa_players_games(year = 2019, week = 4, team = 'TCU')
+x <- cfbd_metrics_ppa_players_games(year = 2019, week = 4, team = "TCU")
 
-y <- cfbd_metrics_ppa_players_games(year = 2019, team = 'Alabama', week = 11)
+y <- cfbd_metrics_ppa_players_games(year = 2019, team = "Alabama", week = 11)
 
-cols <- c("season","week","name","position","team","opponent","avg_PPA_all",
-          "avg_PPA_pass", "avg_PPA_rush")
+cols <- c(
+  "season", "week", "name", "position", "team", "opponent", "avg_PPA_all",
+  "avg_PPA_pass", "avg_PPA_rush"
+)
 
 test_that("CFB Metrics PPA Games", {
   expect_equal(colnames(x), cols)

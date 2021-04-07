@@ -57,15 +57,13 @@ NULL
 #'
 #' cfbd_game_info(2018, week = 1)
 #'
-#' cfbd_game_info(2018, week = 7, conference = 'Ind')
+#' cfbd_game_info(2018, week = 7, conference = "Ind")
 #'
-#' #7 OTs LSU @ TAMU
-#' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores=TRUE)
-#'
-
+#' # 7 OTs LSU @ TAMU
+#' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
 cfbd_game_info <- function(year,
                            week = NULL,
-                           season_type = 'regular',
+                           season_type = "regular",
                            team = NULL,
                            home_team = NULL,
                            away_team = NULL,
@@ -74,65 +72,71 @@ cfbd_game_info <- function(year,
                            quarter_scores = FALSE) {
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                          msg = 'Enter valid year as a number (YYYY)')
-  if(!is.null(week)){
+    msg = "Enter valid year as a number (YYYY)"
+  )
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-                            msg = 'Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(season_type != 'regular'){
+  if (season_type != "regular") {
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c('postseason','both'),
-                            msg = 'Enter valid season_type: regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c("postseason", "both"),
+      msg = "Enter valid season_type: regular, postseason, or both"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(home_team)){
-    if(home_team == "San Jose State"){
-      home_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(home_team)) {
+    if (home_team == "San Jose State") {
+      home_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode home_team parameter for URL if not NULL
-      home_team = utils::URLencode(home_team, reserved = TRUE)
+      home_team <- utils::URLencode(home_team, reserved = TRUE)
     }
   }
-  if(!is.null(away_team)){
-    if(away_team == "San Jose State"){
-      away_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(away_team)) {
+    if (away_team == "San Jose State") {
+      away_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      away_team = utils::URLencode(away_team, reserved = TRUE)
+      away_team <- utils::URLencode(away_team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  if(!is.null(game_id)){
+  if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                            msg = 'Enter valid game_id (numeric value)')
+      msg = "Enter valid game_id (numeric value)"
+    )
   }
 
   base_url <- "https://api.collegefootballdata.com/games?"
 
-  full_url <- paste0(base_url,
-                     "year=", year,
-                     "&week=", week,
-                     "&seasonType=", season_type,
-                     "&team=", team,
-                     "&home=", home_team,
-                     "&away=", away_team,
-                     "&conference=", conference,
-                     "&id=", game_id)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&seasonType=", season_type,
+    "&team=", team,
+    "&home=", home_team,
+    "&away=", away_team,
+    "&conference=", conference,
+    "&id=", game_id
+  )
 
   # Check for internet
   check_internet()
@@ -141,30 +145,32 @@ cfbd_game_info <- function(year,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()
 
-      if(!quarter_scores){
-        df <- dplyr::select(df,-.data$home_line_scores,-.data$away_line_scores) %>%
+      if (!quarter_scores) {
+        df <- dplyr::select(df, -.data$home_line_scores, -.data$away_line_scores) %>%
           dplyr::rename(game_id = .data$id) %>%
           as.data.frame()
-      } else{
+      } else {
         df <- df %>%
           tidyr::unnest_wider(.data$home_line_scores, names_sep = "_Q") %>%
           tidyr::unnest_wider(.data$away_line_scores, names_sep = "_Q")
 
-        colnames(df) = gsub("_line_scores","_scores",colnames(df))
+        colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
         df <- df %>%
           dplyr::rename(game_id = .data$id) %>%
           as.data.frame()
@@ -198,44 +204,49 @@ cfbd_game_info <- function(year,
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_calendar(2019)
+#' cfbd_calendar(2019)
 #' }
-
+#'
 cfbd_calendar <- function(year) {
-  
+
   # check if year is numeric
   assert_that(is.numeric(year) & nchar(year) == 4,
-              msg='Enter valid year as a number (YYYY)')
-  
-  
+    msg = "Enter valid year as a number (YYYY)"
+  )
+
+
   base_url <- "https://api.collegefootballdata.com/calendar?"
-  full_url <- paste0(base_url,
-                     "year=", year)
-  
+  full_url <- paste0(
+    base_url,
+    "year=", year
+  )
+
   # Check for internet
   check_internet()
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
-  
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
-  
+
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         as.data.frame()
-      
+
       message(glue::glue("{Sys.time()}: Scraping calendar..."))
     },
     error = function(e) {
@@ -247,8 +258,6 @@ cfbd_calendar <- function(year) {
     }
   )
   return(df)
-  
-  
 }
 
 #' Get Game media information (TV, radio, etc)
@@ -291,50 +300,53 @@ cfbd_calendar <- function(year) {
 #' @export
 #' @examples
 #'
-#' cfbd_game_media(2019, week = 4, conference = 'ACC')
-#'
-
+#' cfbd_game_media(2019, week = 4, conference = "ACC")
 cfbd_game_media <- function(year,
                             week = NULL,
-                            season_type = 'both',
+                            season_type = "both",
                             team = NULL,
                             conference = NULL,
                             media_type = NULL) {
 
   ## check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                          msg = 'Enter valid year as a number (YYYY)')
-  if(!is.null(week)){
+    msg = "Enter valid year as a number (YYYY)"
+  )
+  if (!is.null(week)) {
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-                            msg = 'Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(season_type != 'both'){
+  if (season_type != "both") {
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c('postseason','regular'),
-                            msg = 'Enter valid season_type: regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c("postseason", "regular"),
+      msg = "Enter valid season_type: regular, postseason, or both"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
 
   base_url <- "https://api.collegefootballdata.com/games/media?"
 
-  full_url <- paste0(base_url,
-                     "year=", year,
-                     "&week=", week,
-                     "&seasonType=", season_type,
-                     "&team=", team,
-                     "&conference=", conference,
-                     "&mediaType=", media_type)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&seasonType=", season_type,
+    "&team=", team,
+    "&conference=", conference,
+    "&mediaType=", media_type
+  )
 
   # Check for internet
   check_internet()
@@ -343,31 +355,37 @@ cfbd_game_media <- function(year,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
-  cols <- c("game_id", "season", "week", "season_type", "start_time",
-            "is_start_time_tbd", "home_team", "home_conference", "away_team",
-            "away_conference","tv", "radio", "web")
+  cols <- c(
+    "game_id", "season", "week", "season_type", "start_time",
+    "is_start_time_tbd", "home_team", "home_conference", "away_team",
+    "away_conference", "tv", "radio", "web"
+  )
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        tidyr::pivot_wider(names_from = .data$mediaType,
-                           values_from = .data$outlet,
-                           values_fn = list) %>%
+        tidyr::pivot_wider(
+          names_from = .data$mediaType,
+          values_from = .data$outlet,
+          values_fn = list
+        ) %>%
         janitor::clean_names() %>%
         dplyr::rename(game_id = .data$id)
 
-      df[cols[!(cols %in% colnames(df))]] = NA
-      df <- df[!duplicated(df),]
+      df[cols[!(cols %in% colnames(df))]] <- NA
+      df <- df[!duplicated(df), ]
 
       df <- df %>%
         dplyr::select(cols, tidyr::everything()) %>%
@@ -384,7 +402,6 @@ cfbd_game_media <- function(year,
     }
   )
   return(df)
-
 }
 
 
@@ -481,20 +498,20 @@ cfbd_game_media <- function(year,
 #' @examples
 #'
 #' cfbd_game_box_advanced(game_id = 401114233)
-#'
-
-cfbd_game_box_advanced<- function(game_id, long = FALSE) {
-
-  if(!is.null(game_id)){
+cfbd_game_box_advanced <- function(game_id, long = FALSE) {
+  if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                            msg = 'Enter valid game_id (numeric value)')
+      msg = "Enter valid game_id (numeric value)"
+    )
   }
 
   base_url <- "https://api.collegefootballdata.com/game/box/advanced?"
 
-  full_url <- paste0(base_url,
-                     "gameId=", game_id)
+  full_url <- paste0(
+    base_url,
+    "gameId=", game_id
+  )
 
   # Check for internet
   check_internet()
@@ -503,15 +520,17 @@ cfbd_game_box_advanced<- function(game_id, long = FALSE) {
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -520,43 +539,45 @@ cfbd_game_box_advanced<- function(game_id, long = FALSE) {
         purrr::map_if(is.data.frame, list)
 
       df <- tibble::enframe(unlist(df$teams, use.names = TRUE))
-      team1 <- seq(1, nrow(df)-1, by = 2)
-      df1 <- df[team1,] %>%
-        dplyr::rename(stat = .data$name,
-                      team1 = .data$value)
+      team1 <- seq(1, nrow(df) - 1, by = 2)
+      df1 <- df[team1, ] %>%
+        dplyr::rename(
+          stat = .data$name,
+          team1 = .data$value
+        )
 
       team2 <- seq(2, nrow(df), by = 2)
-      df2 <- df[team2,] %>%
+      df2 <- df[team2, ] %>%
         dplyr::rename(team2 = .data$value) %>%
         dplyr::select(.data$team2)
 
       df <- data.frame(cbind(df1, df2))
-      df$stat <- substr(df$stat, 1, nchar(df$stat)-1)
-      df$stat = sub(".overall.", "_overall_", df$stat)
-      df$stat = sub("Downs.", "_downs_", df$stat)
-      df$stat = sub("Rates.", "_rates_", df$stat)
-      df$stat = sub("Rate", "_rate", df$stat)
-      df$stat = sub(".passing.", "_passing_", df$stat)
-      df$stat = sub(".rushing.", "_rushing_", df$stat)
-      df$stat = sub("rushing.", "rushing_", df$stat)
-      df$stat = sub("rushing.", "rushing_", df$stat)
-      df$stat = sub("fieldPosition.", "field_pos_", df$stat)
-      df$stat = sub("lineYards", "line_yds", df$stat)
-      df$stat = sub("secondLevelYards", "second_lvl_yds", df$stat)
-      df$stat = sub("openFieldYards", "open_field_yds", df$stat)
-      df$stat = sub("Success", "_success", df$stat)
-      df$stat = sub("scoringOpportunities.", "scoring_opps_", df$stat)
-      df$stat = sub("pointsPerOpportunity", "pts_per_opp", df$stat)
-      df$stat = sub("Seven", "_seven", df$stat)
-      df$stat = sub("havoc.", "havoc_", df$stat)
-      df$stat = sub(".Average", "_avg", df$stat)
-      df$stat = sub("averageStartingPredictedPoints", "avg_starting_predicted_pts", df$stat)
-      df$stat = sub("averageStart", "avg_start", df$stat)
-      df$stat = sub(".team", "_team", df$stat)
-      df$stat = sub(".plays", "_plays", df$stat)
-      df$stat = sub("cumulativePpa", "cumulative_ppa", df$stat)
+      df$stat <- substr(df$stat, 1, nchar(df$stat) - 1)
+      df$stat <- sub(".overall.", "_overall_", df$stat)
+      df$stat <- sub("Downs.", "_downs_", df$stat)
+      df$stat <- sub("Rates.", "_rates_", df$stat)
+      df$stat <- sub("Rate", "_rate", df$stat)
+      df$stat <- sub(".passing.", "_passing_", df$stat)
+      df$stat <- sub(".rushing.", "_rushing_", df$stat)
+      df$stat <- sub("rushing.", "rushing_", df$stat)
+      df$stat <- sub("rushing.", "rushing_", df$stat)
+      df$stat <- sub("fieldPosition.", "field_pos_", df$stat)
+      df$stat <- sub("lineYards", "line_yds", df$stat)
+      df$stat <- sub("secondLevelYards", "second_lvl_yds", df$stat)
+      df$stat <- sub("openFieldYards", "open_field_yds", df$stat)
+      df$stat <- sub("Success", "_success", df$stat)
+      df$stat <- sub("scoringOpportunities.", "scoring_opps_", df$stat)
+      df$stat <- sub("pointsPerOpportunity", "pts_per_opp", df$stat)
+      df$stat <- sub("Seven", "_seven", df$stat)
+      df$stat <- sub("havoc.", "havoc_", df$stat)
+      df$stat <- sub(".Average", "_avg", df$stat)
+      df$stat <- sub("averageStartingPredictedPoints", "avg_starting_predicted_pts", df$stat)
+      df$stat <- sub("averageStart", "avg_start", df$stat)
+      df$stat <- sub(".team", "_team", df$stat)
+      df$stat <- sub(".plays", "_plays", df$stat)
+      df$stat <- sub("cumulativePpa", "cumulative_ppa", df$stat)
 
-      if(!long){
+      if (!long) {
         team <- df %>%
           dplyr::filter(.data$stat == "ppa_team") %>%
           tidyr::pivot_longer(cols = c(.data$team1, .data$team2)) %>%
@@ -652,21 +673,22 @@ cfbd_game_box_advanced<- function(game_id, long = FALSE) {
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_game_player_stats(2018, week = 15, conference = 'Ind')
+#' cfbd_game_player_stats(2018, week = 15, conference = "Ind")
 #'
-#'   cfbd_game_player_stats(2013, week=1, team = "Florida State", category = 'passing')
+#' cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
 #' }
-
-cfbd_game_player_stats<- function(year,
-                                  week = NULL,
-                                  season_type = 'regular',
-                                  team = NULL,
-                                  conference = NULL,
-                                  category = NULL,
-                                  game_id = NULL) {
-
-  stat_categories <- c('passing', 'receiving', 'rushing', 'defensive', 'fumbles',
-                       'interceptions', 'punting', 'puntReturns', 'kicking', 'kickReturns')
+#'
+cfbd_game_player_stats <- function(year,
+                                   week = NULL,
+                                   season_type = "regular",
+                                   team = NULL,
+                                   conference = NULL,
+                                   category = NULL,
+                                   game_id = NULL) {
+  stat_categories <- c(
+    "passing", "receiving", "rushing", "defensive", "fumbles",
+    "interceptions", "punting", "puntReturns", "kicking", "kickReturns"
+  )
 
   args <- list(year, week, season_type, team, conference, category, game_id)
 
@@ -674,55 +696,62 @@ cfbd_game_player_stats<- function(year,
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                          msg = 'Enter valid year as a number (YYYY)')
-  if(!is.null(week)){
+    msg = "Enter valid year as a number (YYYY)"
+  )
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-                            msg = 'Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(season_type != 'regular'){
+  if (season_type != "regular") {
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c('postseason'),
-                            msg = 'Enter valid season_type: regular, postseason')
+    assertthat::assert_that(season_type %in% c("postseason"),
+      msg = "Enter valid season_type: regular, postseason"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  if(!is.null(category)){
+  if (!is.null(category)) {
     # Check category parameter in category if not NULL
     assertthat::assert_that(category %in% stat_categories,
-                            msg = "Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns")
+      msg = "Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns"
+    )
     # Encode conference parameter for URL, if not NULL
-    category = utils::URLencode(category, reserved = TRUE)
+    category <- utils::URLencode(category, reserved = TRUE)
   }
-  if(!is.null(game_id)){
+  if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                            msg = 'Enter valid game_id (numeric value)')
+      msg = "Enter valid game_id (numeric value)"
+    )
   }
 
   base_url <- "https://api.collegefootballdata.com/games/players?"
 
-  full_url <- paste0(base_url,
-                     "year=", year,
-                     "&week=", week,
-                     "&seasonType=", season_type,
-                     "&team=", team,
-                     "&conference=", conference,
-                     "&category=", category,
-                     "&gameId=", game_id)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&seasonType=", season_type,
+    "&team=", team,
+    "&conference=", conference,
+    "&category=", category,
+    "&gameId=", game_id
+  )
 
   # Check for internet
   check_internet()
@@ -731,26 +760,32 @@ cfbd_game_player_stats<- function(year,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
 
   # Check the result
   check_status(res)
 
-  cols <- c("game_id", "team", "conference", "home_away", "points", "category",
-            "athlete_id", "name", "c_att", "yds", "avg", "td", "int", "qbr",
-            "car", "long", "rec", "no", "fg", "pct", "xp", "pts", "tb", "in_20",
-            "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur")
-  numeric_cols <- c("yds", "avg", "td", "int", "qbr",
-                    "car", "long", "rec", "no","pct","pts", "tb", "in_20",
-                    "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur")
+  cols <- c(
+    "game_id", "team", "conference", "home_away", "points", "category",
+    "athlete_id", "name", "c_att", "yds", "avg", "td", "int", "qbr",
+    "car", "long", "rec", "no", "fg", "pct", "xp", "pts", "tb", "in_20",
+    "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur"
+  )
+  numeric_cols <- c(
+    "yds", "avg", "td", "int", "qbr",
+    "car", "long", "rec", "no", "pct", "pts", "tb", "in_20",
+    "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur"
+  )
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content, tidyr::unnest, and return result as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
@@ -768,13 +803,15 @@ cfbd_game_player_stats<- function(year,
         dplyr::as_tibble() %>%
         dplyr::rename(stat_category = .data$name) %>%
         tidyr::unnest(.data$athletes) %>%
-        dplyr::rename(athlete_id = .data$id,
-                      team = .data$school,
-                      value = .data$stat) %>%
+        dplyr::rename(
+          athlete_id = .data$id,
+          team = .data$school,
+          value = .data$stat
+        ) %>%
         tidyr::pivot_wider(names_from = .data$stat_category, values_from = .data$value) %>%
         janitor::clean_names()
 
-      df[cols[!(cols %in% colnames(df))]] = NA
+      df[cols[!(cols %in% colnames(df))]] <- NA
 
       df <- df %>%
         dplyr::select(cols, dplyr::everything()) %>%
@@ -842,40 +879,43 @@ cfbd_game_player_stats<- function(year,
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_game_records(2018, team = 'Notre Dame')
+#' cfbd_game_records(2018, team = "Notre Dame")
 #'
-#'   cfbd_game_records(2013, team = "Florida State")
+#' cfbd_game_records(2013, team = "Florida State")
 #' }
-
+#'
 cfbd_game_records <- function(year, team = NULL, conference = NULL) {
 
 
   ## check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                          msg = 'Enter valid year (Integer): 4 digits (YYYY)')
+    msg = "Enter valid year (Integer): 4 digits (YYYY)"
+  )
 
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
 
   base_url <- "https://api.collegefootballdata.com/records?"
 
-  full_url <- paste0(base_url,
-                     "year=", year,
-                     "&team=", team,
-                     "&conference=", conference)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&team=", team,
+    "&conference=", conference
+  )
 
   # Check for internet
   check_internet()
@@ -884,8 +924,10 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL) {
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
 
   # Check the result
@@ -895,7 +937,7 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL) {
   tryCatch(
     expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
@@ -927,7 +969,6 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL) {
     }
   )
   return(df)
-
 }
 
 
@@ -1041,14 +1082,14 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL) {
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_game_team_stats(2019, team = 'LSU')
+#' cfbd_game_team_stats(2019, team = "LSU")
 #'
-#'   cfbd_game_team_stats(2013, team = "Florida State")
+#' cfbd_game_team_stats(2013, team = "Florida State")
 #' }
-
+#'
 cfbd_game_team_stats <- function(year,
                                  week = NULL,
-                                 season_type = 'regular',
+                                 season_type = "regular",
                                  team = NULL,
                                  conference = NULL,
                                  game_id = NULL,
@@ -1056,53 +1097,60 @@ cfbd_game_team_stats <- function(year,
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                          msg = 'Enter valid year (Integer): 4-digit (YYYY)')
+    msg = "Enter valid year (Integer): 4-digit (YYYY)"
+  )
 
-  if(!is.null(week)){
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-                            msg = 'Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(season_type != 'regular'){
+  if (season_type != "regular") {
     # Check if season_type is appropriate, if not NULL
-    assertthat::assert_that(season_type %in% c('postseason','both'),
-                            msg = 'Enter valid season_type (String): regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c("postseason", "both"),
+      msg = "Enter valid season_type (String): regular, postseason, or both"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  if(!is.null(game_id)){
+  if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                            msg = 'Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function')
+      msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
+    )
   }
-  if(rows_per_team != 1){
+  if (rows_per_team != 1) {
     # Check if rows_per_team is 2, if not 1
     assertthat::assert_that(rows_per_team == 2,
-                            msg = 'Enter valid rows_per_team value (Integer): 1 or 2')
+      msg = "Enter valid rows_per_team value (Integer): 1 or 2"
+    )
   }
 
   base_url <- "https://api.collegefootballdata.com/games/teams?"
 
-  full_url <- paste0(base_url,
-                     "year=", year,
-                     "&week=", week,
-                     "&seasonType=", season_type,
-                     "&team=", team,
-                     "&conference=", conference,
-                     "&gameId=", game_id)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&seasonType=", season_type,
+    "&team=", team,
+    "&conference=", conference,
+    "&gameId=", game_id
+  )
 
   # Check for internet
   check_internet()
@@ -1111,49 +1159,54 @@ cfbd_game_team_stats <- function(year,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
 
-  cols <- c("id", "school", "conference", "home_away",
-            "points", "rushing_t_ds", "punt_return_yards","punt_return_t_ds",
-            "punt_returns", "passing_t_ds", "kicking_points",
-            "interception_yards", "interception_t_ds", "passes_intercepted",
-            "fumbles_recovered", "total_fumbles", "tackles_for_loss",
-            "defensive_t_ds", "tackles", "sacks", "qb_hurries",
-            "passes_deflected", "possession_time", "interceptions",
-            "fumbles_lost", "turnovers", "total_penalties_yards",
-            "yards_per_rush_attempt", "rushing_attempts", "rushing_yards",
-            "yards_per_pass", "completion_attempts", "net_passing_yards",
-            "total_yards", "fourth_down_eff", "third_down_eff",
-            "first_downs", "kick_return_yards", "kick_return_t_ds",
-            "kick_returns")
+  cols <- c(
+    "id", "school", "conference", "home_away",
+    "points", "rushing_t_ds", "punt_return_yards", "punt_return_t_ds",
+    "punt_returns", "passing_t_ds", "kicking_points",
+    "interception_yards", "interception_t_ds", "passes_intercepted",
+    "fumbles_recovered", "total_fumbles", "tackles_for_loss",
+    "defensive_t_ds", "tackles", "sacks", "qb_hurries",
+    "passes_deflected", "possession_time", "interceptions",
+    "fumbles_lost", "turnovers", "total_penalties_yards",
+    "yards_per_rush_attempt", "rushing_attempts", "rushing_yards",
+    "yards_per_pass", "completion_attempts", "net_passing_yards",
+    "total_yards", "fourth_down_eff", "third_down_eff",
+    "first_downs", "kick_return_yards", "kick_return_t_ds",
+    "kick_returns"
+  )
   # Get the content, unnest, and return result as data.frame
-  df = res %>%
+  df <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
     purrr::map_if(is.data.frame, list) %>%
     dplyr::as_tibble()
 
-  if(nrow(df)==0){
+  if (nrow(df) == 0) {
     warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
             for this one week or team.")
     return(NULL)
   }
-  df = df %>%
+  df <- df %>%
     tidyr::unnest(.data$teams) %>%
     tidyr::unnest(.data$stats)
 
   # Pivot category columns to get stats for each team game on one row
   df <- tidyr::pivot_wider(df,
-                           names_from = .data$category,
-                           values_from = .data$stat)
+    names_from = .data$category,
+    values_from = .data$stat
+  )
   df <- df %>%
     janitor::clean_names()
-  df[cols[!(cols %in% colnames(df))]] = NA
+  df[cols[!(cols %in% colnames(df))]] <- NA
   df <- df %>%
     dplyr::rename(
       game_id = .data$id,
@@ -1165,41 +1218,43 @@ cfbd_game_team_stats <- function(year,
       kick_return_tds = .data$kick_return_t_ds
     )
 
-  if(rows_per_team == 1){
+  if (rows_per_team == 1) {
     # Join pivoted data with itself to get ultra-wide row
     # containing all game stats on one row for both teams
     df <- df %>%
       dplyr::left_join(df,
-                       by= c('game_id','school'),
-                       suffix = c('', '_allowed'))
+        by = c("game_id", "school"),
+        suffix = c("", "_allowed")
+      )
 
-    cols1 <- c("game_id", "school",  "conference", "home_away",
-               "points", "total_yards", "net_passing_yards",
-               "completion_attempts","passing_tds","yards_per_pass",
-               "passes_intercepted","interception_yards", "interception_tds",
-               "rushing_attempts", "rushing_yards","rush_tds", "yards_per_rush_attempt",
-               "first_downs", "third_down_eff", "fourth_down_eff",
-               "punt_returns", "punt_return_yards", "punt_return_tds",
-               "kick_return_yards", "kick_return_tds", "kick_returns", "kicking_points",
-               "fumbles_recovered","fumbles_lost", "total_fumbles",
-               "tackles", "tackles_for_loss", "sacks", "qb_hurries",
-               "interceptions", "passes_deflected", "turnovers","defensive_tds",
-               "total_penalties_yards", "possession_time",
-               "conference_allowed", "home_away_allowed",
-               "points_allowed", "total_yards_allowed", "net_passing_yards_allowed",
-               "completion_attempts_allowed","passing_tds_allowed","yards_per_pass_allowed",
-               "passes_intercepted_allowed","interception_yards_allowed", "interception_tds_allowed",
-               "rushing_attempts_allowed", "rushing_yards_allowed","rush_tds_allowed", "yards_per_rush_attempt_allowed",
-               "first_downs_allowed", "third_down_eff_allowed", "fourth_down_eff_allowed",
-               "punt_returns_allowed", "punt_return_yards_allowed", "punt_return_tds_allowed",
-               "kick_return_yards_allowed", "kick_return_tds_allowed", "kick_returns_allowed", "kicking_points_allowed",
-               "fumbles_recovered_allowed","fumbles_lost_allowed", "total_fumbles_allowed",
-               "tackles_allowed", "tackles_for_loss_allowed", "sacks_allowed", "qb_hurries_allowed",
-               "interceptions_allowed", "passes_deflected_allowed", "turnovers_allowed","defensive_tds_allowed",
-               "total_penalties_yards_allowed", "possession_time_allowed")
+    cols1 <- c(
+      "game_id", "school", "conference", "home_away",
+      "points", "total_yards", "net_passing_yards",
+      "completion_attempts", "passing_tds", "yards_per_pass",
+      "passes_intercepted", "interception_yards", "interception_tds",
+      "rushing_attempts", "rushing_yards", "rush_tds", "yards_per_rush_attempt",
+      "first_downs", "third_down_eff", "fourth_down_eff",
+      "punt_returns", "punt_return_yards", "punt_return_tds",
+      "kick_return_yards", "kick_return_tds", "kick_returns", "kicking_points",
+      "fumbles_recovered", "fumbles_lost", "total_fumbles",
+      "tackles", "tackles_for_loss", "sacks", "qb_hurries",
+      "interceptions", "passes_deflected", "turnovers", "defensive_tds",
+      "total_penalties_yards", "possession_time",
+      "conference_allowed", "home_away_allowed",
+      "points_allowed", "total_yards_allowed", "net_passing_yards_allowed",
+      "completion_attempts_allowed", "passing_tds_allowed", "yards_per_pass_allowed",
+      "passes_intercepted_allowed", "interception_yards_allowed", "interception_tds_allowed",
+      "rushing_attempts_allowed", "rushing_yards_allowed", "rush_tds_allowed", "yards_per_rush_attempt_allowed",
+      "first_downs_allowed", "third_down_eff_allowed", "fourth_down_eff_allowed",
+      "punt_returns_allowed", "punt_return_yards_allowed", "punt_return_tds_allowed",
+      "kick_return_yards_allowed", "kick_return_tds_allowed", "kick_returns_allowed", "kicking_points_allowed",
+      "fumbles_recovered_allowed", "fumbles_lost_allowed", "total_fumbles_allowed",
+      "tackles_allowed", "tackles_for_loss_allowed", "sacks_allowed", "qb_hurries_allowed",
+      "interceptions_allowed", "passes_deflected_allowed", "turnovers_allowed", "defensive_tds_allowed",
+      "total_penalties_yards_allowed", "possession_time_allowed"
+    )
 
-    if(!is.null(team)){
-
+    if (!is.null(team)) {
       team <- URLdecode(team)
 
       df <- df %>%
@@ -1207,65 +1262,61 @@ cfbd_game_team_stats <- function(year,
         dplyr::select(cols1)
 
       return(df)
-    } else if(!is.null(conference)){
-
+    } else if (!is.null(conference)) {
       confs <- cfbd_conferences()
 
-      conference = URLdecode(conference)
+      conference <- URLdecode(conference)
 
-      conf_name <- confs[confs$abbreviation == conference,]$name
+      conf_name <- confs[confs$abbreviation == conference, ]$name
 
       df <- df %>%
         dplyr::filter(conference == conf_name) %>%
         dplyr::select(cols1)
 
       return(df)
-    } else{
-      df<-df %>%
+    } else {
+      df <- df %>%
         dplyr::select(cols1)
       return(df)
     }
-  } else{
+  } else {
     cols2 <- c(
-      "game_id", "school",  "conference", "home_away",
+      "game_id", "school", "conference", "home_away",
       "points", "total_yards", "net_passing_yards",
-      "completion_attempts","passing_tds","yards_per_pass",
-      "passes_intercepted","interception_yards", "interception_tds",
-      "rushing_attempts", "rushing_yards","rush_tds", "yards_per_rush_attempt",
+      "completion_attempts", "passing_tds", "yards_per_pass",
+      "passes_intercepted", "interception_yards", "interception_tds",
+      "rushing_attempts", "rushing_yards", "rush_tds", "yards_per_rush_attempt",
       "first_downs", "third_down_eff", "fourth_down_eff",
       "punt_returns", "punt_return_yards", "punt_return_tds",
       "kick_return_yards", "kick_return_tds", "kick_returns", "kicking_points",
-      "fumbles_recovered","fumbles_lost", "total_fumbles",
+      "fumbles_recovered", "fumbles_lost", "total_fumbles",
       "tackles", "tackles_for_loss", "sacks", "qb_hurries",
-      "interceptions", "passes_deflected", "turnovers","defensive_tds",
+      "interceptions", "passes_deflected", "turnovers", "defensive_tds",
       "total_penalties_yards", "possession_time"
     )
-    if(!is.null(team)){
-
+    if (!is.null(team)) {
       team <- URLdecode(team <- team)
 
       df <- df %>%
         dplyr::filter(.data$school == team) %>%
         dplyr::select(cols2)
       return(df)
-    } else if(!is.null(conference)){
-
+    } else if (!is.null(conference)) {
       confs <- cfbd_conferences()
 
-      conference = URLdecode(conference)
+      conference <- URLdecode(conference)
 
-      conf_name <- confs[confs$abbreviation == conference,]$name
+      conf_name <- confs[confs$abbreviation == conference, ]$name
 
       df <- df %>%
         dplyr::filter(conference == conf_name) %>%
         dplyr::select(cols2)
 
       return(df)
-    } else{
+    } else {
       df <- df %>%
         dplyr::select(cols2)
       return(df)
     }
   }
 }
-

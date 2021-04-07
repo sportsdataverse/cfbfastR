@@ -6,8 +6,7 @@
 NULL
 #' @rdname register_cfbd
 #' @export
-cfbd_key <- function () {
-
+cfbd_key <- function() {
   key <- Sys.getenv("CFBD_API_KEY")
 
   if (key == "") {
@@ -15,9 +14,8 @@ cfbd_key <- function () {
   } else {
     return(key)
   }
-
 }
 
 #' @rdname register_cfbd
 #' @export
-has_cfbd_key <- function () !is.na(cfbd_key())
+has_cfbd_key <- function() !is.na(cfbd_key())

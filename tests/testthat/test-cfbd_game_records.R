@@ -1,14 +1,16 @@
 context("CFB Game Records")
 
-x <- cfbd_game_records(2018, team = 'Notre Dame')
+x <- cfbd_game_records(2018, team = "Notre Dame")
 
 y <- cfbd_game_records(2013, team = "Florida State")
 
-cols <- c("year","team","conference", "division", 
-          "total_games","total_wins", "total_losses","total_ties",
-          "conference_games", "conference_wins", "conference_losses", "conference_ties", 
-          "home_games","home_wins", "home_losses","home_ties",
-          "away_games", "away_wins", "away_losses","away_ties")
+cols <- c(
+  "year", "team", "conference", "division",
+  "total_games", "total_wins", "total_losses", "total_ties",
+  "conference_games", "conference_wins", "conference_losses", "conference_ties",
+  "home_games", "home_wins", "home_losses", "home_ties",
+  "away_games", "away_wins", "away_losses", "away_ties"
+)
 
 test_that("CFB Game Records", {
   expect_equal(colnames(x), cols)

@@ -2,7 +2,7 @@ context("CFB Team Talent")
 
 x <- cfbd_team_talent(year = 2019)
 
-cols <- c("year","school","talent")
+cols <- c("year", "school", "talent")
 
 test_that("CFB Team Talent", {
   expect_equal(nrow(x), 231)

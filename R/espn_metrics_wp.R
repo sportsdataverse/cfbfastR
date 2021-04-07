@@ -29,21 +29,22 @@ NULL
 #' @export
 #' @examples
 #' \dontrun{
-#'   espn_metrics_wp(game_id = 401114164)
+#' espn_metrics_wp(game_id = 401114164)
 #' }
-
+#'
 espn_metrics_wp <- function(game_id) {
-
   args <- list(game_id = game_id)
 
   # Check that at search_term input argument is not null
   attempt::stop_if_all(args, is.null,
-              msg = "You need to specify at least one argument: game_id\n Can be found using the `cfbd_game_info()` function")
+    msg = "You need to specify at least one argument: game_id\n Can be found using the `cfbd_game_info()` function"
+  )
 
-  if(!is.null(game_id)){
+  if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                msg = 'Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function')
+      msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
+    )
   }
 
   # Check for internet
@@ -71,9 +72,11 @@ espn_metrics_wp <- function(game_id) {
         ) %>%
         dplyr::mutate(
           away_win_percentage = 1 - .data$home_win_percentage
-        )%>%
-        dplyr::select(.data$espn_game_id, .data$play_id, .data$seconds_left,
-                      .data$home_win_percentage, .data$away_win_percentage)
+        ) %>%
+        dplyr::select(
+          .data$espn_game_id, .data$play_id, .data$seconds_left,
+          .data$home_win_percentage, .data$away_win_percentage
+        )
       message(glue::glue("{Sys.time()}: Scraping ESPN win probability data for game_id '{espn_game_id}'..."))
     },
     error = function(e) {

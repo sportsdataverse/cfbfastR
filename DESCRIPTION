@@ -37,8 +37,7 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr,
-    utils
+    tidyr
 Suggests: 
     DBI,
     furrr,

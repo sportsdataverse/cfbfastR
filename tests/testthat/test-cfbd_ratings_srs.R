@@ -2,11 +2,11 @@ context("CFB Conference Ratings - Bill C.'s SP+")
 
 x <- cfbd_ratings_srs(year = 2019)
 
-y <- cfbd_ratings_srs(year = 2012, conference = 'SEC')
+y <- cfbd_ratings_srs(year = 2012, conference = "SEC")
 
-z <- cfbd_ratings_srs(year = 2016, conference = 'ACC')
+z <- cfbd_ratings_srs(year = 2016, conference = "ACC")
 
-cols <- c('year','team', 'conference', 'division', 'rating', 'ranking')
+cols <- c("year", "team", "conference", "division", "rating", "ranking")
 
 test_that("CFB Conference Ratings - Bill C.'s SP+", {
   expect_equal(colnames(x), cols)

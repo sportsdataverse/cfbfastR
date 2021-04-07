@@ -2,7 +2,7 @@
 #' @name cfbd_ratings
 NULL
 #' Gets Historical CFB poll rankings at a specific week
-#' 
+#'
 #' Postseason polls are after Week 13
 #' @rdname cfbd_ratings
 #'
@@ -34,36 +34,40 @@ NULL
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_rankings(year = 2019, week = 12)
+#' cfbd_rankings(year = 2019, week = 12)
 #'
-#'   cfbd_rankings(year = 2018, week = 14)
+#' cfbd_rankings(year = 2018, week = 14)
 #'
-#'   cfbd_rankings(year = 2013, season_type = 'postseason')
+#' cfbd_rankings(year = 2013, season_type = "postseason")
 #' }
-
-cfbd_rankings <- function(year, week = NULL, season_type = 'regular'){
-
-  if(!is.null(year)){
+#'
+cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
+  if (!is.null(year)) {
     ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
-                            msg = 'Enter valid year (Integer) in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+      msg = "Enter valid year (Integer) in 4 digit format (YYYY)"
+    )
   }
-  if(!is.null(week)){
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-                            msg = 'Enter valid week 1-15, 1-14 for seasons pre-playoff, \n(i.e. 2014 or earlier)')
+      msg = "Enter valid week 1-15, 1-14 for seasons pre-playoff, \n(i.e. 2014 or earlier)"
+    )
   }
-  if(season_type != 'regular'){
-    assertthat::assert_that(season_type == 'postseason',
-                            msg = 'Enter a valid season_type (String): regular or postseason')
+  if (season_type != "regular") {
+    assertthat::assert_that(season_type == "postseason",
+      msg = "Enter a valid season_type (String): regular or postseason"
+    )
   }
 
-  base_url = "https://api.collegefootballdata.com/rankings?"
+  base_url <- "https://api.collegefootballdata.com/rankings?"
 
-  full_url = paste0(base_url,
-                    "year=", year,
-                    "&week=", week,
-                    "&seasonType=", season_type)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&seasonType=", season_type
+  )
 
   # Check for internet
   check_internet()
@@ -72,8 +76,10 @@ cfbd_rankings <- function(year, week = NULL, season_type = 'regular'){
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
@@ -84,16 +90,17 @@ cfbd_rankings <- function(year, week = NULL, season_type = 'regular'){
       polls <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame,list) %>%
+        purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest(.data$polls) %>%
         tidyr::unnest(.data$ranks) %>%
         dplyr::group_by(.data$week, .data$poll) %>%
-        dplyr::arrange(.data$rank, .by_group=TRUE) %>%
+        dplyr::arrange(.data$rank, .by_group = TRUE) %>%
         dplyr::ungroup() %>%
         dplyr::rename(
           season_type = .data$seasonType,
-          first_place_votes = .data$firstPlaceVotes) %>%
+          first_place_votes = .data$firstPlaceVotes
+        ) %>%
         as.data.frame()
 
       message(glue::glue("{Sys.time()}: Scraping rankings data..."))
@@ -161,40 +168,45 @@ cfbd_rankings <- function(year, week = NULL, season_type = 'regular'){
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_ratings_sp(year = 2019)
+#' cfbd_ratings_sp(year = 2019)
 #'
-#'   cfbd_ratings_sp(team = 'Texas A&M')
+#' cfbd_ratings_sp(team = "Texas A&M")
 #'
-#'   cfbd_ratings_sp(year= 2019, team = "Texas")
+#' cfbd_ratings_sp(year = 2019, team = "Texas")
 #' }
-
-
-cfbd_ratings_sp <- function(year = NULL, team = NULL){
-  args <- list(year = year,
-               team = team)
+#'
+cfbd_ratings_sp <- function(year = NULL, team = NULL) {
+  args <- list(
+    year = year,
+    team = team
+  )
 
   # Check that at least one argument is not null
   attempt::stop_if_all(args, is.null,
-                       msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY), or team")
+    msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY), or team"
+  )
 
-  if(!is.null(year)){
+  if (!is.null(year)) {
     # check if year is numeric and correct length
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                            msg = 'Enter valid year as a number in 4 digit format (YYYY)')
+      msg = "Enter valid year as a number in 4 digit format (YYYY)"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
 
-  base_url = "https://api.collegefootballdata.com/ratings/sp"
-  full_url = paste0(base_url,
-                    "?year=",year,
-                    '&team=',team)
+  base_url <- "https://api.collegefootballdata.com/ratings/sp"
+  full_url <- paste0(
+    base_url,
+    "?year=", year,
+    "&team=", team
+  )
 
   # Check for internet
   check_internet()
@@ -203,17 +215,19 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL){
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
@@ -239,7 +253,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL){
           defense_havoc_total = .data$defense.havoc.total,
           defense_havoc_front_seven = .data$defense.havoc.frontSeven,
           defense_havoc_db = .data$defense.havoc.db,
-          special_teams_rating = .data$specialTeams.rating) %>%
+          special_teams_rating = .data$specialTeams.rating
+        ) %>%
         as.data.frame()
 
       message(glue::glue("{Sys.time()}: Scraping S&P+ ratings data..."))
@@ -302,60 +317,67 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL){
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_ratings_sp_conference(year = 2019)
+#' cfbd_ratings_sp_conference(year = 2019)
 #'
-#'   cfbd_ratings_sp_conference(year = 2012, conference = 'SEC')
+#' cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
 #'
-#'   cfbd_ratings_sp_conference(year = 2016, conference = 'ACC')
+#' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 #' }
-
-cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL){
-
-  args <- list(year = year,
-               conference = conference)
+#'
+cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
+  args <- list(
+    year = year,
+    conference = conference
+  )
 
   # Check that at least one argument is not null
   attempt::stop_if_all(args, is.null,
-                       msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY), or conference\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY), or conference\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC"
+  )
 
-  if(!is.null(year)){
+  if (!is.null(year)) {
     # check if year is numeric and correct length
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                            msg = 'Enter valid year as a number in 4 digit format (YYYY)')
+      msg = "Enter valid year as a number in 4 digit format (YYYY)"
+    )
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  base_url = 'https://api.collegefootballdata.com/ratings/sp/conferences?'
+  base_url <- "https://api.collegefootballdata.com/ratings/sp/conferences?"
 
-  full_url = paste0(base_url,
-                    "year=",year,
-                    "&conference=",conference)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&conference=", conference
+  )
 
   # Check for internet
   check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
-  
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
+
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten=TRUE) %>% 
+        jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame() %>%
         dplyr::rename(
           second_order_wins = .data$secondOrderWins,
@@ -378,7 +400,8 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL){
           defense_havoc_total = .data$defense.havoc.total,
           defense_havoc_front_seven = .data$defense.havoc.frontSeven,
           defense_havoc_db = .data$defense.havoc.db,
-          special_teams_rating = .data$specialTeams.rating) %>%
+          special_teams_rating = .data$specialTeams.rating
+        ) %>%
         as.data.frame()
 
       message(glue::glue("{Sys.time()}: Scraping conference-level S&P+ ratings data..."))
@@ -426,48 +449,52 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL){
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_ratings_srs(year = 2019, team = "Texas")
+#' cfbd_ratings_srs(year = 2019, team = "Texas")
 #'
-#'   cfbd_ratings_srs(year = 2018, conference = 'SEC')
+#' cfbd_ratings_srs(year = 2018, conference = "SEC")
 #' }
-
-
-cfbd_ratings_srs <- function(year=NULL,team=NULL,conference=NULL){
-
-  args <- list(year = year,
-               team = team)
+#'
+cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
+  args <- list(
+    year = year,
+    team = team
+  )
 
   # Check that at least one argument is not null
   attempt::stop_if_all(args, is.null,
-                       msg = "You need to specify at least one of two arguments:\nyear, as a number (YYYY), or team")
+    msg = "You need to specify at least one of two arguments:\nyear, as a number (YYYY), or team"
+  )
 
-  if(!is.null(year)){
+  if (!is.null(year)) {
     # check if year is numeric
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                            msg = 'Enter valid year as a number (YYYY)')
+      msg = "Enter valid year as a number (YYYY)"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
 
-  base_url = 'https://api.collegefootballdata.com/ratings/srs?'
+  base_url <- "https://api.collegefootballdata.com/ratings/srs?"
 
-  full_url = paste0(base_url,
-                    "year=",year,
-                    "&team=",team,
-                    "&conference=",conference)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&team=", team,
+    "&conference=", conference
+  )
 
   # Check for internet
   check_internet()
@@ -476,22 +503,26 @@ cfbd_ratings_srs <- function(year=NULL,team=NULL,conference=NULL){
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
-        mutate(rating = as.numeric(.data$rating),
-               ranking = as.integer(.data$ranking))
+        mutate(
+          rating = as.numeric(.data$rating),
+          ranking = as.integer(.data$ranking)
+        )
 
       message(glue::glue("{Sys.time()}: Scraping simple rating system (SRS) data..."))
     },
@@ -505,4 +536,3 @@ cfbd_ratings_srs <- function(year=NULL,team=NULL,conference=NULL){
   )
   return(df)
 }
-

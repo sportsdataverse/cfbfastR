@@ -6,8 +6,10 @@ y <- cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
 z <- cfbd_recruiting_position(2015, 2020, conference = "SEC")
 
-cols <- c("team","conference","position_group","avg_rating",
-          "total_rating","commits","avg_stars")
+cols <- c(
+  "team", "conference", "position_group", "avg_rating",
+  "total_rating", "commits", "avg_stars"
+)
 
 test_that("CFB Recruiting Position Groups", {
   expect_equal(colnames(x), cols)

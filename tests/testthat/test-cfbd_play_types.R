@@ -2,7 +2,7 @@ context("CFB Play Types")
 
 x <- cfbd_play_types()
 
-cols <- c("play_type_id","text","abbreviation")
+cols <- c("play_type_id", "text", "abbreviation")
 
 test_that("CFB Play Types", {
   expect_equal(nrow(x), 48)

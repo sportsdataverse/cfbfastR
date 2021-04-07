@@ -2,7 +2,7 @@
 #' @name cfbd_recruiting
 NULL
 #' CFB Recruiting
-#' 
+#'
 #' Gets CFB recruiting information for a single year with filters available for team,
 #' recruit type, state and position.
 #'
@@ -53,66 +53,76 @@ NULL
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_recruiting_player(2018, team = "Texas")
+#' cfbd_recruiting_player(2018, team = "Texas")
 #'
-#'   cfbd_recruiting_player(2016, recruit_type = 'JUCO')
+#' cfbd_recruiting_player(2016, recruit_type = "JUCO")
 #'
-#'   cfbd_recruiting_player(2020, recruit_type = 'HighSchool', position = 'OT', state = 'FL')
+#' cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 #' }
-
+#'
 cfbd_recruiting_player <- function(year = NULL,
                                    team = NULL,
-                                   recruit_type = 'HighSchool',
+                                   recruit_type = "HighSchool",
                                    state = NULL,
-                                   position = NULL){
-
-  args <- list(year = year,
-               team = team)
+                                   position = NULL) {
+  args <- list(
+    year = year,
+    team = team
+  )
 
   # Check that at least one argument is not null
   attempt::stop_if_all(args, is.null,
-                       msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY) - Min: 2000, Max: 2020\n or team")
+    msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY) - Min: 2000, Max: 2020\n or team"
+  )
   # Position Group vector to check arguments against
-  pos_groups <- c('PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR',
-                  'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT', 'K', 'P')
-  if(!is.null(year)){
+  pos_groups <- c(
+    "PRO", "DUAL", "RB", "FB", "TE", "OT", "OG", "OC", "WR",
+    "CB", "S", "OLB", "ILB", "WDE", "SDE", "DT", "K", "P"
+  )
+  if (!is.null(year)) {
     ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
-                            msg = 'Enter valid year as a number (YYYY) - Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+      msg = "Enter valid year as a number (YYYY) - Min: 2000, Max: 2020"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(recruit_type !='HighSchool'){
+  if (recruit_type != "HighSchool") {
     # Check if recruit_type is appropriate, if not HighSchool
-    assertthat::assert_that(recruit_type %in% c('PrepSchool','JUCO'),
-                            msg = 'Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO')
+    assertthat::assert_that(recruit_type %in% c("PrepSchool", "JUCO"),
+      msg = "Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO"
+    )
   }
-  if(!is.null(state)){
+  if (!is.null(state)) {
     ## check if state is length 2
-    assertthat::assert_that(nchar(state)==2,
-                            msg = 'Enter valid 2-letter State abbreviation')
+    assertthat::assert_that(nchar(state) == 2,
+      msg = "Enter valid 2-letter State abbreviation"
+    )
   }
-  if(!is.null(position)){
+  if (!is.null(position)) {
     ## check if position in position group set
     assertthat::assert_that(position %in% pos_groups,
-                            msg = 'Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P')
+      msg = "Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P"
+    )
   }
 
-  base_url = "https://api.collegefootballdata.com/recruiting/players?"
+  base_url <- "https://api.collegefootballdata.com/recruiting/players?"
 
   # Create full url using base and input arguments
-  full_url = paste0(base_url,
-                    "year=", year,
-                    "&team=", team,
-                    "&classification=", recruit_type,
-                    "&position=", position,
-                    "&state=", state)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&team=", team,
+    "&classification=", recruit_type,
+    "&position=", position,
+    "&state=", state
+  )
 
   # Check for internet
   check_internet()
@@ -121,23 +131,26 @@ cfbd_recruiting_player <- function(year = NULL,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
           recruit_type = .data$recruitType,
           committed_to = .data$committedTo,
-          state_province = .data$stateProvince) %>%
+          state_province = .data$stateProvince
+        ) %>%
         as.data.frame()
 
       message(glue::glue("{Sys.time()}: Scraping player recruiting data..."))
@@ -194,54 +207,57 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_recruiting_position(2018, team="Texas")
+#' cfbd_recruiting_position(2018, team = "Texas")
 #'
-#'   cfbd_recruiting_position(2016, 2020, team="Virginia")
+#' cfbd_recruiting_position(2016, 2020, team = "Virginia")
 #'
-#'   cfbd_recruiting_position(2015, 2020, conference = "SEC")
+#' cfbd_recruiting_position(2015, 2020, conference = "SEC")
 #' }
-
+#'
 cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
-                                     team = NULL, conference = NULL){
-
-  if(!is.null(start_year)){
+                                     team = NULL, conference = NULL) {
+  if (!is.null(start_year)) {
     # check if start_year is numeric
     assertthat::assert_that(is.numeric(start_year) & nchar(start_year) == 4,
-                            msg = 'Enter valid start_year as a number (YYYY) - Min: 2000, Max: 2020')
+      msg = "Enter valid start_year as a number (YYYY) - Min: 2000, Max: 2020"
+    )
   }
-  if(!is.null(end_year)){
+  if (!is.null(end_year)) {
     # check if end_year is numeric
     assertthat::assert_that(is.numeric(end_year) & nchar(end_year) == 4,
-                            msg = 'Enter valid end_year as a number (YYYY) - Min: 2000, Max: 2020')
+      msg = "Enter valid end_year as a number (YYYY) - Min: 2000, Max: 2020"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
 
-  base_url = "https://api.collegefootballdata.com/recruiting/groups?"
+  base_url <- "https://api.collegefootballdata.com/recruiting/groups?"
 
   # Create full url using base and input arguments
-  full_url = paste0(base_url,
-                    'startYear=',
-                    start_year,
-                    '&endYear=',
-                    end_year,
-                    "&team=",
-                    team,
-                    "&conference=",
-                    conference)
+  full_url <- paste0(
+    base_url,
+    "startYear=",
+    start_year,
+    "&endYear=",
+    end_year,
+    "&team=",
+    team,
+    "&conference=",
+    conference
+  )
 
   # Check for internet
   check_internet()
@@ -250,24 +266,27 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
           position_group = .data$positionGroup,
           avg_rating = .data$averageRating,
           total_rating = .data$totalRating,
-          avg_stars = .data$averageStars) %>%
+          avg_stars = .data$averageStars
+        ) %>%
         as.data.frame()
 
       message(glue::glue("{Sys.time()}: Scraping position group recruiting data..."))
@@ -316,44 +335,47 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @export
 #' @examples
 #' \dontrun{
-#'   cfbd_recruiting_team(2018, team = "Texas")
+#' cfbd_recruiting_team(2018, team = "Texas")
 #'
-#'   cfbd_recruiting_team(2016, team = "Virginia")
+#' cfbd_recruiting_team(2016, team = "Virginia")
 #'
-#'   cfbd_recruiting_team(2016, team = "Texas A&M")
+#' cfbd_recruiting_team(2016, team = "Texas A&M")
 #'
-#'   cfbd_recruiting_team(2011)
+#' cfbd_recruiting_team(2011)
 #' }
-
+#'
 cfbd_recruiting_team <- function(year = NULL,
-                                 team = NULL){
-
+                                 team = NULL) {
   args <- list(year = year, team = team)
 
   # Check that at least one argument is not null
   attempt::stop_if_all(args, is.null,
-                       msg = 'You need to specify at least one argument: \nyear, as integer in 4 digit format (YYYY) - Min: 2000, Max: 2020\n or team')
+    msg = "You need to specify at least one argument: \nyear, as integer in 4 digit format (YYYY) - Min: 2000, Max: 2020\n or team"
+  )
 
-  if(!is.null(year)){
+  if (!is.null(year)) {
     ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
-                            msg = 'Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+      msg = "Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
 
-  base_url = "https://api.collegefootballdata.com/recruiting/teams?"
+  base_url <- "https://api.collegefootballdata.com/recruiting/teams?"
 
   # Create full url using base and input arguments
-  full_url = paste0(base_url,
-                    "year=", year,
-                    "&team=", team)
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&team=", team
+  )
 
   # Check for internet
   check_internet()
@@ -362,17 +384,19 @@ cfbd_recruiting_team <- function(year = NULL,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
   df <- data.frame()
   tryCatch(
-    expr ={
+    expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame()

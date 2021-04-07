@@ -6,7 +6,7 @@ y <- cfbd_recruiting_team(2016, team = "Virginia")
 
 z <- cfbd_recruiting_team(2011)
 
-cols <- c("year","rank","team","points")
+cols <- c("year", "rank", "team", "points")
 
 test_that("CFB Recruiting Team", {
   expect_equal(colnames(x), cols)

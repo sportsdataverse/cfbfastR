@@ -1,19 +1,25 @@
 context("CFB Betting Lines")
 
-x <- cfbd_betting_lines(year = 2018, 
-                       week = 12, 
-                       team = 'Florida State')
+x <- cfbd_betting_lines(
+  year = 2018,
+  week = 12,
+  team = "Florida State"
+)
 
-y <- cfbd_betting_lines(year = 2018, 
-                       week = 13, 
-                       team = "Texas A&M", 
-                       conference = 'SEC',
-                       line_provider = 'numberfire')
+y <- cfbd_betting_lines(
+  year = 2018,
+  week = 13,
+  team = "Texas A&M",
+  conference = "SEC",
+  line_provider = "numberfire"
+)
 
-cols <- c("game_id", "season", "season_type", "week", 
-          "home_team", "home_conference", "home_score",
-          "away_team", "away_conference", "away_score", 
-          "provider","spread", "formatted_spread", "over_under")
+cols <- c(
+  "game_id", "season", "season_type", "week",
+  "home_team", "home_conference", "home_score",
+  "away_team", "away_conference", "away_score",
+  "provider", "spread", "formatted_spread", "over_under"
+)
 
 test_that("CFB Betting Lines", {
   expect_equal(nrow(x), 4)
