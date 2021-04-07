@@ -550,22 +550,36 @@ cfbd_pbp_data <- function(year,
 
     #---- Purrr Map Function -----
     g_ids <- sort(unique(play_df$game_id))
-    play_df <- purrr::map_dfr(
-      g_ids,
-      function(x) {
-        play_df <- play_df %>%
-          dplyr::filter(.data$game_id == x) %>%
-          penalty_detection() %>%
-          add_play_counts() %>%
-          clean_pbp_dat() %>%
-          clean_drive_dat() %>%
-          add_yardage() %>%
-          add_player_cols() %>%
-          prep_epa_df_after() %>%
-          create_epa() %>%
-          # create_wpa_betting() %>%
-          create_wpa_naive()
-      }
+    game_count <- length(g_ids)
+    builder <- TRUE
+    
+    if (game_count > 1) {
+      usethis::ui_todo("Start download of {game_count} games...")
+    } else {
+      usethis::ui_todo("Start download of {game_count} game...")
+    }
+    suppressWarnings(
+      progressr::with_progress({
+        p <- progressr::progressor(along = g_ids)
+        play_df <- purrr::map_dfr(
+          g_ids,
+          function(x) {
+            play_df <- play_df %>%
+              dplyr::filter(.data$game_id == x) %>%
+              penalty_detection() %>%
+              add_play_counts() %>%
+              clean_pbp_dat() %>%
+              clean_drive_dat() %>%
+              add_yardage() %>%
+              add_player_cols() %>%
+              prep_epa_df_after() %>%
+              create_epa() %>%
+              # create_wpa_betting() %>%
+              create_wpa_naive()
+            p(sprintf("x=%s", as.integer(x)))
+            return(play_df)
+          })
+      })
     )
 
     #---- Select Output Ordering -----
