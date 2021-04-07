@@ -1,51 +1,89 @@
 Package: cfbfastR
 Title: Functions to Access College Football Play by Play Data
 Version: 1.0.0
-Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('cre', 'aut')),
-             person('Akshay', 'Easwaran', email = 'akeaswaran@me.com', role = c('aut')),
-             person('Jared','Lee', email = '13jaredlee@gmail.com', role = c('aut')),
-             person('Eric','Hess', email = 'eric.hess.13@gmail.com', role = c('aut')),
-             person('Michael','Egle', email = 'mjegle@iastate.edu', role = c('ctb')),
-             person('Nate','Manzo', email = 'natem67@gmail.com', role = c('ctb')),
-             person('Jason','DeLoach', email = 'jdeloach5@gmail.com', role = c('ctb')),
-             person('Tej', 'Seth', email = 'tejseth@umich.edu', role = c('ctb')),
-             person('Conor','McQuiston', email = 'mcqconor@umich.edu', role = c('ctb')),
-             person('Tan', 'Ho', email = 'tan@tanho.ca', role = c('ctb'))
-             )
-Description: An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the cfbfastR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
+Authors@R: 
+    c(person(given = "Saiem",
+             family = "Gilani",
+             role = c("cre", "aut"),
+             email = "saiem.gilani@gmail.com"),
+      person(given = "Akshay",
+             family = "Easwaran",
+             role = "aut",
+             email = "akeaswaran@me.com"),
+      person(given = "Jared",
+             family = "Lee",
+             role = "aut",
+             email = "13jaredlee@gmail.com"),
+      person(given = "Eric",
+             family = "Hess",
+             role = "aut",
+             email = "eric.hess.13@gmail.com"),
+      person(given = "Michael",
+             family = "Egle",
+             role = "ctb",
+             email = "mjegle@iastate.edu"),
+      person(given = "Nate",
+             family = "Manzo",
+             role = "ctb",
+             email = "natem67@gmail.com"),
+      person(given = "Jason",
+             family = "DeLoach",
+             role = "ctb",
+             email = "jdeloach5@gmail.com"),
+      person(given = "Tej",
+             family = "Seth",
+             role = "ctb",
+             email = "tejseth@umich.edu"),
+      person(given = "Conor",
+             family = "McQuiston",
+             role = "ctb",
+             email = "mcqconor@umich.edu"),
+      person(given = "Tan",
+             family = "Ho",
+             role = "ctb",
+             email = "tan@tanho.ca"))
+Description: An R package for working with College Football Data. It is an
+    R API wrapper around <https://collegefootballdata.com/> made available
+    by the cfbfastR team. It provides users the capability to access a
+    plethora of endpoints, and supplement that data with additional
+    information (Expected Points Added/Win Probability added).
 License: MIT + file LICENSE
-URL: https://saiemgilani.github.io/cfbfastR/ (website), https://www.github.com/saiemgilani/cfbfastR (devel)
+URL: https://saiemgilani.github.io/cfbfastR,
+    http://www.github.com/saiemgilani/cfbfastR
 BugReports: http://www.github.com/saiemgilani/cfbfastR/issues
-Encoding: UTF-8
 Depends: 
-    R (>= 3.5.0)
+  R (>= 3.5.0)
 Imports: 
     assertthat,
-    attempt,
-    curl,
+    cli (>= 1.1.0),
+    crayon (>= 1.3.4),
     dplyr,
-    ggplot2,
     glue,
     httr,
     janitor,
     jsonlite,
     magrittr,
     mgcv (>= 1.8-33),
-    nnet, 
-    purrr,
+    nnet,
+    progressr (>= 0.6.0),
+    purrr (>= 0.3.0),
     rlang,
+    stats,
     stringi,
-    stringr,
-    tibble,
-    tidyr
+    stringr (>= 1.3.0),
+    tibble (>= 3.0),
+    tidyr (>= 1.0.0),
+    usethis (>= 1.6.0),
+    xgboost (>= 1.1)
 Suggests: 
     DBI,
     furrr,
     future,
+    ggplot2,
+    ggrepel,
     rmarkdown,
     RSQLite,
-    testthat,
-    ggrepel
+    testthat
+Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Roxygen: list(markdown = TRUE)
