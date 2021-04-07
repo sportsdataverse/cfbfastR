@@ -138,9 +138,6 @@ cfbd_game_info <- function(year,
     "&id=", game_id
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -213,16 +210,13 @@ cfbd_calendar <- function(year) {
   assert_that(is.numeric(year) & nchar(year) == 4,
     msg = "Enter valid year as a number (YYYY)"
   )
-
-
+  
   base_url <- "https://api.collegefootballdata.com/calendar?"
+  
   full_url <- paste0(
     base_url,
     "year=", year
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -347,10 +341,7 @@ cfbd_game_media <- function(year,
     "&conference=", conference,
     "&mediaType=", media_type
   )
-
-  # Check for internet
-  check_internet()
-
+  
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -512,10 +503,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
     base_url,
     "gameId=", game_id
   )
-
-  # Check for internet
-  check_internet()
-
+  
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -753,9 +741,6 @@ cfbd_game_player_stats <- function(year,
     "&gameId=", game_id
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -916,9 +901,6 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL) {
     "&team=", team,
     "&conference=", conference
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -1151,9 +1133,6 @@ cfbd_game_team_stats <- function(year,
     "&conference=", conference,
     "&gameId=", game_id
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

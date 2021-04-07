@@ -19,7 +19,6 @@ NULL
 #' }
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
-#' @importFrom attempt stop_if_all
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode URLdecode
 #' @importFrom assertthat assert_that
@@ -33,12 +32,6 @@ NULL
 #' }
 #'
 espn_metrics_wp <- function(game_id) {
-  args <- list(game_id = game_id)
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument: game_id\n Can be found using the `cfbd_game_info()` function"
-  )
 
   if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
@@ -46,9 +39,6 @@ espn_metrics_wp <- function(game_id) {
       msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
     )
   }
-
-  # Check for internet
-  check_internet()
 
   espn_game_id <- game_id
 

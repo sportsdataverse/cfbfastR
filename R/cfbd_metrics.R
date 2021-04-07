@@ -35,7 +35,6 @@ NULL
 #'   \item{\code{def_third_down}}{character.}
 #' }
 #' @keywords Teams Predicted Points
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -55,11 +54,6 @@ cfbd_metrics_ppa_games <- function(year,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
   args <- list(year = year)
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)"
-  )
 
   ## check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -182,7 +176,6 @@ cfbd_metrics_ppa_games <- function(year,
 #'   \item{\code{def_third_down}}{character.}
 #' }
 #' @keywords Teams Predicted Points
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -202,11 +195,6 @@ cfbd_metrics_ppa_games <- function(year,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
   args <- list(year = year)
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)"
-  )
 
   ## check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -251,9 +239,6 @@ cfbd_metrics_ppa_games <- function(year,
     "&conference=", conference,
     "&excludeGarbageTime=", excl_garbage_time
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -327,7 +312,6 @@ cfbd_metrics_ppa_games <- function(year,
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/players/games}
 #' @keywords Players Predicted Points
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -415,9 +399,6 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
     "&excludeGarbageTime=", excl_garbage_time
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -500,7 +481,6 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/players/season}
 #' @keywords Players Predicted Points Season Averages
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -588,9 +568,6 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
     "&excludeGarbageTime=", excl_garbage_time
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -647,7 +624,6 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/predicted}
 #' @keywords Predicted Points
-#' @importFrom attempt stop_if_any
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom assertthat assert_that
@@ -664,16 +640,6 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'
 cfbd_metrics_ppa_predicted <- function(down,
                                        distance) {
-  args <- list(
-    down = down,
-    distance = distance
-  )
-
-  # Check that none of arguments are null
-  attempt::stop_if_any(args, is.null,
-    msg = "You need to specify both arguments, down and distance, as integers"
-  )
-
   # Check if down is numeric
   assertthat::assert_that(is.numeric(down) & down <= 4,
     msg = "Enter valid down (Integer): values from 1-4"
@@ -691,9 +657,6 @@ cfbd_metrics_ppa_predicted <- function(down,
     "down=", down,
     "&distance=", distance
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -767,7 +730,6 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/teams}
 #' @keywords Teams Predicted Points
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -785,15 +747,6 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
-  args <- list(
-    year = year,
-    team = team
-  )
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one of two arguments:\nyear as an integer 4 digit format (YYYY) or team (String) for a D-I team"
-  )
 
   if (!is.null(year)) {
     ## check if year is numeric
@@ -832,9 +785,6 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
     "&conference=", conference,
     "&excludeGarbageTime=", excl_garbage_time
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -946,9 +896,6 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
     "&seasonType=", season_type
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -1019,7 +966,6 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' }
 #' @source \url{https://api.collegefootballdata.com/metrics/wp}
 #' @keywords Win Probability Chart Data
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode URLdecode
@@ -1035,19 +981,14 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' }
 #'
 cfbd_metrics_wp <- function(game_id) {
-  args <- list(game_id = game_id)
+  
 
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument: game_id\n Can be found using the `cfbd_game_info()` function"
+  
+  # Check if game_id is numeric, if not NULL
+  assertthat::assert_that(is.numeric(game_id),
+    msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
   )
-
-  if (!is.null(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    assertthat::assert_that(is.numeric(game_id),
-      msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
-    )
-  }
+  
 
   base_url <- "https://api.collegefootballdata.com/metrics/wp?"
 
@@ -1055,9 +996,6 @@ cfbd_metrics_wp <- function(game_id) {
     base_url,
     "gameId=", game_id
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

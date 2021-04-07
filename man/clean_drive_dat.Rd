@@ -8,10 +8,10 @@ Cleans Play-by-Play data pulled from the API's raw game data}
 clean_drive_dat(play_df)
 }
 \arguments{
-\item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from \code{cfbd_pbp_data()}}
+\item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`}
 }
 \value{
-The original \code{play_df} with the following columns appended/redefined:
+The original `play_df` with the following columns appended/redefined:
 \describe{
 \item{lag_change_of_poss}{.}
 \item{lag_punt}{.}

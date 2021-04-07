@@ -30,7 +30,6 @@ NULL
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/search}
 #' @keywords Players
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -51,12 +50,6 @@ cfbd_player_info <- function(search_term,
                              position = NULL,
                              team = NULL,
                              year = NULL) {
-  args <- list(search_term = search_term)
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument:\nsearch_term as a string for the player you are trying to look up"
-  )
 
   # Encode search_term parameter for URL
   search_term <- utils::URLencode(search_term, reserved = TRUE)
@@ -98,9 +91,6 @@ cfbd_player_info <- function(search_term,
     "&team=", team,
     "&year=", year
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -169,7 +159,6 @@ cfbd_player_info <- function(search_term,
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/returning}
 #' @keywords Returning Production
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -185,13 +174,6 @@ cfbd_player_info <- function(search_term,
 cfbd_player_returning <- function(year = 2019,
                                   team = NULL,
                                   conference = NULL) {
-  args <- list(year = year)
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)"
-  )
-
 
   if (!is.null(year)) {
     ## check if year is numeric
@@ -224,9 +206,6 @@ cfbd_player_returning <- function(year = 2019,
     "&team=", team,
     "&conference=", conference
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -310,7 +289,6 @@ cfbd_player_returning <- function(year = 2019,
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/usage}
 #' @keywords Player Usage
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -330,13 +308,7 @@ cfbd_player_usage <- function(year = 2019,
                               position = NULL,
                               athlete_id = NULL,
                               excl_garbage_time = FALSE) {
-  args <- list(year = year)
-
-  # Check that at search_term input argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)"
-  )
-
+  
   # Position Group vector to check input arguments against
   pos_groups <- c(
     "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",
@@ -395,9 +367,6 @@ cfbd_player_usage <- function(year = 2019,
     "&athleteID=", athlete_id,
     "&excludeGarbageTime=", excl_garbage_time
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

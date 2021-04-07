@@ -59,8 +59,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
       base_url,
       "conference=", conference
     )
-    # Check for internet
-    check_internet()
 
     # Check for CFBD API key
     if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -97,9 +95,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
       base_url,
       "year=", year
     )
-
-    # Check for internet
-    check_internet()
 
     # Check for CFBD API key
     if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -146,7 +141,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup Records
-#' @importFrom attempt stop_if_any
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -164,12 +158,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 #' }
 #'
 cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL) {
-  args <- list(team1 = team1, team2 = team2)
-
-  # Check that any of the required arguments are not NULL
-  stop_if_any(args, is.null,
-    msg = "You need to specify both arguments team1 and team2 in the cfbd_team_matchup function call"
-  )
 
   if (!is.null(min_year)) {
     # Check if min_year is numeric, if not NULL
@@ -210,9 +198,6 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
     "&minYear=", min_year,
     "&maxYear=", max_year
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -290,7 +275,6 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup
-#' @importFrom attempt stop_if_any
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -310,13 +294,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' }
 #'
 cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
-  args <- list(team1 = team1, team2 = team2)
-
-  # Check that any of the required arguments are not NULL
-  stop_if_any(args, is.null,
-    msg = "You need to specify both arguments team1 and team2 in the cfbd_team_matchup function call"
-  )
-
+  
   if (!is.null(min_year)) {
     # Check if min_year is numeric, if not NULL
     assertthat::assert_that(is.numeric(min_year) & nchar(min_year) == 4,
@@ -356,9 +334,6 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
     "&minYear=", min_year,
     "&maxYear=", max_year
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -469,9 +444,6 @@ cfbd_team_roster <- function(year, team = NULL) {
     )
   }
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -551,10 +523,7 @@ cfbd_team_talent <- function(year = NULL) {
     base_url,
     "year=", year
   )
-
-  # Check for internet
-  check_internet()
-
+  
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 

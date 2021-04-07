@@ -12,19 +12,19 @@ cfbd_venues()
 \value{
 A data frame with 335 rows and 13 variables:
 \describe{
-\item{\code{venue_id}}{integer.}
-\item{\code{name}}{character.}
-\item{\code{capacity}}{integer.}
-\item{\code{grass}}{logical.}
-\item{\code{city}}{character.}
-\item{\code{state}}{character.}
-\item{\code{zip}}{character.}
-\item{\code{country_code}}{character.}
-\item{\code{location}}{list.}
-\item{\code{elevation}}{character.}
-\item{\code{year_constructed}}{integer.}
-\item{\code{dome}}{logical.}
-\item{\code{timezone}}{character.}
+  \item{\code{venue_id}}{integer.}
+  \item{\code{name}}{character.}
+  \item{\code{capacity}}{integer.}
+  \item{\code{grass}}{logical.}
+  \item{\code{city}}{character.}
+  \item{\code{state}}{character.}
+  \item{\code{zip}}{character.}
+  \item{\code{country_code}}{character.}
+  \item{\code{location}}{list.}
+  \item{\code{elevation}}{character.}
+  \item{\code{year_constructed}}{integer.}
+  \item{\code{dome}}{logical.}
+  \item{\code{timezone}}{character.}
 }
 }
 \description{
@@ -33,7 +33,8 @@ elevation, dome, timezone and construction year
 }
 \examples{
 \dontrun{
-  cfbd_venues()
+cfbd_venues()
 }
+
 }
 \keyword{Venues}

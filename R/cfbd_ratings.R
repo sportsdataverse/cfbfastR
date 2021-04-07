@@ -69,9 +69,6 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
     "&seasonType=", season_type
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -158,7 +155,6 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp}
 #' @keywords SP+
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -176,16 +172,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' }
 #'
 cfbd_ratings_sp <- function(year = NULL, team = NULL) {
-  args <- list(
-    year = year,
-    team = team
-  )
-
-  # Check that at least one argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY), or team"
-  )
-
+  
   if (!is.null(year)) {
     # check if year is numeric and correct length
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -207,9 +194,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
     "?year=", year,
     "&team=", team
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -307,7 +291,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp/conferences}
 #' @keywords SP+
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -325,15 +308,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' }
 #'
 cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
-  args <- list(
-    year = year,
-    conference = conference
-  )
-
-  # Check that at least one argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY), or conference\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC"
-  )
 
   if (!is.null(year)) {
     # check if year is numeric and correct length
@@ -355,9 +329,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
     "year=", year,
     "&conference=", conference
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -440,7 +411,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/srs}
 #' @keywords SRS
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom assertthat assert_that
@@ -455,15 +425,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' }
 #'
 cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
-  args <- list(
-    year = year,
-    team = team
-  )
-
-  # Check that at least one argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one of two arguments:\nyear, as a number (YYYY), or team"
-  )
 
   if (!is.null(year)) {
     # check if year is numeric
@@ -495,9 +456,6 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
     "&team=", team,
     "&conference=", conference
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

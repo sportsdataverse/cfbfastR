@@ -3,29 +3,29 @@
 \name{clean_drive_info}
 \alias{clean_drive_info}
 \title{Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column}
+Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column}
 \usage{
 clean_drive_info(drive_df)
 }
 \arguments{
-\item{drive_df}{(\emph{data.frame} required) Drive dataframe pulled from API via the \code{cfbd_drives()} function}
+\item{drive_df}{(\emph{data.frame} required) Drive dataframe pulled from API via the `cfbd_drives()` function}
 }
 \value{
-The original \code{drive_df} with the following columns appended to it:
+The original `drive_df` with the following columns appended to it:
 \describe{
-\item{drive_id}{Returned as \code{drive_id} from original variable \code{drive_id}}
+\item{drive_id}{Returned as `drive_id` from original variable `drive_id`}
 \item{pts_drive}{End result of the drive}
 \item{scoring}{Logical flag for if drive was a scoring drive updated}
 }
 }
 \description{
 Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column
+Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
 }
 \details{
-Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column. Requires the following columns be present:
+Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
 \itemize{
-\item{drive_id}{Returned as \code{drive_id}}
+\item{drive_id}{Returned as `drive_id`}
 \item{drive_result}{End result of the drive}
 \item{scoring}{Logical flag for if drive was a scoring drive}
 \item{game_id}{Unique game identifier}

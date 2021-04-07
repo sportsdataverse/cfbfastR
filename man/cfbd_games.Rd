@@ -94,12 +94,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
 
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
-list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.\cr
+list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
 
-\item{long}{(\emph{Logical} default \code{FALSE}): Return the data in a long format.}
+\item{long}{(\emph{Logical} default `FALSE`): Return the data in a long format.}
 
 \item{category}{(\emph{String} optional): Category filter (e.g defensive)\cr
 Offense: passing, receiving, rushing\cr
@@ -111,262 +111,262 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \value{
 \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} - A data frame with 22 variables:
 \describe{
-\item{\code{game_id}}{integer.}
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{season_type}}{character.}
-\item{\code{start_date}}{character.}
-\item{\code{start_time_tbd}}{logical.}
-\item{\code{neutral_site}}{logical.}
-\item{\code{conference_game}}{logical.}
-\item{\code{attendance}}{integer.}
-\item{\code{venue_id}}{integer.}
-\item{\code{venue}}{character.}
-\item{\code{home_id}}{integer.}
-\item{\code{home_team}}{character.}
-\item{\code{home_conference}}{character.}
-\item{\code{home_points}}{integer.}
-\item{\code{home_post_win_prob}}{character.}
-\item{\code{away_id}}{integer.}
-\item{\code{away_team}}{character.}
-\item{\code{away_conference}}{character.}
-\item{\code{away_points}}{integer.}
-\item{\code{away_post_win_prob}}{character.}
-\item{\code{excitement_index}}{character.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{season}}{integer.}
+  \item{\code{week}}{integer.}
+  \item{\code{season_type}}{character.}
+  \item{\code{start_date}}{character.}
+  \item{\code{start_time_tbd}}{logical.}
+  \item{\code{neutral_site}}{logical.}
+  \item{\code{conference_game}}{logical.}
+  \item{\code{attendance}}{integer.}
+  \item{\code{venue_id}}{integer.}
+  \item{\code{venue}}{character.}
+  \item{\code{home_id}}{integer.}
+  \item{\code{home_team}}{character.}
+  \item{\code{home_conference}}{character.}
+  \item{\code{home_points}}{integer.}
+  \item{\code{home_post_win_prob}}{character.}
+  \item{\code{away_id}}{integer.}
+  \item{\code{away_team}}{character.}
+  \item{\code{away_conference}}{character.}
+  \item{\code{away_points}}{integer.}
+  \item{\code{away_post_win_prob}}{character.}
+  \item{\code{excitement_index}}{character.}
 }
 
 \code{\link[cfbfastR:cfbd_calendar]{cfbfastR::cfbd_calendar()}} A data frame with 5 variables:
 
 \code{\link[cfbfastR:cfbd_game_media]{cfbfastR::cfbd_game_media()}} - A data frame with 13 variables:
 \describe{
-\item{\code{game_id}}{integer.}
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{season_type}}{character.}
-\item{\code{start_time}}{character.}
-\item{\code{is_start_time_tbd}}{logical.}
-\item{\code{home_team}}{character.}
-\item{\code{home_conference}}{character.}
-\item{\code{away_team}}{character.}
-\item{\code{away_conference}}{character.}
-\item{\code{tv}}{list.}
-\item{\code{radio}}{logical.}
-\item{\code{web}}{list.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{season}}{integer.}
+  \item{\code{week}}{integer.}
+  \item{\code{season_type}}{character.}
+  \item{\code{start_time}}{character.}
+  \item{\code{is_start_time_tbd}}{logical.}
+  \item{\code{home_team}}{character.}
+  \item{\code{home_conference}}{character.}
+  \item{\code{away_team}}{character.}
+  \item{\code{away_conference}}{character.}
+  \item{\code{tv}}{list.}
+  \item{\code{radio}}{logical.}
+  \item{\code{web}}{list.}
 }
 
 \code{\link[cfbfastR:cfbd_game_box_advanced]{cfbfastR::cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
 \describe{
-\item{\code{team}}{character.}
-\item{\code{plays}}{double.}
-\item{\code{ppa_overall_total}}{double.}
-\item{\code{ppa_overall_quarter1}}{double.}
-\item{\code{ppa_overall_quarter2}}{double.}
-\item{\code{ppa_overall_quarter3}}{double.}
-\item{\code{ppa_overall_quarter4}}{double.}
-\item{\code{ppa_passing_total}}{double.}
-\item{\code{ppa_passing_quarter1}}{double.}
-\item{\code{ppa_passing_quarter2}}{double.}
-\item{\code{ppa_passing_quarter3}}{double.}
-\item{\code{ppa_passing_quarter4}}{double.}
-\item{\code{ppa_rushing_total}}{double.}
-\item{\code{ppa_rushing_quarter1}}{double.}
-\item{\code{ppa_rushing_quarter2}}{double.}
-\item{\code{ppa_rushing_quarter3}}{double.}
-\item{\code{ppa_rushing_quarter4}}{double.}
-\item{\code{cumulative_ppa_plays}}{double.}
-\item{\code{cumulative_ppa_overall_total}}{double.}
-\item{\code{cumulative_ppa_overall_quarter1}}{double.}
-\item{\code{cumulative_ppa_overall_quarter2}}{double.}
-\item{\code{cumulative_ppa_overall_quarter3}}{double.}
-\item{\code{cumulative_ppa_overall_quarter4}}{double.}
-\item{\code{cumulative_ppa_passing_total}}{double.}
-\item{\code{cumulative_ppa_passing_quarter1}}{double.}
-\item{\code{cumulative_ppa_passing_quarter2}}{double.}
-\item{\code{cumulative_ppa_passing_quarter3}}{double.}
-\item{\code{cumulative_ppa_passing_quarter4}}{double.}
-\item{\code{cumulative_ppa_rushing_total}}{double.}
-\item{\code{cumulative_ppa_rushing_quarter1}}{double.}
-\item{\code{cumulative_ppa_rushing_quarter2}}{double.}
-\item{\code{cumulative_ppa_rushing_quarter3}}{double.}
-\item{\code{cumulative_ppa_rushing_quarter4}}{double.}
-\item{\code{success_rates_overall_total}}{double.}
-\item{\code{success_rates_overall_quarter1}}{double.}
-\item{\code{success_rates_overall_quarter2}}{double.}
-\item{\code{success_rates_overall_quarter3}}{double.}
-\item{\code{success_rates_overall_quarter4}}{double.}
-\item{\code{success_rates_standard_downs_total}}{double.}
-\item{\code{success_rates_standard_downs_quarter1}}{double.}
-\item{\code{success_rates_standard_downs_quarter2}}{double.}
-\item{\code{success_rates_standard_downs_quarter3}}{double.}
-\item{\code{success_rates_standard_downs_quarter4}}{double.}
-\item{\code{success_rates_passing_downs_total}}{double.}
-\item{\code{success_rates_passing_downs_quarter1}}{double.}
-\item{\code{success_rates_passing_downs_quarter2}}{double.}
-\item{\code{success_rates_passing_downs_quarter3}}{double.}
-\item{\code{success_rates_passing_downs_quarter4}}{double.}
-\item{\code{explosiveness_overall_total}}{double.}
-\item{\code{explosiveness_overall_quarter1}}{double.}
-\item{\code{explosiveness_overall_quarter2}}{double.}
-\item{\code{explosiveness_overall_quarter3}}{double.}
-\item{\code{explosiveness_overall_quarter4}}{double.}
-\item{\code{rushing_power_success}}{double.}
-\item{\code{rushing_stuff_rate}}{double.}
-\item{\code{rushing_line_yds}}{double.}
-\item{\code{rushing_line_yd_avg}}{double.}
-\item{\code{rushing_second_lvl_yds}}{double.}
-\item{\code{rushing_second_lvl_yd_avg}}{double.}
-\item{\code{rushing_open_field_yds}}{double.}
-\item{\code{rushing_open_field_yd_avg}}{double.}
-\item{\code{havoc_total}}{double.}
-\item{\code{havoc_front_seven}}{double.}
-\item{\code{havoc_db}}{double.}
-\item{\code{scoring_opps_opportunities}}{double.}
-\item{\code{scoring_opps_points}}{double.}
-\item{\code{scoring_opps_pts_per_opp}}{double.}
-\item{\code{field_pos_avg_start}}{double.}
-\item{\code{field_pos_avg_starting_predicted_pts}}{double.}
+  \item{\code{team}}{character.}
+  \item{\code{plays}}{double.}
+  \item{\code{ppa_overall_total}}{double.}
+  \item{\code{ppa_overall_quarter1}}{double.}
+  \item{\code{ppa_overall_quarter2}}{double.}
+  \item{\code{ppa_overall_quarter3}}{double.}
+  \item{\code{ppa_overall_quarter4}}{double.}
+  \item{\code{ppa_passing_total}}{double.}
+  \item{\code{ppa_passing_quarter1}}{double.}
+  \item{\code{ppa_passing_quarter2}}{double.}
+  \item{\code{ppa_passing_quarter3}}{double.}
+  \item{\code{ppa_passing_quarter4}}{double.}
+  \item{\code{ppa_rushing_total}}{double.}
+  \item{\code{ppa_rushing_quarter1}}{double.}
+  \item{\code{ppa_rushing_quarter2}}{double.}
+  \item{\code{ppa_rushing_quarter3}}{double.}
+  \item{\code{ppa_rushing_quarter4}}{double.}
+  \item{\code{cumulative_ppa_plays}}{double.}
+  \item{\code{cumulative_ppa_overall_total}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter1}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter2}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter3}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter4}}{double.}
+  \item{\code{cumulative_ppa_passing_total}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter1}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter2}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter3}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter4}}{double.}
+  \item{\code{cumulative_ppa_rushing_total}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter1}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter2}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter3}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter4}}{double.}
+  \item{\code{success_rates_overall_total}}{double.}
+  \item{\code{success_rates_overall_quarter1}}{double.}
+  \item{\code{success_rates_overall_quarter2}}{double.}
+  \item{\code{success_rates_overall_quarter3}}{double.}
+  \item{\code{success_rates_overall_quarter4}}{double.}
+  \item{\code{success_rates_standard_downs_total}}{double.}
+  \item{\code{success_rates_standard_downs_quarter1}}{double.}
+  \item{\code{success_rates_standard_downs_quarter2}}{double.}
+  \item{\code{success_rates_standard_downs_quarter3}}{double.}
+  \item{\code{success_rates_standard_downs_quarter4}}{double.}
+  \item{\code{success_rates_passing_downs_total}}{double.}
+  \item{\code{success_rates_passing_downs_quarter1}}{double.}
+  \item{\code{success_rates_passing_downs_quarter2}}{double.}
+  \item{\code{success_rates_passing_downs_quarter3}}{double.}
+  \item{\code{success_rates_passing_downs_quarter4}}{double.}
+  \item{\code{explosiveness_overall_total}}{double.}
+  \item{\code{explosiveness_overall_quarter1}}{double.}
+  \item{\code{explosiveness_overall_quarter2}}{double.}
+  \item{\code{explosiveness_overall_quarter3}}{double.}
+  \item{\code{explosiveness_overall_quarter4}}{double.}
+  \item{\code{rushing_power_success}}{double.}
+  \item{\code{rushing_stuff_rate}}{double.}
+  \item{\code{rushing_line_yds}}{double.}
+  \item{\code{rushing_line_yd_avg}}{double.}
+  \item{\code{rushing_second_lvl_yds}}{double.}
+  \item{\code{rushing_second_lvl_yd_avg}}{double.}
+  \item{\code{rushing_open_field_yds}}{double.}
+  \item{\code{rushing_open_field_yd_avg}}{double.}
+  \item{\code{havoc_total}}{double.}
+  \item{\code{havoc_front_seven}}{double.}
+  \item{\code{havoc_db}}{double.}
+  \item{\code{scoring_opps_opportunities}}{double.}
+  \item{\code{scoring_opps_points}}{double.}
+  \item{\code{scoring_opps_pts_per_opp}}{double.}
+  \item{\code{field_pos_avg_start}}{double.}
+  \item{\code{field_pos_avg_starting_predicted_pts}}{double.}
 }
 
 \code{\link[cfbfastR:cfbd_game_player_stats]{cfbfastR::cfbd_game_player_stats()}} - A data frame with 32 variables:
 \describe{
-\item{\code{game_id}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{home_away}}{character.}
-\item{\code{points}}{integer.}
-\item{\code{category}}{character.}
-\item{\code{athlete_id}}{character.}
-\item{\code{name}}{character.}
-\item{\code{c_att}}{character.}
-\item{\code{yds}}{double.}
-\item{\code{avg}}{double.}
-\item{\code{td}}{double.}
-\item{\code{int}}{double.}
-\item{\code{qbr}}{double.}
-\item{\code{car}}{double.}
-\item{\code{long}}{double.}
-\item{\code{rec}}{double.}
-\item{\code{no}}{double.}
-\item{\code{fg}}{character.}
-\item{\code{pct}}{double.}
-\item{\code{xp}}{character.}
-\item{\code{pts}}{double.}
-\item{\code{tb}}{double.}
-\item{\code{in_20}}{double.}
-\item{\code{fum}}{double.}
-\item{\code{lost}}{double.}
-\item{\code{tot}}{double.}
-\item{\code{solo}}{double.}
-\item{\code{sacks}}{double.}
-\item{\code{tfl}}{double.}
-\item{\code{pd}}{double.}
-\item{\code{qb_hur}}{double.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{home_away}}{character.}
+  \item{\code{points}}{integer.}
+  \item{\code{category}}{character.}
+  \item{\code{athlete_id}}{character.}
+  \item{\code{name}}{character.}
+  \item{\code{c_att}}{character.}
+  \item{\code{yds}}{double.}
+  \item{\code{avg}}{double.}
+  \item{\code{td}}{double.}
+  \item{\code{int}}{double.}
+  \item{\code{qbr}}{double.}
+  \item{\code{car}}{double.}
+  \item{\code{long}}{double.}
+  \item{\code{rec}}{double.}
+  \item{\code{no}}{double.}
+  \item{\code{fg}}{character.}
+  \item{\code{pct}}{double.}
+  \item{\code{xp}}{character.}
+  \item{\code{pts}}{double.}
+  \item{\code{tb}}{double.}
+  \item{\code{in_20}}{double.}
+  \item{\code{fum}}{double.}
+  \item{\code{lost}}{double.}
+  \item{\code{tot}}{double.}
+  \item{\code{solo}}{double.}
+  \item{\code{sacks}}{double.}
+  \item{\code{tfl}}{double.}
+  \item{\code{pd}}{double.}
+  \item{\code{qb_hur}}{double.}
 }
 
 \code{\link[cfbfastR:cfbd_game_records]{cfbfastR::cfbd_game_records()}} - A data frame with 20 variables:
 \describe{
-\item{\code{year}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{division}}{character.}
-\item{\code{total_games}}{integer.}
-\item{\code{total_wins}}{integer.}
-\item{\code{total_losses}}{integer.}
-\item{\code{total_ties}}{integer.}
-\item{\code{conference_games}}{integer.}
-\item{\code{conference_wins}}{integer.}
-\item{\code{conference_losses}}{integer.}
-\item{\code{conference_ties}}{integer.}
-\item{\code{home_games}}{integer.}
-\item{\code{home_wins}}{integer.}
-\item{\code{home_losses}}{integer.}
-\item{\code{home_ties}}{integer.}
-\item{\code{away_games}}{integer.}
-\item{\code{away_wins}}{integer.}
-\item{\code{away_losses}}{integer.}
-\item{\code{away_ties}}{integer.}
+  \item{\code{year}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{division}}{character.}
+  \item{\code{total_games}}{integer.}
+  \item{\code{total_wins}}{integer.}
+  \item{\code{total_losses}}{integer.}
+  \item{\code{total_ties}}{integer.}
+  \item{\code{conference_games}}{integer.}
+  \item{\code{conference_wins}}{integer.}
+  \item{\code{conference_losses}}{integer.}
+  \item{\code{conference_ties}}{integer.}
+  \item{\code{home_games}}{integer.}
+  \item{\code{home_wins}}{integer.}
+  \item{\code{home_losses}}{integer.}
+  \item{\code{home_ties}}{integer.}
+  \item{\code{away_games}}{integer.}
+  \item{\code{away_wins}}{integer.}
+  \item{\code{away_losses}}{integer.}
+  \item{\code{away_ties}}{integer.}
 }
 
 \code{\link[cfbfastR:cfbd_game_team_stats]{cfbfastR::cfbd_game_team_stats()}} - A data frame with 78 variables:
 \describe{
-\item{\code{game_id}}{integer.}
-\item{\code{school}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{home_away}}{character.}
-\item{\code{points}}{integer.}
-\item{\code{total_yards}}{character.}
-\item{\code{net_passing_yards}}{character.}
-\item{\code{completion_attempts}}{character.}
-\item{\code{passing_tds}}{character.}
-\item{\code{yards_per_pass}}{character.}
-\item{\code{passes_intercepted}}{character.}
-\item{\code{interception_yards}}{character.}
-\item{\code{interception_tds}}{character.}
-\item{\code{rushing_attempts}}{character.}
-\item{\code{rushing_yards}}{character.}
-\item{\code{rush_tds}}{character.}
-\item{\code{yards_per_rush_attempt}}{character.}
-\item{\code{first_downs}}{character.}
-\item{\code{third_down_eff}}{character.}
-\item{\code{fourth_down_eff}}{character.}
-\item{\code{punt_returns}}{character.}
-\item{\code{punt_return_yards}}{character.}
-\item{\code{punt_return_tds}}{character.}
-\item{\code{kick_return_yards}}{character.}
-\item{\code{kick_return_tds}}{character.}
-\item{\code{kick_returns}}{character.}
-\item{\code{kicking_points}}{character.}
-\item{\code{fumbles_recovered}}{character.}
-\item{\code{fumbles_lost}}{character.}
-\item{\code{total_fumbles}}{character.}
-\item{\code{tackles}}{character.}
-\item{\code{tackles_for_loss}}{character.}
-\item{\code{sacks}}{character.}
-\item{\code{qb_hurries}}{character.}
-\item{\code{interceptions}}{character.}
-\item{\code{passes_deflected}}{character.}
-\item{\code{turnovers}}{character.}
-\item{\code{defensive_tds}}{character.}
-\item{\code{total_penalties_yards}}{character.}
-\item{\code{possession_time}}{character.}
-\item{\code{conference_allowed}}{character.}
-\item{\code{home_away_allowed}}{character.}
-\item{\code{points_allowed}}{integer.}
-\item{\code{total_yards_allowed}}{character.}
-\item{\code{net_passing_yards_allowed}}{character.}
-\item{\code{completion_attempts_allowed}}{character.}
-\item{\code{passing_tds_allowed}}{character.}
-\item{\code{yards_per_pass_allowed}}{character.}
-\item{\code{passes_intercepted_allowed}}{character.}
-\item{\code{interception_yards_allowed}}{character.}
-\item{\code{interception_tds_allowed}}{character.}
-\item{\code{rushing_attempts_allowed}}{character.}
-\item{\code{rushing_yards_allowed}}{character.}
-\item{\code{rush_tds_allowed}}{character.}
-\item{\code{yards_per_rush_attempt_allowed}}{character.}
-\item{\code{first_downs_allowed}}{character.}
-\item{\code{third_down_eff_allowed}}{character.}
-\item{\code{fourth_down_eff_allowed}}{character.}
-\item{\code{punt_returns_allowed}}{character.}
-\item{\code{punt_return_yards_allowed}}{character.}
-\item{\code{punt_return_tds_allowed}}{character.}
-\item{\code{kick_return_yards_allowed}}{character.}
-\item{\code{kick_return_tds_allowed}}{character.}
-\item{\code{kick_returns_allowed}}{character.}
-\item{\code{kicking_points_allowed}}{character.}
-\item{\code{fumbles_recovered_allowed}}{character.}
-\item{\code{fumbles_lost_allowed}}{character.}
-\item{\code{total_fumbles_allowed}}{character.}
-\item{\code{tackles_allowed}}{character.}
-\item{\code{tackles_for_loss_allowed}}{character.}
-\item{\code{sacks_allowed}}{character.}
-\item{\code{qb_hurries_allowed}}{character.}
-\item{\code{interceptions_allowed}}{character.}
-\item{\code{passes_deflected_allowed}}{character.}
-\item{\code{turnovers_allowed}}{character.}
-\item{\code{defensive_tds_allowed}}{character.}
-\item{\code{total_penalties_yards_allowed}}{character.}
-\item{\code{possession_time_allowed}}{character.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{school}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{home_away}}{character.}
+  \item{\code{points}}{integer.}
+  \item{\code{total_yards}}{character.}
+  \item{\code{net_passing_yards}}{character.}
+  \item{\code{completion_attempts}}{character.}
+  \item{\code{passing_tds}}{character.}
+  \item{\code{yards_per_pass}}{character.}
+  \item{\code{passes_intercepted}}{character.}
+  \item{\code{interception_yards}}{character.}
+  \item{\code{interception_tds}}{character.}
+  \item{\code{rushing_attempts}}{character.}
+  \item{\code{rushing_yards}}{character.}
+  \item{\code{rush_tds}}{character.}
+  \item{\code{yards_per_rush_attempt}}{character.}
+  \item{\code{first_downs}}{character.}
+  \item{\code{third_down_eff}}{character.}
+  \item{\code{fourth_down_eff}}{character.}
+  \item{\code{punt_returns}}{character.}
+  \item{\code{punt_return_yards}}{character.}
+  \item{\code{punt_return_tds}}{character.}
+  \item{\code{kick_return_yards}}{character.}
+  \item{\code{kick_return_tds}}{character.}
+  \item{\code{kick_returns}}{character.}
+  \item{\code{kicking_points}}{character.}
+  \item{\code{fumbles_recovered}}{character.}
+  \item{\code{fumbles_lost}}{character.}
+  \item{\code{total_fumbles}}{character.}
+  \item{\code{tackles}}{character.}
+  \item{\code{tackles_for_loss}}{character.}
+  \item{\code{sacks}}{character.}
+  \item{\code{qb_hurries}}{character.}
+  \item{\code{interceptions}}{character.}
+  \item{\code{passes_deflected}}{character.}
+  \item{\code{turnovers}}{character.}
+  \item{\code{defensive_tds}}{character.}
+  \item{\code{total_penalties_yards}}{character.}
+  \item{\code{possession_time}}{character.}
+  \item{\code{conference_allowed}}{character.}
+  \item{\code{home_away_allowed}}{character.}
+  \item{\code{points_allowed}}{integer.}
+  \item{\code{total_yards_allowed}}{character.}
+  \item{\code{net_passing_yards_allowed}}{character.}
+  \item{\code{completion_attempts_allowed}}{character.}
+  \item{\code{passing_tds_allowed}}{character.}
+  \item{\code{yards_per_pass_allowed}}{character.}
+  \item{\code{passes_intercepted_allowed}}{character.}
+  \item{\code{interception_yards_allowed}}{character.}
+  \item{\code{interception_tds_allowed}}{character.}
+  \item{\code{rushing_attempts_allowed}}{character.}
+  \item{\code{rushing_yards_allowed}}{character.}
+  \item{\code{rush_tds_allowed}}{character.}
+  \item{\code{yards_per_rush_attempt_allowed}}{character.}
+  \item{\code{first_downs_allowed}}{character.}
+  \item{\code{third_down_eff_allowed}}{character.}
+  \item{\code{fourth_down_eff_allowed}}{character.}
+  \item{\code{punt_returns_allowed}}{character.}
+  \item{\code{punt_return_yards_allowed}}{character.}
+  \item{\code{punt_return_tds_allowed}}{character.}
+  \item{\code{kick_return_yards_allowed}}{character.}
+  \item{\code{kick_return_tds_allowed}}{character.}
+  \item{\code{kick_returns_allowed}}{character.}
+  \item{\code{kicking_points_allowed}}{character.}
+  \item{\code{fumbles_recovered_allowed}}{character.}
+  \item{\code{fumbles_lost_allowed}}{character.}
+  \item{\code{total_fumbles_allowed}}{character.}
+  \item{\code{tackles_allowed}}{character.}
+  \item{\code{tackles_for_loss_allowed}}{character.}
+  \item{\code{sacks_allowed}}{character.}
+  \item{\code{qb_hurries_allowed}}{character.}
+  \item{\code{interceptions_allowed}}{character.}
+  \item{\code{passes_deflected_allowed}}{character.}
+  \item{\code{turnovers_allowed}}{character.}
+  \item{\code{defensive_tds_allowed}}{character.}
+  \item{\code{total_penalties_yards_allowed}}{character.}
+  \item{\code{possession_time_allowed}}{character.}
 }
 }
 \description{
@@ -390,35 +390,36 @@ Get Team Statistics by Game
 
 cfbd_game_info(2018, week = 1)
 
-cfbd_game_info(2018, week = 7, conference = 'Ind')
+cfbd_game_info(2018, week = 7, conference = "Ind")
 
-#7 OTs LSU @ TAMU
-cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores=TRUE)
-
+# 7 OTs LSU @ TAMU
+cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
 \dontrun{
-  cfbd_calendar(2019)
+cfbd_calendar(2019)
 }
 
-cfbd_game_media(2019, week = 4, conference = 'ACC')
 
+cfbd_game_media(2019, week = 4, conference = "ACC")
 
 cfbd_game_box_advanced(game_id = 401114233)
+\dontrun{
+cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+
+cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+}
 
 \dontrun{
-  cfbd_game_player_stats(2018, week = 15, conference = 'Ind')
+cfbd_game_records(2018, team = "Notre Dame")
 
-  cfbd_game_player_stats(2013, week=1, team = "Florida State", category = 'passing')
+cfbd_game_records(2013, team = "Florida State")
 }
+
 \dontrun{
-  cfbd_game_records(2018, team = 'Notre Dame')
+cfbd_game_team_stats(2019, team = "LSU")
 
-  cfbd_game_records(2013, team = "Florida State")
+cfbd_game_team_stats(2013, team = "Florida State")
 }
-\dontrun{
-  cfbd_game_team_stats(2019, team = 'LSU')
 
-  cfbd_game_team_stats(2013, team = "Florida State")
-}
 }
 \keyword{Advanced}
 \keyword{Box}

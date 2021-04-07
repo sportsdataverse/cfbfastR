@@ -33,9 +33,6 @@
 cfbd_venues <- function() {
   full_url <- "https://api.collegefootballdata.com/venues"
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 

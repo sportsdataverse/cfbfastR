@@ -43,7 +43,6 @@ NULL
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/players}
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -65,15 +64,7 @@ cfbd_recruiting_player <- function(year = NULL,
                                    recruit_type = "HighSchool",
                                    state = NULL,
                                    position = NULL) {
-  args <- list(
-    year = year,
-    team = team
-  )
-
-  # Check that at least one argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY) - Min: 2000, Max: 2020\n or team"
-  )
+  
   # Position Group vector to check arguments against
   pos_groups <- c(
     "PRO", "DUAL", "RB", "FB", "TE", "OT", "OG", "OC", "WR",
@@ -123,9 +114,6 @@ cfbd_recruiting_player <- function(year = NULL,
     "&position=", position,
     "&state=", state
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -197,7 +185,6 @@ cfbd_recruiting_player <- function(year = NULL,
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/groups}
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -258,9 +245,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
     "&conference=",
     conference
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -326,7 +310,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/teams}
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -346,13 +329,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'
 cfbd_recruiting_team <- function(year = NULL,
                                  team = NULL) {
-  args <- list(year = year, team = team)
-
-  # Check that at least one argument is not null
-  attempt::stop_if_all(args, is.null,
-    msg = "You need to specify at least one argument: \nyear, as integer in 4 digit format (YYYY) - Min: 2000, Max: 2020\n or team"
-  )
-
+  
   if (!is.null(year)) {
     ## check if year is numeric
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -376,9 +353,6 @@ cfbd_recruiting_team <- function(year = NULL,
     "year=", year,
     "&team=", team
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

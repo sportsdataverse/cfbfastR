@@ -27,7 +27,6 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/coaches}
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -93,9 +92,6 @@ cfbd_coaches <- function(first = NULL,
     "&minYear=", min_year,
     "&maxYear=", max_year
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

@@ -133,9 +133,6 @@ cfbd_betting_lines <- function(game_id = NULL,
     "&conference=", conference
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 

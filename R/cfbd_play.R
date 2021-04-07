@@ -101,8 +101,6 @@ cfbd_plays <- function(year = 2020,
     "&defenseConference=", defense_conference,
     "&seasonType=", season_type
   )
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -287,9 +285,6 @@ cfbd_play_stats_player <- function(year = NULL,
     "&statTypeId=", stat_type_id,
     "&seasonType=", season_type
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -504,9 +499,6 @@ cfbd_play_stats_player <- function(year = NULL,
 cfbd_play_stats_types <- function() {
   full_url <- "https://api.collegefootballdata.com/play/stat/types"
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -561,9 +553,6 @@ cfbd_play_stats_types <- function() {
 
 cfbd_play_types <- function() {
   full_url <- "https://api.collegefootballdata.com/play/types"
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

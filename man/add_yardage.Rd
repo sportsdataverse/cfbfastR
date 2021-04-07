@@ -7,10 +7,10 @@
 add_yardage(play_df)
 }
 \arguments{
-\item{play_df}{(\emph{data.frame} required) Extracts yardage information from Play-by-Play data frame, as pulled from \code{cfbd_pbp_data()}}
+\item{play_df}{(\emph{data.frame} required) Extracts yardage information from Play-by-Play data frame, as pulled from `cfbd_pbp_data()`}
 }
 \value{
-The original \code{play_df} with the following columns appended to it:
+The original `play_df` with the following columns appended to it:
 \describe{
 \item{yds_rushed}{.}
 \item{yds_receiving}{.}
@@ -29,25 +29,25 @@ Add yardage extracted from play text
 \details{
 Cleans CFB (D-I) Drive-By-Drive Data to create yardage column. Requires the following columns be present:
 \describe{
-\item{play_text}{.}
-\item{play_type}{.}
-\item{rush}{.}
-\item{pass}{.}
-\item{int}{.}
-\item{int_td}{.}
-\item{kickoff_play}{.}
-\item{kickoff_tb}{.}
-\item{kickoff_downed}{.}
-\item{kickoff_fair_catch}{.}
-\item{fumble_vec}{.}
-\item{sack}{.}
-\item{punt}{.}
-\item{punt_tb}{.}
-\item{punt_downed}{.}
-\item{punt_fair_catch}{.}
-\item{punt_oob}{.}
-\item{punt_blocked}{.}
-\item{penalty_detail}{.}
+ \item{play_text}{.}
+ \item{play_type}{.}
+ \item{rush}{.}
+ \item{pass}{.}
+ \item{int}{.}
+ \item{int_td}{.}
+ \item{kickoff_play}{.}
+ \item{kickoff_tb}{.}
+ \item{kickoff_downed}{.}
+ \item{kickoff_fair_catch}{.}
+ \item{fumble_vec}{.}
+ \item{sack}{.}
+ \item{punt}{.}
+ \item{punt_tb}{.}
+ \item{punt_downed}{.}
+ \item{punt_fair_catch}{.}
+ \item{punt_oob}{.}
+ \item{punt_blocked}{.}
+ \item{penalty_detail}{.}
 }
 }
 \keyword{internal}

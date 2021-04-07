@@ -7,10 +7,10 @@
 add_player_cols(pbp)
 }
 \arguments{
-\item{play_df}{(\emph{data.frame} required) Extracts player name information from Play-by-Play data frame, as pulled from \code{cfbd_pbp_data()}}
+\item{play_df}{(\emph{data.frame} required) Extracts player name information from Play-by-Play data frame, as pulled from `cfbd_pbp_data()`}
 }
 \value{
-The original \code{pbp} with the following columns appended to it:
+The original `pbp` with the following columns appended to it:
 \describe{
 \item{rusher_player_name}{.}
 \item{receiver_player_name}{.}

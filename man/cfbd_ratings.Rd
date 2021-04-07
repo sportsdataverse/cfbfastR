@@ -41,87 +41,87 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 \code{\link[cfbfastR:cfbd_rankings]{cfbfastR::cfbd_rankings()}} - A data frame with 9 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{season_type}}{character.}
-\item{\code{week}}{integer.}
-\item{\code{poll}}{character.}
-\item{\code{rank}}{integer.}
-\item{\code{school}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{first_place_votes}}{integer.}
-\item{\code{points}}{integer.}
+  \item{\code{season}}{integer.}
+  \item{\code{season_type}}{character.}
+  \item{\code{week}}{integer.}
+  \item{\code{poll}}{character.}
+  \item{\code{rank}}{integer.}
+  \item{\code{school}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{first_place_votes}}{integer.}
+  \item{\code{points}}{integer.}
 }
 
 \code{\link[cfbfastR:cfbd_ratings_sp]{cfbfastR::cfbd_ratings_sp()}} - A data frame with 26 variables:
 \describe{
-\item{\code{year}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{rating}}{double.}
-\item{\code{ranking}}{integer.}
-\item{\code{second_order_wins}}{logical.}
-\item{\code{sos}}{logical.}
-\item{\code{offense_ranking}}{integer.}
-\item{\code{offense_rating}}{double.}
-\item{\code{offense_success}}{logical.}
-\item{\code{offense_explosiveness}}{logical.}
-\item{\code{offense_rushing}}{logical.}
-\item{\code{offense_passing}}{logical.}
-\item{\code{offense_standard_downs}}{logical.}
-\item{\code{offense_passing_downs}}{logical.}
-\item{\code{offense_run_rate}}{logical.}
-\item{\code{offense_pace}}{logical.}
-\item{\code{defense_ranking}}{integer.}
-\item{\code{defense_rating}}{double.}
-\item{\code{defense_success}}{logical.}
-\item{\code{defense_explosiveness}}{logical.}
-\item{\code{defense_rushing}}{logical.}
-\item{\code{defense_passing}}{logical.}
-\item{\code{defense_standard_downs}}{logical.}
-\item{\code{defense_passing_downs}}{logical.}
-\item{\code{defense_havoc_total}}{logical.}
-\item{\code{defense_havoc_front_seven}}{logical.}
-\item{\code{defense_havoc_db}}{logical.}
-\item{\code{special_teams_rating}}{double.}
+  \item{\code{year}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{rating}}{double.}
+  \item{\code{ranking}}{integer.}
+  \item{\code{second_order_wins}}{logical.}
+  \item{\code{sos}}{logical.}
+  \item{\code{offense_ranking}}{integer.}
+  \item{\code{offense_rating}}{double.}
+  \item{\code{offense_success}}{logical.}
+  \item{\code{offense_explosiveness}}{logical.}
+  \item{\code{offense_rushing}}{logical.}
+  \item{\code{offense_passing}}{logical.}
+  \item{\code{offense_standard_downs}}{logical.}
+  \item{\code{offense_passing_downs}}{logical.}
+  \item{\code{offense_run_rate}}{logical.}
+  \item{\code{offense_pace}}{logical.}
+  \item{\code{defense_ranking}}{integer.}
+  \item{\code{defense_rating}}{double.}
+  \item{\code{defense_success}}{logical.}
+  \item{\code{defense_explosiveness}}{logical.}
+  \item{\code{defense_rushing}}{logical.}
+  \item{\code{defense_passing}}{logical.}
+  \item{\code{defense_standard_downs}}{logical.}
+  \item{\code{defense_passing_downs}}{logical.}
+  \item{\code{defense_havoc_total}}{logical.}
+  \item{\code{defense_havoc_front_seven}}{logical.}
+  \item{\code{defense_havoc_db}}{logical.}
+  \item{\code{special_teams_rating}}{double.}
 }
 
 \code{\link[cfbfastR:cfbd_ratings_sp_conference]{cfbfastR::cfbd_ratings_sp_conference()}} - A data frame with 25 variables:
 \describe{
-\item{\code{year}}{integer.}
-\item{\code{conference}}{character.}
-\item{\code{rating}}{double.}
-\item{\code{second_order_wins}}{logical.}
-\item{\code{sos}}{logical.}
-\item{\code{offense_rating}}{double.}
-\item{\code{offense_success}}{logical.}
-\item{\code{offense_explosiveness}}{logical.}
-\item{\code{offense_rushing}}{logical.}
-\item{\code{offense_passing}}{logical.}
-\item{\code{offense_standard_downs}}{logical.}
-\item{\code{offense_passing_downs}}{logical.}
-\item{\code{offense_run_rate}}{logical.}
-\item{\code{offense_pace}}{logical.}
-\item{\code{defense_rating}}{double.}
-\item{\code{defense_success}}{logical.}
-\item{\code{defense_explosiveness}}{logical.}
-\item{\code{defense_rushing}}{logical.}
-\item{\code{defense_passing}}{logical.}
-\item{\code{defense_standard_downs}}{logical.}
-\item{\code{defense_passing_downs}}{logical.}
-\item{\code{defense_havoc_total}}{logical.}
-\item{\code{defense_havoc_front_seven}}{logical.}
-\item{\code{defense_havoc_db}}{logical.}
-\item{\code{special_teams_rating}}{double.}
+  \item{\code{year}}{integer.}
+  \item{\code{conference}}{character.}
+  \item{\code{rating}}{double.}
+  \item{\code{second_order_wins}}{logical.}
+  \item{\code{sos}}{logical.}
+  \item{\code{offense_rating}}{double.}
+  \item{\code{offense_success}}{logical.}
+  \item{\code{offense_explosiveness}}{logical.}
+  \item{\code{offense_rushing}}{logical.}
+  \item{\code{offense_passing}}{logical.}
+  \item{\code{offense_standard_downs}}{logical.}
+  \item{\code{offense_passing_downs}}{logical.}
+  \item{\code{offense_run_rate}}{logical.}
+  \item{\code{offense_pace}}{logical.}
+  \item{\code{defense_rating}}{double.}
+  \item{\code{defense_success}}{logical.}
+  \item{\code{defense_explosiveness}}{logical.}
+  \item{\code{defense_rushing}}{logical.}
+  \item{\code{defense_passing}}{logical.}
+  \item{\code{defense_standard_downs}}{logical.}
+  \item{\code{defense_passing_downs}}{logical.}
+  \item{\code{defense_havoc_total}}{logical.}
+  \item{\code{defense_havoc_front_seven}}{logical.}
+  \item{\code{defense_havoc_db}}{logical.}
+  \item{\code{special_teams_rating}}{double.}
 }
 
 \code{\link[cfbfastR:cfbd_ratings_srs]{cfbfastR::cfbd_ratings_srs()}} - A data frame with 6 variables:
 \describe{
-\item{\code{year}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{division}}{logical.}
-\item{\code{rating}}{double.}
-\item{\code{ranking}}{integer.}
+  \item{\code{year}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{division}}{logical.}
+  \item{\code{rating}}{double.}
+  \item{\code{ranking}}{integer.}
 }
 }
 \description{
@@ -133,31 +133,35 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 }
 \examples{
 \dontrun{
-  cfbd_rankings(year = 2019, week = 12)
+cfbd_rankings(year = 2019, week = 12)
 
-  cfbd_rankings(year = 2018, week = 14)
+cfbd_rankings(year = 2018, week = 14)
 
-  cfbd_rankings(year = 2013, season_type = 'postseason')
+cfbd_rankings(year = 2013, season_type = "postseason")
 }
+
 \dontrun{
-  cfbd_ratings_sp(year = 2019)
+cfbd_ratings_sp(year = 2019)
 
-  cfbd_ratings_sp(team = 'Texas A&M')
+cfbd_ratings_sp(team = "Texas A&M")
 
-  cfbd_ratings_sp(year= 2019, team = "Texas")
+cfbd_ratings_sp(year = 2019, team = "Texas")
 }
+
 \dontrun{
-  cfbd_ratings_sp_conference(year = 2019)
+cfbd_ratings_sp_conference(year = 2019)
 
-  cfbd_ratings_sp_conference(year = 2012, conference = 'SEC')
+cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
 
-  cfbd_ratings_sp_conference(year = 2016, conference = 'ACC')
+cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 }
+
 \dontrun{
-  cfbd_ratings_srs(year = 2019, team = "Texas")
+cfbd_ratings_srs(year = 2019, team = "Texas")
 
-  cfbd_ratings_srs(year = 2018, conference = 'SEC')
+cfbd_ratings_srs(year = 2018, conference = "SEC")
 }
+
 }
 \keyword{CFB}
 \keyword{Rankings}

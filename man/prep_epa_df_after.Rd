@@ -7,42 +7,42 @@
 prep_epa_df_after(dat)
 }
 \arguments{
-\item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from \code{cfbd_pbp_dat()}}
+\item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`}
 }
 \value{
-\code{dat} with the following columns appended/modified:
+`dat` with the following columns appended/modified:
 \itemize{
-\item{turnover_indicator}{.}
-\item{down}{.}
-\item{new_id}{.}
-\item{new_down}{.}
-\item{distance}{.}
-\item{yards_to_goal}{.}
-\item{yards_gained}{.}
-\item{turnover}{.}
-\item{drive_start_yards_to_goal}{.}
-\item{end_of_half}{.}
-\item{new_yardline}{.}
-\item{new_distance}{.}
-\item{new_log_ydstogo}{.}
-\item{new_Goal_To_Go}{.}
-\item{new_TimeSecsRem}{.}
-\item{new_Under_two}{.}
-\item{first_by_penalty}{.}
-\item{lag_first_by_penalty}{.}
-\item{lag_first_by_penalty2}{.}
-\item{first_by_yards}{.}
-\item{lag_first_by_yards}{.}
-\item{lag_first_by_yards2}{.}
-\item{row}{.}
-\item{new_series}{.}
-\item{firstD_by_kickoff}{.}
-\item{firstD_by_poss}{.}
-\item{firstD_by_yards}{.}
-\item{firstD_by_penalty}{.}
-\item{yds_punted}{.}
-\item{yds_punt_gained}{.}
-\item{missing_yard_flag}{.}
+ \item{turnover_indicator}{.}
+ \item{down}{.}
+ \item{new_id}{.}
+ \item{new_down}{.}
+ \item{distance}{.}
+ \item{yards_to_goal}{.}
+ \item{yards_gained}{.}
+ \item{turnover}{.}
+ \item{drive_start_yards_to_goal}{.}
+ \item{end_of_half}{.}
+ \item{new_yardline}{.}
+ \item{new_distance}{.}
+ \item{new_log_ydstogo}{.}
+ \item{new_Goal_To_Go}{.}
+ \item{new_TimeSecsRem}{.}
+ \item{new_Under_two}{.}
+ \item{first_by_penalty}{.}
+ \item{lag_first_by_penalty}{.}
+ \item{lag_first_by_penalty2}{.}
+ \item{first_by_yards}{.}
+ \item{lag_first_by_yards}{.}
+ \item{lag_first_by_yards2}{.}
+ \item{row}{.}
+ \item{new_series}{.}
+ \item{firstD_by_kickoff}{.}
+ \item{firstD_by_poss}{.}
+ \item{firstD_by_yards}{.}
+ \item{firstD_by_penalty}{.}
+ \item{yds_punted}{.}
+ \item{yds_punt_gained}{.}
+ \item{missing_yard_flag}{.}
 }
 }
 \description{

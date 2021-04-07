@@ -42,11 +42,9 @@ or 'PrepSchool'  - For position group information}
 \item{state}{(\emph{String} optional): Two letter State abbreviation}
 
 \item{position}{(\emph{String} optional): Position Group  - options include:\cr
-\itemize{
-\item Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
-\item Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
-\item Special Teams: 'K', 'P'\cr
-}}
+* Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
+* Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
+* Special Teams: 'K', 'P'\cr}
 
 \item{start_year}{(\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
 
@@ -59,39 +57,39 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 \code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} - A data frame with 14 variables:
 \describe{
-\item{\code{recruit_type}}{character.}
-\item{\code{year}}{integer.}
-\item{\code{ranking}}{integer.}
-\item{\code{name}}{character.}
-\item{\code{school}}{character.}
-\item{\code{committed_to}}{character.}
-\item{\code{position}}{character.}
-\item{\code{height}}{double.}
-\item{\code{weight}}{integer.}
-\item{\code{stars}}{integer.}
-\item{\code{rating}}{double.}
-\item{\code{city}}{character.}
-\item{\code{state_province}}{character.}
-\item{\code{country}}{character.}
+  \item{\code{recruit_type}}{character.}
+  \item{\code{year}}{integer.}
+  \item{\code{ranking}}{integer.}
+  \item{\code{name}}{character.}
+  \item{\code{school}}{character.}
+  \item{\code{committed_to}}{character.}
+  \item{\code{position}}{character.}
+  \item{\code{height}}{double.}
+  \item{\code{weight}}{integer.}
+  \item{\code{stars}}{integer.}
+  \item{\code{rating}}{double.}
+  \item{\code{city}}{character.}
+  \item{\code{state_province}}{character.}
+  \item{\code{country}}{character.}
 }
 
 \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} - A data frame with 7 variables:
 \describe{
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{position_group}}{character.}
-\item{\code{avg_rating}}{double.}
-\item{\code{total_rating}}{double.}
-\item{\code{commits}}{integer.}
-\item{\code{avg_stars}}{double.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{position_group}}{character.}
+  \item{\code{avg_rating}}{double.}
+  \item{\code{total_rating}}{double.}
+  \item{\code{commits}}{integer.}
+  \item{\code{avg_stars}}{double.}
 }
 
 \code{\link[cfbfastR:cfbd_recruiting_team]{cfbfastR::cfbd_recruiting_team()}} - A data frame with 4 variables:
 \describe{
-\item{\code{year}}{integer.}
-\item{\code{rank}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{points}}{character.}
+  \item{\code{year}}{integer.}
+  \item{\code{rank}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{points}}{character.}
 }
 }
 \description{
@@ -126,27 +124,30 @@ time period for all FBS teams, please see the \code{\link[cfbfastR:cfbd_recruiti
 }
 \examples{
 \dontrun{
-  cfbd_recruiting_player(2018, team = "Texas")
+cfbd_recruiting_player(2018, team = "Texas")
 
-  cfbd_recruiting_player(2016, recruit_type = 'JUCO')
+cfbd_recruiting_player(2016, recruit_type = "JUCO")
 
-  cfbd_recruiting_player(2020, recruit_type = 'HighSchool', position = 'OT', state = 'FL')
+cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 }
+
 \dontrun{
-  cfbd_recruiting_position(2018, team="Texas")
+cfbd_recruiting_position(2018, team = "Texas")
 
-  cfbd_recruiting_position(2016, 2020, team="Virginia")
+cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
-  cfbd_recruiting_position(2015, 2020, conference = "SEC")
+cfbd_recruiting_position(2015, 2020, conference = "SEC")
 }
+
 \dontrun{
-  cfbd_recruiting_team(2018, team = "Texas")
+cfbd_recruiting_team(2018, team = "Texas")
 
-  cfbd_recruiting_team(2016, team = "Virginia")
+cfbd_recruiting_team(2016, team = "Virginia")
 
-  cfbd_recruiting_team(2016, team = "Texas A&M")
+cfbd_recruiting_team(2016, team = "Texas A&M")
 
-  cfbd_recruiting_team(2011)
+cfbd_recruiting_team(2011)
 }
+
 }
 \keyword{Recruiting}

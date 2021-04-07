@@ -14,11 +14,11 @@ epa_fg_probs(
 \arguments{
 \item{current_probs}{(\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction}
 
-\item{ep_model}{(\emph{model}, default \code{cfbfastR:::ep_model}): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
+\item{ep_model}{(\emph{model}, default `cfbfastR:::ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 
-\item{fg_mod}{(\emph{model}, default \code{cfbfastR:::fg_model}): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
+\item{fg_mod}{(\emph{model}, default `cfbfastR:::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 
-\item{df}{(\emph{data.frame} required): Clean Play-By-Play data.frame as can be pulled from \code{cfbd_pbp_dat()}}
+\item{df}{(\emph{data.frame} required): Clean Play-By-Play data.frame as can be pulled from `cfbd_pbp_dat()`}
 }
 \description{
 Extracts raw game by game data.

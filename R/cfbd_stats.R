@@ -26,9 +26,6 @@ NULL
 cfbd_stats_categories <- function() {
   full_url <- "https://api.collegefootballdata.com/stats/categories"
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -211,9 +208,6 @@ cfbd_stats_game_advanced <- function(year,
     "&excludeGarbageTime=", excl_garbage_time,
     "&seasonType=", season_type
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -438,9 +432,6 @@ cfbd_stats_season_advanced <- function(year,
     "&startWeek=", start_week,
     "&endWeek=", end_week
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -681,9 +672,6 @@ cfbd_stats_season_player <- function(year,
     "&category=", category
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -919,9 +907,6 @@ cfbd_stats_season_team <- function(year,
     "&team=", team,
     "&conference=", conference
   )
-
-  # Check for internet
-  check_internet()
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)

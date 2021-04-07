@@ -440,9 +440,6 @@ cfbd_pbp_data <- function(year,
     "&playType=", pt_id
   )
 
-  # Check for internet
-  check_internet()
-
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 

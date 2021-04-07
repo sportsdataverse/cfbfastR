@@ -1,21 +1,14 @@
-#' Utilities and Helpers for package
-#' @keywords Internal
-#' @importFrom attempt stop_if_not
-#' @importFrom curl has_internet
-#'
-check_internet <- function() {
-  stop_if_not(.x = has_internet(), msg = "Please check your internet connexion")
-}
+
 
 #' @keywords Internal
 #' @importFrom httr status_code
 #'
 check_status <- function(res) {
-  stop_if_not(
-    .x = status_code(res),
-    .p = ~ .x == 200,
-    msg = "The API returned an error"
-  )
+  
+    x = status_code(res)
+    
+    if(x != 200) stop("The API returned an error", call. = FALSE) 
+  
 }
 # The function `message_completed` to create the green "...completed" message
 # only exists to hide the option `in_builder` in dots
@@ -57,18 +50,19 @@ rule_footer <- function(x) {
 }
 
 # Load cleaned pbp from the data repo -------------------------------------
-
+current_year <- as.double(substr(Sys.Date(), 1, 4))
+current_month <- as.double(substr(Sys.Date(), 6, 7))
 # helper that loads multiple seasons from the datarepo either into memory
 # or writes it into a db using some forwarded arguments in the dots
 load_pbp <- function(seasons, in_db = FALSE, ...) {
   most_recent <- dplyr::if_else(
-    lubridate::month(lubridate::today("America/New_York")) >= 9,
-    lubridate::year(lubridate::today("America/New_York")),
-    lubridate::year(lubridate::today("America/New_York")) - 1
+    as.double(substr(Sys.Date(), 6, 7)) >= 9,
+    as.double(substr(Sys.Date(), 1, 4)),
+    as.double(substr(Sys.Date(), 1, 4)) - 1
   )
 
-  if (!all(seasons %in% 1999:most_recent)) {
-    usethis::ui_stop("Please pass valid seasons between 1999 and {most_recent}")
+  if (!all(seasons %in% 2003:most_recent)) {
+    usethis::ui_stop("Please pass valid seasons between 2003 and {most_recent}")
   }
 
   season_count <- length(seasons)
