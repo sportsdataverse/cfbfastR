@@ -74,17 +74,17 @@ pre, code {
 
 @-webkit-keyframes glow {
   from {
-    text-shadow: 0 0 6px #F4FE85, 0 0 8px #F4FE85;
+    text-shadow: 0 0 8px #F4FE85, 0 0 10px #F4FE85;
   }
   
   to {
-    text-shadow: 0 0 6px #F4FE85, 0 0 8px #F4FE85;
+    text-shadow: 0 0 10px #F4FE85, 0 0 11px #F4FE85;
   }
 }
 
 @keyframes glow {
     to {
-     text-shadow: 0 0 6px #F4FE85, 0 0 8px #F4FE85;
+     text-shadow: 0 0 10px #F4FE85, 0 0 11px #F4FE85;
     }
   }
   
