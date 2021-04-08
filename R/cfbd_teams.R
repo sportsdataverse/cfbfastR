@@ -389,6 +389,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'   \item{\code{athlete_id}}{character.}
 #'   \item{\code{first_name}}{character.}
 #'   \item{\code{last_name}}{character.}
+#'   \item{\code{team}}{character.}
 #'   \item{\code{weight}}{integer.}
 #'   \item{\code{height}}{integer.}
 #'   \item{\code{jersey}}{integer.}
@@ -397,7 +398,9 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'   \item{\code{home_city}}{character.}
 #'   \item{\code{home_state}}{character.}
 #'   \item{\code{home_country}}{character.}
-#'   \item{\code{team}}{character.}
+#'   \item{\code{home_latitude}}{numeric.}
+#'   \item{\code{home_longitude}}{number.}
+#'   \item{\code{home_county_fips}}{integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/roster}
 #' @keywords Team Roster

@@ -98,6 +98,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
   \item{\code{athlete_id}}{character.}
   \item{\code{first_name}}{character.}
   \item{\code{last_name}}{character.}
+  \item{\code{team}}{character.}
   \item{\code{weight}}{integer.}
   \item{\code{height}}{integer.}
   \item{\code{jersey}}{integer.}
@@ -106,7 +107,9 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
   \item{\code{home_city}}{character.}
   \item{\code{home_state}}{character.}
   \item{\code{home_country}}{character.}
-  \item{\code{team}}{character.}
+  \item{\code{home_latitude}}{numeric.}
+  \item{\code{home_longitude}}{number.}
+  \item{\code{home_county_fips}}{integer.}
 }
 
 \code{\link[cfbfastR:cfbd_team_talent]{cfbfastR::cfbd_team_talent()}} - A data frame with 3 variables:

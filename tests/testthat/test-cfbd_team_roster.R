@@ -9,7 +9,7 @@ z <- cfbd_team_roster(2017)
 cols <- c(
   "athlete_id", "first_name", "last_name", "team", "weight", "height",
   "jersey", "year", "position", "home_city", "home_state",
-  "home_country"
+  "home_country","home_latitude","home_longitude", "home_county_fips"
 )
 
 test_that("CFB Team Roster", {
