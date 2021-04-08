@@ -34,7 +34,7 @@ rule_header <- function(x) {
   rlang::inform(
     cli::rule(
       left = crayon::bold(x),
-      right = paste0("nflfastR version ", utils::packageVersion("nflfastR")),
+      right = paste0("cfbfastR version ", utils::packageVersion("cfbfastR")),
       width = getOption("width")
     )
   )
@@ -67,10 +67,10 @@ load_pbp <- function(seasons, in_db = FALSE, ...) {
 
   season_count <- length(seasons)
 
-  if (season_count >= 10 & !requireNamespace("furrr", quietly = TRUE)) {
+  if (season_count >= 5 & !requireNamespace("furrr", quietly = TRUE)) {
     pp <- FALSE
     usethis::ui_info("It is recommended to use parallel processing when trying to load {season_count} seasons but the package {usethis::ui_value('furrr')} is not installed.\nPlease consider installing it with {usethis::ui_code('install.packages(\"furrr\")')}. Will go on sequentially...")
-  } else if (season_count >= 10 & requireNamespace("furrr", quietly = TRUE)) {
+  } else if (season_count >= 5 & requireNamespace("furrr", quietly = TRUE)) {
     pp <- TRUE
   } else {
     pp <- FALSE
@@ -92,7 +92,7 @@ load_pbp <- function(seasons, in_db = FALSE, ...) {
 
 single_season <- function(season, p, dbConnection = NULL, tablename = NULL) {
   pbp <- readRDS(url(
-    glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.rds?raw=true")
+    glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
   ))
   if (!is.null(dbConnection) && !is.null(tablename)) {
     DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
