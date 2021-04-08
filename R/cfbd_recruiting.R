@@ -40,6 +40,9 @@ NULL
 #'   \item{\code{city}}{character.}
 #'   \item{\code{state_province}}{character.}
 #'   \item{\code{country}}{character.}
+#'   \item{\code{hometown_info_latitude}}{character.}
+#'   \item{\code{hometown_info_longitude}}{character.}
+#'   \item{\code{hometown_info_fips_code}}{character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/players}
 #' @keywords Recruiting
@@ -48,10 +51,10 @@ NULL
 #' @importFrom utils URLencode
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
-#' @importFrom dplyr rename
+#' @importFrom janitor clean_names
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_recruiting_player(2018, team = "Texas")
 #'
 #' cfbd_recruiting_player(2016, recruit_type = "JUCO")
@@ -133,12 +136,8 @@ cfbd_recruiting_player <- function(year = NULL,
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        dplyr::rename(
-          recruit_type = .data$recruitType,
-          committed_to = .data$committedTo,
-          state_province = .data$stateProvince
-        ) %>%
+        jsonlite::fromJSON(flatten=TRUE) %>%
+        janitor::clean_names() %>% 
         as.data.frame()
 
       message(glue::glue("{Sys.time()}: Scraping player recruiting data..."))
@@ -193,7 +192,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_recruiting_position(2018, team = "Texas")
 #'
 #' cfbd_recruiting_position(2016, 2020, team = "Virginia")
@@ -317,7 +316,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_recruiting_team(2018, team = "Texas")
 #'
 #' cfbd_recruiting_team(2016, team = "Virginia")

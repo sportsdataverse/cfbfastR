@@ -10,7 +10,8 @@ cols <- c(
   "recruit_type", "year", "ranking",
   "name", "school", "committed_to", "position",
   "height", "weight", "stars", "rating",
-  "city", "state_province", "country"
+  "city", "state_province", "country","hometown_info_latitude",
+  "hometown_info_longitude", "hometown_info_fips_code"
 )
 
 test_that("CFB Recruiting Player", {

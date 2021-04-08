@@ -71,6 +71,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
   \item{\code{city}}{character.}
   \item{\code{state_province}}{character.}
   \item{\code{country}}{character.}
+  \item{\code{hometown_info_latitude}}{character.}
+  \item{\code{hometown_info_longitude}}{character.}
+  \item{\code{hometown_info_fips_code}}{character.}
 }
 
 \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} - A data frame with 7 variables:
@@ -123,7 +126,7 @@ If you would like to get CFB recruiting information based on position groups dur
 time period for all FBS teams, please see the \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} function.
 }
 \examples{
-\dontrun{
+\donttest{
 cfbd_recruiting_player(2018, team = "Texas")
 
 cfbd_recruiting_player(2016, recruit_type = "JUCO")
@@ -131,7 +134,7 @@ cfbd_recruiting_player(2016, recruit_type = "JUCO")
 cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 }
 
-\dontrun{
+\donttest{
 cfbd_recruiting_position(2018, team = "Texas")
 
 cfbd_recruiting_position(2016, 2020, team = "Virginia")
@@ -139,7 +142,7 @@ cfbd_recruiting_position(2016, 2020, team = "Virginia")
 cfbd_recruiting_position(2015, 2020, conference = "SEC")
 }
 
-\dontrun{
+\donttest{
 cfbd_recruiting_team(2018, team = "Texas")
 
 cfbd_recruiting_team(2016, team = "Virginia")
