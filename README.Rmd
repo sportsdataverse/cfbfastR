@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 opts_template$set(stripfigure = list(fig.height = 8, out.width = "95%"))
 ```
 
-# **cfbfastR**  <a href='http://saiemgilani.github.io/cfbfastR'><img src='man/figures/logo.png' align="right" height="120" /></a>
+# **cfbfastR**  <a href='http://saiemgilani.github.io/cfbfastR'><img src='man/figures/logo.png' align="right" height="150" /></a>
 
 <!-- badges: start --> 
 
