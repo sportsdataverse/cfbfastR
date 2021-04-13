@@ -12,6 +12,7 @@ NULL
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
 #' \describe{
@@ -44,15 +45,16 @@ NULL
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+#' \donttest{
+#'    cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 #' }
 #'
 cfbd_metrics_ppa_games <- function(year,
                                    week = NULL,
                                    team = NULL,
                                    conference = NULL,
-                                   excl_garbage_time = FALSE) {
+                                   excl_garbage_time = FALSE,
+                                   verbose = FALSE) {
   args <- list(year = year)
 
   ## check if year is numeric
@@ -129,10 +131,14 @@ cfbd_metrics_ppa_games <- function(year,
         dplyr::rename(game_id = .data$gameId) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA games data..."))
+      if(verbose){
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA games data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -153,6 +159,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
 #' \describe{
@@ -185,7 +192,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 #' }
 #'
@@ -193,7 +200,8 @@ cfbd_metrics_ppa_games <- function(year,
                                    week = NULL,
                                    team = NULL,
                                    conference = NULL,
-                                   excl_garbage_time = FALSE) {
+                                   excl_garbage_time = FALSE,
+                                   verbose = FALSE) {
   args <- list(year = year)
 
   ## check if year is numeric
@@ -267,10 +275,14 @@ cfbd_metrics_ppa_games <- function(year,
         dplyr::rename(game_id = .data$gameId) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA games data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA games data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -297,6 +309,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_ppa_players_games]{cfbfastR::cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
 #' \describe{
@@ -321,7 +334,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
 #' }
 #'
@@ -331,7 +344,8 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
                                            position = NULL,
                                            athlete_id = NULL,
                                            threshold = NULL,
-                                           excl_garbage_time = FALSE) {
+                                           excl_garbage_time = FALSE,
+                                           verbose = FALSE) {
 
   # Position Group vector to check input arguments against
   pos_groups <- c(
@@ -420,10 +434,14 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
         jsonlite::fromJSON(flatten = TRUE)
       colnames(df) <- gsub("averagePPA.", "avg_PPA_", colnames(df))
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA game-level players data..."))
+      if(verbose){
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA game-level players data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA game-level players data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA game-level players data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -452,6 +470,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_ppa_players_season]{cfbfastR::cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
 #' \describe{
@@ -490,7 +509,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
 #' }
 #'
@@ -500,7 +519,8 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
                                             position = NULL,
                                             athlete_id = NULL,
                                             threshold = NULL,
-                                            excl_garbage_time = FALSE) {
+                                            excl_garbage_time = FALSE,
+                                            verbose = FALSE) {
 
   # Position Group vector to check input arguments against
   pos_groups <- c(
@@ -596,10 +616,14 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
         dplyr::arrange(-.data$countable_plays) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA season-level players data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA season-level players data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA season-level players data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA season-level players data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -616,6 +640,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'
 #' @param down (\emph{Integer} required): Down filter
 #' @param distance (\emph{Integer} required): Distance filter
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_ppa_predicted]{cfbfastR::cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
 #' \describe{
@@ -632,14 +657,15 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_ppa_predicted(down = 1, distance = 10)
 #'
 #' cfbd_metrics_ppa_predicted(down = 3, distance = 10)
 #' }
 #'
 cfbd_metrics_ppa_predicted <- function(down,
-                                       distance) {
+                                       distance,
+                                       verbose = FALSE) {
   # Check if down is numeric
   assertthat::assert_that(is.numeric(down) & down <= 4,
     msg = "Enter valid down (Integer): values from 1-4"
@@ -680,10 +706,14 @@ cfbd_metrics_ppa_predicted <- function(down,
       colnames(df) <- gsub("Line", "_line", colnames(df))
       colnames(df) <- gsub("Points", "_points", colnames(df))
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA predicted data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA predicted data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA predicted data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA predicted data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -703,7 +733,8 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
-#'
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
+#' 
 #' @return \code{\link[cfbfastR:cfbd_metrics_ppa_teams]{cfbfastR::cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
@@ -739,14 +770,15 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @import purrr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
 #' }
 #'
 cfbd_metrics_ppa_teams <- function(year = 2019,
                                    team = NULL,
                                    conference = NULL,
-                                   excl_garbage_time = FALSE) {
+                                   excl_garbage_time = FALSE,
+                                   verbose = FALSE) {
 
   if (!is.null(year)) {
     ## check if year is numeric
@@ -810,10 +842,14 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
       colnames(df) <- gsub("cumulative.", "cumulative_", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA teams data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA teams data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA teams data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA teams data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -832,6 +868,7 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_wp_pregame]{cfbfastR::cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
 #' \describe{
@@ -856,14 +893,15 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
 #' }
 #'
 cfbd_metrics_wp_pregame <- function(year = NULL,
                                     week = NULL,
                                     team = NULL,
-                                    season_type = "regular") {
+                                    season_type = "regular",
+                                    verbose = FALSE) {
   if (!is.null(year)) {
     # Check if year is numeric, if not NULL
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -925,10 +963,14 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
         dplyr::select(cols) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping pre-game win probability data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping pre-game win probability data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no pre-game win probability data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no pre-game win probability data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -944,6 +986,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_metrics_wp]{cfbfastR::cfbd_metrics_wp()}} - A data frame with 16 variables:
 #' \describe{
@@ -976,11 +1019,12 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_metrics_wp(game_id = 401012356)
 #' }
 #'
-cfbd_metrics_wp <- function(game_id) {
+cfbd_metrics_wp <- function(game_id,
+                            verbose = FALSE) {
   
 
   
@@ -1027,10 +1071,14 @@ cfbd_metrics_wp <- function(game_id) {
         dplyr::select(cols)
       as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping CFBData metrics win probability data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping CFBData metrics win probability data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics win probability data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics win probability data available!"))
+      }
     },
     warning = function(w) {
     },

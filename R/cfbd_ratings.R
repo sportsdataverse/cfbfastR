@@ -9,6 +9,7 @@ NULL
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_rankings]{cfbfastR::cfbd_rankings()}} - A data frame with 9 variables:
 #' \describe{
@@ -33,7 +34,7 @@ NULL
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_rankings(year = 2019, week = 12)
 #'
 #' cfbd_rankings(year = 2018, week = 14)
@@ -41,7 +42,8 @@ NULL
 #' cfbd_rankings(year = 2013, season_type = "postseason")
 #' }
 #'
-cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
+cfbd_rankings <- function(year, week = NULL, season_type = "regular",
+                          verbose = FALSE) {
   if (!is.null(year)) {
     ## check if year is numeric
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -100,10 +102,14 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping rankings data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping rankings data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -120,6 +126,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #'
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_ratings_sp]{cfbfastR::cfbd_ratings_sp()}} - A data frame with 26 variables:
 #' \describe{
@@ -163,7 +170,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_ratings_sp(year = 2019)
 #'
 #' cfbd_ratings_sp(team = "Texas A&M")
@@ -171,7 +178,8 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' cfbd_ratings_sp(year = 2019, team = "Texas")
 #' }
 #'
-cfbd_ratings_sp <- function(year = NULL, team = NULL) {
+cfbd_ratings_sp <- function(year = NULL, team = NULL,
+                            verbose = FALSE) {
   
   if (!is.null(year)) {
     # check if year is numeric and correct length
@@ -241,10 +249,14 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping S&P+ ratings data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping S&P+ ratings data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -259,7 +271,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_ratings_sp_conference]{cfbfastR::cfbd_ratings_sp_conference()}} - A data frame with 25 variables:
 #' \describe{
@@ -299,7 +312,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_ratings_sp_conference(year = 2019)
 #'
 #' cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
@@ -307,7 +320,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 #' }
 #'
-cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
+cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
+                                       verbose = FALSE) {
 
   if (!is.null(year)) {
     # check if year is numeric and correct length
@@ -375,10 +389,14 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping conference-level S&P+ ratings data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping conference-level S&P+ ratings data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -398,7 +416,8 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @param team (\emph{String} optional): D-I Team
 #' @param conference (\emph{String} optional): Conference abbreviation - SRS information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_ratings_srs]{cfbfastR::cfbd_ratings_srs()}} - A data frame with 6 variables:
 #' \describe{
@@ -418,13 +437,14 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_ratings_srs(year = 2019, team = "Texas")
 #'
 #' cfbd_ratings_srs(year = 2018, conference = "SEC")
 #' }
 #'
-cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
+cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL,
+                             verbose = FALSE) {
 
   if (!is.null(year)) {
     # check if year is numeric
@@ -482,10 +502,14 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
           ranking = as.integer(.data$ranking)
         )
 
-      message(glue::glue("{Sys.time()}: Scraping simple rating system (SRS) data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping simple rating system (SRS) data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
+      }
     },
     warning = function(w) {
     },

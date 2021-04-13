@@ -19,8 +19,8 @@ NULL
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_stats_categories()
+#' \donttest{
+#'    cfbd_stats_categories()
 #' }
 #'
 cfbd_stats_categories <- function() {
@@ -48,7 +48,7 @@ cfbd_stats_categories <- function() {
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
         dplyr::rename(category = .data$V1)
 
-      message(glue::glue("{Sys.time()}: Scraping stats categories data..."))
+      # message(glue::glue("{Sys.time()}: Scraping stats categories data..."))
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
@@ -71,6 +71,7 @@ cfbd_stats_categories <- function() {
 #' @param opponent (\emph{String} optional): Opponent D-I Team
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param season_type (\emph{String} default both): Select Season Type: regular, postseason, or both.
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_stats_game_advanced]{cfbfastR::cfbd_stats_game_advanced()}} - A data frame with 60 variables:
 #' \describe{
@@ -144,12 +145,12 @@ cfbd_stats_categories <- function() {
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
+#' \donttest{
+#'    cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
 #'
-#' cfbd_stats_game_advanced(2019, team = "LSU")
+#'    cfbd_stats_game_advanced(2019, team = "LSU")
 #'
-#' cfbd_stats_game_advanced(2013, team = "Florida State")
+#'    cfbd_stats_game_advanced(2013, team = "Florida State")
 #' }
 #'
 cfbd_stats_game_advanced <- function(year,
@@ -157,7 +158,8 @@ cfbd_stats_game_advanced <- function(year,
                                      team = NULL,
                                      opponent = NULL,
                                      excl_garbage_time = FALSE,
-                                     season_type = "both") {
+                                     season_type = "both",
+                                     verbose = FALSE) {
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -260,10 +262,14 @@ cfbd_stats_game_advanced <- function(year,
       df <- df %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping game advanced stats..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping game advanced stats..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -282,6 +288,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_stats_season_advanced]{cfbfastR::cfbd_stats_season_advanced()}} - A data frame with 79 variables:
 #' \describe{
@@ -374,15 +381,16 @@ cfbd_stats_game_advanced <- function(year,
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_stats_season_advanced(2019, team = "LSU")
+#' \donttest{
+#'    cfbd_stats_season_advanced(2019, team = "LSU")
 #' }
 #'
 cfbd_stats_season_advanced <- function(year,
                                        team = NULL,
                                        excl_garbage_time = FALSE,
                                        start_week = NULL,
-                                       end_week = NULL) {
+                                       end_week = NULL,
+                                       verbose = FALSE) {
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -481,10 +489,14 @@ cfbd_stats_season_advanced <- function(year,
       df <- df %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping season advanced stats..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping season advanced stats..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -509,8 +521,9 @@ cfbd_stats_season_advanced <- function(year,
 #' @param category (\emph{String} optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
-#' Special Teams: punting, puntReturns, kicking, kickReturns\cr
-#'
+#' Special Teams: punting, puntReturns, kicking, kickReturns
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
+#' 
 #' @return \code{\link[cfbfastR:cfbd_stats_season_player]{cfbfastR::cfbd_stats_season_player()}} - A data frame with 59 variables:
 #' \describe{
 #'   \item{\code{team}}{character.}
@@ -585,12 +598,12 @@ cfbd_stats_season_advanced <- function(year,
 #' @importFrom tidyr pivot_wider everything
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
+#' \donttest{
+#'    cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
 #'
-#' cfbd_stats_season_player(2019, team = "LSU", category = "passing")
+#'    cfbd_stats_season_player(2019, team = "LSU", category = "passing")
 #'
-#' cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
+#'    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
 #' }
 #'
 cfbd_stats_season_player <- function(year,
@@ -599,7 +612,8 @@ cfbd_stats_season_player <- function(year,
                                      conference = NULL,
                                      start_week = NULL,
                                      end_week = NULL,
-                                     category = NULL) {
+                                     category = NULL,
+                                     verbose = FALSE) {
   stat_categories <- c(
     "passing", "receiving", "rushing", "defensive", "fumbles",
     "interceptions", "punting", "puntReturns", "kicking", "kickReturns"
@@ -749,10 +763,14 @@ cfbd_stats_season_player <- function(year,
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -774,6 +792,7 @@ cfbd_stats_season_player <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_stats_season_team]{cfbfastR::cfbd_stats_season_team()}} - A data frame with 46 variables:
 #' \describe{
@@ -835,12 +854,12 @@ cfbd_stats_season_player <- function(year,
 #' @importFrom tidyr pivot_wider
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+#' \donttest{
+#'    cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
 #'
-#' cfbd_stats_season_team(2019, team = "LSU")
+#'    cfbd_stats_season_team(2019, team = "LSU")
 #'
-#' cfbd_stats_season_team(2013, team = "Florida State")
+#'    cfbd_stats_season_team(2013, team = "Florida State")
 #' }
 #'
 cfbd_stats_season_team <- function(year,
@@ -848,7 +867,8 @@ cfbd_stats_season_team <- function(year,
                                    team = NULL,
                                    conference = NULL,
                                    start_week = NULL,
-                                   end_week = NULL) {
+                                   end_week = NULL,
+                                   verbose = FALSE) {
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -1015,10 +1035,14 @@ cfbd_stats_season_team <- function(year,
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping season team stats..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping season team stats..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
+      }
     },
     warning = function(w) {
     },

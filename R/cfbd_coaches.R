@@ -7,7 +7,8 @@
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
 #' @param min_year (\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).
-#' @param max_year (\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY}).
+#' @param max_year (\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY})
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return \code{\link[cfbfastR:cfbd_coaches]{cfbfastR::cfbd_coaches()}} - A data frame with coach information with the following columns:
 #' \describe{
 #'   \item{\code{first_name}}{character. First name of coach.}
@@ -37,14 +38,16 @@
 #' @import purrr
 #' @export
 #' @examples
-#'
-#' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+#'\donttest{
+#'   cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+#' }
 cfbd_coaches <- function(first = NULL,
                          last = NULL,
                          team = NULL,
                          year = NULL,
                          min_year = NULL,
-                         max_year = NULL) {
+                         max_year = NULL,
+                         verbose=FALSE) {
   if (!is.null(first)) {
     # Encode first parameter for URL if not NULL
     first <- utils::URLencode(first, reserved = TRUE)
@@ -117,11 +120,15 @@ cfbd_coaches <- function(first = NULL,
         tidyr::unnest(.data$seasons) %>%
         as.data.frame() %>%
         dplyr::arrange(.data$year)
-
-      message(glue::glue("{Sys.time()}: Scraping coaches data..."))
+      
+      if (verbose) {
+        message(glue::glue("{Sys.time()}: Scraping coaches data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))
+      if (verbose) {
+        message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))
+      }
     },
     warning = function(w) {
     },

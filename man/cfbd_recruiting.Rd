@@ -19,17 +19,19 @@ cfbd_recruiting_player(
   team = NULL,
   recruit_type = "HighSchool",
   state = NULL,
-  position = NULL
+  position = NULL,
+  verbose = FALSE
 )
 
 cfbd_recruiting_position(
   start_year = NULL,
   end_year = NULL,
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  verbose = FALSE
 )
 
-cfbd_recruiting_team(year = NULL, team = NULL)
+cfbd_recruiting_team(year = NULL, team = NULL, verbose = FALSE)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
@@ -44,7 +46,9 @@ or 'PrepSchool'  - For position group information}
 \item{position}{(\emph{String} optional): Position Group  - options include:\cr
 * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
-* Special Teams: 'K', 'P'\cr}
+* Special Teams: 'K', 'P'}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{start_year}{(\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
 
@@ -52,7 +56,7 @@ or 'PrepSchool'  - For position group information}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} - A data frame with 14 variables:
@@ -127,19 +131,19 @@ time period for all FBS teams, please see the \code{\link[cfbfastR:cfbd_recruiti
 }
 \examples{
 \donttest{
-cfbd_recruiting_player(2018, team = "Texas")
+   cfbd_recruiting_player(2018, team = "Texas")
 
-cfbd_recruiting_player(2016, recruit_type = "JUCO")
+   cfbd_recruiting_player(2016, recruit_type = "JUCO")
 
-cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
+   cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 }
 
 \donttest{
-cfbd_recruiting_position(2018, team = "Texas")
+   cfbd_recruiting_position(2018, team = "Texas")
 
-cfbd_recruiting_position(2016, 2020, team = "Virginia")
+   cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
-cfbd_recruiting_position(2015, 2020, conference = "SEC")
+   cfbd_recruiting_position(2015, 2020, conference = "SEC")
 }
 
 \donttest{

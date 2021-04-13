@@ -27,7 +27,8 @@ cfbd_metrics_ppa_games(
   week = NULL,
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  verbose = FALSE
 )
 
 cfbd_metrics_ppa_games(
@@ -35,7 +36,8 @@ cfbd_metrics_ppa_games(
   week = NULL,
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  verbose = FALSE
 )
 
 cfbd_metrics_ppa_players_games(
@@ -45,7 +47,8 @@ cfbd_metrics_ppa_players_games(
   position = NULL,
   athlete_id = NULL,
   threshold = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  verbose = FALSE
 )
 
 cfbd_metrics_ppa_players_season(
@@ -55,26 +58,29 @@ cfbd_metrics_ppa_players_season(
   position = NULL,
   athlete_id = NULL,
   threshold = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  verbose = FALSE
 )
 
-cfbd_metrics_ppa_predicted(down, distance)
+cfbd_metrics_ppa_predicted(down, distance, verbose = FALSE)
 
 cfbd_metrics_ppa_teams(
   year = 2019,
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  verbose = FALSE
 )
 
 cfbd_metrics_wp_pregame(
   year = NULL,
   week = NULL,
   team = NULL,
-  season_type = "regular"
+  season_type = "regular",
+  verbose = FALSE
 )
 
-cfbd_metrics_wp(game_id)
+cfbd_metrics_wp(game_id, verbose = FALSE)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
@@ -88,6 +94,8 @@ Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
 Position Group  - options include:\cr
@@ -278,37 +286,37 @@ Get Pre-game Win Probability Data from API
 Get win probability chart data from API
 }
 \examples{
-\dontrun{
+\donttest{
+   cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+}
+
+\donttest{
 cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 }
 
-\dontrun{
-cfbd_metrics_ppa_games(year = 2019, team = "TCU")
-}
-
-\dontrun{
+\donttest{
 cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
 }
 
-\dontrun{
+\donttest{
 cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
 }
 
-\dontrun{
+\donttest{
 cfbd_metrics_ppa_predicted(down = 1, distance = 10)
 
 cfbd_metrics_ppa_predicted(down = 3, distance = 10)
 }
 
-\dontrun{
+\donttest{
 cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
 }
 
-\dontrun{
+\donttest{
 cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
 }
 
-\dontrun{
+\donttest{
 cfbd_metrics_wp(game_id = 401012356)
 }
 

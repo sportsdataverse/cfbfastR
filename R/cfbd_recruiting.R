@@ -22,7 +22,8 @@ NULL
 #' @param position (\emph{String} optional): Position Group  - options include:\cr
 #'  * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
-#'  * Special Teams: 'K', 'P'\cr
+#'  * Special Teams: 'K', 'P'
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} - A data frame with 14 variables:
 #' \describe{
@@ -55,18 +56,19 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_recruiting_player(2018, team = "Texas")
+#'    cfbd_recruiting_player(2018, team = "Texas")
 #'
-#' cfbd_recruiting_player(2016, recruit_type = "JUCO")
+#'    cfbd_recruiting_player(2016, recruit_type = "JUCO")
 #'
-#' cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
+#'    cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 #' }
 #'
 cfbd_recruiting_player <- function(year = NULL,
                                    team = NULL,
                                    recruit_type = "HighSchool",
                                    state = NULL,
-                                   position = NULL) {
+                                   position = NULL,
+                                   verbose = FALSE) {
   
   # Position Group vector to check arguments against
   pos_groups <- c(
@@ -140,10 +142,14 @@ cfbd_recruiting_player <- function(year = NULL,
         janitor::clean_names() %>% 
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping player recruiting data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping player recruiting data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -170,7 +176,8 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @param team (\emph{String} optional): Team - Select a valid team, D-I football
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} - A data frame with 7 variables:
 #' \describe{
@@ -193,15 +200,16 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_recruiting_position(2018, team = "Texas")
+#'    cfbd_recruiting_position(2018, team = "Texas")
 #'
-#' cfbd_recruiting_position(2016, 2020, team = "Virginia")
+#'    cfbd_recruiting_position(2016, 2020, team = "Virginia")
 #'
-#' cfbd_recruiting_position(2015, 2020, conference = "SEC")
+#'    cfbd_recruiting_position(2015, 2020, conference = "SEC")
 #' }
 #'
 cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
-                                     team = NULL, conference = NULL) {
+                                     team = NULL, conference = NULL,
+                                     verbose = FALSE) {
   if (!is.null(start_year)) {
     # check if start_year is numeric
     assertthat::assert_that(is.numeric(start_year) & nchar(start_year) == 4,
@@ -272,10 +280,14 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping position group recruiting data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping position group recruiting data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -299,6 +311,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @rdname cfbd_recruiting
 #' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_recruiting_team]{cfbfastR::cfbd_recruiting_team()}} - A data frame with 4 variables:
 #' \describe{
@@ -327,7 +340,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' }
 #'
 cfbd_recruiting_team <- function(year = NULL,
-                                 team = NULL) {
+                                 team = NULL,
+                                 verbose = FALSE) {
   
   if (!is.null(year)) {
     ## check if year is numeric
@@ -374,10 +388,14 @@ cfbd_recruiting_team <- function(year = NULL,
         jsonlite::fromJSON() %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping team recruiting data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping team recruiting data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
+      }
     },
     warning = function(w) {
     },

@@ -17,8 +17,9 @@
 #' @import tidyr
 #' @export
 #' @examples
-#'
-#' cfbd_conferences()
+#' \donttest{
+#'    cfbd_conferences()
+#' }
 cfbd_conferences <- function() {
   full_url <- "https://api.collegefootballdata.com/conferences"
 

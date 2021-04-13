@@ -26,7 +26,7 @@
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_venues()
 #' }
 #'

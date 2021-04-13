@@ -32,7 +32,7 @@ Pulls all college football venues and data on capacity, grass, city/state, locat
 elevation, dome, timezone and construction year
 }
 \examples{
-\dontrun{
+\donttest{
 cfbd_venues()
 }
 

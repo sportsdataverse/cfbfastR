@@ -35,10 +35,11 @@ cfbd_game_info(
   away_team = NULL,
   conference = NULL,
   game_id = NULL,
-  quarter_scores = FALSE
+  quarter_scores = FALSE,
+  verbose = FALSE
 )
 
-cfbd_calendar(year)
+cfbd_calendar(year, verbose = FALSE)
 
 cfbd_game_media(
   year,
@@ -46,10 +47,11 @@ cfbd_game_media(
   season_type = "both",
   team = NULL,
   conference = NULL,
-  media_type = NULL
+  media_type = NULL,
+  verbose = FALSE
 )
 
-cfbd_game_box_advanced(game_id, long = FALSE)
+cfbd_game_box_advanced(game_id, long = FALSE, verbose = FALSE)
 
 cfbd_game_player_stats(
   year,
@@ -58,10 +60,11 @@ cfbd_game_player_stats(
   team = NULL,
   conference = NULL,
   category = NULL,
-  game_id = NULL
+  game_id = NULL,
+  verbose = FALSE
 )
 
-cfbd_game_records(year, team = NULL, conference = NULL)
+cfbd_game_records(year, team = NULL, conference = NULL, verbose = FALSE)
 
 cfbd_game_team_stats(
   year,
@@ -70,7 +73,8 @@ cfbd_game_team_stats(
   team = NULL,
   conference = NULL,
   game_id = NULL,
-  rows_per_team = 1
+  rows_per_team = 1,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -96,6 +100,8 @@ Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
 list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
 
@@ -387,37 +393,41 @@ Get Team records by year
 Get Team Statistics by Game
 }
 \examples{
+\donttest{
+  cfbd_game_info(2018, week = 1)
 
-cfbd_game_info(2018, week = 1)
+  cfbd_game_info(2018, week = 7, conference = "Ind")
 
-cfbd_game_info(2018, week = 7, conference = "Ind")
-
-# 7 OTs LSU @ TAMU
-cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-\dontrun{
+  # 7 OTs LSU @ TAMU
+  cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+}
+\donttest{
 cfbd_calendar(2019)
 }
 
 
-cfbd_game_media(2019, week = 4, conference = "ACC")
+\donttest{
+  cfbd_game_media(2019, week = 4, conference = "ACC")
+}
+\donttest{
+   cfbd_game_box_advanced(game_id = 401114233)
+}
+\donttest{
+   cfbd_game_player_stats(2018, week = 15, conference = "Ind")
 
-cfbd_game_box_advanced(game_id = 401114233)
-\dontrun{
-cfbd_game_player_stats(2018, week = 15, conference = "Ind")
-
-cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
 }
 
-\dontrun{
-cfbd_game_records(2018, team = "Notre Dame")
+\donttest{
+   cfbd_game_records(2018, team = "Notre Dame")
 
-cfbd_game_records(2013, team = "Florida State")
+   cfbd_game_records(2013, team = "Florida State")
 }
 
-\dontrun{
-cfbd_game_team_stats(2019, team = "LSU")
+\donttest{
+   cfbd_game_team_stats(2019, team = "LSU")
 
-cfbd_game_team_stats(2013, team = "Florida State")
+   cfbd_game_team_stats(2013, team = "Florida State")
 }
 
 }

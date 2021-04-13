@@ -13,6 +13,7 @@ NULL
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).\cr
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} - A data frame with 12 variables:
 #' \describe{
 #'   \item{\code{athlete_id}}{character. Unique player identifier `athlete_id`.}
@@ -40,7 +41,7 @@ NULL
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 #'
 #' cfbd_player_info(search_term = "Lawrence", team = "Clemson")
@@ -49,7 +50,8 @@ NULL
 cfbd_player_info <- function(search_term,
                              position = NULL,
                              team = NULL,
-                             year = NULL) {
+                             year = NULL,
+                             verbose = FALSE) {
 
   # Encode search_term parameter for URL
   search_term <- utils::URLencode(search_term, reserved = TRUE)
@@ -118,10 +120,14 @@ cfbd_player_info <- function(search_term,
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping player info data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping player info data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -139,6 +145,7 @@ cfbd_player_info <- function(search_term,
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return \code{\link[cfbfastR:cfbd_player_returning]{cfbfastR::cfbd_player_returning()}} - A data frame with 15 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
@@ -167,13 +174,14 @@ cfbd_player_info <- function(search_term,
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_player_returning(year = 2019, team = "Florida State")
 #' }
 #'
 cfbd_player_returning <- function(year = 2019,
                                   team = NULL,
-                                  conference = NULL) {
+                                  conference = NULL,
+                                  verbose = FALSE) {
 
   if (!is.null(year)) {
     ## check if year is numeric
@@ -241,10 +249,14 @@ cfbd_player_returning <- function(year = 2019,
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping returning player data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping returning player data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -270,6 +282,7 @@ cfbd_player_returning <- function(year = 2019,
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return \code{\link[cfbfastR:cfbd_player_usage]{cfbfastR::cfbd_player_usage()}} - A data frame with 14 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
@@ -298,7 +311,7 @@ cfbd_player_returning <- function(year = 2019,
 #' @importFrom dplyr as_tibble rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
 #' }
 #'
@@ -307,7 +320,8 @@ cfbd_player_usage <- function(year = 2019,
                               conference = NULL,
                               position = NULL,
                               athlete_id = NULL,
-                              excl_garbage_time = FALSE) {
+                              excl_garbage_time = FALSE,
+                              verbose = FALSE) {
   
   # Position Group vector to check input arguments against
   pos_groups <- c(
@@ -403,10 +417,14 @@ cfbd_player_usage <- function(year = 2019,
         ) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping player usage data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping player usage data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
+      }
     },
     warning = function(w) {
     },

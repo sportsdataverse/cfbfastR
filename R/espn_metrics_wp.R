@@ -27,7 +27,7 @@ NULL
 #' @import dplyr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' espn_metrics_wp(game_id = 401114164)
 #' }
 #'

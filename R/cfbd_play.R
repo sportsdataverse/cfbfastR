@@ -18,6 +18,7 @@ NULL
 #' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,\cr
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param play_type Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return \code{\link[cfbfastR:cfbd_plays]{cfbfastR::cfbd_plays()}}
 #' @source \url{https://api.collegefootballdata.com/plays}
 #' @importFrom jsonlite fromJSON
@@ -37,7 +38,8 @@ cfbd_plays <- function(year = 2020,
                        conference = NULL,
                        offense_conference = NULL,
                        defense_conference = NULL,
-                       play_type = NULL) {
+                       play_type = NULL,
+                       verbose = FALSE) {
   if (!is.null(year)) {
     # Check if year is numeric, if not NULL
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -124,10 +126,14 @@ cfbd_plays <- function(year = 2020,
         dplyr::rename(play_id = .data$id) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping plays data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping plays data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -149,6 +155,7 @@ cfbd_plays <- function(year = 2020,
 #' @param stat_type_id (\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_play_stats_player]{cfbfastR::cfbd_play_stats_player()}} - A data frame with 54 variables:
 #' \describe{
@@ -218,8 +225,8 @@ cfbd_plays <- function(year = 2020,
 #' @import purrr
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_play_stats_player(game_id = 401110722)
+#' \donttest{
+#'   cfbd_play_stats_player(game_id = 401110722)
 #' }
 cfbd_play_stats_player <- function(year = NULL,
                                    week = NULL,
@@ -227,7 +234,8 @@ cfbd_play_stats_player <- function(year = NULL,
                                    game_id = NULL,
                                    athlete_id = NULL,
                                    stat_type_id = NULL,
-                                   season_type = "regular") {
+                                   season_type = "regular",
+                                   verbose = FALSE) {
   if (!is.null(year)) {
     # Check if year is numeric, if not NULL
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -464,10 +472,14 @@ cfbd_play_stats_player <- function(year = NULL,
         dplyr::ungroup()
 
       clean_df <- as.data.frame(clean_df)
-      message(glue::glue("{Sys.time()}: Scraping play-level player stats data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping play-level player stats data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -492,8 +504,8 @@ cfbd_play_stats_player <- function(year = NULL,
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_play_stats_types()
+#' \donttest{
+#'   cfbd_play_stats_types()
 #' }
 #'
 cfbd_play_stats_types <- function() {
@@ -520,7 +532,7 @@ cfbd_play_stats_types <- function() {
         jsonlite::fromJSON() %>%
         dplyr::rename(play_stat_type_id = .data$id) %>%
         as.data.frame()
-      message(glue::glue("{Sys.time()}: Scraping play stats types data..."))
+      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available!"))
@@ -576,7 +588,7 @@ cfbd_play_types <- function() {
         dplyr::rename(play_type_id = .data$id) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping play types data..."))
+      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available!"))

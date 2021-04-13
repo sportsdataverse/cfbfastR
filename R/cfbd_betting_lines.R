@@ -18,6 +18,7 @@ NULL
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return Betting information for games with the following columns:
 #' \describe{
@@ -49,11 +50,11 @@ NULL
 #' @importFrom tidyr unnest
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
+#' \donttest{
+#'    cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 #'
-#' # 7 OTs LSU at TAMU
-#' cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
+#'    # 7 OTs LSU at TAMU
+#'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 #' }
 #'
 cfbd_betting_lines <- function(game_id = NULL,
@@ -64,7 +65,8 @@ cfbd_betting_lines <- function(game_id = NULL,
                                home_team = NULL,
                                away_team = NULL,
                                conference = NULL,
-                               line_provider = NULL) {
+                               line_provider = NULL,
+                               verbose = FALSE) {
   if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
@@ -181,6 +183,9 @@ cfbd_betting_lines <- function(game_id = NULL,
       }
     },
     error = function(e) {
+      if (verbose) {
+        message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
+      }
     },
     warning = function(w) {
     },

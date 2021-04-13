@@ -13,7 +13,8 @@ cfbd_coaches(
   team = NULL,
   year = NULL,
   min_year = NULL,
-  max_year = NULL
+  max_year = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -27,7 +28,9 @@ cfbd_coaches(
 
 \item{min_year}{(\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).}
 
-\item{max_year}{(\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY}).}
+\item{max_year}{(\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY})}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[cfbfastR:cfbd_coaches]{cfbfastR::cfbd_coaches()}} - A data frame with coach information with the following columns:
@@ -52,7 +55,8 @@ cfbd_coaches(
 A coach search function which provides coaching records and school history for a given coach
 }
 \examples{
-
-cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+\donttest{
+  cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+}
 }
 \keyword{Recruiting}

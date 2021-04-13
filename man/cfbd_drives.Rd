@@ -16,7 +16,8 @@ cfbd_drives(
   defense_team = NULL,
   conference = NULL,
   offense_conference = NULL,
-  defense_conference = NULL
+  defense_conference = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -34,15 +35,17 @@ cfbd_drives(
 
 \item{conference}{(\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{offense_conference}{(\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{defense_conference}{(\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[cfbfastR:cfbd_drives]{cfbfastR::cfbd_drives()}} - A data frame with 23 variables as follows:
@@ -76,10 +79,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 Get results information from games
 }
 \examples{
-\dontrun{
-cfbd_drives(2018, week = 1, team = "TCU")
+\donttest{
+   cfbd_drives(2018, week = 1, team = "TCU")
 
-cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
+   cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
 }
 
 }

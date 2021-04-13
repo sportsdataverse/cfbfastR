@@ -8,13 +8,14 @@
 #' @param defense_team (\emph{String} optional): Defense D-I Team
 #' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param offense_conference (\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param defense_conference (\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_drives]{cfbfastR::cfbd_drives()}} - A data frame with 23 variables as follows:
 #' \describe{
@@ -53,10 +54,10 @@
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
-#' cfbd_drives(2018, week = 1, team = "TCU")
+#' \donttest{
+#'    cfbd_drives(2018, week = 1, team = "TCU")
 #'
-#' cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
+#'    cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
 #' }
 #'
 cfbd_drives <- function(year,
@@ -67,7 +68,8 @@ cfbd_drives <- function(year,
                         defense_team = NULL,
                         conference = NULL,
                         offense_conference = NULL,
-                        defense_conference = NULL) {
+                        defense_conference = NULL,
+                        verbose = FALSE) {
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
@@ -159,25 +161,37 @@ cfbd_drives <- function(year,
   # Check the result
   check_status(res)
 
-
-  # Get the content and return it as data.frame
-  df <- res %>%
-    httr::content(as = "text", encoding = "UTF-8") %>%
-    jsonlite::fromJSON(flatten = TRUE) %>%
-    dplyr::rename(
-      drive_id = .data$id,
-      time_minutes_start = .data$start_time.minutes,
-      time_seconds_start = .data$start_time.seconds,
-      time_minutes_end = .data$end_time.minutes,
-      time_seconds_end = .data$end_time.seconds,
-      time_minutes_elapsed = .data$elapsed.minutes,
-      time_seconds_elapsed = .data$elapsed.seconds
-    ) %>%
-    dplyr::mutate(
-      time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
-      time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-    ) %>%
-    as.data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        dplyr::rename(
+          drive_id = .data$id,
+          time_minutes_start = .data$start_time.minutes,
+          time_seconds_start = .data$start_time.seconds,
+          time_minutes_end = .data$end_time.minutes,
+          time_seconds_end = .data$end_time.seconds,
+          time_minutes_elapsed = .data$elapsed.minutes,
+          time_seconds_elapsed = .data$elapsed.seconds
+        ) %>%
+        dplyr::mutate(
+          time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
+          time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
+        ) %>%
+        as.data.frame()
+    },
+    error = function(e) {
+      if (verbose) {
+        message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))
+      }
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
 
   return(df)
 }
