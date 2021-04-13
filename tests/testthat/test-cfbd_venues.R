@@ -9,7 +9,7 @@ cols <- c(
 )
 
 test_that("CFB Venues", {
-  expect_equal(nrow(x), 335)
+  expect_equal(nrow(x), 337)
   expect_equal(ncol(x), 13)
   expect_equal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
