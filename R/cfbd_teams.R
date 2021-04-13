@@ -12,6 +12,7 @@ NULL
 #' @param only_fbs (\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.\cr
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_team_info]{cfbfastR::cfbd_team_info()}} - A data frame with 12 variables:
 #' \describe{
@@ -26,7 +27,22 @@ NULL
 #'   \item{\code{division}}{character.}
 #'   \item{\code{color}}{character.}
 #'   \item{\code{alt_color}}{character.}
-#'   \item{\code{logos}}{list.}
+#'   \item{\code{logo_1}}{character.}
+#'   \item{\code{logo_2}}{character.}
+#'   \item{\code{venue_id}}{character.}
+#'   \item{\code{venue_name}}{character.}
+#'   \item{\code{city}}{character.}
+#'   \item{\code{state}}{character.}
+#'   \item{\code{zip}}{character.}
+#'   \item{\code{country_code}}{character.}
+#'   \item{\code{timezone}}{character.}
+#'   \item{\code{latitude}}{character.}
+#'   \item{\code{longitude}}{character.}
+#'   \item{\code{elevation}}{character.}
+#'   \item{\code{capacity}}{character.}
+#'   \item{\code{year_constructed}}{character.}
+#'   \item{\code{grass}}{character.}
+#'   \item{\code{dome}}{character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams}
 #' @keywords Teams
@@ -37,7 +53,7 @@ NULL
 #' @importFrom dplyr rename
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_team_info(conference = "SEC")
 #'
 #' cfbd_team_info(conference = "Ind")
@@ -45,40 +61,61 @@ NULL
 #' cfbd_team_info(year = 2019)
 #' }
 #'
-cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
+cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
+                           verbose = FALSE) {
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
+  }
+  else if(is.null(conference) & is.null(year) & only_fbs == FALSE){
+  base_url <- "https://api.collegefootballdata.com/teams?"
 
-    base_url <- "https://api.collegefootballdata.com/teams?"
+  full_url <- paste0(
+    base_url,
+    "conference=", conference
+  )
 
-    full_url <- paste0(
-      base_url,
-      "conference=", conference
-    )
+  # Check for CFBD API key
+  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-    # Check for CFBD API key
-    if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  # Create the GET request and set response as res
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
-    # Create the GET request and set response as res
-    res <- httr::RETRY(
-      "GET", full_url,
-      httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-    )
+  # Check the result
+  check_status(res)
 
-    # Check the result
-    check_status(res)
-
-    # Get the content and return it as data.frame
-    df <- res %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
-      jsonlite::fromJSON() %>%
-      dplyr::rename(team_id = .data$id) %>%
-      as.data.frame()
-
+  # Get the content and return it as data.frame
+  df <- res %>%
+    httr::content(as = "text", encoding = "UTF-8") %>%
+    jsonlite::fromJSON() 
+  locs <- df$location
+  locs <- locs %>% 
+    jsonlite::flatten()
+  df <- df %>% select(-.data$location)
+  suppressWarnings(
+    logos_list <- df %>% 
+      dplyr::group_by(.data$id) %>% 
+      tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
+      dplyr::mutate(
+        logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
+        logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
+        logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
+        logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
+      )
+  
+  )
+  df <- dplyr::bind_cols(logos_list, locs) %>% 
+    dplyr::rename(
+      team_id = .data$id,
+      venue_name = .data$name) %>%
+    as.data.frame()
+    
     return(df)
   } else {
     if (!is.null(year)) {
@@ -112,8 +149,27 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     # Get the content and return it as data.frame
     df <- res %>%
       httr::content(as = "text", encoding = "UTF-8") %>%
-      jsonlite::fromJSON() %>%
-      dplyr::rename(team_id = .data$id) %>%
+      jsonlite::fromJSON() 
+    locs <- df$location
+    locs <- locs %>% 
+      jsonlite::flatten()
+    df <- df %>% select(-.data$location)
+    suppressWarnings(
+      logos_list <- df %>% 
+        dplyr::group_by(.data$id) %>% 
+        tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
+        dplyr::mutate(
+          logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
+          logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
+          logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
+          logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
+        )
+      
+    )
+    df <- dplyr::bind_cols(logos_list, locs) %>% 
+      dplyr::rename(
+        team_id = .data$id,
+        venue_name = .data$name) %>%
       as.data.frame()
 
     return(df)
@@ -128,6 +184,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 #' @param team2 (\emph{String} required): D-I Team 2
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_team_matchup_records]{cfbfastR::cfbd_team_matchup_records()}} - A data frame with 7 variables:
 #' \describe{
@@ -151,13 +208,14 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 #' @importFrom tidyr pivot_wider
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_team_matchup_records("Texas", "Oklahoma")
 #'
 #' cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 #' }
 #'
-cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL) {
+cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL,
+                                      verbose = FALSE) {
 
   if (!is.null(min_year)) {
     # Check if min_year is numeric, if not NULL
@@ -237,10 +295,14 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
         )
       df <- as.data.frame(df)
 
-      message(glue::glue("{Sys.time()}: Scraping team matchup records..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping team matchup records..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -258,6 +320,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @param team2 (\emph{String} required): D-I Team 2
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_team_matchup]{cfbfastR::cfbd_team_matchup()}} - A data frame with 11 variables:
 #' \describe{
@@ -283,7 +346,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_team_matchup("Texas", "Oklahoma")
 #'
 #' cfbd_team_matchup("Texas A&M", "TCU")
@@ -293,7 +356,8 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 #' }
 #'
-cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
+cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
+                              verbose = FALSE) {
   
   if (!is.null(min_year)) {
     # Check if min_year is numeric, if not NULL
@@ -355,17 +419,23 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()$games
       if (nrow(df) == 0) {
-        warning("The data pulled from the API was empty.")
+        if(verbose){ 
+          warning("The data pulled from the API was empty.")
+        }
         return(NULL)
       }
       df <- df %>%
         janitor::clean_names() %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping team matchup..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping team matchup..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -382,6 +452,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @rdname cfbd_teams
 #' @param year (\emph{Integer} required): Year,  4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): Team, select a valid team in D-I football
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #'
 #' @return \code{\link[cfbfastR:cfbd_team_roster]{cfbfastR::cfbd_team_roster()}} - A data frame with 12 variables:
@@ -412,11 +483,12 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_team_roster(year = 2013, team = "Florida State")
 #' }
 #'
-cfbd_team_roster <- function(year, team = NULL) {
+cfbd_team_roster <- function(year, team = NULL,
+                             verbose = FALSE) {
   team2 <- team
 
   # check if year is numeric
@@ -472,10 +544,14 @@ cfbd_team_roster <- function(year, team = NULL) {
         # dplyr::mutate(team = team2) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping team roster..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping team roster..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
+      }
     },
     warning = function(w) {
     },
@@ -490,6 +566,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 #' @rdname cfbd_teams
 #'
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_team_talent]{cfbfastR::cfbd_team_talent()}} - A data frame with 3 variables:
 #' \describe{
@@ -506,13 +583,14 @@ cfbd_team_roster <- function(year, team = NULL) {
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cfbd_team_talent()
 #'
 #' cfbd_team_talent(year = 2018)
 #' }
 #'
-cfbd_team_talent <- function(year = NULL) {
+cfbd_team_talent <- function(year = NULL,
+                             verbose = FALSE) {
   if (!is.null(year)) {
     ## check if year is numeric
     assert_that(is.numeric(year) & nchar(year) == 4,
@@ -549,10 +627,14 @@ cfbd_team_talent <- function(year = NULL) {
         as.data.frame() %>%
         mutate(talent = as.numeric(.data$talent))
 
-      message(glue::glue("{Sys.time()}: Scraping team talent..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping team talent..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
+      }
     },
     warning = function(w) {
     },
