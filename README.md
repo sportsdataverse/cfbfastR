@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # **cfbfastR** <a href='http://saiemgilani.github.io/cfbfastR'><img src='man/figures/logo.png' align="right" height="150" /></a>
 
 <!-- badges: start -->
@@ -25,8 +23,18 @@ You can install the released version of
 [GitHub](https://github.com/saiemgilani/cfbfastR) with:
 
 ``` r
-# Then can install using the devtools package from the following:
+# You can install using the pacman package using the following code:
+if (!requireNamespace('pacman')){
+  install.packages('pacman')
+}
+pacman::p_load_gh("saiemgilani/cfbfastR")
+```
 
+``` r
+if (!requireNamespace('devtools')){
+  install.packages('devtools')
+}
+# Alternatively, using the devtools package:
 devtools::install_github(repo = "saiemgilani/cfbfastR")
 ```
 
@@ -38,7 +46,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 All functions sourced from the [College Football Data
 API](https://collegefootballdata.com/) will start with **`cfbd_`** as
-opposed to **`cfb_`** (as in cfbscrapR).
+opposed to **`cfb_`** (as in **`cfbscrapR`**).
 
 Similarly, data and metrics sourced from ESPN will begin with
 **`espn_`** as opposed to **`cfb_`**. In particular, the two functions
@@ -59,9 +67,25 @@ requires an API key, here’s a quick run-down:
   - To get an API key, follow the directions here: [College Football
     Data Key Registration.](https://collegefootballdata.com/key)
 
-  - Using the key: At the beginning of every session or within an R
-    environment, save your API key as the environment variable
-    `CFBD_API_KEY` using a command like the following.
+  - Using the key: You can save the key for consistent usage by adding
+    `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .REnviron file
+    (easily accessed via
+    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
+    Run
+    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)
+    and THEN paste the following in the new script that pops up
+    (with**out** quotations)
+
+<!-- end list -->
+
+``` r
+CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+```
+
+  - For less consistent usage: At the beginning of every session or
+    within an R environment, save your API key as the environment
+    variable `CFBD_API_KEY` (with quotations) using a command like the
+    following.
 
 <!-- end list -->
 
@@ -69,14 +93,28 @@ requires an API key, here’s a quick run-down:
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
-  - You can also save this more permanently by adding
-    `CFBD_API_KEY=yourkeyhere` to your .REnviron file (easily accessed
-    via `usethis::edit_r_environ()`).
-
   - Added [API Key
     methods](https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html).
     If you forget to set your environment variable, functions will give
     you a warning and ask for one.
+
+## Current Issues
+
+| issue | icon                                                                                                                         | title                                                                                                                                                      | labels        | opened\_by                            | comments | comments\_users                                                                                                                                                                                                                                                                                                                    | assigned\_to | created             | updated             | closed |
+| :---- | :--------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------ | :------------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------------ | :------------------ | :----- |
+| 4     | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span> | <span title="**Describe the bug**...">[cfbd\_play\_types is documented, but isn’t in the package](https://github.com/saiemgilani/cfbfastR/issues/4)</span> | documentation | [rchanks](https://github.com/rchanks) | 1        | <span title="Oops. Will fix. Maybe. Trying to figure out optimal use of the in-package data sources and I&#39;m not sure this one will make the cut. Would not mind if you had any thoughts/suggestions as essential to new users. ">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/4#issuecomment-820774552)</span> | saiemgilani  | 2021-04-15 16:11:17 | 2021-04-15 22:58:01 | NA     |
+| 5     | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span> | <span title="**Describe the bug**...">[Play by play for data 2013 and before](https://github.com/saiemgilani/cfbfastR/issues/5)</span>                     | bug           | [rchanks](https://github.com/rchanks) | 1        | <span title="Thanks for bringing it up, but this is a known issue. I am working on a fix to get all the data going back to the start. Will not be forever but another week or two.">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/5#issuecomment-820774185)</span>                                                  | saiemgilani  | 2021-04-15 16:24:03 | 2021-04-15 22:48:48 | NA     |
+
+<details>
+
+<summary>View More</summary>
+
+| issue | icon | title | labels | opened\_by | comments | comments\_users | assigned\_to | created | updated | closed |
+| :---- | :--- | :---- | :----- | :--------- | :------- | :-------------- | :----------- | :------ | :------ | :----- |
+
+</details>
+
+<br>
 
 ## **Our Authors**
 
@@ -116,6 +154,15 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
   - [Tan Ho](https://twitter.com/_TanHo)  
     <a href="https://twitter.com/_TanHo" target="blank"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=twitter&style=for-the-badge" alt="@_TanHo" /></a>
     <a href="https://github.com/tanho63" target="blank"><img src="https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge" alt="@tanho63" /></a>
+
+## **Authors Emeritus - `cfbscrapR`\[archived\]**
+
+  - [Meyappan Subbiah](https://twitter.com/msubbaiah1)  
+    <a href="https://twitter.com/msubbaiah1" target="blank"><img src="https://img.shields.io/twitter/follow/msubbaiah1?color=blue&label=%40msubbaiah1&logo=twitter&style=for-the-badge" alt="@msubbaiah1" /></a>
+    <a href="https://github.com/meysubb" target="blank"><img src="https://img.shields.io/github/followers/meysubb?color=eee&logo=Github&style=for-the-badge" alt="@meysubb" /></a>
+  - [Parker Fleming](https://twitter.com/statsowar)  
+    <a href="https://twitter.com/statsowar" target="blank"><img src="https://img.shields.io/twitter/follow/statsowar?color=blue&label=%40statsowar&logo=twitter&style=for-the-badge" alt="@statsowar" /></a>
+    <a href="https://github.com/spfleming" target="blank"><img src="https://img.shields.io/github/followers/spfleming?color=eee&logo=Github&style=for-the-badge" alt="@spfleming" /></a>
 
 ## **Special Thanks**
 

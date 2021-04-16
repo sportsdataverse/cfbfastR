@@ -16,7 +16,12 @@ The [CollegeFootballData API](https://collegefootballdata.com/) now requires an 
 
 * To get an API key, follow the directions here: [College Football Data Key Registration.](https://collegefootballdata.com/key) 
 
-* Using the key: At the beginning of every session or within an R environment, save your API key as the environment variable `CFBD_API_KEY` using a command like the following.
+* Using the key: You can save the key for consistent usage by adding `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .REnviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html) and THEN paste the following in the new script that pops up (with**out** quotations)
+```r
+CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+```
+
+* For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable `CFBD_API_KEY` (with quotations) using a command like the following.
 
 ```{r}
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
