@@ -1,7 +1,5 @@
 context("CFB Team Info")
 
-x <- cfbd_team_info(year = 2019)
-
 cols <- c(
   "team_id", "school", "mascot", "abbreviation", "alt_name1", "alt_name2",
   "alt_name3", "conference", "division",
@@ -11,6 +9,9 @@ cols <- c(
   "capacity", "year_constructed", "grass", "dome")
 
 test_that("CFB Team Info", {
+  skip_on_cran()
+  x <- cfbd_team_info(year = 2019)
+  
   expect_equal(nrow(x), 130)
   expect_equal(ncol(x), length(cols))
   expect_equal(colnames(x), cols)

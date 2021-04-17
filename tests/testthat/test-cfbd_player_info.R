@@ -1,10 +1,5 @@
 context("CFB Player Info")
 
-x <- cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
-
-y <- cfbd_player_info(search_term = "Lawrence", team = "Clemson")
-
-w <- cfbd_player_info(search_term = "Duggan")
 
 cols <- c(
   "athlete_id", "team", "name", "first_name", "last_name",
@@ -13,6 +8,12 @@ cols <- c(
 )
 
 test_that("CFB Player Info", {
+  skip_on_cran()
+  x <- cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
+  
+  y <- cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+  
+  w <- cfbd_player_info(search_term = "Duggan")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_equal(colnames(w), cols)

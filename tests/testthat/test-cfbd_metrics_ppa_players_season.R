@@ -1,8 +1,5 @@
 context("CFB Metrics PPA Players Season")
 
-x <- cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
-
-y <- cfbd_metrics_ppa_players_season(year = 2019, team = "Alabama")
 
 cols <- c(
   "season", "id", "name", "position", "team", "conference",
@@ -15,6 +12,10 @@ cols <- c(
 )
 
 test_that("CFB Metrics PPA Players Season", {
+  skip_on_cran()
+  x <- cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
+  
+  y <- cfbd_metrics_ppa_players_season(year = 2019, team = "Alabama")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_s3_class(x, "data.frame")

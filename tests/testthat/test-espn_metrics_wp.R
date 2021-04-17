@@ -1,6 +1,5 @@
 context("CFB Metrics ESPN Win Probability")
 
-x <- espn_metrics_wp(game_id = 401012356)
 
 cols <- c(
   "espn_game_id", "play_id", "seconds_left",
@@ -8,6 +7,8 @@ cols <- c(
 )
 
 test_that("CFB Metrics ESPN Win Probability", {
+  skip_on_cran()
+  x <- espn_metrics_wp(game_id = 401012356)
   expect_equal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
 })

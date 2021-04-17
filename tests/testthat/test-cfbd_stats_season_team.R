@@ -1,10 +1,5 @@
 context("CFB Team Season Stats")
 
-x <- cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
-
-y <- cfbd_stats_season_team(2019, team = "LSU")
-
-z <- cfbd_stats_season_team(2013, team = "Florida State")
 
 cols <- c(
   "season", "team", "conference", "games", "time_of_poss_total", "time_of_poss_pg", "pass_comps",
@@ -21,6 +16,12 @@ cols <- c(
 )
 
 test_that("CFB Team Season Stats", {
+  skip_on_cran()
+  x <- cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+  
+  y <- cfbd_stats_season_team(2019, team = "LSU")
+  
+  z <- cfbd_stats_season_team(2013, team = "Florida State")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_equal(colnames(z), cols)

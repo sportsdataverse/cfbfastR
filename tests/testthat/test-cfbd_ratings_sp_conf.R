@@ -1,11 +1,5 @@
 context("CFB Conference Ratings - Bill C.'s SP+")
 
-x <- cfbd_ratings_sp_conference(year = 2019)
-
-y <- cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
-
-z <- cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
-
 cols <- c(
   "year", "conference", "rating", "second_order_wins", "sos",
   "offense_rating", "offense_success", "offense_explosiveness",
@@ -18,6 +12,13 @@ cols <- c(
 )
 
 test_that("CFB Conference Ratings - Bill C.'s SP+", {
+  skip_on_cran()
+  x <- cfbd_ratings_sp_conference(year = 2019)
+  
+  y <- cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
+  
+  z <- cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
+  
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_equal(colnames(z), cols)

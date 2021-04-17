@@ -1,9 +1,4 @@
 context("CFB Drives")
-
-x <- cfbd_drives(2018, week = 1, team = "TCU")
-
-y <- cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
-
 cols <- c(
   "offense", "offense_conference", "defense", "defense_conference",
   "game_id", "drive_id", "drive_number", "scoring", "start_period", "start_yardline",
@@ -16,6 +11,10 @@ cols <- c(
 )
 
 test_that("CFB Drives", {
+  skip_on_cran()
+  x <- cfbd_drives(2018, week = 1, team = "TCU")
+
+  y <- cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_s3_class(x, "data.frame")

@@ -1,11 +1,5 @@
 context("CFB Stats Season - Advanced")
 
-x <- cfbd_stats_season_advanced(year = 2018, start_week = 8, end_week = 12, team = "Texas A&M")
-
-y <- cfbd_stats_season_advanced(2019, team = "LSU")
-
-z <- cfbd_stats_season_advanced(2013, team = "Florida State")
-
 cols <- c(
   "season", "team", "conference", "off_plays", "off_drives",
   "off_ppa", "off_total_ppa", "off_success_rate", "off_explosiveness",
@@ -41,6 +35,13 @@ cols <- c(
 )
 
 test_that("CFB Stats Season - Advanced", {
+  
+  skip_on_cran()
+  x <- cfbd_stats_season_advanced(year = 2018, start_week = 8, end_week = 12, team = "Texas A&M")
+  
+  y <- cfbd_stats_season_advanced(2019, team = "LSU")
+  
+  z <- cfbd_stats_season_advanced(2013, team = "Florida State")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_equal(colnames(z), cols)

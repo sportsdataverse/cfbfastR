@@ -1,11 +1,4 @@
 context("CFB Game Team Stats")
-
-x <- cfbd_game_team_stats(year = 2018, week = 9, team = 'Notre Dame')
-
-y <- cfbd_game_team_stats(2013, week = 1, team = "Florida State")
-
-z <- cfbd_game_team_stats(2013, week = 3, team = "Florida State", rows_per_team = 2)
-
 cols1 <- c("game_id", "school",  "conference", "home_away",
            "points", "total_yards", "net_passing_yards", 
            "completion_attempts","passing_tds","yards_per_pass",
@@ -48,6 +41,13 @@ cols2 <- c("game_id", "school",  "conference", "home_away",
            "total_penalties_yards", "possession_time")
 
 test_that("CFB Game Team Stats", {
+  skip_on_cran()
+  x <- cfbd_game_team_stats(year = 2018, week = 9, team = 'Notre Dame')
+  
+  y <- cfbd_game_team_stats(2013, week = 1, team = "Florida State")
+  
+  z <- cfbd_game_team_stats(2013, week = 3, team = "Florida State", rows_per_team = 2)
+  
   expect_equal(colnames(x), cols1)
   expect_equal(colnames(y), cols1)
   expect_equal(colnames(z), cols2)

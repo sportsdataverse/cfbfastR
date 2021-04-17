@@ -1,6 +1,5 @@
 context("CFB Player Usage")
 
-x <- cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
 
 cols <- c(
   "season", "athlete_id", "name", "position", "team", "conference", "usg_overall",
@@ -9,6 +8,8 @@ cols <- c(
 )
 
 test_that("CFB Player Usage", {
+  skip_on_cran()
+  x <- cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
   expect_equal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
 })

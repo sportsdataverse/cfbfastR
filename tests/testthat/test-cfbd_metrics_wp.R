@@ -1,8 +1,5 @@
 context("CFB Metrics API Win Probability")
 
-x <- cfbd_metrics_wp(game_id = 401012356)
-
-y <- cfbd_metrics_wp(game_id = 401110720)
 
 cols <- c(
   "play_id", "play_text", "home_id", "home", "away_id", "away",
@@ -11,6 +8,10 @@ cols <- c(
 )
 
 test_that("CFB Metrics API Win Probability", {
+  skip_on_cran()
+  x <- cfbd_metrics_wp(game_id = 401012356)
+  
+  y <- cfbd_metrics_wp(game_id = 401110720)
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
