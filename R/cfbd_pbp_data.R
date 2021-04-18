@@ -551,12 +551,36 @@ cfbd_pbp_data <- function(year,
     g_ids <- sort(unique(play_df$game_id))
     game_count <- length(g_ids)
     builder <- TRUE
-
+    ep_model <- NULL
+    suppressWarnings(
+      # load the model from GitHub because it is too large for the package
+      try(
+        load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/ep_model.Rdata")),
+        silent = TRUE
+      )
+    )
+    fg_model <- NULL
+    suppressWarnings(
+      # load the model from GitHub because it is too large for the package
+      try(
+        load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/fg_model.Rdata")),
+        silent = TRUE
+      )
+    )
+    wp_model <- NULL
+    suppressWarnings(
+      # load the model from GitHub because it is too large for the package
+      try(
+        load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/wp_model.Rdata")),
+        silent = TRUE
+      )
+    )
     if (game_count > 1) {
       usethis::ui_todo("Start processing of {game_count} games...")
     } else {
       usethis::ui_todo("Start processing of {game_count} game...")
     }
+    
     p <- progressr::progressor(along = g_ids)
     
     play_df <- furrr::future_map_dfr(
@@ -571,9 +595,9 @@ cfbd_pbp_data <- function(year,
           add_yardage() %>%
           add_player_cols() %>%
           prep_epa_df_after() %>%
-          create_epa() %>%
+          create_epa(ep_model = ep_model, fg_model = fg_model) %>%
           # create_wpa_betting() %>%
-          create_wpa_naive()
+          create_wpa_naive(wp_model = wp_model)
         p(sprintf("x=%s", as.integer(x)))
         return(play_df)
       }, ...)
