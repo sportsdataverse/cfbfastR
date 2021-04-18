@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Functions to Access College Football Play by Play Data
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     c(person(given = "Saiem",
              family = "Gilani",
@@ -55,9 +55,9 @@ Depends:
   R (>= 3.5.0)
 Imports: 
     assertthat,
-    cli (>= 1.1.0),
-    crayon (>= 1.3.4),
     dplyr,
+    furrr,
+    future,
     glue,
     httr,
     janitor,
@@ -68,7 +68,6 @@ Imports:
     progressr (>= 0.6.0),
     purrr (>= 0.3.0),
     rlang,
-    stats,
     stringi,
     stringr (>= 1.3.0),
     tibble (>= 3.0),
@@ -76,14 +75,19 @@ Imports:
     usethis (>= 1.6.0),
     xgboost (>= 1.1)
 Suggests: 
+    cli (>= 1.1.0),
+    crayon (>= 1.3.4),
+    curl,
     DBI,
-    furrr,
-    future,
     ggplot2,
     ggrepel,
+    qs (>= 0.23.5),
     rmarkdown,
     RSQLite,
+    stats,
     testthat
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+
