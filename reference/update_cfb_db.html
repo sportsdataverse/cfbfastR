@@ -6,8 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Penalty Detection
-Adds penalty columns to Play-by-Play data pulled from the API — penalty_detection • cfbfastR</title>
+<title>Update or Create a cfbfastR Play-by-Play Database
+update_cfb_db updates or creates a database with cfbfastR
+play by play data of all completed games since 2014. — update_cfb_db • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -55,10 +56,12 @@ Adds penalty columns to Play-by-Play data pulled from the API — penalty_detect
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Penalty Detection
-Adds penalty columns to Play-by-Play data pulled from the API — penalty_detection" />
-<meta property="og:description" content="Penalty Detection
-Adds penalty columns to Play-by-Play data pulled from the API" />
+<meta property="og:title" content="Update or Create a cfbfastR Play-by-Play Database
+update_cfb_db updates or creates a database with cfbfastR
+play by play data of all completed games since 2014. — update_cfb_db" />
+<meta property="og:description" content="Update or Create a cfbfastR Play-by-Play Database
+update_cfb_db updates or creates a database with cfbfastR
+play by play data of all completed games since 2014." />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbfastR" />
@@ -304,54 +307,80 @@ Adds penalty columns to Play-by-Play data pulled from the API" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Penalty Detection
-Adds penalty columns to Play-by-Play data pulled from the API</h1>
+    <h1>Update or Create a cfbfastR Play-by-Play Database
+<code>update_cfb_db</code> updates or creates a database with <code>cfbfastR</code>
+play by play data of all completed games since 2014.</h1>
     
-    <div class="hidden name"><code>penalty_detection.Rd</code></div>
+    <div class="hidden name"><code>update_cfb_db.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Penalty Detection
-Adds penalty columns to Play-by-Play data pulled from the API</p>
+    <p>Update or Create a cfbfastR Play-by-Play Database
+<code>update_cfb_db</code> updates or creates a database with <code>cfbfastR</code>
+play by play data of all completed games since 2014.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>penalty_detection</span><span class='op'>(</span><span class='va'>raw_df</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>update_cfb_db</span><span class='op'>(</span>
+  dbdir <span class='op'>=</span> <span class='st'>"."</span>,
+  dbname <span class='op'>=</span> <span class='st'>"cfb_pbp_db"</span>,
+  tblname <span class='op'>=</span> <span class='st'>"cfbfastR_pbp"</span>,
+  force_rebuild <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  db_connection <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>raw_df</th>
-      <td><p>(<em>data.frame</em> required): Performs data cleansing on Play-by-Play DataFrame, as pulled from <code><a href='cfbd_pbp_data.html'>cfbd_pbp_data()</a></code></p></td>
+      <th>dbdir</th>
+      <td><p>Directory in which the database is or shall be located</p></td>
+    </tr>
+    <tr>
+      <th>dbname</th>
+      <td><p>File name of an existing or desired SQLite database within <code>dbdir</code></p></td>
+    </tr>
+    <tr>
+      <th>tblname</th>
+      <td><p>The name of the play by play data table within the database</p></td>
+    </tr>
+    <tr>
+      <th>force_rebuild</th>
+      <td><p>Hybrid parameter (logical or numeric) to rebuild parts
+of or the complete play by play data table within the database (please see details for further information)</p></td>
+    </tr>
+    <tr>
+      <th>db_connection</th>
+      <td><p>A <code>DBIConnection</code> object, as returned by
+<code><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>DBI::dbConnect()</a></code> (please see details for further information)</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>The original <code>raw_df</code> with the following columns appended/redefined:</p><dl>
-<dt>penalty_flag</dt><dd><p>TRUE/FALSE flag for penalty play types or penalty in play text plays.</p></dd>
-<dt>penalty_declined</dt><dd><p>TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.</p></dd>
-<dt>penalty_no_play</dt><dd><p>TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.</p></dd>
-<dt>penalty_offset</dt><dd><p>TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.</p></dd>
-<dt>penalty_1st_conv</dt><dd><p>TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.</p></dd>
-<dt>penalty_text</dt><dd><p>TRUE/FALSE flag for penalty in text but not a penalty play type.</p></dd>
-<dt>orig_play_type</dt><dd><p>Copy of original play_type label prior to any changes by the proceeding functions</p></dd>
-<dt>down</dt><dd><p>Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.</p></dd>
-<dt>play_type</dt><dd><p>Defines <code>play_type</code>, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.</p></dd>
-<dt>half</dt><dd><p>Defines the half variable (1, 2).</p></dd>
-
-</dl>
-
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Runs penalty detection on the play text and play types. Requires the following columns be present:</p><ul>
-<li><p>game_id</p></li>
-<li><p>period</p></li>
-<li><p>down</p></li>
-<li><p>play_type</p></li>
-<li><p>play_text</p></li>
+    <p>This function creates and updates a data table with the name <code>tblname</code>
+within a SQLite database (other drivers via <code>db_connection</code>) located in
+<code>dbdir</code> and named <code>dbname</code>.
+The data table combines all play by play data for every available game back
+to the 2014 season and adds the most recent completed games as soon as they
+are available for <code>cfbfastR</code>.</p>
+<p>The argument <code>force_rebuild</code> is of hybrid type. It can rebuild the play
+by play data table either for the whole cfbfastR era (with <code>force_rebuild = TRUE</code>)
+or just for specified seasons (e.g. <code>force_rebuild = c(2019, 2020)</code>).
+Please note the following behavior:</p><ul>
+<li><p><code>force_rebuild = TRUE</code>: The data table with the name <code>tblname</code>
+will be removed completely and rebuilt from scratch. This is helpful when
+new columns are added during the Off-Season.</p></li>
+<li><p><code>force_rebuild = c(2019, 2020)</code>: The data table with the name <code>tblname</code>
+will be preserved and only rows from the 2019 and 2020 seasons will be
+deleted and re-added. This is intended to be used for ongoing seasons because
+ESPN's data provider can make changes to the underlying data during the week.</p></li>
 </ul>
 
+<p>The parameter <code>db_connection</code> is intended for advanced users who want
+to use other DBI drivers, such as MariaDB, Postgres or odbc. Please note that
+the arguments <code>dbdir</code> and <code>dbname</code> are dropped in case a <code>db_connection</code>
+is provided but the argument <code>tblname</code> will still be used to write the
+data table into the database.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

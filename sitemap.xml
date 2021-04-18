@@ -55,7 +55,10 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_venues.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/reference/check_internet.html</loc>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbfastR-package.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/check_github.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/clean_drive_dat.html</loc>
@@ -85,6 +88,12 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/get_fun_from_pkg.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/penalty_detection.html</loc>
   </url>
   <url>
@@ -92,6 +101,9 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/wpa_calcs_naive.html</loc>

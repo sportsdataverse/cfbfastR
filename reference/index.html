@@ -44,6 +44,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
   <link href="../extra.css" rel="stylesheet">
   
@@ -84,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -113,6 +119,12 @@
     </li>
     <li>
       <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
+    </li>
+    <li>
+      <a href="../reference/update_cfb_db.html">Update or Create Database</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -271,6 +283,12 @@
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -330,6 +348,46 @@
           <p><code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code> </p>
         </td>
         <td><p>CFBD Play by Play Data</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-full-seasons-pbp-data" class="hasAnchor"><a href="#section-full-seasons-pbp-data" class="anchor"></a>Full Seasons PBP Data</h3>
+          <p class="section-desc"><p>Functions exported by cfbfastR which load full seasons of cfbfastR data</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="load_cfb_pbp.html">load_cfb_pbp()</a></code> </p>
+        </td>
+        <td><p>Load cfbfastR play-by-play</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-update-or-create-database" class="hasAnchor"><a href="#section-update-or-create-database" class="anchor"></a>Update or Create Database</h3>
+          <p class="section-desc"><p>Functions exported by cfbfastR which update and create a database of cfbfastR play-by-play data</p></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="update_cfb_db.html">update_cfb_db()</a></code> </p>
+        </td>
+        <td><p>Update or Create a cfbfastR Play-by-Play Database
+<code>update_cfb_db</code> updates or creates a database with <code>cfbfastR</code>
+play by play data of all completed games since 2014.</p></td>
       </tr>
     </tbody><tbody>
       
@@ -644,9 +702,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="check_internet.html">check_internet()</a></code> </p>
+          <p><code><a href="check_github.html">check_github()</a></code> </p>
         </td>
-        <td><p>Utilities and Helpers for package</p></td>
+        <td><p>Check latest GitHub version of R package</p></td>
       </tr><tr>
         
         <td>
@@ -668,9 +726,29 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="get_fun_from_pkg.html">get_fun_from_pkg()</a></code> </p>
+        </td>
+        <td><p>load function from package</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="load_cfb_pbp.html">load_cfb_pbp()</a></code> </p>
+        </td>
+        <td><p>Load cfbfastR play-by-play</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="register_cfbd.html">cfbd_key()</a></code> <code><a href="register_cfbd.html">has_cfbd_key()</a></code> </p>
         </td>
         <td><p>CFBD API Key Registration</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="update_cfb_db.html">update_cfb_db()</a></code> </p>
+        </td>
+        <td><p>Update or Create a cfbfastR Play-by-Play Database
+<code>update_cfb_db</code> updates or creates a database with <code>cfbfastR</code>
+play by play data of all completed games since 2014.</p></td>
       </tr><tr>
         
         <td>
@@ -758,6 +836,23 @@ Cleans Play-by-Play data pulled from the API's raw game data</p></td>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '002e977de61519c48dce057f58ed1d24',
+    indexName: 'cfbfastR',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

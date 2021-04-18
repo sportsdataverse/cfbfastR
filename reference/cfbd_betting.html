@@ -44,6 +44,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
   <link href="../extra.css" rel="stylesheet">
   
@@ -86,7 +92,7 @@ Get Betting information from games" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -115,6 +121,12 @@ Get Betting information from games" />
     </li>
     <li>
       <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
+    </li>
+    <li>
+      <a href="../reference/update_cfb_db.html">Update or Create Database</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -273,6 +285,12 @@ Get Betting information from games" />
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -303,7 +321,8 @@ Get Betting information from games" />
   home_team <span class='op'>=</span> <span class='cn'>NULL</span>,
   away_team <span class='op'>=</span> <span class='cn'>NULL</span>,
   conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  line_provider <span class='op'>=</span> <span class='cn'>NULL</span>
+  line_provider <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -348,6 +367,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
       <th>line_provider</th>
       <td><p>(<em>String</em> optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -375,12 +398,41 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>12</span>, team <span class='op'>=</span> <span class='st'>'Florida State'</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+   <span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>12</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     game_id season season_type week     home_team home_conference home_score
+#&gt; 1 401013175   2018     regular   12 Florida State             ACC         22
+#&gt; 2 401013175   2018     regular   12 Florida State             ACC         22
+#&gt; 3 401013175   2018     regular   12 Florida State             ACC         22
+#&gt; 4 401013175   2018     regular   12 Florida State             ACC         22
+#&gt;        away_team away_conference away_score     provider spread
+#&gt; 1 Boston College             ACC         21    consensus      3
+#&gt; 2 Boston College             ACC         21      Caesars      3
+#&gt; 3 Boston College             ACC         21   numberfire    2.5
+#&gt; 4 Boston College             ACC         21 teamrankings    2.5
+#&gt;      formatted_spread over_under
+#&gt; 1   Boston College -3       49.5
+#&gt; 2   Boston College -3       48.5
+#&gt; 3 Boston College -2.5         49
+#&gt; 4 Boston College -2.5       47.5</div><div class='input'>
+   <span class='co'># 7 OTs LSU at TAMU</span>
+   <span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>13</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     game_id season season_type week home_team home_conference home_score
+#&gt; 1 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt; 2 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt; 3 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt; 4 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt;   away_team away_conference away_score     provider spread formatted_spread
+#&gt; 1       LSU             SEC         72    consensus     -3     Texas A&amp;M -3
+#&gt; 2       LSU             SEC         72      Caesars     -3     Texas A&amp;M -3
+#&gt; 3       LSU             SEC         72   numberfire   &lt;NA&gt;        LSU -null
+#&gt; 4       LSU             SEC         72 teamrankings     -3     Texas A&amp;M -3
+#&gt;   over_under
+#&gt; 1       45.5
+#&gt; 2       45.5
+#&gt; 3       46.5
+#&gt; 4       46.5</div><div class='input'><span class='co'># }</span>
 
-<span class='co'>#7 OTs LSU at TAMU</span>
-<span class='fu'>cfbd_betting_lines</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>13</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, conference <span class='op'>=</span> <span class='st'>'SEC'</span><span class='op'>)</span>
-<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -404,6 +456,23 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '002e977de61519c48dce057f58ed1d24',
+    indexName: 'cfbfastR',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

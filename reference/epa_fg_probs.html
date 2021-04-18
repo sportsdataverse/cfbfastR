@@ -44,6 +44,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
   <link href="../extra.css" rel="stylesheet">
   
@@ -85,7 +91,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -114,6 +120,12 @@
     </li>
     <li>
       <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
+    </li>
+    <li>
+      <a href="../reference/update_cfb_db.html">Update or Create Database</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -272,6 +284,12 @@
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -292,12 +310,7 @@
     <p>Extracts raw game by game data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>epa_fg_probs</span><span class='op'>(</span>
-  <span class='va'>dat</span>,
-  <span class='va'>current_probs</span>,
-  ep_model <span class='op'>=</span> <span class='fu'>cfbfastR</span><span class='fu'>:::</span><span class='va'>ep_model</span>,
-  fg_mod <span class='op'>=</span> <span class='fu'>cfbfastR</span><span class='fu'>:::</span><span class='va'>fg_model</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>epa_fg_probs</span><span class='op'>(</span><span class='va'>dat</span>, <span class='va'>current_probs</span>, <span class='va'>ep_model</span>, <span class='va'>fg_mod</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -343,6 +356,23 @@
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '002e977de61519c48dce057f58ed1d24',
+    indexName: 'cfbfastR',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

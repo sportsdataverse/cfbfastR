@@ -44,6 +44,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
   <link href="../extra.css" rel="stylesheet">
   
@@ -89,7 +95,7 @@ College Football Mapping for Play Types" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -118,6 +124,12 @@ College Football Mapping for Play Types" />
     </li>
     <li>
       <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li>
+      <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
+    </li>
+    <li>
+      <a href="../reference/update_cfb_db.html">Update or Create Database</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -276,6 +288,12 @@ College Football Mapping for Play Types" />
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -310,7 +328,8 @@ College Football Mapping for Play Types" />
   conference <span class='op'>=</span> <span class='cn'>NULL</span>,
   offense_conference <span class='op'>=</span> <span class='cn'>NULL</span>,
   defense_conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  play_type <span class='op'>=</span> <span class='cn'>NULL</span>
+  play_type <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
 <span class='fu'>cfbd_play_stats_player</span><span class='op'>(</span>
@@ -320,7 +339,8 @@ College Football Mapping for Play Types" />
   game_id <span class='op'>=</span> <span class='cn'>NULL</span>,
   athlete_id <span class='op'>=</span> <span class='cn'>NULL</span>,
   stat_type_id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  season_type <span class='op'>=</span> <span class='st'>"regular"</span>
+  season_type <span class='op'>=</span> <span class='st'>"regular"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
 <span class='fu'>cfbd_play_stats_types</span><span class='op'>(</span><span class='op'>)</span>
@@ -372,6 +392,10 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)</p></
     <tr>
       <th>play_type</th>
       <td><p>Select play type (example: see the <code><a href='data.html'>cfbd_play_type_df</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function</p></td>
     </tr>
     <tr>
       <th>game_id</th>
@@ -473,12 +497,2008 @@ Can be found using the <code>cfbfastR::cfbd_play_stats_types()</code> function</
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
   <span class='fu'>cfbd_play_stats_player</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401110722</span><span class='op'>)</span>
-<span class='op'>}</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+</div><div class='output co'>#&gt;                play_id   game_id season week opponent team_score opponent_score
+#&gt; 1   401110722101855501 401110722   2019    1   Auburn          0              0
+#&gt; 2   401110722101857401 401110722   2019    1   Auburn          0              0
+#&gt; 3   401110722101864001 401110722   2019    1   Auburn          0              0
+#&gt; 4   401110722101864501 401110722   2019    1   Auburn          0              0
+#&gt; 5   401110722101868001 401110722   2019    1   Auburn          0              0
+#&gt; 6   401110722101874801 401110722   2019    1   Auburn          0              0
+#&gt; 7   401110722101878601 401110722   2019    1   Auburn          0              0
+#&gt; 8   401110722101886701 401110722   2019    1   Auburn          0              0
+#&gt; 9   401110722101894201 401110722   2019    1   Auburn          0              0
+#&gt; 10  401110722101898601 401110722   2019    1   Auburn          7              0
+#&gt; 11  401110722101899401 401110722   2019    1   Oregon          0              7
+#&gt; 12  401110722101907201 401110722   2019    1   Oregon          0              7
+#&gt; 13  401110722101915101 401110722   2019    1   Oregon          0              7
+#&gt; 14  401110722101917101 401110722   2019    1   Auburn          7              0
+#&gt; 15  401110722101924201 401110722   2019    1   Auburn          7              0
+#&gt; 16  401110722101926901 401110722   2019    1   Auburn          7              0
+#&gt; 17  401110722101927701 401110722   2019    1   Auburn          7              0
+#&gt; 18  401110722101935301 401110722   2019    1   Auburn          7              0
+#&gt; 19  401110722101937701 401110722   2019    1   Auburn          7              0
+#&gt; 20  401110722101939601 401110722   2019    1   Auburn          7              0
+#&gt; 21  401110722101947901 401110722   2019    1   Auburn          7              0
+#&gt; 22  401110722101955501 401110722   2019    1   Auburn          7              0
+#&gt; 23  401110722101956601 401110722   2019    1   Oregon          0              7
+#&gt; 24  401110722101958201 401110722   2019    1   Oregon          0              7
+#&gt; 25  401110722101964101 401110722   2019    1   Oregon          0              7
+#&gt; 26  401110722101967101 401110722   2019    1   Oregon          0              7
+#&gt; 27  401110722101967701 401110722   2019    1   Oregon          0              7
+#&gt; 28  401110722101969101 401110722   2019    1   Auburn          7              3
+#&gt; 29  401110722101975401 401110722   2019    1   Auburn          7              3
+#&gt; 30  401110722101978801 401110722   2019    1   Auburn         14              3
+#&gt; 31  401110722101984201 401110722   2019    1   Oregon          3             14
+#&gt; 32  401110722101986001 401110722   2019    1   Oregon          3             14
+#&gt; 33  401110722101988201 401110722   2019    1   Oregon          3             14
+#&gt; 34  401110722101994001 401110722   2019    1   Oregon          3             14
+#&gt; 35  401110722101994601 401110722   2019    1   Oregon          3             14
+#&gt; 36  401110722101997501 401110722   2019    1   Oregon          3             14
+#&gt; 37  401110722102854801 401110722   2019    1   Oregon          3             14
+#&gt; 38  401110722102858401 401110722   2019    1   Oregon          3             14
+#&gt; 39  401110722102865701 401110722   2019    1   Oregon          3             14
+#&gt; 40  401110722102869001 401110722   2019    1   Oregon          3             14
+#&gt; 41  401110722102876801 401110722   2019    1   Oregon          3             14
+#&gt; 42  401110722102877101 401110722   2019    1   Auburn         14              3
+#&gt; 43  401110722102877801 401110722   2019    1   Auburn         14              3
+#&gt; 44  401110722102886401 401110722   2019    1   Auburn         14              3
+#&gt; 45  401110722102889601 401110722   2019    1   Auburn         14              3
+#&gt; 46  401110722102898101 401110722   2019    1   Auburn         14              3
+#&gt; 47  401110722102909001 401110722   2019    1   Oregon          3             14
+#&gt; 48  401110722102915801 401110722   2019    1   Oregon          3             14
+#&gt; 49  401110722102917502 401110722   2019    1   Oregon          3             14
+#&gt; 50  401110722102925702 401110722   2019    1   Oregon          3             14
+#&gt; 51  401110722102935001 401110722   2019    1   Oregon          3             14
+#&gt; 52  401110722102939301 401110722   2019    1   Oregon          3             14
+#&gt; 53  401110722102955401 401110722   2019    1   Oregon          3             14
+#&gt; 54  401110722102956701 401110722   2019    1   Auburn         14              6
+#&gt; 55  401110722102968001 401110722   2019    1   Auburn         14              6
+#&gt; 56  401110722102975201 401110722   2019    1   Oregon          6             14
+#&gt; 57  401110722102985101 401110722   2019    1   Oregon          6             14
+#&gt; 58  401110722102986501 401110722   2019    1   Oregon          6             14
+#&gt; 59  401110722102987201 401110722   2019    1   Auburn         14              6
+#&gt; 60  401110722102988801 401110722   2019    1   Auburn         14              6
+#&gt; 61  401110722102989201 401110722   2019    1   Auburn         14              6
+#&gt; 62  401110722102995201 401110722   2019    1   Oregon          6             14
+#&gt; 63  401110722102995901 401110722   2019    1   Oregon          6             14
+#&gt; 64  401110722102996801 401110722   2019    1   Oregon          6             14
+#&gt; 65  401110722102997501 401110722   2019    1   Oregon          6             14
+#&gt; 66  401110722102998001 401110722   2019    1   Oregon          6             14
+#&gt; 67  401110722102998601 401110722   2019    1   Oregon          6             14
+#&gt; 68  401110722103854401 401110722   2019    1   Oregon          6             14
+#&gt; 69  401110722103858101 401110722   2019    1   Oregon          6             14
+#&gt; 70  401110722103865601 401110722   2019    1   Oregon          6             14
+#&gt; 71  401110722103875301 401110722   2019    1   Auburn         14              6
+#&gt; 72  401110722103875901 401110722   2019    1   Auburn         14              6
+#&gt; 73  401110722103878101 401110722   2019    1   Auburn         14              6
+#&gt; 74  401110722103885201 401110722   2019    1   Auburn         14              6
+#&gt; 75  401110722103887301 401110722   2019    1   Auburn         14              6
+#&gt; 76  401110722103889301 401110722   2019    1   Auburn         14              6
+#&gt; 77  401110722103896401 401110722   2019    1   Auburn         14              6
+#&gt; 78  401110722103904201 401110722   2019    1   Auburn         14              6
+#&gt; 79  401110722103907601 401110722   2019    1   Auburn         21              6
+#&gt; 80  401110722103908001 401110722   2019    1   Oregon          6             21
+#&gt; 81  401110722103908901 401110722   2019    1   Oregon          6             21
+#&gt; 82  401110722103915701 401110722   2019    1   Oregon          6             21
+#&gt; 83  401110722103918301 401110722   2019    1   Oregon          6             21
+#&gt; 84  401110722103925201 401110722   2019    1   Oregon          6             21
+#&gt; 85  401110722103929101 401110722   2019    1   Oregon          6             21
+#&gt; 86  401110722103934201 401110722   2019    1   Oregon          6             21
+#&gt; 87  401110722103936001 401110722   2019    1   Auburn         21              6
+#&gt; 88  401110722103938901 401110722   2019    1   Auburn         21              6
+#&gt; 89  401110722103947301 401110722   2019    1   Oregon          6             21
+#&gt; 90  401110722103954201 401110722   2019    1   Oregon          6             21
+#&gt; 91  401110722103956001 401110722   2019    1   Oregon          6             21
+#&gt; 92  401110722103957901 401110722   2019    1   Oregon         13             21
+#&gt; 93  401110722103958801 401110722   2019    1   Auburn         21             13
+#&gt; 94  401110722103964801 401110722   2019    1   Auburn         21             13
+#&gt; 95  401110722103967501 401110722   2019    1   Auburn         21             13
+#&gt; 96  401110722103974201 401110722   2019    1   Auburn         21             13
+#&gt; 97  401110722103976401 401110722   2019    1   Auburn         21             13
+#&gt; 98  401110722103986201 401110722   2019    1   Oregon         13             21
+#&gt; 99  401110722103989101 401110722   2019    1   Oregon         13             21
+#&gt; 100 401110722103996401 401110722   2019    1   Oregon         13             21
+#&gt; 101 401110722103999501 401110722   2019    1   Oregon         13             21
+#&gt; 102 401110722104854601 401110722   2019    1   Oregon         13             21
+#&gt; 103 401110722104859201 401110722   2019    1   Auburn         21             13
+#&gt; 104 401110722104866101 401110722   2019    1   Auburn         21             13
+#&gt; 105 401110722104866801 401110722   2019    1   Auburn         21             13
+#&gt; 106 401110722104876401 401110722   2019    1   Oregon         13             21
+#&gt; 107 401110722104879901 401110722   2019    1   Oregon         13             21
+#&gt; 108 401110722104885401 401110722   2019    1   Oregon         13             21
+#&gt; 109 401110722104888101 401110722   2019    1   Oregon         13             21
+#&gt; 110 401110722104894401 401110722   2019    1   Oregon         13             21
+#&gt; 111 401110722104897501 401110722   2019    1   Oregon         13             21
+#&gt; 112 401110722104904001 401110722   2019    1   Oregon         13             21
+#&gt; 113 401110722104905101 401110722   2019    1   Oregon         20             21
+#&gt; 114 401110722104905701 401110722   2019    1   Auburn         21             20
+#&gt; 115 401110722104908301 401110722   2019    1   Auburn         21             20
+#&gt; 116 401110722104918101 401110722   2019    1   Auburn         21             20
+#&gt; 117 401110722104919101 401110722   2019    1   Auburn         21             20
+#&gt; 118 401110722104926401 401110722   2019    1   Auburn         21             20
+#&gt; 119 401110722104929901 401110722   2019    1   Auburn         21             20
+#&gt; 120 401110722104937901 401110722   2019    1   Auburn         21             20
+#&gt; 121 401110722104946901 401110722   2019    1   Auburn         21             20
+#&gt; 122 401110722104947501 401110722   2019    1   Oregon         20             21
+#&gt; 123 401110722104955501 401110722   2019    1   Oregon         20             21
+#&gt; 124 401110722104956101 401110722   2019    1   Oregon         20             21
+#&gt; 125 401110722104957301 401110722   2019    1   Auburn         21             20
+#&gt; 126 401110722104964801 401110722   2019    1   Auburn         21             20
+#&gt; 127 401110722104968801 401110722   2019    1   Auburn         21             20
+#&gt; 128 401110722104976901 401110722   2019    1   Oregon         20             21
+#&gt; 129 401110722104977801 401110722   2019    1   Auburn         21             20
+#&gt; 130 401110722104979401 401110722   2019    1   Oregon         20             21
+#&gt; 131 401110722104985201 401110722   2019    1   Oregon         20             21
+#&gt; 132 401110722104987101 401110722   2019    1   Oregon         20             21
+#&gt; 133 401110722104987801 401110722   2019    1   Oregon         20             21
+#&gt; 134 401110722104994201 401110722   2019    1   Oregon         20             21
+#&gt; 135 401110722104996501 401110722   2019    1   Oregon         20             21
+#&gt; 136 401110722104997301 401110722   2019    1   Oregon         20             21
+#&gt; 137 401110722104997801 401110722   2019    1   Oregon         20             21
+#&gt; 138 401110722104998301 401110722   2019    1   Oregon         20             21
+#&gt; 139 401110722104999001 401110722   2019    1   Oregon         27             21
+#&gt; 140 401110722104999901 401110722   2019    1   Auburn         21             27
+#&gt;        drive_id period yards_to_goal down distance reception_player_id
+#&gt; 1    4011107221      1            74    1       10             4242506
+#&gt; 2    4011107221      1            65    2        1                &lt;NA&gt;
+#&gt; 3    4011107221      1            63    1       10                &lt;NA&gt;
+#&gt; 4    4011107221      1            63    2       10             4242504
+#&gt; 5    4011107221      1            55    3        2                &lt;NA&gt;
+#&gt; 6    4011107221      1            50    1       10             4242506
+#&gt; 7    4011107221      1            50    2       10             4242504
+#&gt; 8    4011107221      1             3    1        3                &lt;NA&gt;
+#&gt; 9    4011107221      1             2    2        2                &lt;NA&gt;
+#&gt; 10   4011107221      1             1    4        1                &lt;NA&gt;
+#&gt; 11   4011107222      1            75    1       10                &lt;NA&gt;
+#&gt; 12   4011107222      1            77    2       12                &lt;NA&gt;
+#&gt; 13   4011107222      1            73    3        8                &lt;NA&gt;
+#&gt; 14   4011107223      1            44    1       10             4373812
+#&gt; 15   4011107223      1            38    2        4             4242506
+#&gt; 16   4011107223      1            30    1       10                &lt;NA&gt;
+#&gt; 17   4011107223      1            30    2       10                &lt;NA&gt;
+#&gt; 18   4011107223      1            27    3        7             4242506
+#&gt; 19   4011107223      1            16    1       10                &lt;NA&gt;
+#&gt; 20   4011107223      1             3    1        3                &lt;NA&gt;
+#&gt; 21   4011107223      1             4    2        4                &lt;NA&gt;
+#&gt; 22   4011107223      1             2    3        2                &lt;NA&gt;
+#&gt; 23   4011107224      1            80    1       10             3916927
+#&gt; 24   4011107224      1            42    1       10                &lt;NA&gt;
+#&gt; 25   4011107224      1            23    1       10                &lt;NA&gt;
+#&gt; 26   4011107224      1            22    2        9                &lt;NA&gt;
+#&gt; 27   4011107224      1            22    3        9                &lt;NA&gt;
+#&gt; 28   4011107225      1            38    1       10                &lt;NA&gt;
+#&gt; 29   4011107225      1            23    1       10                &lt;NA&gt;
+#&gt; 30   4011107225      1            20    2        7             4373813
+#&gt; 31   4011107226      1            80    1       10             4035500
+#&gt; 32   4011107226      1            72    2        2                &lt;NA&gt;
+#&gt; 33   4011107226      1            66    1       10                &lt;NA&gt;
+#&gt; 34   4011107226      1            58    2        2                &lt;NA&gt;
+#&gt; 35   4011107226      1            58    3        2                &lt;NA&gt;
+#&gt; 36   4011107226      1            51    1       10                &lt;NA&gt;
+#&gt; 37   4011107226      2            44    2        3                &lt;NA&gt;
+#&gt; 38   4011107226      2            43    3        2                &lt;NA&gt;
+#&gt; 39   4011107226      2            40    1       10             4371980
+#&gt; 40   4011107226      2            12    1       10                &lt;NA&gt;
+#&gt; 41   4011107226      2            15    2       13                &lt;NA&gt;
+#&gt; 42   4011107227      2            88    1       10                &lt;NA&gt;
+#&gt; 43   4011107227      2            88    2       10                &lt;NA&gt;
+#&gt; 44   4011107227      2            74    1       10                &lt;NA&gt;
+#&gt; 45   4011107227      2            68    2        4                &lt;NA&gt;
+#&gt; 46   4011107227      2            67    3        3             4242504
+#&gt; 47   4011107228      2            87    1       10                &lt;NA&gt;
+#&gt; 48   4011107228      2            83    2        6             4242536
+#&gt; 49   4011107228      2            62    1       10                &lt;NA&gt;
+#&gt; 50   4011107228      2            61    2        9                &lt;NA&gt;
+#&gt; 51   4011107228      2            59    3        7                &lt;NA&gt;
+#&gt; 52  40111072210      2             3    1        3             4035500
+#&gt; 53  40111072210      2             7    3        7                &lt;NA&gt;
+#&gt; 54  40111072211      2            75    1       10                &lt;NA&gt;
+#&gt; 55  40111072211      2            87    2       22             3915136
+#&gt; 56  40111072211      2            74    3        9                &lt;NA&gt;
+#&gt; 57  40111072212      2            59    1       10                &lt;NA&gt;
+#&gt; 58  40111072212      2            54    2        5                &lt;NA&gt;
+#&gt; 59  40111072213      2            75    1       10                &lt;NA&gt;
+#&gt; 60  40111072213      2            71    2        6                &lt;NA&gt;
+#&gt; 61  40111072213      2            71    3        6                &lt;NA&gt;
+#&gt; 62  40111072214      2            26    1       10                &lt;NA&gt;
+#&gt; 63  40111072214      2            26    2       10                &lt;NA&gt;
+#&gt; 64  40111072214      2            26    3       10                &lt;NA&gt;
+#&gt; 65  40111072214      2            13    1       10                &lt;NA&gt;
+#&gt; 66  40111072214      2            21    2       18             4371974
+#&gt; 67  40111072214      2            24    3       21                &lt;NA&gt;
+#&gt; 68  40111072216      3            80    1       15                &lt;NA&gt;
+#&gt; 69  40111072216      3            81    2       16                &lt;NA&gt;
+#&gt; 70  40111072216      3            81    3       16                &lt;NA&gt;
+#&gt; 71  40111072217      3            53    1       10                &lt;NA&gt;
+#&gt; 72  40111072217      3            53    2       10             4242504
+#&gt; 73  40111072217      3            33    1       10             4242492
+#&gt; 74  40111072217      3            32    2        9             3915136
+#&gt; 75  40111072217      3            26    3        3             4373813
+#&gt; 76  40111072217      3            21    1       10                &lt;NA&gt;
+#&gt; 77  40111072217      3            20    2        9                &lt;NA&gt;
+#&gt; 78  40111072217      3            19    3        8             4242504
+#&gt; 79  40111072217      3             6    1        6                &lt;NA&gt;
+#&gt; 80  40111072218      3            75    1       10                &lt;NA&gt;
+#&gt; 81  40111072218      3            75    2       10                &lt;NA&gt;
+#&gt; 82  40111072218      3            68    3        3                &lt;NA&gt;
+#&gt; 83  40111072218      3            65    1       10                &lt;NA&gt;
+#&gt; 84  40111072218      3            65    2       10                &lt;NA&gt;
+#&gt; 85  40111072218      3            64    3        9                &lt;NA&gt;
+#&gt; 86  40111072219      3            89    1       10                &lt;NA&gt;
+#&gt; 87  40111072219      3            89    2       19                &lt;NA&gt;
+#&gt; 88  40111072219      3            86    3       16                &lt;NA&gt;
+#&gt; 89  40111072220      3            58    1       10                &lt;NA&gt;
+#&gt; 90  40111072220      3            53    2        5                &lt;NA&gt;
+#&gt; 91  40111072220      3            47    1       10                &lt;NA&gt;
+#&gt; 92  40111072220      3            11    1       10             4035500
+#&gt; 93  40111072221      3            75    1       10             4242504
+#&gt; 94  40111072221      3            70    2        5             4426476
+#&gt; 95  40111072221      3            61    1       10             3915136
+#&gt; 96  40111072221      3            58    2        7             4242492
+#&gt; 97  40111072221      3            55    3        4             4373813
+#&gt; 98  40111072222      3            80    1       10                &lt;NA&gt;
+#&gt; 99  40111072222      3            72    2        2                &lt;NA&gt;
+#&gt; 100 40111072222      3            69    1       10                &lt;NA&gt;
+#&gt; 101 40111072222      3            62    2        3                &lt;NA&gt;
+#&gt; 102 40111072222      4            61    3        2                &lt;NA&gt;
+#&gt; 103 40111072223      4            81    1       10                &lt;NA&gt;
+#&gt; 104 40111072223      4            78    2        7                &lt;NA&gt;
+#&gt; 105 40111072223      4            78    3        7                &lt;NA&gt;
+#&gt; 106 40111072224      4            69    1       10                &lt;NA&gt;
+#&gt; 107 40111072224      4            72    2       13             4242536
+#&gt; 108 40111072224      4            51    1       10                &lt;NA&gt;
+#&gt; 109 40111072224      4            48    2        7                &lt;NA&gt;
+#&gt; 110 40111072224      4            17    1       10             4371975
+#&gt; 111 40111072224      4            16    2        9                &lt;NA&gt;
+#&gt; 112 40111072224      4             8    3        1                &lt;NA&gt;
+#&gt; 113 40111072224      4             1    1        1                &lt;NA&gt;
+#&gt; 114 40111072225      4            75    1       10             4242506
+#&gt; 115 40111072225      4            71    2        6             4242506
+#&gt; 116 40111072225      4            68    1       15             4242506
+#&gt; 117 40111072225      4            54    2        1                &lt;NA&gt;
+#&gt; 118 40111072225      4            50    1       10                &lt;NA&gt;
+#&gt; 119 40111072225      4            50    2       10             4242504
+#&gt; 120 40111072225      4            45    3        5             3915136
+#&gt; 121 40111072225      4            41    4        1                &lt;NA&gt;
+#&gt; 122 40111072226      4            58    1       10                &lt;NA&gt;
+#&gt; 123 40111072226      4            58    2       10                &lt;NA&gt;
+#&gt; 124 40111072226      4            58    3       10                &lt;NA&gt;
+#&gt; 125 40111072227      4            82    1       10             4242506
+#&gt; 126 40111072227      4            78    2        6             4242506
+#&gt; 127 40111072227      4            72    1       10                &lt;NA&gt;
+#&gt; 128 40111072227      4            69    2        7                &lt;NA&gt;
+#&gt; 129 40111072227      4            76    3       14             4360691
+#&gt; 130 40111072228      4            60    1       10             4371974
+#&gt; 131 40111072228      4            55    2        5                &lt;NA&gt;
+#&gt; 132 40111072228      4            53    3        3                &lt;NA&gt;
+#&gt; 133 40111072228      4            53    4        3                &lt;NA&gt;
+#&gt; 134 40111072228      4            50    1       10                &lt;NA&gt;
+#&gt; 135 40111072228      4            50    2       10             4035523
+#&gt; 136 40111072228      4            41    3        1                &lt;NA&gt;
+#&gt; 137 40111072228      4            39    2       10                &lt;NA&gt;
+#&gt; 138 40111072228      4            39    3       10             4371974
+#&gt; 139 40111072228      4            26    1       10             4371974
+#&gt; 140 40111072229      4            36    1       10                &lt;NA&gt;
+#&gt;       reception_player reception_yds completion_player_id completion_player
+#&gt; 1          Jaylon Redd             9              4038941    Justin Herbert
+#&gt; 2                 &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 3                 &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 4   Johnny Johnson III             8              4038941    Justin Herbert
+#&gt; 5                 &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 6          Jaylon Redd             0              4038941    Justin Herbert
+#&gt; 7   Johnny Johnson III            47              4038941    Justin Herbert
+#&gt; 8                 &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 9                 &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 10                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 11                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 12                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 13                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 14       Bryan Addison             6              4038941    Justin Herbert
+#&gt; 15         Jaylon Redd             8              4038941    Justin Herbert
+#&gt; 16                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 17                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 18         Jaylon Redd            11              4038941    Justin Herbert
+#&gt; 19                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 20                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 21                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 22                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 23       Will Hastings            38              4567218            Bo Nix
+#&gt; 24                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 25                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 26                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 27                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 28                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 29                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 30        Spencer Webb            20              4038941    Justin Herbert
+#&gt; 31           Eli Stove             8              4567218            Bo Nix
+#&gt; 32                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 33                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 34                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 35                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 36                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 37                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 38                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 39       Harold Joiner            28              4567218            Bo Nix
+#&gt; 40                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 41                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 42                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 43                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 44                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 45                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 46  Johnny Johnson III             0              4038941    Justin Herbert
+#&gt; 47                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 48        Sal Cannella            21              4567218            Bo Nix
+#&gt; 49                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 50                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 51                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 52           Eli Stove            -1              4567218            Bo Nix
+#&gt; 53                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 54                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 55      Jacob Breeland            13              4038941    Justin Herbert
+#&gt; 56                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 57                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 58                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 59                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 60                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 61                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 62                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 63                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 64                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 65                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 66       Seth Williams            -3              4567218            Bo Nix
+#&gt; 67                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 68                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 69                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 70                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 71                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 72  Johnny Johnson III            20              4038941    Justin Herbert
+#&gt; 73          CJ Verdell             1              4038941    Justin Herbert
+#&gt; 74      Jacob Breeland             6              4038941    Justin Herbert
+#&gt; 75        Spencer Webb             5              4038941    Justin Herbert
+#&gt; 76                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 77                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 78  Johnny Johnson III            13              4038941    Justin Herbert
+#&gt; 79                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 80                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 81                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 82                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 83                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 84                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 85                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 86                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 87                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 88                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 89                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 90                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 91                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 92           Eli Stove            11              4567218            Bo Nix
+#&gt; 93  Johnny Johnson III             5              4038941    Justin Herbert
+#&gt; 94        Josh Delgado             9              4038941    Justin Herbert
+#&gt; 95      Jacob Breeland             3              4038941    Justin Herbert
+#&gt; 96          CJ Verdell             3              4038941    Justin Herbert
+#&gt; 97        Spencer Webb             3              4038941    Justin Herbert
+#&gt; 98                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 99                &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 100               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 101               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 102               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 103               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 104               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 105               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 106               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 107       Sal Cannella            21              4567218            Bo Nix
+#&gt; 108               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 109               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 110       Matthew Hill             1              4567218            Bo Nix
+#&gt; 111               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 112               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 113               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 114        Jaylon Redd             4              4038941    Justin Herbert
+#&gt; 115        Jaylon Redd             8              4038941    Justin Herbert
+#&gt; 116        Jaylon Redd            14              4038941    Justin Herbert
+#&gt; 117               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 118               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 119 Johnny Johnson III             5              4038941    Justin Herbert
+#&gt; 120     Jacob Breeland             4              4038941    Justin Herbert
+#&gt; 121               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 122               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 123               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 124               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 125        Jaylon Redd             4              4038941    Justin Herbert
+#&gt; 126        Jaylon Redd             6              4038941    Justin Herbert
+#&gt; 127               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 128               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 129         Travis Dye             7              4038941    Justin Herbert
+#&gt; 130      Seth Williams             5              4567218            Bo Nix
+#&gt; 131               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 132               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 133               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 134               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 135       Spencer Nigh             9              4567218            Bo Nix
+#&gt; 136               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 137               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt; 138      Seth Williams            13              4567218            Bo Nix
+#&gt; 139      Seth Williams            26              4567218            Bo Nix
+#&gt; 140               &lt;NA&gt;            NA                 &lt;NA&gt;              &lt;NA&gt;
+#&gt;     completion_yds rush_player_id        rush_player rush_yds
+#&gt; 1                9           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 2               NA        4242492         CJ Verdell        2
+#&gt; 3               NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 4                8           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 5               NA        4242492         CJ Verdell        5
+#&gt; 6                0           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 7               47           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 8               NA        4242492         CJ Verdell        1
+#&gt; 9               NA        4242492         CJ Verdell       -2
+#&gt; 10              NA        4242492         CJ Verdell        1
+#&gt; 11              NA        4371977      Shaun Shivers        3
+#&gt; 12              NA        4242520 JaTarvious Whitlow        4
+#&gt; 13              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 14               6           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 15               8           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 16              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 17              NA        4360691         Travis Dye        3
+#&gt; 18              11           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 19              NA        4360691         Travis Dye       13
+#&gt; 20              NA        4360691         Travis Dye       -1
+#&gt; 21              NA        4242494 Cyrus Habibi-Likio        2
+#&gt; 22              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 23              38           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 24              NA        4567218             Bo Nix       19
+#&gt; 25              NA        4242520 JaTarvious Whitlow        1
+#&gt; 26              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 27              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 28              NA        4242492         CJ Verdell       37
+#&gt; 29              NA        4360691         Travis Dye        3
+#&gt; 30              20           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 31               8           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 32              NA        4567218             Bo Nix        6
+#&gt; 33              NA        4242520 JaTarvious Whitlow        8
+#&gt; 34              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 35              NA        4242520 JaTarvious Whitlow        7
+#&gt; 36              NA        4242520 JaTarvious Whitlow        7
+#&gt; 37              NA        4242520 JaTarvious Whitlow        1
+#&gt; 38              NA        4242520 JaTarvious Whitlow        3
+#&gt; 39              28           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 40              NA        4242520 JaTarvious Whitlow       -3
+#&gt; 41              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 42              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 43              NA        4242492         CJ Verdell       14
+#&gt; 44              NA        4242492         CJ Verdell        6
+#&gt; 45              NA        4360691         Travis Dye        1
+#&gt; 46               0           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 47              NA        4242520 JaTarvious Whitlow        4
+#&gt; 48              21           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 49              NA        4371977      Shaun Shivers        1
+#&gt; 50              NA        4371975       Matthew Hill        7
+#&gt; 51              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 52              -1           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 53              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 54              NA        4242492         CJ Verdell        1
+#&gt; 55              13           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 56              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 57              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 58              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 59              NA        4360691         Travis Dye        4
+#&gt; 60              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 61              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 62              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 63              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 64              NA        4567218             Bo Nix       13
+#&gt; 65              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 66              -3           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 67              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 68              NA        4371977      Shaun Shivers       -1
+#&gt; 69              NA        4242520 JaTarvious Whitlow        0
+#&gt; 70              NA        4567218             Bo Nix        7
+#&gt; 71              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 72              20           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 73               1           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 74               6           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 75               5           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 76              NA        4242491      Darrian Felix        1
+#&gt; 77              NA        4038941     Justin Herbert        1
+#&gt; 78              13           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 79              NA        4242491      Darrian Felix        6
+#&gt; 80              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 81              NA        4035497         Kam Martin        7
+#&gt; 82              NA        4035497         Kam Martin        3
+#&gt; 83              NA        4035497         Kam Martin        0
+#&gt; 84              NA        4035497         Kam Martin        1
+#&gt; 85              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 86              NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 87              NA        4242494 Cyrus Habibi-Likio        3
+#&gt; 88              NA        4038941     Justin Herbert        7
+#&gt; 89              NA        4242520 JaTarvious Whitlow        5
+#&gt; 90              NA        4242520 JaTarvious Whitlow        6
+#&gt; 91              NA        4035500          Eli Stove       36
+#&gt; 92              11           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 93               5           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 94               9           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 95               3           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 96               3           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 97               3           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 98              NA        4242520 JaTarvious Whitlow        8
+#&gt; 99              NA        4242520 JaTarvious Whitlow        3
+#&gt; 100             NA        4242520 JaTarvious Whitlow        7
+#&gt; 101             NA        4242520 JaTarvious Whitlow        1
+#&gt; 102             NA        4371977      Shaun Shivers       -1
+#&gt; 103             NA        4242492         CJ Verdell        3
+#&gt; 104             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 105             NA        4242492         CJ Verdell        2
+#&gt; 106             NA        4242520 JaTarvious Whitlow       -3
+#&gt; 107             21           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 108             NA        4242520 JaTarvious Whitlow        3
+#&gt; 109             NA        4242520 JaTarvious Whitlow       31
+#&gt; 110              1           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 111             NA        4242520 JaTarvious Whitlow        8
+#&gt; 112             NA        4242520 JaTarvious Whitlow        7
+#&gt; 113             NA        4361329      Joey Gatewood        1
+#&gt; 114              4           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 115              8           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 116             14           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 117             NA        4242492         CJ Verdell        4
+#&gt; 118             NA        4038941     Justin Herbert        0
+#&gt; 119              5           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 120              4           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 121             NA        4242492         CJ Verdell       -1
+#&gt; 122             NA        4242520 JaTarvious Whitlow        0
+#&gt; 123             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 124             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 125              4           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 126              6           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 127             NA        4242492         CJ Verdell        3
+#&gt; 128             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 129              7           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 130              5           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 131             NA        4567218             Bo Nix        2
+#&gt; 132             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 133             NA        4567218             Bo Nix        3
+#&gt; 134             NA        4242520 JaTarvious Whitlow        0
+#&gt; 135              9           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 136             NA        4242520 JaTarvious Whitlow        2
+#&gt; 137             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 138             13           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 139             26           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt; 140             NA           &lt;NA&gt;               &lt;NA&gt;       NA
+#&gt;     interception_player_id interception_player interception_stat
+#&gt; 1                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 2                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 3                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 4                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 5                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 6                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 7                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 8                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 9                     &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 10                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 11                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 12                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 13                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 14                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 15                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 16                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 17                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 18                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 19                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 20                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 21                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 22                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 23                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 24                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 25                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 26                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 27                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 28                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 29                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 30                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 31                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 32                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 33                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 34                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 35                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 36                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 37                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 38                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 39                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 40                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 41                 4242485   Thomas Graham Jr.                 1
+#&gt; 42                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 43                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 44                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 45                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 46                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 47                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 48                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 49                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 50                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 51                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 52                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 53                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 54                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 55                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 56                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 57                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 58                 4373809       Jevon Holland                 1
+#&gt; 59                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 60                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 61                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 62                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 63                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 64                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 65                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 66                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 67                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 68                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 69                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 70                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 71                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 72                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 73                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 74                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 75                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 76                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 77                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 78                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 79                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 80                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 81                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 82                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 83                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 84                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 85                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 86                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 87                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 88                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 89                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 90                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 91                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 92                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 93                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 94                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 95                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 96                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 97                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 98                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 99                    &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 100                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 101                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 102                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 103                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 104                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 105                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 106                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 107                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 108                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 109                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 110                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 111                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 112                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 113                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 114                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 115                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 116                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 117                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 118                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 119                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 120                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 121                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 122                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 123                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 124                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 125                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 126                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 127                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 128                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 129                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 130                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 131                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 132                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 133                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 134                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 135                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 136                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 137                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 138                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 139                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 140                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt;     interception_thrown_player_id interception_thrown_player
+#&gt; 1                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 2                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 3                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 4                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 5                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 6                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 7                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 8                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 9                            &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 10                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 11                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 12                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 13                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 14                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 15                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 16                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 17                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 18                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 19                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 20                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 21                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 22                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 23                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 24                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 25                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 26                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 27                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 28                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 29                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 30                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 31                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 32                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 33                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 34                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 35                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 36                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 37                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 38                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 39                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 40                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 41                        4567218                     Bo Nix
+#&gt; 42                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 43                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 44                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 45                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 46                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 47                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 48                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 49                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 50                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 51                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 52                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 53                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 54                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 55                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 56                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 57                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 58                        4567218                     Bo Nix
+#&gt; 59                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 60                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 61                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 62                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 63                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 64                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 65                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 66                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 67                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 68                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 69                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 70                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 71                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 72                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 73                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 74                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 75                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 76                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 77                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 78                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 79                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 80                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 81                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 82                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 83                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 84                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 85                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 86                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 87                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 88                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 89                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 90                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 91                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 92                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 93                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 94                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 95                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 96                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 97                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 98                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 99                           &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 100                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 101                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 102                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 103                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 104                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 105                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 106                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 107                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 108                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 109                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 110                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 111                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 112                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 113                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 114                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 115                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 116                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 117                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 118                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 119                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 120                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 121                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 122                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 123                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 124                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 125                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 126                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 127                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 128                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 129                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 130                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 131                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 132                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 133                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 134                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 135                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 136                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 137                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 138                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 139                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt; 140                          &lt;NA&gt;                       &lt;NA&gt;
+#&gt;     interception_thrown_stat touchdown_player_id touchdown_player
+#&gt; 1                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 2                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 3                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 4                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 5                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 6                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 7                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 8                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 9                         NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 10                        NA             4242492       CJ Verdell
+#&gt; 11                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 12                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 13                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 14                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 15                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 16                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 17                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 18                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 19                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 20                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 21                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 22                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 23                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 24                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 25                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 26                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 27                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 28                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 29                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 30                        NA             4373813     Spencer Webb
+#&gt; 31                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 32                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 33                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 34                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 35                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 36                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 37                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 38                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 39                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 40                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 41                         1                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 42                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 43                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 44                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 45                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 46                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 47                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 48                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 49                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 50                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 51                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 52                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 53                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 54                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 55                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 56                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 57                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 58                         1                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 59                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 60                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 61                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 62                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 63                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 64                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 65                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 66                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 67                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 68                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 69                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 70                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 71                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 72                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 73                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 74                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 75                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 76                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 77                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 78                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 79                        NA             4242491    Darrian Felix
+#&gt; 80                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 81                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 82                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 83                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 84                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 85                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 86                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 87                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 88                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 89                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 90                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 91                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 92                        NA             4035500        Eli Stove
+#&gt; 93                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 94                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 95                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 96                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 97                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 98                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 99                        NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 100                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 101                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 102                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 103                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 104                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 105                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 106                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 107                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 108                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 109                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 110                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 111                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 112                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 113                       NA             4361329    Joey Gatewood
+#&gt; 114                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 115                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 116                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 117                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 118                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 119                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 120                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 121                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 122                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 123                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 124                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 125                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 126                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 127                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 128                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 129                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 130                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 131                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 132                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 133                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 134                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 135                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 136                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 137                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 138                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt; 139                       NA             4371974    Seth Williams
+#&gt; 140                       NA                &lt;NA&gt;             &lt;NA&gt;
+#&gt;     touchdown_stat incompletion_player_id incompletion_player incompletion_stat
+#&gt; 1               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 2               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 3               NA                4038941      Justin Herbert                 1
+#&gt; 4               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 5               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 6               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 7               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 8               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 9               NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 10               1                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 11              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 12              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 13              NA                4567218              Bo Nix                 1
+#&gt; 14              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 15              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 16              NA                4038941      Justin Herbert                 1
+#&gt; 17              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 18              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 19              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 20              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 21              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 22              NA                4038941      Justin Herbert                 1
+#&gt; 23              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 24              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 25              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 26              NA                4567218              Bo Nix                 1
+#&gt; 27              NA                4567218              Bo Nix                 1
+#&gt; 28              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 29              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 30               1                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 31              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 32              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 33              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 34              NA                4567218              Bo Nix                 1
+#&gt; 35              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 36              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 37              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 38              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 39              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 40              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 41              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 42              NA                4038941      Justin Herbert                 1
+#&gt; 43              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 44              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 45              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 46              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 47              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 48              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 49              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 50              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 51              NA                4567218              Bo Nix                 1
+#&gt; 52              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 53              NA                4567218              Bo Nix                 1
+#&gt; 54              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 55              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 56              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 57              NA                4567218              Bo Nix                 1
+#&gt; 58              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 59              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 60              NA                4038941      Justin Herbert                 1
+#&gt; 61              NA                4038941      Justin Herbert                 1
+#&gt; 62              NA                4567218              Bo Nix                 1
+#&gt; 63              NA                4567218              Bo Nix                 1
+#&gt; 64              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 65              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 66              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 67              NA                4567218              Bo Nix                 1
+#&gt; 68              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 69              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 70              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 71              NA                4038941      Justin Herbert                 1
+#&gt; 72              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 73              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 74              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 75              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 76              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 77              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 78              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 79               1                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 80              NA                4567218              Bo Nix                 1
+#&gt; 81              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 82              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 83              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 84              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 85              NA                4567218              Bo Nix                 1
+#&gt; 86              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 87              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 88              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 89              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 90              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 91              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 92               1                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 93              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 94              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 95              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 96              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 97              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 98              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 99              NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 100             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 101             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 102             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 103             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 104             NA                4038941      Justin Herbert                 1
+#&gt; 105             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 106             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 107             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 108             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 109             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 110             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 111             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 112             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 113              1                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 114             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 115             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 116             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 117             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 118             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 119             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 120             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 121             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 122             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 123             NA                4567218              Bo Nix                 1
+#&gt; 124             NA                4567218              Bo Nix                 1
+#&gt; 125             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 126             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 127             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 128             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 129             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 130             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 131             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 132             NA                4567218              Bo Nix                 1
+#&gt; 133             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 134             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 135             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 136             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 137             NA                4567218              Bo Nix                 1
+#&gt; 138             NA                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 139              1                   &lt;NA&gt;                &lt;NA&gt;                NA
+#&gt; 140             NA                4038941      Justin Herbert                 1
+#&gt;     target_player_id      target_player target_stat fumble_recovered_player_id
+#&gt; 1               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 2               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 3            4373812      Bryan Addison           1                         NA
+#&gt; 4               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 5               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 6               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 7               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 8               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 9               &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 10              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 11              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 12              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 13              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 14              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 15              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 16           4373812      Bryan Addison           1                         NA
+#&gt; 17              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 18              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 19              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 20              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 21              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 22           4373812      Bryan Addison           1                         NA
+#&gt; 23              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 24              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 25              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 26           3916927      Will Hastings           1                         NA
+#&gt; 27           4242520 JaTarvious Whitlow           1                         NA
+#&gt; 28              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 29              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 30              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 31              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 32              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 33              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 34              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 35              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 36              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 37              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 38              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 39              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 40              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 41              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 42           4242492         CJ Verdell           1                         NA
+#&gt; 43              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 44              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 45              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 46              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 47              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 48              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 49              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 50              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 51           4371974      Seth Williams           1                         NA
+#&gt; 52              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 53              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 54              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 55              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 56              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 57           4371974      Seth Williams           1                         NA
+#&gt; 58              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 59              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 60           4360691         Travis Dye           1                         NA
+#&gt; 61           4426476       Josh Delgado           1                         NA
+#&gt; 62           4242520 JaTarvious Whitlow           1                         NA
+#&gt; 63           3916927      Will Hastings           1                         NA
+#&gt; 64              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 65              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 66              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 67           4371974      Seth Williams           1                         NA
+#&gt; 68              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 69              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 70              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 71           4426476       Josh Delgado           1                         NA
+#&gt; 72              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 73              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 74              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 75              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 76              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 77              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 78              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 79              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 80           4035500          Eli Stove           1                         NA
+#&gt; 81              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 82              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 83              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 84              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 85           4035500          Eli Stove           1                         NA
+#&gt; 86              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 87              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 88              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 89              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 90              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 91              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 92              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 93              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 94              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 95              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 96              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 97              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 98              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 99              &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 100             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 101             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 102             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 103             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 104          4373813       Spencer Webb           1                         NA
+#&gt; 105             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 106             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 107             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 108             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 109             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 110             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 111             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 112             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 113             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 114             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 115             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 116             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 117             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 118             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 119             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 120             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 121             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 122             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 123             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 124          4371974      Seth Williams           1                         NA
+#&gt; 125             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 126             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 127             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 128             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 129             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 130             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 131             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 132          4242536       Sal Cannella           1                         NA
+#&gt; 133             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 134             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 135             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 136             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 137          4371974      Seth Williams           1                         NA
+#&gt; 138             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 139             &lt;NA&gt;               &lt;NA&gt;          NA                         NA
+#&gt; 140          4242504 Johnny Johnson III           1                         NA
+#&gt;     fumble_recovered_player fumble_recovered_stat fumble_forced_player_id
+#&gt; 1                        NA                    NA                      NA
+#&gt; 2                        NA                    NA                      NA
+#&gt; 3                        NA                    NA                      NA
+#&gt; 4                        NA                    NA                      NA
+#&gt; 5                        NA                    NA                      NA
+#&gt; 6                        NA                    NA                      NA
+#&gt; 7                        NA                    NA                      NA
+#&gt; 8                        NA                    NA                      NA
+#&gt; 9                        NA                    NA                      NA
+#&gt; 10                       NA                    NA                      NA
+#&gt; 11                       NA                    NA                      NA
+#&gt; 12                       NA                    NA                      NA
+#&gt; 13                       NA                    NA                      NA
+#&gt; 14                       NA                    NA                      NA
+#&gt; 15                       NA                    NA                      NA
+#&gt; 16                       NA                    NA                      NA
+#&gt; 17                       NA                    NA                      NA
+#&gt; 18                       NA                    NA                      NA
+#&gt; 19                       NA                    NA                      NA
+#&gt; 20                       NA                    NA                      NA
+#&gt; 21                       NA                    NA                      NA
+#&gt; 22                       NA                    NA                      NA
+#&gt; 23                       NA                    NA                      NA
+#&gt; 24                       NA                    NA                      NA
+#&gt; 25                       NA                    NA                      NA
+#&gt; 26                       NA                    NA                      NA
+#&gt; 27                       NA                    NA                      NA
+#&gt; 28                       NA                    NA                      NA
+#&gt; 29                       NA                    NA                      NA
+#&gt; 30                       NA                    NA                      NA
+#&gt; 31                       NA                    NA                      NA
+#&gt; 32                       NA                    NA                      NA
+#&gt; 33                       NA                    NA                      NA
+#&gt; 34                       NA                    NA                      NA
+#&gt; 35                       NA                    NA                      NA
+#&gt; 36                       NA                    NA                      NA
+#&gt; 37                       NA                    NA                      NA
+#&gt; 38                       NA                    NA                      NA
+#&gt; 39                       NA                    NA                      NA
+#&gt; 40                       NA                    NA                      NA
+#&gt; 41                       NA                    NA                      NA
+#&gt; 42                       NA                    NA                      NA
+#&gt; 43                       NA                    NA                      NA
+#&gt; 44                       NA                    NA                      NA
+#&gt; 45                       NA                    NA                      NA
+#&gt; 46                       NA                    NA                      NA
+#&gt; 47                       NA                    NA                      NA
+#&gt; 48                       NA                    NA                      NA
+#&gt; 49                       NA                    NA                      NA
+#&gt; 50                       NA                    NA                      NA
+#&gt; 51                       NA                    NA                      NA
+#&gt; 52                       NA                    NA                      NA
+#&gt; 53                       NA                    NA                      NA
+#&gt; 54                       NA                    NA                      NA
+#&gt; 55                       NA                    NA                      NA
+#&gt; 56                       NA                    NA                      NA
+#&gt; 57                       NA                    NA                      NA
+#&gt; 58                       NA                    NA                      NA
+#&gt; 59                       NA                    NA                      NA
+#&gt; 60                       NA                    NA                      NA
+#&gt; 61                       NA                    NA                      NA
+#&gt; 62                       NA                    NA                      NA
+#&gt; 63                       NA                    NA                      NA
+#&gt; 64                       NA                    NA                      NA
+#&gt; 65                       NA                    NA                      NA
+#&gt; 66                       NA                    NA                      NA
+#&gt; 67                       NA                    NA                      NA
+#&gt; 68                       NA                    NA                      NA
+#&gt; 69                       NA                    NA                      NA
+#&gt; 70                       NA                    NA                      NA
+#&gt; 71                       NA                    NA                      NA
+#&gt; 72                       NA                    NA                      NA
+#&gt; 73                       NA                    NA                      NA
+#&gt; 74                       NA                    NA                      NA
+#&gt; 75                       NA                    NA                      NA
+#&gt; 76                       NA                    NA                      NA
+#&gt; 77                       NA                    NA                      NA
+#&gt; 78                       NA                    NA                      NA
+#&gt; 79                       NA                    NA                      NA
+#&gt; 80                       NA                    NA                      NA
+#&gt; 81                       NA                    NA                      NA
+#&gt; 82                       NA                    NA                      NA
+#&gt; 83                       NA                    NA                      NA
+#&gt; 84                       NA                    NA                      NA
+#&gt; 85                       NA                    NA                      NA
+#&gt; 86                       NA                    NA                      NA
+#&gt; 87                       NA                    NA                      NA
+#&gt; 88                       NA                    NA                      NA
+#&gt; 89                       NA                    NA                      NA
+#&gt; 90                       NA                    NA                      NA
+#&gt; 91                       NA                    NA                      NA
+#&gt; 92                       NA                    NA                      NA
+#&gt; 93                       NA                    NA                      NA
+#&gt; 94                       NA                    NA                      NA
+#&gt; 95                       NA                    NA                      NA
+#&gt; 96                       NA                    NA                      NA
+#&gt; 97                       NA                    NA                      NA
+#&gt; 98                       NA                    NA                      NA
+#&gt; 99                       NA                    NA                      NA
+#&gt; 100                      NA                    NA                      NA
+#&gt; 101                      NA                    NA                      NA
+#&gt; 102                      NA                    NA                      NA
+#&gt; 103                      NA                    NA                      NA
+#&gt; 104                      NA                    NA                      NA
+#&gt; 105                      NA                    NA                      NA
+#&gt; 106                      NA                    NA                      NA
+#&gt; 107                      NA                    NA                      NA
+#&gt; 108                      NA                    NA                      NA
+#&gt; 109                      NA                    NA                      NA
+#&gt; 110                      NA                    NA                      NA
+#&gt; 111                      NA                    NA                      NA
+#&gt; 112                      NA                    NA                      NA
+#&gt; 113                      NA                    NA                      NA
+#&gt; 114                      NA                    NA                      NA
+#&gt; 115                      NA                    NA                      NA
+#&gt; 116                      NA                    NA                      NA
+#&gt; 117                      NA                    NA                      NA
+#&gt; 118                      NA                    NA                      NA
+#&gt; 119                      NA                    NA                      NA
+#&gt; 120                      NA                    NA                      NA
+#&gt; 121                      NA                    NA                      NA
+#&gt; 122                      NA                    NA                      NA
+#&gt; 123                      NA                    NA                      NA
+#&gt; 124                      NA                    NA                      NA
+#&gt; 125                      NA                    NA                      NA
+#&gt; 126                      NA                    NA                      NA
+#&gt; 127                      NA                    NA                      NA
+#&gt; 128                      NA                    NA                      NA
+#&gt; 129                      NA                    NA                      NA
+#&gt; 130                      NA                    NA                      NA
+#&gt; 131                      NA                    NA                      NA
+#&gt; 132                      NA                    NA                      NA
+#&gt; 133                      NA                    NA                      NA
+#&gt; 134                      NA                    NA                      NA
+#&gt; 135                      NA                    NA                      NA
+#&gt; 136                      NA                    NA                      NA
+#&gt; 137                      NA                    NA                      NA
+#&gt; 138                      NA                    NA                      NA
+#&gt; 139                      NA                    NA                      NA
+#&gt; 140                      NA                    NA                      NA
+#&gt;     fumble_forced_player fumble_forced_stat fumble_player_id fumble_player
+#&gt; 1                     NA                 NA               NA            NA
+#&gt; 2                     NA                 NA               NA            NA
+#&gt; 3                     NA                 NA               NA            NA
+#&gt; 4                     NA                 NA               NA            NA
+#&gt; 5                     NA                 NA               NA            NA
+#&gt; 6                     NA                 NA               NA            NA
+#&gt; 7                     NA                 NA               NA            NA
+#&gt; 8                     NA                 NA               NA            NA
+#&gt; 9                     NA                 NA               NA            NA
+#&gt; 10                    NA                 NA               NA            NA
+#&gt; 11                    NA                 NA               NA            NA
+#&gt; 12                    NA                 NA               NA            NA
+#&gt; 13                    NA                 NA               NA            NA
+#&gt; 14                    NA                 NA               NA            NA
+#&gt; 15                    NA                 NA               NA            NA
+#&gt; 16                    NA                 NA               NA            NA
+#&gt; 17                    NA                 NA               NA            NA
+#&gt; 18                    NA                 NA               NA            NA
+#&gt; 19                    NA                 NA               NA            NA
+#&gt; 20                    NA                 NA               NA            NA
+#&gt; 21                    NA                 NA               NA            NA
+#&gt; 22                    NA                 NA               NA            NA
+#&gt; 23                    NA                 NA               NA            NA
+#&gt; 24                    NA                 NA               NA            NA
+#&gt; 25                    NA                 NA               NA            NA
+#&gt; 26                    NA                 NA               NA            NA
+#&gt; 27                    NA                 NA               NA            NA
+#&gt; 28                    NA                 NA               NA            NA
+#&gt; 29                    NA                 NA               NA            NA
+#&gt; 30                    NA                 NA               NA            NA
+#&gt; 31                    NA                 NA               NA            NA
+#&gt; 32                    NA                 NA               NA            NA
+#&gt; 33                    NA                 NA               NA            NA
+#&gt; 34                    NA                 NA               NA            NA
+#&gt; 35                    NA                 NA               NA            NA
+#&gt; 36                    NA                 NA               NA            NA
+#&gt; 37                    NA                 NA               NA            NA
+#&gt; 38                    NA                 NA               NA            NA
+#&gt; 39                    NA                 NA               NA            NA
+#&gt; 40                    NA                 NA               NA            NA
+#&gt; 41                    NA                 NA               NA            NA
+#&gt; 42                    NA                 NA               NA            NA
+#&gt; 43                    NA                 NA               NA            NA
+#&gt; 44                    NA                 NA               NA            NA
+#&gt; 45                    NA                 NA               NA            NA
+#&gt; 46                    NA                 NA               NA            NA
+#&gt; 47                    NA                 NA               NA            NA
+#&gt; 48                    NA                 NA               NA            NA
+#&gt; 49                    NA                 NA               NA            NA
+#&gt; 50                    NA                 NA               NA            NA
+#&gt; 51                    NA                 NA               NA            NA
+#&gt; 52                    NA                 NA               NA            NA
+#&gt; 53                    NA                 NA               NA            NA
+#&gt; 54                    NA                 NA               NA            NA
+#&gt; 55                    NA                 NA               NA            NA
+#&gt; 56                    NA                 NA               NA            NA
+#&gt; 57                    NA                 NA               NA            NA
+#&gt; 58                    NA                 NA               NA            NA
+#&gt; 59                    NA                 NA               NA            NA
+#&gt; 60                    NA                 NA               NA            NA
+#&gt; 61                    NA                 NA               NA            NA
+#&gt; 62                    NA                 NA               NA            NA
+#&gt; 63                    NA                 NA               NA            NA
+#&gt; 64                    NA                 NA               NA            NA
+#&gt; 65                    NA                 NA               NA            NA
+#&gt; 66                    NA                 NA               NA            NA
+#&gt; 67                    NA                 NA               NA            NA
+#&gt; 68                    NA                 NA               NA            NA
+#&gt; 69                    NA                 NA               NA            NA
+#&gt; 70                    NA                 NA               NA            NA
+#&gt; 71                    NA                 NA               NA            NA
+#&gt; 72                    NA                 NA               NA            NA
+#&gt; 73                    NA                 NA               NA            NA
+#&gt; 74                    NA                 NA               NA            NA
+#&gt; 75                    NA                 NA               NA            NA
+#&gt; 76                    NA                 NA               NA            NA
+#&gt; 77                    NA                 NA               NA            NA
+#&gt; 78                    NA                 NA               NA            NA
+#&gt; 79                    NA                 NA               NA            NA
+#&gt; 80                    NA                 NA               NA            NA
+#&gt; 81                    NA                 NA               NA            NA
+#&gt; 82                    NA                 NA               NA            NA
+#&gt; 83                    NA                 NA               NA            NA
+#&gt; 84                    NA                 NA               NA            NA
+#&gt; 85                    NA                 NA               NA            NA
+#&gt; 86                    NA                 NA               NA            NA
+#&gt; 87                    NA                 NA               NA            NA
+#&gt; 88                    NA                 NA               NA            NA
+#&gt; 89                    NA                 NA               NA            NA
+#&gt; 90                    NA                 NA               NA            NA
+#&gt; 91                    NA                 NA               NA            NA
+#&gt; 92                    NA                 NA               NA            NA
+#&gt; 93                    NA                 NA               NA            NA
+#&gt; 94                    NA                 NA               NA            NA
+#&gt; 95                    NA                 NA               NA            NA
+#&gt; 96                    NA                 NA               NA            NA
+#&gt; 97                    NA                 NA               NA            NA
+#&gt; 98                    NA                 NA               NA            NA
+#&gt; 99                    NA                 NA               NA            NA
+#&gt; 100                   NA                 NA               NA            NA
+#&gt; 101                   NA                 NA               NA            NA
+#&gt; 102                   NA                 NA               NA            NA
+#&gt; 103                   NA                 NA               NA            NA
+#&gt; 104                   NA                 NA               NA            NA
+#&gt; 105                   NA                 NA               NA            NA
+#&gt; 106                   NA                 NA               NA            NA
+#&gt; 107                   NA                 NA               NA            NA
+#&gt; 108                   NA                 NA               NA            NA
+#&gt; 109                   NA                 NA               NA            NA
+#&gt; 110                   NA                 NA               NA            NA
+#&gt; 111                   NA                 NA               NA            NA
+#&gt; 112                   NA                 NA               NA            NA
+#&gt; 113                   NA                 NA               NA            NA
+#&gt; 114                   NA                 NA               NA            NA
+#&gt; 115                   NA                 NA               NA            NA
+#&gt; 116                   NA                 NA               NA            NA
+#&gt; 117                   NA                 NA               NA            NA
+#&gt; 118                   NA                 NA               NA            NA
+#&gt; 119                   NA                 NA               NA            NA
+#&gt; 120                   NA                 NA               NA            NA
+#&gt; 121                   NA                 NA               NA            NA
+#&gt; 122                   NA                 NA               NA            NA
+#&gt; 123                   NA                 NA               NA            NA
+#&gt; 124                   NA                 NA               NA            NA
+#&gt; 125                   NA                 NA               NA            NA
+#&gt; 126                   NA                 NA               NA            NA
+#&gt; 127                   NA                 NA               NA            NA
+#&gt; 128                   NA                 NA               NA            NA
+#&gt; 129                   NA                 NA               NA            NA
+#&gt; 130                   NA                 NA               NA            NA
+#&gt; 131                   NA                 NA               NA            NA
+#&gt; 132                   NA                 NA               NA            NA
+#&gt; 133                   NA                 NA               NA            NA
+#&gt; 134                   NA                 NA               NA            NA
+#&gt; 135                   NA                 NA               NA            NA
+#&gt; 136                   NA                 NA               NA            NA
+#&gt; 137                   NA                 NA               NA            NA
+#&gt; 138                   NA                 NA               NA            NA
+#&gt; 139                   NA                 NA               NA            NA
+#&gt; 140                   NA                 NA               NA            NA
+#&gt;     fumble_stat sack_player_id     sack_player sack_stat sack_taken_player_id
+#&gt; 1            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 2            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 3            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 4            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 5            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 6            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 7            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 8            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 9            NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 10           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 11           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 12           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 13           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 14           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 15           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 16           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 17           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 18           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 19           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 20           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 21           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 22           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 23           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 24           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 25           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 26           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 27           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 28           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 29           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 30           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 31           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 32           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 33           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 34           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 35           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 36           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 37           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 38           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 39           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 40           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 41           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 42           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 43           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 44           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 45           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 46           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 47           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 48           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 49           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 50           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 51           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 52           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 53           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 54           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 55           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 56           NA        3916924 Jeremiah Dinson         1              4038941
+#&gt; 57           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 58           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 59           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 60           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 61           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 62           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 63           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 64           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 65           NA        4242486     Sampson Niu         1              4567218
+#&gt; 66           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 67           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 68           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 69           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 70           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 71           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 72           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 73           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 74           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 75           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 76           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 77           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 78           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 79           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 80           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 81           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 82           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 83           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 84           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 85           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 86           NA        4371979  Zakoby McClain         1              4038941
+#&gt; 87           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 88           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 89           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 90           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 91           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 92           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 93           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 94           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 95           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 96           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 97           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 98           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 99           NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 100          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 101          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 102          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 103          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 104          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 105          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 106          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 107          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 108          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 109          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 110          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 111          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 112          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 113          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 114          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 115          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 116          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 117          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 118          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 119          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 120          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 121          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 122          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 123          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 124          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 125          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 126          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 127          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 128          NA        4242510  Big Kat Bryant         1              4038941
+#&gt; 129          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 130          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 131          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 132          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 133          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 134          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 135          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 136          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 137          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 138          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 139          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt; 140          NA           &lt;NA&gt;            &lt;NA&gt;        NA                 &lt;NA&gt;
+#&gt;     sack_taken_player sack_taken_stat pass_breakup_player_id
+#&gt; 1                &lt;NA&gt;              NA                     NA
+#&gt; 2                &lt;NA&gt;              NA                     NA
+#&gt; 3                &lt;NA&gt;              NA                     NA
+#&gt; 4                &lt;NA&gt;              NA                     NA
+#&gt; 5                &lt;NA&gt;              NA                     NA
+#&gt; 6                &lt;NA&gt;              NA                     NA
+#&gt; 7                &lt;NA&gt;              NA                     NA
+#&gt; 8                &lt;NA&gt;              NA                     NA
+#&gt; 9                &lt;NA&gt;              NA                     NA
+#&gt; 10               &lt;NA&gt;              NA                     NA
+#&gt; 11               &lt;NA&gt;              NA                     NA
+#&gt; 12               &lt;NA&gt;              NA                     NA
+#&gt; 13               &lt;NA&gt;              NA                     NA
+#&gt; 14               &lt;NA&gt;              NA                     NA
+#&gt; 15               &lt;NA&gt;              NA                     NA
+#&gt; 16               &lt;NA&gt;              NA                     NA
+#&gt; 17               &lt;NA&gt;              NA                     NA
+#&gt; 18               &lt;NA&gt;              NA                     NA
+#&gt; 19               &lt;NA&gt;              NA                     NA
+#&gt; 20               &lt;NA&gt;              NA                     NA
+#&gt; 21               &lt;NA&gt;              NA                     NA
+#&gt; 22               &lt;NA&gt;              NA                     NA
+#&gt; 23               &lt;NA&gt;              NA                     NA
+#&gt; 24               &lt;NA&gt;              NA                     NA
+#&gt; 25               &lt;NA&gt;              NA                     NA
+#&gt; 26               &lt;NA&gt;              NA                     NA
+#&gt; 27               &lt;NA&gt;              NA                     NA
+#&gt; 28               &lt;NA&gt;              NA                     NA
+#&gt; 29               &lt;NA&gt;              NA                     NA
+#&gt; 30               &lt;NA&gt;              NA                     NA
+#&gt; 31               &lt;NA&gt;              NA                     NA
+#&gt; 32               &lt;NA&gt;              NA                     NA
+#&gt; 33               &lt;NA&gt;              NA                     NA
+#&gt; 34               &lt;NA&gt;              NA                     NA
+#&gt; 35               &lt;NA&gt;              NA                     NA
+#&gt; 36               &lt;NA&gt;              NA                     NA
+#&gt; 37               &lt;NA&gt;              NA                     NA
+#&gt; 38               &lt;NA&gt;              NA                     NA
+#&gt; 39               &lt;NA&gt;              NA                     NA
+#&gt; 40               &lt;NA&gt;              NA                     NA
+#&gt; 41               &lt;NA&gt;              NA                     NA
+#&gt; 42               &lt;NA&gt;              NA                     NA
+#&gt; 43               &lt;NA&gt;              NA                     NA
+#&gt; 44               &lt;NA&gt;              NA                     NA
+#&gt; 45               &lt;NA&gt;              NA                     NA
+#&gt; 46               &lt;NA&gt;              NA                     NA
+#&gt; 47               &lt;NA&gt;              NA                     NA
+#&gt; 48               &lt;NA&gt;              NA                     NA
+#&gt; 49               &lt;NA&gt;              NA                     NA
+#&gt; 50               &lt;NA&gt;              NA                     NA
+#&gt; 51               &lt;NA&gt;              NA                     NA
+#&gt; 52               &lt;NA&gt;              NA                     NA
+#&gt; 53               &lt;NA&gt;              NA                     NA
+#&gt; 54               &lt;NA&gt;              NA                     NA
+#&gt; 55               &lt;NA&gt;              NA                     NA
+#&gt; 56     Justin Herbert               6                     NA
+#&gt; 57               &lt;NA&gt;              NA                     NA
+#&gt; 58               &lt;NA&gt;              NA                     NA
+#&gt; 59               &lt;NA&gt;              NA                     NA
+#&gt; 60               &lt;NA&gt;              NA                     NA
+#&gt; 61               &lt;NA&gt;              NA                     NA
+#&gt; 62               &lt;NA&gt;              NA                     NA
+#&gt; 63               &lt;NA&gt;              NA                     NA
+#&gt; 64               &lt;NA&gt;              NA                     NA
+#&gt; 65             Bo Nix               8                     NA
+#&gt; 66               &lt;NA&gt;              NA                     NA
+#&gt; 67               &lt;NA&gt;              NA                     NA
+#&gt; 68               &lt;NA&gt;              NA                     NA
+#&gt; 69               &lt;NA&gt;              NA                     NA
+#&gt; 70               &lt;NA&gt;              NA                     NA
+#&gt; 71               &lt;NA&gt;              NA                     NA
+#&gt; 72               &lt;NA&gt;              NA                     NA
+#&gt; 73               &lt;NA&gt;              NA                     NA
+#&gt; 74               &lt;NA&gt;              NA                     NA
+#&gt; 75               &lt;NA&gt;              NA                     NA
+#&gt; 76               &lt;NA&gt;              NA                     NA
+#&gt; 77               &lt;NA&gt;              NA                     NA
+#&gt; 78               &lt;NA&gt;              NA                     NA
+#&gt; 79               &lt;NA&gt;              NA                     NA
+#&gt; 80               &lt;NA&gt;              NA                     NA
+#&gt; 81               &lt;NA&gt;              NA                     NA
+#&gt; 82               &lt;NA&gt;              NA                     NA
+#&gt; 83               &lt;NA&gt;              NA                     NA
+#&gt; 84               &lt;NA&gt;              NA                     NA
+#&gt; 85               &lt;NA&gt;              NA                     NA
+#&gt; 86     Justin Herbert               9                     NA
+#&gt; 87               &lt;NA&gt;              NA                     NA
+#&gt; 88               &lt;NA&gt;              NA                     NA
+#&gt; 89               &lt;NA&gt;              NA                     NA
+#&gt; 90               &lt;NA&gt;              NA                     NA
+#&gt; 91               &lt;NA&gt;              NA                     NA
+#&gt; 92               &lt;NA&gt;              NA                     NA
+#&gt; 93               &lt;NA&gt;              NA                     NA
+#&gt; 94               &lt;NA&gt;              NA                     NA
+#&gt; 95               &lt;NA&gt;              NA                     NA
+#&gt; 96               &lt;NA&gt;              NA                     NA
+#&gt; 97               &lt;NA&gt;              NA                     NA
+#&gt; 98               &lt;NA&gt;              NA                     NA
+#&gt; 99               &lt;NA&gt;              NA                     NA
+#&gt; 100              &lt;NA&gt;              NA                     NA
+#&gt; 101              &lt;NA&gt;              NA                     NA
+#&gt; 102              &lt;NA&gt;              NA                     NA
+#&gt; 103              &lt;NA&gt;              NA                     NA
+#&gt; 104              &lt;NA&gt;              NA                     NA
+#&gt; 105              &lt;NA&gt;              NA                     NA
+#&gt; 106              &lt;NA&gt;              NA                     NA
+#&gt; 107              &lt;NA&gt;              NA                     NA
+#&gt; 108              &lt;NA&gt;              NA                     NA
+#&gt; 109              &lt;NA&gt;              NA                     NA
+#&gt; 110              &lt;NA&gt;              NA                     NA
+#&gt; 111              &lt;NA&gt;              NA                     NA
+#&gt; 112              &lt;NA&gt;              NA                     NA
+#&gt; 113              &lt;NA&gt;              NA                     NA
+#&gt; 114              &lt;NA&gt;              NA                     NA
+#&gt; 115              &lt;NA&gt;              NA                     NA
+#&gt; 116              &lt;NA&gt;              NA                     NA
+#&gt; 117              &lt;NA&gt;              NA                     NA
+#&gt; 118              &lt;NA&gt;              NA                     NA
+#&gt; 119              &lt;NA&gt;              NA                     NA
+#&gt; 120              &lt;NA&gt;              NA                     NA
+#&gt; 121              &lt;NA&gt;              NA                     NA
+#&gt; 122              &lt;NA&gt;              NA                     NA
+#&gt; 123              &lt;NA&gt;              NA                     NA
+#&gt; 124              &lt;NA&gt;              NA                     NA
+#&gt; 125              &lt;NA&gt;              NA                     NA
+#&gt; 126              &lt;NA&gt;              NA                     NA
+#&gt; 127              &lt;NA&gt;              NA                     NA
+#&gt; 128    Justin Herbert               7                     NA
+#&gt; 129              &lt;NA&gt;              NA                     NA
+#&gt; 130              &lt;NA&gt;              NA                     NA
+#&gt; 131              &lt;NA&gt;              NA                     NA
+#&gt; 132              &lt;NA&gt;              NA                     NA
+#&gt; 133              &lt;NA&gt;              NA                     NA
+#&gt; 134              &lt;NA&gt;              NA                     NA
+#&gt; 135              &lt;NA&gt;              NA                     NA
+#&gt; 136              &lt;NA&gt;              NA                     NA
+#&gt; 137              &lt;NA&gt;              NA                     NA
+#&gt; 138              &lt;NA&gt;              NA                     NA
+#&gt; 139              &lt;NA&gt;              NA                     NA
+#&gt; 140              &lt;NA&gt;              NA                     NA
+#&gt;     pass_breakup_player pass_breakup_stat
+#&gt; 1                    NA                NA
+#&gt; 2                    NA                NA
+#&gt; 3                    NA                NA
+#&gt; 4                    NA                NA
+#&gt; 5                    NA                NA
+#&gt; 6                    NA                NA
+#&gt; 7                    NA                NA
+#&gt; 8                    NA                NA
+#&gt; 9                    NA                NA
+#&gt; 10                   NA                NA
+#&gt; 11                   NA                NA
+#&gt; 12                   NA                NA
+#&gt; 13                   NA                NA
+#&gt; 14                   NA                NA
+#&gt; 15                   NA                NA
+#&gt; 16                   NA                NA
+#&gt; 17                   NA                NA
+#&gt; 18                   NA                NA
+#&gt; 19                   NA                NA
+#&gt; 20                   NA                NA
+#&gt; 21                   NA                NA
+#&gt; 22                   NA                NA
+#&gt; 23                   NA                NA
+#&gt; 24                   NA                NA
+#&gt; 25                   NA                NA
+#&gt; 26                   NA                NA
+#&gt; 27                   NA                NA
+#&gt; 28                   NA                NA
+#&gt; 29                   NA                NA
+#&gt; 30                   NA                NA
+#&gt; 31                   NA                NA
+#&gt; 32                   NA                NA
+#&gt; 33                   NA                NA
+#&gt; 34                   NA                NA
+#&gt; 35                   NA                NA
+#&gt; 36                   NA                NA
+#&gt; 37                   NA                NA
+#&gt; 38                   NA                NA
+#&gt; 39                   NA                NA
+#&gt; 40                   NA                NA
+#&gt; 41                   NA                NA
+#&gt; 42                   NA                NA
+#&gt; 43                   NA                NA
+#&gt; 44                   NA                NA
+#&gt; 45                   NA                NA
+#&gt; 46                   NA                NA
+#&gt; 47                   NA                NA
+#&gt; 48                   NA                NA
+#&gt; 49                   NA                NA
+#&gt; 50                   NA                NA
+#&gt; 51                   NA                NA
+#&gt; 52                   NA                NA
+#&gt; 53                   NA                NA
+#&gt; 54                   NA                NA
+#&gt; 55                   NA                NA
+#&gt; 56                   NA                NA
+#&gt; 57                   NA                NA
+#&gt; 58                   NA                NA
+#&gt; 59                   NA                NA
+#&gt; 60                   NA                NA
+#&gt; 61                   NA                NA
+#&gt; 62                   NA                NA
+#&gt; 63                   NA                NA
+#&gt; 64                   NA                NA
+#&gt; 65                   NA                NA
+#&gt; 66                   NA                NA
+#&gt; 67                   NA                NA
+#&gt; 68                   NA                NA
+#&gt; 69                   NA                NA
+#&gt; 70                   NA                NA
+#&gt; 71                   NA                NA
+#&gt; 72                   NA                NA
+#&gt; 73                   NA                NA
+#&gt; 74                   NA                NA
+#&gt; 75                   NA                NA
+#&gt; 76                   NA                NA
+#&gt; 77                   NA                NA
+#&gt; 78                   NA                NA
+#&gt; 79                   NA                NA
+#&gt; 80                   NA                NA
+#&gt; 81                   NA                NA
+#&gt; 82                   NA                NA
+#&gt; 83                   NA                NA
+#&gt; 84                   NA                NA
+#&gt; 85                   NA                NA
+#&gt; 86                   NA                NA
+#&gt; 87                   NA                NA
+#&gt; 88                   NA                NA
+#&gt; 89                   NA                NA
+#&gt; 90                   NA                NA
+#&gt; 91                   NA                NA
+#&gt; 92                   NA                NA
+#&gt; 93                   NA                NA
+#&gt; 94                   NA                NA
+#&gt; 95                   NA                NA
+#&gt; 96                   NA                NA
+#&gt; 97                   NA                NA
+#&gt; 98                   NA                NA
+#&gt; 99                   NA                NA
+#&gt; 100                  NA                NA
+#&gt; 101                  NA                NA
+#&gt; 102                  NA                NA
+#&gt; 103                  NA                NA
+#&gt; 104                  NA                NA
+#&gt; 105                  NA                NA
+#&gt; 106                  NA                NA
+#&gt; 107                  NA                NA
+#&gt; 108                  NA                NA
+#&gt; 109                  NA                NA
+#&gt; 110                  NA                NA
+#&gt; 111                  NA                NA
+#&gt; 112                  NA                NA
+#&gt; 113                  NA                NA
+#&gt; 114                  NA                NA
+#&gt; 115                  NA                NA
+#&gt; 116                  NA                NA
+#&gt; 117                  NA                NA
+#&gt; 118                  NA                NA
+#&gt; 119                  NA                NA
+#&gt; 120                  NA                NA
+#&gt; 121                  NA                NA
+#&gt; 122                  NA                NA
+#&gt; 123                  NA                NA
+#&gt; 124                  NA                NA
+#&gt; 125                  NA                NA
+#&gt; 126                  NA                NA
+#&gt; 127                  NA                NA
+#&gt; 128                  NA                NA
+#&gt; 129                  NA                NA
+#&gt; 130                  NA                NA
+#&gt; 131                  NA                NA
+#&gt; 132                  NA                NA
+#&gt; 133                  NA                NA
+#&gt; 134                  NA                NA
+#&gt; 135                  NA                NA
+#&gt; 136                  NA                NA
+#&gt; 137                  NA                NA
+#&gt; 138                  NA                NA
+#&gt; 139                  NA                NA
+#&gt; 140                  NA                NA</div><div class='input'><span class='co'># }</span>
+<span class='co'># \donttest{</span>
   <span class='fu'>cfbd_play_stats_types</span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>}</span>
+</div><div class='output co'>#&gt;    play_stat_type_id                name
+#&gt; 1                  1        Incompletion
+#&gt; 2                  2              Target
+#&gt; 3                  3        Pass Breakup
+#&gt; 4                  4          Completion
+#&gt; 5                  5           Reception
+#&gt; 6                  6              Tackle
+#&gt; 7                  7                Rush
+#&gt; 8                  8              Fumble
+#&gt; 9                  9       Fumble Forced
+#&gt; 10                10    Fumble Recovered
+#&gt; 11                11          Sack Taken
+#&gt; 12                12                Sack
+#&gt; 13                13             Kickoff
+#&gt; 14                14         Onside Kick
+#&gt; 15                15      Kickoff Return
+#&gt; 16                16                Punt
+#&gt; 17                17          Punt Block
+#&gt; 18                18  FG Attempt Blocked
+#&gt; 19                19    Field Goal Block
+#&gt; 20                20 Interception Thrown
+#&gt; 21                21        Interception
+#&gt; 22                22           Touchdown</div><div class='input'><span class='co'># }</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -502,6 +2522,23 @@ Can be found using the <code>cfbfastR::cfbd_play_stats_types()</code> function</
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '002e977de61519c48dce057f58ed1d24',
+    indexName: 'cfbfastR',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>
