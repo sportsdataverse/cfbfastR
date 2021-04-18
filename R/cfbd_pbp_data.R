@@ -551,30 +551,7 @@ cfbd_pbp_data <- function(year,
     g_ids <- sort(unique(play_df$game_id))
     game_count <- length(g_ids)
     builder <- TRUE
-    ep_model <- NULL
-    suppressWarnings(
-      # load the model from GitHub because it is too large for the package
-      try(
-        load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/ep_model.Rdata")),
-        silent = TRUE
-      )
-    )
-    fg_model <- NULL
-    suppressWarnings(
-      # load the model from GitHub because it is too large for the package
-      try(
-        load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/fg_model.Rdata")),
-        silent = TRUE
-      )
-    )
-    wp_model <- NULL
-    suppressWarnings(
-      # load the model from GitHub because it is too large for the package
-      try(
-        load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/wp_model.Rdata")),
-        silent = TRUE
-      )
-    )
+    
     if (game_count > 1) {
       usethis::ui_todo("Start processing of {game_count} games...")
     } else {
