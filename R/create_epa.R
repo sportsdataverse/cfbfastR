@@ -25,8 +25,8 @@
 #'
 
 create_epa <- function(play_df,
-                       ep_model = cfbfastR:::ep_model,
-                       fg_model = cfbfastR:::fg_model) {
+                       ep_model,
+                       fg_model) {
   #----------------- Code Description--------
   ## 1) pred_df: Use select before play model variables -> Make predictions
   ## 2) epa_fg_probs: Update expected points predictions from before variables with FG make/miss probability weighted adjustment
@@ -472,7 +472,7 @@ create_epa <- function(play_df,
 #'
 #'
 
-epa_fg_probs <- function(dat, current_probs, ep_model = cfbfastR:::ep_model, fg_mod = cfbfastR:::fg_model) {
+epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
   fg_ind <- stringr::str_detect((dat$play_type), "Field Goal")
   ep_ind <- stringr::str_detect((dat$play_type), "Extra Point")
   inds <- fg_ind | ep_ind
@@ -524,7 +524,7 @@ epa_fg_probs <- function(dat, current_probs, ep_model = cfbfastR:::ep_model, fg_
     )
 
     # Get the probability of making the field goal:
-    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_model,
+    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_mod,
       newdata = fg_dat,
       type = "response"
     ))

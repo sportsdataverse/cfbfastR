@@ -35,7 +35,7 @@
 #' @export
 #'
 
-create_wpa_naive <- function(df, wp_model = cfbfastR:::wp_model) {
+create_wpa_naive <- function(df, wp_model) {
   col_nec <- c(
     "ExpScoreDiff",
     "TimeSecsRem",
@@ -134,7 +134,7 @@ create_wpa_naive <- function(df, wp_model = cfbfastR:::wp_model) {
     df[kickoff_ind, "wp_before"] <- as.vector(predict(wp_model, new_kick, type = "response"))
   }
   g_ids <- sort(unique(df$game_id))
-  df2 <- purrr::map_dfr(
+  df2 <- furrr::future_map_dfr(
     g_ids,
     function(x) {
       df %>%
