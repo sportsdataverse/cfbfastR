@@ -4,12 +4,7 @@
 \alias{epa_fg_probs}
 \title{Performs Field Goal adjustments for Expected Points model calculations}
 \usage{
-epa_fg_probs(
-  dat,
-  current_probs,
-  ep_model = cfbfastR:::ep_model,
-  fg_mod = cfbfastR:::fg_model
-)
+epa_fg_probs(dat, current_probs, ep_model, fg_mod)
 }
 \arguments{
 \item{current_probs}{(\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction}

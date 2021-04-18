@@ -5,11 +5,7 @@
 \title{Create EPA
 Adds Expected Points calculations to Play-by-Play data.frame}
 \usage{
-create_epa(
-  play_df,
-  ep_model = cfbfastR:::ep_model,
-  fg_model = cfbfastR:::fg_model
-)
+create_epa(play_df, ep_model, fg_model)
 }
 \arguments{
 \item{ep_model}{(\emph{model} default cfbfastR:::ep_model): Expected Points (EP) Model}

@@ -99,14 +99,14 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ## Current Issues
 
 ```{r,results='asis',echo=FALSE}
-x[c(1:(min(nrow(x),5))),]%>%
+x[c(1:(min(nrow(x),5))),] %>%
   knitr::kable()
 ```
 
 <details><summary>View More</summary>
 
 ```{r,results='asis',echo=FALSE}
-x[-c(1:(min(nrow(x),5))),]%>%
+x[-c(1:(min(nrow(x),5))),] %>%
   knitr::kable()
 ```
 

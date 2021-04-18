@@ -14,7 +14,8 @@ cfbd_pbp_data(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  verbose = FALSE
+  verbose = FALSE,
+  ...
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ cfbd_pbp_data(
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
+
+\item{...}{Additional arguments passed to an underlying function.}
 }
 \value{
 A data frame with 351 variables:
