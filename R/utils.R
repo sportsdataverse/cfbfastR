@@ -22,9 +22,9 @@ NULL
 #' or writes it into a db using some forwarded arguments in the dots
 #' @param seasons A vector of 4-digit years associated with given NFL seasons.
 #' @param ... Additional arguments passed to an underlying function that writes
-#' the season data into a database (used by [update_db()]).
+#' the season data into a database (used by \code{\link[=update_db]{update_db()}}).
 #' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
-#' 
+#' @export
 load_pbp <- function(seasons, ..., qs = FALSE) {
   dots <- rlang::dots_list(...)
   
@@ -66,12 +66,12 @@ load_pbp <- function(seasons, ..., qs = FALSE) {
 single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
   if (isTRUE(qs)) {
   
-    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs?raw=true")
+    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs")
     pbp <- qs_from_url(.url)
     
   }
   if (isFALSE(qs)) {
-    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.rds?raw=true")
+    .url <- glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
     con <- url(.url)
     pbp <- readRDS(con)
     close(con)
@@ -85,14 +85,33 @@ single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs =
   p(sprintf("season=%g", season))
   return(out)
 }
+
+# load games file
+load_games <- function(){
+  .url <- "https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/games_in_data_repo.csv"
+  con <- url(.url)
+  dat <- utils::read.csv(con)
+  # close(con)
+  return (dat)
+}
 # The function `message_completed` to create the green "...completed" message
 # only exists to hide the option `in_builder` in dots
-
 message_completed <- function(x, in_builder = FALSE) {
   if (!in_builder) {
     usethis::ui_done("{usethis::ui_field(x)}")
   } else if (in_builder) {
     usethis::ui_done(x)
+  }
+}
+user_message <- function(x, type) {
+  if (type == "done") {
+    usethis::ui_done("{my_time()} | {x}")
+  } else if (type == "todo") {
+    usethis::ui_todo("{my_time()} | {x}")
+  } else if (type == "info") {
+    usethis::ui_info("{my_time()} | {x}")
+  } else if (type == "oops") {
+    usethis::ui_oops("{my_time()} | {x}")
   }
 }
 # Identify sessions with sequential future resolving
