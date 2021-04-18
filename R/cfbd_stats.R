@@ -6,7 +6,11 @@ NULL
 #' This function identifies all Stats Categories identified in the regular stats endpoint.
 #'
 #' @rdname cfbd_stats
-#' @return \code{\link[cfbfastR:cfbd_stats_categories]{cfbfastR::cfbd_stats_categories()}} A data frame with 38 values:
+#' @examples
+#' \donttest{
+#'    cfbd_stats_categories()
+#' }
+#' @return [cfbd_stats_categories()] A data frame with 38 values:
 #' \describe{
 #'   \item{name}{Statistics Categories}
 #'   ...
@@ -18,10 +22,6 @@ NULL
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_stats_categories()
-#' }
 #'
 cfbd_stats_categories <- function() {
   full_url <- "https://api.collegefootballdata.com/stats/categories"
@@ -73,7 +73,15 @@ cfbd_stats_categories <- function() {
 #' @param season_type (\emph{String} default both): Select Season Type: regular, postseason, or both.
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_stats_game_advanced]{cfbfastR::cfbd_stats_game_advanced()}} - A data frame with 60 variables:
+#' @examples
+#' \donttest{
+#'    cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
+#'
+#'    cfbd_stats_game_advanced(2019, team = "LSU")
+#'
+#'    cfbd_stats_game_advanced(2013, team = "Florida State")
+#' }
+#' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
 #' \describe{
 #'   \item{\code{game_id}}{integer.}
 #'   \item{\code{week}}{integer.}
@@ -144,14 +152,6 @@ cfbd_stats_categories <- function() {
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
-#'
-#'    cfbd_stats_game_advanced(2019, team = "LSU")
-#'
-#'    cfbd_stats_game_advanced(2013, team = "Florida State")
-#' }
 #'
 cfbd_stats_game_advanced <- function(year,
                                      week = NULL,
@@ -288,7 +288,11 @@ cfbd_stats_game_advanced <- function(year,
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_stats_season_advanced]{cfbfastR::cfbd_stats_season_advanced()}} - A data frame with 79 variables:
+#' @examples
+#' \donttest{
+#'    cfbd_stats_season_advanced(2019, team = "LSU")
+#' }
+#' @return [cfbd_stats_season_advanced()] - A data frame with 79 variables:
 #' \describe{
 #'   \item{\code{season}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -378,10 +382,6 @@ cfbd_stats_game_advanced <- function(year,
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_stats_season_advanced(2019, team = "LSU")
-#' }
 #'
 cfbd_stats_season_advanced <- function(year,
                                        team = NULL,
@@ -520,7 +520,15 @@ cfbd_stats_season_advanced <- function(year,
 #' Special Teams: punting, puntReturns, kicking, kickReturns
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' 
-#' @return \code{\link[cfbfastR:cfbd_stats_season_player]{cfbfastR::cfbd_stats_season_player()}} - A data frame with 59 variables:
+#' @examples
+#' \donttest{
+#'    cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
+#'
+#'    cfbd_stats_season_player(2019, team = "LSU", category = "passing")
+#'
+#'    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
+#' }
+#' @return [cfbd_stats_season_player()] - A data frame with 59 variables:
 #' \describe{
 #'   \item{\code{team}}{character.}
 #'   \item{\code{conference}}{character.}
@@ -593,14 +601,6 @@ cfbd_stats_season_advanced <- function(year,
 #' @importFrom dplyr mutate mutate_at rename select
 #' @importFrom tidyr pivot_wider everything
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
-#'
-#'    cfbd_stats_season_player(2019, team = "LSU", category = "passing")
-#'
-#'    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
-#' }
 #'
 cfbd_stats_season_player <- function(year,
                                      season_type = "regular",
@@ -788,7 +788,15 @@ cfbd_stats_season_player <- function(year,
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_stats_season_team]{cfbfastR::cfbd_stats_season_team()}} - A data frame with 46 variables:
+#' @examples
+#' \donttest{
+#'    cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+#'
+#'    cfbd_stats_season_team(2019, team = "LSU")
+#'
+#'    cfbd_stats_season_team(2013, team = "Florida State")
+#' }
+#' @return [cfbd_stats_season_team()] - A data frame with 46 variables:
 #' \describe{
 #'   \item{\code{games}}{integer.}
 #'   \item{\code{team}}{character.}
@@ -847,14 +855,6 @@ cfbd_stats_season_player <- function(year,
 #' @importFrom dplyr select mutate rename
 #' @importFrom tidyr pivot_wider
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
-#'
-#'    cfbd_stats_season_team(2019, team = "LSU")
-#'
-#'    cfbd_stats_season_team(2013, team = "Florida State")
-#' }
 #'
 cfbd_stats_season_team <- function(year,
                                    season_type = "regular",

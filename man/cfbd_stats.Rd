@@ -91,13 +91,13 @@ Defense: defensive, fumbles, interceptions\cr
 Special Teams: punting, puntReturns, kicking, kickReturns}
 }
 \value{
-\code{\link[cfbfastR:cfbd_stats_categories]{cfbfastR::cfbd_stats_categories()}} A data frame with 38 values:
+\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}} A data frame with 38 values:
 \describe{
 \item{name}{Statistics Categories}
 ...
 }
 
-\code{\link[cfbfastR:cfbd_stats_game_advanced]{cfbfastR::cfbd_stats_game_advanced()}} - A data frame with 60 variables:
+\code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}} - A data frame with 60 variables:
 \describe{
 \item{\code{game_id}}{integer.}
 \item{\code{week}}{integer.}
@@ -161,7 +161,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 \item{\code{def_passing_plays_explosiveness}}{double.}
 }
 
-\code{\link[cfbfastR:cfbd_stats_season_advanced]{cfbfastR::cfbd_stats_season_advanced()}} - A data frame with 79 variables:
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 79 variables:
 \describe{
 \item{\code{season}}{integer.}
 \item{\code{team}}{character.}
@@ -244,7 +244,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 \item{\code{def_passing_plays_explosiveness}}{double.}
 }
 
-\code{\link[cfbfastR:cfbd_stats_season_player]{cfbfastR::cfbd_stats_season_player()}} - A data frame with 59 variables:
+\code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}} - A data frame with 59 variables:
 \describe{
 \item{\code{team}}{character.}
 \item{\code{conference}}{character.}
@@ -307,7 +307,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 \item{\code{punt_returns_long}}{double.}
 }
 
-\code{\link[cfbfastR:cfbd_stats_season_team]{cfbfastR::cfbd_stats_season_team()}} - A data frame with 46 variables:
+\code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}} - A data frame with 46 variables:
 \describe{
 \item{\code{games}}{integer.}
 \item{\code{team}}{character.}
@@ -364,7 +364,6 @@ This function identifies all Stats Categories identified in the regular stats en
 \donttest{
    cfbd_stats_categories()
 }
-
 \donttest{
    cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
 
@@ -372,11 +371,9 @@ This function identifies all Stats Categories identified in the regular stats en
 
    cfbd_stats_game_advanced(2013, team = "Florida State")
 }
-
 \donttest{
    cfbd_stats_season_advanced(2019, team = "LSU")
 }
-
 \donttest{
    cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
 
@@ -384,7 +381,6 @@ This function identifies all Stats Categories identified in the regular stats en
 
    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
 }
-
 \donttest{
    cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
 
@@ -392,7 +388,6 @@ This function identifies all Stats Categories identified in the regular stats en
 
    cfbd_stats_season_team(2013, team = "Florida State")
 }
-
 }
 \keyword{Advanced}
 \keyword{Categories}
