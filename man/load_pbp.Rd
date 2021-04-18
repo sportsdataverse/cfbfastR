@@ -10,9 +10,9 @@ load_pbp(seasons, ..., qs = FALSE)
 \item{seasons}{A vector of 4-digit years associated with given NFL seasons.}
 
 \item{...}{Additional arguments passed to an underlying function that writes
-the season data into a database (used by [update_db()]).}
+the season data into a database (used by \code{\link[=update_db]{update_db()}}).}
 
-\item{qs}{Wheter to use the function [qs::qdeserialize()] for more efficient loading.}
+\item{qs}{Wheter to use the function \code{\link[qs:qdeserialize]{qs::qdeserialize()}} for more efficient loading.}
 }
 \description{
 helper that loads multiple seasons from the data repo either into memory

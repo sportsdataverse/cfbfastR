@@ -1,5 +1,30 @@
-`%||%` <- function(a, b) ifelse(is.null(a), b, a)
-
+.onLoad <- function(libname, pkgname) {
+  ep_model <- NULL
+  suppressWarnings(
+    # load the model from GitHub because it is too large for the package
+    try(
+      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/ep_model.Rdata")),
+      silent = TRUE
+    )
+  )
+  fg_model <- NULL
+  suppressWarnings(
+    # load the model from GitHub because it is too large for the package
+    try(
+      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/fg_model.Rdata")),
+      silent = TRUE
+    )
+  )
+  wp_model <- NULL
+  suppressWarnings(
+    # load the model from GitHub because it is too large for the package
+    try(
+      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/wp_model.Rdata")),
+      silent = TRUE
+    )
+  )
+  
+}
 # ##' Check latest GitHub version of R package
 # ##'
 # ##' @param pkg package name
@@ -65,30 +90,3 @@
 #   eval(parse(text = fun))
 # }
 
-.onLoad <- function(libname, pkgname) {
-  ep_model <- NULL
-  suppressWarnings(
-    # load the model from GitHub because it is too large for the package
-    try(
-      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/ep_model.Rdata")),
-      silent = TRUE
-    )
-  )
-  fg_model <- NULL
-  suppressWarnings(
-    # load the model from GitHub because it is too large for the package
-    try(
-      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/fg_model.Rdata")),
-      silent = TRUE
-    )
-  )
-  wp_model <- NULL
-  suppressWarnings(
-    # load the model from GitHub because it is too large for the package
-    try(
-      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/wp_model.Rdata")),
-      silent = TRUE
-    )
-  )
-  
-}

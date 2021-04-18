@@ -17,11 +17,11 @@ Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_
 \value{
 espn_metrics_wp - A data frame with 5 variables:
 \describe{
-  \item{\code{espn_game_id}}{character.}
-  \item{\code{play_id}}{character.}
-  \item{\code{seconds_left}}{integer.}
-  \item{\code{home_win_percentage}}{double.}
-  \item{\code{away_win_percentage}}{double.}
+\item{\code{espn_game_id}}{character.}
+\item{\code{play_id}}{character.}
+\item{\code{seconds_left}}{integer.}
+\item{\code{home_win_percentage}}{double.}
+\item{\code{away_win_percentage}}{double.}
 }
 }
 \description{

@@ -8,10 +8,10 @@ Adds penalty columns to Play-by-Play data pulled from the API}
 penalty_detection(raw_df)
 }
 \arguments{
-\item{raw_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`}
+\item{raw_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from \code{cfbd_pbp_data()}}
 }
 \value{
-The original `raw_df` with the following columns appended/redefined:
+The original \code{raw_df} with the following columns appended/redefined:
 \describe{
 \item{penalty_flag}{TRUE/FALSE flag for penalty play types or penalty in play text plays.}
 \item{penalty_declined}{TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}
@@ -21,7 +21,7 @@ The original `raw_df` with the following columns appended/redefined:
 \item{penalty_text}{TRUE/FALSE flag for penalty in text but not a penalty play type.}
 \item{orig_play_type}{Copy of original play_type label prior to any changes by the proceeding functions}
 \item{down}{Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}
-\item{play_type}{Defines `play_type`, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.}
+\item{play_type}{Defines \code{play_type}, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.}
 \item{half}{Defines the half variable (1, 2).}
 }
 }

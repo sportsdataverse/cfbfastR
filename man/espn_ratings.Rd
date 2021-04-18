@@ -16,26 +16,26 @@ espn_ratings_fpi(year = 2019)
 \value{
 A data frame with 20 variables:
 \describe{
-  \item{\code{year}}{double.}
-  \item{\code{id}}{character.}
-  \item{\code{name}}{character.}
-  \item{\code{abbr}}{character.}
-  \item{\code{row_n}}{integer.}
-  \item{\code{fpi}}{character.}
-  \item{\code{fpi_rk}}{character.}
-  \item{\code{trend}}{character.}
-  \item{\code{proj_w}}{character.}
-  \item{\code{proj_l}}{character.}
-  \item{\code{win_out}}{double.}
-  \item{\code{win_6}}{double.}
-  \item{\code{win_div}}{double.}
-  \item{\code{playoff}}{double.}
-  \item{\code{nc_game}}{double.}
-  \item{\code{nc_win}}{double.}
-  \item{\code{win_conf}}{double.}
-  \item{\code{w}}{character.}
-  \item{\code{l}}{character.}
-  \item{\code{t}}{character.}
+\item{\code{year}}{double.}
+\item{\code{id}}{character.}
+\item{\code{name}}{character.}
+\item{\code{abbr}}{character.}
+\item{\code{row_n}}{integer.}
+\item{\code{fpi}}{character.}
+\item{\code{fpi_rk}}{character.}
+\item{\code{trend}}{character.}
+\item{\code{proj_w}}{character.}
+\item{\code{proj_l}}{character.}
+\item{\code{win_out}}{double.}
+\item{\code{win_6}}{double.}
+\item{\code{win_div}}{double.}
+\item{\code{playoff}}{double.}
+\item{\code{nc_game}}{double.}
+\item{\code{nc_win}}{double.}
+\item{\code{win_conf}}{double.}
+\item{\code{w}}{character.}
+\item{\code{l}}{character.}
+\item{\code{t}}{character.}
 }
 }
 \description{

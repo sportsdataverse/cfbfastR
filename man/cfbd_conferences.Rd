@@ -12,11 +12,11 @@ cfbd_conferences()
 \value{
 \code{\link[cfbfastR:cfbd_conferences]{cfbfastR::cfbd_conferences()}} - A data frame with 11 rows and 4 variables:
 \describe{
-  \item{conference_id}{Referencing conference id}
-  \item{name}{Conference name}
-  \item{long_name}{Long name for Conference}
-  \item{abbreviation}{Conference abbreviation}
-  ...
+\item{conference_id}{Referencing conference id}
+\item{name}{Conference name}
+\item{long_name}{Long name for Conference}
+\item{abbreviation}{Conference abbreviation}
+...
 }
 }
 \description{

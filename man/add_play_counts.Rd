@@ -8,10 +8,10 @@ Adds play counts to Play-by-Play data pulled from the API's raw game data}
 add_play_counts(play_df)
 }
 \arguments{
-\item{play_df}{(\emph{data.frame} required): Adds play counts to Play-by-Play dataframe, as pulled from `cfbd_pbp_data()`}
+\item{play_df}{(\emph{data.frame} required): Adds play counts to Play-by-Play dataframe, as pulled from \code{cfbd_pbp_data()}}
 }
 \value{
-The original `play_df` with the following columns appended/redefined:
+The original \code{play_df} with the following columns appended/redefined:
 \describe{
 \item{game_play_number}{.}
 \item{half_clock.minutes}{.}
