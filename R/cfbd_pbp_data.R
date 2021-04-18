@@ -12,6 +12,7 @@ NULL
 #' @param play_type Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})
 #' @param epa_wpa Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
+#' @param ... Additional arguments passed to an underlying function.
 #' @return A data frame with 351 variables:
 #' \describe{
 #'   \item{\code{year}}{double.}
@@ -386,16 +387,23 @@ cfbd_pbp_data <- function(year,
                           team = NULL,
                           play_type = NULL,
                           epa_wpa = FALSE,
-                          verbose = FALSE) {
+                          verbose = FALSE,
+                          ...) {
   options(stringsAsFactors = FALSE)
   options(scipen = 999)
   # Check if year is numeric, if not NULL
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year as a number (YYYY)"
-  )
-  assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-    msg = "Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-  )
+  if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
+    # Check if year is numeric, if not NULL
+    usethis::ui_stop("Enter valid year as a number (YYYY)")
+  }
+  if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
+    # Check if week is numeric, if not NULL
+    usethis::ui_stop("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
+  }
+  if (season_type != "regular" & season_type != "postseason" & season_type != "both") {
+    # Check if season_type is appropriate, if not regular
+    usethis::ui_stop("Enter valid season_type: regular, postseason, or both")
+  }
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -404,20 +412,14 @@ cfbd_pbp_data <- function(year,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if (season_type != "regular") {
-    # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c("postseason", "both"),
-      msg = "Enter valid season_type: regular, postseason, or both"
-    )
-  }
+  
   if (!is.null(play_type)) {
     text <- play_type %in% cfbfastR::cfbd_play_type_df$text
     abbr <- play_type %in% cfbfastR::cfbd_play_type_df$abbreviation
-    pt <-
-      assertthat::assert_that(
-        (text | abbr) == TRUE,
-        msg = "Incorrect play type selected, please look at the available options in the Play Type DF."
-      )
+  
+    if ((text | abbr) == FALSE) {
+      usethis::ui_stop("Incorrect play type selected, please look at the available options in the Play Type DF.")
+    }
     if (text) {
       pt_id <- cfbfastR::cfbd_play_type_df$id[which(cfbfastR::cfbd_play_type_df$text == play_type)]
     } else {
@@ -551,34 +553,53 @@ cfbd_pbp_data <- function(year,
     builder <- TRUE
 
     if (game_count > 1) {
-      usethis::ui_todo("Start download of {game_count} games...")
+      usethis::ui_todo("Start processing of {game_count} games...")
     } else {
-      usethis::ui_todo("Start download of {game_count} game...")
+      usethis::ui_todo("Start processing of {game_count} game...")
     }
-    suppressWarnings(
-      progressr::with_progress({
-        p <- progressr::progressor(along = g_ids)
-        play_df <- purrr::map_dfr(
-          g_ids,
-          function(x) {
-            play_df <- play_df %>%
-              dplyr::filter(.data$game_id == x) %>%
-              penalty_detection() %>%
-              add_play_counts() %>%
-              clean_pbp_dat() %>%
-              clean_drive_dat() %>%
-              add_yardage() %>%
-              add_player_cols() %>%
-              prep_epa_df_after() %>%
-              create_epa() %>%
-              # create_wpa_betting() %>%
-              create_wpa_naive()
-            p(sprintf("x=%s", as.integer(x)))
-            return(play_df)
-          }
-        )
-      })
-    )
+    p <- progressr::progressor(along = g_ids)
+    
+    play_df <- furrr::future_map_dfr(
+      g_ids,
+      function(x){
+        play_df <- play_df %>%
+          dplyr::filter(.data$game_id == x) %>%
+          penalty_detection() %>%
+          add_play_counts() %>%
+          clean_pbp_dat() %>%
+          clean_drive_dat() %>%
+          add_yardage() %>%
+          add_player_cols() %>%
+          prep_epa_df_after() %>%
+          create_epa() %>%
+          # create_wpa_betting() %>%
+          create_wpa_naive()
+        p(sprintf("x=%s", as.integer(x)))
+        return(play_df)
+      }, ...)
+    # } else{
+    #   play_df <- purrr::map_dfr(
+    #     g_ids,  
+    #     function(x) {
+    #       play_df <- play_df %>%
+    #         dplyr::filter(.data$game_id == x) %>%
+    #         penalty_detection() %>%
+    #         add_play_counts() %>%
+    #         clean_pbp_dat() %>%
+    #         clean_drive_dat() %>%
+    #         add_yardage() %>%
+    #         add_player_cols() %>%
+    #         prep_epa_df_after() %>%
+    #         create_epa() %>%
+    #         # create_wpa_betting() %>%
+    #         create_wpa_naive()
+    #       p(sprintf("x=%s", as.integer(x)))
+    #       return(play_df)
+    #     }
+    #   )
+    # }
+      
+    
 
     #---- Select Output Ordering -----
 
