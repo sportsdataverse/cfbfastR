@@ -126,9 +126,8 @@ cfbd_coaches <- function(first = NULL,
       }
     },
     error = function(e) {
-      if (verbose) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))
-      }
+      
     },
     warning = function(w) {
     },

@@ -183,9 +183,7 @@ cfbd_drives <- function(year,
         as.data.frame()
     },
     error = function(e) {
-      if (verbose) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))
-      }
     },
     warning = function(w) {
     },

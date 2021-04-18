@@ -1076,9 +1076,7 @@ cfbd_metrics_wp <- function(game_id,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics win probability data available!"))
-      }
     },
     warning = function(w) {
     },

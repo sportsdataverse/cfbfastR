@@ -125,9 +125,7 @@ cfbd_player_info <- function(search_term,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -254,9 +252,7 @@ cfbd_player_returning <- function(year = 2019,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -422,9 +418,7 @@ cfbd_player_usage <- function(year = 2019,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
-      }
     },
     warning = function(w) {
     },

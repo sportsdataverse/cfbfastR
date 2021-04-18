@@ -147,9 +147,7 @@ cfbd_recruiting_player <- function(year = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -285,9 +283,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -393,9 +389,7 @@ cfbd_recruiting_team <- function(year = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
-      }
     },
     warning = function(w) {
     },

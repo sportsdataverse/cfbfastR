@@ -180,9 +180,7 @@ cfbd_game_info <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){
         message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -253,9 +251,7 @@ cfbd_calendar <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -402,9 +398,7 @@ cfbd_game_media <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -609,9 +603,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: game_id '{game_id}' invalid or no game advanced box score data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -836,9 +828,7 @@ cfbd_game_player_stats <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -979,9 +969,7 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
-      }
     },
     warning = function(w) {
     },

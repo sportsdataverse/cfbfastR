@@ -107,9 +107,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -254,9 +252,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -394,9 +390,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -507,9 +501,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
-      }
     },
     warning = function(w) {
     },

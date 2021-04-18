@@ -131,9 +131,7 @@ cfbd_plays <- function(year = 2020,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -477,9 +475,7 @@ cfbd_play_stats_player <- function(year = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
-      }
     },
     warning = function(w) {
     },

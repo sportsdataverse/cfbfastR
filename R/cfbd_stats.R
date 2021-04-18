@@ -267,9 +267,7 @@ cfbd_stats_game_advanced <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -494,9 +492,7 @@ cfbd_stats_season_advanced <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -768,9 +764,7 @@ cfbd_stats_season_player <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -1040,9 +1034,7 @@ cfbd_stats_season_team <- function(year,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
-      }
     },
     warning = function(w) {
     },

@@ -301,9 +301,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -434,9 +432,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -550,9 +546,7 @@ cfbd_team_roster <- function(year, team = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
-      }
     },
     warning = function(w) {
     },
@@ -633,9 +627,7 @@ cfbd_team_talent <- function(year = NULL,
       }
     },
     error = function(e) {
-      if(verbose){ 
         message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
-      }
     },
     warning = function(w) {
     },
