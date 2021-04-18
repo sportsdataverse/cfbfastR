@@ -1,8 +1,17 @@
-# cfbfastR 1.0.0
+# cfbfastR 
+
+### **v1.1.0**
+#### **Add loading from Data Repository functionality**
+
+* Added [```load_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/load_pbp.html) and [```update_db()```](https://saiemgilani.github.io/cfbfastR/reference/update_db.html) functions. Pretty much cherry-picking the `nflfastR` methodology of loading data from the [`cfbfastR-data`](https://github.com/saiemgilani/cfbfastR-data/) repository. 
+
+#### **Add support for parallel processing and progress updates**
+
+* Added [```furrr```](https://furrr.futureverse.org/index.html), [```future```](https://future.futureverse.org/), and [```progressr```](https://progressr.futureverse.org/) dependencies to the package to allow for parallel processing of the play-by-play data with progress updates if desired. 
 
 ### **v1.0.0**
 
-#### Function Naming Convention Change 
+#### **Function Naming Convention Change**
 
 * All functions sourced from the College Football Data API will start with `cfbd_` as opposed to `cfb_` (as in cfbscrapR). One additional `cfbd_` function has been added that corresponds to the result when [```cfbd_pbp_data()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html) has the parameter `epa_wpa=FALSE`. It has now been separated into its own function for clarity [```cfbd_plays()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html). The parameter and functionality still exists in [```cfbd_pbp_data()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html) but we expect this function will still exist but made obsolete in favor of a function more closely matching `nflfastR`'s naming conventions.
 
@@ -10,7 +19,7 @@
 
 * Data generated from any of the ```cfbfastR``` methods will use `cfb_`
 
-#### College Football Data API Keys
+#### **College Football Data API Keys**
 
 The [CollegeFootballData API](https://collegefootballdata.com/) now requires an API key, here's a quick run-down:
 

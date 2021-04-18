@@ -41,6 +41,27 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 ## **Breaking Changes**
 
+### **v1.1.0**
+
+#### **Add loading from Data Repository functionality**
+
+  - Added
+    [`load_pbp()`](https://saiemgilani.github.io/cfbfastR/reference/load_pbp.html)
+    and
+    [`update_db()`](https://saiemgilani.github.io/cfbfastR/reference/update_db.html)
+    functions. Pretty much cherry-picking the `nflfastR` methodology of
+    loading data from the
+    [`cfbfastR-data`](https://github.com/saiemgilani/cfbfastR-data/)
+    repository.
+
+#### **Add support for parallel processing and progress updates**
+
+  - Added [`furrr`](https://furrr.futureverse.org/index.html),
+    [`future`](https://future.futureverse.org/), and
+    [`progressr`](https://progressr.futureverse.org/) dependencies to
+    the package to allow for parallel processing of the play-by-play
+    data with progress updates if desired.
+
 ### **v1.0.0**
 
 #### **Function Naming Convention Change**
