@@ -65,31 +65,23 @@ cfbd_betting_lines <- function(game_id = NULL,
                                home_team = NULL,
                                away_team = NULL,
                                conference = NULL,
-                               line_provider = NULL,
+                               line_provider=NULL,
                                verbose = FALSE) {
-  if (!is.null(game_id)) {
+  if (!is.null(game_id) & !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
-    assertthat::assert_that(is.numeric(game_id),
-      msg = "Enter valid game_id (numeric value)"
-    )
+    usethis::ui_stop( "Enter valid game_id (numeric value)")
   }
-  if (!is.null(year)) {
+  if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as a number (YYYY)"
-    )
+    usethis::ui_stop("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(week)) {
+  if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
     # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-      msg = "Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+    usethis::ui_stop("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (season_type != "regular") {
+  if (season_type != "regular" & season_type != "postseason") {
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c("postseason"),
-      msg = "Enter valid season_type: regular or postseason"
-    )
+    usethis::ui_stop("Enter valid season_type: regular or postseason")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -114,13 +106,12 @@ cfbd_betting_lines <- function(game_id = NULL,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  if (!is.null(line_provider)) {
+  if (!is.null(line_provider) &&  is.character(line_provider) &&
+      !(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"))) {
     # Check line_provider parameter is a valid entry
-    assertthat::assert_that(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"),
-      msg = "Enter valid line provider: Caesars, consensus, numberfire, or teamrankings"
-    )
+    usethis::ui_stop("Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
   }
-
+  # cfbfastR::cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
   base_url <- "https://api.collegefootballdata.com/lines?"
 
   full_url <- paste0(
@@ -154,7 +145,7 @@ cfbd_betting_lines <- function(game_id = NULL,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest(.data$lines)
 

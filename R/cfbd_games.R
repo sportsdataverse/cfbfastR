@@ -545,8 +545,8 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        purrr::map_if(is.data.frame, list)
+        furrr::future_map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list)
 
       df <- tibble::enframe(unlist(df$teams, use.names = TRUE))
       team1 <- seq(1, nrow(df) - 1, by = 2)
@@ -801,18 +801,18 @@ cfbd_game_player_stats <- function(year,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         dplyr::rename(game_id = .data$id) %>%
         tidyr::unnest(.data$teams) %>%
-        purrr::map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest(.data$categories) %>%
-        purrr::map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         dplyr::rename(category = .data$name) %>%
         tidyr::unnest(.data$types) %>%
-        purrr::map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         dplyr::rename(stat_category = .data$name) %>%
         tidyr::unnest(.data$athletes) %>%
@@ -1206,7 +1206,7 @@ cfbd_game_team_stats <- function(year,
   df <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
-    purrr::map_if(is.data.frame, list) %>%
+    furrr::future_map_if(is.data.frame, list) %>%
     dplyr::as_tibble()
 
   if (nrow(df) == 0) {

@@ -115,7 +115,7 @@ cfbd_coaches <- function(first = NULL,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        purrr::map_if(is.data.frame, list) %>%
+        furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest(.data$seasons) %>%
         as.data.frame() %>%
