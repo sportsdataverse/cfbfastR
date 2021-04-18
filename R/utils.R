@@ -1,5 +1,3 @@
-`%||%` <- function(a, b) ifelse(is.null(a), b, a)
-
 #' @keywords Internal
 #' @importFrom httr status_code
 #'
