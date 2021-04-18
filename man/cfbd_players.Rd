@@ -14,9 +14,20 @@
 \url{https://api.collegefootballdata.com/player/usage}
 }
 \usage{
-cfbd_player_info(search_term, position = NULL, team = NULL, year = NULL)
+cfbd_player_info(
+  search_term,
+  position = NULL,
+  team = NULL,
+  year = NULL,
+  verbose = FALSE
+)
 
-cfbd_player_returning(year = 2019, team = NULL, conference = NULL)
+cfbd_player_returning(
+  year = 2019,
+  team = NULL,
+  conference = NULL,
+  verbose = FALSE
+)
 
 cfbd_player_usage(
   year = 2019,
@@ -24,7 +35,8 @@ cfbd_player_usage(
   conference = NULL,
   position = NULL,
   athlete_id = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -41,6 +53,8 @@ Position Group  - options include:\cr
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
 \item{year}{(\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
@@ -115,17 +129,20 @@ Player Returning Production
 Player Usage
 }
 \examples{
-\dontrun{
-  cfbd_player_info(search_term = 'James', position = 'DB', team = 'Florida State', year = 2017)
+\donttest{
+cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 
-  cfbd_player_info(search_term = 'Lawrence', team = "Clemson")
+cfbd_player_info(search_term = "Lawrence", team = "Clemson")
 }
-\dontrun{
-  cfbd_player_returning(year = 2019, team = 'Florida State')
+
+\donttest{
+cfbd_player_returning(year = 2019, team = "Florida State")
 }
-\dontrun{
-  cfbd_player_usage(year = 2019, position = 'WR', team = 'Florida State')
+
+\donttest{
+cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
 }
+
 }
 \keyword{Player}
 \keyword{Players}

@@ -17,13 +17,13 @@
 \url{https://api.collegefootballdata.com/ratings/srs}
 }
 \usage{
-cfbd_rankings(year, week = NULL, season_type = "regular")
+cfbd_rankings(year, week = NULL, season_type = "regular", verbose = FALSE)
 
-cfbd_ratings_sp(year = NULL, team = NULL)
+cfbd_ratings_sp(year = NULL, team = NULL, verbose = FALSE)
 
-cfbd_ratings_sp_conference(year = NULL, conference = NULL)
+cfbd_ratings_sp_conference(year = NULL, conference = NULL, verbose = FALSE)
 
-cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
+cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL, verbose = FALSE)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
@@ -32,11 +32,13 @@ cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 
 \item{season_type}{(\emph{String} default regular): Season type - regular or postseason}
 
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
+
 \item{team}{(\emph{String} optional): D-I Team}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[cfbfastR:cfbd_rankings]{cfbfastR::cfbd_rankings()}} - A data frame with 9 variables:
@@ -132,32 +134,36 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 At least one of \strong{year} or \strong{team} must be specified for the function to run
 }
 \examples{
-\dontrun{
-  cfbd_rankings(year = 2019, week = 12)
+\donttest{
+cfbd_rankings(year = 2019, week = 12)
 
-  cfbd_rankings(year = 2018, week = 14)
+cfbd_rankings(year = 2018, week = 14)
 
-  cfbd_rankings(year = 2013, season_type = 'postseason')
+cfbd_rankings(year = 2013, season_type = "postseason")
 }
-\dontrun{
-  cfbd_ratings_sp(year = 2019)
 
-  cfbd_ratings_sp(team = 'Texas A&M')
+\donttest{
+cfbd_ratings_sp(year = 2019)
 
-  cfbd_ratings_sp(year= 2019, team = "Texas")
+cfbd_ratings_sp(team = "Texas A&M")
+
+cfbd_ratings_sp(year = 2019, team = "Texas")
 }
-\dontrun{
-  cfbd_ratings_sp_conference(year = 2019)
 
-  cfbd_ratings_sp_conference(year = 2012, conference = 'SEC')
+\donttest{
+cfbd_ratings_sp_conference(year = 2019)
 
-  cfbd_ratings_sp_conference(year = 2016, conference = 'ACC')
+cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
+
+cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 }
-\dontrun{
-  cfbd_ratings_srs(year = 2019, team = "Texas")
 
-  cfbd_ratings_srs(year = 2018, conference = 'SEC')
+\donttest{
+cfbd_ratings_srs(year = 2019, team = "Texas")
+
+cfbd_ratings_srs(year = 2018, conference = "SEC")
 }
+
 }
 \keyword{CFB}
 \keyword{Rankings}

@@ -13,7 +13,9 @@ cfbd_pbp_data(
   week = 1,
   team = NULL,
   play_type = NULL,
-  epa_wpa = FALSE
+  epa_wpa = FALSE,
+  verbose = FALSE,
+  ...
 )
 }
 \arguments{
@@ -28,6 +30,10 @@ cfbd_pbp_data(
 \item{play_type}{Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})}
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
+
+\item{...}{Additional arguments passed to an underlying function.}
 }
 \value{
 A data frame with 351 variables:

@@ -23,8 +23,8 @@ cfbd_conferences()
 Pulls all college football conferences and returns as data frame the following fields:
 }
 \examples{
-
-cfbd_conferences()
-
+\donttest{
+   cfbd_conferences()
+}
 }
 \keyword{Conferences}

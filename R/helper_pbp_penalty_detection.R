@@ -33,45 +33,45 @@
 
 penalty_detection <- function(raw_df) {
   #-- 'Penalty' in play text ----
-  pen_text = stringr::str_detect(raw_df$play_text, regex("penalty", ignore_case = TRUE))
+  pen_text <- stringr::str_detect(raw_df$play_text, regex("penalty", ignore_case = TRUE))
   #-- 'Declined' in play text ----
-  pen_declined_text = stringr::str_detect(raw_df$play_text, regex("declined", ignore_case = TRUE))
+  pen_declined_text <- stringr::str_detect(raw_df$play_text, regex("declined", ignore_case = TRUE))
   #-- 'No Play' in play text ----
-  pen_no_play_text = stringr::str_detect(raw_df$play_text, regex("no play", ignore_case = TRUE))
+  pen_no_play_text <- stringr::str_detect(raw_df$play_text, regex("no play", ignore_case = TRUE))
   #-- 'Off-setting' in play text ----
-  pen_offset_text = stringr::str_detect(raw_df$play_text, regex("off-setting", ignore_case = TRUE))
+  pen_offset_text <- stringr::str_detect(raw_df$play_text, regex("off-setting", ignore_case = TRUE))
   #-- '1st Down' in play text ----
-  pen_1st_down_text = stringr::str_detect(raw_df$play_text, regex("1st down", ignore_case = TRUE))
-  
+  pen_1st_down_text <- stringr::str_detect(raw_df$play_text, regex("1st down", ignore_case = TRUE))
+
   #-- Penalty play_types
-  pen_type = raw_df$play_type == "Penalty" | raw_df$play_type == "penalty"
-  
-  #-- T/F flag conditions penalty_flag 
-  raw_df$penalty_flag = FALSE
+  pen_type <- raw_df$play_type == "Penalty" | raw_df$play_type == "penalty"
+
+  #-- T/F flag conditions penalty_flag
+  raw_df$penalty_flag <- FALSE
   raw_df$penalty_flag[pen_type] <- TRUE
   raw_df$penalty_flag[pen_text] <- TRUE
-  #-- T/F flag conditions penalty_declined 
-  raw_df$penalty_declined = FALSE
+  #-- T/F flag conditions penalty_declined
+  raw_df$penalty_declined <- FALSE
   raw_df$penalty_declined[pen_text & pen_declined_text] <- TRUE
   raw_df$penalty_declined[pen_type & pen_declined_text] <- TRUE
-  #-- T/F flag conditions penalty_no_play 
-  raw_df$penalty_no_play = FALSE
+  #-- T/F flag conditions penalty_no_play
+  raw_df$penalty_no_play <- FALSE
   raw_df$penalty_no_play[pen_text & pen_no_play_text] <- TRUE
   raw_df$penalty_no_play[pen_type & pen_no_play_text] <- TRUE
-  #-- T/F flag conditions penalty_offset 
-  raw_df$penalty_offset = FALSE
+  #-- T/F flag conditions penalty_offset
+  raw_df$penalty_offset <- FALSE
   raw_df$penalty_offset[pen_text & pen_offset_text] <- TRUE
   raw_df$penalty_offset[pen_type & pen_offset_text] <- TRUE
-  #-- T/F flag conditions penalty_1st_conv 
-  raw_df$penalty_1st_conv = FALSE
+  #-- T/F flag conditions penalty_1st_conv
+  raw_df$penalty_1st_conv <- FALSE
   raw_df$penalty_1st_conv[pen_text & pen_1st_down_text] <- TRUE
   raw_df$penalty_1st_conv[pen_type & pen_1st_down_text] <- TRUE
-  #-- T/F flag for penalty text but not penalty play type -- 
+  #-- T/F flag for penalty text but not penalty play type --
   raw_df$penalty_text <- FALSE
-  raw_df$penalty_text[pen_text & !pen_type & !pen_declined_text & 
-                        !pen_offset_text & !pen_no_play_text] <- TRUE
-  
-  raw_df = raw_df %>%
+  raw_df$penalty_text[pen_text & !pen_type & !pen_declined_text &
+    !pen_offset_text & !pen_no_play_text] <- TRUE
+
+  raw_df <- raw_df %>%
     dplyr::mutate(
       penalty_detail = case_when(
         .data$penalty_offset ~ "Off-Setting",
@@ -129,30 +129,34 @@ penalty_detection <- function(raw_df) {
         stringr::str_detect(.data$play_text, regex(" failure to wear required equipment ", ignore_case = TRUE)) ~ "Failure to Wear Required Equipment",
         stringr::str_detect(.data$play_text, regex(" player disqualification ", ignore_case = TRUE)) ~ "Player Disqualification",
         .data$penalty_flag ~ "Missing",
-        TRUE ~ NA_character_),
-      penalty_play_text = ifelse(.data$penalty_flag, stringr::str_extract(.data$play_text, regex("Penalty(.+)",ignore_case = TRUE)), NA_character_),
+        TRUE ~ NA_character_
+      ),
+      penalty_play_text = ifelse(.data$penalty_flag, stringr::str_extract(.data$play_text, regex("Penalty(.+)", ignore_case = TRUE)), NA_character_),
       yds_penalty = ifelse(.data$penalty_flag,
-                           stringr::str_extract(.data$penalty_play_text, "(.{0,3})yards to the |(.{0,3})yds to the |(.{0,3})yd to the "), NA_real_),
+        stringr::str_extract(.data$penalty_play_text, "(.{0,3})yards to the |(.{0,3})yds to the |(.{0,3})yd to the "), NA_real_
+      ),
       yds_penalty = stringr::str_remove(.data$yds_penalty, " yards to the | yds to the | yd to the "),
       yds_penalty = ifelse(.data$penalty_flag & stringr::str_detect(.data$play_text, "ards\\)") & is.na(.data$yds_penalty),
-                           stringr::str_extract(.data$play_text, "(.{0,4})yards\\)|(.{0,4})Yards\\)|(.{0,4})yds\\)|(.{0,4})Yds\\)"), .data$yds_penalty),
+        stringr::str_extract(.data$play_text, "(.{0,4})yards\\)|(.{0,4})Yards\\)|(.{0,4})yds\\)|(.{0,4})Yds\\)"), .data$yds_penalty
+      ),
       yds_penalty = stringr::str_remove(.data$yds_penalty, "yards\\)|Yards\\)|yds\\)|Yds\\)"),
       yds_penalty = stringr::str_remove(.data$yds_penalty, "\\(")
     )
   suppressWarnings(
-    raw_df <- raw_df %>% 
+    raw_df <- raw_df %>%
       mutate(yds_penalty = stringr::str_trim(.data$yds_penalty))
   )
-  ##-- Kickoff down adjustment ----
-  raw_df = raw_df %>%
+  ## -- Kickoff down adjustment ----
+  raw_df <- raw_df %>%
     dplyr::mutate(
       orig_play_type = .data$play_type,
       down = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Kickoff"), 1, .data$down),
-      play_type = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Penalty"), 
-                         "Penalty (Kickoff)", .data$play_type),
+      play_type = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Penalty"),
+        "Penalty (Kickoff)", .data$play_type
+      ),
       down = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Penalty"), 1, .data$down),
-      half = ifelse(.data$period <= 2, 1, 2)) %>% 
-    dplyr::filter(!(.data$game_id == '302610012' & .data$down == 5 & .data$play_type == 'Rush'))
+      half = ifelse(.data$period <= 2, 1, 2)
+    ) %>%
+    dplyr::filter(!(.data$game_id == "302610012" & .data$down == 5 & .data$play_type == "Rush"))
   return(raw_df)
 }
-

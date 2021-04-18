@@ -14,5 +14,18 @@ has_cfbd_key()
 Save your API Key as a system environment variable \code{CFBD_API_KEY}
 }
 \details{
-To get access to an API key, follow the instructions at \url{https://collegefootballdata.com/key}
+To get access to an API key, follow the instructions at \url{https://collegefootballdata.com/key}\cr
+\cr
+\strong{Using the key:} \cr
+
+You can save the key for consistent usage by adding \cr
+\code{CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX} \cr
+to your .REnviron file (easily accessed via \href{https://usethis.r-lib.org/reference/edit.html}{\strong{\code{usethis::edit_r_environ()}}}).\cr
+\cr
+Run \href{https://usethis.r-lib.org/reference/edit.html}{\strong{\code{usethis::edit_r_environ()}}} and THEN paste the following in the new script that pops up (with\strong{out} quotations)\cr\if{html}{\out{<div class="r">}}\preformatted{CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+}\if{html}{\out{</div>}}
+
+For less consistent usage:\cr
+At the beginning of every session or within an R environment, save your API key as the environment variable \code{CFBD_API_KEY} (with quotations) using a command like the following.\cr\if{html}{\out{<div class="r">}}\preformatted{Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+}\if{html}{\out{</div>}}
 }

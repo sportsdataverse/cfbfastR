@@ -8,13 +8,14 @@
 #' @param defense_team (\emph{String} optional): Defense D-I Team
 #' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param offense_conference (\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param defense_conference (\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_drives]{cfbfastR::cfbd_drives()}} - A data frame with 23 variables as follows:
 #' \describe{
@@ -53,127 +54,142 @@
 #' @import tidyr
 #' @export
 #' @examples
-#' \dontrun{
-#'   cfbd_drives(2018, week = 1, team = "TCU")
+#' \donttest{
+#'    cfbd_drives(2018, week = 1, team = "TCU")
 #'
-#'   cfbd_drives(2018, team = "Texas A&M", defense_conference = 'SEC')
+#'    cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
 #' }
-
+#'
 cfbd_drives <- function(year,
-                       season_type = 'regular',
-                       week = NULL,
-                       team = NULL,
-                       offense_team = NULL,
-                       defense_team = NULL,
-                       conference = NULL,
-                       offense_conference = NULL,
-                       defense_conference = NULL) {
+                        season_type = "regular",
+                        week = NULL,
+                        team = NULL,
+                        offense_team = NULL,
+                        defense_team = NULL,
+                        conference = NULL,
+                        offense_conference = NULL,
+                        defense_conference = NULL,
+                        verbose = FALSE) {
 
   # Check if year is numeric
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-              msg = 'Enter valid year as a number (YYYY)')
+    msg = "Enter valid year as a number (YYYY)"
+  )
 
-  if(season_type != 'regular'){
+  if (season_type != "regular") {
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c('postseason','both'),
-                msg = 'Enter valid season_type: regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c("postseason", "both"),
+      msg = "Enter valid season_type: regular, postseason, or both"
+    )
   }
-  if(!is.null(week)){
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-                msg = 'Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(offense_team)){
-    if(offense_team == "San Jose State"){
-      offense_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(offense_team)) {
+    if (offense_team == "San Jose State") {
+      offense_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      offense_team = utils::URLencode(offense_team, reserved = TRUE)
+      offense_team <- utils::URLencode(offense_team, reserved = TRUE)
     }
   }
-  if(!is.null(defense_team)){
-    if(defense_team == "San Jose State"){
-      defense_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(defense_team)) {
+    if (defense_team == "San Jose State") {
+      defense_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      defense_team = utils::URLencode(defense_team, reserved = TRUE)
+      defense_team <- utils::URLencode(defense_team, reserved = TRUE)
     }
   }
-  if(!is.null(conference)){
+  if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = utils::URLencode(conference, reserved = TRUE)
+    conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  if(!is.null(offense_conference)){
+  if (!is.null(offense_conference)) {
     # # Check offense_conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(offense_conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #                         msg = "Incorrect offense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode offense_conference parameter for URL, if not NULL
-    offense_conference = utils::URLencode(offense_conference, reserved = TRUE)
+    offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
   }
-  if(!is.null(defense_conference)){
+  if (!is.null(defense_conference)) {
     # # Check defense_conference parameter in conference abbreviations, if not NULL
     # assertthat::assert_that(defense_conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
     #                         msg = "Incorrect defense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode defense_conference parameter for URL, if not NULL
-    defense_conference = utils::URLencode(defense_conference, reserved = TRUE)
+    defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
   }
 
   base_url <- "https://api.collegefootballdata.com/drives?"
 
-  full_url <- paste0(base_url,
-                     "year=", year,
-                     "&seasonType=", season_type,
-                     "&week=", week,
-                     "&team=", team,
-                     "&offense=", offense_team,
-                     "&defense=", defense_team,
-                     "&conference=", conference,
-                     "&offenseConference=", offense_conference,
-                     "&defenseConference=", defense_conference)
-
-  # Check for internet
-  check_internet()
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&seasonType=", season_type,
+    "&week=", week,
+    "&team=", team,
+    "&offense=", offense_team,
+    "&defense=", defense_team,
+    "&conference=", conference,
+    "&offenseConference=", offense_conference,
+    "&defenseConference=", defense_conference
+  )
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
 
-
-  # Get the content and return it as data.frame
-  df = res %>%
-    httr::content(as = "text", encoding = "UTF-8") %>%
-    jsonlite::fromJSON(flatten = TRUE) %>%
-    dplyr::rename(
-      drive_id = .data$id,
-      time_minutes_start = .data$start_time.minutes,
-      time_seconds_start = .data$start_time.seconds,
-      time_minutes_end = .data$end_time.minutes,
-      time_seconds_end = .data$end_time.seconds,
-      time_minutes_elapsed = .data$elapsed.minutes,
-      time_seconds_elapsed = .data$elapsed.seconds
-    ) %>%
-   dplyr::mutate(
-      time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
-      time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-    ) %>%
-    as.data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        dplyr::rename(
+          drive_id = .data$id,
+          time_minutes_start = .data$start_time.minutes,
+          time_seconds_start = .data$start_time.seconds,
+          time_minutes_end = .data$end_time.minutes,
+          time_seconds_end = .data$end_time.seconds,
+          time_minutes_elapsed = .data$elapsed.minutes,
+          time_seconds_elapsed = .data$elapsed.seconds
+        ) %>%
+        dplyr::mutate(
+          time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
+          time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
+        ) %>%
+        as.data.frame()
+    },
+    error = function(e) {
+        message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
 
   return(df)
 }

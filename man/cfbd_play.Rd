@@ -29,7 +29,8 @@ cfbd_plays(
   conference = NULL,
   offense_conference = NULL,
   defense_conference = NULL,
-  play_type = NULL
+  play_type = NULL,
+  verbose = FALSE
 )
 
 cfbd_play_stats_player(
@@ -39,7 +40,8 @@ cfbd_play_stats_player(
   game_id = NULL,
   athlete_id = NULL,
   stat_type_id = NULL,
-  season_type = "regular"
+  season_type = "regular",
+  verbose = FALSE
 )
 
 cfbd_play_stats_types()
@@ -69,6 +71,8 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
 \item{play_type}{Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
 Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
@@ -165,12 +169,13 @@ College Football Mapping for Play Stats Types
 College Football Mapping for Play Types
 }
 \examples{
-\dontrun{
+\donttest{
   cfbd_play_stats_player(game_id = 401110722)
 }
-\dontrun{
+\donttest{
   cfbd_play_stats_types()
 }
+
 }
 \keyword{PBP}
 \keyword{Player}

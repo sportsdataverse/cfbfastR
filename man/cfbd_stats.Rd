@@ -28,7 +28,8 @@ cfbd_stats_game_advanced(
   team = NULL,
   opponent = NULL,
   excl_garbage_time = FALSE,
-  season_type = "both"
+  season_type = "both",
+  verbose = FALSE
 )
 
 cfbd_stats_season_advanced(
@@ -36,7 +37,8 @@ cfbd_stats_season_advanced(
   team = NULL,
   excl_garbage_time = FALSE,
   start_week = NULL,
-  end_week = NULL
+  end_week = NULL,
+  verbose = FALSE
 )
 
 cfbd_stats_season_player(
@@ -46,7 +48,8 @@ cfbd_stats_season_player(
   conference = NULL,
   start_week = NULL,
   end_week = NULL,
-  category = NULL
+  category = NULL,
+  verbose = FALSE
 )
 
 cfbd_stats_season_team(
@@ -55,7 +58,8 @@ cfbd_stats_season_team(
   team = NULL,
   conference = NULL,
   start_week = NULL,
-  end_week = NULL
+  end_week = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -71,6 +75,8 @@ cfbd_stats_season_team(
 
 \item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
 
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
+
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
@@ -82,16 +88,16 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \item{category}{(\emph{String} optional): Category filter (e.g defensive)\cr
 Offense: passing, receiving, rushing\cr
 Defense: defensive, fumbles, interceptions\cr
-Special Teams: punting, puntReturns, kicking, kickReturns\cr}
+Special Teams: punting, puntReturns, kicking, kickReturns}
 }
 \value{
-\code{\link[cfbfastR:cfbd_stats_categories]{cfbfastR::cfbd_stats_categories()}} A data frame with 38 values:
+\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}} A data frame with 38 values:
 \describe{
 \item{name}{Statistics Categories}
 ...
 }
 
-\code{\link[cfbfastR:cfbd_stats_game_advanced]{cfbfastR::cfbd_stats_game_advanced()}} - A data frame with 60 variables:
+\code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}} - A data frame with 60 variables:
 \describe{
 \item{\code{game_id}}{integer.}
 \item{\code{week}}{integer.}
@@ -155,7 +161,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{def_passing_plays_explosiveness}}{double.}
 }
 
-\code{\link[cfbfastR:cfbd_stats_season_advanced]{cfbfastR::cfbd_stats_season_advanced()}} - A data frame with 79 variables:
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 79 variables:
 \describe{
 \item{\code{season}}{integer.}
 \item{\code{team}}{character.}
@@ -238,7 +244,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{def_passing_plays_explosiveness}}{double.}
 }
 
-\code{\link[cfbfastR:cfbd_stats_season_player]{cfbfastR::cfbd_stats_season_player()}} - A data frame with 59 variables:
+\code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}} - A data frame with 59 variables:
 \describe{
 \item{\code{team}}{character.}
 \item{\code{conference}}{character.}
@@ -301,7 +307,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 \item{\code{punt_returns_long}}{double.}
 }
 
-\code{\link[cfbfastR:cfbd_stats_season_team]{cfbfastR::cfbd_stats_season_team()}} - A data frame with 46 variables:
+\code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}} - A data frame with 46 variables:
 \describe{
 \item{\code{games}}{integer.}
 \item{\code{team}}{character.}
@@ -355,32 +361,32 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 This function identifies all Stats Categories identified in the regular stats endpoint.
 }
 \examples{
-\dontrun{
-  cfbd_stats_categories()
+\donttest{
+   cfbd_stats_categories()
 }
-\dontrun{
-  cfbd_stats_game_advanced(year = 2018, week = 12, team = 'Texas A&M')
+\donttest{
+   cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
 
-  cfbd_stats_game_advanced(2019, team = 'LSU')
+   cfbd_stats_game_advanced(2019, team = "LSU")
 
-  cfbd_stats_game_advanced(2013, team = "Florida State")
+   cfbd_stats_game_advanced(2013, team = "Florida State")
 }
-\dontrun{
-  cfbd_stats_season_advanced(2019, team = 'LSU')
+\donttest{
+   cfbd_stats_season_advanced(2019, team = "LSU")
 }
-\dontrun{
-  cfbd_stats_season_player(year=2018, conference = 'B12', start_week = 1, end_week = 7)
+\donttest{
+   cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
 
-  cfbd_stats_season_player(2019, team = 'LSU', category = 'passing')
+   cfbd_stats_season_player(2019, team = "LSU", category = "passing")
 
-  cfbd_stats_season_player(2013, team = "Florida State", category = 'passing')
+   cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
 }
-\dontrun{
-  cfbd_stats_season_team(year=2018, conference = 'B12', start_week = 1,end_week = 8)
+\donttest{
+   cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
 
-  cfbd_stats_season_team(2019, team = 'LSU')
+   cfbd_stats_season_team(2019, team = "LSU")
 
-  cfbd_stats_season_team(2013, team = "Florida State")
+   cfbd_stats_season_team(2013, team = "Florida State")
 }
 }
 \keyword{Advanced}

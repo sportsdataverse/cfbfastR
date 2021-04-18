@@ -46,8 +46,7 @@ Adapted from sabinanalytic's fork of the cfbfastR repo
 }
 \examples{
 
-espn_ratings_fpi(year=2018)
-
+espn_ratings_fpi(year = 2018)
 }
 \keyword{FPI}
 \keyword{Ratings}

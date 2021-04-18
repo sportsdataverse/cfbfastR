@@ -20,15 +20,32 @@
 \url{https://api.collegefootballdata.com/talent}
 }
 \usage{
-cfbd_team_info(conference = NULL, only_fbs = TRUE, year = NULL)
+cfbd_team_info(
+  conference = NULL,
+  only_fbs = TRUE,
+  year = NULL,
+  verbose = FALSE
+)
 
-cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
+cfbd_team_matchup_records(
+  team1,
+  team2,
+  min_year = NULL,
+  max_year = NULL,
+  verbose = FALSE
+)
 
-cfbd_team_matchup(team1, team2, min_year = NULL, max_year = NULL)
+cfbd_team_matchup(
+  team1,
+  team2,
+  min_year = NULL,
+  max_year = NULL,
+  verbose = FALSE
+)
 
-cfbd_team_roster(year, team = NULL)
+cfbd_team_roster(year, team = NULL, verbose = FALSE)
 
-cfbd_team_talent(year = NULL)
+cfbd_team_talent(year = NULL, verbose = FALSE)
 }
 \arguments{
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
@@ -39,6 +56,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 If year is left blank while only_fbs is TRUE, then will return values for most current year}
 
 \item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{team1}{(\emph{String} required): D-I Team 1}
 
@@ -64,7 +83,22 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{\code{division}}{character.}
 \item{\code{color}}{character.}
 \item{\code{alt_color}}{character.}
-\item{\code{logos}}{list.}
+\item{\code{logo_1}}{character.}
+\item{\code{logo_2}}{character.}
+\item{\code{venue_id}}{character.}
+\item{\code{venue_name}}{character.}
+\item{\code{city}}{character.}
+\item{\code{state}}{character.}
+\item{\code{zip}}{character.}
+\item{\code{country_code}}{character.}
+\item{\code{timezone}}{character.}
+\item{\code{latitude}}{character.}
+\item{\code{longitude}}{character.}
+\item{\code{elevation}}{character.}
+\item{\code{capacity}}{character.}
+\item{\code{year_constructed}}{character.}
+\item{\code{grass}}{character.}
+\item{\code{dome}}{character.}
 }
 
 \code{\link[cfbfastR:cfbd_team_matchup_records]{cfbfastR::cfbd_team_matchup_records()}} - A data frame with 7 variables:
@@ -98,6 +132,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{\code{athlete_id}}{character.}
 \item{\code{first_name}}{character.}
 \item{\code{last_name}}{character.}
+\item{\code{team}}{character.}
 \item{\code{weight}}{integer.}
 \item{\code{height}}{integer.}
 \item{\code{jersey}}{integer.}
@@ -106,7 +141,9 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{\code{home_city}}{character.}
 \item{\code{home_state}}{character.}
 \item{\code{home_country}}{character.}
-\item{\code{team}}{character.}
+\item{\code{home_latitude}}{numeric.}
+\item{\code{home_longitude}}{number.}
+\item{\code{home_county_fips}}{integer.}
 }
 
 \code{\link[cfbfastR:cfbd_team_talent]{cfbfastR::cfbd_team_talent()}} - A data frame with 3 variables:
@@ -134,36 +171,40 @@ Get composite team talent rankings for all teams in a given year
 Extracts team talent composite as sourced from 247 rankings
 }
 \examples{
-\dontrun{
-  cfbd_team_info(conference = "SEC")
+\donttest{
+cfbd_team_info(conference = "SEC")
 
-  cfbd_team_info(conference = "Ind")
+cfbd_team_info(conference = "Ind")
 
-  cfbd_team_info(year = 2019)
-}
-\dontrun{
-  cfbd_team_matchup_records('Texas','Oklahoma')
-
-  cfbd_team_matchup_records('Texas A&M','TCU', min_year = 1975)
+cfbd_team_info(year = 2019)
 }
 
-\dontrun{
-  cfbd_team_matchup('Texas','Oklahoma')
+\donttest{
+cfbd_team_matchup_records("Texas", "Oklahoma")
 
-  cfbd_team_matchup('Texas A&M','TCU')
-
-  cfbd_team_matchup('Texas A&M','TCU', min_year = 1975)
-
-  cfbd_team_matchup('Florida State', 'Florida', min_year = 1975)
+cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 }
-\dontrun{
-  cfbd_team_roster(year = 2013, team = "Florida State")
-}
-\dontrun{
-  cfbd_team_talent()
 
-  cfbd_team_talent(year = 2018)
+\donttest{
+cfbd_team_matchup("Texas", "Oklahoma")
+
+cfbd_team_matchup("Texas A&M", "TCU")
+
+cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
+
+cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 }
+
+\donttest{
+cfbd_team_roster(year = 2013, team = "Florida State")
+}
+
+\donttest{
+cfbd_team_talent()
+
+cfbd_team_talent(year = 2018)
+}
+
 }
 \keyword{Matchup}
 \keyword{Records}

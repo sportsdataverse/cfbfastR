@@ -36,11 +36,6 @@ pre, code {
    margin-top: 10px;
    margin-bottom: 10px;
 }
-.navbar-default .navbar-link {
-  font-family: "Bungee";
-  color: #F1DD02;
-  font-size: 16px;
-}
 .navbar-default {
     border-color: #6C0300;
 }
@@ -55,14 +50,6 @@ pre, code {
 .dropdown-menu {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
   background-color: #222222;
-}
-.dropdown-header {
-  font-family: "Chivo";
-  letter-spacing: 0.1px;
-  line-height: 1.3rem;
-  color: #F1DD02;
-  font-weight: 700;
-  font-size: 14px;
 }
 #navbar ul ul{
   font-family: "Fira Mono";
@@ -82,4 +69,37 @@ pre, code {
 }
 .pkgdown {
   display: none;
+}
+
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 8px #F4FE85, 0 0 10px #F4FE85;
+  }
+  
+  to {
+    text-shadow: 0 0 10px #F4FE85, 0 0 11px #F4FE85;
+  }
+}
+
+@keyframes glow {
+    to {
+     text-shadow: 0 0 10px #F4FE85, 0 0 11px #F4FE85;
+    }
+  }
+  
+.dropdown-header {
+  font-family: "Chivo";
+  letter-spacing: 0.1px;
+  line-height: 1.3rem;
+  color: #F2EC84;
+  font-weight: 700;
+  font-size: 14px;
+  animation: glow 2.5s ease-in-out infinite alternate;
+}
+.navbar-default .navbar-link {
+    font-family: "Bungee";
+    font-size: 16px;
+    color: #F2EC84;
+    animation: glow 2.5s ease-in-out infinite alternate;
 }

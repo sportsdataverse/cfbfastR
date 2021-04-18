@@ -18,6 +18,7 @@ NULL
 #' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,\cr
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param play_type Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return \code{\link[cfbfastR:cfbd_plays]{cfbfastR::cfbd_plays()}}
 #' @source \url{https://api.collegefootballdata.com/plays}
 #' @importFrom jsonlite fromJSON
@@ -28,103 +29,109 @@ NULL
 #'
 
 
-cfbd_plays <- function(year=2020,
-                       season_type = 'regular',
+cfbd_plays <- function(year = 2020,
+                       season_type = "regular",
                        week = 4,
-                       team = 'Florida State',
-                       offense=NULL,
-                       defense=NULL,
-                       conference=NULL,
-                       offense_conference=NULL,
-                       defense_conference=NULL,
-                       play_type = NULL){
-  
-  
-  if(!is.null(year)){
+                       team = "Florida State",
+                       offense = NULL,
+                       defense = NULL,
+                       conference = NULL,
+                       offense_conference = NULL,
+                       defense_conference = NULL,
+                       play_type = NULL,
+                       verbose = FALSE) {
+  if (!is.null(year)) {
     # Check if year is numeric, if not NULL
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                            msg = 'Enter valid year (Integer): 4-digit (YYYY)')
+      msg = "Enter valid year (Integer): 4-digit (YYYY)"
+    )
   }
-  if(!is.null(week)){
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2 & week <= 15,
-                            msg = 'Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(offense)){
-    if(offense == "San Jose State"){
-      offense = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(offense)) {
+    if (offense == "San Jose State") {
+      offense <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode offense parameter for URL if not NULL
-      offense = utils::URLencode(offense, reserved = TRUE)
+      offense <- utils::URLencode(offense, reserved = TRUE)
     }
   }
-  if(!is.null(defense)){
-    if(defense == "San Jose State"){
-      defense = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(defense)) {
+    if (defense == "San Jose State") {
+      defense <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode defense parameter for URL if not NULL
-      defense = utils::URLencode(defense, reserved = TRUE)
+      defense <- utils::URLencode(defense, reserved = TRUE)
     }
   }
-  if(!is.null(offense_conference)){
+  if (!is.null(offense_conference)) {
     # Encode offense_conference parameter for URL if not NULL
-    offense_conference = utils::URLencode(offense_conference, reserved = TRUE)
+    offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
   }
-  if(!is.null(defense_conference)){
+  if (!is.null(defense_conference)) {
     # Encode defense_conference parameter for URL if not NULL
-    defense_conference = utils::URLencode(defense_conference, reserved = TRUE)
+    defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
   }
-  if(season_type != 'regular'){
+  if (season_type != "regular") {
     # Check if season_type is appropriate, if not NULL
-    assertthat::assert_that(season_type %in% c('postseason','both'),
-                            msg = 'Enter valid season_type (String): regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c("postseason", "both"),
+      msg = "Enter valid season_type (String): regular, postseason, or both"
+    )
   }
-  
+
   base_url <- "https://api.collegefootballdata.com/plays?"
-  full_url = paste0(base_url,
-                    "year=", year,
-                    "&week=", week,
-                    "&team=", team,
-                    "&offense=", offense,
-                    "&defense=", defense,
-                    "&offenseConference=", offense_conference,
-                    "&defenseConference=", defense_conference,
-                    "&seasonType=", season_type)
-  # Check for internet
-  check_internet()
-  
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&team=", team,
+    "&offense=", offense,
+    "&defense=", defense,
+    "&offenseConference=", offense_conference,
+    "&defenseConference=", defense_conference,
+    "&seasonType=", season_type
+  )
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
-  
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr = {
       # Get the content and return it as data.frame
-      df =  res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten=TRUE) %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(play_id = .data$id) %>%
         as.data.frame()
-      
-      message(glue::glue("{Sys.time()}: Scraping plays data..."))
+
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping plays data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
+        message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
     },
     warning = function(w) {
     },
@@ -146,6 +153,7 @@ cfbd_plays <- function(year=2020,
 #' @param stat_type_id (\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
 #' Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return \code{\link[cfbfastR:cfbd_play_stats_player]{cfbfastR::cfbd_play_stats_player()}} - A data frame with 54 variables:
 #' \describe{
@@ -215,7 +223,7 @@ cfbd_plays <- function(year=2020,
 #' @import purrr
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   cfbd_play_stats_player(game_id = 401110722)
 #' }
 cfbd_play_stats_player <- function(year = NULL,
@@ -224,67 +232,74 @@ cfbd_play_stats_player <- function(year = NULL,
                                    game_id = NULL,
                                    athlete_id = NULL,
                                    stat_type_id = NULL,
-                                   season_type = 'regular'){
-
-  if(!is.null(year)){
+                                   season_type = "regular",
+                                   verbose = FALSE) {
+  if (!is.null(year)) {
     # Check if year is numeric, if not NULL
     assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-                            msg = 'Enter valid year (Integer): 4-digit (YYYY)')
+      msg = "Enter valid year (Integer): 4-digit (YYYY)"
+    )
   }
-  if(!is.null(week)){
+  if (!is.null(week)) {
     # Check if week is numeric, if not NULL
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2 & week <= 15,
-                            msg = 'Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+      msg = "Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
+    )
   }
-  if(!is.null(team)){
-    if(team == "San Jose State"){
-      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
-    } else{
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
       # Encode team parameter for URL if not NULL
-      team = utils::URLencode(team, reserved = TRUE)
+      team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if(!is.null(game_id)){
+  if (!is.null(game_id)) {
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                            msg = 'Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function')
+      msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
+    )
   }
-  if(!is.null(athlete_id)){
+  if (!is.null(athlete_id)) {
     # Check if athlete_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(athlete_id),
-                            msg = 'Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function')
+      msg = "Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function"
+    )
   }
-  if(!is.null(stat_type_id)){
+  if (!is.null(stat_type_id)) {
     # Check if stat_type_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(stat_type_id),
-                            msg = 'Enter valid stat_type_id value (Integer)\nCan be found using the `cfbd_play_stat_types()` function')
+      msg = "Enter valid stat_type_id value (Integer)\nCan be found using the `cfbd_play_stat_types()` function"
+    )
   }
-  if(season_type != 'regular'){
+  if (season_type != "regular") {
     # Check if season_type is appropriate, if not NULL
-    assertthat::assert_that(season_type %in% c('postseason','both'),
-                            msg = 'Enter valid season_type (String): regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c("postseason", "both"),
+      msg = "Enter valid season_type (String): regular, postseason, or both"
+    )
   }
 
   base_url <- "https://api.collegefootballdata.com/play/stats?"
 
-  full_url = paste0(base_url,
-                    "year=", year,
-                    "&week=", week,
-                    "&team=", team,
-                    "&gameId=", game_id,
-                    "&athleteID=", athlete_id,
-                    "&statTypeId=", stat_type_id,
-                    "&seasonType=", season_type)
-
-  # Check for internet
-  check_internet()
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&team=", team,
+    "&gameId=", game_id,
+    "&athleteID=", athlete_id,
+    "&statTypeId=", stat_type_id,
+    "&seasonType=", season_type
+  )
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
@@ -293,40 +308,42 @@ cfbd_play_stats_player <- function(year = NULL,
   tryCatch(
     expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()
 
-      cols = c('game_id','season', 'week','opponent','team_score','opponent_score',
-               'drive_id', 'play_id', 'period', 'yards_to_goal', 'down', 'distance',
-               'athlete_id', 'stat',
-               'reception','completion','rush','interception','interception_thrown',
-               'touchdown','incompletion','target','fumble_recovered','fumble_forced',
-               'fumble','sack','sack_taken','pass_breakup',
-               'reception_player_id', 'reception_player','reception_yds',
-               'completion_player_id','completion_player','completion_yds',
-               'rush_player_id', 'rush_player',  'rush_yds',
-               'interception_player_id', 'interception_player','interception_stat',
-               'interception_thrown_player_id', 'interception_thrown_player','interception_thrown_stat',
-               'touchdown_player_id', 'touchdown_player', 'touchdown_stat',
-               'incompletion_player_id', 'incompletion_player','incompletion_stat',
-               'target_player_id', 'target_player', 'target_stat',
-               'fumble_recovered_player_id',  'fumble_recovered_player', 'fumble_recovered_stat',
-               'fumble_forced_player_id', 'fumble_forced_player', 'fumble_forced_stat',
-               'fumble_player_id', 'fumble_player', 'fumble_stat',
-               'sack_player_id', 'sack_player', 'sack_stat',
-               'sack_taken_player_id', 'sack_taken_player', 'sack_taken_stat',
-               'pass_breakup_player_id', 'pass_breakup_player', 'pass_breakup_stat')
+      cols <- c(
+        "game_id", "season", "week", "opponent", "team_score", "opponent_score",
+        "drive_id", "play_id", "period", "yards_to_goal", "down", "distance",
+        "athlete_id", "stat",
+        "reception", "completion", "rush", "interception", "interception_thrown",
+        "touchdown", "incompletion", "target", "fumble_recovered", "fumble_forced",
+        "fumble", "sack", "sack_taken", "pass_breakup",
+        "reception_player_id", "reception_player", "reception_yds",
+        "completion_player_id", "completion_player", "completion_yds",
+        "rush_player_id", "rush_player", "rush_yds",
+        "interception_player_id", "interception_player", "interception_stat",
+        "interception_thrown_player_id", "interception_thrown_player", "interception_thrown_stat",
+        "touchdown_player_id", "touchdown_player", "touchdown_stat",
+        "incompletion_player_id", "incompletion_player", "incompletion_stat",
+        "target_player_id", "target_player", "target_stat",
+        "fumble_recovered_player_id", "fumble_recovered_player", "fumble_recovered_stat",
+        "fumble_forced_player_id", "fumble_forced_player", "fumble_forced_stat",
+        "fumble_player_id", "fumble_player", "fumble_stat",
+        "sack_player_id", "sack_player", "sack_stat",
+        "sack_taken_player_id", "sack_taken_player", "sack_taken_stat",
+        "pass_breakup_player_id", "pass_breakup_player", "pass_breakup_stat"
+      )
 
-      df_cols = data.frame(matrix(NA, nrow=0, ncol=70))
+      df_cols <- data.frame(matrix(NA, nrow = 0, ncol = 70))
 
       names(df_cols) <- cols
 
-      df = df[!duplicated(df),]
+      df <- df[!duplicated(df), ]
 
       # Supply lists by splicing them into dots:
       coalesce_by_column <- function(df) {
-        return(dplyr::coalesce(!!! as.list(df)))
+        return(dplyr::coalesce(!!!as.list(df)))
       }
 
       df <- df %>%
@@ -343,15 +360,17 @@ cfbd_play_stats_player <- function(year = NULL,
           stat = .data$stat
         )
 
-      colnames(df) <- sub(' ',"_",tolower(colnames(df)))
+      colnames(df) <- sub(" ", "_", tolower(colnames(df)))
 
       clean_df <- df %>%
-        tidyr::pivot_wider(names_from = .data$stat_type,
-                           values_from = .data$athlete_name)
+        tidyr::pivot_wider(
+          names_from = .data$stat_type,
+          values_from = .data$athlete_name
+        )
 
-      colnames(clean_df) <- sub(' ',"_",tolower(colnames(clean_df)))
+      colnames(clean_df) <- sub(" ", "_", tolower(colnames(clean_df)))
 
-      clean_df[cols[!(cols %in% colnames(clean_df))]] = NA
+      clean_df[cols[!(cols %in% colnames(clean_df))]] <- NA
 
       clean_df <- clean_df %>%
         dplyr::mutate(
@@ -444,16 +463,19 @@ cfbd_play_stats_player <- function(year = NULL,
           .data$sack_taken_stat,
           .data$pass_breakup_player_id,
           .data$pass_breakup_player,
-          .data$pass_breakup_stat) %>%
+          .data$pass_breakup_stat
+        ) %>%
         dplyr::group_by(.data$play_id) %>%
         dplyr::summarise_all(coalesce_by_column) %>%
         dplyr::ungroup()
 
       clean_df <- as.data.frame(clean_df)
-      message(glue::glue("{Sys.time()}: Scraping play-level player stats data..."))
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping play-level player stats data..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
+        message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
     },
     warning = function(w) {
     },
@@ -478,24 +500,21 @@ cfbd_play_stats_player <- function(year = NULL,
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   cfbd_play_stats_types()
 #' }
-
-
-cfbd_play_stats_types <- function(){
-
-  full_url = "https://api.collegefootballdata.com/play/stat/types"
-
-  # Check for internet
-  check_internet()
+#'
+cfbd_play_stats_types <- function() {
+  full_url <- "https://api.collegefootballdata.com/play/stat/types"
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
@@ -504,12 +523,12 @@ cfbd_play_stats_types <- function(){
   tryCatch(
     expr = {
       # Get the content and return it as data.frame
-      df = res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(play_stat_type_id = .data$id) %>%
         as.data.frame()
-      message(glue::glue("{Sys.time()}: Scraping play stats types data..."))
+      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available!"))
@@ -540,19 +559,17 @@ cfbd_play_stats_types <- function(){
 #'
 
 
-cfbd_play_types <- function(){
-
-  full_url = "https://api.collegefootballdata.com/play/types"
-
-  # Check for internet
-  check_internet()
+cfbd_play_types <- function() {
+  full_url <- "https://api.collegefootballdata.com/play/types"
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   # Create the GET request and set response as res
-  res <- httr::RETRY("GET", full_url,
-                     httr::add_headers(Authorization = paste("Bearer", cfbd_key())))
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
 
   # Check the result
   check_status(res)
@@ -561,13 +578,13 @@ cfbd_play_types <- function(){
   tryCatch(
     expr = {
       # Get the content and return it as data.frame
-      df =  res %>%
+      df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(play_type_id = .data$id) %>%
         as.data.frame()
 
-      message(glue::glue("{Sys.time()}: Scraping play types data..."))
+      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available!"))
@@ -579,4 +596,3 @@ cfbd_play_types <- function(){
   )
   return(df)
 }
-

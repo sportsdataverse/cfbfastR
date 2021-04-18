@@ -31,9 +31,10 @@ Get win probability chart data from ESPN
 Graciously contributed by MrCaseB:
 }
 \examples{
-\dontrun{
-  espn_metrics_wp(game_id = 401114164)
+\donttest{
+espn_metrics_wp(game_id = 401114164)
 }
+
 }
 \keyword{Chart}
 \keyword{Data}

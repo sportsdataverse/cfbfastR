@@ -5,7 +5,7 @@
 \title{Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
 This is only for D1 football}
 \usage{
-create_wpa_naive(df, wp_model = cfbfastR:::wp_model)
+create_wpa_naive(df, wp_model)
 }
 \arguments{
 \item{df}{(\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations}

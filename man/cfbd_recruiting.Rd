@@ -19,17 +19,19 @@ cfbd_recruiting_player(
   team = NULL,
   recruit_type = "HighSchool",
   state = NULL,
-  position = NULL
+  position = NULL,
+  verbose = FALSE
 )
 
 cfbd_recruiting_position(
   start_year = NULL,
   end_year = NULL,
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  verbose = FALSE
 )
 
-cfbd_recruiting_team(year = NULL, team = NULL)
+cfbd_recruiting_team(year = NULL, team = NULL, verbose = FALSE)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
@@ -45,8 +47,10 @@ or 'PrepSchool'  - For position group information}
 \itemize{
 \item Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 \item Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
-\item Special Teams: 'K', 'P'\cr
+\item Special Teams: 'K', 'P'
 }}
+
+\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{start_year}{(\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
 
@@ -54,7 +58,7 @@ or 'PrepSchool'  - For position group information}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} - A data frame with 14 variables:
@@ -73,6 +77,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \item{\code{city}}{character.}
 \item{\code{state_province}}{character.}
 \item{\code{country}}{character.}
+\item{\code{hometown_info_latitude}}{character.}
+\item{\code{hometown_info_longitude}}{character.}
+\item{\code{hometown_info_fips_code}}{character.}
 }
 
 \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} - A data frame with 7 variables:
@@ -125,28 +132,31 @@ If you would like to get CFB recruiting information based on position groups dur
 time period for all FBS teams, please see the \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} function.
 }
 \examples{
-\dontrun{
-  cfbd_recruiting_player(2018, team = "Texas")
+\donttest{
+   cfbd_recruiting_player(2018, team = "Texas")
 
-  cfbd_recruiting_player(2016, recruit_type = 'JUCO')
+   cfbd_recruiting_player(2016, recruit_type = "JUCO")
 
-  cfbd_recruiting_player(2020, recruit_type = 'HighSchool', position = 'OT', state = 'FL')
+   cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 }
-\dontrun{
-  cfbd_recruiting_position(2018, team="Texas")
 
-  cfbd_recruiting_position(2016, 2020, team="Virginia")
+\donttest{
+   cfbd_recruiting_position(2018, team = "Texas")
 
-  cfbd_recruiting_position(2015, 2020, conference = "SEC")
+   cfbd_recruiting_position(2016, 2020, team = "Virginia")
+
+   cfbd_recruiting_position(2015, 2020, conference = "SEC")
 }
-\dontrun{
-  cfbd_recruiting_team(2018, team = "Texas")
 
-  cfbd_recruiting_team(2016, team = "Virginia")
+\donttest{
+cfbd_recruiting_team(2018, team = "Texas")
 
-  cfbd_recruiting_team(2016, team = "Texas A&M")
+cfbd_recruiting_team(2016, team = "Virginia")
 
-  cfbd_recruiting_team(2011)
+cfbd_recruiting_team(2016, team = "Texas A&M")
+
+cfbd_recruiting_team(2011)
 }
+
 }
 \keyword{Recruiting}
