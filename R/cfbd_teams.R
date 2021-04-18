@@ -69,8 +69,9 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
     #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  else if(is.null(conference) & is.null(year) & only_fbs == FALSE){
+    
+  
+  
   base_url <- "https://api.collegefootballdata.com/teams?"
 
   full_url <- paste0(
@@ -98,19 +99,19 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
   locs <- locs %>% 
     jsonlite::flatten()
   df <- df %>% select(-.data$location)
-  suppressWarnings(
-    logos_list <- df %>% 
-      dplyr::group_by(.data$id) %>% 
-      tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
-      dplyr::mutate(
-        logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
-        logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
-        logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
-        logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
-      )
-  
-  )
-  df <- dplyr::bind_cols(logos_list, locs) %>% 
+  # suppressWarnings(
+  #   logos_list <- df %>% 
+  #     dplyr::group_by(.data$id) %>% 
+  #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
+  #     dplyr::mutate(
+  #       logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
+  #       logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
+  #       logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
+  #       logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
+  #     )
+  # 
+  # )
+  df <- dplyr::bind_cols(df, locs) %>% 
     dplyr::rename(
       team_id = .data$id,
       venue_name = .data$name) %>%
@@ -154,19 +155,19 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
     locs <- locs %>% 
       jsonlite::flatten()
     df <- df %>% select(-.data$location)
-    suppressWarnings(
-      logos_list <- df %>% 
-        dplyr::group_by(.data$id) %>% 
-        tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
-        dplyr::mutate(
-          logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
-          logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
-          logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
-          logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
-        )
-      
-    )
-    df <- dplyr::bind_cols(logos_list, locs) %>% 
+    # suppressWarnings(
+    #   logos_list <- df %>% 
+    #     dplyr::group_by(.data$id) %>% 
+    #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
+    #     dplyr::mutate(
+    #       logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
+    #       logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
+    #       logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
+    #       logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
+    #     )
+    #   
+    # )
+    df <- dplyr::bind_cols(df, locs) %>% 
       dplyr::rename(
         team_id = .data$id,
         venue_name = .data$name) %>%

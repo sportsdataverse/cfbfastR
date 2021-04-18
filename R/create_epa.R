@@ -35,7 +35,23 @@ create_epa <- function(play_df,
   ## 5) Calculate ep_before for kickoffs as if the pre-play assumption is a touchback
   ## 6) Prep variables for WPA
   ##
-
+  ep_model <- NULL
+  suppressWarnings(
+    # load the model from GitHub because it is too large for the package
+    try(
+      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/ep_model.Rdata")),
+      silent = TRUE
+    )
+  )
+  fg_model <- NULL
+  suppressWarnings(
+    # load the model from GitHub because it is too large for the package
+    try(
+      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/fg_model.Rdata")),
+      silent = TRUE
+    )
+  )
+  
   clean_pbp <- play_df %>%
     dplyr::mutate(down = as.numeric(.data$down)) %>%
     dplyr::filter(.data$down > 0) %>%

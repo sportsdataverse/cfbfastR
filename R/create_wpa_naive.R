@@ -114,7 +114,14 @@ create_wpa_naive <- function(df, wp_model) {
 
   df <- df %>%
     dplyr::arrange(.data$game_id, .data$new_id)
-
+  wp_model <- NULL
+  suppressWarnings(
+    # load the model from GitHub because it is too large for the package
+    try(
+      load(url("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/models/wp_model.Rdata")),
+      silent = TRUE
+    )
+  )
 
 
   Off_Win_Prob <- as.vector(predict(wp_model, newdata = df, type = "response"))
