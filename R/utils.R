@@ -13,19 +13,19 @@ check_status <- function(res) {
 # read qs files form an url
 qs_from_url <- function(url) qs::qdeserialize(curl::curl_fetch_memory(url)$content)
 #' Load cfbfastR play-by-play
-#' @name load_pbp
+#' @name load_cfb_pbp
 NULL
 
 #' Load cleaned pbp from the data repo
-#' @rdname load_pbp
+#' @rdname load_cfb_pbp
 #' @description helper that loads multiple seasons from the data repo either into memory
 #' or writes it into a db using some forwarded arguments in the dots
 #' @param seasons A vector of 4-digit years associated with given NFL seasons.
 #' @param ... Additional arguments passed to an underlying function that writes
-#' the season data into a database (used by \code{\link[=update_db]{update_db()}}).
+#' the season data into a database (used by \code{\link[=update_cfb_db]{update_cfb_db()}}).
 #' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
 #' @export
-load_pbp <- function(seasons, ..., qs = FALSE) {
+load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
   dots <- rlang::dots_list(...)
   
   if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
@@ -52,18 +52,18 @@ load_pbp <- function(seasons, ..., qs = FALSE) {
   p <- progressr::progressor(along = seasons)
   
   if (isFALSE(in_db)) {
-    out <- furrr::future_map_dfr(seasons, single_season, p = p, qs = qs)
+    out <- furrr::future_map_dfr(seasons, cfb_single_season, p = p, qs = qs)
   }
   
   if (isTRUE(in_db)) {
-    purrr::walk(seasons, single_season, p, ..., qs = qs)
+    purrr::walk(seasons, cfb_single_season, p, ..., qs = qs)
     out <- NULL
   }
 
   return(out)
 }
 
-single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
+cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
   if (isTRUE(qs)) {
   
     .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs")

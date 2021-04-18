@@ -46,11 +46,11 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 #### **Add loading from Data Repository functionality**
 
   - Added
-    [`load_pbp()`](https://saiemgilani.github.io/cfbfastR/reference/load_pbp.html)
+    [`load_cfb_pbp()`](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html)
     and
-    [`update_db()`](https://saiemgilani.github.io/cfbfastR/reference/update_db.html)
-    functions. Pretty much cherry-picking the `nflfastR` methodology of
-    loading data from the
+    [`update_cfb_db()`](https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html)
+    functions. Pretty much piggy-backing on the `nflfastR` methodology
+    of loading data from the
     [`cfbfastR-data`](https://github.com/saiemgilani/cfbfastR-data/)
     repository.
 

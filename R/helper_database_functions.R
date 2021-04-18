@@ -1,5 +1,5 @@
 #' Update or Create a cfbfastR Play-by-Play Database
-#' `update_db` updates or creates a database with `cfbfastR`
+#' `update_cfb_db` updates or creates a database with `cfbfastR`
 #' play by play data of all completed games since 2014.
 #'
 #' @details This function creates and updates a data table with the name `tblname`
@@ -37,7 +37,7 @@
 #' @param db_connection A `DBIConnection` object, as returned by
 #' [DBI::dbConnect()] (please see details for further information)
 #' @export
-update_db <- function(dbdir = ".",
+update_cfb_db <- function(dbdir = ".",
                       dbname = "cfb_pbp_db",
                       tblname = "cfbfastR_pbp",
                       force_rebuild = FALSE,
@@ -71,9 +71,9 @@ update_db <- function(dbdir = ".",
   
   # create db if it doesn't exist or user forces rebuild
   if (!DBI::dbExistsTable(connection, tblname)) {
-    build_db(tblname, connection, rebuild = "NEW")
+    build_cfb_db(tblname, connection, rebuild = "NEW")
   } else if (DBI::dbExistsTable(connection, tblname) & all(force_rebuild != FALSE)) {
-    build_db(tblname, connection, rebuild = force_rebuild)
+    build_cfb_db(tblname, connection, rebuild = force_rebuild)
   }
   
   # get completed games using Lee's file (thanks Lee!)
@@ -85,13 +85,13 @@ update_db <- function(dbdir = ".",
     dplyr::pull(.data$game_id)
   
   # function below
-  missing <- get_missing_games(completed_games, connection, tblname)
+  missing <- get_missing_cfb_games(completed_games, connection, tblname)
   
   # rebuild db if number of missing games is too large
   if(length(missing) > 16) {# limit set to >16 to make sure this doesn't get triggered on gameday (e.g. week 17)
     # message("The number of missing games is so large that rebuilding the database is more efficient.")
-    build_db(tblname, connection, show_message = FALSE, rebuild = as.numeric(unique(stringr::str_sub(missing, 1, 4))))
-    missing <- get_missing_games(completed_games, connection, tblname)
+    build_cfb_db(tblname, connection, show_message = FALSE, rebuild = as.numeric(unique(stringr::str_sub(missing, 1, 4))))
+    missing <- get_missing_cfb_games(completed_games, connection, tblname)
   }
   
   # # if there's missing games, scrape and write to db
@@ -113,7 +113,7 @@ update_db <- function(dbdir = ".",
 }
 
 # this is a helper function to build cfbfastR database from Scratch
-build_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_message = TRUE) {
+build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_message = TRUE) {
   
   valid_seasons <- load_games() %>%
     dplyr::filter(.data$season >= 2014) %>%
@@ -143,13 +143,13 @@ build_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_me
   
   if (!is.null(seasons)) {
     # this function lives in R/utils.R
-    load_pbp(seasons, dbConnection = db_conn, tablename = tblname, qs = FALSE)
+    load_cfb_pbp(seasons, dbConnection = db_conn, tablename = tblname, qs = FALSE)
   }
 }
 
 # this is a helper function to check a list of completed games
 # against the games that exist in a database connection
-get_missing_games <- function(completed_games, dbConnection, tablename) {
+get_missing_cfb_games <- function(completed_games, dbConnection, tablename) {
   db_ids <- dplyr::tbl(dbConnection, tablename) %>%
     dplyr::select("game_id") %>%
     dplyr::distinct() %>%

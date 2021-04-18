@@ -86,9 +86,9 @@ navbar:
       - text: "Play-by-Play Data"
         href: reference/cfbd_pbp_data.html
       - text: "Load Full Season PBP Data"
-        href: reference/load_pbp.html
+        href: reference/load_cfb_pbp.html
       - text: "Update or Create Database"
-        href: reference/update_db.html
+        href: reference/update_cfb_db.html
       - text: "Games"
         href: reference/cfbd_games.html
       - text: "Plays"
@@ -253,11 +253,11 @@ reference:
   - subtitle: Full Seasons PBP Data
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data
     contents:
-      - '`load_pbp`'
+      - '`load_cfb_pbp`'
   - subtitle: "Update or Create Database"
     desc: Functions exported by cfbfastR which update and create a database of cfbfastR play-by-play data
     contents:
-      - '`update_db`'
+      - '`update_cfb_db`'
   - subtitle: Games Data
     desc: Functions exported by cfbfastR sourced from games endpoint of the CollegeFootballData API
     contents:
