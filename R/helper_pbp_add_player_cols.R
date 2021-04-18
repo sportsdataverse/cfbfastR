@@ -34,7 +34,6 @@
 #' }
 #' @keywords internal
 #' @importFrom rlang .data
-#' @importFrom stringi stri_extract_first_regex
 #' @importFrom stringr str_detect str_extract str_remove str_trim
 #' @importFrom dplyr mutate arrange case_when select
 #' @export
