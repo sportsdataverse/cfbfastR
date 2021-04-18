@@ -1,6 +1,5 @@
 `%||%` <- function(a, b) ifelse(is.null(a), b, a)
 
-
 #' @keywords Internal
 #' @importFrom httr status_code
 #'
@@ -21,7 +20,10 @@ message_completed <- function(x, in_builder = FALSE) {
     usethis::ui_done(x)
   }
 }
-
+# Identify sessions with sequential future resolving
+is_sequential <- function() inherits(future::plan(), "sequential")
+# check if a package is installed
+is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 # custom mode function from https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode/8189441
 custom_mode <- function(x, na.rm = TRUE) {
   if (na.rm) {
@@ -31,70 +33,102 @@ custom_mode <- function(x, na.rm = TRUE) {
   return(ux[which.max(tabulate(match(x, ux)))])
 }
 
-rule_header <- function(x) {
-  rlang::inform(
-    cli::rule(
-      left = crayon::bold(x),
-      right = paste0("cfbfastR version ", utils::packageVersion("cfbfastR")),
-      width = getOption("width")
-    )
-  )
-}
+# rule_header <- function(x) {
+#   rlang::inform(
+#     cli::rule(
+#       left = crayon::bold(x),
+#       right = paste0("cfbfastR version ", utils::packageVersion("cfbfastR")),
+#       width = getOption("width")
+#     )
+#   )
+# }
+# 
+# rule_footer <- function(x) {
+#   rlang::inform(
+#     cli::rule(
+#       left = crayon::bold(x),
+#       width = getOption("width")
+#     )
+#   )
+# }
 
-rule_footer <- function(x) {
-  rlang::inform(
-    cli::rule(
-      left = crayon::bold(x),
-      width = getOption("width")
-    )
-  )
-}
-
-# Load cleaned pbp from the data repo -------------------------------------
-current_year <- as.double(substr(Sys.Date(), 1, 4))
-current_month <- as.double(substr(Sys.Date(), 6, 7))
-# helper that loads multiple seasons from the datarepo either into memory
-# or writes it into a db using some forwarded arguments in the dots
-load_pbp <- function(seasons, in_db = FALSE, ...) {
-  most_recent <- dplyr::if_else(
+most_recent_season <- function() {
+  dplyr::if_else(
     as.double(substr(Sys.Date(), 6, 7)) >= 9,
     as.double(substr(Sys.Date(), 1, 4)),
     as.double(substr(Sys.Date(), 1, 4)) - 1
   )
-
-  if (!all(seasons %in% 2003:most_recent)) {
-    usethis::ui_stop("Please pass valid seasons between 2003 and {most_recent}")
+}
+my_time <- function() strftime(Sys.time(), format = "%H:%M:%S")
+# 
+# current_year <- as.double(substr(Sys.Date(), 1, 4))
+# current_month <- as.double(substr(Sys.Date(), 6, 7))
+# read qs files form an url
+qs_from_url <- function(url) qs::qdeserialize(curl::curl_fetch_memory(url)$content)
+#' Load cfbfastR play-by-play
+#' @name load_pbp
+NULL
+# Load cleaned pbp from the data repo -------------------------------------
+#' Get matchup history between two teams.
+#' @rdname load_pbp
+#' @description helper that loads multiple seasons from the data repo either into memory
+#' or writes it into a db using some forwarded arguments in the dots
+#' @param seasons A vector of 4-digit years associated with given NFL seasons.
+#' @param ... Additional arguments passed to an underlying function that writes
+#' the season data into a database (used by [update_db()]).
+#' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
+#' 
+load_pbp <- function(seasons, ..., qs = FALSE) {
+  dots <- rlang::dots_list(...)
+  
+  if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
+  
+  if (isTRUE(qs) && !is_installed("qs")) {
+    usethis::ui_stop("Package {usethis::ui_value('qs')} required for argument {usethis::ui_value('qs = TRUE')}. Please install it.")
+  }
+  
+  most_recent <- most_recent_season()
+  
+  if (!all(seasons %in% 2014:most_recent)) {
+    usethis::ui_stop("Please pass valid seasons between 2014 and {most_recent}")
+  }
+  
+  if (length(seasons) > 1 && is_sequential() && isFALSE(in_db)) {
+    usethis::ui_info(c(
+      "It is recommended to use parallel processing when trying to load multiple seasons.",
+      "Please consider running {usethis::ui_code('future::plan(\"multisession\")')}!",
+      "Will go on sequentially..."
+    ))
   }
 
-  season_count <- length(seasons)
-
-  if (season_count >= 5 & !requireNamespace("furrr", quietly = TRUE)) {
-    pp <- FALSE
-    usethis::ui_info("It is recommended to use parallel processing when trying to load {season_count} seasons but the package {usethis::ui_value('furrr')} is not installed.\nPlease consider installing it with {usethis::ui_code('install.packages(\"furrr\")')}. Will go on sequentially...")
-  } else if (season_count >= 5 & requireNamespace("furrr", quietly = TRUE)) {
-    pp <- TRUE
-  } else {
-    pp <- FALSE
+  
+  p <- progressr::progressor(along = seasons)
+  
+  if (isFALSE(in_db)) {
+    out <- furrr::future_map_dfr(seasons, single_season, p = p, qs = qs)
   }
-
-  progressr::with_progress({
-    p <- progressr::progressor(along = seasons)
-
-    if (pp == TRUE & !in_db) {
-      future::plan("multiprocess")
-      out <- furrr::future_map_dfr(seasons, single_season, p, ...)
-    } else {
-      out <- purrr::map_dfr(seasons, single_season, p, ...)
-    }
-  })
+  
+  if (isTRUE(in_db)) {
+    purrr::walk(seasons, single_season, p, ..., qs = qs)
+    out <- NULL
+  }
 
   return(out)
 }
 
-single_season <- function(season, p, dbConnection = NULL, tablename = NULL) {
-  pbp <- readRDS(url(
-    glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
-  ))
+single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
+  if (isTRUE(qs)) {
+  
+    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs?raw=true")
+    pbp <- qs_from_url(.url)
+    
+  }
+  if (isFALSE(qs)) {
+    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.rds?raw=true")
+    con <- url(.url)
+    pbp <- readRDS(con)
+    close(con)
+  }
   if (!is.null(dbConnection) && !is.null(tablename)) {
     DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
     out <- NULL
