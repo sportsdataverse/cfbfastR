@@ -1,6 +1,4 @@
-#' Clean Play-by-Play data
-#' Cleans Play-by-Play data pulled from the API's raw game data
-#'
+#' @rdname helpers_pbp
 #' @param play_df (\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
 #' @details Requires the following columns to be present
 #' \describe{

@@ -2,7 +2,8 @@
 % Please edit documentation in R/cfbd_venues.R
 \name{cfbd_venues}
 \alias{cfbd_venues}
-\title{CFB Venue Information}
+\alias{venues}
+\title{CFBD Venues Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/venues}
 }
@@ -10,26 +11,30 @@
 cfbd_venues()
 }
 \value{
-A data frame with 335 rows and 13 variables:
+A data frame with 337 rows and 13 variables:
 \describe{
-\item{\code{venue_id}}{integer.}
-\item{\code{name}}{character.}
-\item{\code{capacity}}{integer.}
-\item{\code{grass}}{logical.}
-\item{\code{city}}{character.}
-\item{\code{state}}{character.}
-\item{\code{zip}}{character.}
-\item{\code{country_code}}{character.}
-\item{\code{location}}{list.}
-\item{\code{elevation}}{character.}
-\item{\code{year_constructed}}{integer.}
-\item{\code{dome}}{logical.}
-\item{\code{timezone}}{character.}
+\item{\code{venue_id}:integer.}
+\item{\code{name}:character.}
+\item{\code{capacity}:integer.}
+\item{\code{grass}:logical.}
+\item{\code{city}:character.}
+\item{\code{state}:character.}
+\item{\code{zip}:character.}
+\item{\code{country_code}:character.}
+\item{\code{location}:list.}
+\item{\code{elevation}:character.}
+\item{\code{year_constructed}:integer.}
+\item{\code{dome}:logical.}
+\item{\code{timezone}:character.}
 }
 }
 \description{
 Pulls all college football venues and data on capacity, grass, city/state, location,
-elevation, dome, timezone and construction year
+elevation, dome, timezone and construction year. See Details below.
+}
+\details{
+CFB Venue Information\if{html}{\out{<div class="r">}}\preformatted{ cfbd_venues()
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{

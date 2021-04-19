@@ -1,26 +1,33 @@
-#' CFB Venue Information
-#'
+#' @name cfbd_venues
+#' @aliases venues cfbd_venues
+#' @title CFBD Venues Endpoint
+#' @description 
 #' Pulls all college football venues and data on capacity, grass, city/state, location,
-#' elevation, dome, timezone and construction year
-#'
-#' @return A data frame with 335 rows and 13 variables:
+#' elevation, dome, timezone and construction year. See Details below.
+#' @details CFB Venue Information
+#' ```r
+#'  cfbd_venues()
+#' ```
+#' @return A data frame with 337 rows and 13 variables:
 #' \describe{
-#'   \item{\code{venue_id}}{integer.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{capacity}}{integer.}
-#'   \item{\code{grass}}{logical.}
-#'   \item{\code{city}}{character.}
-#'   \item{\code{state}}{character.}
-#'   \item{\code{zip}}{character.}
-#'   \item{\code{country_code}}{character.}
-#'   \item{\code{location}}{list.}
-#'   \item{\code{elevation}}{character.}
-#'   \item{\code{year_constructed}}{integer.}
-#'   \item{\code{dome}}{logical.}
-#'   \item{\code{timezone}}{character.}
+#'   \item{`venue_id`:integer.}
+#'   \item{`name`:character.}
+#'   \item{`capacity`:integer.}
+#'   \item{`grass`:logical.}
+#'   \item{`city`:character.}
+#'   \item{`state`:character.}
+#'   \item{`zip`:character.}
+#'   \item{`country_code`:character.}
+#'   \item{`location`:list.}
+#'   \item{`elevation`:character.}
+#'   \item{`year_constructed`:integer.}
+#'   \item{`dome`:logical.}
+#'   \item{`timezone`:character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/venues}
 #' @keywords Venues
+NULL
+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom dplyr rename

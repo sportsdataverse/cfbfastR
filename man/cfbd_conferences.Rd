@@ -2,7 +2,8 @@
 % Please edit documentation in R/cfbd_conferences.R
 \name{cfbd_conferences}
 \alias{cfbd_conferences}
-\title{CFB Conference Information}
+\alias{conferences}
+\title{CFBD Conferences Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/conferences}
 }
@@ -10,17 +11,21 @@
 cfbd_conferences()
 }
 \value{
-\code{\link[cfbfastR:cfbd_conferences]{cfbfastR::cfbd_conferences()}} - A data frame with 11 rows and 4 variables:
+\code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 11 rows and 4 variables:
 \describe{
-\item{conference_id}{Referencing conference id}
-\item{name}{Conference name}
-\item{long_name}{Long name for Conference}
-\item{abbreviation}{Conference abbreviation}
+\item{\code{conference_id}: Referencing conference id}
+\item{\code{name}: Conference name}
+\item{\code{long_name}: Long name for Conference}
+\item{\code{abbreviation}: Conference abbreviation}
 ...
 }
 }
 \description{
-Pulls all college football conferences and returns as data frame the following fields:
+CFB Conference Information
+Pulls all college football conferences and returns as data frame
+
+You can call this function simply with\if{html}{\out{<div class="r">}}\preformatted{  cfbd_conferences()
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{

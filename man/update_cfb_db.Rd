@@ -2,9 +2,10 @@
 % Please edit documentation in R/helper_database_functions.R
 \name{update_cfb_db}
 \alias{update_cfb_db}
-\title{Update or Create a cfbfastR Play-by-Play Database
-\code{update_cfb_db} updates or creates a database with \code{cfbfastR}
-play by play data of all completed games since 2014.}
+\alias{cfb_db}
+\alias{cfb}
+\alias{database}
+\title{Update or Create a cfbfastR Play-by-Play Database}
 \usage{
 update_cfb_db(
   dbdir = ".",
@@ -28,7 +29,6 @@ of or the complete play by play data table within the database (please see detai
 \code{\link[DBI:dbConnect]{DBI::dbConnect()}} (please see details for further information)}
 }
 \description{
-Update or Create a cfbfastR Play-by-Play Database
 \code{update_cfb_db} updates or creates a database with \code{cfbfastR}
 play by play data of all completed games since 2014.
 }

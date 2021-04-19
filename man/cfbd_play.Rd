@@ -22,8 +22,8 @@
 cfbd_plays(
   year = 2020,
   season_type = "regular",
-  week = 4,
-  team = "Florida State",
+  week = 1,
+  team = NULL,
   offense = NULL,
   defense = NULL,
   conference = NULL,
@@ -70,103 +70,134 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 \item{defense_conference}{Select conference name (example: ACC, B1G, B12, SEC,\cr
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
-\item{play_type}{Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})}
+\item{play_type}{Select play type (example: see the \link{cfbd_play_type_df})}
 
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
+Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.}
+Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
-Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function}
+Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} function}
 }
 \value{
-\code{\link[cfbfastR:cfbd_plays]{cfbfastR::cfbd_plays()}}
+\code{\link[=cfbd_plays]{cfbd_plays()}}
 
-\code{\link[cfbfastR:cfbd_play_stats_player]{cfbfastR::cfbd_play_stats_player()}} - A data frame with 54 variables:
+\code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}} - A data frame with 54 variables:
 \describe{
-\item{\code{play_id}}{character.}
-\item{\code{game_id}}{integer.}
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{opponent}}{character.}
-\item{\code{team_score}}{integer.}
-\item{\code{opponent_score}}{integer.}
-\item{\code{drive_id}}{character.}
-\item{\code{period}}{integer.}
-\item{\code{yards_to_goal}}{integer.}
-\item{\code{down}}{integer.}
-\item{\code{distance}}{integer.}
-\item{\code{reception_player_id}}{character.}
-\item{\code{reception_player}}{character.}
-\item{\code{reception_yds}}{integer.}
-\item{\code{completion_player_id}}{character.}
-\item{\code{completion_player}}{character.}
-\item{\code{completion_yds}}{integer.}
-\item{\code{rush_player_id}}{character.}
-\item{\code{rush_player}}{character.}
-\item{\code{rush_yds}}{integer.}
-\item{\code{interception_player_id}}{character.}
-\item{\code{interception_player}}{character.}
-\item{\code{interception_stat}}{integer.}
-\item{\code{interception_thrown_player_id}}{character.}
-\item{\code{interception_thrown_player}}{character.}
-\item{\code{interception_thrown_stat}}{integer.}
-\item{\code{touchdown_player_id}}{character.}
-\item{\code{touchdown_player}}{character.}
-\item{\code{touchdown_stat}}{integer.}
-\item{\code{incompletion_player_id}}{character.}
-\item{\code{incompletion_player}}{character.}
-\item{\code{incompletion_stat}}{integer.}
-\item{\code{target_player_id}}{character.}
-\item{\code{target_player}}{character.}
-\item{\code{target_stat}}{integer.}
-\item{\code{fumble_recovered_player_id}}{logical.}
-\item{\code{fumble_recovered_player}}{logical.}
-\item{\code{fumble_recovered_stat}}{logical.}
-\item{\code{fumble_forced_player_id}}{logical.}
-\item{\code{fumble_forced_player}}{logical.}
-\item{\code{fumble_forced_stat}}{logical.}
-\item{\code{fumble_player_id}}{logical.}
-\item{\code{fumble_player}}{logical.}
-\item{\code{fumble_stat}}{logical.}
-\item{\code{sack_player_id}}{character.}
-\item{\code{sack_player}}{character.}
-\item{\code{sack_stat}}{integer.}
-\item{\code{sack_taken_player_id}}{character.}
-\item{\code{sack_taken_player}}{character.}
-\item{\code{sack_taken_stat}}{integer.}
-\item{\code{pass_breakup_player_id}}{logical.}
-\item{\code{pass_breakup_player}}{logical.}
-\item{\code{pass_breakup_stat}}{logical.}
+\item{\code{play_id}: character.}
+\item{\code{game_id}: integer.}
+\item{\code{season}: integer.}
+\item{\code{week}: integer.}
+\item{\code{opponent}: character.}
+\item{\code{team_score}: integer.}
+\item{\code{opponent_score}: integer.}
+\item{\code{drive_id}: character.}
+\item{\code{period}: integer.}
+\item{\code{yards_to_goal}: integer.}
+\item{\code{down}: integer.}
+\item{\code{distance}: integer.}
+\item{\code{reception_player_id}: character.}
+\item{\code{reception_player}: character.}
+\item{\code{reception_yds}: integer.}
+\item{\code{completion_player_id}: character.}
+\item{\code{completion_player}: character.}
+\item{\code{completion_yds}: integer.}
+\item{\code{rush_player_id}: character.}
+\item{\code{rush_player}: character.}
+\item{\code{rush_yds}: integer.}
+\item{\code{interception_player_id}: character.}
+\item{\code{interception_player}: character.}
+\item{\code{interception_stat}: integer.}
+\item{\code{interception_thrown_player_id}: character.}
+\item{\code{interception_thrown_player}: character.}
+\item{\code{interception_thrown_stat}: integer.}
+\item{\code{touchdown_player_id}: character.}
+\item{\code{touchdown_player}: character.}
+\item{\code{touchdown_stat}: integer.}
+\item{\code{incompletion_player_id}: character.}
+\item{\code{incompletion_player}: character.}
+\item{\code{incompletion_stat}: integer.}
+\item{\code{target_player_id}: character.}
+\item{\code{target_player}: character.}
+\item{\code{target_stat}: integer.}
+\item{\code{fumble_recovered_player_id}: logical.}
+\item{\code{fumble_recovered_player}: logical.}
+\item{\code{fumble_recovered_stat}: logical.}
+\item{\code{fumble_forced_player_id}: logical.}
+\item{\code{fumble_forced_player}: logical.}
+\item{\code{fumble_forced_stat}: logical.}
+\item{\code{fumble_player_id}: logical.}
+\item{\code{fumble_player}: logical.}
+\item{\code{fumble_stat}: logical.}
+\item{\code{sack_player_id}: character.}
+\item{\code{sack_player}: character.}
+\item{\code{sack_stat}: integer.}
+\item{\code{sack_taken_player_id}: character.}
+\item{\code{sack_taken_player}: character.}
+\item{\code{sack_taken_stat}: integer.}
+\item{\code{pass_breakup_player_id}: logical.}
+\item{\code{pass_breakup_player}: logical.}
+\item{\code{pass_breakup_stat}: logical.}
 }
 
-\code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} - A data frame with 22 rows and 2 variables:
-\describe{
-\item{play_stat_type_id}{Referencing play stat type ID}
-\item{name}{Type of play stats}
+\verb{\link[cfbfastR:cfbd_play_stats_types]\{cfbfastR::cfbd_play_stats_types()\}\} - A data frame with 22 rows and 2 variables: \\describe\{ \\item\{}play_stat_type_id\verb{: Referencing play stat type ID\} \\item\{}name`: Type of play stats}
 }
 
-\code{\link[cfbfastR:cfbd_play_types]{cfbfastR::cfbd_play_types()}} - A data frame with 48 rows and 3 variables:
-\describe{
-\item{play_type_id}{Referencing play type id}
-\item{text}{play type description}
-\item{abbreviation}{play type abbreviation used for function call}
+\verb{\link[cfbfastR:cfbd_play_types]\{cfbfastR::cfbd_play_types()\}\} - A data frame with 48 rows and 3 variables: \\describe\{ \\item\{}play_type_id\verb{: Referencing play type id\} \\item\{}text\verb{: play type description\} \\item\{}abbreviation`: play type abbreviation used for function call}
 }
 }
 \description{
-CFBD Plays Endpoint
-
 College Football Plays
+\describe{
+\item{\code{cfbd_plays()}: CFBD's College Football Play-by-Play}
+\item{\code{cfbd_play_stats_player()}: Gets player info associated by play}
+\item{\code{cfbd_play_stats_types()}: Gets CFBD play stat types}
+\item{\code{cfbd_play_types()}: Gets CFBD play types}
+}
+}
+\details{
+\subsection{Pull first 3 weeks of 2020 season using \code{cfbd_plays()}}{\if{html}{\out{<div class="r">}}\preformatted{if (!requireNamespace('pacman', quietly = TRUE))\{
+  install.packages('pacman')
+\}
+pacman::p_load(dplyr,tidyr)
+# pacman::p_load_gh("saiemgilani/cfbfastR")
+week_vector <- 1:3
+year_vector <- 2020
+version <- "1.1.0"
+weekly_year_df <- expand.grid(year = year_vector, week = week_vector)
+### scrape yearly
+year_split <- split(weekly_year_df, weekly_year_df$year)
+for (i in 1:length(year_split)) \{
+  i <- 1
+  print(paste0("Working on ", year_split[[i]][1, 1]))
+  future::plan("multisession")
+  progressr::with_progress(\{
+    year_split[[i]] <- year_split[[i]] \%>\%
+      dplyr::mutate(
+        pbp = purrr::map2(
+          .x = year,
+          .y = week,
+          cfbd_plays,
+          season_type = "both"
+        )
+      )
+    
+    Sys.sleep(1)
+  \})
+\}
 
-Gets player info associated by play
-
-College Football Mapping for Play Stats Types
-
-College Football Mapping for Play Types
+year_split <- lapply(year_split, function(x) \{
+  x \%>\%
+  dplyr::select(-.data$year, -.data$week) \%>\% 
+    tidyr::unnest(pbp, names_repair = "minimal")
+\})
+all_years <- dplyr::bind_rows(year_split)
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{

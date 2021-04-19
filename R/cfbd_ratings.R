@@ -1,27 +1,32 @@
-#' CFBD Ratings and Rankings Endpoints
+#' 
 #' @name cfbd_ratings
-NULL
-#' Gets Historical CFB poll rankings at a specific week
+#' @aliases cfbd_rankings cfbd_ratings_sp cfbd_ratings_sp_conference cfbd_ratings_srs
+#' @title CFBD Ratings and Rankings Endpoints
+#' @description
+#' \describe{
+#' \item{`cfbd_rankings()`: Gets Historical CFB poll rankings at a specific week}
+#' \item{`cfbd_ratings_sp()`: Get SP historical rating data}
+#' \item{`cfbd_ratings_sp_conference()`: Get SP conference-level historical rating data}
+#' \item{`cfbd_ratings_srs()`: Get SRS historical rating data}
+#' }
 #'
-#' Postseason polls are after Week 13
-#' @rdname cfbd_ratings
 #'
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_rankings]{cfbfastR::cfbd_rankings()}} - A data frame with 9 variables:
+#' @return [cfbd_rankings()] - A data frame with 9 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{poll}}{character.}
-#'   \item{\code{rank}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{first_place_votes}}{integer.}
-#'   \item{\code{points}}{integer.}
+#'   \item{`season`: integer.}
+#'   \item{`season_type`: character.}
+#'   \item{`week`: integer.}
+#'   \item{`poll`: character.}
+#'   \item{`rank`: integer.}
+#'   \item{`school`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`first_place_votes`: integer.}
+#'   \item{`points`: integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/rankings}
 #' @keywords CFB Rankings
@@ -126,37 +131,37 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #' @param team (\emph{String} optional): D-I Team
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_ratings_sp]{cfbfastR::cfbd_ratings_sp()}} - A data frame with 26 variables:
+#' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{rating}}{double.}
-#'   \item{\code{ranking}}{integer.}
-#'   \item{\code{second_order_wins}}{logical.}
-#'   \item{\code{sos}}{logical.}
-#'   \item{\code{offense_ranking}}{integer.}
-#'   \item{\code{offense_rating}}{double.}
-#'   \item{\code{offense_success}}{logical.}
-#'   \item{\code{offense_explosiveness}}{logical.}
-#'   \item{\code{offense_rushing}}{logical.}
-#'   \item{\code{offense_passing}}{logical.}
-#'   \item{\code{offense_standard_downs}}{logical.}
-#'   \item{\code{offense_passing_downs}}{logical.}
-#'   \item{\code{offense_run_rate}}{logical.}
-#'   \item{\code{offense_pace}}{logical.}
-#'   \item{\code{defense_ranking}}{integer.}
-#'   \item{\code{defense_rating}}{double.}
-#'   \item{\code{defense_success}}{logical.}
-#'   \item{\code{defense_explosiveness}}{logical.}
-#'   \item{\code{defense_rushing}}{logical.}
-#'   \item{\code{defense_passing}}{logical.}
-#'   \item{\code{defense_standard_downs}}{logical.}
-#'   \item{\code{defense_passing_downs}}{logical.}
-#'   \item{\code{defense_havoc_total}}{logical.}
-#'   \item{\code{defense_havoc_front_seven}}{logical.}
-#'   \item{\code{defense_havoc_db}}{logical.}
-#'   \item{\code{special_teams_rating}}{double.}
+#'   \item{`year`: integer.}
+#'   \item{`team`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`rating`: double.}
+#'   \item{`ranking`: integer.}
+#'   \item{`second_order_wins`: logical.}
+#'   \item{`sos`: logical.}
+#'   \item{`offense_ranking`: integer.}
+#'   \item{`offense_rating`: double.}
+#'   \item{`offense_success`: logical.}
+#'   \item{`offense_explosiveness`: logical.}
+#'   \item{`offense_rushing`: logical.}
+#'   \item{`offense_passing`: logical.}
+#'   \item{`offense_standard_downs`: logical.}
+#'   \item{`offense_passing_downs`: logical.}
+#'   \item{`offense_run_rate`: logical.}
+#'   \item{`offense_pace`: logical.}
+#'   \item{`defense_ranking`: integer.}
+#'   \item{`defense_rating`: double.}
+#'   \item{`defense_success`: logical.}
+#'   \item{`defense_explosiveness`: logical.}
+#'   \item{`defense_rushing`: logical.}
+#'   \item{`defense_passing`: logical.}
+#'   \item{`defense_standard_downs`: logical.}
+#'   \item{`defense_passing_downs`: logical.}
+#'   \item{`defense_havoc_total`: logical.}
+#'   \item{`defense_havoc_front_seven`: logical.}
+#'   \item{`defense_havoc_db`: logical.}
+#'   \item{`special_teams_rating`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp}
 #' @keywords SP+
@@ -270,33 +275,33 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_ratings_sp_conference]{cfbfastR::cfbd_ratings_sp_conference()}} - A data frame with 25 variables:
+#' @return [cfbd_ratings_sp_conference()] - A data frame with 25 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{rating}}{double.}
-#'   \item{\code{second_order_wins}}{logical.}
-#'   \item{\code{sos}}{logical.}
-#'   \item{\code{offense_rating}}{double.}
-#'   \item{\code{offense_success}}{logical.}
-#'   \item{\code{offense_explosiveness}}{logical.}
-#'   \item{\code{offense_rushing}}{logical.}
-#'   \item{\code{offense_passing}}{logical.}
-#'   \item{\code{offense_standard_downs}}{logical.}
-#'   \item{\code{offense_passing_downs}}{logical.}
-#'   \item{\code{offense_run_rate}}{logical.}
-#'   \item{\code{offense_pace}}{logical.}
-#'   \item{\code{defense_rating}}{double.}
-#'   \item{\code{defense_success}}{logical.}
-#'   \item{\code{defense_explosiveness}}{logical.}
-#'   \item{\code{defense_rushing}}{logical.}
-#'   \item{\code{defense_passing}}{logical.}
-#'   \item{\code{defense_standard_downs}}{logical.}
-#'   \item{\code{defense_passing_downs}}{logical.}
-#'   \item{\code{defense_havoc_total}}{logical.}
-#'   \item{\code{defense_havoc_front_seven}}{logical.}
-#'   \item{\code{defense_havoc_db}}{logical.}
-#'   \item{\code{special_teams_rating}}{double.}
+#'   \item{`year`: integer.}
+#'   \item{`conference`: character.}
+#'   \item{`rating`: double.}
+#'   \item{`second_order_wins`: logical.}
+#'   \item{`sos`: logical.}
+#'   \item{`offense_rating`: double.}
+#'   \item{`offense_success`: logical.}
+#'   \item{`offense_explosiveness`: logical.}
+#'   \item{`offense_rushing`: logical.}
+#'   \item{`offense_passing`: logical.}
+#'   \item{`offense_standard_downs`: logical.}
+#'   \item{`offense_passing_downs`: logical.}
+#'   \item{`offense_run_rate`: logical.}
+#'   \item{`offense_pace`: logical.}
+#'   \item{`defense_rating`: double.}
+#'   \item{`defense_success`: logical.}
+#'   \item{`defense_explosiveness`: logical.}
+#'   \item{`defense_rushing`: logical.}
+#'   \item{`defense_passing`: logical.}
+#'   \item{`defense_standard_downs`: logical.}
+#'   \item{`defense_passing_downs`: logical.}
+#'   \item{`defense_havoc_total`: logical.}
+#'   \item{`defense_havoc_front_seven`: logical.}
+#'   \item{`defense_havoc_db`: logical.}
+#'   \item{`special_teams_rating`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp/conferences}
 #' @keywords SP+
@@ -413,14 +418,14 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_ratings_srs]{cfbfastR::cfbd_ratings_srs()}} - A data frame with 6 variables:
+#' @return [cfbd_ratings_srs()] - A data frame with 6 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{division}}{logical.}
-#'   \item{\code{rating}}{double.}
-#'   \item{\code{ranking}}{integer.}
+#'   \item{`year`: integer.}
+#'   \item{`team`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`division`: logical.}
+#'   \item{`rating`: double.}
+#'   \item{`ranking`: integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/srs}
 #' @keywords SRS

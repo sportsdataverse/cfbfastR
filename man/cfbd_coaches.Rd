@@ -2,7 +2,8 @@
 % Please edit documentation in R/cfbd_coaches.R
 \name{cfbd_coaches}
 \alias{cfbd_coaches}
-\title{Coach Information Search}
+\alias{coaches}
+\title{CFBD Coaches Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/coaches}
 }
@@ -33,30 +34,33 @@ cfbd_coaches(
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
-\code{\link[cfbfastR:cfbd_coaches]{cfbfastR::cfbd_coaches()}} - A data frame with coach information with the following columns:
+\code{\link[=cfbd_coaches]{cfbd_coaches()}} - A data frame with coach information with the following columns:
 \describe{
-\item{\code{first_name}}{character. First name of coach.}
-\item{\code{last_name}}{character. Last name of coach.}
-\item{\code{school}}{character. School of coach.}
-\item{\code{year}}{integer. Season of record.}
-\item{\code{games}}{integer. Games as coach.}
-\item{\code{wins}}{integer. Wins for the season.}
-\item{\code{losses}}{integer. Losses for the season.}
-\item{\code{ties}}{integer. Ties for the season.}
-\item{\code{preseason_rank}}{integer. Preseason rank for the school of coach.}
-\item{\code{postseason_rank}}{integer. Postseason rank for the school of coach.}
-\item{\code{srs}}{character. Simple Rating System adjustment for team.}
-\item{\code{sp_overall}}{character. Bill Connelly's SP+ overall for team.}
-\item{\code{sp_offense}}{character. Bill Connelly's SP+ offense for team.}
-\item{\code{sp_defense}}{character. Bill Connelly's SP+ defense for team.}
+\item{\code{first_name}:character. First name of coach.}
+\item{\code{last_name}:character. Last name of coach.}
+\item{\code{school}:character. School of coach.}
+\item{\code{year}:integer. Season of record.}
+\item{\code{games}:integer. Games as coach.}
+\item{\code{wins}:integer. Wins for the season.}
+\item{\code{losses}:integer. Losses for the season.}
+\item{\code{ties}:integer. Ties for the season.}
+\item{\code{preseason_rank}:integer. Preseason rank for the school of coach.}
+\item{\code{postseason_rank}:integer. Postseason rank for the school of coach.}
+\item{\code{srs}:character. Simple Rating System adjustment for team.}
+\item{\code{sp_overall}:character. Bill Connelly's SP+ overall for team.}
+\item{\code{sp_offense}:character. Bill Connelly's SP+ offense for team.}
+\item{\code{sp_defense}:character. Bill Connelly's SP+ defense for team.}
 }
 }
 \description{
-A coach search function which provides coaching records and school history for a given coach
+Coach Information Search
+
+A coach search function which provides coaching records and school history for a given coach\if{html}{\out{<div class="r">}}\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{
   cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
 }
 }
-\keyword{Recruiting}
+\keyword{Coaches}

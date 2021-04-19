@@ -1,5 +1,7 @@
-#' Update or Create a cfbfastR Play-by-Play Database
-#' `update_cfb_db` updates or creates a database with `cfbfastR`
+#' @name update_cfb_db
+#' @aliases update_cfb_db cfb_db cfb database
+#' @title Update or Create a cfbfastR Play-by-Play Database
+#' @description `update_cfb_db` updates or creates a database with `cfbfastR`
 #' play by play data of all completed games since 2014.
 #'
 #' @details This function creates and updates a data table with the name `tblname`

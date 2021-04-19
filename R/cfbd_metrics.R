@@ -1,9 +1,24 @@
-#' CFBD Metrics Endpoint
-#'
 #' @name cfbd_metrics
-NULL
-#' Get team game averages for Predicted Points Added (PPA)
-#' @rdname cfbd_metrics
+#' @aliases cfbd_metrics cfbd_metrics_ppa_games 
+#' cfbd_metrics_ppa_players_games cfbd_metrics_ppa_players_season cfbd_metrics_ppa_teams cfbd_metrics_wp_pregame cfbd_metrics_wp
+#' @title CFBD Metrics Endpoint
+#' @description 
+#' \describe{
+#' \item{`cfbd_metrics_ppa_games()`: Get team game averages for Predicted Points Added (PPA)}
+#' 
+#' \item{`cfbd_metrics_ppa_players_games()`: Get player game averages for Predicted Points Added (PPA)}
+#' 
+#' \item{`cfbd_metrics_ppa_players_season()`: Get player season averages for Predicted Points Added (PPA)}
+#' 
+#' \item{`cfbd_metrics_ppa_predicted()`: Calculate Predicted Points using Down and Distance}
+#' 
+#' \item{`cfbd_metrics_ppa_teams()`: Get team averages for Predicted Points Added (PPA)}
+#' 
+#' \item{`cfbd_metrics_wp_pregame()`: Get Pre-game Win Probability Data from CFBD API}
+#' 
+#' \item{`cfbd_metrics_wp()`: Get win probability chart data from CFBD API}
+#' 
+#' }
 #'
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -14,173 +29,26 @@ NULL
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
+#' @return [cfbd_metrics_ppa_games()] - A data frame with 18 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{opponent}}{character.}
-#'   \item{\code{off_overall}}{character.}
-#'   \item{\code{off_passing}}{character.}
-#'   \item{\code{off_rushing}}{character.}
-#'   \item{\code{off_first_down}}{character.}
-#'   \item{\code{off_second_down}}{character.}
-#'   \item{\code{off_third_down}}{character.}
-#'   \item{\code{def_overall}}{character.}
-#'   \item{\code{def_passing}}{character.}
-#'   \item{\code{def_rushing}}{character.}
-#'   \item{\code{def_first_down}}{character.}
-#'   \item{\code{def_second_down}}{character.}
-#'   \item{\code{def_third_down}}{character.}
-#' }
-#' @keywords Teams Predicted Points
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
-#' @importFrom glue glue
-#' @import dplyr
-#' @import tidyr
-#' @export
-#' @examples
-#' \donttest{
-#'    cfbd_metrics_ppa_games(year = 2019, team = "TCU")
-#' }
-#'
-cfbd_metrics_ppa_games <- function(year,
-                                   week = NULL,
-                                   team = NULL,
-                                   conference = NULL,
-                                   excl_garbage_time = FALSE,
-                                   verbose = FALSE) {
-  args <- list(year = year)
-
-  ## check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year as integer in 4 digit format (YYYY)"
-  )
-
-  if (!is.null(week)) {
-    # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-      msg = "Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (excl_garbage_time != FALSE) {
-    # Check if excl_garbage_time is TRUE, if not FALSE
-    assertthat::assert_that(excl_garbage_time == TRUE,
-      msg = "Enter valid excl_garbage_time value (Logical) - TRUE or FALSE"
-    )
-  }
-
-  base_url <- "https://api.collegefootballdata.com/ppa/games?"
-
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&conference=", conference,
-    "&excludeGarbageTime=", excl_garbage_time
-  )
-
-  # Check for internet
-  check_internet()
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
-  df <- data.frame()
-  tryCatch(
-    expr = {
-      # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE)
-      colnames(df) <- gsub("offense.", "off_", colnames(df))
-      colnames(df) <- gsub("defense.", "def_", colnames(df))
-      colnames(df) <- gsub("Down", "_down", colnames(df))
-
-      df <- df %>%
-        dplyr::rename(game_id = .data$gameId) %>%
-        as.data.frame()
-
-      if(verbose){
-        message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA games data..."))
-      }
-    },
-    error = function(e) {
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
-      }
-    },
-    warning = function(w) {
-    },
-    finally = {
-    }
-  )
-  return(df)
-}
-
-
-#' Get team game averages for Predicted Points Added (PPA)
-#' @rdname cfbd_metrics
-#'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#'
-#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
-#' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{opponent}}{character.}
-#'   \item{\code{off_overall}}{character.}
-#'   \item{\code{off_passing}}{character.}
-#'   \item{\code{off_rushing}}{character.}
-#'   \item{\code{off_first_down}}{character.}
-#'   \item{\code{off_second_down}}{character.}
-#'   \item{\code{off_third_down}}{character.}
-#'   \item{\code{def_overall}}{character.}
-#'   \item{\code{def_passing}}{character.}
-#'   \item{\code{def_rushing}}{character.}
-#'   \item{\code{def_first_down}}{character.}
-#'   \item{\code{def_second_down}}{character.}
-#'   \item{\code{def_third_down}}{character.}
+#'   \item{`game_id`: integer.}
+#'   \item{`season`: integer.}
+#'   \item{`week`: integer.}
+#'   \item{`conference`: character.}
+#'   \item{`team`: character.}
+#'   \item{`opponent`: character.}
+#'   \item{`off_overall`: character.}
+#'   \item{`off_passing`: character.}
+#'   \item{`off_rushing`: character.}
+#'   \item{`off_first_down`: character.}
+#'   \item{`off_second_down`: character.}
+#'   \item{`off_third_down`: character.}
+#'   \item{`def_overall`: character.}
+#'   \item{`def_passing`: character.}
+#'   \item{`def_rushing`: character.}
+#'   \item{`def_first_down`: character.}
+#'   \item{`def_second_down`: character.}
+#'   \item{`def_third_down`: character.}
 #' }
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
@@ -306,22 +174,22 @@ cfbd_metrics_ppa_games <- function(year,
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
+#' Can be found using the [cfbd_player_info()] function.
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_players_games]{cfbfastR::cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
+#' @return [cfbd_metrics_ppa_players_games()] - A data frame with 9 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{opponent}}{character.}
-#'   \item{\code{avg_PPA_all}}{double.}
-#'   \item{\code{avg_PPA_pass}}{double.}
-#'   \item{\code{avg_PPA_rush}}{double.}
+#'   \item{`season`: integer.}
+#'   \item{`week`: integer.}
+#'   \item{`name`: character.}
+#'   \item{`position`: character.}
+#'   \item{`team`: character.}
+#'   \item{`opponent`: character.}
+#'   \item{`avg_PPA_all`: double.}
+#'   \item{`avg_PPA_pass`: double.}
+#'   \item{`avg_PPA_rush`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/players/games}
 #' @keywords Players Predicted Points
@@ -467,36 +335,36 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
+#' Can be found using the [cfbd_player_info()] function.
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_players_season]{cfbfastR::cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
+#' @return [cfbd_metrics_ppa_players_season()] - A data frame with 23 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{id}}{character.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{countable_plays}}{integer.}
-#'   \item{\code{avg_PPA_all}}{double.}
-#'   \item{\code{avg_PPA_pass}}{double.}
-#'   \item{\code{avg_PPA_rush}}{double.}
-#'   \item{\code{avg_PPA_first_down}}{double.}
-#'   \item{\code{avg_PPA_second_down}}{double.}
-#'   \item{\code{avg_PPA_third_down}}{double.}
-#'   \item{\code{avg_PPA_standard_downs}}{double.}
-#'   \item{\code{avg_PPA_passing_downs}}{double.}
-#'   \item{\code{total_PPA_all}}{double.}
-#'   \item{\code{total_PPA_pass}}{double.}
-#'   \item{\code{total_PPA_rush}}{double.}
-#'   \item{\code{total_PPA_first_down}}{double.}
-#'   \item{\code{total_PPA_second_down}}{double.}
-#'   \item{\code{total_PPA_third_down}}{double.}
-#'   \item{\code{total_PPA_standard_downs}}{double.}
-#'   \item{\code{total_PPA_passing_downs}}{double.}
+#'   \item{`season`: integer.}
+#'   \item{`id`: character.}
+#'   \item{`name`: character.}
+#'   \item{`position`: character.}
+#'   \item{`team`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`countable_plays`: integer.}
+#'   \item{`avg_PPA_all`: double.}
+#'   \item{`avg_PPA_pass`: double.}
+#'   \item{`avg_PPA_rush`: double.}
+#'   \item{`avg_PPA_first_down`: double.}
+#'   \item{`avg_PPA_second_down`: double.}
+#'   \item{`avg_PPA_third_down`: double.}
+#'   \item{`avg_PPA_standard_downs`: double.}
+#'   \item{`avg_PPA_passing_downs`: double.}
+#'   \item{`total_PPA_all`: double.}
+#'   \item{`total_PPA_pass`: double.}
+#'   \item{`total_PPA_rush`: double.}
+#'   \item{`total_PPA_first_down`: double.}
+#'   \item{`total_PPA_second_down`: double.}
+#'   \item{`total_PPA_third_down`: double.}
+#'   \item{`total_PPA_standard_downs`: double.}
+#'   \item{`total_PPA_passing_downs`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/players/season}
 #' @keywords Players Predicted Points Season Averages
@@ -642,10 +510,10 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' @param distance (\emph{Integer} required): Distance filter
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_predicted]{cfbfastR::cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
+#' @return [cfbd_metrics_ppa_predicted()] - A data frame with 2 variables:
 #' \describe{
-#'   \item{\code{yard_line}}{integer.}
-#'   \item{\code{predicted_points}}{character.}
+#'   \item{`yard_line`: integer.}
+#'   \item{`predicted_points`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/predicted}
 #' @keywords Predicted Points
@@ -735,29 +603,29 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' 
-#' @return \code{\link[cfbfastR:cfbd_metrics_ppa_teams]{cfbfastR::cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
+#' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{off_overall}}{character.}
-#'   \item{\code{off_passing}}{character.}
-#'   \item{\code{off_rushing}}{character.}
-#'   \item{\code{off_first_down}}{character.}
-#'   \item{\code{off_second_down}}{character.}
-#'   \item{\code{off_third_down}}{character.}
-#'   \item{\code{off_cumulative_total}}{character.}
-#'   \item{\code{off_cumulative_passing}}{character.}
-#'   \item{\code{off_cumulative_rushing}}{character.}
-#'   \item{\code{def_overall}}{character.}
-#'   \item{\code{def_passing}}{character.}
-#'   \item{\code{def_rushing}}{character.}
-#'   \item{\code{def_first_down}}{character.}
-#'   \item{\code{def_second_down}}{character.}
-#'   \item{\code{def_third_down}}{character.}
-#'   \item{\code{def_cumulative_total}}{character.}
-#'   \item{\code{def_cumulative_passing}}{character.}
-#'   \item{\code{def_cumulative_rushing}}{character.}
+#'   \item{`season`: integer.}
+#'   \item{`conference`: character.}
+#'   \item{`team`: character.}
+#'   \item{`off_overall`: character.}
+#'   \item{`off_passing`: character.}
+#'   \item{`off_rushing`: character.}
+#'   \item{`off_first_down`: character.}
+#'   \item{`off_second_down`: character.}
+#'   \item{`off_third_down`: character.}
+#'   \item{`off_cumulative_total`: character.}
+#'   \item{`off_cumulative_passing`: character.}
+#'   \item{`off_cumulative_rushing`: character.}
+#'   \item{`def_overall`: character.}
+#'   \item{`def_passing`: character.}
+#'   \item{`def_rushing`: character.}
+#'   \item{`def_first_down`: character.}
+#'   \item{`def_second_down`: character.}
+#'   \item{`def_third_down`: character.}
+#'   \item{`def_cumulative_total`: character.}
+#'   \item{`def_cumulative_passing`: character.}
+#'   \item{`def_cumulative_rushing`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/teams}
 #' @keywords Teams Predicted Points
@@ -870,17 +738,17 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_metrics_wp_pregame]{cfbfastR::cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
+#' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{spread}}{integer.}
-#'   \item{\code{home_win_prob}}{double.}
-#'   \item{\code{away_win_prob}}{double.}
+#'   \item{`season`: integer.}
+#'   \item{`season_type`: character.}
+#'   \item{`week`: integer.}
+#'   \item{`game_id`: integer.}
+#'   \item{`home_team`: character.}
+#'   \item{`away_team`: character.}
+#'   \item{`spread`: integer.}
+#'   \item{`home_win_prob`: double.}
+#'   \item{`away_win_prob`: double.}
 #' }
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON
@@ -985,27 +853,27 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @rdname cfbd_metrics
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_metrics_wp]{cfbfastR::cfbd_metrics_wp()}} - A data frame with 16 variables:
+#' @return [cfbd_metrics_wp()] - A data frame with 16 variables:
 #' \describe{
-#'   \item{\code{play_id}}{character.}
-#'   \item{\code{play_text}}{character.}
-#'   \item{\code{home_id}}{integer.}
-#'   \item{\code{home}}{character.}
-#'   \item{\code{away_id}}{integer.}
-#'   \item{\code{away}}{character.}
-#'   \item{\code{spread}}{character.}
-#'   \item{\code{home_ball}}{logical.}
-#'   \item{\code{home_score}}{integer.}
-#'   \item{\code{away_score}}{integer.}
-#'   \item{\code{down}}{integer.}
-#'   \item{\code{distance}}{integer.}
-#'   \item{\code{home_win_prob}}{character.}
-#'   \item{\code{away_win_prob}}{double.}
-#'   \item{\code{play_number}}{integer.}
-#'   \item{\code{yard_line}}{integer.}
+#'   \item{`play_id`: character.}
+#'   \item{`play_text`: character.}
+#'   \item{`home_id`: integer.}
+#'   \item{`home`: character.}
+#'   \item{`away_id`: integer.}
+#'   \item{`away`: character.}
+#'   \item{`spread`: character.}
+#'   \item{`home_ball`: logical.}
+#'   \item{`home_score`: integer.}
+#'   \item{`away_score`: integer.}
+#'   \item{`down`: integer.}
+#'   \item{`distance`: integer.}
+#'   \item{`home_win_prob`: character.}
+#'   \item{`away_win_prob`: double.}
+#'   \item{`play_number`: integer.}
+#'   \item{`yard_line`: integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/metrics/wp}
 #' @keywords Win Probability Chart Data

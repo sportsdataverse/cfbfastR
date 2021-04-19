@@ -5,10 +5,10 @@
 \alias{cfbd_metrics_ppa_games}
 \alias{cfbd_metrics_ppa_players_games}
 \alias{cfbd_metrics_ppa_players_season}
-\alias{cfbd_metrics_ppa_predicted}
 \alias{cfbd_metrics_ppa_teams}
 \alias{cfbd_metrics_wp_pregame}
 \alias{cfbd_metrics_wp}
+\alias{cfbd_metrics_ppa_predicted}
 \title{CFBD Metrics Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/ppa/players/games}
@@ -22,15 +22,6 @@
 \url{https://api.collegefootballdata.com/metrics/wp}
 }
 \usage{
-cfbd_metrics_ppa_games(
-  year,
-  week = NULL,
-  team = NULL,
-  conference = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
-)
-
 cfbd_metrics_ppa_games(
   year,
   week = NULL,
@@ -106,7 +97,7 @@ Position Group  - options include:\cr
 }}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.}
+Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
 
@@ -117,181 +108,154 @@ Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_pla
 \item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
 
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
+Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
-\code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
+\code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
 \describe{
-\item{\code{game_id}}{integer.}
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{conference}}{character.}
-\item{\code{team}}{character.}
-\item{\code{opponent}}{character.}
-\item{\code{off_overall}}{character.}
-\item{\code{off_passing}}{character.}
-\item{\code{off_rushing}}{character.}
-\item{\code{off_first_down}}{character.}
-\item{\code{off_second_down}}{character.}
-\item{\code{off_third_down}}{character.}
-\item{\code{def_overall}}{character.}
-\item{\code{def_passing}}{character.}
-\item{\code{def_rushing}}{character.}
-\item{\code{def_first_down}}{character.}
-\item{\code{def_second_down}}{character.}
-\item{\code{def_third_down}}{character.}
+\item{\code{game_id}: integer.}
+\item{\code{season}: integer.}
+\item{\code{week}: integer.}
+\item{\code{conference}: character.}
+\item{\code{team}: character.}
+\item{\code{opponent}: character.}
+\item{\code{off_overall}: character.}
+\item{\code{off_passing}: character.}
+\item{\code{off_rushing}: character.}
+\item{\code{off_first_down}: character.}
+\item{\code{off_second_down}: character.}
+\item{\code{off_third_down}: character.}
+\item{\code{def_overall}: character.}
+\item{\code{def_passing}: character.}
+\item{\code{def_rushing}: character.}
+\item{\code{def_first_down}: character.}
+\item{\code{def_second_down}: character.}
+\item{\code{def_third_down}: character.}
 }
 
-\code{\link[cfbfastR:cfbd_metrics_ppa_games]{cfbfastR::cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
+\code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
 \describe{
-\item{\code{game_id}}{integer.}
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{conference}}{character.}
-\item{\code{team}}{character.}
-\item{\code{opponent}}{character.}
-\item{\code{off_overall}}{character.}
-\item{\code{off_passing}}{character.}
-\item{\code{off_rushing}}{character.}
-\item{\code{off_first_down}}{character.}
-\item{\code{off_second_down}}{character.}
-\item{\code{off_third_down}}{character.}
-\item{\code{def_overall}}{character.}
-\item{\code{def_passing}}{character.}
-\item{\code{def_rushing}}{character.}
-\item{\code{def_first_down}}{character.}
-\item{\code{def_second_down}}{character.}
-\item{\code{def_third_down}}{character.}
+\item{\code{season}: integer.}
+\item{\code{week}: integer.}
+\item{\code{name}: character.}
+\item{\code{position}: character.}
+\item{\code{team}: character.}
+\item{\code{opponent}: character.}
+\item{\code{avg_PPA_all}: double.}
+\item{\code{avg_PPA_pass}: double.}
+\item{\code{avg_PPA_rush}: double.}
 }
 
-\code{\link[cfbfastR:cfbd_metrics_ppa_players_games]{cfbfastR::cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
+\code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{name}}{character.}
-\item{\code{position}}{character.}
-\item{\code{team}}{character.}
-\item{\code{opponent}}{character.}
-\item{\code{avg_PPA_all}}{double.}
-\item{\code{avg_PPA_pass}}{double.}
-\item{\code{avg_PPA_rush}}{double.}
+\item{\code{season}: integer.}
+\item{\code{id}: character.}
+\item{\code{name}: character.}
+\item{\code{position}: character.}
+\item{\code{team}: character.}
+\item{\code{conference}: character.}
+\item{\code{countable_plays}: integer.}
+\item{\code{avg_PPA_all}: double.}
+\item{\code{avg_PPA_pass}: double.}
+\item{\code{avg_PPA_rush}: double.}
+\item{\code{avg_PPA_first_down}: double.}
+\item{\code{avg_PPA_second_down}: double.}
+\item{\code{avg_PPA_third_down}: double.}
+\item{\code{avg_PPA_standard_downs}: double.}
+\item{\code{avg_PPA_passing_downs}: double.}
+\item{\code{total_PPA_all}: double.}
+\item{\code{total_PPA_pass}: double.}
+\item{\code{total_PPA_rush}: double.}
+\item{\code{total_PPA_first_down}: double.}
+\item{\code{total_PPA_second_down}: double.}
+\item{\code{total_PPA_third_down}: double.}
+\item{\code{total_PPA_standard_downs}: double.}
+\item{\code{total_PPA_passing_downs}: double.}
 }
 
-\code{\link[cfbfastR:cfbd_metrics_ppa_players_season]{cfbfastR::cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
+\code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{id}}{character.}
-\item{\code{name}}{character.}
-\item{\code{position}}{character.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{countable_plays}}{integer.}
-\item{\code{avg_PPA_all}}{double.}
-\item{\code{avg_PPA_pass}}{double.}
-\item{\code{avg_PPA_rush}}{double.}
-\item{\code{avg_PPA_first_down}}{double.}
-\item{\code{avg_PPA_second_down}}{double.}
-\item{\code{avg_PPA_third_down}}{double.}
-\item{\code{avg_PPA_standard_downs}}{double.}
-\item{\code{avg_PPA_passing_downs}}{double.}
-\item{\code{total_PPA_all}}{double.}
-\item{\code{total_PPA_pass}}{double.}
-\item{\code{total_PPA_rush}}{double.}
-\item{\code{total_PPA_first_down}}{double.}
-\item{\code{total_PPA_second_down}}{double.}
-\item{\code{total_PPA_third_down}}{double.}
-\item{\code{total_PPA_standard_downs}}{double.}
-\item{\code{total_PPA_passing_downs}}{double.}
+\item{\code{yard_line}: integer.}
+\item{\code{predicted_points}: character.}
 }
 
-\code{\link[cfbfastR:cfbd_metrics_ppa_predicted]{cfbfastR::cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
+\code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
 \describe{
-\item{\code{yard_line}}{integer.}
-\item{\code{predicted_points}}{character.}
+\item{\code{season}: integer.}
+\item{\code{conference}: character.}
+\item{\code{team}: character.}
+\item{\code{off_overall}: character.}
+\item{\code{off_passing}: character.}
+\item{\code{off_rushing}: character.}
+\item{\code{off_first_down}: character.}
+\item{\code{off_second_down}: character.}
+\item{\code{off_third_down}: character.}
+\item{\code{off_cumulative_total}: character.}
+\item{\code{off_cumulative_passing}: character.}
+\item{\code{off_cumulative_rushing}: character.}
+\item{\code{def_overall}: character.}
+\item{\code{def_passing}: character.}
+\item{\code{def_rushing}: character.}
+\item{\code{def_first_down}: character.}
+\item{\code{def_second_down}: character.}
+\item{\code{def_third_down}: character.}
+\item{\code{def_cumulative_total}: character.}
+\item{\code{def_cumulative_passing}: character.}
+\item{\code{def_cumulative_rushing}: character.}
 }
 
-\code{\link[cfbfastR:cfbd_metrics_ppa_teams]{cfbfastR::cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
+\code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{conference}}{character.}
-\item{\code{team}}{character.}
-\item{\code{off_overall}}{character.}
-\item{\code{off_passing}}{character.}
-\item{\code{off_rushing}}{character.}
-\item{\code{off_first_down}}{character.}
-\item{\code{off_second_down}}{character.}
-\item{\code{off_third_down}}{character.}
-\item{\code{off_cumulative_total}}{character.}
-\item{\code{off_cumulative_passing}}{character.}
-\item{\code{off_cumulative_rushing}}{character.}
-\item{\code{def_overall}}{character.}
-\item{\code{def_passing}}{character.}
-\item{\code{def_rushing}}{character.}
-\item{\code{def_first_down}}{character.}
-\item{\code{def_second_down}}{character.}
-\item{\code{def_third_down}}{character.}
-\item{\code{def_cumulative_total}}{character.}
-\item{\code{def_cumulative_passing}}{character.}
-\item{\code{def_cumulative_rushing}}{character.}
+\item{\code{season}: integer.}
+\item{\code{season_type}: character.}
+\item{\code{week}: integer.}
+\item{\code{game_id}: integer.}
+\item{\code{home_team}: character.}
+\item{\code{away_team}: character.}
+\item{\code{spread}: integer.}
+\item{\code{home_win_prob}: double.}
+\item{\code{away_win_prob}: double.}
 }
 
-\code{\link[cfbfastR:cfbd_metrics_wp_pregame]{cfbfastR::cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
+\code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}} - A data frame with 16 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{season_type}}{character.}
-\item{\code{week}}{integer.}
-\item{\code{game_id}}{integer.}
-\item{\code{home_team}}{character.}
-\item{\code{away_team}}{character.}
-\item{\code{spread}}{integer.}
-\item{\code{home_win_prob}}{double.}
-\item{\code{away_win_prob}}{double.}
-}
-
-\code{\link[cfbfastR:cfbd_metrics_wp]{cfbfastR::cfbd_metrics_wp()}} - A data frame with 16 variables:
-\describe{
-\item{\code{play_id}}{character.}
-\item{\code{play_text}}{character.}
-\item{\code{home_id}}{integer.}
-\item{\code{home}}{character.}
-\item{\code{away_id}}{integer.}
-\item{\code{away}}{character.}
-\item{\code{spread}}{character.}
-\item{\code{home_ball}}{logical.}
-\item{\code{home_score}}{integer.}
-\item{\code{away_score}}{integer.}
-\item{\code{down}}{integer.}
-\item{\code{distance}}{integer.}
-\item{\code{home_win_prob}}{character.}
-\item{\code{away_win_prob}}{double.}
-\item{\code{play_number}}{integer.}
-\item{\code{yard_line}}{integer.}
+\item{\code{play_id}: character.}
+\item{\code{play_text}: character.}
+\item{\code{home_id}: integer.}
+\item{\code{home}: character.}
+\item{\code{away_id}: integer.}
+\item{\code{away}: character.}
+\item{\code{spread}: character.}
+\item{\code{home_ball}: logical.}
+\item{\code{home_score}: integer.}
+\item{\code{away_score}: integer.}
+\item{\code{down}: integer.}
+\item{\code{distance}: integer.}
+\item{\code{home_win_prob}: character.}
+\item{\code{away_win_prob}: double.}
+\item{\code{play_number}: integer.}
+\item{\code{yard_line}: integer.}
 }
 }
 \description{
-CFBD Metrics Endpoint
+\describe{
+\item{\code{cfbd_metrics_ppa_games()}: Get team game averages for Predicted Points Added (PPA)}
 
-Get team game averages for Predicted Points Added (PPA)
+\item{\code{cfbd_metrics_ppa_players_games()}: Get player game averages for Predicted Points Added (PPA)}
 
-Get team game averages for Predicted Points Added (PPA)
+\item{\code{cfbd_metrics_ppa_players_season()}: Get player season averages for Predicted Points Added (PPA)}
 
-Get player game averages for Predicted Points Added (PPA)
+\item{\code{cfbd_metrics_ppa_predicted()}: Calculate Predicted Points using Down and Distance}
 
-Get player season averages for Predicted Points Added (PPA)
+\item{\code{cfbd_metrics_ppa_teams()}: Get team averages for Predicted Points Added (PPA)}
 
-Calculate Predicted Points using Down and Distance
+\item{\code{cfbd_metrics_wp_pregame()}: Get Pre-game Win Probability Data from CFBD API}
 
-Get team averages for Predicted Points Added (PPA)
+\item{\code{cfbd_metrics_wp()}: Get win probability chart data from CFBD API}
 
-Get Pre-game Win Probability Data from API
-
-Get win probability chart data from API
+}
 }
 \examples{
-\donttest{
-   cfbd_metrics_ppa_games(year = 2019, team = "TCU")
-}
-
 \donttest{
 cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 }

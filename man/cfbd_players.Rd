@@ -61,72 +61,75 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.}
+Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 }
 \value{
-\code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} - A data frame with 12 variables:
+\code{\link[=cfbd_player_info]{cfbd_player_info()}} - A data frame with 12 variables:
 \describe{
-\item{\code{athlete_id}}{character. Unique player identifier \code{athlete_id}.}
-\item{\code{team}}{character. Team of the player.}
-\item{\code{name}}{character. Player name.}
-\item{\code{first_name}}{character. Player first name.}
-\item{\code{last_name}}{character. Player last name.}
-\item{\code{weight}}{integer. Player weight.}
-\item{\code{height}}{integer. Player height.}
-\item{\code{jersey}}{integer. Player jersey number.}
-\item{\code{position}}{character. Player position.}
-\item{\code{home_town}}{character. Player home town.}
-\item{\code{team_color}}{character. Player team color.}
-\item{\code{team_color_secondary}}{character. Player team secondary color.}
+\item{\code{athlete_id}:character. Unique player identifier \code{athlete_id}.}
+\item{\code{team}:character. Team of the player.}
+\item{\code{name}:character. Player name.}
+\item{\code{first_name}:character. Player first name.}
+\item{\code{last_name}:character. Player last name.}
+\item{\code{weight}:integer. Player weight.}
+\item{\code{height}:integer. Player height.}
+\item{\code{jersey}:integer. Player jersey number.}
+\item{\code{position}:character. Player position.}
+\item{\code{home_town}:character. Player home town.}
+\item{\code{team_color}:character. Player team color.}
+\item{\code{team_color_secondary}:character. Player team secondary color.}
 }
 
-\code{\link[cfbfastR:cfbd_player_returning]{cfbfastR::cfbd_player_returning()}} - A data frame with 15 variables:
+\code{\link[=cfbd_player_returning]{cfbd_player_returning()}} - A data frame with 15 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{total_ppa}}{double.}
-\item{\code{total_passing_ppa}}{double.}
-\item{\code{total_receiving_ppa}}{double.}
-\item{\code{total_rushing_ppa}}{double.}
-\item{\code{percent_ppa}}{double.}
-\item{\code{percent_passing_ppa}}{double.}
-\item{\code{percent_receiving_ppa}}{double.}
-\item{\code{percent_rushing_ppa}}{double.}
-\item{\code{usage}}{double.}
-\item{\code{passing_usage}}{double.}
-\item{\code{receiving_usage}}{double.}
-\item{\code{rushing_usage}}{double.}
+\item{\code{season}:integer.}
+\item{\code{team}:character.}
+\item{\code{conference}:character.}
+\item{\code{total_ppa}:double.}
+\item{\code{total_passing_ppa}:double.}
+\item{\code{total_receiving_ppa}:double.}
+\item{\code{total_rushing_ppa}:double.}
+\item{\code{percent_ppa}:double.}
+\item{\code{percent_passing_ppa}:double.}
+\item{\code{percent_receiving_ppa}:double.}
+\item{\code{percent_rushing_ppa}:double.}
+\item{\code{usage}:double.}
+\item{\code{passing_usage}:double.}
+\item{\code{receiving_usage}:double.}
+\item{\code{rushing_usage}:double.}
 }
 
-\code{\link[cfbfastR:cfbd_player_usage]{cfbfastR::cfbd_player_usage()}} - A data frame with 14 variables:
+\code{\link[=cfbd_player_usage]{cfbd_player_usage()}} - A data frame with 14 variables:
 \describe{
-\item{\code{season}}{integer.}
-\item{\code{athlete_id}}{character.}
-\item{\code{name}}{character.}
-\item{\code{position}}{character.}
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{usg_overall}}{double.}
-\item{\code{usg_pass}}{double.}
-\item{\code{usg_rush}}{double.}
-\item{\code{usg_1st_down}}{double.}
-\item{\code{usg_2nd_down}}{double.}
-\item{\code{usg_3rd_down}}{double.}
-\item{\code{usg_standard_downs}}{double.}
-\item{\code{usg_passing_downs}}{double.}
+\item{\code{season}: integer.}
+\item{\code{athlete_id}: character.}
+\item{\code{name}: character.}
+\item{\code{position}: character.}
+\item{\code{team}: character.}
+\item{\code{conference}: character.}
+\item{\code{usg_overall}: double.}
+\item{\code{usg_pass}: double.}
+\item{\code{usg_rush}: double.}
+\item{\code{usg_1st_down}: double.}
+\item{\code{usg_2nd_down}: double.}
+\item{\code{usg_3rd_down}: double.}
+\item{\code{usg_standard_downs}: double.}
+\item{\code{usg_passing_downs}: double.}
 }
 }
 \description{
-CFBD Players Endpoint
+\describe{
+\item{\code{cfbd_player_info()}: Player Information Search}
+\item{\code{cfbd_player_returning()}: Player Returning Production}
+\item{\code{cfbd_player_usage()}: Player Usage}
+}
+}
+\details{
+\code{\link[=cfbd_player_returning]{cfbd_player_returning()}}
 
-Player Information Search
-
-Player Returning Production
-
-Player Usage
+\code{\link[=cfbd_player_usage]{cfbd_player_usage()}}
 }
 \examples{
 \donttest{

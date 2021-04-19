@@ -7,15 +7,15 @@ NULL
 #' @rdname espn_metrics
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #'
-#' @return espn_metrics_wp - A data frame with 5 variables:
+#' @return [espn_metrics_wp()] - A data frame with 5 variables:
 #' \describe{
-#'   \item{\code{espn_game_id}}{character.}
-#'   \item{\code{play_id}}{character.}
-#'   \item{\code{seconds_left}}{integer.}
-#'   \item{\code{home_win_percentage}}{double.}
-#'   \item{\code{away_win_percentage}}{double.}
+#'   \item{`espn_game_id`: character.}
+#'   \item{`play_id`: character.}
+#'   \item{`seconds_left`: integer.}
+#'   \item{`home_win_percentage`: double.}
+#'   \item{`away_win_percentage`: double.}
 #' }
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON

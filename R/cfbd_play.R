@@ -1,8 +1,16 @@
-#' CFBD Plays Endpoint
 #' @name cfbd_play
-NULL
-#' College Football Plays
-#' @rdname cfbd_play
+#' @aliases cfbd_plays cfbd_play_stats_player cfbd_play_stats_types
+#' @title CFBD Plays Endpoint 
+#' @description College Football Plays
+#' \describe{
+#' \item{`cfbd_plays()`: CFBD's College Football Play-by-Play}
+#' \item{`cfbd_play_stats_player()`: Gets player info associated by play}
+#' \item{`cfbd_play_stats_types()`: Gets CFBD play stat types}
+#' \item{`cfbd_play_types()`: Gets CFBD play types}
+#' }
+#' 
+#' @includeRmd man/rmd/cfbd_plays.Rmd details
+#' 
 #' @source \url{https://api.collegefootballdata.com/plays}
 #'
 #' @param season_type Select Season Type (regular, postseason, both)
@@ -17,22 +25,22 @@ NULL
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,\cr
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
-#' @param play_type Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})
+#' @param play_type Select play type (example: see the [cfbd_play_type_df])
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_plays]{cfbfastR::cfbd_plays()}}
+#' @return [cfbd_plays()]
 #' @source \url{https://api.collegefootballdata.com/plays}
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
-#'
+#' @export
 
 
 cfbd_plays <- function(year = 2020,
                        season_type = "regular",
-                       week = 4,
-                       team = "Florida State",
+                       week = 1,
+                       team = NULL,
                        offense = NULL,
                        defense = NULL,
                        conference = NULL,
@@ -147,70 +155,70 @@ cfbd_plays <- function(year = 2020,
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
+#' Can be found using the [cfbd_player_info()] function.
 #' @param stat_type_id (\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function
+#' Can be found using the [cfbd_play_stats_types()] function
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_play_stats_player]{cfbfastR::cfbd_play_stats_player()}} - A data frame with 54 variables:
+#' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
 #' \describe{
-#'   \item{\code{play_id}}{character.}
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{opponent}}{character.}
-#'   \item{\code{team_score}}{integer.}
-#'   \item{\code{opponent_score}}{integer.}
-#'   \item{\code{drive_id}}{character.}
-#'   \item{\code{period}}{integer.}
-#'   \item{\code{yards_to_goal}}{integer.}
-#'   \item{\code{down}}{integer.}
-#'   \item{\code{distance}}{integer.}
-#'   \item{\code{reception_player_id}}{character.}
-#'   \item{\code{reception_player}}{character.}
-#'   \item{\code{reception_yds}}{integer.}
-#'   \item{\code{completion_player_id}}{character.}
-#'   \item{\code{completion_player}}{character.}
-#'   \item{\code{completion_yds}}{integer.}
-#'   \item{\code{rush_player_id}}{character.}
-#'   \item{\code{rush_player}}{character.}
-#'   \item{\code{rush_yds}}{integer.}
-#'   \item{\code{interception_player_id}}{character.}
-#'   \item{\code{interception_player}}{character.}
-#'   \item{\code{interception_stat}}{integer.}
-#'   \item{\code{interception_thrown_player_id}}{character.}
-#'   \item{\code{interception_thrown_player}}{character.}
-#'   \item{\code{interception_thrown_stat}}{integer.}
-#'   \item{\code{touchdown_player_id}}{character.}
-#'   \item{\code{touchdown_player}}{character.}
-#'   \item{\code{touchdown_stat}}{integer.}
-#'   \item{\code{incompletion_player_id}}{character.}
-#'   \item{\code{incompletion_player}}{character.}
-#'   \item{\code{incompletion_stat}}{integer.}
-#'   \item{\code{target_player_id}}{character.}
-#'   \item{\code{target_player}}{character.}
-#'   \item{\code{target_stat}}{integer.}
-#'   \item{\code{fumble_recovered_player_id}}{logical.}
-#'   \item{\code{fumble_recovered_player}}{logical.}
-#'   \item{\code{fumble_recovered_stat}}{logical.}
-#'   \item{\code{fumble_forced_player_id}}{logical.}
-#'   \item{\code{fumble_forced_player}}{logical.}
-#'   \item{\code{fumble_forced_stat}}{logical.}
-#'   \item{\code{fumble_player_id}}{logical.}
-#'   \item{\code{fumble_player}}{logical.}
-#'   \item{\code{fumble_stat}}{logical.}
-#'   \item{\code{sack_player_id}}{character.}
-#'   \item{\code{sack_player}}{character.}
-#'   \item{\code{sack_stat}}{integer.}
-#'   \item{\code{sack_taken_player_id}}{character.}
-#'   \item{\code{sack_taken_player}}{character.}
-#'   \item{\code{sack_taken_stat}}{integer.}
-#'   \item{\code{pass_breakup_player_id}}{logical.}
-#'   \item{\code{pass_breakup_player}}{logical.}
-#'   \item{\code{pass_breakup_stat}}{logical.}
+#'   \item{`play_id`: character.}
+#'   \item{`game_id`: integer.}
+#'   \item{`season`: integer.}
+#'   \item{`week`: integer.}
+#'   \item{`opponent`: character.}
+#'   \item{`team_score`: integer.}
+#'   \item{`opponent_score`: integer.}
+#'   \item{`drive_id`: character.}
+#'   \item{`period`: integer.}
+#'   \item{`yards_to_goal`: integer.}
+#'   \item{`down`: integer.}
+#'   \item{`distance`: integer.}
+#'   \item{`reception_player_id`: character.}
+#'   \item{`reception_player`: character.}
+#'   \item{`reception_yds`: integer.}
+#'   \item{`completion_player_id`: character.}
+#'   \item{`completion_player`: character.}
+#'   \item{`completion_yds`: integer.}
+#'   \item{`rush_player_id`: character.}
+#'   \item{`rush_player`: character.}
+#'   \item{`rush_yds`: integer.}
+#'   \item{`interception_player_id`: character.}
+#'   \item{`interception_player`: character.}
+#'   \item{`interception_stat`: integer.}
+#'   \item{`interception_thrown_player_id`: character.}
+#'   \item{`interception_thrown_player`: character.}
+#'   \item{`interception_thrown_stat`: integer.}
+#'   \item{`touchdown_player_id`: character.}
+#'   \item{`touchdown_player`: character.}
+#'   \item{`touchdown_stat`: integer.}
+#'   \item{`incompletion_player_id`: character.}
+#'   \item{`incompletion_player`: character.}
+#'   \item{`incompletion_stat`: integer.}
+#'   \item{`target_player_id`: character.}
+#'   \item{`target_player`: character.}
+#'   \item{`target_stat`: integer.}
+#'   \item{`fumble_recovered_player_id`: logical.}
+#'   \item{`fumble_recovered_player`: logical.}
+#'   \item{`fumble_recovered_stat`: logical.}
+#'   \item{`fumble_forced_player_id`: logical.}
+#'   \item{`fumble_forced_player`: logical.}
+#'   \item{`fumble_forced_stat`: logical.}
+#'   \item{`fumble_player_id`: logical.}
+#'   \item{`fumble_player`: logical.}
+#'   \item{`fumble_stat`: logical.}
+#'   \item{`sack_player_id`: character.}
+#'   \item{`sack_player`: character.}
+#'   \item{`sack_stat`: integer.}
+#'   \item{`sack_taken_player_id`: character.}
+#'   \item{`sack_taken_player`: character.}
+#'   \item{`sack_taken_stat`: integer.}
+#'   \item{`pass_breakup_player_id`: logical.}
+#'   \item{`pass_breakup_player`: logical.}
+#'   \item{`pass_breakup_stat`: logical.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/play/stats}
 #' @keywords Player PBP
@@ -488,10 +496,10 @@ cfbd_play_stats_player <- function(year = NULL,
 
 #' College Football Mapping for Play Stats Types
 #' @rdname cfbd_play
-#' @return \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} - A data frame with 22 rows and 2 variables:
+#' @return `\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} - A data frame with 22 rows and 2 variables:
 #' \describe{
-#'   \item{play_stat_type_id}{Referencing play stat type ID}
-#'   \item{name}{Type of play stats}
+#'   \item{`play_stat_type_id`: Referencing play stat type ID}
+#'   \item{`name`: Type of play stats}
 #' }
 #' @source \url{https://api.collegefootballdata.com/play/stat/types}
 #' @keywords Plays
@@ -544,11 +552,11 @@ cfbd_play_stats_types <- function() {
 
 #' College Football Mapping for Play Types
 #' @rdname cfbd_play
-#' @return \code{\link[cfbfastR:cfbd_play_types]{cfbfastR::cfbd_play_types()}} - A data frame with 48 rows and 3 variables:
+#' @return `\link[cfbfastR:cfbd_play_types]{cfbfastR::cfbd_play_types()}} - A data frame with 48 rows and 3 variables:
 #' \describe{
-#'   \item{play_type_id}{Referencing play type id}
-#'   \item{text}{play type description}
-#'   \item{abbreviation}{play type abbreviation used for function call}
+#'   \item{`play_type_id`: Referencing play type id}
+#'   \item{`text`: play type description}
+#'   \item{`abbreviation`: play type abbreviation used for function call}
 #' }
 #' @source \url{https://api.collegefootballdata.com/play/types}
 #' @importFrom jsonlite fromJSON

@@ -1,9 +1,117 @@
-#' CFBD Games Endpoint
-#'
 #' @name cfbd_games
-NULL
-#' Get results information from games
-#' @rdname cfbd_games
+#' @aliases cfbd_games cfbd_game_info cfbd_calendar cfbd_game_media cfbd_game_box_advanced cfbd_game_player_stats cfbd_game_records cfbd_game_team_stats
+#' @title CFBD Games Endpoint
+#' @description Get results, statistics and information for games
+#' \describe{
+#'   \item{`cfbd_game_info()`: Get results information from games}
+#'   
+#'   \item{`cfbd_calendar()`: Calendar - Returns calendar of weeks by season}
+#'   
+#'   \item{`cfbd_game_media()`: Get Game media information (TV, radio, etc)}
+#'   
+#'   \item{`cfbd_game_box_advanced()`: Get game advanced box score information}
+#'   
+#'   \item{`cfbd_game_player_stats()`: Get results information from games}
+#'   
+#'   \item{`cfbd_game_records()`: Get Team records by year}
+#'   
+#'   \item{`cfbd_game_team_stats()`: Get Team Statistics by Game}
+#' }
+#' 
+#' 
+#' ## Get games info for given year and filter
+#' 
+#' ```r
+#' 
+#'   cfbd_game_info(2018, week = 1)
+#'
+#'   cfbd_game_info(2018, week = 7, conference = "Ind")
+#'
+#'   # 7 OTs LSU @ TAMU
+#'   cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+#'   
+#' ```
+#' 
+#' ## Get calendar weeks and dates
+#' 
+#' ```r
+#' 
+#'   cfbd_calendar(2019)
+#'   
+#' ```
+#' 
+#' ## Find game broadcast and media information
+#' 
+#' ```r
+#' 
+#'   cfbd_game_media(2019, week = 4, conference = "ACC")
+#'   
+#' ```
+#' 
+#' ## Get CFBD Advanced Game Box Scores (by `game_id`)
+#' 
+#' ```r
+#' 
+#'   cfbd_game_box_advanced(game_id = 401114233)
+#'   
+#' ```
+#' 
+#' ## Get CFBD Game Team Box Scores 
+#' 
+#' ```r   
+#' 
+#'   cfbd_game_team_stats(2019, team = "LSU")
+#'   
+#'   cfbd_game_team_stats(2013, team = "Florida State")
+#'   
+#' ```
+#' 
+#' ## Get CFBD Game Player Box Scores 
+#' 
+#' ```r
+#' 
+#'   cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+#'
+#'   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+#'   
+#' ```
+#' 
+#' ## Get CFBD Team Game Records 
+#' 
+#' ```r
+#' 
+#'   cfbd_game_records(2018, team = "Notre Dame")
+#'   
+#'   cfbd_game_records(2013, team = "Florida State")
+#'   
+#' ```
+#' @examples
+#' \donttest{
+#'   cfbd_game_info(2018, week = 1)
+#'
+#'   cfbd_game_info(2018, week = 7, conference = "Ind")
+#'
+#'   # 7 OTs LSU @ TAMU
+#'   cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+#' 
+#'   cfbd_calendar(2019)
+#' 
+#'   cfbd_game_media(2019, week = 4, conference = "ACC")
+#'   
+#'   cfbd_game_box_advanced(game_id = 401114233)
+#'   
+#'   cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+#'
+#'   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+#' 
+#'   cfbd_game_records(2018, team = "Notre Dame")
+#'
+#'   cfbd_game_records(2013, team = "Florida State")
+#'   
+#'   cfbd_game_team_stats(2019, team = "LSU")
+#'
+#'   cfbd_game_team_stats(2013, team = "Florida State")
+#' }
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
@@ -17,32 +125,32 @@ NULL
 #' @param quarter_scores (\emph{Logical} default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
+#' @param verbose (\emph{Logical}, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} - A data frame with 22 variables:
+#' @return [cfbd_game_info()] - A data frame with 22 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{start_date}}{character.}
-#'   \item{\code{start_time_tbd}}{logical.}
-#'   \item{\code{neutral_site}}{logical.}
-#'   \item{\code{conference_game}}{logical.}
-#'   \item{\code{attendance}}{integer.}
-#'   \item{\code{venue_id}}{integer.}
-#'   \item{\code{venue}}{character.}
-#'   \item{\code{home_id}}{integer.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{home_conference}}{character.}
-#'   \item{\code{home_points}}{integer.}
-#'   \item{\code{home_post_win_prob}}{character.}
-#'   \item{\code{away_id}}{integer.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{away_conference}}{character.}
-#'   \item{\code{away_points}}{integer.}
-#'   \item{\code{away_post_win_prob}}{character.}
-#'   \item{\code{excitement_index}}{character.}
+#'   \item{`game_id`: integer.}
+#'   \item{`season`: integer.}
+#'   \item{`week`: integer.}
+#'   \item{`season_type`: character.}
+#'   \item{`start_date`: character.}
+#'   \item{`start_time_tbd`: logical.}
+#'   \item{`neutral_site`: logical.}
+#'   \item{`conference_game`: logical.}
+#'   \item{`attendance`: integer.}
+#'   \item{`venue_id`: integer.}
+#'   \item{`venue`: character.}
+#'   \item{`home_id`: integer.}
+#'   \item{`home_team`: character.}
+#'   \item{`home_conference`: character.}
+#'   \item{`home_points`: integer.}
+#'   \item{`home_post_win_prob`: character.}
+#'   \item{`away_id`: integer.}
+#'   \item{`away_team`: character.}
+#'   \item{`away_conference`: character.}
+#'   \item{`away_points`: integer.}
+#'   \item{`away_post_win_prob`: character.}
+#'   \item{`excitement_index`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games}
 #' @keywords Game Info
@@ -54,15 +162,6 @@ NULL
 #' @import dplyr
 #' @import tidyr
 #' @export
-#' @examples
-#' \donttest{
-#'   cfbd_game_info(2018, week = 1)
-#'
-#'   cfbd_game_info(2018, week = 7, conference = "Ind")
-#'
-#'   # 7 OTs LSU @ TAMU
-#'   cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-#' }
 cfbd_game_info <- function(year,
                            week = NULL,
                            season_type = "regular",
@@ -190,11 +289,11 @@ cfbd_game_info <- function(year,
   return(df)
 }
 
-#' Calendar - Returns calendar of weeks by season
+#' 
 #' @rdname cfbd_games
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_calendar]{cfbfastR::cfbd_calendar()}} A data frame with 5 variables:
+#' @return [cfbd_calendar()] - A data frame with 5 variables:
 #' @source \url{https://api.collegefootballdata.com/calendar}
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
@@ -204,10 +303,6 @@ cfbd_game_info <- function(year,
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
 #' @export
-#' @examples
-#' \donttest{
-#' cfbd_calendar(2019)
-#' }
 #'
 cfbd_calendar <- function(year,
                           verbose = FALSE) {
@@ -261,7 +356,6 @@ cfbd_calendar <- function(year,
   return(df)
 }
 
-#' Get Game media information (TV, radio, etc)
 #' @rdname cfbd_games
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -273,21 +367,21 @@ cfbd_calendar <- function(year,
 #' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_game_media]{cfbfastR::cfbd_game_media()}} - A data frame with 13 variables:
+#' @return [cfbd_game_media()] - A data frame with 13 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{start_time}}{character.}
-#'   \item{\code{is_start_time_tbd}}{logical.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{home_conference}}{character.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{away_conference}}{character.}
-#'   \item{\code{tv}}{list.}
-#'   \item{\code{radio}}{logical.}
-#'   \item{\code{web}}{list.}
+#'   \item{`game_id`: integer.}
+#'   \item{`season`: integer.}
+#'   \item{`week`: integer.}
+#'   \item{`season_type`: character.}
+#'   \item{`start_time`: character.}
+#'   \item{`is_start_time_tbd`: logical.}
+#'   \item{`home_team`: character.}
+#'   \item{`home_conference`: character.}
+#'   \item{`away_team`: character.}
+#'   \item{`away_conference`: character.}
+#'   \item{`tv`: list.}
+#'   \item{`radio`: logical.}
+#'   \item{`web`: list.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games/media}
 #' @keywords Game Info
@@ -300,11 +394,6 @@ cfbd_calendar <- function(year,
 #' @import dplyr
 #' @import tidyr
 #' @export
-#' @examples
-#'
-#' \donttest{
-#'   cfbd_game_media(2019, week = 4, conference = "ACC")
-#' }
 cfbd_game_media <- function(year,
                             week = NULL,
                             season_type = "both",
@@ -409,83 +498,83 @@ cfbd_game_media <- function(year,
 }
 
 
-#' Get game advanced box score information
+#' 
 #' @rdname cfbd_games
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #' @param long (\emph{Logical} default `FALSE`): Return the data in a long format.
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_game_box_advanced]{cfbfastR::cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
+#' @return [cfbd_game_box_advanced()] - A data frame with 2 rows and 69 variables:
 #' \describe{
-#'   \item{\code{team}}{character.}
-#'   \item{\code{plays}}{double.}
-#'   \item{\code{ppa_overall_total}}{double.}
-#'   \item{\code{ppa_overall_quarter1}}{double.}
-#'   \item{\code{ppa_overall_quarter2}}{double.}
-#'   \item{\code{ppa_overall_quarter3}}{double.}
-#'   \item{\code{ppa_overall_quarter4}}{double.}
-#'   \item{\code{ppa_passing_total}}{double.}
-#'   \item{\code{ppa_passing_quarter1}}{double.}
-#'   \item{\code{ppa_passing_quarter2}}{double.}
-#'   \item{\code{ppa_passing_quarter3}}{double.}
-#'   \item{\code{ppa_passing_quarter4}}{double.}
-#'   \item{\code{ppa_rushing_total}}{double.}
-#'   \item{\code{ppa_rushing_quarter1}}{double.}
-#'   \item{\code{ppa_rushing_quarter2}}{double.}
-#'   \item{\code{ppa_rushing_quarter3}}{double.}
-#'   \item{\code{ppa_rushing_quarter4}}{double.}
-#'   \item{\code{cumulative_ppa_plays}}{double.}
-#'   \item{\code{cumulative_ppa_overall_total}}{double.}
-#'   \item{\code{cumulative_ppa_overall_quarter1}}{double.}
-#'   \item{\code{cumulative_ppa_overall_quarter2}}{double.}
-#'   \item{\code{cumulative_ppa_overall_quarter3}}{double.}
-#'   \item{\code{cumulative_ppa_overall_quarter4}}{double.}
-#'   \item{\code{cumulative_ppa_passing_total}}{double.}
-#'   \item{\code{cumulative_ppa_passing_quarter1}}{double.}
-#'   \item{\code{cumulative_ppa_passing_quarter2}}{double.}
-#'   \item{\code{cumulative_ppa_passing_quarter3}}{double.}
-#'   \item{\code{cumulative_ppa_passing_quarter4}}{double.}
-#'   \item{\code{cumulative_ppa_rushing_total}}{double.}
-#'   \item{\code{cumulative_ppa_rushing_quarter1}}{double.}
-#'   \item{\code{cumulative_ppa_rushing_quarter2}}{double.}
-#'   \item{\code{cumulative_ppa_rushing_quarter3}}{double.}
-#'   \item{\code{cumulative_ppa_rushing_quarter4}}{double.}
-#'   \item{\code{success_rates_overall_total}}{double.}
-#'   \item{\code{success_rates_overall_quarter1}}{double.}
-#'   \item{\code{success_rates_overall_quarter2}}{double.}
-#'   \item{\code{success_rates_overall_quarter3}}{double.}
-#'   \item{\code{success_rates_overall_quarter4}}{double.}
-#'   \item{\code{success_rates_standard_downs_total}}{double.}
-#'   \item{\code{success_rates_standard_downs_quarter1}}{double.}
-#'   \item{\code{success_rates_standard_downs_quarter2}}{double.}
-#'   \item{\code{success_rates_standard_downs_quarter3}}{double.}
-#'   \item{\code{success_rates_standard_downs_quarter4}}{double.}
-#'   \item{\code{success_rates_passing_downs_total}}{double.}
-#'   \item{\code{success_rates_passing_downs_quarter1}}{double.}
-#'   \item{\code{success_rates_passing_downs_quarter2}}{double.}
-#'   \item{\code{success_rates_passing_downs_quarter3}}{double.}
-#'   \item{\code{success_rates_passing_downs_quarter4}}{double.}
-#'   \item{\code{explosiveness_overall_total}}{double.}
-#'   \item{\code{explosiveness_overall_quarter1}}{double.}
-#'   \item{\code{explosiveness_overall_quarter2}}{double.}
-#'   \item{\code{explosiveness_overall_quarter3}}{double.}
-#'   \item{\code{explosiveness_overall_quarter4}}{double.}
-#'   \item{\code{rushing_power_success}}{double.}
-#'   \item{\code{rushing_stuff_rate}}{double.}
-#'   \item{\code{rushing_line_yds}}{double.}
-#'   \item{\code{rushing_line_yd_avg}}{double.}
-#'   \item{\code{rushing_second_lvl_yds}}{double.}
-#'   \item{\code{rushing_second_lvl_yd_avg}}{double.}
-#'   \item{\code{rushing_open_field_yds}}{double.}
-#'   \item{\code{rushing_open_field_yd_avg}}{double.}
-#'   \item{\code{havoc_total}}{double.}
-#'   \item{\code{havoc_front_seven}}{double.}
-#'   \item{\code{havoc_db}}{double.}
-#'   \item{\code{scoring_opps_opportunities}}{double.}
-#'   \item{\code{scoring_opps_points}}{double.}
-#'   \item{\code{scoring_opps_pts_per_opp}}{double.}
-#'   \item{\code{field_pos_avg_start}}{double.}
-#'   \item{\code{field_pos_avg_starting_predicted_pts}}{double.}
+#'   \item{`team`: character.}
+#'   \item{`plays`: double.}
+#'   \item{`ppa_overall_total`: double.}
+#'   \item{`ppa_overall_quarter1`: double.}
+#'   \item{`ppa_overall_quarter2`: double.}
+#'   \item{`ppa_overall_quarter3`: double.}
+#'   \item{`ppa_overall_quarter4`: double.}
+#'   \item{`ppa_passing_total`: double.}
+#'   \item{`ppa_passing_quarter1`: double.}
+#'   \item{`ppa_passing_quarter2`: double.}
+#'   \item{`ppa_passing_quarter3`: double.}
+#'   \item{`ppa_passing_quarter4`: double.}
+#'   \item{`ppa_rushing_total`: double.}
+#'   \item{`ppa_rushing_quarter1`: double.}
+#'   \item{`ppa_rushing_quarter2`: double.}
+#'   \item{`ppa_rushing_quarter3`: double.}
+#'   \item{`ppa_rushing_quarter4`: double.}
+#'   \item{`cumulative_ppa_plays`: double.}
+#'   \item{`cumulative_ppa_overall_total`: double.}
+#'   \item{`cumulative_ppa_overall_quarter1`: double.}
+#'   \item{`cumulative_ppa_overall_quarter2`: double.}
+#'   \item{`cumulative_ppa_overall_quarter3`: double.}
+#'   \item{`cumulative_ppa_overall_quarter4`: double.}
+#'   \item{`cumulative_ppa_passing_total`: double.}
+#'   \item{`cumulative_ppa_passing_quarter1`: double.}
+#'   \item{`cumulative_ppa_passing_quarter2`: double.}
+#'   \item{`cumulative_ppa_passing_quarter3`: double.}
+#'   \item{`cumulative_ppa_passing_quarter4`: double.}
+#'   \item{`cumulative_ppa_rushing_total`: double.}
+#'   \item{`cumulative_ppa_rushing_quarter1`: double.}
+#'   \item{`cumulative_ppa_rushing_quarter2`: double.}
+#'   \item{`cumulative_ppa_rushing_quarter3`: double.}
+#'   \item{`cumulative_ppa_rushing_quarter4`: double.}
+#'   \item{`success_rates_overall_total`: double.}
+#'   \item{`success_rates_overall_quarter1`: double.}
+#'   \item{`success_rates_overall_quarter2`: double.}
+#'   \item{`success_rates_overall_quarter3`: double.}
+#'   \item{`success_rates_overall_quarter4`: double.}
+#'   \item{`success_rates_standard_downs_total`: double.}
+#'   \item{`success_rates_standard_downs_quarter1`: double.}
+#'   \item{`success_rates_standard_downs_quarter2`: double.}
+#'   \item{`success_rates_standard_downs_quarter3`: double.}
+#'   \item{`success_rates_standard_downs_quarter4`: double.}
+#'   \item{`success_rates_passing_downs_total`: double.}
+#'   \item{`success_rates_passing_downs_quarter1`: double.}
+#'   \item{`success_rates_passing_downs_quarter2`: double.}
+#'   \item{`success_rates_passing_downs_quarter3`: double.}
+#'   \item{`success_rates_passing_downs_quarter4`: double.}
+#'   \item{`explosiveness_overall_total`: double.}
+#'   \item{`explosiveness_overall_quarter1`: double.}
+#'   \item{`explosiveness_overall_quarter2`: double.}
+#'   \item{`explosiveness_overall_quarter3`: double.}
+#'   \item{`explosiveness_overall_quarter4`: double.}
+#'   \item{`rushing_power_success`: double.}
+#'   \item{`rushing_stuff_rate`: double.}
+#'   \item{`rushing_line_yds`: double.}
+#'   \item{`rushing_line_yd_avg`: double.}
+#'   \item{`rushing_second_lvl_yds`: double.}
+#'   \item{`rushing_second_lvl_yd_avg`: double.}
+#'   \item{`rushing_open_field_yds`: double.}
+#'   \item{`rushing_open_field_yd_avg`: double.}
+#'   \item{`havoc_total`: double.}
+#'   \item{`havoc_front_seven`: double.}
+#'   \item{`havoc_db`: double.}
+#'   \item{`scoring_opps_opportunities`: double.}
+#'   \item{`scoring_opps_points`: double.}
+#'   \item{`scoring_opps_pts_per_opp`: double.}
+#'   \item{`field_pos_avg_start`: double.}
+#'   \item{`field_pos_avg_starting_predicted_pts`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/game/box/advanced}
 #' @keywords Game Advanced Box Score
@@ -500,10 +589,7 @@ cfbd_game_media <- function(year,
 #' @import tidyr
 #' @import purrr
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_game_box_advanced(game_id = 401114233)
-#' }
+#' 
 cfbd_game_box_advanced <- function(game_id, long = FALSE,
                                    verbose = FALSE) {
   if (!is.null(game_id)) {
@@ -613,7 +699,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
   return(df)
 }
 
-#' Get results information from games
+
 #'
 #' @rdname cfbd_games
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
@@ -628,43 +714,43 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_game_player_stats]{cfbfastR::cfbd_game_player_stats()}} - A data frame with 32 variables:
+#' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{home_away}}{character.}
-#'   \item{\code{points}}{integer.}
-#'   \item{\code{category}}{character.}
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{c_att}}{character.}
-#'   \item{\code{yds}}{double.}
-#'   \item{\code{avg}}{double.}
-#'   \item{\code{td}}{double.}
-#'   \item{\code{int}}{double.}
-#'   \item{\code{qbr}}{double.}
-#'   \item{\code{car}}{double.}
-#'   \item{\code{long}}{double.}
-#'   \item{\code{rec}}{double.}
-#'   \item{\code{no}}{double.}
-#'   \item{\code{fg}}{character.}
-#'   \item{\code{pct}}{double.}
-#'   \item{\code{xp}}{character.}
-#'   \item{\code{pts}}{double.}
-#'   \item{\code{tb}}{double.}
-#'   \item{\code{in_20}}{double.}
-#'   \item{\code{fum}}{double.}
-#'   \item{\code{lost}}{double.}
-#'   \item{\code{tot}}{double.}
-#'   \item{\code{solo}}{double.}
-#'   \item{\code{sacks}}{double.}
-#'   \item{\code{tfl}}{double.}
-#'   \item{\code{pd}}{double.}
-#'   \item{\code{qb_hur}}{double.}
+#'   \item{`game_id`: integer.}
+#'   \item{`team`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`home_away`: character.}
+#'   \item{`points`: integer.}
+#'   \item{`category`: character.}
+#'   \item{`athlete_id`: character.}
+#'   \item{`name`: character.}
+#'   \item{`c_att`: character.}
+#'   \item{`yds`: double.}
+#'   \item{`avg`: double.}
+#'   \item{`td`: double.}
+#'   \item{`int`: double.}
+#'   \item{`qbr`: double.}
+#'   \item{`car`: double.}
+#'   \item{`long`: double.}
+#'   \item{`rec`: double.}
+#'   \item{`no`: double.}
+#'   \item{`fg`: character.}
+#'   \item{`pct`: double.}
+#'   \item{`xp`: character.}
+#'   \item{`pts`: double.}
+#'   \item{`tb`: double.}
+#'   \item{`in_20`: double.}
+#'   \item{`fum`: double.}
+#'   \item{`lost`: double.}
+#'   \item{`tot`: double.}
+#'   \item{`solo`: double.}
+#'   \item{`sacks`: double.}
+#'   \item{`tfl`: double.}
+#'   \item{`pd`: double.}
+#'   \item{`qb_hur`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games/players}
 #' @keywords Game Info
@@ -678,12 +764,6 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #' @import tidyr
 #' @import purrr
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_game_player_stats(2018, week = 15, conference = "Ind")
-#'
-#'    cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
-#' }
 #'
 cfbd_game_player_stats <- function(year,
                                    week = NULL,
@@ -844,7 +924,7 @@ cfbd_game_player_stats <- function(year,
 }
 
 
-#' Get Team records by year
+
 #'
 #' @rdname cfbd_games
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
@@ -853,28 +933,28 @@ cfbd_game_player_stats <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_game_records]{cfbfastR::cfbd_game_records()}} - A data frame with 20 variables:
+#' @return [cfbd_game_records()] - A data frame with 20 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{division}}{character.}
-#'   \item{\code{total_games}}{integer.}
-#'   \item{\code{total_wins}}{integer.}
-#'   \item{\code{total_losses}}{integer.}
-#'   \item{\code{total_ties}}{integer.}
-#'   \item{\code{conference_games}}{integer.}
-#'   \item{\code{conference_wins}}{integer.}
-#'   \item{\code{conference_losses}}{integer.}
-#'   \item{\code{conference_ties}}{integer.}
-#'   \item{\code{home_games}}{integer.}
-#'   \item{\code{home_wins}}{integer.}
-#'   \item{\code{home_losses}}{integer.}
-#'   \item{\code{home_ties}}{integer.}
-#'   \item{\code{away_games}}{integer.}
-#'   \item{\code{away_wins}}{integer.}
-#'   \item{\code{away_losses}}{integer.}
-#'   \item{\code{away_ties}}{integer.}
+#'   \item{`year`: integer.}
+#'   \item{`team`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`division`: character.}
+#'   \item{`total_games`: integer.}
+#'   \item{`total_wins`: integer.}
+#'   \item{`total_losses`: integer.}
+#'   \item{`total_ties`: integer.}
+#'   \item{`conference_games`: integer.}
+#'   \item{`conference_wins`: integer.}
+#'   \item{`conference_losses`: integer.}
+#'   \item{`conference_ties`: integer.}
+#'   \item{`home_games`: integer.}
+#'   \item{`home_wins`: integer.}
+#'   \item{`home_losses`: integer.}
+#'   \item{`home_ties`: integer.}
+#'   \item{`away_games`: integer.}
+#'   \item{`away_wins`: integer.}
+#'   \item{`away_losses`: integer.}
+#'   \item{`away_ties`: integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/records}
 #' @keywords Team Info
@@ -885,12 +965,6 @@ cfbd_game_player_stats <- function(year,
 #' @import dplyr
 #' @import tidyr
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_game_records(2018, team = "Notre Dame")
-#'
-#'    cfbd_game_records(2013, team = "Florida State")
-#' }
 #'
 cfbd_game_records <- function(year, team = NULL, conference = NULL,
                               verbose = FALSE) {
@@ -981,8 +1055,6 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL,
 
 
 
-#' Get Team Statistics by Game
-#'
 #' @rdname cfbd_games
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -992,90 +1064,90 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #' @param rows_per_team (\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_game_team_stats]{cfbfastR::cfbd_game_team_stats()}} - A data frame with 78 variables:
+#' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{home_away}}{character.}
-#'   \item{\code{points}}{integer.}
-#'   \item{\code{total_yards}}{character.}
-#'   \item{\code{net_passing_yards}}{character.}
-#'   \item{\code{completion_attempts}}{character.}
-#'   \item{\code{passing_tds}}{character.}
-#'   \item{\code{yards_per_pass}}{character.}
-#'   \item{\code{passes_intercepted}}{character.}
-#'   \item{\code{interception_yards}}{character.}
-#'   \item{\code{interception_tds}}{character.}
-#'   \item{\code{rushing_attempts}}{character.}
-#'   \item{\code{rushing_yards}}{character.}
-#'   \item{\code{rush_tds}}{character.}
-#'   \item{\code{yards_per_rush_attempt}}{character.}
-#'   \item{\code{first_downs}}{character.}
-#'   \item{\code{third_down_eff}}{character.}
-#'   \item{\code{fourth_down_eff}}{character.}
-#'   \item{\code{punt_returns}}{character.}
-#'   \item{\code{punt_return_yards}}{character.}
-#'   \item{\code{punt_return_tds}}{character.}
-#'   \item{\code{kick_return_yards}}{character.}
-#'   \item{\code{kick_return_tds}}{character.}
-#'   \item{\code{kick_returns}}{character.}
-#'   \item{\code{kicking_points}}{character.}
-#'   \item{\code{fumbles_recovered}}{character.}
-#'   \item{\code{fumbles_lost}}{character.}
-#'   \item{\code{total_fumbles}}{character.}
-#'   \item{\code{tackles}}{character.}
-#'   \item{\code{tackles_for_loss}}{character.}
-#'   \item{\code{sacks}}{character.}
-#'   \item{\code{qb_hurries}}{character.}
-#'   \item{\code{interceptions}}{character.}
-#'   \item{\code{passes_deflected}}{character.}
-#'   \item{\code{turnovers}}{character.}
-#'   \item{\code{defensive_tds}}{character.}
-#'   \item{\code{total_penalties_yards}}{character.}
-#'   \item{\code{possession_time}}{character.}
-#'   \item{\code{conference_allowed}}{character.}
-#'   \item{\code{home_away_allowed}}{character.}
-#'   \item{\code{points_allowed}}{integer.}
-#'   \item{\code{total_yards_allowed}}{character.}
-#'   \item{\code{net_passing_yards_allowed}}{character.}
-#'   \item{\code{completion_attempts_allowed}}{character.}
-#'   \item{\code{passing_tds_allowed}}{character.}
-#'   \item{\code{yards_per_pass_allowed}}{character.}
-#'   \item{\code{passes_intercepted_allowed}}{character.}
-#'   \item{\code{interception_yards_allowed}}{character.}
-#'   \item{\code{interception_tds_allowed}}{character.}
-#'   \item{\code{rushing_attempts_allowed}}{character.}
-#'   \item{\code{rushing_yards_allowed}}{character.}
-#'   \item{\code{rush_tds_allowed}}{character.}
-#'   \item{\code{yards_per_rush_attempt_allowed}}{character.}
-#'   \item{\code{first_downs_allowed}}{character.}
-#'   \item{\code{third_down_eff_allowed}}{character.}
-#'   \item{\code{fourth_down_eff_allowed}}{character.}
-#'   \item{\code{punt_returns_allowed}}{character.}
-#'   \item{\code{punt_return_yards_allowed}}{character.}
-#'   \item{\code{punt_return_tds_allowed}}{character.}
-#'   \item{\code{kick_return_yards_allowed}}{character.}
-#'   \item{\code{kick_return_tds_allowed}}{character.}
-#'   \item{\code{kick_returns_allowed}}{character.}
-#'   \item{\code{kicking_points_allowed}}{character.}
-#'   \item{\code{fumbles_recovered_allowed}}{character.}
-#'   \item{\code{fumbles_lost_allowed}}{character.}
-#'   \item{\code{total_fumbles_allowed}}{character.}
-#'   \item{\code{tackles_allowed}}{character.}
-#'   \item{\code{tackles_for_loss_allowed}}{character.}
-#'   \item{\code{sacks_allowed}}{character.}
-#'   \item{\code{qb_hurries_allowed}}{character.}
-#'   \item{\code{interceptions_allowed}}{character.}
-#'   \item{\code{passes_deflected_allowed}}{character.}
-#'   \item{\code{turnovers_allowed}}{character.}
-#'   \item{\code{defensive_tds_allowed}}{character.}
-#'   \item{\code{total_penalties_yards_allowed}}{character.}
-#'   \item{\code{possession_time_allowed}}{character.}
+#'   \item{`game_id`: integer.}
+#'   \item{`school`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`home_away`: character.}
+#'   \item{`points`: integer.}
+#'   \item{`total_yards`: character.}
+#'   \item{`net_passing_yards`: character.}
+#'   \item{`completion_attempts`:character.}
+#'   \item{`passing_tds`: character.}
+#'   \item{`yards_per_pass`: character.}
+#'   \item{`passes_intercepted`: character.}
+#'   \item{`interception_yards`: character.}
+#'   \item{`interception_tds`: character.}
+#'   \item{`rushing_attempts`: character.}
+#'   \item{`rushing_yards`: character.}
+#'   \item{`rush_tds`: character.}
+#'   \item{`yards_per_rush_attempt`: character.}
+#'   \item{`first_downs`: character.}
+#'   \item{`third_down_eff`: character.}
+#'   \item{`fourth_down_eff`: character.}
+#'   \item{`punt_returns`: character.}
+#'   \item{`punt_return_yards`: character.}
+#'   \item{`punt_return_tds`: character.}
+#'   \item{`kick_return_yards`: character.}
+#'   \item{`kick_return_tds`: character.}
+#'   \item{`kick_returns`: character.}
+#'   \item{`kicking_points`: character.}
+#'   \item{`fumbles_recovered`: character.}
+#'   \item{`fumbles_lost`: character.}
+#'   \item{`total_fumbles`: character.}
+#'   \item{`tackles`: character.}
+#'   \item{`tackles_for_loss`: character.}
+#'   \item{`sacks`: character.}
+#'   \item{`qb_hurries`: character.}
+#'   \item{`interceptions`: character.}
+#'   \item{`passes_deflected`: character.}
+#'   \item{`turnovers`: character.}
+#'   \item{`defensive_tds`: character.}
+#'   \item{`total_penalties_yards`: character.}
+#'   \item{`possession_time`: character.}
+#'   \item{`conference_allowed`: character.}
+#'   \item{`home_away_allowed`: character.}
+#'   \item{`points_allowed`: integer.}
+#'   \item{`total_yards_allowed`: character.}
+#'   \item{`net_passing_yards_allowed`: character.}
+#'   \item{`completion_attempts_allowed`: character.}
+#'   \item{`passing_tds_allowed`: character.}
+#'   \item{`yards_per_pass_allowed`: character.}
+#'   \item{`passes_intercepted_allowed`: character.}
+#'   \item{`interception_yards_allowed`: character.}
+#'   \item{`interception_tds_allowed`: character.}
+#'   \item{`rushing_attempts_allowed`: character.}
+#'   \item{`rushing_yards_allowed`: character.}
+#'   \item{`rush_tds_allowed`: character.}
+#'   \item{`yards_per_rush_attempt_allowed`: character.}
+#'   \item{`first_downs_allowed`: character.}
+#'   \item{`third_down_eff_allowed`: character.}
+#'   \item{`fourth_down_eff_allowed`: character.}
+#'   \item{`punt_returns_allowed`: character.}
+#'   \item{`punt_return_yards_allowed`: character.}
+#'   \item{`punt_return_tds_allowed`: character.}
+#'   \item{`kick_return_yards_allowed`: character.}
+#'   \item{`kick_return_tds_allowed`: character.}
+#'   \item{`kick_returns_allowed`: character.}
+#'   \item{`kicking_points_allowed`: character.}
+#'   \item{`fumbles_recovered_allowed`: character.}
+#'   \item{`fumbles_lost_allowed`: character.}
+#'   \item{`total_fumbles_allowed`:character.}
+#'   \item{`tackles_allowed`:character.}
+#'   \item{`tackles_for_loss_allowed`: character.}
+#'   \item{`sacks_allowed`: character.}
+#'   \item{`qb_hurries_allowed`: character.}
+#'   \item{`interceptions_allowed`: character.}
+#'   \item{`passes_deflected_allowed`: character.}
+#'   \item{`turnovers_allowed`: character.}
+#'   \item{`defensive_tds_allowed`: character.}
+#'   \item{`total_penalties_yards_allowed`: character.}
+#'   \item{`possession_time_allowed`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games/teams}
 #' @keywords Team Game Stats
@@ -1089,12 +1161,6 @@ cfbd_game_records <- function(year, team = NULL, conference = NULL,
 #' @import tidyr
 #' @import purrr
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_game_team_stats(2019, team = "LSU")
-#'
-#'    cfbd_game_team_stats(2013, team = "Florida State")
-#' }
 #'
 cfbd_game_team_stats <- function(year,
                                  week = NULL,

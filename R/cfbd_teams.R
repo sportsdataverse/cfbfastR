@@ -1,11 +1,17 @@
-#' CFBD Teams Endpoint
 #' @name cfbd_teams
-NULL
+#' @aliases cfbd_team_info cfbd_team_matchup_records cfbd_team_matchup cfbd_team_roster cfbd_team_talent
+#' @title CFBD Teams Endpoint
+#' @description 
+#' \describe{
+#' \item{`cfbd_team_info()`: Team Info Lookup}
+#' \item{`cfbd_team_matchup_records()`: Get matchup history records between two teams.}
+#' \item{`cfbd_team_matchup()`: Get matchup history between two teams.}
+#' \item{`cfbd_team_talent()`: Get composite team talent rankings for all teams in a given year}
+#' }
 #' Team Info Lookup
 #' Lists all teams in conference or all D-I teams if conference is left NULL
-#' Current support only for D-I
+#' Currently, support is only provided for D-I
 #'
-#' @rdname cfbd_teams
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
@@ -14,35 +20,35 @@ NULL
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_team_info]{cfbfastR::cfbd_team_info()}} - A data frame with 12 variables:
+#' @return [cfbd_team_info()] - A data frame with 12 variables:
 #' \describe{
-#'   \item{\code{team_id}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{mascot}}{character.}
-#'   \item{\code{abbreviation}}{character.}
-#'   \item{\code{alt_name1}}{character.}
-#'   \item{\code{alt_name2}}{character.}
-#'   \item{\code{alt_name3}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{division}}{character.}
-#'   \item{\code{color}}{character.}
-#'   \item{\code{alt_color}}{character.}
-#'   \item{\code{logo_1}}{character.}
-#'   \item{\code{logo_2}}{character.}
-#'   \item{\code{venue_id}}{character.}
-#'   \item{\code{venue_name}}{character.}
-#'   \item{\code{city}}{character.}
-#'   \item{\code{state}}{character.}
-#'   \item{\code{zip}}{character.}
-#'   \item{\code{country_code}}{character.}
-#'   \item{\code{timezone}}{character.}
-#'   \item{\code{latitude}}{character.}
-#'   \item{\code{longitude}}{character.}
-#'   \item{\code{elevation}}{character.}
-#'   \item{\code{capacity}}{character.}
-#'   \item{\code{year_constructed}}{character.}
-#'   \item{\code{grass}}{character.}
-#'   \item{\code{dome}}{character.}
+#'   \item{`team_id`: integer.}
+#'   \item{`school`: character.}
+#'   \item{`mascot`: character.}
+#'   \item{`abbreviation`: character.}
+#'   \item{`alt_name1`: character.}
+#'   \item{`alt_name2`: character.}
+#'   \item{`alt_name3`: character.}
+#'   \item{`conference`: character.}
+#'   \item{`division`: character.}
+#'   \item{`color`: character.}
+#'   \item{`alt_color`: character.}
+#'   \item{`logo_1`: character.}
+#'   \item{`logo_2`: character.}
+#'   \item{`venue_id`: character.}
+#'   \item{`venue_name`: character.}
+#'   \item{`city`: character.}
+#'   \item{`state`: character.}
+#'   \item{`zip`: character.}
+#'   \item{`country_code`: character.}
+#'   \item{`timezone`: character.}
+#'   \item{`latitude`: character.}
+#'   \item{`longitude`: character.}
+#'   \item{`elevation`: character.}
+#'   \item{`capacity`: character.}
+#'   \item{`year_constructed`: character.}
+#'   \item{`grass`: character.}
+#'   \item{`dome`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams}
 #' @keywords Teams
@@ -187,15 +193,15 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_team_matchup_records]{cfbfastR::cfbd_team_matchup_records()}} - A data frame with 7 variables:
+#' @return [cfbd_team_matchup_records()] - A data frame with 7 variables:
 #' \describe{
-#'   \item{\code{start_year}}{character.}
-#'   \item{\code{end_year}}{character.}
-#'   \item{\code{team1}}{character.}
-#'   \item{\code{team1_wins}}{character.}
-#'   \item{\code{team2}}{character.}
-#'   \item{\code{team2_wins}}{character.}
-#'   \item{\code{ties}}{character.}
+#'   \item{`start_year`: character.}
+#'   \item{`end_year`: character.}
+#'   \item{`team1`: character.}
+#'   \item{`team1_wins`: character.}
+#'   \item{`team2`: character.}
+#'   \item{`team2_wins`: character.}
+#'   \item{`ties`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup Records
@@ -321,19 +327,19 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_team_matchup]{cfbfastR::cfbd_team_matchup()}} - A data frame with 11 variables:
+#' @return [cfbd_team_matchup] - A data frame with 11 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{date}}{character.}
-#'   \item{\code{neutral_site}}{logical.}
-#'   \item{\code{venue}}{character.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{home_score}}{integer.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{away_score}}{integer.}
-#'   \item{\code{winner}}{character.}
+#'   \item{`season`: integer.}
+#'   \item{`week`: integer.}
+#'   \item{`season_type`: character.}
+#'   \item{`date`: character.}
+#'   \item{`neutral_site`: logical.}
+#'   \item{`venue`: character.}
+#'   \item{`home_team`: character.}
+#'   \item{`home_score`: integer.}
+#'   \item{`away_team`: character.}
+#'   \item{`away_score`: integer.}
+#'   \item{`winner`: character.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup
@@ -452,23 +458,23 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #'
-#' @return \code{\link[cfbfastR:cfbd_team_roster]{cfbfastR::cfbd_team_roster()}} - A data frame with 12 variables:
+#' @return [cfbd_team_roster()] - A data frame with 12 variables:
 #' \describe{
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{first_name}}{character.}
-#'   \item{\code{last_name}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{weight}}{integer.}
-#'   \item{\code{height}}{integer.}
-#'   \item{\code{jersey}}{integer.}
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{home_city}}{character.}
-#'   \item{\code{home_state}}{character.}
-#'   \item{\code{home_country}}{character.}
-#'   \item{\code{home_latitude}}{numeric.}
-#'   \item{\code{home_longitude}}{number.}
-#'   \item{\code{home_county_fips}}{integer.}
+#'   \item{`athlete_id`: character.}
+#'   \item{`first_name`: character.}
+#'   \item{`last_name`: character.}
+#'   \item{`team`: character.}
+#'   \item{`weight`: integer.}
+#'   \item{`height`: integer.}
+#'   \item{`jersey`: integer.}
+#'   \item{`year`: integer.}
+#'   \item{`position`: character.}
+#'   \item{`home_city`: character.}
+#'   \item{`home_state`: character.}
+#'   \item{`home_country`: character.}
+#'   \item{`home_latitude`: numeric.}
+#'   \item{`home_longitude`: number.}
+#'   \item{`home_county_fips`: integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/roster}
 #' @keywords Team Roster
@@ -563,11 +569,11 @@ cfbd_team_roster <- function(year, team = NULL,
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
-#' @return \code{\link[cfbfastR:cfbd_team_talent]{cfbfastR::cfbd_team_talent()}} - A data frame with 3 variables:
+#' @return [cfbd_team_talent()] - A data frame with 3 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{talent}}{double.}
+#'   \item{`year`: integer.}
+#'   \item{`school`: character.}
+#'   \item{`talent`: double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/talent}
 #' @keywords Team talent

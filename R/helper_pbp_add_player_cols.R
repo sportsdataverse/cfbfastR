@@ -1,36 +1,35 @@
-#' Add player columns extracted from play text
-#'
+#' @rdname helpers_pbp
 #' @param play_df (\emph{data.frame} required) Extracts player name information from Play-by-Play data frame, as pulled from `cfbd_pbp_data()`
 #' @details Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:
 #' \itemize{
-#' \item{rush}{.}
-#' \item{pass}{.}
-#' \item{play_text}{}
-#' \item{play_type}{.}
-#' \item{sack}{.}
-#' \item{fumble_vec}{.}
+#' \item{`rush`}
+#' \item{`pass`}
+#' \item{`play_text`}
+#' \item{`play_type`}
+#' \item{`sack`}
+#' \item{`fumble_vec`}
 #' }
 #' @return The original `pbp` with the following columns appended to it:
 #' \describe{
-#' \item{rusher_player_name}{.}
-#' \item{receiver_player_name}{.}
-#' \item{passer_player_name}{.}
-#' \item{sack_player_name}{.}
-#' \item{sack_player_name2}{.}
-#' \item{pass_breakup_player_name}{.}
-#' \item{interception_player_name}{.}
-#' \item{fg_kicker_player_name}{.}
-#' \item{fg_block_player_name}{.}
-#' \item{fg_return_player_name}{.}
-#' \item{kickoff_player_name}{.}
-#' \item{kickoff_returner_player_name}{.}
-#' \item{punter_player_name}{.}
-#' \item{punt_block_player_name}{.}
-#' \item{punt_returner_player_name}{.}
-#' \item{punt_block_return_player_name}{.}
-#' \item{fumble_player_name}{.}
-#' \item{fumble_forced_player_name}{.}
-#' \item{fumble_recovered_player_name}{.}
+#' \item{`rusher_player_name`}
+#' \item{`receiver_player_name`}
+#' \item{`passer_player_name`}
+#' \item{`sack_player_name`}
+#' \item{`sack_player_name2`}
+#' \item{`pass_breakup_player_name`}
+#' \item{`interception_player_name`}
+#' \item{`fg_kicker_player_name`}
+#' \item{`fg_block_player_name`}
+#' \item{`fg_return_player_name`}
+#' \item{`kickoff_player_name`}
+#' \item{`kickoff_returner_player_name`}
+#' \item{`punter_player_name`}
+#' \item{`punt_block_player_name`}
+#' \item{`punt_returner_player_name`}
+#' \item{`punt_block_return_player_name`}
+#' \item{`fumble_player_name`}
+#' \item{`fumble_forced_player_name`}
+#' \item{`fumble_recovered_player_name`}
 #' }
 #' @keywords internal
 #' @importFrom rlang .data
