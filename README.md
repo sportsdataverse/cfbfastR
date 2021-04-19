@@ -24,7 +24,7 @@ You can install the released version of
 
 ``` r
 # You can install using the pacman package using the following code:
-if (!requireNamespace('pacman')){
+if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load_gh("saiemgilani/cfbfastR")
@@ -32,7 +32,7 @@ pacman::p_load_gh("saiemgilani/cfbfastR")
 
 ``` r
 # if you would prefer devtools installation
-if (!requireNamespace('devtools')){
+if (!requireNamespace('devtools', quietly = TRUE)){
   install.packages('devtools')
 }
 # Alternatively, using the devtools package:
