@@ -18,7 +18,7 @@ NULL
 #' @rdname load_cfb_pbp
 #' @description helper that loads multiple seasons from the data repo either into memory
 #' or writes it into a db using some forwarded arguments in the dots
-#' @param seasons A vector of 4-digit years associated with given NFL seasons.
+#' @param seasons A vector of 4-digit years associated with given College Football seasons.
 #' @param ... Additional arguments passed to an underlying function that writes
 #' the season data into a database (used by \code{\link[=update_cfb_db]{update_cfb_db()}}).
 #' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
