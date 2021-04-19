@@ -7,15 +7,19 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
+<a href="https://twitter.com/arbitanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=twitter&style=for-the-badge" alt="@arbitanalytics" /></a>
+<a href="https://github.com/ehess" target="blank"><img src="https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge" alt="@ehess" /></a>
 
 Hi ```cfbfastR``` users, I'm Eric Hess and I run the [Twitter account](https://twitter.com/arbitanalytics) and blog called [Arbitrary Analytics](https://arbitraryanalytics.com/). My work focuses on sports analytics mainly for Nebraska and the Big Ten. Today, I'm going to walk through how I used the ```cfbfastR``` package to make a simple plot of recent recruiting classes. The final output will give you a quick way to visually approximate how much talent each school has recruited. I'm going to assume you have a basic understanding of working with R and that your development environment is already setup.
 
 We start by loading the packages we need. The ```cfbfastR``` package will provide us with our source of data. The ```dplyr``` package gives us handy data manipulation tools and the ever useful pipe (```%>%```) syntax. Finally, ```ggplot2``` will allow us to make a simple, functional graph of our results.
 
 ```{r packages}
-# library(cfbfastR)
-library(dplyr)
-library(ggplot2)
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load(dplyr, ggplot2)
+pacman::p_load_gh("saiemgilani/cfbfastR")
 ```
 
 To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```). I also have the loop pause for 5 seconds between each team. While this causes the function to take a little longer to run it also helps with server load on the back end.
