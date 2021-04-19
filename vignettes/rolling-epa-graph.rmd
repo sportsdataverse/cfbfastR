@@ -4,45 +4,36 @@ author: "Nate Manzo (@cfbnate)"
 output: html_document
 ---
 
+<a href="https://twitter.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=twitter&style=for-the-badge" alt="@cfbnate" /></a>
+<a href="https://github.com/natemanzo" target="blank"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge" alt="@natemanzo" /></a>
+
 This vignette will use data from the ```cfbfastR``` package to create a moving average graph of offensive EPA over the course of a season.  This lets us visualize how a team's performance has changed over time and compare that performance to other teams around the country.
 
-## Install the necessary packages
-
-You'll want to make sure the following packages are installed.  Run these lines without the "#" to install them.  If you have already installed these packages you can skip this step.
-
-```{r install_packages, eval=FALSE}
-#install.packages('tidyverse')
-#install.packages("devtools")
-#install.packages("zoo")
-#install.packages("ggimage")
-#devtools::install_github("saiemgilani/cfbfastR")
-```
-
-## Load the necessary packages
-
-```{r load_libraries, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(cfbfastR)
-library(zoo)
-library(ggimage)
+## Load and Install the necessary packages
+```{r install_packages}
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load(tidyverse, zoo, ggimage)
+pacman::p_load_gh("saiemgilani/cfbfastR")
 ```
 
 ## Pull the play by play data
 
-In the interest of time, I'm going to avoid a fresh call to the API here and I'm going to use a copy of the play by play data that is saved on github.  This method only takes about 30 seconds.  The result will be a dataframe that contains ALL of the play by play data for ALL teams in 2020.
+Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in 2020. This method only takes about 30 seconds.
 
-```{r load_pbp_github, message=FALSE, warning=FALSE}
-t <- tempfile()
-download.file("https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/data/rds/pbp_players_pos_2020.rds",t)
-pbp_2020 <- readRDS(t)
+```{r load_cfb_pbp_2020, message=FALSE, warning=FALSE}
+
+pbp_2020 <- cfbfastR::load_cfb_pbp(2020)
+
 ```
 
 ## Pull team info and team colors
 
 We can use the ```cfbd_team_info()``` function to pull information about each FBS school including their logo, color, and abbreviation.  We're going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.
 
-```{r}
-team_info = cfbd_team_info(year = 2020)
+```{r cfbd_teams_info}
+team_info = cfbfastR::cfbd_team_info(year = 2020)
 
 team_colors_logos = team_info %>% 
   select(school, abbreviation, color, logos, alt_color) %>%
