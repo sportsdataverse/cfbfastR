@@ -9,66 +9,79 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Hey everyone, my name is Michael (known as @deceptivespeed_ on twitter) and over the summer I worked on a daily series of plots using ```ggplot``` and the ```cfbfastR``` package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they're put together. If you haven't already, you should read the introduction tutorial that Parker made to get used to the data and download the package.
+<a href="https://twitter.com/deceptivespeed_" target="blank"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=twitter&style=for-the-badge" alt="@deceptivespeed_" /></a> <a href="https://github.com/michaelegle" target="blank"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge" alt="@michaelegle" /></a>
 
-First, we'll have to import the necessary packages
-```{r package_load}
-# library(cfbfastR)
-library(tidyverse)
+Hey everyone, my name is Michael and over the summer I worked on a daily series of plots using ```ggplot``` and the ```cfbfastR``` package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they're put together. If you haven't already, you should read the introduction tutorial that Parker made to get used to the data and download the package.
+
+## First, we'll have to install and import the necessary packages
+```{r install_packages}
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load(tidyverse)
+pacman::p_load_gh("saiemgilani/cfbfastR")
 ```
 
 
-Originally, I wrote this code for years from 2014-2019 but for the sake of runtime, we'll just do last season (feel free to alter the code to include past years). This code might look a little familiar if you did Parker's tutorial, it'll take a while to run.
-```{r, warning = FALSE}
-pbp19 <- data.frame()
-seasons <- 2019
-pbp19 <- purrr::map_df(seasons, function(x) {
-  readRDS(
-    url(
-      glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/data/rds/pbp_players_pos_{x}.rds")
-    )
-  )
+We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
+```{r load_2014_2020, warning = FALSE}
+tictoc::tic()
+pbp <- data.frame()
+seasons <- 2014:2020
+progressr::with_progress({
+future::plan("multisession")
+  pbp <- cfbfastR::load_cfb_pbp(seasons)
 })
-
+tictoc::toc()
 ```
 
 Next, we'll need to get the coaching information, so we'll use the ```cfbd_coaches``` function:
 ```{r fourth_down_coaches}
-coaches <- cfbfastR::cfbd_coaches(year = 2019)
+coaches <- purrr::map_dfr(seasons,function(x){cfbfastR::cfbd_coaches(year = x)})
+
+```
+In order to get the school's conference information, we'll use the ```cfbd_team_info``` function and use ```dplyr```'s ```left_join``` function, joining on the `school` column in both tables:
+```{r teams_info}
+team_info <- cfbfastR::cfbd_team_info()
+coaches <- coaches %>% 
+  dplyr::left_join(team_info, by="school")
+```
+
+```{r fourth_down_coaches2}
 coaches <- coaches %>%
-  mutate(coach = paste(first_name, last_name, sep = " ")) %>%
-  filter(games >= 6) %>%
-  select(coach, school, year)
+  dplyr::mutate(coach = paste(first_name, last_name, sep = " ")) %>%
+  dplyr::filter(games >= 6) %>%
+  dplyr::select(coach, school, year, conference)
 ```
 
 Since interim coaches are included in the coaches dataframe, we'll set the cutoff at coaching 6 or more games.
 
 We only have a couple more steps to make our graph. Next, we need to add our coaches to the ```pbp``` dataframe using join functions
 ```{r fourth_down_join}
-pbp19 <- pbp19 %>%
-  inner_join(coaches, by = c("offense_play" = "school", "year" = "year"))
+pbp <- pbp %>%
+  dplyr::inner_join(coaches, by = c("offense_play" = "school", "year" = "year"))
 ```
 
 Now we can filter down to only fourth down plays, then we'll add columns to determine if the play was a punt, FGA, or the team went for it.
 ```{r fourth_down_mutate}
-down4 <- pbp19 %>%
-  filter(down == 4) %>%
-  mutate(fga = ifelse(str_detect(play_type, "Field Goal"),
-                      1, 0),
-         punt = ifelse(play_type == "Punt", 1, 0),
-         attempt = ifelse(rush == 1 | pass == 1, 1, 0),
-         play = case_when(fga == 1 ~ "FG Attempt",
-                          punt == 1 ~ "Punt",
-                          attempt == 1 ~ "Go"))
+down4 <- pbp %>%
+  dplyr::filter(down == 4) %>%
+  dplyr::mutate(fga = ifelse(str_detect(play_type, "Field Goal"),
+                             1, 0),
+                punt = ifelse(play_type == "Punt", 1, 0),
+                attempt = ifelse(rush == 1 | pass == 1, 1, 0),
+                play = dplyr::case_when(fga == 1 ~ "FG Attempt",
+                                 punt == 1 ~ "Punt",
+                                 attempt == 1 ~ "Go"))
 ```
 
-And now we've got all the info we need to make the graph! The code below is listed for current Big 12 head (Except Dave Aranda since he has no HC experience) coaches, but you can alter it to show whicher coaches you want.
+And now we've got all the info we need to make the graph! The code below is listed for current Big 12 head coaches, but you can alter it to show whichever coaches you want.
 ```{r fourth_down_plot}
 down4 %>%
-  filter(!is.na(play)) %>%
-  filter(coach %in% c("Matt Campbell", "Tom Herman", "Lincoln Riley", "Chris Klieman", "Matt Wells",
-                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Matt Rhule")) %>%
-  filter(distance <= 5, distance > 0) %>%
+  dplyr::filter(!is.na(play)) %>%
+  dplyr::filter(coach %in% c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",
+                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")) %>%
+  dplyr::filter(distance <= 5, distance > 0) %>%
   ggplot(aes(x = distance, y = 100 - yards_to_goal, color = play)) +
   geom_jitter() +
   facet_wrap(. ~ coach) +
