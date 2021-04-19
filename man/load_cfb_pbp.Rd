@@ -7,7 +7,7 @@
 load_cfb_pbp(seasons, ..., qs = FALSE)
 }
 \arguments{
-\item{seasons}{A vector of 4-digit years associated with given NFL seasons.}
+\item{seasons}{A vector of 4-digit years associated with given College Football seasons.}
 
 \item{...}{Additional arguments passed to an underlying function that writes
 the season data into a database (used by \code{\link[=update_cfb_db]{update_cfb_db()}}).}
