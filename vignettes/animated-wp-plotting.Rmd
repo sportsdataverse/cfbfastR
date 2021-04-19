@@ -7,21 +7,24 @@ output: html_document
 old <- options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
+<a href="https://twitter.com/JaredDLee" target="blank"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=twitter&style=for-the-badge" alt="@JaredDLee" /></a>
+<a href="https://github.com/Kazink36" target="blank"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge" alt="@Kazink36" /></a>
+
 Have you ever wanted to make an [animated win probability chart](https://kazink36.github.io/images/animated_wp_ex_wide.gif) for college football like [Lee Sharpe](https://twitter.com/LeeSharpeNFL) makes for [the NFL](https://twitter.com/LeeSharpeNFL/status/1300526539344289792)?
 This document will walk you step-by-step through the process of adapting [Sharpe's code](https://github.com/leesharpe/nfldata/blob/master/code/wpchart.R) to college football using data from [CollegeFootballData.com](collegefootballdata.com) collected using the ```cfbfastR``` package for R.
 
 -[Jared Lee](https://twitter.com/JaredDLee)
 
-## Load Packages
+## Load and Install Packages
 
 We're going to need several packages to generate the winning percentage plot: ```tidyverse``` for easy data wrangling, string manipulation, and plotting, ```glue``` to easily make the labels, ```ggimage``` to put the logos on the plot, and ```animation``` to actually build the GIF. 
 
 ```{r packages, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(animation)
-library(glue)
-library(ggimage)
-library(zoo)
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load(tidyverse, animation, glue, zoo, ggimage)
+pacman::p_load_gh("saiemgilani/cfbfastR")
 ```
 
 ## cfbfastR
