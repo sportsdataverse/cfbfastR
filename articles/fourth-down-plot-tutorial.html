@@ -22,7 +22,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Creating Fourth Down Tendency Plots Using cfbfastR">
 <meta property="og:description" content="cfbfastR">
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico">
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png">
+<meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@cfbfastR">
 <meta name="twitter:site" content="@cfbfastR">
@@ -267,60 +268,64 @@
 
     
     
-<p>Hey everyone, my name is Michael (known as <span class="citation">@deceptivespeed_</span> on twitter) and over the summer I worked on a daily series of plots using <code>ggplot</code> and the <code>cfbfastR</code> package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they’re put together. If you haven’t already, you should read the introduction tutorial that Parker made to get used to the data and download the package.</p>
-<p>First, we’ll have to import the necessary packages</p>
+<p><a href="https://twitter.com/deceptivespeed_" target="blank"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=twitter&amp;style=for-the-badge" alt="@deceptivespeed_"></a> <a href="https://github.com/michaelegle" target="blank"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a></p>
+<p>Hey everyone, my name is Michael and over the summer I worked on a daily series of plots using <code>ggplot</code> and the <code>cfbfastR</code> package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they’re put together. If you haven’t already, you should read the introduction tutorial that Parker made to get used to the data and download the package.</p>
+<div id="first-well-have-to-install-and-import-the-necessary-packages" class="section level2">
+<h2 class="hasAnchor">
+<a href="#first-well-have-to-install-and-import-the-necessary-packages" class="anchor"></a>First, we’ll have to install and import the necessary packages</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># library(cfbfastR)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.3.3     ✔ purrr   0.3.4
-## ✔ tibble  3.1.1     ✔ dplyr   1.0.5
-## ✔ tidyr   1.1.3     ✔ stringr 1.4.0
-## ✔ readr   1.4.0     ✔ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<p>Originally, I wrote this code for years from 2014-2019 but for the sake of runtime, we’ll just do last season (feel free to alter the code to include past years). This code might look a little familiar if you did Parker’s tutorial, it’ll take a while to run.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbp19</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">seasons</span> <span class="op">&lt;-</span> <span class="fl">2019</span>
-<span class="va">pbp19</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">seasons</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span>
-      <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/data/rds/pbp_players_pos_{x}.rds"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">}</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_gh.html">p_load_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<p>We are going to load in data for seasons 2014-2020, it’ll take between 45-90 seconds to run.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">seasons</span> <span class="op">&lt;-</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2020</span>
+<span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/progressr/man/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
+<span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/future/man/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
+  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## 54.633 sec elapsed</code></pre>
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfbd_coaches</code> function:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr</a></span><span class="op">(</span><span class="va">seasons</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
+<p>In order to get the school’s conference information, we’ll use the <code>cfbd_team_info</code> function and use <code>dplyr</code>’s <code>left_join</code> function, joining on the <code>school</code> column in both tables:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">team_info</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_teams.html">cfbd_team_info</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">team_info</span>, by<span class="op">=</span><span class="st">"school"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>
-<span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>coach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">first_name</span>, <span class="va">last_name</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">games</span> <span class="op">&gt;=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="va">coach</span>, <span class="va">school</span>, <span class="va">year</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>coach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">first_name</span>, <span class="va">last_name</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">games</span> <span class="op">&gt;=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">coach</span>, <span class="va">school</span>, <span class="va">year</span>, <span class="va">conference</span><span class="op">)</span></code></pre></div>
 <p>Since interim coaches are included in the coaches dataframe, we’ll set the cutoff at coaching 6 or more games.</p>
 <p>We only have a couple more steps to make our graph. Next, we need to add our coaches to the <code>pbp</code> dataframe using join functions</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbp19</span> <span class="op">&lt;-</span> <span class="va">pbp19</span> <span class="op">%&gt;%</span>
-  <span class="fu">inner_join</span><span class="op">(</span><span class="va">coaches</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"offense_play"</span> <span class="op">=</span> <span class="st">"school"</span>, <span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">coaches</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"offense_play"</span> <span class="op">=</span> <span class="st">"school"</span>, <span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now we can filter down to only fourth down plays, then we’ll add columns to determine if the play was a punt, FGA, or the team went for it.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">down4</span> <span class="op">&lt;-</span> <span class="va">pbp19</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">play_type</span>, <span class="st">"Field Goal"</span><span class="op">)</span>,
-                      <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
-         punt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">play_type</span> <span class="op">==</span> <span class="st">"Punt"</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
-         attempt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
-         play <span class="op">=</span> <span class="fu">case_when</span><span class="op">(</span><span class="va">fga</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"FG Attempt"</span>,
-                          <span class="va">punt</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Punt"</span>,
-                          <span class="va">attempt</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Go"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>And now we’ve got all the info we need to make the graph! The code below is listed for current Big 12 head (Except Dave Aranda since he has no HC experience) coaches, but you can alter it to show whicher coaches you want.</p>
+<code class="sourceCode R"><span class="va">down4</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">play_type</span>, <span class="st">"Field Goal"</span><span class="op">)</span>,
+                             <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
+                punt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">play_type</span> <span class="op">==</span> <span class="st">"Punt"</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
+                attempt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
+                play <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">fga</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"FG Attempt"</span>,
+                                 <span class="va">punt</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Punt"</span>,
+                                 <span class="va">attempt</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">"Go"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>And now we’ve got all the info we need to make the graph! The code below is listed for current Big 12 head coaches, but you can alter it to show whichever coaches you want.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">down4</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">coach</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Matt Campbell"</span>, <span class="st">"Tom Herman"</span>, <span class="st">"Lincoln Riley"</span>, <span class="st">"Chris Klieman"</span>, <span class="st">"Matt Wells"</span>,
-                     <span class="st">"Neal Brown"</span>, <span class="st">"Les Miles"</span>, <span class="st">"Mike Gundy"</span>, <span class="st">"Gary Patterson"</span>, <span class="st">"Matt Rhule"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;=</span> <span class="fl">5</span>, <span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">coach</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Matt Campbell"</span>, <span class="st">"Steve Sarkisian"</span>, <span class="st">"Lincoln Riley"</span>, <span class="st">"Chris Klieman"</span>, <span class="st">"Matt Wells"</span>,
+                     <span class="st">"Neal Brown"</span>, <span class="st">"Les Miles"</span>, <span class="st">"Mike Gundy"</span>, <span class="st">"Gary Patterson"</span>, <span class="st">"Dave Aranda"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;=</span> <span class="fl">5</span>, <span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">yards_to_goal</span>, color <span class="op">=</span> <span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">facet_wrap</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">coach</span><span class="op">)</span> <span class="op">+</span>
@@ -336,11 +341,14 @@
   <span class="fu">theme</span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="fourth-down-plot-tutorial_files/figure-html/fourth_down_plot-1.png" width="700"></p>
 <p>Looks good! Small sample size but can easily be built upon. Hopefully you found this tutorial helpful and can make some more cool CFB related visualizations with <code>ggplot2</code></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

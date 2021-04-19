@@ -65,7 +65,8 @@ Team Roster
 Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 Get composite team talent rankings for all teams in a given year
 Extracts team talent composite as sourced from 247 rankings" />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
+<meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
@@ -1688,13 +1689,13 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 00:24:37:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:30:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 00:24:37:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:34:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 00:24:37:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:38:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Florida State"</span>, <span class='st'>"Florida"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 00:24:37:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:38:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_roster</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>

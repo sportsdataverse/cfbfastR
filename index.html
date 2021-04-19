@@ -21,12 +21,9 @@
 <link href="docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="An R package to quickly obtain clean and tidy College Football play by play data">
-<meta property="og:description" content="An R package for working with College Football Data. It is an
-    R API wrapper around &lt;https://collegefootballdata.com/&gt; made available
-    by the cfbfastR team. It provides users the capability to access a
-    plethora of endpoints, and supplement that data with additional
-    information (Expected Points Added/Win Probability added).">
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/cfbfastR.ico">
+<meta property="og:description" content="Functions to Access College Football Play by Play Data">
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png">
+<meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@cfbfastR">
 <meta name="twitter:site" content="@cfbfastR">
@@ -272,13 +269,13 @@
 <p>You can install the released version of <a href="https://github.com/saiemgilani/cfbfastR/"><strong><code>cfbfastR</code></strong></a> from <a href="https://github.com/saiemgilani/cfbfastR">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># You can install using the pacman package using the following code:</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_gh.html">p_load_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># if you would prefer devtools installation</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'devtools'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="co"># Alternatively, using the devtools package:</span>
