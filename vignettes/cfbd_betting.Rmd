@@ -1,0 +1,36 @@
+---
+title: "CFB Data Betting Lines Examples"
+description: "Get betting lines information for games using <code>cfbd_betting_lines()</code>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+  twitter:
+    creator: "@saiemgilani"
+    card: summary
+    site: "@cfbfastR"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Load and Install Packages**
+
+```{r}
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load(dplyr,tidyr, gt)
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
+```
+
+### **Get Betting information from games**
+
+```{r}
+cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
+
+# 7 OTs LSU at TAMU
+cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
+```

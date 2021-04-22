@@ -1,7 +1,8 @@
 url: http://saiemgilani.github.io/cfbfastR
 
 title: cfbfastR
-
+description: "An R package to quickly obtain clean and tidy college football play by play data"
+alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
 template:
   params:
     bootswatch: cosmo
@@ -14,7 +15,7 @@ template:
       alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
     twitter:
       site: "@cfbfastR"
-      card: summary_large_image
+      card: summary
       
 toc:
   depth: 3
@@ -54,7 +55,7 @@ home:
     
 navbar:
   structure:
-    left:  [home, intro, reference, news, articles, data, games, network]
+    left:  [home, intro, reference, articles, news, games, network, data]
     right: [twitter, github]
   components:
     twitter:
@@ -83,14 +84,33 @@ navbar:
       menu:
       - text: "Function Index"
         href: reference/index.html
-      - text: "CFBD API Keys"
-        href: reference/register_cfbd.html
-      - text: "Play-by-Play Data"
-        href: reference/cfbd_pbp_data.html
+      - text: --------------------------------
+      - text: cfbfastR Data
       - text: "Load Full Season PBP Data"
         href: reference/load_cfb_pbp.html
       - text: "Update or Create Database"
         href: reference/update_cfb_db.html
+      - text: "Play-by-Play Data"
+        href: reference/cfbd_pbp_data.html
+      - text: --------------------------------
+      - text: CFB Data
+      - text: Using the API
+        menu: 
+        - text: "Tutorials"
+        - text: "CFBD Betting"
+          href: articles/cfbd_betting.html
+        - text: "CFBD Games"
+          href: articles/cfbd_games.html
+        - text: "CFBD Plays"
+          href: articles/cfbd_plays.html
+        - text: "CFBD Recruiting"
+          href: articles/cfbd_recruiting.html
+        - text: "CFBD Stats"
+          href: articles/cfbd_stats.html
+        - text: "CFBD Teams"
+          href: articles/cfbd_teams.html
+      - text: "CFBD API Keys"
+        href: reference/register_cfbd.html
       - text: "Games"
         href: reference/cfbd_games.html
       - text: "Plays"
@@ -105,12 +125,8 @@ navbar:
         href: reference/cfbd_stats.html
       - text: "Metrics"
         href: reference/cfbd_metrics.html
-      - text: "ESPN Metrics"
-        href: reference/espn_metrics.html
       - text: "Ratings"
         href: reference/cfbd_ratings.html
-      - text: "ESPN Ratings"
-        href: reference/espn_ratings.html
       - text: "Betting"
         href: reference/cfbd_betting.html
       - text: "Recruiting"
@@ -121,6 +137,12 @@ navbar:
         href: reference/cfbd_conferences.html
       - text: "Venues"
         href: reference/cfbd_venues.html
+      - text: ---------------------------------
+      - text: ESPN Data
+      - text: "ESPN Metrics"
+        href: reference/espn_metrics.html
+      - text: "ESPN Ratings"
+        href: reference/espn_ratings.html
     articles:
       icon: "fas fa-book-reader"
       text: "Articles"
@@ -138,6 +160,7 @@ navbar:
         href: articles/rolling-epa-graph.html
       - text: Visualizing Team Talent with Player Recruit Rankings
         href: articles/nth-rated-recruit.html
+      - text: --------------------------------
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
         href: articles/college-football-expected-points-model-fundamentals-part-i.html
@@ -222,39 +245,9 @@ reference:
       - '`cfbd_venues`'
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
-  # - subtitle: Plotting Functions
-  #   desc: Plotting play-by-play sequences and game win probability charts
-  #   contents:
-  #     - '`plot_wpa`'
-  #     - '`plot_pbp_sequencing`'
-  #     - '`plot_away_travel`'
   - subtitle: Internals
     desc: Internal functions and helpers
     contents:
-      - '`ep_fg_model_select`'
-      - '`get_preds_ep`'
       - '`create_epa`'
-      - '`epa_fg_probs`'
-      - '`create_wpa_naive`'
-      - '`create_wpa_betting`'
-      - '`add_betting_cols`'
-      - '`clean_drive_info`'
-      - '`penalty_detection`'
-      - '`add_play_counts`'
-      - '`clean_pbp_dat`'
-      - '`clean_drive_dat`'
-      - '`prep_epa_df_after`'
-      - '`ep_model_select`'
-      - '`ep_model_select_check`'
-      - '`wp_model_select`'
-      - '`wp_model_select_check`'
-      - '`penalty_detection_select`'
-      - '`add_play_counts_select`'
-      - '`clean_pbp_dat_select`'
-      - '`clean_drive_dat_select`'
-      - '`add_player_cols_select`'
-      - '`add_yardage_select`'
-      - '`prep_epa_df_after_select`'
-      - '`prep_df_pbp_overview`'
-      - '`check_internet`'
-
+      - '`create_wpa`'
+      - '`helpers_pbp`'
