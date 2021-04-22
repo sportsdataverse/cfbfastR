@@ -14,7 +14,11 @@ Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfa
 
 The goal of [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) is
 to provide the community with an R package for working with CFB data. It
-is an R API wrapper around <https://collegefootballdata.com/>.
+is an R API wrapper around <https://collegefootballdata.com/>. Beyond
+data aggregation and tidying ease, one of the multitude of services that
+[**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) provides is
+for benchmarking open-source expected points and win probability
+metrics.
 
 ## **Installation**
 
@@ -52,9 +56,20 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
       - [`cfbd_recruiting`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html),  
       - [`cfbd_stats`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html),
       - [`cfbd_teams`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html)
-  - [Introductory
-    vignette](https://saiemgilani.github.io/cfbfastR/articles/intro.html)
+  - [Introductory vignette
+    stub](https://saiemgilani.github.io/cfbfastR/articles/intro.html)
     added
+
+#### **ESPN/CFBD metrics function variable return standardization**
+
+  - Change `id` variable to `team_id` in
+    [`espn_ratings_fpi()`](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html)
+  - Changed `espn_game_id` variable to `game_id` in
+    [`espn_metrics_wp()`](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html),
+    corrected the `away_win_percentage` calculation and added
+    `tie_percentage` to the returns.
+  - Change `id` variable to `athlete_id` in
+    [`cfbd_metrics_ppa_players_season()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html)
 
 ### **v1.1.0**
 
