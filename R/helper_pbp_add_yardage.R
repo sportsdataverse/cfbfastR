@@ -2,37 +2,37 @@
 #' @param play_df (\emph{data.frame} required) Extracts yardage information from Play-by-Play data frame, as pulled from `cfbd_pbp_data()`
 #' @details Cleans CFB (D-I) Drive-By-Drive Data to create yardage column. Requires the following columns be present:
 #' \describe{
-#'  \item{`play_text`}
-#'  \item{`play_type`}
-#'  \item{`rush`}
-#'  \item{`pass`}
-#'  \item{`int`}
-#'  \item{`int_td`}
-#'  \item{`kickoff_play`}
-#'  \item{`kickoff_tb`}
-#'  \item{`kickoff_downed`}
-#'  \item{`kickoff_fair_catch`}
-#'  \item{`fumble_vec`}
-#'  \item{`sack`}
-#'  \item{`punt`}
-#'  \item{`punt_tb`}
-#'  \item{`punt_downed`}
-#'  \item{`punt_fair_catch`}
-#'  \item{`punt_oob`}
-#'  \item{`punt_blocked`}
-#'  \item{`penalty_detail`}
+#'  \item{`play_text`}{.}
+#'  \item{`play_type`}{.}
+#'  \item{`rush`}{.}
+#'  \item{`pass`}{.}
+#'  \item{`int`}{.}
+#'  \item{`int_td`}{.}
+#'  \item{`kickoff_play`}{.}
+#'  \item{`kickoff_tb`}{.}
+#'  \item{`kickoff_downed`}{.}
+#'  \item{`kickoff_fair_catch`}{.}
+#'  \item{`fumble_vec`}{.}
+#'  \item{`sack`}{.}
+#'  \item{`punt`}{.}
+#'  \item{`punt_tb`}{.}
+#'  \item{`punt_downed`}{.}
+#'  \item{`punt_fair_catch`}{.}
+#'  \item{`punt_oob`}{.}
+#'  \item{`punt_blocked`}{.}
+#'  \item{`penalty_detail`}{.}
 #' }
 #' @return The original `play_df` with the following columns appended to it:
 #' \describe{
-#' \item{`yds_rushed`}
-#' \item{`yds_receiving`}
-#' \item{`yds_int_return`}
-#' \item{`yds_kickoff`}
-#' \item{`yds_kickoff_return`}
-#' \item{`yds_punted`}
-#' \item{`yds_fumble_return`}
-#' \item{`yds_sacked`}
-#' \item{`yds_penalty`}
+#' \item{`yds_rushed`}{.}
+#' \item{`yds_receiving`}{.}
+#' \item{`yds_int_return`}{.}
+#' \item{`yds_kickoff`}{.}
+#' \item{`yds_kickoff_return`}{.}
+#' \item{`yds_punted`}{.}
+#' \item{`yds_fumble_return`}{.}
+#' \item{`yds_sacked`}{.}
+#' \item{`yds_penalty`}{.}
 #' }
 #' @keywords internal
 #' @importFrom rlang .data

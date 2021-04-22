@@ -3,24 +3,24 @@
 #' @param raw_df (\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
 #' @details Runs penalty detection on the play text and play types. Requires the following columns be present:
 #' \itemize{
-#' \item{`game_id`}
-#' \item{`period`}
-#' \item{`down`}
-#' \item{`play_type`}
-#' \item{`play_text`}
+#' \item{`game_id`}{Referencing game id.}
+#' \item{`period`}{Game period (quarter).}
+#' \item{`down`}{Down of the play.}
+#' \item{`play_type`}{Categorical play type.}
+#' \item{`play_text`}{A description of the play.}
 #' }
 #' @return The original `raw_df` with the following columns appended/redefined:
 #' \describe{
-#' \item{`penalty_flag`: TRUE/FALSE flag for penalty play types or penalty in play text plays.}
-#' \item{`penalty_declined`: TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}
-#' \item{`penalty_no_play`: TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.}
-#' \item{`penalty_offset`: TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.}
-#' \item{`penalty_1st_conv`: TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.}
-#' \item{`penalty_text`: TRUE/FALSE flag for penalty in text but not a penalty play type.}
-#' \item{`orig_play_type`: Copy of original play_type label prior to any changes by the proceeding functions}
-#' \item{`down`: Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}
-#' \item{`play_type`: Defines `play_type`, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.}
-#' \item{`half`: Defines the half variable (1, 2).}
+#' \item{`penalty_flag`: TRUE/FALSE flag for penalty play types or penalty in play text plays.}{.}
+#' \item{`penalty_declined`: TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}{.}
+#' \item{`penalty_no_play`: TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.}{.}
+#' \item{`penalty_offset`: TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.}{.}
+#' \item{`penalty_1st_conv`: TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.}{.}
+#' \item{`penalty_text`: TRUE/FALSE flag for penalty in text but not a penalty play type.}{.}
+#' \item{`orig_play_type`: Copy of original play_type label prior to any changes by the proceeding functions}{.}
+#' \item{`down`: Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}{.}
+#' \item{`play_type`: Defines `play_type`, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.}{.}
+#' \item{`half`: Defines the half variable (1, 2).}{.}
 #' }
 #' @keywords internal
 #' @importFrom rlang .data

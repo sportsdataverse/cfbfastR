@@ -45,7 +45,7 @@ load_wp_model <- function(){
 ##' @importFrom utils packageVersion
 ##' @examples
 ##' \dontrun{
-##'   check_github('saiemgilani/cfbfastR')
+##'   cfbfastR:::check_github('saiemgilani/cfbfastR')
 ##' }
 check_github <- function(pkg) {
   installed_version <- tryCatch(utils::packageVersion(gsub(".*/", "", pkg)), error=function(e) NA)

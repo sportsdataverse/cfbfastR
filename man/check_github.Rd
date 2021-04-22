@@ -17,6 +17,6 @@ Check latest GitHub version of R package
 }
 \examples{
 \dontrun{
-  check_github('saiemgilani/cfbfastR')
+  cfbfastR:::check_github('saiemgilani/cfbfastR')
 }
 }

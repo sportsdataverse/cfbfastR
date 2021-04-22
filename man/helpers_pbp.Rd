@@ -42,173 +42,173 @@ penalty_detection(raw_df)
 \value{
 The original \code{play_df} with the following columns appended/redefined:
 \describe{
-\item{\code{game_play_number}}
-\item{\code{half_clock.minutes}}
-\item{\code{TimeSecsRem}}
-\item{\code{Under_two}}
-\item{\code{half}}
-\item{\code{kickoff_play}}
-\item{\code{pos_team}}
-\item{\code{def_pos_team}}
-\item{\code{receives_2H_kickoff}}
-\item{\code{pos_score_diff}}
-\item{\code{lag_pos_score_diff}}
-\item{\code{lag_pos_team}}
-\item{\code{lead_pos_team}}
-\item{\code{lead_pos_team2}}
-\item{\code{pos_score_pts}}
-\item{\code{pos_score_diff_start}}
-\item{\code{score_diff}}
-\item{\code{lag_score_diff}}
-\item{\code{lag_offense_play}}
-\item{\code{lead_offense_play}}
-\item{\code{lead_offense_play2}}
-\item{\code{score_pts}}
-\item{\code{score_diff_start}}
-\item{\code{offense_receives_2H_kickoff}}
-\item{\code{half_play_number}}
-\item{\code{lag_off_timeouts}}
-\item{\code{lag_def_timeouts}}
-\item{\code{off_timeouts_rem_before}}
-\item{\code{def_timeouts_rem_before}}
-\item{\code{off_timeout_called}}
-\item{\code{def_timeout_called}}
-\item{\code{lead_TimeSecsRem}}
-\item{\code{lead_TimeSecsRem2}}
-\item{\code{lead_yards_to_goal}}
-\item{\code{lead_yards_to_goal2}}
-\item{\code{lead_down}}
-\item{\code{lead_down2}}
-\item{\code{lag_distance3}}
-\item{\code{lag_distance2}}
-\item{\code{lag_distance}}
-\item{\code{lead_distance}}
-\item{\code{lead_distance2}}
-\item{\code{end_of_half}}
-\item{\code{lag_play_type3}}
-\item{\code{lag_play_type2}}
-\item{\code{lag_play_type}}
-\item{\code{lead_play_type}}
-\item{\code{lead_play_type2}}
-\item{\code{lead_play_type3}}
-\item{\code{change_of_poss}}
-\item{\code{change_of_pos_team}}
-\item{\code{pos_team_timeouts}}
-\item{\code{def_pos_team_timeouts}}
-\item{\code{pos_team_timeouts_rem_before}}
-\item{\code{def_pos_team_timeouts_rem_before}}
+\item{\code{game_play_number}.}{.}
+\item{\code{half_clock.minutes}.}{.}
+\item{\code{TimeSecsRem}.}{.}
+\item{\code{Under_two}.}{.}
+\item{\code{half}.}{.}
+\item{\code{kickoff_play}.}{.}
+\item{\code{pos_team}.}{.}
+\item{\code{def_pos_team}.}{.}
+\item{\code{receives_2H_kickoff}.}{.}
+\item{\code{pos_score_diff}.}{.}
+\item{\code{lag_pos_score_diff}.}{.}
+\item{\code{lag_pos_team}.}{.}
+\item{\code{lead_pos_team}.}{.}
+\item{\code{lead_pos_team2}.}{.}
+\item{\code{pos_score_pts}.}{.}
+\item{\code{pos_score_diff_start}.}{.}
+\item{\code{score_diff}.}{.}
+\item{\code{lag_score_diff}.}{.}
+\item{\code{lag_offense_play}.}{.}
+\item{\code{lead_offense_play}.}{.}
+\item{\code{lead_offense_play2}.}{.}
+\item{\code{score_pts}.}{.}
+\item{\code{score_diff_start}.}{.}
+\item{\code{offense_receives_2H_kickoff}.}{.}
+\item{\code{half_play_number}.}{.}
+\item{\code{lag_off_timeouts}.}{.}
+\item{\code{lag_def_timeouts}.}{.}
+\item{\code{off_timeouts_rem_before}.}{.}
+\item{\code{def_timeouts_rem_before}.}{.}
+\item{\code{off_timeout_called}.}{.}
+\item{\code{def_timeout_called}.}{.}
+\item{\code{lead_TimeSecsRem}.}{.}
+\item{\code{lead_TimeSecsRem2}.}{.}
+\item{\code{lead_yards_to_goal}.}{.}
+\item{\code{lead_yards_to_goal2}.}{.}
+\item{\code{lead_down}.}{.}
+\item{\code{lead_down2}.}{.}
+\item{\code{lag_distance3}.}{.}
+\item{\code{lag_distance2}.}{.}
+\item{\code{lag_distance}.}{.}
+\item{\code{lead_distance}.}{.}
+\item{\code{lead_distance2}.}{.}
+\item{\code{end_of_half}.}{.}
+\item{\code{lag_play_type3}.}{.}
+\item{\code{lag_play_type2}.}{.}
+\item{\code{lag_play_type}.}{.}
+\item{\code{lead_play_type}.}{.}
+\item{\code{lead_play_type2}.}{.}
+\item{\code{lead_play_type3}.}{.}
+\item{\code{change_of_poss}.}{.}
+\item{\code{change_of_pos_team}.}{.}
+\item{\code{pos_team_timeouts}.}{.}
+\item{\code{def_pos_team_timeouts}.}{.}
+\item{\code{pos_team_timeouts_rem_before}.}{.}
+\item{\code{def_pos_team_timeouts_rem_before}.}{.}
 }
 
 The original \code{play_df} with the following columns appended/redefined:
 \describe{
-\item{\code{lag_change_of_poss}}
-\item{\code{lag_punt}}
-\item{\code{lag_scoring_play}}
-\item{\code{lag_turnover_vec}}
-\item{\code{lag_downs_turnover}}
-\item{\code{lead_play_type}}
-\item{\code{lead_play_type2}}
-\item{\code{lead_play_type3}}
-\item{\code{drive_numbers}}
-\item{\code{number_of_drives}}
-\item{\code{pts_scored}}
-\item{\code{drive_result_detailed}}
-\item{\code{drive_result_detailed_flag}}
-\item{\code{drive_result2}}
-\item{\code{lag_new_drive_pts}}
-\item{\code{lag_drive_result_detailed}}
-\item{\code{lead_drive_result_detailed}}
-\item{\code{new_drive_pts}}
-\item{\code{drive_scoring}}
-\item{\code{drive_play}}
-\item{\code{drive_play_number}}
-\item{\code{drive_event}}
-\item{\code{drive_event_number}}
-\item{\code{new_id}}
-\item{\code{log_ydstogo}}
-\item{\code{down}}
-\item{\code{distance}}
-\item{\code{yards_to_goal}}
-\item{\code{yards_gained}}
-\item{\code{Goal_To_Go}}
+\item{\code{lag_change_of_poss}.}{.}
+\item{\code{lag_punt}.}{.}
+\item{\code{lag_scoring_play}.}{.}
+\item{\code{lag_turnover_vec}.}{.}
+\item{\code{lag_downs_turnover}.}{.}
+\item{\code{lead_play_type}.}{.}
+\item{\code{lead_play_type2}.}{.}
+\item{\code{lead_play_type3}.}{.}
+\item{\code{drive_numbers}.}{.}
+\item{\code{number_of_drives}.}{.}
+\item{\code{pts_scored}.}{.}
+\item{\code{drive_result_detailed}.}{.}
+\item{\code{drive_result_detailed_flag}.}{.}
+\item{\code{drive_result2}.}{.}
+\item{\code{lag_new_drive_pts}.}{.}
+\item{\code{lag_drive_result_detailed}.}{.}
+\item{\code{lead_drive_result_detailed}.}{.}
+\item{\code{new_drive_pts}.}{.}
+\item{\code{drive_scoring}.}{.}
+\item{\code{drive_play}.}{.}
+\item{\code{drive_play_number}.}{.}
+\item{\code{drive_event}.}{.}
+\item{\code{drive_event_number}.}{.}
+\item{\code{new_id}.}{.}
+\item{\code{log_ydstogo}.}{.}
+\item{\code{down}.}{.}
+\item{\code{distance}.}{.}
+\item{\code{yards_to_goal}.}{.}
+\item{\code{yards_gained}.}{.}
+\item{\code{Goal_To_Go}.}{.}
 }
 
 \code{dat} with the following columns appended/modified:
 \itemize{
-\item{\code{turnover_indicator}}
-\item{\code{down}}
-\item{\code{new_id}}
-\item{\code{new_down}}
-\item{\code{distance}}
-\item{\code{yards_to_goal}}
-\item{\code{yards_gained}}
-\item{\code{turnover}}
-\item{\code{drive_start_yards_to_goal}}
-\item{\code{end_of_half}}
-\item{\code{new_yardline}}
-\item{\code{new_distance}}
-\item{\code{new_log_ydstogo}}
-\item{\code{new_Goal_To_Go}}
-\item{\code{new_TimeSecsRem}}
-\item{\code{new_Under_two}}
-\item{\code{first_by_penalty}}
-\item{\code{lag_first_by_penalty}}
-\item{\code{lag_first_by_penalty2}}
-\item{\code{first_by_yards}}
-\item{\code{lag_first_by_yards}}
-\item{\code{lag_first_by_yards2}}
-\item{\code{row}}
-\item{\code{new_series}}
-\item{\code{firstD_by_kickoff}}
-\item{\code{firstD_by_poss}}
-\item{\code{firstD_by_yards}}
-\item{\code{firstD_by_penalty}}
-\item{\code{yds_punted}}
-\item{\code{yds_punt_gained}}
-\item{\code{missing_yard_flag}}
+\item{\code{turnover_indicator}.}{.}
+\item{\code{down}.}{.}
+\item{\code{new_id}.}{.}
+\item{\code{new_down}.}{.}
+\item{\code{distance}.}{.}
+\item{\code{yards_to_goal}.}{.}
+\item{\code{yards_gained}.}{.}
+\item{\code{turnover}.}{.}
+\item{\code{drive_start_yards_to_goal}.}{.}
+\item{\code{end_of_half}.}{.}
+\item{\code{new_yardline}.}{.}
+\item{\code{new_distance}.}{.}
+\item{\code{new_log_ydstogo}.}{.}
+\item{\code{new_Goal_To_Go}.}{.}
+\item{\code{new_TimeSecsRem}.}{.}
+\item{\code{new_Under_two}.}{.}
+\item{\code{first_by_penalty}.}{.}
+\item{\code{lag_first_by_penalty}.}{.}
+\item{\code{lag_first_by_penalty2}.}{.}
+\item{\code{first_by_yards}.}{.}
+\item{\code{lag_first_by_yards}.}{.}
+\item{\code{lag_first_by_yards2}.}{.}
+\item{\code{row}.}{.}
+\item{\code{new_series}.}{.}
+\item{\code{firstD_by_kickoff}.}{.}
+\item{\code{firstD_by_poss}.}{.}
+\item{\code{firstD_by_yards}.}{.}
+\item{\code{firstD_by_penalty}.}{.}
+\item{\code{yds_punted}.}{.}
+\item{\code{yds_punt_gained}.}{.}
+\item{\code{missing_yard_flag}.}{.}
 }
 
 The original \code{drive_df} with the following columns appended to it:
 \describe{
-\item{\code{drive_id}: Returned as \code{drive_id} from original variable \code{drive_id}}
-\item{\code{pts_drive}: End result of the drive}
-\item{\code{scoring}: Logical flag for if drive was a scoring drive updated}
+\item{\code{drive_id}: Returned as \code{drive_id} from original variable \code{drive_id}}{.}
+\item{\code{pts_drive}: End result of the drive}{.}
+\item{\code{scoring}: Logical flag for if drive was a scoring drive updated}{.}
 }
 
 The original \code{pbp} with the following columns appended to it:
 \describe{
-\item{\code{rusher_player_name}}
-\item{\code{receiver_player_name}}
-\item{\code{passer_player_name}}
-\item{\code{sack_player_name}}
-\item{\code{sack_player_name2}}
-\item{\code{pass_breakup_player_name}}
-\item{\code{interception_player_name}}
-\item{\code{fg_kicker_player_name}}
-\item{\code{fg_block_player_name}}
-\item{\code{fg_return_player_name}}
-\item{\code{kickoff_player_name}}
-\item{\code{kickoff_returner_player_name}}
-\item{\code{punter_player_name}}
-\item{\code{punt_block_player_name}}
-\item{\code{punt_returner_player_name}}
-\item{\code{punt_block_return_player_name}}
-\item{\code{fumble_player_name}}
-\item{\code{fumble_forced_player_name}}
-\item{\code{fumble_recovered_player_name}}
+\item{\code{rusher_player_name}}{.}
+\item{\code{receiver_player_name}}{.}
+\item{\code{passer_player_name}}{.}
+\item{\code{sack_player_name}}{.}
+\item{\code{sack_player_name2}}{.}
+\item{\code{pass_breakup_player_name}}{.}
+\item{\code{interception_player_name}}{.}
+\item{\code{fg_kicker_player_name}}{.}
+\item{\code{fg_block_player_name}}{.}
+\item{\code{fg_return_player_name}}{.}
+\item{\code{kickoff_player_name}}{.}
+\item{\code{kickoff_returner_player_name}}{.}
+\item{\code{punter_player_name}}{.}
+\item{\code{punt_block_player_name}}{.}
+\item{\code{punt_returner_player_name}}{.}
+\item{\code{punt_block_return_player_name}}{.}
+\item{\code{fumble_player_name}}{.}
+\item{\code{fumble_forced_player_name}}{.}
+\item{\code{fumble_recovered_player_name}}{.}
 }
 
 The original \code{play_df} with the following columns appended to it:
 \describe{
-\item{\code{yds_rushed}}
-\item{\code{yds_receiving}}
-\item{\code{yds_int_return}}
-\item{\code{yds_kickoff}}
-\item{\code{yds_kickoff_return}}
-\item{\code{yds_punted}}
-\item{\code{yds_fumble_return}}
-\item{\code{yds_sacked}}
-\item{\code{yds_penalty}}
+\item{\code{yds_rushed}}{.}
+\item{\code{yds_receiving}}{.}
+\item{\code{yds_int_return}}{.}
+\item{\code{yds_kickoff}}{.}
+\item{\code{yds_kickoff_return}}{.}
+\item{\code{yds_punted}}{.}
+\item{\code{yds_fumble_return}}{.}
+\item{\code{yds_sacked}}{.}
+\item{\code{yds_penalty}}{.}
 }
 
 The original \code{play_df} with the following columns appended/redefined:
@@ -264,28 +264,28 @@ The original \code{play_df} with the following columns appended/redefined:
 
 The original \code{raw_df} with the following columns appended/redefined:
 \describe{
-\item{\code{penalty_flag}: TRUE/FALSE flag for penalty play types or penalty in play text plays.}
-\item{\code{penalty_declined}: TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}
-\item{\code{penalty_no_play}: TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.}
-\item{\code{penalty_offset}: TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.}
-\item{\code{penalty_1st_conv}: TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.}
-\item{\code{penalty_text}: TRUE/FALSE flag for penalty in text but not a penalty play type.}
-\item{\code{orig_play_type}: Copy of original play_type label prior to any changes by the proceeding functions}
-\item{\code{down}: Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}
-\item{\code{play_type}: Defines \code{play_type}, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.}
-\item{\code{half}: Defines the half variable (1, 2).}
+\item{\code{penalty_flag}: TRUE/FALSE flag for penalty play types or penalty in play text plays.}{.}
+\item{\code{penalty_declined}: TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}{.}
+\item{\code{penalty_no_play}: TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.}{.}
+\item{\code{penalty_offset}: TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.}{.}
+\item{\code{penalty_1st_conv}: TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.}{.}
+\item{\code{penalty_text}: TRUE/FALSE flag for penalty in text but not a penalty play type.}{.}
+\item{\code{orig_play_type}: Copy of original play_type label prior to any changes by the proceeding functions}{.}
+\item{\code{down}: Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}{.}
+\item{\code{play_type}: Defines \code{play_type}, "Penalty (Kickoff)", penalties on kickoffs with a repeat kick.}{.}
+\item{\code{half}: Defines the half variable (1, 2).}{.}
 }
 }
 \description{
 \describe{
-\item{\code{add_play_counts()}: Adds play counts to Play-by-Play data pulled from the API's raw game data}
-\item{\code{add_yardage()}: Add yardage extracted from play text}
-\item{\code{add_player_cols()}: Add player columns extracted from play text}
-\item{\code{clean_drive_dat()}: Create new Drive results and id data}
-\item{\code{clean_pbp_dat()}:  Clean Play-by-Play data}
-\item{\code{penalty_detection()}: Adds penalty columns to Play-by-Play data pulled from the API}
-\item{\code{prep_epa_df_after()}: Creates the post-play inputs for the Expected Points model to predict on for each game}
-\item{\code{clean_drive_info()}: Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column}
+\item{\code{add_play_counts()}: function}{Adds play counts to Play-by-Play data pulled from the API's raw game data.}
+\item{\code{add_yardage()}: Add yardage extracted from play text}{.}
+\item{\code{add_player_cols()}:  function}{Add player columns extracted from play text.}
+\item{\code{clean_drive_dat()}: function}{Create new Drive results and id data.}
+\item{\code{clean_pbp_dat()}: function}{Clean Play-by-Play data.}
+\item{\code{penalty_detection()}: function}{Adds penalty columns to Play-by-Play data pulled from the API.}
+\item{\code{prep_epa_df_after()}: function}{Creates the post-play inputs for the Expected Points model to predict on for each game.}
+\item{\code{clean_drive_info()}: function}{Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column.}
 }
 
 Cleans Play-by-Play data pulled from the API's raw game data
@@ -293,75 +293,75 @@ Cleans Play-by-Play data pulled from the API's raw game data
 \details{
 Requires the following columns to be present
 \describe{
-\item{\code{game_id}}
-\item{\code{id_play}}
-\item{\code{clock.minutes}}
-\item{\code{clock.seconds}}
-\item{\code{half}}
-\item{\code{period}}
-\item{\code{offense_play}}
-\item{\code{defense_play}}
-\item{\code{home}}
-\item{\code{away}}
-\item{\code{offense_score}}
-\item{\code{defense_score}}
-\item{\code{offense_timeouts}}
-\item{\code{offense_timeouts}}
-\item{\code{play_text}}
-\item{\code{play_type}}
+\item{\code{game_id}}{.}
+\item{\code{id_play}}{.}
+\item{\code{clock.minutes}}{.}
+\item{\code{clock.seconds}}{.}
+\item{\code{half}}{.}
+\item{\code{period}}{.}
+\item{\code{offense_play}}{.}
+\item{\code{defense_play}}{.}
+\item{\code{home}}{.}
+\item{\code{away}}{.}
+\item{\code{offense_score}}{.}
+\item{\code{defense_score}}{.}
+\item{\code{offense_timeouts}}{.}
+\item{\code{offense_timeouts}}{.}
+\item{\code{play_text}}{.}
+\item{\code{play_type}}{.}
 }
 
 Prep for EPA calculations at the end of the play. Requires the following columns be present:
 \itemize{
-\item{\code{game_id}}
-\item{\code{id_play}}
-\item{\code{drive_id}}
-\item{\code{down}}
-\item{\code{distance}}
-\item{\code{period}}
-\item{\code{yards_to_goal}}
-\item{\code{play_type}}
+\item{\code{game_id}.}{.}
+\item{\code{id_play}.}{.}
+\item{\code{drive_id}.}{.}
+\item{\code{down}.}{.}
+\item{\code{distance}.}{.}
+\item{\code{period}.}{.}
+\item{\code{yards_to_goal}.}{.}
+\item{\code{play_type}.}{.}
 }
 
 Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column. Requires the following columns be present:
 \itemize{
-\item{\code{drive_id}: Returned as \code{drive_id}}
-\item{\code{drive_result}: End result of the drive}
-\item{\code{scoring}: Logical flag for if drive was a scoring drive}
-\item{\code{game_id}: Unique game identifier}
+\item{\code{drive_id}: Returned as \code{drive_id}}{.}
+\item{\code{drive_result}: End result of the drive}{.}
+\item{\code{scoring}: Logical flag for if drive was a scoring drive}{.}
+\item{\code{game_id}: Unique game identifier}{.}
 }
 
 Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:
 \itemize{
-\item{\code{rush}}
-\item{\code{pass}}
-\item{\code{play_text}}
-\item{\code{play_type}}
-\item{\code{sack}}
-\item{\code{fumble_vec}}
+\item{\code{rush}}{.}
+\item{\code{pass}}{.}
+\item{\code{play_text}}{.}
+\item{\code{play_type}}{.}
+\item{\code{sack}}{.}
+\item{\code{fumble_vec}}{.}
 }
 
 Cleans CFB (D-I) Drive-By-Drive Data to create yardage column. Requires the following columns be present:
 \describe{
-\item{\code{play_text}}
-\item{\code{play_type}}
-\item{\code{rush}}
-\item{\code{pass}}
-\item{\code{int}}
-\item{\code{int_td}}
-\item{\code{kickoff_play}}
-\item{\code{kickoff_tb}}
-\item{\code{kickoff_downed}}
-\item{\code{kickoff_fair_catch}}
-\item{\code{fumble_vec}}
-\item{\code{sack}}
-\item{\code{punt}}
-\item{\code{punt_tb}}
-\item{\code{punt_downed}}
-\item{\code{punt_fair_catch}}
-\item{\code{punt_oob}}
-\item{\code{punt_blocked}}
-\item{\code{penalty_detail}}
+\item{\code{play_text}}{.}
+\item{\code{play_type}}{.}
+\item{\code{rush}}{.}
+\item{\code{pass}}{.}
+\item{\code{int}}{.}
+\item{\code{int_td}}{.}
+\item{\code{kickoff_play}}{.}
+\item{\code{kickoff_tb}}{.}
+\item{\code{kickoff_downed}}{.}
+\item{\code{kickoff_fair_catch}}{.}
+\item{\code{fumble_vec}}{.}
+\item{\code{sack}}{.}
+\item{\code{punt}}{.}
+\item{\code{punt_tb}}{.}
+\item{\code{punt_downed}}{.}
+\item{\code{punt_fair_catch}}{.}
+\item{\code{punt_oob}}{.}
+\item{\code{punt_blocked}}{.}
+\item{\code{penalty_detail}}{.}
 }
 
 Requires the following columns to be present
@@ -387,11 +387,11 @@ Requires the following columns to be present
 
 Runs penalty detection on the play text and play types. Requires the following columns be present:
 \itemize{
-\item{\code{game_id}}
-\item{\code{period}}
-\item{\code{down}}
-\item{\code{play_type}}
-\item{\code{play_text}}
+\item{\code{game_id}}{Referencing game id.}
+\item{\code{period}}{Game period (quarter).}
+\item{\code{down}}{Down of the play.}
+\item{\code{play_type}}{Categorical play type.}
+\item{\code{play_text}}{A description of the play.}
 }
 }
 \keyword{internal}

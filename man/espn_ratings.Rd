@@ -16,26 +16,25 @@ espn_ratings_fpi(year = 2019)
 \value{
 A data frame with 20 variables:
 \describe{
-\item{\code{year}: double.}
-\item{\code{id}: character.}
-\item{\code{name}: character.}
-\item{\code{abbr}: character.}
-\item{\code{row_n}: integer.}
-\item{\code{fpi}: character.}
-\item{\code{fpi_rk}: character.}
-\item{\code{trend}: character.}
-\item{\code{proj_w}: character.}
-\item{\code{proj_l}: character.}
-\item{\code{win_out}: double.}
-\item{\code{win_6}: double.}
-\item{\code{win_div}: double.}
-\item{\code{playoff}: double.}
-\item{\code{nc_game}: double.}
-\item{\code{nc_win}: double.}
-\item{\code{win_conf}: double.}
-\item{\code{w}: character.}
-\item{\code{l}: character.}
-\item{\code{t}: character.}
+\item{\code{year}: double.}{Season of the Football Power Index (FPI) Rating.}
+\item{\code{team_id}: character.}{Unique ESPN team ID - \code{team_id}.}
+\item{\code{name}: character.}{Team Name.}
+\item{\code{abbr}: character.}{Team abbreviation.}
+\item{\code{fpi}: character.}{Football Power Index (FPI) Rating.}
+\item{\code{fpi_rk}: character.}{Football Power Index (FPI) Rank.}
+\item{\code{trend}: character.}{Football Power Index (FPI) ranking trend.}
+\item{\code{proj_w}: character.}{Projected Win total for the season.}
+\item{\code{proj_l}: character.}{Projected Loss total for the season.}
+\item{\code{win_out}: double.}{Probability the team wins out.}
+\item{\code{win_6}: double.}{Probability the team wins at least six games.}
+\item{\code{win_div}: double.}{Probability the team wins at their division.}
+\item{\code{playoff}: double.}{Probability the team reaches the playoff.}
+\item{\code{nc_game}: double.}{Probability the team reaches the national championship game.}
+\item{\code{nc_win}: double.}{Probability the team wins the national championship game.}
+\item{\code{win_conf}: double.}{Probability the team wins their conference game.}
+\item{\code{w}: character.}{Wins on the season.}
+\item{\code{l}: character.}{Losses on the season.}
+\item{\code{t}: character.}{Ties on the season.}
 }
 }
 \description{
