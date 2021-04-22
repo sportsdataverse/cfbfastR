@@ -24,7 +24,7 @@
 <meta property="og:description" content="Step-by-step walk-through of the process of adapting &lt;a href='https://twitter.com/LeeSharpeNFL' target='blank'&gt;Lee Sharpe's&lt;/a&gt; win probability charts to college football using data from &lt;a href='https://www.collegefootballdata.com' target='blank'&gt;CollegeFootballData.com&lt;/a&gt; collected using the &lt;code&gt;cfbfastR&lt;/code&gt; package for R.">
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true">
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@JaredDLee">
 <meta name="twitter:site" content="@cfbfastR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -310,18 +310,11 @@
 <span class="op">}</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">animation</span>, <span class="va">glue</span>, <span class="va">zoo</span>, <span class="va">ggimage</span><span class="op">)</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
-<pre><code>## RSQLite (2.2.6   -&gt; 2.2.7  ) [CRAN]
-## xgboost (1.3.2.1 -&gt; 1.4.1.1) [CRAN]
-## 
-##   There are binary versions available but the source versions are later:
-##          binary  source needs_compilation
-## RSQLite   2.2.6   2.2.7              TRUE
-## xgboost 1.3.2.1 1.4.1.1              TRUE
-## 
+<pre><code>## 
 ##   
-   checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpXeVVkN/remotes9821dc77ea/saiemgilani-cfbfastR-618bbfd/DESCRIPTION’ ...
+   checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpTjcsyd/remotesb87306d4384/saiemgilani-cfbfastR-3c33581/DESCRIPTION’ ...
   
-✔  checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpXeVVkN/remotes9821dc77ea/saiemgilani-cfbfastR-618bbfd/DESCRIPTION’
+✔  checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpTjcsyd/remotesb87306d4384/saiemgilani-cfbfastR-3c33581/DESCRIPTION’
 ## 
   
 ─  preparing ‘cfbfastR’:
