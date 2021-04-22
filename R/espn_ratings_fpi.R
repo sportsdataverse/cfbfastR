@@ -7,26 +7,25 @@
 #' @param year Year
 #' @return A data frame with 20 variables:
 #' \describe{
-#'   \item{`year`: double.}
-#'   \item{`id`: character.}
-#'   \item{`name`: character.}
-#'   \item{`abbr`: character.}
-#'   \item{`row_n`: integer.}
-#'   \item{`fpi`: character.}
-#'   \item{`fpi_rk`: character.}
-#'   \item{`trend`: character.}
-#'   \item{`proj_w`: character.}
-#'   \item{`proj_l`: character.}
-#'   \item{`win_out`: double.}
-#'   \item{`win_6`: double.}
-#'   \item{`win_div`: double.}
-#'   \item{`playoff`: double.}
-#'   \item{`nc_game`: double.}
-#'   \item{`nc_win`: double.}
-#'   \item{`win_conf`: double.}
-#'   \item{`w`: character.}
-#'   \item{`l`: character.}
-#'   \item{`t`: character.}
+#'   \item{`year`: double.}{Season of the Football Power Index (FPI) Rating.}
+#'   \item{`team_id`: character.}{Unique ESPN team ID - `team_id`.}
+#'   \item{`name`: character.}{Team Name.}
+#'   \item{`abbr`: character.}{Team abbreviation.}
+#'   \item{`fpi`: character.}{Football Power Index (FPI) Rating.}
+#'   \item{`fpi_rk`: character.}{Football Power Index (FPI) Rank.}
+#'   \item{`trend`: character.}{Football Power Index (FPI) ranking trend.}
+#'   \item{`proj_w`: character.}{Projected Win total for the season.}
+#'   \item{`proj_l`: character.}{Projected Loss total for the season.}
+#'   \item{`win_out`: double.}{Probability the team wins out.}
+#'   \item{`win_6`: double.}{Probability the team wins at least six games.}
+#'   \item{`win_div`: double.}{Probability the team wins at their division.}
+#'   \item{`playoff`: double.}{Probability the team reaches the playoff.}
+#'   \item{`nc_game`: double.}{Probability the team reaches the national championship game.}
+#'   \item{`nc_win`: double.}{Probability the team wins the national championship game.}
+#'   \item{`win_conf`: double.}{Probability the team wins their conference game.}
+#'   \item{`w`: character.}{Wins on the season.}
+#'   \item{`l`: character.}{Losses on the season.}
+#'   \item{`t`: character.}{Ties on the season.}
 #' }
 #' @keywords Ratings FPI
 #' @importFrom stringr str_remove
@@ -88,7 +87,9 @@ espn_ratings_fpi <- function(year = 2019) {
     dplyr::select(-c("logos", "links")) %>%
     dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
     dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
-    dplyr::select(.data$year, tidyr::everything()) %>%
+    dplyr::select(.data$year, tidyr::everything()) %>% 
+    dplyr::select(-.data$row_n) %>% 
+    dplyr::rename(team_id = .data$id) %>% 
     as.data.frame()
 
   return(df)
