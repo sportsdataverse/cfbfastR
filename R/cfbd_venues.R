@@ -1,42 +1,37 @@
-#' @name cfbd_venues
-#' @aliases venues cfbd_venues
 #' @title CFBD Venues Endpoint
-#' @description 
-#' Pulls all college football venues and data on capacity, grass, city/state, location,
-#' elevation, dome, timezone and construction year. See Details below.
+#' @description Pulls all college football venues and data on capacity, grass, city/state, location,
+#' elevation, dome, timezone and construction year.
 #' @details CFB Venue Information
 #' ```r
 #'  cfbd_venues()
 #' ```
 #' @return A data frame with 337 rows and 13 variables:
 #' \describe{
-#'   \item{`venue_id`:integer.}
-#'   \item{`name`:character.}
-#'   \item{`capacity`:integer.}
-#'   \item{`grass`:logical.}
-#'   \item{`city`:character.}
-#'   \item{`state`:character.}
-#'   \item{`zip`:character.}
-#'   \item{`country_code`:character.}
-#'   \item{`location`:list.}
-#'   \item{`elevation`:character.}
-#'   \item{`year_constructed`:integer.}
-#'   \item{`dome`:logical.}
-#'   \item{`timezone`:character.}
+#'   \item{`venue_id`:integer.}{Referencing venue ID.}
+#'   \item{`name`:character.}{Venue name.}
+#'   \item{`capacity`:integer.}{Stadium capacity.}
+#'   \item{`grass`:logical.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
+#'   \item{`city`:character.}{Venue city.}
+#'   \item{`state`:character.}{Venue state.}
+#'   \item{`zip`:character.}{Venue zip.}
+#'   \item{`country_code`:character.}{Venue country code.}
+#'   \item{`location`:list.}{Venue location.}
+#'   \item{`elevation`:character.}{Venue elevation.}
+#'   \item{`year_constructed`:integer.}{Year in which the venue was constructed.}
+#'   \item{`dome`:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
+#'   \item{`timezone`:character.}{Time zone in which the venue resides (i.e. Eastern Time -> "America/New York").}
 #' }
 #' @source \url{https://api.collegefootballdata.com/venues}
 #' @keywords Venues
-NULL
-
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom dplyr rename
-#' @export
 #' @examples
 #' \donttest{
-#' cfbd_venues()
+#'   cfbd_venues()
 #' }
-#'
+#' @export
+
 cfbd_venues <- function() {
   full_url <- "https://api.collegefootballdata.com/venues"
 
