@@ -1,7 +1,7 @@
 context("ESPN FPI Ratings")
 
 cols <- c(
-  "year", "id", "name", "abbr", "row_n",
+  "year", "team_id", "name", "abbr",
   "fpi", "fpi_rk", "trend", "proj_w", "proj_l", "win_out",
   "win_6", "win_div", "playoff", "nc_game", "nc_win",
   "win_conf", "w", "l", "t"

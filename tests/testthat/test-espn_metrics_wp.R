@@ -2,8 +2,8 @@ context("CFB Metrics ESPN Win Probability")
 
 
 cols <- c(
-  "espn_game_id", "play_id", "seconds_left",
-  "home_win_percentage", "away_win_percentage"
+  "game_id", "play_id", "seconds_left",
+  "home_win_percentage", "away_win_percentage", "tie_percentage"
 )
 
 test_that("CFB Metrics ESPN Win Probability", {
