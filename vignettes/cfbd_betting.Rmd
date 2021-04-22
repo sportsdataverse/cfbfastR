@@ -6,9 +6,9 @@ opengraph:
   image: 
     src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
-    creator: "@saiemgilani"
-    card: summary
     site: "@cfbfastR"
+    card: summary_large_image
+    creator: "@saiemgilani"
 output: html_document
 ---
 
