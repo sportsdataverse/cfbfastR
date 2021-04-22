@@ -13,10 +13,10 @@ cfbd_conferences()
 \value{
 \code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 11 rows and 4 variables:
 \describe{
-\item{\code{conference_id}: Referencing conference id}
-\item{\code{name}: Conference name}
-\item{\code{long_name}: Long name for Conference}
-\item{\code{abbreviation}: Conference abbreviation}
+\item{\code{conference_id}:}{Referencing conference id.}
+\item{\code{name}:}{Conference name.}
+\item{\code{long_name}:}{Long name for Conference.}
+\item{\code{abbreviation}:}{Conference abbreviation.}
 ...
 }
 }
@@ -24,7 +24,7 @@ cfbd_conferences()
 CFB Conference Information
 Pulls all college football conferences and returns as data frame
 
-You can call this function simply with\if{html}{\out{<div class="r">}}\preformatted{  cfbd_conferences()
+You can call this function simply with\if{html}{\out{<div class="r">}}\preformatted{cfbd_conferences()
 }\if{html}{\out{</div>}}
 }
 \examples{

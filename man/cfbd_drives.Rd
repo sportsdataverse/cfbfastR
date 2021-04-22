@@ -37,33 +37,34 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \value{
 \code{\link[=cfbd_drives]{cfbd_drives()}} - A data frame with 23 variables as follows:
 \describe{
-\item{\code{offense}:character. Drive offense.}
-\item{\code{offense_conference}:character. Drive offense's conference.}
-\item{\code{defense}:character. Drive defense.}
-\item{\code{defense_conference}:character. Drive defense's conference.}
-\item{\verb{game_id:integer. Unique game identifier - }game_id\verb{.\} \\item\{}drive_id:character. Unique drive identifier - \code{drive_id}.}
-\item{\code{drive_number}:integer. Drive number in game.}
-\item{\code{scoring}:logical. Drive ends in a score.}
-\item{\code{start_period}:integer. Period (or Quarter) in which the drive starts.}
-\item{\code{start_yardline}:integer.  Yard line at the drive start.}
-\item{\code{start_yards_to_goal}:integer. Yards-to-Goal at the drive start.}
-\item{\code{end_period}:integer. Period (or Quarter) in which the drive ends.}
-\item{\code{end_yardline}:integer. Yard line at drive end.}
-\item{\code{end_yards_to_goal}:integer. Yards-to-Goal at drive end.}
-\item{\code{plays}:integer. Number of drive plays.}
-\item{\code{yards}:integer. Total drive yards.}
-\item{\code{drive_result}:character. Result of the drive description.}
-\item{\code{is_home_offense}:logical. Flag for if the offense on the field is the home offense}
-\item{\code{start_offense_score}:numeric. Offense score at the start of the drive.}
-\item{\code{start_defense_score}:numeric. Defense score at the start of the drive.}
-\item{\code{end_offense_score}:numeric. Offense score at the end of the drive.}
-\item{\code{end_defense_score}:numeric. Defense score at the end of the drive.}
-\item{\code{time_minutes_start}:integer. Minutes at drive start.}
-\item{\code{time_seconds_start}:integer. Seconds at drive start.}
-\item{\code{time_minutes_end}:integer. Minutes at drive end.}
-\item{\code{time_seconds_end}:integer. Seconds at drive end.}
-\item{\code{time_minutes_elapsed}:double. Minutes elapsed during drive.}
-\item{\code{time_seconds_elapsed}:integer. Seconds elapsed during drive.}
+\item{\code{offense}:character.}{Drive offense.}
+\item{\code{offense_conference}:character.}{Drive offense's conference.}
+\item{\code{defense}:character.}{Drive defense.}
+\item{\code{defense_conference}:character.}{Drive defense's conference.}
+\item{\code{game_id}:integer.}{Unique game identifier - \code{game_id}.}
+\item{\code{drive_id}:character.}{Unique drive identifier - \code{drive_id}.}
+\item{\code{drive_number}:integer.}{Drive number in game.}
+\item{\code{scoring}:logical.}{Drive ends in a score.}
+\item{\code{start_period}:integer.}{Period (or Quarter) in which the drive starts.}
+\item{\code{start_yardline}:integer.}{Yard line at the drive start.}
+\item{\code{start_yards_to_goal}:integer.}{Yards-to-Goal at the drive start.}
+\item{\code{end_period}:integer.}{Period (or Quarter) in which the drive ends.}
+\item{\code{end_yardline}:integer.}{Yard line at drive end.}
+\item{\code{end_yards_to_goal}:integer.}{Yards-to-Goal at drive end.}
+\item{\code{plays}:integer.}{Number of drive plays.}
+\item{\code{yards}:integer.}{Total drive yards.}
+\item{\code{drive_result}:character.}{Result of the drive description.}
+\item{\code{is_home_offense}:logical.}{Flag for if the offense on the field is the home offense}
+\item{\code{start_offense_score}:numeric.}{Offense score at the start of the drive.}
+\item{\code{start_defense_score}:numeric.}{Defense score at the start of the drive.}
+\item{\code{end_offense_score}:numeric.}{Offense score at the end of the drive.}
+\item{\code{end_defense_score}:numeric.}{Defense score at the end of the drive.}
+\item{\code{time_minutes_start}:integer.}{Minutes at drive start.}
+\item{\code{time_seconds_start}:integer.}{Seconds at drive start.}
+\item{\code{time_minutes_end}:integer.}{Minutes at drive end.}
+\item{\code{time_seconds_end}:integer.}{Seconds at drive end.}
+\item{\code{time_minutes_elapsed}:double.}{Minutes elapsed during drive.}
+\item{\code{time_seconds_elapsed}:integer.}{Seconds elapsed during drive.}
 }
 }
 \description{

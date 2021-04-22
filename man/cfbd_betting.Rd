@@ -2,10 +2,25 @@
 % Please edit documentation in R/cfbd_betting.R
 \name{cfbd_betting}
 \alias{cfbd_betting}
+\alias{cfbd_betting_lines}
 \alias{betting}
-\title{CFBD Betting Endpoint}
+\title{CFBD Betting Lines Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/lines}
+}
+\usage{
+cfbd_betting_lines(
+  game_id = NULL,
+  year = NULL,
+  week = NULL,
+  season_type = "regular",
+  team = NULL,
+  home_team = NULL,
+  away_team = NULL,
+  conference = NULL,
+  line_provider = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
@@ -25,7 +40,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
 
@@ -34,15 +49,24 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 Betting information for games with the following columns:
 \describe{
-\item{\verb{game_id:integer. Unique game identifier - }game_id\verb{.\} \\item\{}season\verb{:integer. Season parameter.\} \\item\{}season_type\verb{:character. Season Type (regular, postseason, both).\} \\item\{}week\verb{:integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).\} \\item\{}home_team\verb{:character. Home D-I Team.\} \\item\{}home_conference\verb{:character. Home D-I Conference.\} \\item\{}home_score\verb{:integer. Home Score.\} \\item\{}away_team\verb{:character. Away D-I Team.\} \\item\{}away_conference\verb{:character. Away D-I Conference.\} \\item\{}away_score\verb{:integer. Away Score.\} \\item\{}provider\verb{:character. Line provider.\} \\item\{}spread\verb{:character. Spread for the game.\} \\item\{}formatted_spread\verb{:character. Formatted spread for the game.\} \\item\{}over_under`:character. Over/Under for the game.}
+\item{\code{game_id}:integer.}{Unique game identifier - \code{game_id}.}
+\item{\code{season}:integer.}{Season parameter.}
+\item{\code{season_type}:character.)}{Season Type (regular, postseason, both}
+\item{\code{week}:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+\item{\code{home_team}:character.}{Home D-I Team.}
+\item{\code{home_conference}:character.}{Home D-I Conference.}
+\item{\code{home_score}:integer.}{Home Score.}
+\item{\code{away_team}:character.}{Away D-I Team.}
+\item{\code{away_conference}:character.}{Away D-I Conference.}
+\item{\code{away_score}:integer.}{Away Score.}
+\item{\code{provider}:character.}{Line provider.}
+\item{\code{spread}:character.}{Spread for the game.}
+\item{\code{formatted_spread}:character.}{Formatted spread for the game.}
+\item{\code{over_under}:character.}{Over/Under for the game.}
 }
 }
 \description{
-Get Betting information from games\if{html}{\out{<div class="r">}}\preformatted{ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
-
- # 7 OTs LSU at TAMU
- cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
-}\if{html}{\out{</div>}}
+Get betting lines information from games
 }
 \examples{
 \donttest{

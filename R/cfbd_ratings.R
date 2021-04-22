@@ -4,13 +4,11 @@
 #' @title CFBD Ratings and Rankings Endpoints
 #' @description
 #' \describe{
-#' \item{`cfbd_rankings()`: Gets Historical CFB poll rankings at a specific week}
-#' \item{`cfbd_ratings_sp()`: Get SP historical rating data}
-#' \item{`cfbd_ratings_sp_conference()`: Get SP conference-level historical rating data}
-#' \item{`cfbd_ratings_srs()`: Get SRS historical rating data}
+#' \item{`cfbd_rankings()`: Gets Historical CFB poll rankings at a specific week}{.}
+#' \item{`cfbd_ratings_sp()`: Get SP historical rating data}{.}
+#' \item{`cfbd_ratings_sp_conference()`: Get SP conference-level historical rating data}{.}
+#' \item{`cfbd_ratings_srs()`: Get SRS historical rating data}{.}
 #' }
-#'
-#'
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
@@ -18,15 +16,15 @@
 #'
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
 #' \describe{
-#'   \item{`season`: integer.}
-#'   \item{`season_type`: character.}
-#'   \item{`week`: integer.}
-#'   \item{`poll`: character.}
-#'   \item{`rank`: integer.}
-#'   \item{`school`: character.}
-#'   \item{`conference`: character.}
-#'   \item{`first_place_votes`: integer.}
-#'   \item{`points`: integer.}
+#'   \item{`season`: integer.}{Rankings season.}
+#'   \item{`season_type`: character.}{Season type of rankings.}
+#'   \item{`week`: integer.}{Week of rankings.}
+#'   \item{`poll`: character.}{Name of the poll.}
+#'   \item{`rank`: integer.}{Rank in the poll.}
+#'   \item{`school`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`first_place_votes`: integer.}{Number of first place votes.}
+#'   \item{`points`: integer.}{Total poll points.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/rankings}
 #' @keywords CFB Rankings
@@ -133,35 +131,35 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
 #' \describe{
-#'   \item{`year`: integer.}
-#'   \item{`team`: character.}
-#'   \item{`conference`: character.}
-#'   \item{`rating`: double.}
-#'   \item{`ranking`: integer.}
-#'   \item{`second_order_wins`: logical.}
-#'   \item{`sos`: logical.}
-#'   \item{`offense_ranking`: integer.}
-#'   \item{`offense_rating`: double.}
-#'   \item{`offense_success`: logical.}
-#'   \item{`offense_explosiveness`: logical.}
-#'   \item{`offense_rushing`: logical.}
-#'   \item{`offense_passing`: logical.}
-#'   \item{`offense_standard_downs`: logical.}
-#'   \item{`offense_passing_downs`: logical.}
-#'   \item{`offense_run_rate`: logical.}
-#'   \item{`offense_pace`: logical.}
-#'   \item{`defense_ranking`: integer.}
-#'   \item{`defense_rating`: double.}
-#'   \item{`defense_success`: logical.}
-#'   \item{`defense_explosiveness`: logical.}
-#'   \item{`defense_rushing`: logical.}
-#'   \item{`defense_passing`: logical.}
-#'   \item{`defense_standard_downs`: logical.}
-#'   \item{`defense_passing_downs`: logical.}
-#'   \item{`defense_havoc_total`: logical.}
-#'   \item{`defense_havoc_front_seven`: logical.}
-#'   \item{`defense_havoc_db`: logical.}
-#'   \item{`special_teams_rating`: double.}
+#'   \item{`year`: integer.}{Season of the ratings.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`rating`: double.}{SP+ rating.}
+#'   \item{`ranking`: integer.}{Ranking in the SP+ ratings.}
+#'   \item{`second_order_wins`: logical.}{Total second-order wins - Not available for recent seasons.}
+#'   \item{`sos`: logical.}{Strength of schedule - Not available for recent seasons.}
+#'   \item{`offense_ranking`: integer.}{Overall offense ranking.}
+#'   \item{`offense_rating`: double.}{Overall offense rating.}
+#'   \item{`offense_success`: logical.}{Offense success rating - Not available for recent seasons.}
+#'   \item{`offense_explosiveness`: logical.}{Offense explosiveness rating - Not available for recent seasons.}
+#'   \item{`offense_rushing`: logical.}{Offense rushing rating - Not available for recent seasons.}
+#'   \item{`offense_passing`: logical.}{Offense passing rating - Not available for recent seasons.}
+#'   \item{`offense_standard_downs`: logical.}{Offense standard downs rating - Not available for recent seasons.}
+#'   \item{`offense_passing_downs`: logical.}{Offensive passing downs rating - Not available for recent seasons.}
+#'   \item{`offense_run_rate`: logical.}{Offense rushing rate - Not available for recent seasons.}
+#'   \item{`offense_pace`: logical.}{Offense pace factor - Not available for recent seasons.}
+#'   \item{`defense_ranking`: integer.}{Overall defense ranking.}
+#'   \item{`defense_rating`: double.}{Overall defense rating.}
+#'   \item{`defense_success`: logical.}{Defense success rating - Not available for recent seasons.}
+#'   \item{`defense_explosiveness`: logical.}{Defense explosiveness rating - Not available for recent seasons.}
+#'   \item{`defense_rushing`: logical.}{Defense rushing rating - Not available for recent seasons.}
+#'   \item{`defense_passing`: logical.}{Defense passing rating - Not available for recent seasons.}
+#'   \item{`defense_standard_downs`: logical.}{Defense standard downs rating - Not available for recent seasons.}
+#'   \item{`defense_passing_downs`: logical.}{Defensive passing downs rating - Not available for recent seasons.}
+#'   \item{`defense_havoc_total`: logical.}{Total defensive havoc rate - Not available for recent seasons.}
+#'   \item{`defense_havoc_front_seven`: logical.}{Defense havoc rate from front 7 players - Not available for recent seasons.}
+#'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs - Not available for recent seasons.}
+#'   \item{`special_teams_rating`: double.}{Special teams rating.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp}
 #' @keywords SP+
@@ -174,7 +172,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_ratings_sp(year = 2019)
+#' cfbd_ratings_sp(year = 2018)
 #'
 #' cfbd_ratings_sp(team = "Texas A&M")
 #'
@@ -277,31 +275,32 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 #'
 #' @return [cfbd_ratings_sp_conference()] - A data frame with 25 variables:
 #' \describe{
-#'   \item{`year`: integer.}
-#'   \item{`conference`: character.}
-#'   \item{`rating`: double.}
-#'   \item{`second_order_wins`: logical.}
-#'   \item{`sos`: logical.}
-#'   \item{`offense_rating`: double.}
-#'   \item{`offense_success`: logical.}
-#'   \item{`offense_explosiveness`: logical.}
-#'   \item{`offense_rushing`: logical.}
-#'   \item{`offense_passing`: logical.}
-#'   \item{`offense_standard_downs`: logical.}
-#'   \item{`offense_passing_downs`: logical.}
-#'   \item{`offense_run_rate`: logical.}
-#'   \item{`offense_pace`: logical.}
-#'   \item{`defense_rating`: double.}
-#'   \item{`defense_success`: logical.}
-#'   \item{`defense_explosiveness`: logical.}
-#'   \item{`defense_rushing`: logical.}
-#'   \item{`defense_passing`: logical.}
-#'   \item{`defense_standard_downs`: logical.}
-#'   \item{`defense_passing_downs`: logical.}
-#'   \item{`defense_havoc_total`: logical.}
-#'   \item{`defense_havoc_front_seven`: logical.}
-#'   \item{`defense_havoc_db`: logical.}
-#'   \item{`special_teams_rating`: double.}
+#'   \item{`year`: integer.}{Season of the conference rating.}
+#'   \item{`conference`: character.}{Conference name.}
+#'   \item{`rating`: double.}{Conference SP+ rating.}
+#'   \item{`second_order_wins`: logical.}{Second-order wins for the conference - Not available for recent seasons.}
+#'   \item{`sos`: logical.}{Strength of schedule for the conference  - Not available for recent seasons..}
+#'   \item{`offense_rating`: double.}{Overall offense rating for the conference.}
+#'   \item{`offense_success`: logical.}{Offense success rating for the conference - Not available for recent seasons.}
+#'   \item{`offense_explosiveness`: logical.}{Offense explosiveness rating for the conference - Not available for recent seasons.}
+#'   \item{`offense_rushing`: logical.}{Offense rushing rating for the conference - Not available for recent seasons.}
+#'   \item{`offense_passing`: logical.}{Offense passing rating for the conference - Not available for recent seasons.}
+#'   \item{`offense_standard_downs`: logical.}{Offense standard downs rating for the conference - Not available for recent seasons.}
+#'   \item{`offense_passing_downs`: logical.}{Offensive passing downs rating for the conference - Not available for recent seasons.}
+#'   \item{`offense_run_rate`: logical.}{Offense rushing rate for the conference - Not available for recent seasons.}
+#'   \item{`offense_pace`: logical.}{Offense pace factor for the conference - Not available for recent seasons.}
+#'   \item{`defense_ranking`: integer.}{Overall defense ranking for the conference.}
+#'   \item{`defense_rating`: double.}{Overall defense rating for the conference.}
+#'   \item{`defense_success`: logical.}{Defense success rating for the conference - Not available for recent seasons.}
+#'   \item{`defense_explosiveness`: logical.}{Defense explosiveness rating for the conference - Not available for recent seasons.}
+#'   \item{`defense_rushing`: logical.}{Defense rushing rating for the conference - Not available for recent seasons.}
+#'   \item{`defense_passing`: logical.}{Defense passing rating for the conference - Not available for recent seasons.}
+#'   \item{`defense_standard_downs`: logical.}{Defense standard downs rating for the conference - Not available for recent seasons.}
+#'   \item{`defense_passing_downs`: logical.}{Defensive passing downs rating for the conference - Not available for recent seasons.}
+#'   \item{`defense_havoc_total`: logical.}{Total defensive havoc rate for the conference - Not available for recent seasons.}
+#'   \item{`defense_havoc_front_seven`: logical.}{Defense havoc rate from front 7 players for the conference - Not available for recent seasons.}
+#'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
+#'   \item{`special_teams_rating`: double.}{Special teams rating for the conference.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp/conferences}
 #' @keywords SP+
@@ -420,12 +419,12 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #'
 #' @return [cfbd_ratings_srs()] - A data frame with 6 variables:
 #' \describe{
-#'   \item{`year`: integer.}
-#'   \item{`team`: character.}
-#'   \item{`conference`: character.}
-#'   \item{`division`: logical.}
-#'   \item{`rating`: double.}
-#'   \item{`ranking`: integer.}
+#'   \item{`year`: integer.}{Season of the SRS rating.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`division`: logical.}{Division in the conference for the team.}
+#'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
+#'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/srs}
 #' @keywords SRS

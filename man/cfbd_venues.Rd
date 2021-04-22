@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbd_venues.R
 \name{cfbd_venues}
 \alias{cfbd_venues}
-\alias{venues}
 \title{CFBD Venues Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/venues}
@@ -13,24 +12,24 @@ cfbd_venues()
 \value{
 A data frame with 337 rows and 13 variables:
 \describe{
-\item{\code{venue_id}:integer.}
-\item{\code{name}:character.}
-\item{\code{capacity}:integer.}
-\item{\code{grass}:logical.}
-\item{\code{city}:character.}
-\item{\code{state}:character.}
-\item{\code{zip}:character.}
-\item{\code{country_code}:character.}
-\item{\code{location}:list.}
-\item{\code{elevation}:character.}
-\item{\code{year_constructed}:integer.}
-\item{\code{dome}:logical.}
-\item{\code{timezone}:character.}
+\item{\code{venue_id}:integer.}{Referencing venue ID.}
+\item{\code{name}:character.}{Venue name.}
+\item{\code{capacity}:integer.}{Stadium capacity.}
+\item{\code{grass}:logical.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
+\item{\code{city}:character.}{Venue city.}
+\item{\code{state}:character.}{Venue state.}
+\item{\code{zip}:character.}{Venue zip.}
+\item{\code{country_code}:character.}{Venue country code.}
+\item{\code{location}:list.}{Venue location.}
+\item{\code{elevation}:character.}{Venue elevation.}
+\item{\code{year_constructed}:integer.}{Year in which the venue was constructed.}
+\item{\code{dome}:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
+\item{\code{timezone}:character.}{Time zone in which the venue resides (i.e. Eastern Time -> "America/New York").}
 }
 }
 \description{
 Pulls all college football venues and data on capacity, grass, city/state, location,
-elevation, dome, timezone and construction year. See Details below.
+elevation, dome, timezone and construction year.
 }
 \details{
 CFB Venue Information\if{html}{\out{<div class="r">}}\preformatted{ cfbd_venues()
@@ -38,8 +37,7 @@ CFB Venue Information\if{html}{\out{<div class="r">}}\preformatted{ cfbd_venues(
 }
 \examples{
 \donttest{
-cfbd_venues()
+  cfbd_venues()
 }
-
 }
 \keyword{Venues}

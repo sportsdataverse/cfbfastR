@@ -113,146 +113,139 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \value{
 \code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
 \describe{
-\item{\code{game_id}: integer.}
-\item{\code{season}: integer.}
-\item{\code{week}: integer.}
-\item{\code{conference}: character.}
-\item{\code{team}: character.}
-\item{\code{opponent}: character.}
-\item{\code{off_overall}: character.}
-\item{\code{off_passing}: character.}
-\item{\code{off_rushing}: character.}
-\item{\code{off_first_down}: character.}
-\item{\code{off_second_down}: character.}
-\item{\code{off_third_down}: character.}
-\item{\code{def_overall}: character.}
-\item{\code{def_passing}: character.}
-\item{\code{def_rushing}: character.}
-\item{\code{def_first_down}: character.}
-\item{\code{def_second_down}: character.}
-\item{\code{def_third_down}: character.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{season}: integer.}{Season of the game.}
+\item{\code{week}: integer.}{Game week of the season.}
+\item{\code{conference}: character.}{Conference of the team.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{opponent}: character.}{Team Opponent.}
+\item{\code{off_overall}: character.}{Offense overall predicted points added (PPA).}
+\item{\code{off_passing}: character.}{Offense passing predicted points added (PPA).}
+\item{\code{off_rushing}: character.}{Offense rushing predicted points added (PPA).}
+\item{\code{off_first_down}: character.}{Offense 1st down predicted points added (PPA).}
+\item{\code{off_second_down}: character.}{Offense 2nd down predicted points added (PPA).}
+\item{\code{off_third_down}: character.}{Offense 3rd down predicted points added (PPA).}
+\item{\code{def_overall}: character.}{Defense overall predicted points added (PPA).}
+\item{\code{def_passing}: character.}{Defense passing predicted points added (PPA).}
+\item{\code{def_rushing}: character.}{Defense rushing predicted points added (PPA).}
+\item{\code{def_first_down}: character.}{Defense 1st down predicted points added (PPA).}
+\item{\code{def_second_down}: character.}{Defense 2nd down predicted points added (PPA).}
+\item{\code{def_third_down}: character.}{Defense 3rd down predicted points added (PPA).}
 }
 
 \code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
 \describe{
-\item{\code{season}: integer.}
-\item{\code{week}: integer.}
-\item{\code{name}: character.}
-\item{\code{position}: character.}
-\item{\code{team}: character.}
-\item{\code{opponent}: character.}
-\item{\code{avg_PPA_all}: double.}
-\item{\code{avg_PPA_pass}: double.}
-\item{\code{avg_PPA_rush}: double.}
+\item{\code{season}: integer.}{Season of the game.}
+\item{\code{week}: integer.}{Game week of the season.}
+\item{\code{name}: character.}{Athlete name.}
+\item{\code{position}: character.}{Athlete position.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{opponent}: character.}{Team Opponent name.}
+\item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
+\item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
+\item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}
 }
 
 \code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
 \describe{
-\item{\code{season}: integer.}
-\item{\code{id}: character.}
-\item{\code{name}: character.}
-\item{\code{position}: character.}
-\item{\code{team}: character.}
-\item{\code{conference}: character.}
-\item{\code{countable_plays}: integer.}
-\item{\code{avg_PPA_all}: double.}
-\item{\code{avg_PPA_pass}: double.}
-\item{\code{avg_PPA_rush}: double.}
-\item{\code{avg_PPA_first_down}: double.}
-\item{\code{avg_PPA_second_down}: double.}
-\item{\code{avg_PPA_third_down}: double.}
-\item{\code{avg_PPA_standard_downs}: double.}
-\item{\code{avg_PPA_passing_downs}: double.}
-\item{\code{total_PPA_all}: double.}
-\item{\code{total_PPA_pass}: double.}
-\item{\code{total_PPA_rush}: double.}
-\item{\code{total_PPA_first_down}: double.}
-\item{\code{total_PPA_second_down}: double.}
-\item{\code{total_PPA_third_down}: double.}
-\item{\code{total_PPA_standard_downs}: double.}
-\item{\code{total_PPA_passing_downs}: double.}
+\item{\code{season}: integer.}{Season.}
+\item{\code{athlete_id}: character.}{Athlete referencing id.}
+\item{\code{name}: character.}{Athlete name.}
+\item{\code{position}: character.}{Athlete Position.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{conference}: character.}{Team conference.}
+\item{\code{countable_plays}: integer.}{Number of plays which can be counted.}
+\item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
+\item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
+\item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}
+\item{\code{avg_PPA_first_down}: double.}{Average 1st down predicted points added (PPA).}
+\item{\code{avg_PPA_second_down}: double.}{Average 2nd down predicted points added (PPA).}
+\item{\code{avg_PPA_third_down}: double.}{Average 3rd down predicted points added (PPA).}
+\item{\code{avg_PPA_standard_downs}: double.}{Average standard down predicted points added (PPA).}
+\item{\code{avg_PPA_passing_downs}: double.}{Average passing down predicted points added (PPA).}
+\item{\code{total_PPA_all}: double.}{Total overall predicted points added (PPA).}
+\item{\code{total_PPA_pass}: double.}{Total passing predicted points added (PPA).}
+\item{\code{total_PPA_rush}: double.}{Total rushing predicted points added (PPA).}
+\item{\code{total_PPA_first_down}: double.}{Total 1st down predicted points added (PPA).}
+\item{\code{total_PPA_second_down}: double.}{Total 2nd down predicted points added (PPA).}
+\item{\code{total_PPA_third_down}: double.}{Total 3rd down predicted points added (PPA).}
+\item{\code{total_PPA_standard_downs}: double.}{Total standard down predicted points added (PPA).}
+\item{\code{total_PPA_passing_downs}: double.}{Total passing down predicted points added (PPA).}
 }
 
 \code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
 \describe{
-\item{\code{yard_line}: integer.}
-\item{\code{predicted_points}: character.}
+\item{\code{yard_line}: integer.}{Yards to goal}
+\item{\code{predicted_points}: character.}{Predicted points at in that down-distance-yardline scenario}
 }
 
 \code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
 \describe{
-\item{\code{season}: integer.}
-\item{\code{conference}: character.}
-\item{\code{team}: character.}
-\item{\code{off_overall}: character.}
-\item{\code{off_passing}: character.}
-\item{\code{off_rushing}: character.}
-\item{\code{off_first_down}: character.}
-\item{\code{off_second_down}: character.}
-\item{\code{off_third_down}: character.}
-\item{\code{off_cumulative_total}: character.}
-\item{\code{off_cumulative_passing}: character.}
-\item{\code{off_cumulative_rushing}: character.}
-\item{\code{def_overall}: character.}
-\item{\code{def_passing}: character.}
-\item{\code{def_rushing}: character.}
-\item{\code{def_first_down}: character.}
-\item{\code{def_second_down}: character.}
-\item{\code{def_third_down}: character.}
-\item{\code{def_cumulative_total}: character.}
-\item{\code{def_cumulative_passing}: character.}
-\item{\code{def_cumulative_rushing}: character.}
+\item{\code{season}: integer.}{.}
+\item{\code{conference}: character.}{.}
+\item{\code{team}: character.}{.}
+\item{\code{off_overall}: character.}{Offense overall predicted points added (PPA).}
+\item{\code{off_passing}: character.}{Offense passing predicted points added (PPA).}
+\item{\code{off_rushing}: character.}{Offense rushing predicted points added (PPA).}
+\item{\code{off_first_down}: character.}{Offense 1st down predicted points added (PPA).}
+\item{\code{off_second_down}: character.}{Offense 2nd down predicted points added (PPA).}
+\item{\code{off_third_down}: character.}{Offense 3rd down predicted points added (PPA).}
+\item{\code{off_cumulative_total}: character.}{Offense cumulative total predicted points added (PPA).}
+\item{\code{off_cumulative_passing}: character.}{Offense cumulative total passing predicted points added (PPA).}
+\item{\code{off_cumulative_rushing}: character.}{Offense cumulative total rushing predicted points added (PPA).}
+\item{\code{def_overall}: character.}{Defense overall predicted points added (PPA).}
+\item{\code{def_passing}: character.}{Defense passing predicted points added (PPA).}
+\item{\code{def_rushing}: character.}{Defense rushing predicted points added (PPA).}
+\item{\code{def_first_down}: character.}{Defense 1st down predicted points added (PPA).}
+\item{\code{def_second_down}: character.}{Defense 2nd down predicted points added (PPA).}
+\item{\code{def_third_down}: character.}{Defense 3rd down predicted points added (PPA).}
+\item{\code{def_cumulative_total}: character.}{Defense cumulative total predicted points added (PPA).}
+\item{\code{def_cumulative_passing}: character.}{Defense cumulative total passing predicted points added (PPA).}
+\item{\code{def_cumulative_rushing}: character.}{Defense cumulative total rushing predicted points added (PPA).}
 }
 
 \code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
 \describe{
-\item{\code{season}: integer.}
-\item{\code{season_type}: character.}
-\item{\code{week}: integer.}
-\item{\code{game_id}: integer.}
-\item{\code{home_team}: character.}
-\item{\code{away_team}: character.}
-\item{\code{spread}: integer.}
-\item{\code{home_win_prob}: double.}
-\item{\code{away_win_prob}: double.}
+\item{\code{season}: integer.}{Season of game.}
+\item{\code{season_type}: character.}{Season type of game.}
+\item{\code{week}: integer.}{Game week of the season.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{home_team}: character.}{Home team name.}
+\item{\code{away_team}: character.}{Away team name.}
+\item{\code{spread}: integer.}{Betting line provider spread.}
+\item{\code{home_win_prob}: double.}{Home win probability - pre-game prediction.}
+\item{\code{away_win_prob}: double.}{Away win probability - pre-game prediction.}
 }
 
 \code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}} - A data frame with 16 variables:
 \describe{
-\item{\code{play_id}: character.}
-\item{\code{play_text}: character.}
-\item{\code{home_id}: integer.}
-\item{\code{home}: character.}
-\item{\code{away_id}: integer.}
-\item{\code{away}: character.}
-\item{\code{spread}: character.}
-\item{\code{home_ball}: logical.}
-\item{\code{home_score}: integer.}
-\item{\code{away_score}: integer.}
-\item{\code{down}: integer.}
-\item{\code{distance}: integer.}
-\item{\code{home_win_prob}: character.}
-\item{\code{away_win_prob}: double.}
-\item{\code{play_number}: integer.}
-\item{\code{yard_line}: integer.}
+\item{\code{play_id}: character.}{Play referencing id.}
+\item{\code{play_text}: character.}{A text description of the play.}
+\item{\code{home_id}: integer.}{Home team referencing id.}
+\item{\code{home}: character.}{Home team name.}
+\item{\code{away_id}: integer.}{Away team referencing id.}
+\item{\code{away}: character.}{Away team name.}
+\item{\code{spread}: character.}{Betting lines provider spread.}
+\item{\code{home_ball}: logical.}{Home team has the ball.}
+\item{\code{home_score}: integer.}{Home team score.}
+\item{\code{away_score}: integer.}{Away team score.}
+\item{\code{down}: integer.}{Down of the play.}
+\item{\code{distance}: integer.}{Distance to the sticks (to 1st down marker of goal-line in goal-to-go situations).}
+\item{\code{home_win_prob}: character.}{Home team win probability.}
+\item{\code{away_win_prob}: double.}{Away team win probability.}
+\item{\code{play_number}: integer.}{Game play number.}
+\item{\code{yard_line}: integer.}{Yard line of the play (0-100 yards).}
 }
 }
 \description{
 \describe{
-\item{\code{cfbd_metrics_ppa_games()}: Get team game averages for Predicted Points Added (PPA)}
-
-\item{\code{cfbd_metrics_ppa_players_games()}: Get player game averages for Predicted Points Added (PPA)}
-
-\item{\code{cfbd_metrics_ppa_players_season()}: Get player season averages for Predicted Points Added (PPA)}
-
-\item{\code{cfbd_metrics_ppa_predicted()}: Calculate Predicted Points using Down and Distance}
-
-\item{\code{cfbd_metrics_ppa_teams()}: Get team averages for Predicted Points Added (PPA)}
-
-\item{\code{cfbd_metrics_wp_pregame()}: Get Pre-game Win Probability Data from CFBD API}
-
-\item{\code{cfbd_metrics_wp()}: Get win probability chart data from CFBD API}
-
+\item{\code{cfbd_metrics_ppa_games()}:}{Get team game averages for Predicted Points Added (PPA).}
+\item{\code{cfbd_metrics_ppa_players_games()}:}{Get player game averages for Predicted Points Added (PPA).}
+\item{\code{cfbd_metrics_ppa_players_season()}:}{Get player season averages for Predicted Points Added (PPA).}
+\item{\code{cfbd_metrics_ppa_predicted()}:}{Calculate Predicted Points using Down and Distance.}
+\item{\code{cfbd_metrics_ppa_teams()}:}{Get team averages for Predicted Points Added (PPA).}
+\item{\code{cfbd_metrics_wp_pregame()}:}{Get Pre-game Win Probability Data from CFBD API.}
+\item{\code{cfbd_metrics_wp()}:}{Get win probability chart data from CFBD API.}
 }
 }
 \examples{

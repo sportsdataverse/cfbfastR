@@ -1,13 +1,7 @@
 #' @name cfbd_betting
-#' @aliases betting cfbd_betting
-#' @title CFBD Betting Endpoint
-#' @description Get Betting information from games
-#' ```r
-#'  cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
-#'
-#'  # 7 OTs LSU at TAMU
-#'  cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
-#' ```
+#' @aliases betting cfbd_betting cfbd_betting_lines
+#' @title CFBD Betting Lines Endpoint
+#' @description Get betting lines information from games
 #' @examples
 #' \donttest{
 #'    cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
@@ -15,7 +9,6 @@
 #'    # 7 OTs LSU at TAMU
 #'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 #' }
-
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
@@ -26,30 +19,28 @@
 #' @param away_team (\emph{String} optional): Away D-I Team
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#'
 #' @return Betting information for games with the following columns:
 #' \describe{
-#'   \item{`game_id:integer. Unique game identifier - `game_id`.}
-#'   \item{`season`:integer. Season parameter.}
-#'   \item{`season_type`:character. Season Type (regular, postseason, both).}
-#'   \item{`week`:integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
-#'   \item{`home_team`:character. Home D-I Team.}
-#'   \item{`home_conference`:character. Home D-I Conference.}
-#'   \item{`home_score`:integer. Home Score.}
-#'   \item{`away_team`:character. Away D-I Team.}
-#'   \item{`away_conference`:character. Away D-I Conference.}
-#'   \item{`away_score`:integer. Away Score.}
-#'   \item{`provider`:character. Line provider.}
-#'   \item{`spread`:character. Spread for the game.}
-#'   \item{`formatted_spread`:character. Formatted spread for the game.}
-#'   \item{`over_under`:character. Over/Under for the game.}
+#'   \item{`game_id`:integer.}{Unique game identifier - `game_id`.}
+#'   \item{`season`:integer.}{Season parameter.}
+#'   \item{`season_type`:character.)}{Season Type (regular, postseason, both}
+#'   \item{`week`:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+#'   \item{`home_team`:character.}{Home D-I Team.}
+#'   \item{`home_conference`:character.}{Home D-I Conference.}
+#'   \item{`home_score`:integer.}{Home Score.}
+#'   \item{`away_team`:character.}{Away D-I Team.}
+#'   \item{`away_conference`:character.}{Away D-I Conference.}
+#'   \item{`away_score`:integer.}{Away Score.}
+#'   \item{`provider`:character.}{Line provider.}
+#'   \item{`spread`:character.}{Spread for the game.}
+#'   \item{`formatted_spread`:character.}{Formatted spread for the game.}
+#'   \item{`over_under`:character.}{Over/Under for the game.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/lines}
 #' @keywords Betting Lines
-NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode

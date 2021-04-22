@@ -4,11 +4,11 @@
 #' @title CFB Recruiting Endpoint
 #' @description
 #' \describe{
-#'   \item{`cfbd_recruiting_player()`: Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
+#'   \item{`cfbd_recruiting_player()`: Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}{}
 #'   
-#'   \item{`cfbd_recruiting_position()`: CFB Recruiting Information Position Groups}
+#'   \item{`cfbd_recruiting_position()`: CFB Recruiting Information Position Groups.}{}
 #'   
-#'   \item{`cfbd_recruiting_team()`: CFB Recruiting Information Team Rankings}
+#'   \item{`cfbd_recruiting_team()`: CFB Recruiting Information Team Rankings.}{}
 #' }
 #' 
 #' @details
@@ -40,23 +40,23 @@
 #'
 #' @return [cfbd_recruiting_player()] - A data frame with 14 variables:
 #' \describe{
-#'   \item{`recruit_type`: character.}
-#'   \item{`year`: integer.}
-#'   \item{`ranking`: integer.}
-#'   \item{`name`: character.}
-#'   \item{`school`: character.}
-#'   \item{`committed_to`: character.}
-#'   \item{`position`: character.}
-#'   \item{`height`: double.}
-#'   \item{`weight`: integer.}
-#'   \item{`stars`: integer.}
-#'   \item{`rating`: double.}
-#'   \item{`city`: character.}
-#'   \item{`state_province`: character.}
-#'   \item{`country`: character.}
-#'   \item{`hometown_info_latitude`: character.}
-#'   \item{`hometown_info_longitude`: character.}
-#'   \item{`hometown_info_fips_code`: character.}
+#'   \item{`recruit_type`: character.}{High School, Prep School, or Junior College.}
+#'   \item{`year`: integer.}{Recruit class year.}
+#'   \item{`ranking`: integer.}{Recruit Ranking.}
+#'   \item{`name`: character.}{Recruit Name.}
+#'   \item{`school`: character.}{School recruit attended.}
+#'   \item{`committed_to`: character.}{School the recruit is committed to.}
+#'   \item{`position`: character.}{Recruit position.}
+#'   \item{`height`: double.}{Recruit height.}
+#'   \item{`weight`: integer.}{Recruit weight.}
+#'   \item{`stars`: integer.}{Recruit stars.}
+#'   \item{`rating`: double.}{247 composite rating.}
+#'   \item{`city`: character.}{Hometown of the recruit.}
+#'   \item{`state_province`: character.}{Hometown state of the recruit.}
+#'   \item{`country`: character.}{Hometown country of the recruit.}
+#'   \item{`hometown_info_latitude`: character.}{Hometown latitude.}
+#'   \item{`hometown_info_longitude`: character.}{Hometown longitude.}
+#'   \item{`hometown_info_fips_code`: character.}{Hometown FIPS code.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/players}
 #' @keywords Recruiting
@@ -181,13 +181,13 @@ cfbd_recruiting_player <- function(year = NULL,
 #'
 #' @return [cfbd_recruiting_position()] - A data frame with 7 variables:
 #' \describe{
-#'   \item{`team`: character.}
-#'   \item{`conference`: character.}
-#'   \item{`position_group`: character.}
-#'   \item{`avg_rating`: double.}
-#'   \item{`total_rating`: double.}
-#'   \item{`commits`: integer.}
-#'   \item{`avg_stars`: double.}
+#'   \item{`team`: character.}{Recruiting team.}
+#'   \item{`conference`: character.}{Recruiting team conference.}
+#'   \item{`position_group`: character.}{Position group of the recruits.}
+#'   \item{`avg_rating`: double.}{Average rating of the recruits in the position group.}
+#'   \item{`total_rating`: double.}{Sum of the ratings of the recruits in the position group.}
+#'   \item{`commits`: integer.}{Number of commits in the position group.}
+#'   \item{`avg_stars`: double.}{Average stars of the recruits in the position group.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/groups}
 #' @keywords Recruiting
@@ -302,10 +302,10 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'
 #' @return [cfbd_recruiting_team()] - A data frame with 4 variables:
 #' \describe{
-#'   \item{`year`: integer.}
-#'   \item{`rank`: integer.}
-#'   \item{`team`: character.}
-#'   \item{`points`: character.}
+#'   \item{`year`: integer.}{Recruiting class year.}
+#'   \item{`rank`: integer.}{Team Recruiting rank.}
+#'   \item{`team`: character.}{Recruiting Team.}
+#'   \item{`points`: character.}{Team talent points.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/teams}
 #' @keywords Recruiting

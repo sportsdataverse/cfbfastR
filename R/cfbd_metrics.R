@@ -4,22 +4,14 @@
 #' @title CFBD Metrics Endpoint
 #' @description 
 #' \describe{
-#' \item{`cfbd_metrics_ppa_games()`: Get team game averages for Predicted Points Added (PPA)}
-#' 
-#' \item{`cfbd_metrics_ppa_players_games()`: Get player game averages for Predicted Points Added (PPA)}
-#' 
-#' \item{`cfbd_metrics_ppa_players_season()`: Get player season averages for Predicted Points Added (PPA)}
-#' 
-#' \item{`cfbd_metrics_ppa_predicted()`: Calculate Predicted Points using Down and Distance}
-#' 
-#' \item{`cfbd_metrics_ppa_teams()`: Get team averages for Predicted Points Added (PPA)}
-#' 
-#' \item{`cfbd_metrics_wp_pregame()`: Get Pre-game Win Probability Data from CFBD API}
-#' 
-#' \item{`cfbd_metrics_wp()`: Get win probability chart data from CFBD API}
-#' 
+#' \item{`cfbd_metrics_ppa_games()`:}{Get team game averages for Predicted Points Added (PPA).}
+#' \item{`cfbd_metrics_ppa_players_games()`:}{Get player game averages for Predicted Points Added (PPA).}
+#' \item{`cfbd_metrics_ppa_players_season()`:}{Get player season averages for Predicted Points Added (PPA).}
+#' \item{`cfbd_metrics_ppa_predicted()`:}{Calculate Predicted Points using Down and Distance.}
+#' \item{`cfbd_metrics_ppa_teams()`:}{Get team averages for Predicted Points Added (PPA).}
+#' \item{`cfbd_metrics_wp_pregame()`:}{Get Pre-game Win Probability Data from CFBD API.}
+#' \item{`cfbd_metrics_wp()`:}{Get win probability chart data from CFBD API.}
 #' }
-#'
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
@@ -31,24 +23,24 @@
 #'
 #' @return [cfbd_metrics_ppa_games()] - A data frame with 18 variables:
 #' \describe{
-#'   \item{`game_id`: integer.}
-#'   \item{`season`: integer.}
-#'   \item{`week`: integer.}
-#'   \item{`conference`: character.}
-#'   \item{`team`: character.}
-#'   \item{`opponent`: character.}
-#'   \item{`off_overall`: character.}
-#'   \item{`off_passing`: character.}
-#'   \item{`off_rushing`: character.}
-#'   \item{`off_first_down`: character.}
-#'   \item{`off_second_down`: character.}
-#'   \item{`off_third_down`: character.}
-#'   \item{`def_overall`: character.}
-#'   \item{`def_passing`: character.}
-#'   \item{`def_rushing`: character.}
-#'   \item{`def_first_down`: character.}
-#'   \item{`def_second_down`: character.}
-#'   \item{`def_third_down`: character.}
+#'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`season`: integer.}{Season of the game.}
+#'   \item{`week`: integer.}{Game week of the season.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`opponent`: character.}{Team Opponent.}
+#'   \item{`off_overall`: character.}{Offense overall predicted points added (PPA).}
+#'   \item{`off_passing`: character.}{Offense passing predicted points added (PPA).}
+#'   \item{`off_rushing`: character.}{Offense rushing predicted points added (PPA).}
+#'   \item{`off_first_down`: character.}{Offense 1st down predicted points added (PPA).}
+#'   \item{`off_second_down`: character.}{Offense 2nd down predicted points added (PPA).}
+#'   \item{`off_third_down`: character.}{Offense 3rd down predicted points added (PPA).}
+#'   \item{`def_overall`: character.}{Defense overall predicted points added (PPA).}
+#'   \item{`def_passing`: character.}{Defense passing predicted points added (PPA).}
+#'   \item{`def_rushing`: character.}{Defense rushing predicted points added (PPA).}
+#'   \item{`def_first_down`: character.}{Defense 1st down predicted points added (PPA).}
+#'   \item{`def_second_down`: character.}{Defense 2nd down predicted points added (PPA).}
+#'   \item{`def_third_down`: character.}{Defense 3rd down predicted points added (PPA).}
 #' }
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
@@ -181,15 +173,15 @@ cfbd_metrics_ppa_games <- function(year,
 #'
 #' @return [cfbd_metrics_ppa_players_games()] - A data frame with 9 variables:
 #' \describe{
-#'   \item{`season`: integer.}
-#'   \item{`week`: integer.}
-#'   \item{`name`: character.}
-#'   \item{`position`: character.}
-#'   \item{`team`: character.}
-#'   \item{`opponent`: character.}
-#'   \item{`avg_PPA_all`: double.}
-#'   \item{`avg_PPA_pass`: double.}
-#'   \item{`avg_PPA_rush`: double.}
+#'   \item{`season`: integer.}{Season of the game.}
+#'   \item{`week`: integer.}{Game week of the season.}
+#'   \item{`name`: character.}{Athlete name.}
+#'   \item{`position`: character.}{Athlete position.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`opponent`: character.}{Team Opponent name.}
+#'   \item{`avg_PPA_all`: double.}{Average overall predicted points added (PPA).}
+#'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
+#'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/players/games}
 #' @keywords Players Predicted Points
@@ -342,29 +334,29 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'
 #' @return [cfbd_metrics_ppa_players_season()] - A data frame with 23 variables:
 #' \describe{
-#'   \item{`season`: integer.}
-#'   \item{`id`: character.}
-#'   \item{`name`: character.}
-#'   \item{`position`: character.}
-#'   \item{`team`: character.}
-#'   \item{`conference`: character.}
-#'   \item{`countable_plays`: integer.}
-#'   \item{`avg_PPA_all`: double.}
-#'   \item{`avg_PPA_pass`: double.}
-#'   \item{`avg_PPA_rush`: double.}
-#'   \item{`avg_PPA_first_down`: double.}
-#'   \item{`avg_PPA_second_down`: double.}
-#'   \item{`avg_PPA_third_down`: double.}
-#'   \item{`avg_PPA_standard_downs`: double.}
-#'   \item{`avg_PPA_passing_downs`: double.}
-#'   \item{`total_PPA_all`: double.}
-#'   \item{`total_PPA_pass`: double.}
-#'   \item{`total_PPA_rush`: double.}
-#'   \item{`total_PPA_first_down`: double.}
-#'   \item{`total_PPA_second_down`: double.}
-#'   \item{`total_PPA_third_down`: double.}
-#'   \item{`total_PPA_standard_downs`: double.}
-#'   \item{`total_PPA_passing_downs`: double.}
+#'   \item{`season`: integer.}{Season.}
+#'   \item{`athlete_id`: character.}{Athlete referencing id.}
+#'   \item{`name`: character.}{Athlete name.}
+#'   \item{`position`: character.}{Athlete Position.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Team conference.}
+#'   \item{`countable_plays`: integer.}{Number of plays which can be counted.}
+#'   \item{`avg_PPA_all`: double.}{Average overall predicted points added (PPA).}
+#'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
+#'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
+#'   \item{`avg_PPA_first_down`: double.}{Average 1st down predicted points added (PPA).}
+#'   \item{`avg_PPA_second_down`: double.}{Average 2nd down predicted points added (PPA).}
+#'   \item{`avg_PPA_third_down`: double.}{Average 3rd down predicted points added (PPA).}
+#'   \item{`avg_PPA_standard_downs`: double.}{Average standard down predicted points added (PPA).}
+#'   \item{`avg_PPA_passing_downs`: double.}{Average passing down predicted points added (PPA).}
+#'   \item{`total_PPA_all`: double.}{Total overall predicted points added (PPA).}
+#'   \item{`total_PPA_pass`: double.}{Total passing predicted points added (PPA).}
+#'   \item{`total_PPA_rush`: double.}{Total rushing predicted points added (PPA).}
+#'   \item{`total_PPA_first_down`: double.}{Total 1st down predicted points added (PPA).}
+#'   \item{`total_PPA_second_down`: double.}{Total 2nd down predicted points added (PPA).}
+#'   \item{`total_PPA_third_down`: double.}{Total 3rd down predicted points added (PPA).}
+#'   \item{`total_PPA_standard_downs`: double.}{Total standard down predicted points added (PPA).}
+#'   \item{`total_PPA_passing_downs`: double.}{Total passing down predicted points added (PPA).}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/players/season}
 #' @keywords Players Predicted Points Season Averages
@@ -480,7 +472,8 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
       colnames(df) <- gsub("countablePlays", "countable_plays", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
-      df <- df %>%
+      df <- df %>% 
+        dplyr::rename(athlete_id = .data$id) %>% 
         dplyr::arrange(-.data$countable_plays) %>%
         as.data.frame()
 
@@ -512,8 +505,8 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'
 #' @return [cfbd_metrics_ppa_predicted()] - A data frame with 2 variables:
 #' \describe{
-#'   \item{`yard_line`: integer.}
-#'   \item{`predicted_points`: character.}
+#'   \item{`yard_line`: integer.}{Yards to goal}
+#'   \item{`predicted_points`: character.}{Predicted points at in that down-distance-yardline scenario}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/predicted}
 #' @keywords Predicted Points
@@ -605,27 +598,27 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' 
 #' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
 #' \describe{
-#'   \item{`season`: integer.}
-#'   \item{`conference`: character.}
-#'   \item{`team`: character.}
-#'   \item{`off_overall`: character.}
-#'   \item{`off_passing`: character.}
-#'   \item{`off_rushing`: character.}
-#'   \item{`off_first_down`: character.}
-#'   \item{`off_second_down`: character.}
-#'   \item{`off_third_down`: character.}
-#'   \item{`off_cumulative_total`: character.}
-#'   \item{`off_cumulative_passing`: character.}
-#'   \item{`off_cumulative_rushing`: character.}
-#'   \item{`def_overall`: character.}
-#'   \item{`def_passing`: character.}
-#'   \item{`def_rushing`: character.}
-#'   \item{`def_first_down`: character.}
-#'   \item{`def_second_down`: character.}
-#'   \item{`def_third_down`: character.}
-#'   \item{`def_cumulative_total`: character.}
-#'   \item{`def_cumulative_passing`: character.}
-#'   \item{`def_cumulative_rushing`: character.}
+#'   \item{`season`: integer.}{.}
+#'   \item{`conference`: character.}{.}
+#'   \item{`team`: character.}{.}
+#'   \item{`off_overall`: character.}{Offense overall predicted points added (PPA).}
+#'   \item{`off_passing`: character.}{Offense passing predicted points added (PPA).}
+#'   \item{`off_rushing`: character.}{Offense rushing predicted points added (PPA).}
+#'   \item{`off_first_down`: character.}{Offense 1st down predicted points added (PPA).}
+#'   \item{`off_second_down`: character.}{Offense 2nd down predicted points added (PPA).}
+#'   \item{`off_third_down`: character.}{Offense 3rd down predicted points added (PPA).}
+#'   \item{`off_cumulative_total`: character.}{Offense cumulative total predicted points added (PPA).}
+#'   \item{`off_cumulative_passing`: character.}{Offense cumulative total passing predicted points added (PPA).}
+#'   \item{`off_cumulative_rushing`: character.}{Offense cumulative total rushing predicted points added (PPA).}
+#'   \item{`def_overall`: character.}{Defense overall predicted points added (PPA).}
+#'   \item{`def_passing`: character.}{Defense passing predicted points added (PPA).}
+#'   \item{`def_rushing`: character.}{Defense rushing predicted points added (PPA).}
+#'   \item{`def_first_down`: character.}{Defense 1st down predicted points added (PPA).}
+#'   \item{`def_second_down`: character.}{Defense 2nd down predicted points added (PPA).}
+#'   \item{`def_third_down`: character.}{Defense 3rd down predicted points added (PPA).}
+#'   \item{`def_cumulative_total`: character.}{Defense cumulative total predicted points added (PPA).}
+#'   \item{`def_cumulative_passing`: character.}{Defense cumulative total passing predicted points added (PPA).}
+#'   \item{`def_cumulative_rushing`: character.}{Defense cumulative total rushing predicted points added (PPA).}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/teams}
 #' @keywords Teams Predicted Points
@@ -740,15 +733,15 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
 #'
 #' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
 #' \describe{
-#'   \item{`season`: integer.}
-#'   \item{`season_type`: character.}
-#'   \item{`week`: integer.}
-#'   \item{`game_id`: integer.}
-#'   \item{`home_team`: character.}
-#'   \item{`away_team`: character.}
-#'   \item{`spread`: integer.}
-#'   \item{`home_win_prob`: double.}
-#'   \item{`away_win_prob`: double.}
+#'   \item{`season`: integer.}{Season of game.}
+#'   \item{`season_type`: character.}{Season type of game.}
+#'   \item{`week`: integer.}{Game week of the season.}
+#'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`home_team`: character.}{Home team name.}
+#'   \item{`away_team`: character.}{Away team name.}
+#'   \item{`spread`: integer.}{Betting line provider spread.}
+#'   \item{`home_win_prob`: double.}{Home win probability - pre-game prediction.}
+#'   \item{`away_win_prob`: double.}{Away win probability - pre-game prediction.}
 #' }
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON
@@ -858,22 +851,22 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #'
 #' @return [cfbd_metrics_wp()] - A data frame with 16 variables:
 #' \describe{
-#'   \item{`play_id`: character.}
-#'   \item{`play_text`: character.}
-#'   \item{`home_id`: integer.}
-#'   \item{`home`: character.}
-#'   \item{`away_id`: integer.}
-#'   \item{`away`: character.}
-#'   \item{`spread`: character.}
-#'   \item{`home_ball`: logical.}
-#'   \item{`home_score`: integer.}
-#'   \item{`away_score`: integer.}
-#'   \item{`down`: integer.}
-#'   \item{`distance`: integer.}
-#'   \item{`home_win_prob`: character.}
-#'   \item{`away_win_prob`: double.}
-#'   \item{`play_number`: integer.}
-#'   \item{`yard_line`: integer.}
+#'   \item{`play_id`: character.}{Play referencing id.}
+#'   \item{`play_text`: character.}{A text description of the play.}
+#'   \item{`home_id`: integer.}{Home team referencing id.}
+#'   \item{`home`: character.}{Home team name.}
+#'   \item{`away_id`: integer.}{Away team referencing id.}
+#'   \item{`away`: character.}{Away team name.}
+#'   \item{`spread`: character.}{Betting lines provider spread.}
+#'   \item{`home_ball`: logical.}{Home team has the ball.}
+#'   \item{`home_score`: integer.}{Home team score.}
+#'   \item{`away_score`: integer.}{Away team score.}
+#'   \item{`down`: integer.}{Down of the play.}
+#'   \item{`distance`: integer.}{Distance to the sticks (to 1st down marker of goal-line in goal-to-go situations).}
+#'   \item{`home_win_prob`: character.}{Home team win probability.}
+#'   \item{`away_win_prob`: double.}{Away team win probability.}
+#'   \item{`play_number`: integer.}{Game play number.}
+#'   \item{`yard_line`: integer.}{Yard line of the play (0-100 yards).}
 #' }
 #' @source \url{https://api.collegefootballdata.com/metrics/wp}
 #' @keywords Win Probability Chart Data
