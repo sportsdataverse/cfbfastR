@@ -1,6 +1,14 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part II"
-author: "Saiem Gilani"
+description: "Motivating the regression - I do bad regression to show that a multinomial logistic regression model is necessary"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: man/figures/logo.png
+  twitter:
+    creator: "@saiemgilani"
+    card: summary
+    site: "@cfbfastR"
 output: html_document
 ---
 
@@ -9,127 +17,130 @@ knitr::opts_chunk$set(echo = TRUE)
 old <- options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
-Previously in Part 1, we left off discussing field position and expected points, including a breakdown by down. Generally, what was presented could be considered the most top-level results discussion and model definition information without much depth into how we arrived at the model, or detail on how the predictions the model provides generate the expected points. 
+Previously in Part 1, we left off discussing field position and expected points, including a breakdown by down. Generally, what was presented could be considered the most top-level results discussion and model definition information without much depth into how we arrived at the model, or detail on how the predictions the model provides generate the expected points.
 
-In order to remedy that, I feel it necessary for us to cover some model building methods. This article will show you how we arrive at the model that we currently have from a modeling perspective. The entire purpose of this series of articles is to show you as transparently as I can how the Expected Points model works, how well it works, and how the model is limited. 
+In order to remedy that, I feel it necessary for us to cover some model building methods. This article will show you how we arrive at the model that we currently have from a modeling perspective. The entire purpose of this series of articles is to show you as transparently as I can how the Expected Points model works, how well it works, and how the model is limited.
 
-Additionally, and maybe most importantly, this research is reproducible. The following link contains an [R notebook](https://rpubs.com/saiemgilani/625433) and supporting figures for the article which should be sufficient to work through (it is large, ~284Mb when unzipped). [Link](https://drive.google.com/file/d/1jJZBEUvqvEC9I_0-3TFtKQGww7qICVJ2/view?usp=sharing) 
- 
+Additionally, and maybe most importantly, this research is reproducible. The following link contains an [R notebook](https://rpubs.com/saiemgilani/625433) and supporting figures for the article which should be sufficient to work through (it is large, \~284Mb when unzipped). [Link](https://drive.google.com/file/d/1jJZBEUvqvEC9I_0-3TFtKQGww7qICVJ2/view?usp=sharing)
+
 ## The Data
 
-We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of @[CFB_data](https://twitter.com/CFB_data), using  `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Meyappan Subbaiah](https://twitter.com/msubbaiah1), and [Parker Fleming](https://twitter.com/statsowar).
+We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of \@[CFB\_data](https://twitter.com/CFB_data), using `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay Easwaran](https://twitter.com/akeaswaran), [Jared Lee](https://twitter.com/JaredDLee) and [Eric Hess](https://twitter.com/arbitanalytics).
 
 # Regression Methods
-<a href="https://imgur.com/rOjdyUC"><img src="https://i.imgur.com/rOjdyUCl.png" title="Figure: @ChrisAlbon" /></a>
 
-**Figure 1**: Regression | [Chris Albon](https://machinelearningflashcards.com/) (@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
+<a href="https://imgur.com/rOjdyUC"><img src="https://i.imgur.com/rOjdyUCl.png" title="Figure: @ChrisAlbon"/></a>
+
+**Figure 1**: Regression \| [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
 Regression is a set of techniques for estimating relationships between multiple variables on a quantitative target variable, and our focus will be on one of the simplest types of relationships: linear.
 
 ## Linear Regression
-<a href="https://imgur.com/MegfSse"><img src="https://i.imgur.com/MegfSsel.png" title="Figure: @SaiemGilani" /></a>
+
+<a href="https://imgur.com/MegfSse"><img src="https://i.imgur.com/MegfSsel.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 2**: Linear Regression Model
 
 ### Assumptions
- - Dependent variable is continuous, unbounded, and measured on an interval or ratio scale
- - Model has linear relation between independent and dependent variables
- - No outliers present
- - Independence Assumption: Sample observations are independent 
- - Absence of multicollinearity between the predictor variables
- - Constant Variance Assumption (homoscedasticity)
- - Normal Distribution of error terms
- - Little or no auto-correlation in the residuals
 
-Since scores in football only happen in increments of 2, 3, and 6 (+0, +1, +2), with the additional points in parentheses resulting from extra point attempts, the football scoring scheme is not continuous over an interval or ratio scale without transformation of the target variable. 
+-   Dependent variable is continuous, unbounded, and measured on an interval or ratio scale
+-   Model has linear relation between independent and dependent variables
+-   No outliers present
+-   Independence Assumption: Sample observations are independent
+-   Absence of multicollinearity between the predictor variables
+-   Constant Variance Assumption (homoscedasticity)
+-   Normal Distribution of error terms
+-   Little or no auto-correlation in the residuals
 
-While pretending I was unaware of the continuous dependent variable assumption of linear regression, I took a look into producing a linear regression model using down, distance, and yards-to-goal as independent variables using a similarly treated college football dataset but excluding all 4th down plays. I tried to predict on either the next score in the half or points on the drive, and the one that demonstrated the highest adjusted R-squared at 0.5143, the others were quite low. 
+Since scores in football only happen in increments of 2, 3, and 6 (+0, +1, +2), with the additional points in parentheses resulting from extra point attempts, the football scoring scheme is not continuous over an interval or ratio scale without transformation of the target variable.
+
+While pretending I was unaware of the continuous dependent variable assumption of linear regression, I took a look into producing a linear regression model using down, distance, and yards-to-goal as independent variables using a similarly treated college football dataset but excluding all 4th down plays. I tried to predict on either the next score in the half or points on the drive, and the one that demonstrated the highest adjusted R-squared at 0.5143, the others were quite low.
 
 Adjusted R-squared is a measure of the percentage of the dependent variable variation explained by the independent variables, in this case 51.43%. Below is the model summary of this fitting with no intercept.
 
-<a href="https://imgur.com/HjH1CFw"><img src="https://i.imgur.com/HjH1CFwl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/HjH1CFw"><img src="https://i.imgur.com/HjH1CFwl.png" title="Figure: @SaiemGilani"/></a>
 
-**Figure 3**: Linear Regression model summary | Expected Drive-Points model using Down, Distance, and Field Position as factors
+**Figure 3**: Linear Regression model summary \| Expected Drive-Points model using Down, Distance, and Field Position as factors
 
 Additionally, the linear model indicates that all three factors are significant at a p=0.001 level, which is at least some evidence that our variables have a relationship with drive points. Here is a plot of the linear regression model fitting.
 
-<a href="https://imgur.com/AZVRKf3"><img src="https://i.imgur.com/AZVRKf3l.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/AZVRKf3"><img src="https://i.imgur.com/AZVRKf3l.png" title="Figure: @SaiemGilani"/></a>
 
-**Figure 4**: Linear Regression model plots | Expected Drive-Points model using Down, Distance, and Field Position as factors
+**Figure 4**: Linear Regression model plots \| Expected Drive-Points model using Down, Distance, and Field Position as factors
 
-In the plot on the top left, there are 4 distinct scoring types clearly visible and the model is trying to fire a shot through to fit all of them. The red line in the top-left would be relatively flat if the residuals of the model fit had constant variance. While there are two other non-zero scoring types, Field Goals and Opponent Field Goals, the data excluded 4th down, so they do not appear on the plot. For clarity, there are in fact 7 next score types when we include the absence of a score, i.e. “No Score”, since the absence of a scoring event is also a type of next score. 
+In the plot on the top left, there are 4 distinct scoring types clearly visible and the model is trying to fire a shot through to fit all of them. The red line in the top-left would be relatively flat if the residuals of the model fit had constant variance. While there are two other non-zero scoring types, Field Goals and Opponent Field Goals, the data excluded 4th down, so they do not appear on the plot. For clarity, there are in fact 7 next score types when we include the absence of a score, i.e. "No Score", since the absence of a scoring event is also a type of next score.
 
-Upon viewing these plots, I quickly realized that several assumptions of linear regression are being violated here, namely the constant variance assumption and normal distribution of error terms (see Figure 4), at minimum. We need to keep adding to our regression toolbox, so let us now take a look at a type of regression that does not restrict us to these assumptions. 
+Upon viewing these plots, I quickly realized that several assumptions of linear regression are being violated here, namely the constant variance assumption and normal distribution of error terms (see Figure 4), at minimum. We need to keep adding to our regression toolbox, so let us now take a look at a type of regression that does not restrict us to these assumptions.
 
 ## Logistic Regression
-Suppose we have a binary output variable Y, let’s say Y is a variable that gives a response of 1 if the next score in the half is a TD for the offense and a 0 otherwise. If we wanted to predict the probability that the next score in the half is a TD for the offense, one of the prime candidate models would be logistic regression. 
 
-<a href="https://imgur.com/ZePALn7"><img src="https://i.imgur.com/ZePALn7l.png" title="Figure: @ChrisAlbon" /></a>
+Suppose we have a binary output variable Y, let's say Y is a variable that gives a response of 1 if the next score in the half is a TD for the offense and a 0 otherwise. If we wanted to predict the probability that the next score in the half is a TD for the offense, one of the prime candidate models would be logistic regression.
 
-**Figure 5**: Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
+<a href="https://imgur.com/ZePALn7"><img src="https://i.imgur.com/ZePALn7l.png" title="Figure: @ChrisAlbon"/></a>
 
+**Figure 5**: Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
-<a href="https://imgur.com/PJXbgfq"><img src="https://i.imgur.com/PJXbgfql.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/PJXbgfq"><img src="https://i.imgur.com/PJXbgfql.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 6**: Logistic Regression Model
 
 ### Assumptions
 
- - Binary logistic regression requires the dependent variable to be binary (i.e. 0/1)
- - There is a linear relationship between the log-odds of the outcome and each of the predictor variables.
- - No outliers present
- - Independence Assumption: Sample observations are independent 
- - Absence of multicollinearity between the predictor variables
- - ~~Constant Variance Assumption (homoscedasticity)~~
- - ~~Normal Distribution of error terms~~
- - ~~Little or no auto-correlation in the residuals~~
- 
-Now we are attempting to calculate the probability of the next scoring event directly, an essential component of an expected points model. Once we have a model capable of  calculating the expectation of the scoring event, e.g. the probability of the next score being an offense touchdown, then we simply have to multiply the probability by the point value of the score to get the expected points.
+-   Binary logistic regression requires the dependent variable to be binary (i.e. 0/1)
+-   There is a linear relationship between the log-odds of the outcome and each of the predictor variables.
+-   No outliers present
+-   Independence Assumption: Sample observations are independent
+-   Absence of multicollinearity between the predictor variables
+-   ~~Constant Variance Assumption (homoscedasticity)~~
+-   ~~Normal Distribution of error terms~~
+-   ~~Little or no auto-correlation in the residuals~~
 
-<a href="https://imgur.com/xw3BvAd"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon" /></a>
+Now we are attempting to calculate the probability of the next scoring event directly, an essential component of an expected points model. Once we have a model capable of calculating the expectation of the scoring event, e.g. the probability of the next score being an offense touchdown, then we simply have to multiply the probability by the point value of the score to get the expected points.
 
-**Figure 7**: Logistic vs. Linear Regression | [Chris Albon](https://machinelearningflashcards.com/) (@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
+<a href="https://imgur.com/xw3BvAd"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon"/></a>
 
-With that background, we can build our model equation with whatever independent variables we choose to include in the model as shown in Figure 8. 
+**Figure 7**: Logistic vs. Linear Regression \| [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
-<a href="https://imgur.com/vVaOIZx"><img src="https://i.imgur.com/vVaOIZxl.png" title="Figure: @SaiemGilani" /></a>
+With that background, we can build our model equation with whatever independent variables we choose to include in the model as shown in Figure 8.
+
+<a href="https://imgur.com/vVaOIZx"><img src="https://i.imgur.com/vVaOIZxl.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 8**: Offense Touchdown Logit Regression
 
-Below is a model fit to the next score offense touchdown variable using the independent variables yards-to-goal, down, distance, and the interaction between down and distance. 
+Below is a model fit to the next score offense touchdown variable using the independent variables yards-to-goal, down, distance, and the interaction between down and distance.
 
-<a href="https://imgur.com/gRTGzMT"><img src="https://i.imgur.com/gRTGzMTl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/gRTGzMT"><img src="https://i.imgur.com/gRTGzMTl.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 9**: Offense Touchdown Logistic Regression model summary
 
-Once again we see that all variables in the model are fit are significant at the p < 0.001 level. In figure 10 below, we can see the probability of the next score in half being a touchdown in relation to field position (yards-to-goal) as the offense progresses down the field. 
+Once again we see that all variables in the model are fit are significant at the p \< 0.001 level. In figure 10 below, we can see the probability of the next score in half being a touchdown in relation to field position (yards-to-goal) as the offense progresses down the field.
 
-<a href="https://imgur.com/VVsQ8lm"><img src="https://i.imgur.com/VVsQ8lml.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/VVsQ8lm"><img src="https://i.imgur.com/VVsQ8lml.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 10**: Field Position and Offense TD probability - Logistic Regression
 
-You might be asking “Yeah, that’s great, but you’re still only predicting the probability of one scoring type relative to another. You’d need to do this like 6 times, right?” Well, fair point. How does one do logistic regression on a categorical variable that has more than one class?
+You might be asking "Yeah, that's great, but you're still only predicting the probability of one scoring type relative to another. You'd need to do this like 6 times, right?" Well, fair point. How does one do logistic regression on a categorical variable that has more than one class?
 
 ## Multinomial Logistic Regression (or Softmax regression)
 
-A multinomial logistic regression model uses the independent (predictor) variables and target variable data from the training set to build relationships between the independent variables and each of the classes of the target variable. 
+A multinomial logistic regression model uses the independent (predictor) variables and target variable data from the training set to build relationships between the independent variables and each of the classes of the target variable.
 
-<a href="https://imgur.com/c18pbOL"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon" /></a>
+<a href="https://imgur.com/c18pbOL"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon"/></a>
 
-**Figure 11**: Multinomial Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
+**Figure 11**: Multinomial Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
-The primary difference between logistic and multinomial logistic regression is the use of the softmax function which re-weights the probabilities generated from each of the individual models so that in total they add to one as seen in Figure 12 below. 
+The primary difference between logistic and multinomial logistic regression is the use of the softmax function which re-weights the probabilities generated from each of the individual models so that in total they add to one as seen in Figure 12 below.
 
-<a href="https://imgur.com/EyxYqaM"><img src="https://i.imgur.com/EyxYqaMm.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/EyxYqaM"><img src="https://i.imgur.com/EyxYqaMm.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 12**: Softmax function
 
-More specifically, a multinomial logistic regression model is an extension of the binomial logistic regression model because it is a series of logistic regression models estimated simultaneously with the same reference outcome. 
+More specifically, a multinomial logistic regression model is an extension of the binomial logistic regression model because it is a series of logistic regression models estimated simultaneously with the same reference outcome.
 
-<a href="https://imgur.com/bGug8hp"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/bGug8hp"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani"/></a>
 
 **Figure 13**: Multinomial Logistic Regression Football Expected Points Model
 
-The college football expected points (EP) model is a multinomial logistic regression model which generates probabilities for the possible types of next score events within the same half. In our case, we build 6 logistic regression models fit to the next score types — Offense FG, Offense TD, Offense Safety, Opponent TD, Opponent FG, and Opponent Safety — all except for the class that is used as the base case (i.e. No Score), since that is accounted for in the intercept, as mentioned in Part 1. Ron Yurko, Sam Ventura, and Max Horowitz originally proposed the multinomial logistic regression expected points model for football in 2017, which we will learn more about in Part 3.
+The college football expected points (EP) model is a multinomial logistic regression model which generates probabilities for the possible types of next score events within the same half. In our case, we build 6 logistic regression models fit to the next score types --- Offense FG, Offense TD, Offense Safety, Opponent TD, Opponent FG, and Opponent Safety --- all except for the class that is used as the base case (i.e. No Score), since that is accounted for in the intercept, as mentioned in Part 1. Ron Yurko, Sam Ventura, and Max Horowitz originally proposed the multinomial logistic regression expected points model for football in 2017, which we will learn more about in Part 3.
 
 Additionally, now that we have a way to calculate the probabilities of scores, we can calculate the expected points. We will discuss this in Part 4.

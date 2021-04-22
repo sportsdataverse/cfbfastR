@@ -1,11 +1,16 @@
 ---
 title: "Rolling EPA Graph"
-author: "Nate Manzo (@cfbnate)"
+description: "<strong>IT'S GRAPHIN' TIME</strong><br> ^<em>To be said in an extremely Power Rangers voice<em>^"
+author: "Nate Manzo <br><a href='https://twitter.com/cfbnate' target='blank'><img src='https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=twitter&style=for-the-badge' alt='@cfbnate' /></a> <a href='https://github.com/natemanzo' target='blank'><img src='https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge' alt='@natemanzo' /></a>"
+opengraph:
+  image: 
+    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+  twitter:
+    creator: "@cfbnate"
+    card: summary
+    site: "@cfbfastR"
 output: html_document
 ---
-
-<a href="https://twitter.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=twitter&style=for-the-badge" alt="@cfbnate" /></a>
-<a href="https://github.com/natemanzo" target="blank"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge" alt="@natemanzo" /></a>
 
 This vignette will use data from the ```cfbfastR``` package to create a moving average graph of offensive EPA over the course of a season.  This lets us visualize how a team's performance has changed over time and compare that performance to other teams around the country.
 
@@ -15,7 +20,7 @@ if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load(tidyverse, zoo, ggimage)
-pacman::p_load_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
 ```
 
 ## Pull the play by play data
@@ -207,6 +212,6 @@ ggsave(graph_team_off, filename = paste0("off_epa_rolling_",team,".png"),
        dpi = 300, type = "cairo", width = 10, height = 7, units = "in")
 ```
 
-I hope you found this useful!  As always, thanks to [\@CFB_Data](https://twitter.com/CFB_Data) and the [\@cfbfastR](https://twitter.com/cfbfastR) team for making this possible.  And shout out to folks like Parker Fleming and Meyappan Subbaiah for their feedback, advice, and encouragement while refining the look of this visualization.  Tag me in any of these graphs you post on twitter and I'll share them as much as possible.  
+I hope you found this useful!  As always, thanks to [\@CFB_Data](https://twitter.com/CFB_Data) and the [\@cfbfastR](https://twitter.com/cfbfastR) team for making this possible.  And shout out to folks like Parker Fleming ([\@statsowar](https://twitter.com/statsowar)) and Meyappan Subbaiah ([\@msubbiah1](https://twitter.com/msubbiah1)) for their feedback, advice, and encouragement while refining the look of this visualization.  Tag me in any of these graphs you post on twitter and I'll share them as much as possible.  
 
 -[Nate Manzo](https://twitter.com/cfbNate)
