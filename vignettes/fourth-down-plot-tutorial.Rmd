@@ -5,10 +5,10 @@ author: "Michael Egle <br><a href='https://twitter.com/deceptivespeed_' target='
 date: "9/5/2020"
 opengraph:
   image: 
-    src: man/figures/logo.png
+    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
-    card: summary
+    card: summary_large_image
     creator: "@deceptivespeed_"
 output: html_document
 ---
