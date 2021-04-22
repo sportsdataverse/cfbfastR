@@ -24,7 +24,7 @@
 <meta property="og:description" content="Functions to Access College Football Play by Play Data">
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png">
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@cfbfastR">
 <meta name="twitter:site" content="@cfbfastR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -69,17 +69,45 @@
 <li>
       <a href="reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider">
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+</li>
+    <li>
+      <a href="reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="reference/cfbd_games.html">Games</a>
@@ -103,13 +131,7 @@
       <a href="reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="reference/cfbd_betting.html">Betting</a>
@@ -126,14 +148,15 @@
     <li>
       <a href="reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider">
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -163,6 +186,7 @@
     <li>
       <a href="articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider">
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -175,22 +199,12 @@
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
-     
-     Data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
+  <a href="news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+     News
+  </a>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -219,6 +233,23 @@
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -261,7 +292,7 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p>The goal of <a href="https://saiemgilani.github.io/cfbfastR/"><strong><code>cfbfastR</code></strong></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
+<p>The goal of <a href="https://saiemgilani.github.io/cfbfastR/"><strong><code>cfbfastR</code></strong></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>. Beyond data aggregation and tidying ease, one of the multitude of services that <a href="https://saiemgilani.github.io/cfbfastR/"><strong><code>cfbfastR</code></strong></a> provides is for benchmarking open-source expected points and win probability metrics.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a><strong>Installation</strong>
@@ -272,7 +303,7 @@
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_gh.html">p_load_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># if you would prefer devtools installation</span>
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'devtools'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
@@ -285,6 +316,49 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a><strong>Breaking Changes</strong>
 </h2>
+<div id="v120" class="section level3">
+<h3 class="hasAnchor">
+<a href="#v120" class="anchor"></a><strong>v1.2.0</strong>
+</h3>
+<div id="add-significant-documentation-to-the-package" class="section level4">
+<h4 class="hasAnchor">
+<a href="#add-significant-documentation-to-the-package" class="anchor"></a><strong>Add significant documentation to the package</strong>
+</h4>
+<ul>
+<li>Added mini-vignettes pertaining to CFB Data functionality:
+<ul>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html"><code>cfbd_betting</code></a>,</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html"><code>cfbd_games</code></a>,</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html"><code>cfbd_plays</code></a>,<br>
+</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html"><code>cfbd_recruiting</code></a>,<br>
+</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html"><code>cfbd_stats</code></a>,</li>
+<li><a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html"><code>cfbd_teams</code></a></li>
+</ul>
+</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/intro.html">Introductory vignette stub</a> added</li>
+</ul>
+</div>
+<div id="espncfbd-metrics-function-variable-return-standardization" class="section level4">
+<h4 class="hasAnchor">
+<a href="#espncfbd-metrics-function-variable-return-standardization" class="anchor"></a><strong>ESPN/CFBD metrics function variable return standardization</strong>
+</h4>
+<ul>
+<li>Change <code>id</code> variable to <code>team_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a>
+</li>
+<li>Changed <code>espn_game_id</code> variable to <code>game_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a>, corrected the <code>away_win_percentage</code> calculation and added <code>tie_percentage</code> to the returns.</li>
+<li>Change <code>id</code> variable to <code>athlete_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html"><code>cfbd_metrics_ppa_players_season()</code></a>
+</li>
+</ul>
+</div>
+</div>
 <div id="v110" class="section level3">
 <h3 class="hasAnchor">
 <a href="#v110" class="anchor"></a><strong>v1.1.0</strong>
@@ -317,7 +391,7 @@
 <ul>
 <li><p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR). One additional <code>cfbd_</code> function has been added that corresponds to the result when <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> has the parameter <code>epa_wpa=FALSE</code>. It has now been separated into its own function for clarity <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html"><code>cfbd_plays()</code></a>. The parameter and functionality still exists in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> but we expect this function will still exist but made obsolete in favor of a function more closely matching <code>nflfastR</code>’s naming conventions.</p></li>
 <li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
-<li><p>Data generated from any of the <code>cfbfastR</code> methods will use <code>cfb_</code></p></li>
+<li><p>Data generated from any of the <a href="https://saiemgilani.github.io/cfbfastR/"><code>cfbfastR</code></a> methods will use <code>cfb_</code></p></li>
 </ul>
 </div>
 <div id="collegefootballdata-api-keys" class="section level4">
@@ -349,6 +423,48 @@
 <table class="table">
 <colgroup>
 <col width="0%">
+<col width="19%">
+<col width="20%">
+<col width="0%">
+<col width="5%">
+<col width="1%">
+<col width="42%">
+<col width="1%">
+<col width="2%">
+<col width="2%">
+<col width="0%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">issue</th>
+<th align="left">icon</th>
+<th align="left">title</th>
+<th align="left">labels</th>
+<th align="left">opened_by</th>
+<th align="left">comments</th>
+<th align="left">comments_users</th>
+<th align="left">assigned_to</th>
+<th align="left">created</th>
+<th align="left">updated</th>
+<th align="left">closed</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">5</td>
+<td align="left"><span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span></td>
+<td align="left"><span title="**Describe the bug**..."><a href="https://github.com/saiemgilani/cfbfastR/issues/5">Play by play for data 2013 and before</a></span></td>
+<td align="left">bug</td>
+<td align="left"><a href="https://github.com/rchanks">rchanks</a></td>
+<td align="left">1</td>
+<td align="left"><span title="Thanks for bringing it up, but this is a known issue. I am working on a fix to get all the data going back to the start. Will not be forever but another week or two."><a href="https://github.com/saiemgilani/cfbfastR/issues/5#issuecomment-820774185">saiemgilani</a></span></td>
+<td align="left">saiemgilani</td>
+<td align="left">2021-04-15 16:24:03</td>
+<td align="left">2021-04-15 22:48:48</td>
+<td align="left">NA</td>
+</tr></tbody>
+</table>
+<details><p><summary>View More</summary></p>
+<table class="table">
+<colgroup>
+<col width="0%">
 <col width="17%">
 <col width="20%">
 <col width="1%">
@@ -373,21 +489,7 @@
 <th align="left">updated</th>
 <th align="left">closed</th>
 </tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left"><span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span></td>
-<td align="left"><span title="**Describe the bug**..."><a href="https://github.com/saiemgilani/cfbfastR/issues/5">Play by play for data 2013 and before</a></span></td>
-<td align="left">bug</td>
-<td align="left"><a href="https://github.com/rchanks">rchanks</a></td>
-<td align="left">1</td>
-<td align="left"><span title="Thanks for bringing it up, but this is a known issue. I am working on a fix to get all the data going back to the start. Will not be forever but another week or two."><a href="https://github.com/saiemgilani/cfbfastR/issues/5#issuecomment-820774185">saiemgilani</a></span></td>
-<td align="left">saiemgilani</td>
-<td align="left">2021-04-15 16:24:03</td>
-<td align="left">2021-04-15 22:48:48</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
+<tbody><tr class="odd">
 <td align="left">4</td>
 <td align="left"><span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span></td>
 <td align="left"><span title="**Describe the bug**..."><a href="https://github.com/saiemgilani/cfbfastR/issues/4">cfbd_play_types is documented, but isn’t in the package</a></span></td>
@@ -399,38 +501,7 @@
 <td align="left">2021-04-15 16:11:17</td>
 <td align="left">2021-04-18 23:47:31</td>
 <td align="left">2021-04-18 23:47:31</td>
-</tr>
-</tbody>
-</table>
-<details><p><summary>View More</summary></p>
-<table class="table">
-<colgroup>
-<col width="5%">
-<col width="4%">
-<col width="5%">
-<col width="7%">
-<col width="11%">
-<col width="9%">
-<col width="17%">
-<col width="14%">
-<col width="8%">
-<col width="8%">
-<col width="7%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">issue</th>
-<th align="left">icon</th>
-<th align="left">title</th>
-<th align="left">labels</th>
-<th align="left">opened_by</th>
-<th align="left">comments</th>
-<th align="left">comments_users</th>
-<th align="left">assigned_to</th>
-<th align="left">created</th>
-<th align="left">updated</th>
-<th align="left">closed</th>
-</tr></thead>
-<tbody></tbody>
+</tr></tbody>
 </table></details><p><br></p>
 </div>
 <div id="our-authors" class="section level2">
@@ -489,7 +560,7 @@
 <ul>
 <li><a href="https://github.com/NickTice">Nick Tice</a></li>
 <li>
-<a href="https://twitter.com/mrcaseb">Sebastian Carl</a> <a href="https://twitter.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=twitter&amp;style=for-the-badge" alt="@mrcaseb"></a> <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
+<a href="https://twitter.com/mrcaseb">Sebastian Carl</a><br><a href="https://twitter.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=twitter&amp;style=for-the-badge" alt="@mrcaseb"></a> <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
 </li>
 </ul>
 </div>

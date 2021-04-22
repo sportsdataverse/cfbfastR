@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CFB Venue Information — cfbd_venues • cfbfastR</title>
+<title>CFBD Venues Endpoint — cfbd_venues • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,12 +54,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="CFB Venue Information — cfbd_venues" />
+<meta property="og:title" content="CFBD Venues Endpoint — cfbd_venues" />
 <meta property="og:description" content="Pulls all college football venues and data on capacity, grass, city/state, location,
-elevation, dome, timezone and construction year" />
+elevation, dome, timezone and construction year." />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -93,7 +93,7 @@ elevation, dome, timezone and construction year" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -117,17 +117,45 @@ elevation, dome, timezone and construction year" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -151,13 +179,7 @@ elevation, dome, timezone and construction year" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -174,14 +196,15 @@ elevation, dome, timezone and construction year" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -211,6 +234,7 @@ elevation, dome, timezone and construction year" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -223,22 +247,12 @@ elevation, dome, timezone and construction year" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -267,6 +281,23 @@ elevation, dome, timezone and construction year" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -303,14 +334,14 @@ elevation, dome, timezone and construction year" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CFB Venue Information</h1>
+    <h1>CFBD Venues Endpoint</h1>
     
     <div class="hidden name"><code>cfbd_venues.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Pulls all college football venues and data on capacity, grass, city/state, location,
-elevation, dome, timezone and construction year</p>
+elevation, dome, timezone and construction year.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_venues</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -321,27 +352,31 @@ elevation, dome, timezone and construction year</p>
     <p><a href='https://api.collegefootballdata.com/venues'>https://api.collegefootballdata.com/venues</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with 335 rows and 13 variables:</p><dl>
-<dt><code>venue_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>name</code></dt><dd><p>character.</p></dd>
-<dt><code>capacity</code></dt><dd><p>integer.</p></dd>
-<dt><code>grass</code></dt><dd><p>logical.</p></dd>
-<dt><code>city</code></dt><dd><p>character.</p></dd>
-<dt><code>state</code></dt><dd><p>character.</p></dd>
-<dt><code>zip</code></dt><dd><p>character.</p></dd>
-<dt><code>country_code</code></dt><dd><p>character.</p></dd>
-<dt><code>location</code></dt><dd><p>list.</p></dd>
-<dt><code>elevation</code></dt><dd><p>character.</p></dd>
-<dt><code>year_constructed</code></dt><dd><p>integer.</p></dd>
-<dt><code>dome</code></dt><dd><p>logical.</p></dd>
-<dt><code>timezone</code></dt><dd><p>character.</p></dd>
+    <p>A data frame with 337 rows and 13 variables:</p><dl>
+<dt><code>venue_id</code>:integer.</dt><dd><p>Referencing venue ID.</p></dd>
+<dt><code>name</code>:character.</dt><dd><p>Venue name.</p></dd>
+<dt><code>capacity</code>:integer.</dt><dd><p>Stadium capacity.</p></dd>
+<dt><code>grass</code>:logical.</dt><dd><p>TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).</p></dd>
+<dt><code>city</code>:character.</dt><dd><p>Venue city.</p></dd>
+<dt><code>state</code>:character.</dt><dd><p>Venue state.</p></dd>
+<dt><code>zip</code>:character.</dt><dd><p>Venue zip.</p></dd>
+<dt><code>country_code</code>:character.</dt><dd><p>Venue country code.</p></dd>
+<dt><code>location</code>:list.</dt><dd><p>Venue location.</p></dd>
+<dt><code>elevation</code>:character.</dt><dd><p>Venue elevation.</p></dd>
+<dt><code>year_constructed</code>:integer.</dt><dd><p>Year in which the venue was constructed.</p></dd>
+<dt><code>dome</code>:logical.</dt><dd><p>TRUE/FALSE response to whether the venue has a dome or not.</p></dd>
+<dt><code>timezone</code>:character.</dt><dd><p>Time zone in which the venue resides (i.e. Eastern Time -&gt; "America/New York").</p></dd>
 
 </dl>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>CFB Venue Information<div class="r"></p><pre> <span class='fu'>cfbd_venues</span><span class='op'>(</span><span class='op'>)</span>
+</pre><p></div></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_venues</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'>cfbd_venues</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     venue_id                                                     name capacity
 #&gt; 1       4747                           Abbott Memorial Alumni Stadium    10000
 #&gt; 2       3599                                   Ace W. Mumford Stadium    28500
@@ -1694,7 +1729,6 @@ elevation, dome, timezone and construction year</p>
 #&gt; 335             America/New_York
 #&gt; 336             America/New_York
 #&gt; 337             America/New_York</div><div class='input'><span class='co'># }</span>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

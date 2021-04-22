@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CFBD Recruiting Endpoint — cfbd_recruiting • cfbfastR</title>
+<title>CFB Recruiting Endpoint — cfbd_recruiting • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,16 +54,20 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="CFBD Recruiting Endpoint — cfbd_recruiting" />
-<meta property="og:description" content="Gets CFB recruiting information for a single year with filters available for team,
-recruit type, state and position.
-If only start_year is provided, function will get CFB recruiting information based
-on position groups during that year for all FBS teams.
-Gets CFB team recruiting ranks with filters available for year and team.
-At least one of year or team must be specified for the function to run" />
+<meta property="og:title" content="CFB Recruiting Endpoint — cfbd_recruiting" />
+<meta property="og:description" content="
+
+cfbd_recruiting_player(): Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.
+
+cfbd_recruiting_position(): CFB Recruiting Information Position Groups.
+
+cfbd_recruiting_team(): CFB Recruiting Information Team Rankings.
+
+
+" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -97,7 +101,7 @@ At least one of year or team must be specified for the function to run" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -121,17 +125,45 @@ At least one of year or team must be specified for the function to run" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -155,13 +187,7 @@ At least one of year or team must be specified for the function to run" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -178,14 +204,15 @@ At least one of year or team must be specified for the function to run" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -215,6 +242,7 @@ At least one of year or team must be specified for the function to run" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -227,22 +255,12 @@ At least one of year or team must be specified for the function to run" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -271,6 +289,23 @@ At least one of year or team must be specified for the function to run" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -307,18 +342,22 @@ At least one of year or team must be specified for the function to run" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CFBD Recruiting Endpoint</h1>
+    <h1>CFB Recruiting Endpoint</h1>
     
     <div class="hidden name"><code>cfbd_recruiting.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Gets CFB recruiting information for a single year with filters available for team,
-recruit type, state and position.</p>
-<p>If only start_year is provided, function will get CFB recruiting information based
-on position groups during that year for all FBS teams.</p>
-<p>Gets CFB team recruiting ranks with filters available for year and team.
-At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
+    
+<dl>
+<dt><code>cfbd_recruiting_player()</code>: Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.</dt><dd><p></p></dd>
+
+<dt><code>cfbd_recruiting_position()</code>: CFB Recruiting Information Position Groups.</dt><dd><p></p></dd>
+
+<dt><code>cfbd_recruiting_team()</code>: CFB Recruiting Information Team Rankings.</dt><dd><p></p></dd>
+
+</dl>
+
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_recruiting_player</span><span class='op'>(</span>
@@ -395,60 +434,57 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <p><a href='https://api.collegefootballdata.com/recruiting/teams'>https://api.collegefootballdata.com/recruiting/teams</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_recruiting_player()</code> - A data frame with 14 variables:</p><dl>
-<dt><code>recruit_type</code></dt><dd><p>character.</p></dd>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>ranking</code></dt><dd><p>integer.</p></dd>
-<dt><code>name</code></dt><dd><p>character.</p></dd>
-<dt><code>school</code></dt><dd><p>character.</p></dd>
-<dt><code>committed_to</code></dt><dd><p>character.</p></dd>
-<dt><code>position</code></dt><dd><p>character.</p></dd>
-<dt><code>height</code></dt><dd><p>double.</p></dd>
-<dt><code>weight</code></dt><dd><p>integer.</p></dd>
-<dt><code>stars</code></dt><dd><p>integer.</p></dd>
-<dt><code>rating</code></dt><dd><p>double.</p></dd>
-<dt><code>city</code></dt><dd><p>character.</p></dd>
-<dt><code>state_province</code></dt><dd><p>character.</p></dd>
-<dt><code>country</code></dt><dd><p>character.</p></dd>
-<dt><code>hometown_info_latitude</code></dt><dd><p>character.</p></dd>
-<dt><code>hometown_info_longitude</code></dt><dd><p>character.</p></dd>
-<dt><code>hometown_info_fips_code</code></dt><dd><p>character.</p></dd>
+    <p><code>cfbd_recruiting_player()</code> - A data frame with 14 variables:</p><dl>
+<dt><code>recruit_type</code>: character.</dt><dd><p>High School, Prep School, or Junior College.</p></dd>
+<dt><code>year</code>: integer.</dt><dd><p>Recruit class year.</p></dd>
+<dt><code>ranking</code>: integer.</dt><dd><p>Recruit Ranking.</p></dd>
+<dt><code>name</code>: character.</dt><dd><p>Recruit Name.</p></dd>
+<dt><code>school</code>: character.</dt><dd><p>School recruit attended.</p></dd>
+<dt><code>committed_to</code>: character.</dt><dd><p>School the recruit is committed to.</p></dd>
+<dt><code>position</code>: character.</dt><dd><p>Recruit position.</p></dd>
+<dt><code>height</code>: double.</dt><dd><p>Recruit height.</p></dd>
+<dt><code>weight</code>: integer.</dt><dd><p>Recruit weight.</p></dd>
+<dt><code>stars</code>: integer.</dt><dd><p>Recruit stars.</p></dd>
+<dt><code>rating</code>: double.</dt><dd><p>247 composite rating.</p></dd>
+<dt><code>city</code>: character.</dt><dd><p>Hometown of the recruit.</p></dd>
+<dt><code>state_province</code>: character.</dt><dd><p>Hometown state of the recruit.</p></dd>
+<dt><code>country</code>: character.</dt><dd><p>Hometown country of the recruit.</p></dd>
+<dt><code>hometown_info_latitude</code>: character.</dt><dd><p>Hometown latitude.</p></dd>
+<dt><code>hometown_info_longitude</code>: character.</dt><dd><p>Hometown longitude.</p></dd>
+<dt><code>hometown_info_fips_code</code>: character.</dt><dd><p>Hometown FIPS code.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_recruiting_position()</code> - A data frame with 7 variables:</p><dl>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>position_group</code></dt><dd><p>character.</p></dd>
-<dt><code>avg_rating</code></dt><dd><p>double.</p></dd>
-<dt><code>total_rating</code></dt><dd><p>double.</p></dd>
-<dt><code>commits</code></dt><dd><p>integer.</p></dd>
-<dt><code>avg_stars</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_recruiting_position()</code> - A data frame with 7 variables:</p><dl>
+<dt><code>team</code>: character.</dt><dd><p>Recruiting team.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Recruiting team conference.</p></dd>
+<dt><code>position_group</code>: character.</dt><dd><p>Position group of the recruits.</p></dd>
+<dt><code>avg_rating</code>: double.</dt><dd><p>Average rating of the recruits in the position group.</p></dd>
+<dt><code>total_rating</code>: double.</dt><dd><p>Sum of the ratings of the recruits in the position group.</p></dd>
+<dt><code>commits</code>: integer.</dt><dd><p>Number of commits in the position group.</p></dd>
+<dt><code>avg_stars</code>: double.</dt><dd><p>Average stars of the recruits in the position group.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_recruiting_team()</code> - A data frame with 4 variables:</p><dl>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>rank</code></dt><dd><p>integer.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>points</code></dt><dd><p>character.</p></dd>
+<p><code>cfbd_recruiting_team()</code> - A data frame with 4 variables:</p><dl>
+<dt><code>year</code>: integer.</dt><dd><p>Recruiting class year.</p></dd>
+<dt><code>rank</code>: integer.</dt><dd><p>Team Recruiting rank.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Recruiting Team.</p></dd>
+<dt><code>points</code>: character.</dt><dd><p>Team talent points.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
-<p>If you would like CFB recruiting information for teams, please see the <code>cfbfastR::cfbd_recruiting_team()</code>  function</p>
-<p>If you would like to get cfb recruiting information based on position groups during a
-time period for all FBS teams, please see the <code>cfbfastR::cfbd_recruiting_position()</code> function.</p>
+    <p>Gets CFB team recruiting ranks with filters available for year and team.
+At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
 <p>If you would like CFB recruiting information for players, please
-see the <code>cfbfastR::cfbd_recruiting_player()</code> function</p>
-<p>If you would like CFB recruiting information for teams, please
-see the <code>cfbfastR::cfbd_recruiting_team()</code> function</p>
-<p>If you would like CFB recruiting information for players, please
-see the <code>cfbfastR::cfbd_recruiting_player()</code> function</p>
+see the <code>cfbd_recruiting_player()</code> function</p>
 <p>If you would like to get CFB recruiting information based on position groups during a
-time period for all FBS teams, please see the <code>cfbfastR::cfbd_recruiting_position()</code> function.</p>
+time period for all FBS teams, please see the <code>cfbd_recruiting_position()</code> function.</p>
+<p><code>cfbd_recruiting_player()</code> - At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
+<p><code>cfbd_recruiting_position()</code> - If only start_year is provided, function will get CFB recruiting information based
+on position groups during that year for all FBS teams.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

@@ -55,11 +55,10 @@
   
 
 <meta property="og:title" content="CFBD Play by Play Data — cfbd_pbp_data" />
-<meta property="og:description" content="CFBD Play by Play Data
-Extract CFB (D-I) Play by Play Data - For plays" />
+<meta property="og:description" content="Extract CFB (D-I) Play by Play Data - For plays" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -93,7 +92,7 @@ Extract CFB (D-I) Play by Play Data - For plays" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -117,17 +116,45 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -151,13 +178,7 @@ Extract CFB (D-I) Play by Play Data - For plays" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -174,14 +195,15 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -211,6 +233,7 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -223,22 +246,12 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -267,6 +280,23 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -309,8 +339,7 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     </div>
 
     <div class="ref-description">
-    <p>CFBD Play by Play Data</p>
-<p>Extract CFB (D-I) Play by Play Data - For plays</p>
+    <p>Extract CFB (D-I) Play by Play Data - For plays</p>
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_pbp_data</span><span class='op'>(</span>
@@ -345,7 +374,7 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     </tr>
     <tr>
       <th>play_type</th>
-      <td><p>Select play type (example: see the <code><a href='data.html'>cfbd_play_type_df</a></code>)</p></td>
+      <td><p>Select play type (example: see the <a href='data.html'>cfbd_play_type_df</a>)</p></td>
     </tr>
     <tr>
       <th>epa_wpa</th>
@@ -367,357 +396,357 @@ Extract CFB (D-I) Play by Play Data - For plays" />
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame with 351 variables:</p><dl>
-<dt><code>year</code></dt><dd><p>double.</p></dd>
-<dt><code>week</code></dt><dd><p>double.</p></dd>
-<dt><code>id_play</code></dt><dd><p>character.</p></dd>
-<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>game_play_number</code></dt><dd><p>double.</p></dd>
-<dt><code>half_play_number</code></dt><dd><p>double.</p></dd>
-<dt><code>pos_team</code></dt><dd><p>character.</p></dd>
-<dt><code>def_pos_team</code></dt><dd><p>character.</p></dd>
-<dt><code>half</code></dt><dd><p>integer.</p></dd>
-<dt><code>period</code></dt><dd><p>integer.</p></dd>
-<dt><code>clock.minutes</code></dt><dd><p>integer.</p></dd>
-<dt><code>clock.seconds</code></dt><dd><p>integer.</p></dd>
-<dt><code>play_type</code></dt><dd><p>character.</p></dd>
-<dt><code>play_text</code></dt><dd><p>character.</p></dd>
-<dt><code>down</code></dt><dd><p>double.</p></dd>
-<dt><code>distance</code></dt><dd><p>double.</p></dd>
-<dt><code>yards_to_goal</code></dt><dd><p>double.</p></dd>
-<dt><code>yards_gained</code></dt><dd><p>double.</p></dd>
-<dt><code>penalty_1st_conv</code></dt><dd><p>logical.</p></dd>
-<dt><code>new_series</code></dt><dd><p>double.</p></dd>
-<dt><code>change_of_pos_team</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_change_of_pos_team</code></dt><dd><p>double.</p></dd>
-<dt><code>orig_play_type</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_play_type</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_play_type</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_play_type2</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_play_type3</code></dt><dd><p>character.</p></dd>
-<dt><code>row</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_play_number</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_event_number</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_play_text</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_play_text2</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_play_text</code></dt><dd><p>character.</p></dd>
-<dt><code>firstD_by_kickoff</code></dt><dd><p>double.</p></dd>
-<dt><code>firstD_by_poss</code></dt><dd><p>double.</p></dd>
-<dt><code>firstD_by_penalty</code></dt><dd><p>double.</p></dd>
-<dt><code>firstD_by_yards</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_first_by_penalty</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_first_by_penalty2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_first_by_yards</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_first_by_yards2</code></dt><dd><p>double.</p></dd>
-<dt><code>first_by_penalty</code></dt><dd><p>double.</p></dd>
-<dt><code>first_by_yards</code></dt><dd><p>double.</p></dd>
-<dt><code>play_after_turnover</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_change_of_poss</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_kickoff_play</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_punt</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_scoring_play</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_turnover_vec</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_downs_turnover</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_defense_score_play</code></dt><dd><p>double.</p></dd>
-<dt><code>EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>ep_before</code></dt><dd><p>double.</p></dd>
-<dt><code>ep_after</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa</code></dt><dd><p>double.</p></dd>
-<dt><code>wp_before</code></dt><dd><p>double.</p></dd>
-<dt><code>wp_after</code></dt><dd><p>double.</p></dd>
-<dt><code>def_wp_before</code></dt><dd><p>double.</p></dd>
-<dt><code>def_wp_after</code></dt><dd><p>double.</p></dd>
-<dt><code>penalty_detail</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_penalty</code></dt><dd><p>double.</p></dd>
-<dt><code>downs_turnover</code></dt><dd><p>double.</p></dd>
-<dt><code>turnover</code></dt><dd><p>double.</p></dd>
-<dt><code>pos_score_diff_start</code></dt><dd><p>double.</p></dd>
-<dt><code>pos_score_pts</code></dt><dd><p>double.</p></dd>
-<dt><code>pos_team_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>def_pos_team_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>log_ydstogo</code></dt><dd><p>double.</p></dd>
-<dt><code>ExpScoreDiff</code></dt><dd><p>double.</p></dd>
-<dt><code>ExpScoreDiff_Time_Ratio</code></dt><dd><p>double.</p></dd>
-<dt><code>half_clock.minutes</code></dt><dd><p>double.</p></dd>
-<dt><code>TimeSecsRem</code></dt><dd><p>double.</p></dd>
-<dt><code>adj_TimeSecsRem</code></dt><dd><p>double.</p></dd>
-<dt><code>Goal_To_Go</code></dt><dd><p>logical.</p></dd>
-<dt><code>Under_two</code></dt><dd><p>logical.</p></dd>
-<dt><code>home</code></dt><dd><p>character.</p></dd>
-<dt><code>away</code></dt><dd><p>character.</p></dd>
-<dt><code>home_wp_before</code></dt><dd><p>double.</p></dd>
-<dt><code>away_wp_before</code></dt><dd><p>double.</p></dd>
-<dt><code>home_wp_after</code></dt><dd><p>double.</p></dd>
-<dt><code>away_wp_after</code></dt><dd><p>double.</p></dd>
-<dt><code>end_of_half</code></dt><dd><p>double.</p></dd>
-<dt><code>pos_team_receives_2H_kickoff</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_pos_team</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_pos_team</code></dt><dd><p>character.</p></dd>
-<dt><code>Under_three</code></dt><dd><p>logical.</p></dd>
-<dt><code>down_end</code></dt><dd><p>integer.</p></dd>
-<dt><code>distance_end</code></dt><dd><p>double.</p></dd>
-<dt><code>log_ydstogo_end</code></dt><dd><p>double.</p></dd>
-<dt><code>yards_to_goal_end</code></dt><dd><p>double.</p></dd>
-<dt><code>TimeSecsRem_end</code></dt><dd><p>double.</p></dd>
-<dt><code>Goal_To_Go_end</code></dt><dd><p>logical.</p></dd>
-<dt><code>Under_two_end</code></dt><dd><p>logical.</p></dd>
-<dt><code>def_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>offense_score_play</code></dt><dd><p>double.</p></dd>
-<dt><code>defense_score_play</code></dt><dd><p>double.</p></dd>
-<dt><code>ppa</code></dt><dd><p>character.</p></dd>
-<dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
-<dt><code>scoring</code></dt><dd><p>logical.</p></dd>
-<dt><code>pos_team_timeouts_rem_before</code></dt><dd><p>double.</p></dd>
-<dt><code>def_pos_team_timeouts_rem_before</code></dt><dd><p>double.</p></dd>
-<dt><code>pos_team_timeouts</code></dt><dd><p>integer.</p></dd>
-<dt><code>def_pos_team_timeouts</code></dt><dd><p>integer.</p></dd>
-<dt><code>pos_score_diff</code></dt><dd><p>integer.</p></dd>
-<dt><code>pos_score_diff_start_end</code></dt><dd><p>double.</p></dd>
-<dt><code>offense_play</code></dt><dd><p>character.</p></dd>
-<dt><code>defense_play</code></dt><dd><p>character.</p></dd>
-<dt><code>offense_receives_2H_kickoff</code></dt><dd><p>double.</p></dd>
-<dt><code>change_of_poss</code></dt><dd><p>double.</p></dd>
-<dt><code>score_pts</code></dt><dd><p>double.</p></dd>
-<dt><code>score_diff_start</code></dt><dd><p>double.</p></dd>
-<dt><code>score_diff</code></dt><dd><p>integer.</p></dd>
-<dt><code>offense_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>defense_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>offense_conference</code></dt><dd><p>character.</p></dd>
-<dt><code>defense_conference</code></dt><dd><p>character.</p></dd>
-<dt><code>off_timeout_called</code></dt><dd><p>double.</p></dd>
-<dt><code>def_timeout_called</code></dt><dd><p>double.</p></dd>
-<dt><code>offense_timeouts</code></dt><dd><p>integer.</p></dd>
-<dt><code>defense_timeouts</code></dt><dd><p>integer.</p></dd>
-<dt><code>off_timeouts_rem_before</code></dt><dd><p>double.</p></dd>
-<dt><code>def_timeouts_rem_before</code></dt><dd><p>double.</p></dd>
-<dt><code>rusher_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_rushed</code></dt><dd><p>double.</p></dd>
-<dt><code>passer_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>receiver_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_receiving</code></dt><dd><p>double.</p></dd>
-<dt><code>yds_sacked</code></dt><dd><p>double.</p></dd>
-<dt><code>sack_players</code></dt><dd><p>character.</p></dd>
-<dt><code>sack_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>sack_player_name2</code></dt><dd><p>character.</p></dd>
-<dt><code>pass_breakup_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>interception_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_int_return</code></dt><dd><p>double.</p></dd>
-<dt><code>fumble_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>fumble_forced_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>fumble_recovered_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_fumble_return</code></dt><dd><p>double.</p></dd>
-<dt><code>punter_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_punted</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_returner_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_punt_return</code></dt><dd><p>double.</p></dd>
-<dt><code>yds_punt_gained</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_block_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>punt_block_return_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>fg_kicker_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_fg</code></dt><dd><p>double.</p></dd>
-<dt><code>fg_block_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>fg_return_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>kickoff_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_kickoff</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_returner_player_name</code></dt><dd><p>character.</p></dd>
-<dt><code>yds_kickoff_return</code></dt><dd><p>double.</p></dd>
-<dt><code>new_id</code></dt><dd><p>double.</p></dd>
-<dt><code>orig_drive_number</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_number</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_result_detailed</code></dt><dd><p>character.</p></dd>
-<dt><code>new_drive_pts</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_id</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_result</code></dt><dd><p>character.</p></dd>
-<dt><code>drive_start_yards_to_goal</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_end_yards_to_goal</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_yards</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_scoring</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_pts</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_start_period</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_end_period</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_time_minutes_start</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_time_seconds_start</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_time_minutes_end</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_time_seconds_end</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_time_minutes_elapsed</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_time_seconds_elapsed</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_numbers</code></dt><dd><p>double.</p></dd>
-<dt><code>number_of_drives</code></dt><dd><p>double.</p></dd>
-<dt><code>pts_scored</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_result_detailed_flag</code></dt><dd><p>character.</p></dd>
-<dt><code>drive_result2</code></dt><dd><p>character.</p></dd>
-<dt><code>drive_num</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_drive_result_detailed</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_drive_result_detailed</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_new_drive_pts</code></dt><dd><p>double.</p></dd>
-<dt><code>id_drive</code></dt><dd><p>character.</p></dd>
-<dt><code>rush</code></dt><dd><p>double.</p></dd>
-<dt><code>rush_td</code></dt><dd><p>double.</p></dd>
-<dt><code>pass</code></dt><dd><p>double.</p></dd>
-<dt><code>pass_td</code></dt><dd><p>double.</p></dd>
-<dt><code>completion</code></dt><dd><p>double.</p></dd>
-<dt><code>pass_attempt</code></dt><dd><p>double.</p></dd>
-<dt><code>target</code></dt><dd><p>double.</p></dd>
-<dt><code>sack_vec</code></dt><dd><p>double.</p></dd>
-<dt><code>sack</code></dt><dd><p>double.</p></dd>
-<dt><code>int</code></dt><dd><p>double.</p></dd>
-<dt><code>int_td</code></dt><dd><p>double.</p></dd>
-<dt><code>turnover_vec</code></dt><dd><p>double.</p></dd>
-<dt><code>turnover_vec_lag</code></dt><dd><p>double.</p></dd>
-<dt><code>turnover_indicator</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_play</code></dt><dd><p>double.</p></dd>
-<dt><code>receives_2H_kickoff</code></dt><dd><p>double.</p></dd>
-<dt><code>missing_yard_flag</code></dt><dd><p>logical.</p></dd>
-<dt><code>scoring_play</code></dt><dd><p>double.</p></dd>
-<dt><code>td_play</code></dt><dd><p>double.</p></dd>
-<dt><code>touchdown</code></dt><dd><p>double.</p></dd>
-<dt><code>safety</code></dt><dd><p>double.</p></dd>
-<dt><code>fumble_vec</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_tb</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_onside</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_oob</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_fair_catch</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_downed</code></dt><dd><p>double.</p></dd>
-<dt><code>kickoff_safety</code></dt><dd><p>double.</p></dd>
-<dt><code>kick_play</code></dt><dd><p>double.</p></dd>
-<dt><code>punt</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_play</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_tb</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_oob</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_fair_catch</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_downed</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_safety</code></dt><dd><p>double.</p></dd>
-<dt><code>punt_blocked</code></dt><dd><p>double.</p></dd>
-<dt><code>penalty_safety</code></dt><dd><p>double.</p></dd>
-<dt><code>fg_inds</code></dt><dd><p>double.</p></dd>
-<dt><code>fg_made</code></dt><dd><p>logical.</p></dd>
-<dt><code>fg_make_prob</code></dt><dd><p>double.</p></dd>
-<dt><code>home_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>away_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>home_EPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>away_EPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>home_EPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>away_EPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>total_home_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>total_away_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>total_home_EPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>total_away_EPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>total_home_EPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>total_away_EPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>net_home_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>net_away_EPA</code></dt><dd><p>double.</p></dd>
-<dt><code>net_home_EPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>net_away_EPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>net_home_EPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>net_away_EPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>success</code></dt><dd><p>double.</p></dd>
-<dt><code>epa_success</code></dt><dd><p>double.</p></dd>
-<dt><code>rz_play</code></dt><dd><p>double.</p></dd>
-<dt><code>scoring_opp</code></dt><dd><p>double.</p></dd>
-<dt><code>middle_8</code></dt><dd><p>logical.</p></dd>
-<dt><code>stuffed_run</code></dt><dd><p>double.</p></dd>
-<dt><code>spread</code></dt><dd><p>double.</p></dd>
-<dt><code>formatted_spread</code></dt><dd><p>character.</p></dd>
-<dt><code>No_Score_before</code></dt><dd><p>double.</p></dd>
-<dt><code>FG_before</code></dt><dd><p>double.</p></dd>
-<dt><code>Opp_FG_before</code></dt><dd><p>double.</p></dd>
-<dt><code>Opp_Safety_before</code></dt><dd><p>double.</p></dd>
-<dt><code>Opp_TD_before</code></dt><dd><p>double.</p></dd>
-<dt><code>Safety_before</code></dt><dd><p>double.</p></dd>
-<dt><code>TD_before</code></dt><dd><p>double.</p></dd>
-<dt><code>No_Score_after</code></dt><dd><p>double.</p></dd>
-<dt><code>FG_after</code></dt><dd><p>double.</p></dd>
-<dt><code>Opp_FG_after</code></dt><dd><p>double.</p></dd>
-<dt><code>Opp_Safety_after</code></dt><dd><p>double.</p></dd>
-<dt><code>Opp_TD_after</code></dt><dd><p>double.</p></dd>
-<dt><code>Safety_after</code></dt><dd><p>double.</p></dd>
-<dt><code>TD_after</code></dt><dd><p>double.</p></dd>
-<dt><code>penalty_flag</code></dt><dd><p>logical.</p></dd>
-<dt><code>penalty_declined</code></dt><dd><p>logical.</p></dd>
-<dt><code>penalty_no_play</code></dt><dd><p>logical.</p></dd>
-<dt><code>penalty_offset</code></dt><dd><p>logical.</p></dd>
-<dt><code>penalty_text</code></dt><dd><p>logical.</p></dd>
-<dt><code>penalty_play_text</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_wp_before2</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_half_end</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_base</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_base_nxt</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_change</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_change_nxt</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_base_ind</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_base_nxt_ind</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_change_ind</code></dt><dd><p>double.</p></dd>
-<dt><code>wpa_change_nxt_ind</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_wp_before</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_pos_team2</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_change_of_pos_team2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_punt2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_score_diff</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_offense_play</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_offense_play</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_offense_play2</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_pos_score_diff</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_off_timeouts</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_def_timeouts</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_TimeSecsRem2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_TimeSecsRem</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_TimeSecsRem</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_TimeSecsRem2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_yards_to_goal2</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_yards_to_goal</code></dt><dd><p>integer.</p></dd>
-<dt><code>lead_yards_to_goal</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_yards_to_goal2</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_down2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_down</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_down</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_down2</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_distance</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_distance2</code></dt><dd><p>integer.</p></dd>
-<dt><code>lead_play_type2</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_play_type3</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_ep_before3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_ep_before2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_ep_before</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_ep_before</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_ep_before2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_ep_after</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_ep_after2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_ep_after3</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_ep_after</code></dt><dd><p>double.</p></dd>
-<dt><code>lead_ep_after2</code></dt><dd><p>double.</p></dd>
-<dt><code>play_number</code></dt><dd><p>integer.</p></dd>
-<dt><code>over_under</code></dt><dd><p>double.</p></dd>
-<dt><code>event</code></dt><dd><p>double.</p></dd>
-<dt><code>game_event_number</code></dt><dd><p>double.</p></dd>
-<dt><code>game_row_number</code></dt><dd><p>integer.</p></dd>
-<dt><code>half_event</code></dt><dd><p>double.</p></dd>
-<dt><code>half_event_number</code></dt><dd><p>double.</p></dd>
-<dt><code>half_row_number</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_distance3</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_distance2</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_distance</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_yards_gained3</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_yards_gained2</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_yards_gained</code></dt><dd><p>integer.</p></dd>
-<dt><code>lead_yards_gained</code></dt><dd><p>integer.</p></dd>
-<dt><code>lead_yards_gained2</code></dt><dd><p>integer.</p></dd>
-<dt><code>lag_play_text3</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_play_text2</code></dt><dd><p>character.</p></dd>
-<dt><code>lead_play_text3</code></dt><dd><p>character.</p></dd>
-<dt><code>lag_change_of_poss2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_change_of_poss3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_change_of_pos_team3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_kickoff_play2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_kickoff_play3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_punt3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_scoring_play2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_scoring_play3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_turnover_vec2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_turnover_vec3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_downs_turnover2</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_downs_turnover3</code></dt><dd><p>double.</p></dd>
-<dt><code>drive_event</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_first_by_penalty3</code></dt><dd><p>double.</p></dd>
-<dt><code>lag_first_by_yards3</code></dt><dd><p>double.</p></dd>
+<dt><code>year</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>week</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>id_play</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>game_play_number</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>half_play_number</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pos_team</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>def_pos_team</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>half</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>period</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>clock.minutes</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>clock.seconds</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>play_type</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>play_text</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>down</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>distance</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>yards_to_goal</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>yards_gained</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>penalty_1st_conv</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>new_series</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>change_of_pos_team</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_change_of_pos_team</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>orig_play_type</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_play_type</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_play_type</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_play_type2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_play_type3</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>row</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_play_number</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_event_number</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_play_text</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_play_text2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_play_text</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>firstD_by_kickoff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>firstD_by_poss</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>firstD_by_penalty</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>firstD_by_yards</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_first_by_penalty</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_first_by_penalty2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_first_by_yards</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_first_by_yards2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>first_by_penalty</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>first_by_yards</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>play_after_turnover</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_change_of_poss</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_kickoff_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_punt</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_scoring_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_turnover_vec</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_downs_turnover</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_defense_score_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>ep_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>ep_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wp_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wp_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>def_wp_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>def_wp_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>penalty_detail</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_penalty</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>downs_turnover</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>turnover</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pos_score_diff_start</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pos_score_pts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pos_team_score</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>def_pos_team_score</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>log_ydstogo</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>ExpScoreDiff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>ExpScoreDiff_Time_Ratio</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>half_clock.minutes</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>TimeSecsRem</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>adj_TimeSecsRem</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Goal_To_Go</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>Under_two</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>home</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>away</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>home_wp_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>away_wp_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>home_wp_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>away_wp_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>end_of_half</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pos_team_receives_2H_kickoff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_pos_team</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_pos_team</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>Under_three</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>down_end</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>distance_end</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>log_ydstogo_end</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>yards_to_goal_end</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>TimeSecsRem_end</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Goal_To_Go_end</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>Under_two_end</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>def_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>offense_score_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>defense_score_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>ppa</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yard_line</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>scoring</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>pos_team_timeouts_rem_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>def_pos_team_timeouts_rem_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pos_team_timeouts</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>def_pos_team_timeouts</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>pos_score_diff</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>pos_score_diff_start_end</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>offense_play</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>defense_play</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>offense_receives_2H_kickoff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>change_of_poss</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>score_pts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>score_diff_start</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>score_diff</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>offense_score</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>defense_score</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>offense_conference</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>defense_conference</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>off_timeout_called</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>def_timeout_called</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>offense_timeouts</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>defense_timeouts</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>off_timeouts_rem_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>def_timeouts_rem_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>rusher_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_rushed</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>passer_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>receiver_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_receiving</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>yds_sacked</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>sack_players</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>sack_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>sack_player_name2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>pass_breakup_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>interception_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_int_return</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>fumble_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>fumble_forced_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>fumble_recovered_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_fumble_return</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punter_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_punted</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_returner_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_punt_return</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>yds_punt_gained</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_block_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>punt_block_return_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>fg_kicker_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_fg</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>fg_block_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>fg_return_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_kickoff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_returner_player_name</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>yds_kickoff_return</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>new_id</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>orig_drive_number</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_number</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_result_detailed</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>new_drive_pts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_id</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_result</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>drive_start_yards_to_goal</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_end_yards_to_goal</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_yards</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_scoring</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_pts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_start_period</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_end_period</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_time_minutes_start</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_time_seconds_start</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_time_minutes_end</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_time_seconds_end</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_time_minutes_elapsed</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_time_seconds_elapsed</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>drive_numbers</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>number_of_drives</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pts_scored</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_result_detailed_flag</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>drive_result2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>drive_num</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_drive_result_detailed</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_drive_result_detailed</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_new_drive_pts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>id_drive</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>rush_td</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pass_td</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>completion</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>pass_attempt</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>target</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>sack_vec</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>sack</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>int</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>int_td</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>turnover_vec</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>turnover_vec_lag</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>turnover_indicator</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>receives_2H_kickoff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>missing_yard_flag</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>scoring_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>td_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>touchdown</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>safety</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>fumble_vec</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_tb</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_onside</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_oob</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_fair_catch</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_downed</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kickoff_safety</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>kick_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_tb</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_oob</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_fair_catch</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_downed</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_safety</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>punt_blocked</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>penalty_safety</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>fg_inds</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>fg_made</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>fg_make_prob</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>home_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>away_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>home_EPA_rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>away_EPA_rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>home_EPA_pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>away_EPA_pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>total_home_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>total_away_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>total_home_EPA_rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>total_away_EPA_rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>total_home_EPA_pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>total_away_EPA_pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>net_home_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>net_away_EPA</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>net_home_EPA_rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>net_away_EPA_rush</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>net_home_EPA_pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>net_away_EPA_pass</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>success</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>epa_success</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>rz_play</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>scoring_opp</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>middle_8</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>stuffed_run</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>spread</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>formatted_spread</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>No_Score_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>FG_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Opp_FG_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Opp_Safety_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Opp_TD_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Safety_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>TD_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>No_Score_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>FG_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Opp_FG_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Opp_Safety_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Opp_TD_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>Safety_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>TD_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>penalty_flag</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>penalty_declined</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>penalty_no_play</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>penalty_offset</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>penalty_text</code>: logical.</dt><dd><p>.</p></dd>
+<dt><code>penalty_play_text</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_wp_before2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_half_end</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_base</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_base_nxt</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_change</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_change_nxt</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_base_ind</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_base_nxt_ind</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_change_ind</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>wpa_change_nxt_ind</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_wp_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_pos_team2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_change_of_pos_team2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_punt2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_score_diff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_offense_play</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_offense_play</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_offense_play2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_pos_score_diff</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_off_timeouts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_def_timeouts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_TimeSecsRem2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_TimeSecsRem</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_TimeSecsRem</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_TimeSecsRem2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_yards_to_goal2</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_yards_to_goal</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lead_yards_to_goal</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_yards_to_goal2</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_down2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_down</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_down</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_down2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_distance</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_distance2</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lead_play_type2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_play_type3</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_ep_before3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_ep_before2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_ep_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_ep_before</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_ep_before2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_ep_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_ep_after2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_ep_after3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_ep_after</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lead_ep_after2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>play_number</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>over_under</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>event</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>game_event_number</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>game_row_number</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>half_event</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>half_event_number</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>half_row_number</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_distance3</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_distance2</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_distance</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_yards_gained3</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_yards_gained2</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_yards_gained</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lead_yards_gained</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lead_yards_gained2</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>lag_play_text3</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_play_text2</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lead_play_text3</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>lag_change_of_poss2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_change_of_poss3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_change_of_pos_team3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_kickoff_play2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_kickoff_play3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_punt3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_scoring_play2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_scoring_play3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_turnover_vec2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_turnover_vec3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_downs_turnover2</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_downs_turnover3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>drive_event</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_first_by_penalty3</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>lag_first_by_yards3</code>: double.</dt><dd><p>.</p></dd>
 
 </dl>
 

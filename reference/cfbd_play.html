@@ -55,14 +55,17 @@
   
 
 <meta property="og:title" content="CFBD Plays Endpoint — cfbd_play" />
-<meta property="og:description" content="CFBD Plays Endpoint
-College Football Plays
-Gets player info associated by play
-College Football Mapping for Play Stats Types
-College Football Mapping for Play Types" />
+<meta property="og:description" content="College football plays data
+cfbd_plays():CFBD's College Football Play-by-Play
+cfbd_play_stats_player():Gets player info associated by play.
+cfbd_play_stats_types():Gets CFBD play stat types.
+cfbd_play_types():Gets CFBD play types
+
+
+" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -96,7 +99,7 @@ College Football Mapping for Play Types" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -120,17 +123,45 @@ College Football Mapping for Play Types" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -154,13 +185,7 @@ College Football Mapping for Play Types" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -177,14 +202,15 @@ College Football Mapping for Play Types" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -214,6 +240,7 @@ College Football Mapping for Play Types" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -226,22 +253,12 @@ College Football Mapping for Play Types" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -270,6 +287,23 @@ College Football Mapping for Play Types" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -312,18 +346,21 @@ College Football Mapping for Play Types" />
     </div>
 
     <div class="ref-description">
-    <p>CFBD Plays Endpoint</p>
-<p>College Football Plays</p>
-<p>Gets player info associated by play</p>
-<p>College Football Mapping for Play Stats Types</p>
-<p>College Football Mapping for Play Types</p>
+    <p>College football plays data</p><dl>
+<dt><code>cfbd_plays()</code>:</dt><dd><p>CFBD's College Football Play-by-Play</p></dd>
+<dt><code>cfbd_play_stats_player()</code>:</dt><dd><p>Gets player info associated by play.</p></dd>
+<dt><code>cfbd_play_stats_types()</code>:</dt><dd><p>Gets CFBD play stat types.</p></dd>
+<dt><code>cfbd_play_types()</code>:</dt><dd><p>Gets CFBD play types</p></dd>
+
+</dl>
+
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_plays</span><span class='op'>(</span>
   year <span class='op'>=</span> <span class='fl'>2020</span>,
   season_type <span class='op'>=</span> <span class='st'>"regular"</span>,
-  week <span class='op'>=</span> <span class='fl'>4</span>,
-  team <span class='op'>=</span> <span class='st'>"Florida State"</span>,
+  week <span class='op'>=</span> <span class='fl'>1</span>,
+  team <span class='op'>=</span> <span class='cn'>NULL</span>,
   offense <span class='op'>=</span> <span class='cn'>NULL</span>,
   defense <span class='op'>=</span> <span class='cn'>NULL</span>,
   conference <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -392,7 +429,7 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)</p></
     </tr>
     <tr>
       <th>play_type</th>
-      <td><p>Select play type (example: see the <code><a href='data.html'>cfbd_play_type_df</a></code>)</p></td>
+      <td><p>Select play type (example: see the <a href='data.html'>cfbd_play_type_df</a>)</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -400,18 +437,18 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)</p></
     </tr>
     <tr>
       <th>game_id</th>
-      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game<br />
-Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info()</a></code> function</p></td>
+      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game
+Can be found using the <code><a href='cfbd_games.html'>cfbd_game_info()</a></code> function</p></td>
     </tr>
     <tr>
       <th>athlete_id</th>
-      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete<br />
-Can be found using the <code><a href='cfbd_players.html'>cfbfastR::cfbd_player_info()</a></code> function.</p></td>
+      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete
+Can be found using the <code><a href='cfbd_players.html'>cfbd_player_info()</a></code> function.</p></td>
     </tr>
     <tr>
       <th>stat_type_id</th>
-      <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type<br />
-Can be found using the <code>cfbfastR::cfbd_play_stats_types()</code> function</p></td>
+      <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type
+Can be found using the <code>cfbd_play_stats_types()</code> function</p></td>
     </tr>
     </table>
 
@@ -424,75 +461,105 @@ Can be found using the <code>cfbfastR::cfbd_play_stats_types()</code> function</
 <p><a href='https://api.collegefootballdata.com/play/types'>https://api.collegefootballdata.com/play/types</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_plays()</code></p>
-<p><code>cfbfastR::cfbd_play_stats_player()</code> - A data frame with 54 variables:</p><dl>
-<dt><code>play_id</code></dt><dd><p>character.</p></dd>
-<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>opponent</code></dt><dd><p>character.</p></dd>
-<dt><code>team_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>opponent_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>drive_id</code></dt><dd><p>character.</p></dd>
-<dt><code>period</code></dt><dd><p>integer.</p></dd>
-<dt><code>yards_to_goal</code></dt><dd><p>integer.</p></dd>
-<dt><code>down</code></dt><dd><p>integer.</p></dd>
-<dt><code>distance</code></dt><dd><p>integer.</p></dd>
-<dt><code>reception_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>reception_player</code></dt><dd><p>character.</p></dd>
-<dt><code>reception_yds</code></dt><dd><p>integer.</p></dd>
-<dt><code>completion_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>completion_player</code></dt><dd><p>character.</p></dd>
-<dt><code>completion_yds</code></dt><dd><p>integer.</p></dd>
-<dt><code>rush_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>rush_player</code></dt><dd><p>character.</p></dd>
-<dt><code>rush_yds</code></dt><dd><p>integer.</p></dd>
-<dt><code>interception_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>interception_player</code></dt><dd><p>character.</p></dd>
-<dt><code>interception_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>interception_thrown_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>interception_thrown_player</code></dt><dd><p>character.</p></dd>
-<dt><code>interception_thrown_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>touchdown_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>touchdown_player</code></dt><dd><p>character.</p></dd>
-<dt><code>touchdown_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>incompletion_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>incompletion_player</code></dt><dd><p>character.</p></dd>
-<dt><code>incompletion_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>target_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>target_player</code></dt><dd><p>character.</p></dd>
-<dt><code>target_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>fumble_recovered_player_id</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_recovered_player</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_recovered_stat</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_forced_player_id</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_forced_player</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_forced_stat</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_player_id</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_player</code></dt><dd><p>logical.</p></dd>
-<dt><code>fumble_stat</code></dt><dd><p>logical.</p></dd>
-<dt><code>sack_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>sack_player</code></dt><dd><p>character.</p></dd>
-<dt><code>sack_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>sack_taken_player_id</code></dt><dd><p>character.</p></dd>
-<dt><code>sack_taken_player</code></dt><dd><p>character.</p></dd>
-<dt><code>sack_taken_stat</code></dt><dd><p>integer.</p></dd>
-<dt><code>pass_breakup_player_id</code></dt><dd><p>logical.</p></dd>
-<dt><code>pass_breakup_player</code></dt><dd><p>logical.</p></dd>
-<dt><code>pass_breakup_stat</code></dt><dd><p>logical.</p></dd>
+    <p><code>cfbd_plays()</code> - A data frame with 29 columns:</p><dl>
+<dt><code>play_id</code>: character.</dt><dd><p>Referencing play id.</p></dd>
+<dt><code>offense</code>: character.</dt><dd><p>Offense on the field.</p></dd>
+<dt><code>offense_conference</code>: character.</dt><dd><p>Conference of the offense on the field.</p></dd>
+<dt><code>defense</code>: character.</dt><dd><p>Defense on the field.</p></dd>
+<dt><code>defense_conference</code>: character.</dt><dd><p>Conference of the defense on the field.</p></dd>
+<dt><code>home</code>: character.</dt><dd><p>Home team.</p></dd>
+<dt><code>away</code>: character.</dt><dd><p>Away team.</p></dd>
+<dt><code>offense_score</code>: integer.</dt><dd><p>Offense's post-play score.</p></dd>
+<dt><code>defense_score</code>: integer.</dt><dd><p>Defense's post-play score.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>drive_id</code>: character.</dt><dd><p>Referencing drive id.</p></dd>
+<dt><code>drive_number</code>: integer.</dt><dd><p>Drive number in the game.</p></dd>
+<dt><code>play_number</code>: integer.</dt><dd><p>Play number in the game.</p></dd>
+<dt><code>period</code>: integer.</dt><dd><p>Game period (quarter).</p></dd>
+<dt><code>offense_timeouts</code>: integer.</dt><dd><p>Timeouts for the offense at the end of the play.</p></dd>
+<dt><code>defense_timeouts</code>: integer.</dt><dd><p>Timeouts for the defense at the end of the play.</p></dd>
+<dt><code>yard_line</code>: integer.</dt><dd><p>Yard line (~0-50) of the play.</p></dd>
+<dt><code>yards_to_goal</code>: integer.</dt><dd><p>Yards to the goal line (~0-100).</p></dd>
+<dt><code>down</code>: integer.</dt><dd><p>Down of the play.</p></dd>
+<dt><code>distance</code>: integer.</dt><dd><p>Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.</p></dd>
+<dt><code>scoring</code>: logical.</dt><dd><p>Scoring play flag.</p></dd>
+<dt><code>yards_gained</code>: integer.</dt><dd><p>Yards net gained by the offense on the play.</p></dd>
+<dt><code>play_type</code>: character.</dt><dd><p>Categorical label of the type of the play.</p></dd>
+<dt><code>play_text</code>: character.</dt><dd><p>A text description of the play.</p></dd>
+<dt><code>ppa</code>: character.</dt><dd><p>Predicted Points Added (calculated by CFBD).</p></dd>
+<dt><code>clock.minutes</code>: integer.</dt><dd><p>Minutes left on the clock.</p></dd>
+<dt><code>clock.seconds</code>: integer.</dt><dd><p>Seconds left on the clock.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_play_stats_types()</code> - A data frame with 22 rows and 2 variables:</p><dl>
-<dt>play_stat_type_id</dt><dd><p>Referencing play stat type ID</p></dd>
-<dt>name</dt><dd><p>Type of play stats</p></dd>
+<p><code>cfbd_play_stats_player()</code> - A data frame with 54 variables:</p><dl>
+<dt><code>play_id</code>: character.</dt><dd><p>Referencing play id.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>season</code>: integer.</dt><dd><p>Season of the play.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Week of the play.</p></dd>
+<dt><code>opponent</code>: character.</dt><dd><p>Opponent of the offense on the play.</p></dd>
+<dt><code>team_score</code>: integer.</dt><dd><p>Offense team score.</p></dd>
+<dt><code>opponent_score</code>: integer.</dt><dd><p>Defense team score.</p></dd>
+<dt><code>drive_id</code>: character.</dt><dd><p>Referencing drive id.</p></dd>
+<dt><code>period</code>: integer.</dt><dd><p>Game period (quarter) of the play.</p></dd>
+<dt><code>yards_to_goal</code>: integer.</dt><dd><p>Yards to the goal line (~0-100).</p></dd>
+<dt><code>down</code>: integer.</dt><dd><p>Down of the play.</p></dd>
+<dt><code>distance</code>: integer.</dt><dd><p>Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.</p></dd>
+<dt><code>reception_player_id</code>: character.</dt><dd><p>Pass receiver player reference id.</p></dd>
+<dt><code>reception_player</code>: character.</dt><dd><p>Pass receiver player name.</p></dd>
+<dt><code>reception_yds</code>: integer.</dt><dd><p>Reception yards.</p></dd>
+<dt><code>completion_player_id</code>: character.</dt><dd><p>Passing player reference id.</p></dd>
+<dt><code>completion_player</code>: character.</dt><dd><p>Passing player name.</p></dd>
+<dt><code>completion_yds</code>: integer.</dt><dd><p>Passing yards.</p></dd>
+<dt><code>rush_player_id</code>: character.</dt><dd><p>Rushing player reference id.</p></dd>
+<dt><code>rush_player</code>: character.</dt><dd><p>Rushing player name.</p></dd>
+<dt><code>rush_yds</code>: integer.</dt><dd><p>Rushing yards.</p></dd>
+<dt><code>interception_player_id</code>: character.</dt><dd><p>Intercepting player reference id.</p></dd>
+<dt><code>interception_player</code>: character.</dt><dd><p>Intercepting player name.</p></dd>
+<dt><code>interception_stat</code>: integer.</dt><dd><p>Intercepting stat.</p></dd>
+<dt><code>interception_thrown_player_id</code>: character.</dt><dd><p>Interception passing player reference id.</p></dd>
+<dt><code>interception_thrown_player</code>: character.</dt><dd><p>Interception passing player name.</p></dd>
+<dt><code>interception_thrown_stat</code>: integer.</dt><dd><p>Interception thrown stat.</p></dd>
+<dt><code>touchdown_player_id</code>: character.</dt><dd><p>Touchdown scoring player reference id.</p></dd>
+<dt><code>touchdown_player</code>: character.</dt><dd><p>Touchdown scoring player name.</p></dd>
+<dt><code>touchdown_stat</code>: integer.</dt><dd><p>Touchdown scoring stat.</p></dd>
+<dt><code>incompletion_player_id</code>: character.</dt><dd><p>Incomplete receiver player reference id.</p></dd>
+<dt><code>incompletion_player</code>: character.</dt><dd><p>Incomplete receiver player name.</p></dd>
+<dt><code>incompletion_stat</code>: integer.</dt><dd><p>Incomplete stat.</p></dd>
+<dt><code>target_player_id</code>: character.</dt><dd><p>Targeted receiver player reference id.</p></dd>
+<dt><code>target_player</code>: character.</dt><dd><p>Targeted receiver player name.</p></dd>
+<dt><code>target_stat</code>: integer.</dt><dd><p>Target stat.</p></dd>
+<dt><code>fumble_recovered_player_id</code>: logical.</dt><dd><p>Fumble recovering player reference id.</p></dd>
+<dt><code>fumble_recovered_player</code>: logical.</dt><dd><p>Fumble recovering player name.</p></dd>
+<dt><code>fumble_recovered_stat</code>: logical.</dt><dd><p>Fumble recovered stat.</p></dd>
+<dt><code>fumble_forced_player_id</code>: logical.</dt><dd><p>Fumble forcing player reference id.</p></dd>
+<dt><code>fumble_forced_player</code>: logical.</dt><dd><p>Fumble forcing player name.</p></dd>
+<dt><code>fumble_forced_stat</code>: logical.</dt><dd><p>Fumble forced stat.</p></dd>
+<dt><code>fumble_player_id</code>: logical.</dt><dd><p>Fumbling player reference id.</p></dd>
+<dt><code>fumble_player</code>: logical.</dt><dd><p>Fumbling player name.</p></dd>
+<dt><code>fumble_stat</code>: logical.</dt><dd><p>Fumble stat.</p></dd>
+<dt><code>sack_player_id</code>: character.</dt><dd><p>Sacking player(s) reference id.</p></dd>
+<dt><code>sack_player</code>: character.</dt><dd><p>Sacking player(s) name.</p></dd>
+<dt><code>sack_stat</code>: integer.</dt><dd><p>Sack stat.</p></dd>
+<dt><code>sack_taken_player_id</code>: character.</dt><dd><p>Sack taking player reference id.</p></dd>
+<dt><code>sack_taken_player</code>: character.</dt><dd><p>Sack taking player name.</p></dd>
+<dt><code>sack_taken_stat</code>: integer.</dt><dd><p>Sack taken stat.</p></dd>
+<dt><code>pass_breakup_player_id</code>: logical.</dt><dd><p>Pass breakup player reference id.</p></dd>
+<dt><code>pass_breakup_player</code>: logical.</dt><dd><p>Pass breakup player name.</p></dd>
+<dt><code>pass_breakup_stat</code>: logical.</dt><dd><p>Pass breakup (PBU) stat.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_play_types()</code> - A data frame with 48 rows and 3 variables:</p><dl>
-<dt>play_type_id</dt><dd><p>Referencing play type id</p></dd>
-<dt>text</dt><dd><p>play type description</p></dd>
-<dt>abbreviation</dt><dd><p>play type abbreviation used for function call</p></dd>
+<p><code>cfbd_play_stats_types()</code> - A data frame with 22 rows and 2 variables:</p><dl>
+<dt><code>play_stat_type_id</code>: integer</dt><dd><p>Referencing play stat type ID.</p></dd>
+<dt><code>name</code>: character</dt><dd><p>Type of play stats.</p></dd>
+
+</dl>
+
+<p><code>cfbd_play_types()</code> - A data frame with 48 rows and 3 variables:</p><dl>
+<dt><code>play_type_id</code>: integer</dt><dd><p>Referencing play type id.</p></dd>
+<dt><code>text</code>: character</dt><dd><p>play type description.</p></dd>
+<dt><code>abbreviation</code>: character</dt><dd><p>play type abbreviation used for function call</p></dd>
 
 </dl>
 
@@ -2499,7 +2566,6 @@ Can be found using the <code>cfbfastR::cfbd_play_stats_types()</code> function</
 #&gt; 20                20 Interception Thrown
 #&gt; 21                21        Interception
 #&gt; 22                22           Touchdown</div><div class='input'><span class='co'># }</span>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

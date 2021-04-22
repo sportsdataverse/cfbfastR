@@ -57,7 +57,7 @@
 <meta property="og:title" content="Function reference" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -91,7 +91,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -115,17 +115,45 @@
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -149,13 +177,7 @@
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -172,14 +194,15 @@
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -209,6 +232,7 @@
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -221,22 +245,12 @@
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -265,6 +279,23 @@
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -386,9 +417,7 @@
         <td>
           <p><code><a href="update_cfb_db.html">update_cfb_db()</a></code> </p>
         </td>
-        <td><p>Update or Create a cfbfastR Play-by-Play Database
-<code>update_cfb_db</code> updates or creates a database with <code>cfbfastR</code>
-play by play data of all completed games since 2014.</p></td>
+        <td><p>Update or Create a cfbfastR Play-by-Play Database</p></td>
       </tr>
     </tbody><tbody>
       
@@ -424,9 +453,9 @@ play by play data of all completed games since 2014.</p></td>
       <tr>
         
         <td>
-          <p><code><a href="cfbd_drives.html">cfbd_drives()</a></code> </p>
+          <p><code><a href="cfbd_drives.html">cfbd_drives</a></code> </p>
         </td>
-        <td><p>Get results information from games</p></td>
+        <td><p>CFBD Drives Endpoint</p></td>
       </tr>
     </tbody><tbody>
       
@@ -527,7 +556,7 @@ play by play data of all completed games since 2014.</p></td>
         <td>
           <p><code><a href="espn_ratings.html">espn_ratings_fpi()</a></code> </p>
         </td>
-        <td><p>ESPN Ratings</p></td>
+        <td><p>ESPN FPI Ratings</p></td>
       </tr>
     </tbody><tbody>
       
@@ -544,7 +573,7 @@ play by play data of all completed games since 2014.</p></td>
       <tr>
         
         <td>
-          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> </p>
+          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> </p>
         </td>
         <td><p>CFBD Metrics Endpoint</p></td>
       </tr><tr>
@@ -571,7 +600,7 @@ play by play data of all completed games since 2014.</p></td>
         <td>
           <p><code><a href="cfbd_recruiting.html">cfbd_recruiting_player()</a></code> <code><a href="cfbd_recruiting.html">cfbd_recruiting_position()</a></code> <code><a href="cfbd_recruiting.html">cfbd_recruiting_team()</a></code> </p>
         </td>
-        <td><p>CFBD Recruiting Endpoint</p></td>
+        <td><p>CFB Recruiting Endpoint</p></td>
       </tr>
     </tbody><tbody>
       
@@ -590,19 +619,19 @@ play by play data of all completed games since 2014.</p></td>
         <td>
           <p><code><a href="cfbd_venues.html">cfbd_venues()</a></code> </p>
         </td>
-        <td><p>CFB Venue Information</p></td>
+        <td><p>CFBD Venues Endpoint</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="cfbd_conferences.html">cfbd_conferences()</a></code> </p>
         </td>
-        <td><p>CFB Conference Information</p></td>
+        <td><p>CFBD Conferences Endpoint</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="cfbd_coaches.html">cfbd_coaches()</a></code> </p>
         </td>
-        <td><p>Coach Information Search</p></td>
+        <td><p>CFBD Coaches Endpoint</p></td>
       </tr>
     </tbody><tbody>
       
@@ -619,198 +648,21 @@ play by play data of all completed games since 2014.</p></td>
       <tr>
         
         <td>
-          <p><code><a href="cfbd_betting.html">cfbd_betting_lines()</a></code> </p>
+          <p><code><a href="create_epa.html">create_epa()</a></code> <code><a href="create_epa.html">epa_fg_probs()</a></code> </p>
         </td>
-        <td><p>CFBD Betting Endpoint</p></td>
+        <td><p>Create EPA</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="cfbd_coaches.html">cfbd_coaches()</a></code> </p>
+          <p><code><a href="create_wpa.html">create_wpa_naive()</a></code> <code><a href="create_wpa.html">wpa_calcs_naive()</a></code> </p>
         </td>
-        <td><p>Coach Information Search</p></td>
+        <td><p>Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="cfbd_conferences.html">cfbd_conferences()</a></code> </p>
+          <p><code><a href="helpers_pbp.html">add_play_counts()</a></code> <code><a href="helpers_pbp.html">clean_drive_dat()</a></code> <code><a href="helpers_pbp.html">prep_epa_df_after()</a></code> <code><a href="helpers_pbp.html">clean_drive_info()</a></code> <code><a href="helpers_pbp.html">add_player_cols()</a></code> <code><a href="helpers_pbp.html">add_yardage()</a></code> <code><a href="helpers_pbp.html">clean_pbp_dat()</a></code> <code><a href="helpers_pbp.html">penalty_detection()</a></code> </p>
         </td>
-        <td><p>CFB Conference Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_drives.html">cfbd_drives()</a></code> </p>
-        </td>
-        <td><p>Get results information from games</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_games.html">cfbd_game_info()</a></code> <code><a href="cfbd_games.html">cfbd_calendar()</a></code> <code><a href="cfbd_games.html">cfbd_game_media()</a></code> <code><a href="cfbd_games.html">cfbd_game_box_advanced()</a></code> <code><a href="cfbd_games.html">cfbd_game_player_stats()</a></code> <code><a href="cfbd_games.html">cfbd_game_records()</a></code> <code><a href="cfbd_games.html">cfbd_game_team_stats()</a></code> </p>
-        </td>
-        <td><p>CFBD Games Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_games()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_players_season()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_predicted()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_ppa_teams()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp_pregame()</a></code> <code><a href="cfbd_metrics.html">cfbd_metrics_wp()</a></code> </p>
-        </td>
-        <td><p>CFBD Metrics Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code> </p>
-        </td>
-        <td><p>CFBD Play by Play Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_play.html">cfbd_plays()</a></code> <code><a href="cfbd_play.html">cfbd_play_stats_player()</a></code> <code><a href="cfbd_play.html">cfbd_play_stats_types()</a></code> <code><a href="cfbd_play.html">cfbd_play_types()</a></code> </p>
-        </td>
-        <td><p>CFBD Plays Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_players.html">cfbd_player_info()</a></code> <code><a href="cfbd_players.html">cfbd_player_returning()</a></code> <code><a href="cfbd_players.html">cfbd_player_usage()</a></code> </p>
-        </td>
-        <td><p>CFBD Players Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_ratings.html">cfbd_rankings()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_sp_conference()</a></code> <code><a href="cfbd_ratings.html">cfbd_ratings_srs()</a></code> </p>
-        </td>
-        <td><p>CFBD Ratings and Rankings Endpoints</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_recruiting.html">cfbd_recruiting_player()</a></code> <code><a href="cfbd_recruiting.html">cfbd_recruiting_position()</a></code> <code><a href="cfbd_recruiting.html">cfbd_recruiting_team()</a></code> </p>
-        </td>
-        <td><p>CFBD Recruiting Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_stats.html">cfbd_stats_categories()</a></code> <code><a href="cfbd_stats.html">cfbd_stats_game_advanced()</a></code> <code><a href="cfbd_stats.html">cfbd_stats_season_advanced()</a></code> <code><a href="cfbd_stats.html">cfbd_stats_season_player()</a></code> <code><a href="cfbd_stats.html">cfbd_stats_season_team()</a></code> </p>
-        </td>
-        <td><p>CFBD Stats Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_teams.html">cfbd_team_info()</a></code> <code><a href="cfbd_teams.html">cfbd_team_matchup_records()</a></code> <code><a href="cfbd_teams.html">cfbd_team_matchup()</a></code> <code><a href="cfbd_teams.html">cfbd_team_roster()</a></code> <code><a href="cfbd_teams.html">cfbd_team_talent()</a></code> </p>
-        </td>
-        <td><p>CFBD Teams Endpoint</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cfbd_venues.html">cfbd_venues()</a></code> </p>
-        </td>
-        <td><p>CFB Venue Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="check_github.html">check_github()</a></code> </p>
-        </td>
-        <td><p>Check latest GitHub version of R package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data.html">cfbd_play_type_df</a></code> <code><a href="data.html">cfbd_conf_types_df</a></code> </p>
-        </td>
-        <td><p>CFBD Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="espn_metrics.html">espn_metrics_wp()</a></code> </p>
-        </td>
-        <td><p>ESPN Metrics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="espn_ratings.html">espn_ratings_fpi()</a></code> </p>
-        </td>
-        <td><p>ESPN Ratings</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_fun_from_pkg.html">get_fun_from_pkg()</a></code> </p>
-        </td>
-        <td><p>load function from package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="load_cfb_pbp.html">load_cfb_pbp()</a></code> </p>
-        </td>
-        <td><p>Load cfbfastR play-by-play</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="register_cfbd.html">cfbd_key()</a></code> <code><a href="register_cfbd.html">has_cfbd_key()</a></code> </p>
-        </td>
-        <td><p>CFBD API Key Registration</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="update_cfb_db.html">update_cfb_db()</a></code> </p>
-        </td>
-        <td><p>Update or Create a cfbfastR Play-by-Play Database
-<code>update_cfb_db</code> updates or creates a database with <code>cfbfastR</code>
-play by play data of all completed games since 2014.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_epa.html">create_epa()</a></code> </p>
-        </td>
-        <td><p>Create EPA
-Adds Expected Points calculations to Play-by-Play data.frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="epa_fg_probs.html">epa_fg_probs()</a></code> </p>
-        </td>
-        <td><p>Performs Field Goal adjustments for Expected Points model calculations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_wpa_naive.html">create_wpa_naive()</a></code> </p>
-        </td>
-        <td><p>Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
-This is only for D1 football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clean_drive_info.html">clean_drive_info()</a></code> </p>
-        </td>
-        <td><p>Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="penalty_detection.html">penalty_detection()</a></code> </p>
-        </td>
-        <td><p>Penalty Detection
-Adds penalty columns to Play-by-Play data pulled from the API</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="add_play_counts.html">add_play_counts()</a></code> </p>
-        </td>
-        <td><p>Adds play counts to Play-by-Play data
-Adds play counts to Play-by-Play data pulled from the API's raw game data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clean_pbp_dat.html">clean_pbp_dat()</a></code> </p>
-        </td>
-        <td><p>Clean Play-by-Play data
-Cleans Play-by-Play data pulled from the API's raw game data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clean_drive_dat.html">clean_drive_dat()</a></code> </p>
-        </td>
-        <td><p>Create new Drive results and id data
-Cleans Play-by-Play data pulled from the API's raw game data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prep_epa_df_after.html">prep_epa_df_after()</a></code> </p>
-        </td>
-        <td><p>Creates the post-play inputs for the Expected Points model to predict on for each game</p></td>
+        <td><p>Series of functions to help clean the play-by-play data for analysis</p></td>
       </tr>
     </tbody>
     </table>

@@ -55,13 +55,17 @@
   
 
 <meta property="og:title" content="CFBD Players Endpoint — cfbd_players" />
-<meta property="og:description" content="CFBD Players Endpoint
-Player Information Search
-Player Returning Production
-Player Usage" />
+<meta property="og:description" content="
+
+cfbd_player_info():Player Information Search.
+cfbd_player_returning():Player Returning Production
+cfbd_player_usage():Player Usage.
+
+
+" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -95,7 +99,7 @@ Player Usage" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -119,17 +123,45 @@ Player Usage" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -153,13 +185,7 @@ Player Usage" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -176,14 +202,15 @@ Player Usage" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -213,6 +240,7 @@ Player Usage" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -225,22 +253,12 @@ Player Usage" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -269,6 +287,23 @@ Player Usage" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -311,10 +346,14 @@ Player Usage" />
     </div>
 
     <div class="ref-description">
-    <p>CFBD Players Endpoint</p>
-<p>Player Information Search</p>
-<p>Player Returning Production</p>
-<p>Player Usage</p>
+    
+<dl>
+<dt><code>cfbd_player_info()</code>:</dt><dd><p>Player Information Search.</p></dd>
+<dt><code>cfbd_player_returning()</code>:</dt><dd><p>Player Returning Production</p></dd>
+<dt><code>cfbd_player_usage()</code>:</dt><dd><p>Player Usage.</p></dd>
+
+</dl>
+
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_player_info</span><span class='op'>(</span>
@@ -372,14 +411,14 @@ Position Group  - options include:<br /></p><ul>
     </tr>
     <tr>
       <th>conference</th>
-      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference<br />
+      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conferencer<br />
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br />
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></td>
     </tr>
     <tr>
       <th>athlete_id</th>
       <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete<br />
-Can be found using the <code>cfbfastR::cfbd_player_info()</code> function.</p></td>
+Can be found using the <code>cfbd_player_info()</code> function.</p></td>
     </tr>
     <tr>
       <th>excl_garbage_time</th>
@@ -394,59 +433,63 @@ Can be found using the <code>cfbfastR::cfbd_player_info()</code> function.</p></
 <p><a href='https://api.collegefootballdata.com/player/usage'>https://api.collegefootballdata.com/player/usage</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_player_info()</code> - A data frame with 12 variables:</p><dl>
-<dt><code>athlete_id</code></dt><dd><p>character. Unique player identifier <code>athlete_id</code>.</p></dd>
-<dt><code>team</code></dt><dd><p>character. Team of the player.</p></dd>
-<dt><code>name</code></dt><dd><p>character. Player name.</p></dd>
-<dt><code>first_name</code></dt><dd><p>character. Player first name.</p></dd>
-<dt><code>last_name</code></dt><dd><p>character. Player last name.</p></dd>
-<dt><code>weight</code></dt><dd><p>integer. Player weight.</p></dd>
-<dt><code>height</code></dt><dd><p>integer. Player height.</p></dd>
-<dt><code>jersey</code></dt><dd><p>integer. Player jersey number.</p></dd>
-<dt><code>position</code></dt><dd><p>character. Player position.</p></dd>
-<dt><code>home_town</code></dt><dd><p>character. Player home town.</p></dd>
-<dt><code>team_color</code></dt><dd><p>character. Player team color.</p></dd>
-<dt><code>team_color_secondary</code></dt><dd><p>character. Player team secondary color.</p></dd>
+    <p><code>cfbd_player_info()</code> - A data frame with 12 variables:</p><dl>
+<dt><code>athlete_id</code>:character.</dt><dd><p>Unique player identifier <code>athlete_id</code>.</p></dd>
+<dt><code>team</code>:character.</dt><dd><p>Team of the player.</p></dd>
+<dt><code>name</code>:character.</dt><dd><p>Player name.</p></dd>
+<dt><code>first_name</code>:character.</dt><dd><p>Player first name.</p></dd>
+<dt><code>last_name</code>:character.</dt><dd><p>Player last name.</p></dd>
+<dt><code>weight</code>:integer.</dt><dd><p>Player weight.</p></dd>
+<dt><code>height</code>:integer.</dt><dd><p>Player height.</p></dd>
+<dt><code>jersey</code>:integer.</dt><dd><p>Player jersey number.</p></dd>
+<dt><code>position</code>:character.</dt><dd><p>Player position.</p></dd>
+<dt><code>home_town</code>:character.</dt><dd><p>Player home town.</p></dd>
+<dt><code>team_color</code>:character.</dt><dd><p>Player team color.</p></dd>
+<dt><code>team_color_secondary</code>:character.</dt><dd><p>Player team secondary color.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_player_returning()</code> - A data frame with 15 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>total_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>total_passing_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>total_receiving_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>total_rushing_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>percent_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>percent_passing_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>percent_receiving_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>percent_rushing_ppa</code></dt><dd><p>double.</p></dd>
-<dt><code>usage</code></dt><dd><p>double.</p></dd>
-<dt><code>passing_usage</code></dt><dd><p>double.</p></dd>
-<dt><code>receiving_usage</code></dt><dd><p>double.</p></dd>
-<dt><code>rushing_usage</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_player_returning()</code> - A data frame with 15 variables:</p><dl>
+<dt><code>season</code>:integer.</dt><dd><p>Returning player season.</p></dd>
+<dt><code>team</code>:character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>:character.</dt><dd><p>Conference of team.</p></dd>
+<dt><code>total_ppa</code>:double.</dt><dd><p>Total predicted points added returning.</p></dd>
+<dt><code>total_passing_ppa</code>:double.</dt><dd><p>Total passing predicted points added returning.</p></dd>
+<dt><code>total_receiving_ppa</code>:double.</dt><dd><p>Total receiving predicted points added returning.</p></dd>
+<dt><code>total_rushing_ppa</code>:double.</dt><dd><p>Total rushing predicted points added returning.</p></dd>
+<dt><code>percent_ppa</code>:double.</dt><dd><p>Percentage of prior year's predicted points added returning.</p></dd>
+<dt><code>percent_passing_ppa</code>:double.</dt><dd><p>Percentage of prior year's passing predicted points added returning.</p></dd>
+<dt><code>percent_receiving_ppa</code>:double.</dt><dd><p>Percentage of prior year's receiving predicted points added returning.</p></dd>
+<dt><code>percent_rushing_ppa</code>:double.</dt><dd><p>Percentage of prior year's rushing predicted points added returning.</p></dd>
+<dt><code>usage</code>:double.</dt><dd><p>.</p></dd>
+<dt><code>passing_usage</code>:double.</dt><dd><p>.</p></dd>
+<dt><code>receiving_usage</code>:double.</dt><dd><p>.</p></dd>
+<dt><code>rushing_usage</code>:double.</dt><dd><p>.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_player_usage()</code> - A data frame with 14 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
-<dt><code>name</code></dt><dd><p>character.</p></dd>
-<dt><code>position</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>usg_overall</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_1st_down</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_2nd_down</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_3rd_down</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_standard_downs</code></dt><dd><p>double.</p></dd>
-<dt><code>usg_passing_downs</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_player_usage()</code> - A data frame with 14 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>Player usage season.</p></dd>
+<dt><code>athlete_id</code>: character.</dt><dd><p>Referencing athlete id.</p></dd>
+<dt><code>name</code>: character.</dt><dd><p>Athlete name.</p></dd>
+<dt><code>position</code>: character.</dt><dd><p>Athlete position.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of team.</p></dd>
+<dt><code>usg_overall</code>: double.</dt><dd><p>Player usage of overall offense.</p></dd>
+<dt><code>usg_pass</code>: double.</dt><dd><p>Player passing usage percentage.</p></dd>
+<dt><code>usg_rush</code>: double.</dt><dd><p>Player rushing usage percentage.</p></dd>
+<dt><code>usg_1st_down</code>: double.</dt><dd><p>Player first down usage percentage.</p></dd>
+<dt><code>usg_2nd_down</code>: double.</dt><dd><p>Player second down usage percentage.</p></dd>
+<dt><code>usg_3rd_down</code>: double.</dt><dd><p>Player third down usage percentage.</p></dd>
+<dt><code>usg_standard_downs</code>: double.</dt><dd><p>Player standard down usage percentage.</p></dd>
+<dt><code>usg_passing_downs</code>: double.</dt><dd><p>Player passing down usage percentage.</p></dd>
 
 </dl>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>cfbd_player_returning()</code></p>
+<p><code>cfbd_player_usage()</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

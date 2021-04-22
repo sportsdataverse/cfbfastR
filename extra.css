@@ -45,27 +45,27 @@ pre, code {
 #tocnav ul ul {
   font-family: "Fira Mono";
   margin-left: 5px;
-  font-size: 16px;
+  font-size: 12px;
 }
 .dropdown-menu {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 12px rgba(5, 5, 5, 0.18);
   background-color: #222222;
 }
 #navbar ul ul{
   font-family: "Fira Mono";
-  letter-spacing: 0.1px;
-  line-height: 1.2rem;
+  letter-spacing: 0.05px;
+  line-height: 1.05rem;
   color: #fff;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
 }
 .nav li a {
   font-family: "Fira Mono";
-  letter-spacing: 0.1px;
-  line-height: 1.2rem;
+  letter-spacing: 0.05px;
+  line-height: 1.05rem;
   color: #fff;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
 }
 .pkgdown {
   display: none;
@@ -101,5 +101,5 @@ pre, code {
     font-family: "Bungee";
     font-size: 16px;
     color: #F2EC84;
-    animation: glow 2.5s ease-in-out infinite alternate;
+    animation: glow 3s ease-in-out infinite alternate;
 }

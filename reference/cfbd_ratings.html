@@ -55,12 +55,20 @@
   
 
 <meta property="og:title" content="CFBD Ratings and Rankings Endpoints — cfbd_ratings" />
-<meta property="og:description" content="Postseason polls are after Week 13
+<meta property="og:description" content="
+
+cfbd_rankings(): Gets Historical CFB poll rankings at a specific week.
+cfbd_ratings_sp(): Get SP historical rating data.
+cfbd_ratings_sp_conference(): Get SP conference-level historical rating data.
+cfbd_ratings_srs(): Get SRS historical rating data.
+
+
+
 At least one of year or team must be specified for the function to run
 At least one of year or team must be specified for the function to run" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -94,7 +102,7 @@ At least one of year or team must be specified for the function to run" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -118,17 +126,45 @@ At least one of year or team must be specified for the function to run" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -152,13 +188,7 @@ At least one of year or team must be specified for the function to run" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -175,14 +205,15 @@ At least one of year or team must be specified for the function to run" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -212,6 +243,7 @@ At least one of year or team must be specified for the function to run" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -224,22 +256,12 @@ At least one of year or team must be specified for the function to run" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -268,6 +290,23 @@ At least one of year or team must be specified for the function to run" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -310,7 +349,15 @@ At least one of year or team must be specified for the function to run" />
     </div>
 
     <div class="ref-description">
-    <p>Postseason polls are after Week 13</p>
+    
+<dl>
+<dt><code>cfbd_rankings()</code>: Gets Historical CFB poll rankings at a specific week</dt><dd><p>.</p></dd>
+<dt><code>cfbd_ratings_sp()</code>: Get SP historical rating data</dt><dd><p>.</p></dd>
+<dt><code>cfbd_ratings_sp_conference()</code>: Get SP conference-level historical rating data</dt><dd><p>.</p></dd>
+<dt><code>cfbd_ratings_srs()</code>: Get SRS historical rating data</dt><dd><p>.</p></dd>
+
+</dl>
+
 <p>At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
 <p>At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
     </div>
@@ -362,88 +409,89 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <p><a href='https://api.collegefootballdata.com/ratings/srs'>https://api.collegefootballdata.com/ratings/srs</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_rankings()</code> - A data frame with 9 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>season_type</code></dt><dd><p>character.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>poll</code></dt><dd><p>character.</p></dd>
-<dt><code>rank</code></dt><dd><p>integer.</p></dd>
-<dt><code>school</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>first_place_votes</code></dt><dd><p>integer.</p></dd>
-<dt><code>points</code></dt><dd><p>integer.</p></dd>
+    <p><code>cfbd_rankings()</code> - A data frame with 9 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>Rankings season.</p></dd>
+<dt><code>season_type</code>: character.</dt><dd><p>Season type of rankings.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Week of rankings.</p></dd>
+<dt><code>poll</code>: character.</dt><dd><p>Name of the poll.</p></dd>
+<dt><code>rank</code>: integer.</dt><dd><p>Rank in the poll.</p></dd>
+<dt><code>school</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>first_place_votes</code>: integer.</dt><dd><p>Number of first place votes.</p></dd>
+<dt><code>points</code>: integer.</dt><dd><p>Total poll points.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_ratings_sp()</code> - A data frame with 26 variables:</p><dl>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>rating</code></dt><dd><p>double.</p></dd>
-<dt><code>ranking</code></dt><dd><p>integer.</p></dd>
-<dt><code>second_order_wins</code></dt><dd><p>logical.</p></dd>
-<dt><code>sos</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_ranking</code></dt><dd><p>integer.</p></dd>
-<dt><code>offense_rating</code></dt><dd><p>double.</p></dd>
-<dt><code>offense_success</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_explosiveness</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_rushing</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_passing</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_standard_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_passing_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_run_rate</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_pace</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_ranking</code></dt><dd><p>integer.</p></dd>
-<dt><code>defense_rating</code></dt><dd><p>double.</p></dd>
-<dt><code>defense_success</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_explosiveness</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_rushing</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_passing</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_standard_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_passing_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_havoc_total</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_havoc_front_seven</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_havoc_db</code></dt><dd><p>logical.</p></dd>
-<dt><code>special_teams_rating</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_ratings_sp()</code> - A data frame with 26 variables:</p><dl>
+<dt><code>year</code>: integer.</dt><dd><p>Season of the ratings.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>rating</code>: double.</dt><dd><p>SP+ rating.</p></dd>
+<dt><code>ranking</code>: integer.</dt><dd><p>Ranking in the SP+ ratings.</p></dd>
+<dt><code>second_order_wins</code>: logical.</dt><dd><p>Total second-order wins - Not available for recent seasons.</p></dd>
+<dt><code>sos</code>: logical.</dt><dd><p>Strength of schedule - Not available for recent seasons.</p></dd>
+<dt><code>offense_ranking</code>: integer.</dt><dd><p>Overall offense ranking.</p></dd>
+<dt><code>offense_rating</code>: double.</dt><dd><p>Overall offense rating.</p></dd>
+<dt><code>offense_success</code>: logical.</dt><dd><p>Offense success rating - Not available for recent seasons.</p></dd>
+<dt><code>offense_explosiveness</code>: logical.</dt><dd><p>Offense explosiveness rating - Not available for recent seasons.</p></dd>
+<dt><code>offense_rushing</code>: logical.</dt><dd><p>Offense rushing rating - Not available for recent seasons.</p></dd>
+<dt><code>offense_passing</code>: logical.</dt><dd><p>Offense passing rating - Not available for recent seasons.</p></dd>
+<dt><code>offense_standard_downs</code>: logical.</dt><dd><p>Offense standard downs rating - Not available for recent seasons.</p></dd>
+<dt><code>offense_passing_downs</code>: logical.</dt><dd><p>Offensive passing downs rating - Not available for recent seasons.</p></dd>
+<dt><code>offense_run_rate</code>: logical.</dt><dd><p>Offense rushing rate - Not available for recent seasons.</p></dd>
+<dt><code>offense_pace</code>: logical.</dt><dd><p>Offense pace factor - Not available for recent seasons.</p></dd>
+<dt><code>defense_ranking</code>: integer.</dt><dd><p>Overall defense ranking.</p></dd>
+<dt><code>defense_rating</code>: double.</dt><dd><p>Overall defense rating.</p></dd>
+<dt><code>defense_success</code>: logical.</dt><dd><p>Defense success rating - Not available for recent seasons.</p></dd>
+<dt><code>defense_explosiveness</code>: logical.</dt><dd><p>Defense explosiveness rating - Not available for recent seasons.</p></dd>
+<dt><code>defense_rushing</code>: logical.</dt><dd><p>Defense rushing rating - Not available for recent seasons.</p></dd>
+<dt><code>defense_passing</code>: logical.</dt><dd><p>Defense passing rating - Not available for recent seasons.</p></dd>
+<dt><code>defense_standard_downs</code>: logical.</dt><dd><p>Defense standard downs rating - Not available for recent seasons.</p></dd>
+<dt><code>defense_passing_downs</code>: logical.</dt><dd><p>Defensive passing downs rating - Not available for recent seasons.</p></dd>
+<dt><code>defense_havoc_total</code>: logical.</dt><dd><p>Total defensive havoc rate - Not available for recent seasons.</p></dd>
+<dt><code>defense_havoc_front_seven</code>: logical.</dt><dd><p>Defense havoc rate from front 7 players - Not available for recent seasons.</p></dd>
+<dt><code>defense_havoc_db</code>: logical.</dt><dd><p>Defense havoc rate from defensive backs - Not available for recent seasons.</p></dd>
+<dt><code>special_teams_rating</code>: double.</dt><dd><p>Special teams rating.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_ratings_sp_conference()</code> - A data frame with 25 variables:</p><dl>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>rating</code></dt><dd><p>double.</p></dd>
-<dt><code>second_order_wins</code></dt><dd><p>logical.</p></dd>
-<dt><code>sos</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_rating</code></dt><dd><p>double.</p></dd>
-<dt><code>offense_success</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_explosiveness</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_rushing</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_passing</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_standard_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_passing_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_run_rate</code></dt><dd><p>logical.</p></dd>
-<dt><code>offense_pace</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_rating</code></dt><dd><p>double.</p></dd>
-<dt><code>defense_success</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_explosiveness</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_rushing</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_passing</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_standard_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_passing_downs</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_havoc_total</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_havoc_front_seven</code></dt><dd><p>logical.</p></dd>
-<dt><code>defense_havoc_db</code></dt><dd><p>logical.</p></dd>
-<dt><code>special_teams_rating</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_ratings_sp_conference()</code> - A data frame with 25 variables:</p><dl>
+<dt><code>year</code>: integer.</dt><dd><p>Season of the conference rating.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference name.</p></dd>
+<dt><code>rating</code>: double.</dt><dd><p>Conference SP+ rating.</p></dd>
+<dt><code>second_order_wins</code>: logical.</dt><dd><p>Second-order wins for the conference - Not available for recent seasons.</p></dd>
+<dt><code>sos</code>: logical.</dt><dd><p>Strength of schedule for the conference  - Not available for recent seasons..</p></dd>
+<dt><code>offense_rating</code>: double.</dt><dd><p>Overall offense rating for the conference.</p></dd>
+<dt><code>offense_success</code>: logical.</dt><dd><p>Offense success rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_explosiveness</code>: logical.</dt><dd><p>Offense explosiveness rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_rushing</code>: logical.</dt><dd><p>Offense rushing rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_passing</code>: logical.</dt><dd><p>Offense passing rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_standard_downs</code>: logical.</dt><dd><p>Offense standard downs rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_passing_downs</code>: logical.</dt><dd><p>Offensive passing downs rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_run_rate</code>: logical.</dt><dd><p>Offense rushing rate for the conference - Not available for recent seasons.</p></dd>
+<dt><code>offense_pace</code>: logical.</dt><dd><p>Offense pace factor for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_ranking</code>: integer.</dt><dd><p>Overall defense ranking for the conference.</p></dd>
+<dt><code>defense_rating</code>: double.</dt><dd><p>Overall defense rating for the conference.</p></dd>
+<dt><code>defense_success</code>: logical.</dt><dd><p>Defense success rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_explosiveness</code>: logical.</dt><dd><p>Defense explosiveness rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_rushing</code>: logical.</dt><dd><p>Defense rushing rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_passing</code>: logical.</dt><dd><p>Defense passing rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_standard_downs</code>: logical.</dt><dd><p>Defense standard downs rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_passing_downs</code>: logical.</dt><dd><p>Defensive passing downs rating for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_havoc_total</code>: logical.</dt><dd><p>Total defensive havoc rate for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_havoc_front_seven</code>: logical.</dt><dd><p>Defense havoc rate from front 7 players for the conference - Not available for recent seasons.</p></dd>
+<dt><code>defense_havoc_db</code>: logical.</dt><dd><p>Defense havoc rate from defensive backs for the conference - Not available for recent seasons.</p></dd>
+<dt><code>special_teams_rating</code>: double.</dt><dd><p>Special teams rating for the conference.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_ratings_srs()</code> - A data frame with 6 variables:</p><dl>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>division</code></dt><dd><p>logical.</p></dd>
-<dt><code>rating</code></dt><dd><p>double.</p></dd>
-<dt><code>ranking</code></dt><dd><p>integer.</p></dd>
+<p><code>cfbd_ratings_srs()</code> - A data frame with 6 variables:</p><dl>
+<dt><code>year</code>: integer.</dt><dd><p>Season of the SRS rating.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>division</code>: logical.</dt><dd><p>Division in the conference for the team.</p></dd>
+<dt><code>rating</code>: double.</dt><dd><p>Simple Rating System (SRS) rating.</p></dd>
+<dt><code>ranking</code>: integer.</dt><dd><p>Simple Rating System ranking within the group returned.</p></dd>
 
 </dl>
 
@@ -961,1063 +1009,1063 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 75                 Nebraska           Big Ten                 0    123</div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
-<span class='fu'>cfbd_ratings_sp</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span><span class='op'>)</span>
+<span class='fu'>cfbd_ratings_sp</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     year                  team        conference     rating ranking
-#&gt; 1   2019            Ohio State           Big Ten  35.400000       1
-#&gt; 2   2019                   LSU               SEC  33.100000       2
-#&gt; 3   2019               Alabama               SEC  32.400000       3
-#&gt; 4   2019               Clemson               ACC  28.100000       4
-#&gt; 5   2019               Georgia               SEC  26.800000       5
-#&gt; 6   2019            Penn State           Big Ten  24.300000       6
-#&gt; 7   2019               Florida               SEC  24.000000       7
-#&gt; 8   2019              Oklahoma            Big 12  22.900000       8
-#&gt; 9   2019                Auburn               SEC  21.000000       9
-#&gt; 10  2019              Michigan           Big Ten  20.700000      10
-#&gt; 11  2019             Wisconsin           Big Ten  20.300000      11
-#&gt; 12  2019                  Utah            Pac-12  19.500000      12
-#&gt; 13  2019             Minnesota           Big Ten  19.400000      13
-#&gt; 14  2019                   UCF American Athletic  19.100000      14
-#&gt; 15  2019                Oregon            Pac-12  19.000000      15
-#&gt; 16  2019            Washington            Pac-12  18.300000      16
-#&gt; 17  2019               Memphis American Athletic  18.000000      17
-#&gt; 18  2019                Baylor            Big 12  17.800000      18
-#&gt; 19  2019            Notre Dame  FBS Independents  17.700000      19
-#&gt; 20  2019                  Iowa           Big Ten  16.700000      20
-#&gt; 21  2019             Texas A&amp;M               SEC  15.000000      21
-#&gt; 22  2019                   USC            Pac-12  13.100000      22
-#&gt; 23  2019               Indiana           Big Ten  12.800000      23
-#&gt; 24  2019            Iowa State            Big 12  12.600000      24
-#&gt; 25  2019             Air Force     Mountain West  12.100000      25
-#&gt; 26  2019                 Texas            Big 12  12.000000      26
-#&gt; 27  2019     Appalachian State          Sun Belt  11.300000      27
-#&gt; 28  2019      Washington State            Pac-12  11.100000      28
-#&gt; 29  2019             Tennessee               SEC  10.800000      29
-#&gt; 30  2019        North Carolina               ACC  10.300000      30
-#&gt; 31  2019                  Navy American Athletic   9.900000      31
-#&gt; 32  2019             Louisiana          Sun Belt   9.600000      32
-#&gt; 33  2019                 Miami               ACC   9.600000      32
-#&gt; 34  2019              Kentucky               SEC   9.100000      34
-#&gt; 35  2019            Cincinnati American Athletic   9.100000      34
-#&gt; 36  2019        Oklahoma State            Big 12   8.700000      36
-#&gt; 37  2019           Boise State     Mountain West   8.100000      37
-#&gt; 38  2019         Virginia Tech               ACC   8.000000      38
-#&gt; 39  2019              Missouri               SEC   7.800000      39
-#&gt; 40  2019                Tulane American Athletic   7.500000      40
-#&gt; 41  2019        Michigan State           Big Ten   7.200000      41
-#&gt; 42  2019                   TCU            Big 12   6.700000      42
-#&gt; 43  2019              Virginia               ACC   6.300000      43
-#&gt; 44  2019         Arizona State            Pac-12   6.300000      43
-#&gt; 45  2019          Kansas State            Big 12   6.000000      45
-#&gt; 46  2019        South Carolina               SEC   4.800000      46
-#&gt; 47  2019                   SMU American Athletic   4.400000      47
-#&gt; 48  2019            Pittsburgh               ACC   4.100000      48
-#&gt; 49  2019                  Ohio      Mid-American   3.700000      49
-#&gt; 50  2019     Mississippi State               SEC   3.500000      50
-#&gt; 51  2019                Temple American Athletic   3.200000      51
-#&gt; 52  2019              Ole Miss               SEC   2.900000      52
-#&gt; 53  2019            Texas Tech            Big 12   2.700000      53
-#&gt; 54  2019              Nebraska           Big Ten   2.600000      54
-#&gt; 55  2019           Wake Forest               ACC   2.000000      55
-#&gt; 56  2019       San Diego State     Mountain West   2.000000      55
-#&gt; 57  2019         Florida State               ACC   1.800000      57
-#&gt; 58  2019      Western Kentucky    Conference USA   1.700000      58
-#&gt; 59  2019                   BYU  FBS Independents   1.300000      59
-#&gt; 60  2019              Illinois           Big Ten   0.600000      60
-#&gt; 61  2019            Louisville               ACC   0.200000      61
-#&gt; 62  2019        Louisiana Tech    Conference USA   0.200000      61
-#&gt; 63  2019      Florida Atlantic    Conference USA  -0.600000      63
-#&gt; 64  2019          Oregon State            Pac-12  -0.700000      64
-#&gt; 65  2019                Purdue           Big Ten  -0.700000      64
-#&gt; 66  2019               Wyoming     Mountain West  -1.100000      66
-#&gt; 67  2019                   UAB    Conference USA  -1.400000      67
-#&gt; 68  2019                  Duke               ACC  -1.800000      68
-#&gt; 69  2019               Hawai'i     Mountain West  -1.900000      69
-#&gt; 70  2019              Marshall    Conference USA  -1.900000      69
-#&gt; 71  2019               Buffalo      Mid-American  -2.000000      71
-#&gt; 72  2019                  Army  FBS Independents  -2.100000      72
-#&gt; 73  2019                 Tulsa American Athletic  -2.500000      73
-#&gt; 74  2019               Liberty  FBS Independents  -2.600000      74
-#&gt; 75  2019            California            Pac-12  -2.600000      74
-#&gt; 76  2019        Arkansas State          Sun Belt  -2.900000      76
-#&gt; 77  2019              Syracuse               ACC  -3.000000      77
-#&gt; 78  2019                  UCLA            Pac-12  -3.900000      78
-#&gt; 79  2019        Colorado State     Mountain West  -3.900000      78
-#&gt; 80  2019          Fresno State     Mountain West  -4.000000      80
-#&gt; 81  2019              Colorado            Pac-12  -4.100000      81
-#&gt; 82  2019            Utah State     Mountain West  -4.300000      82
-#&gt; 83  2019               Houston American Athletic  -4.300000      82
-#&gt; 84  2019      Central Michigan      Mid-American  -4.400000      84
-#&gt; 85  2019                  Troy          Sun Belt  -4.400000      84
-#&gt; 86  2019      Georgia Southern          Sun Belt  -4.500000      86
-#&gt; 87  2019            Ball State      Mid-American  -4.500000      86
-#&gt; 88  2019              Stanford            Pac-12  -4.700000      88
-#&gt; 89  2019  Southern Mississippi    Conference USA  -4.800000      89
-#&gt; 90  2019      Western Michigan      Mid-American  -4.900000      90
-#&gt; 91  2019          Northwestern           Big Ten  -5.500000      91
-#&gt; 92  2019        Boston College               ACC  -5.700000      92
-#&gt; 93  2019           North Texas    Conference USA  -6.100000      93
-#&gt; 94  2019              NC State               ACC  -6.300000      94
-#&gt; 95  2019             Charlotte    Conference USA  -6.300000      94
-#&gt; 96  2019              Maryland           Big Ten  -6.300000      94
-#&gt; 97  2019         West Virginia            Big 12  -7.000000      97
-#&gt; 98  2019 Florida International    Conference USA  -7.000000      97
-#&gt; 99  2019        San José State     Mountain West  -7.200000      99
-#&gt; 100 2019               Arizona            Pac-12  -8.000000     100
-#&gt; 101 2019      Eastern Michigan      Mid-American  -8.600000     101
-#&gt; 102 2019            Miami (OH)      Mid-American  -9.200000     102
-#&gt; 103 2019                Kansas            Big 12  -9.800000     103
-#&gt; 104 2019         South Florida American Athletic  -9.800000     103
-#&gt; 105 2019            Kent State      Mid-American -10.200000     105
-#&gt; 106 2019            Vanderbilt               SEC -10.400000     106
-#&gt; 107 2019         Georgia State          Sun Belt -10.500000     107
-#&gt; 108 2019              Arkansas               SEC -10.600000     108
-#&gt; 109 2019      Louisiana Monroe          Sun Belt -10.700000     109
-#&gt; 110 2019      Middle Tennessee    Conference USA -11.300000     110
-#&gt; 111 2019          Georgia Tech               ACC -12.000000     111
-#&gt; 112 2019                Nevada     Mountain West -12.300000     112
-#&gt; 113 2019      Coastal Carolina          Sun Belt -12.800000     113
-#&gt; 114 2019                Toledo      Mid-American -13.700000     114
-#&gt; 115 2019     Northern Illinois      Mid-American -13.900000     115
-#&gt; 116 2019         East Carolina American Athletic -14.000000     116
-#&gt; 117 2019               Rutgers           Big Ten -14.600000     117
-#&gt; 118 2019           Texas State          Sun Belt -16.200000     118
-#&gt; 119 2019            New Mexico     Mountain West -17.000000     119
-#&gt; 120 2019                  UNLV     Mountain West -17.400000     120
-#&gt; 121 2019                  Rice    Conference USA -18.000000     121
-#&gt; 122 2019         South Alabama          Sun Belt -20.300000     122
-#&gt; 123 2019      New Mexico State  FBS Independents -22.000000     123
-#&gt; 124 2019        UT San Antonio    Conference USA -23.700000     124
-#&gt; 125 2019          Old Dominion    Conference USA -24.400000     125
-#&gt; 126 2019           Connecticut American Athletic -24.400000     125
-#&gt; 127 2019                  UTEP    Conference USA -25.600000     127
-#&gt; 128 2019         Bowling Green      Mid-American -27.500000     128
-#&gt; 129 2019                 Akron      Mid-American -29.800000     129
-#&gt; 130 2019                 UMass  FBS Independents -34.600000     130
-#&gt; 131 2019      nationalAverages              &lt;NA&gt;   0.759542      NA
-#&gt;     second_order_wins sos offense_ranking offense_rating offense_success
-#&gt; 1                  NA  NA               4       44.40000              NA
-#&gt; 2                  NA  NA               1       48.90000              NA
-#&gt; 3                  NA  NA               2       47.70000              NA
-#&gt; 4                  NA  NA               5       43.50000              NA
-#&gt; 5                  NA  NA              32       34.20000              NA
-#&gt; 6                  NA  NA              13       37.50000              NA
-#&gt; 7                  NA  NA              11       37.80000              NA
-#&gt; 8                  NA  NA               3       46.10000              NA
-#&gt; 9                  NA  NA              34       33.90000              NA
-#&gt; 10                 NA  NA              21       35.70000              NA
-#&gt; 11                 NA  NA              12       37.70000              NA
-#&gt; 12                 NA  NA              16       36.50000              NA
-#&gt; 13                 NA  NA               7       39.80000              NA
-#&gt; 14                 NA  NA              14       37.30000              NA
-#&gt; 15                 NA  NA              22       35.60000              NA
-#&gt; 16                 NA  NA              24       35.30000              NA
-#&gt; 17                 NA  NA               8       39.50000              NA
-#&gt; 18                 NA  NA              27       34.70000              NA
-#&gt; 19                 NA  NA              20       35.80000              NA
-#&gt; 20                 NA  NA              53       30.00000              NA
-#&gt; 21                 NA  NA              33       34.00000              NA
-#&gt; 22                 NA  NA               9       39.00000              NA
-#&gt; 23                 NA  NA              22       35.60000              NA
-#&gt; 24                 NA  NA              42       31.80000              NA
-#&gt; 25                 NA  NA              17       36.20000              NA
-#&gt; 26                 NA  NA              10       38.70000              NA
-#&gt; 27                 NA  NA              31       34.30000              NA
-#&gt; 28                 NA  NA               6       41.70000              NA
-#&gt; 29                 NA  NA              73       27.80000              NA
-#&gt; 30                 NA  NA              25       35.10000              NA
-#&gt; 31                 NA  NA              18       36.00000              NA
-#&gt; 32                 NA  NA              15       36.70000              NA
-#&gt; 33                 NA  NA              80       26.00000              NA
-#&gt; 34                 NA  NA              49       30.10000              NA
-#&gt; 35                 NA  NA              64       29.10000              NA
-#&gt; 36                 NA  NA              26       35.00000              NA
-#&gt; 37                 NA  NA              38       32.90000              NA
-#&gt; 38                 NA  NA              54       29.90000              NA
-#&gt; 39                 NA  NA              89       24.50000              NA
-#&gt; 40                 NA  NA              36       33.10000              NA
-#&gt; 41                 NA  NA              91       24.40000              NA
-#&gt; 42                 NA  NA              65       28.80000              NA
-#&gt; 43                 NA  NA              47       30.40000              NA
-#&gt; 44                 NA  NA              72       28.00000              NA
-#&gt; 45                 NA  NA              65       28.80000              NA
-#&gt; 46                 NA  NA              98       23.40000              NA
-#&gt; 47                 NA  NA              29       34.60000              NA
-#&gt; 48                 NA  NA             109       20.40000              NA
-#&gt; 49                 NA  NA              19       35.90000              NA
-#&gt; 50                 NA  NA              36       33.10000              NA
-#&gt; 51                 NA  NA              87       24.60000              NA
-#&gt; 52                 NA  NA              67       28.60000              NA
-#&gt; 53                 NA  NA              39       32.50000              NA
-#&gt; 54                 NA  NA              40       32.20000              NA
-#&gt; 55                 NA  NA              60       29.40000              NA
-#&gt; 56                 NA  NA             122       16.60000              NA
-#&gt; 57                 NA  NA              48       30.20000              NA
-#&gt; 58                 NA  NA              96       23.60000              NA
-#&gt; 59                 NA  NA              67       28.60000              NA
-#&gt; 60                 NA  NA              91       24.40000              NA
-#&gt; 61                 NA  NA              29       34.60000              NA
-#&gt; 62                 NA  NA              84       25.30000              NA
-#&gt; 63                 NA  NA              67       28.60000              NA
-#&gt; 64                 NA  NA              35       33.80000              NA
-#&gt; 65                 NA  NA              45       30.80000              NA
-#&gt; 66                 NA  NA             108       20.50000              NA
-#&gt; 67                 NA  NA             118       18.30000              NA
-#&gt; 68                 NA  NA             112       19.70000              NA
-#&gt; 69                 NA  NA              27       34.70000              NA
-#&gt; 70                 NA  NA              94       23.80000              NA
-#&gt; 71                 NA  NA              85       25.00000              NA
-#&gt; 72                 NA  NA              67       28.60000              NA
-#&gt; 73                 NA  NA              87       24.60000              NA
-#&gt; 74                 NA  NA              62       29.30000              NA
-#&gt; 75                 NA  NA              94       23.80000              NA
-#&gt; 76                 NA  NA              49       30.10000              NA
-#&gt; 77                 NA  NA              89       24.50000              NA
-#&gt; 78                 NA  NA              71       28.40000              NA
-#&gt; 79                 NA  NA              79       26.10000              NA
-#&gt; 80                 NA  NA              46       30.60000              NA
-#&gt; 81                 NA  NA              49       30.10000              NA
-#&gt; 82                 NA  NA              77       26.20000              NA
-#&gt; 83                 NA  NA              56       29.60000              NA
-#&gt; 84                 NA  NA              80       26.00000              NA
-#&gt; 85                 NA  NA              40       32.20000              NA
-#&gt; 86                 NA  NA             101       22.20000              NA
-#&gt; 87                 NA  NA              59       29.50000              NA
-#&gt; 88                 NA  NA              74       27.20000              NA
-#&gt; 89                 NA  NA              96       23.60000              NA
-#&gt; 90                 NA  NA              56       29.60000              NA
-#&gt; 91                 NA  NA             123       16.50000              NA
-#&gt; 92                 NA  NA              44       31.30000              NA
-#&gt; 93                 NA  NA              85       25.00000              NA
-#&gt; 94                 NA  NA             102       22.00000              NA
-#&gt; 95                 NA  NA              54       29.90000              NA
-#&gt; 96                 NA  NA              76       26.30000              NA
-#&gt; 97                 NA  NA             100       22.90000              NA
-#&gt; 98                 NA  NA             102       22.00000              NA
-#&gt; 99                 NA  NA              56       29.60000              NA
-#&gt; 100                NA  NA              49       30.10000              NA
-#&gt; 101                NA  NA              62       29.30000              NA
-#&gt; 102                NA  NA             111       19.80000              NA
-#&gt; 103                NA  NA              77       26.20000              NA
-#&gt; 104                NA  NA             109       20.40000              NA
-#&gt; 105                NA  NA              82       25.90000              NA
-#&gt; 106                NA  NA             104       21.80000              NA
-#&gt; 107                NA  NA              60       29.40000              NA
-#&gt; 108                NA  NA             105       21.70000              NA
-#&gt; 109                NA  NA              43       31.50000              NA
-#&gt; 110                NA  NA              74       27.20000              NA
-#&gt; 111                NA  NA             117       18.80000              NA
-#&gt; 112                NA  NA             113       19.40000              NA
-#&gt; 113                NA  NA              98       23.40000              NA
-#&gt; 114                NA  NA              83       25.60000              NA
-#&gt; 115                NA  NA             106       20.70000              NA
-#&gt; 116                NA  NA              93       24.00000              NA
-#&gt; 117                NA  NA             121       17.40000              NA
-#&gt; 118                NA  NA             120       17.60000              NA
-#&gt; 119                NA  NA             107       20.60000              NA
-#&gt; 120                NA  NA             114       19.30000              NA
-#&gt; 121                NA  NA             127       15.10000              NA
-#&gt; 122                NA  NA             124       16.30000              NA
-#&gt; 123                NA  NA             115       19.00000              NA
-#&gt; 124                NA  NA             116       18.90000              NA
-#&gt; 125                NA  NA             129       10.60000              NA
-#&gt; 126                NA  NA             125       16.20000              NA
-#&gt; 127                NA  NA             119       18.00000              NA
-#&gt; 128                NA  NA             128       14.90000              NA
-#&gt; 129                NA  NA             130        7.70000              NA
-#&gt; 130                NA  NA             126       15.30000              NA
-#&gt; 131                NA  NA              NA       28.34809              NA
+#&gt; 1   2018               Alabama               SEC  36.300000       1
+#&gt; 2   2018               Georgia               SEC  32.900000       2
+#&gt; 3   2018               Clemson               ACC  29.700000       3
+#&gt; 4   2018              Oklahoma            Big 12  24.900000       4
+#&gt; 5   2018                   LSU               SEC  24.200000       5
+#&gt; 6   2018            Ohio State           Big Ten  24.100000       6
+#&gt; 7   2018                Auburn               SEC  23.600000       7
+#&gt; 8   2018     Mississippi State               SEC  23.200000       8
+#&gt; 9   2018               Florida               SEC  23.000000       9
+#&gt; 10  2018              Michigan           Big Ten  22.000000      10
+#&gt; 11  2018             Texas A&amp;M               SEC  21.600000      11
+#&gt; 12  2018              Missouri               SEC  20.800000      12
+#&gt; 13  2018            Notre Dame  FBS Independents  20.700000      13
+#&gt; 14  2018            Washington            Pac-12  19.900000      14
+#&gt; 15  2018            Penn State           Big Ten  19.000000      15
+#&gt; 16  2018          Fresno State     Mountain West  17.400000      16
+#&gt; 17  2018                  Utah            Pac-12  16.800000      17
+#&gt; 18  2018                   UCF American Athletic  16.500000      18
+#&gt; 19  2018             Wisconsin           Big Ten  15.500000      19
+#&gt; 20  2018        South Carolina               SEC  14.900000      20
+#&gt; 21  2018            Utah State     Mountain West  14.200000      21
+#&gt; 22  2018        Oklahoma State            Big 12  13.800000      22
+#&gt; 23  2018                  Iowa           Big Ten  13.300000      23
+#&gt; 24  2018         West Virginia            Big 12  13.200000      24
+#&gt; 25  2018              Kentucky               SEC  13.100000      25
+#&gt; 26  2018              Stanford            Pac-12  13.000000      26
+#&gt; 27  2018                 Miami               ACC  12.700000      27
+#&gt; 28  2018           Boise State     Mountain West  12.200000      28
+#&gt; 29  2018     Appalachian State          Sun Belt  11.900000      29
+#&gt; 30  2018        Michigan State           Big Ten  11.500000      30
+#&gt; 31  2018                 Texas            Big 12  11.300000      31
+#&gt; 32  2018      Washington State            Pac-12  11.300000      31
+#&gt; 33  2018              Ole Miss               SEC   9.800000      33
+#&gt; 34  2018                   USC            Pac-12   9.700000      34
+#&gt; 35  2018              NC State               ACC   9.400000      35
+#&gt; 36  2018               Memphis American Athletic   9.200000      36
+#&gt; 37  2018            Texas Tech            Big 12   8.700000      37
+#&gt; 38  2018            Iowa State            Big 12   7.900000      38
+#&gt; 39  2018            Vanderbilt               SEC   7.600000      39
+#&gt; 40  2018              Syracuse               ACC   7.500000      40
+#&gt; 41  2018                Oregon            Pac-12   7.300000      41
+#&gt; 42  2018              Virginia               ACC   7.100000      42
+#&gt; 43  2018                   TCU            Big 12   6.900000      43
+#&gt; 44  2018                Purdue           Big Ten   6.500000      44
+#&gt; 45  2018             Minnesota           Big Ten   6.300000      45
+#&gt; 46  2018                   BYU  FBS Independents   6.200000      46
+#&gt; 47  2018       San Diego State     Mountain West   6.000000      47
+#&gt; 48  2018             Tennessee               SEC   5.500000      48
+#&gt; 49  2018              Nebraska           Big Ten   5.400000      49
+#&gt; 50  2018            Cincinnati American Athletic   5.400000      49
+#&gt; 51  2018         Arizona State            Pac-12   5.000000      51
+#&gt; 52  2018                  Duke               ACC   5.000000      51
+#&gt; 53  2018              Arkansas               SEC   4.500000      53
+#&gt; 54  2018                  Ohio      Mid-American   4.000000      54
+#&gt; 55  2018            California            Pac-12   3.900000      55
+#&gt; 56  2018         Virginia Tech               ACC   3.900000      55
+#&gt; 57  2018           Wake Forest               ACC   3.600000      57
+#&gt; 58  2018               Arizona            Pac-12   3.600000      57
+#&gt; 59  2018              Maryland           Big Ten   3.000000      59
+#&gt; 60  2018                Temple American Athletic   2.900000      60
+#&gt; 61  2018            Pittsburgh               ACC   2.700000      61
+#&gt; 62  2018                  Troy          Sun Belt   2.600000      62
+#&gt; 63  2018        Boston College               ACC   2.400000      63
+#&gt; 64  2018               Houston American Athletic   2.300000      64
+#&gt; 65  2018           North Texas    Conference USA   2.100000      65
+#&gt; 66  2018                Toledo      Mid-American   2.000000      66
+#&gt; 67  2018                Baylor            Big 12   2.000000      66
+#&gt; 68  2018          Northwestern           Big Ten   1.900000      68
+#&gt; 69  2018               Wyoming     Mountain West   1.900000      68
+#&gt; 70  2018               Indiana           Big Ten   1.600000      70
+#&gt; 71  2018         Florida State               ACC   1.400000      71
+#&gt; 72  2018        Arkansas State          Sun Belt   1.200000      72
+#&gt; 73  2018              Marshall    Conference USA   1.000000      73
+#&gt; 74  2018          Georgia Tech               ACC   0.300000      74
+#&gt; 75  2018                   UAB    Conference USA  -0.300000      75
+#&gt; 76  2018                  UCLA            Pac-12  -0.400000      76
+#&gt; 77  2018          Kansas State            Big 12  -0.500000      77
+#&gt; 78  2018                Nevada     Mountain West  -0.500000      77
+#&gt; 79  2018            Miami (OH)      Mid-American  -0.700000      79
+#&gt; 80  2018              Colorado            Pac-12  -0.700000      79
+#&gt; 81  2018      Florida Atlantic    Conference USA  -0.800000      81
+#&gt; 82  2018               Buffalo      Mid-American  -1.100000      82
+#&gt; 83  2018         South Florida American Athletic  -1.200000      83
+#&gt; 84  2018                  Army  FBS Independents  -1.500000      84
+#&gt; 85  2018             Air Force     Mountain West  -1.800000      85
+#&gt; 86  2018      Eastern Michigan      Mid-American  -2.000000      86
+#&gt; 87  2018      Georgia Southern          Sun Belt  -2.400000      87
+#&gt; 88  2018        North Carolina               ACC  -2.500000      88
+#&gt; 89  2018     Northern Illinois      Mid-American  -2.700000      89
+#&gt; 90  2018                Tulane American Athletic  -3.500000      90
+#&gt; 91  2018      Middle Tennessee    Conference USA  -3.800000      91
+#&gt; 92  2018  Southern Mississippi    Conference USA  -5.000000      92
+#&gt; 93  2018                   SMU American Athletic  -5.400000      93
+#&gt; 94  2018        Louisiana Tech    Conference USA  -6.900000      94
+#&gt; 95  2018             Louisiana          Sun Belt  -6.900000      94
+#&gt; 96  2018 Florida International    Conference USA  -7.400000      96
+#&gt; 97  2018              Illinois           Big Ten  -7.900000      97
+#&gt; 98  2018            Louisville               ACC  -9.100000      98
+#&gt; 99  2018            New Mexico     Mountain West  -9.500000      99
+#&gt; 100 2018                Kansas            Big 12 -10.000000     100
+#&gt; 101 2018                  Navy American Athletic -10.200000     101
+#&gt; 102 2018        Colorado State     Mountain West -10.300000     102
+#&gt; 103 2018               Hawai'i     Mountain West -10.400000     103
+#&gt; 104 2018      Western Michigan      Mid-American -10.700000     104
+#&gt; 105 2018      Louisiana Monroe          Sun Belt -10.900000     105
+#&gt; 106 2018                  UNLV     Mountain West -11.100000     106
+#&gt; 107 2018                 Tulsa American Athletic -11.200000     107
+#&gt; 108 2018               Rutgers           Big Ten -12.300000     108
+#&gt; 109 2018          Old Dominion    Conference USA -14.100000     109
+#&gt; 110 2018         East Carolina American Athletic -14.900000     110
+#&gt; 111 2018          Oregon State            Pac-12 -16.000000     111
+#&gt; 112 2018      Western Kentucky    Conference USA -16.100000     112
+#&gt; 113 2018                 UMass  FBS Independents -16.100000     112
+#&gt; 114 2018           Texas State          Sun Belt -16.400000     114
+#&gt; 115 2018        San José State     Mountain West -17.100000     115
+#&gt; 116 2018      Coastal Carolina          Sun Belt -17.200000     116
+#&gt; 117 2018         South Alabama          Sun Belt -17.700000     117
+#&gt; 118 2018             Charlotte    Conference USA -18.500000     118
+#&gt; 119 2018            Ball State      Mid-American -18.900000     119
+#&gt; 120 2018                 Akron      Mid-American -19.300000     120
+#&gt; 121 2018               Liberty  FBS Independents -19.700000     121
+#&gt; 122 2018      Central Michigan      Mid-American -20.000000     122
+#&gt; 123 2018      New Mexico State  FBS Independents -20.200000     123
+#&gt; 124 2018         Georgia State          Sun Belt -20.400000     124
+#&gt; 125 2018            Kent State      Mid-American -20.400000     124
+#&gt; 126 2018         Bowling Green      Mid-American -22.000000     126
+#&gt; 127 2018        UT San Antonio    Conference USA -22.100000     127
+#&gt; 128 2018           Connecticut American Athletic -26.400000     128
+#&gt; 129 2018                  Rice    Conference USA -26.400000     128
+#&gt; 130 2018                  UTEP    Conference USA -26.600000     130
+#&gt; 131 2018      nationalAverages              &lt;NA&gt;   1.443077      NA
+#&gt;     second_order_wins       sos offense_ranking offense_rating offense_success
+#&gt; 1           13.800000 0.7950000               2       50.90000        136.2000
+#&gt; 2           11.500000 0.7940000               3       45.90000        122.6000
+#&gt; 3           14.000000 0.9120000               5       43.00000        119.6000
+#&gt; 4           11.700000 0.9090000               1       54.00000        130.1000
+#&gt; 5            9.100000 0.7500000              30       34.80000        102.6000
+#&gt; 6           10.900000 0.8990000               4       44.40000        121.4000
+#&gt; 7            8.200000 0.7610000              19       36.90000        102.3000
+#&gt; 8            8.700000 0.7910000              32       34.60000        111.6000
+#&gt; 9            9.700000 0.8130000              15       38.60000        111.1000
+#&gt; 10          10.300000 0.8670000              25       35.50000        113.7000
+#&gt; 11           9.000000 0.7610000              10       40.30000        114.8000
+#&gt; 12           9.300000 0.7940000               8       41.30000        113.0000
+#&gt; 13          10.300000 0.9050000              32       34.60000        104.7000
+#&gt; 14          10.900000 0.8800000              34       34.50000        110.8000
+#&gt; 15           9.700000 0.8680000              35       33.90000        107.1000
+#&gt; 16          12.100000 0.9440000              37       33.50000        111.3000
+#&gt; 17           9.200000 0.8870000              45       31.90000        108.7000
+#&gt; 18          10.600000 0.9540000              11       39.90000        111.1000
+#&gt; 19           8.700000 0.8990000              12       39.30000        121.5000
+#&gt; 20           5.800000 0.7880000              21       36.40000        101.5000
+#&gt; 21          10.000000 0.9560000              22       36.30000        113.3000
+#&gt; 22           7.600000 0.8920000               7       42.00000        106.6000
+#&gt; 23           8.800000 0.9110000              54       30.30000         95.2000
+#&gt; 24           7.500000 0.8880000               9       41.10000        108.0000
+#&gt; 25           7.800000 0.8060000              63       29.50000        100.6000
+#&gt; 26           8.400000 0.8770000              26       35.40000        106.6000
+#&gt; 27           8.800000 0.9220000              66       29.30000         90.7000
+#&gt; 28           8.900000 0.9050000              18       37.10000        119.6000
+#&gt; 29          11.000000 0.9610000              56       30.00000         98.9000
+#&gt; 30           7.500000 0.8670000             111       22.00000         88.1000
+#&gt; 31           8.300000 0.8650000              27       35.30000        105.3000
+#&gt; 32           9.700000 0.9030000              13       38.80000        114.9000
+#&gt; 33           5.900000 0.7860000               6       42.10000        114.2000
+#&gt; 34           7.000000 0.8920000              46       31.70000         99.0000
+#&gt; 35           8.300000 0.9170000              29       35.10000        117.9000
+#&gt; 36           9.600000 0.9310000              13       38.80000        108.8000
+#&gt; 37           6.200000 0.8850000              23       36.20000        107.5000
+#&gt; 38           8.100000 0.8850000              57       29.90000         98.4000
+#&gt; 39           7.100000 0.8120000              24       35.60000        103.1000
+#&gt; 40           8.500000 0.8980000              44       32.10000        104.0000
+#&gt; 41           7.600000 0.9090000              31       34.70000         99.9000
+#&gt; 42           8.900000 0.9410000              61       29.70000        100.5000
+#&gt; 43           7.100000 0.8650000              91       25.70000         93.3000
+#&gt; 44           7.500000 0.8670000              17       37.20000        107.6000
+#&gt; 45           6.900000 0.8840000              75       28.20000        100.6000
+#&gt; 46           8.100000 0.8960000              72       28.90000        108.3000
+#&gt; 47           7.600000 0.9340000              92       25.60000         90.0000
+#&gt; 48           4.300000 0.7590000              38       33.40000         92.2000
+#&gt; 49           6.700000 0.8680000              42       32.70000        115.2000
+#&gt; 50           9.600000 0.9550000              74       28.30000        100.1000
+#&gt; 51           6.300000 0.8920000              35       33.90000        108.4000
+#&gt; 52           6.800000 0.9010000              52       30.50000        101.7000
+#&gt; 53           3.400000 0.7770000              61       29.70000         89.9000
+#&gt; 54           8.900000 0.9740000              16       38.20000        124.8000
+#&gt; 55           6.500000 0.9090000             118       18.30000         93.7000
+#&gt; 56           5.700000 0.9210000              41       32.80000        106.5000
+#&gt; 57           7.400000 0.8900000              48       31.20000        101.0000
+#&gt; 58           5.300000 0.9180000              43       32.30000         94.3000
+#&gt; 59           5.300000 0.8610000              80       27.60000         92.3000
+#&gt; 60           8.500000 0.9510000              76       28.10000        104.7000
+#&gt; 61           6.800000 0.8490000              71       29.00000        100.7000
+#&gt; 62           8.800000 0.9610000              89       26.40000         91.6000
+#&gt; 63           6.200000 0.8960000              87       26.50000         91.7000
+#&gt; 64           8.100000 0.9610000              20       36.70000        102.6000
+#&gt; 65           9.800000 0.9810000              67       29.20000        107.0000
+#&gt; 66           7.100000 0.9530000              28       35.20000        109.1000
+#&gt; 67           6.900000 0.8890000              39       33.10000        103.7000
+#&gt; 68           6.200000 0.8540000              93       25.50000         95.7000
+#&gt; 69           6.300000 0.9070000              95       25.10000         86.9000
+#&gt; 70           4.700000 0.8610000              55       30.20000        108.8000
+#&gt; 71           4.400000 0.8500000              97       25.00000         85.0000
+#&gt; 72           8.700000 0.9260000              57       29.90000        104.5000
+#&gt; 73           9.200000 0.9710000             111       22.00000         99.3000
+#&gt; 74           5.800000 0.8640000              40       33.00000        119.7000
+#&gt; 75          10.100000 0.9610000             104       24.10000        106.2000
+#&gt; 76           3.300000 0.8440000              50       30.70000        105.5000
+#&gt; 77           5.600000 0.8630000              84       27.20000         97.2000
+#&gt; 78           6.500000 0.9400000              82       27.50000         93.5000
+#&gt; 79           5.900000 0.9660000              90       26.20000         96.0000
+#&gt; 80           5.400000 0.9040000              85       27.00000         87.6000
+#&gt; 81           6.600000 0.9310000              49       30.80000        105.4000
+#&gt; 82           9.500000 0.9740000              47       31.30000        106.5000
+#&gt; 83           6.700000 0.9550000              69       29.10000         94.8000
+#&gt; 84           8.100000 0.9420000              65       29.40000        102.0000
+#&gt; 85           6.100000 0.9450000              67       29.20000        111.0000
+#&gt; 86           8.500000 0.9700000              93       25.50000         94.1000
+#&gt; 87           7.900000 0.9340000              78       27.90000         96.8000
+#&gt; 88           3.800000 0.9260000              57       29.90000         98.4000
+#&gt; 89           7.400000 0.9390000             117       19.10000         97.1000
+#&gt; 90           6.600000 0.9310000             106       23.80000         88.0000
+#&gt; 91           8.300000 0.9190000             103       24.40000        100.2000
+#&gt; 92           6.200000 0.9510000             122       16.60000         93.1000
+#&gt; 93           4.900000 0.9160000             105       24.00000         85.8000
+#&gt; 94           7.100000 0.9250000             111       22.00000         98.4000
+#&gt; 95           7.000000 0.8890000              52       30.50000        104.6000
+#&gt; 96           7.400000 0.9710000              86       26.70000         96.9000
+#&gt; 97           3.900000 0.9090000              69       29.10000        105.7000
+#&gt; 98           1.700000 0.8440000             101       24.50000         94.6000
+#&gt; 99           4.000000 0.9170000             106       23.80000         93.3000
+#&gt; 100          2.800000 0.8900000             114       21.90000         86.8000
+#&gt; 101          3.400000 0.9210000              82       27.50000         94.3000
+#&gt; 102          3.600000 0.9180000              80       27.60000         96.6000
+#&gt; 103          7.200000 0.9410000              63       29.50000        104.0000
+#&gt; 104          6.400000 0.9440000              60       29.80000        105.1000
+#&gt; 105          5.400000 0.9460000              87       26.50000        107.8000
+#&gt; 106          4.100000 0.9340000              50       30.70000        100.0000
+#&gt; 107          4.400000 0.9490000             109       22.90000         96.0000
+#&gt; 108          1.800000 0.8690000             123       15.00000         71.8000
+#&gt; 109          4.100000 0.9770000              98       24.90000        101.6000
+#&gt; 110          3.800000 0.9360000             118       18.30000         85.0000
+#&gt; 111          1.800000 0.8750000              73       28.80000        100.2000
+#&gt; 112          4.200000 0.9680000             120       17.90000         95.0000
+#&gt; 113          4.000000 0.9260000              79       27.80000         94.0000
+#&gt; 114          6.100000 0.9720000             126       14.90000         83.1000
+#&gt; 115          2.000000 0.9230000             121       17.30000         81.0000
+#&gt; 116          3.500000 0.9520000              76       28.10000        103.8000
+#&gt; 117          3.300000 0.9460000             101       24.50000         91.5000
+#&gt; 118          3.600000 0.9630000             123       15.00000         91.8000
+#&gt; 119          3.100000 0.9500000             110       22.50000        100.9000
+#&gt; 120          2.900000 0.9520000             128       11.90000         76.9000
+#&gt; 121          4.400000 0.9470000              95       25.10000         92.4000
+#&gt; 122          2.300000 0.9580000             130        9.00000         76.8000
+#&gt; 123          2.600000 0.9590000             116       19.20000         85.4000
+#&gt; 124          2.800000 0.9510000             108       23.60000         96.9000
+#&gt; 125          2.900000 0.9450000             115       20.50000         82.7000
+#&gt; 126          2.400000 0.9650000              99       24.70000         91.4000
+#&gt; 127          1.800000 0.9680000             129       11.10000         81.6000
+#&gt; 128          0.400000 0.9320000              99       24.70000         95.0000
+#&gt; 129          1.500000 0.9480000             123       15.00000         75.5000
+#&gt; 130          3.200000 0.9770000             127       12.10000         86.2000
+#&gt; 131          6.693846 0.9053308              NA       29.34769        100.7038
 #&gt;     offense_explosiveness offense_rushing offense_passing
-#&gt; 1                      NA              NA              NA
-#&gt; 2                      NA              NA              NA
-#&gt; 3                      NA              NA              NA
-#&gt; 4                      NA              NA              NA
-#&gt; 5                      NA              NA              NA
-#&gt; 6                      NA              NA              NA
-#&gt; 7                      NA              NA              NA
-#&gt; 8                      NA              NA              NA
-#&gt; 9                      NA              NA              NA
-#&gt; 10                     NA              NA              NA
-#&gt; 11                     NA              NA              NA
-#&gt; 12                     NA              NA              NA
-#&gt; 13                     NA              NA              NA
-#&gt; 14                     NA              NA              NA
-#&gt; 15                     NA              NA              NA
-#&gt; 16                     NA              NA              NA
-#&gt; 17                     NA              NA              NA
-#&gt; 18                     NA              NA              NA
-#&gt; 19                     NA              NA              NA
-#&gt; 20                     NA              NA              NA
-#&gt; 21                     NA              NA              NA
-#&gt; 22                     NA              NA              NA
-#&gt; 23                     NA              NA              NA
-#&gt; 24                     NA              NA              NA
-#&gt; 25                     NA              NA              NA
-#&gt; 26                     NA              NA              NA
-#&gt; 27                     NA              NA              NA
-#&gt; 28                     NA              NA              NA
-#&gt; 29                     NA              NA              NA
-#&gt; 30                     NA              NA              NA
-#&gt; 31                     NA              NA              NA
-#&gt; 32                     NA              NA              NA
-#&gt; 33                     NA              NA              NA
-#&gt; 34                     NA              NA              NA
-#&gt; 35                     NA              NA              NA
-#&gt; 36                     NA              NA              NA
-#&gt; 37                     NA              NA              NA
-#&gt; 38                     NA              NA              NA
-#&gt; 39                     NA              NA              NA
-#&gt; 40                     NA              NA              NA
-#&gt; 41                     NA              NA              NA
-#&gt; 42                     NA              NA              NA
-#&gt; 43                     NA              NA              NA
-#&gt; 44                     NA              NA              NA
-#&gt; 45                     NA              NA              NA
-#&gt; 46                     NA              NA              NA
-#&gt; 47                     NA              NA              NA
-#&gt; 48                     NA              NA              NA
-#&gt; 49                     NA              NA              NA
-#&gt; 50                     NA              NA              NA
-#&gt; 51                     NA              NA              NA
-#&gt; 52                     NA              NA              NA
-#&gt; 53                     NA              NA              NA
-#&gt; 54                     NA              NA              NA
-#&gt; 55                     NA              NA              NA
-#&gt; 56                     NA              NA              NA
-#&gt; 57                     NA              NA              NA
-#&gt; 58                     NA              NA              NA
-#&gt; 59                     NA              NA              NA
-#&gt; 60                     NA              NA              NA
-#&gt; 61                     NA              NA              NA
-#&gt; 62                     NA              NA              NA
-#&gt; 63                     NA              NA              NA
-#&gt; 64                     NA              NA              NA
-#&gt; 65                     NA              NA              NA
-#&gt; 66                     NA              NA              NA
-#&gt; 67                     NA              NA              NA
-#&gt; 68                     NA              NA              NA
-#&gt; 69                     NA              NA              NA
-#&gt; 70                     NA              NA              NA
-#&gt; 71                     NA              NA              NA
-#&gt; 72                     NA              NA              NA
-#&gt; 73                     NA              NA              NA
-#&gt; 74                     NA              NA              NA
-#&gt; 75                     NA              NA              NA
-#&gt; 76                     NA              NA              NA
-#&gt; 77                     NA              NA              NA
-#&gt; 78                     NA              NA              NA
-#&gt; 79                     NA              NA              NA
-#&gt; 80                     NA              NA              NA
-#&gt; 81                     NA              NA              NA
-#&gt; 82                     NA              NA              NA
-#&gt; 83                     NA              NA              NA
-#&gt; 84                     NA              NA              NA
-#&gt; 85                     NA              NA              NA
-#&gt; 86                     NA              NA              NA
-#&gt; 87                     NA              NA              NA
-#&gt; 88                     NA              NA              NA
-#&gt; 89                     NA              NA              NA
-#&gt; 90                     NA              NA              NA
-#&gt; 91                     NA              NA              NA
-#&gt; 92                     NA              NA              NA
-#&gt; 93                     NA              NA              NA
-#&gt; 94                     NA              NA              NA
-#&gt; 95                     NA              NA              NA
-#&gt; 96                     NA              NA              NA
-#&gt; 97                     NA              NA              NA
-#&gt; 98                     NA              NA              NA
-#&gt; 99                     NA              NA              NA
-#&gt; 100                    NA              NA              NA
-#&gt; 101                    NA              NA              NA
-#&gt; 102                    NA              NA              NA
-#&gt; 103                    NA              NA              NA
-#&gt; 104                    NA              NA              NA
-#&gt; 105                    NA              NA              NA
-#&gt; 106                    NA              NA              NA
-#&gt; 107                    NA              NA              NA
-#&gt; 108                    NA              NA              NA
-#&gt; 109                    NA              NA              NA
-#&gt; 110                    NA              NA              NA
-#&gt; 111                    NA              NA              NA
-#&gt; 112                    NA              NA              NA
-#&gt; 113                    NA              NA              NA
-#&gt; 114                    NA              NA              NA
-#&gt; 115                    NA              NA              NA
-#&gt; 116                    NA              NA              NA
-#&gt; 117                    NA              NA              NA
-#&gt; 118                    NA              NA              NA
-#&gt; 119                    NA              NA              NA
-#&gt; 120                    NA              NA              NA
-#&gt; 121                    NA              NA              NA
-#&gt; 122                    NA              NA              NA
-#&gt; 123                    NA              NA              NA
-#&gt; 124                    NA              NA              NA
-#&gt; 125                    NA              NA              NA
-#&gt; 126                    NA              NA              NA
-#&gt; 127                    NA              NA              NA
-#&gt; 128                    NA              NA              NA
-#&gt; 129                    NA              NA              NA
-#&gt; 130                    NA              NA              NA
-#&gt; 131                    NA              NA              NA
+#&gt; 1               117.60000        123.2000        132.4000
+#&gt; 2               109.60000        116.4000        120.0000
+#&gt; 3               109.50000        117.9000        112.7000
+#&gt; 4               123.30000        125.8000        129.7000
+#&gt; 5                96.10000         96.9000        103.5000
+#&gt; 6               102.40000        101.3000        120.0000
+#&gt; 7               102.40000         97.4000        106.1000
+#&gt; 8                95.80000        119.1000         95.3000
+#&gt; 9               103.30000        110.3000        107.2000
+#&gt; 10              100.30000        105.8000        113.7000
+#&gt; 11              101.50000        111.5000        107.4000
+#&gt; 12              102.70000        108.4000        110.0000
+#&gt; 13              103.10000         98.0000        108.6000
+#&gt; 14               97.40000        106.4000        107.8000
+#&gt; 15              103.30000        111.2000        101.9000
+#&gt; 16               99.20000         96.3000        111.3000
+#&gt; 17               97.10000        107.4000        102.5000
+#&gt; 18              105.80000        107.3000        113.0000
+#&gt; 19               95.60000        123.1000         98.1000
+#&gt; 20              106.20000         96.3000        108.8000
+#&gt; 21              110.30000        109.8000        109.1000
+#&gt; 22              105.40000        108.3000        103.5000
+#&gt; 23               99.70000         86.4000        104.6000
+#&gt; 24              116.80000        106.0000        111.5000
+#&gt; 25               93.80000        101.7000         94.7000
+#&gt; 26              112.50000         91.5000        115.5000
+#&gt; 27              104.00000        103.8000         89.2000
+#&gt; 28               98.00000        112.1000        108.2000
+#&gt; 29              104.40000        100.9000        103.0000
+#&gt; 30               92.90000         88.8000         89.5000
+#&gt; 31               92.00000         94.2000        104.0000
+#&gt; 32              100.60000        101.9000        106.1000
+#&gt; 33              113.70000        111.6000        112.7000
+#&gt; 34              104.20000         97.3000        102.3000
+#&gt; 35               93.00000         98.4000        111.1000
+#&gt; 36              109.30000        119.5000         99.4000
+#&gt; 37               93.50000         94.0000        102.4000
+#&gt; 38              106.40000         93.3000        109.1000
+#&gt; 39              109.70000        108.9000        102.6000
+#&gt; 40               97.80000        103.0000        102.6000
+#&gt; 41              102.70000         99.5000        103.6000
+#&gt; 42               93.30000         92.8000        101.4000
+#&gt; 43               92.50000         96.3000         92.3000
+#&gt; 44              114.50000        106.2000        108.3000
+#&gt; 45               98.40000         97.6000        104.1000
+#&gt; 46               94.20000        104.9000        100.3000
+#&gt; 47              100.50000         95.2000         96.5000
+#&gt; 48              110.60000         93.4000        104.7000
+#&gt; 49               99.50000        118.0000        102.1000
+#&gt; 50               93.50000        100.1000         95.3000
+#&gt; 51              102.30000        110.6000        103.0000
+#&gt; 52              100.50000         98.5000        102.2000
+#&gt; 53               92.80000         96.4000         88.4000
+#&gt; 54              106.70000        122.1000        113.1000
+#&gt; 55               84.30000         94.7000         85.8000
+#&gt; 56              101.60000        101.0000        108.2000
+#&gt; 57               89.50000         97.5000         95.6000
+#&gt; 58              108.40000         96.4000        103.1000
+#&gt; 59              120.80000        110.9000         99.9000
+#&gt; 60              100.10000         96.5000        106.1000
+#&gt; 61              106.70000        115.4000         92.1000
+#&gt; 62              108.50000         93.7000        101.4000
+#&gt; 63               99.50000         90.2000        104.1000
+#&gt; 64              116.10000        108.6000        107.3000
+#&gt; 65              102.50000        105.3000        102.2000
+#&gt; 66              108.50000        115.2000        103.5000
+#&gt; 67               96.60000        106.6000         97.2000
+#&gt; 68               90.80000         87.9000         97.2000
+#&gt; 69               96.60000        103.2000         78.9000
+#&gt; 70               91.60000        101.6000         99.7000
+#&gt; 71              115.10000         88.6000        102.9000
+#&gt; 72               93.90000         99.9000         99.0000
+#&gt; 73               99.70000        100.0000         98.5000
+#&gt; 74               87.70000        108.4000        119.2000
+#&gt; 75               98.20000        103.9000        109.3000
+#&gt; 76              101.20000        107.8000        101.4000
+#&gt; 77               90.20000        100.6000         90.9000
+#&gt; 78              100.20000         95.6000         94.0000
+#&gt; 79              101.60000         97.1000         97.3000
+#&gt; 80              108.10000         90.6000         97.3000
+#&gt; 81              106.60000        107.4000        105.4000
+#&gt; 82              109.90000        103.3000        113.5000
+#&gt; 83              102.00000        100.2000         94.6000
+#&gt; 84               83.00000         97.3000        125.8000
+#&gt; 85               89.30000        105.2000        115.6000
+#&gt; 86              102.90000         94.9000         99.0000
+#&gt; 87               99.00000        100.9000        104.8000
+#&gt; 88              104.50000        106.3000         95.9000
+#&gt; 89               84.30000         98.2000         85.5000
+#&gt; 90              109.00000         98.2000        101.1000
+#&gt; 91              102.10000         97.2000        101.6000
+#&gt; 92               92.90000         87.1000         94.2000
+#&gt; 93              101.30000         87.9000         91.5000
+#&gt; 94               93.00000         98.4000         93.9000
+#&gt; 95              112.20000        109.6000        107.7000
+#&gt; 96               99.90000         94.9000        100.5000
+#&gt; 97              102.90000        117.4000         92.8000
+#&gt; 98               97.20000        104.8000         88.3000
+#&gt; 99               84.30000         92.8000         91.9000
+#&gt; 100              95.30000         98.4000         84.1000
+#&gt; 101              88.90000         98.2000        103.2000
+#&gt; 102              99.10000         82.5000        100.0000
+#&gt; 103             106.80000         95.5000        104.4000
+#&gt; 104              97.70000         97.6000        107.0000
+#&gt; 105             102.70000        107.7000        102.7000
+#&gt; 106              98.40000        114.8000         86.9000
+#&gt; 107              86.40000         94.8000         92.2000
+#&gt; 108              87.00000         87.3000         70.7000
+#&gt; 109              94.00000         88.1000        100.5000
+#&gt; 110              98.80000         85.6000         90.7000
+#&gt; 111             101.60000        102.5000         97.8000
+#&gt; 112              89.10000         96.1000         89.5000
+#&gt; 113             102.50000         88.6000        102.5000
+#&gt; 114              97.00000         91.4000         85.9000
+#&gt; 115              98.90000         71.6000         91.8000
+#&gt; 116              90.30000        103.1000         95.4000
+#&gt; 117              98.70000         85.7000        102.8000
+#&gt; 118              86.20000         92.7000         88.0000
+#&gt; 119              86.70000         94.3000         93.3000
+#&gt; 120              99.80000         78.5000         89.3000
+#&gt; 121              93.60000         86.9000         96.3000
+#&gt; 122              82.10000         85.3000         76.3000
+#&gt; 123              98.40000         95.9000         85.5000
+#&gt; 124              96.20000        104.2000         91.0000
+#&gt; 125              98.10000         88.7000         87.8000
+#&gt; 126             101.40000         89.8000         96.3000
+#&gt; 127              80.00000         86.1000         76.7000
+#&gt; 128              92.40000         98.2000         88.6000
+#&gt; 129             100.90000         79.2000         90.0000
+#&gt; 130              92.60000         92.3000         89.3000
+#&gt; 131              99.75462        100.1831        100.4508
 #&gt;     offense_standard_downs offense_passing_downs offense_run_rate offense_pace
-#&gt; 1                       NA                    NA               NA           NA
-#&gt; 2                       NA                    NA               NA           NA
-#&gt; 3                       NA                    NA               NA           NA
-#&gt; 4                       NA                    NA               NA           NA
-#&gt; 5                       NA                    NA               NA           NA
-#&gt; 6                       NA                    NA               NA           NA
-#&gt; 7                       NA                    NA               NA           NA
-#&gt; 8                       NA                    NA               NA           NA
-#&gt; 9                       NA                    NA               NA           NA
-#&gt; 10                      NA                    NA               NA           NA
-#&gt; 11                      NA                    NA               NA           NA
-#&gt; 12                      NA                    NA               NA           NA
-#&gt; 13                      NA                    NA               NA           NA
-#&gt; 14                      NA                    NA               NA           NA
-#&gt; 15                      NA                    NA               NA           NA
-#&gt; 16                      NA                    NA               NA           NA
-#&gt; 17                      NA                    NA               NA           NA
-#&gt; 18                      NA                    NA               NA           NA
-#&gt; 19                      NA                    NA               NA           NA
-#&gt; 20                      NA                    NA               NA           NA
-#&gt; 21                      NA                    NA               NA           NA
-#&gt; 22                      NA                    NA               NA           NA
-#&gt; 23                      NA                    NA               NA           NA
-#&gt; 24                      NA                    NA               NA           NA
-#&gt; 25                      NA                    NA               NA           NA
-#&gt; 26                      NA                    NA               NA           NA
-#&gt; 27                      NA                    NA               NA           NA
-#&gt; 28                      NA                    NA               NA           NA
-#&gt; 29                      NA                    NA               NA           NA
-#&gt; 30                      NA                    NA               NA           NA
-#&gt; 31                      NA                    NA               NA           NA
-#&gt; 32                      NA                    NA               NA           NA
-#&gt; 33                      NA                    NA               NA           NA
-#&gt; 34                      NA                    NA               NA           NA
-#&gt; 35                      NA                    NA               NA           NA
-#&gt; 36                      NA                    NA               NA           NA
-#&gt; 37                      NA                    NA               NA           NA
-#&gt; 38                      NA                    NA               NA           NA
-#&gt; 39                      NA                    NA               NA           NA
-#&gt; 40                      NA                    NA               NA           NA
-#&gt; 41                      NA                    NA               NA           NA
-#&gt; 42                      NA                    NA               NA           NA
-#&gt; 43                      NA                    NA               NA           NA
-#&gt; 44                      NA                    NA               NA           NA
-#&gt; 45                      NA                    NA               NA           NA
-#&gt; 46                      NA                    NA               NA           NA
-#&gt; 47                      NA                    NA               NA           NA
-#&gt; 48                      NA                    NA               NA           NA
-#&gt; 49                      NA                    NA               NA           NA
-#&gt; 50                      NA                    NA               NA           NA
-#&gt; 51                      NA                    NA               NA           NA
-#&gt; 52                      NA                    NA               NA           NA
-#&gt; 53                      NA                    NA               NA           NA
-#&gt; 54                      NA                    NA               NA           NA
-#&gt; 55                      NA                    NA               NA           NA
-#&gt; 56                      NA                    NA               NA           NA
-#&gt; 57                      NA                    NA               NA           NA
-#&gt; 58                      NA                    NA               NA           NA
-#&gt; 59                      NA                    NA               NA           NA
-#&gt; 60                      NA                    NA               NA           NA
-#&gt; 61                      NA                    NA               NA           NA
-#&gt; 62                      NA                    NA               NA           NA
-#&gt; 63                      NA                    NA               NA           NA
-#&gt; 64                      NA                    NA               NA           NA
-#&gt; 65                      NA                    NA               NA           NA
-#&gt; 66                      NA                    NA               NA           NA
-#&gt; 67                      NA                    NA               NA           NA
-#&gt; 68                      NA                    NA               NA           NA
-#&gt; 69                      NA                    NA               NA           NA
-#&gt; 70                      NA                    NA               NA           NA
-#&gt; 71                      NA                    NA               NA           NA
-#&gt; 72                      NA                    NA               NA           NA
-#&gt; 73                      NA                    NA               NA           NA
-#&gt; 74                      NA                    NA               NA           NA
-#&gt; 75                      NA                    NA               NA           NA
-#&gt; 76                      NA                    NA               NA           NA
-#&gt; 77                      NA                    NA               NA           NA
-#&gt; 78                      NA                    NA               NA           NA
-#&gt; 79                      NA                    NA               NA           NA
-#&gt; 80                      NA                    NA               NA           NA
-#&gt; 81                      NA                    NA               NA           NA
-#&gt; 82                      NA                    NA               NA           NA
-#&gt; 83                      NA                    NA               NA           NA
-#&gt; 84                      NA                    NA               NA           NA
-#&gt; 85                      NA                    NA               NA           NA
-#&gt; 86                      NA                    NA               NA           NA
-#&gt; 87                      NA                    NA               NA           NA
-#&gt; 88                      NA                    NA               NA           NA
-#&gt; 89                      NA                    NA               NA           NA
-#&gt; 90                      NA                    NA               NA           NA
-#&gt; 91                      NA                    NA               NA           NA
-#&gt; 92                      NA                    NA               NA           NA
-#&gt; 93                      NA                    NA               NA           NA
-#&gt; 94                      NA                    NA               NA           NA
-#&gt; 95                      NA                    NA               NA           NA
-#&gt; 96                      NA                    NA               NA           NA
-#&gt; 97                      NA                    NA               NA           NA
-#&gt; 98                      NA                    NA               NA           NA
-#&gt; 99                      NA                    NA               NA           NA
-#&gt; 100                     NA                    NA               NA           NA
-#&gt; 101                     NA                    NA               NA           NA
-#&gt; 102                     NA                    NA               NA           NA
-#&gt; 103                     NA                    NA               NA           NA
-#&gt; 104                     NA                    NA               NA           NA
-#&gt; 105                     NA                    NA               NA           NA
-#&gt; 106                     NA                    NA               NA           NA
-#&gt; 107                     NA                    NA               NA           NA
-#&gt; 108                     NA                    NA               NA           NA
-#&gt; 109                     NA                    NA               NA           NA
-#&gt; 110                     NA                    NA               NA           NA
-#&gt; 111                     NA                    NA               NA           NA
-#&gt; 112                     NA                    NA               NA           NA
-#&gt; 113                     NA                    NA               NA           NA
-#&gt; 114                     NA                    NA               NA           NA
-#&gt; 115                     NA                    NA               NA           NA
-#&gt; 116                     NA                    NA               NA           NA
-#&gt; 117                     NA                    NA               NA           NA
-#&gt; 118                     NA                    NA               NA           NA
-#&gt; 119                     NA                    NA               NA           NA
-#&gt; 120                     NA                    NA               NA           NA
-#&gt; 121                     NA                    NA               NA           NA
-#&gt; 122                     NA                    NA               NA           NA
-#&gt; 123                     NA                    NA               NA           NA
-#&gt; 124                     NA                    NA               NA           NA
-#&gt; 125                     NA                    NA               NA           NA
-#&gt; 126                     NA                    NA               NA           NA
-#&gt; 127                     NA                    NA               NA           NA
-#&gt; 128                     NA                    NA               NA           NA
-#&gt; 129                     NA                    NA               NA           NA
-#&gt; 130                     NA                    NA               NA           NA
-#&gt; 131                     NA                    NA               NA           NA
+#&gt; 1                 122.9000              139.7000        0.4690000          1.2
+#&gt; 2                 114.0000              123.1000        0.5570000          1.9
+#&gt; 3                 112.1000              125.0000        0.4500000         -1.2
+#&gt; 4                 124.3000              128.7000        0.5220000          0.3
+#&gt; 5                 102.0000               90.9000        0.5550000         -0.2
+#&gt; 6                 109.8000              120.9000        0.4630000         -1.1
+#&gt; 7                 100.0000              109.8000        0.4790000         -1.3
+#&gt; 8                 104.9000              101.8000        0.5630000          2.2
+#&gt; 9                 106.6000              106.1000        0.5520000         -0.1
+#&gt; 10                109.2000              102.2000        0.5700000          3.2
+#&gt; 11                106.0000              115.6000        0.4990000          1.8
+#&gt; 12                107.3000              108.9000        0.5030000         -1.6
+#&gt; 13                103.7000              103.2000        0.5160000         -2.1
+#&gt; 14                105.6000              104.4000        0.5530000          1.9
+#&gt; 15                107.7000              100.0000        0.5360000         -2.1
+#&gt; 16                103.5000              111.1000        0.4550000          2.1
+#&gt; 17                104.7000              103.1000        0.5220000         -0.3
+#&gt; 18                105.1000              116.0000        0.5670000         -6.4
+#&gt; 19                112.2000              102.7000        0.6020000          1.2
+#&gt; 20                 97.9000              115.5000        0.4790000         -2.8
+#&gt; 21                109.4000              119.1000        0.4320000         -2.7
+#&gt; 22                104.3000              107.0000        0.4660000         -3.8
+#&gt; 23                 93.5000              102.5000        0.5040000          2.8
+#&gt; 24                108.4000              118.1000        0.4310000         -0.7
+#&gt; 25                 98.8000               95.0000        0.5990000          1.5
+#&gt; 26                107.4000              113.2000        0.4360000          4.7
+#&gt; 27                 93.9000              100.2000        0.5230000          1.1
+#&gt; 28                108.3000              114.3000        0.4750000          1.3
+#&gt; 29                 98.6000              111.2000        0.5950000          0.8
+#&gt; 30                 90.5000               86.8000        0.4590000          2.1
+#&gt; 31                 99.5000               99.0000        0.5080000          0.6
+#&gt; 32                106.9000              111.1000        0.2720000          5.1
+#&gt; 33                113.5000              112.8000        0.4140000         -1.9
+#&gt; 34                101.0000              101.1000        0.4640000          1.5
+#&gt; 35                103.9000              110.8000        0.4610000          1.8
+#&gt; 36                109.1000              105.9000        0.5610000         -2.6
+#&gt; 37                101.5000              105.0000        0.4040000         -1.5
+#&gt; 38                101.1000              101.4000        0.5260000          1.4
+#&gt; 39                103.7000              112.7000        0.4660000          3.6
+#&gt; 40                 99.1000              107.6000        0.5000000         -3.5
+#&gt; 41                 96.5000              113.0000        0.5160000         -2.8
+#&gt; 42                103.1000               80.9000        0.5200000          3.5
+#&gt; 43                 95.0000               96.1000        0.5260000          1.2
+#&gt; 44                109.9000              107.8000        0.3780000          1.7
+#&gt; 45                 99.4000              101.7000        0.5580000          2.3
+#&gt; 46                105.6000               96.6000        0.5160000          1.9
+#&gt; 47                 97.7000               85.1000        0.6130000          1.5
+#&gt; 48                 97.3000              104.5000        0.5410000          3.1
+#&gt; 49                108.9000              109.2000        0.4950000         -2.3
+#&gt; 50                 94.2000              102.7000        0.5620000         -0.2
+#&gt; 51                105.9000              101.5000        0.5240000         -0.1
+#&gt; 52                103.3000               94.5000        0.4470000         -2.1
+#&gt; 53                 90.0000               94.1000        0.5160000          0.9
+#&gt; 54                117.6000              110.0000        0.5790000          2.8
+#&gt; 55                 91.8000               85.9000        0.4960000          0.6
+#&gt; 56                105.6000              106.3000        0.5150000         -0.7
+#&gt; 57                 97.2000               92.4000        0.5170000         -5.6
+#&gt; 58                 99.7000              100.6000        0.5350000         -2.7
+#&gt; 59                101.0000              113.8000        0.6200000          1.0
+#&gt; 60                100.2000              111.4000        0.4910000         -1.4
+#&gt; 61                103.5000              101.9000        0.6120000          3.6
+#&gt; 62                101.2000              105.3000        0.5260000          1.5
+#&gt; 63                 96.4000               93.4000        0.6110000         -4.5
+#&gt; 64                105.7000              113.4000        0.4950000         -5.9
+#&gt; 65                106.3000              100.2000        0.4330000          1.1
+#&gt; 66                111.0000              100.1000        0.5350000         -1.3
+#&gt; 67                101.2000               99.2000        0.4760000          0.9
+#&gt; 68                 94.6000               92.6000        0.4650000         -0.6
+#&gt; 69                 93.4000               90.9000        0.6160000          0.8
+#&gt; 70                100.3000              103.6000        0.4330000         -1.4
+#&gt; 71                 98.1000               98.3000        0.4640000         -0.6
+#&gt; 72                101.9000               95.5000        0.4890000         -1.1
+#&gt; 73                100.7000               95.2000        0.4980000          0.4
+#&gt; 74                107.6000               99.1000        0.8320000         -0.9
+#&gt; 75                 96.6000              117.2000        0.6030000          1.3
+#&gt; 76                105.0000              100.4000        0.5090000         -2.0
+#&gt; 77                 91.1000               99.4000        0.5960000          1.7
+#&gt; 78                 95.6000               99.4000        0.4440000          0.4
+#&gt; 79                100.6000               90.2000        0.5020000          1.3
+#&gt; 80                 92.5000              104.2000        0.4540000         -0.6
+#&gt; 81                108.9000              100.5000        0.5880000         -3.9
+#&gt; 82                102.6000              120.7000        0.5390000          0.2
+#&gt; 83                 97.9000               99.8000        0.5180000         -3.3
+#&gt; 84                 94.8000               90.5000        0.8740000          1.1
+#&gt; 85                100.7000              107.7000        0.7730000         -2.1
+#&gt; 86                 96.1000              103.4000        0.5040000          0.7
+#&gt; 87                 97.7000               97.2000        0.8070000          2.3
+#&gt; 88                100.8000              101.7000        0.4740000         -1.8
+#&gt; 89                 92.5000               93.7000        0.5460000         -2.7
+#&gt; 90                 97.5000               95.7000        0.6420000          0.2
+#&gt; 91                100.1000              104.6000        0.4430000          0.9
+#&gt; 92                 93.2000               92.2000        0.4520000          2.5
+#&gt; 93                 92.9000               90.8000        0.4450000         -1.5
+#&gt; 94                 95.1000              100.7000        0.4400000          1.4
+#&gt; 95                106.1000              110.5000        0.5670000         -0.1
+#&gt; 96                 97.6000               98.0000        0.5290000          2.2
+#&gt; 97                107.8000               97.4000        0.5660000         -1.4
+#&gt; 98                 99.3000               89.5000        0.4830000          1.9
+#&gt; 99                 90.0000               89.8000        0.6130000         -2.1
+#&gt; 100                92.0000               89.7000        0.4890000          1.2
+#&gt; 101                97.9000               80.3000        0.8470000         -0.5
+#&gt; 102                98.4000               93.7000        0.4160000          1.4
+#&gt; 103               106.1000              104.3000        0.3960000          2.0
+#&gt; 104               104.5000               91.9000        0.5600000          1.0
+#&gt; 105               110.0000               93.1000        0.4870000         -0.2
+#&gt; 106               101.9000               92.7000        0.5920000         -2.1
+#&gt; 107                91.4000               95.1000        0.6050000         -3.9
+#&gt; 108                79.0000               79.1000        0.5270000          1.4
+#&gt; 109                98.6000              100.8000        0.4100000         -0.9
+#&gt; 110                86.1000               96.9000        0.3950000         -1.5
+#&gt; 111               102.5000               96.6000        0.4660000         -1.5
+#&gt; 112                91.8000               97.7000        0.4700000         -0.5
+#&gt; 113                99.3000               93.7000        0.4460000         -0.7
+#&gt; 114                89.4000               88.8000        0.5470000         -0.2
+#&gt; 115                91.0000               88.1000        0.4060000          0.0
+#&gt; 116                94.2000              107.8000        0.6080000          2.8
+#&gt; 117                97.6000               86.4000        0.5810000          0.1
+#&gt; 118                91.0000               84.5000        0.5930000          3.3
+#&gt; 119                91.1000              101.1000        0.4610000         -2.7
+#&gt; 120                85.9000               89.3000        0.4670000          1.6
+#&gt; 121                93.0000               90.7000        0.4820000         -2.4
+#&gt; 122                84.4000               72.8000        0.5370000         -1.9
+#&gt; 123                91.1000               92.4000        0.3660000         -2.6
+#&gt; 124                96.2000               98.2000        0.5460000          1.1
+#&gt; 125                88.9000               92.2000        0.4930000         -3.5
+#&gt; 126                93.6000               98.8000        0.4740000          0.8
+#&gt; 127                84.4000               74.1000        0.4530000          2.1
+#&gt; 128                98.1000               83.4000        0.5680000          0.6
+#&gt; 129                85.8000               87.8000        0.5510000          3.7
+#&gt; 130                90.5000               89.7000        0.5500000          2.6
+#&gt; 131               100.0954              100.6708        0.5196769          0.0
 #&gt;     defense_ranking defense_rating defense_success defense_explosiveness
-#&gt; 1                 2       10.60000              NA                    NA
-#&gt; 2                20       17.70000              NA                    NA
-#&gt; 3                 3       14.60000              NA                    NA
-#&gt; 4                 3       14.60000              NA                    NA
-#&gt; 5                 1       10.00000              NA                    NA
-#&gt; 6                10       15.70000              NA                    NA
-#&gt; 7                 7       15.50000              NA                    NA
-#&gt; 8                47       24.90000              NA                    NA
-#&gt; 9                 5       14.90000              NA                    NA
-#&gt; 10               11       16.00000              NA                    NA
-#&gt; 11               14       16.40000              NA                    NA
-#&gt; 12               16       17.00000              NA                    NA
-#&gt; 13               26       19.60000              NA                    NA
-#&gt; 14               21       18.10000              NA                    NA
-#&gt; 15                7       15.50000              NA                    NA
-#&gt; 16               24       19.50000              NA                    NA
-#&gt; 17               39       23.40000              NA                    NA
-#&gt; 18               18       17.30000              NA                    NA
-#&gt; 19               22       18.50000              NA                    NA
-#&gt; 20                6       15.20000              NA                    NA
-#&gt; 21               23       19.40000              NA                    NA
-#&gt; 22               59       26.70000              NA                    NA
-#&gt; 23               41       23.80000              NA                    NA
-#&gt; 24               24       19.50000              NA                    NA
-#&gt; 25               53       25.80000              NA                    NA
-#&gt; 26               67       28.50000              NA                    NA
-#&gt; 27               37       23.20000              NA                    NA
-#&gt; 28               95       33.10000              NA                    NA
-#&gt; 29               19       17.40000              NA                    NA
-#&gt; 30               43       24.60000              NA                    NA
-#&gt; 31               52       25.50000              NA                    NA
-#&gt; 32               65       28.30000              NA                    NA
-#&gt; 33                9       15.60000              NA                    NA
-#&gt; 34               34       22.20000              NA                    NA
-#&gt; 35               31       21.10000              NA                    NA
-#&gt; 36               56       26.20000              NA                    NA
-#&gt; 37               48       25.00000              NA                    NA
-#&gt; 38               38       23.30000              NA                    NA
-#&gt; 39               17       17.10000              NA                    NA
-#&gt; 40               55       25.90000              NA                    NA
-#&gt; 41               13       16.10000              NA                    NA
-#&gt; 42               35       22.90000              NA                    NA
-#&gt; 43               50       25.20000              NA                    NA
-#&gt; 44               40       23.70000              NA                    NA
-#&gt; 45               46       24.80000              NA                    NA
-#&gt; 46               29       20.80000              NA                    NA
-#&gt; 47               65       28.30000              NA                    NA
-#&gt; 48               11       16.00000              NA                    NA
-#&gt; 49               97       33.50000              NA                    NA
-#&gt; 50               69       28.70000              NA                    NA
-#&gt; 51               29       20.80000              NA                    NA
-#&gt; 52               41       23.80000              NA                    NA
-#&gt; 53               83       31.20000              NA                    NA
-#&gt; 54               61       27.40000              NA                    NA
-#&gt; 55               68       28.60000              NA                    NA
-#&gt; 56               15       16.60000              NA                    NA
-#&gt; 57               60       27.10000              NA                    NA
-#&gt; 58               31       21.10000              NA                    NA
-#&gt; 59               56       26.20000              NA                    NA
-#&gt; 60               53       25.80000              NA                    NA
-#&gt; 61               98       33.60000              NA                    NA
-#&gt; 62               48       25.00000              NA                    NA
-#&gt; 63               74       29.50000              NA                    NA
-#&gt; 64               93       32.80000              NA                    NA
-#&gt; 65               81       31.00000              NA                    NA
-#&gt; 66               33       21.70000              NA                    NA
-#&gt; 67               28       20.20000              NA                    NA
-#&gt; 68               36       23.00000              NA                    NA
-#&gt; 69              113       35.80000              NA                    NA
-#&gt; 70               58       26.60000              NA                    NA
-#&gt; 71               43       24.60000              NA                    NA
-#&gt; 72               80       30.40000              NA                    NA
-#&gt; 73               50       25.20000              NA                    NA
-#&gt; 74               86       32.00000              NA                    NA
-#&gt; 75               45       24.70000              NA                    NA
-#&gt; 76              102       34.20000              NA                    NA
-#&gt; 77               75       29.60000              NA                    NA
-#&gt; 78               89       32.50000              NA                    NA
-#&gt; 79               78       30.10000              NA                    NA
-#&gt; 80               98       33.60000              NA                    NA
-#&gt; 81              105       34.70000              NA                    NA
-#&gt; 82               81       31.00000              NA                    NA
-#&gt; 83              110       35.40000              NA                    NA
-#&gt; 84               71       29.00000              NA                    NA
-#&gt; 85              110       35.40000              NA                    NA
-#&gt; 86               61       27.40000              NA                    NA
-#&gt; 87               91       32.60000              NA                    NA
-#&gt; 88               87       32.20000              NA                    NA
-#&gt; 89               64       27.70000              NA                    NA
-#&gt; 90               89       32.50000              NA                    NA
-#&gt; 91               27       20.00000              NA                    NA
-#&gt; 92              110       35.40000              NA                    NA
-#&gt; 93               91       32.60000              NA                    NA
-#&gt; 94               76       29.70000              NA                    NA
-#&gt; 95              107       35.10000              NA                    NA
-#&gt; 96               79       30.30000              NA                    NA
-#&gt; 97               72       29.10000              NA                    NA
-#&gt; 98               73       29.40000              NA                    NA
-#&gt; 99              116       36.70000              NA                    NA
-#&gt; 100             114       36.10000              NA                    NA
-#&gt; 101             118       37.80000              NA                    NA
-#&gt; 102              77       30.00000              NA                    NA
-#&gt; 103             106       34.80000              NA                    NA
-#&gt; 104              61       27.40000              NA                    NA
-#&gt; 105             119       37.90000              NA                    NA
-#&gt; 106              98       33.60000              NA                    NA
-#&gt; 107             121       38.40000              NA                    NA
-#&gt; 108              88       32.30000              NA                    NA
-#&gt; 109             127       40.80000              NA                    NA
-#&gt; 110             117       37.40000              NA                    NA
-#&gt; 111              70       28.90000              NA                    NA
-#&gt; 112              85       31.90000              NA                    NA
-#&gt; 113             108       35.30000              NA                    NA
-#&gt; 114             121       38.40000              NA                    NA
-#&gt; 115             102       34.20000              NA                    NA
-#&gt; 116             120       38.10000              NA                    NA
-#&gt; 117              84       31.80000              NA                    NA
-#&gt; 118              94       33.00000              NA                    NA
-#&gt; 119             123       39.20000              NA                    NA
-#&gt; 120             114       36.10000              NA                    NA
-#&gt; 121              96       33.20000              NA                    NA
-#&gt; 122             101       34.00000              NA                    NA
-#&gt; 123             126       40.30000              NA                    NA
-#&gt; 124             128       41.70000              NA                    NA
-#&gt; 125             104       34.30000              NA                    NA
-#&gt; 126             125       39.70000              NA                    NA
-#&gt; 127             129       43.50000              NA                    NA
-#&gt; 128             124       39.50000              NA                    NA
-#&gt; 129             108       35.30000              NA                    NA
-#&gt; 130             130       49.30000              NA                    NA
-#&gt; 131              NA       27.59924              NA                    NA
+#&gt; 1                 7       14.20000        133.4000               98.1000
+#&gt; 2                 7       14.20000        109.0000              122.3000
+#&gt; 3                 3       12.60000        129.2000              119.9000
+#&gt; 4                84       30.00000         95.8000              104.3000
+#&gt; 5                 5       13.40000        119.5000              112.6000
+#&gt; 6                26       21.20000        108.1000               89.4000
+#&gt; 7                 6       14.10000        121.8000               99.3000
+#&gt; 8                 1       10.50000        126.4000              111.6000
+#&gt; 9                17       17.40000        113.2000              101.7000
+#&gt; 10                9       14.30000        128.2000               94.2000
+#&gt; 11               21       19.80000        115.7000               89.0000
+#&gt; 12               24       21.00000        114.0000               99.2000
+#&gt; 13               10       14.50000        112.0000              116.4000
+#&gt; 14                4       12.70000        109.9000              120.3000
+#&gt; 15               11       14.60000        110.8000              106.4000
+#&gt; 16               12       15.50000        121.4000              117.6000
+#&gt; 17               19       18.10000        115.4000              101.0000
+#&gt; 18               47       25.20000        103.6000              105.7000
+#&gt; 19               29       21.60000        104.0000              101.6000
+#&gt; 20               40       23.60000         93.2000              119.5000
+#&gt; 21               34       22.50000        110.7000              107.3000
+#&gt; 22               71       28.90000        105.3000               91.9000
+#&gt; 23               18       17.70000        107.2000              118.6000
+#&gt; 24               76       29.20000         97.1000              104.3000
+#&gt; 25               15       16.30000        110.8000              107.0000
+#&gt; 26               43       24.30000         97.5000               99.7000
+#&gt; 27               14       15.80000        119.0000              105.8000
+#&gt; 28               37       22.80000        109.3000               97.7000
+#&gt; 29               20       19.00000        120.1000              116.1000
+#&gt; 30                2       10.80000        125.0000              109.8000
+#&gt; 31               44       24.40000        104.4000              106.9000
+#&gt; 32               59       27.30000        100.8000               99.8000
+#&gt; 33               90       31.20000         93.2000               98.1000
+#&gt; 34               34       22.50000        111.9000               94.4000
+#&gt; 35               54       26.70000        103.0000               94.2000
+#&gt; 36               87       30.50000         99.8000               97.0000
+#&gt; 37               80       29.80000        102.5000               99.5000
+#&gt; 38               28       21.50000        106.5000              110.5000
+#&gt; 39               57       27.10000         95.0000              106.8000
+#&gt; 40               60       27.40000        108.1000               94.6000
+#&gt; 41               50       25.80000        101.3000               99.9000
+#&gt; 42               31       22.00000        115.8000              100.9000
+#&gt; 43               16       16.90000        118.0000              106.7000
+#&gt; 44               88       30.80000         97.0000               98.0000
+#&gt; 45               37       22.80000        107.0000               92.2000
+#&gt; 46               33       22.30000        104.0000              125.7000
+#&gt; 47               24       21.00000        112.9000              106.7000
+#&gt; 48               71       28.90000         93.5000              109.4000
+#&gt; 49               55       26.90000         96.8000               98.8000
+#&gt; 50               36       22.60000        123.8000              101.2000
+#&gt; 51               86       30.40000         90.0000              107.6000
+#&gt; 52               46       25.00000        106.8000               98.1000
+#&gt; 53               49       25.70000         95.6000              104.4000
+#&gt; 54              107       35.00000         93.1000               93.3000
+#&gt; 55               13       15.60000        111.5000              118.9000
+#&gt; 56               77       29.40000        101.0000               86.2000
+#&gt; 57               64       28.10000        103.0000              103.7000
+#&gt; 58               73       29.00000         99.6000               95.6000
+#&gt; 59               51       25.90000        100.4000              103.0000
+#&gt; 60               42       23.90000        105.8000              118.8000
+#&gt; 61               53       26.60000        106.1000               96.3000
+#&gt; 62               48       25.60000        108.3000              109.7000
+#&gt; 63               32       22.10000        103.9000              104.9000
+#&gt; 64              106       34.90000         92.3000              102.6000
+#&gt; 65               78       29.50000        100.6000               96.4000
+#&gt; 66              102       34.40000         90.7000               94.6000
+#&gt; 67               85       30.30000        103.1000               87.9000
+#&gt; 68               29       21.60000        104.1000              102.2000
+#&gt; 69               41       23.70000        108.0000              114.3000
+#&gt; 70               75       29.10000         96.3000               98.2000
+#&gt; 71               37       22.80000        110.0000              103.1000
+#&gt; 72               62       27.90000        111.0000               93.7000
+#&gt; 73               22       20.50000        117.0000               98.3000
+#&gt; 74              100       33.90000         83.6000              108.7000
+#&gt; 75               44       24.40000        118.3000               90.3000
+#&gt; 76               97       32.40000         92.5000              105.2000
+#&gt; 77               61       27.50000         89.4000              108.1000
+#&gt; 78               63       28.00000        110.0000              101.0000
+#&gt; 79               66       28.40000        103.0000              103.6000
+#&gt; 80               58       27.20000        106.1000              101.7000
+#&gt; 81               82       29.90000         98.9000              100.5000
+#&gt; 82               82       29.90000        101.0000               96.9000
+#&gt; 83               80       29.80000        102.5000               96.8000
+#&gt; 84               68       28.70000        100.4000              101.2000
+#&gt; 85               90       31.20000        102.8000               85.6000
+#&gt; 86               52       26.10000        101.9000              113.7000
+#&gt; 87               92       31.60000         94.1000              114.1000
+#&gt; 88               94       31.90000         99.0000               94.4000
+#&gt; 89               23       20.80000        116.7000              100.4000
+#&gt; 90               65       28.30000        113.0000               91.9000
+#&gt; 91               68       28.70000        107.2000              100.6000
+#&gt; 92               27       21.40000        119.1000               98.6000
+#&gt; 93               79       29.70000        100.1000              105.0000
+#&gt; 94               56       27.00000        103.0000              103.4000
+#&gt; 95              116       38.90000         93.0000              104.6000
+#&gt; 96              104       34.70000         89.4000              109.5000
+#&gt; 97              115       38.60000         81.6000               93.7000
+#&gt; 98               99       33.60000         81.0000              100.8000
+#&gt; 99              109       35.70000         93.2000               89.6000
+#&gt; 100              94       31.90000         94.3000              100.6000
+#&gt; 101             114       38.30000         90.7000               98.7000
+#&gt; 102             110       36.70000         85.1000               97.6000
+#&gt; 103             118       39.50000         88.2000               93.0000
+#&gt; 104             112       37.40000         95.6000               82.6000
+#&gt; 105             108       35.40000         91.9000              102.8000
+#&gt; 106             116       38.90000         93.2000               87.8000
+#&gt; 107              96       32.30000         95.1000              108.4000
+#&gt; 108              67       28.50000         97.3000              100.8000
+#&gt; 109             119       39.70000         89.6000               95.4000
+#&gt; 110             101       34.20000        106.4000               88.0000
+#&gt; 111             126       43.40000         78.5000               90.6000
+#&gt; 112              93       31.80000         93.3000              102.4000
+#&gt; 113             124       42.20000         84.2000               88.1000
+#&gt; 114              73       29.00000        108.0000              105.8000
+#&gt; 115             104       34.70000         97.7000              101.0000
+#&gt; 116             129       45.70000         85.9000               87.2000
+#&gt; 117             123       42.00000         93.3000               89.5000
+#&gt; 118              98       33.50000         98.7000               99.8000
+#&gt; 119             120       40.20000         80.7000              106.6000
+#&gt; 120              89       31.00000         93.6000              103.8000
+#&gt; 121             122       41.70000         89.0000              100.6000
+#&gt; 122              68       28.70000        100.1000              103.9000
+#&gt; 123             113       38.00000         90.7000              101.6000
+#&gt; 124             127       43.60000         90.0000               84.3000
+#&gt; 125             121       40.30000         92.8000               93.8000
+#&gt; 126             128       43.90000         84.8000              100.4000
+#&gt; 127             102       34.40000         93.3000               90.8000
+#&gt; 128             130       51.90000         75.2000               80.7000
+#&gt; 129             125       42.50000         89.6000               87.7000
+#&gt; 130             111       37.10000         91.7000               94.8000
+#&gt; 131              NA       27.90692        102.1492              101.1569
 #&gt;     defense_rushing defense_passing defense_standard_downs
-#&gt; 1                NA              NA                     NA
-#&gt; 2                NA              NA                     NA
-#&gt; 3                NA              NA                     NA
-#&gt; 4                NA              NA                     NA
-#&gt; 5                NA              NA                     NA
-#&gt; 6                NA              NA                     NA
-#&gt; 7                NA              NA                     NA
-#&gt; 8                NA              NA                     NA
-#&gt; 9                NA              NA                     NA
-#&gt; 10               NA              NA                     NA
-#&gt; 11               NA              NA                     NA
-#&gt; 12               NA              NA                     NA
-#&gt; 13               NA              NA                     NA
-#&gt; 14               NA              NA                     NA
-#&gt; 15               NA              NA                     NA
-#&gt; 16               NA              NA                     NA
-#&gt; 17               NA              NA                     NA
-#&gt; 18               NA              NA                     NA
-#&gt; 19               NA              NA                     NA
-#&gt; 20               NA              NA                     NA
-#&gt; 21               NA              NA                     NA
-#&gt; 22               NA              NA                     NA
-#&gt; 23               NA              NA                     NA
-#&gt; 24               NA              NA                     NA
-#&gt; 25               NA              NA                     NA
-#&gt; 26               NA              NA                     NA
-#&gt; 27               NA              NA                     NA
-#&gt; 28               NA              NA                     NA
-#&gt; 29               NA              NA                     NA
-#&gt; 30               NA              NA                     NA
-#&gt; 31               NA              NA                     NA
-#&gt; 32               NA              NA                     NA
-#&gt; 33               NA              NA                     NA
-#&gt; 34               NA              NA                     NA
-#&gt; 35               NA              NA                     NA
-#&gt; 36               NA              NA                     NA
-#&gt; 37               NA              NA                     NA
-#&gt; 38               NA              NA                     NA
-#&gt; 39               NA              NA                     NA
-#&gt; 40               NA              NA                     NA
-#&gt; 41               NA              NA                     NA
-#&gt; 42               NA              NA                     NA
-#&gt; 43               NA              NA                     NA
-#&gt; 44               NA              NA                     NA
-#&gt; 45               NA              NA                     NA
-#&gt; 46               NA              NA                     NA
-#&gt; 47               NA              NA                     NA
-#&gt; 48               NA              NA                     NA
-#&gt; 49               NA              NA                     NA
-#&gt; 50               NA              NA                     NA
-#&gt; 51               NA              NA                     NA
-#&gt; 52               NA              NA                     NA
-#&gt; 53               NA              NA                     NA
-#&gt; 54               NA              NA                     NA
-#&gt; 55               NA              NA                     NA
-#&gt; 56               NA              NA                     NA
-#&gt; 57               NA              NA                     NA
-#&gt; 58               NA              NA                     NA
-#&gt; 59               NA              NA                     NA
-#&gt; 60               NA              NA                     NA
-#&gt; 61               NA              NA                     NA
-#&gt; 62               NA              NA                     NA
-#&gt; 63               NA              NA                     NA
-#&gt; 64               NA              NA                     NA
-#&gt; 65               NA              NA                     NA
-#&gt; 66               NA              NA                     NA
-#&gt; 67               NA              NA                     NA
-#&gt; 68               NA              NA                     NA
-#&gt; 69               NA              NA                     NA
-#&gt; 70               NA              NA                     NA
-#&gt; 71               NA              NA                     NA
-#&gt; 72               NA              NA                     NA
-#&gt; 73               NA              NA                     NA
-#&gt; 74               NA              NA                     NA
-#&gt; 75               NA              NA                     NA
-#&gt; 76               NA              NA                     NA
-#&gt; 77               NA              NA                     NA
-#&gt; 78               NA              NA                     NA
-#&gt; 79               NA              NA                     NA
-#&gt; 80               NA              NA                     NA
-#&gt; 81               NA              NA                     NA
-#&gt; 82               NA              NA                     NA
-#&gt; 83               NA              NA                     NA
-#&gt; 84               NA              NA                     NA
-#&gt; 85               NA              NA                     NA
-#&gt; 86               NA              NA                     NA
-#&gt; 87               NA              NA                     NA
-#&gt; 88               NA              NA                     NA
-#&gt; 89               NA              NA                     NA
-#&gt; 90               NA              NA                     NA
-#&gt; 91               NA              NA                     NA
-#&gt; 92               NA              NA                     NA
-#&gt; 93               NA              NA                     NA
-#&gt; 94               NA              NA                     NA
-#&gt; 95               NA              NA                     NA
-#&gt; 96               NA              NA                     NA
-#&gt; 97               NA              NA                     NA
-#&gt; 98               NA              NA                     NA
-#&gt; 99               NA              NA                     NA
-#&gt; 100              NA              NA                     NA
-#&gt; 101              NA              NA                     NA
-#&gt; 102              NA              NA                     NA
-#&gt; 103              NA              NA                     NA
-#&gt; 104              NA              NA                     NA
-#&gt; 105              NA              NA                     NA
-#&gt; 106              NA              NA                     NA
-#&gt; 107              NA              NA                     NA
-#&gt; 108              NA              NA                     NA
-#&gt; 109              NA              NA                     NA
-#&gt; 110              NA              NA                     NA
-#&gt; 111              NA              NA                     NA
-#&gt; 112              NA              NA                     NA
-#&gt; 113              NA              NA                     NA
-#&gt; 114              NA              NA                     NA
-#&gt; 115              NA              NA                     NA
-#&gt; 116              NA              NA                     NA
-#&gt; 117              NA              NA                     NA
-#&gt; 118              NA              NA                     NA
-#&gt; 119              NA              NA                     NA
-#&gt; 120              NA              NA                     NA
-#&gt; 121              NA              NA                     NA
-#&gt; 122              NA              NA                     NA
-#&gt; 123              NA              NA                     NA
-#&gt; 124              NA              NA                     NA
-#&gt; 125              NA              NA                     NA
-#&gt; 126              NA              NA                     NA
-#&gt; 127              NA              NA                     NA
-#&gt; 128              NA              NA                     NA
-#&gt; 129              NA              NA                     NA
-#&gt; 130              NA              NA                     NA
-#&gt; 131              NA              NA                     NA
+#&gt; 1          129.3000        113.7000               120.9000
+#&gt; 2          103.9000        123.6000               109.5000
+#&gt; 3          131.7000        121.8000               121.7000
+#&gt; 4          103.5000         96.4000                96.5000
+#&gt; 5          108.8000        123.0000               115.5000
+#&gt; 6          100.3000        101.5000               100.0000
+#&gt; 7          113.9000        112.6000               110.6000
+#&gt; 8          117.2000        123.0000               114.5000
+#&gt; 9          106.6000        109.0000               111.2000
+#&gt; 10         112.4000        110.0000               111.0000
+#&gt; 11         113.2000        100.8000               103.7000
+#&gt; 12         123.0000        100.1000               107.6000
+#&gt; 13         112.6000        116.2000               110.4000
+#&gt; 14         119.1000        111.8000               110.1000
+#&gt; 15         106.0000        112.5000               106.9000
+#&gt; 16         126.3000        114.2000               117.3000
+#&gt; 17         118.4000        104.8000               109.2000
+#&gt; 18         105.1000        103.3000               109.2000
+#&gt; 19         102.7000        102.2000               101.8000
+#&gt; 20          97.8000        106.1000                97.6000
+#&gt; 21         109.3000        108.6000               105.6000
+#&gt; 22          96.9000        101.8000                99.0000
+#&gt; 23         112.4000        109.0000               110.2000
+#&gt; 24          98.6000         99.7000               100.2000
+#&gt; 25         106.7000        110.5000               109.8000
+#&gt; 26         102.2000         96.4000                97.8000
+#&gt; 27         110.5000        118.1000               117.2000
+#&gt; 28         104.4000        105.2000               100.8000
+#&gt; 29         120.2000        118.8000               118.1000
+#&gt; 30         136.8000        112.4000               113.9000
+#&gt; 31         107.2000        104.1000               104.3000
+#&gt; 32          94.2000        106.1000                99.4000
+#&gt; 33          92.1000         96.3000                93.0000
+#&gt; 34         102.0000        105.7000               105.4000
+#&gt; 35         105.3000         98.6000               102.0000
+#&gt; 36         104.5000         95.3000               101.3000
+#&gt; 37         105.5000         98.6000               101.1000
+#&gt; 38         107.6000        108.8000               110.6000
+#&gt; 39          92.8000        104.6000                99.0000
+#&gt; 40         102.3000        103.3000                98.5000
+#&gt; 41         102.2000         99.6000                99.1000
+#&gt; 42         108.0000        109.5000               108.1000
+#&gt; 43         110.0000        113.8000               114.4000
+#&gt; 44         102.4000         95.3000                95.1000
+#&gt; 45          98.3000        104.3000               101.6000
+#&gt; 46         110.0000        112.8000               109.8000
+#&gt; 47         119.9000        103.7000               113.4000
+#&gt; 48         101.1000         97.4000                97.5000
+#&gt; 49          91.8000        102.4000               100.5000
+#&gt; 50         123.0000        108.2000               113.4000
+#&gt; 51          93.1000         97.4000                95.5000
+#&gt; 52         102.1000        107.1000               106.3000
+#&gt; 53         102.5000         95.4000                99.3000
+#&gt; 54          95.1000         93.2000                94.3000
+#&gt; 55         109.8000        115.0000               111.8000
+#&gt; 56          91.5000         98.2000                97.1000
+#&gt; 57         107.6000        101.6000               104.0000
+#&gt; 58         100.3000         96.4000                98.3000
+#&gt; 59          97.5000        101.0000               100.2000
+#&gt; 60         105.5000        116.6000               112.7000
+#&gt; 61         100.4000        102.7000               101.2000
+#&gt; 62         115.7000        104.9000               109.4000
+#&gt; 63         104.7000        103.3000               102.1000
+#&gt; 64          97.2000         95.7000                96.1000
+#&gt; 65         101.1000         97.4000                98.2000
+#&gt; 66          88.6000         96.0000                93.0000
+#&gt; 67          94.5000         98.1000                97.0000
+#&gt; 68         113.3000         99.0000               102.9000
+#&gt; 69         102.9000        115.4000               108.1000
+#&gt; 70         100.1000         93.7000                98.7000
+#&gt; 71         110.0000        104.2000               108.0000
+#&gt; 72          99.7000        106.4000               105.3000
+#&gt; 73         115.2000        104.7000               109.9000
+#&gt; 74          94.6000         90.4000                97.3000
+#&gt; 75         107.3000        104.1000               108.1000
+#&gt; 76          97.1000         95.9000                99.0000
+#&gt; 77          94.4000         99.4000                92.4000
+#&gt; 78         115.3000        102.3000               106.2000
+#&gt; 79         103.7000        102.7000               102.7000
+#&gt; 80         109.1000         99.2000               105.3000
+#&gt; 81         100.7000         98.3000                97.2000
+#&gt; 82         100.2000         97.6000               100.9000
+#&gt; 83          97.1000        103.2000                98.8000
+#&gt; 84         103.6000        100.8000                96.6000
+#&gt; 85         112.8000         86.2000                99.7000
+#&gt; 86         102.1000        110.4000               103.8000
+#&gt; 87         104.5000         99.7000                97.9000
+#&gt; 88          94.1000         99.6000                95.6000
+#&gt; 89         126.0000        102.4000               116.4000
+#&gt; 90         107.2000        101.5000               103.8000
+#&gt; 91         104.0000        105.0000               105.8000
+#&gt; 92         116.7000        106.3000               109.1000
+#&gt; 93         103.6000        100.5000               103.8000
+#&gt; 94          96.1000        108.1000               100.8000
+#&gt; 95          99.6000         91.6000                97.7000
+#&gt; 96          91.8000         99.7000                95.4000
+#&gt; 97          86.3000         85.2000                86.1000
+#&gt; 98          84.1000         91.5000                87.8000
+#&gt; 99          92.3000         89.9000                94.0000
+#&gt; 100         98.2000         94.9000                99.0000
+#&gt; 101         98.9000         90.3000                92.4000
+#&gt; 102         88.6000         90.3000                88.9000
+#&gt; 103         90.3000         89.5000                91.6000
+#&gt; 104         97.4000         84.5000                94.6000
+#&gt; 105        100.3000         93.2000                96.0000
+#&gt; 106         90.2000         91.8000                94.2000
+#&gt; 107         96.8000        102.7000               100.0000
+#&gt; 108         96.6000        100.8000               101.6000
+#&gt; 109         88.5000         94.6000                95.4000
+#&gt; 110        106.4000         93.0000                97.6000
+#&gt; 111         73.9000         90.6000                84.2000
+#&gt; 112         91.3000        100.9000                94.8000
+#&gt; 113         85.4000         84.5000                88.3000
+#&gt; 114        108.3000        105.5000               109.8000
+#&gt; 115        100.9000         94.1000               103.0000
+#&gt; 116         79.3000         94.0000                87.1000
+#&gt; 117         96.8000         87.9000                91.1000
+#&gt; 118        111.7000         91.7000               103.1000
+#&gt; 119         88.1000         90.3000                92.4000
+#&gt; 120         92.2000        101.8000                97.0000
+#&gt; 121         87.8000         97.0000                90.3000
+#&gt; 122         95.1000        106.7000                98.8000
+#&gt; 123         93.2000         95.9000                96.8000
+#&gt; 124         89.3000         86.1000                87.5000
+#&gt; 125         94.5000         91.5000                94.8000
+#&gt; 126         87.1000         92.8000                90.6000
+#&gt; 127        102.5000         86.2000                93.1000
+#&gt; 128         74.4000         79.6000                77.0000
+#&gt; 129         92.4000         86.8000                90.8000
+#&gt; 130         91.0000         92.4000                90.5000
+#&gt; 131        102.3854        101.1715               101.4554
 #&gt;     defense_passing_downs defense_havoc_total defense_havoc_front_seven
-#&gt; 1                      NA                  NA                        NA
-#&gt; 2                      NA                  NA                        NA
-#&gt; 3                      NA                  NA                        NA
-#&gt; 4                      NA                  NA                        NA
-#&gt; 5                      NA                  NA                        NA
-#&gt; 6                      NA                  NA                        NA
-#&gt; 7                      NA                  NA                        NA
-#&gt; 8                      NA                  NA                        NA
-#&gt; 9                      NA                  NA                        NA
-#&gt; 10                     NA                  NA                        NA
-#&gt; 11                     NA                  NA                        NA
-#&gt; 12                     NA                  NA                        NA
-#&gt; 13                     NA                  NA                        NA
-#&gt; 14                     NA                  NA                        NA
-#&gt; 15                     NA                  NA                        NA
-#&gt; 16                     NA                  NA                        NA
-#&gt; 17                     NA                  NA                        NA
-#&gt; 18                     NA                  NA                        NA
-#&gt; 19                     NA                  NA                        NA
-#&gt; 20                     NA                  NA                        NA
-#&gt; 21                     NA                  NA                        NA
-#&gt; 22                     NA                  NA                        NA
-#&gt; 23                     NA                  NA                        NA
-#&gt; 24                     NA                  NA                        NA
-#&gt; 25                     NA                  NA                        NA
-#&gt; 26                     NA                  NA                        NA
-#&gt; 27                     NA                  NA                        NA
-#&gt; 28                     NA                  NA                        NA
-#&gt; 29                     NA                  NA                        NA
-#&gt; 30                     NA                  NA                        NA
-#&gt; 31                     NA                  NA                        NA
-#&gt; 32                     NA                  NA                        NA
-#&gt; 33                     NA                  NA                        NA
-#&gt; 34                     NA                  NA                        NA
-#&gt; 35                     NA                  NA                        NA
-#&gt; 36                     NA                  NA                        NA
-#&gt; 37                     NA                  NA                        NA
-#&gt; 38                     NA                  NA                        NA
-#&gt; 39                     NA                  NA                        NA
-#&gt; 40                     NA                  NA                        NA
-#&gt; 41                     NA                  NA                        NA
-#&gt; 42                     NA                  NA                        NA
-#&gt; 43                     NA                  NA                        NA
-#&gt; 44                     NA                  NA                        NA
-#&gt; 45                     NA                  NA                        NA
-#&gt; 46                     NA                  NA                        NA
-#&gt; 47                     NA                  NA                        NA
-#&gt; 48                     NA                  NA                        NA
-#&gt; 49                     NA                  NA                        NA
-#&gt; 50                     NA                  NA                        NA
-#&gt; 51                     NA                  NA                        NA
-#&gt; 52                     NA                  NA                        NA
-#&gt; 53                     NA                  NA                        NA
-#&gt; 54                     NA                  NA                        NA
-#&gt; 55                     NA                  NA                        NA
-#&gt; 56                     NA                  NA                        NA
-#&gt; 57                     NA                  NA                        NA
-#&gt; 58                     NA                  NA                        NA
-#&gt; 59                     NA                  NA                        NA
-#&gt; 60                     NA                  NA                        NA
-#&gt; 61                     NA                  NA                        NA
-#&gt; 62                     NA                  NA                        NA
-#&gt; 63                     NA                  NA                        NA
-#&gt; 64                     NA                  NA                        NA
-#&gt; 65                     NA                  NA                        NA
-#&gt; 66                     NA                  NA                        NA
-#&gt; 67                     NA                  NA                        NA
-#&gt; 68                     NA                  NA                        NA
-#&gt; 69                     NA                  NA                        NA
-#&gt; 70                     NA                  NA                        NA
-#&gt; 71                     NA                  NA                        NA
-#&gt; 72                     NA                  NA                        NA
-#&gt; 73                     NA                  NA                        NA
-#&gt; 74                     NA                  NA                        NA
-#&gt; 75                     NA                  NA                        NA
-#&gt; 76                     NA                  NA                        NA
-#&gt; 77                     NA                  NA                        NA
-#&gt; 78                     NA                  NA                        NA
-#&gt; 79                     NA                  NA                        NA
-#&gt; 80                     NA                  NA                        NA
-#&gt; 81                     NA                  NA                        NA
-#&gt; 82                     NA                  NA                        NA
-#&gt; 83                     NA                  NA                        NA
-#&gt; 84                     NA                  NA                        NA
-#&gt; 85                     NA                  NA                        NA
-#&gt; 86                     NA                  NA                        NA
-#&gt; 87                     NA                  NA                        NA
-#&gt; 88                     NA                  NA                        NA
-#&gt; 89                     NA                  NA                        NA
-#&gt; 90                     NA                  NA                        NA
-#&gt; 91                     NA                  NA                        NA
-#&gt; 92                     NA                  NA                        NA
-#&gt; 93                     NA                  NA                        NA
-#&gt; 94                     NA                  NA                        NA
-#&gt; 95                     NA                  NA                        NA
-#&gt; 96                     NA                  NA                        NA
-#&gt; 97                     NA                  NA                        NA
-#&gt; 98                     NA                  NA                        NA
-#&gt; 99                     NA                  NA                        NA
-#&gt; 100                    NA                  NA                        NA
-#&gt; 101                    NA                  NA                        NA
-#&gt; 102                    NA                  NA                        NA
-#&gt; 103                    NA                  NA                        NA
-#&gt; 104                    NA                  NA                        NA
-#&gt; 105                    NA                  NA                        NA
-#&gt; 106                    NA                  NA                        NA
-#&gt; 107                    NA                  NA                        NA
-#&gt; 108                    NA                  NA                        NA
-#&gt; 109                    NA                  NA                        NA
-#&gt; 110                    NA                  NA                        NA
-#&gt; 111                    NA                  NA                        NA
-#&gt; 112                    NA                  NA                        NA
-#&gt; 113                    NA                  NA                        NA
-#&gt; 114                    NA                  NA                        NA
-#&gt; 115                    NA                  NA                        NA
-#&gt; 116                    NA                  NA                        NA
-#&gt; 117                    NA                  NA                        NA
-#&gt; 118                    NA                  NA                        NA
-#&gt; 119                    NA                  NA                        NA
-#&gt; 120                    NA                  NA                        NA
-#&gt; 121                    NA                  NA                        NA
-#&gt; 122                    NA                  NA                        NA
-#&gt; 123                    NA                  NA                        NA
-#&gt; 124                    NA                  NA                        NA
-#&gt; 125                    NA                  NA                        NA
-#&gt; 126                    NA                  NA                        NA
-#&gt; 127                    NA                  NA                        NA
-#&gt; 128                    NA                  NA                        NA
-#&gt; 129                    NA                  NA                        NA
-#&gt; 130                    NA                  NA                        NA
-#&gt; 131                    NA                  NA                        NA
+#&gt; 1                108.9000           0.2120000                0.12600000
+#&gt; 2                129.7000           0.1560000                0.09900000
+#&gt; 3                128.8000           0.2100000                0.13600000
+#&gt; 4                101.3000           0.1440000                0.08500000
+#&gt; 5                117.3000           0.1880000                0.09700000
+#&gt; 6                 93.4000           0.1840000                0.12200000
+#&gt; 7                113.1000           0.1790000                0.11000000
+#&gt; 8                132.4000           0.2030000                0.10900000
+#&gt; 9                 98.9000           0.1870000                0.10900000
+#&gt; 10               113.6000           0.1860000                0.11900000
+#&gt; 11                99.8000           0.2040000                0.12100000
+#&gt; 12               106.9000           0.1470000                0.08400000
+#&gt; 13               120.0000           0.1730000                0.10300000
+#&gt; 14               120.3000           0.1590000                0.07900000
+#&gt; 15               113.9000           0.1990000                0.12100000
+#&gt; 16               124.1000           0.1670000                0.08800000
+#&gt; 17               110.7000           0.1980000                0.13100000
+#&gt; 18                95.3000           0.1930000                0.11100000
+#&gt; 19               103.1000           0.1630000                0.09800000
+#&gt; 20               118.6000           0.1420000                0.08500000
+#&gt; 21               119.5000           0.1840000                0.09200000
+#&gt; 22               102.9000           0.1530000                0.10000000
+#&gt; 23               112.5000           0.1740000                0.10700000
+#&gt; 24                96.3000           0.1940000                0.10300000
+#&gt; 25               103.9000           0.1980000                0.12400000
+#&gt; 26               100.3000           0.1620000                0.09000000
+#&gt; 27               103.6000           0.2420000                0.16400000
+#&gt; 28               106.0000           0.1660000                0.10700000
+#&gt; 29               121.3000           0.1830000                0.11200000
+#&gt; 30               130.4000           0.2070000                0.14000000
+#&gt; 31               109.6000           0.1770000                0.08500000
+#&gt; 32               105.6000           0.1800000                0.11400000
+#&gt; 33                98.5000           0.1630000                0.09500000
+#&gt; 34                99.7000           0.1790000                0.10400000
+#&gt; 35                97.0000           0.1820000                0.10800000
+#&gt; 36                94.4000           0.1680000                0.10900000
+#&gt; 37                98.4000           0.1590000                0.07900000
+#&gt; 38               102.5000           0.1700000                0.10100000
+#&gt; 39               101.3000           0.1540000                0.08300000
+#&gt; 40               112.0000           0.1670000                0.10400000
+#&gt; 41               108.3000           0.1810000                0.10700000
+#&gt; 42               112.7000           0.1900000                0.08500000
+#&gt; 43               108.7000           0.1680000                0.09400000
+#&gt; 44               100.1000           0.1210000                0.06700000
+#&gt; 45                97.9000           0.1600000                0.08900000
+#&gt; 46               117.6000           0.1200000                0.08400000
+#&gt; 47               104.1000           0.1550000                0.07100000
+#&gt; 48               106.3000           0.1440000                0.08600000
+#&gt; 49                93.1000           0.1620000                0.08600000
+#&gt; 50               105.4000           0.1890000                0.12000000
+#&gt; 51               102.1000           0.1700000                0.09800000
+#&gt; 52                97.4000           0.1420000                0.07800000
+#&gt; 53                96.8000           0.1560000                0.12000000
+#&gt; 54                92.2000           0.1920000                0.10600000
+#&gt; 55               119.2000           0.1730000                0.10400000
+#&gt; 56                88.8000           0.1460000                0.08300000
+#&gt; 57                99.8000           0.1480000                0.08200000
+#&gt; 58                99.7000           0.1550000                0.08500000
+#&gt; 59               101.2000           0.1340000                0.05800000
+#&gt; 60               106.1000           0.1560000                0.08000000
+#&gt; 61               102.4000           0.1750000                0.10300000
+#&gt; 62               107.0000           0.1960000                0.12000000
+#&gt; 63               111.4000           0.1680000                0.10300000
+#&gt; 64                98.5000           0.1560000                0.10200000
+#&gt; 65               100.7000           0.1840000                0.10700000
+#&gt; 66                91.2000           0.1730000                0.10300000
+#&gt; 67                94.6000           0.1400000                0.08700000
+#&gt; 68               104.8000           0.1660000                0.10300000
+#&gt; 69               111.3000           0.1650000                0.11500000
+#&gt; 70                92.5000           0.1510000                0.08200000
+#&gt; 71               103.2000           0.1570000                0.10100000
+#&gt; 72                97.5000           0.1930000                0.11100000
+#&gt; 73                99.9000           0.1890000                0.12100000
+#&gt; 74                85.9000           0.1280000                0.05800000
+#&gt; 75                98.2000           0.2030000                0.14000000
+#&gt; 76                93.8000           0.1380000                0.08500000
+#&gt; 77               109.2000           0.1340000                0.07700000
+#&gt; 78               104.8000           0.1740000                0.10300000
+#&gt; 79               103.8000           0.1550000                0.08500000
+#&gt; 80                98.7000           0.1450000                0.10200000
+#&gt; 81               107.5000           0.1420000                0.07300000
+#&gt; 82                98.3000           0.1590000                0.10300000
+#&gt; 83               102.7000           0.1500000                0.08700000
+#&gt; 84               110.3000           0.1890000                0.08100000
+#&gt; 85                88.2000           0.1520000                0.09900000
+#&gt; 86               109.4000           0.1580000                0.09400000
+#&gt; 87               116.1000           0.1560000                0.08300000
+#&gt; 88               101.5000           0.1710000                0.11400000
+#&gt; 89                98.1000           0.1630000                0.12000000
+#&gt; 90                99.5000           0.1910000                0.09400000
+#&gt; 91               101.7000           0.1780000                0.10600000
+#&gt; 92               106.5000           0.1850000                0.09500000
+#&gt; 93                99.9000           0.1580000                0.10400000
+#&gt; 94               106.9000           0.1840000                0.09700000
+#&gt; 95                98.0000           0.1200000                0.07000000
+#&gt; 96               101.9000           0.1510000                0.08200000
+#&gt; 97                88.7000           0.1500000                0.09100000
+#&gt; 98                92.1000           0.0910000                0.06200000
+#&gt; 99                89.1000           0.1400000                0.07600000
+#&gt; 100               92.3000           0.1470000                0.08600000
+#&gt; 101               98.2000           0.1060000                0.05700000
+#&gt; 102               92.6000           0.1450000                0.07900000
+#&gt; 103               86.3000           0.1340000                0.08600000
+#&gt; 104               81.7000           0.1730000                0.12600000
+#&gt; 105               97.9000           0.1690000                0.10600000
+#&gt; 106               84.6000           0.1440000                0.09400000
+#&gt; 107              102.4000           0.1380000                0.08400000
+#&gt; 108               93.1000           0.1540000                0.08300000
+#&gt; 109               85.8000           0.1480000                0.09100000
+#&gt; 110               99.5000           0.1850000                0.12000000
+#&gt; 111               81.4000           0.1110000                0.07000000
+#&gt; 112              101.8000           0.1620000                0.08600000
+#&gt; 113               79.6000           0.1240000                0.08000000
+#&gt; 114              102.3000           0.1460000                0.09500000
+#&gt; 115               90.5000           0.1310000                0.06800000
+#&gt; 116               86.5000           0.1420000                0.08700000
+#&gt; 117               94.3000           0.1370000                0.07400000
+#&gt; 118               92.7000           0.1630000                0.11600000
+#&gt; 119               85.2000           0.1370000                0.10100000
+#&gt; 120               96.8000           0.1540000                0.11000000
+#&gt; 121              109.7000           0.1430000                0.07400000
+#&gt; 122              108.2000           0.1590000                0.10600000
+#&gt; 123               91.1000           0.1310000                0.09500000
+#&gt; 124               90.2000           0.1000000                0.06300000
+#&gt; 125               91.2000           0.1240000                0.06500000
+#&gt; 126               92.8000           0.1010000                0.04900000
+#&gt; 127               92.4000           0.1570000                0.08600000
+#&gt; 128               80.4000           0.1000000                0.06900000
+#&gt; 129               86.5000           0.1320000                0.06400000
+#&gt; 130              100.3000           0.1410000                0.07400000
+#&gt; 131              101.6723           0.1610308                0.09553846
 #&gt;     defense_havoc_db special_teams_rating
-#&gt; 1                 NA          1.600000000
-#&gt; 2                 NA          1.900000000
-#&gt; 3                 NA         -0.700000000
-#&gt; 4                 NA         -0.700000000
-#&gt; 5                 NA          2.600000000
-#&gt; 6                 NA          2.500000000
-#&gt; 7                 NA          1.700000000
-#&gt; 8                 NA          1.700000000
-#&gt; 9                 NA          2.000000000
-#&gt; 10                NA          1.000000000
-#&gt; 11                NA         -0.900000000
-#&gt; 12                NA         -0.100000000
-#&gt; 13                NA         -0.700000000
-#&gt; 14                NA         -0.100000000
-#&gt; 15                NA         -1.100000000
-#&gt; 16                NA          2.500000000
-#&gt; 17                NA          1.900000000
-#&gt; 18                NA          0.500000000
-#&gt; 19                NA          0.400000000
-#&gt; 20                NA          1.800000000
-#&gt; 21                NA          0.500000000
-#&gt; 22                NA          0.800000000
-#&gt; 23                NA          1.000000000
-#&gt; 24                NA          0.300000000
-#&gt; 25                NA          1.700000000
-#&gt; 26                NA          1.800000000
-#&gt; 27                NA          0.200000000
-#&gt; 28                NA          2.400000000
-#&gt; 29                NA          0.300000000
-#&gt; 30                NA         -0.300000000
-#&gt; 31                NA         -0.700000000
-#&gt; 32                NA          1.100000000
-#&gt; 33                NA         -0.900000000
-#&gt; 34                NA          1.200000000
-#&gt; 35                NA          1.100000000
-#&gt; 36                NA         -0.100000000
-#&gt; 37                NA          0.200000000
-#&gt; 38                NA          1.400000000
-#&gt; 39                NA          0.400000000
-#&gt; 40                NA          0.300000000
-#&gt; 41                NA         -1.100000000
-#&gt; 42                NA          0.800000000
-#&gt; 43                NA          1.200000000
-#&gt; 44                NA          2.000000000
-#&gt; 45                NA          2.000000000
-#&gt; 46                NA          2.200000000
-#&gt; 47                NA         -1.900000000
-#&gt; 48                NA         -0.300000000
-#&gt; 49                NA          1.200000000
-#&gt; 50                NA         -0.900000000
-#&gt; 51                NA         -0.600000000
-#&gt; 52                NA         -1.900000000
-#&gt; 53                NA          1.400000000
-#&gt; 54                NA         -2.200000000
-#&gt; 55                NA          1.100000000
-#&gt; 56                NA          2.000000000
-#&gt; 57                NA         -1.300000000
-#&gt; 58                NA         -0.700000000
-#&gt; 59                NA         -1.200000000
-#&gt; 60                NA          2.000000000
-#&gt; 61                NA         -0.800000000
-#&gt; 62                NA          0.000000000
-#&gt; 63                NA          0.200000000
-#&gt; 64                NA         -1.700000000
-#&gt; 65                NA         -0.400000000
-#&gt; 66                NA          0.100000000
-#&gt; 67                NA          0.500000000
-#&gt; 68                NA          1.500000000
-#&gt; 69                NA         -0.900000000
-#&gt; 70                NA          0.800000000
-#&gt; 71                NA         -2.400000000
-#&gt; 72                NA         -0.400000000
-#&gt; 73                NA         -2.000000000
-#&gt; 74                NA          0.100000000
-#&gt; 75                NA         -1.700000000
-#&gt; 76                NA          1.300000000
-#&gt; 77                NA          2.100000000
-#&gt; 78                NA          0.200000000
-#&gt; 79                NA          0.100000000
-#&gt; 80                NA         -1.100000000
-#&gt; 81                NA          0.500000000
-#&gt; 82                NA          0.500000000
-#&gt; 83                NA          1.500000000
-#&gt; 84                NA         -1.400000000
-#&gt; 85                NA         -1.300000000
-#&gt; 86                NA          0.700000000
-#&gt; 87                NA         -1.400000000
-#&gt; 88                NA          0.300000000
-#&gt; 89                NA         -0.700000000
-#&gt; 90                NA         -2.000000000
-#&gt; 91                NA         -2.000000000
-#&gt; 92                NA         -1.600000000
-#&gt; 93                NA          1.400000000
-#&gt; 94                NA          1.400000000
-#&gt; 95                NA         -1.100000000
-#&gt; 96                NA         -2.400000000
-#&gt; 97                NA         -0.800000000
-#&gt; 98                NA          0.400000000
-#&gt; 99                NA         -0.100000000
-#&gt; 100               NA         -2.100000000
-#&gt; 101               NA         -0.100000000
-#&gt; 102               NA          0.900000000
-#&gt; 103               NA         -1.200000000
-#&gt; 104               NA         -2.700000000
-#&gt; 105               NA          1.800000000
-#&gt; 106               NA          1.400000000
-#&gt; 107               NA         -1.400000000
-#&gt; 108               NA          0.000000000
-#&gt; 109               NA         -1.400000000
-#&gt; 110               NA         -1.100000000
-#&gt; 111               NA         -1.900000000
-#&gt; 112               NA          0.300000000
-#&gt; 113               NA         -0.900000000
-#&gt; 114               NA         -0.800000000
-#&gt; 115               NA         -0.400000000
-#&gt; 116               NA          0.200000000
-#&gt; 117               NA         -0.300000000
-#&gt; 118               NA         -0.900000000
-#&gt; 119               NA          1.600000000
-#&gt; 120               NA         -0.600000000
-#&gt; 121               NA          0.100000000
-#&gt; 122               NA         -2.600000000
-#&gt; 123               NA         -0.600000000
-#&gt; 124               NA         -0.900000000
-#&gt; 125               NA         -0.700000000
-#&gt; 126               NA         -1.000000000
-#&gt; 127               NA         -0.100000000
-#&gt; 128               NA         -2.900000000
-#&gt; 129               NA         -2.200000000
-#&gt; 130               NA         -0.500000000
-#&gt; 131               NA          0.005343511</div><div class='input'>
+#&gt; 1         0.08700000        -0.4000000000
+#&gt; 2         0.05700000         1.3000000000
+#&gt; 3         0.07400000        -0.6000000000
+#&gt; 4         0.05900000         1.0000000000
+#&gt; 5         0.09100000         2.7000000000
+#&gt; 6         0.06200000         0.8000000000
+#&gt; 7         0.06900000         0.7000000000
+#&gt; 8         0.09300000        -0.9000000000
+#&gt; 9         0.07700000         1.7000000000
+#&gt; 10        0.06700000         0.9000000000
+#&gt; 11        0.08400000         1.1000000000
+#&gt; 12        0.06400000         0.5000000000
+#&gt; 13        0.07100000         0.6000000000
+#&gt; 14        0.08000000        -1.9000000000
+#&gt; 15        0.07700000        -0.3000000000
+#&gt; 16        0.07900000        -0.6000000000
+#&gt; 17        0.06700000         3.0000000000
+#&gt; 18        0.08200000         1.8000000000
+#&gt; 19        0.06500000        -2.3000000000
+#&gt; 20        0.05700000         2.0000000000
+#&gt; 21        0.09100000         0.4000000000
+#&gt; 22        0.05300000         0.7000000000
+#&gt; 23        0.06800000         0.7000000000
+#&gt; 24        0.09100000         1.3000000000
+#&gt; 25        0.07500000        -0.1000000000
+#&gt; 26        0.07300000         1.8000000000
+#&gt; 27        0.07800000        -0.8000000000
+#&gt; 28        0.05900000        -2.0000000000
+#&gt; 29        0.07100000         1.0000000000
+#&gt; 30        0.06700000         0.3000000000
+#&gt; 31        0.09200000         0.4000000000
+#&gt; 32        0.06600000        -0.2000000000
+#&gt; 33        0.06900000        -1.2000000000
+#&gt; 34        0.07500000         0.5000000000
+#&gt; 35        0.07300000         1.1000000000
+#&gt; 36        0.05900000         0.8000000000
+#&gt; 37        0.08000000         2.4000000000
+#&gt; 38        0.06900000        -0.4000000000
+#&gt; 39        0.07100000        -0.9000000000
+#&gt; 40        0.06400000         2.8000000000
+#&gt; 41        0.07400000        -1.7000000000
+#&gt; 42        0.10500000        -0.6000000000
+#&gt; 43        0.07500000        -1.8000000000
+#&gt; 44        0.05400000         0.0000000000
+#&gt; 45        0.07100000         1.0000000000
+#&gt; 46        0.03700000        -0.4000000000
+#&gt; 47        0.08400000         1.4000000000
+#&gt; 48        0.05800000         1.0000000000
+#&gt; 49        0.07600000        -0.4000000000
+#&gt; 50        0.06900000        -0.4000000000
+#&gt; 51        0.07300000         1.5000000000
+#&gt; 52        0.06400000        -0.5000000000
+#&gt; 53        0.03600000         0.5000000000
+#&gt; 54        0.08600000         0.8000000000
+#&gt; 55        0.06800000         1.2000000000
+#&gt; 56        0.06200000         0.4000000000
+#&gt; 57        0.06600000         0.5000000000
+#&gt; 58        0.07000000         0.3000000000
+#&gt; 59        0.07700000         1.3000000000
+#&gt; 60        0.07600000        -1.3000000000
+#&gt; 61        0.07300000         0.4000000000
+#&gt; 62        0.07700000         1.8000000000
+#&gt; 63        0.06500000        -1.9000000000
+#&gt; 64        0.05300000         0.6000000000
+#&gt; 65        0.07700000         2.4000000000
+#&gt; 66        0.07100000         1.1000000000
+#&gt; 67        0.05300000        -0.8000000000
+#&gt; 68        0.06300000        -2.0000000000
+#&gt; 69        0.05000000         0.4000000000
+#&gt; 70        0.06900000         0.4000000000
+#&gt; 71        0.05700000        -0.8000000000
+#&gt; 72        0.08200000        -0.8000000000
+#&gt; 73        0.06800000        -0.5000000000
+#&gt; 74        0.07100000         1.2000000000
+#&gt; 75        0.06300000         0.0000000000
+#&gt; 76        0.05300000         1.3000000000
+#&gt; 77        0.05800000        -0.2000000000
+#&gt; 78        0.07100000         0.1000000000
+#&gt; 79        0.07100000         1.5000000000
+#&gt; 80        0.04200000        -0.5000000000
+#&gt; 81        0.06900000        -1.8000000000
+#&gt; 82        0.05600000        -2.5000000000
+#&gt; 83        0.06200000        -0.5000000000
+#&gt; 84        0.10800000        -2.2000000000
+#&gt; 85        0.05300000         0.2000000000
+#&gt; 86        0.06300000        -1.5000000000
+#&gt; 87        0.07300000         1.4000000000
+#&gt; 88        0.05800000        -0.5000000000
+#&gt; 89        0.04300000        -1.0000000000
+#&gt; 90        0.09700000         0.9000000000
+#&gt; 91        0.07300000         0.5000000000
+#&gt; 92        0.08900000        -0.3000000000
+#&gt; 93        0.05300000         0.3000000000
+#&gt; 94        0.08700000        -1.8000000000
+#&gt; 95        0.04900000         1.5000000000
+#&gt; 96        0.06900000         0.6000000000
+#&gt; 97        0.05900000         1.5000000000
+#&gt; 98        0.03000000         0.0000000000
+#&gt; 99        0.06400000         2.4000000000
+#&gt; 100       0.06100000         0.0000000000
+#&gt; 101       0.04800000         0.6000000000
+#&gt; 102       0.06600000        -1.2000000000
+#&gt; 103       0.04800000        -0.4000000000
+#&gt; 104       0.04700000        -3.1000000000
+#&gt; 105       0.06400000        -2.0000000000
+#&gt; 106       0.05000000        -2.9000000000
+#&gt; 107       0.05400000        -1.7000000000
+#&gt; 108       0.07100000         1.2000000000
+#&gt; 109       0.05700000         0.7000000000
+#&gt; 110       0.06500000         1.0000000000
+#&gt; 111       0.04000000        -1.3000000000
+#&gt; 112       0.07700000        -2.2000000000
+#&gt; 113       0.04500000        -1.7000000000
+#&gt; 114       0.05100000        -2.2000000000
+#&gt; 115       0.06300000         0.2000000000
+#&gt; 116       0.05500000         0.4000000000
+#&gt; 117       0.06300000        -0.3000000000
+#&gt; 118       0.04700000         0.0000000000
+#&gt; 119       0.03600000        -1.2000000000
+#&gt; 120       0.04500000        -0.2000000000
+#&gt; 121       0.06900000        -3.1000000000
+#&gt; 122       0.05300000        -0.3000000000
+#&gt; 123       0.03600000        -1.4000000000
+#&gt; 124       0.03800000        -0.4000000000
+#&gt; 125       0.05900000        -0.6000000000
+#&gt; 126       0.05200000        -2.8000000000
+#&gt; 127       0.07200000         1.2000000000
+#&gt; 128       0.03100000         0.9000000000
+#&gt; 129       0.06800000         1.1000000000
+#&gt; 130       0.06600000        -1.6000000000
+#&gt; 131       0.06558462         0.0007692308</div><div class='input'>
 <span class='fu'>cfbd_ratings_sp</span><span class='op'>(</span>team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     year             team conference     rating ranking second_order_wins
 #&gt; 1   1970        Texas A&amp;M        SEC -1.7000000      47                NA

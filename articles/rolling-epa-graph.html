@@ -21,11 +21,11 @@
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Rolling EPA Graph">
-<meta property="og:description" content="cfbfastR">
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png">
+<meta property="og:description" content="&lt;strong&gt;IT'S GRAPHIN' TIME&lt;/strong&gt;&lt;br&gt; ^&lt;em&gt;To be said in an extremely Power Rangers voice&lt;em&gt;^">
+<meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true">
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="@cfbfastR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@cfbnate">
 <meta name="twitter:site" content="@cfbfastR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -69,17 +69,45 @@
 <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider">
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider">
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+</li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -103,13 +131,7 @@
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -126,14 +148,15 @@
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider">
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -163,6 +186,7 @@
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider">
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -175,22 +199,12 @@
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
-     
-     Data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+     News
+  </a>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -219,6 +233,23 @@
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -256,7 +287,8 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Rolling EPA Graph</h1>
-                        <h4 class="author">Nate Manzo (<span class="citation">@cfbnate</span>)</h4>
+                        <h4 class="author">Nate Manzo <br><a href="https://twitter.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=twitter&amp;style=for-the-badge" alt="@cfbnate"></a> <a href="https://github.com/natemanzo" target="blank"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+</h4>
             
       
       
@@ -266,7 +298,6 @@
 
     
     
-<p><a href="https://twitter.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=twitter&amp;style=for-the-badge" alt="@cfbnate"></a> <a href="https://github.com/natemanzo" target="blank"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a></p>
 <p>This vignette will use data from the <code>cfbfastR</code> package to create a moving average graph of offensive EPA over the course of a season. This lets us visualize how a team’s performance has changed over time and compare that performance to other teams around the country.</p>
 <div id="load-and-install-the-necessary-packages" class="section level2">
 <h2 class="hasAnchor">
@@ -276,7 +307,7 @@
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">zoo</span>, <span class="va">ggimage</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_gh.html">p_load_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="pull-the-play-by-play-data" class="section level2">
 <h2 class="hasAnchor">
@@ -434,7 +465,7 @@
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggsave</span><span class="op">(</span><span class="va">graph_team_off</span>, filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"off_epa_rolling_"</span>,<span class="va">team</span>,<span class="st">".png"</span><span class="op">)</span>, 
        dpi <span class="op">=</span> <span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">7</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></code></pre></div>
-<p>I hope you found this useful! As always, thanks to <a href="https://twitter.com/CFB_Data">@CFB_Data</a> and the <a href="https://twitter.com/cfbfastR">@cfbfastR</a> team for making this possible. And shout out to folks like Parker Fleming and Meyappan Subbaiah for their feedback, advice, and encouragement while refining the look of this visualization. Tag me in any of these graphs you post on twitter and I’ll share them as much as possible.</p>
+<p>I hope you found this useful! As always, thanks to <a href="https://twitter.com/CFB_Data">@CFB_Data</a> and the <a href="https://twitter.com/cfbfastR">@cfbfastR</a> team for making this possible. And shout out to folks like Parker Fleming (<a href="https://twitter.com/statsowar">@statsowar</a>) and Meyappan Subbaiah (<a href="https://twitter.com/msubbiah1">@msubbiah1</a>) for their feedback, advice, and encouragement while refining the look of this visualization. Tag me in any of these graphs you post on twitter and I’ll share them as much as possible.</p>
 <p>-<a href="https://twitter.com/cfbNate">Nate Manzo</a></p>
 </div>
   </div>

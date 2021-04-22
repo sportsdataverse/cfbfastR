@@ -3,13 +3,20 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   animated-wp-plotting: animated-wp-plotting.html
+  cfbd_betting: cfbd_betting.html
+  cfbd_games: cfbd_games.html
+  cfbd_plays: cfbd_plays.html
+  cfbd_recruiting: cfbd_recruiting.html
+  cfbd_stats: cfbd_stats.html
+  cfbd_teams: cfbd_teams.html
   college-football-expected-points-model-fundamentals-part-i: college-football-expected-points-model-fundamentals-part-i.html
   college-football-expected-points-model-fundamentals-part-ii: college-football-expected-points-model-fundamentals-part-ii.html
   college-football-expected-points-model-fundamentals-part-iii: college-football-expected-points-model-fundamentals-part-iii.html
   fourth-down-plot-tutorial: fourth-down-plot-tutorial.html
+  intro: intro.html
   nth-rated-recruit: nth-rated-recruit.html
   rolling-epa-graph: rolling-epa-graph.html
-last_built: 2021-04-19T02:34Z
+last_built: 2021-04-22T22:03Z
 urls:
   reference: http://saiemgilani.github.io/cfbfastR/reference
   article: http://saiemgilani.github.io/cfbfastR/articles

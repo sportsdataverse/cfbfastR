@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get results information from games — cfbd_drives • cfbfastR</title>
+<title>CFBD Drives Endpoint — cfbd_drives • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,11 +54,14 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get results information from games — cfbd_drives" />
-<meta property="og:description" content="Get results information from games" />
+<meta property="og:title" content="CFBD Drives Endpoint — cfbd_drives" />
+<meta property="og:description" content="Get CFB game drivescfbd_drives(2018, week = 1, team = &quot;TCU&quot;)
+
+cfbd_drives(2018, team = &quot;Texas A&amp;amp;M&quot;, defense_conference = &quot;SEC&quot;)
+" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -92,7 +95,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -116,17 +119,45 @@
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -150,13 +181,7 @@
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -173,14 +198,15 @@
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -210,6 +236,7 @@
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -222,22 +249,12 @@
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -266,6 +283,23 @@
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -302,27 +336,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get results information from games</h1>
+    <h1>CFBD Drives Endpoint</h1>
     
     <div class="hidden name"><code>cfbd_drives.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get results information from games</p>
+    <p>Get CFB game drives<div class="r"></p><pre><span class='fu'>cfbd_drives</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>1</span>, team <span class='op'>=</span> <span class='st'>"TCU"</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_drives</span><span class='op'>(</span><span class='fl'>2018</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, defense_conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
+</pre><p></div></p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_drives</span><span class='op'>(</span>
-  <span class='va'>year</span>,
-  season_type <span class='op'>=</span> <span class='st'>"regular"</span>,
-  week <span class='op'>=</span> <span class='cn'>NULL</span>,
-  team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  offense_team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  defense_team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  offense_conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  defense_conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -380,37 +405,42 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <p><a href='https://api.collegefootballdata.com/drives'>https://api.collegefootballdata.com/drives</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_drives()</code> - A data frame with 23 variables as follows:</p><dl>
-<dt><code>offense</code></dt><dd><p>character. Drive offense.</p></dd>
-<dt><code>offense_conference</code></dt><dd><p>character. Drive offense's conference.</p></dd>
-<dt><code>defense</code></dt><dd><p>character. Drive defense.</p></dd>
-<dt><code>defense_conference</code></dt><dd><p>character. Drive defense's conference.</p></dd>
-<dt><code>game_id</code></dt><dd><p>integer. Unique game identifier - <code>game_id</code>.</p></dd>
-<dt><code>drive_id</code></dt><dd><p>character. Unique drive identifier - <code>drive_id</code>.</p></dd>
-<dt><code>drive_number</code></dt><dd><p>integer. Drive number in game.</p></dd>
-<dt><code>scoring</code></dt><dd><p>logical. Drive ends in a score.</p></dd>
-<dt><code>start_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive starts.</p></dd>
-<dt><code>start_yardline</code></dt><dd><p>integer.  Yard line at the drive start.</p></dd>
-<dt><code>start_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at the drive start.</p></dd>
-<dt><code>end_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive ends.</p></dd>
-<dt><code>end_yardline</code></dt><dd><p>integer. Yard line at drive end.</p></dd>
-<dt><code>end_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at drive end.</p></dd>
-<dt><code>plays</code></dt><dd><p>integer. Number of drive plays.</p></dd>
-<dt><code>yards</code></dt><dd><p>integer. Total drive yards.</p></dd>
-<dt><code>drive_result</code></dt><dd><p>character. Result of the drive description.</p></dd>
-<dt><code>time_minutes_start</code></dt><dd><p>integer. Minutes at drive start.</p></dd>
-<dt><code>time_seconds_start</code></dt><dd><p>integer. Seconds at drive start.</p></dd>
-<dt><code>time_minutes_end</code></dt><dd><p>integer. Minutes at drive end.</p></dd>
-<dt><code>time_seconds_end</code></dt><dd><p>integer. Seconds at drive end.</p></dd>
-<dt><code>time_minutes_elapsed</code></dt><dd><p>double. Minutes elapsed during drive.</p></dd>
-<dt><code>time_seconds_elapsed</code></dt><dd><p>integer. Seconds elapsed during drive.</p></dd>
+    <p><code>cfbd_drives()</code> - A data frame with 23 variables as follows:</p><dl>
+<dt><code>offense</code>:character.</dt><dd><p>Drive offense.</p></dd>
+<dt><code>offense_conference</code>:character.</dt><dd><p>Drive offense's conference.</p></dd>
+<dt><code>defense</code>:character.</dt><dd><p>Drive defense.</p></dd>
+<dt><code>defense_conference</code>:character.</dt><dd><p>Drive defense's conference.</p></dd>
+<dt><code>game_id</code>:integer.</dt><dd><p>Unique game identifier - <code>game_id</code>.</p></dd>
+<dt><code>drive_id</code>:character.</dt><dd><p>Unique drive identifier - <code>drive_id</code>.</p></dd>
+<dt><code>drive_number</code>:integer.</dt><dd><p>Drive number in game.</p></dd>
+<dt><code>scoring</code>:logical.</dt><dd><p>Drive ends in a score.</p></dd>
+<dt><code>start_period</code>:integer.</dt><dd><p>Period (or Quarter) in which the drive starts.</p></dd>
+<dt><code>start_yardline</code>:integer.</dt><dd><p>Yard line at the drive start.</p></dd>
+<dt><code>start_yards_to_goal</code>:integer.</dt><dd><p>Yards-to-Goal at the drive start.</p></dd>
+<dt><code>end_period</code>:integer.</dt><dd><p>Period (or Quarter) in which the drive ends.</p></dd>
+<dt><code>end_yardline</code>:integer.</dt><dd><p>Yard line at drive end.</p></dd>
+<dt><code>end_yards_to_goal</code>:integer.</dt><dd><p>Yards-to-Goal at drive end.</p></dd>
+<dt><code>plays</code>:integer.</dt><dd><p>Number of drive plays.</p></dd>
+<dt><code>yards</code>:integer.</dt><dd><p>Total drive yards.</p></dd>
+<dt><code>drive_result</code>:character.</dt><dd><p>Result of the drive description.</p></dd>
+<dt><code>is_home_offense</code>:logical.</dt><dd><p>Flag for if the offense on the field is the home offense</p></dd>
+<dt><code>start_offense_score</code>:numeric.</dt><dd><p>Offense score at the start of the drive.</p></dd>
+<dt><code>start_defense_score</code>:numeric.</dt><dd><p>Defense score at the start of the drive.</p></dd>
+<dt><code>end_offense_score</code>:numeric.</dt><dd><p>Offense score at the end of the drive.</p></dd>
+<dt><code>end_defense_score</code>:numeric.</dt><dd><p>Defense score at the end of the drive.</p></dd>
+<dt><code>time_minutes_start</code>:integer.</dt><dd><p>Minutes at drive start.</p></dd>
+<dt><code>time_seconds_start</code>:integer.</dt><dd><p>Seconds at drive start.</p></dd>
+<dt><code>time_minutes_end</code>:integer.</dt><dd><p>Minutes at drive end.</p></dd>
+<dt><code>time_seconds_end</code>:integer.</dt><dd><p>Seconds at drive end.</p></dd>
+<dt><code>time_minutes_elapsed</code>:double.</dt><dd><p>Minutes elapsed during drive.</p></dd>
+<dt><code>time_seconds_elapsed</code>:integer.</dt><dd><p>Seconds elapsed during drive.</p></dd>
 
 </dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-   <span class='fu'>cfbd_drives</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>1</span>, team <span class='op'>=</span> <span class='st'>"TCU"</span><span class='op'>)</span>
+<span class='fu'>cfbd_drives</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>1</span>, team <span class='op'>=</span> <span class='st'>"TCU"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     offense offense_conference  defense defense_conference   game_id
 #&gt; 1       TCU             Big 12 Southern               &lt;NA&gt; 401013072
 #&gt; 2  Southern               &lt;NA&gt;      TCU             Big 12 401013072
@@ -567,7 +597,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 23                4               13                    2                    3
 #&gt; 24                0                0                    4                   13
 #&gt; 25                0                0                    1                   46</div><div class='input'>
-   <span class='fu'>cfbd_drives</span><span class='op'>(</span><span class='fl'>2018</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, defense_conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
+<span class='fu'>cfbd_drives</span><span class='op'>(</span><span class='fl'>2018</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, defense_conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;                offense offense_conference           defense defense_conference
 #&gt; 1   Northwestern State               &lt;NA&gt;         Texas A&amp;M                SEC
 #&gt; 2   Northwestern State               &lt;NA&gt;         Texas A&amp;M                SEC
@@ -2128,7 +2158,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 257                0                0                    0                    0
 #&gt; 258                0                0                    0                    0
 #&gt; 259                0                0                    0                    0</div><div class='input'><span class='co'># }</span>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

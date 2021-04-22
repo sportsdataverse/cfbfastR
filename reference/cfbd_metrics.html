@@ -55,18 +55,21 @@
   
 
 <meta property="og:title" content="CFBD Metrics Endpoint — cfbd_metrics" />
-<meta property="og:description" content="CFBD Metrics Endpoint
-Get team game averages for Predicted Points Added (PPA)
-Get team game averages for Predicted Points Added (PPA)
-Get player game averages for Predicted Points Added (PPA)
-Get player season averages for Predicted Points Added (PPA)
-Calculate Predicted Points using Down and Distance
-Get team averages for Predicted Points Added (PPA)
-Get Pre-game Win Probability Data from API
-Get win probability chart data from API" />
+<meta property="og:description" content="
+
+cfbd_metrics_ppa_games():Get team game averages for Predicted Points Added (PPA).
+cfbd_metrics_ppa_players_games():Get player game averages for Predicted Points Added (PPA).
+cfbd_metrics_ppa_players_season():Get player season averages for Predicted Points Added (PPA).
+cfbd_metrics_ppa_predicted():Calculate Predicted Points using Down and Distance.
+cfbd_metrics_ppa_teams():Get team averages for Predicted Points Added (PPA).
+cfbd_metrics_wp_pregame():Get Pre-game Win Probability Data from CFBD API.
+cfbd_metrics_wp():Get win probability chart data from CFBD API.
+
+
+" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -100,7 +103,7 @@ Get win probability chart data from API" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -124,17 +127,45 @@ Get win probability chart data from API" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -158,13 +189,7 @@ Get win probability chart data from API" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -181,14 +206,15 @@ Get win probability chart data from API" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -218,6 +244,7 @@ Get win probability chart data from API" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -230,22 +257,12 @@ Get win probability chart data from API" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -274,6 +291,23 @@ Get win probability chart data from API" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -316,27 +350,21 @@ Get win probability chart data from API" />
     </div>
 
     <div class="ref-description">
-    <p>CFBD Metrics Endpoint</p>
-<p>Get team game averages for Predicted Points Added (PPA)</p>
-<p>Get team game averages for Predicted Points Added (PPA)</p>
-<p>Get player game averages for Predicted Points Added (PPA)</p>
-<p>Get player season averages for Predicted Points Added (PPA)</p>
-<p>Calculate Predicted Points using Down and Distance</p>
-<p>Get team averages for Predicted Points Added (PPA)</p>
-<p>Get Pre-game Win Probability Data from API</p>
-<p>Get win probability chart data from API</p>
+    
+<dl>
+<dt><code>cfbd_metrics_ppa_games()</code>:</dt><dd><p>Get team game averages for Predicted Points Added (PPA).</p></dd>
+<dt><code>cfbd_metrics_ppa_players_games()</code>:</dt><dd><p>Get player game averages for Predicted Points Added (PPA).</p></dd>
+<dt><code>cfbd_metrics_ppa_players_season()</code>:</dt><dd><p>Get player season averages for Predicted Points Added (PPA).</p></dd>
+<dt><code>cfbd_metrics_ppa_predicted()</code>:</dt><dd><p>Calculate Predicted Points using Down and Distance.</p></dd>
+<dt><code>cfbd_metrics_ppa_teams()</code>:</dt><dd><p>Get team averages for Predicted Points Added (PPA).</p></dd>
+<dt><code>cfbd_metrics_wp_pregame()</code>:</dt><dd><p>Get Pre-game Win Probability Data from CFBD API.</p></dd>
+<dt><code>cfbd_metrics_wp()</code>:</dt><dd><p>Get win probability chart data from CFBD API.</p></dd>
+
+</dl>
+
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_metrics_ppa_games</span><span class='op'>(</span>
-  <span class='va'>year</span>,
-  week <span class='op'>=</span> <span class='cn'>NULL</span>,
-  team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  excl_garbage_time <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
-
-<span class='fu'>cfbd_metrics_ppa_games</span><span class='op'>(</span>
   <span class='va'>year</span>,
   week <span class='op'>=</span> <span class='cn'>NULL</span>,
   team <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -428,7 +456,7 @@ Position Group  - options include:<br /></p><ul>
     <tr>
       <th>athlete_id</th>
       <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete<br />
-Can be found using the <code><a href='cfbd_players.html'>cfbfastR::cfbd_player_info()</a></code> function.</p></td>
+Can be found using the <code><a href='cfbd_players.html'>cfbd_player_info()</a></code> function.</p></td>
     </tr>
     <tr>
       <th>threshold</th>
@@ -449,7 +477,7 @@ Can be found using the <code><a href='cfbd_players.html'>cfbfastR::cfbd_player_i
     <tr>
       <th>game_id</th>
       <td><p>(<em>Integer</em> required): Game ID filter for querying a single game<br />
-Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info()</a></code> function</p></td>
+Can be found using the <code><a href='cfbd_games.html'>cfbd_game_info()</a></code> function</p></td>
     </tr>
     </table>
 
@@ -462,225 +490,135 @@ Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info(
 <p><a href='https://api.collegefootballdata.com/metrics/wp'>https://api.collegefootballdata.com/metrics/wp</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_metrics_ppa_games()</code> - A data frame with 18 variables:</p><dl>
-<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>opponent</code></dt><dd><p>character.</p></dd>
-<dt><code>off_overall</code></dt><dd><p>character.</p></dd>
-<dt><code>off_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_overall</code></dt><dd><p>character.</p></dd>
-<dt><code>def_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
+    <p><code>cfbd_metrics_ppa_games()</code> - A data frame with 18 variables:</p><dl>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>season</code>: integer.</dt><dd><p>Season of the game.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Game week of the season.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>opponent</code>: character.</dt><dd><p>Team Opponent.</p></dd>
+<dt><code>off_overall</code>: character.</dt><dd><p>Offense overall predicted points added (PPA).</p></dd>
+<dt><code>off_passing</code>: character.</dt><dd><p>Offense passing predicted points added (PPA).</p></dd>
+<dt><code>off_rushing</code>: character.</dt><dd><p>Offense rushing predicted points added (PPA).</p></dd>
+<dt><code>off_first_down</code>: character.</dt><dd><p>Offense 1st down predicted points added (PPA).</p></dd>
+<dt><code>off_second_down</code>: character.</dt><dd><p>Offense 2nd down predicted points added (PPA).</p></dd>
+<dt><code>off_third_down</code>: character.</dt><dd><p>Offense 3rd down predicted points added (PPA).</p></dd>
+<dt><code>def_overall</code>: character.</dt><dd><p>Defense overall predicted points added (PPA).</p></dd>
+<dt><code>def_passing</code>: character.</dt><dd><p>Defense passing predicted points added (PPA).</p></dd>
+<dt><code>def_rushing</code>: character.</dt><dd><p>Defense rushing predicted points added (PPA).</p></dd>
+<dt><code>def_first_down</code>: character.</dt><dd><p>Defense 1st down predicted points added (PPA).</p></dd>
+<dt><code>def_second_down</code>: character.</dt><dd><p>Defense 2nd down predicted points added (PPA).</p></dd>
+<dt><code>def_third_down</code>: character.</dt><dd><p>Defense 3rd down predicted points added (PPA).</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_metrics_ppa_games()</code> - A data frame with 18 variables:</p><dl>
-<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>opponent</code></dt><dd><p>character.</p></dd>
-<dt><code>off_overall</code></dt><dd><p>character.</p></dd>
-<dt><code>off_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_overall</code></dt><dd><p>character.</p></dd>
-<dt><code>def_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
+<p><code>cfbd_metrics_ppa_players_games()</code> - A data frame with 9 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>Season of the game.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Game week of the season.</p></dd>
+<dt><code>name</code>: character.</dt><dd><p>Athlete name.</p></dd>
+<dt><code>position</code>: character.</dt><dd><p>Athlete position.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>opponent</code>: character.</dt><dd><p>Team Opponent name.</p></dd>
+<dt><code>avg_PPA_all</code>: double.</dt><dd><p>Average overall predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_pass</code>: double.</dt><dd><p>Average passing predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_rush</code>: double.</dt><dd><p>Average rushing predicted points added (PPA).</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_metrics_ppa_players_games()</code> - A data frame with 9 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>name</code></dt><dd><p>character.</p></dd>
-<dt><code>position</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>opponent</code></dt><dd><p>character.</p></dd>
-<dt><code>avg_PPA_all</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_rush</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_metrics_ppa_players_season()</code> - A data frame with 23 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>Season.</p></dd>
+<dt><code>athlete_id</code>: character.</dt><dd><p>Athlete referencing id.</p></dd>
+<dt><code>name</code>: character.</dt><dd><p>Athlete name.</p></dd>
+<dt><code>position</code>: character.</dt><dd><p>Athlete Position.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Team conference.</p></dd>
+<dt><code>countable_plays</code>: integer.</dt><dd><p>Number of plays which can be counted.</p></dd>
+<dt><code>avg_PPA_all</code>: double.</dt><dd><p>Average overall predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_pass</code>: double.</dt><dd><p>Average passing predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_rush</code>: double.</dt><dd><p>Average rushing predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_first_down</code>: double.</dt><dd><p>Average 1st down predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_second_down</code>: double.</dt><dd><p>Average 2nd down predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_third_down</code>: double.</dt><dd><p>Average 3rd down predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_standard_downs</code>: double.</dt><dd><p>Average standard down predicted points added (PPA).</p></dd>
+<dt><code>avg_PPA_passing_downs</code>: double.</dt><dd><p>Average passing down predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_all</code>: double.</dt><dd><p>Total overall predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_pass</code>: double.</dt><dd><p>Total passing predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_rush</code>: double.</dt><dd><p>Total rushing predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_first_down</code>: double.</dt><dd><p>Total 1st down predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_second_down</code>: double.</dt><dd><p>Total 2nd down predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_third_down</code>: double.</dt><dd><p>Total 3rd down predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_standard_downs</code>: double.</dt><dd><p>Total standard down predicted points added (PPA).</p></dd>
+<dt><code>total_PPA_passing_downs</code>: double.</dt><dd><p>Total passing down predicted points added (PPA).</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_metrics_ppa_players_season()</code> - A data frame with 23 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>id</code></dt><dd><p>character.</p></dd>
-<dt><code>name</code></dt><dd><p>character.</p></dd>
-<dt><code>position</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>countable_plays</code></dt><dd><p>integer.</p></dd>
-<dt><code>avg_PPA_all</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_first_down</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_second_down</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_third_down</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_standard_downs</code></dt><dd><p>double.</p></dd>
-<dt><code>avg_PPA_passing_downs</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_all</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_pass</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_rush</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_first_down</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_second_down</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_third_down</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_standard_downs</code></dt><dd><p>double.</p></dd>
-<dt><code>total_PPA_passing_downs</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_metrics_ppa_predicted()</code> - A data frame with 2 variables:</p><dl>
+<dt><code>yard_line</code>: integer.</dt><dd><p>Yards to goal</p></dd>
+<dt><code>predicted_points</code>: character.</dt><dd><p>Predicted points at in that down-distance-yardline scenario</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_metrics_ppa_predicted()</code> - A data frame with 2 variables:</p><dl>
-<dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
-<dt><code>predicted_points</code></dt><dd><p>character.</p></dd>
+<p><code>cfbd_metrics_ppa_teams()</code> - A data frame with 21 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>off_overall</code>: character.</dt><dd><p>Offense overall predicted points added (PPA).</p></dd>
+<dt><code>off_passing</code>: character.</dt><dd><p>Offense passing predicted points added (PPA).</p></dd>
+<dt><code>off_rushing</code>: character.</dt><dd><p>Offense rushing predicted points added (PPA).</p></dd>
+<dt><code>off_first_down</code>: character.</dt><dd><p>Offense 1st down predicted points added (PPA).</p></dd>
+<dt><code>off_second_down</code>: character.</dt><dd><p>Offense 2nd down predicted points added (PPA).</p></dd>
+<dt><code>off_third_down</code>: character.</dt><dd><p>Offense 3rd down predicted points added (PPA).</p></dd>
+<dt><code>off_cumulative_total</code>: character.</dt><dd><p>Offense cumulative total predicted points added (PPA).</p></dd>
+<dt><code>off_cumulative_passing</code>: character.</dt><dd><p>Offense cumulative total passing predicted points added (PPA).</p></dd>
+<dt><code>off_cumulative_rushing</code>: character.</dt><dd><p>Offense cumulative total rushing predicted points added (PPA).</p></dd>
+<dt><code>def_overall</code>: character.</dt><dd><p>Defense overall predicted points added (PPA).</p></dd>
+<dt><code>def_passing</code>: character.</dt><dd><p>Defense passing predicted points added (PPA).</p></dd>
+<dt><code>def_rushing</code>: character.</dt><dd><p>Defense rushing predicted points added (PPA).</p></dd>
+<dt><code>def_first_down</code>: character.</dt><dd><p>Defense 1st down predicted points added (PPA).</p></dd>
+<dt><code>def_second_down</code>: character.</dt><dd><p>Defense 2nd down predicted points added (PPA).</p></dd>
+<dt><code>def_third_down</code>: character.</dt><dd><p>Defense 3rd down predicted points added (PPA).</p></dd>
+<dt><code>def_cumulative_total</code>: character.</dt><dd><p>Defense cumulative total predicted points added (PPA).</p></dd>
+<dt><code>def_cumulative_passing</code>: character.</dt><dd><p>Defense cumulative total passing predicted points added (PPA).</p></dd>
+<dt><code>def_cumulative_rushing</code>: character.</dt><dd><p>Defense cumulative total rushing predicted points added (PPA).</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_metrics_ppa_teams()</code> - A data frame with 21 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>off_overall</code></dt><dd><p>character.</p></dd>
-<dt><code>off_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_first_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_second_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_third_down</code></dt><dd><p>character.</p></dd>
-<dt><code>off_cumulative_total</code></dt><dd><p>character.</p></dd>
-<dt><code>off_cumulative_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>off_cumulative_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_overall</code></dt><dd><p>character.</p></dd>
-<dt><code>def_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_rushing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_first_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_second_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_third_down</code></dt><dd><p>character.</p></dd>
-<dt><code>def_cumulative_total</code></dt><dd><p>character.</p></dd>
-<dt><code>def_cumulative_passing</code></dt><dd><p>character.</p></dd>
-<dt><code>def_cumulative_rushing</code></dt><dd><p>character.</p></dd>
+<p><code>cfbd_metrics_wp_pregame()</code> - A data frame with 9 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>Season of game.</p></dd>
+<dt><code>season_type</code>: character.</dt><dd><p>Season type of game.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Game week of the season.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>home_team</code>: character.</dt><dd><p>Home team name.</p></dd>
+<dt><code>away_team</code>: character.</dt><dd><p>Away team name.</p></dd>
+<dt><code>spread</code>: integer.</dt><dd><p>Betting line provider spread.</p></dd>
+<dt><code>home_win_prob</code>: double.</dt><dd><p>Home win probability - pre-game prediction.</p></dd>
+<dt><code>away_win_prob</code>: double.</dt><dd><p>Away win probability - pre-game prediction.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_metrics_wp_pregame()</code> - A data frame with 9 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>season_type</code></dt><dd><p>character.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>game_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>home_team</code></dt><dd><p>character.</p></dd>
-<dt><code>away_team</code></dt><dd><p>character.</p></dd>
-<dt><code>spread</code></dt><dd><p>integer.</p></dd>
-<dt><code>home_win_prob</code></dt><dd><p>double.</p></dd>
-<dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
-
-</dl>
-
-<p><code>cfbfastR::cfbd_metrics_wp()</code> - A data frame with 16 variables:</p><dl>
-<dt><code>play_id</code></dt><dd><p>character.</p></dd>
-<dt><code>play_text</code></dt><dd><p>character.</p></dd>
-<dt><code>home_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>home</code></dt><dd><p>character.</p></dd>
-<dt><code>away_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>away</code></dt><dd><p>character.</p></dd>
-<dt><code>spread</code></dt><dd><p>character.</p></dd>
-<dt><code>home_ball</code></dt><dd><p>logical.</p></dd>
-<dt><code>home_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>away_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>down</code></dt><dd><p>integer.</p></dd>
-<dt><code>distance</code></dt><dd><p>integer.</p></dd>
-<dt><code>home_win_prob</code></dt><dd><p>character.</p></dd>
-<dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
-<dt><code>play_number</code></dt><dd><p>integer.</p></dd>
-<dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
+<p><code>cfbd_metrics_wp()</code> - A data frame with 16 variables:</p><dl>
+<dt><code>play_id</code>: character.</dt><dd><p>Play referencing id.</p></dd>
+<dt><code>play_text</code>: character.</dt><dd><p>A text description of the play.</p></dd>
+<dt><code>home_id</code>: integer.</dt><dd><p>Home team referencing id.</p></dd>
+<dt><code>home</code>: character.</dt><dd><p>Home team name.</p></dd>
+<dt><code>away_id</code>: integer.</dt><dd><p>Away team referencing id.</p></dd>
+<dt><code>away</code>: character.</dt><dd><p>Away team name.</p></dd>
+<dt><code>spread</code>: character.</dt><dd><p>Betting lines provider spread.</p></dd>
+<dt><code>home_ball</code>: logical.</dt><dd><p>Home team has the ball.</p></dd>
+<dt><code>home_score</code>: integer.</dt><dd><p>Home team score.</p></dd>
+<dt><code>away_score</code>: integer.</dt><dd><p>Away team score.</p></dd>
+<dt><code>down</code>: integer.</dt><dd><p>Down of the play.</p></dd>
+<dt><code>distance</code>: integer.</dt><dd><p>Distance to the sticks (to 1st down marker of goal-line in goal-to-go situations).</p></dd>
+<dt><code>home_win_prob</code>: character.</dt><dd><p>Home team win probability.</p></dd>
+<dt><code>away_win_prob</code>: double.</dt><dd><p>Away team win probability.</p></dd>
+<dt><code>play_number</code>: integer.</dt><dd><p>Game play number.</p></dd>
+<dt><code>yard_line</code>: integer.</dt><dd><p>Yard line of the play (0-100 yards).</p></dd>
 
 </dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-   <span class='fu'>cfbd_metrics_ppa_games</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"TCU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      game_id season week conference team            opponent
-#&gt; 1  401112129   2019    1     Big 12  TCU Arkansas-Pine Bluff
-#&gt; 2  401112130   2019    3     Big 12  TCU              Purdue
-#&gt; 3  401112131   2019    4     Big 12  TCU                 SMU
-#&gt; 4  401112100   2019    5     Big 12  TCU              Kansas
-#&gt; 5  401112088   2019    6     Big 12  TCU          Iowa State
-#&gt; 6  401112109   2019    8     Big 12  TCU        Kansas State
-#&gt; 7  401112132   2019    9     Big 12  TCU               Texas
-#&gt; 8  401112127   2019   10     Big 12  TCU      Oklahoma State
-#&gt; 9  401112081   2019   11     Big 12  TCU              Baylor
-#&gt; 10 401112133   2019   12     Big 12  TCU          Texas Tech
-#&gt; 11 401112120   2019   13     Big 12  TCU            Oklahoma
-#&gt; 12 401112134   2019   14     Big 12  TCU       West Virginia
-#&gt;                off_overall             off_passing             off_rushing
-#&gt; 1   0.08241186305860345043  0.03259498097069323880  0.30213438066559038833
-#&gt; 2   0.08173250143654040193 -0.44614832954363769296  0.33405733843114364759
-#&gt; 3   0.12805173802739761500 -0.08846116290854666297  0.36654623910464983444
-#&gt; 4   0.37980477698230694080  0.78655661643275015429  0.20971350983392199190
-#&gt; 5   0.21605826335116850744  0.28269887706827934234  0.15006991320185294848
-#&gt; 6   0.17260128796495778211 -0.12441396665521391818  0.43365808495710325486
-#&gt; 7   0.20698084486653880582  0.48632374347332391703  0.07353648391980303126
-#&gt; 8   0.17328600369176078556 -0.05705769773821963411  0.49035105957558059478
-#&gt; 9  -0.06865833078897910918 -0.13236496476247898744 -0.01526747509881401072
-#&gt; 10  0.17834444243321469006  0.31688820792717983355  0.13886388898391054204
-#&gt; 11 -0.05083715878025127875 -0.31997837919867942500  0.26633614126601881357
-#&gt; 12 -0.06194181125385135376 -0.20241655536927595733  0.11270722477046994538
-#&gt;             off_first_down         off_second_down          off_third_down
-#&gt; 1  -0.20159843289860946000  0.16366920054237664080  0.58551403040472245861
-#&gt; 2   0.27079034102799532486 -0.19877397463694024037 -0.08798092910733494235
-#&gt; 3   0.07260215428529003182 -0.06396901512995885000  1.02548942572988437400
-#&gt; 4   0.19702763485829827474  0.11626148254744460733     1.16148005244326480
-#&gt; 5   0.14885129959463354878  0.01850230015257219126  0.49933360660355287214
-#&gt; 6   0.04571706610992616987  0.32407825963859998329  0.27545997769413610464
-#&gt; 7   0.09843147512640150979  0.07005023456243352130  0.84989565541578161538
-#&gt; 8  -0.11765281167206434385 -0.06220660210522395575  0.96745562278317352576
-#&gt; 9  -0.36428435389659998300 -0.11587095952937641082  0.24522191873786508971
-#&gt; 10  0.03237018224774046744 -0.08520291710110368125  0.90352478887495377417
-#&gt; 11  0.05220330145507693763  0.05839241748523671857 -0.20688487695469620444
-#&gt; 12 -0.07144631308950564344 -0.19295948713853326485  0.09172792916758818263
-#&gt;                def_overall             def_passing             def_rushing
-#&gt; 1  -0.06065759968477334484 -0.03764388628367385833 -0.08223295599830411344
-#&gt; 2  -0.07172604564015880316  0.06622756332186603298 -0.30497106530997632519
-#&gt; 3   0.13316672532550978955  0.33654610756914049314 -0.01161724745831185059
-#&gt; 4  -0.17844223106411302960 -0.25720076930439847667 -0.02092515458354213547
-#&gt; 5   0.27457173408857221869  0.58903083846771642960  0.05619735604749985000
-#&gt; 6   0.08554617077395194118  0.36586225279700669692 -0.09375661446094303290
-#&gt; 7   0.15950811843307340064  0.24220219320228677698  0.06891801753034372259
-#&gt; 8   0.26014468455171187026  0.31978024626672079772  0.24618755013223392286
-#&gt; 9   0.09026708922179553863  0.03988212379269154615  0.12501085214633910097
-#&gt; 10  0.37692569218292957043  0.56659192536248324229  0.11064627870036864676
-#&gt; 11  0.07710727868487275291 -0.07967090377387716350  0.12850996145823338125
-#&gt; 12 -0.17351382675033815778 -0.01114062893380378294 -0.37828870505071153219
-#&gt;             def_first_down         def_second_down          def_third_down
-#&gt; 1  -0.16700986874297808500 -0.13233293632154340080  0.28193805643817073388
-#&gt; 2  -0.19435683665003450510 -0.20710938245377283553  0.27746531214695174552
-#&gt; 3   0.00775800428980242268  0.06422480960939882393  0.63689744497234984926
-#&gt; 4  -0.60936102206902615189  0.23564420504661706825 -0.07560993467168079000
-#&gt; 5   0.39667026117745750625  0.29608133264754008944  0.44067763958463332556
-#&gt; 6  -0.46996319677320162973  0.39901038024699069232  0.60529024434759816200
-#&gt; 7  -0.25431076437183043387  0.32334694063194480250  0.62207345277435232806
-#&gt; 8   0.13728238726108948408  0.19193172774527143541  0.66940019560297404308
-#&gt; 9  -0.00841583671847412003  0.01105745573177564382  0.18312928633478108044
-#&gt; 10  0.26177355823045406688  0.46618515785912839313  0.67305311608670412164
-#&gt; 11 -0.12283850980323885605  0.54123639796762696521 -0.18017457946905594250
-#&gt; 12 -0.41363822208132530680 -0.04927759951683955077  0.24736137563005778823</div><div class='input'><span class='co'># }</span>
-
-<span class='co'># \donttest{</span>
 <span class='fu'>cfbd_metrics_ppa_games</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"TCU"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      game_id season week conference team            opponent
 #&gt; 1  401112129   2019    1     Big 12  TCU Arkansas-Pine Bluff
@@ -771,26 +709,26 @@ Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info(
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_metrics_ppa_players_season</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"TCU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    season      id              name position team conference countable_plays
-#&gt; 1    2019 4427105        Max Duggan       QB  TCU     Big 12             456
-#&gt; 2    2019 4038533   Darius Anderson       RB  TCU     Big 12             171
-#&gt; 3    2019 4038539     Sewo Olonilua       RB  TCU     Big 12             155
-#&gt; 4    2019 4241802      Jalen Reagor       WR  TCU     Big 12              91
-#&gt; 5    2019 3886634       Alex Delton       QB  TCU     Big 12              63
-#&gt; 6    2019 4362430       Taye Barber       WR  TCU     Big 12              48
-#&gt; 7    2019 4362442         Pro Wells       TE  TCU     Big 12              28
-#&gt; 8    2019 4426635     Darwin Barlow       RB  TCU     Big 12              22
-#&gt; 9    2019 4362477      Derius Davis       WR  TCU     Big 12              21
-#&gt; 10   2019 4362478   Emari Demercado       RB  TCU     Big 12              17
-#&gt; 11   2019 4038556   Artayvious Lynn       TE  TCU     Big 12              15
-#&gt; 12   2019 4362489 John Stephens Jr.       WR  TCU     Big 12              15
-#&gt; 13   2019 4038536      Dylan Thomas       WR  TCU     Big 12              10
-#&gt; 14   2019 4362483   Tevailance Hunt       WR  TCU     Big 12               9
-#&gt; 15   2019 3676818  TreVontae Hights       WR  TCU     Big 12               9
-#&gt; 16   2019 4427217  Daimarqua Foster       RB  TCU     Big 12               8
-#&gt; 17   2019 4426965   Blair Conwright       WR  TCU     Big 12               4
-#&gt; 18   2019 4259331       Carter Ware       TE  TCU     Big 12               2
-#&gt; 19   2019 4241795   Al'Dontre Davis       WR  TCU     Big 12               1
+</div><div class='output co'>#&gt;    season athlete_id              name position team conference countable_plays
+#&gt; 1    2019    4427105        Max Duggan       QB  TCU     Big 12             456
+#&gt; 2    2019    4038533   Darius Anderson       RB  TCU     Big 12             171
+#&gt; 3    2019    4038539     Sewo Olonilua       RB  TCU     Big 12             155
+#&gt; 4    2019    4241802      Jalen Reagor       WR  TCU     Big 12              91
+#&gt; 5    2019    3886634       Alex Delton       QB  TCU     Big 12              63
+#&gt; 6    2019    4362430       Taye Barber       WR  TCU     Big 12              48
+#&gt; 7    2019    4362442         Pro Wells       TE  TCU     Big 12              28
+#&gt; 8    2019    4426635     Darwin Barlow       RB  TCU     Big 12              22
+#&gt; 9    2019    4362477      Derius Davis       WR  TCU     Big 12              21
+#&gt; 10   2019    4362478   Emari Demercado       RB  TCU     Big 12              17
+#&gt; 11   2019    4038556   Artayvious Lynn       TE  TCU     Big 12              15
+#&gt; 12   2019    4362489 John Stephens Jr.       WR  TCU     Big 12              15
+#&gt; 13   2019    4038536      Dylan Thomas       WR  TCU     Big 12              10
+#&gt; 14   2019    4362483   Tevailance Hunt       WR  TCU     Big 12               9
+#&gt; 15   2019    3676818  TreVontae Hights       WR  TCU     Big 12               9
+#&gt; 16   2019    4427217  Daimarqua Foster       RB  TCU     Big 12               8
+#&gt; 17   2019    4426965   Blair Conwright       WR  TCU     Big 12               4
+#&gt; 18   2019    4259331       Carter Ware       TE  TCU     Big 12               2
+#&gt; 19   2019    4241795   Al'Dontre Davis       WR  TCU     Big 12               1
 #&gt;    avg_PPA_all avg_PPA_pass avg_PPA_rush avg_PPA_first_down avg_PPA_second_down
 #&gt; 1        0.175        0.079        0.513             -0.009               0.031
 #&gt; 2        0.065       -0.179        0.107              0.038               0.001
@@ -1104,7 +1042,7 @@ Can be found using the <code><a href='cfbd_games.html'>cfbfastR::cfbd_game_info(
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401012356</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:35:26: Invalid arguments or no CFBData metrics win probability data available!</span></div><div class='output co'>#&gt;                play_id
+</div><div class='output co'>#&gt; <span class='message'>2021-04-22 22:04:16: Invalid arguments or no CFBData metrics win probability data available!</span></div><div class='output co'>#&gt;                play_id
 #&gt; 1   401012356101855402
 #&gt; 2   401012356101855901
 #&gt; 3   401012356101856401

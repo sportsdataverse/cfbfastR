@@ -55,19 +55,24 @@
   
 
 <meta property="og:title" content="CFBD Teams Endpoint — cfbd_teams" />
-<meta property="og:description" content="CFBD Teams Endpoint
+<meta property="og:description" content="
+
+cfbd_team_info(): Team Info Lookup.
+cfbd_team_matchup_records(): Get matchup history records between two teams..
+cfbd_team_matchup(): Get matchup history between two teams..
+cfbd_team_roster(): Get a team's full roster by year..
+cfbd_team_talent(): Get composite team talent rankings for all teams in a given year.
+
+
 Team Info Lookup
+
+
 Lists all teams in conference or all D-I teams if conference is left NULL
-Current support only for D-I
-Get matchup history records between two teams.
-Get matchup history between two teams.
-Team Roster
-Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
-Get composite team talent rankings for all teams in a given year
-Extracts team talent composite as sourced from 247 rankings" />
+Currently, support is only provided for D-I
+" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -101,7 +106,7 @@ Extracts team talent composite as sourced from 247 rankings" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -125,17 +130,45 @@ Extracts team talent composite as sourced from 247 rankings" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -159,13 +192,7 @@ Extracts team talent composite as sourced from 247 rankings" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -182,14 +209,15 @@ Extracts team talent composite as sourced from 247 rankings" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -219,6 +247,7 @@ Extracts team talent composite as sourced from 247 rankings" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -231,22 +260,12 @@ Extracts team talent composite as sourced from 247 rankings" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -275,6 +294,23 @@ Extracts team talent composite as sourced from 247 rankings" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -317,16 +353,21 @@ Extracts team talent composite as sourced from 247 rankings" />
     </div>
 
     <div class="ref-description">
-    <p>CFBD Teams Endpoint</p>
-<p>Team Info Lookup
-Lists all teams in conference or all D-I teams if conference is left NULL
-Current support only for D-I</p>
-<p>Get matchup history records between two teams.</p>
-<p>Get matchup history between two teams.</p>
-<p>Team Roster
-Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.</p>
-<p>Get composite team talent rankings for all teams in a given year
-Extracts team talent composite as sourced from 247 rankings</p>
+    
+<dl>
+<dt><code>cfbd_team_info()</code>: Team Info Lookup</dt><dd><p>.</p></dd>
+<dt><code>cfbd_team_matchup_records()</code>: Get matchup history records between two teams.</dt><dd><p>.</p></dd>
+<dt><code>cfbd_team_matchup()</code>: Get matchup history between two teams.</dt><dd><p>.</p></dd>
+<dt><code>cfbd_team_roster()</code>: Get a team's full roster by year.</dt><dd><p>.</p></dd>
+<dt><code>cfbd_team_talent()</code>: Get composite team talent rankings for all teams in a given year</dt><dd><p>.</p></dd>
+
+</dl>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Team Info Lookup</h3>
+
+
+<p>Lists all teams in conference or all D-I teams if conference is left NULL
+Currently, support is only provided for D-I</p>
+
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_team_info</span><span class='op'>(</span>
@@ -409,86 +450,85 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 <p><a href='https://api.collegefootballdata.com/talent'>https://api.collegefootballdata.com/talent</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbfastR::cfbd_team_info()</code> - A data frame with 12 variables:</p><dl>
-<dt><code>team_id</code></dt><dd><p>integer.</p></dd>
-<dt><code>school</code></dt><dd><p>character.</p></dd>
-<dt><code>mascot</code></dt><dd><p>character.</p></dd>
-<dt><code>abbreviation</code></dt><dd><p>character.</p></dd>
-<dt><code>alt_name1</code></dt><dd><p>character.</p></dd>
-<dt><code>alt_name2</code></dt><dd><p>character.</p></dd>
-<dt><code>alt_name3</code></dt><dd><p>character.</p></dd>
-<dt><code>conference</code></dt><dd><p>character.</p></dd>
-<dt><code>division</code></dt><dd><p>character.</p></dd>
-<dt><code>color</code></dt><dd><p>character.</p></dd>
-<dt><code>alt_color</code></dt><dd><p>character.</p></dd>
-<dt><code>logo_1</code></dt><dd><p>character.</p></dd>
-<dt><code>logo_2</code></dt><dd><p>character.</p></dd>
-<dt><code>venue_id</code></dt><dd><p>character.</p></dd>
-<dt><code>venue_name</code></dt><dd><p>character.</p></dd>
-<dt><code>city</code></dt><dd><p>character.</p></dd>
-<dt><code>state</code></dt><dd><p>character.</p></dd>
-<dt><code>zip</code></dt><dd><p>character.</p></dd>
-<dt><code>country_code</code></dt><dd><p>character.</p></dd>
-<dt><code>timezone</code></dt><dd><p>character.</p></dd>
-<dt><code>latitude</code></dt><dd><p>character.</p></dd>
-<dt><code>longitude</code></dt><dd><p>character.</p></dd>
-<dt><code>elevation</code></dt><dd><p>character.</p></dd>
-<dt><code>capacity</code></dt><dd><p>character.</p></dd>
-<dt><code>year_constructed</code></dt><dd><p>character.</p></dd>
-<dt><code>grass</code></dt><dd><p>character.</p></dd>
-<dt><code>dome</code></dt><dd><p>character.</p></dd>
+    <p><code>cfbd_team_info()</code> - A data frame with 12 variables:</p><dl>
+<dt><code>team_id</code>: integer.</dt><dd><p>Referencing team id.</p></dd>
+<dt><code>school</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>mascot</code>: character.</dt><dd><p>Team mascot.</p></dd>
+<dt><code>abbreviation</code>: character.</dt><dd><p>Team abbreviations.</p></dd>
+<dt><code>alt_name1</code>: character.</dt><dd><p>Team alternate name 1 (as it appears in <code>play_text</code>).</p></dd>
+<dt><code>alt_name2</code>: character.</dt><dd><p>Team alternate name 2 (as it appears in <code>play_text</code>).</p></dd>
+<dt><code>alt_name3</code>: character.</dt><dd><p>Team alternate name 3 (as it appears in <code>play_text</code>).</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of team.</p></dd>
+<dt><code>division</code>: character.</dt><dd><p>Division of team within the conference.</p></dd>
+<dt><code>color</code>: character.</dt><dd><p>Team color (primary).</p></dd>
+<dt><code>alt_color</code>: character.</dt><dd><p>Team color (alternate).</p></dd>
+<dt><code>logos</code>: character.</dt><dd><p>Team logos.</p></dd>
+<dt><code>venue_id</code>: character.</dt><dd><p>Referencing venue id.</p></dd>
+<dt><code>venue_name</code>: character.</dt><dd><p>Stadium name.</p></dd>
+<dt><code>city</code>: character.</dt><dd><p>Team/venue city.</p></dd>
+<dt><code>state</code>: character.</dt><dd><p>Team/venue state.</p></dd>
+<dt><code>zip</code>: character.</dt><dd><p>Team/venue zip code (someone double check Miami (FL) on if they're in the same zip code).</p></dd>
+<dt><code>country_code</code>: character.</dt><dd><p>Team/venue country code.</p></dd>
+<dt><code>timezone</code>: character.</dt><dd><p>Team/venue timezone.</p></dd>
+<dt><code>latitude</code>: character.</dt><dd><p>Venue latitude.</p></dd>
+<dt><code>longitude</code>: character.</dt><dd><p>Venue longitude.</p></dd>
+<dt><code>elevation</code>: character.</dt><dd><p>Venue elevation.</p></dd>
+<dt><code>capacity</code>: character.</dt><dd><p>Venue capacity.</p></dd>
+<dt><code>year_constructed</code>: character.</dt><dd><p>Year the venue was constructed.</p></dd>
+<dt><code>grass</code>: character.</dt><dd><p>TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).</p></dd>
+<dt><code>dome</code>: character.</dt><dd><p>TRUE/FALSE flag for if the venue is a domed stadium.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_team_matchup_records()</code> - A data frame with 7 variables:</p><dl>
-<dt><code>start_year</code></dt><dd><p>character.</p></dd>
-<dt><code>end_year</code></dt><dd><p>character.</p></dd>
-<dt><code>team1</code></dt><dd><p>character.</p></dd>
-<dt><code>team1_wins</code></dt><dd><p>character.</p></dd>
-<dt><code>team2</code></dt><dd><p>character.</p></dd>
-<dt><code>team2_wins</code></dt><dd><p>character.</p></dd>
-<dt><code>ties</code></dt><dd><p>character.</p></dd>
+<p><code>cfbd_team_matchup_records()</code> - A data frame with 7 variables:</p><dl>
+<dt><code>start_year</code>: character.</dt><dd><p>Span starting year.</p></dd>
+<dt><code>end_year</code>: character.</dt><dd><p>Span ending year.</p></dd>
+<dt><code>team1</code>: character.</dt><dd><p>First team selected in query.</p></dd>
+<dt><code>team1_wins</code>: character.</dt><dd><p>First team wins in series against <code>team2</code>.</p></dd>
+<dt><code>team2</code>: character.</dt><dd><p>Second team selected in query.</p></dd>
+<dt><code>team2_wins</code>: character.</dt><dd><p>Second team wins in series against <code>team1</code>.</p></dd>
+<dt><code>ties</code>: character.</dt><dd><p>Number of ties in the series.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_team_matchup()</code> - A data frame with 11 variables:</p><dl>
-<dt><code>season</code></dt><dd><p>integer.</p></dd>
-<dt><code>week</code></dt><dd><p>integer.</p></dd>
-<dt><code>season_type</code></dt><dd><p>character.</p></dd>
-<dt><code>date</code></dt><dd><p>character.</p></dd>
-<dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
-<dt><code>venue</code></dt><dd><p>character.</p></dd>
-<dt><code>home_team</code></dt><dd><p>character.</p></dd>
-<dt><code>home_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>away_team</code></dt><dd><p>character.</p></dd>
-<dt><code>away_score</code></dt><dd><p>integer.</p></dd>
-<dt><code>winner</code></dt><dd><p>character.</p></dd>
+<p>cfbd_team_matchup - A data frame with 11 variables:</p><dl>
+<dt><code>season</code>: integer.</dt><dd><p>Season the game took place.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Game week of the season.</p></dd>
+<dt><code>season_type</code>: character.</dt><dd><p>Season type of the game.</p></dd>
+<dt><code>date</code>: character.</dt><dd><p>Game date.</p></dd>
+<dt><code>neutral_site</code>: logical.</dt><dd><p>TRUE/FALSE flag for if the game took place at a neutral site.</p></dd>
+<dt><code>venue</code>: character.</dt><dd><p>Stadium name.</p></dd>
+<dt><code>home_team</code>: character.</dt><dd><p>Home team of the game.</p></dd>
+<dt><code>home_score</code>: integer.</dt><dd><p>Home score in the game.</p></dd>
+<dt><code>away_team</code>: character.</dt><dd><p>Away team of the game.</p></dd>
+<dt><code>away_score</code>: integer.</dt><dd><p>Away score in the game.</p></dd>
+<dt><code>winner</code>: character.</dt><dd><p>Winner of the matchup.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_team_roster()</code> - A data frame with 12 variables:</p><dl>
-<dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
-<dt><code>first_name</code></dt><dd><p>character.</p></dd>
-<dt><code>last_name</code></dt><dd><p>character.</p></dd>
-<dt><code>team</code></dt><dd><p>character.</p></dd>
-<dt><code>weight</code></dt><dd><p>integer.</p></dd>
-<dt><code>height</code></dt><dd><p>integer.</p></dd>
-<dt><code>jersey</code></dt><dd><p>integer.</p></dd>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>position</code></dt><dd><p>character.</p></dd>
-<dt><code>home_city</code></dt><dd><p>character.</p></dd>
-<dt><code>home_state</code></dt><dd><p>character.</p></dd>
-<dt><code>home_country</code></dt><dd><p>character.</p></dd>
-<dt><code>home_latitude</code></dt><dd><p>numeric.</p></dd>
-<dt><code>home_longitude</code></dt><dd><p>number.</p></dd>
-<dt><code>home_county_fips</code></dt><dd><p>integer.</p></dd>
+<p><code>cfbd_team_roster()</code> - A data frame with 12 variables:</p><dl>
+<dt><code>athlete_id</code>: character.</dt><dd><p>Referencing athlete id.</p></dd>
+<dt><code>first_name</code>: character.</dt><dd><p>Athlete first name.</p></dd>
+<dt><code>last_name</code>: character.</dt><dd><p>Athlete last name.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>weight</code>: integer.</dt><dd><p>Athlete weight.</p></dd>
+<dt><code>height</code>: integer.</dt><dd><p>Athlete height.</p></dd>
+<dt><code>jersey</code>: integer.</dt><dd><p>Athlete jersey number.</p></dd>
+<dt><code>year</code>: integer.</dt><dd><p>Athlete year.</p></dd>
+<dt><code>position</code>: character.</dt><dd><p>Athlete position.</p></dd>
+<dt><code>home_city</code>: character.</dt><dd><p>Hometown of the athlete.</p></dd>
+<dt><code>home_state</code>: character.</dt><dd><p>Hometown state of the athlete.</p></dd>
+<dt><code>home_country</code>: character.</dt><dd><p>Hometown country of the athlete.</p></dd>
+<dt><code>home_latitude</code>: numeric.</dt><dd><p>Hometown latitude.</p></dd>
+<dt><code>home_longitude</code>: number.</dt><dd><p>Hometown longitude.</p></dd>
+<dt><code>home_county_fips</code>: integer.</dt><dd><p>Hometown FIPS code.</p></dd>
 
 </dl>
 
-<p><code>cfbfastR::cfbd_team_talent()</code> - A data frame with 3 variables:</p><dl>
-<dt><code>year</code></dt><dd><p>integer.</p></dd>
-<dt><code>school</code></dt><dd><p>character.</p></dd>
-<dt><code>talent</code></dt><dd><p>double.</p></dd>
+<p><code>cfbd_team_talent()</code> - A data frame with 3 variables:</p><dl>
+<dt><code>year</code>: integer.</dt><dd><p>Season for the talent rating.</p></dd>
+<dt><code>school</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>talent</code>: double.</dt><dd><p>Overall roster talent points (as determined by 247Sports).</p></dd>
 
 </dl>
 
@@ -1678,7 +1718,6 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 #&gt; 128             1980 FALSE FALSE
 #&gt; 129             1917 FALSE FALSE
 #&gt; 130             1950 FALSE FALSE</div><div class='input'><span class='co'># }</span>
-
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_matchup_records</span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
@@ -1689,13 +1728,13 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:30:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-22 22:04:49:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:34:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-22 22:04:50:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:38:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-22 22:04:51:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Florida State"</span>, <span class='st'>"Florida"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-19 02:36:38:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-22 22:04:51:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_roster</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>

@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create EPA
-Adds Expected Points calculations to Play-by-Play data.frame — create_epa • cfbfastR</title>
+<title>Create EPA — create_epa • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -55,13 +54,11 @@ Adds Expected Points calculations to Play-by-Play data.frame — create_epa • 
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create EPA
-Adds Expected Points calculations to Play-by-Play data.frame — create_epa" />
-<meta property="og:description" content="Create EPA
-Adds Expected Points calculations to Play-by-Play data.frame" />
+<meta property="og:title" content="Create EPA — create_epa" />
+<meta property="og:description" content="Adds Expected Points calculations to Play-by-Play data.frame" />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="@cfbfastR" />
 <meta name="twitter:site" content="@cfbfastR" />
 
@@ -95,7 +92,7 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -119,17 +116,45 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
     <li>
       <a href="../reference/index.html">Function Index</a>
     </li>
-    <li>
-      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
-    </li>
-    <li>
-      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
-    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">cfbfastR Data</li>
     <li>
       <a href="../reference/load_cfb_pbp.html">Load Full Season PBP Data</a>
     </li>
     <li>
       <a href="../reference/update_cfb_db.html">Update or Create Database</a>
+    </li>
+    <li>
+      <a href="../reference/cfbd_pbp_data.html">Play-by-Play Data</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">CFB Data</li>
+    <li class="dropdown-submenu">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Using the API</a>
+      <ul class="dropdown-menu" role="menu">
+        <li class="dropdown-header">Tutorials</li>
+        <li>
+          <a href="../articles/cfbd_betting.html">CFBD Betting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_games.html">CFBD Games</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_plays.html">CFBD Plays</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_recruiting.html">CFBD Recruiting</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_stats.html">CFBD Stats</a>
+        </li>
+        <li>
+          <a href="../articles/cfbd_teams.html">CFBD Teams</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="../reference/register_cfbd.html">CFBD API Keys</a>
     </li>
     <li>
       <a href="../reference/cfbd_games.html">Games</a>
@@ -153,13 +178,7 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
       <a href="../reference/cfbd_metrics.html">Metrics</a>
     </li>
     <li>
-      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
-    </li>
-    <li>
       <a href="../reference/cfbd_ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
     </li>
     <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
@@ -176,14 +195,15 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
     <li>
       <a href="../reference/cfbd_venues.html">Venues</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">ESPN Data</li>
+    <li>
+      <a href="../reference/espn_metrics.html">ESPN Metrics</a>
+    </li>
+    <li>
+      <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
-     
-     News
-  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -213,6 +233,7 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -225,22 +246,12 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-database"></span>
+<li>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
      
-     Data
-     
-    <span class="caret"></span>
+     News
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
-    </li>
-    <li>
-      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="http://gameonpaper.com/cfb">
@@ -269,6 +280,23 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
     </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbrecruitR/">cfbrecruitR</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa-database"></span>
+     
+     Data
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-data">Data Repository</a>
+    </li>
+    <li>
+      <a href="https://github.com/saiemgilani/cfbfastR-raw">Raw Data Repository</a>
     </li>
   </ul>
 </li>
@@ -305,45 +333,57 @@ Adds Expected Points calculations to Play-by-Play data.frame" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create EPA
-Adds Expected Points calculations to Play-by-Play data.frame</h1>
+    <h1>Create EPA</h1>
     
     <div class="hidden name"><code>create_epa.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create EPA
-Adds Expected Points calculations to Play-by-Play data.frame</p>
+    <p>Adds Expected Points calculations to Play-by-Play data.frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_epa</span><span class='op'>(</span><span class='va'>play_df</span>, <span class='va'>ep_model</span>, <span class='va'>fg_model</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>create_epa</span><span class='op'>(</span><span class='va'>play_df</span>, <span class='va'>ep_model</span>, <span class='va'>fg_model</span><span class='op'>)</span>
+
+<span class='fu'>epa_fg_probs</span><span class='op'>(</span><span class='va'>dat</span>, <span class='va'>current_probs</span>, <span class='va'>ep_model</span>, <span class='va'>fg_mod</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ep_model</th>
-      <td><p>(<em>model</em> default cfbfastR:::ep_model): Expected Points (EP) Model</p></td>
+      <td><p>(<strong>model</strong>, default <code>cfbfastR</code>'s <code>ep_model</code>): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame</p></td>
     </tr>
     <tr>
       <th>fg_model</th>
-      <td><p>(<em>model</em> default cfbfastR:::fg_model): Field Goal (FG) Model</p></td>
+      <td><p>(<em>model</em> default <code>cfbfastR</code>'s <code>fg_model</code>): Field Goal (FG) Model</p></td>
+    </tr>
+    <tr>
+      <th>current_probs</th>
+      <td><p>(<strong>data.frame</strong> required): Expected Points (EP) model raw probability outputs from initial prediction</p></td>
+    </tr>
+    <tr>
+      <th>fg_mod</th>
+      <td><p>(<strong>model</strong>, default <code>cfbfastR</code>'s <code>fg_model</code>): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame</p></td>
     </tr>
     <tr>
       <th>clean_pbp_dat</th>
-      <td><p>(<em>data.frame</em> required): Clean PBP as input from <code><a href='cfbd_pbp_data.html'>cfbfastR::cfbd_pbp_data()</a></code>)</p></td>
+      <td><p>(<em>data.frame</em> required): Clean PBP as input from <code><a href='cfbd_pbp_data.html'>cfbd_pbp_data()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>df</th>
+      <td><p>(<strong>data.frame</strong> required): Clean Play-By-Play data.frame as can be pulled from <code><a href='helpers_pbp.html'>clean_pbp_dat()</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Code Description</p><dl>
-<dt>1. <code>pred_df</code></dt><dd><p>Use select before play model variables -&gt; Make predictions.</p></dd>
-<dt>2. <code>epa_fg_probs</code></dt><dd><p>Update expected points predictions from before variables with FG make/miss probability weighted adjustment.</p></dd>
-<dt>3. <code>pred_df_after</code></dt><dd><p>Use select after play model variables -&gt; Make predictions .</p></dd>
-<dt>4. <code>join_ep</code></dt><dd><p>Join <code>ep_before</code> calcs <code>pred_df</code> with ep_after calcs <code>pred_df_after</code> on c("game_id","drive_id","new_id").</p></dd>
-<dt>5. <code>kickoffs</code></dt><dd><p>Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.</p></dd>
-<dt>6. <code>wpa_prep</code></dt><dd><p>Prep variables for WPA.</p></dd>
+<dt>1. <code>pred_df</code>:</dt><dd><p>Use select before play model variables -&gt; Make predictions.</p></dd>
+<dt>2. <code>epa_fg_probs</code>:</dt><dd><p>Update expected points predictions from before variables with FG make/miss probability weighted adjustment.</p></dd>
+<dt>3. <code>pred_df_after</code>:</dt><dd><p>Use select after play model variables -&gt; Make predictions.</p></dd>
+<dt>4. <code>join_ep</code>:</dt><dd><p>Join <code>ep_before</code> calcs <code>pred_df</code> with <code>ep_after</code> calcs <code>pred_df_after</code> on c("game_id","drive_id","new_id").</p></dd>
+<dt>5. <code>kickoffs</code>:</dt><dd><p>Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.</p></dd>
+<dt>6. <code>wpa_prep</code>:</dt><dd><p>Prep variables for WPA.</p></dd>
 
 </dl>
 
