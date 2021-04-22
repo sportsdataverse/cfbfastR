@@ -1,6 +1,14 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part III"
-author: "Saiem Gilani"
+description: "A brief history of expected points models. Learn about Virgil Carter's 1970 paper and the origins of the nflscrapR expected points model (which the cfbscrapR package used). The cfbfastR package includes support for this model as well."
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: man/figures/logo.png
+  twitter:
+    creator: "@saiemgilani"
+    card: summary
+    site: "@cfbfastR"
 output: html_document
 ---
 
@@ -17,7 +25,7 @@ The entire purpose of these series of articles is to show you as transparently a
 
 ## The Data
 
-We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of @[CFB_data](https://twitter.com/CFB_data), using  `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Meyappan Subbaiah](https://twitter.com/msubbaiah1), and [Parker Fleming](https://twitter.com/statsowar).
+We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of \@[CFB\_data](https://twitter.com/CFB_data), using `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay Easwaran](https://twitter.com/akeaswaran), [Jared Lee](https://twitter.com/JaredDLee) and [Eric Hess](https://twitter.com/arbitanalytics).
 
 # An Abridged History of Expected Points Models in Football
 ## Field Position models
@@ -67,7 +75,7 @@ His other consideration was that he limited the data to plays where the score di
 
 Trey Causey did a quality write-up on a very similar style [model](http://thespread.us/expected-points.html) and has done some interesting [nearest-neighbors](http://thespread.us/clustering.html) player similarity modeling that is worth reading and, at the time, was reproducible. 
 
-So all of these models are curve fitting attempts that lead us to the topic of regression. Let us survey different types of regression before continuing.
+So all of these models are curve fitting attempts that lead us to the topic of regression. 
 
 ## Game-State Situational Probability models
 Alok Pattani’s 2012 writeup on [ESPN’s NFL Expected Points model](https://www.espn.com/nfl/story/_/id/8379024/nfl-explaining-expected-points-metric), which additionally included home-field advantage and time remaining, left a lot of the detail out, giving few reproducible details. 
@@ -76,7 +84,7 @@ However, in subsequent years, more details regarding the technical specifics of 
 
 Additionally, Kenneth Goldner wrote a paper in 2017 about using a Markov modeling of a possession with stochastic processes which I have been unable to get my hands on. EDIT: A very kind Columbia professor saw this article and sent me the paper. Among other things, the paper demonstrates that on 1st and 10 at any point on the field, the expected points is positive.
 
-In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from the Carnegie Mellon University Statistics department started presenting “[NFL Player Evaluation Using Expected Points Added with nflscrapR](https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf)” at conferences and ultimately published the [nflWAR](https://www.degruyter.com/view/journals/jqas/15/3/article-p163.xml?tab_body=pdf-74962) paper in the Journal of Quantitative Analysis in Sports. 
+In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from Carnegie Mellon University's Statistics department started presenting “[NFL Player Evaluation Using Expected Points Added with nflscrapR](https://www.stat.cmu.edu/~ryurko/files/greatlakes_2017.pdf)” at conferences and ultimately published the [nflWAR](https://www.degruyter.com/view/journals/jqas/15/3/article-p163.xml?tab_body=pdf-74962) paper in the Journal of Quantitative Analysis in Sports. 
 
 (That is a seminal work in football analytics and if you were to only click one link to read more on, that is the paper you should look at.)
 

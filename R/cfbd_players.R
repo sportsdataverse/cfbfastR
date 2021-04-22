@@ -1,9 +1,12 @@
-#' CFBD Players Endpoint
 #' @name cfbd_players
-NULL
-#' Player Information Search
-#' @rdname cfbd_players
-#'
+#' @aliases cfbd_player cfbd_player_info cfbd_player_returning cfbd_player_usage
+#' @title CFBD Players Endpoint
+#' @description 
+#' \describe{
+#' \item{`cfbd_player_info()`:}{Player Information Search.}
+#' \item{`cfbd_player_returning()`:}{Player Returning Production}
+#' \item{`cfbd_player_usage()`:}{Player Usage.}
+#' }
 #' @param search_term (\emph{String} required): Search term for the player you are trying to look up
 #' @param position (\emph{string} optional): Position of the player you are searching for.\cr
 #' Position Group  - options include:\cr
@@ -14,23 +17,85 @@ NULL
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).\cr
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} - A data frame with 12 variables:
+#' @return [cfbd_player_info()] - A data frame with 12 variables:
 #' \describe{
-#'   \item{\code{athlete_id}}{character. Unique player identifier `athlete_id`.}
-#'   \item{\code{team}}{character. Team of the player.}
-#'   \item{\code{name}}{character. Player name.}
-#'   \item{\code{first_name}}{character. Player first name.}
-#'   \item{\code{last_name}}{character. Player last name.}
-#'   \item{\code{weight}}{integer. Player weight.}
-#'   \item{\code{height}}{integer. Player height.}
-#'   \item{\code{jersey}}{integer. Player jersey number.}
-#'   \item{\code{position}}{character. Player position.}
-#'   \item{\code{home_town}}{character. Player home town.}
-#'   \item{\code{team_color}}{character. Player team color.}
-#'   \item{\code{team_color_secondary}}{character. Player team secondary color.}
+#'   \item{`athlete_id`:character.}{Unique player identifier `athlete_id`.}
+#'   \item{`team`:character.}{Team of the player.}
+#'   \item{`name`:character.}{Player name.}
+#'   \item{`first_name`:character.}{Player first name.}
+#'   \item{`last_name`:character.}{Player last name.}
+#'   \item{`weight`:integer.}{Player weight.}
+#'   \item{`height`:integer.}{Player height.}
+#'   \item{`jersey`:integer.}{Player jersey number.}
+#'   \item{`position`:character.}{Player position.}
+#'   \item{`home_town`:character.}{Player home town.}
+#'   \item{`team_color`:character.}{Player team color.}
+#'   \item{`team_color_secondary`:character.}{Player team secondary color.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/search}
 #' @keywords Players
+#' @details [`cfbd_player_returning()`]
+#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
+#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
+#' @return [cfbd_player_returning()] - A data frame with 15 variables:
+#' \describe{
+#'   \item{`season`:integer.}{Returning player season.}
+#'   \item{`team`:character.}{Team name.}
+#'   \item{`conference`:character.}{Conference of team.}
+#'   \item{`total_ppa`:double.}{Total predicted points added returning.}
+#'   \item{`total_passing_ppa`:double.}{Total passing predicted points added returning.}
+#'   \item{`total_receiving_ppa`:double.}{Total receiving predicted points added returning.}
+#'   \item{`total_rushing_ppa`:double.}{Total rushing predicted points added returning.}
+#'   \item{`percent_ppa`:double.}{Percentage of prior year's predicted points added returning.}
+#'   \item{`percent_passing_ppa`:double.}{Percentage of prior year's passing predicted points added returning.}
+#'   \item{`percent_receiving_ppa`:double.}{Percentage of prior year's receiving predicted points added returning.}
+#'   \item{`percent_rushing_ppa`:double.}{Percentage of prior year's rushing predicted points added returning.}
+#'   \item{`usage`:double.}{.}
+#'   \item{`passing_usage`:double.}{.}
+#'   \item{`receiving_usage`:double.}{.}
+#'   \item{`rushing_usage`:double.}{.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/player/returning}
+#' @keywords Returning Production
+#' 
+#' @details [cfbd_player_usage()]
+#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
+#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conferencer\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
+#' Position Group  - options include:\cr
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+#'  * Special Teams: K, P, LS, PK
+#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
+#' Can be found using the [cfbd_player_info()] function.
+#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
+#' @return [cfbd_player_usage()] - A data frame with 14 variables:
+#' \describe{
+#'   \item{`season`: integer.}{Player usage season.}
+#'   \item{`athlete_id`: character.}{Referencing athlete id.}
+#'   \item{`name`: character.}{Athlete name.}
+#'   \item{`position`: character.}{Athlete position.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of team.}
+#'   \item{`usg_overall`: double.}{Player usage of overall offense.}
+#'   \item{`usg_pass`: double.}{Player passing usage percentage.}
+#'   \item{`usg_rush`: double.}{Player rushing usage percentage.}
+#'   \item{`usg_1st_down`: double.}{Player first down usage percentage.}
+#'   \item{`usg_2nd_down`: double.}{Player second down usage percentage.}
+#'   \item{`usg_3rd_down`: double.}{Player third down usage percentage.}
+#'   \item{`usg_standard_downs`: double.}{Player standard down usage percentage.}
+#'   \item{`usg_passing_downs`: double.}{Player passing down usage percentage.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/player/usage}
+#' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -136,34 +201,7 @@ cfbd_player_info <- function(search_term,
 }
 
 
-#' Player Returning Production
 #' @rdname cfbd_players
-#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_player_returning]{cfbfastR::cfbd_player_returning()}} - A data frame with 15 variables:
-#' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{total_ppa}}{double.}
-#'   \item{\code{total_passing_ppa}}{double.}
-#'   \item{\code{total_receiving_ppa}}{double.}
-#'   \item{\code{total_rushing_ppa}}{double.}
-#'   \item{\code{percent_ppa}}{double.}
-#'   \item{\code{percent_passing_ppa}}{double.}
-#'   \item{\code{percent_receiving_ppa}}{double.}
-#'   \item{\code{percent_rushing_ppa}}{double.}
-#'   \item{\code{usage}}{double.}
-#'   \item{\code{passing_usage}}{double.}
-#'   \item{\code{receiving_usage}}{double.}
-#'   \item{\code{rushing_usage}}{double.}
-#' }
-#' @source \url{https://api.collegefootballdata.com/player/returning}
-#' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -263,41 +301,7 @@ cfbd_player_returning <- function(year = 2019,
 }
 
 
-#' Player Usage
 #' @rdname cfbd_players
-#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
-#' Position Group  - options include:\cr
-#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
-#'  * Special Teams: K, P, LS, PK
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return \code{\link[cfbfastR:cfbd_player_usage]{cfbfastR::cfbd_player_usage()}} - A data frame with 14 variables:
-#' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{usg_overall}}{double.}
-#'   \item{\code{usg_pass}}{double.}
-#'   \item{\code{usg_rush}}{double.}
-#'   \item{\code{usg_1st_down}}{double.}
-#'   \item{\code{usg_2nd_down}}{double.}
-#'   \item{\code{usg_3rd_down}}{double.}
-#'   \item{\code{usg_standard_downs}}{double.}
-#'   \item{\code{usg_passing_downs}}{double.}
-#' }
-#' @source \url{https://api.collegefootballdata.com/player/usage}
-#' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode

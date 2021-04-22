@@ -7,15 +7,16 @@ NULL
 #' @rdname espn_metrics
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #'
-#' @return espn_metrics_wp - A data frame with 5 variables:
+#' @return [espn_metrics_wp()] - A data frame with 5 variables:
 #' \describe{
-#'   \item{\code{espn_game_id}}{character.}
-#'   \item{\code{play_id}}{character.}
-#'   \item{\code{seconds_left}}{integer.}
-#'   \item{\code{home_win_percentage}}{double.}
-#'   \item{\code{away_win_percentage}}{double.}
+#'   \item{`game_id`: character.}{Referencing game ID (should be same as `game_id` from other functions).}
+#'   \item{`play_id`: character.}{Referencing play ID.}
+#'   \item{`seconds_left`: integer.}{Seconds left in the game.}
+#'   \item{`home_win_percentage`: double.}{The probability of the home team winning the game.}
+#'   \item{`away_win_percentage`: double.}{The probability of the away team winning the game (calculated as 1 - `home_win_percentage` - `tie_percentage`).}
+#'   \item{`tie_percentage`: double.}{The probability of the game ending the final period in a tie.}
 #' }
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
@@ -58,14 +59,15 @@ espn_metrics_wp <- function(game_id) {
         dplyr::rename(
           home_win_percentage = .data$home_win_percentage,
           seconds_left = .data$seconds_left,
-          play_id = .data$play_id
+          play_id = .data$play_id,
+          game_id = .data$espn_game_id
         ) %>%
         dplyr::mutate(
-          away_win_percentage = 1 - .data$home_win_percentage
+          away_win_percentage = 1 - .data$home_win_percentage - .data$tie_percentage
         ) %>%
         dplyr::select(
-          .data$espn_game_id, .data$play_id, .data$seconds_left,
-          .data$home_win_percentage, .data$away_win_percentage
+          .data$game_id, .data$play_id, .data$seconds_left,
+          .data$home_win_percentage, .data$away_win_percentage, .data$tie_percentage
         )
       message(glue::glue("{Sys.time()}: Scraping ESPN win probability data for game_id '{espn_game_id}'..."))
     },

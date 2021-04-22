@@ -1,6 +1,14 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part I"
-author: "Saiem Gilani"
+description: "Expected points model definition - a model explainer"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: man/figures/logo.png
+  twitter:
+    creator: "@saiemgilani"
+    card: summary
+    site: "@cfbfastR"
 output: html_document
 ---
 
@@ -15,8 +23,8 @@ We will be using these ideas as a tool for valuation of plays with the goal of c
 
 Let’s dig in.
 
-# The Data
-We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of @[CFB_data](https://twitter.com/CFB_data), using  `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Meyappan Subbaiah](https://twitter.com/msubbaiah1), and [Parker Fleming](https://twitter.com/statsowar).
+## The Data
+We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of \@[CFB\_data](https://twitter.com/CFB_data), using `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay Easwaran](https://twitter.com/akeaswaran), [Jared Lee](https://twitter.com/JaredDLee) and [Eric Hess](https://twitter.com/arbitanalytics).
 
 # The Expected Points Model
 ## Outcome (target) variables

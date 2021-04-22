@@ -2,7 +2,7 @@ context("CFB Metrics PPA Players Season")
 
 
 cols <- c(
-  "season", "id", "name", "position", "team", "conference",
+  "season", "athlete_id", "name", "position", "team", "conference",
   "countable_plays", "avg_PPA_all", "avg_PPA_pass",
   "avg_PPA_rush", "avg_PPA_first_down", "avg_PPA_second_down",
   "avg_PPA_third_down", "avg_PPA_standard_downs", "avg_PPA_passing_downs",

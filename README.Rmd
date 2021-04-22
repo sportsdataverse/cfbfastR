@@ -29,10 +29,12 @@ raw_data <- issue::get_issues(
 
 tbl <- raw_data%>%
   issue::issue_tibble()
-tbl <- tbl[tbl$pull_request==FALSE,]
-x <- tbl%>%
+open_tbl <- tbl[tbl$pull_request==FALSE & tbl$state=="open",]
+closed_tbl <- tbl[tbl$state=="closed",]
+x <- open_tbl %>%
   issue::md_table()
-
+x2 <- closed_tbl %>% 
+  issue::md_table()
 ```
 
 
@@ -46,8 +48,7 @@ x <- tbl%>%
 
 <!-- badges: end -->
 
-
-The goal of [**```cfbfastR```**](https://saiemgilani.github.io/cfbfastR/) is to provide the community with an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/).
+The goal of [**```cfbfastR```**](https://saiemgilani.github.io/cfbfastR/) is to provide the community with an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/). Beyond data aggregation and tidying ease, one of the multitude of services that [**```cfbfastR```**](https://saiemgilani.github.io/cfbfastR/) provides is for benchmarking open-source expected points and win probability metrics.
 
 ## **Installation**
 
@@ -58,7 +59,7 @@ You can install the released version of [**```cfbfastR```**](https://github.com/
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
 ```
 
 ``` r
@@ -69,7 +70,28 @@ if (!requireNamespace('devtools', quietly = TRUE)){
 # Alternatively, using the devtools package:
 devtools::install_github(repo = "saiemgilani/cfbfastR")
 ```
+
 ## **Breaking Changes**
+
+### **v1.2.0**
+#### **Add significant documentation to the package**
+
+* Added mini-vignettes pertaining to CFB Data functionality:   
+  - [```cfbd_betting```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html),
+  - [```cfbd_games```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html),
+  - [```cfbd_plays```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html),    
+  - [```cfbd_recruiting```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html),    
+  - [```cfbd_stats```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html), 
+  - [```cfbd_teams```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html)
+  
+* [Introductory vignette stub](https://saiemgilani.github.io/cfbfastR/articles/intro.html) added
+
+#### **ESPN/CFBD metrics function variable return standardization**
+
+* Change `id` variable to `team_id` in [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html)
+* Changed `espn_game_id` variable to `game_id` in [```espn_metrics_wp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html), corrected the `away_win_percentage` calculation and added `tie_percentage` to the returns.
+* Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html)
+
 ### **v1.1.0**
 #### **Add loading from Data Repository functionality**
 
@@ -87,7 +109,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 * Similarly, data and metrics sourced from ESPN will begin with `espn_` as opposed to `cfb_`. In particular, the two functions are now [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html) and [```espn_metrics_wp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html)
 
-* Data generated from any of the ```cfbfastR``` methods will use `cfb_`
+* Data generated from any of the [```cfbfastR```](https://saiemgilani.github.io/cfbfastR/) methods will use `cfb_`
 
 #### **CollegeFootballData API Keys**
 
@@ -122,7 +144,7 @@ x[c(1:(min(nrow(x),5))),] %>%
 <details><summary>View More</summary>
 
 ```{r,results='asis',echo=FALSE}
-x[-c(1:(min(nrow(x),5))),] %>%
+x2[c(1:(min(nrow(x),5))),] %>%
   knitr::kable()
 ```
 
@@ -181,6 +203,6 @@ x[-c(1:(min(nrow(x),5))),] %>%
 ## **Special Thanks**
 
 -   [Nick Tice](https://github.com/NickTice)
--   [Sebastian Carl](https://twitter.com/mrcaseb)
+-   [Sebastian Carl](https://twitter.com/mrcaseb)                   
 <a href="https://twitter.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=twitter&style=for-the-badge" alt="@mrcaseb" /></a>
 <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge" alt="@mrcaseb" /></a>

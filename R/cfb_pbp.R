@@ -1,5 +1,89 @@
-#' Update or Create a cfbfastR Play-by-Play Database
-#' `update_cfb_db` updates or creates a database with `cfbfastR`
+#' Load cfbfastR play-by-play
+#' @name load_cfb_pbp
+NULL
+#' @title Load cleaned pbp from the data repo
+#' @rdname load_cfb_pbp
+#' @description helper that loads multiple seasons from the data repo either into memory
+#' or writes it into a db using some forwarded arguments in the dots
+#' @param seasons A vector of 4-digit years associated with given College Football seasons.
+#' @param ... Additional arguments passed to an underlying function that writes
+#' the season data into a database (used by \code{\link[=update_cfb_db]{update_cfb_db()}}).
+#' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
+#' @export
+load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
+  dots <- rlang::dots_list(...)
+  
+  if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
+  
+  if (isTRUE(qs) && !is_installed("qs")) {
+    usethis::ui_stop("Package {usethis::ui_value('qs')} required for argument {usethis::ui_value('qs = TRUE')}. Please install it.")
+  }
+  
+  most_recent <- most_recent_season()
+  
+  if (!all(seasons %in% 2014:most_recent)) {
+    usethis::ui_stop("Please pass valid seasons between 2014 and {most_recent}")
+  }
+  
+  if (length(seasons) > 1 && is_sequential() && isFALSE(in_db)) {
+    usethis::ui_info(c(
+      "It is recommended to use parallel processing when trying to load multiple seasons.",
+      "Please consider running {usethis::ui_code('future::plan(\"multisession\")')}!",
+      "Will go on sequentially..."
+    ))
+  }
+  
+  
+  p <- progressr::progressor(along = seasons)
+  
+  if (isFALSE(in_db)) {
+    out <- furrr::future_map_dfr(seasons, cfb_single_season, p = p, qs = qs)
+  }
+  
+  if (isTRUE(in_db)) {
+    purrr::walk(seasons, cfb_single_season, p, ..., qs = qs)
+    out <- NULL
+  }
+  
+  return(out)
+}
+
+cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
+  if (isTRUE(qs)) {
+    
+    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs")
+    pbp <- qs_from_url(.url)
+    
+  }
+  if (isFALSE(qs)) {
+    .url <- glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
+    con <- url(.url)
+    pbp <- readRDS(con)
+    close(con)
+  }
+  if (!is.null(dbConnection) && !is.null(tablename)) {
+    DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
+    out <- NULL
+  } else {
+    out <- pbp
+  }
+  p(sprintf("season=%g", season))
+  return(out)
+}
+
+# load games file
+load_games <- function(){
+  .url <- "https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/games_in_data_repo.csv"
+  con <- url(.url)
+  dat <- utils::read.csv(con)
+  # close(con)
+  return (dat)
+}
+
+#' @name update_cfb_db
+#' @aliases update_cfb_db cfb_db cfb database cfb_pbp_db
+#' @title Update or Create a cfbfastR Play-by-Play Database
+#' @description `update_cfb_db()` updates or creates a database with `cfbfastR`
 #' play by play data of all completed games since 2014.
 #'
 #' @details This function creates and updates a data table with the name `tblname`
@@ -38,10 +122,10 @@
 #' [DBI::dbConnect()] (please see details for further information)
 #' @export
 update_cfb_db <- function(dbdir = ".",
-                      dbname = "cfb_pbp_db",
-                      tblname = "cfbfastR_pbp",
-                      force_rebuild = FALSE,
-                      db_connection = NULL) {
+                          dbname = "cfb_pbp_db",
+                          tblname = "cfbfastR_pbp",
+                          force_rebuild = FALSE,
+                          db_connection = NULL) {
   
   # rule_header("Update cfbfastR Play-by-Play Database")
   

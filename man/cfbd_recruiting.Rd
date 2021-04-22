@@ -3,9 +3,10 @@
 \name{cfbd_recruiting}
 \alias{cfbd_recruiting}
 \alias{cfbd_recruiting_player}
+\alias{recruiting}
 \alias{cfbd_recruiting_position}
 \alias{cfbd_recruiting_team}
-\title{CFBD Recruiting Endpoint}
+\title{CFB Recruiting Endpoint}
 \source{
 \url{https://api.collegefootballdata.com/recruiting/players}
 
@@ -61,75 +62,69 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} - A data frame with 14 variables:
+\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 14 variables:
 \describe{
-\item{\code{recruit_type}}{character.}
-\item{\code{year}}{integer.}
-\item{\code{ranking}}{integer.}
-\item{\code{name}}{character.}
-\item{\code{school}}{character.}
-\item{\code{committed_to}}{character.}
-\item{\code{position}}{character.}
-\item{\code{height}}{double.}
-\item{\code{weight}}{integer.}
-\item{\code{stars}}{integer.}
-\item{\code{rating}}{double.}
-\item{\code{city}}{character.}
-\item{\code{state_province}}{character.}
-\item{\code{country}}{character.}
-\item{\code{hometown_info_latitude}}{character.}
-\item{\code{hometown_info_longitude}}{character.}
-\item{\code{hometown_info_fips_code}}{character.}
+\item{\code{recruit_type}: character.}{High School, Prep School, or Junior College.}
+\item{\code{year}: integer.}{Recruit class year.}
+\item{\code{ranking}: integer.}{Recruit Ranking.}
+\item{\code{name}: character.}{Recruit Name.}
+\item{\code{school}: character.}{School recruit attended.}
+\item{\code{committed_to}: character.}{School the recruit is committed to.}
+\item{\code{position}: character.}{Recruit position.}
+\item{\code{height}: double.}{Recruit height.}
+\item{\code{weight}: integer.}{Recruit weight.}
+\item{\code{stars}: integer.}{Recruit stars.}
+\item{\code{rating}: double.}{247 composite rating.}
+\item{\code{city}: character.}{Hometown of the recruit.}
+\item{\code{state_province}: character.}{Hometown state of the recruit.}
+\item{\code{country}: character.}{Hometown country of the recruit.}
+\item{\code{hometown_info_latitude}: character.}{Hometown latitude.}
+\item{\code{hometown_info_longitude}: character.}{Hometown longitude.}
+\item{\code{hometown_info_fips_code}: character.}{Hometown FIPS code.}
 }
 
-\code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} - A data frame with 7 variables:
+\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - A data frame with 7 variables:
 \describe{
-\item{\code{team}}{character.}
-\item{\code{conference}}{character.}
-\item{\code{position_group}}{character.}
-\item{\code{avg_rating}}{double.}
-\item{\code{total_rating}}{double.}
-\item{\code{commits}}{integer.}
-\item{\code{avg_stars}}{double.}
+\item{\code{team}: character.}{Recruiting team.}
+\item{\code{conference}: character.}{Recruiting team conference.}
+\item{\code{position_group}: character.}{Position group of the recruits.}
+\item{\code{avg_rating}: double.}{Average rating of the recruits in the position group.}
+\item{\code{total_rating}: double.}{Sum of the ratings of the recruits in the position group.}
+\item{\code{commits}: integer.}{Number of commits in the position group.}
+\item{\code{avg_stars}: double.}{Average stars of the recruits in the position group.}
 }
 
-\code{\link[cfbfastR:cfbd_recruiting_team]{cfbfastR::cfbd_recruiting_team()}} - A data frame with 4 variables:
+\code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}} - A data frame with 4 variables:
 \describe{
-\item{\code{year}}{integer.}
-\item{\code{rank}}{integer.}
-\item{\code{team}}{character.}
-\item{\code{points}}{character.}
+\item{\code{year}: integer.}{Recruiting class year.}
+\item{\code{rank}: integer.}{Team Recruiting rank.}
+\item{\code{team}: character.}{Recruiting Team.}
+\item{\code{points}: character.}{Team talent points.}
 }
 }
 \description{
-Gets CFB recruiting information for a single year with filters available for team,
-recruit type, state and position.
+\describe{
+\item{\code{cfbd_recruiting_player()}: Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}{}
 
-If only start_year is provided, function will get CFB recruiting information based
-on position groups during that year for all FBS teams.
+\item{\code{cfbd_recruiting_position()}: CFB Recruiting Information Position Groups.}{}
 
-Gets CFB team recruiting ranks with filters available for year and team.
-At least one of \strong{year} or \strong{team} must be specified for the function to run
+\item{\code{cfbd_recruiting_team()}: CFB Recruiting Information Team Rankings.}{}
+}
 }
 \details{
+Gets CFB team recruiting ranks with filters available for year and team.
 At least one of \strong{year} or \strong{team} must be specified for the function to run
 
-If you would like CFB recruiting information for teams, please see the \code{\link[cfbfastR:cfbd_recruiting_team]{cfbfastR::cfbd_recruiting_team()}}  function
-
-If you would like to get cfb recruiting information based on position groups during a
-time period for all FBS teams, please see the \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} function.
-
 If you would like CFB recruiting information for players, please
-see the \code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} function
-
-If you would like CFB recruiting information for teams, please
-see the \code{\link[cfbfastR:cfbd_recruiting_team]{cfbfastR::cfbd_recruiting_team()}} function
-
-If you would like CFB recruiting information for players, please
-see the \code{\link[cfbfastR:cfbd_recruiting_player]{cfbfastR::cfbd_recruiting_player()}} function
+see the \code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} function
 
 If you would like to get CFB recruiting information based on position groups during a
-time period for all FBS teams, please see the \code{\link[cfbfastR:cfbd_recruiting_position]{cfbfastR::cfbd_recruiting_position()}} function.
+time period for all FBS teams, please see the \code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} function.
+
+\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - At least one of \strong{year} or \strong{team} must be specified for the function to run
+
+\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - If only start_year is provided, function will get CFB recruiting information based
+on position groups during that year for all FBS teams.
 }
 \examples{
 \donttest{

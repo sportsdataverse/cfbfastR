@@ -1,15 +1,21 @@
 ---
 title: "Creating Fourth Down Tendency Plots Using cfbfastR"
-author: "Michael Egle | @deceptivespeed_"
+description: "A rundown of the Big XII returning coaches fourth down tendencies"
+author: "Michael Egle <br><a href='https://twitter.com/deceptivespeed_' target='blank'><img src='https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=twitter&style=for-the-badge' alt='@deceptivespeed_' /></a> <a href='https://github.com/michaelegle' target='blank'><img src='https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge' alt='@michaelegle' /></a>"
 date: "9/5/2020"
+opengraph:
+  image: 
+    src: man/figures/logo.png
+  twitter:
+    site: "@cfbfastR"
+    card: summary
+    creator: "@deceptivespeed_"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-<a href="https://twitter.com/deceptivespeed_" target="blank"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=twitter&style=for-the-badge" alt="@deceptivespeed_" /></a> <a href="https://github.com/michaelegle" target="blank"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge" alt="@michaelegle" /></a>
 
 Hey everyone, my name is Michael and over the summer I worked on a daily series of plots using ```ggplot``` and the ```cfbfastR``` package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they're put together. If you haven't already, you should read the introduction tutorial that Parker made to get used to the data and download the package.
 
@@ -19,7 +25,7 @@ if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load(tidyverse)
-pacman::p_load_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
 ```
 
 

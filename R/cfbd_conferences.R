@@ -1,12 +1,23 @@
-#' CFB Conference Information
-#'
-#' Pulls all college football conferences and returns as data frame the following fields:
-#' @return \code{\link[cfbfastR:cfbd_conferences]{cfbfastR::cfbd_conferences()}} - A data frame with 11 rows and 4 variables:
+#' @name cfbd_conferences
+#' @aliases conferences cfbd_conferences
+#' @title CFBD Conferences Endpoint 
+#' @description CFB Conference Information
+#' Pulls all college football conferences and returns as data frame
+#' 
+#' You can call this function simply with 
+#' ```r   
+#' cfbd_conferences()
+#' ```
+#' @examples
+#' \donttest{
+#'    cfbd_conferences()
+#' }
+#' @return [cfbd_conferences()] - A data frame with 11 rows and 4 variables:
 #' \describe{
-#'   \item{conference_id}{Referencing conference id}
-#'   \item{name}{Conference name}
-#'   \item{long_name}{Long name for Conference}
-#'   \item{abbreviation}{Conference abbreviation}
+#'   \item{`conference_id`:}{Referencing conference id.}
+#'   \item{`name`:}{Conference name.}
+#'   \item{`long_name`:}{Long name for Conference.}
+#'   \item{`abbreviation`:}{Conference abbreviation.}
 #'   ...
 #' }
 #' @source \url{https://api.collegefootballdata.com/conferences}
@@ -16,10 +27,6 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_conferences()
-#' }
 cfbd_conferences <- function() {
   full_url <- "https://api.collegefootballdata.com/conferences"
 

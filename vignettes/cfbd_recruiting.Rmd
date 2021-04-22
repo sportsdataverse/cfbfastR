@@ -1,0 +1,62 @@
+---
+title: "CFB Data Recruiting Examples"
+description: "Accessing 247Sports composite recruiting data through the CFBD API using <code>cfbd_recruiting_player()</code> for Player Rankings, <code>cfbd_recruiting_team()</code> for Team Rankings and <code>cfbd_recruiting_position()</code> for Position Group metrics"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+  twitter:
+    creator: "@saiemgilani"
+    card: summary
+    site: "@cfbfastR"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Load and Install Packages**
+
+```{r}
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load(dplyr,tidyr, gt)
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
+```
+
+### **CFBD Recruiting Player**
+
+Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.
+
+```{r recruiting_player_ex}
+cfbd_recruiting_player(2018, team = "Texas")
+
+cfbd_recruiting_player(2016, recruit_type = "JUCO")
+
+cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
+```
+
+### **CFB Recruiting Information Position Groups.**
+
+```{r recruiting_position_ex}
+cfbd_recruiting_position(2018, team = "Texas")
+
+cfbd_recruiting_position(2016, 2020, team = "Virginia")
+
+cfbd_recruiting_position(2015, 2020, conference = "SEC")
+```
+
+### **CFB Recruiting Information Team Rankings.**
+
+```{r recruiting_team_ex}
+cfbd_recruiting_team(2018, team = "Texas")
+
+cfbd_recruiting_team(2016, team = "Virginia")
+
+cfbd_recruiting_team(2016, team = "Texas A&M")
+
+cfbd_recruiting_team(2011)
+```
+

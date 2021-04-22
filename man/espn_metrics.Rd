@@ -12,16 +12,17 @@ espn_metrics_wp(game_id)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
+Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
-espn_metrics_wp - A data frame with 5 variables:
+\code{\link[=espn_metrics_wp]{espn_metrics_wp()}} - A data frame with 5 variables:
 \describe{
-\item{\code{espn_game_id}}{character.}
-\item{\code{play_id}}{character.}
-\item{\code{seconds_left}}{integer.}
-\item{\code{home_win_percentage}}{double.}
-\item{\code{away_win_percentage}}{double.}
+\item{\code{game_id}: character.}{Referencing game ID (should be same as \code{game_id} from other functions).}
+\item{\code{play_id}: character.}{Referencing play ID.}
+\item{\code{seconds_left}: integer.}{Seconds left in the game.}
+\item{\code{home_win_percentage}: double.}{The probability of the home team winning the game.}
+\item{\code{away_win_percentage}: double.}{The probability of the away team winning the game (calculated as 1 - \code{home_win_percentage} - \code{tie_percentage}).}
+\item{\code{tie_percentage}: double.}{The probability of the game ending the final period in a tie.}
 }
 }
 \description{

@@ -27,7 +27,7 @@ You can install the released version of
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
 ```
 
 ``` r
@@ -40,6 +40,21 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 ```
 
 ## **Breaking Changes**
+
+### **v1.2.0**
+
+#### **Add significant documentation to the package**
+
+  - Added mini-vignettes pertaining to CFB Data functionality:
+      - [`cfbd_betting`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html),
+      - [`cfbd_games`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html),
+      - [`cfbd_plays`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html),  
+      - [`cfbd_recruiting`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html),  
+      - [`cfbd_stats`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html),
+      - [`cfbd_teams`](https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html)
+  - [Introductory
+    vignette](https://saiemgilani.github.io/cfbfastR/articles/intro.html)
+    added
 
 ### **v1.1.0**
 
@@ -86,7 +101,9 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
     and
     [`espn_metrics_wp()`](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html)
 
-  - Data generated from any of the `cfbfastR` methods will use `cfb_`
+  - Data generated from any of the
+    [`cfbfastR`](https://saiemgilani.github.io/cfbfastR/) methods will
+    use `cfb_`
 
 #### **CollegeFootballData API Keys**
 
@@ -128,17 +145,17 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 
 ## Current Issues
 
-| issue | icon                                                                                                                           | title                                                                                                                                                      | labels        | opened\_by                            | comments | comments\_users                                                                                                                                                                                                                                                                                                                    | assigned\_to | created             | updated             | closed              |
-| :---- | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------ | :------------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------------ | :------------------ | :------------------ |
-| 5     | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span>   | <span title="**Describe the bug**...">[Play by play for data 2013 and before](https://github.com/saiemgilani/cfbfastR/issues/5)</span>                     | bug           | [rchanks](https://github.com/rchanks) | 1        | <span title="Thanks for bringing it up, but this is a known issue. I am working on a fix to get all the data going back to the start. Will not be forever but another week or two.">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/5#issuecomment-820774185)</span>                                                  | saiemgilani  | 2021-04-15 16:24:03 | 2021-04-15 22:48:48 | NA                  |
-| 4     | <span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span> | <span title="**Describe the bug**...">[cfbd\_play\_types is documented, but isn’t in the package](https://github.com/saiemgilani/cfbfastR/issues/4)</span> | documentation | [rchanks](https://github.com/rchanks) | 1        | <span title="Oops. Will fix. Maybe. Trying to figure out optimal use of the in-package data sources and I&#39;m not sure this one will make the cut. Would not mind if you had any thoughts/suggestions as essential to new users. ">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/4#issuecomment-820774552)</span> | saiemgilani  | 2021-04-15 16:11:17 | 2021-04-18 23:47:31 | 2021-04-18 23:47:31 |
+| issue | icon                                                                                                                         | title                                                                                                                                  | labels | opened\_by                            | comments | comments\_users                                                                                                                                                                                                                                                                   | assigned\_to | created             | updated             | closed |
+| :---- | :--------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----- | :------------------------------------ | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------------ | :------------------ | :----- |
+| 5     | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span> | <span title="**Describe the bug**...">[Play by play for data 2013 and before](https://github.com/saiemgilani/cfbfastR/issues/5)</span> | bug    | [rchanks](https://github.com/rchanks) | 1        | <span title="Thanks for bringing it up, but this is a known issue. I am working on a fix to get all the data going back to the start. Will not be forever but another week or two.">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/5#issuecomment-820774185)</span> | saiemgilani  | 2021-04-15 16:24:03 | 2021-04-15 22:48:48 | NA     |
 
 <details>
 
 <summary>View More</summary>
 
-| issue | icon | title | labels | opened\_by | comments | comments\_users | assigned\_to | created | updated | closed |
-| :---- | :--- | :---- | :----- | :--------- | :------- | :-------------- | :----------- | :------ | :------ | :----- |
+| issue | icon                                                                                                                           | title                                                                                                                                                      | labels        | opened\_by                            | comments | comments\_users                                                                                                                                                                                                                                                                                                                    | assigned\_to | created             | updated             | closed              |
+| :---- | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------ | :------------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------------ | :------------------ | :------------------ |
+| 4     | <span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span> | <span title="**Describe the bug**...">[cfbd\_play\_types is documented, but isn’t in the package](https://github.com/saiemgilani/cfbfastR/issues/4)</span> | documentation | [rchanks](https://github.com/rchanks) | 1        | <span title="Oops. Will fix. Maybe. Trying to figure out optimal use of the in-package data sources and I&#39;m not sure this one will make the cut. Would not mind if you had any thoughts/suggestions as essential to new users. ">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/4#issuecomment-820774552)</span> | saiemgilani  | 2021-04-15 16:11:17 | 2021-04-18 23:47:31 | 2021-04-18 23:47:31 |
 
 </details>
 
@@ -195,6 +212,6 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ## **Special Thanks**
 
   - [Nick Tice](https://github.com/NickTice)
-  - [Sebastian Carl](https://twitter.com/mrcaseb)
+  - [Sebastian Carl](https://twitter.com/mrcaseb)  
     <a href="https://twitter.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=twitter&style=for-the-badge" alt="@mrcaseb" /></a>
     <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge" alt="@mrcaseb" /></a>

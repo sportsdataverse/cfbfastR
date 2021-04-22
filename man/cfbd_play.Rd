@@ -22,8 +22,8 @@
 cfbd_plays(
   year = 2020,
   season_type = "regular",
-  week = 4,
-  team = "Florida State",
+  week = 1,
+  team = NULL,
   offense = NULL,
   defense = NULL,
   conference = NULL,
@@ -70,103 +70,130 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 \item{defense_conference}{Select conference name (example: ACC, B1G, B12, SEC,\cr
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
-\item{play_type}{Select play type (example: see the \code{\link[cfbfastR:cfbd_play_type_df]{cfbd_play_type_df}})}
+\item{play_type}{Select play type (example: see the \link{cfbd_play_type_df})}
 
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function}
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
+Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbfastR:cfbd_player_info]{cfbfastR::cfbd_player_info()}} function.}
+\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
+Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
-\item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
-Can be found using the \code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} function}
+\item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type
+Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} function}
 }
 \value{
-\code{\link[cfbfastR:cfbd_plays]{cfbfastR::cfbd_plays()}}
-
-\code{\link[cfbfastR:cfbd_play_stats_player]{cfbfastR::cfbd_play_stats_player()}} - A data frame with 54 variables:
+\code{\link[=cfbd_plays]{cfbd_plays()}} - A data frame with 29 columns:
 \describe{
-\item{\code{play_id}}{character.}
-\item{\code{game_id}}{integer.}
-\item{\code{season}}{integer.}
-\item{\code{week}}{integer.}
-\item{\code{opponent}}{character.}
-\item{\code{team_score}}{integer.}
-\item{\code{opponent_score}}{integer.}
-\item{\code{drive_id}}{character.}
-\item{\code{period}}{integer.}
-\item{\code{yards_to_goal}}{integer.}
-\item{\code{down}}{integer.}
-\item{\code{distance}}{integer.}
-\item{\code{reception_player_id}}{character.}
-\item{\code{reception_player}}{character.}
-\item{\code{reception_yds}}{integer.}
-\item{\code{completion_player_id}}{character.}
-\item{\code{completion_player}}{character.}
-\item{\code{completion_yds}}{integer.}
-\item{\code{rush_player_id}}{character.}
-\item{\code{rush_player}}{character.}
-\item{\code{rush_yds}}{integer.}
-\item{\code{interception_player_id}}{character.}
-\item{\code{interception_player}}{character.}
-\item{\code{interception_stat}}{integer.}
-\item{\code{interception_thrown_player_id}}{character.}
-\item{\code{interception_thrown_player}}{character.}
-\item{\code{interception_thrown_stat}}{integer.}
-\item{\code{touchdown_player_id}}{character.}
-\item{\code{touchdown_player}}{character.}
-\item{\code{touchdown_stat}}{integer.}
-\item{\code{incompletion_player_id}}{character.}
-\item{\code{incompletion_player}}{character.}
-\item{\code{incompletion_stat}}{integer.}
-\item{\code{target_player_id}}{character.}
-\item{\code{target_player}}{character.}
-\item{\code{target_stat}}{integer.}
-\item{\code{fumble_recovered_player_id}}{logical.}
-\item{\code{fumble_recovered_player}}{logical.}
-\item{\code{fumble_recovered_stat}}{logical.}
-\item{\code{fumble_forced_player_id}}{logical.}
-\item{\code{fumble_forced_player}}{logical.}
-\item{\code{fumble_forced_stat}}{logical.}
-\item{\code{fumble_player_id}}{logical.}
-\item{\code{fumble_player}}{logical.}
-\item{\code{fumble_stat}}{logical.}
-\item{\code{sack_player_id}}{character.}
-\item{\code{sack_player}}{character.}
-\item{\code{sack_stat}}{integer.}
-\item{\code{sack_taken_player_id}}{character.}
-\item{\code{sack_taken_player}}{character.}
-\item{\code{sack_taken_stat}}{integer.}
-\item{\code{pass_breakup_player_id}}{logical.}
-\item{\code{pass_breakup_player}}{logical.}
-\item{\code{pass_breakup_stat}}{logical.}
+\item{\code{play_id}: character.}{Referencing play id.}
+\item{\code{offense}: character.}{Offense on the field.}
+\item{\code{offense_conference}: character.}{Conference of the offense on the field.}
+\item{\code{defense}: character.}{Defense on the field.}
+\item{\code{defense_conference}: character.}{Conference of the defense on the field.}
+\item{\code{home}: character.}{Home team.}
+\item{\code{away}: character.}{Away team.}
+\item{\code{offense_score}: integer.}{Offense's post-play score.}
+\item{\code{defense_score}: integer.}{Defense's post-play score.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{drive_id}: character.}{Referencing drive id.}
+\item{\code{drive_number}: integer.}{Drive number in the game.}
+\item{\code{play_number}: integer.}{Play number in the game.}
+\item{\code{period}: integer.}{Game period (quarter).}
+\item{\code{offense_timeouts}: integer.}{Timeouts for the offense at the end of the play.}
+\item{\code{defense_timeouts}: integer.}{Timeouts for the defense at the end of the play.}
+\item{\code{yard_line}: integer.}{Yard line (~0-50) of the play.}
+\item{\code{yards_to_goal}: integer.}{Yards to the goal line (~0-100).}
+\item{\code{down}: integer.}{Down of the play.}
+\item{\code{distance}: integer.}{Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.}
+\item{\code{scoring}: logical.}{Scoring play flag.}
+\item{\code{yards_gained}: integer.}{Yards net gained by the offense on the play.}
+\item{\code{play_type}: character.}{Categorical label of the type of the play.}
+\item{\code{play_text}: character.}{A text description of the play.}
+\item{\code{ppa}: character.}{Predicted Points Added (calculated by CFBD).}
+\item{\code{clock.minutes}: integer.}{Minutes left on the clock.}
+\item{\code{clock.seconds}: integer.}{Seconds left on the clock.}
 }
 
-\code{\link[cfbfastR:cfbd_play_stats_types]{cfbfastR::cfbd_play_stats_types()}} - A data frame with 22 rows and 2 variables:
+\code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}} - A data frame with 54 variables:
 \describe{
-\item{play_stat_type_id}{Referencing play stat type ID}
-\item{name}{Type of play stats}
+\item{\code{play_id}: character.}{Referencing play id.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{season}: integer.}{Season of the play.}
+\item{\code{week}: integer.}{Week of the play.}
+\item{\code{opponent}: character.}{Opponent of the offense on the play.}
+\item{\code{team_score}: integer.}{Offense team score.}
+\item{\code{opponent_score}: integer.}{Defense team score.}
+\item{\code{drive_id}: character.}{Referencing drive id.}
+\item{\code{period}: integer.}{Game period (quarter) of the play.}
+\item{\code{yards_to_goal}: integer.}{Yards to the goal line (~0-100).}
+\item{\code{down}: integer.}{Down of the play.}
+\item{\code{distance}: integer.}{Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.}
+\item{\code{reception_player_id}: character.}{Pass receiver player reference id.}
+\item{\code{reception_player}: character.}{Pass receiver player name.}
+\item{\code{reception_yds}: integer.}{Reception yards.}
+\item{\code{completion_player_id}: character.}{Passing player reference id.}
+\item{\code{completion_player}: character.}{Passing player name.}
+\item{\code{completion_yds}: integer.}{Passing yards.}
+\item{\code{rush_player_id}: character.}{Rushing player reference id.}
+\item{\code{rush_player}: character.}{Rushing player name.}
+\item{\code{rush_yds}: integer.}{Rushing yards.}
+\item{\code{interception_player_id}: character.}{Intercepting player reference id.}
+\item{\code{interception_player}: character.}{Intercepting player name.}
+\item{\code{interception_stat}: integer.}{Intercepting stat.}
+\item{\code{interception_thrown_player_id}: character.}{Interception passing player reference id.}
+\item{\code{interception_thrown_player}: character.}{Interception passing player name.}
+\item{\code{interception_thrown_stat}: integer.}{Interception thrown stat.}
+\item{\code{touchdown_player_id}: character.}{Touchdown scoring player reference id.}
+\item{\code{touchdown_player}: character.}{Touchdown scoring player name.}
+\item{\code{touchdown_stat}: integer.}{Touchdown scoring stat.}
+\item{\code{incompletion_player_id}: character.}{Incomplete receiver player reference id.}
+\item{\code{incompletion_player}: character.}{Incomplete receiver player name.}
+\item{\code{incompletion_stat}: integer.}{Incomplete stat.}
+\item{\code{target_player_id}: character.}{Targeted receiver player reference id.}
+\item{\code{target_player}: character.}{Targeted receiver player name.}
+\item{\code{target_stat}: integer.}{Target stat.}
+\item{\code{fumble_recovered_player_id}: logical.}{Fumble recovering player reference id.}
+\item{\code{fumble_recovered_player}: logical.}{Fumble recovering player name.}
+\item{\code{fumble_recovered_stat}: logical.}{Fumble recovered stat.}
+\item{\code{fumble_forced_player_id}: logical.}{Fumble forcing player reference id.}
+\item{\code{fumble_forced_player}: logical.}{Fumble forcing player name.}
+\item{\code{fumble_forced_stat}: logical.}{Fumble forced stat.}
+\item{\code{fumble_player_id}: logical.}{Fumbling player reference id.}
+\item{\code{fumble_player}: logical.}{Fumbling player name.}
+\item{\code{fumble_stat}: logical.}{Fumble stat.}
+\item{\code{sack_player_id}: character.}{Sacking player(s) reference id.}
+\item{\code{sack_player}: character.}{Sacking player(s) name.}
+\item{\code{sack_stat}: integer.}{Sack stat.}
+\item{\code{sack_taken_player_id}: character.}{Sack taking player reference id.}
+\item{\code{sack_taken_player}: character.}{Sack taking player name.}
+\item{\code{sack_taken_stat}: integer.}{Sack taken stat.}
+\item{\code{pass_breakup_player_id}: logical.}{Pass breakup player reference id.}
+\item{\code{pass_breakup_player}: logical.}{Pass breakup player name.}
+\item{\code{pass_breakup_stat}: logical.}{Pass breakup (PBU) stat.}
 }
 
-\code{\link[cfbfastR:cfbd_play_types]{cfbfastR::cfbd_play_types()}} - A data frame with 48 rows and 3 variables:
+\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} - A data frame with 22 rows and 2 variables:
 \describe{
-\item{play_type_id}{Referencing play type id}
-\item{text}{play type description}
-\item{abbreviation}{play type abbreviation used for function call}
+\item{\code{play_stat_type_id}: integer}{Referencing play stat type ID.}
+\item{\code{name}: character}{Type of play stats.}
+}
+
+\code{\link[=cfbd_play_types]{cfbd_play_types()}} - A data frame with 48 rows and 3 variables:
+\describe{
+\item{\code{play_type_id}: integer}{Referencing play type id.}
+\item{\code{text}: character}{play type description.}
+\item{\code{abbreviation}: character}{play type abbreviation used for function call}
 }
 }
 \description{
-CFBD Plays Endpoint
-
-College Football Plays
-
-Gets player info associated by play
-
-College Football Mapping for Play Stats Types
-
-College Football Mapping for Play Types
+College football plays data
+\describe{
+\item{\code{cfbd_plays()}:}{CFBD's College Football Play-by-Play}
+\item{\code{cfbd_play_stats_player()}:}{Gets player info associated by play.}
+\item{\code{cfbd_play_stats_types()}:}{Gets CFBD play stat types.}
+\item{\code{cfbd_play_types()}:}{Gets CFBD play types}
+}
 }
 \examples{
 \donttest{
@@ -175,7 +202,6 @@ College Football Mapping for Play Types
 \donttest{
   cfbd_play_stats_types()
 }
-
 }
 \keyword{PBP}
 \keyword{Player}

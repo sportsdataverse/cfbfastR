@@ -1,13 +1,16 @@
-#' CFBD Betting Endpoint
-#'
 #' @name cfbd_betting
-NULL
-#' Get Betting information from games
+#' @aliases betting cfbd_betting cfbd_betting_lines
+#' @title CFBD Betting Lines Endpoint
+#' @description Get betting lines information from games
+#' @examples
+#' \donttest{
+#'    cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 #'
-#' @rdname cfbd_betting
-#'
+#'    # 7 OTs LSU at TAMU
+#'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
+#' }
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the \code{\link[cfbfastR:cfbd_game_info]{cfbfastR::cfbd_game_info()}} function
+#' Can be found using the [cfbd_game_info()] function
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
@@ -16,26 +19,25 @@ NULL
 #' @param away_team (\emph{String} optional): Away D-I Team
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#'
 #' @return Betting information for games with the following columns:
 #' \describe{
-#'   \item{\code{game_id}}{integer. Unique game identifier - `game_id`.}
-#'   \item{\code{season}}{integer. Season parameter.}
-#'   \item{\code{season_type}}{character. Season Type (regular, postseason, both).}
-#'   \item{\code{week}}{integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
-#'   \item{\code{home_team}}{character. Home D-I Team.}
-#'   \item{\code{home_conference}}{character. Home D-I Conference.}
-#'   \item{\code{home_score}}{integer. Home Score.}
-#'   \item{\code{away_team}}{character. Away D-I Team.}
-#'   \item{\code{away_conference}}{character. Away D-I Conference.}
-#'   \item{\code{away_score}}{integer. Away Score.}
-#'   \item{\code{provider}}{character. Line provider.}
-#'   \item{\code{spread}}{character. Spread for the game.}
-#'   \item{\code{formatted_spread}}{character. Formatted spread for the game.}
-#'   \item{\code{over_under}}{character. Over/Under for the game.}
+#'   \item{`game_id`:integer.}{Unique game identifier - `game_id`.}
+#'   \item{`season`:integer.}{Season parameter.}
+#'   \item{`season_type`:character.)}{Season Type (regular, postseason, both}
+#'   \item{`week`:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+#'   \item{`home_team`:character.}{Home D-I Team.}
+#'   \item{`home_conference`:character.}{Home D-I Conference.}
+#'   \item{`home_score`:integer.}{Home Score.}
+#'   \item{`away_team`:character.}{Away D-I Team.}
+#'   \item{`away_conference`:character.}{Away D-I Conference.}
+#'   \item{`away_score`:integer.}{Away Score.}
+#'   \item{`provider`:character.}{Line provider.}
+#'   \item{`spread`:character.}{Spread for the game.}
+#'   \item{`formatted_spread`:character.}{Formatted spread for the game.}
+#'   \item{`over_under`:character.}{Over/Under for the game.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/lines}
 #' @keywords Betting Lines
@@ -49,13 +51,6 @@ NULL
 #' @importFrom dplyr filter as_tibble rename
 #' @importFrom tidyr unnest
 #' @export
-#' @examples
-#' \donttest{
-#'    cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
-#'
-#'    # 7 OTs LSU at TAMU
-#'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
-#' }
 #'
 cfbd_betting_lines <- function(game_id = NULL,
                                year = NULL,

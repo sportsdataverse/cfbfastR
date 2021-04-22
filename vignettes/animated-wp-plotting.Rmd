@@ -1,14 +1,19 @@
 ---
 title: "Making Animated Win Probability Charts with cfbfastR"
-author: "Jared Lee | @JaredDLee"
+description: "Step-by-step walk-through of the process of adapting <a href='https://twitter.com/LeeSharpeNFL' target='blank'>Lee Sharpe's</a> win probability charts to college football using data from <a href='https://www.collegefootballdata.com' target='blank'>CollegeFootballData.com</a> collected using the <code>cfbfastR</code> package for R."
+author: "Jared Lee <br><a href='https://twitter.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=twitter&style=for-the-badge' alt='@JaredDLee' /></a> <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge' alt='@Kazink36' /></a>"
+opengraph:
+  image: 
+    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+  twitter:
+    creator: "@JaredDLee"
+    card: summary
+    site: "@cfbfastR"
 output: html_document
 ---
 ```{r setup, include=FALSE}
 old <- options(rmarkdown.html_vignette.check_title = FALSE)
 ```
-
-<a href="https://twitter.com/JaredDLee" target="blank"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=twitter&style=for-the-badge" alt="@JaredDLee" /></a>
-<a href="https://github.com/Kazink36" target="blank"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge" alt="@Kazink36" /></a>
 
 Have you ever wanted to make an [animated win probability chart](https://kazink36.github.io/images/animated_wp_ex_wide.gif) for college football like [Lee Sharpe](https://twitter.com/LeeSharpeNFL) makes for [the NFL](https://twitter.com/LeeSharpeNFL/status/1300526539344289792)?
 This document will walk you step-by-step through the process of adapting [Sharpe's code](https://github.com/leesharpe/nfldata/blob/master/code/wpchart.R) to college football using data from [CollegeFootballData.com](collegefootballdata.com) collected using the ```cfbfastR``` package for R.
@@ -24,7 +29,7 @@ if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load(tidyverse, animation, glue, zoo, ggimage)
-pacman::p_load_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
 ```
 
 ## cfbfastR
@@ -73,7 +78,7 @@ game <- game %>%
   rename(home_score = home_points, away_score = away_points)
 ```
 
-To build the labels, we're going to use a custom function to pull the player names out of the play text. [Saiem Gilani](https://twitter.com/SaiemGilani) wrote the bulk of the regular expressions here to get the names. EDIT: The improved version of this is now included in the ```cfbd_pbp_data()``` function by default as of version 1.0.3.
+To build the labels, we're going to use a custom function to pull the player names out of the play text. [Saiem Gilani](https://twitter.com/SaiemGilani) wrote the bulk of the regular expressions here to get the names. EDIT: The improved version of this is now included in the ```cfbd_pbp_data()``` function by default.
 
 
 Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbfastR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbfastR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation. 
