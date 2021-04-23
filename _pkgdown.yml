@@ -11,11 +11,11 @@ template:
       index_name: cfbfastR
   opengraph:
     image:
-      src: https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/man/figures/logo.png
+      src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
       alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
     twitter:
       site: "@cfbfastR"
-      card: summary
+      card: summary_large_image
       
 toc:
   depth: 3
