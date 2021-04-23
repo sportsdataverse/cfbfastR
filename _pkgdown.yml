@@ -15,7 +15,7 @@ template:
       alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
     twitter:
       site: "@cfbfastR"
-      card: summary
+      card: summary_large_image
       
 toc:
   depth: 3
