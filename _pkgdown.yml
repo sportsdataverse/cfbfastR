@@ -6,6 +6,7 @@ alt: "When you code good, you know good. When you know good, you win good. When 
 template:
   params:
     bootswatch: cosmo
+    ganalytics: G-SE5ZJL93W6
     docsearch:
       api_key: 002e977de61519c48dce057f58ed1d24
       index_name: cfbfastR
