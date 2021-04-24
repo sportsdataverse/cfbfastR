@@ -4,11 +4,10 @@ output: github_document
 # **cfbfastR**  <a href='http://saiemgilani.github.io/cfbfastR'><img src='man/figures/logo.png' align="right" height="150" /></a>
 ```{r, include = FALSE}
 require(knitr)
-library(magick)
-library(grid)
 if (!requireNamespace('issue') & !requireNamespace('pacman')){
   install.packages('pacman')
 }
+pacman::p_load(magick, grid, dplyr, lubridate)
 pacman::p_load_gh("yonicd/issue")
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -32,9 +31,17 @@ tbl <- raw_data%>%
 open_tbl <- tbl[tbl$pull_request==FALSE & tbl$state=="open",]
 closed_tbl <- tbl[tbl$state=="closed",]
 x <- open_tbl %>%
-  issue::md_table()
+  issue::md_table() %>% 
+  dplyr::mutate(
+    date = lubridate::as_date(.data$created)
+  ) %>% 
+  dplyr::select(.data$issue, .data$icon, .data$title, .data$labels, .data$opened_by, .data$date, .data$closed)
 x2 <- closed_tbl %>% 
-  issue::md_table()
+  issue::md_table()%>% 
+  dplyr::mutate(
+    date = lubridate::as_date(.data$created)
+  ) %>% 
+  dplyr::select(.data$issue, .data$icon, .data$title, .data$labels, .data$opened_by, .data$date, .data$closed)
 ```
 
 
