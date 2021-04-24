@@ -4,9 +4,9 @@
 #' **CFBD Players Endpoint Overview**
 #' @description 
 #' \describe{
-#' \item{`cfbd_player_info()`:}{Player Information Search.}
-#' \item{`cfbd_player_returning()`:}{Player Returning Production.}
-#' \item{`cfbd_player_usage()`:}{Player Usage.}
+#' \item{`cfbd_player_info()`:}{ Player information search.}
+#' \item{`cfbd_player_returning()`:}{ Player returning production.}
+#' \item{`cfbd_player_usage()`:}{ Player usage.}
 #' }
 #' ### **Player information lookup**
 #' ```r

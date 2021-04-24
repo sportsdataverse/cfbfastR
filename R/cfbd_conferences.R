@@ -2,7 +2,8 @@
 #' @aliases conferences cfbd_conferences
 #' @title 
 #' **CFBD Conferences Endpoint Overview**
-#' @description CFB Conference Information
+#' @description 
+#' **College football conference information**
 #' Pulls all college football conferences and returns as data frame
 #' You can call this function simply with:
 #' ```r   

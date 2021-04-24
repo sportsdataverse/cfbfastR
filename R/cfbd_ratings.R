@@ -3,10 +3,10 @@
 #' **CFBD Ratings and Rankings Endpoints Overview**
 #' @description
 #' \describe{
-#' \item{`cfbd_rankings()`:}{Gets Historical CFB poll rankings at a specific week.}
-#' \item{`cfbd_ratings_sp()`:}{Get SP historical rating data.}
-#' \item{`cfbd_ratings_sp_conference()`:}{Get SP conference-level historical rating data.}
-#' \item{`cfbd_ratings_srs()`:}{Get SRS historical rating data.}
+#' \item{`cfbd_rankings()`:}{ Gets Historical CFB poll rankings at a specific week.}
+#' \item{`cfbd_ratings_sp()`:}{ Get SP historical rating data.}
+#' \item{`cfbd_ratings_sp_conference()`:}{ Get SP conference-level historical rating data.}
+#' \item{`cfbd_ratings_srs()`:}{ Get SRS historical rating data.}
 #' }
 #' 
 #' ### **Get historical Coaches and AP poll data**

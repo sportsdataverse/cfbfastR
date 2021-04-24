@@ -5,13 +5,13 @@
 \title{\strong{CFBD Metrics Endpoint Overview}}
 \description{
 \describe{
-\item{\code{cfbd_metrics_ppa_games()}:}{Get team game averages for Predicted Points Added (PPA).}
-\item{\code{cfbd_metrics_ppa_players_games()}:}{Get player game averages for Predicted Points Added (PPA).}
-\item{\code{cfbd_metrics_ppa_players_season()}:}{Get player season averages for Predicted Points Added (PPA).}
-\item{\code{cfbd_metrics_ppa_predicted()}:}{Calculate Predicted Points using Down and Distance.}
-\item{\code{cfbd_metrics_ppa_teams()}:}{Get team averages for Predicted Points Added (PPA).}
-\item{\code{cfbd_metrics_wp_pregame()}:}{Get Pre-game Win Probability Data from CFBD API.}
-\item{\code{cfbd_metrics_wp()}:}{Get win probability chart data from CFBD API.}
+\item{\code{cfbd_metrics_ppa_games()}:}{ Get team game averages for predicted points added (PPA).}
+\item{\code{cfbd_metrics_ppa_players_games()}:}{ Get player game averages for predicted points added (PPA).}
+\item{\code{cfbd_metrics_ppa_players_season()}:}{ Get player season averages for predicted points added (PPA).}
+\item{\code{cfbd_metrics_ppa_predicted()}:}{ Calculate predicted points using Down and Distance.}
+\item{\code{cfbd_metrics_ppa_teams()}:}{ Get team averages for predicted points added (PPA).}
+\item{\code{cfbd_metrics_wp_pregame()}:}{ Get pre-game win probability data from CFBD API.}
+\item{\code{cfbd_metrics_wp()}:}{ Get win probability chart data from CFBD API.}
 }
 \subsection{\strong{Get team game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 }\if{html}{\out{</div>}}

@@ -3,10 +3,10 @@
 #' **CFBD Plays Endpoint Overview**
 #' @description College football plays data
 #' \describe{
-#' \item{`cfbd_plays()`:}{CFBD's College Football Play-by-Play.}
-#' \item{`cfbd_play_stats_player()`:}{Gets player info associated by play.}
-#' \item{`cfbd_play_stats_types()`:}{Gets CFBD play stat types.}
-#' \item{`cfbd_play_types()`:}{Gets CFBD play types.}
+#' \item{`cfbd_plays()`:}{ CFBD's college football play-by-play.}
+#' \item{`cfbd_play_stats_player()`:}{ Gets player info associated by play.}
+#' \item{`cfbd_play_stats_types()`:}{ Gets CFBD play stat types.}
+#' \item{`cfbd_play_types()`:}{ Gets CFBD play types.}
 #' }
 #' 
 #' ### **Pull first 3 weeks of 2020 season using `cfbd_plays()`**

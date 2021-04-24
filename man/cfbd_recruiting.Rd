@@ -6,11 +6,11 @@
 \title{\strong{CFB Recruiting Endpoint Overview}}
 \description{
 \describe{
-\item{\code{cfbd_recruiting_player()}:}{Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
+\item{\code{cfbd_recruiting_player()}:}{ Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
 
-\item{\code{cfbd_recruiting_position()}:}{CFB Recruiting Information Position Groups.}
+\item{\code{cfbd_recruiting_position()}:}{ CFB Recruiting Information Position Groups.}
 
-\item{\code{cfbd_recruiting_team()}:}{CFB Recruiting Information Team Rankings.}
+\item{\code{cfbd_recruiting_team()}:}{ CFB Recruiting Information Team Rankings.}
 }
 \subsection{\strong{Get Player recruiting rankings}}{
 

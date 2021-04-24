@@ -6,9 +6,9 @@
 \title{\strong{CFBD Players Endpoint Overview}}
 \description{
 \describe{
-\item{\code{cfbd_player_info()}:}{Player Information Search.}
-\item{\code{cfbd_player_returning()}:}{Player Returning Production.}
-\item{\code{cfbd_player_usage()}:}{Player Usage.}
+\item{\code{cfbd_player_info()}:}{ Player information search.}
+\item{\code{cfbd_player_returning()}:}{ Player returning production.}
+\item{\code{cfbd_player_usage()}:}{ Player usage.}
 }
 \subsection{\strong{Player information lookup}}{\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 

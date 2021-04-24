@@ -2,7 +2,8 @@
 #' @aliases coaches cfbd_coaches
 #' @title 
 #' **CFBD Coaches Endpoint Overview**
-#' @description Coach Information Search
+#' @description 
+#' **Coach information search**
 #' A coach search function which provides coaching records and school history for a given coach
 #' ```r
 #' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
