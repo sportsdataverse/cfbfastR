@@ -82,7 +82,7 @@ You can save the key for consistent usage by adding `CFBD_API_KEY=XXXX-YOUR-API-
 
 Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html) and THEN paste the following in the new script that pops up (with**out** quotations)
 
-``` {.r}
+``` {r}
 CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
 ```
 
