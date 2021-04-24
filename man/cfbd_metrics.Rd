@@ -2,241 +2,7 @@
 % Please edit documentation in R/cfbd_metrics.R
 \name{cfbd_metrics}
 \alias{cfbd_metrics}
-\alias{cfbd_metrics_ppa_games}
-\alias{cfbd_metrics_ppa_players_games}
-\alias{cfbd_metrics_ppa_players_season}
-\alias{cfbd_metrics_ppa_teams}
-\alias{cfbd_metrics_wp_pregame}
-\alias{cfbd_metrics_wp}
-\alias{cfbd_metrics_ppa_predicted}
-\title{CFBD Metrics Endpoint}
-\source{
-\url{https://api.collegefootballdata.com/ppa/players/games}
-
-\url{https://api.collegefootballdata.com/ppa/players/season}
-
-\url{https://api.collegefootballdata.com/ppa/predicted}
-
-\url{https://api.collegefootballdata.com/ppa/teams}
-
-\url{https://api.collegefootballdata.com/metrics/wp}
-}
-\usage{
-cfbd_metrics_ppa_games(
-  year,
-  week = NULL,
-  team = NULL,
-  conference = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
-)
-
-cfbd_metrics_ppa_players_games(
-  year = NULL,
-  week = NULL,
-  team = NULL,
-  position = NULL,
-  athlete_id = NULL,
-  threshold = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
-)
-
-cfbd_metrics_ppa_players_season(
-  year = NULL,
-  team = NULL,
-  conference = NULL,
-  position = NULL,
-  athlete_id = NULL,
-  threshold = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
-)
-
-cfbd_metrics_ppa_predicted(down, distance, verbose = FALSE)
-
-cfbd_metrics_ppa_teams(
-  year = 2019,
-  team = NULL,
-  conference = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
-)
-
-cfbd_metrics_wp_pregame(
-  year = NULL,
-  week = NULL,
-  team = NULL,
-  season_type = "regular",
-  verbose = FALSE
-)
-
-cfbd_metrics_wp(game_id, verbose = FALSE)
-}
-\arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
-
-\item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
-
-\item{team}{(\emph{String} optional): D-I Team}
-
-\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference\cr
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
-
-\item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
-
-\item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
-Position Group  - options include:\cr
-\itemize{
-\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
-\item Special Teams: K, P, LS, PK\cr
-}}
-
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
-
-\item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
-
-\item{down}{(\emph{Integer} required): Down filter}
-
-\item{distance}{(\emph{Integer} required): Distance filter}
-
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
-
-\item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
-}
-\value{
-\code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{opponent}: character.}{Team Opponent.}
-\item{\code{off_overall}: character.}{Offense overall predicted points added (PPA).}
-\item{\code{off_passing}: character.}{Offense passing predicted points added (PPA).}
-\item{\code{off_rushing}: character.}{Offense rushing predicted points added (PPA).}
-\item{\code{off_first_down}: character.}{Offense 1st down predicted points added (PPA).}
-\item{\code{off_second_down}: character.}{Offense 2nd down predicted points added (PPA).}
-\item{\code{off_third_down}: character.}{Offense 3rd down predicted points added (PPA).}
-\item{\code{def_overall}: character.}{Defense overall predicted points added (PPA).}
-\item{\code{def_passing}: character.}{Defense passing predicted points added (PPA).}
-\item{\code{def_rushing}: character.}{Defense rushing predicted points added (PPA).}
-\item{\code{def_first_down}: character.}{Defense 1st down predicted points added (PPA).}
-\item{\code{def_second_down}: character.}{Defense 2nd down predicted points added (PPA).}
-\item{\code{def_third_down}: character.}{Defense 3rd down predicted points added (PPA).}
-}
-
-\code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{name}: character.}{Athlete name.}
-\item{\code{position}: character.}{Athlete position.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{opponent}: character.}{Team Opponent name.}
-\item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
-\item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
-\item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}
-}
-
-\code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
-\describe{
-\item{\code{season}: integer.}{Season.}
-\item{\code{athlete_id}: character.}{Athlete referencing id.}
-\item{\code{name}: character.}{Athlete name.}
-\item{\code{position}: character.}{Athlete Position.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Team conference.}
-\item{\code{countable_plays}: integer.}{Number of plays which can be counted.}
-\item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
-\item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
-\item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}
-\item{\code{avg_PPA_first_down}: double.}{Average 1st down predicted points added (PPA).}
-\item{\code{avg_PPA_second_down}: double.}{Average 2nd down predicted points added (PPA).}
-\item{\code{avg_PPA_third_down}: double.}{Average 3rd down predicted points added (PPA).}
-\item{\code{avg_PPA_standard_downs}: double.}{Average standard down predicted points added (PPA).}
-\item{\code{avg_PPA_passing_downs}: double.}{Average passing down predicted points added (PPA).}
-\item{\code{total_PPA_all}: double.}{Total overall predicted points added (PPA).}
-\item{\code{total_PPA_pass}: double.}{Total passing predicted points added (PPA).}
-\item{\code{total_PPA_rush}: double.}{Total rushing predicted points added (PPA).}
-\item{\code{total_PPA_first_down}: double.}{Total 1st down predicted points added (PPA).}
-\item{\code{total_PPA_second_down}: double.}{Total 2nd down predicted points added (PPA).}
-\item{\code{total_PPA_third_down}: double.}{Total 3rd down predicted points added (PPA).}
-\item{\code{total_PPA_standard_downs}: double.}{Total standard down predicted points added (PPA).}
-\item{\code{total_PPA_passing_downs}: double.}{Total passing down predicted points added (PPA).}
-}
-
-\code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
-\describe{
-\item{\code{yard_line}: integer.}{Yards to goal}
-\item{\code{predicted_points}: character.}{Predicted points at in that down-distance-yardline scenario}
-}
-
-\code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
-\describe{
-\item{\code{season}: integer.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{off_overall}: character.}{Offense overall predicted points added (PPA).}
-\item{\code{off_passing}: character.}{Offense passing predicted points added (PPA).}
-\item{\code{off_rushing}: character.}{Offense rushing predicted points added (PPA).}
-\item{\code{off_first_down}: character.}{Offense 1st down predicted points added (PPA).}
-\item{\code{off_second_down}: character.}{Offense 2nd down predicted points added (PPA).}
-\item{\code{off_third_down}: character.}{Offense 3rd down predicted points added (PPA).}
-\item{\code{off_cumulative_total}: character.}{Offense cumulative total predicted points added (PPA).}
-\item{\code{off_cumulative_passing}: character.}{Offense cumulative total passing predicted points added (PPA).}
-\item{\code{off_cumulative_rushing}: character.}{Offense cumulative total rushing predicted points added (PPA).}
-\item{\code{def_overall}: character.}{Defense overall predicted points added (PPA).}
-\item{\code{def_passing}: character.}{Defense passing predicted points added (PPA).}
-\item{\code{def_rushing}: character.}{Defense rushing predicted points added (PPA).}
-\item{\code{def_first_down}: character.}{Defense 1st down predicted points added (PPA).}
-\item{\code{def_second_down}: character.}{Defense 2nd down predicted points added (PPA).}
-\item{\code{def_third_down}: character.}{Defense 3rd down predicted points added (PPA).}
-\item{\code{def_cumulative_total}: character.}{Defense cumulative total predicted points added (PPA).}
-\item{\code{def_cumulative_passing}: character.}{Defense cumulative total passing predicted points added (PPA).}
-\item{\code{def_cumulative_rushing}: character.}{Defense cumulative total rushing predicted points added (PPA).}
-}
-
-\code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Season of game.}
-\item{\code{season_type}: character.}{Season type of game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{home_team}: character.}{Home team name.}
-\item{\code{away_team}: character.}{Away team name.}
-\item{\code{spread}: integer.}{Betting line provider spread.}
-\item{\code{home_win_prob}: double.}{Home win probability - pre-game prediction.}
-\item{\code{away_win_prob}: double.}{Away win probability - pre-game prediction.}
-}
-
-\code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}} - A data frame with 16 variables:
-\describe{
-\item{\code{play_id}: character.}{Play referencing id.}
-\item{\code{play_text}: character.}{A text description of the play.}
-\item{\code{home_id}: integer.}{Home team referencing id.}
-\item{\code{home}: character.}{Home team name.}
-\item{\code{away_id}: integer.}{Away team referencing id.}
-\item{\code{away}: character.}{Away team name.}
-\item{\code{spread}: character.}{Betting lines provider spread.}
-\item{\code{home_ball}: logical.}{Home team has the ball.}
-\item{\code{home_score}: integer.}{Home team score.}
-\item{\code{away_score}: integer.}{Away team score.}
-\item{\code{down}: integer.}{Down of the play.}
-\item{\code{distance}: integer.}{Distance to the sticks (to 1st down marker of goal-line in goal-to-go situations).}
-\item{\code{home_win_prob}: character.}{Home team win probability.}
-\item{\code{away_win_prob}: double.}{Away team win probability.}
-\item{\code{play_number}: integer.}{Game play number.}
-\item{\code{yard_line}: integer.}{Yard line of the play (0-100 yards).}
-}
-}
+\title{\strong{CFBD Metrics Endpoint Overview}}
 \description{
 \describe{
 \item{\code{cfbd_metrics_ppa_games()}:}{Get team game averages for Predicted Points Added (PPA).}
@@ -246,54 +12,29 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \item{\code{cfbd_metrics_ppa_teams()}:}{Get team averages for Predicted Points Added (PPA).}
 \item{\code{cfbd_metrics_wp_pregame()}:}{Get Pre-game Win Probability Data from CFBD API.}
 \item{\code{cfbd_metrics_wp()}:}{Get win probability chart data from CFBD API.}
-}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
+}
+\subsection{\strong{Get team game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player season averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get team averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get pre-game and post-game win probability data from CFBD API}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
   cfbd_metrics_wp(game_id = 401012356)
 }\if{html}{\out{</div>}}
 }
-\examples{
-\donttest{
-cfbd_metrics_ppa_games(year = 2019, team = "TCU")
-}
 
-\donttest{
-cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
+\subsection{\strong{Calculate predicted points using down and distance}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_metrics_ppa_predicted(down = 1, distance = 10)
+}\if{html}{\out{</div>}}
 }
-
-\donttest{
-cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
 }
-
-\donttest{
-cfbd_metrics_ppa_predicted(down = 1, distance = 10)
-
-cfbd_metrics_ppa_predicted(down = 3, distance = 10)
-}
-
-\donttest{
-cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
-}
-
-\donttest{
-cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
-}
-
-\donttest{
-cfbd_metrics_wp(game_id = 401012356)
-}
-
-}
-\keyword{Averages}
-\keyword{Chart}
-\keyword{Data}
-\keyword{Players}
-\keyword{Points}
-\keyword{Pre-game}
-\keyword{Predicted}
-\keyword{Probability}
-\keyword{Season}
-\keyword{Teams}
-\keyword{Win}

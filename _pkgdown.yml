@@ -190,8 +190,12 @@ navbar:
       source: https://github.com/saiemgilani/cfbfastR/blob/master/
       issue: https://github.com/saiemgilani/cfbfastR/issues/issues/
       user: https://github.com/saiemgilani/
-
+bold:
+ - "cfbfastR Data"
+ - "College Football Data API and ESPN Functions"
+ - "Helper Functions and Data"
 reference:
+  - title: "cfbfastR Data"
   - subtitle: Full Seasons PBP Data
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data
     contents:
@@ -204,6 +208,7 @@ reference:
     desc: Functions exported by cfbfastR which return Expected Points and Win Probability model outputs.
     contents:
       - '`cfbd_pbp_data`'
+  - title: College Football Data API and ESPN Functions
   - subtitle: College Football Data API Key
     desc: Functions for using your API key.
     contents:
@@ -211,7 +216,8 @@ reference:
   - subtitle: Games Data
     desc: Functions exported by cfbfastR sourced from games endpoint of the CollegeFootballData API
     contents:
-      - '`cfbd_games`'
+      - starts_with("cfbd_game")
+      - '`cfbd_calendar`'
   - subtitle: Drives Data
     desc: Functions exported by cfbfastR sourced from drives endpoint of the CollegeFootballData API
     contents:
@@ -220,44 +226,55 @@ reference:
     desc: Functions exported by cfbfastR sourced from plays endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_play`'
+      - '`cfbd_plays`'
+      - starts_with("cfbd_play_stat")
+      - starts_with("cfbd_play_types") 
   - subtitle: Teams Data
     desc: Functions exported by cfbfastR sourced from the teams endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_teams`'
+      - starts_with("cfbd_team")
   - subtitle: Players Data
     desc: Functions exported by cfbfastR sourced from the players endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_players`'
+      - starts_with("cfbd_player")
   - subtitle: Stats Data
     desc: Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_stats`'
+      - starts_with("cfbd_stats")
   - subtitle: Rankings and Ratings Data
-    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API and ESPN
     contents:
       - '`cfbd_ratings`'
+      - starts_with("cfbd_ratings_")
+      - starts_with("cfbd_rankings")
       - '`espn_ratings_fpi`'
-  
   - subtitle: Betting Data
     desc: Functions exported by cfbfastR sourced from lines endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_betting`'
   - subtitle: Metrics Data
-    desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API and ESPN
     contents:
       - '`cfbd_metrics`'
+      - starts_with("cfbd_metrics_")
       - '`espn_metrics_wp`'
   - subtitle: Recruiting Data
     desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_recruiting`'
+      - starts_with("cfbd_recruiting_")
   - subtitle: Schools Data
     desc: Functions exported by cfbfastR sourced from venues, conferences, and coaches endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_venues`'
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
-  - subtite: Included data
+      
+  - title: Helper Functions and Data
+  - subtitle: Included data
     desc: Data included within the package
     contents:
       - '`data`'

@@ -1,6 +1,7 @@
 #' @name cfbd_drives
 #' @aliases drives cfbd_drives
-#' @title CFBD Drives Endpoint
+#' @title 
+#' **CFBD Drives Endpoint**
 #' @description Get CFB game drives
 #' ```r
 #' cfbd_drives(2018, week = 1, team = "TCU")

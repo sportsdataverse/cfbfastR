@@ -3,7 +3,7 @@
 \name{espn_ratings}
 \alias{espn_ratings}
 \alias{espn_ratings_fpi}
-\title{ESPN FPI Ratings}
+\title{\strong{ESPN FPI Ratings}}
 \source{
 \url{https://github.com/sabinanalytics/cfbfastR/blob/master/R/cfbd_ratings_fpi.R}
 }

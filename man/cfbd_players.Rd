@@ -2,161 +2,26 @@
 % Please edit documentation in R/cfbd_players.R
 \name{cfbd_players}
 \alias{cfbd_players}
-\alias{cfbd_player_info}
 \alias{cfbd_player}
-\alias{cfbd_player_returning}
-\alias{cfbd_player_usage}
-\title{CFBD Players Endpoint}
-\source{
-\url{https://api.collegefootballdata.com/player/search}
-
-\url{https://api.collegefootballdata.com/player/returning}
-
-\url{https://api.collegefootballdata.com/player/usage}
-}
-\usage{
-cfbd_player_info(
-  search_term,
-  position = NULL,
-  team = NULL,
-  year = NULL,
-  verbose = FALSE
-)
-
-cfbd_player_returning(
-  year = 2019,
-  team = NULL,
-  conference = NULL,
-  verbose = FALSE
-)
-
-cfbd_player_usage(
-  year = 2019,
-  team = NULL,
-  conference = NULL,
-  position = NULL,
-  athlete_id = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
-)
-}
-\arguments{
-\item{search_term}{(\emph{String} required): Search term for the player you are trying to look up}
-
-\item{position}{(\emph{string} optional): Position of the player you are searching for.\cr
-Position Group  - options include:\cr
-\itemize{
-\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
-\item Special Teams: K, P, LS, PK
-}}
-
-\item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
-
-\item{year}{(\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
-
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conferencer\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
-
-\item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
-}
-\value{
-\code{\link[=cfbd_player_info]{cfbd_player_info()}} - A data frame with 12 variables:
-\describe{
-\item{\code{athlete_id}:character.}{Unique player identifier \code{athlete_id}.}
-\item{\code{team}:character.}{Team of the player.}
-\item{\code{name}:character.}{Player name.}
-\item{\code{first_name}:character.}{Player first name.}
-\item{\code{last_name}:character.}{Player last name.}
-\item{\code{weight}:integer.}{Player weight.}
-\item{\code{height}:integer.}{Player height.}
-\item{\code{jersey}:integer.}{Player jersey number.}
-\item{\code{position}:character.}{Player position.}
-\item{\code{home_town}:character.}{Player home town.}
-\item{\code{team_color}:character.}{Player team color.}
-\item{\code{team_color_secondary}:character.}{Player team secondary color.}
-}
-
-\code{\link[=cfbd_player_returning]{cfbd_player_returning()}} - A data frame with 15 variables:
-\describe{
-\item{\code{season}:integer.}{Returning player season.}
-\item{\code{team}:character.}{Team name.}
-\item{\code{conference}:character.}{Conference of team.}
-\item{\code{total_ppa}:double.}{Total predicted points added returning.}
-\item{\code{total_passing_ppa}:double.}{Total passing predicted points added returning.}
-\item{\code{total_receiving_ppa}:double.}{Total receiving predicted points added returning.}
-\item{\code{total_rushing_ppa}:double.}{Total rushing predicted points added returning.}
-\item{\code{percent_ppa}:double.}{Percentage of prior year's predicted points added returning.}
-\item{\code{percent_passing_ppa}:double.}{Percentage of prior year's passing predicted points added returning.}
-\item{\code{percent_receiving_ppa}:double.}{Percentage of prior year's receiving predicted points added returning.}
-\item{\code{percent_rushing_ppa}:double.}{Percentage of prior year's rushing predicted points added returning.}
-\item{\code{usage}:double.}{.}
-\item{\code{passing_usage}:double.}{.}
-\item{\code{receiving_usage}:double.}{.}
-\item{\code{rushing_usage}:double.}{.}
-}
-
-\code{\link[=cfbd_player_usage]{cfbd_player_usage()}} - A data frame with 14 variables:
-\describe{
-\item{\code{season}: integer.}{Player usage season.}
-\item{\code{athlete_id}: character.}{Referencing athlete id.}
-\item{\code{name}: character.}{Athlete name.}
-\item{\code{position}: character.}{Athlete position.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of team.}
-\item{\code{usg_overall}: double.}{Player usage of overall offense.}
-\item{\code{usg_pass}: double.}{Player passing usage percentage.}
-\item{\code{usg_rush}: double.}{Player rushing usage percentage.}
-\item{\code{usg_1st_down}: double.}{Player first down usage percentage.}
-\item{\code{usg_2nd_down}: double.}{Player second down usage percentage.}
-\item{\code{usg_3rd_down}: double.}{Player third down usage percentage.}
-\item{\code{usg_standard_downs}: double.}{Player standard down usage percentage.}
-\item{\code{usg_passing_downs}: double.}{Player passing down usage percentage.}
-}
-}
+\title{\strong{CFBD Players Endpoint Overview}}
 \description{
 \describe{
 \item{\code{cfbd_player_info()}:}{Player Information Search.}
 \item{\code{cfbd_player_returning()}:}{Player Returning Production.}
 \item{\code{cfbd_player_usage()}:}{Player Usage.}
-}\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
+}
+\subsection{\strong{Player information lookup}}{\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 
  cfbd_player_info(search_term = "Lawrence", team = "Clemson")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_returning(year = 2019, team = "Florida State")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player returning production}}{\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_returning(year = 2019, team = "Florida State")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player usage metrics}}{\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
 
 }\if{html}{\out{</div>}}
 }
-\details{
-\code{\link[=cfbd_player_returning]{cfbd_player_returning()}}
-
-\code{\link[=cfbd_player_usage]{cfbd_player_usage()}}
 }
-\examples{
-\donttest{
-cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
-
-cfbd_player_info(search_term = "Lawrence", team = "Clemson")
-
-}
-
-\donttest{
-cfbd_player_returning(year = 2019, team = "Florida State")
-}
-
-\donttest{
-cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
-}
-
-}
-\keyword{Player}
-\keyword{Players}
-\keyword{Production}
-\keyword{Returning}
-\keyword{Usage}

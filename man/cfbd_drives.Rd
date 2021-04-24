@@ -3,7 +3,7 @@
 \name{cfbd_drives}
 \alias{cfbd_drives}
 \alias{drives}
-\title{CFBD Drives Endpoint}
+\title{\strong{CFBD Drives Endpoint}}
 \source{
 \url{https://api.collegefootballdata.com/drives}
 }

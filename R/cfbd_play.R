@@ -1,13 +1,15 @@
 #' @name cfbd_play
-#' @aliases cfbd_plays cfbd_play_stats_player cfbd_play_stats_types cfbd_play_types
-#' @title CFBD Plays Endpoint 
+#' @title 
+#' **CFBD Plays Endpoint Overview**
 #' @description College football plays data
 #' \describe{
-#' \item{`cfbd_plays()`:}{CFBD's College Football Play-by-Play}
+#' \item{`cfbd_plays()`:}{CFBD's College Football Play-by-Play.}
 #' \item{`cfbd_play_stats_player()`:}{Gets player info associated by play.}
 #' \item{`cfbd_play_stats_types()`:}{Gets CFBD play stat types.}
-#' \item{`cfbd_play_types()`:}{Gets CFBD play types}
+#' \item{`cfbd_play_types()`:}{Gets CFBD play types.}
 #' }
+#' 
+#' ### **Pull first 3 weeks of 2020 season using `cfbd_plays()`**
 #' ```r
 #'  year_vector <- 2020
 #'  week_vector <- 1:3
@@ -39,15 +41,21 @@
 #'  all_years <- dplyr::bind_rows(year_split)
 #'  glimpse(all_years)
 #' ```
+#' ### **Gets player info associated by play**
 #' ```r
 #' cfbd_play_stats_player(game_id = 401110722)
 #' ```
+#' ### **Gets CFBD play stat types** 
 #' ```r
 #' cfbd_play_stats_types()
 #' ```
+#' ### **Gets CFBD play types**
 #' ```r
 #' cfbd_play_types()
 #' ```
+NULL
+#' @title 
+#' **Get college football play-by-play data.**
 #' @source \url{https://api.collegefootballdata.com/plays}
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
@@ -100,6 +108,37 @@
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
 #' @export
+#' @examples
+#' \dontrun{
+#'  year_vector <- 2020
+#'  week_vector <- 1:3
+#'  weekly_year_df <- expand.grid(year = year_vector, week = week_vector)
+#'  tictoc::tic()
+#'  year_split <- split(weekly_year_df, weekly_year_df$year)
+#'  for (i in 1:length(year_split)) {
+#'    i <- 1
+#'    future::plan("multisession")
+#'    progressr::with_progress({
+#'       year_split[[i]] <- year_split[[i]] %>%
+#'          dplyr::mutate(
+#'             pbp = purrr::map2(
+#'                 .x = year,
+#'                 .y = week,
+#'                 cfbd_plays,
+#'                 season_type = "both"
+#'             )
+#'          )
+#'    })
+#'  }
+#'  
+#'  tictoc::toc()
+#'  year_split <- lapply(year_split, function(x) {
+#'      x %>% tidyr::unnest(pbp, names_repair = "minimal")
+#'  })
+#'  
+#'  all_years <- dplyr::bind_rows(year_split)
+#'  glimpse(all_years)
+#' }
 cfbd_plays <- function(year = 2020,
                        season_type = "regular",
                        week = 1,
@@ -212,8 +251,9 @@ cfbd_plays <- function(year = 2020,
   return(df)
 }
 
-#' @rdname cfbd_play
-#' @title Gets player info associated by play
+
+#' @title 
+#' **Gets player info associated by play**
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
@@ -555,8 +595,8 @@ cfbd_play_stats_player <- function(year = NULL,
   return(clean_df)
 }
 
-#' @rdname cfbd_play
-#' @title College Football Mapping for Play Stats Types
+#' @title 
+#' **Get college football mapping for play stats types**
 #' @return [cfbd_play_stats_types()] - A data frame with 22 rows and 2 variables:
 #' \describe{
 #'   \item{`play_stat_type_id`: integer}{Referencing play stat type ID.}
@@ -609,8 +649,8 @@ cfbd_play_stats_types <- function() {
   return(df)
 }
 
-#' @rdname cfbd_play
-#' @title College Football Mapping for Play Types
+#' @title 
+#' **Get college football mapping for play types**
 #' @return [cfbd_play_types()] - A data frame with 48 rows and 3 variables:
 #' \describe{
 #'   \item{`play_type_id`: integer}{Referencing play type id.}

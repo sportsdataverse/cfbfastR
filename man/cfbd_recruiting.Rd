@@ -2,106 +2,8 @@
 % Please edit documentation in R/cfbd_recruiting.R
 \name{cfbd_recruiting}
 \alias{cfbd_recruiting}
-\alias{cfbd_recruiting_player}
 \alias{recruiting}
-\alias{cfbd_recruiting_position}
-\alias{cfbd_recruiting_team}
-\title{CFB Recruiting Endpoint}
-\source{
-\url{https://api.collegefootballdata.com/recruiting/players}
-
-\url{https://api.collegefootballdata.com/recruiting/groups}
-
-\url{https://api.collegefootballdata.com/recruiting/teams}
-}
-\usage{
-cfbd_recruiting_player(
-  year = NULL,
-  team = NULL,
-  recruit_type = "HighSchool",
-  state = NULL,
-  position = NULL,
-  verbose = FALSE
-)
-
-cfbd_recruiting_position(
-  start_year = NULL,
-  end_year = NULL,
-  team = NULL,
-  conference = NULL,
-  verbose = FALSE
-)
-
-cfbd_recruiting_team(year = NULL, team = NULL, verbose = FALSE)
-}
-\arguments{
-\item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
-
-\item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
-
-\item{recruit_type}{(\emph{String} optional): default API return is 'HighSchool', other options include 'JUCO'
-or 'PrepSchool'  - For position group information}
-
-\item{state}{(\emph{String} optional): Two letter State abbreviation}
-
-\item{position}{(\emph{String} optional): Position Group  - options include:\cr
-\itemize{
-\item Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
-\item Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
-\item Special Teams: 'K', 'P'
-}}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
-
-\item{start_year}{(\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
-
-\item{end_year}{(\emph{Integer} optional): End Year,  4 digit format (\emph{YYYY}). \emph{Note: 2020 is the maximum value currently}}
-
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-}
-\value{
-\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 14 variables:
-\describe{
-\item{\code{recruit_type}: character.}{High School, Prep School, or Junior College.}
-\item{\code{year}: integer.}{Recruit class year.}
-\item{\code{ranking}: integer.}{Recruit Ranking.}
-\item{\code{name}: character.}{Recruit Name.}
-\item{\code{school}: character.}{School recruit attended.}
-\item{\code{committed_to}: character.}{School the recruit is committed to.}
-\item{\code{position}: character.}{Recruit position.}
-\item{\code{height}: double.}{Recruit height.}
-\item{\code{weight}: integer.}{Recruit weight.}
-\item{\code{stars}: integer.}{Recruit stars.}
-\item{\code{rating}: double.}{247 composite rating.}
-\item{\code{city}: character.}{Hometown of the recruit.}
-\item{\code{state_province}: character.}{Hometown state of the recruit.}
-\item{\code{country}: character.}{Hometown country of the recruit.}
-\item{\code{hometown_info_latitude}: character.}{Hometown latitude.}
-\item{\code{hometown_info_longitude}: character.}{Hometown longitude.}
-\item{\code{hometown_info_fips_code}: character.}{Hometown FIPS code.}
-}
-
-\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - A data frame with 7 variables:
-\describe{
-\item{\code{team}: character.}{Recruiting team.}
-\item{\code{conference}: character.}{Recruiting team conference.}
-\item{\code{position_group}: character.}{Position group of the recruits.}
-\item{\code{avg_rating}: double.}{Average rating of the recruits in the position group.}
-\item{\code{total_rating}: double.}{Sum of the ratings of the recruits in the position group.}
-\item{\code{commits}: integer.}{Number of commits in the position group.}
-\item{\code{avg_stars}: double.}{Average stars of the recruits in the position group.}
-}
-
-\code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}} - A data frame with 4 variables:
-\describe{
-\item{\code{year}: integer.}{Recruiting class year.}
-\item{\code{rank}: integer.}{Team Recruiting rank.}
-\item{\code{team}: character.}{Recruiting Team.}
-\item{\code{points}: character.}{Team talent points.}
-}
-}
+\title{\strong{CFB Recruiting Endpoint Overview}}
 \description{
 \describe{
 \item{\code{cfbd_recruiting_player()}:}{Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
@@ -109,17 +11,27 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{\code{cfbd_recruiting_position()}:}{CFB Recruiting Information Position Groups.}
 
 \item{\code{cfbd_recruiting_team()}:}{CFB Recruiting Information Team Rankings.}
-}\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_player(2018, team = "Texas")
+}
+\subsection{\strong{Get Player recruiting rankings}}{
+
+Gets CFB recruiting information for a single year with filters available
+for team, recruit type, state and position.\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_player(2018, team = "Texas")
 
 cfbd_recruiting_player(2016, recruit_type = "JUCO")
 
 cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_position(2018, team = "Texas")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{CFB Recruiting Information Position Groups.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_position(2018, team = "Texas")
 
 cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
 cfbd_recruiting_position(2015, 2020, conference = "SEC")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_team(2018, team = "Texas")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{CFB Recruiting Information Team Rankings.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_team(2018, team = "Texas")
 
 cfbd_recruiting_team(2016, team = "Virginia")
 
@@ -127,6 +39,7 @@ cfbd_recruiting_team(2016, team = "Texas A&M")
 
 cfbd_recruiting_team(2011)
 }\if{html}{\out{</div>}}
+}
 }
 \details{
 Gets CFB team recruiting ranks with filters available for year and team.
@@ -143,32 +56,3 @@ time period for all FBS teams, please see the \code{\link[=cfbd_recruiting_posit
 \code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - If only start_year is provided, function will get CFB recruiting information based
 on position groups during that year for all FBS teams.
 }
-\examples{
-\donttest{
-   cfbd_recruiting_player(2018, team = "Texas")
-
-   cfbd_recruiting_player(2016, recruit_type = "JUCO")
-
-   cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
-}
-
-\donttest{
-   cfbd_recruiting_position(2018, team = "Texas")
-
-   cfbd_recruiting_position(2016, 2020, team = "Virginia")
-
-   cfbd_recruiting_position(2015, 2020, conference = "SEC")
-}
-
-\donttest{
-cfbd_recruiting_team(2018, team = "Texas")
-
-cfbd_recruiting_team(2016, team = "Virginia")
-
-cfbd_recruiting_team(2016, team = "Texas A&M")
-
-cfbd_recruiting_team(2011)
-}
-
-}
-\keyword{Recruiting}

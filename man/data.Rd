@@ -5,7 +5,7 @@
 \alias{data}
 \alias{cfbd_play_type_df}
 \alias{cfbd_conf_types_df}
-\title{CFBD Data}
+\title{\strong{Data in the package for reference}}
 \format{
 A data frame with 45 rows and 3 variables:
 \describe{
@@ -35,10 +35,10 @@ cfbd_play_type_df
 cfbd_conf_types_df
 }
 \description{
-CFBD Data
+\strong{Data in the package for reference}
 
-College Football Mapping for Play Types
+\strong{College Football Mapping for Play Types}
 
-College Football Conference
+\strong{College Football Conferences}
 }
 \keyword{data}

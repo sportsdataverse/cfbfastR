@@ -1,7 +1,7 @@
-#' 
 #' @name cfbd_coaches
 #' @aliases coaches cfbd_coaches
-#' @title CFBD Coaches Endpoint
+#' @title 
+#' **CFBD Coaches Endpoint Overview**
 #' @description Coach Information Search
 #' A coach search function which provides coaching records and school history for a given coach
 #' ```r

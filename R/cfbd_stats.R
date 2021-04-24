@@ -1,6 +1,6 @@
 #' @name cfbd_stats
-#' @aliases cfbd_stats_categories cfbd_stats_game_advanced cfbd_stats_season_advanced cfbd_stats_season_player cfbd_stats_season_team
-#' @title CFBD Stats Endpoint
+#' @title 
+#' **CFBD Stats Endpoint Overview**
 #' @description 
 #' \describe{
 #' \item{`cfbd_stats_categories()`:}{College Football Mapping for Stats Categories.}
@@ -9,7 +9,8 @@
 #' \item{`cfbd_stats_game_advanced()`:}{Get Game Advanced Stats.}
 #' \item{`cfbd_stats_season_player()`:}{Get Season Statistics by Player.}
 #' }
-#' @description [cfbd_stats_categories()] This function identifies all Stats Categories identified in the regular stats endpoint.
+#' 
+#' ### **Get game advanced stats**
 #' ```r
 #' cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
 #'
@@ -18,10 +19,12 @@
 #' cfbd_stats_game_advanced(2013, team = "Florida State")
 #' ```
 #' 
+#' ### **Get season advanced statistics by team**
 #' ```r
 #' cfbd_stats_season_advanced(2019, team = "LSU")
 #' ```
 #' 
+#' ### **Get season statistics by player**
 #' ```r
 #' cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
 #'
@@ -29,7 +32,7 @@
 #'
 #' cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
 #' ```
-#' 
+#' ### **Get season statistics by team**
 #' ```r
 #' cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
 #'
@@ -37,6 +40,20 @@
 #'
 #' cfbd_stats_season_team(2013, team = "Florida State")
 #' ````
+#' 
+#' ### **Get stats categories**
+#' 
+#' This function identifies all Stats Categories identified in the regular stats endpoint.
+#' ```r
+#' cfbd_stats_categories() 
+#' ````
+#'
+NULL
+
+#' @title  
+#' **Get stats categories**
+#' @description
+#' This function identifies all Stats Categories identified in the regular stats endpoint.
 #' @examples
 #' \donttest{
 #'    cfbd_stats_categories()
@@ -92,9 +109,8 @@ cfbd_stats_categories <- function() {
   return(df)
 }
 
-#' Get Game Advanced Stats
-#' @rdname cfbd_stats
-#'
+#' @title 
+#' **Get game advanced stats**
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param team (\emph{String} optional): D-I Team
@@ -307,9 +323,8 @@ cfbd_stats_game_advanced <- function(year,
   return(df)
 }
 
-#' Get Season Advanced Statistics by Team
-#' @rdname cfbd_stats
-#'
+#' @title 
+#' **Get season advanced statistics by team**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
@@ -532,9 +547,8 @@ cfbd_stats_season_advanced <- function(year,
 }
 
 
-#' Get Season Statistics by Player
-#' @rdname cfbd_stats
-#'
+#' @title 
+#' **Get season statistics by player**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
 #' @param team (\emph{String} optional): D-I Team
@@ -803,10 +817,8 @@ cfbd_stats_season_player <- function(year,
   return(df)
 }
 
-
-#' Get Season Statistics by Team
-#' @rdname cfbd_stats
-#'
+#' @title 
+#' **Get season statistics by team**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
 #' @param team (\emph{String} optional): D-I Team

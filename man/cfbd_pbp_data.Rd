@@ -4,7 +4,7 @@
 \alias{cfbd_pbp_data}
 \alias{play-by-play}
 \alias{pbp_data}
-\title{CFBD Play by Play Data}
+\title{\strong{Get college football play by play data with cfbfastR expected points/win probability added}}
 \source{
 \url{https://api.collegefootballdata.com/plays}
 }
@@ -394,6 +394,6 @@ A data frame with 351 variables:
 }
 }
 \description{
-Extract CFB (D-I) Play by Play Data - For plays
+Extract college football (D-I) play by play Data - for plays
 }
 \keyword{Play-by-Play}

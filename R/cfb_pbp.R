@@ -1,7 +1,8 @@
-#' Load cfbfastR play-by-play
+#' **Load cfbfastR play-by-play**
 #' @name load_cfb_pbp
 NULL
-#' @title Load cleaned pbp from the data repo
+#' @title 
+#' **Load cleaned play-by-play from the data repo**
 #' @rdname load_cfb_pbp
 #' @description helper that loads multiple seasons from the data repo either into memory
 #' or writes it into a db using some forwarded arguments in the dots
@@ -82,7 +83,8 @@ load_games <- function(){
 
 #' @name update_cfb_db
 #' @aliases update_cfb_db cfb_db cfb database cfb_pbp_db
-#' @title Update or Create a cfbfastR Play-by-Play Database
+#' @title 
+#' **Update or create a cfbfastR play-by-play database**
 #' @description `update_cfb_db()` updates or creates a database with `cfbfastR`
 #' play by play data of all completed games since 2014.
 #'

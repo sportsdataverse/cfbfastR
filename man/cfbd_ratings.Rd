@@ -2,194 +2,45 @@
 % Please edit documentation in R/cfbd_ratings.R
 \name{cfbd_ratings}
 \alias{cfbd_ratings}
-\alias{cfbd_rankings}
-\alias{cfbd_ratings_sp}
-\alias{cfbd_ratings_sp_conference}
-\alias{cfbd_ratings_srs}
-\title{CFBD Ratings and Rankings Endpoints}
-\source{
-\url{https://api.collegefootballdata.com/rankings}
-
-\url{https://api.collegefootballdata.com/ratings/sp}
-
-\url{https://api.collegefootballdata.com/ratings/sp/conferences}
-
-\url{https://api.collegefootballdata.com/ratings/srs}
-}
-\usage{
-cfbd_rankings(year, week = NULL, season_type = "regular", verbose = FALSE)
-
-cfbd_ratings_sp(year = NULL, team = NULL, verbose = FALSE)
-
-cfbd_ratings_sp_conference(year = NULL, conference = NULL, verbose = FALSE)
-
-cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL, verbose = FALSE)
-}
-\arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
-
-\item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
-
-\item{season_type}{(\emph{String} default regular): Season type - regular or postseason}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
-
-\item{team}{(\emph{String} optional): D-I Team}
-
-\item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-}
-\value{
-\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Rankings season.}
-\item{\code{season_type}: character.}{Season type of rankings.}
-\item{\code{week}: integer.}{Week of rankings.}
-\item{\code{poll}: character.}{Name of the poll.}
-\item{\code{rank}: integer.}{Rank in the poll.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{first_place_votes}: integer.}{Number of first place votes.}
-\item{\code{points}: integer.}{Total poll points.}
-}
-
-\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the ratings.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{rating}: double.}{SP+ rating.}
-\item{\code{ranking}: integer.}{Ranking in the SP+ ratings.}
-\item{\code{second_order_wins}: logical.}{Total second-order wins - Not available for recent seasons.}
-\item{\code{sos}: logical.}{Strength of schedule - Not available for recent seasons.}
-\item{\code{offense_ranking}: integer.}{Overall offense ranking.}
-\item{\code{offense_rating}: double.}{Overall offense rating.}
-\item{\code{offense_success}: logical.}{Offense success rating - Not available for recent seasons.}
-\item{\code{offense_explosiveness}: logical.}{Offense explosiveness rating - Not available for recent seasons.}
-\item{\code{offense_rushing}: logical.}{Offense rushing rating - Not available for recent seasons.}
-\item{\code{offense_passing}: logical.}{Offense passing rating - Not available for recent seasons.}
-\item{\code{offense_standard_downs}: logical.}{Offense standard downs rating - Not available for recent seasons.}
-\item{\code{offense_passing_downs}: logical.}{Offensive passing downs rating - Not available for recent seasons.}
-\item{\code{offense_run_rate}: logical.}{Offense rushing rate - Not available for recent seasons.}
-\item{\code{offense_pace}: logical.}{Offense pace factor - Not available for recent seasons.}
-\item{\code{defense_ranking}: integer.}{Overall defense ranking.}
-\item{\code{defense_rating}: double.}{Overall defense rating.}
-\item{\code{defense_success}: logical.}{Defense success rating - Not available for recent seasons.}
-\item{\code{defense_explosiveness}: logical.}{Defense explosiveness rating - Not available for recent seasons.}
-\item{\code{defense_rushing}: logical.}{Defense rushing rating - Not available for recent seasons.}
-\item{\code{defense_passing}: logical.}{Defense passing rating - Not available for recent seasons.}
-\item{\code{defense_standard_downs}: logical.}{Defense standard downs rating - Not available for recent seasons.}
-\item{\code{defense_passing_downs}: logical.}{Defensive passing downs rating - Not available for recent seasons.}
-\item{\code{defense_havoc_total}: logical.}{Total defensive havoc rate - Not available for recent seasons.}
-\item{\code{defense_havoc_front_seven}: logical.}{Defense havoc rate from front 7 players - Not available for recent seasons.}
-\item{\code{defense_havoc_db}: logical.}{Defense havoc rate from defensive backs - Not available for recent seasons.}
-\item{\code{special_teams_rating}: double.}{Special teams rating.}
-}
-
-\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}} - A data frame with 25 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the conference rating.}
-\item{\code{conference}: character.}{Conference name.}
-\item{\code{rating}: double.}{Conference SP+ rating.}
-\item{\code{second_order_wins}: logical.}{Second-order wins for the conference - Not available for recent seasons.}
-\item{\code{sos}: logical.}{Strength of schedule for the conference  - Not available for recent seasons..}
-\item{\code{offense_rating}: double.}{Overall offense rating for the conference.}
-\item{\code{offense_success}: logical.}{Offense success rating for the conference - Not available for recent seasons.}
-\item{\code{offense_explosiveness}: logical.}{Offense explosiveness rating for the conference - Not available for recent seasons.}
-\item{\code{offense_rushing}: logical.}{Offense rushing rating for the conference - Not available for recent seasons.}
-\item{\code{offense_passing}: logical.}{Offense passing rating for the conference - Not available for recent seasons.}
-\item{\code{offense_standard_downs}: logical.}{Offense standard downs rating for the conference - Not available for recent seasons.}
-\item{\code{offense_passing_downs}: logical.}{Offensive passing downs rating for the conference - Not available for recent seasons.}
-\item{\code{offense_run_rate}: logical.}{Offense rushing rate for the conference - Not available for recent seasons.}
-\item{\code{offense_pace}: logical.}{Offense pace factor for the conference - Not available for recent seasons.}
-\item{\code{defense_ranking}: integer.}{Overall defense ranking for the conference.}
-\item{\code{defense_rating}: double.}{Overall defense rating for the conference.}
-\item{\code{defense_success}: logical.}{Defense success rating for the conference - Not available for recent seasons.}
-\item{\code{defense_explosiveness}: logical.}{Defense explosiveness rating for the conference - Not available for recent seasons.}
-\item{\code{defense_rushing}: logical.}{Defense rushing rating for the conference - Not available for recent seasons.}
-\item{\code{defense_passing}: logical.}{Defense passing rating for the conference - Not available for recent seasons.}
-\item{\code{defense_standard_downs}: logical.}{Defense standard downs rating for the conference - Not available for recent seasons.}
-\item{\code{defense_passing_downs}: logical.}{Defensive passing downs rating for the conference - Not available for recent seasons.}
-\item{\code{defense_havoc_total}: logical.}{Total defensive havoc rate for the conference - Not available for recent seasons.}
-\item{\code{defense_havoc_front_seven}: logical.}{Defense havoc rate from front 7 players for the conference - Not available for recent seasons.}
-\item{\code{defense_havoc_db}: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
-\item{\code{special_teams_rating}: double.}{Special teams rating for the conference.}
-}
-
-\code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}} - A data frame with 6 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the SRS rating.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{division}: logical.}{Division in the conference for the team.}
-\item{\code{rating}: double.}{Simple Rating System (SRS) rating.}
-\item{\code{ranking}: integer.}{Simple Rating System ranking within the group returned.}
-}
-}
+\title{\strong{CFBD Ratings and Rankings Endpoints Overview}}
 \description{
 \describe{
 \item{\code{cfbd_rankings()}:}{Gets Historical CFB poll rankings at a specific week.}
 \item{\code{cfbd_ratings_sp()}:}{Get SP historical rating data.}
 \item{\code{cfbd_ratings_sp_conference()}:}{Get SP conference-level historical rating data.}
 \item{\code{cfbd_ratings_srs()}:}{Get SRS historical rating data.}
-}\if{html}{\out{<div class="r">}}\preformatted{cfbd_rankings(year = 2019, week = 12)
+}
+\subsection{\strong{Get historical Coaches and AP poll data}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_rankings(year = 2019, week = 12)
 
 cfbd_rankings(year = 2018, week = 14)
 
 cfbd_rankings(year = 2013, season_type = "postseason")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_sp(year = 2018)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get SP historical rating data}}{
+
+At least one of \strong{year} or \strong{team} must be specified for the function to run\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_sp(year = 2018)
 
 cfbd_ratings_sp(team = "Texas A&M")
 
 cfbd_ratings_sp(year = 2019, team = "Texas")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_sp_conference(year = 2019)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get conference level SP historical rating data}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_sp_conference(year = 2019)
 
 cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
 
 cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_srs(year = 2019, team = "Texas")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get SRS historical rating data}}{
+
+At least one of \strong{year} or \strong{team} must be specified for the function to run\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_srs(year = 2019, team = "Texas")
 
 cfbd_ratings_srs(year = 2018, conference = "SEC")
 }\if{html}{\out{</div>}}
-
-At least one of \strong{year} or \strong{team} must be specified for the function to run
-
-At least one of \strong{year} or \strong{team} must be specified for the function to run
 }
-\examples{
-\donttest{
-cfbd_rankings(year = 2019, week = 12)
-
-cfbd_rankings(year = 2018, week = 14)
-
-cfbd_rankings(year = 2013, season_type = "postseason")
 }
-
-\donttest{
-cfbd_ratings_sp(year = 2018)
-
-cfbd_ratings_sp(team = "Texas A&M")
-
-cfbd_ratings_sp(year = 2019, team = "Texas")
-}
-
-\donttest{
-cfbd_ratings_sp_conference(year = 2019)
-
-cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
-
-cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
-}
-
-\donttest{
-cfbd_ratings_srs(year = 2019, team = "Texas")
-
-cfbd_ratings_srs(year = 2018, conference = "SEC")
-}
-
-}
-\keyword{CFB}
-\keyword{Rankings}
-\keyword{SP+}
-\keyword{SRS}

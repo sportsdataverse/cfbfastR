@@ -1,7 +1,8 @@
 
 #' @name cfbd_recruiting
-#' @aliases cfbd_recruiting recruiting cfbd_recruiting_player cfbd_recruiting_position cfbd_recruiting_team
-#' @title CFB Recruiting Endpoint
+#' @aliases cfbd_recruiting recruiting 
+#' @title 
+#' **CFB Recruiting Endpoint Overview**
 #' @description
 #' \describe{
 #'   \item{`cfbd_recruiting_player()`:}{Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
@@ -11,6 +12,10 @@
 #'   \item{`cfbd_recruiting_team()`:}{CFB Recruiting Information Team Rankings.}
 #' }
 #' 
+#' ## **Get Player recruiting rankings**
+#' 
+#' Gets CFB recruiting information for a single year with filters available 
+#' for team, recruit type, state and position.
 #' ```r
 #' cfbd_recruiting_player(2018, team = "Texas")
 #'
@@ -18,7 +23,7 @@
 #'
 #' cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 #' ```
-#' 
+#' ## **CFB Recruiting Information Position Groups.**
 #' ```r
 #' cfbd_recruiting_position(2018, team = "Texas")
 #'
@@ -26,7 +31,7 @@
 #'
 #' cfbd_recruiting_position(2015, 2020, conference = "SEC")
 #' ```
-#' 
+#' ## **CFB Recruiting Information Team Rankings.**
 #' ```r 
 #' cfbd_recruiting_team(2018, team = "Texas")
 #'
@@ -52,7 +57,9 @@
 #'
 #' [cfbd_recruiting_position()] - If only start_year is provided, function will get CFB recruiting information based
 #' on position groups during that year for all FBS teams.
-#'
+NULL
+#' @title 
+#' **Get player recruiting rankings**
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) - Minimum: 2000, Maximum: 2020 currently
 #' @param team (\emph{String} optional): D-I Team
 #' @param recruit_type (\emph{String} optional): default API return is 'HighSchool', other options include 'JUCO'
@@ -196,7 +203,8 @@ cfbd_recruiting_player <- function(year = NULL,
   return(df)
 }
 
-#' @rdname cfbd_recruiting
+#' @title 
+#' **CFB recruiting information position groups.**
 #' @param start_year (\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param end_year (\emph{Integer} optional): End Year,  4 digit format (\emph{YYYY}). \emph{Note: 2020 is the maximum value currently}
 #' @param team (\emph{String} optional): Team - Select a valid team, D-I football
@@ -321,7 +329,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
   return(df)
 }
 
-#' @rdname cfbd_recruiting
+#' @title 
+#' **CFB recruiting information team rankings.**
 #' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function

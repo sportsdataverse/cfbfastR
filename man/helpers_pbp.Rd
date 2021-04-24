@@ -12,7 +12,7 @@
 \alias{add_yardage}
 \alias{clean_pbp_dat}
 \alias{penalty_detection}
-\title{Series of functions to help clean the play-by-play data for analysis}
+\title{\strong{Series of functions to help clean the play-by-play data for analysis}}
 \usage{
 add_play_counts(play_df)
 

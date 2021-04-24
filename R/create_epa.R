@@ -1,6 +1,7 @@
 #' @name create_epa
 #' @aliases create_epa epa_fg_probs
-#' @title Create EPA
+#' @title 
+#' **Create EPA**
 #' @description Adds Expected Points calculations to Play-by-Play data.frame
 #'
 #' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from [cfbd_pbp_data()]

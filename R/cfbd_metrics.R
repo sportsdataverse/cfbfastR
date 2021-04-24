@@ -1,7 +1,6 @@
 #' @name cfbd_metrics
-#' @aliases cfbd_metrics cfbd_metrics_ppa_games 
-#' cfbd_metrics_ppa_players_games cfbd_metrics_ppa_players_season cfbd_metrics_ppa_teams cfbd_metrics_wp_pregame cfbd_metrics_wp
-#' @title CFBD Metrics Endpoint
+#' @title 
+#' **CFBD Metrics Endpoint Overview**
 #' @description 
 #' \describe{
 #' \item{`cfbd_metrics_ppa_games()`:}{Get team game averages for Predicted Points Added (PPA).}
@@ -12,27 +11,35 @@
 #' \item{`cfbd_metrics_wp_pregame()`:}{Get Pre-game Win Probability Data from CFBD API.}
 #' \item{`cfbd_metrics_wp()`:}{Get win probability chart data from CFBD API.}
 #' }
-#' 
+#' ### **Get team game averages for predicted points added (PPA)**
 #' ```r
 #'   cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 #' ```
-#' 
+#' ### **Get player game averages for predicted points added (PPA)**
 #' ```r
 #'   cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
 #' ```
-#' 
+#' ### **Get player season averages for predicted points added (PPA)**
 #' ```r
 #'   cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
 #' ```
-#' 
+#' ### **Get team averages for predicted points added (PPA)**
 #' ```r
 #'   cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
 #' ```
-#' 
+#' ### **Get pre-game and post-game win probability data from CFBD API**
 #' ```r
 #'   cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
 #'   cfbd_metrics_wp(game_id = 401012356)
 #' ```
+#' ### **Calculate predicted points using down and distance**
+#' ```r
+#' cfbd_metrics_ppa_predicted(down = 1, distance = 10)
+#' ```
+#' 
+NULL
+#' @title
+#' **Get team game averages for predicted points added (PPA)**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
@@ -175,9 +182,9 @@ cfbd_metrics_ppa_games <- function(year,
 
 
 
-#' Get player game averages for Predicted Points Added (PPA)
-#' @rdname cfbd_metrics
-#'
+
+#' @title 
+#' **Get player game averages for predicted points added (PPA)**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
@@ -334,9 +341,8 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 
 
-#' Get player season averages for Predicted Points Added (PPA)
-#' @rdname cfbd_metrics
-#'
+#' @title 
+#' **Get player season averages for predicted points added (PPA)**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
 #' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
@@ -517,9 +523,9 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
 
 
-#' Calculate Predicted Points using Down and Distance
-#' @rdname cfbd_metrics
-#'
+
+#' @title 
+#' **Calculate predicted points using down and distance**
 #' @param down (\emph{Integer} required): Down filter
 #' @param distance (\emph{Integer} required): Distance filter
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -606,9 +612,8 @@ cfbd_metrics_ppa_predicted <- function(down,
 }
 
 
-#' Get team averages for Predicted Points Added (PPA)
-#' @rdname cfbd_metrics
-#'
+#' @title 
+#' **Get team averages for predicted points added (PPA)**
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
 #' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
@@ -741,11 +746,8 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
   return(df)
 }
 
-
-
-#' Get Pre-game Win Probability Data from API
-#' @rdname cfbd_metrics
-#'
+#' @title 
+#' **Get pre-game win probability data from API**
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
@@ -862,10 +864,8 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
   return(df)
 }
 
-
-#' Get win probability chart data from API
-#' @rdname cfbd_metrics
-#'
+#' @title 
+#' **Get win probability chart data from API**
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the [cfbd_game_info()] function
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function

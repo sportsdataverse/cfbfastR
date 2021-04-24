@@ -4,7 +4,7 @@
 \alias{create_wpa}
 \alias{create_wpa_naive}
 \alias{wpa_calcs_naive}
-\title{Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame}
+\title{\strong{Create WPA}}
 \usage{
 create_wpa_naive(df, wp_model)
 
@@ -40,6 +40,7 @@ The original \code{df} with the following columns appended to it:
 }
 }
 \description{
+Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
 This is only for D1 football
 }
 \details{

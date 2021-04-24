@@ -1,6 +1,7 @@
 #' @name espn_ratings
 #' @aliases espn_ratings_fpi
-#' @title ESPN FPI Ratings
+#' @title 
+#' **ESPN FPI Ratings**
 #' @description Get FPI historical rating data (most recent of each year)
 #' @details Adapted from sabinanalytic's fork of the cfbfastR repo
 #' @source \url{https://github.com/sabinanalytics/cfbfastR/blob/master/R/cfbd_ratings_fpi.R}
