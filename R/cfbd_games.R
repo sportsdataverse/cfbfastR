@@ -1,15 +1,15 @@
 #' @name cfbd_games
 #' @aliases cfbd_games cfbd_game_info cfbd_calendar cfbd_game_media cfbd_game_box_advanced cfbd_game_player_stats cfbd_game_records cfbd_game_team_stats
 #' @title CFBD Games Endpoint
-#' @description Get results, statistics and information for games
+#' @description Get results, statistics and information for games\cr
 #' \describe{
-#'   \item{`cfbd_game_info()`: Get results information from games}{.}
-#'   \item{`cfbd_calendar()`: Calendar - Returns calendar of weeks by season}{.}
-#'   \item{`cfbd_game_media()`: Get Game media information (TV, radio, etc)}{.}
-#'   \item{`cfbd_game_box_advanced()`: Get game advanced box score information}{.}
-#'   \item{`cfbd_game_player_stats()`: Get results information from games}{.}
-#'   \item{`cfbd_game_records()`: Get Team records by year}{.}
-#'   \item{`cfbd_game_team_stats()`: Get Team Statistics by Game}{.}
+#'   \item{`cfbd_game_info()`:}{Get results information from games.}
+#'   \item{`cfbd_calendar()`:}{Calendar - Returns calendar of weeks by season.}
+#'   \item{`cfbd_game_media()`:}{Get Game media information (TV, radio, etc).}
+#'   \item{`cfbd_game_box_advanced()`:}{Get game advanced box score information.}
+#'   \item{`cfbd_game_player_stats()`:}{Get results information from games.}
+#'   \item{`cfbd_game_records()`:}{Get Team records by year.}
+#'   \item{`cfbd_game_team_stats()`:}{Get Team Statistics by Game.}
 #' }
 #' @examples
 #' \donttest{
@@ -436,75 +436,75 @@ cfbd_game_media <- function(year,
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_game_box_advanced()] - A data frame with 2 rows and 69 variables:
 #' \describe{
-#'   \item{`team`: character.}{.}
-#'   \item{`plays`: double.}{.}
-#'   \item{`ppa_overall_total`: double.}{.}
-#'   \item{`ppa_overall_quarter1`: double.}{.}
-#'   \item{`ppa_overall_quarter2`: double.}{.}
-#'   \item{`ppa_overall_quarter3`: double.}{.}
-#'   \item{`ppa_overall_quarter4`: double.}{.}
-#'   \item{`ppa_passing_total`: double.}{.}
-#'   \item{`ppa_passing_quarter1`: double.}{.}
-#'   \item{`ppa_passing_quarter2`: double.}{.}
-#'   \item{`ppa_passing_quarter3`: double.}{.}
-#'   \item{`ppa_passing_quarter4`: double.}{.}
-#'   \item{`ppa_rushing_total`: double.}{.}
-#'   \item{`ppa_rushing_quarter1`: double.}{.}
-#'   \item{`ppa_rushing_quarter2`: double.}{.}
-#'   \item{`ppa_rushing_quarter3`: double.}{.}
-#'   \item{`ppa_rushing_quarter4`: double.}{.}
-#'   \item{`cumulative_ppa_plays`: double.}{.}
-#'   \item{`cumulative_ppa_overall_total`: double.}{.}
-#'   \item{`cumulative_ppa_overall_quarter1`: double.}{.}
-#'   \item{`cumulative_ppa_overall_quarter2`: double.}{.}
-#'   \item{`cumulative_ppa_overall_quarter3`: double.}{.}
-#'   \item{`cumulative_ppa_overall_quarter4`: double.}{.}
-#'   \item{`cumulative_ppa_passing_total`: double.}{.}
-#'   \item{`cumulative_ppa_passing_quarter1`: double.}{.}
-#'   \item{`cumulative_ppa_passing_quarter2`: double.}{.}
-#'   \item{`cumulative_ppa_passing_quarter3`: double.}{.}
-#'   \item{`cumulative_ppa_passing_quarter4`: double.}{.}
-#'   \item{`cumulative_ppa_rushing_total`: double.}{.}
-#'   \item{`cumulative_ppa_rushing_quarter1`: double.}{.}
-#'   \item{`cumulative_ppa_rushing_quarter2`: double.}{.}
-#'   \item{`cumulative_ppa_rushing_quarter3`: double.}{.}
-#'   \item{`cumulative_ppa_rushing_quarter4`: double.}{.}
-#'   \item{`success_rates_overall_total`: double.}{.}
-#'   \item{`success_rates_overall_quarter1`: double.}{.}
-#'   \item{`success_rates_overall_quarter2`: double.}{.}
-#'   \item{`success_rates_overall_quarter3`: double.}{.}
-#'   \item{`success_rates_overall_quarter4`: double.}{.}
-#'   \item{`success_rates_standard_downs_total`: double.}{.}
-#'   \item{`success_rates_standard_downs_quarter1`: double.}{.}
-#'   \item{`success_rates_standard_downs_quarter2`: double.}{.}
-#'   \item{`success_rates_standard_downs_quarter3`: double.}{.}
-#'   \item{`success_rates_standard_downs_quarter4`: double.}{.}
-#'   \item{`success_rates_passing_downs_total`: double.}{.}
-#'   \item{`success_rates_passing_downs_quarter1`: double.}{.}
-#'   \item{`success_rates_passing_downs_quarter2`: double.}{.}
-#'   \item{`success_rates_passing_downs_quarter3`: double.}{.}
-#'   \item{`success_rates_passing_downs_quarter4`: double.}{.}
-#'   \item{`explosiveness_overall_total`: double.}{.}
-#'   \item{`explosiveness_overall_quarter1`: double.}{.}
-#'   \item{`explosiveness_overall_quarter2`: double.}{.}
-#'   \item{`explosiveness_overall_quarter3`: double.}{.}
-#'   \item{`explosiveness_overall_quarter4`: double.}{.}
-#'   \item{`rushing_power_success`: double.}{.}
-#'   \item{`rushing_stuff_rate`: double.}{.}
-#'   \item{`rushing_line_yds`: double.}{.}
-#'   \item{`rushing_line_yd_avg`: double.}{.}
-#'   \item{`rushing_second_lvl_yds`: double.}{.}
-#'   \item{`rushing_second_lvl_yd_avg`: double.}{.}
-#'   \item{`rushing_open_field_yds`: double.}{.}
-#'   \item{`rushing_open_field_yd_avg`: double.}{.}
-#'   \item{`havoc_total`: double.}{.}
-#'   \item{`havoc_front_seven`: double.}{.}
-#'   \item{`havoc_db`: double.}{.}
-#'   \item{`scoring_opps_opportunities`: double.}{.}
-#'   \item{`scoring_opps_points`: double.}{.}
-#'   \item{`scoring_opps_pts_per_opp`: double.}{.}
-#'   \item{`field_pos_avg_start`: double.}{.}
-#'   \item{`field_pos_avg_starting_predicted_pts`: double.}{.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`plays`: double.}{Number of plays.}
+#'   \item{`ppa_overall_total`: double.}{Predicted points added (PPA) overall total.}
+#'   \item{`ppa_overall_quarter1`: double.}{Predicted points added (PPA) overall Q1.}
+#'   \item{`ppa_overall_quarter2`: double.}{Predicted points added (PPA) overall Q2.}
+#'   \item{`ppa_overall_quarter3`: double.}{Predicted points added (PPA) overall Q3.}
+#'   \item{`ppa_overall_quarter4`: double.}{Predicted points added (PPA) overall Q4.}
+#'   \item{`ppa_passing_total`: double.}{Passing predicted points added (PPA) total.}
+#'   \item{`ppa_passing_quarter1`: double.}{Passing predicted points added (PPA) Q1.}
+#'   \item{`ppa_passing_quarter2`: double.}{Passing predicted points added (PPA) Q2.}
+#'   \item{`ppa_passing_quarter3`: double.}{Passing predicted points added (PPA) Q3.}
+#'   \item{`ppa_passing_quarter4`: double.}{Passing predicted points added (PPA) Q4.}
+#'   \item{`ppa_rushing_total`: double.}{Rushing predicted points added (PPA) total.}
+#'   \item{`ppa_rushing_quarter1`: double.}{Rushing predicted points added (PPA) Q1.}
+#'   \item{`ppa_rushing_quarter2`: double.}{Rushing predicted points added (PPA) Q2.}
+#'   \item{`ppa_rushing_quarter3`: double.}{Rushing predicted points added (PPA) Q3.}
+#'   \item{`ppa_rushing_quarter4`: double.}{Rushing predicted points added (PPA) Q4.}
+#'   \item{`cumulative_ppa_plays`: double.}{Cumulative predicted points added (PPA) added total.}
+#'   \item{`cumulative_ppa_overall_total`: double.}{Cumulative predicted points added (PPA) total.}
+#'   \item{`cumulative_ppa_overall_quarter1`: double.}{Cumulative predicted points added (PPA) Q1.}
+#'   \item{`cumulative_ppa_overall_quarter2`: double.}{Cumulative predicted points added (PPA) Q2.}
+#'   \item{`cumulative_ppa_overall_quarter3`: double.}{Cumulative predicted points added (PPA) Q3.}
+#'   \item{`cumulative_ppa_overall_quarter4`: double.}{Cumulative predicted points added (PPA) Q4.}
+#'   \item{`cumulative_ppa_passing_total`: double.}{Cumulative passing predicted points added (PPA) total.}
+#'   \item{`cumulative_ppa_passing_quarter1`: double.}{Cumulative passing predicted points added (PPA) Q1.}
+#'   \item{`cumulative_ppa_passing_quarter2`: double.}{Cumulative passing predicted points added (PPA) Q2.}
+#'   \item{`cumulative_ppa_passing_quarter3`: double.}{Cumulative passing predicted points added (PPA) Q3.}
+#'   \item{`cumulative_ppa_passing_quarter4`: double.}{Cumulative passing predicted points added (PPA) Q4.}
+#'   \item{`cumulative_ppa_rushing_total`: double.}{Cumulative rushing predicted points added (PPA) total.}
+#'   \item{`cumulative_ppa_rushing_quarter1`: double.}{Cumulative rushing predicted points added (PPA) Q1.}
+#'   \item{`cumulative_ppa_rushing_quarter2`: double.}{Cumulative rushing predicted points added (PPA) Q2.}
+#'   \item{`cumulative_ppa_rushing_quarter3`: double.}{Cumulative rushing predicted points added (PPA) Q3.}
+#'   \item{`cumulative_ppa_rushing_quarter4`: double.}{Cumulative rushing predicted points added (PPA) Q4.}
+#'   \item{`success_rates_overall_total`: double.}{Success rates overall total.}
+#'   \item{`success_rates_overall_quarter1`: double.}{Success rates overall Q1.}
+#'   \item{`success_rates_overall_quarter2`: double.}{Success rates overall Q2.}
+#'   \item{`success_rates_overall_quarter3`: double.}{Success rates overall Q3.}
+#'   \item{`success_rates_overall_quarter4`: double.}{Success rates overall Q4.}
+#'   \item{`success_rates_standard_downs_total`: double.}{Success rates standard downs total.}
+#'   \item{`success_rates_standard_downs_quarter1`: double.}{Success rates standard downs Q1.}
+#'   \item{`success_rates_standard_downs_quarter2`: double.}{Success rates standard downs Q2.}
+#'   \item{`success_rates_standard_downs_quarter3`: double.}{Success rates standard downs Q3.}
+#'   \item{`success_rates_standard_downs_quarter4`: double.}{Success rates standard downs Q4.}
+#'   \item{`success_rates_passing_downs_total`: double.}{Success rates passing downs total.}
+#'   \item{`success_rates_passing_downs_quarter1`: double.}{Success rates passing downs Q1.}
+#'   \item{`success_rates_passing_downs_quarter2`: double.}{Success rates passing downs Q2.}
+#'   \item{`success_rates_passing_downs_quarter3`: double.}{Success rates passing downs Q3.}
+#'   \item{`success_rates_passing_downs_quarter4`: double.}{Success rates passing downs Q4.}
+#'   \item{`explosiveness_overall_total`: double.}{Explosiveness rates overall total.}
+#'   \item{`explosiveness_overall_quarter1`: double.}{Explosiveness rates overall Q1.}
+#'   \item{`explosiveness_overall_quarter2`: double.}{Explosiveness rates overall Q2.}
+#'   \item{`explosiveness_overall_quarter3`: double.}{Explosiveness rates overall Q3.}
+#'   \item{`explosiveness_overall_quarter4`: double.}{Explosiveness rates overall Q4.}
+#'   \item{`rushing_power_success`: double.}{Rushing power success rate.}
+#'   \item{`rushing_stuff_rate`: double.}{Rushing stuff rate.}
+#'   \item{`rushing_line_yds`: double.}{Rushing offensive line yards.}
+#'   \item{`rushing_line_yds_avg`: double.}{Rushing line yards average.}
+#'   \item{`rushing_second_lvl_yds`: double.}{Rushing second-level yards.}
+#'   \item{`rushing_second_lvl_yds_avg`: double.}{Average second level yards per rush.}
+#'   \item{`rushing_open_field_yds`: double.}{Rushing open field yards.}
+#'   \item{`rushing_open_field_yds_avg`: double.}{Average rushing open field yards average.}
+#'   \item{`havoc_total`: double.}{Total havoc rate.}
+#'   \item{`havoc_front_seven`: double.}{Front-7 players havoc rate.}
+#'   \item{`havoc_db`: double.}{Defensive back players havoc rate.}
+#'   \item{`scoring_opps_opportunities`: double.}{Number of scoring opportunities.}
+#'   \item{`scoring_opps_points`: double.}{Points on scoring opportunity drives.}
+#'   \item{`scoring_opps_pts_per_opp`: double.}{Points per scoring opportunity drives.}
+#'   \item{`field_pos_avg_start`: double.}{Average starting field position.}
+#'   \item{`field_pos_avg_starting_predicted_pts`: double.}{Average starting predicted points (PP) for the average starting field position.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/game/box/advanced}
 #' @keywords Game Advanced Box Score
@@ -609,9 +609,14 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
           tidyr::pivot_wider(names_from = .data$stat, values_from = .data$value) %>%
           dplyr::select(-.data$name) %>%
           dplyr::mutate_all(as.numeric) %>%
-          dplyr::bind_cols(team) %>%
+          dplyr::bind_cols(team)  %>% 
           dplyr::select(.data$team, tidyr::everything()) %>%
           as.data.frame()
+        df <- df %>%
+          dplyr::rename(
+            rushing_line_yds_avg = .data$rushing_line_yd_avg,
+            rushing_second_lvl_yds_avg = .data$rushing_second_lvl_yd_avg,
+            rushing_open_field_yds_avg = .data$rushing_open_field_yd_avg)
       }
 
       if(verbose){
@@ -647,38 +652,38 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #'
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
 #' \describe{
-#'   \item{`game_id`: integer.}{.}
-#'   \item{`team`: character.}{.}
-#'   \item{`conference`: character.}{.}
-#'   \item{`home_away`: character.}{.}
-#'   \item{`points`: integer.}{.}
-#'   \item{`category`: character.}{.}
-#'   \item{`athlete_id`: character.}{.}
-#'   \item{`name`: character.}{.}
-#'   \item{`c_att`: character.}{.}
-#'   \item{`yds`: double.}{.}
-#'   \item{`avg`: double.}{.}
-#'   \item{`td`: double.}{.}
-#'   \item{`int`: double.}{.}
-#'   \item{`qbr`: double.}{.}
-#'   \item{`car`: double.}{.}
-#'   \item{`long`: double.}{.}
-#'   \item{`rec`: double.}{.}
-#'   \item{`no`: double.}{.}
-#'   \item{`fg`: character.}{.}
-#'   \item{`pct`: double.}{.}
-#'   \item{`xp`: character.}{.}
-#'   \item{`pts`: double.}{.}
-#'   \item{`tb`: double.}{.}
-#'   \item{`in_20`: double.}{.}
-#'   \item{`fum`: double.}{.}
-#'   \item{`lost`: double.}{.}
-#'   \item{`tot`: double.}{.}
-#'   \item{`solo`: double.}{.}
-#'   \item{`sacks`: double.}{.}
-#'   \item{`tfl`: double.}{.}
-#'   \item{`pd`: double.}{.}
-#'   \item{`qb_hur`: double.}{.}
+#'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`home_away`: character.}{Flag for if the team was the home or away team.}
+#'   \item{`points`: integer.}{Team points.}
+#'   \item{`category`: character.}{Statistic category.}
+#'   \item{`athlete_id`: character.}{Athlete referencing id.}
+#'   \item{`name`: character.}{Player name.}
+#'   \item{`c_att`: character.}{Completions - Pass attempts.}
+#'   \item{`yds`: double.}{Statistic yardage.}
+#'   \item{`avg`: double.}{Average per statistic.}
+#'   \item{`td`: double.}{Touchdowns scored.}
+#'   \item{`int`: double.}{Interceptions thrown.}
+#'   \item{`qbr`: double.}{Quarterback rating.}
+#'   \item{`car`: double.}{Number of rushing carries.}
+#'   \item{`long`: double.}{Longest carry/reception of the game.}
+#'   \item{`rec`: double.}{Number of pass receptions.}
+#'   \item{`no`: double.}{Player number.}
+#'   \item{`fg`: character.}{Field goal attempts in the game.}
+#'   \item{`pct`: double.}{Field goal percentage in the game.}
+#'   \item{`xp`: character.}{Extra points kicked in the game.}
+#'   \item{`pts`: double.}{Total kicking points in the game.}
+#'   \item{`tb`: double.}{Touchbacks (for kicking) in the game.}
+#'   \item{`in_20`: double.}{Punts inside the 20 yardline in the game.}
+#'   \item{`fum`: double.}{Player fumbles in the game.}
+#'   \item{`lost`: double.}{Player fumbles lost in the game.}
+#'   \item{`tot`: double.}{Total tackles in the game.}
+#'   \item{`solo`: double.}{Solo tackles in the game.}
+#'   \item{`sacks`: double.}{Total sacks in the game.}
+#'   \item{`tfl`: double.}{Total tackles for loss in the game.}
+#'   \item{`pd`: double.}{Total passes defensed in the game.}
+#'   \item{`qb_hur`: double.}{Total quarterback hurries in the game.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games/players}
 #' @keywords Game Info
@@ -863,26 +868,26 @@ cfbd_game_player_stats <- function(year,
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_game_records()] - A data frame with 20 variables:
 #' \describe{
-#'   \item{`year`: integer.}{.}
-#'   \item{`team`: character.}{.}
-#'   \item{`conference`: character.}{.}
-#'   \item{`division`: character.}{.}
-#'   \item{`total_games`: integer.}{.}
-#'   \item{`total_wins`: integer.}{.}
-#'   \item{`total_losses`: integer.}{.}
-#'   \item{`total_ties`: integer.}{.}
-#'   \item{`conference_games`: integer.}{.}
-#'   \item{`conference_wins`: integer.}{.}
-#'   \item{`conference_losses`: integer.}{.}
-#'   \item{`conference_ties`: integer.}{.}
-#'   \item{`home_games`: integer.}{.}
-#'   \item{`home_wins`: integer.}{.}
-#'   \item{`home_losses`: integer.}{.}
-#'   \item{`home_ties`: integer.}{.}
-#'   \item{`away_games`: integer.}{.}
-#'   \item{`away_wins`: integer.}{.}
-#'   \item{`away_losses`: integer.}{.}
-#'   \item{`away_ties`: integer.}{.}
+#'   \item{`year`: integer.}{Season of the games.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`division`: character.}{Division in the conference of the team.}
+#'   \item{`total_games`: integer.}{Total number of games played.}
+#'   \item{`total_wins`: integer.}{Total wins.}
+#'   \item{`total_losses`: integer.}{Total losses.}
+#'   \item{`total_ties`: integer.}{Total ties.}
+#'   \item{`conference_games`: integer.}{Number of conference games.}
+#'   \item{`conference_wins`: integer.}{Total conference wins.}
+#'   \item{`conference_losses`: integer.}{Total conference losses.}
+#'   \item{`conference_ties`: integer.}{Total conference ties.}
+#'   \item{`home_games`: integer.}{Total home games.}
+#'   \item{`home_wins`: integer.}{Total home wins.}
+#'   \item{`home_losses`: integer.}{Total home losses.}
+#'   \item{`home_ties`: integer.}{Total home ties.}
+#'   \item{`away_games`: integer.}{Total away games.}
+#'   \item{`away_wins`: integer.}{Total away wins.}
+#'   \item{`away_losses`: integer.}{Total away losses.}
+#'   \item{`away_ties`: integer.}{Total away ties.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/records}
 #' @keywords Team Info
@@ -1000,84 +1005,84 @@ cfbd_game_records <- function(year,
 #'
 #' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
 #' \describe{
-#'   \item{`game_id`: integer.}{.}
-#'   \item{`school`: character.}{.}
-#'   \item{`conference`: character.}{.}
-#'   \item{`home_away`: character.}{.}
-#'   \item{`points`: integer.}{.}
-#'   \item{`total_yards`: character.}{.}
-#'   \item{`net_passing_yards`: character.}{.}
-#'   \item{`completion_attempts`:character.}{.}
-#'   \item{`passing_tds`: character.}{.}
-#'   \item{`yards_per_pass`: character.}{.}
-#'   \item{`passes_intercepted`: character.}{.}
-#'   \item{`interception_yards`: character.}{.}
-#'   \item{`interception_tds`: character.}{.}
-#'   \item{`rushing_attempts`: character.}{.}
-#'   \item{`rushing_yards`: character.}{.}
-#'   \item{`rush_tds`: character.}{.}
-#'   \item{`yards_per_rush_attempt`: character.}{.}
-#'   \item{`first_downs`: character.}{.}
-#'   \item{`third_down_eff`: character.}{.}
-#'   \item{`fourth_down_eff`: character.}{.}
-#'   \item{`punt_returns`: character.}{.}
-#'   \item{`punt_return_yards`: character.}{.}
-#'   \item{`punt_return_tds`: character.}{.}
-#'   \item{`kick_return_yards`: character.}{.}
-#'   \item{`kick_return_tds`: character.}{.}
-#'   \item{`kick_returns`: character.}{.}
-#'   \item{`kicking_points`: character.}{.}
-#'   \item{`fumbles_recovered`: character.}{.}
-#'   \item{`fumbles_lost`: character.}{.}
-#'   \item{`total_fumbles`: character.}{.}
-#'   \item{`tackles`: character.}{.}
-#'   \item{`tackles_for_loss`: character.}{.}
-#'   \item{`sacks`: character.}{.}
-#'   \item{`qb_hurries`: character.}{.}
-#'   \item{`interceptions`: character.}{.}
-#'   \item{`passes_deflected`: character.}{.}
-#'   \item{`turnovers`: character.}{.}
-#'   \item{`defensive_tds`: character.}{.}
-#'   \item{`total_penalties_yards`: character.}{.}
-#'   \item{`possession_time`: character.}{.}
-#'   \item{`conference_allowed`: character.}{.}
-#'   \item{`home_away_allowed`: character.}{.}
-#'   \item{`points_allowed`: integer.}{.}
-#'   \item{`total_yards_allowed`: character.}{.}
-#'   \item{`net_passing_yards_allowed`: character.}{.}
-#'   \item{`completion_attempts_allowed`: character.}{.}
-#'   \item{`passing_tds_allowed`: character.}{.}
-#'   \item{`yards_per_pass_allowed`: character.}{.}
-#'   \item{`passes_intercepted_allowed`: character.}{.}
-#'   \item{`interception_yards_allowed`: character.}{.}
-#'   \item{`interception_tds_allowed`: character.}{.}
-#'   \item{`rushing_attempts_allowed`: character.}{.}
-#'   \item{`rushing_yards_allowed`: character.}{.}
-#'   \item{`rush_tds_allowed`: character.}{.}
-#'   \item{`yards_per_rush_attempt_allowed`: character.}{.}
-#'   \item{`first_downs_allowed`: character.}{.}
-#'   \item{`third_down_eff_allowed`: character.}{.}
-#'   \item{`fourth_down_eff_allowed`: character.}{.}
-#'   \item{`punt_returns_allowed`: character.}{.}
-#'   \item{`punt_return_yards_allowed`: character.}{.}
-#'   \item{`punt_return_tds_allowed`: character.}{.}
-#'   \item{`kick_return_yards_allowed`: character.}{.}
-#'   \item{`kick_return_tds_allowed`: character.}{.}
-#'   \item{`kick_returns_allowed`: character.}{.}
-#'   \item{`kicking_points_allowed`: character.}{.}
-#'   \item{`fumbles_recovered_allowed`: character.}{.}
-#'   \item{`fumbles_lost_allowed`: character.}{.}
-#'   \item{`total_fumbles_allowed`:character.}{.}
-#'   \item{`tackles_allowed`:character.}{.}
-#'   \item{`tackles_for_loss_allowed`: character.}{.}
-#'   \item{`sacks_allowed`: character.}{.}
-#'   \item{`qb_hurries_allowed`: character.}{.}
-#'   \item{`interceptions_allowed`: character.}{.}
-#'   \item{`passes_deflected_allowed`: character.}{.}
-#'   \item{`turnovers_allowed`: character.}{.}
-#'   \item{`defensive_tds_allowed`: character.}{.}
-#'   \item{`total_penalties_yards_allowed`: character.}{.}
-#'   \item{`possession_time_allowed`: character.}{.}
+#'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`school`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`home_away`: character.}{Home/Away Flag.}
+#'   \item{`points`: integer.}{Team points.}
+#'   \item{`total_yards`: character.}{Team total yards.}
+#'   \item{`net_passing_yards`: character.}{Team net passing yards.}
+#'   \item{`completion_attempts`:character.}{Team completion attempts.}
+#'   \item{`passing_tds`: character.}{Team passing touchdowns.}
+#'   \item{`yards_per_pass`: character.}{Team game yards per pass.}
+#'   \item{`passes_intercepted`: character.}{Team passes intercepted.}
+#'   \item{`interception_yards`: character.}{Interception yards.}
+#'   \item{`interception_tds`: character.}{Interceptions returned for a touchdown.}
+#'   \item{`rushing_attempts`: character.}{Team rushing attempts. see also: ESTABLISH IT.}
+#'   \item{`rushing_yards`: character.}{Team rushing yards.}
+#'   \item{`rush_tds`: character.}{Team rushing touchdowns.}
+#'   \item{`yards_per_rush_attempt`: character.}{Team yards per rush attempt.}
+#'   \item{`first_downs`: character.}{First downs earned by the team.}
+#'   \item{`third_down_eff`: character.}{Third down efficiency.}
+#'   \item{`fourth_down_eff`: character.}{Fourth down efficiency.}
+#'   \item{`punt_returns`: character.}{Team punt returns.}
+#'   \item{`punt_return_yards`: character.}{Team punt return yards.}
+#'   \item{`punt_return_tds`: character.}{Team punt return touchdowns.}
+#'   \item{`kick_return_yards`: character.}{Team kick return yards.}
+#'   \item{`kick_return_tds`: character.}{Team kick return touchdowns.}
+#'   \item{`kick_returns`: character.}{Team kick returns.}
+#'   \item{`kicking_points`: character.}{Team points from kicking the ball.}
+#'   \item{`fumbles_recovered`: character.}{Team fumbles recovered.}
+#'   \item{`fumbles_lost`: character.}{Team fumbles lost.}
+#'   \item{`total_fumbles`: character.}{Team total fumbles.}
+#'   \item{`tackles`: character.}{Team tackles.}
+#'   \item{`tackles_for_loss`: character.}{Team tackles for a loss.}
+#'   \item{`sacks`: character.}{Team sacks.}
+#'   \item{`qb_hurries`: character.}{Team QB hurries.}
+#'   \item{`interceptions`: character.}{Team interceptions.}
+#'   \item{`passes_deflected`: character.}{Team passes deflected.}
+#'   \item{`turnovers`: character.}{Team turnovers.}
+#'   \item{`defensive_tds`: character.}{Team defensive touchdowns.}
+#'   \item{`total_penalties_yards`: character.}{Team total penalty yards.}
+#'   \item{`possession_time`: character.}{Team time of possession.}
+#'   \item{`conference_allowed`: character.}{Conference of the opponent team.}
+#'   \item{`home_away_allowed`: character.}{Flag for if the opponent was the home or away team.}
+#'   \item{`points_allowed`: integer.}{Points for the opponent.}
+#'   \item{`total_yards_allowed`: character.}{Opponent total yards.}
+#'   \item{`net_passing_yards_allowed`: character.}{Opponent net passing yards.}
+#'   \item{`completion_attempts_allowed`: character.}{Oppponent completion attempts.}
+#'   \item{`passing_tds_allowed`: character.}{Opponent passing TDs.}
+#'   \item{`yards_per_pass_allowed`: character.}{Opponent yards per pass allowed.}
+#'   \item{`passes_intercepted_allowed`: character.}{Opponent passes intercepted.}
+#'   \item{`interception_yards_allowed`: character.}{Opponent interception yards.}
+#'   \item{`interception_tds_allowed`: character.}{Opponent interception TDs.}
+#'   \item{`rushing_attempts_allowed`: character.}{Opponent rushing attempts.}
+#'   \item{`rushing_yards_allowed`: character.}{Opponent rushing yards.}
+#'   \item{`rush_tds_allowed`: character.}{Opponent rushing touchdownss.}
+#'   \item{`yards_per_rush_attempt_allowed`: character.}{Opponent rushing yards per attempt.}
+#'   \item{`first_downs_allowed`: character.}{Opponent first downs.}
+#'   \item{`third_down_eff_allowed`: character.}{Opponent third down efficiency.}
+#'   \item{`fourth_down_eff_allowed`: character.}{Opponent fourth down efficiency.}
+#'   \item{`punt_returns_allowed`: character.}{Opponent punt returns.}
+#'   \item{`punt_return_yards_allowed`: character.}{Opponent punt return yards.}
+#'   \item{`punt_return_tds_allowed`: character.}{Opponent punt return touchdowns.}
+#'   \item{`kick_return_yards_allowed`: character.}{Opponent kick return yards.}
+#'   \item{`kick_return_tds_allowed`: character.}{Opponent kick return touchdowns.}
+#'   \item{`kick_returns_allowed`: character.}{Opponent kick returns.}
+#'   \item{`kicking_points_allowed`: character.}{Opponent points from kicking.}
+#'   \item{`fumbles_recovered_allowed`: character.}{Opponent fumbles recovered.}
+#'   \item{`fumbles_lost_allowed`: character.}{Opponent fumbles lost.}
+#'   \item{`total_fumbles_allowed`:character.}{Opponent total number of fumbles.}
+#'   \item{`tackles_allowed`:character.}{Opponent tackles.}
+#'   \item{`tackles_for_loss_allowed`: character.}{Opponent tackles for loss.}
+#'   \item{`sacks_allowed`: character.}{Opponent sacks.}
+#'   \item{`qb_hurries_allowed`: character.}{Opponent quarterback hurries.}
+#'   \item{`interceptions_allowed`: character.}{Opponent interceptions.}
+#'   \item{`passes_deflected_allowed`: character.}{Opponent passes deflected.}
+#'   \item{`turnovers_allowed`: character.}{Opponent turnovers.}
+#'   \item{`defensive_tds_allowed`: character.}{Opponent defensive touchdowns.}
+#'   \item{`total_penalties_yards_allowed`: character.}{Opponent total penalty yards.}
+#'   \item{`possession_time_allowed`: character.}{Opponent time of possession.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games/teams}
 #' @keywords Team Game Stats

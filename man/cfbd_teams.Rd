@@ -143,6 +143,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{\code{home_latitude}: numeric.}{Hometown latitude.}
 \item{\code{home_longitude}: number.}{Hometown longitude.}
 \item{\code{home_county_fips}: integer.}{Hometown FIPS code.}
+\item{\code{headshot_url}: character}{Player ESPN headshot url.}
 }
 
 \code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:
@@ -154,11 +155,11 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 }
 \description{
 \describe{
-\item{\code{cfbd_team_info()}: Team Info Lookup}{.}
-\item{\code{cfbd_team_matchup_records()}: Get matchup history records between two teams.}{.}
-\item{\code{cfbd_team_matchup()}: Get matchup history between two teams.}{.}
-\item{\code{cfbd_team_roster()}: Get a team's full roster by year.}{.}
-\item{\code{cfbd_team_talent()}: Get composite team talent rankings for all teams in a given year}{.}
+\item{\code{cfbd_team_info()}:}{Team Info Lookup.}
+\item{\code{cfbd_team_matchup_records()}:}{Get matchup history records between two teams.}
+\item{\code{cfbd_team_matchup()}:}{Get matchup history between two teams.}
+\item{\code{cfbd_team_roster()}:}{Get a team's full roster by year.}
+\item{\code{cfbd_team_talent()}:}{Get composite team talent rankings for all teams in a given year.}
 }
 \subsection{Team Info Lookup}{
 

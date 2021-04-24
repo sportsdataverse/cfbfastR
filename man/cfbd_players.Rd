@@ -123,7 +123,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \description{
 \describe{
 \item{\code{cfbd_player_info()}:}{Player Information Search.}
-\item{\code{cfbd_player_returning()}:}{Player Returning Production}
+\item{\code{cfbd_player_returning()}:}{Player Returning Production.}
 \item{\code{cfbd_player_usage()}:}{Player Usage.}
 }
 }

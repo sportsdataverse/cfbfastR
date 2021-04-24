@@ -1,6 +1,20 @@
 # cfbfastR 
 
-### **v1.2.0**
+### **v1.2.1**
+##### **Minor release**
+
+* Added headshot_url to outputs of [```cfbd_team_rosters```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html)
+
+* Renamed returns in [```cfbd_game_advanced()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_games.html):
+  - `rushing_line_yd_avg` to plural `rushing_line_yds_avg`
+  - `rushing_second_lvl_yd_avg` to plural `rushing_second_lvl_yds_avg`
+  - `rushing_open_field_yd_avg` to plural `rushing_open_field_yds_avg`
+
+* Completed documentation for all returns except ```cfbd_pbp_data()```
+
+* Continued work on intro vignette
+
+### **v1.2.0-1**
 #### **Add significant documentation to the package**
 
 * Added mini-vignettes pertaining to CFB Data functionality:   

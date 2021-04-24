@@ -99,271 +99,271 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 
 \code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}} - A data frame with 60 variables:
 \describe{
-\item{\code{game_id}: integer.}{.}
-\item{\code{week}: integer.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{opponent}: character.}{.}
-\item{\code{off_plays}: integer.}{.}
-\item{\code{off_drives}: integer.}{.}
-\item{\code{off_ppa}: double.}{.}
-\item{\code{off_total_ppa}: double.}{.}
-\item{\code{off_success_rate}: double.}{.}
-\item{\code{off_explosiveness}: double.}{.}
-\item{\code{off_power_success}: double.}{.}
-\item{\code{off_stuff_rate}: double.}{.}
-\item{\code{off_line_yds}: double.}{.}
-\item{\code{off_line_yds_total}: integer.}{.}
-\item{\code{off_second_lvl_yds}: double.}{.}
-\item{\code{off_second_lvl_yds_total}: integer.}{.}
-\item{\code{off_open_field_yds}: integer.}{.}
-\item{\code{off_open_field_yds_total}: integer.}{.}
-\item{\code{off_standard_downs_ppa}: double.}{.}
-\item{\code{off_standard_downs_success_rate}: double.}{.}
-\item{\code{off_standard_downs_explosiveness}: double.}{.}
-\item{\code{off_passing_downs_ppa}: double.}{.}
-\item{\code{off_passing_downs_success_rate}: double.}{.}
-\item{\code{off_passing_downs_explosiveness}: double.}{.}
-\item{\code{off_rushing_plays_ppa}: double.}{.}
-\item{\code{off_rushing_plays_total_ppa}: double.}{.}
-\item{\code{off_rushing_plays_success_rate}: double.}{.}
-\item{\code{off_rushing_plays_explosiveness}: double.}{.}
-\item{\code{off_passing_plays_ppa}: double.}{.}
-\item{\code{off_passing_plays_total_ppa}: double.}{.}
-\item{\code{off_passing_plays_success_rate}: double.}{.}
-\item{\code{off_passing_plays_explosiveness}: double.}{.}
-\item{\code{def_plays}: integer.}{.}
-\item{\code{def_drives}: integer.}{.}
-\item{\code{def_ppa}: double.}{.}
-\item{\code{def_total_ppa}: double.}{.}
-\item{\code{def_success_rate}: double.}{.}
-\item{\code{def_explosiveness}: double.}{.}
-\item{\code{def_power_success}: double.}{.}
-\item{\code{def_stuff_rate}: double.}{.}
-\item{\code{def_line_yds}: double.}{.}
-\item{\code{def_line_yds_total}: integer.}{.}
-\item{\code{def_second_lvl_yds}: double.}{.}
-\item{\code{def_second_lvl_yds_total}: integer.}{.}
-\item{\code{def_open_field_yds}: double.}{.}
-\item{\code{def_open_field_yds_total}: integer.}{.}
-\item{\code{def_standard_downs_ppa}: double.}{.}
-\item{\code{def_standard_downs_success_rate}: double.}{.}
-\item{\code{def_standard_downs_explosiveness}: double.}{.}
-\item{\code{def_passing_downs_ppa}: double.}{.}
-\item{\code{def_passing_downs_success_rate}: double.}{.}
-\item{\code{def_passing_downs_explosiveness}: double.}{.}
-\item{\code{def_rushing_plays_ppa}: double.}{.}
-\item{\code{def_rushing_plays_total_ppa}: double.}{.}
-\item{\code{def_rushing_plays_success_rate}: double.}{.}
-\item{\code{def_rushing_plays_explosiveness}: double.}{.}
-\item{\code{def_passing_plays_ppa}: double.}{.}
-\item{\code{def_passing_plays_total_ppa}: double.}{.}
-\item{\code{def_passing_plays_success_rate}: double.}{.}
-\item{\code{def_passing_plays_explosiveness}: double.}{.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{week}: integer.}{Game week of the season.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{opponent}: character.}{Opponent team name.}
+\item{\code{off_plays}: integer.}{Offense plays in the game.}
+\item{\code{off_drives}: integer.}{Offense drives in the game.}
+\item{\code{off_ppa}: double.}{Offense predicted points added (PPA).}
+\item{\code{off_total_ppa}: double.}{Offense total predicted points added (PPA).}
+\item{\code{off_success_rate}: double.}{Offense success rate.}
+\item{\code{off_explosiveness}: double.}{Offense explosiveness rate.}
+\item{\code{off_power_success}: double.}{Offense power success rate.}
+\item{\code{off_stuff_rate}: double.}{Opponent stuff rate.}
+\item{\code{off_line_yds}: double.}{Offensive line yards.}
+\item{\code{off_line_yds_total}: integer.}{Offensive line yards total.}
+\item{\code{off_second_lvl_yds}: double.}{Offense second-level yards.}
+\item{\code{off_second_lvl_yds_total}: integer.}{Offense second-level yards total.}
+\item{\code{off_open_field_yds}: integer.}{Offense open field yards.}
+\item{\code{off_open_field_yds_total}: integer.}{Offense open field yards total.}
+\item{\code{off_standard_downs_ppa}: double.}{Offense standard downs predicted points added (PPA).}
+\item{\code{off_standard_downs_success_rate}: double.}{Offense standard downs success rate.}
+\item{\code{off_standard_downs_explosiveness}: double.}{Offense standard downs explosiveness rate.}
+\item{\code{off_passing_downs_ppa}: double.}{Offense passing downs predicted points added (PPA).}
+\item{\code{off_passing_downs_success_rate}: double.}{Offense passing downs success rate.}
+\item{\code{off_passing_downs_explosiveness}: double.}{Offense passing downs explosiveness rate.}
+\item{\code{off_rushing_plays_ppa}: double.}{Offense rushing plays predicted points added (PPA).}
+\item{\code{off_rushing_plays_total_ppa}: double.}{Offense rushing plays total predicted points added (PPA).}
+\item{\code{off_rushing_plays_success_rate}: double.}{Offense rushing plays success rate.}
+\item{\code{off_rushing_plays_explosiveness}: double.}{Offense rushing plays explosiveness rate.}
+\item{\code{off_passing_plays_ppa}: double.}{Offense passing plays predicted points added (PPA).}
+\item{\code{off_passing_plays_total_ppa}: double.}{Offense passing plays total predicted points added (PPA).}
+\item{\code{off_passing_plays_success_rate}: double.}{Offense passing plays success rate.}
+\item{\code{off_passing_plays_explosiveness}: double.}{Offense passing plays explosiveness rate.}
+\item{\code{def_plays}: integer.}{Defense plays in the game.}
+\item{\code{def_drives}: integer.}{Defense drives in the game.}
+\item{\code{def_ppa}: double.}{Defense predicted points added (PPA).}
+\item{\code{def_total_ppa}: double.}{Defense total predicted points added (PPA).}
+\item{\code{def_success_rate}: double.}{Defense success rate.}
+\item{\code{def_explosiveness}: double.}{Defense explosiveness rate.}
+\item{\code{def_power_success}: double.}{Defense power success rate.}
+\item{\code{def_stuff_rate}: double.}{Opponent stuff rate.}
+\item{\code{def_line_yds}: double.}{Offensive line yards.}
+\item{\code{def_line_yds_total}: integer.}{Offensive line yards total.}
+\item{\code{def_second_lvl_yds}: double.}{Defense second-level yards.}
+\item{\code{def_second_lvl_yds_total}: integer.}{Defense second-level yards total.}
+\item{\code{def_open_field_yds}: integer.}{Defense open field yards.}
+\item{\code{def_open_field_yds_total}: integer.}{Defense open field yards total.}
+\item{\code{def_standard_downs_ppa}: double.}{Defense standard downs predicted points added (PPA).}
+\item{\code{def_standard_downs_success_rate}: double.}{Defense standard downs success rate.}
+\item{\code{def_standard_downs_explosiveness}: double.}{Defense standard downs explosiveness rate.}
+\item{\code{def_passing_downs_ppa}: double.}{Defense passing downs predicted points added (PPA).}
+\item{\code{def_passing_downs_success_rate}: double.}{Defense passing downs success rate.}
+\item{\code{def_passing_downs_explosiveness}: double.}{Defense passing downs explosiveness rate.}
+\item{\code{def_rushing_plays_ppa}: double.}{Defense rushing plays predicted points added (PPA).}
+\item{\code{def_rushing_plays_total_ppa}: double.}{Defense rushing plays total predicted points added (PPA).}
+\item{\code{def_rushing_plays_success_rate}: double.}{Defense rushing plays success rate.}
+\item{\code{def_rushing_plays_explosiveness}: double.}{Defense rushing plays explosiveness rate.}
+\item{\code{def_passing_plays_ppa}: double.}{Defense passing plays predicted points added (PPA).}
+\item{\code{def_passing_plays_total_ppa}: double.}{Defense passing plays total predicted points added (PPA).}
+\item{\code{def_passing_plays_success_rate}: double.}{Defense passing plays success rate.}
+\item{\code{def_passing_plays_explosiveness}: double.}{Defense passing plays explosiveness rate.}
 }
 
 \code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 79 variables:
 \describe{
-\item{\code{season}: integer.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{off_plays}: integer.}{.}
-\item{\code{off_drives}: integer.}{.}
-\item{\code{off_ppa}: double.}{.}
-\item{\code{off_total_ppa}: double.}{.}
-\item{\code{off_success_rate}: double.}{.}
-\item{\code{off_explosiveness}: double.}{.}
-\item{\code{off_power_success}: double.}{.}
-\item{\code{off_stuff_rate}: double.}{.}
-\item{\code{off_line_yds}: double.}{.}
-\item{\code{off_line_yds_total}: integer.}{.}
-\item{\code{off_second_lvl_yds}: double.}{.}
-\item{\code{off_second_lvl_yds_total}: integer.}{.}
-\item{\code{off_open_field_yds}: double.}{.}
-\item{\code{off_open_field_yds_total}: integer.}{.}
-\item{\code{off_pts_per_opp}: double.}{.}
-\item{\code{off_field_pos_avg_start}: double.}{.}
-\item{\code{off_field_pos_avg_predicted_points}: double.}{.}
-\item{\code{off_havoc_total}: double.}{.}
-\item{\code{off_havoc_front_seven}: double.}{.}
-\item{\code{off_havoc_db}: double.}{.}
-\item{\code{off_standard_downs_rate}: double.}{.}
-\item{\code{off_standard_downs_ppa}: double.}{.}
-\item{\code{off_standard_downs_success_rate}: double.}{.}
-\item{\code{off_standard_downs_explosiveness}: double.}{.}
-\item{\code{off_passing_downs_rate}: double.}{.}
-\item{\code{off_passing_downs_ppa}: double.}{.}
-\item{\code{off_passing_downs_success_rate}: double.}{.}
-\item{\code{off_passing_downs_explosiveness}: double.}{.}
-\item{\code{off_rushing_plays_rate}: double.}{.}
-\item{\code{off_rushing_plays_ppa}: double.}{.}
-\item{\code{off_rushing_plays_total_ppa}: double.}{.}
-\item{\code{off_rushing_plays_success_rate}: double.}{.}
-\item{\code{off_rushing_plays_explosiveness}: double.}{.}
-\item{\code{off_passing_plays_rate}: double.}{.}
-\item{\code{off_passing_plays_ppa}: double.}{.}
-\item{\code{off_passing_plays_total_ppa}: double.}{.}
-\item{\code{off_passing_plays_success_rate}: double.}{.}
-\item{\code{off_passing_plays_explosiveness}: double.}{.}
-\item{\code{def_plays}: integer.}{.}
-\item{\code{def_drives}: integer.}{.}
-\item{\code{def_ppa}: double.}{.}
-\item{\code{def_total_ppa}: double.}{.}
-\item{\code{def_success_rate}: double.}{.}
-\item{\code{def_explosiveness}: double.}{.}
-\item{\code{def_power_success}: double.}{.}
-\item{\code{def_stuff_rate}: double.}{.}
-\item{\code{def_line_yds}: double.}{.}
-\item{\code{def_line_yds_total}: integer.}{.}
-\item{\code{def_second_lvl_yds}: double.}{.}
-\item{\code{def_second_lvl_yds_total}: integer.}{.}
-\item{\code{def_open_field_yds}: double.}{.}
-\item{\code{def_open_field_yds_total}: integer.}{.}
-\item{\code{def_pts_per_opp}: double.}{.}
-\item{\code{def_field_pos_avg_start}: integer.}{.}
-\item{\code{def_field_pos_avg_predicted_points}: double.}{.}
-\item{\code{def_havoc_total}: double.}{.}
-\item{\code{def_havoc_front_seven}: double.}{.}
-\item{\code{def_havoc_db}: double.}{.}
-\item{\code{def_standard_downs_rate}: double.}{.}
-\item{\code{def_standard_downs_ppa}: double.}{.}
-\item{\code{def_standard_downs_success_rate}: double.}{.}
-\item{\code{def_standard_downs_explosiveness}: double.}{.}
-\item{\code{def_passing_downs_rate}: double.}{.}
-\item{\code{def_passing_downs_ppa}: double.}{.}
-\item{\code{def_passing_downs_total_ppa}: double.}{.}
-\item{\code{def_passing_downs_success_rate}: double.}{.}
-\item{\code{def_passing_downs_explosiveness}: double.}{.}
-\item{\code{def_rushing_plays_rate}:double.}{.}
-\item{\code{def_rushing_plays_ppa}:double.}{.}
-\item{\code{def_rushing_plays_total_ppa}:double.}{.}
-\item{\code{def_rushing_plays_success_rate}:double.}{.}
-\item{\code{def_rushing_plays_explosiveness}:double.}{.}
-\item{\code{def_passing_plays_rate}:double.}{.}
-\item{\code{def_passing_plays_ppa}:double.}{.}
-\item{\code{def_passing_plays_success_rate}:double.}{.}
-\item{\code{def_passing_plays_explosiveness}:double.}{.}
+\item{\code{season}: integer.}{Season of the statistics.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{conference}: character.}{Conference of the team.}
+\item{\code{off_plays}: integer.}{Offense plays in the game.}
+\item{\code{off_drives}: integer.}{Offense drives in the game.}
+\item{\code{off_ppa}: double.}{Offense predicted points added (PPA).}
+\item{\code{off_total_ppa}: double.}{Offense total predicted points added (PPA).}
+\item{\code{off_success_rate}: double.}{Offense success rate.}
+\item{\code{off_explosiveness}: double.}{Offense explosiveness rate.}
+\item{\code{off_power_success}: double.}{Offense power success rate.}
+\item{\code{off_stuff_rate}: double.}{Offense rushing stuff rate.}
+\item{\code{off_line_yds}: double.}{Offensive line yards.}
+\item{\code{off_line_yds_total}: integer.}{Offensive line yards total.}
+\item{\code{off_second_lvl_yds}: double.}{Offense second-level yards.}
+\item{\code{off_second_lvl_yds_total}: integer.}{Offense second-level yards total.}
+\item{\code{off_open_field_yds}: integer.}{Offense open field yards.}
+\item{\code{off_open_field_yds_total}: integer.}{Offense open field yards total.}
+\item{\code{off_pts_per_opp}: double.}{Offense points per scoring opportunity.}
+\item{\code{off_field_pos_avg_start}: double.}{Offense starting average field position.}
+\item{\code{off_field_pos_avg_predicted_points}: double.}{Offense starting average field position predicted points (PP).}
+\item{\code{off_havoc_total}: double.}{Offense havor rate total.}
+\item{\code{off_havoc_front_seven}: double.}{Offense front-7 havoc rate.}
+\item{\code{off_havoc_db}: double.}{Offense defensive back havor rate.}
+\item{\code{off_standard_downs_rate}: double.}{Offense standard downs rate.}
+\item{\code{off_standard_downs_ppa}: double.}{Offense standard downs predicted points added (PPA).}
+\item{\code{off_standard_downs_success_rate}: double.}{Offense standard downs success rate.}
+\item{\code{off_standard_downs_explosiveness}: double.}{Offense standard downs explosiveness rate.}
+\item{\code{off_passing_downs_rate}: double.}{Offense passing downs rate.}
+\item{\code{off_passing_downs_ppa}: double.}{Offense passing downs predicted points added (PPA).}
+\item{\code{off_passing_downs_success_rate}: double.}{Offense passing downs success rate.}
+\item{\code{off_passing_downs_explosiveness}: double.}{Offense passing downs explosiveness rate.}
+\item{\code{off_rushing_plays_rate}: double.}{Offense rushing plays rate.}
+\item{\code{off_rushing_plays_ppa}: double.}{Offense rushing plays predicted points added (PPA).}
+\item{\code{off_rushing_plays_total_ppa}: double.}{Offense rushing plays total predicted points added (PPA).}
+\item{\code{off_rushing_plays_success_rate}: double.}{Offense rushing plays success rate.}
+\item{\code{off_rushing_plays_explosiveness}: double.}{Offense rushing plays explosiveness rate.}
+\item{\code{off_passing_plays_rate}: double.}{Offense passing plays rate.}
+\item{\code{off_passing_plays_ppa}: double.}{Offense passing plays predicted points added (PPA).}
+\item{\code{off_passing_plays_total_ppa}: double.}{Offense passing plays total predicted points added (PPA).}
+\item{\code{off_passing_plays_success_rate}: double.}{Offense passing plays success rate.}
+\item{\code{off_passing_plays_explosiveness}: double.}{Offense passing plays explosiveness rate.}
+\item{\code{def_plays}: integer.}{Defense plays in the game.}
+\item{\code{def_drives}: integer.}{Defense drives in the game.}
+\item{\code{def_ppa}: double.}{Defense predicted points added (PPA).}
+\item{\code{def_total_ppa}: double.}{Defense total predicted points added (PPA).}
+\item{\code{def_success_rate}: double.}{Defense success rate.}
+\item{\code{def_explosiveness}: double.}{Defense explosiveness rate.}
+\item{\code{def_power_success}: double.}{Defense power success rate.}
+\item{\code{def_stuff_rate}: double.}{Defense rushing stuff rate.}
+\item{\code{def_line_yds}: double.}{Defense Offensive line yards allowed.}
+\item{\code{def_line_yds_total}: integer.}{Defense Offensive line yards total allowed.}
+\item{\code{def_second_lvl_yds}: double.}{Defense second-level yards.}
+\item{\code{def_second_lvl_yds_total}: integer.}{Defense second-level yards total.}
+\item{\code{def_open_field_yds}: integer.}{Defense open field yards.}
+\item{\code{def_open_field_yds_total}: integer.}{Defense open field yards total.}
+\item{\code{def_pts_per_opp}: double.}{Defense points per scoring opportunity.}
+\item{\code{def_field_pos_avg_start}: double.}{Defense starting average field position.}
+\item{\code{def_field_pos_avg_predicted_points}: double.}{Defense starting average field position predicted points (PP).}
+\item{\code{def_havoc_total}: double.}{Defense havor rate total.}
+\item{\code{def_havoc_front_seven}: double.}{Defense front-7 havoc rate.}
+\item{\code{def_havoc_db}: double.}{Defense defensive back havor rate.}
+\item{\code{def_standard_downs_rate}: double.}{Defense standard downs rate.}
+\item{\code{def_standard_downs_ppa}: double.}{Defense standard downs predicted points added (PPA).}
+\item{\code{def_standard_downs_success_rate}: double.}{Defense standard downs success rate.}
+\item{\code{def_standard_downs_explosiveness}: double.}{Defense standard downs explosiveness rate.}
+\item{\code{def_passing_downs_rate}: double.}{Defense passing downs rate.}
+\item{\code{def_passing_downs_ppa}: double.}{Defense passing downs predicted points added (PPA).}
+\item{\code{def_passing_downs_success_rate}: double.}{Defense passing downs success rate.}
+\item{\code{def_passing_downs_explosiveness}: double.}{Defense passing downs explosiveness rate.}
+\item{\code{def_rushing_plays_rate}: double.}{Defense rushing plays rate.}
+\item{\code{def_rushing_plays_ppa}: double.}{Defense rushing plays predicted points added (PPA).}
+\item{\code{def_rushing_plays_total_ppa}: double.}{Defense rushing plays total predicted points added (PPA).}
+\item{\code{def_rushing_plays_success_rate}: double.}{Defense rushing plays success rate.}
+\item{\code{def_rushing_plays_explosiveness}: double.}{Defense rushing plays explosiveness rate.}
+\item{\code{def_passing_plays_rate}: double.}{Defense passing plays rate.}
+\item{\code{def_passing_plays_ppa}: double.}{Defense passing plays predicted points added (PPA).}
+\item{\code{def_passing_plays_total_ppa}: double.}{Defense passing plays total predicted points added (PPA).}
+\item{\code{def_passing_plays_success_rate}: double.}{Defense passing plays success rate.}
+\item{\code{def_passing_plays_explosiveness}: double.}{Defense passing plays explosiveness rate.}
 }
 
 \code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}} - A data frame with 59 variables:
 \describe{
-\item{\code{team}: character.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{athlete_id}: character.}{.}
-\item{\code{player}: character.}{.}
-\item{\code{category}: character.}{.}
-\item{\code{passing_completions}: double.}{.}
-\item{\code{passing_att}: double.}{.}
-\item{\code{passing_pct}: double.}{.}
-\item{\code{passing_yds}: double.}{.}
-\item{\code{passing_td}: double.}{.}
-\item{\code{passing_int}: double.}{.}
-\item{\code{passing_ypa}: double.}{.}
-\item{\code{rushing_car}: double.}{.}
-\item{\code{rushing_yds}: double.}{.}
-\item{\code{rushing_td}: double.}{.}
-\item{\code{rushing_ypc}: double.}{.}
-\item{\code{rushing_long}: double.}{.}
-\item{\code{receiving_rec}: double.}{.}
-\item{\code{receiving_yds}: double.}{.}
-\item{\code{receiving_td}: double.}{.}
-\item{\code{receiving_ypr}: double.}{.}
-\item{\code{receiving_long}: double.}{.}
-\item{\code{fumbles_fum}: double.}{.}
-\item{\code{fumbles_rec}: double.}{.}
-\item{\code{fumbles_lost}: double.}{.}
-\item{\code{defensive_solo}: double.}{.}
-\item{\code{defensive_tot}: double.}{.}
-\item{\code{defensive_tfl}: double.}{.}
-\item{\code{defensive_sacks}: double.}{.}
-\item{\code{defensive_qb_hur}: double.}{.}
-\item{\code{interceptions_int}: double.}{.}
-\item{\code{interceptions_yds}: double.}{.}
-\item{\code{interceptions_avg}: double.}{.}
-\item{\code{interceptions_td}: double.}{.}
-\item{\code{defensive_pd}: double.}{.}
-\item{\code{defensive_td}: double.}{.}
-\item{\code{kicking_fgm}: double.}{.}
-\item{\code{kicking_fga}: double.}{.}
-\item{\code{kicking_pct}: double.}{.}
-\item{\code{kicking_xpa}: double.}{.}
-\item{\code{kicking_xpm}: double.}{.}
-\item{\code{kicking_pts}: double.}{.}
-\item{\code{kicking_long}: double.}{.}
-\item{\code{kick_returns_no}: double.}{.}
-\item{\code{kick_returns_yds}: double.}{.}
-\item{\code{kick_returns_avg}: double.}{.}
-\item{\code{kick_returns_td}: double.}{.}
-\item{\code{kick_returns_long}: double.}{.}
-\item{\code{punting_no}: double.}{.}
-\item{\code{punting_yds}: double.}{.}
-\item{\code{punting_ypp}: double.}{.}
-\item{\code{punting_long}: double.}{.}
-\item{\code{punting_in_20}: double.}{.}
-\item{\code{punting_tb}: double.}{.}
-\item{\code{punt_returns_no}: double.}{.}
-\item{\code{punt_returns_yds}: double.}{.}
-\item{\code{punt_returns_avg}: double.}{.}
-\item{\code{punt_returns_td}: double.}{.}
-\item{\code{punt_returns_long}: double.}{.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{conference}: character.}{Conference of the team.}
+\item{\code{athlete_id}: character.}{Athlete referencing id.}
+\item{\code{player}: character.}{Player name.}
+\item{\code{category}: character.}{Statistic category.}
+\item{\code{passing_completions}: double.}{Passing completions.}
+\item{\code{passing_att}: double.}{Passing attempts.}
+\item{\code{passing_pct}: double.}{Passing completion percentage.}
+\item{\code{passing_yds}: double.}{Passing yardage.}
+\item{\code{passing_td}: double.}{Passing touchdowns.}
+\item{\code{passing_int}: double.}{Passing interceptions.}
+\item{\code{passing_ypa}: double.}{Passing yards per attempt.}
+\item{\code{rushing_car}: double.}{Rushing yards per carry.}
+\item{\code{rushing_yds}: double.}{Rushing yards total.}
+\item{\code{rushing_td}: double.}{Rushing touchdowns.}
+\item{\code{rushing_ypc}: double.}{Rushing yards per carry.}
+\item{\code{rushing_long}: double.}{Rushing longest yardage attempt.}
+\item{\code{receiving_rec}: double.}{Receiving - pass receptions.}
+\item{\code{receiving_yds}: double.}{Receiving - pass reception yards.}
+\item{\code{receiving_td}: double.}{Receiving - passing reception touchdowns.}
+\item{\code{receiving_ypr}: double.}{Receiving - passing yards per reception.}
+\item{\code{receiving_long}: double.}{Receiving - longest pass reception yardage.}
+\item{\code{fumbles_fum}: double.}{Fumbles.}
+\item{\code{fumbles_rec}: double.}{Fumbles recovered.}
+\item{\code{fumbles_lost}: double.}{Fumbles lost.}
+\item{\code{defensive_solo}: double.}{Defensive solo tackles.}
+\item{\code{defensive_tot}: double.}{Defensive total tackles.}
+\item{\code{defensive_tfl}: double.}{Defensive tackles for loss.}
+\item{\code{defensive_sacks}: double.}{Defensive sacks.}
+\item{\code{defensive_qb_hur}: double.}{Defensive quarterback hurries.}
+\item{\code{interceptions_int}: double.}{Interceptions total.}
+\item{\code{interceptions_yds}: double.}{Interception return yards.}
+\item{\code{interceptions_avg}: double.}{Interception return yards average.}
+\item{\code{interceptions_td}: double.}{Interception return touchdowns.}
+\item{\code{defensive_pd}: double.}{Defense - passes defensed.}
+\item{\code{defensive_td}: double.}{Defense - defensive touchdowns.}
+\item{\code{kicking_fgm}: double.}{Kicking - field goals made.}
+\item{\code{kicking_fga}: double.}{Kicking - field goals attempted.}
+\item{\code{kicking_pct}: double.}{Kicking - field goal percentage.}
+\item{\code{kicking_xpa}: double.}{Kicking - extra points attempted.}
+\item{\code{kicking_xpm}: double.}{Kicking - extra points made.}
+\item{\code{kicking_pts}: double.}{Kicking - total points.}
+\item{\code{kicking_long}: double.}{Kicking - longest successful field goal attempt.}
+\item{\code{kick_returns_no}: double.}{Kick Returns - number of kick returns.}
+\item{\code{kick_returns_yds}: double.}{Kick Returns - kick return yards.}
+\item{\code{kick_returns_avg}: double.}{Kick Returns - kick return average yards per return.}
+\item{\code{kick_returns_td}: double.}{Kick Returns - kick return touchdowns.}
+\item{\code{kick_returns_long}: double.}{Kick Returns - longest kick return yardage.}
+\item{\code{punting_no}: double.}{Punting - number of punts.}
+\item{\code{punting_yds}: double.}{Punting - punting yardage.}
+\item{\code{punting_ypp}: double.}{Punting - yards per punt.}
+\item{\code{punting_long}: double.}{Punting - longest punt yardage.}
+\item{\code{punting_in_20}: double.}{Punting - punt downed inside the 20 yard line.}
+\item{\code{punting_tb}: double.}{Punting - punt caused a touchback.}
+\item{\code{punt_returns_no}: double.}{Punt Returns - number of punt returns.}
+\item{\code{punt_returns_yds}: double.}{Punt Returns - punt return yardage total.}
+\item{\code{punt_returns_avg}: double.}{Punt Returns - punt return average yards per return.}
+\item{\code{punt_returns_td}: double.}{Punt Returns - punt return touchdowns.}
+\item{\code{punt_returns_long}: double.}{Punt Returns - longest punt return yardage.}
 }
 
 \code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}} - A data frame with 46 variables:
 \describe{
-\item{\code{games}: integer.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{games}: integer.}{.}
-\item{\code{time_of_poss_total}: integer.}{.}
-\item{\code{time_of_poss_pg}: double.}{.}
-\item{\code{pass_comps}: integer.}{.}
-\item{\code{pass_atts}: integer.}{.}
-\item{\code{completion_pct}: double.}{.}
-\item{\code{net_pass_yds}: integer.}{.}
-\item{\code{pass_ypa}: double.}{.}
-\item{\code{pass_ypr}: double.}{.}
-\item{\code{pass_TDs}: integer.}{.}
-\item{\code{interceptions}: integer.}{.}
-\item{\code{int_pct}: double.}{.}
-\item{\code{rush_atts}: integer.}{.}
-\item{\code{rush_yds}: integer.}{.}
-\item{\code{rush_TDs}: integer.}{.}
-\item{\code{rush_ypc}: double.}{.}
-\item{\code{total_yds}: integer.}{.}
-\item{\code{fumbles_lost}: integer.}{.}
-\item{\code{turnovers}: integer.}{.}
-\item{\code{turnovers_pg}: double.}{.}
-\item{\code{first_downs}: integer.}{.}
-\item{\code{third_downs}: integer.}{.}
-\item{\code{third_down_convs}: integer.}{.}
-\item{\code{third_conv_rate}: double.}{.}
-\item{\code{fourth_down_convs}: integer.}{.}
-\item{\code{fourth_downs}: integer.}{.}
-\item{\code{fourth_conv_rate}: double.}{.}
-\item{\code{penalties}: integer.}{.}
-\item{\code{penalty_yds}: integer.}{.}
-\item{\code{penalties_pg}: double.}{.}
-\item{\code{penalty_yds_pg}: double.}{.}
-\item{\code{yards_per_penalty}: double.}{.}
-\item{\code{kick_returns}: integer.}{.}
-\item{\code{kick_return_yds}: integer.}{.}
-\item{\code{kick_return_TDs}: integer.}{.}
-\item{\code{kick_return_avg}: double.}{.}
-\item{\code{punt_returns}: integer.}{.}
-\item{\code{punt_return_yds}: integer.}{.}
-\item{\code{punt_return_TDs}: integer.}{.}
-\item{\code{punt_return_avg}: double.}{.}
-\item{\code{passes_intercepted}: integer.}{.}
-\item{\code{passes_intercepted_yds}: integer.}{.}
-\item{\code{passes_intercepted_TDs}: integer.}{.}
+\item{\code{games}: integer.}{Number of games.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{conference}: character.}{Conference of team.}
+\item{\code{games}: integer.}{Number of games.}
+\item{\code{time_of_poss_total}: integer.}{Time of possession total.}
+\item{\code{time_of_poss_pg}: double.}{Time of possession per game.}
+\item{\code{pass_comps}: integer.}{Total number of pass completions.}
+\item{\code{pass_atts}: integer.}{Total number of pass attempts.}
+\item{\code{completion_pct}: double.}{Passing completion percentage.}
+\item{\code{net_pass_yds}: integer.}{Net passing yards.}
+\item{\code{pass_ypa}: double.}{Passing yards per attempt.}
+\item{\code{pass_ypr}: double.}{Passing yards per reception.}
+\item{\code{pass_TDs}: integer.}{Passing touchdowns.}
+\item{\code{interceptions}: integer.}{Passing interceptions.}
+\item{\code{int_pct}: double.}{Interception percentage (of attempts).}
+\item{\code{rush_atts}: integer.}{Rushing attempts.}
+\item{\code{rush_yds}: integer.}{Rushing yards.}
+\item{\code{rush_TDs}: integer.}{Rushing touchdowns.}
+\item{\code{rush_ypc}: double.}{Rushing yards per carry.}
+\item{\code{total_yds}: integer.}{Rushing total yards.}
+\item{\code{fumbles_lost}: integer.}{Fumbles lost.}
+\item{\code{turnovers}: integer.}{Turnovers total.}
+\item{\code{turnovers_pg}: double.}{Turnovers per game.}
+\item{\code{first_downs}: integer.}{Number of first downs.}
+\item{\code{third_downs}: integer.}{Number of third downs.}
+\item{\code{third_down_convs}: integer.}{Number of third down conversions.}
+\item{\code{third_conv_rate}: double.}{Third down conversion rate.}
+\item{\code{fourth_down_convs}: integer.}{Fourth down conversions.}
+\item{\code{fourth_downs}: integer.}{Fourth downs.}
+\item{\code{fourth_conv_rate}: double.}{Fourth down conversion rate.}
+\item{\code{penalties}: integer.}{Total number of penalties.}
+\item{\code{penalty_yds}: integer.}{Penalty yards total.}
+\item{\code{penalties_pg}: double.}{Penalties per game.}
+\item{\code{penalty_yds_pg}: double.}{Penalty yardage per game.}
+\item{\code{yards_per_penalty}: double.}{Average yards per penalty.}
+\item{\code{kick_returns}: integer.}{Number of kick returns.}
+\item{\code{kick_return_yds}: integer.}{Total kick return yards.}
+\item{\code{kick_return_TDs}: integer.}{Total kick return touchdowns.}
+\item{\code{kick_return_avg}: double.}{Kick return yards average.}
+\item{\code{punt_returns}: integer.}{Number of punt returns.}
+\item{\code{punt_return_yds}: integer.}{Punt return total yards.}
+\item{\code{punt_return_TDs}: integer.}{Punt return total touchdowns.}
+\item{\code{punt_return_avg}: double.}{Punt return yards average.}
+\item{\code{passes_intercepted}: integer.}{Passes intercepted.}
+\item{\code{passes_intercepted_yds}: integer.}{Pass interception return yards.}
+\item{\code{passes_intercepted_TDs}: integer.}{Pass interception return touchdowns.}
 }
 }
 \description{
 \describe{
-\item{\code{cfbd_stats_categories()}: College Football Mapping for Stats Categories}{.}
-\item{\code{cfbd_stats_season_team()}: Get Season Statistics by Team}{.}
-\item{\code{cfbd_stats_season_advanced()}: Get Season Advanced Statistics by Team}{.}
-\item{\code{cfbd_stats_game_advanced()}: Get Game Advanced Stats}{.}
-\item{\code{cfbd_stats_season_player()}: Get Season Statistics by Player}{.}
+\item{\code{cfbd_stats_categories()}:}{College Football Mapping for Stats Categories.}
+\item{\code{cfbd_stats_season_team()}:}{Get Season Statistics by Team.}
+\item{\code{cfbd_stats_season_advanced()}:}{Get Season Advanced Statistics by Team.}
+\item{\code{cfbd_stats_game_advanced()}:}{Get Game Advanced Stats.}
+\item{\code{cfbd_stats_season_player()}:}{Get Season Statistics by Player.}
 }
 
 \code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}} This function identifies all Stats Categories identified in the regular stats endpoint.

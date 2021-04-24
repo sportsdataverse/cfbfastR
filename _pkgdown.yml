@@ -246,8 +246,8 @@ reference:
       - '`cfbd_venues`'
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
-  - subtitle: Internals
-    desc: Internal functions and helpers
+  - subtitle: Model functions and PBP helpers
+    desc: Model functions and play-by-play helpers
     contents:
       - '`create_epa`'
       - '`create_wpa`'
