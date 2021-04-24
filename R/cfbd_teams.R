@@ -3,11 +3,11 @@
 #' @title CFBD Teams Endpoint
 #' @description 
 #' \describe{
-#' \item{`cfbd_team_info()`: Team Info Lookup}{.}
-#' \item{`cfbd_team_matchup_records()`: Get matchup history records between two teams.}{.}
-#' \item{`cfbd_team_matchup()`: Get matchup history between two teams.}{.}
-#' \item{`cfbd_team_roster()`: Get a team's full roster by year.}{.}
-#' \item{`cfbd_team_talent()`: Get composite team talent rankings for all teams in a given year}{.}
+#' \item{`cfbd_team_info()`:}{Team Info Lookup.}
+#' \item{`cfbd_team_matchup_records()`:}{Get matchup history records between two teams.}
+#' \item{`cfbd_team_matchup()`:}{Get matchup history between two teams.}
+#' \item{`cfbd_team_roster()`:}{Get a team's full roster by year.}
+#' \item{`cfbd_team_talent()`:}{Get composite team talent rankings for all teams in a given year.}
 #' }
 #' ## Team Info Lookup
 #'   Lists all teams in conference or all D-I teams if conference is left NULL
@@ -468,6 +468,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #'   \item{`home_latitude`: numeric.}{Hometown latitude.}
 #'   \item{`home_longitude`: number.}{Hometown longitude.}
 #'   \item{`home_county_fips`: integer.}{Hometown FIPS code.}
+#'   \item{`headshot_url`: character}{Player ESPN headshot url.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/roster}
 #' @keywords Team Roster
@@ -535,9 +536,7 @@ cfbd_team_roster <- function(year, team = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(athlete_id = .data$id) %>%
-        # Is this okay to just comment out?
-        # Changing to team = NULL deleted the column
-        # dplyr::mutate(team = team2) %>%
+        dplyr::mutate(headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>% 
         as.data.frame()
 
       if(verbose){ 
