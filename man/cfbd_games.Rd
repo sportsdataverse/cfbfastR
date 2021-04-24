@@ -169,229 +169,229 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 
 \code{\link[=cfbd_game_box_advanced]{cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
 \describe{
-\item{\code{team}: character.}{.}
-\item{\code{plays}: double.}{.}
-\item{\code{ppa_overall_total}: double.}{.}
-\item{\code{ppa_overall_quarter1}: double.}{.}
-\item{\code{ppa_overall_quarter2}: double.}{.}
-\item{\code{ppa_overall_quarter3}: double.}{.}
-\item{\code{ppa_overall_quarter4}: double.}{.}
-\item{\code{ppa_passing_total}: double.}{.}
-\item{\code{ppa_passing_quarter1}: double.}{.}
-\item{\code{ppa_passing_quarter2}: double.}{.}
-\item{\code{ppa_passing_quarter3}: double.}{.}
-\item{\code{ppa_passing_quarter4}: double.}{.}
-\item{\code{ppa_rushing_total}: double.}{.}
-\item{\code{ppa_rushing_quarter1}: double.}{.}
-\item{\code{ppa_rushing_quarter2}: double.}{.}
-\item{\code{ppa_rushing_quarter3}: double.}{.}
-\item{\code{ppa_rushing_quarter4}: double.}{.}
-\item{\code{cumulative_ppa_plays}: double.}{.}
-\item{\code{cumulative_ppa_overall_total}: double.}{.}
-\item{\code{cumulative_ppa_overall_quarter1}: double.}{.}
-\item{\code{cumulative_ppa_overall_quarter2}: double.}{.}
-\item{\code{cumulative_ppa_overall_quarter3}: double.}{.}
-\item{\code{cumulative_ppa_overall_quarter4}: double.}{.}
-\item{\code{cumulative_ppa_passing_total}: double.}{.}
-\item{\code{cumulative_ppa_passing_quarter1}: double.}{.}
-\item{\code{cumulative_ppa_passing_quarter2}: double.}{.}
-\item{\code{cumulative_ppa_passing_quarter3}: double.}{.}
-\item{\code{cumulative_ppa_passing_quarter4}: double.}{.}
-\item{\code{cumulative_ppa_rushing_total}: double.}{.}
-\item{\code{cumulative_ppa_rushing_quarter1}: double.}{.}
-\item{\code{cumulative_ppa_rushing_quarter2}: double.}{.}
-\item{\code{cumulative_ppa_rushing_quarter3}: double.}{.}
-\item{\code{cumulative_ppa_rushing_quarter4}: double.}{.}
-\item{\code{success_rates_overall_total}: double.}{.}
-\item{\code{success_rates_overall_quarter1}: double.}{.}
-\item{\code{success_rates_overall_quarter2}: double.}{.}
-\item{\code{success_rates_overall_quarter3}: double.}{.}
-\item{\code{success_rates_overall_quarter4}: double.}{.}
-\item{\code{success_rates_standard_downs_total}: double.}{.}
-\item{\code{success_rates_standard_downs_quarter1}: double.}{.}
-\item{\code{success_rates_standard_downs_quarter2}: double.}{.}
-\item{\code{success_rates_standard_downs_quarter3}: double.}{.}
-\item{\code{success_rates_standard_downs_quarter4}: double.}{.}
-\item{\code{success_rates_passing_downs_total}: double.}{.}
-\item{\code{success_rates_passing_downs_quarter1}: double.}{.}
-\item{\code{success_rates_passing_downs_quarter2}: double.}{.}
-\item{\code{success_rates_passing_downs_quarter3}: double.}{.}
-\item{\code{success_rates_passing_downs_quarter4}: double.}{.}
-\item{\code{explosiveness_overall_total}: double.}{.}
-\item{\code{explosiveness_overall_quarter1}: double.}{.}
-\item{\code{explosiveness_overall_quarter2}: double.}{.}
-\item{\code{explosiveness_overall_quarter3}: double.}{.}
-\item{\code{explosiveness_overall_quarter4}: double.}{.}
-\item{\code{rushing_power_success}: double.}{.}
-\item{\code{rushing_stuff_rate}: double.}{.}
-\item{\code{rushing_line_yds}: double.}{.}
-\item{\code{rushing_line_yd_avg}: double.}{.}
-\item{\code{rushing_second_lvl_yds}: double.}{.}
-\item{\code{rushing_second_lvl_yd_avg}: double.}{.}
-\item{\code{rushing_open_field_yds}: double.}{.}
-\item{\code{rushing_open_field_yd_avg}: double.}{.}
-\item{\code{havoc_total}: double.}{.}
-\item{\code{havoc_front_seven}: double.}{.}
-\item{\code{havoc_db}: double.}{.}
-\item{\code{scoring_opps_opportunities}: double.}{.}
-\item{\code{scoring_opps_points}: double.}{.}
-\item{\code{scoring_opps_pts_per_opp}: double.}{.}
-\item{\code{field_pos_avg_start}: double.}{.}
-\item{\code{field_pos_avg_starting_predicted_pts}: double.}{.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{plays}: double.}{Number of plays.}
+\item{\code{ppa_overall_total}: double.}{Predicted points added (PPA) overall total.}
+\item{\code{ppa_overall_quarter1}: double.}{Predicted points added (PPA) overall Q1.}
+\item{\code{ppa_overall_quarter2}: double.}{Predicted points added (PPA) overall Q2.}
+\item{\code{ppa_overall_quarter3}: double.}{Predicted points added (PPA) overall Q3.}
+\item{\code{ppa_overall_quarter4}: double.}{Predicted points added (PPA) overall Q4.}
+\item{\code{ppa_passing_total}: double.}{Passing predicted points added (PPA) total.}
+\item{\code{ppa_passing_quarter1}: double.}{Passing predicted points added (PPA) Q1.}
+\item{\code{ppa_passing_quarter2}: double.}{Passing predicted points added (PPA) Q2.}
+\item{\code{ppa_passing_quarter3}: double.}{Passing predicted points added (PPA) Q3.}
+\item{\code{ppa_passing_quarter4}: double.}{Passing predicted points added (PPA) Q4.}
+\item{\code{ppa_rushing_total}: double.}{Rushing predicted points added (PPA) total.}
+\item{\code{ppa_rushing_quarter1}: double.}{Rushing predicted points added (PPA) Q1.}
+\item{\code{ppa_rushing_quarter2}: double.}{Rushing predicted points added (PPA) Q2.}
+\item{\code{ppa_rushing_quarter3}: double.}{Rushing predicted points added (PPA) Q3.}
+\item{\code{ppa_rushing_quarter4}: double.}{Rushing predicted points added (PPA) Q4.}
+\item{\code{cumulative_ppa_plays}: double.}{Cumulative predicted points added (PPA) added total.}
+\item{\code{cumulative_ppa_overall_total}: double.}{Cumulative predicted points added (PPA) total.}
+\item{\code{cumulative_ppa_overall_quarter1}: double.}{Cumulative predicted points added (PPA) Q1.}
+\item{\code{cumulative_ppa_overall_quarter2}: double.}{Cumulative predicted points added (PPA) Q2.}
+\item{\code{cumulative_ppa_overall_quarter3}: double.}{Cumulative predicted points added (PPA) Q3.}
+\item{\code{cumulative_ppa_overall_quarter4}: double.}{Cumulative predicted points added (PPA) Q4.}
+\item{\code{cumulative_ppa_passing_total}: double.}{Cumulative passing predicted points added (PPA) total.}
+\item{\code{cumulative_ppa_passing_quarter1}: double.}{Cumulative passing predicted points added (PPA) Q1.}
+\item{\code{cumulative_ppa_passing_quarter2}: double.}{Cumulative passing predicted points added (PPA) Q2.}
+\item{\code{cumulative_ppa_passing_quarter3}: double.}{Cumulative passing predicted points added (PPA) Q3.}
+\item{\code{cumulative_ppa_passing_quarter4}: double.}{Cumulative passing predicted points added (PPA) Q4.}
+\item{\code{cumulative_ppa_rushing_total}: double.}{Cumulative rushing predicted points added (PPA) total.}
+\item{\code{cumulative_ppa_rushing_quarter1}: double.}{Cumulative rushing predicted points added (PPA) Q1.}
+\item{\code{cumulative_ppa_rushing_quarter2}: double.}{Cumulative rushing predicted points added (PPA) Q2.}
+\item{\code{cumulative_ppa_rushing_quarter3}: double.}{Cumulative rushing predicted points added (PPA) Q3.}
+\item{\code{cumulative_ppa_rushing_quarter4}: double.}{Cumulative rushing predicted points added (PPA) Q4.}
+\item{\code{success_rates_overall_total}: double.}{Success rates overall total.}
+\item{\code{success_rates_overall_quarter1}: double.}{Success rates overall Q1.}
+\item{\code{success_rates_overall_quarter2}: double.}{Success rates overall Q2.}
+\item{\code{success_rates_overall_quarter3}: double.}{Success rates overall Q3.}
+\item{\code{success_rates_overall_quarter4}: double.}{Success rates overall Q4.}
+\item{\code{success_rates_standard_downs_total}: double.}{Success rates standard downs total.}
+\item{\code{success_rates_standard_downs_quarter1}: double.}{Success rates standard downs Q1.}
+\item{\code{success_rates_standard_downs_quarter2}: double.}{Success rates standard downs Q2.}
+\item{\code{success_rates_standard_downs_quarter3}: double.}{Success rates standard downs Q3.}
+\item{\code{success_rates_standard_downs_quarter4}: double.}{Success rates standard downs Q4.}
+\item{\code{success_rates_passing_downs_total}: double.}{Success rates passing downs total.}
+\item{\code{success_rates_passing_downs_quarter1}: double.}{Success rates passing downs Q1.}
+\item{\code{success_rates_passing_downs_quarter2}: double.}{Success rates passing downs Q2.}
+\item{\code{success_rates_passing_downs_quarter3}: double.}{Success rates passing downs Q3.}
+\item{\code{success_rates_passing_downs_quarter4}: double.}{Success rates passing downs Q4.}
+\item{\code{explosiveness_overall_total}: double.}{Explosiveness rates overall total.}
+\item{\code{explosiveness_overall_quarter1}: double.}{Explosiveness rates overall Q1.}
+\item{\code{explosiveness_overall_quarter2}: double.}{Explosiveness rates overall Q2.}
+\item{\code{explosiveness_overall_quarter3}: double.}{Explosiveness rates overall Q3.}
+\item{\code{explosiveness_overall_quarter4}: double.}{Explosiveness rates overall Q4.}
+\item{\code{rushing_power_success}: double.}{Rushing power success rate.}
+\item{\code{rushing_stuff_rate}: double.}{Rushing stuff rate.}
+\item{\code{rushing_line_yds}: double.}{Rushing offensive line yards.}
+\item{\code{rushing_line_yds_avg}: double.}{Rushing line yards average.}
+\item{\code{rushing_second_lvl_yds}: double.}{Rushing second-level yards.}
+\item{\code{rushing_second_lvl_yds_avg}: double.}{Average second level yards per rush.}
+\item{\code{rushing_open_field_yds}: double.}{Rushing open field yards.}
+\item{\code{rushing_open_field_yds_avg}: double.}{Average rushing open field yards average.}
+\item{\code{havoc_total}: double.}{Total havoc rate.}
+\item{\code{havoc_front_seven}: double.}{Front-7 players havoc rate.}
+\item{\code{havoc_db}: double.}{Defensive back players havoc rate.}
+\item{\code{scoring_opps_opportunities}: double.}{Number of scoring opportunities.}
+\item{\code{scoring_opps_points}: double.}{Points on scoring opportunity drives.}
+\item{\code{scoring_opps_pts_per_opp}: double.}{Points per scoring opportunity drives.}
+\item{\code{field_pos_avg_start}: double.}{Average starting field position.}
+\item{\code{field_pos_avg_starting_predicted_pts}: double.}{Average starting predicted points (PP) for the average starting field position.}
 }
 
 \code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:
 \describe{
-\item{\code{game_id}: integer.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{home_away}: character.}{.}
-\item{\code{points}: integer.}{.}
-\item{\code{category}: character.}{.}
-\item{\code{athlete_id}: character.}{.}
-\item{\code{name}: character.}{.}
-\item{\code{c_att}: character.}{.}
-\item{\code{yds}: double.}{.}
-\item{\code{avg}: double.}{.}
-\item{\code{td}: double.}{.}
-\item{\code{int}: double.}{.}
-\item{\code{qbr}: double.}{.}
-\item{\code{car}: double.}{.}
-\item{\code{long}: double.}{.}
-\item{\code{rec}: double.}{.}
-\item{\code{no}: double.}{.}
-\item{\code{fg}: character.}{.}
-\item{\code{pct}: double.}{.}
-\item{\code{xp}: character.}{.}
-\item{\code{pts}: double.}{.}
-\item{\code{tb}: double.}{.}
-\item{\code{in_20}: double.}{.}
-\item{\code{fum}: double.}{.}
-\item{\code{lost}: double.}{.}
-\item{\code{tot}: double.}{.}
-\item{\code{solo}: double.}{.}
-\item{\code{sacks}: double.}{.}
-\item{\code{tfl}: double.}{.}
-\item{\code{pd}: double.}{.}
-\item{\code{qb_hur}: double.}{.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{conference}: character.}{Conference of the team.}
+\item{\code{home_away}: character.}{Flag for if the team was the home or away team.}
+\item{\code{points}: integer.}{Team points.}
+\item{\code{category}: character.}{Statistic category.}
+\item{\code{athlete_id}: character.}{Athlete referencing id.}
+\item{\code{name}: character.}{Player name.}
+\item{\code{c_att}: character.}{Completions - Pass attempts.}
+\item{\code{yds}: double.}{Statistic yardage.}
+\item{\code{avg}: double.}{Average per statistic.}
+\item{\code{td}: double.}{Touchdowns scored.}
+\item{\code{int}: double.}{Interceptions thrown.}
+\item{\code{qbr}: double.}{Quarterback rating.}
+\item{\code{car}: double.}{Number of rushing carries.}
+\item{\code{long}: double.}{Longest carry/reception of the game.}
+\item{\code{rec}: double.}{Number of pass receptions.}
+\item{\code{no}: double.}{Player number.}
+\item{\code{fg}: character.}{Field goal attempts in the game.}
+\item{\code{pct}: double.}{Field goal percentage in the game.}
+\item{\code{xp}: character.}{Extra points kicked in the game.}
+\item{\code{pts}: double.}{Total kicking points in the game.}
+\item{\code{tb}: double.}{Touchbacks (for kicking) in the game.}
+\item{\code{in_20}: double.}{Punts inside the 20 yardline in the game.}
+\item{\code{fum}: double.}{Player fumbles in the game.}
+\item{\code{lost}: double.}{Player fumbles lost in the game.}
+\item{\code{tot}: double.}{Total tackles in the game.}
+\item{\code{solo}: double.}{Solo tackles in the game.}
+\item{\code{sacks}: double.}{Total sacks in the game.}
+\item{\code{tfl}: double.}{Total tackles for loss in the game.}
+\item{\code{pd}: double.}{Total passes defensed in the game.}
+\item{\code{qb_hur}: double.}{Total quarterback hurries in the game.}
 }
 
 \code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 20 variables:
 \describe{
-\item{\code{year}: integer.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{division}: character.}{.}
-\item{\code{total_games}: integer.}{.}
-\item{\code{total_wins}: integer.}{.}
-\item{\code{total_losses}: integer.}{.}
-\item{\code{total_ties}: integer.}{.}
-\item{\code{conference_games}: integer.}{.}
-\item{\code{conference_wins}: integer.}{.}
-\item{\code{conference_losses}: integer.}{.}
-\item{\code{conference_ties}: integer.}{.}
-\item{\code{home_games}: integer.}{.}
-\item{\code{home_wins}: integer.}{.}
-\item{\code{home_losses}: integer.}{.}
-\item{\code{home_ties}: integer.}{.}
-\item{\code{away_games}: integer.}{.}
-\item{\code{away_wins}: integer.}{.}
-\item{\code{away_losses}: integer.}{.}
-\item{\code{away_ties}: integer.}{.}
+\item{\code{year}: integer.}{Season of the games.}
+\item{\code{team}: character.}{Team name.}
+\item{\code{conference}: character.}{Conference of the team.}
+\item{\code{division}: character.}{Division in the conference of the team.}
+\item{\code{total_games}: integer.}{Total number of games played.}
+\item{\code{total_wins}: integer.}{Total wins.}
+\item{\code{total_losses}: integer.}{Total losses.}
+\item{\code{total_ties}: integer.}{Total ties.}
+\item{\code{conference_games}: integer.}{Number of conference games.}
+\item{\code{conference_wins}: integer.}{Total conference wins.}
+\item{\code{conference_losses}: integer.}{Total conference losses.}
+\item{\code{conference_ties}: integer.}{Total conference ties.}
+\item{\code{home_games}: integer.}{Total home games.}
+\item{\code{home_wins}: integer.}{Total home wins.}
+\item{\code{home_losses}: integer.}{Total home losses.}
+\item{\code{home_ties}: integer.}{Total home ties.}
+\item{\code{away_games}: integer.}{Total away games.}
+\item{\code{away_wins}: integer.}{Total away wins.}
+\item{\code{away_losses}: integer.}{Total away losses.}
+\item{\code{away_ties}: integer.}{Total away ties.}
 }
 
 \code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}} - A data frame with 78 variables:
 \describe{
-\item{\code{game_id}: integer.}{.}
-\item{\code{school}: character.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{home_away}: character.}{.}
-\item{\code{points}: integer.}{.}
-\item{\code{total_yards}: character.}{.}
-\item{\code{net_passing_yards}: character.}{.}
-\item{\code{completion_attempts}:character.}{.}
-\item{\code{passing_tds}: character.}{.}
-\item{\code{yards_per_pass}: character.}{.}
-\item{\code{passes_intercepted}: character.}{.}
-\item{\code{interception_yards}: character.}{.}
-\item{\code{interception_tds}: character.}{.}
-\item{\code{rushing_attempts}: character.}{.}
-\item{\code{rushing_yards}: character.}{.}
-\item{\code{rush_tds}: character.}{.}
-\item{\code{yards_per_rush_attempt}: character.}{.}
-\item{\code{first_downs}: character.}{.}
-\item{\code{third_down_eff}: character.}{.}
-\item{\code{fourth_down_eff}: character.}{.}
-\item{\code{punt_returns}: character.}{.}
-\item{\code{punt_return_yards}: character.}{.}
-\item{\code{punt_return_tds}: character.}{.}
-\item{\code{kick_return_yards}: character.}{.}
-\item{\code{kick_return_tds}: character.}{.}
-\item{\code{kick_returns}: character.}{.}
-\item{\code{kicking_points}: character.}{.}
-\item{\code{fumbles_recovered}: character.}{.}
-\item{\code{fumbles_lost}: character.}{.}
-\item{\code{total_fumbles}: character.}{.}
-\item{\code{tackles}: character.}{.}
-\item{\code{tackles_for_loss}: character.}{.}
-\item{\code{sacks}: character.}{.}
-\item{\code{qb_hurries}: character.}{.}
-\item{\code{interceptions}: character.}{.}
-\item{\code{passes_deflected}: character.}{.}
-\item{\code{turnovers}: character.}{.}
-\item{\code{defensive_tds}: character.}{.}
-\item{\code{total_penalties_yards}: character.}{.}
-\item{\code{possession_time}: character.}{.}
-\item{\code{conference_allowed}: character.}{.}
-\item{\code{home_away_allowed}: character.}{.}
-\item{\code{points_allowed}: integer.}{.}
-\item{\code{total_yards_allowed}: character.}{.}
-\item{\code{net_passing_yards_allowed}: character.}{.}
-\item{\code{completion_attempts_allowed}: character.}{.}
-\item{\code{passing_tds_allowed}: character.}{.}
-\item{\code{yards_per_pass_allowed}: character.}{.}
-\item{\code{passes_intercepted_allowed}: character.}{.}
-\item{\code{interception_yards_allowed}: character.}{.}
-\item{\code{interception_tds_allowed}: character.}{.}
-\item{\code{rushing_attempts_allowed}: character.}{.}
-\item{\code{rushing_yards_allowed}: character.}{.}
-\item{\code{rush_tds_allowed}: character.}{.}
-\item{\code{yards_per_rush_attempt_allowed}: character.}{.}
-\item{\code{first_downs_allowed}: character.}{.}
-\item{\code{third_down_eff_allowed}: character.}{.}
-\item{\code{fourth_down_eff_allowed}: character.}{.}
-\item{\code{punt_returns_allowed}: character.}{.}
-\item{\code{punt_return_yards_allowed}: character.}{.}
-\item{\code{punt_return_tds_allowed}: character.}{.}
-\item{\code{kick_return_yards_allowed}: character.}{.}
-\item{\code{kick_return_tds_allowed}: character.}{.}
-\item{\code{kick_returns_allowed}: character.}{.}
-\item{\code{kicking_points_allowed}: character.}{.}
-\item{\code{fumbles_recovered_allowed}: character.}{.}
-\item{\code{fumbles_lost_allowed}: character.}{.}
-\item{\code{total_fumbles_allowed}:character.}{.}
-\item{\code{tackles_allowed}:character.}{.}
-\item{\code{tackles_for_loss_allowed}: character.}{.}
-\item{\code{sacks_allowed}: character.}{.}
-\item{\code{qb_hurries_allowed}: character.}{.}
-\item{\code{interceptions_allowed}: character.}{.}
-\item{\code{passes_deflected_allowed}: character.}{.}
-\item{\code{turnovers_allowed}: character.}{.}
-\item{\code{defensive_tds_allowed}: character.}{.}
-\item{\code{total_penalties_yards_allowed}: character.}{.}
-\item{\code{possession_time_allowed}: character.}{.}
+\item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{school}: character.}{Team name.}
+\item{\code{conference}: character.}{Conference of the team.}
+\item{\code{home_away}: character.}{Home/Away Flag.}
+\item{\code{points}: integer.}{Team points.}
+\item{\code{total_yards}: character.}{Team total yards.}
+\item{\code{net_passing_yards}: character.}{Team net passing yards.}
+\item{\code{completion_attempts}:character.}{Team completion attempts.}
+\item{\code{passing_tds}: character.}{Team passing touchdowns.}
+\item{\code{yards_per_pass}: character.}{Team game yards per pass.}
+\item{\code{passes_intercepted}: character.}{Team passes intercepted.}
+\item{\code{interception_yards}: character.}{Interception yards.}
+\item{\code{interception_tds}: character.}{Interceptions returned for a touchdown.}
+\item{\code{rushing_attempts}: character.}{Team rushing attempts. see also: ESTABLISH IT.}
+\item{\code{rushing_yards}: character.}{Team rushing yards.}
+\item{\code{rush_tds}: character.}{Team rushing touchdowns.}
+\item{\code{yards_per_rush_attempt}: character.}{Team yards per rush attempt.}
+\item{\code{first_downs}: character.}{First downs earned by the team.}
+\item{\code{third_down_eff}: character.}{Third down efficiency.}
+\item{\code{fourth_down_eff}: character.}{Fourth down efficiency.}
+\item{\code{punt_returns}: character.}{Team punt returns.}
+\item{\code{punt_return_yards}: character.}{Team punt return yards.}
+\item{\code{punt_return_tds}: character.}{Team punt return touchdowns.}
+\item{\code{kick_return_yards}: character.}{Team kick return yards.}
+\item{\code{kick_return_tds}: character.}{Team kick return touchdowns.}
+\item{\code{kick_returns}: character.}{Team kick returns.}
+\item{\code{kicking_points}: character.}{Team points from kicking the ball.}
+\item{\code{fumbles_recovered}: character.}{Team fumbles recovered.}
+\item{\code{fumbles_lost}: character.}{Team fumbles lost.}
+\item{\code{total_fumbles}: character.}{Team total fumbles.}
+\item{\code{tackles}: character.}{Team tackles.}
+\item{\code{tackles_for_loss}: character.}{Team tackles for a loss.}
+\item{\code{sacks}: character.}{Team sacks.}
+\item{\code{qb_hurries}: character.}{Team QB hurries.}
+\item{\code{interceptions}: character.}{Team interceptions.}
+\item{\code{passes_deflected}: character.}{Team passes deflected.}
+\item{\code{turnovers}: character.}{Team turnovers.}
+\item{\code{defensive_tds}: character.}{Team defensive touchdowns.}
+\item{\code{total_penalties_yards}: character.}{Team total penalty yards.}
+\item{\code{possession_time}: character.}{Team time of possession.}
+\item{\code{conference_allowed}: character.}{Conference of the opponent team.}
+\item{\code{home_away_allowed}: character.}{Flag for if the opponent was the home or away team.}
+\item{\code{points_allowed}: integer.}{Points for the opponent.}
+\item{\code{total_yards_allowed}: character.}{Opponent total yards.}
+\item{\code{net_passing_yards_allowed}: character.}{Opponent net passing yards.}
+\item{\code{completion_attempts_allowed}: character.}{Oppponent completion attempts.}
+\item{\code{passing_tds_allowed}: character.}{Opponent passing TDs.}
+\item{\code{yards_per_pass_allowed}: character.}{Opponent yards per pass allowed.}
+\item{\code{passes_intercepted_allowed}: character.}{Opponent passes intercepted.}
+\item{\code{interception_yards_allowed}: character.}{Opponent interception yards.}
+\item{\code{interception_tds_allowed}: character.}{Opponent interception TDs.}
+\item{\code{rushing_attempts_allowed}: character.}{Opponent rushing attempts.}
+\item{\code{rushing_yards_allowed}: character.}{Opponent rushing yards.}
+\item{\code{rush_tds_allowed}: character.}{Opponent rushing touchdownss.}
+\item{\code{yards_per_rush_attempt_allowed}: character.}{Opponent rushing yards per attempt.}
+\item{\code{first_downs_allowed}: character.}{Opponent first downs.}
+\item{\code{third_down_eff_allowed}: character.}{Opponent third down efficiency.}
+\item{\code{fourth_down_eff_allowed}: character.}{Opponent fourth down efficiency.}
+\item{\code{punt_returns_allowed}: character.}{Opponent punt returns.}
+\item{\code{punt_return_yards_allowed}: character.}{Opponent punt return yards.}
+\item{\code{punt_return_tds_allowed}: character.}{Opponent punt return touchdowns.}
+\item{\code{kick_return_yards_allowed}: character.}{Opponent kick return yards.}
+\item{\code{kick_return_tds_allowed}: character.}{Opponent kick return touchdowns.}
+\item{\code{kick_returns_allowed}: character.}{Opponent kick returns.}
+\item{\code{kicking_points_allowed}: character.}{Opponent points from kicking.}
+\item{\code{fumbles_recovered_allowed}: character.}{Opponent fumbles recovered.}
+\item{\code{fumbles_lost_allowed}: character.}{Opponent fumbles lost.}
+\item{\code{total_fumbles_allowed}:character.}{Opponent total number of fumbles.}
+\item{\code{tackles_allowed}:character.}{Opponent tackles.}
+\item{\code{tackles_for_loss_allowed}: character.}{Opponent tackles for loss.}
+\item{\code{sacks_allowed}: character.}{Opponent sacks.}
+\item{\code{qb_hurries_allowed}: character.}{Opponent quarterback hurries.}
+\item{\code{interceptions_allowed}: character.}{Opponent interceptions.}
+\item{\code{passes_deflected_allowed}: character.}{Opponent passes deflected.}
+\item{\code{turnovers_allowed}: character.}{Opponent turnovers.}
+\item{\code{defensive_tds_allowed}: character.}{Opponent defensive touchdowns.}
+\item{\code{total_penalties_yards_allowed}: character.}{Opponent total penalty yards.}
+\item{\code{possession_time_allowed}: character.}{Opponent time of possession.}
 }
 }
 \description{
-Get results, statistics and information for games
+Get results, statistics and information for games\cr
 \describe{
-\item{\code{cfbd_game_info()}: Get results information from games}{.}
-\item{\code{cfbd_calendar()}: Calendar - Returns calendar of weeks by season}{.}
-\item{\code{cfbd_game_media()}: Get Game media information (TV, radio, etc)}{.}
-\item{\code{cfbd_game_box_advanced()}: Get game advanced box score information}{.}
-\item{\code{cfbd_game_player_stats()}: Get results information from games}{.}
-\item{\code{cfbd_game_records()}: Get Team records by year}{.}
-\item{\code{cfbd_game_team_stats()}: Get Team Statistics by Game}{.}
+\item{\code{cfbd_game_info()}:}{Get results information from games.}
+\item{\code{cfbd_calendar()}:}{Calendar - Returns calendar of weeks by season.}
+\item{\code{cfbd_game_media()}:}{Get Game media information (TV, radio, etc).}
+\item{\code{cfbd_game_box_advanced()}:}{Get game advanced box score information.}
+\item{\code{cfbd_game_player_stats()}:}{Get results information from games.}
+\item{\code{cfbd_game_records()}:}{Get Team records by year.}
+\item{\code{cfbd_game_team_stats()}:}{Get Team Statistics by Game.}
 }
 }
 \examples{

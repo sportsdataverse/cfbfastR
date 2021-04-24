@@ -129,10 +129,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \description{
 \describe{
-\item{\code{cfbd_rankings()}: Gets Historical CFB poll rankings at a specific week}{.}
-\item{\code{cfbd_ratings_sp()}: Get SP historical rating data}{.}
-\item{\code{cfbd_ratings_sp_conference()}: Get SP conference-level historical rating data}{.}
-\item{\code{cfbd_ratings_srs()}: Get SRS historical rating data}{.}
+\item{\code{cfbd_rankings()}:}{Gets Historical CFB poll rankings at a specific week.}
+\item{\code{cfbd_ratings_sp()}:}{Get SP historical rating data.}
+\item{\code{cfbd_ratings_sp_conference()}:}{Get SP conference-level historical rating data.}
+\item{\code{cfbd_ratings_srs()}:}{Get SRS historical rating data.}
 }
 
 At least one of \strong{year} or \strong{team} must be specified for the function to run
