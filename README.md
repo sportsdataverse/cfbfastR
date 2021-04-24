@@ -45,6 +45,26 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 ## **Breaking Changes**
 
+### **v1.2.1**
+
+##### **Minor release**
+
+  - Added headshot\_url to outputs of
+    [`cfbd_team_rosters`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html)
+
+  - Renamed returns in
+    [`cfbd_game_advanced()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_games.html):
+    
+      - `rushing_line_yd_avg` to plural `rushing_line_yds_avg`
+      - `rushing_second_lvl_yd_avg` to plural
+        `rushing_second_lvl_yds_avg`
+      - `rushing_open_field_yd_avg` to plural
+        `rushing_open_field_yds_avg`
+
+  - Completed documentation for all returns except `cfbd_pbp_data()`
+
+  - Continued work on intro vignette
+
 ### **v1.2.0**
 
 #### **Add significant documentation to the package**
@@ -168,9 +188,9 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 
 <summary>View More</summary>
 
-| issue | icon                                                                                                                           | title                                                                                                                                                      | labels        | opened\_by                            | comments | comments\_users                                                                                                                                                                                                                                                                                                                    | assigned\_to | created             | updated             | closed              |
-| :---- | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------ | :------------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------------ | :------------------ | :------------------ |
-| 4     | <span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span> | <span title="**Describe the bug**...">[cfbd\_play\_types is documented, but isn’t in the package](https://github.com/saiemgilani/cfbfastR/issues/4)</span> | documentation | [rchanks](https://github.com/rchanks) | 1        | <span title="Oops. Will fix. Maybe. Trying to figure out optimal use of the in-package data sources and I&#39;m not sure this one will make the cut. Would not mind if you had any thoughts/suggestions as essential to new users. ">[saiemgilani](https://github.com/saiemgilani/cfbfastR/issues/4#issuecomment-820774552)</span> | saiemgilani  | 2021-04-15 16:11:17 | 2021-04-18 23:47:31 | 2021-04-18 23:47:31 |
+| issue | icon                                                                                                                           | title                                                                                                                                                                                                                        | labels | opened\_by                            | comments | comments\_users                                                                                                                                         | assigned\_to | created             | updated             | closed              |
+| :---- | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----- | :------------------------------------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------- | :------------------ | :------------------ | :------------------ |
+| 8     | <span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span> | <span title="Using the `athlete_id` it appears to be very easy to build the headshot url of the player. ...">[Add `headshot_url` to output of `cfbd_team_roster()`](https://github.com/saiemgilani/cfbfastR/issues/8)</span> |        | [mrcaseb](https://github.com/mrcaseb) | 1        | <span title="Alternative code without the glue dependency...">[mrcaseb](https://github.com/saiemgilani/cfbfastR/issues/8#issuecomment-825747882)</span> |              | 2021-04-23 15:27:16 | 2021-04-24 04:29:32 | 2021-04-24 04:29:32 |
 
 </details>
 
