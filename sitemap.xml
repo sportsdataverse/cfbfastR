@@ -7,6 +7,9 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_betting.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_calendar.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_coaches.html</loc>
   </url>
   <url>
@@ -16,10 +19,49 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_drives.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_game_box_advanced.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_game_info.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_game_media.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_game_records.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_game_team_stats.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_games.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_games.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_players_games.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_players_season.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_predicted.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_teams.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_wp.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_wp_pregame.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html</loc>
@@ -28,16 +70,88 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_play_stats_player.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_play_stats_types.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_play_types.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_player_info.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_player_returning.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_player_usage.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_players.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_plays.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_rankings.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_sp.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_sp_conference.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_srs.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_position.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_team.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_stats.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_stats_categories.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_stats_game_advanced.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_stats_season_advanced.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_stats_season_player.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_stats_season_team.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_team_info.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_team_matchup.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_team_matchup_records.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_team_roster.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_team_talent.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html</loc>

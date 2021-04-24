@@ -328,9 +328,9 @@
 <div id="pull-team-info-and-team-colors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pull-team-info-and-team-colors" class="anchor"></a>Pull team info and team colors</h2>
-<p>We can use the <code><a href="../reference/cfbd_teams.html">cfbd_team_info()</a></code> function to pull information about each FBS school including their logo, color, and abbreviation. We’re going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.</p>
+<p>We can use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull information about each FBS school including their logo, color, and abbreviation. We’re going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_info</span> <span class="op">=</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_teams.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">team_info</span> <span class="op">=</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 
 <span class="va">team_colors_logos</span> <span class="op">=</span> <span class="va">team_info</span> <span class="op">%&gt;%</span> 
   <span class="fu">select</span><span class="op">(</span><span class="va">school</span>, <span class="va">abbreviation</span>, <span class="va">color</span>, <span class="va">logos</span>, <span class="va">alt_color</span><span class="op">)</span> <span class="op">%&gt;%</span>

@@ -323,54 +323,54 @@
 <a href="#get-game-information" class="anchor"></a><strong>Get game information</strong>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_2018_wk_1</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">df_2018_wk_1</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
  
-<span class="va">df_2018_wk_7_ind</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">7</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span>
+<span class="va">df_2018_wk_7_ind</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">7</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span>
  
-<span class="va">line_scores</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">13</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, quarter_scores <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="va">line_scores</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">13</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, quarter_scores <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="get-calendar-weeks-and-dates" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-calendar-weeks-and-dates" class="anchor"></a><strong>Get calendar weeks and dates</strong>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_calendar</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_calendar.html">cfbd_calendar</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="find-game-broadcast-and-media-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#find-game-broadcast-and-media-information" class="anchor"></a><strong>Find game broadcast and media information</strong>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_media</a></span><span class="op">(</span><span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">4</span>, conference <span class="op">=</span> <span class="st">"ACC"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_media.html">cfbd_game_media</a></span><span class="op">(</span><span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">4</span>, conference <span class="op">=</span> <span class="st">"ACC"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="get-cfbd-advanced-game-box-scores-by-game_id" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-cfbd-advanced-game-box-scores-by-game_id" class="anchor"></a><strong>Get CFBD Advanced Game Box Scores (by <code>game_id</code>)</strong>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_box_advanced</a></span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401114233</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_box_advanced.html">cfbd_game_box_advanced</a></span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401114233</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="get-cfbd-game-team-box-scores" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-cfbd-game-team-box-scores" class="anchor"></a><strong>Get CFBD Game Team Box Scores</strong>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 13 x 78
 ##      game_id school conference home_away points total_yards net_passing_yards
 ##        &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;            
-##  1 401110805 LSU    SEC        away          66 599         418              
-##  2 401110828 LSU    SEC        away          36 413         327              
-##  3 401110778 LSU    SEC        away          45 573         471              
-##  4 401110842 LSU    SEC        away          46 559         393              
-##  5 401110833 LSU    SEC        home          23 508         321              
-##  6 401110850 LSU    SEC        away          58 714         489              
-##  7 401110859 LSU    SEC        home          56 612         352              
-##  8 401110869 LSU    SEC        home          50 553         425              
-##  9 401110725 LSU    SEC        home          55 472         350              
-## 10 401110813 LSU    SEC        home          42 601         353              
-## 11 401110819 LSU    SEC        home          42 511         293              
-## 12 401110790 LSU    SEC        home          65 610         488              
+##  1 401110778 LSU    SEC        away          45 573         471              
+##  2 401110805 LSU    SEC        away          66 599         418              
+##  3 401110828 LSU    SEC        away          36 413         327              
+##  4 401110833 LSU    SEC        home          23 508         321              
+##  5 401110842 LSU    SEC        away          46 559         393              
+##  6 401110869 LSU    SEC        home          50 553         425              
+##  7 401110850 LSU    SEC        away          58 714         489              
+##  8 401110725 LSU    SEC        home          55 472         350              
+##  9 401110859 LSU    SEC        home          56 612         352              
+## 10 401110790 LSU    SEC        home          65 610         488              
+## 11 401110813 LSU    SEC        home          42 601         353              
+## 12 401110819 LSU    SEC        home          42 511         293              
 ## 13 401132981 LSU    SEC        home          37 481         349              
 ## # … with 71 more variables: completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;,
 ## #   yards_per_pass &lt;chr&gt;, passes_intercepted &lt;chr&gt;, interception_yards &lt;chr&gt;,
@@ -403,7 +403,7 @@
 ## #   defensive_tds_allowed &lt;chr&gt;, total_penalties_yards_allowed &lt;chr&gt;,
 ## #   possession_time_allowed &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 13 x 78
 ##      game_id school     conference home_away points total_yards net_passing_yar…
 ##        &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;           
@@ -413,10 +413,10 @@
 ##  4 332710103 Florida S… ACC        away          48 489         330             
 ##  5 332780052 Florida S… ACC        home          63 614         431             
 ##  6 332920228 Florida S… ACC        away          51 565         444             
-##  7 333060052 Florida S… ACC        home          41 517         325             
-##  8 333130154 Florida S… ACC        away          59 296         207             
-##  9 333200052 Florida S… ACC        home          59 523         298             
-## 10 332990052 Florida S… ACC        home          49 566         342             
+##  7 332990052 Florida S… ACC        home          49 566         342             
+##  8 333060052 Florida S… ACC        home          41 517         325             
+##  9 333130154 Florida S… ACC        away          59 296         207             
+## 10 333200052 Florida S… ACC        home          59 523         298             
 ## 11 333270052 Florida S… ACC        home          80 645         309             
 ## 12 333340057 Florida S… ACC        away          37 456         327             
 ## 13 333410052 Florida S… ACC        home          45 569         330             
@@ -456,18 +456,18 @@
 <a href="#get-cfbd-game-player-box-scores" class="anchor"></a><strong>Get CFBD Game Player Box Scores</strong>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_player_stats</a></span><span class="op">(</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">15</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_player_stats.html">cfbd_game_player_stats</a></span><span class="op">(</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">15</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span>
 
-<span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_player_stats</a></span><span class="op">(</span><span class="fl">2013</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></code></pre></div>
+<span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_player_stats.html">cfbd_game_player_stats</a></span><span class="op">(</span><span class="fl">2013</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="get-cfbd-team-game-records" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-cfbd-team-game-records" class="anchor"></a><strong>Get CFBD Team Game Records</strong>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_records</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Notre Dame"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_records.html">cfbd_game_records</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Notre Dame"</span><span class="op">)</span>
    
-<span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_games.html">cfbd_game_records</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
+<span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_records.html">cfbd_game_records</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 

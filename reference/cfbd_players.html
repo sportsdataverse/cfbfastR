@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CFBD Players Endpoint — cfbd_players • cfbfastR</title>
+<title>CFBD Players Endpoint Overview — cfbd_players • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,18 +54,27 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="CFBD Players Endpoint — cfbd_players" />
+<meta property="og:title" content="CFBD Players Endpoint Overview — cfbd_players" />
 <meta property="og:description" content="
 
 cfbd_player_info():Player Information Search.
 cfbd_player_returning():Player Returning Production.
 cfbd_player_usage():Player Usage.
 
+
+Player information lookup
  cfbd_player_info(search_term = &quot;James&quot;, position = &quot;DB&quot;, team = &quot;Florida State&quot;, year = 2017)
 
  cfbd_player_info(search_term = &quot;Lawrence&quot;, team = &quot;Clemson&quot;)
+
+
+Get player returning production
  cfbd_player_returning(year = 2019, team = &quot;Florida State&quot;)
+
+
+Get player usage metrics
  cfbd_player_usage(year = 2019, position = &quot;WR&quot;, team = &quot;Florida State&quot;)
+
 
 " />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
@@ -358,7 +367,7 @@ cfbd_player_usage():Player Usage.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CFBD Players Endpoint</h1>
+    <h1><strong>CFBD Players Endpoint Overview</strong></h1>
     
     <div class="hidden name"><code>cfbd_players.Rd</code></div>
     </div>
@@ -366,213 +375,31 @@ cfbd_player_usage():Player Usage.
     <div class="ref-description">
     
 <dl>
-<dt><code>cfbd_player_info()</code>:</dt><dd><p>Player Information Search.</p></dd>
-<dt><code>cfbd_player_returning()</code>:</dt><dd><p>Player Returning Production.</p></dd>
-<dt><code>cfbd_player_usage()</code>:</dt><dd><p>Player Usage.</p></dd>
+<dt><code><a href='cfbd_player_info.html'>cfbd_player_info()</a></code>:</dt><dd><p>Player Information Search.</p></dd>
+<dt><code><a href='cfbd_player_returning.html'>cfbd_player_returning()</a></code>:</dt><dd><p>Player Returning Production.</p></dd>
+<dt><code><a href='cfbd_player_usage.html'>cfbd_player_usage()</a></code>:</dt><dd><p>Player Usage.</p></dd>
 
-</dl><p><div class="r"></p><pre> <span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
+</dl>
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Player information lookup</strong></h3>
+<p><div class="r"></p><pre> <span class='fu'><a href='cfbd_player_info.html'>cfbd_player_info</a></span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
 
- <span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
-</pre><p></div><div class="r"></p><pre> <span class='fu'>cfbd_player_returning</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</pre><p></div><div class="r"></p><pre> <span class='fu'>cfbd_player_usage</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, position <span class='op'>=</span> <span class='st'>"WR"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+ <span class='fu'><a href='cfbd_player_info.html'>cfbd_player_info</a></span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
+</pre><p></div></p>
+
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get player returning production</strong></h3>
+<p><div class="r"></p><pre> <span class='fu'><a href='cfbd_player_returning.html'>cfbd_player_returning</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</pre><p></div></p>
+
+<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get player usage metrics</strong></h3>
+<p><div class="r"></p><pre> <span class='fu'><a href='cfbd_player_usage.html'>cfbd_player_usage</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, position <span class='op'>=</span> <span class='st'>"WR"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
 
 </pre><p></div></p>
+
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_player_info</span><span class='op'>(</span>
-  <span class='va'>search_term</span>,
-  position <span class='op'>=</span> <span class='cn'>NULL</span>,
-  team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
 
-<span class='fu'>cfbd_player_returning</span><span class='op'>(</span>
-  year <span class='op'>=</span> <span class='fl'>2019</span>,
-  team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span>
 
-<span class='fu'>cfbd_player_usage</span><span class='op'>(</span>
-  year <span class='op'>=</span> <span class='fl'>2019</span>,
-  team <span class='op'>=</span> <span class='cn'>NULL</span>,
-  conference <span class='op'>=</span> <span class='cn'>NULL</span>,
-  position <span class='op'>=</span> <span class='cn'>NULL</span>,
-  athlete_id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  excl_garbage_time <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>search_term</th>
-      <td><p>(<em>String</em> required): Search term for the player you are trying to look up</p></td>
-    </tr>
-    <tr>
-      <th>position</th>
-      <td><p>(<em>string</em> optional): Position of the player you are searching for.<br />
-Position Group  - options include:<br /></p><ul>
-<li><p>Offense: QB, RB, FB, TE,  OL, G, OT, C, WR<br /></p></li>
-<li><p>Defense: DB, CB, S, LB,  DE, DT, NT, DL<br /></p></li>
-<li><p>Special Teams: K, P, LS, PK</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>team</th>
-      <td><p>(<em>String</em> optional): Team - Select a valid team, D1 football</p></td>
-    </tr>
-    <tr>
-      <th>year</th>
-      <td><p>(<em>Integer</em> required, default 2019): Year, 4 digit format (<em>YYYY</em>).</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function</p></td>
-    </tr>
-    <tr>
-      <th>conference</th>
-      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conferencer<br />
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br />
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></td>
-    </tr>
-    <tr>
-      <th>athlete_id</th>
-      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete<br />
-Can be found using the <code>cfbd_player_info()</code> function.</p></td>
-    </tr>
-    <tr>
-      <th>excl_garbage_time</th>
-      <td><p>(<em>Logical</em> default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://api.collegefootballdata.com/player/search'>https://api.collegefootballdata.com/player/search</a></p>
-<p><a href='https://api.collegefootballdata.com/player/returning'>https://api.collegefootballdata.com/player/returning</a></p>
-<p><a href='https://api.collegefootballdata.com/player/usage'>https://api.collegefootballdata.com/player/usage</a></p>
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>cfbd_player_info()</code> - A data frame with 12 variables:</p><dl>
-<dt><code>athlete_id</code>:character.</dt><dd><p>Unique player identifier <code>athlete_id</code>.</p></dd>
-<dt><code>team</code>:character.</dt><dd><p>Team of the player.</p></dd>
-<dt><code>name</code>:character.</dt><dd><p>Player name.</p></dd>
-<dt><code>first_name</code>:character.</dt><dd><p>Player first name.</p></dd>
-<dt><code>last_name</code>:character.</dt><dd><p>Player last name.</p></dd>
-<dt><code>weight</code>:integer.</dt><dd><p>Player weight.</p></dd>
-<dt><code>height</code>:integer.</dt><dd><p>Player height.</p></dd>
-<dt><code>jersey</code>:integer.</dt><dd><p>Player jersey number.</p></dd>
-<dt><code>position</code>:character.</dt><dd><p>Player position.</p></dd>
-<dt><code>home_town</code>:character.</dt><dd><p>Player home town.</p></dd>
-<dt><code>team_color</code>:character.</dt><dd><p>Player team color.</p></dd>
-<dt><code>team_color_secondary</code>:character.</dt><dd><p>Player team secondary color.</p></dd>
-
-</dl>
-
-<p><code>cfbd_player_returning()</code> - A data frame with 15 variables:</p><dl>
-<dt><code>season</code>:integer.</dt><dd><p>Returning player season.</p></dd>
-<dt><code>team</code>:character.</dt><dd><p>Team name.</p></dd>
-<dt><code>conference</code>:character.</dt><dd><p>Conference of team.</p></dd>
-<dt><code>total_ppa</code>:double.</dt><dd><p>Total predicted points added returning.</p></dd>
-<dt><code>total_passing_ppa</code>:double.</dt><dd><p>Total passing predicted points added returning.</p></dd>
-<dt><code>total_receiving_ppa</code>:double.</dt><dd><p>Total receiving predicted points added returning.</p></dd>
-<dt><code>total_rushing_ppa</code>:double.</dt><dd><p>Total rushing predicted points added returning.</p></dd>
-<dt><code>percent_ppa</code>:double.</dt><dd><p>Percentage of prior year's predicted points added returning.</p></dd>
-<dt><code>percent_passing_ppa</code>:double.</dt><dd><p>Percentage of prior year's passing predicted points added returning.</p></dd>
-<dt><code>percent_receiving_ppa</code>:double.</dt><dd><p>Percentage of prior year's receiving predicted points added returning.</p></dd>
-<dt><code>percent_rushing_ppa</code>:double.</dt><dd><p>Percentage of prior year's rushing predicted points added returning.</p></dd>
-<dt><code>usage</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>passing_usage</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>receiving_usage</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_usage</code>:double.</dt><dd><p>.</p></dd>
-
-</dl>
-
-<p><code>cfbd_player_usage()</code> - A data frame with 14 variables:</p><dl>
-<dt><code>season</code>: integer.</dt><dd><p>Player usage season.</p></dd>
-<dt><code>athlete_id</code>: character.</dt><dd><p>Referencing athlete id.</p></dd>
-<dt><code>name</code>: character.</dt><dd><p>Athlete name.</p></dd>
-<dt><code>position</code>: character.</dt><dd><p>Athlete position.</p></dd>
-<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>Conference of team.</p></dd>
-<dt><code>usg_overall</code>: double.</dt><dd><p>Player usage of overall offense.</p></dd>
-<dt><code>usg_pass</code>: double.</dt><dd><p>Player passing usage percentage.</p></dd>
-<dt><code>usg_rush</code>: double.</dt><dd><p>Player rushing usage percentage.</p></dd>
-<dt><code>usg_1st_down</code>: double.</dt><dd><p>Player first down usage percentage.</p></dd>
-<dt><code>usg_2nd_down</code>: double.</dt><dd><p>Player second down usage percentage.</p></dd>
-<dt><code>usg_3rd_down</code>: double.</dt><dd><p>Player third down usage percentage.</p></dd>
-<dt><code>usg_standard_downs</code>: double.</dt><dd><p>Player standard down usage percentage.</p></dd>
-<dt><code>usg_passing_downs</code>: double.</dt><dd><p>Player passing down usage percentage.</p></dd>
-
-</dl>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>cfbd_player_returning()</code></p>
-<p><code>cfbd_player_usage()</code></p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
-#&gt; 1    3691739 Florida State Derwin James     Derwin     James    211     75
-#&gt;   jersey position   home_town team_color team_color_secondary
-#&gt; 1      3       DB Leander, TX    #782F40              #ceb888</div><div class='input'>
-<span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
-#&gt; 1    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16
-#&gt;   position        home_town team_color team_color_secondary
-#&gt; 1       QB Cartersville, GA    #F66733              #522d80</div><div class='input'>
-<span class='co'># }</span>
-
-<span class='co'># \donttest{</span>
-<span class='fu'>cfbd_player_returning</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   season          team conference total_ppa total_passing_ppa
-#&gt; 1   2019 Florida State        ACC     189.9              74.3
-#&gt;   total_receiving_ppa total_rushing_ppa percent_ppa percent_passing_ppa
-#&gt; 1               116.5              -0.9       0.583               0.513
-#&gt;   percent_receiving_ppa percent_rushing_ppa usage passing_usage receiving_usage
-#&gt; 1                 0.611               0.096 0.541         0.415           0.717
-#&gt;   rushing_usage
-#&gt; 1         0.591</div><div class='input'><span class='co'># }</span>
-
-<span class='co'># \donttest{</span>
-<span class='fu'>cfbd_player_usage</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, position <span class='op'>=</span> <span class='st'>"WR"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   season athlete_id               name position          team conference
-#&gt; 1   2019    4240028    Tamorrion Terry       WR Florida State        ACC
-#&gt; 2   2019    4240034      D.J. Matthews       WR Florida State        ACC
-#&gt; 3   2019    4363046 Tre'Shaun Harrison       WR Florida State        ACC
-#&gt; 4   2019    4240033     Ontaria Wilson       WR Florida State        ACC
-#&gt; 5   2019    4363032    Keyshawn Helton       WR Florida State        ACC
-#&gt; 6   2019    4035628        Keith Gavin       WR Florida State        ACC
-#&gt; 7   2019    4363030    Warren Thompson       WR Florida State        ACC
-#&gt; 8   2019    4363044       Jordan Young       WR Florida State        ACC
-#&gt; 9   2019    4360473       Adarius Dent       WR Florida State        ACC
-#&gt;   usg_overall usg_pass usg_rush usg_1st_down usg_2nd_down usg_3rd_down
-#&gt; 1      0.1184   0.2181   0.0102       0.1402        0.099        0.112
-#&gt; 2      0.0604   0.1090   0.0077       0.0485        0.076        0.071
-#&gt; 3      0.0459   0.0812   0.0077       0.0404        0.046        0.065
-#&gt; 4      0.0374   0.0673   0.0051       0.0377        0.034        0.047
-#&gt; 5      0.0278   0.0487   0.0051       0.0296        0.027        0.029
-#&gt; 6      0.0254   0.0487   0.0000       0.0216        0.030        0.029
-#&gt; 7      0.0085   0.0162   0.0000       0.0081        0.015        0.000
-#&gt; 8      0.0072   0.0116   0.0026       0.0054        0.008        0.012
-#&gt; 9      0.0012   0.0023   0.0000       0.0027        0.000        0.000
-#&gt;   usg_standard_downs usg_passing_downs
-#&gt; 1              0.113             0.128
-#&gt; 2              0.046             0.089
-#&gt; 3              0.048             0.043
-#&gt; 4              0.038             0.036
-#&gt; 5              0.024             0.036
-#&gt; 6              0.020             0.036
-#&gt; 7              0.007             0.011
-#&gt; 8              0.007             0.007
-#&gt; 9              0.002             0.000</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
