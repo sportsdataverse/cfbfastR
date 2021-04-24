@@ -95,21 +95,6 @@ navbar:
         href: reference/cfbd_pbp_data.html
       - text: --------------------------------
       - text: CFB Data
-      - text: Using the API
-        menu: 
-        - text: "Tutorials"
-        - text: "CFBD Betting"
-          href: articles/cfbd_betting.html
-        - text: "CFBD Games"
-          href: articles/cfbd_games.html
-        - text: "CFBD Plays"
-          href: articles/cfbd_plays.html
-        - text: "CFBD Recruiting"
-          href: articles/cfbd_recruiting.html
-        - text: "CFBD Stats"
-          href: articles/cfbd_stats.html
-        - text: "CFBD Teams"
-          href: articles/cfbd_teams.html
       - text: "CFBD API Keys"
         href: reference/register_cfbd.html
       - text: "Games"
@@ -150,6 +135,7 @@ navbar:
       menu:
       - text: Vignettes
         href: articles/index.html
+      - text: --------------------------------
       - text: Introductory
       - text: CFB Analytics with cfbfastR
         href: articles/intro.html
@@ -169,6 +155,20 @@ navbar:
         href: articles/college-football-expected-points-model-fundamentals-part-ii.html
       - text: "Part 3 - History of Expected Points Models"
         href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+      - text: --------------------------------
+      - text: CFBD Tutorials
+      - text: "CFBD Betting"
+        href: articles/cfbd_betting.html
+      - text: "CFBD Games"
+        href: articles/cfbd_games.html
+      - text: "CFBD Plays"
+        href: articles/cfbd_plays.html
+      - text: "CFBD Recruiting"
+        href: articles/cfbd_recruiting.html
+      - text: "CFBD Stats"
+        href: articles/cfbd_stats.html
+      - text: "CFBD Teams"
+        href: articles/cfbd_teams.html
     network:
       icon: "fas fa-project-diagram"
       text: SDV
@@ -216,6 +216,7 @@ reference:
   - subtitle: Games Data
     desc: Functions exported by cfbfastR sourced from games endpoint of the CollegeFootballData API
     contents:
+      - '`cfbd_games`'
       - starts_with("cfbd_game")
       - '`cfbd_calendar`'
   - subtitle: Drives Data
