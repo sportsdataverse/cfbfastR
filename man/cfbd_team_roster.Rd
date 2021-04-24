@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_teams.R
 \name{cfbd_team_roster}
 \alias{cfbd_team_roster}
-\title{\strong{Team roster}}
+\title{\strong{Get team rosters}}
 \source{
 \url{https://api.collegefootballdata.com/roster}
 }

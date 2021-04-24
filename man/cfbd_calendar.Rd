@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_games.R
 \name{cfbd_calendar}
 \alias{cfbd_calendar}
-\title{\strong{Calendar - returns calendar of weeks by season.}}
+\title{\strong{Get calendar of weeks by season.}}
 \source{
 \url{https://api.collegefootballdata.com/calendar}
 }
@@ -25,7 +25,7 @@ cfbd_calendar(year, verbose = FALSE)
 }
 }
 \description{
-\strong{Calendar - returns calendar of weeks by season.}
+\strong{Get calendar of weeks by season.}
 }
 \examples{
 \donttest{

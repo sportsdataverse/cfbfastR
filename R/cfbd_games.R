@@ -45,7 +45,7 @@
 #' # 7 OTs LSU @ TAMU
 #' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
 #' ```
-#' ### **Calendar - returns calendar of weeks by season.**
+#' ### **Get calendar of weeks by season.**
 #' ```r
 #' cfbd_calendar(2019)
 #' ```
@@ -246,7 +246,7 @@ cfbd_game_info <- function(year,
 }
 
 #' @title  
-#' **Calendar - returns calendar of weeks by season.**
+#' **Get calendar of weeks by season.**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_calendar()] - A data frame with 5 variables:

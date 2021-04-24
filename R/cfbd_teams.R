@@ -21,7 +21,7 @@
 #'
 #' cfbd_team_info(year = 2019)
 #' ```
-#' ## **Team rosters**
+#' ## **Get team rosters**
 #' 
 #' ### **It is now possible to access yearly rosters**
 #' ```r
@@ -492,7 +492,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 
 
 #' @title 
-#' **Team roster**
+#' **Get team rosters**
 #' @description
 #' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'

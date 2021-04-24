@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_recruiting.R
 \name{cfbd_recruiting_position}
 \alias{cfbd_recruiting_position}
-\title{\strong{CFB recruiting information position groups.}}
+\title{\strong{Get college football position group recruiting information.}}
 \source{
 \url{https://api.collegefootballdata.com/recruiting/groups}
 }
@@ -41,7 +41,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 }
 \description{
-\strong{CFB recruiting information position groups.}
+\strong{Get college football position group recruiting information.}
 }
 \examples{
 \donttest{

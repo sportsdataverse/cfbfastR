@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_recruiting.R
 \name{cfbd_recruiting_team}
 \alias{cfbd_recruiting_team}
-\title{\strong{CFB recruiting information team rankings.}}
+\title{\strong{Get college football recruiting team rankings information.}}
 \source{
 \url{https://api.collegefootballdata.com/recruiting/teams}
 }
@@ -26,7 +26,7 @@ cfbd_recruiting_team(year = NULL, team = NULL, verbose = FALSE)
 }
 }
 \description{
-\strong{CFB recruiting information team rankings.}
+\strong{Get college football recruiting team rankings information.}
 }
 \examples{
 \donttest{
