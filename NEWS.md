@@ -2,9 +2,9 @@
 
 ##### **Minor release**
 
-* Added headshot_url to outputs of [```cfbd_team_rosters```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html)
+* Added headshot_url to outputs of [```cfbd_team_rosters```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_team_rosters.html)
 
-* Renamed returns in [```cfbd_game_advanced()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_games.html):
+* Renamed returns in [```cfbd_game_advanced()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_advanced.html):
   - `rushing_line_yd_avg` to plural `rushing_line_yds_avg`
   - `rushing_second_lvl_yd_avg` to plural `rushing_second_lvl_yds_avg`
   - `rushing_open_field_yd_avg` to plural `rushing_open_field_yds_avg`
@@ -31,7 +31,7 @@
 
 * Change `id` variable to `team_id` in [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html)
 * Changed `espn_game_id` variable to `game_id` in [```espn_metrics_wp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html), corrected the `away_win_percentage` calculation and added `tie_percentage` to the returns.
-* Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html)
+* Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_players_season.html)
 
 # **cfbfastR v1.1.0**
 
