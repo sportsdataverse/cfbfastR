@@ -4,10 +4,10 @@
 #' @title CFBD Ratings and Rankings Endpoints
 #' @description
 #' \describe{
-#' \item{`cfbd_rankings()`: Gets Historical CFB poll rankings at a specific week}{.}
-#' \item{`cfbd_ratings_sp()`: Get SP historical rating data}{.}
-#' \item{`cfbd_ratings_sp_conference()`: Get SP conference-level historical rating data}{.}
-#' \item{`cfbd_ratings_srs()`: Get SRS historical rating data}{.}
+#' \item{`cfbd_rankings()`:}{Gets Historical CFB poll rankings at a specific week.}
+#' \item{`cfbd_ratings_sp()`:}{Get SP historical rating data.}
+#' \item{`cfbd_ratings_sp_conference()`:}{Get SP conference-level historical rating data.}
+#' \item{`cfbd_ratings_srs()`:}{Get SRS historical rating data.}
 #' }
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)

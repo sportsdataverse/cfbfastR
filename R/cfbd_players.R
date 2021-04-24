@@ -4,7 +4,7 @@
 #' @description 
 #' \describe{
 #' \item{`cfbd_player_info()`:}{Player Information Search.}
-#' \item{`cfbd_player_returning()`:}{Player Returning Production}
+#' \item{`cfbd_player_returning()`:}{Player Returning Production.}
 #' \item{`cfbd_player_usage()`:}{Player Usage.}
 #' }
 #' @param search_term (\emph{String} required): Search term for the player you are trying to look up
