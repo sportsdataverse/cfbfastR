@@ -45,7 +45,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 ## **Breaking Changes**
 
-### **v1.2.1**
+# **cfbfastR v1.2.1**
 
 ##### **Minor release**
 
@@ -65,7 +65,11 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
   - Continued work on intro vignette
 
-### **v1.2.0**
+<details>
+
+<summary>View More</summary>
+
+# **cfbfastR v1.2.0**
 
 #### **Add significant documentation to the package**
 
@@ -91,7 +95,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
   - Change `id` variable to `athlete_id` in
     [`cfbd_metrics_ppa_players_season()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html)
 
-### **v1.1.0**
+# **cfbfastR v1.1.0**
 
 #### **Add loading from Data Repository functionality**
 
@@ -99,8 +103,8 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
     [`load_cfb_pbp()`](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html)
     and
     [`update_cfb_db()`](https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html)
-    functions. Pretty much piggy-backing on the `nflfastR` methodology
-    of loading data from the
+    functions. Pretty much cherry-picking the `nflfastR` methodology of
+    loading data from the
     [`cfbfastR-data`](https://github.com/saiemgilani/cfbfastR-data/)
     repository.
 
@@ -112,7 +116,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
     the package to allow for parallel processing of the play-by-play
     data with progress updates if desired.
 
-### **v1.0.0**
+# **cfbfastR v1.0.0**
 
 #### **Function Naming Convention Change**
 
@@ -136,11 +140,9 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
     and
     [`espn_metrics_wp()`](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html)
 
-  - Data generated from any of the
-    [`cfbfastR`](https://saiemgilani.github.io/cfbfastR/) methods will
-    use `cfb_`
+  - Data generated from any of the `cfbfastR` methods will use `cfb_`
 
-#### **CollegeFootballData API Keys**
+#### **College Football Data API Keys**
 
 The [CollegeFootballData API](https://collegefootballdata.com/) now
 requires an API key, here’s a quick run-down:
@@ -152,11 +154,12 @@ requires an API key, here’s a quick run-down:
     `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .REnviron file
     (easily accessed via
     [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
+    Run
+    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)
+    and THEN paste the following in the new script that pops up
+    (with**out** quotations)
 
-Run
-[**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)
-and THEN paste the following in the new script that pops up (with**out**
-quotations)
+<!-- end list -->
 
 ``` r
 CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
@@ -177,6 +180,8 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
     methods](https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html).
     If you forget to set your environment variable, functions will give
     you a warning and ask for one.
+
+</details>
 
 ## Current Issues
 

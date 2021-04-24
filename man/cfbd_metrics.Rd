@@ -246,7 +246,13 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \item{\code{cfbd_metrics_ppa_teams()}:}{Get team averages for Predicted Points Added (PPA).}
 \item{\code{cfbd_metrics_wp_pregame()}:}{Get Pre-game Win Probability Data from CFBD API.}
 \item{\code{cfbd_metrics_wp()}:}{Get win probability chart data from CFBD API.}
-}
+}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
+  cfbd_metrics_wp(game_id = 401012356)
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{

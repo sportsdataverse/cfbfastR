@@ -17,3 +17,4 @@ function
 \description{
 load function from package
 }
+\keyword{internal}

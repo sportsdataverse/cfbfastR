@@ -1,6 +1,5 @@
-# cfbfastR 
+# **cfbfastR v1.2.1**
 
-### **v1.2.1**
 ##### **Minor release**
 
 * Added headshot_url to outputs of [```cfbd_team_rosters```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html)
@@ -14,7 +13,8 @@
 
 * Continued work on intro vignette
 
-### **v1.2.0-1**
+# **cfbfastR v1.2.0-1**
+
 #### **Add significant documentation to the package**
 
 * Added mini-vignettes pertaining to CFB Data functionality:   
@@ -33,7 +33,8 @@
 * Changed `espn_game_id` variable to `game_id` in [```espn_metrics_wp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html), corrected the `away_win_percentage` calculation and added `tie_percentage` to the returns.
 * Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html)
 
-### **v1.1.0**
+# **cfbfastR v1.1.0**
+
 #### **Add loading from Data Repository functionality**
 
 * Added [```load_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html) functions. Pretty much cherry-picking the `nflfastR` methodology of loading data from the [`cfbfastR-data`](https://github.com/saiemgilani/cfbfastR-data/) repository. 
@@ -42,7 +43,7 @@
 
 * Added [```furrr```](https://furrr.futureverse.org/index.html), [```future```](https://future.futureverse.org/), and [```progressr```](https://progressr.futureverse.org/) dependencies to the package to allow for parallel processing of the play-by-play data with progress updates if desired. 
 
-### **v1.0.0**
+# **cfbfastR v1.0.0**
 
 #### **Function Naming Convention Change**
 

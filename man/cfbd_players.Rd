@@ -125,7 +125,13 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{\code{cfbd_player_info()}:}{Player Information Search.}
 \item{\code{cfbd_player_returning()}:}{Player Returning Production.}
 \item{\code{cfbd_player_usage()}:}{Player Usage.}
-}
+}\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
+
+ cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_returning(year = 2019, team = "Florida State")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{ cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+
+}\if{html}{\out{</div>}}
 }
 \details{
 \code{\link[=cfbd_player_returning]{cfbd_player_returning()}}
@@ -137,6 +143,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 
 cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+
 }
 
 \donttest{

@@ -15,8 +15,4 @@ list
 \description{
 Check latest GitHub version of R package
 }
-\examples{
-\dontrun{
-  cfbfastR:::check_github('saiemgilani/cfbfastR')
-}
-}
+\keyword{internal}

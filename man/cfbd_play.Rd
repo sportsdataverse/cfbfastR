@@ -193,7 +193,39 @@ College football plays data
 \item{\code{cfbd_play_stats_player()}:}{Gets player info associated by play.}
 \item{\code{cfbd_play_stats_types()}:}{Gets CFBD play stat types.}
 \item{\code{cfbd_play_types()}:}{Gets CFBD play types}
-}
+}\if{html}{\out{<div class="r">}}\preformatted{ year_vector <- 2020
+ week_vector <- 1:3
+ weekly_year_df <- expand.grid(year = year_vector, week = week_vector)
+ tictoc::tic()
+ year_split <- split(weekly_year_df, weekly_year_df$year)
+ for (i in 1:length(year_split)) \{
+   i <- 1
+   future::plan("multisession")
+   progressr::with_progress(\{
+      year_split[[i]] <- year_split[[i]] \%>\%
+         dplyr::mutate(
+            pbp = purrr::map2(
+                .x = year,
+                .y = week,
+                cfbd_plays,
+                season_type = "both"
+            )
+         )
+     Sys.sleep(1)
+   \})
+ \}
+ 
+ tictoc::toc()
+ year_split <- lapply(year_split, function(x) \{
+     x \%>\% tidyr::unnest(pbp, names_repair = "minimal")
+ \})
+ 
+ all_years <- dplyr::bind_rows(year_split)
+ glimpse(all_years)
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_play_stats_player(game_id = 401110722)
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_play_stats_types()
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_play_types()
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{

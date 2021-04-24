@@ -7,6 +7,18 @@
 #' \item{`cfbd_player_returning()`:}{Player Returning Production.}
 #' \item{`cfbd_player_usage()`:}{Player Usage.}
 #' }
+#' ```r
+#'  cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
+#'
+#'  cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+#' ```
+#' ```r
+#'  cfbd_player_returning(year = 2019, team = "Florida State")
+#' ```
+#' ```r  
+#'  cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+#' 
+#' ```
 #' @param search_term (\emph{String} required): Search term for the player you are trying to look up
 #' @param position (\emph{string} optional): Position of the player you are searching for.\cr
 #' Position Group  - options include:\cr
@@ -110,6 +122,7 @@
 #' cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 #'
 #' cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+#' 
 #' }
 #'
 cfbd_player_info <- function(search_term,

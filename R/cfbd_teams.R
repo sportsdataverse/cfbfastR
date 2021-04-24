@@ -12,6 +12,31 @@
 #' ## Team Info Lookup
 #'   Lists all teams in conference or all D-I teams if conference is left NULL
 #'   Currently, support is only provided for D-I
+#'   
+#' ```r
+#' cfbd_team_info(conference = "SEC")
+#'
+#' cfbd_team_info(conference = "Ind")
+#'
+#' cfbd_team_info(year = 2019)
+#' ```
+#' ```r
+#' cfbd_team_matchup("Texas A&M", "TCU")
+#'
+#' cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
+#'
+#' cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
+#' 
+#' cfbd_team_matchup("Texas", "Oklahoma")
+#' ```
+#' ```r
+#' cfbd_team_roster(year = 2013, team = "Florida State")
+#' 
+#' cfbd_team_talent()
+#'
+#' cfbd_team_talent(year = 2018)
+#'
+#' ```
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr

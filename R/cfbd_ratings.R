@@ -9,6 +9,32 @@
 #' \item{`cfbd_ratings_sp_conference()`:}{Get SP conference-level historical rating data.}
 #' \item{`cfbd_ratings_srs()`:}{Get SRS historical rating data.}
 #' }
+#' ```r
+#' cfbd_rankings(year = 2019, week = 12)
+#'
+#' cfbd_rankings(year = 2018, week = 14)
+#'
+#' cfbd_rankings(year = 2013, season_type = "postseason")
+#' ```
+#' ```r
+#' cfbd_ratings_sp(year = 2018)
+#'
+#' cfbd_ratings_sp(team = "Texas A&M")
+#'
+#' cfbd_ratings_sp(year = 2019, team = "Texas")
+#' ```
+#' ```r
+#' cfbd_ratings_sp_conference(year = 2019)
+#'
+#' cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
+#'
+#' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
+#' ```
+#' ```r
+#' cfbd_ratings_srs(year = 2019, team = "Texas")
+#'
+#' cfbd_ratings_srs(year = 2018, conference = "SEC")
+#' ```
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
