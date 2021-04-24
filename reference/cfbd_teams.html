@@ -57,11 +57,11 @@
 <meta property="og:title" content="CFBD Teams Endpoint — cfbd_teams" />
 <meta property="og:description" content="
 
-cfbd_team_info(): Team Info Lookup.
-cfbd_team_matchup_records(): Get matchup history records between two teams..
-cfbd_team_matchup(): Get matchup history between two teams..
-cfbd_team_roster(): Get a team's full roster by year..
-cfbd_team_talent(): Get composite team talent rankings for all teams in a given year.
+cfbd_team_info():Team Info Lookup.
+cfbd_team_matchup_records():Get matchup history records between two teams.
+cfbd_team_matchup():Get matchup history between two teams.
+cfbd_team_roster():Get a team's full roster by year.
+cfbd_team_talent():Get composite team talent rankings for all teams in a given year.
 
 
 Team Info Lookup
@@ -116,7 +116,7 @@ Currently, support is only provided for D-I
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -365,11 +365,11 @@ Currently, support is only provided for D-I
     <div class="ref-description">
     
 <dl>
-<dt><code>cfbd_team_info()</code>: Team Info Lookup</dt><dd><p>.</p></dd>
-<dt><code>cfbd_team_matchup_records()</code>: Get matchup history records between two teams.</dt><dd><p>.</p></dd>
-<dt><code>cfbd_team_matchup()</code>: Get matchup history between two teams.</dt><dd><p>.</p></dd>
-<dt><code>cfbd_team_roster()</code>: Get a team's full roster by year.</dt><dd><p>.</p></dd>
-<dt><code>cfbd_team_talent()</code>: Get composite team talent rankings for all teams in a given year</dt><dd><p>.</p></dd>
+<dt><code>cfbd_team_info()</code>:</dt><dd><p>Team Info Lookup.</p></dd>
+<dt><code>cfbd_team_matchup_records()</code>:</dt><dd><p>Get matchup history records between two teams.</p></dd>
+<dt><code>cfbd_team_matchup()</code>:</dt><dd><p>Get matchup history between two teams.</p></dd>
+<dt><code>cfbd_team_roster()</code>:</dt><dd><p>Get a team's full roster by year.</p></dd>
+<dt><code>cfbd_team_talent()</code>:</dt><dd><p>Get composite team talent rankings for all teams in a given year.</p></dd>
 
 </dl>
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Team Info Lookup</h3>
@@ -532,6 +532,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 <dt><code>home_latitude</code>: numeric.</dt><dd><p>Hometown latitude.</p></dd>
 <dt><code>home_longitude</code>: number.</dt><dd><p>Hometown longitude.</p></dd>
 <dt><code>home_county_fips</code>: integer.</dt><dd><p>Hometown FIPS code.</p></dd>
+<dt><code>headshot_url</code>: character</dt><dd><p>Player ESPN headshot url.</p></dd>
 
 </dl>
 
@@ -1738,13 +1739,13 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-23 05:27:12:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-24 05:23:01:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-23 05:27:12:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-24 05:23:02:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-23 05:27:13:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-24 05:23:03:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
 <span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Florida State"</span>, <span class='st'>"Florida"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-23 05:27:13:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-24 05:23:04:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_roster</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
@@ -2152,7 +2153,142 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 #&gt; 131        -81.3790304            12095
 #&gt; 132         -82.458444            12057
 #&gt; 133        -80.1433786            12011
-#&gt; 134               &lt;NA&gt;             &lt;NA&gt;</div><div class='input'><span class='co'># }</span>
+#&gt; 134               &lt;NA&gt;             &lt;NA&gt;
+#&gt;                                                                     headshot_url
+#&gt; 1     https://a.espncdn.com/i/headshots/college-football/players/full/501097.png
+#&gt; 2     https://a.espncdn.com/i/headshots/college-football/players/full/534576.png
+#&gt; 3     https://a.espncdn.com/i/headshots/college-football/players/full/501075.png
+#&gt; 4     https://a.espncdn.com/i/headshots/college-football/players/full/546778.png
+#&gt; 5     https://a.espncdn.com/i/headshots/college-football/players/full/517388.png
+#&gt; 6     https://a.espncdn.com/i/headshots/college-football/players/full/517377.png
+#&gt; 7     https://a.espncdn.com/i/headshots/college-football/players/full/535422.png
+#&gt; 8     https://a.espncdn.com/i/headshots/college-football/players/full/546795.png
+#&gt; 9     https://a.espncdn.com/i/headshots/college-football/players/full/503330.png
+#&gt; 10    https://a.espncdn.com/i/headshots/college-football/players/full/514119.png
+#&gt; 11    https://a.espncdn.com/i/headshots/college-football/players/full/501076.png
+#&gt; 12    https://a.espncdn.com/i/headshots/college-football/players/full/546810.png
+#&gt; 13    https://a.espncdn.com/i/headshots/college-football/players/full/546805.png
+#&gt; 14    https://a.espncdn.com/i/headshots/college-football/players/full/551553.png
+#&gt; 15    https://a.espncdn.com/i/headshots/college-football/players/full/501082.png
+#&gt; 16    https://a.espncdn.com/i/headshots/college-football/players/full/546814.png
+#&gt; 17    https://a.espncdn.com/i/headshots/college-football/players/full/546817.png
+#&gt; 18    https://a.espncdn.com/i/headshots/college-football/players/full/501535.png
+#&gt; 19    https://a.espncdn.com/i/headshots/college-football/players/full/501083.png
+#&gt; 20    https://a.espncdn.com/i/headshots/college-football/players/full/546809.png
+#&gt; 21    https://a.espncdn.com/i/headshots/college-football/players/full/530282.png
+#&gt; 22    https://a.espncdn.com/i/headshots/college-football/players/full/517381.png
+#&gt; 23    https://a.espncdn.com/i/headshots/college-football/players/full/517387.png
+#&gt; 24    https://a.espncdn.com/i/headshots/college-football/players/full/530299.png
+#&gt; 25    https://a.espncdn.com/i/headshots/college-football/players/full/517364.png
+#&gt; 26    https://a.espncdn.com/i/headshots/college-football/players/full/501095.png
+#&gt; 27    https://a.espncdn.com/i/headshots/college-football/players/full/530289.png
+#&gt; 28    https://a.espncdn.com/i/headshots/college-football/players/full/530301.png
+#&gt; 29    https://a.espncdn.com/i/headshots/college-football/players/full/480772.png
+#&gt; 30    https://a.espncdn.com/i/headshots/college-football/players/full/546816.png
+#&gt; 31    https://a.espncdn.com/i/headshots/college-football/players/full/514136.png
+#&gt; 32    https://a.espncdn.com/i/headshots/college-football/players/full/530303.png
+#&gt; 33    https://a.espncdn.com/i/headshots/college-football/players/full/514121.png
+#&gt; 34    https://a.espncdn.com/i/headshots/college-football/players/full/546800.png
+#&gt; 35    https://a.espncdn.com/i/headshots/college-football/players/full/546804.png
+#&gt; 36    https://a.espncdn.com/i/headshots/college-football/players/full/546813.png
+#&gt; 37    https://a.espncdn.com/i/headshots/college-football/players/full/530308.png
+#&gt; 38    https://a.espncdn.com/i/headshots/college-football/players/full/530302.png
+#&gt; 39    https://a.espncdn.com/i/headshots/college-football/players/full/501077.png
+#&gt; 40    https://a.espncdn.com/i/headshots/college-football/players/full/530285.png
+#&gt; 41    https://a.espncdn.com/i/headshots/college-football/players/full/546794.png
+#&gt; 42    https://a.espncdn.com/i/headshots/college-football/players/full/480781.png
+#&gt; 43    https://a.espncdn.com/i/headshots/college-football/players/full/501553.png
+#&gt; 44    https://a.espncdn.com/i/headshots/college-football/players/full/517390.png
+#&gt; 45    https://a.espncdn.com/i/headshots/college-football/players/full/514134.png
+#&gt; 46    https://a.espncdn.com/i/headshots/college-football/players/full/514124.png
+#&gt; 47    https://a.espncdn.com/i/headshots/college-football/players/full/546815.png
+#&gt; 48    https://a.espncdn.com/i/headshots/college-football/players/full/546801.png
+#&gt; 49    https://a.espncdn.com/i/headshots/college-football/players/full/546812.png
+#&gt; 50    https://a.espncdn.com/i/headshots/college-football/players/full/517382.png
+#&gt; 51    https://a.espncdn.com/i/headshots/college-football/players/full/501084.png
+#&gt; 52    https://a.espncdn.com/i/headshots/college-football/players/full/530290.png
+#&gt; 53    https://a.espncdn.com/i/headshots/college-football/players/full/546798.png
+#&gt; 54   https://a.espncdn.com/i/headshots/college-football/players/full/3921562.png
+#&gt; 55  https://a.espncdn.com/i/headshots/college-football/players/full/-1010895.png
+#&gt; 56  https://a.espncdn.com/i/headshots/college-football/players/full/-1010896.png
+#&gt; 57  https://a.espncdn.com/i/headshots/college-football/players/full/-1010918.png
+#&gt; 58  https://a.espncdn.com/i/headshots/college-football/players/full/-1010920.png
+#&gt; 59  https://a.espncdn.com/i/headshots/college-football/players/full/-1010923.png
+#&gt; 60  https://a.espncdn.com/i/headshots/college-football/players/full/-1010933.png
+#&gt; 61  https://a.espncdn.com/i/headshots/college-football/players/full/-1010936.png
+#&gt; 62  https://a.espncdn.com/i/headshots/college-football/players/full/-1010937.png
+#&gt; 63  https://a.espncdn.com/i/headshots/college-football/players/full/-1010939.png
+#&gt; 64  https://a.espncdn.com/i/headshots/college-football/players/full/-1010941.png
+#&gt; 65  https://a.espncdn.com/i/headshots/college-football/players/full/-1010950.png
+#&gt; 66  https://a.espncdn.com/i/headshots/college-football/players/full/-1010952.png
+#&gt; 67  https://a.espncdn.com/i/headshots/college-football/players/full/-1010953.png
+#&gt; 68  https://a.espncdn.com/i/headshots/college-football/players/full/-1010954.png
+#&gt; 69  https://a.espncdn.com/i/headshots/college-football/players/full/-1010956.png
+#&gt; 70  https://a.espncdn.com/i/headshots/college-football/players/full/-1010957.png
+#&gt; 71  https://a.espncdn.com/i/headshots/college-football/players/full/-1010961.png
+#&gt; 72  https://a.espncdn.com/i/headshots/college-football/players/full/-1010962.png
+#&gt; 73  https://a.espncdn.com/i/headshots/college-football/players/full/-1010963.png
+#&gt; 74  https://a.espncdn.com/i/headshots/college-football/players/full/-1010964.png
+#&gt; 75  https://a.espncdn.com/i/headshots/college-football/players/full/-1010965.png
+#&gt; 76  https://a.espncdn.com/i/headshots/college-football/players/full/-1010966.png
+#&gt; 77  https://a.espncdn.com/i/headshots/college-football/players/full/-1010967.png
+#&gt; 78  https://a.espncdn.com/i/headshots/college-football/players/full/-1010968.png
+#&gt; 79  https://a.espncdn.com/i/headshots/college-football/players/full/-1010970.png
+#&gt; 80  https://a.espncdn.com/i/headshots/college-football/players/full/-1010971.png
+#&gt; 81  https://a.espncdn.com/i/headshots/college-football/players/full/-1010972.png
+#&gt; 82  https://a.espncdn.com/i/headshots/college-football/players/full/-1010973.png
+#&gt; 83  https://a.espncdn.com/i/headshots/college-football/players/full/-1010975.png
+#&gt; 84  https://a.espncdn.com/i/headshots/college-football/players/full/-1010977.png
+#&gt; 85  https://a.espncdn.com/i/headshots/college-football/players/full/-1010979.png
+#&gt; 86  https://a.espncdn.com/i/headshots/college-football/players/full/-1010983.png
+#&gt; 87  https://a.espncdn.com/i/headshots/college-football/players/full/-1010984.png
+#&gt; 88  https://a.espncdn.com/i/headshots/college-football/players/full/-1010986.png
+#&gt; 89  https://a.espncdn.com/i/headshots/college-football/players/full/-1010987.png
+#&gt; 90  https://a.espncdn.com/i/headshots/college-football/players/full/-1010988.png
+#&gt; 91  https://a.espncdn.com/i/headshots/college-football/players/full/-1010989.png
+#&gt; 92  https://a.espncdn.com/i/headshots/college-football/players/full/-1010990.png
+#&gt; 93  https://a.espncdn.com/i/headshots/college-football/players/full/-1010991.png
+#&gt; 94  https://a.espncdn.com/i/headshots/college-football/players/full/-1010992.png
+#&gt; 95  https://a.espncdn.com/i/headshots/college-football/players/full/-1010993.png
+#&gt; 96  https://a.espncdn.com/i/headshots/college-football/players/full/-1010994.png
+#&gt; 97  https://a.espncdn.com/i/headshots/college-football/players/full/-1010995.png
+#&gt; 98  https://a.espncdn.com/i/headshots/college-football/players/full/-1010996.png
+#&gt; 99  https://a.espncdn.com/i/headshots/college-football/players/full/-1010997.png
+#&gt; 100 https://a.espncdn.com/i/headshots/college-football/players/full/-1010998.png
+#&gt; 101 https://a.espncdn.com/i/headshots/college-football/players/full/-1010999.png
+#&gt; 102 https://a.espncdn.com/i/headshots/college-football/players/full/-1011000.png
+#&gt; 103 https://a.espncdn.com/i/headshots/college-football/players/full/-1011001.png
+#&gt; 104 https://a.espncdn.com/i/headshots/college-football/players/full/-1011002.png
+#&gt; 105 https://a.espncdn.com/i/headshots/college-football/players/full/-1011003.png
+#&gt; 106 https://a.espncdn.com/i/headshots/college-football/players/full/-1011004.png
+#&gt; 107 https://a.espncdn.com/i/headshots/college-football/players/full/-1011005.png
+#&gt; 108 https://a.espncdn.com/i/headshots/college-football/players/full/-1011006.png
+#&gt; 109 https://a.espncdn.com/i/headshots/college-football/players/full/-1011007.png
+#&gt; 110 https://a.espncdn.com/i/headshots/college-football/players/full/-1011008.png
+#&gt; 111 https://a.espncdn.com/i/headshots/college-football/players/full/-1011009.png
+#&gt; 112 https://a.espncdn.com/i/headshots/college-football/players/full/-1011010.png
+#&gt; 113 https://a.espncdn.com/i/headshots/college-football/players/full/-1011011.png
+#&gt; 114 https://a.espncdn.com/i/headshots/college-football/players/full/-1011012.png
+#&gt; 115 https://a.espncdn.com/i/headshots/college-football/players/full/-1011013.png
+#&gt; 116 https://a.espncdn.com/i/headshots/college-football/players/full/-1011014.png
+#&gt; 117 https://a.espncdn.com/i/headshots/college-football/players/full/-1011015.png
+#&gt; 118 https://a.espncdn.com/i/headshots/college-football/players/full/-1011016.png
+#&gt; 119 https://a.espncdn.com/i/headshots/college-football/players/full/-1011017.png
+#&gt; 120 https://a.espncdn.com/i/headshots/college-football/players/full/-1011018.png
+#&gt; 121 https://a.espncdn.com/i/headshots/college-football/players/full/-1011019.png
+#&gt; 122 https://a.espncdn.com/i/headshots/college-football/players/full/-1011020.png
+#&gt; 123 https://a.espncdn.com/i/headshots/college-football/players/full/-1011021.png
+#&gt; 124 https://a.espncdn.com/i/headshots/college-football/players/full/-1011022.png
+#&gt; 125 https://a.espncdn.com/i/headshots/college-football/players/full/-1011023.png
+#&gt; 126 https://a.espncdn.com/i/headshots/college-football/players/full/-1011024.png
+#&gt; 127 https://a.espncdn.com/i/headshots/college-football/players/full/-1011025.png
+#&gt; 128 https://a.espncdn.com/i/headshots/college-football/players/full/-1011026.png
+#&gt; 129 https://a.espncdn.com/i/headshots/college-football/players/full/-1011027.png
+#&gt; 130 https://a.espncdn.com/i/headshots/college-football/players/full/-1011028.png
+#&gt; 131 https://a.espncdn.com/i/headshots/college-football/players/full/-1011029.png
+#&gt; 132 https://a.espncdn.com/i/headshots/college-football/players/full/-1011030.png
+#&gt; 133 https://a.espncdn.com/i/headshots/college-football/players/full/-1011031.png
+#&gt; 134  https://a.espncdn.com/i/headshots/college-football/players/full/3122936.png</div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_team_talent</span><span class='op'>(</span><span class='op'>)</span>

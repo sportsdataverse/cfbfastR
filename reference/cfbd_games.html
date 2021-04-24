@@ -56,13 +56,13 @@
 
 <meta property="og:title" content="CFBD Games Endpoint — cfbd_games" />
 <meta property="og:description" content="Get results, statistics and information for games
-cfbd_game_info(): Get results information from games.
-cfbd_calendar(): Calendar - Returns calendar of weeks by season.
-cfbd_game_media(): Get Game media information (TV, radio, etc).
-cfbd_game_box_advanced(): Get game advanced box score information.
-cfbd_game_player_stats(): Get results information from games.
-cfbd_game_records(): Get Team records by year.
-cfbd_game_team_stats(): Get Team Statistics by Game.
+cfbd_game_info():Get results information from games.
+cfbd_calendar():Calendar - Returns calendar of weeks by season.
+cfbd_game_media():Get Game media information (TV, radio, etc).
+cfbd_game_box_advanced():Get game advanced box score information.
+cfbd_game_player_stats():Get results information from games.
+cfbd_game_records():Get Team records by year.
+cfbd_game_team_stats():Get Team Statistics by Game.
 
 
 " />
@@ -112,7 +112,7 @@ cfbd_game_team_stats(): Get Team Statistics by Game.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -359,14 +359,14 @@ cfbd_game_team_stats(): Get Team Statistics by Game.
     </div>
 
     <div class="ref-description">
-    <p>Get results, statistics and information for games</p><dl>
-<dt><code>cfbd_game_info()</code>: Get results information from games</dt><dd><p>.</p></dd>
-<dt><code>cfbd_calendar()</code>: Calendar - Returns calendar of weeks by season</dt><dd><p>.</p></dd>
-<dt><code>cfbd_game_media()</code>: Get Game media information (TV, radio, etc)</dt><dd><p>.</p></dd>
-<dt><code>cfbd_game_box_advanced()</code>: Get game advanced box score information</dt><dd><p>.</p></dd>
-<dt><code>cfbd_game_player_stats()</code>: Get results information from games</dt><dd><p>.</p></dd>
-<dt><code>cfbd_game_records()</code>: Get Team records by year</dt><dd><p>.</p></dd>
-<dt><code>cfbd_game_team_stats()</code>: Get Team Statistics by Game</dt><dd><p>.</p></dd>
+    <p>Get results, statistics and information for games<br /></p><dl>
+<dt><code>cfbd_game_info()</code>:</dt><dd><p>Get results information from games.</p></dd>
+<dt><code>cfbd_calendar()</code>:</dt><dd><p>Calendar - Returns calendar of weeks by season.</p></dd>
+<dt><code>cfbd_game_media()</code>:</dt><dd><p>Get Game media information (TV, radio, etc).</p></dd>
+<dt><code>cfbd_game_box_advanced()</code>:</dt><dd><p>Get game advanced box score information.</p></dd>
+<dt><code>cfbd_game_player_stats()</code>:</dt><dd><p>Get results information from games.</p></dd>
+<dt><code>cfbd_game_records()</code>:</dt><dd><p>Get Team records by year.</p></dd>
+<dt><code>cfbd_game_team_stats()</code>:</dt><dd><p>Get Team Statistics by Game.</p></dd>
 
 </dl>
 
@@ -556,217 +556,217 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 </dl>
 
 <p><code>cfbd_game_box_advanced()</code> - A data frame with 2 rows and 69 variables:</p><dl>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>plays</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_overall_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_overall_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_overall_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_overall_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_overall_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_passing_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_passing_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_passing_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_passing_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_passing_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_rushing_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_rushing_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_rushing_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_rushing_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>ppa_rushing_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_plays</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_overall_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_overall_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_overall_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_overall_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_overall_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_passing_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_passing_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_passing_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_passing_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_passing_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_rushing_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_rushing_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_rushing_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_rushing_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>cumulative_ppa_rushing_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_overall_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_overall_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_overall_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_overall_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_overall_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_standard_downs_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_standard_downs_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_standard_downs_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_standard_downs_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_standard_downs_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_passing_downs_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_passing_downs_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_passing_downs_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_passing_downs_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>success_rates_passing_downs_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>explosiveness_overall_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>explosiveness_overall_quarter1</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>explosiveness_overall_quarter2</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>explosiveness_overall_quarter3</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>explosiveness_overall_quarter4</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_power_success</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_stuff_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_line_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_line_yd_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_second_lvl_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_second_lvl_yd_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_open_field_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_open_field_yd_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>havoc_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>havoc_front_seven</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>havoc_db</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>scoring_opps_opportunities</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>scoring_opps_points</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>scoring_opps_pts_per_opp</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>field_pos_avg_start</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>field_pos_avg_starting_predicted_pts</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>plays</code>: double.</dt><dd><p>Number of plays.</p></dd>
+<dt><code>ppa_overall_total</code>: double.</dt><dd><p>Predicted points added (PPA) overall total.</p></dd>
+<dt><code>ppa_overall_quarter1</code>: double.</dt><dd><p>Predicted points added (PPA) overall Q1.</p></dd>
+<dt><code>ppa_overall_quarter2</code>: double.</dt><dd><p>Predicted points added (PPA) overall Q2.</p></dd>
+<dt><code>ppa_overall_quarter3</code>: double.</dt><dd><p>Predicted points added (PPA) overall Q3.</p></dd>
+<dt><code>ppa_overall_quarter4</code>: double.</dt><dd><p>Predicted points added (PPA) overall Q4.</p></dd>
+<dt><code>ppa_passing_total</code>: double.</dt><dd><p>Passing predicted points added (PPA) total.</p></dd>
+<dt><code>ppa_passing_quarter1</code>: double.</dt><dd><p>Passing predicted points added (PPA) Q1.</p></dd>
+<dt><code>ppa_passing_quarter2</code>: double.</dt><dd><p>Passing predicted points added (PPA) Q2.</p></dd>
+<dt><code>ppa_passing_quarter3</code>: double.</dt><dd><p>Passing predicted points added (PPA) Q3.</p></dd>
+<dt><code>ppa_passing_quarter4</code>: double.</dt><dd><p>Passing predicted points added (PPA) Q4.</p></dd>
+<dt><code>ppa_rushing_total</code>: double.</dt><dd><p>Rushing predicted points added (PPA) total.</p></dd>
+<dt><code>ppa_rushing_quarter1</code>: double.</dt><dd><p>Rushing predicted points added (PPA) Q1.</p></dd>
+<dt><code>ppa_rushing_quarter2</code>: double.</dt><dd><p>Rushing predicted points added (PPA) Q2.</p></dd>
+<dt><code>ppa_rushing_quarter3</code>: double.</dt><dd><p>Rushing predicted points added (PPA) Q3.</p></dd>
+<dt><code>ppa_rushing_quarter4</code>: double.</dt><dd><p>Rushing predicted points added (PPA) Q4.</p></dd>
+<dt><code>cumulative_ppa_plays</code>: double.</dt><dd><p>Cumulative predicted points added (PPA) added total.</p></dd>
+<dt><code>cumulative_ppa_overall_total</code>: double.</dt><dd><p>Cumulative predicted points added (PPA) total.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter1</code>: double.</dt><dd><p>Cumulative predicted points added (PPA) Q1.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter2</code>: double.</dt><dd><p>Cumulative predicted points added (PPA) Q2.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter3</code>: double.</dt><dd><p>Cumulative predicted points added (PPA) Q3.</p></dd>
+<dt><code>cumulative_ppa_overall_quarter4</code>: double.</dt><dd><p>Cumulative predicted points added (PPA) Q4.</p></dd>
+<dt><code>cumulative_ppa_passing_total</code>: double.</dt><dd><p>Cumulative passing predicted points added (PPA) total.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter1</code>: double.</dt><dd><p>Cumulative passing predicted points added (PPA) Q1.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter2</code>: double.</dt><dd><p>Cumulative passing predicted points added (PPA) Q2.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter3</code>: double.</dt><dd><p>Cumulative passing predicted points added (PPA) Q3.</p></dd>
+<dt><code>cumulative_ppa_passing_quarter4</code>: double.</dt><dd><p>Cumulative passing predicted points added (PPA) Q4.</p></dd>
+<dt><code>cumulative_ppa_rushing_total</code>: double.</dt><dd><p>Cumulative rushing predicted points added (PPA) total.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter1</code>: double.</dt><dd><p>Cumulative rushing predicted points added (PPA) Q1.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter2</code>: double.</dt><dd><p>Cumulative rushing predicted points added (PPA) Q2.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter3</code>: double.</dt><dd><p>Cumulative rushing predicted points added (PPA) Q3.</p></dd>
+<dt><code>cumulative_ppa_rushing_quarter4</code>: double.</dt><dd><p>Cumulative rushing predicted points added (PPA) Q4.</p></dd>
+<dt><code>success_rates_overall_total</code>: double.</dt><dd><p>Success rates overall total.</p></dd>
+<dt><code>success_rates_overall_quarter1</code>: double.</dt><dd><p>Success rates overall Q1.</p></dd>
+<dt><code>success_rates_overall_quarter2</code>: double.</dt><dd><p>Success rates overall Q2.</p></dd>
+<dt><code>success_rates_overall_quarter3</code>: double.</dt><dd><p>Success rates overall Q3.</p></dd>
+<dt><code>success_rates_overall_quarter4</code>: double.</dt><dd><p>Success rates overall Q4.</p></dd>
+<dt><code>success_rates_standard_downs_total</code>: double.</dt><dd><p>Success rates standard downs total.</p></dd>
+<dt><code>success_rates_standard_downs_quarter1</code>: double.</dt><dd><p>Success rates standard downs Q1.</p></dd>
+<dt><code>success_rates_standard_downs_quarter2</code>: double.</dt><dd><p>Success rates standard downs Q2.</p></dd>
+<dt><code>success_rates_standard_downs_quarter3</code>: double.</dt><dd><p>Success rates standard downs Q3.</p></dd>
+<dt><code>success_rates_standard_downs_quarter4</code>: double.</dt><dd><p>Success rates standard downs Q4.</p></dd>
+<dt><code>success_rates_passing_downs_total</code>: double.</dt><dd><p>Success rates passing downs total.</p></dd>
+<dt><code>success_rates_passing_downs_quarter1</code>: double.</dt><dd><p>Success rates passing downs Q1.</p></dd>
+<dt><code>success_rates_passing_downs_quarter2</code>: double.</dt><dd><p>Success rates passing downs Q2.</p></dd>
+<dt><code>success_rates_passing_downs_quarter3</code>: double.</dt><dd><p>Success rates passing downs Q3.</p></dd>
+<dt><code>success_rates_passing_downs_quarter4</code>: double.</dt><dd><p>Success rates passing downs Q4.</p></dd>
+<dt><code>explosiveness_overall_total</code>: double.</dt><dd><p>Explosiveness rates overall total.</p></dd>
+<dt><code>explosiveness_overall_quarter1</code>: double.</dt><dd><p>Explosiveness rates overall Q1.</p></dd>
+<dt><code>explosiveness_overall_quarter2</code>: double.</dt><dd><p>Explosiveness rates overall Q2.</p></dd>
+<dt><code>explosiveness_overall_quarter3</code>: double.</dt><dd><p>Explosiveness rates overall Q3.</p></dd>
+<dt><code>explosiveness_overall_quarter4</code>: double.</dt><dd><p>Explosiveness rates overall Q4.</p></dd>
+<dt><code>rushing_power_success</code>: double.</dt><dd><p>Rushing power success rate.</p></dd>
+<dt><code>rushing_stuff_rate</code>: double.</dt><dd><p>Rushing stuff rate.</p></dd>
+<dt><code>rushing_line_yds</code>: double.</dt><dd><p>Rushing offensive line yards.</p></dd>
+<dt><code>rushing_line_yds_avg</code>: double.</dt><dd><p>Rushing line yards average.</p></dd>
+<dt><code>rushing_second_lvl_yds</code>: double.</dt><dd><p>Rushing second-level yards.</p></dd>
+<dt><code>rushing_second_lvl_yds_avg</code>: double.</dt><dd><p>Average second level yards per rush.</p></dd>
+<dt><code>rushing_open_field_yds</code>: double.</dt><dd><p>Rushing open field yards.</p></dd>
+<dt><code>rushing_open_field_yds_avg</code>: double.</dt><dd><p>Average rushing open field yards average.</p></dd>
+<dt><code>havoc_total</code>: double.</dt><dd><p>Total havoc rate.</p></dd>
+<dt><code>havoc_front_seven</code>: double.</dt><dd><p>Front-7 players havoc rate.</p></dd>
+<dt><code>havoc_db</code>: double.</dt><dd><p>Defensive back players havoc rate.</p></dd>
+<dt><code>scoring_opps_opportunities</code>: double.</dt><dd><p>Number of scoring opportunities.</p></dd>
+<dt><code>scoring_opps_points</code>: double.</dt><dd><p>Points on scoring opportunity drives.</p></dd>
+<dt><code>scoring_opps_pts_per_opp</code>: double.</dt><dd><p>Points per scoring opportunity drives.</p></dd>
+<dt><code>field_pos_avg_start</code>: double.</dt><dd><p>Average starting field position.</p></dd>
+<dt><code>field_pos_avg_starting_predicted_pts</code>: double.</dt><dd><p>Average starting predicted points (PP) for the average starting field position.</p></dd>
 
 </dl>
 
 <p><code>cfbd_game_player_stats()</code> - A data frame with 32 variables:</p><dl>
-<dt><code>game_id</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>home_away</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>points</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>category</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>athlete_id</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>name</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>c_att</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>int</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>qbr</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>car</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>long</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rec</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>no</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>fg</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>pct</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>xp</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>pts</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>tb</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>in_20</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>fum</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>lost</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>tot</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>solo</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>sacks</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>tfl</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>pd</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>qb_hur</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>home_away</code>: character.</dt><dd><p>Flag for if the team was the home or away team.</p></dd>
+<dt><code>points</code>: integer.</dt><dd><p>Team points.</p></dd>
+<dt><code>category</code>: character.</dt><dd><p>Statistic category.</p></dd>
+<dt><code>athlete_id</code>: character.</dt><dd><p>Athlete referencing id.</p></dd>
+<dt><code>name</code>: character.</dt><dd><p>Player name.</p></dd>
+<dt><code>c_att</code>: character.</dt><dd><p>Completions - Pass attempts.</p></dd>
+<dt><code>yds</code>: double.</dt><dd><p>Statistic yardage.</p></dd>
+<dt><code>avg</code>: double.</dt><dd><p>Average per statistic.</p></dd>
+<dt><code>td</code>: double.</dt><dd><p>Touchdowns scored.</p></dd>
+<dt><code>int</code>: double.</dt><dd><p>Interceptions thrown.</p></dd>
+<dt><code>qbr</code>: double.</dt><dd><p>Quarterback rating.</p></dd>
+<dt><code>car</code>: double.</dt><dd><p>Number of rushing carries.</p></dd>
+<dt><code>long</code>: double.</dt><dd><p>Longest carry/reception of the game.</p></dd>
+<dt><code>rec</code>: double.</dt><dd><p>Number of pass receptions.</p></dd>
+<dt><code>no</code>: double.</dt><dd><p>Player number.</p></dd>
+<dt><code>fg</code>: character.</dt><dd><p>Field goal attempts in the game.</p></dd>
+<dt><code>pct</code>: double.</dt><dd><p>Field goal percentage in the game.</p></dd>
+<dt><code>xp</code>: character.</dt><dd><p>Extra points kicked in the game.</p></dd>
+<dt><code>pts</code>: double.</dt><dd><p>Total kicking points in the game.</p></dd>
+<dt><code>tb</code>: double.</dt><dd><p>Touchbacks (for kicking) in the game.</p></dd>
+<dt><code>in_20</code>: double.</dt><dd><p>Punts inside the 20 yardline in the game.</p></dd>
+<dt><code>fum</code>: double.</dt><dd><p>Player fumbles in the game.</p></dd>
+<dt><code>lost</code>: double.</dt><dd><p>Player fumbles lost in the game.</p></dd>
+<dt><code>tot</code>: double.</dt><dd><p>Total tackles in the game.</p></dd>
+<dt><code>solo</code>: double.</dt><dd><p>Solo tackles in the game.</p></dd>
+<dt><code>sacks</code>: double.</dt><dd><p>Total sacks in the game.</p></dd>
+<dt><code>tfl</code>: double.</dt><dd><p>Total tackles for loss in the game.</p></dd>
+<dt><code>pd</code>: double.</dt><dd><p>Total passes defensed in the game.</p></dd>
+<dt><code>qb_hur</code>: double.</dt><dd><p>Total quarterback hurries in the game.</p></dd>
 
 </dl>
 
 <p><code>cfbd_game_records()</code> - A data frame with 20 variables:</p><dl>
-<dt><code>year</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>division</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>total_games</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>total_wins</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>total_losses</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>total_ties</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>conference_games</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>conference_wins</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>conference_losses</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>conference_ties</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>home_games</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>home_wins</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>home_losses</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>home_ties</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>away_games</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>away_wins</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>away_losses</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>away_ties</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>year</code>: integer.</dt><dd><p>Season of the games.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>division</code>: character.</dt><dd><p>Division in the conference of the team.</p></dd>
+<dt><code>total_games</code>: integer.</dt><dd><p>Total number of games played.</p></dd>
+<dt><code>total_wins</code>: integer.</dt><dd><p>Total wins.</p></dd>
+<dt><code>total_losses</code>: integer.</dt><dd><p>Total losses.</p></dd>
+<dt><code>total_ties</code>: integer.</dt><dd><p>Total ties.</p></dd>
+<dt><code>conference_games</code>: integer.</dt><dd><p>Number of conference games.</p></dd>
+<dt><code>conference_wins</code>: integer.</dt><dd><p>Total conference wins.</p></dd>
+<dt><code>conference_losses</code>: integer.</dt><dd><p>Total conference losses.</p></dd>
+<dt><code>conference_ties</code>: integer.</dt><dd><p>Total conference ties.</p></dd>
+<dt><code>home_games</code>: integer.</dt><dd><p>Total home games.</p></dd>
+<dt><code>home_wins</code>: integer.</dt><dd><p>Total home wins.</p></dd>
+<dt><code>home_losses</code>: integer.</dt><dd><p>Total home losses.</p></dd>
+<dt><code>home_ties</code>: integer.</dt><dd><p>Total home ties.</p></dd>
+<dt><code>away_games</code>: integer.</dt><dd><p>Total away games.</p></dd>
+<dt><code>away_wins</code>: integer.</dt><dd><p>Total away wins.</p></dd>
+<dt><code>away_losses</code>: integer.</dt><dd><p>Total away losses.</p></dd>
+<dt><code>away_ties</code>: integer.</dt><dd><p>Total away ties.</p></dd>
 
 </dl>
 
 <p><code>cfbd_game_team_stats()</code> - A data frame with 78 variables:</p><dl>
-<dt><code>game_id</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>school</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>home_away</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>points</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>total_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>net_passing_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>completion_attempts</code>:character.</dt><dd><p>.</p></dd>
-<dt><code>passing_tds</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>yards_per_pass</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>passes_intercepted</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>interception_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>interception_tds</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>rushing_attempts</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>rushing_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>rush_tds</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>yards_per_rush_attempt</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>first_downs</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>third_down_eff</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>fourth_down_eff</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_tds</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_tds</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kicking_points</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_recovered</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_lost</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>total_fumbles</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>tackles</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>tackles_for_loss</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>sacks</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>qb_hurries</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>interceptions</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>passes_deflected</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>turnovers</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>defensive_tds</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>total_penalties_yards</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>possession_time</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>home_away_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>points_allowed</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>total_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>net_passing_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>completion_attempts_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>passing_tds_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>yards_per_pass_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>passes_intercepted_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>interception_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>interception_tds_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>rushing_attempts_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>rushing_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>rush_tds_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>yards_per_rush_attempt_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>first_downs_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>third_down_eff_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>fourth_down_eff_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_tds_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_tds_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>kicking_points_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_recovered_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_lost_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>total_fumbles_allowed</code>:character.</dt><dd><p>.</p></dd>
-<dt><code>tackles_allowed</code>:character.</dt><dd><p>.</p></dd>
-<dt><code>tackles_for_loss_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>sacks_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>qb_hurries_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>interceptions_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>passes_deflected_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>turnovers_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>defensive_tds_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>total_penalties_yards_allowed</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>possession_time_allowed</code>: character.</dt><dd><p>.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>school</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>home_away</code>: character.</dt><dd><p>Home/Away Flag.</p></dd>
+<dt><code>points</code>: integer.</dt><dd><p>Team points.</p></dd>
+<dt><code>total_yards</code>: character.</dt><dd><p>Team total yards.</p></dd>
+<dt><code>net_passing_yards</code>: character.</dt><dd><p>Team net passing yards.</p></dd>
+<dt><code>completion_attempts</code>:character.</dt><dd><p>Team completion attempts.</p></dd>
+<dt><code>passing_tds</code>: character.</dt><dd><p>Team passing touchdowns.</p></dd>
+<dt><code>yards_per_pass</code>: character.</dt><dd><p>Team game yards per pass.</p></dd>
+<dt><code>passes_intercepted</code>: character.</dt><dd><p>Team passes intercepted.</p></dd>
+<dt><code>interception_yards</code>: character.</dt><dd><p>Interception yards.</p></dd>
+<dt><code>interception_tds</code>: character.</dt><dd><p>Interceptions returned for a touchdown.</p></dd>
+<dt><code>rushing_attempts</code>: character.</dt><dd><p>Team rushing attempts. see also: ESTABLISH IT.</p></dd>
+<dt><code>rushing_yards</code>: character.</dt><dd><p>Team rushing yards.</p></dd>
+<dt><code>rush_tds</code>: character.</dt><dd><p>Team rushing touchdowns.</p></dd>
+<dt><code>yards_per_rush_attempt</code>: character.</dt><dd><p>Team yards per rush attempt.</p></dd>
+<dt><code>first_downs</code>: character.</dt><dd><p>First downs earned by the team.</p></dd>
+<dt><code>third_down_eff</code>: character.</dt><dd><p>Third down efficiency.</p></dd>
+<dt><code>fourth_down_eff</code>: character.</dt><dd><p>Fourth down efficiency.</p></dd>
+<dt><code>punt_returns</code>: character.</dt><dd><p>Team punt returns.</p></dd>
+<dt><code>punt_return_yards</code>: character.</dt><dd><p>Team punt return yards.</p></dd>
+<dt><code>punt_return_tds</code>: character.</dt><dd><p>Team punt return touchdowns.</p></dd>
+<dt><code>kick_return_yards</code>: character.</dt><dd><p>Team kick return yards.</p></dd>
+<dt><code>kick_return_tds</code>: character.</dt><dd><p>Team kick return touchdowns.</p></dd>
+<dt><code>kick_returns</code>: character.</dt><dd><p>Team kick returns.</p></dd>
+<dt><code>kicking_points</code>: character.</dt><dd><p>Team points from kicking the ball.</p></dd>
+<dt><code>fumbles_recovered</code>: character.</dt><dd><p>Team fumbles recovered.</p></dd>
+<dt><code>fumbles_lost</code>: character.</dt><dd><p>Team fumbles lost.</p></dd>
+<dt><code>total_fumbles</code>: character.</dt><dd><p>Team total fumbles.</p></dd>
+<dt><code>tackles</code>: character.</dt><dd><p>Team tackles.</p></dd>
+<dt><code>tackles_for_loss</code>: character.</dt><dd><p>Team tackles for a loss.</p></dd>
+<dt><code>sacks</code>: character.</dt><dd><p>Team sacks.</p></dd>
+<dt><code>qb_hurries</code>: character.</dt><dd><p>Team QB hurries.</p></dd>
+<dt><code>interceptions</code>: character.</dt><dd><p>Team interceptions.</p></dd>
+<dt><code>passes_deflected</code>: character.</dt><dd><p>Team passes deflected.</p></dd>
+<dt><code>turnovers</code>: character.</dt><dd><p>Team turnovers.</p></dd>
+<dt><code>defensive_tds</code>: character.</dt><dd><p>Team defensive touchdowns.</p></dd>
+<dt><code>total_penalties_yards</code>: character.</dt><dd><p>Team total penalty yards.</p></dd>
+<dt><code>possession_time</code>: character.</dt><dd><p>Team time of possession.</p></dd>
+<dt><code>conference_allowed</code>: character.</dt><dd><p>Conference of the opponent team.</p></dd>
+<dt><code>home_away_allowed</code>: character.</dt><dd><p>Flag for if the opponent was the home or away team.</p></dd>
+<dt><code>points_allowed</code>: integer.</dt><dd><p>Points for the opponent.</p></dd>
+<dt><code>total_yards_allowed</code>: character.</dt><dd><p>Opponent total yards.</p></dd>
+<dt><code>net_passing_yards_allowed</code>: character.</dt><dd><p>Opponent net passing yards.</p></dd>
+<dt><code>completion_attempts_allowed</code>: character.</dt><dd><p>Oppponent completion attempts.</p></dd>
+<dt><code>passing_tds_allowed</code>: character.</dt><dd><p>Opponent passing TDs.</p></dd>
+<dt><code>yards_per_pass_allowed</code>: character.</dt><dd><p>Opponent yards per pass allowed.</p></dd>
+<dt><code>passes_intercepted_allowed</code>: character.</dt><dd><p>Opponent passes intercepted.</p></dd>
+<dt><code>interception_yards_allowed</code>: character.</dt><dd><p>Opponent interception yards.</p></dd>
+<dt><code>interception_tds_allowed</code>: character.</dt><dd><p>Opponent interception TDs.</p></dd>
+<dt><code>rushing_attempts_allowed</code>: character.</dt><dd><p>Opponent rushing attempts.</p></dd>
+<dt><code>rushing_yards_allowed</code>: character.</dt><dd><p>Opponent rushing yards.</p></dd>
+<dt><code>rush_tds_allowed</code>: character.</dt><dd><p>Opponent rushing touchdownss.</p></dd>
+<dt><code>yards_per_rush_attempt_allowed</code>: character.</dt><dd><p>Opponent rushing yards per attempt.</p></dd>
+<dt><code>first_downs_allowed</code>: character.</dt><dd><p>Opponent first downs.</p></dd>
+<dt><code>third_down_eff_allowed</code>: character.</dt><dd><p>Opponent third down efficiency.</p></dd>
+<dt><code>fourth_down_eff_allowed</code>: character.</dt><dd><p>Opponent fourth down efficiency.</p></dd>
+<dt><code>punt_returns_allowed</code>: character.</dt><dd><p>Opponent punt returns.</p></dd>
+<dt><code>punt_return_yards_allowed</code>: character.</dt><dd><p>Opponent punt return yards.</p></dd>
+<dt><code>punt_return_tds_allowed</code>: character.</dt><dd><p>Opponent punt return touchdowns.</p></dd>
+<dt><code>kick_return_yards_allowed</code>: character.</dt><dd><p>Opponent kick return yards.</p></dd>
+<dt><code>kick_return_tds_allowed</code>: character.</dt><dd><p>Opponent kick return touchdowns.</p></dd>
+<dt><code>kick_returns_allowed</code>: character.</dt><dd><p>Opponent kick returns.</p></dd>
+<dt><code>kicking_points_allowed</code>: character.</dt><dd><p>Opponent points from kicking.</p></dd>
+<dt><code>fumbles_recovered_allowed</code>: character.</dt><dd><p>Opponent fumbles recovered.</p></dd>
+<dt><code>fumbles_lost_allowed</code>: character.</dt><dd><p>Opponent fumbles lost.</p></dd>
+<dt><code>total_fumbles_allowed</code>:character.</dt><dd><p>Opponent total number of fumbles.</p></dd>
+<dt><code>tackles_allowed</code>:character.</dt><dd><p>Opponent tackles.</p></dd>
+<dt><code>tackles_for_loss_allowed</code>: character.</dt><dd><p>Opponent tackles for loss.</p></dd>
+<dt><code>sacks_allowed</code>: character.</dt><dd><p>Opponent sacks.</p></dd>
+<dt><code>qb_hurries_allowed</code>: character.</dt><dd><p>Opponent quarterback hurries.</p></dd>
+<dt><code>interceptions_allowed</code>: character.</dt><dd><p>Opponent interceptions.</p></dd>
+<dt><code>passes_deflected_allowed</code>: character.</dt><dd><p>Opponent passes deflected.</p></dd>
+<dt><code>turnovers_allowed</code>: character.</dt><dd><p>Opponent turnovers.</p></dd>
+<dt><code>defensive_tds_allowed</code>: character.</dt><dd><p>Opponent defensive touchdowns.</p></dd>
+<dt><code>total_penalties_yards_allowed</code>: character.</dt><dd><p>Opponent total penalty yards.</p></dd>
+<dt><code>possession_time_allowed</code>: character.</dt><dd><p>Opponent time of possession.</p></dd>
 
 </dl>
 
@@ -1481,21 +1481,24 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt;   explosiveness_overall_quarter3 explosiveness_overall_quarter4
 #&gt; 1                             NA                            2.7
 #&gt; 2                           1.92                            0.0
-#&gt;   rushing_power_success rushing_stuff_rate rushing_line_yds rushing_line_yd_avg
-#&gt; 1                     1              0.250               32                 2.0
-#&gt; 2                     1              0.208               69                 2.9
-#&gt;   rushing_second_lvl_yds rushing_second_lvl_yd_avg rushing_open_field_yds
-#&gt; 1                     10                       0.6                      1
-#&gt; 2                     29                       1.2                     28
-#&gt;   rushing_open_field_yd_avg havoc_total havoc_front_seven havoc_db
-#&gt; 1                       0.1       0.467             0.400    0.067
-#&gt; 2                       1.2       0.189             0.113    0.075
-#&gt;   scoring_opps_opportunities scoring_opps_points scoring_opps_pts_per_opp
-#&gt; 1                         12                  12                        1
-#&gt; 2                          0                   0                        0
-#&gt;   field_pos_avg_start field_pos_avg_starting_predicted_pts
-#&gt; 1                79.6                                 0.75
-#&gt; 2                64.9                                 1.85</div><div class='input'>  
+#&gt;   rushing_power_success rushing_stuff_rate rushing_line_yds
+#&gt; 1                     1              0.250               32
+#&gt; 2                     1              0.208               69
+#&gt;   rushing_line_yds_avg rushing_second_lvl_yds rushing_second_lvl_yds_avg
+#&gt; 1                  2.0                     10                        0.6
+#&gt; 2                  2.9                     29                        1.2
+#&gt;   rushing_open_field_yds rushing_open_field_yds_avg havoc_total
+#&gt; 1                      1                        0.1       0.467
+#&gt; 2                     28                        1.2       0.189
+#&gt;   havoc_front_seven havoc_db scoring_opps_opportunities scoring_opps_points
+#&gt; 1             0.400    0.067                         12                  12
+#&gt; 2             0.113    0.075                          0                   0
+#&gt;   scoring_opps_pts_per_opp field_pos_avg_start
+#&gt; 1                        1                79.6
+#&gt; 2                        0                64.9
+#&gt;   field_pos_avg_starting_predicted_pts
+#&gt; 1                                 0.75
+#&gt; 2                                 1.85</div><div class='input'>  
   <span class='fu'>cfbd_game_player_stats</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>15</span>, conference <span class='op'>=</span> <span class='st'>"Ind"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      game_id team        conference home_away points      category athlete_id
 #&gt; 1  401013376 Navy American Athletic      away     10       passing    3916282
@@ -1772,15 +1775,15 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>805 LSU    SEC        away          66 599         418              
 #&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>828 LSU    SEC        away          36 413         327              
 #&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>778 LSU    SEC        away          45 573         471              
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>842 LSU    SEC        away          46 559         393              
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>833 LSU    SEC        home          23 508         321              
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>833 LSU    SEC        home          23 508         321              
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>842 LSU    SEC        away          46 559         393              
 #&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>850 LSU    SEC        away          58 714         489              
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>869 LSU    SEC        home          50 553         425              
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>859 LSU    SEC        home          56 612         352              
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>725 LSU    SEC        home          55 472         350              
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>819 LSU    SEC        home          42 511         293              
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>790 LSU    SEC        home          65 610         488              
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>813 LSU    SEC        home          42 601         353              
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>859 LSU    SEC        home          56 612         352              
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>869 LSU    SEC        home          50 553         425              
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>819 LSU    SEC        home          42 511         293              
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>790 LSU    SEC        home          65 610         488              
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 401</span><span style='text-decoration: underline;'>110</span><span>813 LSU    SEC        home          42 601         353              
 #&gt; </span><span style='color: #BCBCBC;'>13</span><span> 401</span><span style='text-decoration: underline;'>132</span><span>981 LSU    SEC        home          37 481         349              
 #&gt; </span><span style='color: #949494;'># … with 71 more variables: completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   yards_per_pass &lt;chr&gt;, passes_intercepted &lt;chr&gt;, interception_yards &lt;chr&gt;,</span><span>
@@ -1819,15 +1822,15 @@ Special Teams: punting, puntReturns, kicking, kickReturns<br /></p></td>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 332</span><span style='text-decoration: underline;'>450</span><span>221 Florida S… ACC        away          41 533         377             
 #&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 332</span><span style='text-decoration: underline;'>570</span><span>052 Florida S… ACC        home          62 617         240             
 #&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 332</span><span style='text-decoration: underline;'>640</span><span>052 Florida S… ACC        home          54 492         226             
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 332</span><span style='text-decoration: underline;'>710</span><span>103 Florida S… ACC        away          48 489         330             
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 332</span><span style='text-decoration: underline;'>780</span><span>052 Florida S… ACC        home          63 614         431             
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 332</span><span style='text-decoration: underline;'>990</span><span>052 Florida S… ACC        home          49 566         342             
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 332</span><span style='text-decoration: underline;'>920</span><span>228 Florida S… ACC        away          51 565         444             
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 333</span><span style='text-decoration: underline;'>060</span><span>052 Florida S… ACC        home          41 517         325             
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 333</span><span style='text-decoration: underline;'>130</span><span>154 Florida S… ACC        away          59 296         207             
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 333</span><span style='text-decoration: underline;'>200</span><span>052 Florida S… ACC        home          59 523         298             
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 333</span><span style='text-decoration: underline;'>270</span><span>052 Florida S… ACC        home          80 645         309             
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 333</span><span style='text-decoration: underline;'>340</span><span>057 Florida S… ACC        away          37 456         327             
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 332</span><span style='text-decoration: underline;'>780</span><span>052 Florida S… ACC        home          63 614         431             
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 332</span><span style='text-decoration: underline;'>920</span><span>228 Florida S… ACC        away          51 565         444             
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 332</span><span style='text-decoration: underline;'>710</span><span>103 Florida S… ACC        away          48 489         330             
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 332</span><span style='text-decoration: underline;'>990</span><span>052 Florida S… ACC        home          49 566         342             
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 333</span><span style='text-decoration: underline;'>130</span><span>154 Florida S… ACC        away          59 296         207             
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 333</span><span style='text-decoration: underline;'>200</span><span>052 Florida S… ACC        home          59 523         298             
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 333</span><span style='text-decoration: underline;'>060</span><span>052 Florida S… ACC        home          41 517         325             
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> 333</span><span style='text-decoration: underline;'>340</span><span>057 Florida S… ACC        away          37 456         327             
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> 333</span><span style='text-decoration: underline;'>270</span><span>052 Florida S… ACC        home          80 645         309             
 #&gt; </span><span style='color: #BCBCBC;'>13</span><span> 333</span><span style='text-decoration: underline;'>410</span><span>052 Florida S… ACC        home          45 569         330             
 #&gt; </span><span style='color: #949494;'># … with 71 more variables: completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   yards_per_pass &lt;chr&gt;, passes_intercepted &lt;chr&gt;, interception_yards &lt;chr&gt;,</span><span>

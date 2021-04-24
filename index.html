@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -322,6 +322,35 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a><strong>Breaking Changes</strong>
 </h2>
+<div id="v121" class="section level3">
+<h3 class="hasAnchor">
+<a href="#v121" class="anchor"></a><strong>v1.2.1</strong>
+</h3>
+<div id="minor-release" class="section level5">
+<h5 class="hasAnchor">
+<a href="#minor-release" class="anchor"></a><strong>Minor release</strong>
+</h5>
+<ul>
+<li><p>Added headshot_url to outputs of <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html"><code>cfbd_team_rosters</code></a></p></li>
+<li>
+<p>Renamed returns in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_games.html"><code>cfbd_game_advanced()</code></a>:</p>
+<ul>
+<li>
+<code>rushing_line_yd_avg</code> to plural <code>rushing_line_yds_avg</code>
+</li>
+<li>
+<code>rushing_second_lvl_yd_avg</code> to plural <code>rushing_second_lvl_yds_avg</code>
+</li>
+<li>
+<code>rushing_open_field_yd_avg</code> to plural <code>rushing_open_field_yds_avg</code>
+</li>
+</ul>
+</li>
+<li><p>Completed documentation for all returns except <code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code></p></li>
+<li><p>Continued work on intro vignette</p></li>
+</ul>
+</div>
+</div>
 <div id="v120" class="section level3">
 <h3 class="hasAnchor">
 <a href="#v120" class="anchor"></a><strong>v1.2.0</strong>
@@ -471,16 +500,16 @@
 <table class="table">
 <colgroup>
 <col width="0%">
-<col width="17%">
 <col width="20%">
-<col width="1%">
+<col width="35%">
+<col width="0%">
 <col width="5%">
 <col width="1%">
-<col width="43%">
+<col width="24%">
 <col width="1%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">issue</th>
@@ -496,17 +525,17 @@
 <th align="left">closed</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="left">4</td>
+<td align="left">8</td>
 <td align="left"><span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span></td>
-<td align="left"><span title="**Describe the bug**..."><a href="https://github.com/saiemgilani/cfbfastR/issues/4">cfbd_play_types is documented, but isn’t in the package</a></span></td>
-<td align="left">documentation</td>
-<td align="left"><a href="https://github.com/rchanks">rchanks</a></td>
+<td align="left"><span title="Using the `athlete_id` it appears to be very easy to build the headshot url of the player. ..."><a href="https://github.com/saiemgilani/cfbfastR/issues/8">Add <code>headshot_url</code> to output of <code>cfbd_team_roster()</code></a></span></td>
+<td align="left"></td>
+<td align="left"><a href="https://github.com/mrcaseb">mrcaseb</a></td>
 <td align="left">1</td>
-<td align="left"><span title="Oops. Will fix. Maybe. Trying to figure out optimal use of the in-package data sources and I'm not sure this one will make the cut. Would not mind if you had any thoughts/suggestions as essential to new users. "><a href="https://github.com/saiemgilani/cfbfastR/issues/4#issuecomment-820774552">saiemgilani</a></span></td>
-<td align="left">saiemgilani</td>
-<td align="left">2021-04-15 16:11:17</td>
-<td align="left">2021-04-18 23:47:31</td>
-<td align="left">2021-04-18 23:47:31</td>
+<td align="left"><span title="Alternative code without the glue dependency..."><a href="https://github.com/saiemgilani/cfbfastR/issues/8#issuecomment-825747882">mrcaseb</a></span></td>
+<td align="left"></td>
+<td align="left">2021-04-23 15:27:16</td>
+<td align="left">2021-04-24 04:29:32</td>
+<td align="left">2021-04-24 04:29:32</td>
 </tr></tbody>
 </table></details><p><br></p>
 </div>

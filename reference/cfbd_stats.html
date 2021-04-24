@@ -57,11 +57,11 @@
 <meta property="og:title" content="CFBD Stats Endpoint — cfbd_stats" />
 <meta property="og:description" content="
 
-cfbd_stats_categories(): College Football Mapping for Stats Categories.
-cfbd_stats_season_team(): Get Season Statistics by Team.
-cfbd_stats_season_advanced(): Get Season Advanced Statistics by Team.
-cfbd_stats_game_advanced(): Get Game Advanced Stats.
-cfbd_stats_season_player(): Get Season Statistics by Player.
+cfbd_stats_categories():College Football Mapping for Stats Categories.
+cfbd_stats_season_team():Get Season Statistics by Team.
+cfbd_stats_season_advanced():Get Season Advanced Statistics by Team.
+cfbd_stats_game_advanced():Get Game Advanced Stats.
+cfbd_stats_season_player():Get Season Statistics by Player.
 
 
 
@@ -112,7 +112,7 @@ cfbd_stats_categories() This function identifies all Stats Categories identified
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -361,11 +361,11 @@ cfbd_stats_categories() This function identifies all Stats Categories identified
     <div class="ref-description">
     
 <dl>
-<dt><code>cfbd_stats_categories()</code>: College Football Mapping for Stats Categories</dt><dd><p>.</p></dd>
-<dt><code>cfbd_stats_season_team()</code>: Get Season Statistics by Team</dt><dd><p>.</p></dd>
-<dt><code>cfbd_stats_season_advanced()</code>: Get Season Advanced Statistics by Team</dt><dd><p>.</p></dd>
-<dt><code>cfbd_stats_game_advanced()</code>: Get Game Advanced Stats</dt><dd><p>.</p></dd>
-<dt><code>cfbd_stats_season_player()</code>: Get Season Statistics by Player</dt><dd><p>.</p></dd>
+<dt><code>cfbd_stats_categories()</code>:</dt><dd><p>College Football Mapping for Stats Categories.</p></dd>
+<dt><code>cfbd_stats_season_team()</code>:</dt><dd><p>Get Season Statistics by Team.</p></dd>
+<dt><code>cfbd_stats_season_advanced()</code>:</dt><dd><p>Get Season Advanced Statistics by Team.</p></dd>
+<dt><code>cfbd_stats_game_advanced()</code>:</dt><dd><p>Get Game Advanced Stats.</p></dd>
+<dt><code>cfbd_stats_season_player()</code>:</dt><dd><p>Get Season Statistics by Player.</p></dd>
 
 </dl>
 
@@ -484,262 +484,262 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></td>
 </dl>
 
 <p><code>cfbd_stats_game_advanced()</code> - A data frame with 60 variables:</p><dl>
-<dt><code>game_id</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>week</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>opponent</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>off_plays</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_drives</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_power_success</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_stuff_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_line_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_line_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_second_lvl_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_second_lvl_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_open_field_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_open_field_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_plays</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_drives</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_power_success</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_stuff_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_line_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_line_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_second_lvl_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_second_lvl_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_open_field_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_open_field_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_explosiveness</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Game week of the season.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>opponent</code>: character.</dt><dd><p>Opponent team name.</p></dd>
+<dt><code>off_plays</code>: integer.</dt><dd><p>Offense plays in the game.</p></dd>
+<dt><code>off_drives</code>: integer.</dt><dd><p>Offense drives in the game.</p></dd>
+<dt><code>off_ppa</code>: double.</dt><dd><p>Offense predicted points added (PPA).</p></dd>
+<dt><code>off_total_ppa</code>: double.</dt><dd><p>Offense total predicted points added (PPA).</p></dd>
+<dt><code>off_success_rate</code>: double.</dt><dd><p>Offense success rate.</p></dd>
+<dt><code>off_explosiveness</code>: double.</dt><dd><p>Offense explosiveness rate.</p></dd>
+<dt><code>off_power_success</code>: double.</dt><dd><p>Offense power success rate.</p></dd>
+<dt><code>off_stuff_rate</code>: double.</dt><dd><p>Opponent stuff rate.</p></dd>
+<dt><code>off_line_yds</code>: double.</dt><dd><p>Offensive line yards.</p></dd>
+<dt><code>off_line_yds_total</code>: integer.</dt><dd><p>Offensive line yards total.</p></dd>
+<dt><code>off_second_lvl_yds</code>: double.</dt><dd><p>Offense second-level yards.</p></dd>
+<dt><code>off_second_lvl_yds_total</code>: integer.</dt><dd><p>Offense second-level yards total.</p></dd>
+<dt><code>off_open_field_yds</code>: integer.</dt><dd><p>Offense open field yards.</p></dd>
+<dt><code>off_open_field_yds_total</code>: integer.</dt><dd><p>Offense open field yards total.</p></dd>
+<dt><code>off_standard_downs_ppa</code>: double.</dt><dd><p>Offense standard downs predicted points added (PPA).</p></dd>
+<dt><code>off_standard_downs_success_rate</code>: double.</dt><dd><p>Offense standard downs success rate.</p></dd>
+<dt><code>off_standard_downs_explosiveness</code>: double.</dt><dd><p>Offense standard downs explosiveness rate.</p></dd>
+<dt><code>off_passing_downs_ppa</code>: double.</dt><dd><p>Offense passing downs predicted points added (PPA).</p></dd>
+<dt><code>off_passing_downs_success_rate</code>: double.</dt><dd><p>Offense passing downs success rate.</p></dd>
+<dt><code>off_passing_downs_explosiveness</code>: double.</dt><dd><p>Offense passing downs explosiveness rate.</p></dd>
+<dt><code>off_rushing_plays_ppa</code>: double.</dt><dd><p>Offense rushing plays predicted points added (PPA).</p></dd>
+<dt><code>off_rushing_plays_total_ppa</code>: double.</dt><dd><p>Offense rushing plays total predicted points added (PPA).</p></dd>
+<dt><code>off_rushing_plays_success_rate</code>: double.</dt><dd><p>Offense rushing plays success rate.</p></dd>
+<dt><code>off_rushing_plays_explosiveness</code>: double.</dt><dd><p>Offense rushing plays explosiveness rate.</p></dd>
+<dt><code>off_passing_plays_ppa</code>: double.</dt><dd><p>Offense passing plays predicted points added (PPA).</p></dd>
+<dt><code>off_passing_plays_total_ppa</code>: double.</dt><dd><p>Offense passing plays total predicted points added (PPA).</p></dd>
+<dt><code>off_passing_plays_success_rate</code>: double.</dt><dd><p>Offense passing plays success rate.</p></dd>
+<dt><code>off_passing_plays_explosiveness</code>: double.</dt><dd><p>Offense passing plays explosiveness rate.</p></dd>
+<dt><code>def_plays</code>: integer.</dt><dd><p>Defense plays in the game.</p></dd>
+<dt><code>def_drives</code>: integer.</dt><dd><p>Defense drives in the game.</p></dd>
+<dt><code>def_ppa</code>: double.</dt><dd><p>Defense predicted points added (PPA).</p></dd>
+<dt><code>def_total_ppa</code>: double.</dt><dd><p>Defense total predicted points added (PPA).</p></dd>
+<dt><code>def_success_rate</code>: double.</dt><dd><p>Defense success rate.</p></dd>
+<dt><code>def_explosiveness</code>: double.</dt><dd><p>Defense explosiveness rate.</p></dd>
+<dt><code>def_power_success</code>: double.</dt><dd><p>Defense power success rate.</p></dd>
+<dt><code>def_stuff_rate</code>: double.</dt><dd><p>Opponent stuff rate.</p></dd>
+<dt><code>def_line_yds</code>: double.</dt><dd><p>Offensive line yards.</p></dd>
+<dt><code>def_line_yds_total</code>: integer.</dt><dd><p>Offensive line yards total.</p></dd>
+<dt><code>def_second_lvl_yds</code>: double.</dt><dd><p>Defense second-level yards.</p></dd>
+<dt><code>def_second_lvl_yds_total</code>: integer.</dt><dd><p>Defense second-level yards total.</p></dd>
+<dt><code>def_open_field_yds</code>: integer.</dt><dd><p>Defense open field yards.</p></dd>
+<dt><code>def_open_field_yds_total</code>: integer.</dt><dd><p>Defense open field yards total.</p></dd>
+<dt><code>def_standard_downs_ppa</code>: double.</dt><dd><p>Defense standard downs predicted points added (PPA).</p></dd>
+<dt><code>def_standard_downs_success_rate</code>: double.</dt><dd><p>Defense standard downs success rate.</p></dd>
+<dt><code>def_standard_downs_explosiveness</code>: double.</dt><dd><p>Defense standard downs explosiveness rate.</p></dd>
+<dt><code>def_passing_downs_ppa</code>: double.</dt><dd><p>Defense passing downs predicted points added (PPA).</p></dd>
+<dt><code>def_passing_downs_success_rate</code>: double.</dt><dd><p>Defense passing downs success rate.</p></dd>
+<dt><code>def_passing_downs_explosiveness</code>: double.</dt><dd><p>Defense passing downs explosiveness rate.</p></dd>
+<dt><code>def_rushing_plays_ppa</code>: double.</dt><dd><p>Defense rushing plays predicted points added (PPA).</p></dd>
+<dt><code>def_rushing_plays_total_ppa</code>: double.</dt><dd><p>Defense rushing plays total predicted points added (PPA).</p></dd>
+<dt><code>def_rushing_plays_success_rate</code>: double.</dt><dd><p>Defense rushing plays success rate.</p></dd>
+<dt><code>def_rushing_plays_explosiveness</code>: double.</dt><dd><p>Defense rushing plays explosiveness rate.</p></dd>
+<dt><code>def_passing_plays_ppa</code>: double.</dt><dd><p>Defense passing plays predicted points added (PPA).</p></dd>
+<dt><code>def_passing_plays_total_ppa</code>: double.</dt><dd><p>Defense passing plays total predicted points added (PPA).</p></dd>
+<dt><code>def_passing_plays_success_rate</code>: double.</dt><dd><p>Defense passing plays success rate.</p></dd>
+<dt><code>def_passing_plays_explosiveness</code>: double.</dt><dd><p>Defense passing plays explosiveness rate.</p></dd>
 
 </dl>
 
 <p><code>cfbd_stats_season_advanced()</code> - A data frame with 79 variables:</p><dl>
-<dt><code>season</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>off_plays</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_drives</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_power_success</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_stuff_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_line_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_line_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_second_lvl_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_second_lvl_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_open_field_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_open_field_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>off_pts_per_opp</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_field_pos_avg_start</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_field_pos_avg_predicted_points</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_havoc_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_havoc_front_seven</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_havoc_db</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_standard_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_rushing_plays_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>off_passing_plays_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_plays</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_drives</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_power_success</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_stuff_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_line_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_line_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_second_lvl_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_second_lvl_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_open_field_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_open_field_yds_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_pts_per_opp</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_field_pos_avg_start</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>def_field_pos_avg_predicted_points</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_havoc_total</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_havoc_front_seven</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_havoc_db</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_standard_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_total_ppa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_success_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_downs_explosiveness</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_rate</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_ppa</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_total_ppa</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_success_rate</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_rushing_plays_explosiveness</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_rate</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_ppa</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_success_rate</code>:double.</dt><dd><p>.</p></dd>
-<dt><code>def_passing_plays_explosiveness</code>:double.</dt><dd><p>.</p></dd>
+<dt><code>season</code>: integer.</dt><dd><p>Season of the statistics.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>off_plays</code>: integer.</dt><dd><p>Offense plays in the game.</p></dd>
+<dt><code>off_drives</code>: integer.</dt><dd><p>Offense drives in the game.</p></dd>
+<dt><code>off_ppa</code>: double.</dt><dd><p>Offense predicted points added (PPA).</p></dd>
+<dt><code>off_total_ppa</code>: double.</dt><dd><p>Offense total predicted points added (PPA).</p></dd>
+<dt><code>off_success_rate</code>: double.</dt><dd><p>Offense success rate.</p></dd>
+<dt><code>off_explosiveness</code>: double.</dt><dd><p>Offense explosiveness rate.</p></dd>
+<dt><code>off_power_success</code>: double.</dt><dd><p>Offense power success rate.</p></dd>
+<dt><code>off_stuff_rate</code>: double.</dt><dd><p>Offense rushing stuff rate.</p></dd>
+<dt><code>off_line_yds</code>: double.</dt><dd><p>Offensive line yards.</p></dd>
+<dt><code>off_line_yds_total</code>: integer.</dt><dd><p>Offensive line yards total.</p></dd>
+<dt><code>off_second_lvl_yds</code>: double.</dt><dd><p>Offense second-level yards.</p></dd>
+<dt><code>off_second_lvl_yds_total</code>: integer.</dt><dd><p>Offense second-level yards total.</p></dd>
+<dt><code>off_open_field_yds</code>: integer.</dt><dd><p>Offense open field yards.</p></dd>
+<dt><code>off_open_field_yds_total</code>: integer.</dt><dd><p>Offense open field yards total.</p></dd>
+<dt><code>off_pts_per_opp</code>: double.</dt><dd><p>Offense points per scoring opportunity.</p></dd>
+<dt><code>off_field_pos_avg_start</code>: double.</dt><dd><p>Offense starting average field position.</p></dd>
+<dt><code>off_field_pos_avg_predicted_points</code>: double.</dt><dd><p>Offense starting average field position predicted points (PP).</p></dd>
+<dt><code>off_havoc_total</code>: double.</dt><dd><p>Offense havor rate total.</p></dd>
+<dt><code>off_havoc_front_seven</code>: double.</dt><dd><p>Offense front-7 havoc rate.</p></dd>
+<dt><code>off_havoc_db</code>: double.</dt><dd><p>Offense defensive back havor rate.</p></dd>
+<dt><code>off_standard_downs_rate</code>: double.</dt><dd><p>Offense standard downs rate.</p></dd>
+<dt><code>off_standard_downs_ppa</code>: double.</dt><dd><p>Offense standard downs predicted points added (PPA).</p></dd>
+<dt><code>off_standard_downs_success_rate</code>: double.</dt><dd><p>Offense standard downs success rate.</p></dd>
+<dt><code>off_standard_downs_explosiveness</code>: double.</dt><dd><p>Offense standard downs explosiveness rate.</p></dd>
+<dt><code>off_passing_downs_rate</code>: double.</dt><dd><p>Offense passing downs rate.</p></dd>
+<dt><code>off_passing_downs_ppa</code>: double.</dt><dd><p>Offense passing downs predicted points added (PPA).</p></dd>
+<dt><code>off_passing_downs_success_rate</code>: double.</dt><dd><p>Offense passing downs success rate.</p></dd>
+<dt><code>off_passing_downs_explosiveness</code>: double.</dt><dd><p>Offense passing downs explosiveness rate.</p></dd>
+<dt><code>off_rushing_plays_rate</code>: double.</dt><dd><p>Offense rushing plays rate.</p></dd>
+<dt><code>off_rushing_plays_ppa</code>: double.</dt><dd><p>Offense rushing plays predicted points added (PPA).</p></dd>
+<dt><code>off_rushing_plays_total_ppa</code>: double.</dt><dd><p>Offense rushing plays total predicted points added (PPA).</p></dd>
+<dt><code>off_rushing_plays_success_rate</code>: double.</dt><dd><p>Offense rushing plays success rate.</p></dd>
+<dt><code>off_rushing_plays_explosiveness</code>: double.</dt><dd><p>Offense rushing plays explosiveness rate.</p></dd>
+<dt><code>off_passing_plays_rate</code>: double.</dt><dd><p>Offense passing plays rate.</p></dd>
+<dt><code>off_passing_plays_ppa</code>: double.</dt><dd><p>Offense passing plays predicted points added (PPA).</p></dd>
+<dt><code>off_passing_plays_total_ppa</code>: double.</dt><dd><p>Offense passing plays total predicted points added (PPA).</p></dd>
+<dt><code>off_passing_plays_success_rate</code>: double.</dt><dd><p>Offense passing plays success rate.</p></dd>
+<dt><code>off_passing_plays_explosiveness</code>: double.</dt><dd><p>Offense passing plays explosiveness rate.</p></dd>
+<dt><code>def_plays</code>: integer.</dt><dd><p>Defense plays in the game.</p></dd>
+<dt><code>def_drives</code>: integer.</dt><dd><p>Defense drives in the game.</p></dd>
+<dt><code>def_ppa</code>: double.</dt><dd><p>Defense predicted points added (PPA).</p></dd>
+<dt><code>def_total_ppa</code>: double.</dt><dd><p>Defense total predicted points added (PPA).</p></dd>
+<dt><code>def_success_rate</code>: double.</dt><dd><p>Defense success rate.</p></dd>
+<dt><code>def_explosiveness</code>: double.</dt><dd><p>Defense explosiveness rate.</p></dd>
+<dt><code>def_power_success</code>: double.</dt><dd><p>Defense power success rate.</p></dd>
+<dt><code>def_stuff_rate</code>: double.</dt><dd><p>Defense rushing stuff rate.</p></dd>
+<dt><code>def_line_yds</code>: double.</dt><dd><p>Defense Offensive line yards allowed.</p></dd>
+<dt><code>def_line_yds_total</code>: integer.</dt><dd><p>Defense Offensive line yards total allowed.</p></dd>
+<dt><code>def_second_lvl_yds</code>: double.</dt><dd><p>Defense second-level yards.</p></dd>
+<dt><code>def_second_lvl_yds_total</code>: integer.</dt><dd><p>Defense second-level yards total.</p></dd>
+<dt><code>def_open_field_yds</code>: integer.</dt><dd><p>Defense open field yards.</p></dd>
+<dt><code>def_open_field_yds_total</code>: integer.</dt><dd><p>Defense open field yards total.</p></dd>
+<dt><code>def_pts_per_opp</code>: double.</dt><dd><p>Defense points per scoring opportunity.</p></dd>
+<dt><code>def_field_pos_avg_start</code>: double.</dt><dd><p>Defense starting average field position.</p></dd>
+<dt><code>def_field_pos_avg_predicted_points</code>: double.</dt><dd><p>Defense starting average field position predicted points (PP).</p></dd>
+<dt><code>def_havoc_total</code>: double.</dt><dd><p>Defense havor rate total.</p></dd>
+<dt><code>def_havoc_front_seven</code>: double.</dt><dd><p>Defense front-7 havoc rate.</p></dd>
+<dt><code>def_havoc_db</code>: double.</dt><dd><p>Defense defensive back havor rate.</p></dd>
+<dt><code>def_standard_downs_rate</code>: double.</dt><dd><p>Defense standard downs rate.</p></dd>
+<dt><code>def_standard_downs_ppa</code>: double.</dt><dd><p>Defense standard downs predicted points added (PPA).</p></dd>
+<dt><code>def_standard_downs_success_rate</code>: double.</dt><dd><p>Defense standard downs success rate.</p></dd>
+<dt><code>def_standard_downs_explosiveness</code>: double.</dt><dd><p>Defense standard downs explosiveness rate.</p></dd>
+<dt><code>def_passing_downs_rate</code>: double.</dt><dd><p>Defense passing downs rate.</p></dd>
+<dt><code>def_passing_downs_ppa</code>: double.</dt><dd><p>Defense passing downs predicted points added (PPA).</p></dd>
+<dt><code>def_passing_downs_success_rate</code>: double.</dt><dd><p>Defense passing downs success rate.</p></dd>
+<dt><code>def_passing_downs_explosiveness</code>: double.</dt><dd><p>Defense passing downs explosiveness rate.</p></dd>
+<dt><code>def_rushing_plays_rate</code>: double.</dt><dd><p>Defense rushing plays rate.</p></dd>
+<dt><code>def_rushing_plays_ppa</code>: double.</dt><dd><p>Defense rushing plays predicted points added (PPA).</p></dd>
+<dt><code>def_rushing_plays_total_ppa</code>: double.</dt><dd><p>Defense rushing plays total predicted points added (PPA).</p></dd>
+<dt><code>def_rushing_plays_success_rate</code>: double.</dt><dd><p>Defense rushing plays success rate.</p></dd>
+<dt><code>def_rushing_plays_explosiveness</code>: double.</dt><dd><p>Defense rushing plays explosiveness rate.</p></dd>
+<dt><code>def_passing_plays_rate</code>: double.</dt><dd><p>Defense passing plays rate.</p></dd>
+<dt><code>def_passing_plays_ppa</code>: double.</dt><dd><p>Defense passing plays predicted points added (PPA).</p></dd>
+<dt><code>def_passing_plays_total_ppa</code>: double.</dt><dd><p>Defense passing plays total predicted points added (PPA).</p></dd>
+<dt><code>def_passing_plays_success_rate</code>: double.</dt><dd><p>Defense passing plays success rate.</p></dd>
+<dt><code>def_passing_plays_explosiveness</code>: double.</dt><dd><p>Defense passing plays explosiveness rate.</p></dd>
 
 </dl>
 
 <p><code>cfbd_stats_season_player()</code> - A data frame with 59 variables:</p><dl>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>athlete_id</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>player</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>category</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>passing_completions</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passing_att</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passing_pct</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passing_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passing_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passing_int</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passing_ypa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_car</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_ypc</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rushing_long</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>receiving_rec</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>receiving_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>receiving_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>receiving_ypr</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>receiving_long</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_fum</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_rec</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_lost</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_solo</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_tot</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_tfl</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_sacks</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_qb_hur</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>interceptions_int</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>interceptions_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>interceptions_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>interceptions_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_pd</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>defensive_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_fgm</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_fga</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_pct</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_xpa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_xpm</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_pts</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kicking_long</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns_no</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns_long</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punting_no</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punting_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punting_ypp</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punting_long</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punting_in_20</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punting_tb</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns_no</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns_yds</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns_td</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns_long</code>: double.</dt><dd><p>.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>athlete_id</code>: character.</dt><dd><p>Athlete referencing id.</p></dd>
+<dt><code>player</code>: character.</dt><dd><p>Player name.</p></dd>
+<dt><code>category</code>: character.</dt><dd><p>Statistic category.</p></dd>
+<dt><code>passing_completions</code>: double.</dt><dd><p>Passing completions.</p></dd>
+<dt><code>passing_att</code>: double.</dt><dd><p>Passing attempts.</p></dd>
+<dt><code>passing_pct</code>: double.</dt><dd><p>Passing completion percentage.</p></dd>
+<dt><code>passing_yds</code>: double.</dt><dd><p>Passing yardage.</p></dd>
+<dt><code>passing_td</code>: double.</dt><dd><p>Passing touchdowns.</p></dd>
+<dt><code>passing_int</code>: double.</dt><dd><p>Passing interceptions.</p></dd>
+<dt><code>passing_ypa</code>: double.</dt><dd><p>Passing yards per attempt.</p></dd>
+<dt><code>rushing_car</code>: double.</dt><dd><p>Rushing yards per carry.</p></dd>
+<dt><code>rushing_yds</code>: double.</dt><dd><p>Rushing yards total.</p></dd>
+<dt><code>rushing_td</code>: double.</dt><dd><p>Rushing touchdowns.</p></dd>
+<dt><code>rushing_ypc</code>: double.</dt><dd><p>Rushing yards per carry.</p></dd>
+<dt><code>rushing_long</code>: double.</dt><dd><p>Rushing longest yardage attempt.</p></dd>
+<dt><code>receiving_rec</code>: double.</dt><dd><p>Receiving - pass receptions.</p></dd>
+<dt><code>receiving_yds</code>: double.</dt><dd><p>Receiving - pass reception yards.</p></dd>
+<dt><code>receiving_td</code>: double.</dt><dd><p>Receiving - passing reception touchdowns.</p></dd>
+<dt><code>receiving_ypr</code>: double.</dt><dd><p>Receiving - passing yards per reception.</p></dd>
+<dt><code>receiving_long</code>: double.</dt><dd><p>Receiving - longest pass reception yardage.</p></dd>
+<dt><code>fumbles_fum</code>: double.</dt><dd><p>Fumbles.</p></dd>
+<dt><code>fumbles_rec</code>: double.</dt><dd><p>Fumbles recovered.</p></dd>
+<dt><code>fumbles_lost</code>: double.</dt><dd><p>Fumbles lost.</p></dd>
+<dt><code>defensive_solo</code>: double.</dt><dd><p>Defensive solo tackles.</p></dd>
+<dt><code>defensive_tot</code>: double.</dt><dd><p>Defensive total tackles.</p></dd>
+<dt><code>defensive_tfl</code>: double.</dt><dd><p>Defensive tackles for loss.</p></dd>
+<dt><code>defensive_sacks</code>: double.</dt><dd><p>Defensive sacks.</p></dd>
+<dt><code>defensive_qb_hur</code>: double.</dt><dd><p>Defensive quarterback hurries.</p></dd>
+<dt><code>interceptions_int</code>: double.</dt><dd><p>Interceptions total.</p></dd>
+<dt><code>interceptions_yds</code>: double.</dt><dd><p>Interception return yards.</p></dd>
+<dt><code>interceptions_avg</code>: double.</dt><dd><p>Interception return yards average.</p></dd>
+<dt><code>interceptions_td</code>: double.</dt><dd><p>Interception return touchdowns.</p></dd>
+<dt><code>defensive_pd</code>: double.</dt><dd><p>Defense - passes defensed.</p></dd>
+<dt><code>defensive_td</code>: double.</dt><dd><p>Defense - defensive touchdowns.</p></dd>
+<dt><code>kicking_fgm</code>: double.</dt><dd><p>Kicking - field goals made.</p></dd>
+<dt><code>kicking_fga</code>: double.</dt><dd><p>Kicking - field goals attempted.</p></dd>
+<dt><code>kicking_pct</code>: double.</dt><dd><p>Kicking - field goal percentage.</p></dd>
+<dt><code>kicking_xpa</code>: double.</dt><dd><p>Kicking - extra points attempted.</p></dd>
+<dt><code>kicking_xpm</code>: double.</dt><dd><p>Kicking - extra points made.</p></dd>
+<dt><code>kicking_pts</code>: double.</dt><dd><p>Kicking - total points.</p></dd>
+<dt><code>kicking_long</code>: double.</dt><dd><p>Kicking - longest successful field goal attempt.</p></dd>
+<dt><code>kick_returns_no</code>: double.</dt><dd><p>Kick Returns - number of kick returns.</p></dd>
+<dt><code>kick_returns_yds</code>: double.</dt><dd><p>Kick Returns - kick return yards.</p></dd>
+<dt><code>kick_returns_avg</code>: double.</dt><dd><p>Kick Returns - kick return average yards per return.</p></dd>
+<dt><code>kick_returns_td</code>: double.</dt><dd><p>Kick Returns - kick return touchdowns.</p></dd>
+<dt><code>kick_returns_long</code>: double.</dt><dd><p>Kick Returns - longest kick return yardage.</p></dd>
+<dt><code>punting_no</code>: double.</dt><dd><p>Punting - number of punts.</p></dd>
+<dt><code>punting_yds</code>: double.</dt><dd><p>Punting - punting yardage.</p></dd>
+<dt><code>punting_ypp</code>: double.</dt><dd><p>Punting - yards per punt.</p></dd>
+<dt><code>punting_long</code>: double.</dt><dd><p>Punting - longest punt yardage.</p></dd>
+<dt><code>punting_in_20</code>: double.</dt><dd><p>Punting - punt downed inside the 20 yard line.</p></dd>
+<dt><code>punting_tb</code>: double.</dt><dd><p>Punting - punt caused a touchback.</p></dd>
+<dt><code>punt_returns_no</code>: double.</dt><dd><p>Punt Returns - number of punt returns.</p></dd>
+<dt><code>punt_returns_yds</code>: double.</dt><dd><p>Punt Returns - punt return yardage total.</p></dd>
+<dt><code>punt_returns_avg</code>: double.</dt><dd><p>Punt Returns - punt return average yards per return.</p></dd>
+<dt><code>punt_returns_td</code>: double.</dt><dd><p>Punt Returns - punt return touchdowns.</p></dd>
+<dt><code>punt_returns_long</code>: double.</dt><dd><p>Punt Returns - longest punt return yardage.</p></dd>
 
 </dl>
 
 <p><code>cfbd_stats_season_team()</code> - A data frame with 46 variables:</p><dl>
-<dt><code>games</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>team</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>conference</code>: character.</dt><dd><p>.</p></dd>
-<dt><code>games</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>time_of_poss_total</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>time_of_poss_pg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>pass_comps</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>pass_atts</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>completion_pct</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>net_pass_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>pass_ypa</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>pass_ypr</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>pass_TDs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>interceptions</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>int_pct</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>rush_atts</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>rush_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>rush_TDs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>rush_ypc</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>total_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>fumbles_lost</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>turnovers</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>turnovers_pg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>first_downs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>third_downs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>third_down_convs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>third_conv_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>fourth_down_convs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>fourth_downs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>fourth_conv_rate</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>penalties</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>penalty_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>penalties_pg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>penalty_yds_pg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>yards_per_penalty</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>kick_returns</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_TDs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>kick_return_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>punt_returns</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_TDs</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>punt_return_avg</code>: double.</dt><dd><p>.</p></dd>
-<dt><code>passes_intercepted</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>passes_intercepted_yds</code>: integer.</dt><dd><p>.</p></dd>
-<dt><code>passes_intercepted_TDs</code>: integer.</dt><dd><p>.</p></dd>
+<dt><code>games</code>: integer.</dt><dd><p>Number of games.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of team.</p></dd>
+<dt><code>games</code>: integer.</dt><dd><p>Number of games.</p></dd>
+<dt><code>time_of_poss_total</code>: integer.</dt><dd><p>Time of possession total.</p></dd>
+<dt><code>time_of_poss_pg</code>: double.</dt><dd><p>Time of possession per game.</p></dd>
+<dt><code>pass_comps</code>: integer.</dt><dd><p>Total number of pass completions.</p></dd>
+<dt><code>pass_atts</code>: integer.</dt><dd><p>Total number of pass attempts.</p></dd>
+<dt><code>completion_pct</code>: double.</dt><dd><p>Passing completion percentage.</p></dd>
+<dt><code>net_pass_yds</code>: integer.</dt><dd><p>Net passing yards.</p></dd>
+<dt><code>pass_ypa</code>: double.</dt><dd><p>Passing yards per attempt.</p></dd>
+<dt><code>pass_ypr</code>: double.</dt><dd><p>Passing yards per reception.</p></dd>
+<dt><code>pass_TDs</code>: integer.</dt><dd><p>Passing touchdowns.</p></dd>
+<dt><code>interceptions</code>: integer.</dt><dd><p>Passing interceptions.</p></dd>
+<dt><code>int_pct</code>: double.</dt><dd><p>Interception percentage (of attempts).</p></dd>
+<dt><code>rush_atts</code>: integer.</dt><dd><p>Rushing attempts.</p></dd>
+<dt><code>rush_yds</code>: integer.</dt><dd><p>Rushing yards.</p></dd>
+<dt><code>rush_TDs</code>: integer.</dt><dd><p>Rushing touchdowns.</p></dd>
+<dt><code>rush_ypc</code>: double.</dt><dd><p>Rushing yards per carry.</p></dd>
+<dt><code>total_yds</code>: integer.</dt><dd><p>Rushing total yards.</p></dd>
+<dt><code>fumbles_lost</code>: integer.</dt><dd><p>Fumbles lost.</p></dd>
+<dt><code>turnovers</code>: integer.</dt><dd><p>Turnovers total.</p></dd>
+<dt><code>turnovers_pg</code>: double.</dt><dd><p>Turnovers per game.</p></dd>
+<dt><code>first_downs</code>: integer.</dt><dd><p>Number of first downs.</p></dd>
+<dt><code>third_downs</code>: integer.</dt><dd><p>Number of third downs.</p></dd>
+<dt><code>third_down_convs</code>: integer.</dt><dd><p>Number of third down conversions.</p></dd>
+<dt><code>third_conv_rate</code>: double.</dt><dd><p>Third down conversion rate.</p></dd>
+<dt><code>fourth_down_convs</code>: integer.</dt><dd><p>Fourth down conversions.</p></dd>
+<dt><code>fourth_downs</code>: integer.</dt><dd><p>Fourth downs.</p></dd>
+<dt><code>fourth_conv_rate</code>: double.</dt><dd><p>Fourth down conversion rate.</p></dd>
+<dt><code>penalties</code>: integer.</dt><dd><p>Total number of penalties.</p></dd>
+<dt><code>penalty_yds</code>: integer.</dt><dd><p>Penalty yards total.</p></dd>
+<dt><code>penalties_pg</code>: double.</dt><dd><p>Penalties per game.</p></dd>
+<dt><code>penalty_yds_pg</code>: double.</dt><dd><p>Penalty yardage per game.</p></dd>
+<dt><code>yards_per_penalty</code>: double.</dt><dd><p>Average yards per penalty.</p></dd>
+<dt><code>kick_returns</code>: integer.</dt><dd><p>Number of kick returns.</p></dd>
+<dt><code>kick_return_yds</code>: integer.</dt><dd><p>Total kick return yards.</p></dd>
+<dt><code>kick_return_TDs</code>: integer.</dt><dd><p>Total kick return touchdowns.</p></dd>
+<dt><code>kick_return_avg</code>: double.</dt><dd><p>Kick return yards average.</p></dd>
+<dt><code>punt_returns</code>: integer.</dt><dd><p>Number of punt returns.</p></dd>
+<dt><code>punt_return_yds</code>: integer.</dt><dd><p>Punt return total yards.</p></dd>
+<dt><code>punt_return_TDs</code>: integer.</dt><dd><p>Punt return total touchdowns.</p></dd>
+<dt><code>punt_return_avg</code>: double.</dt><dd><p>Punt return yards average.</p></dd>
+<dt><code>passes_intercepted</code>: integer.</dt><dd><p>Passes intercepted.</p></dd>
+<dt><code>passes_intercepted_yds</code>: integer.</dt><dd><p>Pass interception return yards.</p></dd>
+<dt><code>passes_intercepted_TDs</code>: integer.</dt><dd><p>Pass interception return touchdowns.</p></dd>
 
 </dl>
 

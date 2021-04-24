@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -306,6 +306,32 @@
     
 <p>Hey folks,</p>
 <p>Welcome to the football analytics community! I’m Saiem Gilani, one of the <a href="https://saiemgilani.github.io/cfbfastR/authors.html" title="Authors and contributors to cfbfastR">authors</a> of <a href="https://twitter.com/cfbfastR" title="Follow @cfbfastR on Twitter! Tag us in your tweets using cfbfastR and we'll share it!"><code>cfbfastR</code></a>, and I hope to give the community a high-quality resource for accessing college football data for statistical analysis, football research, and more. I am excited to show you some of what you can do with this edition of the package.</p>
+<div id="installing-r-and-rstudio" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installing-r-and-rstudio" class="anchor"></a><strong>Installing R and RStudio</strong>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Head to <a href="https://cran.r-project.org" title="The Comprehensive R Archive Network">https://cran.r-project.org</a>
+</li>
+<li>Select the appropriate link for your operating system (Windows, Mac OS X, or Linux) - <strong>Windows</strong> - Select base and download the most recent version - <strong>Mac OS X</strong> - Select Latest Release, but check to make sure your OS is the correct version. Look through Binaries for Legacy OS X Systems if you are on an older release - <strong>Linux</strong> - Select the appropriate distro and follow the installation instructions</li>
+<li>Head to <a href="https://www.rstudio.com/products/rstudio/download/#download" title="Download the appropriate version of RStudio (Free) for your operating system to use with R">RStudio.com</a>
+</li>
+<li>Follow the associated download and installation instructions for RStudio.</li>
+<li>Start peering over the <a href="%22https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf%22">RStudio IDE Cheatsheet</a>. <em>An IDE is an integrated development environment.</em>
+</li>
+</ol>
+<div id="load-and-install-the-necessary-packages" class="section level4">
+<h4 class="hasAnchor">
+<a href="#load-and-install-the-necessary-packages" class="anchor"></a><strong>Load and install the necessary packages</strong>
+</h4>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">zoo</span>, <span class="va">ggimage</span>, <span class="va">gt</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
 <div id="the-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-data" class="anchor"></a><strong>The Data</strong>
@@ -330,14 +356,14 @@
 <li><p>Functions that use one of ESPN’s APIs start with <code>espn_</code> by convention and should be assumed as <code>get</code> functions. There are only two of these functions so far: <code><a href="../reference/espn_ratings.html">espn_ratings_fpi()</a></code> and <code><a href="../reference/espn_metrics.html">espn_metrics_wp()</a></code></p></li>
 </ul>
 <p>However, there is only one data <em>provider</em> involved for most game data, ESPN’s data provider.</p>
-<p>As of <code>cfbfastR</code> version 1.2.0, the package exports 62 functions. The bulk (~45) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com">College Football Data API</a>.</p>
+<p>As of <code>cfbfastR</code> version 1.2.1, the package exports 62 functions. The bulk (~45) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com">College Football Data API</a>.</p>
 </div>
 <div id="cfb-data-now-requires-an-api-key-its-free" class="section level4">
 <h4 class="hasAnchor">
 <a href="#cfb-data-now-requires-an-api-key-its-free" class="anchor"></a><strong>CFB Data now requires an API key (it’s free)</strong>
 </h4>
 <ul>
-<li><p>Starting on April 1, 2021, the College Football Data API requires <a href="https://collegefootballdata.com/key">key authentication</a>, but the <strong>key is free to acquire and use</strong>.</p></li>
+<li><p>Since April 1, 2021, the College Football Data API requires <a href="https://collegefootballdata.com/key">key authentication</a>, but the <strong>key is free to acquire and use</strong>.</p></li>
 <li><p><a href="https://collegefootballdata.com/key">Follow the instructions</a> and wait for your API key to be delivered to the e-mail account associated with your key.</p></li>
 </ul>
 </div>
@@ -347,23 +373,12 @@
 </h4>
 <p>You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .REnviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>).</p>
 <p>Run <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a> and THEN paste the following in the new script that pops up (with<strong>out</strong> quotations)</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre></div>
 <p>For less consistent usage, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) at the beginning of every session, using a command like the following.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></code></pre></div>
 <p>If you have ever worked with the now archived <a href="https://github.com/saiemgilani/cfbscrapR"><code>cfbscrapR</code></a> package, most of the functions in <code>cfbfastR</code> should be fairly familiar with some slight changes.</p>
-</div>
-<div id="load-and-install-the-necessary-packages" class="section level4">
-<h4 class="hasAnchor">
-<a href="#load-and-install-the-necessary-packages" class="anchor"></a><strong>Load and install the necessary packages</strong>
-</h4>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">zoo</span>, <span class="va">ggimage</span>, <span class="va">gt</span><span class="op">)</span></code></pre></div>
 <p>We are going to load in data for seasons 2014-2020, it’ll take between 45-90 seconds to run.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
@@ -374,7 +389,7 @@
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 51.986 sec elapsed</code></pre>
+<pre><code>## 53.39 sec elapsed</code></pre>
 </div>
 </div>
   </div>
