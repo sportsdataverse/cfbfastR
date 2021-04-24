@@ -22,7 +22,7 @@ cfbd_team_info(year = 2019)
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Team rosters}}{
+\subsection{\strong{Get team rosters}}{
 \subsection{\strong{It is now possible to access yearly rosters}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_roster(year = 2020)
 }\if{html}{\out{</div>}}
 }

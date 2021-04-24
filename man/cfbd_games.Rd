@@ -47,7 +47,7 @@ cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Calendar - returns calendar of weeks by season.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_calendar(2019)
+\subsection{\strong{Get calendar of weeks by season.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_calendar(2019)
 }\if{html}{\out{</div>}}
 }
 

@@ -45,7 +45,15 @@ pre, code {
 #tocnav ul ul {
   font-family: "Fira Mono";
   margin-left: 5px;
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 1.35rem;
+}
+
+#toc ul.nav li a{
+  font-family: "Fira Mono";
+  margin-left: 5px;
+  font-size: 14px;
+  line-height: 1.65rem;
 }
 .dropdown-menu {
   box-shadow: 0 6px 12px rgba(5, 5, 5, 0.18);
@@ -54,7 +62,7 @@ pre, code {
 #navbar ul ul{
   font-family: "Fira Mono";
   letter-spacing: 0.05px;
-  line-height: 1.05rem;
+  line-height: 1.25rem;
   color: #fff;
   font-weight: 400;
   font-size: 12px;
@@ -62,10 +70,10 @@ pre, code {
 .nav li a {
   font-family: "Fira Mono";
   letter-spacing: 0.05px;
-  line-height: 1.05rem;
+  line-height: 1.55rem;
   color: #fff;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 11px;
 }
 .pkgdown {
   display: none;
