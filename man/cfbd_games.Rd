@@ -394,6 +394,27 @@ Get results, statistics and information for games\cr
 \item{\code{cfbd_game_team_stats()}:}{Get Team Statistics by Game.}
 }
 }
+\details{
+\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_info(2018, week = 1)
+
+cfbd_game_info(2018, week = 7, conference = "Ind")
+
+# 7 OTs LSU @ TAMU
+cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_calendar(2019)
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_media(2019, week = 4, conference = "ACC")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_box_advanced(game_id = 401114233)
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+
+cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_records(2018, team = "Notre Dame")
+
+cfbd_game_records(2013, team = "Florida State")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_team_stats(2019, team = "LSU")
+
+cfbd_game_team_stats(2013, team = "Florida State")
+}\if{html}{\out{</div>}}
+}
 \examples{
 \donttest{
   cfbd_game_info(2018, week = 1)

@@ -109,7 +109,24 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{\code{cfbd_recruiting_position()}:}{CFB Recruiting Information Position Groups.}
 
 \item{\code{cfbd_recruiting_team()}:}{CFB Recruiting Information Team Rankings.}
-}
+}\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_player(2018, team = "Texas")
+
+cfbd_recruiting_player(2016, recruit_type = "JUCO")
+
+cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_position(2018, team = "Texas")
+
+cfbd_recruiting_position(2016, 2020, team = "Virginia")
+
+cfbd_recruiting_position(2015, 2020, conference = "SEC")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_team(2018, team = "Texas")
+
+cfbd_recruiting_team(2016, team = "Virginia")
+
+cfbd_recruiting_team(2016, team = "Texas A&M")
+
+cfbd_recruiting_team(2011)
+}\if{html}{\out{</div>}}
 }
 \details{
 Gets CFB team recruiting ranks with filters available for year and team.

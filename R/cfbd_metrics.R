@@ -12,6 +12,27 @@
 #' \item{`cfbd_metrics_wp_pregame()`:}{Get Pre-game Win Probability Data from CFBD API.}
 #' \item{`cfbd_metrics_wp()`:}{Get win probability chart data from CFBD API.}
 #' }
+#' 
+#' ```r
+#'   cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+#' ```
+#' 
+#' ```r
+#'   cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
+#' ```
+#' 
+#' ```r
+#'   cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
+#' ```
+#' 
+#' ```r
+#'   cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
+#' ```
+#' 
+#' ```r
+#'   cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
+#'   cfbd_metrics_wp(game_id = 401012356)
+#' ```
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team

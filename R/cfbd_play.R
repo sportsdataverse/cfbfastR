@@ -8,6 +8,46 @@
 #' \item{`cfbd_play_stats_types()`:}{Gets CFBD play stat types.}
 #' \item{`cfbd_play_types()`:}{Gets CFBD play types}
 #' }
+#' ```r
+#'  year_vector <- 2020
+#'  week_vector <- 1:3
+#'  weekly_year_df <- expand.grid(year = year_vector, week = week_vector)
+#'  tictoc::tic()
+#'  year_split <- split(weekly_year_df, weekly_year_df$year)
+#'  for (i in 1:length(year_split)) {
+#'    i <- 1
+#'    future::plan("multisession")
+#'    progressr::with_progress({
+#'       year_split[[i]] <- year_split[[i]] %>%
+#'          dplyr::mutate(
+#'             pbp = purrr::map2(
+#'                 .x = year,
+#'                 .y = week,
+#'                 cfbd_plays,
+#'                 season_type = "both"
+#'             )
+#'          )
+#'      Sys.sleep(1)
+#'    })
+#'  }
+#'  
+#'  tictoc::toc()
+#'  year_split <- lapply(year_split, function(x) {
+#'      x %>% tidyr::unnest(pbp, names_repair = "minimal")
+#'  })
+#'  
+#'  all_years <- dplyr::bind_rows(year_split)
+#'  glimpse(all_years)
+#' ```
+#' ```r
+#' cfbd_play_stats_player(game_id = 401110722)
+#' ```
+#' ```r
+#' cfbd_play_stats_types()
+#' ```
+#' ```r
+#' cfbd_play_types()
+#' ```
 #' @source \url{https://api.collegefootballdata.com/plays}
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)

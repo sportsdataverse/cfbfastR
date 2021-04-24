@@ -66,7 +66,11 @@ Betting information for games with the following columns:
 }
 }
 \description{
-Get betting lines information from games
+Get betting lines information from games\if{html}{\out{<div class="r">}}\preformatted{ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
+
+ # 7 OTs LSU at TAMU
+ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{

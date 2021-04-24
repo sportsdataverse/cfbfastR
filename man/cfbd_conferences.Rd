@@ -23,8 +23,7 @@ cfbd_conferences()
 \description{
 CFB Conference Information
 Pulls all college football conferences and returns as data frame
-
-You can call this function simply with\if{html}{\out{<div class="r">}}\preformatted{cfbd_conferences()
+You can call this function simply with:\if{html}{\out{<div class="r">}}\preformatted{cfbd_conferences()
 }\if{html}{\out{</div>}}
 }
 \examples{

@@ -38,15 +38,12 @@ load_wp_model <- function(){
   return (wp_model)
 }
 
-##' Check latest GitHub version of R package
-##'
-##' @param pkg package name
-##' @return list
-##' @importFrom utils packageVersion
-##' @examples
-##' \dontrun{
-##'   cfbfastR:::check_github('saiemgilani/cfbfastR')
-##' }
+#' Check latest GitHub version of R package
+#'
+#' @param pkg package name
+#' @return list
+#' @importFrom utils packageVersion
+#' @keywords internal
 check_github <- function(pkg) {
   installed_version <- tryCatch(utils::packageVersion(gsub(".*/", "", pkg)), error=function(e) NA)
 
@@ -77,8 +74,9 @@ check_github <- function(pkg) {
   return(res)
 }
 
-##' @importFrom utils installed.packages
-##' @importFrom utils packageDescription
+#' @importFrom utils installed.packages
+#' @importFrom utils packageDescription
+#' @keywords internal
 update_github <- function(lib.loc = NULL, ...) {
   message("upgrading github packages...")
   pkgs <- installed.packages()[, 'Package']
@@ -95,10 +93,11 @@ update_github <- function(lib.loc = NULL, ...) {
   })
 }
 
-##' load function from package
-##' @param pkg package
-##' @param fun function
-##' @return function
+#' load function from package
+#' @param pkg package
+#' @param fun function
+#' @return function
+#' @keywords internal
 get_fun_from_pkg <- function(pkg, fun) {
   require(pkg, character.only = TRUE)
   eval(parse(text = fun))

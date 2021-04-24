@@ -11,6 +11,40 @@
 #'   \item{`cfbd_game_records()`:}{Get Team records by year.}
 #'   \item{`cfbd_game_team_stats()`:}{Get Team Statistics by Game.}
 #' }
+#' @details
+#' ```r
+#' cfbd_game_info(2018, week = 1)
+#'
+#' cfbd_game_info(2018, week = 7, conference = "Ind")
+#'
+#' # 7 OTs LSU @ TAMU
+#' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+#' ```
+#' ```r
+#' cfbd_calendar(2019)
+#' ```
+#' ```r
+#' cfbd_game_media(2019, week = 4, conference = "ACC")
+#' ```
+#' ```r
+#' cfbd_game_box_advanced(game_id = 401114233)
+#' ```
+#' ```r
+#' cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+#'
+#' cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+#' ```
+#' ```r
+#' cfbd_game_records(2018, team = "Notre Dame")
+#'
+#' cfbd_game_records(2013, team = "Florida State")
+#' ```
+#' ```r
+#' cfbd_game_team_stats(2019, team = "LSU")
+#'
+#' cfbd_game_team_stats(2013, team = "Florida State")
+#' ```
+#' 
 #' @examples
 #' \donttest{
 #'   cfbd_game_info(2018, week = 1)

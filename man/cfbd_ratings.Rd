@@ -133,7 +133,25 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{\code{cfbd_ratings_sp()}:}{Get SP historical rating data.}
 \item{\code{cfbd_ratings_sp_conference()}:}{Get SP conference-level historical rating data.}
 \item{\code{cfbd_ratings_srs()}:}{Get SRS historical rating data.}
-}
+}\if{html}{\out{<div class="r">}}\preformatted{cfbd_rankings(year = 2019, week = 12)
+
+cfbd_rankings(year = 2018, week = 14)
+
+cfbd_rankings(year = 2013, season_type = "postseason")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_sp(year = 2018)
+
+cfbd_ratings_sp(team = "Texas A&M")
+
+cfbd_ratings_sp(year = 2019, team = "Texas")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_sp_conference(year = 2019)
+
+cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
+
+cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_ratings_srs(year = 2019, team = "Texas")
+
+cfbd_ratings_srs(year = 2018, conference = "SEC")
+}\if{html}{\out{</div>}}
 
 At least one of \strong{year} or \strong{team} must be specified for the function to run
 

@@ -164,7 +164,25 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \subsection{Team Info Lookup}{
 
 Lists all teams in conference or all D-I teams if conference is left NULL
-Currently, support is only provided for D-I
+Currently, support is only provided for D-I\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_info(conference = "SEC")
+
+cfbd_team_info(conference = "Ind")
+
+cfbd_team_info(year = 2019)
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_matchup("Texas A&M", "TCU")
+
+cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
+
+cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
+
+cfbd_team_matchup("Texas", "Oklahoma")
+}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_roster(year = 2013, team = "Florida State")
+
+cfbd_team_talent()
+
+cfbd_team_talent(year = 2018)
+
+}\if{html}{\out{</div>}}
 }
 }
 \examples{
