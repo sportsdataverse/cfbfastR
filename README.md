@@ -47,6 +47,9 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 # **cfbfastR v1.2.1**
 
+[**Full News on
+Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
+
 ##### **Minor release**
 
   - Added headshot\_url to outputs of
@@ -67,7 +70,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 <details>
 
-<summary>View More</summary>
+<summary>View More Version News</summary>
 
 # **cfbfastR v1.2.0**
 
