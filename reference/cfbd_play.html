@@ -61,7 +61,38 @@ cfbd_play_stats_player():Gets player info associated by play.
 cfbd_play_stats_types():Gets CFBD play stat types.
 cfbd_play_types():Gets CFBD play types
 
-
+ year_vector &amp;lt;- 2020
+ week_vector &amp;lt;- 1:3
+ weekly_year_df &amp;lt;- expand.grid(year = year_vector, week = week_vector)
+ tictoc::tic()
+ year_split &amp;lt;- split(weekly_year_df, weekly_year_df$year)
+ for (i in 1:length(year_split)) {
+   i &amp;lt;- 1
+   future::plan(&quot;multisession&quot;)
+   progressr::with_progress({
+      year_split[[i]] &amp;lt;- year_split[[i]] %&amp;gt;%
+         dplyr::mutate(
+            pbp = purrr::map2(
+                .x = year,
+                .y = week,
+                cfbd_plays,
+                season_type = &quot;both&quot;
+            )
+         )
+     Sys.sleep(1)
+   })
+ }
+ 
+ tictoc::toc()
+ year_split &amp;lt;- lapply(year_split, function(x) {
+     x %&amp;gt;% tidyr::unnest(pbp, names_repair = &quot;minimal&quot;)
+ })
+ 
+ all_years &amp;lt;- dplyr::bind_rows(year_split)
+ glimpse(all_years)
+cfbd_play_stats_player(game_id = 401110722)
+cfbd_play_stats_types()
+cfbd_play_types()
 " />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
@@ -317,6 +348,9 @@ cfbd_play_types():Gets CFBD play types
     </li>
   </ul>
 </li>
+<li>
+  <a></a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -362,8 +396,39 @@ cfbd_play_types():Gets CFBD play types
 <dt><code>cfbd_play_stats_types()</code>:</dt><dd><p>Gets CFBD play stat types.</p></dd>
 <dt><code>cfbd_play_types()</code>:</dt><dd><p>Gets CFBD play types</p></dd>
 
-</dl>
-
+</dl><p><div class="r"></p><pre> <span class='va'>year_vector</span> <span class='op'>&lt;-</span> <span class='fl'>2020</span>
+ <span class='va'>week_vector</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>
+ <span class='va'>weekly_year_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='va'>year_vector</span>, week <span class='op'>=</span> <span class='va'>week_vector</span><span class='op'>)</span>
+ <span class='fu'>tictoc</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tictoc/man/tic.html'>tic</a></span><span class='op'>(</span><span class='op'>)</span>
+ <span class='va'>year_split</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>weekly_year_df</span>, <span class='va'>weekly_year_df</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+ <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>year_split</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+   <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+   <span class='fu'>future</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/future/man/plan.html'>plan</a></span><span class='op'>(</span><span class='st'>"multisession"</span><span class='op'>)</span>
+   <span class='fu'>progressr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/progressr/man/with_progress.html'>with_progress</a></span><span class='op'>(</span><span class='op'>{</span>
+      <span class='va'>year_split</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>year_split</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
+         <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+            pbp <span class='op'>=</span> <span class='fu'>purrr</span><span class='fu'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>map2</a></span><span class='op'>(</span>
+                .x <span class='op'>=</span> <span class='va'>year</span>,
+                .y <span class='op'>=</span> <span class='va'>week</span>,
+                <span class='va'>cfbd_plays</span>,
+                season_type <span class='op'>=</span> <span class='st'>"both"</span>
+            <span class='op'>)</span>
+         <span class='op'>)</span>
+     <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+   <span class='op'>}</span><span class='op'>)</span>
+ <span class='op'>}</span>
+ 
+ <span class='fu'>tictoc</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tictoc/man/tic.html'>toc</a></span><span class='op'>(</span><span class='op'>)</span>
+ <span class='va'>year_split</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>year_split</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+     <span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/nest.html'>unnest</a></span><span class='op'>(</span><span class='va'>pbp</span>, names_repair <span class='op'>=</span> <span class='st'>"minimal"</span><span class='op'>)</span>
+ <span class='op'>}</span><span class='op'>)</span>
+ 
+ <span class='va'>all_years</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>year_split</span><span class='op'>)</span>
+ <span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>all_years</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre><span class='fu'>cfbd_play_stats_player</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401110722</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre><span class='fu'>cfbd_play_stats_types</span><span class='op'>(</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre><span class='fu'>cfbd_play_types</span><span class='op'>(</span><span class='op'>)</span>
+</pre><p></div></p>
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_plays</span><span class='op'>(</span>

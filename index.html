@@ -259,6 +259,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a></a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -291,6 +294,7 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div id="cfbfastr-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#cfbfastr-" class="anchor"></a><strong>cfbfastR</strong> <a href="http://saiemgilani.github.io/cfbfastR"><img src="reference/figures/logo.png" align="right" height="150"></a>
@@ -322,10 +326,13 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a><strong>Breaking Changes</strong>
 </h2>
-<div id="v121" class="section level3">
-<h3 class="hasAnchor">
-<a href="#v121" class="anchor"></a><strong>v1.2.1</strong>
-</h3>
+</div>
+</div>
+<div id="cfbfastr-v121" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbfastr-v121" class="anchor"></a><strong>cfbfastR v1.2.1</strong>
+</h1>
+<p><a href="https://saiemgilani.github.io/cfbfastR/news/index.html"><strong>Full News on Releases</strong></a></p>
 <div id="minor-release" class="section level5">
 <h5 class="hasAnchor">
 <a href="#minor-release" class="anchor"></a><strong>Minor release</strong>
@@ -349,12 +356,14 @@
 <li><p>Completed documentation for all returns except <code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code></p></li>
 <li><p>Continued work on intro vignette</p></li>
 </ul>
+<details><p><summary>View More Version News</summary></p>
+</details>
 </div>
 </div>
-<div id="v120" class="section level3">
-<h3 class="hasAnchor">
-<a href="#v120" class="anchor"></a><strong>v1.2.0</strong>
-</h3>
+<div id="cfbfastr-v120" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbfastr-v120" class="anchor"></a><strong>cfbfastR v1.2.0</strong>
+</h1>
 <div id="add-significant-documentation-to-the-package" class="section level4">
 <h4 class="hasAnchor">
 <a href="#add-significant-documentation-to-the-package" class="anchor"></a><strong>Add significant documentation to the package</strong>
@@ -394,16 +403,16 @@
 </ul>
 </div>
 </div>
-<div id="v110" class="section level3">
-<h3 class="hasAnchor">
-<a href="#v110" class="anchor"></a><strong>v1.1.0</strong>
-</h3>
+<div id="cfbfastr-v110" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbfastr-v110" class="anchor"></a><strong>cfbfastR v1.1.0</strong>
+</h1>
 <div id="add-loading-from-data-repository-functionality" class="section level4">
 <h4 class="hasAnchor">
 <a href="#add-loading-from-data-repository-functionality" class="anchor"></a><strong>Add loading from Data Repository functionality</strong>
 </h4>
 <ul>
-<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html"><code>load_cfb_pbp()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html"><code>update_cfb_db()</code></a> functions. Pretty much piggy-backing on the <code>nflfastR</code> methodology of loading data from the <a href="https://github.com/saiemgilani/cfbfastR-data/"><code>cfbfastR-data</code></a> repository.</li>
+<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html"><code>load_cfb_pbp()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html"><code>update_cfb_db()</code></a> functions. Pretty much cherry-picking the <code>nflfastR</code> methodology of loading data from the <a href="https://github.com/saiemgilani/cfbfastR-data/"><code>cfbfastR-data</code></a> repository.</li>
 </ul>
 </div>
 <div id="add-support-for-parallel-processing-and-progress-updates" class="section level4">
@@ -415,10 +424,10 @@
 </ul>
 </div>
 </div>
-<div id="v100" class="section level3">
-<h3 class="hasAnchor">
-<a href="#v100" class="anchor"></a><strong>v1.0.0</strong>
-</h3>
+<div id="cfbfastr-v100" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbfastr-v100" class="anchor"></a><strong>cfbfastR v1.0.0</strong>
+</h1>
 <div id="function-naming-convention-change" class="section level4">
 <h4 class="hasAnchor">
 <a href="#function-naming-convention-change" class="anchor"></a><strong>Function Naming Convention Change</strong>
@@ -426,20 +435,19 @@
 <ul>
 <li><p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR). One additional <code>cfbd_</code> function has been added that corresponds to the result when <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> has the parameter <code>epa_wpa=FALSE</code>. It has now been separated into its own function for clarity <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html"><code>cfbd_plays()</code></a>. The parameter and functionality still exists in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> but we expect this function will still exist but made obsolete in favor of a function more closely matching <code>nflfastR</code>’s naming conventions.</p></li>
 <li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
-<li><p>Data generated from any of the <a href="https://saiemgilani.github.io/cfbfastR/"><code>cfbfastR</code></a> methods will use <code>cfb_</code></p></li>
+<li><p>Data generated from any of the <code>cfbfastR</code> methods will use <code>cfb_</code></p></li>
 </ul>
 </div>
-<div id="collegefootballdata-api-keys" class="section level4">
+<div id="college-football-data-api-keys" class="section level4">
 <h4 class="hasAnchor">
-<a href="#collegefootballdata-api-keys" class="anchor"></a><strong>CollegeFootballData API Keys</strong>
+<a href="#college-football-data-api-keys" class="anchor"></a><strong>College Football Data API Keys</strong>
 </h4>
 <p>The <a href="https://collegefootballdata.com/">CollegeFootballData API</a> now requires an API key, here’s a quick run-down:</p>
 <ul>
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key">College Football Data Key Registration.</a></p></li>
-<li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .REnviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>).</p></li>
+<li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .REnviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a> and THEN paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
 </ul>
-<p>Run <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a> and THEN paste the following in the new script that pops up (with<strong>out</strong> quotations)</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre></div>
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
@@ -449,8 +457,6 @@
 <ul>
 <li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</li>
 </ul>
-</div>
-</div>
 </div>
 <div id="current-issues" class="section level2">
 <h2 class="hasAnchor">
@@ -600,6 +606,7 @@
 </ul>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

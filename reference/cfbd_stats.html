@@ -65,7 +65,23 @@ cfbd_stats_season_player():Get Season Statistics by Player.
 
 
 
-cfbd_stats_categories() This function identifies all Stats Categories identified in the regular stats endpoint." />
+cfbd_stats_categories() This function identifies all Stats Categories identified in the regular stats endpoint.cfbd_stats_game_advanced(year = 2018, week = 12, team = &quot;Texas A&amp;amp;M&quot;)
+
+cfbd_stats_game_advanced(2019, team = &quot;LSU&quot;)
+
+cfbd_stats_game_advanced(2013, team = &quot;Florida State&quot;)
+cfbd_stats_season_advanced(2019, team = &quot;LSU&quot;)
+cfbd_stats_season_player(year = 2018, conference = &quot;B12&quot;, start_week = 1, end_week = 7)
+
+cfbd_stats_season_player(2019, team = &quot;LSU&quot;, category = &quot;passing&quot;)
+
+cfbd_stats_season_player(2013, team = &quot;Florida State&quot;, category = &quot;passing&quot;)
+cfbd_stats_season_team(year = 2018, conference = &quot;B12&quot;, start_week = 1, end_week = 8)
+
+cfbd_stats_season_team(2019, team = &quot;LSU&quot;)
+
+cfbd_stats_season_team(2013, team = &quot;Florida State&quot;)
+" />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
 <meta name="twitter:card" content="summary_large_image" />
@@ -320,6 +336,9 @@ cfbd_stats_categories() This function identifies all Stats Categories identified
     </li>
   </ul>
 </li>
+<li>
+  <a></a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -369,7 +388,23 @@ cfbd_stats_categories() This function identifies all Stats Categories identified
 
 </dl>
 
-<p><code>cfbd_stats_categories()</code> This function identifies all Stats Categories identified in the regular stats endpoint.</p>
+<p><code>cfbd_stats_categories()</code> This function identifies all Stats Categories identified in the regular stats endpoint.<div class="r"></p><pre><span class='fu'>cfbd_stats_game_advanced</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>12</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_stats_game_advanced</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"LSU"</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_stats_game_advanced</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre><span class='fu'>cfbd_stats_season_advanced</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"LSU"</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre><span class='fu'>cfbd_stats_season_player</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>"B12"</span>, start_week <span class='op'>=</span> <span class='fl'>1</span>, end_week <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_stats_season_player</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"LSU"</span>, category <span class='op'>=</span> <span class='st'>"passing"</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_stats_season_player</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, category <span class='op'>=</span> <span class='st'>"passing"</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre><span class='fu'>cfbd_stats_season_team</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>"B12"</span>, start_week <span class='op'>=</span> <span class='fl'>1</span>, end_week <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_stats_season_team</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"LSU"</span><span class='op'>)</span>
+
+<span class='fu'>cfbd_stats_season_team</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</pre><p></div></p>
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_stats_categories</span><span class='op'>(</span><span class='op'>)</span>

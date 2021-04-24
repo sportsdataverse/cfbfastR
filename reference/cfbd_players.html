@@ -61,6 +61,11 @@ cfbd_player_info():Player Information Search.
 cfbd_player_returning():Player Returning Production.
 cfbd_player_usage():Player Usage.
 
+ cfbd_player_info(search_term = &quot;James&quot;, position = &quot;DB&quot;, team = &quot;Florida State&quot;, year = 2017)
+
+ cfbd_player_info(search_term = &quot;Lawrence&quot;, team = &quot;Clemson&quot;)
+ cfbd_player_returning(year = 2019, team = &quot;Florida State&quot;)
+ cfbd_player_usage(year = 2019, position = &quot;WR&quot;, team = &quot;Florida State&quot;)
 
 " />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
@@ -317,6 +322,9 @@ cfbd_player_usage():Player Usage.
     </li>
   </ul>
 </li>
+<li>
+  <a></a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -362,8 +370,13 @@ cfbd_player_usage():Player Usage.
 <dt><code>cfbd_player_returning()</code>:</dt><dd><p>Player Returning Production.</p></dd>
 <dt><code>cfbd_player_usage()</code>:</dt><dd><p>Player Usage.</p></dd>
 
-</dl>
+</dl><p><div class="r"></p><pre> <span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
 
+ <span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre> <span class='fu'>cfbd_player_returning</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</pre><p></div><div class="r"></p><pre> <span class='fu'>cfbd_player_usage</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, position <span class='op'>=</span> <span class='st'>"WR"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+
+</pre><p></div></p>
     </div>
 
     <pre class="usage"><span class='fu'>cfbd_player_info</span><span class='op'>(</span>
@@ -512,7 +525,8 @@ Can be found using the <code>cfbd_player_info()</code> function.</p></td>
 </div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
 #&gt; 1    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16
 #&gt;   position        home_town team_color team_color_secondary
-#&gt; 1       QB Cartersville, GA    #F66733              #522d80</div><div class='input'><span class='co'># }</span>
+#&gt; 1       QB Cartersville, GA    #F66733              #522d80</div><div class='input'>
+<span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='fu'>cfbd_player_returning</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>

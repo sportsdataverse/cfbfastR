@@ -309,6 +309,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a></a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -346,6 +349,134 @@
       
     </div>
 
+    <div id="cfbfastr-v121" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1">
+<a href="#cfbfastr-v121" class="anchor"></a><strong>cfbfastR v1.2.1</strong>
+</h1>
+<div id="minor-release" class="section level5">
+<h5 class="hasAnchor">
+<a href="#minor-release" class="anchor"></a><strong>Minor release</strong>
+</h5>
+<ul>
+<li><p>Added headshot_url to outputs of <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_teams.html"><code>cfbd_team_rosters</code></a></p></li>
+<li>
+<p>Renamed returns in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_games.html"><code>cfbd_game_advanced()</code></a>:</p>
+<ul>
+<li>
+<code>rushing_line_yd_avg</code> to plural <code>rushing_line_yds_avg</code>
+</li>
+<li>
+<code>rushing_second_lvl_yd_avg</code> to plural <code>rushing_second_lvl_yds_avg</code>
+</li>
+<li>
+<code>rushing_open_field_yd_avg</code> to plural <code>rushing_open_field_yds_avg</code>
+</li>
+</ul>
+</li>
+<li><p>Completed documentation for all returns except <code><a href="../reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code></p></li>
+<li><p>Continued work on intro vignette</p></li>
+</ul>
+</div>
+</div>
+    <div id="cfbfastr-v120-1" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.0-1">
+<a href="#cfbfastr-v120-1" class="anchor"></a><strong>cfbfastR v1.2.0-1</strong>
+</h1>
+<div id="add-significant-documentation-to-the-package" class="section level4">
+<h4 class="hasAnchor">
+<a href="#add-significant-documentation-to-the-package" class="anchor"></a><strong>Add significant documentation to the package</strong>
+</h4>
+<ul>
+<li>Added mini-vignettes pertaining to CFB Data functionality:
+<ul>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html"><code>cfbd_betting</code></a>,</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html"><code>cfbd_games</code></a>,</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html"><code>cfbd_plays</code></a>,<br>
+</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html"><code>cfbd_recruiting</code></a>,<br>
+</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html"><code>cfbd_stats</code></a>,</li>
+<li><a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html"><code>cfbd_teams</code></a></li>
+</ul>
+</li>
+<li>
+<a href="https://saiemgilani.github.io/cfbfastR/articles/intro.html">Introductory vignette stub</a> added</li>
+</ul>
+</div>
+<div id="espncfbd-metrics-function-variable-return-standardization" class="section level4">
+<h4 class="hasAnchor">
+<a href="#espncfbd-metrics-function-variable-return-standardization" class="anchor"></a><strong>ESPN/CFBD metrics function variable return standardization</strong>
+</h4>
+<ul>
+<li>Change <code>id</code> variable to <code>team_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a>
+</li>
+<li>Changed <code>espn_game_id</code> variable to <code>game_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a>, corrected the <code>away_win_percentage</code> calculation and added <code>tie_percentage</code> to the returns.</li>
+<li>Change <code>id</code> variable to <code>athlete_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics.html"><code>cfbd_metrics_ppa_players_season()</code></a>
+</li>
+</ul>
+</div>
+</div>
+    <div id="cfbfastr-v110" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.0">
+<a href="#cfbfastr-v110" class="anchor"></a><strong>cfbfastR v1.1.0</strong>
+</h1>
+<div id="add-loading-from-data-repository-functionality" class="section level4">
+<h4 class="hasAnchor">
+<a href="#add-loading-from-data-repository-functionality" class="anchor"></a><strong>Add loading from Data Repository functionality</strong>
+</h4>
+<ul>
+<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html"><code>load_cfb_pbp()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html"><code>update_cfb_db()</code></a> functions. Pretty much cherry-picking the <code>nflfastR</code> methodology of loading data from the <a href="https://github.com/saiemgilani/cfbfastR-data/"><code>cfbfastR-data</code></a> repository.</li>
+</ul>
+</div>
+<div id="add-support-for-parallel-processing-and-progress-updates" class="section level4">
+<h4 class="hasAnchor">
+<a href="#add-support-for-parallel-processing-and-progress-updates" class="anchor"></a><strong>Add support for parallel processing and progress updates</strong>
+</h4>
+<ul>
+<li>Added <a href="https://furrr.futureverse.org/index.html"><code>furrr</code></a>, <a href="https://future.futureverse.org/"><code>future</code></a>, and <a href="https://progressr.futureverse.org/"><code>progressr</code></a> dependencies to the package to allow for parallel processing of the play-by-play data with progress updates if desired.</li>
+</ul>
+</div>
+</div>
+    <div id="cfbfastr-v100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#cfbfastr-v100" class="anchor"></a><strong>cfbfastR v1.0.0</strong>
+</h1>
+<div id="function-naming-convention-change" class="section level4">
+<h4 class="hasAnchor">
+<a href="#function-naming-convention-change" class="anchor"></a><strong>Function Naming Convention Change</strong>
+</h4>
+<ul>
+<li><p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR). One additional <code>cfbd_</code> function has been added that corresponds to the result when <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> has the parameter <code>epa_wpa=FALSE</code>. It has now been separated into its own function for clarity <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html"><code>cfbd_plays()</code></a>. The parameter and functionality still exists in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> but we expect this function will still exist but made obsolete in favor of a function more closely matching <code>nflfastR</code>’s naming conventions.</p></li>
+<li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
+<li><p>Data generated from any of the <code>cfbfastR</code> methods will use <code>cfb_</code></p></li>
+</ul>
+</div>
+<div id="college-football-data-api-keys" class="section level4">
+<h4 class="hasAnchor">
+<a href="#college-football-data-api-keys" class="anchor"></a><strong>College Football Data API Keys</strong>
+</h4>
+<p>The <a href="https://collegefootballdata.com/">CollegeFootballData API</a> now requires an API key, here’s a quick run-down:</p>
+<ul>
+<li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key">College Football Data Key Registration.</a></p></li>
+<li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .REnviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a> and THEN paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre></div>
+<ul>
+<li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
+</ul>
+<pre class="{r}"><code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")</a></code></pre>
+<ul>
+<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</li>
+</ul>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
