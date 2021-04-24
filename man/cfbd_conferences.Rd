@@ -3,7 +3,7 @@
 \name{cfbd_conferences}
 \alias{cfbd_conferences}
 \alias{conferences}
-\title{CFBD Conferences Endpoint}
+\title{\strong{CFBD Conferences Endpoint Overview}}
 \source{
 \url{https://api.collegefootballdata.com/conferences}
 }

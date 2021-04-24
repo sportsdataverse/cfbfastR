@@ -4,7 +4,7 @@
 \alias{register_cfbd}
 \alias{cfbd_key}
 \alias{has_cfbd_key}
-\title{CFBD API Key Registration}
+\title{\strong{CFBD API Key Registration}}
 \usage{
 cfbd_key()
 

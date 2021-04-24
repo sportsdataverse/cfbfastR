@@ -1,6 +1,7 @@
 #' @name cfbd_betting
 #' @aliases betting cfbd_betting cfbd_betting_lines
-#' @title CFBD Betting Lines Endpoint
+#' @title 
+#' **CFBD Betting Lines Endpoint Overview**
 #' @description Get betting lines information from games
 #' ```r
 #'  cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")

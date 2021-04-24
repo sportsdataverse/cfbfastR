@@ -1,17 +1,42 @@
 #' @name cfbd_games
-#' @aliases cfbd_games cfbd_game_info cfbd_calendar cfbd_game_media cfbd_game_box_advanced cfbd_game_player_stats cfbd_game_records cfbd_game_team_stats
-#' @title CFBD Games Endpoint
+#' @aliases cfbd_games 
+#' @title 
+#' **CFBD Games Endpoint Overview**
 #' @description Get results, statistics and information for games\cr
 #' \describe{
-#'   \item{`cfbd_game_info()`:}{Get results information from games.}
-#'   \item{`cfbd_calendar()`:}{Calendar - Returns calendar of weeks by season.}
-#'   \item{`cfbd_game_media()`:}{Get Game media information (TV, radio, etc).}
 #'   \item{`cfbd_game_box_advanced()`:}{Get game advanced box score information.}
 #'   \item{`cfbd_game_player_stats()`:}{Get results information from games.}
-#'   \item{`cfbd_game_records()`:}{Get Team records by year.}
-#'   \item{`cfbd_game_team_stats()`:}{Get Team Statistics by Game.}
+#'   \item{`cfbd_game_team_stats()`:}{Get team statistics by game.}
+#'   \item{`cfbd_game_info()`:}{Get results information from games.}
+#'   \item{`cfbd_game_records()`:}{Get team records by year.}
+#'   \item{`cfbd_calendar()`:}{Calendar - returns calendar of weeks by season.}
+#'   \item{`cfbd_game_media()`:}{Get game media information (TV, radio, etc).}
 #' }
 #' @details
+#' 
+#' ### **Get game advanced box score information.**
+#' ```r
+#' cfbd_game_box_advanced(game_id = 401114233)
+#' ```
+#' ### **Get player statistics by game**
+#' ```r
+#' cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+#'
+#' cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+#' ```
+#' ### **Get team records by year**
+#' ```r
+#' cfbd_game_records(2018, team = "Notre Dame")
+#'
+#' cfbd_game_records(2013, team = "Florida State")
+#' ```
+#' ### **Get team statistics by game**
+#' ```r
+#' cfbd_game_team_stats(2019, team = "LSU")
+#'
+#' cfbd_game_team_stats(2013, team = "Florida State")
+#' ```
+#' ### **Get results information from games.**
 #' ```r
 #' cfbd_game_info(2018, week = 1)
 #'
@@ -20,58 +45,19 @@
 #' # 7 OTs LSU @ TAMU
 #' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
 #' ```
+#' ### **Calendar - returns calendar of weeks by season.**
 #' ```r
 #' cfbd_calendar(2019)
 #' ```
+#' ### **Get game media information (TV, radio, etc).**
 #' ```r
 #' cfbd_game_media(2019, week = 4, conference = "ACC")
 #' ```
-#' ```r
-#' cfbd_game_box_advanced(game_id = 401114233)
-#' ```
-#' ```r
-#' cfbd_game_player_stats(2018, week = 15, conference = "Ind")
-#'
-#' cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
-#' ```
-#' ```r
-#' cfbd_game_records(2018, team = "Notre Dame")
-#'
-#' cfbd_game_records(2013, team = "Florida State")
-#' ```
-#' ```r
-#' cfbd_game_team_stats(2019, team = "LSU")
-#'
-#' cfbd_game_team_stats(2013, team = "Florida State")
-#' ```
 #' 
-#' @examples
-#' \donttest{
-#'   cfbd_game_info(2018, week = 1)
-#'
-#'   cfbd_game_info(2018, week = 7, conference = "Ind")
-#'
-#'   # 7 OTs LSU @ TAMU
-#'   cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-#' 
-#'   cfbd_calendar(2019)
-#' 
-#'   cfbd_game_media(2019, week = 4, conference = "ACC")
-#'   
-#'   cfbd_game_box_advanced(game_id = 401114233)
-#'   
-#'   cfbd_game_player_stats(2018, week = 15, conference = "Ind")
-#'
-#'   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
-#' 
-#'   cfbd_game_records(2018, team = "Notre Dame")
-#'
-#'   cfbd_game_records(2013, team = "Florida State")
-#'   
-#'   cfbd_game_team_stats(2019, team = "LSU")
-#'
-#'   cfbd_game_team_stats(2013, team = "Florida State")
-#' }
+NULL
+
+#' @title 
+#' **Get results information from games.**
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
@@ -122,6 +108,16 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
+#' @examples
+#' \donttest{
+#'   cfbd_game_info(2018, week = 1)
+#'
+#'   cfbd_game_info(2018, week = 7, conference = "Ind")
+#'
+#'   # 7 OTs LSU @ TAMU
+#'   cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+#' }
+
 cfbd_game_info <- function(year,
                            week = NULL,
                            season_type = "regular",
@@ -249,7 +245,8 @@ cfbd_game_info <- function(year,
   return(df)
 }
 
-#' @rdname cfbd_games
+#' @title  
+#' **Calendar - returns calendar of weeks by season.**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_calendar()] - A data frame with 5 variables:
@@ -269,6 +266,11 @@ cfbd_game_info <- function(year,
 #' @importFrom assertthat assert_that
 #' @importFrom glue glue
 #' @export
+#' @examples
+#' \donttest{
+#'   cfbd_calendar(2019)
+#' }
+
 cfbd_calendar <- function(year,
                           verbose = FALSE) {
 
@@ -321,7 +323,8 @@ cfbd_calendar <- function(year,
   return(df)
 }
 
-#' @rdname cfbd_games
+#' @title 
+#' **Get game media information (TV, radio, etc).**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default both): Select Season Type, regular, postseason, or both
@@ -359,6 +362,10 @@ cfbd_calendar <- function(year,
 #' @importFrom dplyr rename select
 #' @importFrom tidyr everything pivot_wider
 #' @export
+#' @examples
+#' \donttest{
+#'   cfbd_game_media(2019, week = 4, conference = "ACC")
+#' }
 cfbd_game_media <- function(year,
                             week = NULL,
                             season_type = "both",
@@ -463,7 +470,8 @@ cfbd_game_media <- function(year,
 }
 
 
-#' @rdname cfbd_games
+#' @title 
+#' **Get game advanced box score information.**
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param long (\emph{Logical} default `FALSE`): Return the data in a long format.
@@ -553,6 +561,11 @@ cfbd_game_media <- function(year,
 #' @import tidyr
 #' @import purrr
 #' @export
+#' @examples
+#' \donttest{
+#'  cfbd_game_box_advanced(game_id = 401114233)
+#' }
+#' 
 
 cfbd_game_box_advanced <- function(game_id, long = FALSE,
                                    verbose = FALSE) {
@@ -668,7 +681,8 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
   return(df)
 }
 
-#' @rdname cfbd_games
+#' @title 
+#' **Get player statistics by game**
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
@@ -731,6 +745,12 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #' @import tidyr
 #' @import purrr
 #' @export
+#' @examples
+#' \donttest{
+#'   cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+#'
+#'   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+#' }
 
 cfbd_game_player_stats <- function(year,
                                    week = NULL,
@@ -893,7 +913,8 @@ cfbd_game_player_stats <- function(year,
 
 
 
-#' @rdname cfbd_games
+#' @title 
+#' **Get team records by year**
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
@@ -932,6 +953,12 @@ cfbd_game_player_stats <- function(year,
 #' @import dplyr
 #' @import tidyr
 #' @export
+#' @examples
+#' \donttest{
+#'   cfbd_game_records(2018, team = "Notre Dame")
+#'
+#'   cfbd_game_records(2013, team = "Florida State")
+#' }
 
 cfbd_game_records <- function(year, 
                               team = NULL, 
@@ -1024,7 +1051,8 @@ cfbd_game_records <- function(year,
 
 
 
-#' @rdname cfbd_games
+#' @title 
+#' **Get team statistics by game**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
@@ -1130,6 +1158,12 @@ cfbd_game_records <- function(year,
 #' @import tidyr
 #' @import purrr
 #' @export
+#' @examples
+#' \donttest{
+#'   cfbd_game_team_stats(2019, team = "LSU")
+#'
+#'   cfbd_game_team_stats(2013, team = "Florida State")
+#' }
 
 cfbd_game_team_stats <- function(year,
                                  week = NULL,

@@ -3,7 +3,7 @@
 \name{espn_metrics}
 \alias{espn_metrics}
 \alias{espn_metrics_wp}
-\title{ESPN Metrics}
+\title{\strong{ESPN Metrics}}
 \source{
 \url{https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07}
 }
@@ -26,7 +26,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 }
 \description{
-ESPN Metrics
+\strong{ESPN Metrics}
 
 Get win probability chart data from ESPN
 Graciously contributed by MrCaseB:

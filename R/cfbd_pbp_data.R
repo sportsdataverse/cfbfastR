@@ -1,7 +1,9 @@
 #' @name cfbd_pbp_data
 #' @aliases play-by-play pbp_data cfbd_pbp_data
-#' @title CFBD Play by Play Data
-#' @description Extract CFB (D-I) Play by Play Data - For plays
+#' @title 
+#' **Get college football play by play data with cfbfastR expected points/win probability added**
+#' @description 
+#' Extract college football (D-I) play by play Data - for plays
 #' @source \url{https://api.collegefootballdata.com/plays}
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
@@ -766,7 +768,8 @@ cfbd_pbp_data <- function(year,
 #' @name helpers_pbp
 #' @aliases add_play_counts clean_drive_dat prep_epa_df_after clean_drive_info 
 #' add_player_cols add_yardage clean_pbp_dat penalty_detection
-#' @title Series of functions to help clean the play-by-play data for analysis
+#' @title 
+#' **Series of functions to help clean the play-by-play data for analysis**
 #' @description 
 #' \describe{
 #' \item{`add_play_counts()`: function}{Adds play counts to Play-by-Play data pulled from the API's raw game data.}

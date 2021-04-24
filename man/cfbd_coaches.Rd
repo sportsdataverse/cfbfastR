@@ -3,7 +3,7 @@
 \name{cfbd_coaches}
 \alias{cfbd_coaches}
 \alias{coaches}
-\title{CFBD Coaches Endpoint}
+\title{\strong{CFBD Coaches Endpoint Overview}}
 \source{
 \url{https://api.collegefootballdata.com/coaches}
 }

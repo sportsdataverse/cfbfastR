@@ -1,4 +1,5 @@
-#' @title CFBD Venues Endpoint
+#' @title 
+#' **CFBD Venues Endpoint Overview**
 #' @description Pulls all college football venues and data on capacity, grass, city/state, location,
 #' elevation, dome, timezone and construction year.
 #' @details CFB Venue Information

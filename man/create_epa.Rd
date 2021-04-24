@@ -3,7 +3,7 @@
 \name{create_epa}
 \alias{create_epa}
 \alias{epa_fg_probs}
-\title{Create EPA}
+\title{\strong{Create EPA}}
 \usage{
 create_epa(play_df, ep_model, fg_model)
 

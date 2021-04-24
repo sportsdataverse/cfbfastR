@@ -2,451 +2,56 @@
 % Please edit documentation in R/cfbd_games.R
 \name{cfbd_games}
 \alias{cfbd_games}
-\alias{cfbd_game_info}
-\alias{cfbd_calendar}
-\alias{cfbd_game_media}
-\alias{cfbd_game_box_advanced}
-\alias{cfbd_game_player_stats}
-\alias{cfbd_game_records}
-\alias{cfbd_game_team_stats}
-\title{CFBD Games Endpoint}
-\source{
-\url{https://api.collegefootballdata.com/games}
-
-\url{https://api.collegefootballdata.com/calendar}
-
-\url{https://api.collegefootballdata.com/games/media}
-
-\url{https://api.collegefootballdata.com/game/box/advanced}
-
-\url{https://api.collegefootballdata.com/games/players}
-
-\url{https://api.collegefootballdata.com/records}
-
-\url{https://api.collegefootballdata.com/games/teams}
-}
-\usage{
-cfbd_game_info(
-  year,
-  week = NULL,
-  season_type = "regular",
-  team = NULL,
-  home_team = NULL,
-  away_team = NULL,
-  conference = NULL,
-  game_id = NULL,
-  quarter_scores = FALSE,
-  verbose = FALSE
-)
-
-cfbd_calendar(year, verbose = FALSE)
-
-cfbd_game_media(
-  year,
-  week = NULL,
-  season_type = "both",
-  team = NULL,
-  conference = NULL,
-  media_type = NULL,
-  verbose = FALSE
-)
-
-cfbd_game_box_advanced(game_id, long = FALSE, verbose = FALSE)
-
-cfbd_game_player_stats(
-  year,
-  week = NULL,
-  season_type = "regular",
-  team = NULL,
-  conference = NULL,
-  category = NULL,
-  game_id = NULL,
-  verbose = FALSE
-)
-
-cfbd_game_records(year, team = NULL, conference = NULL, verbose = FALSE)
-
-cfbd_game_team_stats(
-  year,
-  week = NULL,
-  season_type = "regular",
-  team = NULL,
-  conference = NULL,
-  game_id = NULL,
-  rows_per_team = 1,
-  verbose = FALSE
-)
-}
-\arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
-
-\item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
-
-\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
-
-\item{team}{(\emph{String} optional): D-I Team}
-
-\item{home_team}{(\emph{String} optional): Home D-I Team}
-
-\item{away_team}{(\emph{String} optional): Away D-I Team}
-
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
-
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
-
-\item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
-list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.\cr
-I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
-
-\item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
-
-\item{long}{(\emph{Logical} default \code{FALSE}): Return the data in a long format.}
-
-\item{category}{(\emph{String} optional): Category filter (e.g defensive)\cr
-Offense: passing, receiving, rushing\cr
-Defense: defensive, fumbles, interceptions\cr
-Special Teams: punting, puntReturns, kicking, kickReturns\cr}
-
-\item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
-}
-\value{
-\code{\link[=cfbd_game_info]{cfbd_game_info()}} - A data frame with 22 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{start_date}: character.}{Game date.}
-\item{\code{start_time_tbd}: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
-\item{\code{neutral_site}: logical.}{TRUE/FALSE flag for the game taking place at a neutral site.}
-\item{\code{conference_game}: logical.}{TRUE/FALSE flag for this game qualifying as a conference game.}
-\item{\code{attendance}: integer.}{Reported attendance at the game.}
-\item{\code{venue_id}: integer.}{Referencing venue id.}
-\item{\code{venue}: character.}{Venue name.}
-\item{\code{home_id}: integer.}{Home team referencing id.}
-\item{\code{home_team}: character.}{Home team name.}
-\item{\code{home_conference}: character.}{Home team conference.}
-\item{\code{home_points}: integer.}{Home team points.}
-\item{\code{home_post_win_prob}: character.}{Home team post-game win probability.}
-\item{\code{away_id}: integer.}{Away team referencing id.}
-\item{\code{away_team}: character.}{Away team name.}
-\item{\code{away_conference}: character.}{Away team conference.}
-\item{\code{away_points}: integer.}{Away team points.}
-\item{\code{away_post_win_prob}: character.}{Away team post-game win probability.}
-\item{\code{excitement_index}: character.}{Game excitement index.}
-}
-
-\code{\link[=cfbd_calendar]{cfbd_calendar()}} - A data frame with 5 variables:
-\describe{
-\item{\code{season}: character.}{Calendar season.}
-\item{\code{week}: integer.}{Calendar game week.}
-\item{\code{season_type}: character}{Season type of calendar week.}
-\item{\code{first_game_start}: character.}{First game start time of the calendar week.}
-\item{\code{last_game_start}: character.}{Last game start time of the calendar week.}
-}
-
-\code{\link[=cfbd_game_media]{cfbd_game_media()}} - A data frame with 13 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{start_time}: character.}{Game start time.}
-\item{\code{is_start_time_tbd}: logical.}{TRUE/FALSE flag for if the start time is still to be determined.}
-\item{\code{home_team}: character.}{Home team of the game.}
-\item{\code{home_conference}: character.}{Conference of the home team.}
-\item{\code{away_team}: character.}{Away team of the game.}
-\item{\code{away_conference}: character.}{Conference of the away team.}
-\item{\code{tv}: list.}{TV broadcast networks.}
-\item{\code{radio}: logical.}{Radio broadcast networks.}
-\item{\code{web}: list.}{Web viewing platforms carrying the game.}
-}
-
-\code{\link[=cfbd_game_box_advanced]{cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:
-\describe{
-\item{\code{team}: character.}{Team name.}
-\item{\code{plays}: double.}{Number of plays.}
-\item{\code{ppa_overall_total}: double.}{Predicted points added (PPA) overall total.}
-\item{\code{ppa_overall_quarter1}: double.}{Predicted points added (PPA) overall Q1.}
-\item{\code{ppa_overall_quarter2}: double.}{Predicted points added (PPA) overall Q2.}
-\item{\code{ppa_overall_quarter3}: double.}{Predicted points added (PPA) overall Q3.}
-\item{\code{ppa_overall_quarter4}: double.}{Predicted points added (PPA) overall Q4.}
-\item{\code{ppa_passing_total}: double.}{Passing predicted points added (PPA) total.}
-\item{\code{ppa_passing_quarter1}: double.}{Passing predicted points added (PPA) Q1.}
-\item{\code{ppa_passing_quarter2}: double.}{Passing predicted points added (PPA) Q2.}
-\item{\code{ppa_passing_quarter3}: double.}{Passing predicted points added (PPA) Q3.}
-\item{\code{ppa_passing_quarter4}: double.}{Passing predicted points added (PPA) Q4.}
-\item{\code{ppa_rushing_total}: double.}{Rushing predicted points added (PPA) total.}
-\item{\code{ppa_rushing_quarter1}: double.}{Rushing predicted points added (PPA) Q1.}
-\item{\code{ppa_rushing_quarter2}: double.}{Rushing predicted points added (PPA) Q2.}
-\item{\code{ppa_rushing_quarter3}: double.}{Rushing predicted points added (PPA) Q3.}
-\item{\code{ppa_rushing_quarter4}: double.}{Rushing predicted points added (PPA) Q4.}
-\item{\code{cumulative_ppa_plays}: double.}{Cumulative predicted points added (PPA) added total.}
-\item{\code{cumulative_ppa_overall_total}: double.}{Cumulative predicted points added (PPA) total.}
-\item{\code{cumulative_ppa_overall_quarter1}: double.}{Cumulative predicted points added (PPA) Q1.}
-\item{\code{cumulative_ppa_overall_quarter2}: double.}{Cumulative predicted points added (PPA) Q2.}
-\item{\code{cumulative_ppa_overall_quarter3}: double.}{Cumulative predicted points added (PPA) Q3.}
-\item{\code{cumulative_ppa_overall_quarter4}: double.}{Cumulative predicted points added (PPA) Q4.}
-\item{\code{cumulative_ppa_passing_total}: double.}{Cumulative passing predicted points added (PPA) total.}
-\item{\code{cumulative_ppa_passing_quarter1}: double.}{Cumulative passing predicted points added (PPA) Q1.}
-\item{\code{cumulative_ppa_passing_quarter2}: double.}{Cumulative passing predicted points added (PPA) Q2.}
-\item{\code{cumulative_ppa_passing_quarter3}: double.}{Cumulative passing predicted points added (PPA) Q3.}
-\item{\code{cumulative_ppa_passing_quarter4}: double.}{Cumulative passing predicted points added (PPA) Q4.}
-\item{\code{cumulative_ppa_rushing_total}: double.}{Cumulative rushing predicted points added (PPA) total.}
-\item{\code{cumulative_ppa_rushing_quarter1}: double.}{Cumulative rushing predicted points added (PPA) Q1.}
-\item{\code{cumulative_ppa_rushing_quarter2}: double.}{Cumulative rushing predicted points added (PPA) Q2.}
-\item{\code{cumulative_ppa_rushing_quarter3}: double.}{Cumulative rushing predicted points added (PPA) Q3.}
-\item{\code{cumulative_ppa_rushing_quarter4}: double.}{Cumulative rushing predicted points added (PPA) Q4.}
-\item{\code{success_rates_overall_total}: double.}{Success rates overall total.}
-\item{\code{success_rates_overall_quarter1}: double.}{Success rates overall Q1.}
-\item{\code{success_rates_overall_quarter2}: double.}{Success rates overall Q2.}
-\item{\code{success_rates_overall_quarter3}: double.}{Success rates overall Q3.}
-\item{\code{success_rates_overall_quarter4}: double.}{Success rates overall Q4.}
-\item{\code{success_rates_standard_downs_total}: double.}{Success rates standard downs total.}
-\item{\code{success_rates_standard_downs_quarter1}: double.}{Success rates standard downs Q1.}
-\item{\code{success_rates_standard_downs_quarter2}: double.}{Success rates standard downs Q2.}
-\item{\code{success_rates_standard_downs_quarter3}: double.}{Success rates standard downs Q3.}
-\item{\code{success_rates_standard_downs_quarter4}: double.}{Success rates standard downs Q4.}
-\item{\code{success_rates_passing_downs_total}: double.}{Success rates passing downs total.}
-\item{\code{success_rates_passing_downs_quarter1}: double.}{Success rates passing downs Q1.}
-\item{\code{success_rates_passing_downs_quarter2}: double.}{Success rates passing downs Q2.}
-\item{\code{success_rates_passing_downs_quarter3}: double.}{Success rates passing downs Q3.}
-\item{\code{success_rates_passing_downs_quarter4}: double.}{Success rates passing downs Q4.}
-\item{\code{explosiveness_overall_total}: double.}{Explosiveness rates overall total.}
-\item{\code{explosiveness_overall_quarter1}: double.}{Explosiveness rates overall Q1.}
-\item{\code{explosiveness_overall_quarter2}: double.}{Explosiveness rates overall Q2.}
-\item{\code{explosiveness_overall_quarter3}: double.}{Explosiveness rates overall Q3.}
-\item{\code{explosiveness_overall_quarter4}: double.}{Explosiveness rates overall Q4.}
-\item{\code{rushing_power_success}: double.}{Rushing power success rate.}
-\item{\code{rushing_stuff_rate}: double.}{Rushing stuff rate.}
-\item{\code{rushing_line_yds}: double.}{Rushing offensive line yards.}
-\item{\code{rushing_line_yds_avg}: double.}{Rushing line yards average.}
-\item{\code{rushing_second_lvl_yds}: double.}{Rushing second-level yards.}
-\item{\code{rushing_second_lvl_yds_avg}: double.}{Average second level yards per rush.}
-\item{\code{rushing_open_field_yds}: double.}{Rushing open field yards.}
-\item{\code{rushing_open_field_yds_avg}: double.}{Average rushing open field yards average.}
-\item{\code{havoc_total}: double.}{Total havoc rate.}
-\item{\code{havoc_front_seven}: double.}{Front-7 players havoc rate.}
-\item{\code{havoc_db}: double.}{Defensive back players havoc rate.}
-\item{\code{scoring_opps_opportunities}: double.}{Number of scoring opportunities.}
-\item{\code{scoring_opps_points}: double.}{Points on scoring opportunity drives.}
-\item{\code{scoring_opps_pts_per_opp}: double.}{Points per scoring opportunity drives.}
-\item{\code{field_pos_avg_start}: double.}{Average starting field position.}
-\item{\code{field_pos_avg_starting_predicted_pts}: double.}{Average starting predicted points (PP) for the average starting field position.}
-}
-
-\code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{home_away}: character.}{Flag for if the team was the home or away team.}
-\item{\code{points}: integer.}{Team points.}
-\item{\code{category}: character.}{Statistic category.}
-\item{\code{athlete_id}: character.}{Athlete referencing id.}
-\item{\code{name}: character.}{Player name.}
-\item{\code{c_att}: character.}{Completions - Pass attempts.}
-\item{\code{yds}: double.}{Statistic yardage.}
-\item{\code{avg}: double.}{Average per statistic.}
-\item{\code{td}: double.}{Touchdowns scored.}
-\item{\code{int}: double.}{Interceptions thrown.}
-\item{\code{qbr}: double.}{Quarterback rating.}
-\item{\code{car}: double.}{Number of rushing carries.}
-\item{\code{long}: double.}{Longest carry/reception of the game.}
-\item{\code{rec}: double.}{Number of pass receptions.}
-\item{\code{no}: double.}{Player number.}
-\item{\code{fg}: character.}{Field goal attempts in the game.}
-\item{\code{pct}: double.}{Field goal percentage in the game.}
-\item{\code{xp}: character.}{Extra points kicked in the game.}
-\item{\code{pts}: double.}{Total kicking points in the game.}
-\item{\code{tb}: double.}{Touchbacks (for kicking) in the game.}
-\item{\code{in_20}: double.}{Punts inside the 20 yardline in the game.}
-\item{\code{fum}: double.}{Player fumbles in the game.}
-\item{\code{lost}: double.}{Player fumbles lost in the game.}
-\item{\code{tot}: double.}{Total tackles in the game.}
-\item{\code{solo}: double.}{Solo tackles in the game.}
-\item{\code{sacks}: double.}{Total sacks in the game.}
-\item{\code{tfl}: double.}{Total tackles for loss in the game.}
-\item{\code{pd}: double.}{Total passes defensed in the game.}
-\item{\code{qb_hur}: double.}{Total quarterback hurries in the game.}
-}
-
-\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 20 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the games.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{division}: character.}{Division in the conference of the team.}
-\item{\code{total_games}: integer.}{Total number of games played.}
-\item{\code{total_wins}: integer.}{Total wins.}
-\item{\code{total_losses}: integer.}{Total losses.}
-\item{\code{total_ties}: integer.}{Total ties.}
-\item{\code{conference_games}: integer.}{Number of conference games.}
-\item{\code{conference_wins}: integer.}{Total conference wins.}
-\item{\code{conference_losses}: integer.}{Total conference losses.}
-\item{\code{conference_ties}: integer.}{Total conference ties.}
-\item{\code{home_games}: integer.}{Total home games.}
-\item{\code{home_wins}: integer.}{Total home wins.}
-\item{\code{home_losses}: integer.}{Total home losses.}
-\item{\code{home_ties}: integer.}{Total home ties.}
-\item{\code{away_games}: integer.}{Total away games.}
-\item{\code{away_wins}: integer.}{Total away wins.}
-\item{\code{away_losses}: integer.}{Total away losses.}
-\item{\code{away_ties}: integer.}{Total away ties.}
-}
-
-\code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}} - A data frame with 78 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{home_away}: character.}{Home/Away Flag.}
-\item{\code{points}: integer.}{Team points.}
-\item{\code{total_yards}: character.}{Team total yards.}
-\item{\code{net_passing_yards}: character.}{Team net passing yards.}
-\item{\code{completion_attempts}:character.}{Team completion attempts.}
-\item{\code{passing_tds}: character.}{Team passing touchdowns.}
-\item{\code{yards_per_pass}: character.}{Team game yards per pass.}
-\item{\code{passes_intercepted}: character.}{Team passes intercepted.}
-\item{\code{interception_yards}: character.}{Interception yards.}
-\item{\code{interception_tds}: character.}{Interceptions returned for a touchdown.}
-\item{\code{rushing_attempts}: character.}{Team rushing attempts. see also: ESTABLISH IT.}
-\item{\code{rushing_yards}: character.}{Team rushing yards.}
-\item{\code{rush_tds}: character.}{Team rushing touchdowns.}
-\item{\code{yards_per_rush_attempt}: character.}{Team yards per rush attempt.}
-\item{\code{first_downs}: character.}{First downs earned by the team.}
-\item{\code{third_down_eff}: character.}{Third down efficiency.}
-\item{\code{fourth_down_eff}: character.}{Fourth down efficiency.}
-\item{\code{punt_returns}: character.}{Team punt returns.}
-\item{\code{punt_return_yards}: character.}{Team punt return yards.}
-\item{\code{punt_return_tds}: character.}{Team punt return touchdowns.}
-\item{\code{kick_return_yards}: character.}{Team kick return yards.}
-\item{\code{kick_return_tds}: character.}{Team kick return touchdowns.}
-\item{\code{kick_returns}: character.}{Team kick returns.}
-\item{\code{kicking_points}: character.}{Team points from kicking the ball.}
-\item{\code{fumbles_recovered}: character.}{Team fumbles recovered.}
-\item{\code{fumbles_lost}: character.}{Team fumbles lost.}
-\item{\code{total_fumbles}: character.}{Team total fumbles.}
-\item{\code{tackles}: character.}{Team tackles.}
-\item{\code{tackles_for_loss}: character.}{Team tackles for a loss.}
-\item{\code{sacks}: character.}{Team sacks.}
-\item{\code{qb_hurries}: character.}{Team QB hurries.}
-\item{\code{interceptions}: character.}{Team interceptions.}
-\item{\code{passes_deflected}: character.}{Team passes deflected.}
-\item{\code{turnovers}: character.}{Team turnovers.}
-\item{\code{defensive_tds}: character.}{Team defensive touchdowns.}
-\item{\code{total_penalties_yards}: character.}{Team total penalty yards.}
-\item{\code{possession_time}: character.}{Team time of possession.}
-\item{\code{conference_allowed}: character.}{Conference of the opponent team.}
-\item{\code{home_away_allowed}: character.}{Flag for if the opponent was the home or away team.}
-\item{\code{points_allowed}: integer.}{Points for the opponent.}
-\item{\code{total_yards_allowed}: character.}{Opponent total yards.}
-\item{\code{net_passing_yards_allowed}: character.}{Opponent net passing yards.}
-\item{\code{completion_attempts_allowed}: character.}{Oppponent completion attempts.}
-\item{\code{passing_tds_allowed}: character.}{Opponent passing TDs.}
-\item{\code{yards_per_pass_allowed}: character.}{Opponent yards per pass allowed.}
-\item{\code{passes_intercepted_allowed}: character.}{Opponent passes intercepted.}
-\item{\code{interception_yards_allowed}: character.}{Opponent interception yards.}
-\item{\code{interception_tds_allowed}: character.}{Opponent interception TDs.}
-\item{\code{rushing_attempts_allowed}: character.}{Opponent rushing attempts.}
-\item{\code{rushing_yards_allowed}: character.}{Opponent rushing yards.}
-\item{\code{rush_tds_allowed}: character.}{Opponent rushing touchdownss.}
-\item{\code{yards_per_rush_attempt_allowed}: character.}{Opponent rushing yards per attempt.}
-\item{\code{first_downs_allowed}: character.}{Opponent first downs.}
-\item{\code{third_down_eff_allowed}: character.}{Opponent third down efficiency.}
-\item{\code{fourth_down_eff_allowed}: character.}{Opponent fourth down efficiency.}
-\item{\code{punt_returns_allowed}: character.}{Opponent punt returns.}
-\item{\code{punt_return_yards_allowed}: character.}{Opponent punt return yards.}
-\item{\code{punt_return_tds_allowed}: character.}{Opponent punt return touchdowns.}
-\item{\code{kick_return_yards_allowed}: character.}{Opponent kick return yards.}
-\item{\code{kick_return_tds_allowed}: character.}{Opponent kick return touchdowns.}
-\item{\code{kick_returns_allowed}: character.}{Opponent kick returns.}
-\item{\code{kicking_points_allowed}: character.}{Opponent points from kicking.}
-\item{\code{fumbles_recovered_allowed}: character.}{Opponent fumbles recovered.}
-\item{\code{fumbles_lost_allowed}: character.}{Opponent fumbles lost.}
-\item{\code{total_fumbles_allowed}:character.}{Opponent total number of fumbles.}
-\item{\code{tackles_allowed}:character.}{Opponent tackles.}
-\item{\code{tackles_for_loss_allowed}: character.}{Opponent tackles for loss.}
-\item{\code{sacks_allowed}: character.}{Opponent sacks.}
-\item{\code{qb_hurries_allowed}: character.}{Opponent quarterback hurries.}
-\item{\code{interceptions_allowed}: character.}{Opponent interceptions.}
-\item{\code{passes_deflected_allowed}: character.}{Opponent passes deflected.}
-\item{\code{turnovers_allowed}: character.}{Opponent turnovers.}
-\item{\code{defensive_tds_allowed}: character.}{Opponent defensive touchdowns.}
-\item{\code{total_penalties_yards_allowed}: character.}{Opponent total penalty yards.}
-\item{\code{possession_time_allowed}: character.}{Opponent time of possession.}
-}
-}
+\title{\strong{CFBD Games Endpoint Overview}}
 \description{
 Get results, statistics and information for games\cr
 \describe{
-\item{\code{cfbd_game_info()}:}{Get results information from games.}
-\item{\code{cfbd_calendar()}:}{Calendar - Returns calendar of weeks by season.}
-\item{\code{cfbd_game_media()}:}{Get Game media information (TV, radio, etc).}
 \item{\code{cfbd_game_box_advanced()}:}{Get game advanced box score information.}
 \item{\code{cfbd_game_player_stats()}:}{Get results information from games.}
-\item{\code{cfbd_game_records()}:}{Get Team records by year.}
-\item{\code{cfbd_game_team_stats()}:}{Get Team Statistics by Game.}
+\item{\code{cfbd_game_team_stats()}:}{Get team statistics by game.}
+\item{\code{cfbd_game_info()}:}{Get results information from games.}
+\item{\code{cfbd_game_records()}:}{Get team records by year.}
+\item{\code{cfbd_calendar()}:}{Calendar - returns calendar of weeks by season.}
+\item{\code{cfbd_game_media()}:}{Get game media information (TV, radio, etc).}
 }
 }
 \details{
-\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_info(2018, week = 1)
+\subsection{\strong{Get game advanced box score information.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_box_advanced(game_id = 401114233)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player statistics by game}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+
+cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get team records by year}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_records(2018, team = "Notre Dame")
+
+cfbd_game_records(2013, team = "Florida State")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get team statistics by game}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_team_stats(2019, team = "LSU")
+
+cfbd_game_team_stats(2013, team = "Florida State")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get results information from games.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_info(2018, week = 1)
 
 cfbd_game_info(2018, week = 7, conference = "Ind")
 
 # 7 OTs LSU @ TAMU
 cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_calendar(2019)
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_media(2019, week = 4, conference = "ACC")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_box_advanced(game_id = 401114233)
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_player_stats(2018, week = 15, conference = "Ind")
-
-cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_records(2018, team = "Notre Dame")
-
-cfbd_game_records(2013, team = "Florida State")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_team_stats(2019, team = "LSU")
-
-cfbd_game_team_stats(2013, team = "Florida State")
 }\if{html}{\out{</div>}}
 }
-\examples{
-\donttest{
-  cfbd_game_info(2018, week = 1)
 
-  cfbd_game_info(2018, week = 7, conference = "Ind")
+\subsection{\strong{Calendar - returns calendar of weeks by season.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_calendar(2019)
+}\if{html}{\out{</div>}}
+}
 
-  # 7 OTs LSU @ TAMU
-  cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-
-  cfbd_calendar(2019)
-
-  cfbd_game_media(2019, week = 4, conference = "ACC")
-  
-  cfbd_game_box_advanced(game_id = 401114233)
-  
-  cfbd_game_player_stats(2018, week = 15, conference = "Ind")
-
-  cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
-
-  cfbd_game_records(2018, team = "Notre Dame")
-
-  cfbd_game_records(2013, team = "Florida State")
-  
-  cfbd_game_team_stats(2019, team = "LSU")
-
-  cfbd_game_team_stats(2013, team = "Florida State")
+\subsection{\strong{Get game media information (TV, radio, etc).}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_game_media(2019, week = 4, conference = "ACC")
+}\if{html}{\out{</div>}}
 }
 }
-\keyword{Advanced}
-\keyword{Box}
-\keyword{Game}
-\keyword{Info}
-\keyword{Score}
-\keyword{Stats}
-\keyword{Team}

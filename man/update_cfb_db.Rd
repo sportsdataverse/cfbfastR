@@ -6,7 +6,7 @@
 \alias{cfb}
 \alias{database}
 \alias{cfb_pbp_db}
-\title{Update or Create a cfbfastR Play-by-Play Database}
+\title{\strong{Update or create a cfbfastR play-by-play database}}
 \usage{
 update_cfb_db(
   dbdir = ".",

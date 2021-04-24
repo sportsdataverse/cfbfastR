@@ -1,7 +1,8 @@
 #' @name create_wpa 
 #' @aliases create_wpa_naive wpa_calcs_naive
-#' @title Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
-#' @description  This is only for D1 football
+#' @title **Create WPA**
+#' @description  Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
+#' This is only for D1 football
 #' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @param wp_model (\emph{model} default cfbfastR:wp_model): Win Probability (WP) Model
 #' @details Requires the following columns to be present in the input data frame.

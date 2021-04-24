@@ -2,166 +2,16 @@
 % Please edit documentation in R/cfbd_teams.R
 \name{cfbd_teams}
 \alias{cfbd_teams}
-\alias{cfbd_team_info}
-\alias{cfbd_team_matchup_records}
-\alias{cfbd_team_matchup}
-\alias{cfbd_team_roster}
-\alias{cfbd_team_talent}
-\title{CFBD Teams Endpoint}
-\source{
-\url{https://api.collegefootballdata.com/teams}
-
-\url{https://api.collegefootballdata.com/teams/matchup}
-
-\url{https://api.collegefootballdata.com/teams/matchup}
-
-\url{https://api.collegefootballdata.com/roster}
-
-\url{https://api.collegefootballdata.com/talent}
-}
-\usage{
-cfbd_team_info(
-  conference = NULL,
-  only_fbs = TRUE,
-  year = NULL,
-  verbose = FALSE
-)
-
-cfbd_team_matchup_records(
-  team1,
-  team2,
-  min_year = NULL,
-  max_year = NULL,
-  verbose = FALSE
-)
-
-cfbd_team_matchup(
-  team1,
-  team2,
-  min_year = NULL,
-  max_year = NULL,
-  verbose = FALSE
-)
-
-cfbd_team_roster(year, team = NULL, verbose = FALSE)
-
-cfbd_team_talent(year = NULL, verbose = FALSE)
-}
-\arguments{
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
-
-\item{only_fbs}{(\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.\cr
-If year is left blank while only_fbs is TRUE, then will return values for most current year}
-
-\item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
-
-\item{team1}{(\emph{String} required): D-I Team 1}
-
-\item{team2}{(\emph{String} required): D-I Team 2}
-
-\item{min_year}{(\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})}
-
-\item{max_year}{(\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})}
-
-\item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
-}
-\value{
-\code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 12 variables:
-\describe{
-\item{\code{team_id}: integer.}{Referencing team id.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{mascot}: character.}{Team mascot.}
-\item{\code{abbreviation}: character.}{Team abbreviations.}
-\item{\code{alt_name1}: character.}{Team alternate name 1 (as it appears in \code{play_text}).}
-\item{\code{alt_name2}: character.}{Team alternate name 2 (as it appears in \code{play_text}).}
-\item{\code{alt_name3}: character.}{Team alternate name 3 (as it appears in \code{play_text}).}
-\item{\code{conference}: character.}{Conference of team.}
-\item{\code{division}: character.}{Division of team within the conference.}
-\item{\code{color}: character.}{Team color (primary).}
-\item{\code{alt_color}: character.}{Team color (alternate).}
-\item{\code{logos}: character.}{Team logos.}
-\item{\code{venue_id}: character.}{Referencing venue id.}
-\item{\code{venue_name}: character.}{Stadium name.}
-\item{\code{city}: character.}{Team/venue city.}
-\item{\code{state}: character.}{Team/venue state.}
-\item{\code{zip}: character.}{Team/venue zip code (someone double check Miami (FL) on if they're in the same zip code).}
-\item{\code{country_code}: character.}{Team/venue country code.}
-\item{\code{timezone}: character.}{Team/venue timezone.}
-\item{\code{latitude}: character.}{Venue latitude.}
-\item{\code{longitude}: character.}{Venue longitude.}
-\item{\code{elevation}: character.}{Venue elevation.}
-\item{\code{capacity}: character.}{Venue capacity.}
-\item{\code{year_constructed}: character.}{Year the venue was constructed.}
-\item{\code{grass}: character.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
-\item{\code{dome}: character.}{TRUE/FALSE flag for if the venue is a domed stadium.}
-}
-
-\code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}} - A data frame with 7 variables:
-\describe{
-\item{\code{start_year}: character.}{Span starting year.}
-\item{\code{end_year}: character.}{Span ending year.}
-\item{\code{team1}: character.}{First team selected in query.}
-\item{\code{team1_wins}: character.}{First team wins in series against \code{team2}.}
-\item{\code{team2}: character.}{Second team selected in query.}
-\item{\code{team2_wins}: character.}{Second team wins in series against \code{team1}.}
-\item{\code{ties}: character.}{Number of ties in the series.}
-}
-
-\link{cfbd_team_matchup} - A data frame with 11 variables:
-\describe{
-\item{\code{season}: integer.}{Season the game took place.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{date}: character.}{Game date.}
-\item{\code{neutral_site}: logical.}{TRUE/FALSE flag for if the game took place at a neutral site.}
-\item{\code{venue}: character.}{Stadium name.}
-\item{\code{home_team}: character.}{Home team of the game.}
-\item{\code{home_score}: integer.}{Home score in the game.}
-\item{\code{away_team}: character.}{Away team of the game.}
-\item{\code{away_score}: integer.}{Away score in the game.}
-\item{\code{winner}: character.}{Winner of the matchup.}
-}
-
-\code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 12 variables:
-\describe{
-\item{\code{athlete_id}: character.}{Referencing athlete id.}
-\item{\code{first_name}: character.}{Athlete first name.}
-\item{\code{last_name}: character.}{Athlete last name.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{weight}: integer.}{Athlete weight.}
-\item{\code{height}: integer.}{Athlete height.}
-\item{\code{jersey}: integer.}{Athlete jersey number.}
-\item{\code{year}: integer.}{Athlete year.}
-\item{\code{position}: character.}{Athlete position.}
-\item{\code{home_city}: character.}{Hometown of the athlete.}
-\item{\code{home_state}: character.}{Hometown state of the athlete.}
-\item{\code{home_country}: character.}{Hometown country of the athlete.}
-\item{\code{home_latitude}: numeric.}{Hometown latitude.}
-\item{\code{home_longitude}: number.}{Hometown longitude.}
-\item{\code{home_county_fips}: integer.}{Hometown FIPS code.}
-\item{\code{headshot_url}: character}{Player ESPN headshot url.}
-}
-
-\code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:
-\describe{
-\item{\code{year}: integer.}{Season for the talent rating.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{talent}: double.}{Overall roster talent points (as determined by 247Sports).}
-}
-}
+\title{\strong{CFBD Teams Endpoint Overview}}
 \description{
 \describe{
 \item{\code{cfbd_team_info()}:}{Team Info Lookup.}
-\item{\code{cfbd_team_matchup_records()}:}{Get matchup history records between two teams.}
-\item{\code{cfbd_team_matchup()}:}{Get matchup history between two teams.}
 \item{\code{cfbd_team_roster()}:}{Get a team's full roster by year.}
 \item{\code{cfbd_team_talent()}:}{Get composite team talent rankings for all teams in a given year.}
+\item{\code{cfbd_team_matchup_records()}:}{Get matchup history records between two teams.}
+\item{\code{cfbd_team_matchup()}:}{Get matchup history between two teams.}
 }
-\subsection{Team Info Lookup}{
+\subsection{\strong{Team info lookup}}{
 
 Lists all teams in conference or all D-I teams if conference is left NULL
 Currently, support is only provided for D-I\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_info(conference = "SEC")
@@ -169,60 +19,40 @@ Currently, support is only provided for D-I\if{html}{\out{<div class="r">}}\pref
 cfbd_team_info(conference = "Ind")
 
 cfbd_team_info(year = 2019)
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_matchup("Texas A&M", "TCU")
+}\if{html}{\out{</div>}}
+}
 
-cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
+\subsection{\strong{Team rosters}}{
+\subsection{\strong{It is now possible to access yearly rosters}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_roster(year = 2020)
+}\if{html}{\out{</div>}}
+}
 
-cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
+\subsection{Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_roster(year = 2013, team = "Florida State")
+}\if{html}{\out{</div>}}
+}
 
-cfbd_team_matchup("Texas", "Oklahoma")
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_roster(year = 2013, team = "Florida State")
+\subsection{Get composite team talent rankings}{
 
-cfbd_team_talent()
+Extracts team talent composite for all teams in a given year as sourced from 247 rankings\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_talent()
 
 cfbd_team_talent(year = 2018)
 
 }\if{html}{\out{</div>}}
 }
-}
-\examples{
-\donttest{
-cfbd_team_info(conference = "SEC")
 
-cfbd_team_info(conference = "Ind")
-
-cfbd_team_info(year = 2019)
-}
-\donttest{
-cfbd_team_matchup_records("Texas", "Oklahoma")
-
-cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
-}
-
-\donttest{
-cfbd_team_matchup("Texas", "Oklahoma")
-
-cfbd_team_matchup("Texas A&M", "TCU")
+\subsection{\strong{Get matchup history between two teams.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_matchup("Texas A&M", "TCU")
 
 cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 
 cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
+}\if{html}{\out{</div>}}
 }
 
-\donttest{
-cfbd_team_roster(year = 2013, team = "Florida State")
-}
+\subsection{\strong{Get matchup history records between two teams.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_team_matchup_records("Texas", "Oklahoma")
 
-\donttest{
-cfbd_team_talent()
-
-cfbd_team_talent(year = 2018)
+cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
+}\if{html}{\out{</div>}}
 }
 
 }
-\keyword{Matchup}
-\keyword{Records}
-\keyword{Roster}
-\keyword{Team}
-\keyword{Teams}
-\keyword{talent}
+}

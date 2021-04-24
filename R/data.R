@@ -1,7 +1,7 @@
-#' CFBD Data
+#' **Data in the package for reference**
 #' @name data
 NULL
-#' College Football Mapping for Play Types
+#' **College Football Mapping for Play Types**
 #' @rdname data
 #' @keywords data
 #' @format A data frame with 45 rows and 3 variables:
@@ -15,7 +15,7 @@ NULL
 "cfbd_play_type_df"
 
 
-#' College Football Conference
+#' **College Football Conferences**
 #' @rdname data
 #' @keywords data
 #' @format A data frame with 11 rows and 4 variables:

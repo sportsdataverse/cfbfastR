@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_venues.R
 \name{cfbd_venues}
 \alias{cfbd_venues}
-\title{CFBD Venues Endpoint}
+\title{\strong{CFBD Venues Endpoint Overview}}
 \source{
 \url{https://api.collegefootballdata.com/venues}
 }

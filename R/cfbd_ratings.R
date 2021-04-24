@@ -1,7 +1,6 @@
-#' 
 #' @name cfbd_ratings
-#' @aliases cfbd_rankings cfbd_ratings_sp cfbd_ratings_sp_conference cfbd_ratings_srs
-#' @title CFBD Ratings and Rankings Endpoints
+#' @title 
+#' **CFBD Ratings and Rankings Endpoints Overview**
 #' @description
 #' \describe{
 #' \item{`cfbd_rankings()`:}{Gets Historical CFB poll rankings at a specific week.}
@@ -9,6 +8,8 @@
 #' \item{`cfbd_ratings_sp_conference()`:}{Get SP conference-level historical rating data.}
 #' \item{`cfbd_ratings_srs()`:}{Get SRS historical rating data.}
 #' }
+#' 
+#' ### **Get historical Coaches and AP poll data**
 #' ```r
 #' cfbd_rankings(year = 2019, week = 12)
 #'
@@ -16,6 +17,9 @@
 #'
 #' cfbd_rankings(year = 2013, season_type = "postseason")
 #' ```
+#' ### **Get SP historical rating data**
+#'
+#' At least one of \strong{year} or \strong{team} must be specified for the function to run
 #' ```r
 #' cfbd_ratings_sp(year = 2018)
 #'
@@ -23,6 +27,7 @@
 #'
 #' cfbd_ratings_sp(year = 2019, team = "Texas")
 #' ```
+#' ### **Get conference level SP historical rating data**
 #' ```r
 #' cfbd_ratings_sp_conference(year = 2019)
 #'
@@ -30,11 +35,17 @@
 #'
 #' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 #' ```
+#' ### **Get SRS historical rating data**
+#' 
+#' At least one of \strong{year} or \strong{team} must be specified for the function to run
 #' ```r
 #' cfbd_ratings_srs(year = 2019, team = "Texas")
 #'
 #' cfbd_ratings_srs(year = 2018, conference = "SEC")
 #' ```
+NULL
+#' @title 
+#' **Get historical Coaches and AP poll data**
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
@@ -146,10 +157,10 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
   return(polls)
 }
 
-#' Get SP historical rating data
-#'
+#' @title 
+#' **Get SP historical rating data**
+#' @description
 #' At least one of \strong{year} or \strong{team} must be specified for the function to run
-#' @rdname cfbd_ratings
 #'
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
@@ -291,8 +302,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
   return(df)
 }
 
-#' Get conference level SP historical rating data
-#' @rdname cfbd_ratings
+#' @title 
+#' **Get conference level SP historical rating data**
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
@@ -431,10 +442,10 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 }
 
 
-#' Get SRS historical rating data
-#'
+#' @title 
+#' **Get SRS historical rating data**
+#' @description
 #' At least one of \strong{year} or \strong{team} must be specified for the function to run
-#' @rdname cfbd_ratings
 #'
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team

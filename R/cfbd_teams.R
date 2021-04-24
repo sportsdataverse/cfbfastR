@@ -1,17 +1,18 @@
 #' @name cfbd_teams
-#' @aliases cfbd_team_info cfbd_team_matchup_records cfbd_team_matchup cfbd_team_roster cfbd_team_talent
-#' @title CFBD Teams Endpoint
+#' @title 
+#' **CFBD Teams Endpoint Overview**
 #' @description 
 #' \describe{
 #' \item{`cfbd_team_info()`:}{Team Info Lookup.}
-#' \item{`cfbd_team_matchup_records()`:}{Get matchup history records between two teams.}
-#' \item{`cfbd_team_matchup()`:}{Get matchup history between two teams.}
 #' \item{`cfbd_team_roster()`:}{Get a team's full roster by year.}
 #' \item{`cfbd_team_talent()`:}{Get composite team talent rankings for all teams in a given year.}
+#' \item{`cfbd_team_matchup_records()`:}{Get matchup history records between two teams.}
+#' \item{`cfbd_team_matchup()`:}{Get matchup history between two teams.}
 #' }
-#' ## Team Info Lookup
-#'   Lists all teams in conference or all D-I teams if conference is left NULL
-#'   Currently, support is only provided for D-I
+#' ## **Team info lookup**
+#' 
+#' Lists all teams in conference or all D-I teams if conference is left NULL
+#' Currently, support is only provided for D-I
 #'   
 #' ```r
 #' cfbd_team_info(conference = "SEC")
@@ -20,23 +21,44 @@
 #'
 #' cfbd_team_info(year = 2019)
 #' ```
+#' ## **Team rosters**
+#' 
+#' ### **It is now possible to access yearly rosters**
+#' ```r
+#' cfbd_team_roster(year = 2020)
+#' ```
+#' 
+#' ### Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
+#' ```r
+#' cfbd_team_roster(year = 2013, team = "Florida State")
+#' ```
+#' 
+#' ### Get composite team talent rankings 
+#' 
+#' Extracts team talent composite for all teams in a given year as sourced from 247 rankings
+#' ```r
+#' cfbd_team_talent()
+#'
+#' cfbd_team_talent(year = 2018)
+#'
+#' ```
+#' ### **Get matchup history between two teams.**
 #' ```r
 #' cfbd_team_matchup("Texas A&M", "TCU")
 #'
 #' cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 #'
 #' cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
-#' 
-#' cfbd_team_matchup("Texas", "Oklahoma")
 #' ```
+#' ### **Get matchup history records between two teams.**
 #' ```r
-#' cfbd_team_roster(year = 2013, team = "Florida State")
+#' cfbd_team_matchup_records("Texas", "Oklahoma")
 #' 
-#' cfbd_team_talent()
-#'
-#' cfbd_team_talent(year = 2018)
-#'
+#' cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 #' ```
+NULL
+#' @title 
+#' **Team info lookup**
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
@@ -206,8 +228,8 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 }
 
 
-#' @rdname cfbd_teams
-#' @title Get matchup history records between two teams.
+#' @title 
+#' **Get matchup history records between two teams.**
 #' @param team1 (\emph{String} required): D-I Team 1
 #' @param team2 (\emph{String} required): D-I Team 2
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
@@ -339,8 +361,8 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 }
 
 
-#' @rdname cfbd_teams
-#' @title Get matchup history between two teams.
+#' @title 
+#' **Get matchup history between two teams.**
 #' @param team1 (\emph{String} required): D-I Team 1
 #' @param team2 (\emph{String} required): D-I Team 2
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
@@ -468,8 +490,10 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 }
 
 
-#' @rdname cfbd_teams
-#' @title Team Roster
+
+#' @title 
+#' **Team roster**
+#' @description
 #' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'
 #' @param year (\emph{Integer} required): Year,  4 digit format (\emph{YYYY})
@@ -579,10 +603,11 @@ cfbd_team_roster <- function(year, team = NULL,
   return(df)
 }
 
-#' Get composite team talent rankings for all teams in a given year
+#' @title 
+#' **Get composite team talent rankings for all teams in a given year**\cr
+#' 
+#' @description
 #' Extracts team talent composite as sourced from 247 rankings
-#' @rdname cfbd_teams
-#'
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'

@@ -1,4 +1,4 @@
-#' ESPN Metrics
+#' **ESPN Metrics**
 #' @name espn_metrics
 NULL
 #' Get win probability chart data from ESPN

@@ -4,7 +4,7 @@
 \alias{cfbd_betting}
 \alias{cfbd_betting_lines}
 \alias{betting}
-\title{CFBD Betting Lines Endpoint}
+\title{\strong{CFBD Betting Lines Endpoint Overview}}
 \source{
 \url{https://api.collegefootballdata.com/lines}
 }
