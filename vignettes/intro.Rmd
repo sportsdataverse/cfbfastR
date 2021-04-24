@@ -32,6 +32,26 @@ Hey folks,
 
 Welcome to the football analytics community! I'm Saiem Gilani, one of the [authors](https://saiemgilani.github.io/cfbfastR/authors.html "Authors and contributors to cfbfastR") of [`cfbfastR`](https://twitter.com/cfbfastR "Follow @cfbfastR on Twitter! Tag us in your tweets using cfbfastR and we'll share it!"), and I hope to give the community a high-quality resource for accessing college football data for statistical analysis, football research, and more. I am excited to show you some of what you can do with this edition of the package.
 
+### **Installing R and RStudio**
+  1. Head to [https://cran.r-project.org](https://cran.r-project.org "The Comprehensive R Archive Network")
+  2. Select the appropriate link for your operating system (Windows, Mac OS X, or Linux)
+    - **Windows** - Select base and download the most recent version
+    - **Mac OS X** - Select Latest Release, but check to make sure your OS is the correct version. Look  through Binaries for Legacy OS X Systems if you are on an older release
+    - **Linux** - Select the appropriate distro and follow the installation instructions
+  3. Head to [RStudio.com](https://www.rstudio.com/products/rstudio/download/#download "Download the appropriate version of RStudio (Free) for your operating system to use with R")
+  4. Follow the associated download and installation instructions for RStudio.
+  5. Start peering over the [RStudio IDE Cheatsheet]("https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf"). *An IDE is an integrated development environment.*
+  
+#### **Load and install the necessary packages**
+
+```{r load_cfbfastR_tidy}
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load_current_gh("saiemgilani/cfbfastR")
+pacman::p_load(tidyverse, zoo, ggimage, gt)
+```
+
 ### **The Data**
 There are generally speaking **three** college football data sources accessed from this package:
 
@@ -52,7 +72,7 @@ However, there is only one data *provider* involved for most game data, ESPN's d
 As of `cfbfastR` version `r remote_version`, the package exports `r nrow(exported)` functions. The bulk (\~`r cfbd_funcs`) of the functions within the package serve as the unofficial R API client for the [College Football Data API](https://collegefootballdata.com).
 
 #### **CFB Data now requires an API key (it's free)**
--   Starting on April 1, 2021, the College Football Data API requires [key authentication](https://collegefootballdata.com/key), but the **key is free to acquire and use**.
+-   Since April 1, 2021, the College Football Data API requires [key authentication](https://collegefootballdata.com/key), but the **key is free to acquire and use**.
 
 -   [Follow the instructions](https://collegefootballdata.com/key) and wait for your API key to be delivered to the e-mail account associated with your key.
 
@@ -75,14 +95,6 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 
 If you have ever worked with the now archived [`cfbscrapR`](https://github.com/saiemgilani/cfbscrapR) package, most of the functions in ```cfbfastR``` should be fairly familiar with some slight changes.
 
-#### **Load and install the necessary packages**
-```{r load_cfbfastR_tidy}
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
-}
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
-pacman::p_load(tidyverse, zoo, ggimage, gt)
-```
 
 We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
 ```{r load_2014_2020, warning = FALSE}
