@@ -6,10 +6,10 @@
 \description{
 College football plays data
 \describe{
-\item{\code{cfbd_plays()}:}{CFBD's College Football Play-by-Play.}
-\item{\code{cfbd_play_stats_player()}:}{Gets player info associated by play.}
-\item{\code{cfbd_play_stats_types()}:}{Gets CFBD play stat types.}
-\item{\code{cfbd_play_types()}:}{Gets CFBD play types.}
+\item{\code{cfbd_plays()}:}{ CFBD's college football play-by-play.}
+\item{\code{cfbd_play_stats_player()}:}{ Gets player info associated by play.}
+\item{\code{cfbd_play_stats_types()}:}{ Gets CFBD play stat types.}
+\item{\code{cfbd_play_types()}:}{ Gets CFBD play types.}
 }
 \subsection{\strong{Pull first 3 weeks of 2020 season using \code{cfbd_plays()}}}{\if{html}{\out{<div class="r">}}\preformatted{ year_vector <- 2020
  week_vector <- 1:3

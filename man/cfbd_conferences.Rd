@@ -21,7 +21,7 @@ cfbd_conferences()
 }
 }
 \description{
-CFB Conference Information
+\strong{College football conference information}
 Pulls all college football conferences and returns as data frame
 You can call this function simply with:\if{html}{\out{<div class="r">}}\preformatted{cfbd_conferences()
 }\if{html}{\out{</div>}}

@@ -5,11 +5,11 @@
 \title{\strong{CFBD Stats Endpoint Overview}}
 \description{
 \describe{
-\item{\code{cfbd_stats_categories()}:}{College Football Mapping for Stats Categories.}
-\item{\code{cfbd_stats_season_team()}:}{Get Season Statistics by Team.}
-\item{\code{cfbd_stats_season_advanced()}:}{Get Season Advanced Statistics by Team.}
-\item{\code{cfbd_stats_game_advanced()}:}{Get Game Advanced Stats.}
-\item{\code{cfbd_stats_season_player()}:}{Get Season Statistics by Player.}
+\item{\code{cfbd_stats_categories()}:}{ Get college football mapping for stats categories.}
+\item{\code{cfbd_stats_season_team()}:}{ Get season statistics by team.}
+\item{\code{cfbd_stats_season_advanced()}:}{ Get season advanced statistics by team.}
+\item{\code{cfbd_stats_game_advanced()}:}{ Get game advanced stats.}
+\item{\code{cfbd_stats_season_player()}:}{ Get season statistics by player.}
 }
 \subsection{\strong{Get game advanced stats}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
 

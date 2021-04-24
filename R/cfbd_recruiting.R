@@ -5,11 +5,11 @@
 #' **CFB Recruiting Endpoint Overview**
 #' @description
 #' \describe{
-#'   \item{`cfbd_recruiting_player()`:}{Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
+#'   \item{`cfbd_recruiting_player()`:}{ Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.}
 #'   
-#'   \item{`cfbd_recruiting_position()`:}{CFB Recruiting Information Position Groups.}
+#'   \item{`cfbd_recruiting_position()`:}{ CFB Recruiting Information Position Groups.}
 #'   
-#'   \item{`cfbd_recruiting_team()`:}{CFB Recruiting Information Team Rankings.}
+#'   \item{`cfbd_recruiting_team()`:}{ CFB Recruiting Information Team Rankings.}
 #' }
 #' 
 #' ## **Get Player recruiting rankings**

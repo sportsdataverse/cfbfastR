@@ -3,11 +3,11 @@
 #' **CFBD Stats Endpoint Overview**
 #' @description 
 #' \describe{
-#' \item{`cfbd_stats_categories()`:}{College Football Mapping for Stats Categories.}
-#' \item{`cfbd_stats_season_team()`:}{Get Season Statistics by Team.}
-#' \item{`cfbd_stats_season_advanced()`:}{Get Season Advanced Statistics by Team.}
-#' \item{`cfbd_stats_game_advanced()`:}{Get Game Advanced Stats.}
-#' \item{`cfbd_stats_season_player()`:}{Get Season Statistics by Player.}
+#' \item{`cfbd_stats_categories()`:}{ Get college football mapping for stats categories.}
+#' \item{`cfbd_stats_season_team()`:}{ Get season statistics by team.}
+#' \item{`cfbd_stats_season_advanced()`:}{ Get season advanced statistics by team.}
+#' \item{`cfbd_stats_game_advanced()`:}{ Get game advanced stats.}
+#' \item{`cfbd_stats_season_player()`:}{ Get season statistics by player.}
 #' }
 #' 
 #' ### **Get game advanced stats**

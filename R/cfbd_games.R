@@ -4,13 +4,13 @@
 #' **CFBD Games Endpoint Overview**
 #' @description Get results, statistics and information for games\cr
 #' \describe{
-#'   \item{`cfbd_game_box_advanced()`:}{Get game advanced box score information.}
-#'   \item{`cfbd_game_player_stats()`:}{Get results information from games.}
-#'   \item{`cfbd_game_team_stats()`:}{Get team statistics by game.}
-#'   \item{`cfbd_game_info()`:}{Get results information from games.}
-#'   \item{`cfbd_game_records()`:}{Get team records by year.}
-#'   \item{`cfbd_calendar()`:}{Calendar - returns calendar of weeks by season.}
-#'   \item{`cfbd_game_media()`:}{Get game media information (TV, radio, etc).}
+#'   \item{`cfbd_game_box_advanced()`:}{ Get game advanced box score information.}
+#'   \item{`cfbd_game_player_stats()`:}{ Get results information from games.}
+#'   \item{`cfbd_game_team_stats()`:}{ Get team statistics by game.}
+#'   \item{`cfbd_game_info()`:}{ Get results information from games.}
+#'   \item{`cfbd_game_records()`:}{ Get team records by year.}
+#'   \item{`cfbd_calendar()`:}{ Get calendar of weeks by season.}
+#'   \item{`cfbd_game_media()`:}{ Get game media information (TV, radio, etc).}
 #' }
 #' @details
 #' 

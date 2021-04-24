@@ -68,7 +68,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 }
 \description{
-Get CFB game drives\if{html}{\out{<div class="r">}}\preformatted{cfbd_drives(2018, week = 1, team = "TCU")
+\strong{Get college football game drives}\if{html}{\out{<div class="r">}}\preformatted{cfbd_drives(2018, week = 1, team = "TCU")
 
 cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
 }\if{html}{\out{</div>}}
