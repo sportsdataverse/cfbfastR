@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get matchup history between two teams. — cfbd_team_matchup • cfbfastR</title>
+<title>Get list of NFL teams — cfbd_draft_teams • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,8 +54,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get matchup history between two teams. — cfbd_team_matchup" />
-<meta property="og:description" content="Get matchup history between two teams." />
+<meta property="og:title" content="Get list of NFL teams — cfbd_draft_teams" />
+<meta property="og:description" content="Get list of NFL teams" />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
 <meta name="twitter:card" content="summary_large_image" />
@@ -343,79 +343,101 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1><strong>Get matchup history between two teams.</strong></h1>
+    <h1><strong>Get list of NFL teams</strong></h1>
     
-    <div class="hidden name"><code>cfbd_team_matchup.Rd</code></div>
+    <div class="hidden name"><code>cfbd_draft_teams.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><strong>Get matchup history between two teams.</strong></p>
+    <p><strong>Get list of NFL teams</strong></p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_team_matchup</span><span class='op'>(</span>
-  <span class='va'>team1</span>,
-  <span class='va'>team2</span>,
-  min_year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  max_year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cfbd_draft_teams</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>team1</th>
-      <td><p>(<em>String</em> required): D-I Team 1</p></td>
-    </tr>
-    <tr>
-      <th>team2</th>
-      <td><p>(<em>String</em> required): D-I Team 2</p></td>
-    </tr>
-    <tr>
-      <th>min_year</th>
-      <td><p>(<em>Integer</em> optional): Minimum of year range, 4 digit format (<em>YYYY</em>)</p></td>
-    </tr>
-    <tr>
-      <th>max_year</th>
-      <td><p>(<em>Integer</em> optional): Maximum of year range, 4 digit format (<em>YYYY</em>)</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function</p></td>
-    </tr>
-    </table>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://api.collegefootballdata.com/teams/matchup'>https://api.collegefootballdata.com/teams/matchup</a></p>
+    <p><a href='https://api.collegefootballdata.com/draft/teams'>https://api.collegefootballdata.com/draft/teams</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>cfbd_team_matchup - A data frame with 11 variables:</p><dl>
-<dt><code>season</code>: integer.</dt><dd><p>Season the game took place.</p></dd>
-<dt><code>week</code>: integer.</dt><dd><p>Game week of the season.</p></dd>
-<dt><code>season_type</code>: character.</dt><dd><p>Season type of the game.</p></dd>
-<dt><code>date</code>: character.</dt><dd><p>Game date.</p></dd>
-<dt><code>neutral_site</code>: logical.</dt><dd><p>TRUE/FALSE flag for if the game took place at a neutral site.</p></dd>
-<dt><code>venue</code>: character.</dt><dd><p>Stadium name.</p></dd>
-<dt><code>home_team</code>: character.</dt><dd><p>Home team of the game.</p></dd>
-<dt><code>home_score</code>: integer.</dt><dd><p>Home score in the game.</p></dd>
-<dt><code>away_team</code>: character.</dt><dd><p>Away team of the game.</p></dd>
-<dt><code>away_score</code>: integer.</dt><dd><p>Away score in the game.</p></dd>
-<dt><code>winner</code>: character.</dt><dd><p>Winner of the matchup.</p></dd>
+    <p><code>cfbd_draft_teams()</code> - A data frame with 4 variables:</p><dl>
+<dt><code>nfl_location</code>: character.</dt><dd><p>NFL team location (city).</p></dd>
+<dt><code>nfl_nickname</code>: integer</dt><dd><p>NFL team nickname (mascot).</p></dd>
+<dt><code>nfl_display_name</code>: integer</dt><dd><p>NFL team display name (usually more neat/complete).</p></dd>
+<dt><code>nfl_logo</code>: character</dt><dd><p>URL for NFL team logo.</p></dd>
 
 </dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-25 01:58:25:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
-<span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-25 01:58:29:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
-<span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-25 01:58:30:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'>
-<span class='fu'>cfbd_team_matchup</span><span class='op'>(</span><span class='st'>"Florida State"</span>, <span class='st'>"Florida"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-04-25 01:58:31:Invalid arguments or no team matchup data available!</span></div><div class='output co'>#&gt; data frame with 0 columns and 0 rows</div><div class='input'><span class='co'># }</span>
+   <span class='fu'>cfbd_draft_teams</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2021-04-25 01:56:32: Invalid arguments or no NFL teams data available!</span></div><div class='output co'>#&gt;     nfl_location nfl_nickname     nfl_display_name
+#&gt; 1        Arizona    Cardinals    Arizona Cardinals
+#&gt; 2        Atlanta      Falcons      Atlanta Falcons
+#&gt; 3      Baltimore       Ravens     Baltimore Ravens
+#&gt; 4        Buffalo        Bills        Buffalo Bills
+#&gt; 5       Carolina     Panthers    Carolina Panthers
+#&gt; 6        Chicago        Bears        Chicago Bears
+#&gt; 7     Cincinnati      Bengals   Cincinnati Bengals
+#&gt; 8      Cleveland       Browns     Cleveland Browns
+#&gt; 9         Dallas      Cowboys       Dallas Cowboys
+#&gt; 10        Denver      Broncos       Denver Broncos
+#&gt; 11       Detroit        Lions        Detroit Lions
+#&gt; 12     Green Bay      Packers    Green Bay Packers
+#&gt; 13       Houston       Texans       Houston Texans
+#&gt; 14  Indianapolis        Colts   Indianapolis Colts
+#&gt; 15  Jacksonville      Jaguars Jacksonville Jaguars
+#&gt; 16   Kansas City       Chiefs   Kansas City Chiefs
+#&gt; 17     Las Vegas      Raiders    Las Vegas Raiders
+#&gt; 18   Los Angeles     Chargers Los Angeles Chargers
+#&gt; 19   Los Angeles         Rams     Los Angeles Rams
+#&gt; 20         Miami     Dolphins       Miami Dolphins
+#&gt; 21     Minnesota      Vikings    Minnesota Vikings
+#&gt; 22   New England     Patriots New England Patriots
+#&gt; 23   New Orleans       Saints   New Orleans Saints
+#&gt; 24      New York       Giants      New York Giants
+#&gt; 25      New York         Jets        New York Jets
+#&gt; 26  Philadelphia       Eagles  Philadelphia Eagles
+#&gt; 27    Pittsburgh     Steelers  Pittsburgh Steelers
+#&gt; 28 San Francisco        49ers  San Francisco 49ers
+#&gt; 29       Seattle     Seahawks     Seattle Seahawks
+#&gt; 30     Tampa Bay   Buccaneers Tampa Bay Buccaneers
+#&gt; 31     Tennessee       Titans     Tennessee Titans
+#&gt; 32    Washington         &lt;NA&gt;           Washington
+#&gt;                                                        nfl_logo
+#&gt; 1  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ari.png
+#&gt; 2  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/atl.png
+#&gt; 3  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/bal.png
+#&gt; 4  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/buf.png
+#&gt; 5  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/car.png
+#&gt; 6  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/chi.png
+#&gt; 7  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/cin.png
+#&gt; 8  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/cle.png
+#&gt; 9  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png
+#&gt; 10 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/den.png
+#&gt; 11 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/det.png
+#&gt; 12  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/gb.png
+#&gt; 13 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/hou.png
+#&gt; 14 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ind.png
+#&gt; 15 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/jax.png
+#&gt; 16  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/kc.png
+#&gt; 17  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/lv.png
+#&gt; 18 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/lac.png
+#&gt; 19 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/lar.png
+#&gt; 20 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/mia.png
+#&gt; 21 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/min.png
+#&gt; 22  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ne.png
+#&gt; 23  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/no.png
+#&gt; 24 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/nyg.png
+#&gt; 25 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/nyj.png
+#&gt; 26 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/phi.png
+#&gt; 27 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/pit.png
+#&gt; 28  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/sf.png
+#&gt; 29 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/sea.png
+#&gt; 30  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png
+#&gt; 31 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ten.png
+#&gt; 32 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/wsh.png</div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
