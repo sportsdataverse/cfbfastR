@@ -48,7 +48,7 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 [**Full News on
 Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
 
-# **cfbfastR v1.3.0**
+# **cfbfastR v1.3.1**
 
 ### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
 
