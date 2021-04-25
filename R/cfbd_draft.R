@@ -87,7 +87,7 @@ cfbd_draft_teams <- function() {
           nfl_display_name = .data$display_name,
           nfl_logo = .data$logo
         )
-      colnames(df)
+     
       if(verbose){ 
         message(glue::glue("{Sys.time()}: Scraping NFL teams data..."))
       }
