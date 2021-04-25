@@ -196,12 +196,12 @@ cfbd_draft_positions <- function() {
 #'   \item{`pre_draft_ranking`: integer}{Pre-draft ranking (ESPN).}
 #'   \item{`pre_draft_position_ranking`: integer.}{Pre-draft position ranking (ESPN).}
 #'   \item{`pre_draft_grade`: double.}{Pre-draft scouts grade (ESPN).}
-#'   \item{`city`: character.}{Hometown of the NFL draftee.}
-#'   \item{`state_province`: character.}{Hometown state of the NFL draftee.}
-#'   \item{`country`: character.}{Hometown country of the NFL draftee.}
+#'   \item{`hometown_info_city`: character.}{Hometown of the NFL draftee.}
+#'   \item{`hometown_info_state_province`: character.}{Hometown state of the NFL draftee.}
+#'   \item{`hometown_info_country`: character.}{Hometown country of the NFL draftee.}
 #'   \item{`hometown_info_latitude`: character.}{Hometown latitude of the NFL draftee.}
 #'   \item{`hometown_info_longitude`: character.}{Hometown longitude of the NFL draftee.}
-#'   \item{`hometown_info_fips_code`: character.}{Hometown FIPS code of the NFL draftee.}
+#'   \item{`hometown_info_county_fips`: character.}{Hometown FIPS code of the NFL draftee.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/draft/picks}
 #' @keywords NFL Draft Picks
