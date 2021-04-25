@@ -7,7 +7,7 @@ cols <- c(
   "nfl_team","year","overall","round","pick","name", "position",
   "height", "weight", 
   "pre_draft_ranking", "pre_draft_position_ranking", "pre_draft_grade",
-  "city", "state_province", "country","hometown_info_latitude",
+  "hometown_info_city", "hometown_info_state_province", "hometown_info_country","hometown_info_latitude",
   "hometown_info_longitude", "hometown_info_fips_code"
 )
 
