@@ -252,6 +252,11 @@ reference:
       - starts_with("cfbd_ratings_")
       - starts_with("cfbd_rankings")
       - '`espn_ratings_fpi`'
+  - subtitle: NFL Draft Data
+    desc: Functions exported by cfbfastR sourced from the draft endpoints of the CollegeFootballData API
+    contents:
+      - '`cfbd_draft`'
+      - starts_with("cfbd_draft_")
   - subtitle: Betting Data
     desc: Functions exported by cfbfastR sourced from lines endpoint of the CollegeFootballData API
     contents:

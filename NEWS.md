@@ -1,3 +1,10 @@
+# **cfbfastR v1.3.0**
+
+### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
+  - [```cfbd_draft_teams()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_teams.html) - **Get list of NFL teams**
+  - [```cfbd_draft_positions()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_positions.html) - **Get list of NFL positions for mapping to collegiate**
+  - [```cfbd_draft_picks()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_picks.html) - **Get list of NFL Draft picks**
+
 # **cfbfastR v1.2.1**
 
 ##### **Minor release**
