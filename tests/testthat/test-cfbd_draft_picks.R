@@ -8,7 +8,7 @@ cols <- c(
   "height", "weight", 
   "pre_draft_ranking", "pre_draft_position_ranking", "pre_draft_grade",
   "hometown_info_city", "hometown_info_state_province", "hometown_info_country","hometown_info_latitude",
-  "hometown_info_longitude", "hometown_info_fips_code"
+  "hometown_info_longitude", "hometown_info_county_fips"
 )
 
 test_that("NFL Draft Picks", {
