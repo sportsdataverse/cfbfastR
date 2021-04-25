@@ -46,12 +46,12 @@ cfbd_draft_picks(
 \item{\code{pre_draft_ranking}: integer}{Pre-draft ranking (ESPN).}
 \item{\code{pre_draft_position_ranking}: integer.}{Pre-draft position ranking (ESPN).}
 \item{\code{pre_draft_grade}: double.}{Pre-draft scouts grade (ESPN).}
-\item{\code{city}: character.}{Hometown of the NFL draftee.}
-\item{\code{state_province}: character.}{Hometown state of the NFL draftee.}
-\item{\code{country}: character.}{Hometown country of the NFL draftee.}
+\item{\code{hometown_info_city}: character.}{Hometown of the NFL draftee.}
+\item{\code{hometown_info_state_province}: character.}{Hometown state of the NFL draftee.}
+\item{\code{hometown_info_country}: character.}{Hometown country of the NFL draftee.}
 \item{\code{hometown_info_latitude}: character.}{Hometown latitude of the NFL draftee.}
 \item{\code{hometown_info_longitude}: character.}{Hometown longitude of the NFL draftee.}
-\item{\code{hometown_info_fips_code}: character.}{Hometown FIPS code of the NFL draftee.}
+\item{\code{hometown_info_county_fips}: character.}{Hometown FIPS code of the NFL draftee.}
 }
 }
 \description{
