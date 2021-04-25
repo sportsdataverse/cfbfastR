@@ -2,7 +2,7 @@ context("NFL Draft Picks")
 
 
 cols <- c(
-  "college_athlete_id", "athlete_id", "nfl_athlete_id",
+  "college_athlete_id", "nfl_athlete_id",
   "college_id","college_team","college_conference",
   "nfl_team","year","overall","round","pick","name", "position",
   "height", "weight", 
