@@ -116,6 +116,9 @@
       <a href="../reference/cfbd_ratings.html">Ratings</a>
     </li>
     <li>
+      <a href="../reference/cfbd_draft.html">Draft</a>
+    </li>
+    <li>
       <a href="../reference/cfbd_betting.html">Betting</a>
     </li>
     <li>
@@ -312,8 +315,34 @@
 <span class="op">}</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span><span class="op">)</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##   
+   checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpnarRgD/remotes141469c07a6f/saiemgilani-cfbfastR-a7362bb/DESCRIPTION’ ...
+  
+✔  checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpnarRgD/remotes141469c07a6f/saiemgilani-cfbfastR-a7362bb/DESCRIPTION’
+## 
+  
+─  preparing ‘cfbfastR’:
+## 
+  
+   checking DESCRIPTION meta-information ...
+  
+✔  checking DESCRIPTION meta-information
+## 
+  
+─  checking for LF line-endings in source and make files and shell scripts
+## 
+  
+─  checking for empty or unneeded directories
+## 
+  
+─  building ‘cfbfastR_1.3.1.tar.gz’
+## 
+  
+   
+## </code></pre>
 <p>To create the plot I’m going to use two functions from <code>cfbfastR</code>. The first is the <code>cfbd_team_info</code> function. I’m going to pass <code>"B1G"</code> to the function for the <code>conference</code> argument to get info for just Big Ten teams. The next function I’m going to use is the <code>cfbd_recruiting_player</code> function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I’m calling this function four times to get each year’s class. I’ll combine all of these into one large data frame with every team’s recruits. For the sake of simplicity, I am only using High School recruits as shown by the <code>recruit_type</code> argument. You can also get Prep School recruits (<code>recruit_type = "PrepSchool"</code>) or junior college recruits (<code>recruit_type = "JUCO"</code>). I also have the loop pause for 5 seconds between each team. While this causes the function to take a little longer to run it also helps with server load on the back end.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"B1G"</span><span class="op">)</span>
 <span class="va">all.recruits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="st">"rbind"</span>, <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">teams</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="st">"school"</span><span class="op">]</span><span class="op">)</span>
@@ -327,20 +356,20 @@
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">all.team</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The next step is cleaning the data. The <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player()</a></code> function gives us 14 pieces of data for each player. Our graph is going to focus on just the rating and what school they committed to. I’m going to keep the player name as well as a check field so I can go back and check my data set more quickly if I have any errors. The next line uses <code>dplyr</code> syntax to give me just the highest rated 85 recruits in order by their rating. I use this info to assign a ranking for each school’s 1-nth recruit. Finally, I use the teams data frame again so each recruits school information can be used on our graph.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recruits.limited</span> <span class="op">&lt;-</span> <span class="va">all.recruits</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">name</span>, <span class="va">rating</span>, <span class="va">committed_to</span><span class="op">)</span>
 <span class="va">recruits.sorted</span> <span class="op">&lt;-</span> <span class="va">recruits.limited</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">committed_to</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">top_n</span><span class="op">(</span><span class="fl">85</span>, <span class="va">rating</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="va">committed_to</span>, <span class="op">-</span><span class="va">rating</span><span class="op">)</span>
 <span class="va">recruits.sorted</span> <span class="op">&lt;-</span> <span class="va">recruits.sorted</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">committed_to</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>num <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">recruits.final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">recruits.sorted</span>, <span class="va">teams</span>, by.x <span class="op">=</span> <span class="st">"committed_to"</span>, by.y <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span></code></pre></div>
 <p>If you follow the Big Ten you know a lot of schools have a shade of red as their primary color. This can make some plots hard to read. Because of this I’m filtering down my data to look at just recruits who committed to a Big Ten West division school. For <code>ggplot2</code> to use a manually defined color set, I must get a vector of colors that I want, each team’s primary color, and assign each value a name corresponding to the school I’m interested in.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">big.ten.west</span> <span class="op">&lt;-</span> <span class="va">recruits.final</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">division</span> <span class="op">==</span> <span class="st">"West"</span><span class="op">)</span>
 <span class="va">big.ten.west.teams</span> <span class="op">&lt;-</span> <span class="va">teams</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">division</span> <span class="op">==</span> <span class="st">"West"</span><span class="op">)</span>
 
 <span class="va">big.ten.west.colors</span> <span class="op">&lt;-</span> <span class="va">big.ten.west.teams</span><span class="op">$</span><span class="va">color</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">big.ten.west.colors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">big.ten.west.teams</span><span class="op">$</span><span class="va">school</span></code></pre></div>
 <p>Now that we have our data collected and cleaned we finally get to the fun part - plotting. We plot each player’s rating based on the ranking of commit they are to a school. We also tell ggplot to use the manual color values we defined earlier. I added some extra horizontal lines to approximate the ratings of 3, 4, and 5 star recruits.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">big.ten.west</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">num</span>, y<span class="op">=</span><span class="va">rating</span>, color <span class="op">=</span> <span class="va">committed_to</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_line</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">big.ten.west.colors</span><span class="op">)</span> <span class="op">+</span>
