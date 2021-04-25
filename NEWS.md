@@ -1,4 +1,4 @@
-# **cfbfastR v1.3.0**
+# **cfbfastR v1.3.0-1**
 
 ### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
   - [```cfbd_draft_teams()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_teams.html) - **Get list of NFL teams**
