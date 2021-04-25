@@ -113,6 +113,8 @@ navbar:
         href: reference/cfbd_metrics.html
       - text: "Ratings"
         href: reference/cfbd_ratings.html
+      - text: "Draft"
+        href: reference/cfbd_draft.html
       - text: "Betting"
         href: reference/cfbd_betting.html
       - text: "Recruiting"
