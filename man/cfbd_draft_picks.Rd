@@ -15,6 +15,17 @@ cfbd_draft_picks(
   position = NULL
 )
 }
+\arguments{
+\item{year}{(\emph{Integer} required): NFL draft class, 4 digit format (\emph{YYYY})}
+
+\item{nfl_team}{(\emph{String}): NFL drafting team, see \code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}} for valid selections.}
+
+\item{college}{(\emph{String}): NFL draftee college team, see \code{\link[=cfbd_team_info]{cfbd_team_info()}} for valid selections.}
+
+\item{conference}{(\emph{String}): NFL draftee college team conference, see \code{\link[=cfbd_conferences]{cfbd_conferences()}} for valid selections.}
+
+\item{position}{(\emph{String}): NFL position abbreviation, see \code{\link[=cfbd_draft_positions]{cfbd_draft_positions()}} for valid selections.}
+}
 \value{
 \code{\link[=cfbd_draft_picks]{cfbd_draft_picks()}} - A data frame with 23 variables:
 \describe{

@@ -172,6 +172,11 @@ cfbd_draft_positions <- function() {
 }
 #' @title 
 #' **Get list of NFL draft picks**
+#' @param year (\emph{Integer} required): NFL draft class, 4 digit format (\emph{YYYY})
+#' @param nfl_team (\emph{String}): NFL drafting team, see [cfbd_draft_teams()] for valid selections.
+#' @param college (\emph{String}): NFL draftee college team, see [cfbd_team_info()] for valid selections.
+#' @param conference (\emph{String}): NFL draftee college team conference, see [cfbd_conferences()] for valid selections.
+#' @param position (\emph{String}): NFL position abbreviation, see [cfbd_draft_positions()] for valid selections.
 #' @return [cfbd_draft_picks()] - A data frame with 23 variables:
 #' \describe{
 #'   \item{`college_athlete_id`: integer.}{College athlete referencing id.}
