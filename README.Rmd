@@ -80,9 +80,18 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 ## **Breaking Changes**
 
-# **cfbfastR v1.2.1**
-
 [**Full News on Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
+
+# **cfbfastR v1.3.0**
+
+### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
+  - [```cfbd_draft_teams()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_teams.html) - **Get list of NFL teams**
+  - [```cfbd_draft_positions()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_positions.html) - **Get list of NFL positions for mapping to collegiate**
+  - [```cfbd_draft_picks()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_picks.html) - **Get list of NFL Draft picks**
+  
+<details><summary>View more version news</summary>
+
+# **cfbfastR v1.2.1**
 
 ##### **Minor release**
 
@@ -96,8 +105,6 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 * Completed documentation for all returns except ```cfbd_pbp_data()```
 
 * Continued work on intro vignette
-
-<details><summary>View More Version News</summary>
 
 # **cfbfastR v1.2.0**
 
