@@ -15,8 +15,8 @@
 #' @param ... Additional arguments passed to an underlying function.
 #' @return A data frame with 351 variables:
 #' \describe{
-#'   \item{`year`: double.}{.}
-#'   \item{`week`: double.}{.}
+#'   \item{`season`: double.}{.}
+#'   \item{`wk`: double.}{.}
 #'   \item{`id_play`: character.}{.}
 #'   \item{`game_id`: integer.}{.}
 #'   \item{`game_play_number`: double.}{.}
@@ -534,8 +534,8 @@ cfbd_pbp_data <- function(year,
       defense_play = .data$defense
     ) %>%
     dplyr::mutate(
-      year = year,
-      week = week
+      season = year,
+      wk = week
     )
 
   if (epa_wpa) {

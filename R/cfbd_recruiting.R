@@ -73,6 +73,8 @@ NULL
 #'
 #' @return [cfbd_recruiting_player()] - A data frame with 14 variables:
 #' \describe{
+#'   \item{`id`: integer.}{Referencing id - 247Sports.}
+#'   \item{`athlete_id`}{Athlete referencing id.}
 #'   \item{`recruit_type`: character.}{High School, Prep School, or Junior College.}
 #'   \item{`year`: integer.}{Recruit class year.}
 #'   \item{`ranking`: integer.}{Recruit Ranking.}

@@ -23,7 +23,7 @@ cfbd_draft_teams()
 }
 \examples{
 \donttest{
-   cfbd_draft_teams()
+ cfbd_draft_teams()
 }
 
 }

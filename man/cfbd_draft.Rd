@@ -10,11 +10,11 @@
 \description{
 \describe{
 \item{\code{cfbd_draft_teams()}:}{ Get list of NFL teams.}
-
 \item{\code{cfbd_draft_positions()}:}{ Get list of NFL positions for mapping to college positions.}
-
 \item{\code{cfbd_draft_picks()}:}{ Get list of NFL Draft picks.}
 }
+}
+\details{
 \subsection{\strong{Get list of NFL teams}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_draft_teams()
 }\if{html}{\out{</div>}}
 }
@@ -27,7 +27,9 @@
 \subsection{\strong{Get list of NFL Draft picks}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_draft_picks(year = 2020, college = "Texas")
 
 cfbd_draft_picks(nfl_team = "Cincinatti")
+}\if{html}{\out{</div>}}
 
+\strong{ROBERTOOOOOOOOOOOOOOOOOO}\if{html}{\out{<div class="r">}}\preformatted{cfbd_draft_picks(year = 2016, position = "PK")
 }\if{html}{\out{</div>}}
 }
 }

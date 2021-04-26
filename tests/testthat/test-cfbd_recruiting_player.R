@@ -2,7 +2,7 @@ context("CFB Recruiting Player")
 
 
 cols <- c(
-  "recruit_type", "year", "ranking",
+  "id", "athlete_id", "recruit_type", "year", "ranking",
   "name", "school", "committed_to", "position",
   "height", "weight", "stars", "rating",
   "city", "state_province", "country","hometown_info_latitude",
