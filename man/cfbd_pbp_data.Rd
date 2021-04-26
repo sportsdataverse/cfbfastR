@@ -40,8 +40,8 @@ cfbd_pbp_data(
 \value{
 A data frame with 351 variables:
 \describe{
-\item{\code{year}: double.}{.}
-\item{\code{week}: double.}{.}
+\item{\code{season}: double.}{.}
+\item{\code{wk}: double.}{.}
 \item{\code{id_play}: character.}{.}
 \item{\code{game_id}: integer.}{.}
 \item{\code{game_play_number}: double.}{.}

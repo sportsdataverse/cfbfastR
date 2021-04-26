@@ -605,7 +605,7 @@ cfbd_pbp_data <- function(year,
     #---- Select Output Ordering -----
 
     play_columns <- c(
-      "year", "week", "id_play", "game_id", "game_play_number", "half_play_number", "drive_play_number",
+      "season", "wk", "id_play", "game_id", "game_play_number", "half_play_number", "drive_play_number",
       "pos_team", "def_pos_team", "pos_team_score", "def_pos_team_score",
       "half", "period", "clock.minutes", "clock.seconds",
       "play_type", "play_text",

@@ -38,6 +38,8 @@ or 'PrepSchool'  - For position group information}
 \value{
 \code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 14 variables:
 \describe{
+\item{\code{id}: integer.}{Referencing id - 247Sports.}
+\item{\code{athlete_id}}{Athlete referencing id.}
 \item{\code{recruit_type}: character.}{High School, Prep School, or Junior College.}
 \item{\code{year}: integer.}{Recruit class year.}
 \item{\code{ranking}: integer.}{Recruit Ranking.}
