@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -155,7 +155,6 @@
 <li>
       <a href="../articles/index.html">Vignettes</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbfastR</a>
@@ -172,7 +171,6 @@
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -183,7 +181,6 @@
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">CFBD Tutorials</li>
     <li>
       <a href="../articles/cfbd_betting.html">CFBD Betting</a>
@@ -1528,19 +1525,19 @@
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-25 03:18:40:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-04-26 03:01:24:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-25 03:18:41:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-04-26 03:01:24:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-25 03:18:43:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-04-26 03:01:24:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Florida State"</span>, <span class="st">"Florida"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-04-25 03:18:45:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-04-26 03:01:24:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 </div>
 <div id="get-team-rosters" class="section level3">
@@ -1684,276 +1681,276 @@
 ## 132   -1011030      James      Wilder, Jr. Florida State    229     74     32
 ## 133   -1011031     Colton          Woodall Florida State    190     75     49
 ## 134    3122936      Mavin         Saunders Florida State    256     77     89
-##     year position          home_city home_state home_country      home_latitude
-## 1     NA       LB             Pelham         AL          USA         33.3114985
-## 2     NA       DB              Ocala         FL          USA         29.1871986
-## 3     NA       FB           Lakeland         FL          USA         28.0394654
-## 4     NA       DB            Leander         TX          USA         30.5586046
-## 5     NA       WR               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-## 6     NA       TE Palm Beach Gardens         FL          USA         26.8418256
-## 7     NA       PK           Mascotte         FL          USA         28.5783313
-## 8     NA        P            Houston         TX          USA         29.7589382
-## 9     NA       TE          Annandale         NJ          USA         40.6451477
-## 10    NA       WR        Belle Glade         FL          USA         26.6845104
-## 11    NA       DB          Dunnellon         FL          USA         29.0491426
-## 12    NA       DB             Smyrna         TN          USA         35.9828413
-## 13    NA       LB            Chicago         IL          USA         41.8755616
-## 14    NA       WR            Lubbock         TX          USA         33.5635206
-## 15    NA       WR           Lakeland         FL          USA         28.0394654
-## 16    NA       DE       Jacksonville         FL          USA         30.3321838
-## 17    NA       WR              Miami         FL          USA         25.7742658
-## 18    NA       WR            Orlando         FL          USA         28.5421109
-## 19    NA       LB        Winter Park         FL          USA        26.13784445
-## 20    NA     &lt;NA&gt;               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-## 21    NA        P          Charlotte         NC          USA            35.2272
-## 22    NA       DB        Fort Pierce         FL          USA         27.4467056
-## 23    NA       DB          Groveland         FL          USA         28.5580546
-## 24    NA       QB             Sparta         NJ          USA         41.0401567
-## 25    NA       DB           Valdosta         GA          USA         30.8327022
-## 26    NA       LB           Valdosta         GA          USA         30.8327022
-## 27    NA       CB          Oxon Hill         MD          USA         38.8035961
-## 28    NA       LB       Jacksonville         FL          USA         30.3321838
-## 29    NA       DE             Oxford         MS          USA         34.3664127
-## 30    NA       WR            Orlando         FL          USA         28.5421109
-## 31    NA     &lt;NA&gt;               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-## 32    NA       DT         Prattville         AL          USA         32.4640245
-## 33    NA       DB     Port St. Lucie         FL          USA         27.2939333
-## 34    NA       WR            Lubbock         TX          USA         33.5635206
-## 35    NA       WR        Gainesville         FL          USA         29.6519684
-## 36    NA       LB            Chicago         IL          USA         41.8755616
-## 37    NA       QB           Hueytown         AL          USA         33.4512197
-## 38    NA       RB         Cape Coral         FL          USA         26.6059432
-## 39    NA       TE         Monticello         FL          USA         30.5452022
-## 40    NA       RB             Lithia         FL          USA         27.8651063
-## 41    NA       RB          Ewa Beach         HI          USA          21.315603
-## 42    NA       DT         Greenville         FL          USA         30.4694812
-## 43    NA       WR              Tampa         FL          USA         27.9477595
-## 44    NA       RB          Davenport         FL          USA         28.1614046
-## 45    NA       RB              Miami         FL          USA         25.7742658
-## 46    NA       QB             Mobile         AL          USA         30.6943566
-## 47    NA       DB             Dothan         AL          USA         31.2237434
-## 48    NA       TE     St. Petersburg         FL          USA         27.7703796
-## 49    NA       FB             Bartow         FL          USA 27.885186599999997
-## 50    NA       LB            Decatur         GA          USA         33.7737582
-## 51    NA       DB     Ft. Lauderdale         FL          USA         26.1223084
-## 52    NA       RB               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-## 53    NA       LB            Chicago         IL          USA         41.8755616
-## 54     4       DB   District Heights         MD          USA         38.8576128
-## 55    NA       OL             Mobile         AL          USA         30.6943566
-## 56    NA       DE       Delray Beach         FL          USA         26.4614625
-## 57    NA       OL            Valrico         FL          USA         27.9484265
-## 58    NA       DB        San Antonio         TX          USA         29.4246002
-## 59    NA       DE             Mobile         AL          USA         30.6943566
-## 60    NA       LS       Ormond Beach         FL          USA         29.2854132
-## 61    NA       DT    Fort Lauderdale         FL          USA         26.1223084
-## 62    NA       DB       Jacksonville         FL          USA         30.3321838
-## 63    NA       DT       Jacksonville         FL          USA         30.3321838
-## 64    NA       DT        Fort Pierce         FL          USA         27.4467056
-## 65    NA       LS     Ft. Lauderdale         FL          USA         26.1223084
-## 66    NA        C     Ft. Lauderdale         FL          USA         26.1223084
-## 67    NA       OL            Miramar         FL          USA 25.975911449999998
-## 68    NA       DL         Wellington         FL          USA        26.63799875
-## 69    NA       OL              Miami         FL          USA         25.7742658
-## 70    NA       QB              Miami         FL          USA         25.7742658
-## 71    NA       DE            Gautier         MS          USA          30.385755
-## 72    NA       LB     Stone Mountain         GA          USA         33.8080924
-## 73    NA       OT           Moultrie         GA          USA          31.179998
-## 74    NA       QB         Plantation         FL          USA         26.1265258
-## 75    NA       WR      Miami Gardens         FL          USA         25.9423108
-## 76    NA       DT         Washington         DC          USA         38.8949855
-## 77    NA       WR             Albany         GA          USA         31.5782062
-## 78    NA       OT         Lauderhill         FL          USA         26.1567308
-## 79    NA        C             Kenner         LA          USA         29.9942265
-## 80    NA       DE              Miami         FL          USA         25.7742658
-## 81    NA        G              Jesup         GA          USA         31.6074365
-## 82    NA       OL  Fort Walton Beach         FL          USA         30.4057552
-## 83    NA       OL      Boynton Beach         FL          USA         26.5256179
-## 84    NA        G         Union City         NJ          USA         40.7795455
-## 85    NA       WR            Jupiter         FL          USA         26.9260832
-## 86    NA       LB          Bradenton         FL          USA         27.4989278
-## 87    NA       TE      Coral Springs         FL          USA        26.26485615
-## 88    NA        ?                                        USA          33.532005
-## 89    NA       LB         Wellington         FL          USA        26.63799875
-## 90    NA       DB      St. Augustine         FL          USA         29.8946952
-## 91    NA       LB          Palm City         FL          USA         27.1713925
-## 92    NA       QB        Gainesville         FL          USA         29.6519684
-## 93    NA       OL            Orlando         FL          USA         28.5421109
-## 94    NA       DE          Crestview         FL          USA         30.7621326
-## 95    NA       DB       Jacksonville         FL          USA         30.3321838
-## 96    NA       LB     Ft. Lauderdale         FL          USA         26.1223084
-## 97    NA       QB             Mobile         AL          USA         30.6943566
-## 98    NA       TE           Norcross         GA          USA         33.9412127
-## 99    NA       WR          Pensacola         FL          USA          30.421309
-## 100   NA       OL        Gainesville         FL          USA         29.6519684
-## 101   NA       DB             Oviedo         FL          USA         28.6702526
-## 102   NA       DB           Valdosta         GA          USA         30.8327022
-## 103   NA       OL         Greenville         FL          USA         30.4694812
-## 104   NA       QB           Sarasota         FL          USA         27.3364347
-## 105   NA       LB        Tallahassee         FL          USA         30.4380832
-## 106   NA        ?            Jupiter         FL          USA         26.9260832
-## 107   NA       LB     St. Petersburg         FL          USA         27.7703796
-## 108   NA       FB           Clermont         FL          USA         28.5494447
-## 109   NA       OL        Robbinsdale         MN          USA         45.0313156
-## 110   NA       PK           Maitland         FL          USA         28.6252263
-## 111   NA       WR    West Palm Beach         FL          USA          26.715364
-## 112   NA       LB        Miami Beach         FL          USA         25.7929198
-## 113   NA       DT          Lake City         FL          USA         30.1896756
-## 114   NA       DT              Miami         FL          USA         25.7742658
-## 115   NA       WR          Bradenton         FL          USA         27.4989278
-## 116   NA        P              Tampa         FL          USA         27.9477595
-## 117   NA       OL            Navarre         FL          USA         30.4019789
-## 118   NA       DT              Tampa         FL          USA         27.9477595
-## 119   NA       TE          Rockledge         FL          USA 28.313751500000002
-## 120   NA       PK          Grapevine         TX          USA         32.9337381
-## 121   NA       FB              Yulee         FL          USA         30.6319034
-## 122   NA       FB         Wellington         FL          USA        26.63799875
-## 123   NA       LB      Pompano Beach         FL          USA         26.2378597
-## 124   NA       OL               Lutz         FL          USA         28.1511243
-## 125   NA       OL    West Palm Beach         FL          USA          26.715364
-## 126   NA       LB              Terry         MS          USA         32.0962633
-## 127   NA       OL         Vero Beach         FL          USA         27.6387163
-## 128   NA       DB            Sanford         FL          USA         28.8117297
-## 129   NA       OL       Jacksonville         FL          USA         30.3321838
-## 130   NA       WR       Jacksonville         FL          USA         30.3321838
-## 131   NA       WR            Orlando         FL          USA         28.5421109
-## 132   NA       RB              Tampa         FL          USA         27.9477595
-## 133   NA       DB     Ft. Lauderdale         FL          USA         26.1223084
-## 134    4       TE               &lt;NA&gt;       &lt;NA&gt;      Bahamas               &lt;NA&gt;
-##         home_longitude home_county_fips
-## 1   -86.78242528471824            01117
-## 2          -82.1400923            12083
-## 3          -81.9498042            12105
-## 4          -97.8444364            48491
-## 5                 &lt;NA&gt;             &lt;NA&gt;
-## 6   -80.13590694666684            12099
-## 7          -81.8867452            12069
-## 8          -95.3676974            48201
-## 9          -74.8789057            34019
-## 10         -80.6675577            12099
-## 11         -82.4609331            12083
-## 12         -86.5186045            47149
-## 13         -87.6244212            17031
-## 14         -101.879336            48303
-## 15         -81.9498042            12105
-## 16          -81.655651            12031
-## 17         -80.1936589            12086
-## 18         -81.3790304            12095
-## 19  -81.75399813758739            12021
-## 20                &lt;NA&gt;             &lt;NA&gt;
-## 21          -80.843083            37119
-## 22         -80.3256056            12111
-## 23         -81.8511889            12069
-## 24         -74.6310081            34037
-## 25         -83.2784851            13185
-## 26         -83.2784851            13185
-## 27         -76.9896573            24033
-## 28          -81.655651            12031
-## 29         -89.5187664            28071
-## 30         -81.3790304            12095
-## 31                &lt;NA&gt;             &lt;NA&gt;
-## 32         -86.4596966            01001
-## 33         -80.3503283            12111
-## 34         -101.879336            48303
-## 35         -82.3249846            12001
-## 36         -87.6244212            17031
-## 37         -86.9966606            01073
-## 38         -81.9806771            12071
-## 39         -83.8701636            12065
-## 40   -82.2268749493648            12057
-## 41         -158.008804            15003
-## 42         -83.6299688            12079
-## 43          -82.458444            12057
-## 44         -81.6017417            12105
-## 45         -80.1936589            12086
-## 46         -88.0430541            01097
-## 47         -85.3933906            01069
-## 48         -82.6695085            12103
-## 49  -81.81408775862916            12105
-## 50          -84.296069            13089
-## 51         -80.1433786            12011
-## 52                &lt;NA&gt;             &lt;NA&gt;
-## 53         -87.6244212            17031
-## 54         -76.8894171            24033
-## 55         -88.0430541            01097
-## 56         -80.0728201            12099
-## 57  -82.23621545220522            12057
-## 58         -98.4951405            48029
-## 59         -88.0430541            01097
-## 60         -81.0557921            12127
-## 61         -80.1433786            12011
-## 62          -81.655651            12031
-## 63          -81.655651            12031
-## 64         -80.3256056            12111
-## 65         -80.1433786            12011
-## 66         -80.1433786            12011
-## 67  -80.33472128115224            12011
-## 68  -80.25590780868578            12099
-## 69         -80.1936589            12086
-## 70         -80.1936589            12086
-## 71         -88.6116855            28059
-## 72         -84.1706273            13089
-## 73         -83.7887928            13071
-## 74  -80.25786123765101            12011
-## 75  -80.23976495072381            12086
-## 76         -77.0365708            11001
-## 77         -84.1556809            13095
-## 78  -80.22506769232564            12011
-## 79         -90.2417806            22051
-## 80         -80.1936589            12086
-## 81         -81.8853924            13305
-## 82          -86.618842            12091
-## 83         -80.0666026            12099
-## 84         -74.0237512            34017
-## 85  -80.12108914060954            12099
-## 86         -82.5748194            12081
-## 87  -80.26534203798758            12011
-## 88         131.3496745             &lt;NA&gt;
-## 89  -80.25590780868578            12099
-## 90         -81.3145395            12109
-## 91  -80.28422171034893            12085
-## 92         -82.3249846            12001
-## 93         -81.3790304            12095
-## 94         -86.5705084            12091
-## 95          -81.655651            12031
-## 96         -80.1433786            12011
-## 97         -88.0430541            01097
-## 98         -84.2135309            13135
-## 99         -87.2169149            12033
-## 100        -82.3249846            12001
-## 101        -81.2084941            12117
-## 102        -83.2784851            13185
-## 103        -83.6299688            12079
-## 104        -82.5306527            12115
-## 105        -84.2809332            12073
-## 106 -80.12108914060954            12099
-## 107        -82.6695085            12103
-## 108        -81.7728543            12069
-## 109        -93.3395843            27053
-## 110 -81.37373441287073            12095
-## 111        -80.0532942            12099
-## 112        -80.1353006            12086
-## 113        -82.6392899            12023
-## 114        -80.1936589            12086
-## 115        -82.5748194            12081
-## 116         -82.458444            12057
-## 117        -86.8700821            12113
-## 118         -82.458444            12057
-## 119 -80.72421890178558            12009
-## 120        -97.0788754            48439
-## 121        -81.6064866            12089
-## 122 -80.25590780868578            12099
-## 123        -80.1247667            12011
-## 124        -82.4614831            12057
-## 125        -80.0532942            12099
-## 126        -90.2942566            28049
-## 127        -80.3975399            12061
-## 128        -81.2680345            12117
-## 129         -81.655651            12031
-## 130         -81.655651            12031
-## 131        -81.3790304            12095
-## 132         -82.458444            12057
-## 133        -80.1433786            12011
-## 134               &lt;NA&gt;             &lt;NA&gt;
+##     year position              home_city home_state home_country
+## 1     NA       LB                 Helena         AL          USA
+## 2     NA       DB                  Ocala         FL          USA
+## 3     NA       FB               Lakeland         FL          USA
+## 4     NA       DB               Fairhope         AL          USA
+## 5     NA       WR                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+## 6     NA       TE             Palm Beach         FL          USA
+## 7     NA       PK               Mascotte         FL          USA
+## 8     NA        P              Bradenton         FL          USA
+## 9     NA       TE              Annandale         NJ          USA
+## 10    NA       WR            Belle Glade         FL          USA
+## 11    NA       DB              Dunnellon         FL          USA
+## 12    NA       DB                 Smyrna         TN          USA
+## 13    NA       LB             Woodbridge         VA          USA
+## 14    NA       WR             Monticello         FL          USA
+## 15    NA       WR               Lakeland         FL          USA
+## 16    NA       DE           Jacksonville         FL          USA
+## 17    NA       WR                  Miami         FL          USA
+## 18    NA       WR                Orlando         FL          USA
+## 19    NA       LB            Winter Park         FL          USA
+## 20    NA     &lt;NA&gt;                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+## 21    NA        P              Charlotte         NC          USA
+## 22    NA       DB            Fort Pierce         FL          USA
+## 23    NA       DB              Groveland         FL          USA
+## 24    NA       QB                 Sparta         NJ          USA
+## 25    NA       DB               Valdosta         GA          USA
+## 26    NA       LB               Valdosta         GA          USA
+## 27    NA       CB              Oxon Hill         MD          USA
+## 28    NA       LB           Jacksonville         FL          USA
+## 29    NA       DE                 Oxford         MS          USA
+## 30    NA       WR                Orlando         FL          USA
+## 31    NA     &lt;NA&gt;                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+## 32    NA       DT             Prattville         AL          USA
+## 33    NA       DB         Port St. Lucie         FL          USA
+## 34    NA       WR                 Milton         FL          USA
+## 35    NA       WR            Gainesville         FL          USA
+## 36    NA       LB                  Miami         FL          USA
+## 37    NA       QB               Bessemer         AL          USA
+## 38    NA       RB             Cape Coral         FL          USA
+## 39    NA       TE             Monticello         FL          USA
+## 40    NA       RB                 Lithia         FL          USA
+## 41    NA       RB         St. Petersburg         FL          USA
+## 42    NA       DT             Greenville         FL          USA
+## 43    NA       WR                  Tampa         FL          USA
+## 44    NA       RB              Davenport         FL          USA
+## 45    NA       RB                  Miami         FL          USA
+## 46    NA       QB                 Mobile         AL          USA
+## 47    NA       DB                 Dothan         AL          USA
+## 48    NA       TE         St. Petersburg         FL          USA
+## 49    NA       FB                 Bartow         FL          USA
+## 50    NA       LB                Decatur         GA          USA
+## 51    NA       DB         Ft. Lauderdale         FL          USA
+## 52    NA       RB                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+## 53    NA       LB                Orlando         FL          USA
+## 54     4       DB Prince George's County         MD          USA
+## 55    NA       OL                 Mobile         AL          USA
+## 56    NA       DE           Delray Beach         FL          USA
+## 57    NA       OL                Valrico         FL          USA
+## 58    NA       DB            San Antonio         TX          USA
+## 59    NA       DE                 Mobile         AL          USA
+## 60    NA       LS           Ormond Beach         FL          USA
+## 61    NA       DT        Fort Lauderdale         FL          USA
+## 62    NA       DB           Jacksonville         FL          USA
+## 63    NA       DT           Jacksonville         FL          USA
+## 64    NA       DT            Fort Pierce         FL          USA
+## 65    NA       LS         Ft. Lauderdale         FL          USA
+## 66    NA        C        Fort Lauderdale         FL          USA
+## 67    NA       OL                Miramar         FL          USA
+## 68    NA       DL             Wellington         FL          USA
+## 69    NA       OL                  Miami         FL          USA
+## 70    NA       QB                  Miami         FL          USA
+## 71    NA       DE                Gautier         MS          USA
+## 72    NA       LB         Stone Mountain         GA          USA
+## 73    NA       OT               Moultrie         GA          USA
+## 74    NA       QB             Plantation         FL          USA
+## 75    NA       WR          Miami Gardens         FL          USA
+## 76    NA       DT             Washington         DC          USA
+## 77    NA       WR                 Albany         GA          USA
+## 78    NA       OT             Lauderhill         FL          USA
+## 79    NA        C                 Kenner         LA          USA
+## 80    NA       DE                  Miami         FL          USA
+## 81    NA        G                  Jesup         GA          USA
+## 82    NA       OL      Fort Walton Beach         FL          USA
+## 83    NA       OL          Boynton Beach         FL          USA
+## 84    NA        G             Union City         NJ          USA
+## 85    NA       WR                Jupiter         FL          USA
+## 86    NA       LB              Bradenton         FL          USA
+## 87    NA       TE          Coral Springs         FL          USA
+## 88    NA        ?                                            USA
+## 89    NA       LB             Wellington         FL          USA
+## 90    NA       DB          St. Augustine         FL          USA
+## 91    NA       LB              Palm City         FL          USA
+## 92    NA       QB            Gainesville         FL          USA
+## 93    NA       OL                Orlando         FL          USA
+## 94    NA       DE              Crestview         FL          USA
+## 95    NA       DB           Jacksonville         FL          USA
+## 96    NA       LB         Ft. Lauderdale         FL          USA
+## 97    NA       QB                 Mobile         AL          USA
+## 98    NA       TE               Norcross         GA          USA
+## 99    NA       WR              Pensacola         FL          USA
+## 100   NA       OL            Gainesville         FL          USA
+## 101   NA       DB                 Oviedo         FL          USA
+## 102   NA       DB               Valdosta         GA          USA
+## 103   NA       OL             Greenville         FL          USA
+## 104   NA       QB               Sarasota         FL          USA
+## 105   NA       LB            Tallahassee         FL          USA
+## 106   NA        ?                Jupiter         FL          USA
+## 107   NA       LB       Saint Petersburg         FL          USA
+## 108   NA       FB               Clermont         FL          USA
+## 109   NA       OL            Robbinsdale         MN          USA
+## 110   NA       PK               Maitland         FL          USA
+## 111   NA       WR        West Palm Beach         FL          USA
+## 112   NA       LB            Miami Beach         FL          USA
+## 113   NA       DT              Lake City         FL          USA
+## 114   NA       DT                  Miami         FL          USA
+## 115   NA       WR              Bradenton         FL          USA
+## 116   NA        P                  Tampa         FL          USA
+## 117   NA       OL                Navarre         FL          USA
+## 118   NA       DT                  Tampa         FL          USA
+## 119   NA       TE              Rockledge         FL          USA
+## 120   NA       PK              Grapevine         TX          USA
+## 121   NA       FB                  Yulee         FL          USA
+## 122   NA       FB             Wellington         FL          USA
+## 123   NA       LB          Pompano Beach         FL          USA
+## 124   NA       OL                   Lutz         FL          USA
+## 125   NA       OL        West Palm Beach         FL          USA
+## 126   NA       LB                  Terry         MS          USA
+## 127   NA       OL             Vero Beach         FL          USA
+## 128   NA       DB                Sanford         FL          USA
+## 129   NA       OL           Jacksonville         FL          USA
+## 130   NA       WR           Jacksonville         FL          USA
+## 131   NA       WR                Orlando         FL          USA
+## 132   NA       RB                  Tampa         FL          USA
+## 133   NA       DB         Ft. Lauderdale         FL          USA
+## 134    4       TE                 Bimini         BS      Bahamas
+##          home_latitude     home_longitude home_county_fips
+## 1           33.2937354 -86.93437519805573            01073
+## 2           29.1871986        -82.1400923            12083
+## 3           28.0394654        -81.9498042            12105
+## 4            30.507956 -87.89742922432941            01003
+## 5                 &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 6           26.7056172        -80.0361517            12099
+## 7           28.5783313        -81.8867452            12069
+## 8           27.4989278        -82.5748194            12081
+## 9           40.6451477        -74.8789057            34019
+## 10          26.6845104        -80.6675577            12099
+## 11          29.0491426        -82.4609331            12083
+## 12          35.9828413        -86.5186045            47149
+## 13          38.6581723        -77.2497049            51153
+## 14          30.5452022        -83.8701636            12065
+## 15          28.0394654        -81.9498042            12105
+## 16          30.3321838         -81.655651            12031
+## 17          25.7742658        -80.1936589            12086
+## 18          28.5421109        -81.3790304            12095
+## 19         26.13784445 -81.75399813758739            12021
+## 20                &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 21             35.2272         -80.843083            37119
+## 22          27.4467056        -80.3256056            12111
+## 23          28.5580546        -81.8511889            12069
+## 24          41.0401567        -74.6310081            34037
+## 25          30.8327022        -83.2784851            13185
+## 26          30.8327022        -83.2784851            13185
+## 27          38.8035961        -76.9896573            24033
+## 28          30.3321838         -81.655651            12031
+## 29          34.3664127        -89.5187664            28071
+## 30          28.5421109        -81.3790304            12095
+## 31                &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 32          32.4640245        -86.4596966            01001
+## 33          27.2939333        -80.3503283            12111
+## 34          30.6324149        -87.0396881            12113
+## 35          29.6519684        -82.3249846            12001
+## 36          25.7742658        -80.1936589            12086
+## 37          33.3823635       -86.91720475            01073
+## 38          26.6059432        -81.9806771            12071
+## 39          30.5452022        -83.8701636            12065
+## 40          27.8651063  -82.2268749493648            12057
+## 41          27.7703796        -82.6695085            12103
+## 42          30.4694812        -83.6299688            12079
+## 43          27.9477595         -82.458444            12057
+## 44          28.1614046        -81.6017417            12105
+## 45          25.7742658        -80.1936589            12086
+## 46          30.6943566        -88.0430541            01097
+## 47          31.2237434        -85.3933906            01069
+## 48          27.7703796        -82.6695085            12103
+## 49  27.885186599999997 -81.81408775862916            12105
+## 50          33.7737582         -84.296069            13089
+## 51          26.1223084        -80.1433786            12011
+## 52                &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 53          28.5421109        -81.3790304            12095
+## 54           38.803929        -76.8518695            24033
+## 55          30.6943566        -88.0430541            01097
+## 56          26.4614625        -80.0728201            12099
+## 57          27.9484265 -82.23621545220522            12057
+## 58          29.4246002        -98.4951405            48029
+## 59          30.6943566        -88.0430541            01097
+## 60          29.2854132        -81.0557921            12127
+## 61          26.1223084        -80.1433786            12011
+## 62          30.3321838         -81.655651            12031
+## 63          30.3321838         -81.655651            12031
+## 64          27.4467056        -80.3256056            12111
+## 65          26.1223084        -80.1433786            12011
+## 66          26.1223084        -80.1433786            12011
+## 67  25.975911449999998 -80.33472128115224            12011
+## 68         26.63799875 -80.25590780868578            12099
+## 69          25.7742658        -80.1936589            12086
+## 70          25.7742658        -80.1936589            12086
+## 71           30.385755        -88.6116855            28059
+## 72          33.8080924        -84.1706273            13089
+## 73           31.179998        -83.7887928            13071
+## 74          26.1265258 -80.25786123765101            12011
+## 75          25.9423108 -80.23976495072381            12086
+## 76          38.8949855        -77.0365708            11001
+## 77          31.5782062        -84.1556809            13095
+## 78          26.1567308 -80.22506769232564            12011
+## 79          29.9942265        -90.2417806            22051
+## 80          25.7742658        -80.1936589            12086
+## 81          31.6074365        -81.8853924            13305
+## 82          30.4057552         -86.618842            12091
+## 83          26.5256179        -80.0666026            12099
+## 84          40.7795455        -74.0237512            34017
+## 85          26.9260832 -80.12108914060954            12099
+## 86          27.4989278        -82.5748194            12081
+## 87         26.26485615 -80.26534203798758            12011
+## 88           33.532005        131.3496745             &lt;NA&gt;
+## 89         26.63799875 -80.25590780868578            12099
+## 90          29.8946952        -81.3145395            12109
+## 91          27.1713925 -80.28422171034893            12085
+## 92          29.6519684        -82.3249846            12001
+## 93          28.5421109        -81.3790304            12095
+## 94          30.7621326        -86.5705084            12091
+## 95          30.3321838         -81.655651            12031
+## 96          26.1223084        -80.1433786            12011
+## 97          30.6943566        -88.0430541            01097
+## 98          33.9412127        -84.2135309            13135
+## 99           30.421309        -87.2169149            12033
+## 100         29.6519684        -82.3249846            12001
+## 101         28.6702526        -81.2084941            12117
+## 102         30.8327022        -83.2784851            13185
+## 103         30.4694812        -83.6299688            12079
+## 104         27.3364347        -82.5306527            12115
+## 105         30.4380832        -84.2809332            12073
+## 106         26.9260832 -80.12108914060954            12099
+## 107         27.7703796        -82.6695085            12103
+## 108         28.5494447        -81.7728543            12069
+## 109         45.0313156        -93.3395843            27053
+## 110         28.6252263 -81.37373441287073            12095
+## 111          26.715364        -80.0532942            12099
+## 112         25.7929198        -80.1353006            12086
+## 113         30.1896756        -82.6392899            12023
+## 114         25.7742658        -80.1936589            12086
+## 115         27.4989278        -82.5748194            12081
+## 116         27.9477595         -82.458444            12057
+## 117         30.4019789        -86.8700821            12113
+## 118         27.9477595         -82.458444            12057
+## 119 28.313751500000002 -80.72421890178558            12009
+## 120         32.9337381        -97.0788754            48439
+## 121         30.6319034        -81.6064866            12089
+## 122        26.63799875 -80.25590780868578            12099
+## 123         26.2378597        -80.1247667            12011
+## 124         28.1511243        -82.4614831            12057
+## 125          26.715364        -80.0532942            12099
+## 126         32.0962633        -90.2942566            28049
+## 127         27.6387163        -80.3975399            12061
+## 128         28.8117297        -81.2680345            12117
+## 129         30.3321838         -81.655651            12031
+## 130         30.3321838         -81.655651            12031
+## 131         28.5421109        -81.3790304            12095
+## 132         27.9477595         -82.458444            12057
+## 133         26.1223084        -80.1433786            12011
+## 134               &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
 ##                                                                     headshot_url
 ## 1     https://a.espncdn.com/i/headshots/college-football/players/full/501097.png
 ## 2     https://a.espncdn.com/i/headshots/college-football/players/full/534576.png

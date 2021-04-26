@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -205,7 +205,6 @@
     <li>
       <a href="../articles/index.html">Vignettes</a>
     </li>
-    <li class="divider"></li>
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbfastR</a>
@@ -222,7 +221,6 @@
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
-    <li class="divider"></li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -233,7 +231,6 @@
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
     </li>
-    <li class="divider"></li>
     <li class="dropdown-header">CFBD Tutorials</li>
     <li>
       <a href="../articles/cfbd_betting.html">CFBD Betting</a>
@@ -349,12 +346,40 @@
     </div>
 
     <div class="section ">
-      <h3>All vignettes</h3>
+      <h3>Introductory</h3>
       <p class="section-desc"></p>
 
       <dl>
+        <dt><a href="intro.html">Introduction to cfbfastR</a></dt>
+        <dd><p>Getting started with using <code>cfbfastR</code> and college football analytics.</p></dt>
         <dt><a href="animated-wp-plotting.html">Making Animated Win Probability Charts with cfbfastR</a></dt>
         <dd><p>Step-by-step walk-through of the process of adapting <a href="https://twitter.com/LeeSharpeNFL" target="blank">Lee Sharpe’s</a> win probability charts to college football using data from <a href="https://www.collegefootballdata.com" target="blank">CollegeFootballData.com</a> collected using the <code>cfbfastR</code> package for R.</p></dt>
+        <dt><a href="fourth-down-plot-tutorial.html">Creating Fourth Down Tendency Plots Using cfbfastR</a></dt>
+        <dd><p>A rundown of the Big XII returning coaches fourth down tendencies</p></dt>
+        <dt><a href="rolling-epa-graph.html">Rolling EPA Graph</a></dt>
+        <dd><p><strong>IT’S GRAPHIN’ TIME</strong><br> ^<em>To be said in an extremely Power Rangers voice<em>^</em></em></p></dt>
+        <dt><a href="nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></dt>
+        <dd><p>A quick way to visually approximate how much talent each school recruited using <code>cfbfastR</code> and <code>ggplot2</code>.</p></dt>
+      </dl>
+    </div>
+    <div class="section ">
+      <h3>Expected Points Model Fundamentals</h3>
+      <p class="section-desc"></p>
+
+      <dl>
+        <dt><a href="college-football-expected-points-model-fundamentals-part-i.html">College Football Expected Points Model Fundamentals - Part I</a></dt>
+        <dd><p>Expected points model definition - a model explainer</p></dt>
+        <dt><a href="college-football-expected-points-model-fundamentals-part-ii.html">College Football Expected Points Model Fundamentals - Part II</a></dt>
+        <dd><p>Motivating the regression - I do bad regression to show that a multinomial logistic regression model is necessary</p></dt>
+        <dt><a href="college-football-expected-points-model-fundamentals-part-iii.html">College Football Expected Points Model Fundamentals - Part III</a></dt>
+        <dd><p>A brief history of expected points models. Learn about Virgil Carter’s 1970 paper and the origins of the nflscrapR expected points model (which the cfbscrapR package used). The cfbfastR package includes support for this model as well.</p></dt>
+      </dl>
+    </div>
+    <div class="section ">
+      <h3>CFBD Tutorials</h3>
+      <p class="section-desc"></p>
+
+      <dl>
         <dt><a href="cfbd_betting.html">CFB Data Betting Lines Examples</a></dt>
         <dd><p>Get betting lines information for games using <code><a href="../reference/cfbd_betting.html">cfbd_betting_lines()</a></code></p></dt>
         <dt><a href="cfbd_games.html">CFB Data Games Examples</a></dt>
@@ -367,20 +392,6 @@
         <dd><p>Settling <strong>2019 LSU</strong> and <strong>2013 Florida State</strong> offense debates using Team and Player Stats from the CFBD API</p></dt>
         <dt><a href="cfbd_teams.html">CFB Data Teams Examples</a></dt>
         <dd><p>Get team rosters (<code>cfbd_team_rosters()</code>), talent (<code><a href="../reference/cfbd_team_talent.html">cfbd_team_talent()</a></code>) and team matchup history (<code>cfbd_team_matchup_history()</code>) and records (<code><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records()</a></code>) from the CFBD API</p></dt>
-        <dt><a href="college-football-expected-points-model-fundamentals-part-i.html">College Football Expected Points Model Fundamentals - Part I</a></dt>
-        <dd><p>Expected points model definition - a model explainer</p></dt>
-        <dt><a href="college-football-expected-points-model-fundamentals-part-ii.html">College Football Expected Points Model Fundamentals - Part II</a></dt>
-        <dd><p>Motivating the regression - I do bad regression to show that a multinomial logistic regression model is necessary</p></dt>
-        <dt><a href="college-football-expected-points-model-fundamentals-part-iii.html">College Football Expected Points Model Fundamentals - Part III</a></dt>
-        <dd><p>A brief history of expected points models. Learn about Virgil Carter’s 1970 paper and the origins of the nflscrapR expected points model (which the cfbscrapR package used). The cfbfastR package includes support for this model as well.</p></dt>
-        <dt><a href="fourth-down-plot-tutorial.html">Creating Fourth Down Tendency Plots Using cfbfastR</a></dt>
-        <dd><p>A rundown of the Big XII returning coaches fourth down tendencies</p></dt>
-        <dt><a href="intro.html">Introduction to cfbfastR</a></dt>
-        <dd><p>Getting started with using <code>cfbfastR</code> and college football analytics.</p></dt>
-        <dt><a href="nth-rated-recruit.html">Visualizing Team Talent from Player Recruiting Rankings</a></dt>
-        <dd><p>A quick way to visually approximate how much talent each school recruited using <code>cfbfastR</code> and <code>ggplot2</code>.</p></dt>
-        <dt><a href="rolling-epa-graph.html">Rolling EPA Graph</a></dt>
-        <dd><p><strong>IT’S GRAPHIN’ TIME</strong><br> ^<em>To be said in an extremely Power Rangers voice<em>^</em></em></p></dt>
       </dl>
     </div>
   </div>

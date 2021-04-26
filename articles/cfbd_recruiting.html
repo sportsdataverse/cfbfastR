@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -155,7 +155,6 @@
 <li>
       <a href="../articles/index.html">Vignettes</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbfastR</a>
@@ -172,7 +171,6 @@
     <li>
       <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -183,7 +181,6 @@
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">CFBD Tutorials</li>
     <li>
       <a href="../articles/cfbd_betting.html">CFBD Betting</a>
@@ -325,605 +322,605 @@
 <p>Gets CFB recruiting information for a single year with filters available for team, recruit type, state and position.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></code></pre></div>
-<pre><code>##    recruit_type year ranking                name               school
-## 1    HighSchool 2018      19        Caden Sterns               Steele
-## 2    HighSchool 2018      24         B.J. Foster             Angleton
-## 3    HighSchool 2018      47         Jalen Green              Heights
-## 4    HighSchool 2018      52 DeMarvion Overshown                  Arp
-## 5    HighSchool 2018      61      Brennan Eagles         Alief Taylor
-## 6    HighSchool 2018      64        Anthony Cook                Lamar
-## 7    HighSchool 2018      96        Joshua Moore               Yoakum
-## 8    HighSchool 2018     104    Al'vonte Woodard                Lamar
-## 9    HighSchool 2018     115     D'shawn Jamison                Lamar
-## 10   HighSchool 2018     119      Ayodele Adeoye          IMG Academy
-## 11   HighSchool 2018     123      Keondre Coburn            Westfield
-## 12   HighSchool 2018     125      Junior Angilau                 East
-## 13   HighSchool 2018     164     Keaontay Ingram             Carthage
-## 14   HighSchool 2018     186        Joseph Ossai            Oak Ridge
-## 15   HighSchool 2018     227        Malcolm Epps              Dekaney
-## 16   HighSchool 2018     247      Cameron Rising         Newbury Park
-## 17   HighSchool 2018     291      Casey Thompson            Newcastle
-## 18   HighSchool 2018     300         Reese Moore             Seminole
-## 19   HighSchool 2018     303      Rafiti Ghirmai             Wakeland
-## 20   HighSchool 2018     390          Moro Ojomo                 Katy
-## 21   HighSchool 2018     445       Byron Vaughns        Eastern Hills
-## 22   HighSchool 2018     526    Michael Williams        Dunham School
-## 23   HighSchool 2018     535       Daniel Carson     William Chrisman
-## 24   HighSchool 2018     724     Christian Jones             Cy Woods
-## 25   HighSchool 2018    1366      Ryan Bujcevski    ProKick Australia
-## 26   HighSchool 2018    1654      Cameron Dicker          Lake Travis
-## 27   HighSchool 2018    1669   Luke Brockermeyer All Saints Episcopal
-## 28   HighSchool 2018    1952        Justin Mader             Magnolia
-## 29   HighSchool 2018      NA      Ryan Bujcevski    ProKick Australia
-##    committed_to position height weight stars rating           city
-## 1         Texas        S   73.0    192     5 0.9886         Cibolo
-## 2         Texas        S   73.0    188     5 0.9865       Angleton
-## 3         Texas       CB   72.0    171     4 0.9762        Houston
-## 4         Texas        S   76.0    200     4 0.9737            Arp
-## 5         Texas       WR   75.5    214     4 0.9699        Houston
-## 6         Texas       CB   72.0    168     4 0.9682        Houston
-## 7         Texas       WR   73.0    170     4 0.9556         Yoakum
-## 8         Texas       WR   73.0    193     4 0.9518        Houston
-## 9         Texas       CB   70.0    174     4 0.9486        Houston
-## 10        Texas      ILB   72.0    231     4 0.9475    Saint Louis
-## 11        Texas       DT   73.0    329     4 0.9468        Houston
-## 12        Texas       OT   78.0    297     4 0.9458 Salt Lake City
-## 13        Texas       RB   73.0    190     4 0.9324       Carthage
-## 14        Texas      WDE   76.0    220     4 0.9257         Conroe
-## 15        Texas       TE   77.5    218     4 0.9137        Houston
-## 16        Texas      PRO   74.0    209     4 0.9096   Newbury Park
-## 17        Texas     DUAL   73.0    184     4 0.9021      Newcastle
-## 18        Texas       OT   78.0    280     4 0.8997       Seminole
-## 19        Texas       OT   76.0    290     4 0.8993         Frisco
-## 20        Texas       DT   75.0    280     3 0.8884           Katy
-## 21        Texas      OLB   75.5    216     3 0.8830     Fort Worth
-## 22        Texas      ATH   74.0    240     3 0.8763    Baton Rouge
-## 23        Texas      SDE   77.0    260     3 0.8763   Independence
-## 24        Texas       OT   78.0    285     3 0.8647        Cypress
-## 25        Texas        P   72.0    180     3 0.8390           &lt;NA&gt;
-## 26        Texas        K   73.0    187     3 0.8263         Austin
-## 27        Texas      OLB   75.0    210     3 0.8255     Fort Worth
-## 28        Texas       LS   72.0    215     3 0.8125       Magnolia
-## 29        Texas        P   72.0    180     3 0.8390           &lt;NA&gt;
-##    state_province country hometown_info_latitude hometown_info_longitude
-## 1              TX     USA             29.5707831             -98.2330927
-## 2              TX     USA               29.16941             -95.4318847
-## 3              TX     USA             29.7589382             -95.3676974
-## 4              TX     USA             32.2254831              -95.059035
-## 5              TX     USA             29.7589382             -95.3676974
-## 6              TX     USA             29.7589382             -95.3676974
-## 7              TX     USA              29.289352             -97.1492978
-## 8              TX     USA             29.7589382             -95.3676974
-## 9              TX     USA             29.7589382             -95.3676974
-## 10             MO     USA             38.6264178             -90.1998378
-## 11             TX     USA             29.7589382             -95.3676974
-## 12             UT     USA             40.7596198            -111.8867975
-## 13             TX     USA             32.1570412              -94.338114
-## 14             TX     USA             30.3118769             -95.4560512
-## 15             TX     USA             29.7589382             -95.3676974
-## 16             CA     USA              34.183671            -118.9118302
-## 17             OK     USA             35.2472869               -97.59976
-## 18             TX     USA             32.7189926            -102.6449101
-## 19             TX     USA             33.1506744             -96.8236116
-## 20             TX     USA             29.7857853             -95.8243956
-## 21             TX     USA              32.753177             -97.3327459
-## 22             LA     USA             30.4459596               -91.18738
-## 23             MO     USA             39.0924792             -94.4137923
-## 24             TX     USA             29.9691116             -95.6971686
-## 25           &lt;NA&gt;    AUST                   &lt;NA&gt;                    &lt;NA&gt;
-## 26             TX     USA             30.2711286             -97.7436995
-## 27             TX     USA              32.753177             -97.3327459
-## 28             TX     USA             30.2093794             -95.7507815
-## 29           &lt;NA&gt;    &lt;NA&gt;                   &lt;NA&gt;                    &lt;NA&gt;
-##    hometown_info_fips_code
-## 1                    48187
-## 2                    48039
-## 3                    48201
-## 4                    48423
-## 5                    48201
-## 6                    48201
-## 7                    48123
-## 8                    48201
-## 9                    48201
-## 10                   29510
-## 11                   48201
-## 12                   49035
-## 13                   48365
-## 14                   48339
-## 15                   48201
-## 16                   06111
-## 17                   40087
-## 18                   48165
-## 19                   48085
-## 20                   48157
-## 21                   48439
-## 22                   22033
-## 23                   29095
-## 24                   48201
-## 25                    &lt;NA&gt;
-## 26                   48453
-## 27                   48439
-## 28                   48339
-## 29                    &lt;NA&gt;</code></pre>
+<pre><code>##       id athlete_id recruit_type year ranking                name
+## 1  42926    4362077   HighSchool 2018      19        Caden Sterns
+## 2  42931    4362086   HighSchool 2018      24         B.J. Foster
+## 3  42954    4362074   HighSchool 2018      47         Jalen Green
+## 4  42959    4362088   HighSchool 2018      52 DeMarvion Overshown
+## 5  42968    4362107   HighSchool 2018      61      Brennan Eagles
+## 6  42971    4362076   HighSchool 2018      64        Anthony Cook
+## 7  43003    4362079   HighSchool 2018      96        Joshua Moore
+## 8  43011       &lt;NA&gt;   HighSchool 2018     104    Al'vonte Woodard
+## 9  43022       &lt;NA&gt;   HighSchool 2018     115     D'shawn Jamison
+## 10 43026    4362091   HighSchool 2018     119      Ayodele Adeoye
+## 11 43030    4362117   HighSchool 2018     123      Keondre Coburn
+## 12 43032    4362104   HighSchool 2018     125      Junior Angilau
+## 13 43071    4362087   HighSchool 2018     164     Keaontay Ingram
+## 14 43093    4362094   HighSchool 2018     186        Joseph Ossai
+## 15 43134    4362110   HighSchool 2018     227        Malcolm Epps
+## 16 43154   -1034698   HighSchool 2018     247      Cameron Rising
+## 17 43198    4362073   HighSchool 2018     291      Casey Thompson
+## 18 43207    4362105   HighSchool 2018     300         Reese Moore
+## 19 43210    4362102   HighSchool 2018     303      Rafiti Ghirmai
+## 20 43297    4362116   HighSchool 2018     390          Moro Ojomo
+## 21 43352    4362095   HighSchool 2018     445       Byron Vaughns
+## 22 43433    4362090   HighSchool 2018     526    Michael Williams
+## 23 43442    4362113   HighSchool 2018     535       Daniel Carson
+## 24 43631    4362103   HighSchool 2018     724     Christian Jones
+## 25 67924    4362078   HighSchool 2018    1366      Ryan Bujcevski
+## 26 44561    4362081   HighSchool 2018    1654      Cameron Dicker
+## 27 44576    4362093   HighSchool 2018    1669   Luke Brockermeyer
+## 28 44861    4362097   HighSchool 2018    1952        Justin Mader
+## 29 44273    4362078   HighSchool 2018      NA      Ryan Bujcevski
+##                  school committed_to position height weight stars rating
+## 1                Steele        Texas        S   73.0    192     5 0.9886
+## 2              Angleton        Texas        S   73.0    188     5 0.9865
+## 3               Heights        Texas       CB   72.0    171     4 0.9762
+## 4                   Arp        Texas        S   76.0    200     4 0.9737
+## 5          Alief Taylor        Texas       WR   75.5    214     4 0.9699
+## 6                 Lamar        Texas       CB   72.0    168     4 0.9682
+## 7                Yoakum        Texas       WR   73.0    170     4 0.9556
+## 8                 Lamar        Texas       WR   73.0    193     4 0.9518
+## 9                 Lamar        Texas       CB   70.0    174     4 0.9486
+## 10          IMG Academy        Texas      ILB   72.0    231     4 0.9475
+## 11            Westfield        Texas       DT   73.0    329     4 0.9468
+## 12                 East        Texas       OT   78.0    297     4 0.9458
+## 13             Carthage        Texas       RB   73.0    190     4 0.9324
+## 14            Oak Ridge        Texas      WDE   76.0    220     4 0.9257
+## 15              Dekaney        Texas       TE   77.5    218     4 0.9137
+## 16         Newbury Park        Texas      PRO   74.0    209     4 0.9096
+## 17            Newcastle        Texas     DUAL   73.0    184     4 0.9021
+## 18             Seminole        Texas       OT   78.0    280     4 0.8997
+## 19             Wakeland        Texas       OT   76.0    290     4 0.8993
+## 20                 Katy        Texas       DT   75.0    280     3 0.8884
+## 21        Eastern Hills        Texas      OLB   75.5    216     3 0.8830
+## 22        Dunham School        Texas      ATH   74.0    240     3 0.8763
+## 23     William Chrisman        Texas      SDE   77.0    260     3 0.8763
+## 24             Cy Woods        Texas       OT   78.0    285     3 0.8647
+## 25    ProKick Australia        Texas        P   72.0    180     3 0.8390
+## 26          Lake Travis        Texas        K   73.0    187     3 0.8263
+## 27 All Saints Episcopal        Texas      OLB   75.0    210     3 0.8255
+## 28             Magnolia        Texas       LS   72.0    215     3 0.8125
+## 29    ProKick Australia        Texas        P   72.0    180     3 0.8390
+##              city state_province country hometown_info_latitude
+## 1          Cibolo             TX     USA             29.5707831
+## 2        Angleton             TX     USA               29.16941
+## 3         Houston             TX     USA             29.7589382
+## 4             Arp             TX     USA             32.2254831
+## 5         Houston             TX     USA             29.7589382
+## 6         Houston             TX     USA             29.7589382
+## 7          Yoakum             TX     USA              29.289352
+## 8         Houston             TX     USA             29.7589382
+## 9         Houston             TX     USA             29.7589382
+## 10    Saint Louis             MO     USA             38.6264178
+## 11        Houston             TX     USA             29.7589382
+## 12 Salt Lake City             UT     USA             40.7596198
+## 13       Carthage             TX     USA             32.1570412
+## 14         Conroe             TX     USA             30.3118769
+## 15        Houston             TX     USA             29.7589382
+## 16   Newbury Park             CA     USA              34.183671
+## 17      Newcastle             OK     USA             35.2472869
+## 18       Seminole             TX     USA             32.7189926
+## 19         Frisco             TX     USA             33.1506744
+## 20           Katy             TX     USA             29.7857853
+## 21     Fort Worth             TX     USA              32.753177
+## 22    Baton Rouge             LA     USA             30.4459596
+## 23   Independence             MO     USA             39.0924792
+## 24        Cypress             TX     USA             29.9691116
+## 25           &lt;NA&gt;           &lt;NA&gt;    AUST                   &lt;NA&gt;
+## 26         Austin             TX     USA             30.2711286
+## 27     Fort Worth             TX     USA              32.753177
+## 28       Magnolia             TX     USA             30.2093794
+## 29           &lt;NA&gt;           &lt;NA&gt;    &lt;NA&gt;                   &lt;NA&gt;
+##    hometown_info_longitude hometown_info_fips_code
+## 1              -98.2330927                   48187
+## 2              -95.4318847                   48039
+## 3              -95.3676974                   48201
+## 4               -95.059035                   48423
+## 5              -95.3676974                   48201
+## 6              -95.3676974                   48201
+## 7              -97.1492978                   48123
+## 8              -95.3676974                   48201
+## 9              -95.3676974                   48201
+## 10             -90.1998378                   29510
+## 11             -95.3676974                   48201
+## 12            -111.8867975                   49035
+## 13              -94.338114                   48365
+## 14             -95.4560512                   48339
+## 15             -95.3676974                   48201
+## 16            -118.9118302                   06111
+## 17               -97.59976                   40087
+## 18            -102.6449101                   48165
+## 19             -96.8236116                   48085
+## 20             -95.8243956                   48157
+## 21             -97.3327459                   48439
+## 22               -91.18738                   22033
+## 23             -94.4137923                   29095
+## 24             -95.6971686                   48201
+## 25                    &lt;NA&gt;                    &lt;NA&gt;
+## 26             -97.7436995                   48453
+## 27             -97.3327459                   48439
+## 28             -95.7507815                   48339
+## 29                    &lt;NA&gt;                    &lt;NA&gt;</code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2016</span>, recruit_type <span class="op">=</span> <span class="st">"JUCO"</span><span class="op">)</span></code></pre></div>
-<pre><code>##     recruit_type year ranking                   name
-## 1           JUCO 2016       1        Jonathan Kongbo
-## 2           JUCO 2016       2        Charles Baldwin
-## 3           JUCO 2016       3          Garett Bolles
-## 4           JUCO 2016       4       Malcolm Pridgeon
-## 5           JUCO 2016       5          Mark Thompson
-## 6           JUCO 2016       6           Taj Williams
-## 7           JUCO 2016       7            Jerod Evans
-## 8           JUCO 2016       8           Tyree Horton
-## 9           JUCO 2016       9            Ryan Parker
-## 10          JUCO 2016      10        Derrick Willies
-## 11          JUCO 2016      11             Javon Wims
-## 12          JUCO 2016      12            Kyzir White
-## 13          JUCO 2016      13          Jamarcus King
-## 14          JUCO 2016      14      Dougladson Subtyl
-## 15          JUCO 2016      15       Natereace Strong
-## 16          JUCO 2016      16        J'Marcus Rhodes
-## 17          JUCO 2016      17         Paul James III
-## 18          JUCO 2016      18          Na'Ty Rodgers
-## 19          JUCO 2016      19      David Luafatasaga
-## 20          JUCO 2016      20       Handsome Tanielu
-## 21          JUCO 2016      21            Alex Losoya
-## 22          JUCO 2016      22         Alexis Johnson
-## 23          JUCO 2016      23      John Franklin III
-## 24          JUCO 2016      24          Tyrell Chavis
-## 25          JUCO 2016      25            Koron Crump
-## 26          JUCO 2016      26         Riley Ferguson
-## 27          JUCO 2016      27             Dre Massey
-## 28          JUCO 2016      28         Christian Hill
-## 29          JUCO 2016      29           Tate Leavitt
-## 30          JUCO 2016      30          London Iakopo
-## 31          JUCO 2016      31             B.J. Autry
-## 32          JUCO 2016      32            Jeff George
-## 33          JUCO 2016      33           Jeremy Faulk
-## 34          JUCO 2016      34           AJ Hotchkins
-## 35          JUCO 2016      35        Justin Crawford
-## 36          JUCO 2016      36        Clifton Garrett
-## 37          JUCO 2016      37            Tyren Jones
-## 38          JUCO 2016      38         D.J. Henderson
-## 39          JUCO 2016      39             Wally Aime
-## 40          JUCO 2016      40     Travonte Valentine
-## 41          JUCO 2016      41        Jonah Trinnaman
-## 42          JUCO 2016      42          Troy Williams
-## 43          JUCO 2016      43       Maurice Chandler
-## 44          JUCO 2016      44              Greg Webb
-## 45          JUCO 2016      45            Greg Bryant
-## 46          JUCO 2016      46        William Johnson
-## 47          JUCO 2016      47         Ashton Julious
-## 48          JUCO 2016      48         Maquedius Bain
-## 49          JUCO 2016      49           Chris Baccus
-## 50          JUCO 2016      50             Nick Terry
-## 51          JUCO 2016      51        Markell Simmons
-## 52          JUCO 2016      52             Mat Boesen
-## 53          JUCO 2016      53             Jamar King
-## 54          JUCO 2016      54         Josiah Coatney
-## 55          JUCO 2016      55            Lio Lafaele
-## 56          JUCO 2016      56          Ronald Walker
-## 57          JUCO 2016      57             Ben Powers
-## 58          JUCO 2016      58      Joe Kupcikevicius
-## 59          JUCO 2016      59              Alec Dana
-## 60          JUCO 2016      60           Lashard Durr
-## 61          JUCO 2016      61          Jordan Thomas
-## 62          JUCO 2016      62             Tramal Ivy
-## 63          JUCO 2016      63           Brandon Hill
-## 64          JUCO 2016      64           Demarre Kitt
-## 65          JUCO 2016      65          Jordan Bonner
-## 66          JUCO 2016      66           Devron Davis
-## 67          JUCO 2016      67        Jordan Carswell
-## 68          JUCO 2016      68           Ratu Mafileo
-## 69          JUCO 2016      69         Juwann Winfree
-## 70          JUCO 2016      70         Jayme Thompson
-## 71          JUCO 2016      71          Byron Pringle
-## 72          JUCO 2016      72            Greg Taylor
-## 73          JUCO 2016      73           Tyson Rising
-## 74          JUCO 2016      74         De'Quan Bowman
-## 75          JUCO 2016      75         Dwayne Wallace
-## 76          JUCO 2016      76           Deya Mhiesen
-## 77          JUCO 2016      77           Chris Gaynor
-## 78          JUCO 2016      78         Larry Williams
-## 79          JUCO 2016      79          Demetri Moore
-## 80          JUCO 2016      80         Chris Williams
-## 81          JUCO 2016      81              Tre Brown
-## 82          JUCO 2016      82         Chima Onyeukwu
-## 83          JUCO 2016      83          Dayall Harris
-## 84          JUCO 2016      84       Akeem Cooperwood
-## 85          JUCO 2016      85         Justice Hansen
-## 86          JUCO 2016      86          Joe Henderson
-## 87          JUCO 2016      87         Justin Mcinnis
-## 88          JUCO 2016      88          Richard Lagow
-## 89          JUCO 2016      89       Phillip Napoleon
-## 90          JUCO 2016      90           Paul Ramirez
-## 91          JUCO 2016      91           Kurtis Taufa
-## 92          JUCO 2016      92      Breontae Matthews
-## 93          JUCO 2016      93            Kyle Oliver
-## 94          JUCO 2016      94           Xavier Ubosi
-## 95          JUCO 2016      95            Mych Thomas
-## 96          JUCO 2016      96          A.J. McCollum
-## 97          JUCO 2016      97           Kapri Doucet
-## 98          JUCO 2016      98        Garrison Wright
-## 99          JUCO 2016      99            Andrew Ford
-## 100         JUCO 2016     100      Suliasi Tamaivena
-## 101         JUCO 2016     101         Johnny Stanton
-## 102         JUCO 2016     102         Michael Taylor
-## 103         JUCO 2016     103          David Fangupo
-## 104         JUCO 2016     104          Deshon Cooper
-## 105         JUCO 2016     105         Darrion Landry
-## 106         JUCO 2016     106           Trent Hosick
-## 107         JUCO 2016     107           Kayaune Ross
-## 108         JUCO 2016     108         Michael Gallup
-## 109         JUCO 2016     109         Tralund Webber
-## 110         JUCO 2016     110         Desmond Branch
-## 111         JUCO 2016     111         Patrick Bolton
-## 112         JUCO 2016     112          Kyrion Parker
-## 113         JUCO 2016     113             Jacob Park
-## 114         JUCO 2016     114          Manaia Perese
-## 115         JUCO 2016     115           Eric Jenkins
-## 116         JUCO 2016     116          Austin Larkin
-## 117         JUCO 2016     117             Noah Jones
-## 118         JUCO 2016     118          Khairi Reaser
-## 119         JUCO 2016     119          Tyrae Simmons
-## 120         JUCO 2016     120             Kobe Marfo
-## 121         JUCO 2016     121            Kamal Hardy
-## 122         JUCO 2016     122           Chris Booker
-## 123         JUCO 2016     123      Sederian Copeland
-## 124         JUCO 2016     124           Henri Murphy
-## 125         JUCO 2016     125        Dominic Collins
-## 126         JUCO 2016     126            Britto Tutt
-## 127         JUCO 2016     127         Dominic Walker
-## 128         JUCO 2016     128           Jordan Veasy
-## 129         JUCO 2016     129            Joseph Putu
-## 130         JUCO 2016     130        Merrick Jackson
-## 131         JUCO 2016     131      LaDarrius Jackson
-## 132         JUCO 2016     132          Elijah Battle
-## 133         JUCO 2016     133           Deion Malone
-## 134         JUCO 2016     134           Corey Cooper
-## 135         JUCO 2016     135         Rayshawn Boyce
-## 136         JUCO 2016     136          Elijah Camara
-## 137         JUCO 2016     137        Viliami Umufuke
-## 138         JUCO 2016     138         Griffin Mclain
-## 139         JUCO 2016     139          Nakita Lealao
-## 140         JUCO 2016     140        Garrett Kruczek
-## 141         JUCO 2016     141              Ken Coley
-## 142         JUCO 2016     142            Josh Fuller
-## 143         JUCO 2016     143         Darrell Monroe
-## 144         JUCO 2016     144       Dakeavis Wilmore
-## 145         JUCO 2016     145            Zach Cannon
-## 146         JUCO 2016     146     Trey Lealaimatafao
-## 147         JUCO 2016     147         Kieran Johnson
-## 148         JUCO 2016     148       Chevoski Collins
-## 149         JUCO 2016     149          Travis Custis
-## 150         JUCO 2016     150          Alex Figueroa
-## 151         JUCO 2016     151         George Roberts
-## 152         JUCO 2016     152           Kobe McCrary
-## 153         JUCO 2016     153             Kyle White
-## 154         JUCO 2016     154           Eddy Pineiro
-## 155         JUCO 2016     155            C.J. Reavis
-## 156         JUCO 2016     156       Darneail Jenkins
-## 157         JUCO 2016     157             Jake Faber
-## 158         JUCO 2016     158     Quindarius Thagard
-## 159         JUCO 2016     159          Jarred Dorton
-## 160         JUCO 2016     160         Armond Weh-Weh
-## 161         JUCO 2016     161      Garrison Mitchell
-## 162         JUCO 2016     162            Riley Smith
-## 163         JUCO 2016     163             Oge Udeogu
-## 164         JUCO 2016     164          Jacob McCrary
-## 165         JUCO 2016     165              Josh Fatu
-## 166         JUCO 2016     166           Malik Kearse
-## 167         JUCO 2016     167          Abdul Beecham
-## 168         JUCO 2016     168          Raveon Hoston
-## 169         JUCO 2016     169         Marquez McNair
-## 170         JUCO 2016     170       Terrell Williams
-## 171         JUCO 2016     171           Trevon Wesco
-## 172         JUCO 2016     172          D'Andre Payne
-## 173         JUCO 2016     173      Detric Bing-Dukes
-## 174         JUCO 2016     174         Cedrick Wilson
-## 175         JUCO 2016     175        Dalton Fackrell
-## 176         JUCO 2016     176               Tim Holt
-## 177         JUCO 2016     177            Joe Malanga
-## 178         JUCO 2016     178         Shane Richards
-## 179         JUCO 2016     179          Thadd Daniels
-## 180         JUCO 2016     180     Sitiveni Tamaivena
-## 181         JUCO 2016     181        Gardner Minshew
-## 182         JUCO 2016     182        Vincent Calhoun
-## 183         JUCO 2016     183         Malik Williams
-## 184         JUCO 2016     184        Timmy Hernandez
-## 185         JUCO 2016     185            Elijah King
-## 186         JUCO 2016     186           Nicho Garcia
-## 187         JUCO 2016     187             Troy Grant
-## 188         JUCO 2016     188            Kabion Ento
-## 189         JUCO 2016     189            Greg Hughes
-## 190         JUCO 2016     190           Mike Daniels
-## 191         JUCO 2016     191          Robert Taylor
-## 192         JUCO 2016     192            Craig Smith
-## 193         JUCO 2016     193 Christopher Woolbright
-## 194         JUCO 2016     194             Isi Holani
-## 195         JUCO 2016     195             Ian Thomas
-## 196         JUCO 2016     196     Craig Kanyangarara
-## 197         JUCO 2016     197           Landry Payne
-## 198         JUCO 2016     198           Shawn Thomas
-## 199         JUCO 2016     199          Kalan Ritchie
-## 200         JUCO 2016     200          Jonathan Cook
-## 201         JUCO 2016     201          Kwadra Griggs
-## 202         JUCO 2016     202       Zachary Williams
-## 203         JUCO 2016     203           Ali Ali-Musa
-## 204         JUCO 2016     204         Russell Becker
-## 205         JUCO 2016     205         DeeIsaac Davis
-## 206         JUCO 2016     206         Austin Vaimili
-## 207         JUCO 2016     207           Josh Wheeler
-## 208         JUCO 2016     208            James Davis
-## 209         JUCO 2016     209         Derrick Achayo
-## 210         JUCO 2016     210           Avery Jordan
-## 211         JUCO 2016     211             Devin Gray
-## 212         JUCO 2016     212        Christian Beard
-## 213         JUCO 2016     213        Stephen Johnson
-## 214         JUCO 2016     214          Tommy Lazzaro
-## 215         JUCO 2016     215       Ladarius Gallion
-## 216         JUCO 2016     216          Laronzo Davis
-## 217         JUCO 2016     217         Kurt McCormack
-## 218         JUCO 2016     218            A.J. Burton
-## 219         JUCO 2016     219        Clarence Corbin
-## 220         JUCO 2016     220           Josh Stevens
-## 221         JUCO 2016     221         Cale Backinger
-## 222         JUCO 2016     222         Jahmmir Taylor
-## 223         JUCO 2016     223              Ray Price
-## 224         JUCO 2016     224           Sean Plousha
-## 225         JUCO 2016     225   Ingram Hayek-Tillard
-## 226         JUCO 2016     226            Jalen Embry
-## 227         JUCO 2016     227           Harneet Gill
-## 228         JUCO 2016     228       Danielson Auelua
-## 229         JUCO 2016     229           Toyous Avery
-## 230         JUCO 2016     230            Gary McCrae
-## 231         JUCO 2016     231       Shawn Poindexter
-## 232         JUCO 2016     232          Emmanuel Beal
-## 233         JUCO 2016     233           Isaiah Jones
-## 234         JUCO 2016     234          Frank Johnson
-## 235         JUCO 2016     235           Wesley Payne
-## 236         JUCO 2016     236        Kendall Calhoun
-## 237         JUCO 2016     237          J.B. Copeland
-## 238         JUCO 2016     238          Ronnie Turner
-## 239         JUCO 2016     239            Darez Diggs
-## 240         JUCO 2016     240             Ben Holmes
-## 241         JUCO 2016     241        Christian Cronk
-## 242         JUCO 2016     242            Paisa Savea
-## 243         JUCO 2016     243            Josh Odigie
-## 244         JUCO 2016     244         Naquez Pringle
-## 245         JUCO 2016     245           Davin Pierce
-## 246         JUCO 2016     246            Ricky Blair
-## 247         JUCO 2016     247         Joseph Jackson
-## 248         JUCO 2016     248        Emmanuel Harris
-## 249         JUCO 2016     249     Austin Blake-Smith
-## 250         JUCO 2016     250        Jordan Kunaszyk
-## 251         JUCO 2016     251       Stephan Robinson
-## 252         JUCO 2016     252      Dequinton Osborne
-## 253         JUCO 2016     253           Tanner Myers
-## 254         JUCO 2016     254              Gabe Loyd
-## 255         JUCO 2016     255   Michael Sleep-Dalton
-## 256         JUCO 2016     256          Jaylon Bowden
-## 257         JUCO 2016     257            Kevin Olsen
-## 258         JUCO 2016     258      Ronquavion Tarver
-## 259         JUCO 2016     259           Darius Roper
-## 260         JUCO 2016     260         DeMarcus LLoyd
-## 261         JUCO 2016     261            Dajon Emory
-## 262         JUCO 2016     262            Linwood Foy
-## 263         JUCO 2016     263            DA Williams
-## 264         JUCO 2016     264          Lanard Bonner
-## 265         JUCO 2016     265     Clifford Fernandez
-## 266         JUCO 2016     266        Buddy Tuamasaga
-## 267         JUCO 2016     267            Joe Sanders
-## 268         JUCO 2016     268    Marloshawn Franklin
-## 269         JUCO 2016     269          Warwick Marsh
-## 270         JUCO 2016     270           Dacorius Law
-## 271         JUCO 2016     271       Mitch Wishnowsky
-## 272         JUCO 2016     272             Alex Byers
-## 273         JUCO 2016     273         Michael Turner
-## 274         JUCO 2016     274         Derrick Worthy
-## 275         JUCO 2016     275            Stacy Keely
-## 276         JUCO 2016     276             Cody Hayes
-## 277         JUCO 2016     277          Jermel Walker
-## 278         JUCO 2016     278         Donnell Greene
-## 279         JUCO 2016     279         Justin Stewart
-## 280         JUCO 2016     280             Allen Byrd
-## 281         JUCO 2016     281              Aaron Foy
-## 282         JUCO 2016     282            Caleb Grant
-## 283         JUCO 2016     283          Brenon Thrift
-## 284         JUCO 2016     284         Raymond Baylor
-## 285         JUCO 2016     285        Denarius Howard
-## 286         JUCO 2016     286           Cedric McCoy
-## 287         JUCO 2016     287   Nicholas Iacovangelo
-## 288         JUCO 2016     288           Branden Pena
-## 289         JUCO 2016     289          Anthony Wyche
-## 290         JUCO 2016     290         Ryan Popolizio
-## 291         JUCO 2016     291        Trent Soechting
-## 292         JUCO 2016     292       Terrell Aldridge
-## 293         JUCO 2016     293          Shannon Smith
-## 294         JUCO 2016     294        Garrett McBroom
-## 295         JUCO 2016     295            Alton Meeks
-## 296         JUCO 2016     296          John Williams
-## 297         JUCO 2016     297  Damarius Brinson, Jr.
-## 298         JUCO 2016     298       Joseph Orinstein
-## 299         JUCO 2016     299          Tuzar Skipper
-## 300         JUCO 2016     300           Kenneth Kidd
-## 301         JUCO 2016     301           Ronald Ollie
-## 302         JUCO 2016     302            Alex Little
-## 303         JUCO 2016     303       Dominique Parker
-## 304         JUCO 2016     304    Landon James-Wilson
-## 305         JUCO 2016     305            JT Williams
-## 306         JUCO 2016     306            Brian Keyes
-## 307         JUCO 2016     307         Robert Jackson
-## 308         JUCO 2016     308          Kory Lamberts
-## 309         JUCO 2016     309           Karson Green
-## 310         JUCO 2016     310        Malik Forrester
-## 311         JUCO 2016     311              CJ Parker
-## 312         JUCO 2016     312           Marcus Daggs
-## 313         JUCO 2016     313        DeShawn Tillman
-## 314         JUCO 2016     314             Keanu Hill
-## 315         JUCO 2016     315           Stefan Beard
-## 316         JUCO 2016     316          Chris Johnson
-## 317         JUCO 2016     317        Thomas Cletcher
-## 318         JUCO 2016     318       Luder Jean-Louis
-## 319         JUCO 2016     319          DaMarion King
-## 320         JUCO 2016     320         Kamathi Holsey
-## 321         JUCO 2016     321       Marquis Wimberly
-## 322         JUCO 2016     322       Jonathan Charles
-## 323         JUCO 2016     323             Jalen Neal
-## 324         JUCO 2016     324      Tevaris McCormick
-## 325         JUCO 2016     325         Michael Wright
-## 326         JUCO 2016     326      Victor Villarreal
-## 327         JUCO 2016     327          Darrell Songy
-## 328         JUCO 2016     328           Bobby Gentry
-## 329         JUCO 2016     329             Kylen Binn
-## 330         JUCO 2016     330           Derek Denton
-## 331         JUCO 2016     331         Tyler Bruggman
-## 332         JUCO 2016     332          Tarik Ballard
-## 333         JUCO 2016     333           Jack Reichel
-## 334         JUCO 2016     334            A.J. Brooks
-## 335         JUCO 2016     335           David Lemoto
-## 336         JUCO 2016     336       Maaseiah Francis
-## 337         JUCO 2016     337            Marcus Levy
-## 338         JUCO 2016     338     Christian Robinson
-## 339         JUCO 2016     339          Jovann Letuli
-## 340         JUCO 2016     340           Angelo Owens
-## 341         JUCO 2016     341            Chett Levay
-## 342         JUCO 2016     342           Justin Wyatt
-## 343         JUCO 2016     343      Kris Weatherspoon
-## 344         JUCO 2016     344        Blaise Fountain
-## 345         JUCO 2016     345       D'Tavieus Taylor
-## 346         JUCO 2016     346       Anthony Anderson
-## 347         JUCO 2016     347             Kyle Trego
-## 348         JUCO 2016     348        Andrew Marshall
-## 349         JUCO 2016     349          Detrich Clark
-## 350         JUCO 2016     350         Houston Haynes
-## 351         JUCO 2016     351            Quinn Tiggs
-## 352         JUCO 2016     352        Patrick Miranda
-## 353         JUCO 2016     353        Charles Brenner
-## 354         JUCO 2016     354     A'Keitheon Whitner
-## 355         JUCO 2016     355          Franklin Uesi
-## 356         JUCO 2016     356          Steven Montac
-## 357         JUCO 2016     357         Devijion Smith
-## 358         JUCO 2016     358         Diantae Thomas
-## 359         JUCO 2016     359           Jalen Thomas
-## 360         JUCO 2016     360       Stanley Barnwell
-## 361         JUCO 2016     361           Khalil Hodge
-## 362         JUCO 2016     362      Allenzae Staggers
-## 363         JUCO 2016     363        Charvarius Ward
-## 364         JUCO 2016     364         Montre Gregory
-## 365         JUCO 2016     365           Ahmari Hayes
-## 366         JUCO 2016     366            A.J. Erdely
-## 367         JUCO 2016     367          London Miller
-## 368         JUCO 2016     368            Tyler Gangi
-## 369         JUCO 2016     369         Brandon Niccum
-## 370         JUCO 2016     370              Levi Boyd
-## 371         JUCO 2016     371           James Graves
-## 372         JUCO 2016     372        Malique Johnson
-## 373         JUCO 2016     373            AJ Davidson
-## 374         JUCO 2016     374           Thad Roberts
-## 375         JUCO 2016     375      Michael Chevalier
-## 376         JUCO 2016     376          Michael Adams
-## 377         JUCO 2016     377         Tedrick Lowery
-## 378         JUCO 2016     378              Clay Burt
-## 379         JUCO 2016     379         Bentley Easley
-## 380         JUCO 2016     380       Tanner Stallings
-## 381         JUCO 2016     381             Bobby Hill
-## 382         JUCO 2016     382        Connor Morehart
-## 383         JUCO 2016     383        Tarvarius Moore
-## 384         JUCO 2016     384            Kyle Levere
-## 385         JUCO 2016     385        Quantaye Battle
-## 386         JUCO 2016     386         Chrishard Buhl
-## 387         JUCO 2016     387              Joe Pesce
-## 388         JUCO 2016     388         Kejuan Daniels
-## 389         JUCO 2016     389          Omaryan White
-## 390         JUCO 2016     390        Demontrai Lewis
-## 391         JUCO 2016     391          Chris Hawkins
-## 392         JUCO 2016     392        Maurice Carnell
-## 393         JUCO 2016     393         Byron Evans II
-## 394         JUCO 2016     394      Roderick Jones Jr
-## 395         JUCO 2016     395       Marquaveon Jones
-## 396         JUCO 2016     396           John Swisher
-## 397         JUCO 2016     397         D'Andre Belton
-## 398         JUCO 2016     398           Dontel James
-## 399         JUCO 2016     399          Conner Cramer
-## 400         JUCO 2016     400            Todd Porter
-## 401         JUCO 2016     401           Caleb Wilson
-## 402         JUCO 2016     402         Antwon Turnage
-## 403         JUCO 2016     403            Baron Poole
-## 404         JUCO 2016     404        Alfonso Onunwor
-## 405         JUCO 2016     405    Dontavious Baulkman
-## 406         JUCO 2016     406              Eji Ejiya
-## 407         JUCO 2016     407        DeShawnte Lloyd
-## 408         JUCO 2016     408      Anthony Gutierrez
-## 409         JUCO 2016     409          Darryl Waters
-## 410         JUCO 2016     410            Kyle Wilson
-## 411         JUCO 2016     411       DeVante Williams
-## 412         JUCO 2016     412           Malik Dumetz
-## 413         JUCO 2016     413           Rico Gafford
-## 414         JUCO 2016     414      JonDarius Gardner
-## 415         JUCO 2016     415      Vitas Hrynkiewicz
-## 416         JUCO 2016     416         Jimmy Leatiota
-## 417         JUCO 2016     417           Tavis Guerra
-## 418         JUCO 2016     418          Tyler Johnson
-## 419         JUCO 2016     419         Howard Houston
-## 420         JUCO 2016     420        Jarvis Jeffries
-## 421         JUCO 2016     421         Artez Williams
-## 422         JUCO 2016     422           Jaleel Scott
-## 423         JUCO 2016     423        Timothy Roberts
-## 424         JUCO 2016     424          Thomas Koufie
-## 425         JUCO 2016     425         Terry Ausborne
-## 426         JUCO 2016     426            Jake Lanski
-## 427         JUCO 2016     427        Trevor Kanteman
-## 428         JUCO 2016     428         Jonathan Boone
-## 429         JUCO 2016     429     Andrew Reinkemeyer
-## 430         JUCO 2016     430         Neiko Robinson
-## 431         JUCO 2016     431            Josh Herman
-## 432         JUCO 2016     432             Shane Gama
-## 433         JUCO 2016     433            Zach Befort
-## 434         JUCO 2016     434              TJ Henson
-## 435         JUCO 2016     435      Levarious Varnado
-## 436         JUCO 2016     436          Romello Riley
-## 437         JUCO 2016     437        Marc Jonassaint
-## 438         JUCO 2016     438         Dario Robinson
-## 439         JUCO 2016     439        Temerick Harper
-## 440         JUCO 2016     440          Darius Turner
-## 441         JUCO 2016     441             Ty Watkins
-## 442         JUCO 2016     442         Aikeem Coleman
-## 443         JUCO 2016     443         Trevara Miller
-## 444         JUCO 2016     444           Leslie Maruo
-## 445         JUCO 2016     445          Jacquae Peart
-## 446         JUCO 2016     446       Leonard Skattebo
-## 447         JUCO 2016     447        Corey Bojorquez
-## 448         JUCO 2016     448           Reggie McGee
-## 449         JUCO 2016     449            Josh Aganon
-## 450         JUCO 2016     450            Hiram Velez
-## 451         JUCO 2016     451          Arie Anderson
-## 452         JUCO 2016     452           Andre Wilson
-## 453         JUCO 2016     453            Kevon Perry
-## 454         JUCO 2016     454            Zach Wilson
-## 455         JUCO 2016     455            Sean Krepsz
-## 456         JUCO 2016     456          Joshua Outlaw
-## 457         JUCO 2016     457           Kijana Amous
-## 458         JUCO 2016     458           Evan Pantels
-## 459         JUCO 2016     459             Donnie Lee
-## 460         JUCO 2016     460         Chibu Onyeukwu
-## 461         JUCO 2016     461        Brayleon Thorns
-## 462         JUCO 2016     462        Keonatye Garner
-## 463         JUCO 2016     463           Malik Warner
-## 464         JUCO 2016     464       Trenton Perriman
-## 465         JUCO 2016     465        Khalid Kornegay
-## 466         JUCO 2016     466            Jake Nelson
-## 467         JUCO 2016     467            Billy Hurst
-## 468         JUCO 2016     468          Jamar Winston
-## 469         JUCO 2016     469       Newton Salisbury
-## 470         JUCO 2016     470         Anthony Hickey
-## 471         JUCO 2016     471            Milan Hlywa
-## 472         JUCO 2016     472           Julius Craft
-## 473         JUCO 2016     473             Josh Keith
-## 474         JUCO 2016     474             Troy Duran
-## 475         JUCO 2016     475          Julian Burris
-## 476         JUCO 2016     476             Nick Jones
+<pre><code>##        id athlete_id recruit_type year ranking                   name
+## 1   55123       &lt;NA&gt;         JUCO 2016       1        Jonathan Kongbo
+## 2   55124       &lt;NA&gt;         JUCO 2016       2        Charles Baldwin
+## 3   55125   -1039929         JUCO 2016       3          Garett Bolles
+## 4   55126       &lt;NA&gt;         JUCO 2016       4       Malcolm Pridgeon
+## 5   55127    4057659         JUCO 2016       5          Mark Thompson
+## 6   55128    4038530         JUCO 2016       6           Taj Williams
+## 7   55129     556465         JUCO 2016       7            Jerod Evans
+## 8   55130       &lt;NA&gt;         JUCO 2016       8           Tyree Horton
+## 9   55131       &lt;NA&gt;         JUCO 2016       9            Ryan Parker
+## 10  55132     545367         JUCO 2016      10        Derrick Willies
+## 11  55133    4035019         JUCO 2016      11             Javon Wims
+## 12  55134    4039254         JUCO 2016      12            Kyzir White
+## 13  55135   -1032005         JUCO 2016      13          Jamarcus King
+## 14  55136       &lt;NA&gt;         JUCO 2016      14      Dougladson Subtyl
+## 15  55137       &lt;NA&gt;         JUCO 2016      15       Natereace Strong
+## 16  55138     545351         JUCO 2016      16        J'Marcus Rhodes
+## 17  55139    4035498         JUCO 2016      17         Paul James III
+## 18  55140   -1013200         JUCO 2016      18          Na'Ty Rodgers
+## 19  55141       &lt;NA&gt;         JUCO 2016      19      David Luafatasaga
+## 20  55142    4046669         JUCO 2016      20       Handsome Tanielu
+## 21  55143    4047845         JUCO 2016      21            Alex Losoya
+## 22  55144       &lt;NA&gt;         JUCO 2016      22         Alexis Johnson
+## 23  55145    4035496         JUCO 2016      23      John Franklin III
+## 24  55146     548070         JUCO 2016      24          Tyrell Chavis
+## 25  55147       &lt;NA&gt;         JUCO 2016      25            Koron Crump
+## 26  55148     546539         JUCO 2016      26         Riley Ferguson
+## 27  55149       &lt;NA&gt;         JUCO 2016      27             Dre Massey
+## 28  55150    4047826         JUCO 2016      28         Christian Hill
+## 29  55151   -1016110         JUCO 2016      29           Tate Leavitt
+## 30  55152       &lt;NA&gt;         JUCO 2016      30          London Iakopo
+## 31  55153       &lt;NA&gt;         JUCO 2016      31             B.J. Autry
+## 32  55154    4035174         JUCO 2016      32            Jeff George
+## 33  55155       &lt;NA&gt;         JUCO 2016      33           Jeremy Faulk
+## 34  55156       &lt;NA&gt;         JUCO 2016      34           AJ Hotchkins
+## 35  55157    4039226         JUCO 2016      35        Justin Crawford
+## 36  55158       &lt;NA&gt;         JUCO 2016      36        Clifton Garrett
+## 37  55159       &lt;NA&gt;         JUCO 2016      37            Tyren Jones
+## 38  55160       &lt;NA&gt;         JUCO 2016      38         D.J. Henderson
+## 39  55161       &lt;NA&gt;         JUCO 2016      39             Wally Aime
+## 40  55162       &lt;NA&gt;         JUCO 2016      40     Travonte Valentine
+## 41  55163    4046666         JUCO 2016      41        Jonah Trinnaman
+## 42  55164     546876         JUCO 2016      42          Troy Williams
+## 43  55165    4047824         JUCO 2016      43       Maurice Chandler
+## 44  55166     545258         JUCO 2016      44              Greg Webb
+## 45  55167       &lt;NA&gt;         JUCO 2016      45            Greg Bryant
+## 46  55168       &lt;NA&gt;         JUCO 2016      46        William Johnson
+## 47  55169   -1027421         JUCO 2016      47         Ashton Julious
+## 48  55170       &lt;NA&gt;         JUCO 2016      48         Maquedius Bain
+## 49  55171       &lt;NA&gt;         JUCO 2016      49           Chris Baccus
+## 50  55172     546227         JUCO 2016      50             Nick Terry
+## 51  55173       &lt;NA&gt;         JUCO 2016      51        Markell Simmons
+## 52  55174     546285         JUCO 2016      52             Mat Boesen
+## 53  55175    4040969         JUCO 2016      53             Jamar King
+## 54  55176    4047667         JUCO 2016      54         Josiah Coatney
+## 55  55177   -1019305         JUCO 2016      55            Lio Lafaele
+## 56  55178    4035999         JUCO 2016      56          Ronald Walker
+## 57  55179       &lt;NA&gt;         JUCO 2016      57             Ben Powers
+## 58  55180       &lt;NA&gt;         JUCO 2016      58      Joe Kupcikevicius
+## 59  55181   -1039901         JUCO 2016      59              Alec Dana
+## 60  55182     559675         JUCO 2016      60           Lashard Durr
+## 61  55183    4035379         JUCO 2016      61          Jordan Thomas
+## 62  55184       &lt;NA&gt;         JUCO 2016      62             Tramal Ivy
+## 63  55185       &lt;NA&gt;         JUCO 2016      63           Brandon Hill
+## 64  55186       &lt;NA&gt;         JUCO 2016      64           Demarre Kitt
+## 65  55187    4035042         JUCO 2016      65          Jordan Bonner
+## 66  55188    4040676         JUCO 2016      66           Devron Davis
+## 67  55189       &lt;NA&gt;         JUCO 2016      67        Jordan Carswell
+## 68  55190       &lt;NA&gt;         JUCO 2016      68           Ratu Mafileo
+## 69  55191    3128317         JUCO 2016      69         Juwann Winfree
+## 70  55192     549829         JUCO 2016      70         Jayme Thompson
+## 71  55193    4036416         JUCO 2016      71          Byron Pringle
+## 72  55194    4035101         JUCO 2016      72            Greg Taylor
+## 73  55195   -1001815         JUCO 2016      73           Tyson Rising
+## 74  55196       &lt;NA&gt;         JUCO 2016      74         De'Quan Bowman
+## 75  55197   -1006220         JUCO 2016      75         Dwayne Wallace
+## 76  55198       &lt;NA&gt;         JUCO 2016      76           Deya Mhiesen
+## 77  55199   -1033503         JUCO 2016      77           Chris Gaynor
+## 78  55200       &lt;NA&gt;         JUCO 2016      78         Larry Williams
+## 79  55201   -1041339         JUCO 2016      79          Demetri Moore
+## 80  55202    4036009         JUCO 2016      80         Chris Williams
+## 81  55203       &lt;NA&gt;         JUCO 2016      81              Tre Brown
+## 82  55204       &lt;NA&gt;         JUCO 2016      82         Chima Onyeukwu
+## 83  55205    3128753         JUCO 2016      83          Dayall Harris
+## 84  55206       &lt;NA&gt;         JUCO 2016      84       Akeem Cooperwood
+## 85  55207       &lt;NA&gt;         JUCO 2016      85         Justice Hansen
+## 86  55208       &lt;NA&gt;         JUCO 2016      86          Joe Henderson
+## 87  55209       &lt;NA&gt;         JUCO 2016      87         Justin Mcinnis
+## 88  55210     546687         JUCO 2016      88          Richard Lagow
+## 89  55211    4042833         JUCO 2016      89       Phillip Napoleon
+## 90  55212   -1002218         JUCO 2016      90           Paul Ramirez
+## 91  55213       &lt;NA&gt;         JUCO 2016      91           Kurtis Taufa
+## 92  55214   -1015361         JUCO 2016      92      Breontae Matthews
+## 93  55215       &lt;NA&gt;         JUCO 2016      93            Kyle Oliver
+## 94  55216       &lt;NA&gt;         JUCO 2016      94           Xavier Ubosi
+## 95  55217       &lt;NA&gt;         JUCO 2016      95            Mych Thomas
+## 96  55218   -1001840         JUCO 2016      96          A.J. McCollum
+## 97  55219    4037635         JUCO 2016      97           Kapri Doucet
+## 98  55220   -1021339         JUCO 2016      98        Garrison Wright
+## 99  55221       &lt;NA&gt;         JUCO 2016      99            Andrew Ford
+## 100 55222   -1042302         JUCO 2016     100      Suliasi Tamaivena
+## 101 55223     545618         JUCO 2016     101         Johnny Stanton
+## 102 55224       &lt;NA&gt;         JUCO 2016     102         Michael Taylor
+## 103 55225       &lt;NA&gt;         JUCO 2016     103          David Fangupo
+## 104 55226       &lt;NA&gt;         JUCO 2016     104          Deshon Cooper
+## 105 55227       &lt;NA&gt;         JUCO 2016     105         Darrion Landry
+## 106 55228     546195         JUCO 2016     106           Trent Hosick
+## 107 55229    4035069         JUCO 2016     107           Kayaune Ross
+## 108 55230    4036348         JUCO 2016     108         Michael Gallup
+## 109 55231    4038465         JUCO 2016     109         Tralund Webber
+## 110 55232       &lt;NA&gt;         JUCO 2016     110         Desmond Branch
+## 111 55233       &lt;NA&gt;         JUCO 2016     111         Patrick Bolton
+## 112 55234       &lt;NA&gt;         JUCO 2016     112          Kyrion Parker
+## 113 55235     559568         JUCO 2016     113             Jacob Park
+## 114 55236       &lt;NA&gt;         JUCO 2016     114          Manaia Perese
+## 115 55237     554864         JUCO 2016     115           Eric Jenkins
+## 116 55238    4035726         JUCO 2016     116          Austin Larkin
+## 117 55239       &lt;NA&gt;         JUCO 2016     117             Noah Jones
+## 118 55240       &lt;NA&gt;         JUCO 2016     118          Khairi Reaser
+## 119 55241   -1004707         JUCO 2016     119          Tyrae Simmons
+## 120 55242    4038726         JUCO 2016     120             Kobe Marfo
+## 121 55243       &lt;NA&gt;         JUCO 2016     121            Kamal Hardy
+## 122 55244       &lt;NA&gt;         JUCO 2016     122           Chris Booker
+## 123 55245       &lt;NA&gt;         JUCO 2016     123      Sederian Copeland
+## 124 55246    4037605         JUCO 2016     124           Henri Murphy
+## 125 55247    4035104         JUCO 2016     125        Dominic Collins
+## 126 55248       &lt;NA&gt;         JUCO 2016     126            Britto Tutt
+## 127 55249     550018         JUCO 2016     127         Dominic Walker
+## 128 55250    4035853         JUCO 2016     128           Jordan Veasy
+## 129 55251    4043891         JUCO 2016     129            Joseph Putu
+## 130 55252    4034777         JUCO 2016     130        Merrick Jackson
+## 131 55253    4038712         JUCO 2016     131      LaDarrius Jackson
+## 132 55254    4039221         JUCO 2016     132          Elijah Battle
+## 133 55255   -1002192         JUCO 2016     133           Deion Malone
+## 134 55256       &lt;NA&gt;         JUCO 2016     134           Corey Cooper
+## 135 55257       &lt;NA&gt;         JUCO 2016     135         Rayshawn Boyce
+## 136 55258       &lt;NA&gt;         JUCO 2016     136          Elijah Camara
+## 137 55259       &lt;NA&gt;         JUCO 2016     137        Viliami Umufuke
+## 138 55260       &lt;NA&gt;         JUCO 2016     138         Griffin Mclain
+## 139 55261    4036789         JUCO 2016     139          Nakita Lealao
+## 140 55262       &lt;NA&gt;         JUCO 2016     140        Garrett Kruczek
+## 141 55263       &lt;NA&gt;         JUCO 2016     141              Ken Coley
+## 142 55264       &lt;NA&gt;         JUCO 2016     142            Josh Fuller
+## 143 55265       &lt;NA&gt;         JUCO 2016     143         Darrell Monroe
+## 144 55266       &lt;NA&gt;         JUCO 2016     144       Dakeavis Wilmore
+## 145 55267       &lt;NA&gt;         JUCO 2016     145            Zach Cannon
+## 146 55268       &lt;NA&gt;         JUCO 2016     146     Trey Lealaimatafao
+## 147 55269       &lt;NA&gt;         JUCO 2016     147         Kieran Johnson
+## 148 55270       &lt;NA&gt;         JUCO 2016     148       Chevoski Collins
+## 149 55271       &lt;NA&gt;         JUCO 2016     149          Travis Custis
+## 150 55272       &lt;NA&gt;         JUCO 2016     150          Alex Figueroa
+## 151 55273       &lt;NA&gt;         JUCO 2016     151         George Roberts
+## 152 55274    4034782         JUCO 2016     152           Kobe McCrary
+## 153 55275    4042811         JUCO 2016     153             Kyle White
+## 154 55276    4034949         JUCO 2016     154           Eddy Pineiro
+## 155 55277    3124080         JUCO 2016     155            C.J. Reavis
+## 156 55278       &lt;NA&gt;         JUCO 2016     156       Darneail Jenkins
+## 157 55279       &lt;NA&gt;         JUCO 2016     157             Jake Faber
+## 158 55280       &lt;NA&gt;         JUCO 2016     158     Quindarius Thagard
+## 159 55281       &lt;NA&gt;         JUCO 2016     159          Jarred Dorton
+## 160 55282       &lt;NA&gt;         JUCO 2016     160         Armond Weh-Weh
+## 161 55283       &lt;NA&gt;         JUCO 2016     161      Garrison Mitchell
+## 162 55284       &lt;NA&gt;         JUCO 2016     162            Riley Smith
+## 163 55285   -1014601         JUCO 2016     163             Oge Udeogu
+## 164 55286       &lt;NA&gt;         JUCO 2016     164          Jacob McCrary
+## 165 55287    4035707         JUCO 2016     165              Josh Fatu
+## 166 55288    4038439         JUCO 2016     166           Malik Kearse
+## 167 55289   -1015331         JUCO 2016     167          Abdul Beecham
+## 168 55290       &lt;NA&gt;         JUCO 2016     168          Raveon Hoston
+## 169 55291       &lt;NA&gt;         JUCO 2016     169         Marquez McNair
+## 170 55292    4039283         JUCO 2016     170       Terrell Williams
+## 171 55293       &lt;NA&gt;         JUCO 2016     171           Trevon Wesco
+## 172 55294       &lt;NA&gt;         JUCO 2016     172          D'Andre Payne
+## 173 55295       &lt;NA&gt;         JUCO 2016     173      Detric Bing-Dukes
+## 174 55296    4036335         JUCO 2016     174         Cedrick Wilson
+## 175 55297    4036347         JUCO 2016     175        Dalton Fackrell
+## 176 55298    4036897         JUCO 2016     176               Tim Holt
+## 177 55299       &lt;NA&gt;         JUCO 2016     177            Joe Malanga
+## 178 55300   -1027778         JUCO 2016     178         Shane Richards
+## 179 55301    4035534         JUCO 2016     179          Thadd Daniels
+## 180 55302       &lt;NA&gt;         JUCO 2016     180     Sitiveni Tamaivena
+## 181 55303    4038524         JUCO 2016     181        Gardner Minshew
+## 182 55304   -1021326         JUCO 2016     182        Vincent Calhoun
+## 183 55305    4047769         JUCO 2016     183         Malik Williams
+## 184 55306       &lt;NA&gt;         JUCO 2016     184        Timmy Hernandez
+## 185 55307    4040513         JUCO 2016     185            Elijah King
+## 186 55308   -1008115         JUCO 2016     186           Nicho Garcia
+## 187 55309       &lt;NA&gt;         JUCO 2016     187             Troy Grant
+## 188 55310       &lt;NA&gt;         JUCO 2016     188            Kabion Ento
+## 189 55311       &lt;NA&gt;         JUCO 2016     189            Greg Hughes
+## 190 55312   -1042698         JUCO 2016     190           Mike Daniels
+## 191 55313    4054011         JUCO 2016     191          Robert Taylor
+## 192 55314       &lt;NA&gt;         JUCO 2016     192            Craig Smith
+## 193 55315       &lt;NA&gt;         JUCO 2016     193 Christopher Woolbright
+## 194 55316       &lt;NA&gt;         JUCO 2016     194             Isi Holani
+## 195 55317    4045305         JUCO 2016     195             Ian Thomas
+## 196 55318       &lt;NA&gt;         JUCO 2016     196     Craig Kanyangarara
+## 197 55319    4042804         JUCO 2016     197           Landry Payne
+## 198 55320       &lt;NA&gt;         JUCO 2016     198           Shawn Thomas
+## 199 55321       &lt;NA&gt;         JUCO 2016     199          Kalan Ritchie
+## 200 55322     551291         JUCO 2016     200          Jonathan Cook
+## 201 55323       &lt;NA&gt;         JUCO 2016     201          Kwadra Griggs
+## 202 55324       &lt;NA&gt;         JUCO 2016     202       Zachary Williams
+## 203 55325    4044510         JUCO 2016     203           Ali Ali-Musa
+## 204 55326       &lt;NA&gt;         JUCO 2016     204         Russell Becker
+## 205 55327    4035916         JUCO 2016     205         DeeIsaac Davis
+## 206 55328    4040898         JUCO 2016     206         Austin Vaimili
+## 207 55329       &lt;NA&gt;         JUCO 2016     207           Josh Wheeler
+## 208 55330       &lt;NA&gt;         JUCO 2016     208            James Davis
+## 209 55331   -1031025         JUCO 2016     209         Derrick Achayo
+## 210 55332    4039408         JUCO 2016     210           Avery Jordan
+## 211 55333    4037481         JUCO 2016     211             Devin Gray
+## 212 55334   -1004687         JUCO 2016     212        Christian Beard
+## 213 55335     557882         JUCO 2016     213        Stephen Johnson
+## 214 55336    4039268         JUCO 2016     214          Tommy Lazzaro
+## 215 55337       &lt;NA&gt;         JUCO 2016     215       Ladarius Gallion
+## 216 55338       &lt;NA&gt;         JUCO 2016     216          Laronzo Davis
+## 217 55339       &lt;NA&gt;         JUCO 2016     217         Kurt McCormack
+## 218 55340       &lt;NA&gt;         JUCO 2016     218            A.J. Burton
+## 219 55341       &lt;NA&gt;         JUCO 2016     219        Clarence Corbin
+## 220 55342       &lt;NA&gt;         JUCO 2016     220           Josh Stevens
+## 221 55343       &lt;NA&gt;         JUCO 2016     221         Cale Backinger
+## 222 55344    4040109         JUCO 2016     222         Jahmmir Taylor
+## 223 55345    4046598         JUCO 2016     223              Ray Price
+## 224 55346       &lt;NA&gt;         JUCO 2016     224           Sean Plousha
+## 225 55347       &lt;NA&gt;         JUCO 2016     225   Ingram Hayek-Tillard
+## 226 55348       &lt;NA&gt;         JUCO 2016     226            Jalen Embry
+## 227 55349   -1019299         JUCO 2016     227           Harneet Gill
+## 228 55350       &lt;NA&gt;         JUCO 2016     228       Danielson Auelua
+## 229 55351       &lt;NA&gt;         JUCO 2016     229           Toyous Avery
+## 230 55352    4047766         JUCO 2016     230            Gary McCrae
+## 231 55353       &lt;NA&gt;         JUCO 2016     231       Shawn Poindexter
+## 232 55354    4037632         JUCO 2016     232          Emmanuel Beal
+## 233 55355     546800         JUCO 2016     233           Isaiah Jones
+## 234 55356   -1032330         JUCO 2016     234          Frank Johnson
+## 235 55357    4042822         JUCO 2016     235           Wesley Payne
+## 236 55358   -1007007         JUCO 2016     236        Kendall Calhoun
+## 237 55359    3124988         JUCO 2016     237          J.B. Copeland
+## 238 55360       &lt;NA&gt;         JUCO 2016     238          Ronnie Turner
+## 239 55361       &lt;NA&gt;         JUCO 2016     239            Darez Diggs
+## 240 55362       &lt;NA&gt;         JUCO 2016     240             Ben Holmes
+## 241 55363       &lt;NA&gt;         JUCO 2016     241        Christian Cronk
+## 242 55364    4042834         JUCO 2016     242            Paisa Savea
+## 243 55365    4042138         JUCO 2016     243            Josh Odigie
+## 244 55366    4035063         JUCO 2016     244         Naquez Pringle
+## 245 55367    4037489         JUCO 2016     245           Davin Pierce
+## 246 55368    4037379         JUCO 2016     246            Ricky Blair
+## 247 55369       &lt;NA&gt;         JUCO 2016     247         Joseph Jackson
+## 248 55370       &lt;NA&gt;         JUCO 2016     248        Emmanuel Harris
+## 249 55371   -1039632         JUCO 2016     249     Austin Blake-Smith
+## 250 55372       &lt;NA&gt;         JUCO 2016     250        Jordan Kunaszyk
+## 251 55373       &lt;NA&gt;         JUCO 2016     251       Stephan Robinson
+## 252 55374       &lt;NA&gt;         JUCO 2016     252      Dequinton Osborne
+## 253 55375       &lt;NA&gt;         JUCO 2016     253           Tanner Myers
+## 254 55376    4040512         JUCO 2016     254              Gabe Loyd
+## 255 55377       &lt;NA&gt;         JUCO 2016     255   Michael Sleep-Dalton
+## 256 55378    4032800         JUCO 2016     256          Jaylon Bowden
+## 257 55379     550050         JUCO 2016     257            Kevin Olsen
+## 258 55380       &lt;NA&gt;         JUCO 2016     258      Ronquavion Tarver
+## 259 55381    4036667         JUCO 2016     259           Darius Roper
+## 260 55382       &lt;NA&gt;         JUCO 2016     260         DeMarcus LLoyd
+## 261 55383       &lt;NA&gt;         JUCO 2016     261            Dajon Emory
+## 262 55384       &lt;NA&gt;         JUCO 2016     262            Linwood Foy
+## 263 55385       &lt;NA&gt;         JUCO 2016     263            DA Williams
+## 264 55386       &lt;NA&gt;         JUCO 2016     264          Lanard Bonner
+## 265 55387    4035527         JUCO 2016     265     Clifford Fernandez
+## 266 55388       &lt;NA&gt;         JUCO 2016     266        Buddy Tuamasaga
+## 267 55389       &lt;NA&gt;         JUCO 2016     267            Joe Sanders
+## 268 55390    4035855         JUCO 2016     268    Marloshawn Franklin
+## 269 55391       &lt;NA&gt;         JUCO 2016     269          Warwick Marsh
+## 270 55392       &lt;NA&gt;         JUCO 2016     270           Dacorius Law
+## 271 55393       &lt;NA&gt;         JUCO 2016     271       Mitch Wishnowsky
+## 272 55394    4036376         JUCO 2016     272             Alex Byers
+## 273 55395       &lt;NA&gt;         JUCO 2016     273         Michael Turner
+## 274 55396       &lt;NA&gt;         JUCO 2016     274         Derrick Worthy
+## 275 55397       &lt;NA&gt;         JUCO 2016     275            Stacy Keely
+## 276 55398       &lt;NA&gt;         JUCO 2016     276             Cody Hayes
+## 277 55399   -1021001         JUCO 2016     277          Jermel Walker
+## 278 55400       &lt;NA&gt;         JUCO 2016     278         Donnell Greene
+## 279 55401   -1014643         JUCO 2016     279         Justin Stewart
+## 280 55402       &lt;NA&gt;         JUCO 2016     280             Allen Byrd
+## 281 55403       &lt;NA&gt;         JUCO 2016     281              Aaron Foy
+## 282 55404       &lt;NA&gt;         JUCO 2016     282            Caleb Grant
+## 283 55405   -1029076         JUCO 2016     283          Brenon Thrift
+## 284 55406       &lt;NA&gt;         JUCO 2016     284         Raymond Baylor
+## 285 55407    4040737         JUCO 2016     285        Denarius Howard
+## 286 55408   -1000474         JUCO 2016     286           Cedric McCoy
+## 287 55409       &lt;NA&gt;         JUCO 2016     287   Nicholas Iacovangelo
+## 288 55410    4038560         JUCO 2016     288           Branden Pena
+## 289 55411    4049769         JUCO 2016     289          Anthony Wyche
+## 290 55412   -1011274         JUCO 2016     290         Ryan Popolizio
+## 291 55413       &lt;NA&gt;         JUCO 2016     291        Trent Soechting
+## 292 55414       &lt;NA&gt;         JUCO 2016     292       Terrell Aldridge
+## 293 55415       &lt;NA&gt;         JUCO 2016     293          Shannon Smith
+## 294 55416    4043095         JUCO 2016     294        Garrett McBroom
+## 295 55417   -1025823         JUCO 2016     295            Alton Meeks
+## 296 55418       &lt;NA&gt;         JUCO 2016     296          John Williams
+## 297 55419   -1025815         JUCO 2016     297  Damarius Brinson, Jr.
+## 298 55420       &lt;NA&gt;         JUCO 2016     298       Joseph Orinstein
+## 299 55421       &lt;NA&gt;         JUCO 2016     299          Tuzar Skipper
+## 300 55422       &lt;NA&gt;         JUCO 2016     300           Kenneth Kidd
+## 301 55423    4051591         JUCO 2016     301           Ronald Ollie
+## 302 55424       &lt;NA&gt;         JUCO 2016     302            Alex Little
+## 303 55425       &lt;NA&gt;         JUCO 2016     303       Dominique Parker
+## 304 55426       &lt;NA&gt;         JUCO 2016     304    Landon James-Wilson
+## 305 55427       &lt;NA&gt;         JUCO 2016     305            JT Williams
+## 306 55428     552084         JUCO 2016     306            Brian Keyes
+## 307 55429    4036898         JUCO 2016     307         Robert Jackson
+## 308 55430       &lt;NA&gt;         JUCO 2016     308          Kory Lamberts
+## 309 55431   -1014611         JUCO 2016     309           Karson Green
+## 310 55432    4040920         JUCO 2016     310        Malik Forrester
+## 311 55433       &lt;NA&gt;         JUCO 2016     311              CJ Parker
+## 312 55434    4032801         JUCO 2016     312           Marcus Daggs
+## 313 55435       &lt;NA&gt;         JUCO 2016     313        DeShawn Tillman
+## 314 55436       &lt;NA&gt;         JUCO 2016     314             Keanu Hill
+## 315 55437    4040699         JUCO 2016     315           Stefan Beard
+## 316 55438    4037548         JUCO 2016     316          Chris Johnson
+## 317 55439    4035394         JUCO 2016     317        Thomas Cletcher
+## 318 55440       &lt;NA&gt;         JUCO 2016     318       Luder Jean-Louis
+## 319 55441    4040424         JUCO 2016     319          DaMarion King
+## 320 55442    4040845         JUCO 2016     320         Kamathi Holsey
+## 321 55443       &lt;NA&gt;         JUCO 2016     321       Marquis Wimberly
+## 322 55444       &lt;NA&gt;         JUCO 2016     322       Jonathan Charles
+## 323 55445   -1029734         JUCO 2016     323             Jalen Neal
+## 324 55446    4039908         JUCO 2016     324      Tevaris McCormick
+## 325 55447    4239840         JUCO 2016     325         Michael Wright
+## 326 55448       &lt;NA&gt;         JUCO 2016     326      Victor Villarreal
+## 327 55449     552124         JUCO 2016     327          Darrell Songy
+## 328 55450       &lt;NA&gt;         JUCO 2016     328           Bobby Gentry
+## 329 55451       &lt;NA&gt;         JUCO 2016     329             Kylen Binn
+## 330 55452       &lt;NA&gt;         JUCO 2016     330           Derek Denton
+## 331 55453     550623         JUCO 2016     331         Tyler Bruggman
+## 332 55454       &lt;NA&gt;         JUCO 2016     332          Tarik Ballard
+## 333 55455   -1035741         JUCO 2016     333           Jack Reichel
+## 334 55456    4239766         JUCO 2016     334            A.J. Brooks
+## 335 55457    4040758         JUCO 2016     335           David Lemoto
+## 336 55458    3124879         JUCO 2016     336       Maaseiah Francis
+## 337 55459     547068         JUCO 2016     337            Marcus Levy
+## 338 55460       &lt;NA&gt;         JUCO 2016     338     Christian Robinson
+## 339 55461   -1000473         JUCO 2016     339          Jovann Letuli
+## 340 55462    4037375         JUCO 2016     340           Angelo Owens
+## 341 55463       &lt;NA&gt;         JUCO 2016     341            Chett Levay
+## 342 55464    4039925         JUCO 2016     342           Justin Wyatt
+## 343 55465    4039902         JUCO 2016     343      Kris Weatherspoon
+## 344 55466   -1024040         JUCO 2016     344        Blaise Fountain
+## 345 55467   -1031701         JUCO 2016     345       D'Tavieus Taylor
+## 346 55468       &lt;NA&gt;         JUCO 2016     346       Anthony Anderson
+## 347 55469       &lt;NA&gt;         JUCO 2016     347             Kyle Trego
+## 348 55470       &lt;NA&gt;         JUCO 2016     348        Andrew Marshall
+## 349 55471    4036341         JUCO 2016     349          Detrich Clark
+## 350 55472    4036355         JUCO 2016     350         Houston Haynes
+## 351 55473    4040514         JUCO 2016     351            Quinn Tiggs
+## 352 55474   -1040356         JUCO 2016     352        Patrick Miranda
+## 353 55475       &lt;NA&gt;         JUCO 2016     353        Charles Brenner
+## 354 55476   -1008148         JUCO 2016     354     A'Keitheon Whitner
+## 355 55477    4040707         JUCO 2016     355          Franklin Uesi
+## 356 55478       &lt;NA&gt;         JUCO 2016     356          Steven Montac
+## 357 55479       &lt;NA&gt;         JUCO 2016     357         Devijion Smith
+## 358 55480    4040088         JUCO 2016     358         Diantae Thomas
+## 359 55481    4038150         JUCO 2016     359           Jalen Thomas
+## 360 55482       &lt;NA&gt;         JUCO 2016     360       Stanley Barnwell
+## 361 55483    4040820         JUCO 2016     361           Khalil Hodge
+## 362 55484    4039277         JUCO 2016     362      Allenzae Staggers
+## 363 55485    4037361         JUCO 2016     363        Charvarius Ward
+## 364 55486       &lt;NA&gt;         JUCO 2016     364         Montre Gregory
+## 365 55487    4033809         JUCO 2016     365           Ahmari Hayes
+## 366 55488       &lt;NA&gt;         JUCO 2016     366            A.J. Erdely
+## 367 55489    4039088         JUCO 2016     367          London Miller
+## 368 55490       &lt;NA&gt;         JUCO 2016     368            Tyler Gangi
+## 369 55491       &lt;NA&gt;         JUCO 2016     369         Brandon Niccum
+## 370 55492       &lt;NA&gt;         JUCO 2016     370              Levi Boyd
+## 371 55493    4032196         JUCO 2016     371           James Graves
+## 372 55494       &lt;NA&gt;         JUCO 2016     372        Malique Johnson
+## 373 55495       &lt;NA&gt;         JUCO 2016     373            AJ Davidson
+## 374 55496       &lt;NA&gt;         JUCO 2016     374           Thad Roberts
+## 375 55497    4036895         JUCO 2016     375      Michael Chevalier
+## 376 55498       &lt;NA&gt;         JUCO 2016     376          Michael Adams
+## 377 55499    4044528         JUCO 2016     377         Tedrick Lowery
+## 378 55500   -1031708         JUCO 2016     378              Clay Burt
+## 379 55501       &lt;NA&gt;         JUCO 2016     379         Bentley Easley
+## 380 55502   -1039276         JUCO 2016     380       Tanner Stallings
+## 381 55503   -1024402         JUCO 2016     381             Bobby Hill
+## 382 55504   -1005895         JUCO 2016     382        Connor Morehart
+## 383 55505    4039278         JUCO 2016     383        Tarvarius Moore
+## 384 55506       &lt;NA&gt;         JUCO 2016     384            Kyle Levere
+## 385 55507       &lt;NA&gt;         JUCO 2016     385        Quantaye Battle
+## 386 55508    4032876         JUCO 2016     386         Chrishard Buhl
+## 387 55509       &lt;NA&gt;         JUCO 2016     387              Joe Pesce
+## 388 55510       &lt;NA&gt;         JUCO 2016     388         Kejuan Daniels
+## 389 55511       &lt;NA&gt;         JUCO 2016     389          Omaryan White
+## 390 55512       &lt;NA&gt;         JUCO 2016     390        Demontrai Lewis
+## 391 55513       &lt;NA&gt;         JUCO 2016     391          Chris Hawkins
+## 392 55514       &lt;NA&gt;         JUCO 2016     392        Maurice Carnell
+## 393 55515    4027914         JUCO 2016     393         Byron Evans II
+## 394 55516    4044526         JUCO 2016     394      Roderick Jones Jr
+## 395 55517       &lt;NA&gt;         JUCO 2016     395       Marquaveon Jones
+## 396 55518    4039214         JUCO 2016     396           John Swisher
+## 397 55519       &lt;NA&gt;         JUCO 2016     397         D'Andre Belton
+## 398 55520       &lt;NA&gt;         JUCO 2016     398           Dontel James
+## 399 55521    3068222         JUCO 2016     399          Conner Cramer
+## 400 55522     552969         JUCO 2016     400            Todd Porter
+## 401 55523       &lt;NA&gt;         JUCO 2016     401           Caleb Wilson
+## 402 55524       &lt;NA&gt;         JUCO 2016     402         Antwon Turnage
+## 403 55525    4039929         JUCO 2016     403            Baron Poole
+## 404 55526    4048932         JUCO 2016     404        Alfonso Onunwor
+## 405 55527       &lt;NA&gt;         JUCO 2016     405    Dontavious Baulkman
+## 406 55528       &lt;NA&gt;         JUCO 2016     406              Eji Ejiya
+## 407 55529       &lt;NA&gt;         JUCO 2016     407        DeShawnte Lloyd
+## 408 55530       &lt;NA&gt;         JUCO 2016     408      Anthony Gutierrez
+## 409 55531       &lt;NA&gt;         JUCO 2016     409          Darryl Waters
+## 410 55532    4036493         JUCO 2016     410            Kyle Wilson
+## 411 55533       &lt;NA&gt;         JUCO 2016     411       DeVante Williams
+## 412 55534       &lt;NA&gt;         JUCO 2016     412           Malik Dumetz
+## 413 55535    4048717         JUCO 2016     413           Rico Gafford
+## 414 55536       &lt;NA&gt;         JUCO 2016     414      JonDarius Gardner
+## 415 55537       &lt;NA&gt;         JUCO 2016     415      Vitas Hrynkiewicz
+## 416 55538   -1009360         JUCO 2016     416         Jimmy Leatiota
+## 417 55539   -1008117         JUCO 2016     417           Tavis Guerra
+## 418 55540       &lt;NA&gt;         JUCO 2016     418          Tyler Johnson
+## 419 55541    4036588         JUCO 2016     419         Howard Houston
+## 420 55542    4040742         JUCO 2016     420        Jarvis Jeffries
+## 421 55543    4040733         JUCO 2016     421         Artez Williams
+## 422 55544    4040792         JUCO 2016     422           Jaleel Scott
+## 423 55545       &lt;NA&gt;         JUCO 2016     423        Timothy Roberts
+## 424 55546    4036591         JUCO 2016     424          Thomas Koufie
+## 425 55547    3134124         JUCO 2016     425         Terry Ausborne
+## 426 55548   -1031363         JUCO 2016     426            Jake Lanski
+## 427 55549     546085         JUCO 2016     427        Trevor Kanteman
+## 428 55550       &lt;NA&gt;         JUCO 2016     428         Jonathan Boone
+## 429 55551       &lt;NA&gt;         JUCO 2016     429     Andrew Reinkemeyer
+## 430 55552    4040091         JUCO 2016     430         Neiko Robinson
+## 431 55553    4048923         JUCO 2016     431            Josh Herman
+## 432 55554   -1011265         JUCO 2016     432             Shane Gama
+## 433 55555     550439         JUCO 2016     433            Zach Befort
+## 434 55556       &lt;NA&gt;         JUCO 2016     434              TJ Henson
+## 435 55557       &lt;NA&gt;         JUCO 2016     435      Levarious Varnado
+## 436 55558       &lt;NA&gt;         JUCO 2016     436          Romello Riley
+## 437 55559       &lt;NA&gt;         JUCO 2016     437        Marc Jonassaint
+## 438 55560    4052206         JUCO 2016     438         Dario Robinson
+## 439 55561       &lt;NA&gt;         JUCO 2016     439        Temerick Harper
+## 440 55562     531649         JUCO 2016     440          Darius Turner
+## 441 55563       &lt;NA&gt;         JUCO 2016     441             Ty Watkins
+## 442 55564    4048915         JUCO 2016     442         Aikeem Coleman
+## 443 55565       &lt;NA&gt;         JUCO 2016     443         Trevara Miller
+## 444 55566       &lt;NA&gt;         JUCO 2016     444           Leslie Maruo
+## 445 55567    4052113         JUCO 2016     445          Jacquae Peart
+## 446 55568    4035751         JUCO 2016     446       Leonard Skattebo
+## 447 55569    4039396         JUCO 2016     447        Corey Bojorquez
+## 448 55570    4039207         JUCO 2016     448           Reggie McGee
+## 449 55571    4040784         JUCO 2016     449            Josh Aganon
+## 450 55572    4039905         JUCO 2016     450            Hiram Velez
+## 451 55573    4048911         JUCO 2016     451          Arie Anderson
+## 452 55574       &lt;NA&gt;         JUCO 2016     452           Andre Wilson
+## 453 55575    4040757         JUCO 2016     453            Kevon Perry
+## 454 55576    4038225         JUCO 2016     454            Zach Wilson
+## 455 55577       &lt;NA&gt;         JUCO 2016     455            Sean Krepsz
+## 456 55578   -1016975         JUCO 2016     456          Joshua Outlaw
+## 457 55579    4032707         JUCO 2016     457           Kijana Amous
+## 458 55580    4052123         JUCO 2016     458           Evan Pantels
+## 459 55581       &lt;NA&gt;         JUCO 2016     459             Donnie Lee
+## 460 55582       &lt;NA&gt;         JUCO 2016     460         Chibu Onyeukwu
+## 461 55583    4032915         JUCO 2016     461        Brayleon Thorns
+## 462 55584       &lt;NA&gt;         JUCO 2016     462        Keonatye Garner
+## 463 55585    4034529         JUCO 2016     463           Malik Warner
+## 464 55586       &lt;NA&gt;         JUCO 2016     464       Trenton Perriman
+## 465 55587       &lt;NA&gt;         JUCO 2016     465        Khalid Kornegay
+## 466 55588    4036791         JUCO 2016     466            Jake Nelson
+## 467 55589       &lt;NA&gt;         JUCO 2016     467            Billy Hurst
+## 468 55590   -1006815         JUCO 2016     468          Jamar Winston
+## 469 55591    4037352         JUCO 2016     469       Newton Salisbury
+## 470 55592    4040686         JUCO 2016     470         Anthony Hickey
+## 471 55593       &lt;NA&gt;         JUCO 2016     471            Milan Hlywa
+## 472 55594       &lt;NA&gt;         JUCO 2016     472           Julius Craft
+## 473 55595       &lt;NA&gt;         JUCO 2016     473             Josh Keith
+## 474 55596    4032714         JUCO 2016     474             Troy Duran
+## 475 55597       &lt;NA&gt;         JUCO 2016     475          Julian Burris
+## 476 55598     531566         JUCO 2016     476             Nick Jones
 ##                                    school           committed_to position
 ## 1                 Arizona Western College              Tennessee      SDE
 ## 2                  ASA College (New York)                Alabama       OT
@@ -2357,114 +2354,114 @@
 ## 476             32.3023706             -95.6135715                   48213</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2020</span>, recruit_type <span class="op">=</span> <span class="st">"HighSchool"</span>, position <span class="op">=</span> <span class="st">"OT"</span>, state <span class="op">=</span> <span class="st">"FL"</span><span class="op">)</span></code></pre></div>
-<pre><code>##    recruit_type year ranking              name                 school
-## 1    HighSchool 2020     110   Marcus Dumervil     St. Thomas Aquinas
-## 2    HighSchool 2020     128      Jalen Rivers                Oakleaf
-## 3    HighSchool 2020     157 Issiah Walker Jr.                Norland
-## 4    HighSchool 2020     271      Joshua Braun               Suwannee
-## 5    HighSchool 2020     318 Connor McLaughlin                 Jesuit
-## 6    HighSchool 2020     491      Cayden Baker             Fort Myers
-## 7    HighSchool 2020     538   Michael Rankins                Lennard
-## 8    HighSchool 2020     658     Gerald Mincey       Cardinal Gibbons
-## 9    HighSchool 2020    1097      Lloyd Willis                Killian
-## 10   HighSchool 2020    1154   Bradley Ashmore     Duncan U. Fletcher
-## 11   HighSchool 2020    1205 Cade Kootsouradis              Crestview
-## 12   HighSchool 2020    1236        David Hoyt         Tampa Catholic
-## 13   HighSchool 2020    1368    David Anderton              Edgewater
-## 14   HighSchool 2020    1410      Evan Webster                 Hardee
-## 15   HighSchool 2020    1449        Woody Jean        Deerfield Beach
-## 16   HighSchool 2020    1457        Mark Pitts         F. W. Buchholz
-## 17   HighSchool 2020    1696   Patrick Barnett               Key West
-## 18   HighSchool 2020    1785     Jose Gonzalez       Strawberry Crest
-## 19   HighSchool 2020    1825 Joseph Habinowski Chaminade-Madonna Prep
-## 20   HighSchool 2020    1894      Zach Perkins          Berkeley Prep
-## 21   HighSchool 2020    1941    Rasheed Miller             Lake Wales
-## 22   HighSchool 2020    1972     Blaise Sparks       North Fort Myers
-## 23   HighSchool 2020    2324      Bryce McNair        Deerfield Beach
-## 24   HighSchool 2020    2901   Hunter Zambrano      University School
-## 25   HighSchool 2020    3453       Kevin Cline   Boca Raton Christian
-## 26   HighSchool 2020    3879   Connor Lenczden        Wiregrass Ranch
-##        committed_to position height weight stars rating             city
-## 1               LSU       OT     77    305     4 0.9515  Fort Lauderdale
-## 2             Miami       OT     78    331     4 0.9425      Orange Park
-## 3           Florida       OT     76    309     4 0.9308            Miami
-## 4           Florida       OT     78    335     4 0.9049         Live Oak
-## 5          Stanford       OT     79    260     4 0.8968            Tampa
-## 6    North Carolina       OT     78    260     3 0.8789       Fort Myers
-## 7      Georgia Tech       OT     77    295     3 0.8755           Ruskin
-## 8           Florida       OT     77    320     3 0.8681  Fort Lauderdale
-## 9     Florida State       OT     79    310     3 0.8505            Miami
-## 10       Vanderbilt       OT     78    280     3 0.8485    Neptune Beach
-## 11     Georgia Tech       OT     76    285     3 0.8473        Crestview
-## 12             Army       OT     80    272     3 0.8464            Tampa
-## 13    South Florida       OT     75    310     3 0.8417          Orlando
-## 14      Florida A&amp;M       OT     76    293     3 0.8410         Wauchula
-## 15          Arizona       OT     76    287     3 0.8396  Deerfield Beach
-## 16             &lt;NA&gt;       OT     78    290     3 0.8390      Gainesville
-## 17              UCF       OT     78    305     3 0.8322         Key West
-## 18             &lt;NA&gt;       OT     81    320     3 0.8299            Dover
-## 19             Ohio       OT     76    306     3 0.8288        Hollywood
-## 20         Maryland       OT     76    321     3 0.8268            Tampa
-## 21 Georgia Southern       OT     78    260     3 0.8259       Lake Wales
-## 22         Illinois       OT     79    301     3 0.8247 North Fort Myers
-## 23             Ohio       OT     75    274     3 0.8127  Deerfield Beach
-## 24   Illinois State       OT     77    300     3 0.7998  Fort Lauderdale
-## 25             &lt;NA&gt;       OT     79    347     2 0.7797       Boca Raton
-## 26             &lt;NA&gt;       OT     77    285     2 0.7396      Zephyrhills
-##    state_province country hometown_info_latitude hometown_info_longitude
-## 1              FL     USA             26.1223084             -80.1433786
-## 2              FL     USA             30.1654707             -81.7016346
-## 3              FL     USA             25.7742658             -80.1936589
-## 4              FL     USA             30.2949457               -82.98402
-## 5              FL     USA             27.9477595              -82.458444
-## 6              FL     USA              26.640628             -81.8723084
-## 7              FL     USA             27.7208575             -82.4331528
-## 8              FL     USA             26.1223084             -80.1433786
-## 9              FL     USA             25.7742658             -80.1936589
-## 10             FL     USA              30.311908             -81.3964734
-## 11             FL     USA             30.7621326             -86.5705084
-## 12             FL     USA             27.9477595              -82.458444
-## 13             FL     USA             28.5421109             -81.3790304
-## 14             FL     USA             27.5472589             -81.8114715
-## 15             FL     USA              26.318342             -80.0996306
-## 16             FL     USA             29.6519684             -82.3249846
-## 17             FL     USA             24.5625566             -81.7724368
-## 18             FL     USA            27.99439345      -82.22171105983051
-## 19             FL     USA             26.0112014             -80.1494901
-## 20             FL     USA             27.9477595              -82.458444
-## 21             FL     USA             27.9014133             -81.5859099
-## 22             FL     USA             26.6728666             -81.8840848
-## 23             FL     USA              26.318342             -80.0996306
-## 24             FL     USA             26.1223084             -80.1433786
-## 25             FL     USA             26.3586885             -80.0830984
-## 26             FL     USA             28.2336196             -82.1811947
-##    hometown_info_fips_code
-## 1                    12011
-## 2                    12019
-## 3                    12086
-## 4                    12121
-## 5                    12057
-## 6                    12071
-## 7                    12057
-## 8                    12011
-## 9                    12086
-## 10                   12031
-## 11                   12091
-## 12                   12057
-## 13                   12095
-## 14                   12049
-## 15                   12011
-## 16                   12001
-## 17                   12087
-## 18                   12057
-## 19                   12011
-## 20                   12057
-## 21                   12105
-## 22                   12071
-## 23                   12011
-## 24                   12011
-## 25                   12099
-## 26                   12101</code></pre>
+<pre><code>##       id athlete_id recruit_type year ranking              name
+## 1  61676    4429039   HighSchool 2020     110   Marcus Dumervil
+## 2  61695    4429010   HighSchool 2020     128      Jalen Rivers
+## 3  61724       &lt;NA&gt;   HighSchool 2020     157 Issiah Walker Jr.
+## 4  61838       &lt;NA&gt;   HighSchool 2020     271      Joshua Braun
+## 5  61885    4433873   HighSchool 2020     318 Connor McLaughlin
+## 6  62056    4593066   HighSchool 2020     491      Cayden Baker
+## 7  62104    4565556   HighSchool 2020     538   Michael Rankins
+## 8  62223    4431266   HighSchool 2020     658     Gerald Mincey
+## 9  62662    4568715   HighSchool 2020    1097      Lloyd Willis
+## 10 62718    4429232   HighSchool 2020    1154   Bradley Ashmore
+## 11 62769    4430178   HighSchool 2020    1205 Cade Kootsouradis
+## 12 62800       &lt;NA&gt;   HighSchool 2020    1236        David Hoyt
+## 13 62933    4429218   HighSchool 2020    1368    David Anderton
+## 14 62975       &lt;NA&gt;   HighSchool 2020    1410      Evan Webster
+## 15 63015    4432300   HighSchool 2020    1449        Woody Jean
+## 16 63023       &lt;NA&gt;   HighSchool 2020    1457        Mark Pitts
+## 17 63262    4565488   HighSchool 2020    1696   Patrick Barnett
+## 18 63351       &lt;NA&gt;   HighSchool 2020    1785     Jose Gonzalez
+## 19 63390    4432227   HighSchool 2020    1825 Joseph Habinowski
+## 20 63459    4588226   HighSchool 2020    1894      Zach Perkins
+## 21 63506    4568699   HighSchool 2020    1941    Rasheed Miller
+## 22 63536    4570632   HighSchool 2020    1972     Blaise Sparks
+## 23 63889    4565767   HighSchool 2020    2324      Bryce McNair
+## 24 64464       &lt;NA&gt;   HighSchool 2020    2901   Hunter Zambrano
+## 25 65015       &lt;NA&gt;   HighSchool 2020    3453       Kevin Cline
+## 26 65441       &lt;NA&gt;   HighSchool 2020    3879   Connor Lenczden
+##                    school     committed_to position height weight stars rating
+## 1      St. Thomas Aquinas              LSU       OT     77    305     4 0.9515
+## 2                 Oakleaf            Miami       OT     78    331     4 0.9425
+## 3                 Norland          Florida       OT     76    309     4 0.9308
+## 4                Suwannee          Florida       OT     78    335     4 0.9049
+## 5                  Jesuit         Stanford       OT     79    260     4 0.8968
+## 6              Fort Myers   North Carolina       OT     78    260     3 0.8789
+## 7                 Lennard     Georgia Tech       OT     77    295     3 0.8755
+## 8        Cardinal Gibbons          Florida       OT     77    320     3 0.8681
+## 9                 Killian    Florida State       OT     79    310     3 0.8505
+## 10     Duncan U. Fletcher       Vanderbilt       OT     78    280     3 0.8485
+## 11              Crestview     Georgia Tech       OT     76    285     3 0.8473
+## 12         Tampa Catholic             Army       OT     80    272     3 0.8464
+## 13              Edgewater    South Florida       OT     75    310     3 0.8417
+## 14                 Hardee      Florida A&amp;M       OT     76    293     3 0.8410
+## 15        Deerfield Beach          Arizona       OT     76    287     3 0.8396
+## 16         F. W. Buchholz             &lt;NA&gt;       OT     78    290     3 0.8390
+## 17               Key West              UCF       OT     78    305     3 0.8322
+## 18       Strawberry Crest             &lt;NA&gt;       OT     81    320     3 0.8299
+## 19 Chaminade-Madonna Prep             Ohio       OT     76    306     3 0.8288
+## 20          Berkeley Prep         Maryland       OT     76    321     3 0.8268
+## 21             Lake Wales Georgia Southern       OT     78    260     3 0.8259
+## 22       North Fort Myers         Illinois       OT     79    301     3 0.8247
+## 23        Deerfield Beach             Ohio       OT     75    274     3 0.8127
+## 24      University School   Illinois State       OT     77    300     3 0.7998
+## 25   Boca Raton Christian             &lt;NA&gt;       OT     79    347     2 0.7797
+## 26        Wiregrass Ranch             &lt;NA&gt;       OT     77    285     2 0.7396
+##                city state_province country hometown_info_latitude
+## 1   Fort Lauderdale             FL     USA             26.1223084
+## 2       Orange Park             FL     USA             30.1654707
+## 3             Miami             FL     USA             25.7742658
+## 4          Live Oak             FL     USA             30.2949457
+## 5             Tampa             FL     USA             27.9477595
+## 6        Fort Myers             FL     USA              26.640628
+## 7            Ruskin             FL     USA             27.7208575
+## 8   Fort Lauderdale             FL     USA             26.1223084
+## 9             Miami             FL     USA             25.7742658
+## 10    Neptune Beach             FL     USA              30.311908
+## 11        Crestview             FL     USA             30.7621326
+## 12            Tampa             FL     USA             27.9477595
+## 13          Orlando             FL     USA             28.5421109
+## 14         Wauchula             FL     USA             27.5472589
+## 15  Deerfield Beach             FL     USA              26.318342
+## 16      Gainesville             FL     USA             29.6519684
+## 17         Key West             FL     USA             24.5625566
+## 18            Dover             FL     USA            27.99439345
+## 19        Hollywood             FL     USA             26.0112014
+## 20            Tampa             FL     USA             27.9477595
+## 21       Lake Wales             FL     USA             27.9014133
+## 22 North Fort Myers             FL     USA             26.6728666
+## 23  Deerfield Beach             FL     USA              26.318342
+## 24  Fort Lauderdale             FL     USA             26.1223084
+## 25       Boca Raton             FL     USA             26.3586885
+## 26      Zephyrhills             FL     USA             28.2336196
+##    hometown_info_longitude hometown_info_fips_code
+## 1              -80.1433786                   12011
+## 2              -81.7016346                   12019
+## 3              -80.1936589                   12086
+## 4                -82.98402                   12121
+## 5               -82.458444                   12057
+## 6              -81.8723084                   12071
+## 7              -82.4331528                   12057
+## 8              -80.1433786                   12011
+## 9              -80.1936589                   12086
+## 10             -81.3964734                   12031
+## 11             -86.5705084                   12091
+## 12              -82.458444                   12057
+## 13             -81.3790304                   12095
+## 14             -81.8114715                   12049
+## 15             -80.0996306                   12011
+## 16             -82.3249846                   12001
+## 17             -81.7724368                   12087
+## 18      -82.22171105983051                   12057
+## 19             -80.1494901                   12011
+## 20              -82.458444                   12057
+## 21             -81.5859099                   12105
+## 22             -81.8840848                   12071
+## 23             -80.0996306                   12011
+## 24             -80.1433786                   12011
+## 25             -80.0830984                   12099
+## 26             -82.1811947                   12101</code></pre>
 </div>
 <div id="cfb-recruiting-information-position-groups-" class="section level3">
 <h3 class="hasAnchor">

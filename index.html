@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -155,7 +155,6 @@
 <li>
       <a href="articles/index.html">Vignettes</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="articles/intro.html">CFB Analytics with cfbfastR</a>
@@ -172,7 +171,6 @@
     <li>
       <a href="articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -183,7 +181,6 @@
     <li>
       <a href="articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
     </li>
-    <li class="divider">
     <li class="dropdown-header">CFBD Tutorials</li>
     <li>
       <a href="articles/cfbd_betting.html">CFBD Betting</a>
@@ -327,6 +324,16 @@
 <a href="#breaking-changes" class="anchor"></a><strong>Breaking Changes</strong>
 </h2>
 <p><a href="https://saiemgilani.github.io/cfbfastR/news/index.html"><strong>Full News on Releases</strong></a></p>
+</div>
+</div>
+<div id="cfbfastr-v132" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbfastr-v132" class="anchor"></a><strong>cfbfastR v1.3.2</strong>
+</h1>
+<div id="added-id-linking-to-cfbd_recruiting_players" class="section level3">
+<h3 class="hasAnchor">
+<a href="#added-id-linking-to-cfbd_recruiting_players" class="anchor"></a>Added ID linking to <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html"><code>cfbd_recruiting_players()</code></a>
+</h3>
 </div>
 </div>
 <div id="cfbfastr-v131" class="section level1">
@@ -474,10 +481,11 @@
 <p>The <a href="https://collegefootballdata.com/">CollegeFootballData API</a> now requires an API key, here’s a quick run-down:</p>
 <ul>
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key">College Football Data Key Registration.</a></p></li>
-<li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .REnviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a> and THEN paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
+<li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
 </ul>
 <!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre></div>
+<p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the <code>cfbd_</code> functions without any other changes.</p>
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
 </ul>
@@ -518,15 +526,6 @@
 </table>
 <details><p><summary>View More</summary></p>
 <table class="table">
-<colgroup>
-<col width="1%">
-<col width="29%">
-<col width="52%">
-<col width="1%">
-<col width="8%">
-<col width="2%">
-<col width="4%">
-</colgroup>
 <thead><tr class="header">
 <th align="left">issue</th>
 <th align="left">icon</th>
@@ -537,13 +536,13 @@
 <th align="left">closed</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="left">8</td>
+<td align="left">21</td>
 <td align="left"><span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span></td>
-<td align="left"><span title="Using the `athlete_id` it appears to be very easy to build the headshot url of the player. ..."><a href="https://github.com/saiemgilani/cfbfastR/issues/8">Add <code>headshot_url</code> to output of <code>cfbd_team_roster()</code></a></span></td>
-<td align="left"></td>
-<td align="left"><a href="https://github.com/mrcaseb">mrcaseb</a></td>
-<td align="left">2021-04-23</td>
-<td align="left">2021-04-24 04:29:32</td>
+<td align="left"><span title="Using purrr methods, when year and week are iterated over, due to the saving of the parameters also as column names within the data process, causes renaming issues. Suggest switching year to season and week to wk (or something better)..."><a href="https://github.com/saiemgilani/cfbfastR/issues/21">cfbd_pbp_data process</a></span></td>
+<td align="left">bug</td>
+<td align="left"><a href="https://github.com/saiemgilani">saiemgilani</a></td>
+<td align="left">2021-04-26</td>
+<td align="left">2021-04-26 01:50:53</td>
 </tr></tbody>
 </table></details><p><br></p>
 </div>
