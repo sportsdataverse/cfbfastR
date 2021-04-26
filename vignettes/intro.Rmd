@@ -99,7 +99,7 @@ If you have ever worked with the now archived [**`cfbscrapR`**](https://github.c
 
 ## Play by play data comparisons {.tabset}
 
-### ```cfbfastR::cfbd_pbp_data()``` (1 season, \~6-7 minutes `r emo::ji(""confused_face")`)
+### ```cfbfastR::cfbd_pbp_data()``` (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
 
 ```{r, cfbfastR_pbp_data}
 library(dplyr)
