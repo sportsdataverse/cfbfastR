@@ -5,30 +5,36 @@
 #' @description
 #' \describe{
 #'   \item{`cfbd_draft_teams()`:}{ Get list of NFL teams.}
-#'   
 #'   \item{`cfbd_draft_positions()`:}{ Get list of NFL positions for mapping to college positions.}
-#'   
 #'   \item{`cfbd_draft_picks()`:}{ Get list of NFL Draft picks.}
 #' }
 #' 
+#' @details
 #' ## **Get list of NFL teams**
 #' 
 #' ```r
 #' cfbd_draft_teams()
 #' ```
+#' 
 #' ## **Get list of NFL positions for mapping to collegiate**
+#' 
 #' ```r
 #' cfbd_draft_positions()
 #'
 #' ```
+#' 
 #' ## **Get list of NFL Draft picks**
+#' 
 #' ```r 
 #' cfbd_draft_picks(year = 2020, college = "Texas")
 #'
 #' cfbd_draft_picks(nfl_team = "Cincinatti")
+#' ````
 #' 
+#' **ROBERTOOOOOOOOOOOOOOOOOO**
+#' ```r
+#' cfbd_draft_picks(year = 2016, position = "PK")
 #' ```
-#' 
 NULL
 #' @title 
 #' **Get list of NFL teams**
@@ -50,7 +56,7 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#'    cfbd_draft_teams()
+#'  cfbd_draft_teams()
 #' }
 #'
 cfbd_draft_teams <- function() {
@@ -120,7 +126,7 @@ cfbd_draft_teams <- function() {
 #' @export
 #' @examples
 #' \donttest{
-#'    cfbd_draft_positions()
+#'  cfbd_draft_positions()
 #' }
 #'
 cfbd_draft_positions <- function() {
@@ -214,10 +220,10 @@ cfbd_draft_positions <- function() {
 #' @export
 #' @examples
 #' \donttest{
-#'    cfbd_draft_picks(year = 2020)
+#'  cfbd_draft_picks(year = 2020)
 #'    
-#'    ### **ROBERTOOOOOOOOOOOOOOOOOO**
-#'    cfbd_draft_picks(year = 2016, position = "PK")
+#'  ### **ROBERTOOOOOOOOOOOOOOOOOO**
+#'  cfbd_draft_picks(year = 2016, position = "PK")
 #' }
 #'
 cfbd_draft_picks <- function(year = NULL, 
@@ -280,10 +286,6 @@ cfbd_draft_picks <- function(year = NULL,
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>% 
         as.data.frame()
-      
-     
-      message(glue::glue("{Sys.time()}: Scraping NFL teams data..."))
-      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available!"))

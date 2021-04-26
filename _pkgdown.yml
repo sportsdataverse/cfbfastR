@@ -137,7 +137,6 @@ navbar:
       menu:
       - text: Vignettes
         href: articles/index.html
-      - text: --------------------------------
       - text: Introductory
       - text: CFB Analytics with cfbfastR
         href: articles/intro.html
@@ -149,7 +148,6 @@ navbar:
         href: articles/rolling-epa-graph.html
       - text: Visualizing Team Talent with Player Recruit Rankings
         href: articles/nth-rated-recruit.html
-      - text: --------------------------------
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
         href: articles/college-football-expected-points-model-fundamentals-part-i.html
@@ -157,7 +155,6 @@ navbar:
         href: articles/college-football-expected-points-model-fundamentals-part-ii.html
       - text: "Part 3 - History of Expected Points Models"
         href: articles/college-football-expected-points-model-fundamentals-part-iii.html
-      - text: --------------------------------
       - text: CFBD Tutorials
       - text: "CFBD Betting"
         href: articles/cfbd_betting.html
@@ -292,3 +289,27 @@ reference:
       - '`create_epa`'
       - '`create_wpa`'
       - '`helpers_pbp`'
+articles:
+  - title: Introductory
+    navbar: Introductory
+    contents: 
+      - intro
+      - animated-wp-plotting
+      - fourth-down-plot-tutorial
+      - rolling-epa-graph
+      - nth-rated-recruit
+  - title: Expected Points Model Fundamentals
+    navbar: Expected Points Model Fundamentals
+    contents:
+      - college-football-expected-points-model-fundamentals-part-i
+      - college-football-expected-points-model-fundamentals-part-ii
+      - college-football-expected-points-model-fundamentals-part-iii
+  - title: CFBD Tutorials
+    navbar: CFBD Tutorials
+    contents:
+      - cfbd_betting
+      - cfbd_games
+      - cfbd_plays
+      - cfbd_recruiting
+      - cfbd_stats
+      - cfbd_teams
