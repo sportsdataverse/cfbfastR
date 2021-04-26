@@ -105,7 +105,7 @@ team_off = pbp_2020 %>%
   mutate(cu_epa=cummean(EPA),  #this field is not used in this vignette but it could be substituted later to graph the cumulative EPA
          ma_epa=rollapply(EPA,ma_plays,mean,align='right',fill=NA),
          play_count = row_number(),
-         week_team = paste0("WK", ifelse(week > 9, week, paste0(0,week)), " ", defense_play))
+         week_team = paste0("WK", ifelse(wk > 9, wk, paste0(0,wk)), " ", defense_play))
 
 ```
 
