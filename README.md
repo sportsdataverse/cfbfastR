@@ -48,6 +48,10 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 [**Full News on
 Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
 
+# **cfbfastR v1.3.2**
+
+### Added ID linking to [`cfbd_recruiting_players()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html)
+
 # **cfbfastR v1.3.1**
 
 ### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
@@ -165,19 +169,25 @@ requires an API key, here’s a quick run-down:
     Data Key Registration.](https://collegefootballdata.com/key)
 
   - Using the key: You can save the key for consistent usage by adding
-    `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .REnviron file
+    `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file
     (easily accessed via
     [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
     Run
-    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)
-    and THEN paste the following in the new script that pops up
-    (with**out** quotations)
+    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
+    a new script will pop open named `.Renviron`, **THEN** paste the
+    following in the new script that pops up (with**out** quotations)
 
 <!-- end list -->
 
 ``` r
 CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
 ```
+
+Save the script and restart your RStudio session, by clicking `Session`
+(in between `Plots` and `Build`) and click `Restart R` (there also
+exists the shortcut `Ctrl + Shift + F10` to restart your session). If
+set correctly, from then on you should be able to use any of the `cfbd_`
+functions without any other changes.
 
   - For less consistent usage: At the beginning of every session or
     within an R environment, save your API key as the environment
