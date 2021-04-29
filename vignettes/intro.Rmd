@@ -196,7 +196,7 @@ tictoc::toc()
 
 ```
 
-In the selected seasons, there are `r unique(pbp$game_id))}` games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with `r ncol(pbp)` columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let's take a look at the first 40 or so.
+In the selected seasons, there are `r length(unique(pbp$game_id))` games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with `r ncol(pbp)` columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let's take a look at the first 40 or so.
 
 ```{r glimpse_pbp}
 glimpse(pbp[1:40])
