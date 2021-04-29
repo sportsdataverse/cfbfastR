@@ -48,6 +48,14 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 [**Full News on
 Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
 
+# **cfbfastR v1.3.3**
+
+### Hotfix [`cfbd_game_player_stats()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)
+
+<details>
+
+<summary>View more version news</summary>
+
 # **cfbfastR v1.3.2**
 
 ### Added ID linking to [`cfbd_recruiting_players()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html)
@@ -62,10 +70,6 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
     - **Get list of NFL positions for mapping to collegiate**
   - [`cfbd_draft_picks()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_picks.html)
     - **Get list of NFL Draft picks**
-
-<details>
-
-<summary>View more version news</summary>
 
 # **cfbfastR v1.2.1**
 
@@ -217,9 +221,10 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
 
 ## Current Issues
 
-| issue | icon                                                                                                                         | title                                                                                                                                  | labels | opened\_by                            | date       | closed |
-| :---- | :--------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----- | :------------------------------------ | :--------- | :----- |
-| 5     | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span> | <span title="**Describe the bug**...">[Play by play for data 2013 and before](https://github.com/saiemgilani/cfbfastR/issues/5)</span> | bug    | [rchanks](https://github.com/rchanks) | 2021-04-15 | NA     |
+| issue | icon                                                                                                                         | title                                                                                                                                                                                                                                                                                                                                                    | labels | opened\_by                                    | date       | closed |
+| :---- | :--------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----- | :-------------------------------------------- | :--------- | :----- |
+| 22    | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span> | <span title="cfbd_game_player_stats was silently erroring on a conversion to numeric near the end of the unpacking. Preparing a hotfix, but will need to take a second look at fully unpacking the list cols and converting to numeric in a more robust manner...">[cfbd\_game\_player\_stats](https://github.com/saiemgilani/cfbfastR/issues/22)</span> |        | [saiemgilani](https://github.com/saiemgilani) | 2021-04-29 | NA     |
+| 5     | <span title="Open Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-opened.png?raw=true"></span> | <span title="**Describe the bug**...">[Play by play for data 2013 and before](https://github.com/saiemgilani/cfbfastR/issues/5)</span>                                                                                                                                                                                                                   | bug    | [rchanks](https://github.com/rchanks)         | 2021-04-15 | NA     |
 
 <details>
 
@@ -228,6 +233,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
 | issue | icon                                                                                                                           | title                                                                                                                                                                                                                                                                                                                                           | labels | opened\_by                                    | date       | closed              |
 | :---- | :----------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----- | :-------------------------------------------- | :--------- | :------------------ |
 | 21    | <span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span> | <span title="Using purrr methods, when year and week are iterated over, due to the saving of the parameters also as column names within the data process, causes renaming issues. Suggest switching year to season and week to wk (or something better)...">[cfbd\_pbp\_data process](https://github.com/saiemgilani/cfbfastR/issues/21)</span> | bug    | [saiemgilani](https://github.com/saiemgilani) | 2021-04-26 | 2021-04-26 01:50:53 |
+| 8     | <span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span> | <span title="Using the `athlete_id` it appears to be very easy to build the headshot url of the player. ...">[Add `headshot_url` to output of `cfbd_team_roster()`](https://github.com/saiemgilani/cfbfastR/issues/8)</span>                                                                                                                    |        | [mrcaseb](https://github.com/mrcaseb)         | 2021-04-23 | 2021-04-24 04:29:32 |
 
 </details>
 
