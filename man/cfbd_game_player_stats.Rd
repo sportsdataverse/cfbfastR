@@ -83,7 +83,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \examples{
 \donttest{
-  cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+  cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama")
 
   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
 }

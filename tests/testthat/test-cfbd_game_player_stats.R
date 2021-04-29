@@ -1,12 +1,14 @@
 context("CFB Game Player Stats")
 
-cols <- c("game_id", "team", "conference", "home_away", "points", "category", 
-          "athlete_id", "name", "c_att", "yds", "avg", "td", "int", "qbr",
-          "car", "long", "rec", "no", "fg", "pct", "xp", "pts", "tb", "in_20", 
-          "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur")
 
 test_that("CFB Game Player Stats", {
   skip_on_cran()
+  cols <- c(
+    "game_id", "team", "conference", "home_away", "points", "category", 
+    "athlete_id", "name", "c_att", "yds", "avg", "td", "int", "qbr", "car", 
+    "long", "rec", "no", "fg", "pct", "xp", "pts", "tb", 
+    "in_20", "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur")
+  
   x <- cfbd_game_player_stats(2018, week = 15, conference = 'Ind')
   
   y <- cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = 'passing')

@@ -36,14 +36,19 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 ### **Installing R and RStudio**
 
 1.  Head to <https://cran.r-project.org>
-2.  Select the appropriate link for your operating system (Windows, Mac OS X, or Linux) - **Windows** - Select base and download the most recent version - **Mac OS X** - Select Latest Release, but check to make sure your OS is the correct version. Look through Binaries for Legacy OS X Systems if you are on an older release - **Linux** - Select the appropriate distro and follow the installation instructions
+2.  Select the appropriate link for your operating system (Windows, Mac OS X, or Linux)
+
+-   **Windows** - Select base and download the most recent version
+-   **Mac OS X** - Select Latest Release, but check to make sure your OS is the correct version. Look through Binaries for Legacy OS X Systems if you are on an older release
+-   **Linux** - Select the appropriate distro and follow the installation instructions
+
 3.  Head to [RStudio.com](https://www.rstudio.com/products/rstudio/download/#download "Download the appropriate version of RStudio (Free) for your operating system to use with R")
 4.  Follow the associated download and installation instructions for RStudio.
 5.  Start peering over the [RStudio IDE Cheatsheet](%22https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf%22). *An IDE is an integrated development environment.*
 
 #### **Load and install the necessary packages**
 
-```{r load_cfbfastR_tidy}
+```{r load_cfbfastR_tidy, echo=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -81,7 +86,7 @@ As of `cfbfastR` version `r remote_version`, the package exports `r nrow(exporte
 
 You can save the key for consistent usage by adding `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html), a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations)
 
-``` {.r}
+```{r, eval = FALSE}
 CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
 ```
 
@@ -93,15 +98,15 @@ For less consistent usage, save your API key as the environment variable `CFBD_A
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
-# Let's get some play by play data 
+# Let's get some play by play data
 
-If you have ever worked with the now archived [**`cfbscrapR`**](https://github.com/saiemgilani/cfbscrapR) package, most of the functions in **```cfbfastR```** should be fairly familiar with some slight changes.
+If you have ever worked with the now archived [**`cfbscrapR`**](https://github.com/saiemgilani/cfbscrapR) package, most of the functions in **`cfbfastR`** should be fairly familiar with some slight changes.
 
 ## Play by play data comparisons {.tabset}
 
-### ```cfbfastR::cfbd_pbp_data()``` (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
+### **`cfbfastR::cfbd_pbp_data()`** (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
 
-```{r, cfbfastR_pbp_data}
+```{r, cfbfastR_pbp_data, eval=FALSE}
 library(dplyr)
 library(tidyr)
 library(purrr)
@@ -142,7 +147,7 @@ year_split <- lapply(year_split, function(x) {
 all_years <- dplyr::bind_rows(year_split)
 ```
 
-### ```cfbscrapR::cfb_pbp_data()``` (1 season, \~8-10 minutes `r emo::ji("old_man")`)
+### **`cfbscrapR::cfb_pbp_data()`** (1 season, \~8-10 minutes `r emo::ji("old_man")`)
 
 ```{r cfbcrapR_pbp_data, message=FALSE,warning=FALSE,eval=FALSE}
 week_vector = 1:15
@@ -175,7 +180,7 @@ year_split19 = lapply(year_split, function(x) {
 pbp_2019 = bind_rows(year_split19)
 ```
 
-## The fast way: ```load_cfb_pbp()``` (7 seasons, ~1-1.5 minutes `r emo::ji("flame")`)
+## **The fastR way**: `load_cfb_pbp()` (7 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
 
 We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
 
@@ -188,4 +193,19 @@ future::plan("multisession")
   pbp <- cfbfastR::load_cfb_pbp(seasons)
 })
 tictoc::toc()
+
 ```
+
+In the selected seasons, there are `r unique(pbp$game_id))}` games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with `r ncol(pbp)` columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let's take a look at the first 40 or so.
+
+```{r glimpse_pbp}
+glimpse(pbp[1:40])
+```
+
+So there are three basic ids within each game,
+
+-   the id for the game (`game_id`),
+-   the id for the drive (`drive_id`),
+-   the id for the play (`id_play` or `play_id` depending on which data set you are looking at).
+
+These are useful for all kinds of grouping, joining and sorting tasks. The columns `pos_team` and `def_pos_team` are essentially your offense and defense (the main difference is kickoffs, the team receiving  the kickoff is the `pos_team`) for the play/drive. From there you have the typical descriptions, play types and yardage columns. Beyond that, you will see the origin of why this package came to be, building expected points and win probability metrics for in-game valuation of plays.
