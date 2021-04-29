@@ -747,7 +747,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #' @export
 #' @examples
 #' \donttest{
-#'   cfbd_game_player_stats(2018, week = 15, conference = "Ind")
+#'   cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama")
 #'
 #'   cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
 #' }
@@ -760,6 +760,7 @@ cfbd_game_player_stats <- function(year,
                                    category = NULL,
                                    game_id = NULL,
                                    verbose = FALSE) {
+
   stat_categories <- c(
     "passing", "receiving", "rushing", "defensive", "fumbles",
     "interceptions", "punting", "puntReturns", "kicking", "kickReturns"
@@ -880,15 +881,13 @@ cfbd_game_player_stats <- function(year,
           team = .data$school,
           value = .data$stat
         ) %>%
-        tidyr::pivot_wider(names_from = .data$stat_category, values_from = .data$value) %>%
+        tidyr::pivot_wider(names_from = .data$stat_category, values_from = .data$value, values_fn = list) %>%
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
 
       df <- df %>%
-        dplyr::select(cols, dplyr::everything()) %>%
-        dplyr::mutate_at(numeric_cols, as.numeric) %>%
-        as.data.frame()
+        dplyr::select(cols, dplyr::everything())
 
       if(verbose){
         message(glue::glue("{Sys.time()}: Scraping game player stats data..."))
