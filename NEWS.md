@@ -1,3 +1,7 @@
+# **cfbfastR v1.3.3**
+
+### Hotfix [```cfbd_game_player_stats()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)
+
 # **cfbfastR v1.3.2**
 
 ### Added ID linking to [```cfbd_recruiting_players()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html)
