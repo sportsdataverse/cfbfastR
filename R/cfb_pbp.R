@@ -12,6 +12,8 @@ NULL
 #' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
 #' @export
 load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
+  options(stringsAsFactors = FALSE)
+  options(scipen = 999)
   dots <- rlang::dots_list(...)
   
   if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
