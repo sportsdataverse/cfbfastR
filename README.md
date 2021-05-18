@@ -52,6 +52,8 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
 
 ### Hotfix [`cfbd_game_player_stats()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)
 
+# 
+
 <details>
 
 <summary>View more version news</summary>
