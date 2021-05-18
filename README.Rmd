@@ -86,6 +86,8 @@ devtools::install_github(repo = "saiemgilani/cfbfastR")
 
 ### Hotfix [```cfbd_game_player_stats()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)
 
+#
+
 <details><summary>View more version news</summary>
 
 ## **cfbfastR v1.3.2**
