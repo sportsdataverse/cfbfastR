@@ -55,11 +55,11 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
 
 <summary>View more version news</summary>
 
-# **cfbfastR v1.3.2**
+## **cfbfastR v1.3.2**
 
 ### Added ID linking to [`cfbd_recruiting_players()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html)
 
-# **cfbfastR v1.3.1**
+## **cfbfastR v1.3.1**
 
 ### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
 
@@ -70,7 +70,7 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
   - [`cfbd_draft_picks()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_picks.html)
     - **Get list of NFL Draft picks**
 
-# **cfbfastR v1.2.1**
+## **cfbfastR v1.2.1**
 
 ##### **Minor release**
 
@@ -90,7 +90,7 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
 
   - Continued work on intro vignette
 
-# **cfbfastR v1.2.0**
+## **cfbfastR v1.2.0**
 
 #### **Add significant documentation to the package**
 
@@ -116,7 +116,7 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
   - Change `id` variable to `athlete_id` in
     [`cfbd_metrics_ppa_players_season()`](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_players_season.html)
 
-# **cfbfastR v1.1.0**
+## **cfbfastR v1.1.0**
 
 #### **Add loading from Data Repository functionality**
 
@@ -137,7 +137,7 @@ Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
     the package to allow for parallel processing of the play-by-play
     data with progress updates if desired.
 
-# **cfbfastR v1.0.0**
+## **cfbfastR v1.0.0**
 
 #### **Function Naming Convention Change**
 
@@ -210,7 +210,7 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 
 </details>
 
-## Follow cfbfastR on Twitter and star this repo
+# Follow cfbfastR on Twitter and star this repo
 
 [![Twitter
 Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
@@ -218,7 +218,7 @@ Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfa
 [![GitHub
 stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20cfbfastR&maxAge=2592000)](https://github.com/saiemgilani/cfbfastR/stargazers/)
 
-## Current Issues
+# Current Issues
 
 | issue | icon                                                                                                                         | title                                                                                                                                  | labels | opened\_by                            | date       | closed |
 | :---- | :--------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----- | :------------------------------------ | :--------- | :----- |
@@ -236,7 +236,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
 
 <br>
 
-## **Our Authors**
+# **Our Authors**
 
   - [Saiem Gilani](https://twitter.com/saiemgilani)  
     <a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
@@ -254,7 +254,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
     <a href="https://twitter.com/arbitanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=twitter&style=for-the-badge" alt="@arbitanalytics" /></a>
     <a href="https://github.com/ehess" target="blank"><img src="https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge" alt="@ehess" /></a>
 
-## **Our Contributors (they’re awesome)**
+# **Our Contributors (they’re awesome)**
 
   - [Nate Manzo](https://twitter.com/cfbnate)  
     <a href="https://twitter.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=twitter&style=for-the-badge" alt="@cfbnate" /></a>
@@ -275,7 +275,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
     <a href="https://twitter.com/_TanHo" target="blank"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=twitter&style=for-the-badge" alt="@_TanHo" /></a>
     <a href="https://github.com/tanho63" target="blank"><img src="https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge" alt="@tanho63" /></a>
 
-## **Authors Emeritus - `cfbscrapR`\[archived\]**
+# **Authors Emeritus - `cfbscrapR`\[archived\]**
 
   - [Meyappan Subbiah](https://twitter.com/msubbaiah1)  
     <a href="https://twitter.com/msubbaiah1" target="blank"><img src="https://img.shields.io/twitter/follow/msubbaiah1?color=blue&label=%40msubbaiah1&logo=twitter&style=for-the-badge" alt="@msubbaiah1" /></a>
@@ -284,7 +284,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
     <a href="https://twitter.com/statsowar" target="blank"><img src="https://img.shields.io/twitter/follow/statsowar?color=blue&label=%40statsowar&logo=twitter&style=for-the-badge" alt="@statsowar" /></a>
     <a href="https://github.com/spfleming" target="blank"><img src="https://img.shields.io/github/followers/spfleming?color=eee&logo=Github&style=for-the-badge" alt="@spfleming" /></a>
 
-## **Special Thanks**
+# **Special Thanks**
 
   - [Nick Tice](https://github.com/NickTice)
   - [Sebastian Carl](https://twitter.com/mrcaseb)  

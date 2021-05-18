@@ -174,8 +174,8 @@ navbar:
       menu:
       - text: SportsDataverse
         href: https://sportsdataverse.org/
-      - text: kenpomR
-        href: https://saiemgilani.github.io/kenpomR/
+      - text: hoopR
+        href: https://saiemgilani.github.io/hoopR/
       - text: wehoop
         href: https://saiemgilani.github.io/wehoop/
       - text: cfbrecruitR
@@ -277,7 +277,6 @@ reference:
       - '`cfbd_venues`'
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
-      
   - title: Helper Functions and Data
   - subtitle: Included data
     desc: Data included within the package
