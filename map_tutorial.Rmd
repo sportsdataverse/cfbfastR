@@ -194,6 +194,7 @@ ggplot()+
   geom_point(data = tri_state_recs, mapping = aes(x = longitude, y = latitude), color = 'white')+
   labs(
     title = 'Where are Recruits in the Tri-State Area from?',
+    subtitle = 'New York, Philadelphia, and Pittsburgh',
     fill = 'Number of Recruits' #This will change the legend of the title
   )+
   theme_bw()+ #This makes the background white and the outline of the plot black among some other things. I think it looks clean
@@ -204,5 +205,9 @@ ggplot()+
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(), #This removes the gridlines
     plot.title = element_text(size = 16, hjust = 0.5), #This centers the title and makes the text bigger
+    plot.subtitle = element_text(size = 14, hjust = 0.5), 
     legend.position = 'bottom' #This moves the legend to the bottom of the graph
   )
+```
+
+Hope you found this tutorial useful! If you have any questions on how to manage recruiting data feel free to reach out to me on [Twitter](https://twitter.com/ConorMcQ5)!
