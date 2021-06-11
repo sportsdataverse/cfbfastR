@@ -74,6 +74,7 @@ Before we look at the code there's a couple `ggplot2` basics I would like to cov
 1. `ggplot2` uses `+` instead of `%>%` as a pipe for reasons that are beyond my feeble mind's capabilities. 
 2. You place individual plot elements with the `geom_` functions. For example if you want to place a scatter plot that's `geom_point`, for bars it's `geom_bar`, for lines its `geom_line`, etc. Specifically for maps we use `geom_polygon`
 3. We map variables from a given dataframe to geoms using the `aes` function. 
+4. The world isn't flat, but plotting maps in R defaults to a flat projection (Mercator) which can cause some pretty massive distortion. We can fix this by changing to another projection which better maintains an area's proportions (an Albers projection in this case)
 
 ```{r}
 
@@ -81,7 +82,8 @@ cont_48 <- states %>% filter(!state_name %in% c("Alaska", "Hawaii")) #This means
 
 ggplot()+ #ggplot uses + instead of %>% as a pipe for some reason. 
   geom_polygon(data = cont_48, mapping = aes(x = long, y = lat, group = group), color = 'white', fill = 'grey')+ #color controls the color of borders, fill controls the color of things inside the border
-  geom_point(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude), color = 'black')
+  geom_point(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude), color = 'black')+
+  coord_map(projection = 'albers', lat0 = 39, lat1 = 45) #This is the one that changes the projection
   
 ```
 
@@ -96,7 +98,8 @@ library(ggrepel)
 ggplot()+
   geom_polygon(data = cont_48, mapping = aes(x = long, y = lat, group = group), color = 'white', fill = 'grey')+
   geom_point(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude), color = 'black')+
-  geom_text_repel(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude, label = name), color = 'black')
+  geom_text_repel(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude, label = name), color = 'black')+
+  coord_map(projection = 'albers', lat0 = 39, lat1 = 45)
 
 ```
 
@@ -168,7 +171,8 @@ Awesome! We now have the counts and data we use to to make the map, so let's mak
 
 ```{r}
 ggplot(data = map_counts)+
-  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = count), color = 'white')
+  geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = count), color = 'white')+
+  coord_map(projection = 'albers', lat0 = 39, lat1 = 45)
 ```
 
 Tah-dah! We now can see that Texas, Florida, and California produce far and away the most recruits, Georgia is pretty good, and generally the southeast is ahead. That's really all you need to make a couple sharp looking recruiting geography plots. With this you can go out into the world with your recruiting data and make any graph you desire. Unfortunately there is not county-level data available in the `cfbfastR` data, but if you wanted to make a plot focused on one state you could easily do that, you would just apply a `filter` so that you are only focused on map and recruiting data on that state. 
@@ -207,7 +211,8 @@ ggplot()+
     plot.title = element_text(size = 16, hjust = 0.5), #This centers the title and makes the text bigger
     plot.subtitle = element_text(size = 14, hjust = 0.5), 
     legend.position = 'bottom' #This moves the legend to the bottom of the graph
-  )
+  )+
+  coord_map(projection = 'albers', lat0 = 39, lat1 = 45)
 ```
 
 Hope you found this tutorial useful! If you have any questions on how to manage recruiting data feel free to reach out to me on [Twitter](https://twitter.com/ConorMcQ5)!
