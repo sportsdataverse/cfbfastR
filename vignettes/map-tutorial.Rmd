@@ -23,7 +23,7 @@ if (!requireNamespace('pacman', quietly = TRUE)){
 }
 pacman::p_load(dplyr)
 pacman::p_load(ggplot2)
-pacman::p_load(urbnmapr)
+pacman::p_load_current_gh("UrbanInstitute/urbnmapr")
 pacman::p_load_current_gh("saiemgilani/cfbfastR")
 library(dplyr) #This is to manipulate data
 library(ggplot2) #This is the primary plotting package
