@@ -148,6 +148,8 @@ navbar:
         href: articles/rolling-epa-graph.html
       - text: Visualizing Team Talent with Player Recruit Rankings
         href: articles/nth-rated-recruit.html
+      - text: Intro to Visualizing Recruiting Geography
+        href: articles/map-tutorial.html
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
         href: articles/college-football-expected-points-model-fundamentals-part-i.html
@@ -297,6 +299,7 @@ articles:
       - fourth-down-plot-tutorial
       - rolling-epa-graph
       - nth-rated-recruit
+      - map-tutorial
   - title: Expected Points Model Fundamentals
     navbar: Expected Points Model Fundamentals
     contents:
