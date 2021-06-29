@@ -8,8 +8,7 @@ cols <- c(
   "home_id", "home_team", "home_conference",
   "home_points", "home_post_win_prob",
   "away_id", "away_team", "away_conference",
-  "away_points", "away_post_win_prob", "excitement_index",
-  "highlights"
+  "away_points", "away_post_win_prob", "excitement_index"
 )
 
 test_that("CFB Game Info", {
