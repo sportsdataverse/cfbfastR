@@ -5,6 +5,8 @@
 \title{\strong{Load cfbfastR play-by-play}}
 \usage{
 load_cfb_pbp(seasons, ..., qs = FALSE)
+
+load_cfb_pbp(seasons, ..., qs = FALSE)
 }
 \arguments{
 \item{seasons}{A vector of 4-digit years associated with given College Football seasons.}
@@ -15,6 +17,9 @@ the season data into a database (used by \code{\link[=update_cfb_db]{update_cfb_
 \item{qs}{Wheter to use the function \code{\link[qs:qdeserialize]{qs::qdeserialize()}} for more efficient loading.}
 }
 \description{
+helper that loads multiple seasons from the data repo either into memory
+or writes it into a db using some forwarded arguments in the dots
+
 helper that loads multiple seasons from the data repo either into memory
 or writes it into a db using some forwarded arguments in the dots
 }

@@ -15,6 +15,14 @@ update_cfb_db(
   force_rebuild = FALSE,
   db_connection = NULL
 )
+
+update_cfb_db(
+  dbdir = ".",
+  dbname = "cfb_pbp_db",
+  tblname = "cfbfastR_pbp",
+  force_rebuild = FALSE,
+  db_connection = NULL
+)
 }
 \arguments{
 \item{dbdir}{Directory in which the database is or shall be located}
@@ -32,8 +40,38 @@ of or the complete play by play data table within the database (please see detai
 \description{
 \code{update_cfb_db()} updates or creates a database with \code{cfbfastR}
 play by play data of all completed and available games since 2003.
+
+\code{update_cfb_db()} updates or creates a database with \code{cfbfastR}
+play by play data of all completed and available games since 2003.
 }
 \details{
+This function creates and updates a data table with the name \code{tblname}
+within a SQLite database (other drivers via \code{db_connection}) located in
+\code{dbdir} and named \code{dbname}.
+The data table combines all play by play data for every available game back
+to the 2003 season and adds the most recent completed games as soon as they
+are available for \code{cfbfastR}.
+
+The argument \code{force_rebuild} is of hybrid type. It can rebuild the play
+by play data table either for the whole cfbfastR era (with \code{force_rebuild = TRUE})
+or just for specified seasons (e.g. \code{force_rebuild = c(2019, 2020)}).
+Please note the following behavior:
+\itemize{
+\item{\code{force_rebuild = TRUE}}{: The data table with the name \code{tblname}
+will be removed completely and rebuilt from scratch. This is helpful when
+new columns are added during the Off-Season.}
+\item{\code{force_rebuild = c(2019, 2020)}}{: The data table with the name \code{tblname}
+will be preserved and only rows from the 2019 and 2020 seasons will be
+deleted and re-added. This is intended to be used for ongoing seasons because
+ESPN's data provider can make changes to the underlying data during the week.}
+}
+
+The parameter \code{db_connection} is intended for advanced users who want
+to use other DBI drivers, such as MariaDB, Postgres or odbc. Please note that
+the arguments \code{dbdir} and \code{dbname} are dropped in case a \code{db_connection}
+is provided but the argument \code{tblname} will still be used to write the
+data table into the database.
+
 This function creates and updates a data table with the name \code{tblname}
 within a SQLite database (other drivers via \code{db_connection}) located in
 \code{dbdir} and named \code{dbname}.
