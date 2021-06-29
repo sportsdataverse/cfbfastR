@@ -180,14 +180,14 @@ year_split19 = lapply(year_split, function(x) {
 pbp_2019 = bind_rows(year_split19)
 ```
 
-## **The fastR way**: `load_cfb_pbp()` (19 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
+## **The fastR way**: `load_cfb_pbp()` (18 seasons, \~2-3 minutes `r emo::ji("flame")`)
 
-We are going to load in data for seasons 2002-2020, it'll take between 120-180 seconds to run.
+We are going to load in data for seasons 2003-2020, it'll take between 120-180 seconds to run.
 
-```{r load_2002_2020, warning = FALSE}
+```{r load_2003_2020, warning = FALSE}
 tictoc::tic()
 pbp <- data.frame()
-seasons <- 2002:2020
+seasons <- 2003:2020
 progressr::with_progress({
 future::plan("multisession")
   pbp <- cfbfastR::load_cfb_pbp(seasons)

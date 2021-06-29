@@ -97,6 +97,7 @@ NULL
 #'   \item{`away_points`: integer.}{Away team points.}
 #'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
 #'   \item{`excitement_index`: character.}{Game excitement index.}
+#'   \item{`highlights`: character.}{Link to game highlights.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/games}
 #' @keywords Game Info
