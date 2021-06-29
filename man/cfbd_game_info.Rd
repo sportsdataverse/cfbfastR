@@ -70,6 +70,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
 \item{\code{away_points}: integer.}{Away team points.}
 \item{\code{away_post_win_prob}: character.}{Away team post-game win probability.}
 \item{\code{excitement_index}: character.}{Game excitement index.}
+\item{\code{highlights}: character.}{Link to game highlights.}
 }
 }
 \description{
