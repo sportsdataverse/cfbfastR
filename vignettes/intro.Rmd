@@ -180,14 +180,14 @@ year_split19 = lapply(year_split, function(x) {
 pbp_2019 = bind_rows(year_split19)
 ```
 
-## **The fastR way**: `load_cfb_pbp()` (18 seasons, \~2-3 minutes `r emo::ji("flame")`)
+## **The fastR way**: `load_cfb_pbp()` (7 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
 
-We are going to load in data for seasons 2003-2020, it'll take between 120-180 seconds to run.
+We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
 
-```{r load_2003_2020, warning = FALSE}
+```{r load_2014_2020, warning = FALSE}
 tictoc::tic()
 pbp <- data.frame()
-seasons <- 2003:2020
+seasons <- 2014:2020
 progressr::with_progress({
 future::plan("multisession")
   pbp <- cfbfastR::load_cfb_pbp(seasons)
@@ -208,4 +208,4 @@ So there are three basic ids within each game,
 -   the id for the drive (`drive_id`),
 -   the id for the play (`id_play` or `play_id` depending on which data set you are looking at).
 
-These are useful for all kinds of grouping, joining and sorting tasks. The columns `pos_team` and `def_pos_team` are essentially your offense and defense (the main difference is kickoffs, the team receiving the kickoff is the `pos_team`) for the play/drive. From there you have the typical descriptions, play types and yardage columns. Beyond that, you will see the origin of why this package came to be, building expected points and win probability metrics for in-game valuation of plays.
+These are useful for all kinds of grouping, joining and sorting tasks. The columns `pos_team` and `def_pos_team` are essentially your offense and defense (the main difference is kickoffs, the team receiving  the kickoff is the `pos_team`) for the play/drive. From there you have the typical descriptions, play types and yardage columns. Beyond that, you will see the origin of why this package came to be, building expected points and win probability metrics for in-game valuation of plays.
