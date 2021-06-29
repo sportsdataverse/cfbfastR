@@ -1,3 +1,11 @@
+# **cfbfastR v1.9.9**
+
+### Expected points and Win Probability data back to 2003 
+
+- Added to the package functions [```load_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html)
+
+- There are a few known errors with the calculations that need to be looked into further. One specific one identified by Brendan Farrell noting that short yardage touchdowns for pre-2008 data were often negative EPA plays. This is either a duplication issue or a coding error.
+
 # **cfbfastR v1.3.3**
 
 ### Hotfix [```cfbd_game_player_stats()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)

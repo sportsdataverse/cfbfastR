@@ -12,6 +12,8 @@ NULL
 #' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
 #' @export
 load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
+  options(stringsAsFactors = FALSE)
+  options(scipen = 999)
   dots <- rlang::dots_list(...)
   
   if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
@@ -22,8 +24,8 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
   
   most_recent <- most_recent_season()
   
-  if (!all(seasons %in% 2014:most_recent)) {
-    usethis::ui_stop("Please pass valid seasons between 2014 and {most_recent}")
+  if (!all(seasons %in% 2003:most_recent)) {
+    usethis::ui_stop("Please pass valid seasons between 2003 and {most_recent}")
   }
   
   if (length(seasons) > 1 && is_sequential() && isFALSE(in_db)) {
@@ -38,7 +40,7 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
   p <- progressr::progressor(along = seasons)
   
   if (isFALSE(in_db)) {
-    out <- furrr::future_map_dfr(seasons, cfb_single_season, p = p, qs = qs)
+    out <- furrr::future_map_dfr(rev(seasons), cfb_single_season, p = p, qs = qs)
   }
   
   if (isTRUE(in_db)) {
@@ -52,12 +54,12 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
 cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
   if (isTRUE(qs)) {
     
-    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs")
+    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/pbp/rds/play_by_play_{season}.qs")
     pbp <- qs_from_url(.url)
     
   }
   if (isFALSE(qs)) {
-    .url <- glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
+    .url <- glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/pbp/rds/play_by_play_{season}.rds")
     con <- url(.url)
     pbp <- readRDS(con)
     close(con)
@@ -74,7 +76,7 @@ cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, 
 
 # load games file
 load_games <- function(){
-  .url <- "https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/games_in_data_repo.csv"
+  .url <- "https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/pbp/cfb_games_in_data_repo.csv"
   con <- url(.url)
   dat <- utils::read.csv(con)
   # close(con)
@@ -86,13 +88,13 @@ load_games <- function(){
 #' @title 
 #' **Update or create a cfbfastR play-by-play database**
 #' @description `update_cfb_db()` updates or creates a database with `cfbfastR`
-#' play by play data of all completed games since 2014.
+#' play by play data of all completed and available games since 2003.
 #'
 #' @details This function creates and updates a data table with the name `tblname`
 #' within a SQLite database (other drivers via `db_connection`) located in
 #' `dbdir` and named `dbname`.
 #' The data table combines all play by play data for every available game back
-#' to the 2014 season and adds the most recent completed games as soon as they
+#' to the 2003 season and adds the most recent completed games as soon as they
 #' are available for `cfbfastR`.
 #'
 #' The argument `force_rebuild` is of hybrid type. It can rebuild the play
@@ -165,8 +167,8 @@ update_cfb_db <- function(dbdir = ".",
   # get completed games using Lee's file (thanks Lee!)
   user_message("Checking for missing completed games...", "todo")
   completed_games <- load_games() %>%
-    # completed games since 2014, excluding the broken games
-    dplyr::filter(.data$season >= 2014) %>%
+    # completed games since 2003, excluding the broken games
+    dplyr::filter(.data$season >= 2003) %>%
     dplyr::arrange(.data$week) %>%
     dplyr::pull(.data$game_id)
   
@@ -202,7 +204,7 @@ update_cfb_db <- function(dbdir = ".",
 build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_message = TRUE) {
   
   valid_seasons <- load_games() %>%
-    dplyr::filter(.data$season >= 2014) %>%
+    dplyr::filter(.data$season >= 2003) %>%
     dplyr::group_by(.data$season) %>%
     dplyr::summarise() %>%
     dplyr::ungroup()

@@ -53,6 +53,8 @@ home:
     href: articles/intro.html
   - text: cfbfastR stats landing page
     href: https://gameonpaper.com/cfb/
+  - text: College Football Data API
+    href: https://collegefootballdata.com
     
 navbar:
   structure:
@@ -70,6 +72,8 @@ navbar:
       icon: "fas fa-database"
       text: " Data"
       menu:
+      - text: "CFBData.com"
+        href: https://collegefootballdata.com
       - text: "Data Repository"
         href: https://github.com/saiemgilani/cfbfastR-data
       - text: "Raw Data Repository"
@@ -176,12 +180,19 @@ navbar:
       menu:
       - text: SportsDataverse
         href: https://sportsdataverse.org/
+      - text: R Packages
       - text: hoopR
         href: https://saiemgilani.github.io/hoopR/
       - text: wehoop
         href: https://saiemgilani.github.io/wehoop/
       - text: cfbrecruitR
         href: https://saiemgilani.github.io/cfbrecruitR/
+      - text: puntr
+        href: https://puntalytics.github.io/puntr
+      - text: gamezoneR
+        href: https://jacklich10.github.io/gamezoneR/
+      # - text: baseballr
+      #   href: https://saiemgilani.github.io/baseballr/
     github:
       icon: "fab fa-github fa-lg"
       href: https://github.com/saiemgilani/cfbfastR/

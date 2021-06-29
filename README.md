@@ -3,13 +3,12 @@
 
 <!-- badges: start -->
 
-![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)
-![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/cfbfastr/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=blue&style=for-the-badge)
-![Contributors](https://img.shields.io/github/contributors/saiemgilani/cfbfastR?style=for-the-badge)
-![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/cfbfastr?label=cfbfastR&logo=R&style=for-the-badge)
 [![Twitter
 Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
-
+[![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/cfbfastr?label=cfbfastR&logo=R&style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/)
+[![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/saiemgilani/cfbfastR/)
+[![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/cfbfastr/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=blue&style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/actions/workflows/R-CMD-check.yaml)
+[![Contributors](https://img.shields.io/github/contributors/saiemgilani/cfbfastR?style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/graphs/contributors)
 <!-- badges: end -->
 
 The goal of [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) is
