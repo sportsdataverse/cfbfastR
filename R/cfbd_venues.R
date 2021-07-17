@@ -22,7 +22,7 @@
 #'   \item{`dome`:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
 #'   \item{`timezone`:character.}{Time zone in which the venue resides (i.e. Eastern Time -> "America/New York").}
 #' }
-#' @source \url{https://api.collegefootballdata.com/venues}
+#' @source <https://api.collegefootballdata.com/venues>
 #' @keywords Venues
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

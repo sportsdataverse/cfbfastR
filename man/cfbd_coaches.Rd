@@ -34,7 +34,6 @@ cfbd_coaches(
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
-\code{\link[=cfbd_coaches]{cfbd_coaches()}} - A data frame with coach information with the following columns:
 \describe{
 \item{\code{first_name}:character.}{First name of coach.}
 \item{\code{last_name}:character.}{Last name of coach.}
@@ -54,8 +53,8 @@ cfbd_coaches(
 }
 \description{
 \strong{Coach information search}
-A coach search function which provides coaching records and school history for a given coach\if{html}{\out{<div class="r">}}\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
-}\if{html}{\out{</div>}}
+A coach search function which provides coaching records and school history for a given coach\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
+}
 }
 \examples{
 \donttest{

@@ -17,18 +17,18 @@
 #'    # 7 OTs LSU at TAMU
 #'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 #' }
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
-#' @param team (\emph{String} optional): D-I Team
-#' @param home_team (\emph{String} optional): Home D-I Team
-#' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param team (*String* optional): D-I Team
+#' @param home_team (*String* optional): Home D-I Team
+#' @param away_team (*String* optional): Away D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
+#' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return Betting information for games with the following columns:
 #' \describe{
@@ -47,7 +47,7 @@
 #'   \item{`formatted_spread`:character.}{Formatted spread for the game.}
 #'   \item{`over_under`:character.}{Over/Under for the game.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/lines}
+#' @source <https://api.collegefootballdata.com/lines>
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

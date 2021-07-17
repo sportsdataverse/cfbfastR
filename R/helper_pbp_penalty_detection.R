@@ -1,6 +1,6 @@
 #' @rdname helpers_pbp
 #'
-#' @param raw_df (\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
+#' @param raw_df (*data.frame* required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
 #' @details Runs penalty detection on the play text and play types. Requires the following columns be present:
 #' \itemize{
 #' \item{`game_id`}{Referencing game id.}
