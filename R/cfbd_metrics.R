@@ -40,13 +40,13 @@
 NULL
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_metrics_ppa_games()] - A data frame with 18 variables:
@@ -185,18 +185,18 @@ cfbd_metrics_ppa_games <- function(year,
 
 #' @title 
 #' **Get player game averages for predicted points added (PPA)**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param position (\emph{string} optional): Position abbreviation of the player you are searching for.\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
 #' Can be found using the [cfbd_player_info()] function.
-#' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param threshold (*Integer* optional): Minimum threshold of plays.
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_metrics_ppa_players_games()] - A data frame with 9 variables:
@@ -211,7 +211,7 @@ cfbd_metrics_ppa_games <- function(year,
 #'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
 #'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/players/games}
+#' @source <https://api.collegefootballdata.com/ppa/players/games>
 #' @keywords Players Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -343,20 +343,20 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 #' @title 
 #' **Get player season averages for predicted points added (PPA)**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param position (\emph{string} optional): Position abbreviation of the player you are searching for.\cr
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
 #' Can be found using the [cfbd_player_info()] function.
-#' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param threshold (*Integer* optional): Minimum threshold of plays.
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_metrics_ppa_players_season()] - A data frame with 23 variables:
@@ -385,7 +385,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'   \item{`total_PPA_standard_downs`: double.}{Total standard down predicted points added (PPA).}
 #'   \item{`total_PPA_passing_downs`: double.}{Total passing down predicted points added (PPA).}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/players/season}
+#' @source <https://api.collegefootballdata.com/ppa/players/season>
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -526,8 +526,8 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
 #' @title 
 #' **Calculate predicted points using down and distance**
-#' @param down (\emph{Integer} required): Down filter
-#' @param distance (\emph{Integer} required): Distance filter
+#' @param down (*Integer* required): Down filter
+#' @param distance (*Integer* required): Distance filter
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_metrics_ppa_predicted()] - A data frame with 2 variables:
@@ -535,7 +535,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'   \item{`yard_line`: integer.}{Yards to goal}
 #'   \item{`predicted_points`: character.}{Predicted points at in that down-distance-yardline scenario}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/predicted}
+#' @source <https://api.collegefootballdata.com/ppa/predicted>
 #' @keywords Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -614,12 +614,12 @@ cfbd_metrics_ppa_predicted <- function(down,
 
 #' @title 
 #' **Get team averages for predicted points added (PPA)**
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference name - select a valid FBS conference\cr
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' 
 #' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
@@ -646,7 +646,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #'   \item{`def_cumulative_passing`: character.}{Defense cumulative total passing predicted points added (PPA).}
 #'   \item{`def_cumulative_rushing`: character.}{Defense cumulative total rushing predicted points added (PPA).}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/teams}
+#' @source <https://api.collegefootballdata.com/ppa/teams>
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -748,10 +748,10 @@ cfbd_metrics_ppa_teams <- function(year = 2019,
 
 #' @title 
 #' **Get pre-game win probability data from API**
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
@@ -866,7 +866,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 
 #' @title 
 #' **Get win probability chart data from API**
-#' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
+#' @param game_id (*Integer* required): Game ID filter for querying a single game\cr
 #' Can be found using the [cfbd_game_info()] function
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
@@ -889,7 +889,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #'   \item{`play_number`: integer.}{Game play number.}
 #'   \item{`yard_line`: integer.}{Yard line of the play (0-100 yards).}
 #' }
-#' @source \url{https://api.collegefootballdata.com/metrics/wp}
+#' @source <https://api.collegefootballdata.com/metrics/wp>
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

@@ -56,7 +56,7 @@
 NULL
 #' @title 
 #' **Get college football play-by-play data.**
-#' @source \url{https://api.collegefootballdata.com/plays}
+#' @source <https://api.collegefootballdata.com/plays>
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
@@ -101,7 +101,7 @@ NULL
 #'   \item{`clock.minutes`: integer.}{Minutes left on the clock.}
 #'   \item{`clock.seconds`: integer.}{Seconds left on the clock.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/plays}
+#' @source <https://api.collegefootballdata.com/plays>
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -254,16 +254,16 @@ cfbd_plays <- function(year = 2020,
 
 #' @title 
 #' **Gets player info associated by play**
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
 #' Can be found using the [cfbd_player_info()] function.
-#' @param stat_type_id (\emph{Integer} optional): Stat Type ID filter for querying a single stat type
+#' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
-#' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
+#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
 #' \describe{
@@ -322,7 +322,7 @@ cfbd_plays <- function(year = 2020,
 #'   \item{`pass_breakup_player`: logical.}{Pass breakup player name.}
 #'   \item{`pass_breakup_stat`: logical.}{Pass breakup (PBU) stat.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/play/stats}
+#' @source <https://api.collegefootballdata.com/play/stats>
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -602,7 +602,7 @@ cfbd_play_stats_player <- function(year = NULL,
 #'   \item{`play_stat_type_id`: integer}{Referencing play stat type ID.}
 #'   \item{`name`: character}{Type of play stats.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/play/stat/types}
+#' @source <https://api.collegefootballdata.com/play/stat/types>
 #' @keywords Plays
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -657,7 +657,7 @@ cfbd_play_stats_types <- function() {
 #'   \item{`text`: character}{play type description.}
 #'   \item{`abbreviation`: character}{play type abbreviation used for function call}
 #' }
-#' @source \url{https://api.collegefootballdata.com/play/types}
+#' @source <https://api.collegefootballdata.com/play/types>
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode

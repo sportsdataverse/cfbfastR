@@ -45,7 +45,7 @@ NULL
 #'   \item{`nfl_display_name`: integer}{NFL team display name (usually more neat/complete).}
 #'   \item{`nfl_logo`: character}{URL for NFL team logo.}
 #'  }
-#' @source \url{https://api.collegefootballdata.com/draft/teams}
+#' @source <https://api.collegefootballdata.com/draft/teams>
 #' @keywords NFL Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -115,7 +115,7 @@ cfbd_draft_teams <- function() {
 #'   \item{`position_name`: character.}{NFL Position group name.}
 #'   \item{`position_abbreviation`: integer}{NFL position group abbreviation.}
 #'  }
-#' @source \url{https://api.collegefootballdata.com/draft/positions}
+#' @source <https://api.collegefootballdata.com/draft/positions>
 #' @keywords NFL Positions
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -178,11 +178,11 @@ cfbd_draft_positions <- function() {
 }
 #' @title 
 #' **Get list of NFL draft picks**
-#' @param year (\emph{Integer} required): NFL draft class, 4 digit format (\emph{YYYY})
-#' @param nfl_team (\emph{String}): NFL drafting team, see [cfbd_draft_teams()] for valid selections.
-#' @param college (\emph{String}): NFL draftee college team, see [cfbd_team_info()] for valid selections.
-#' @param conference (\emph{String}): NFL draftee college team conference, see [cfbd_conferences()] for valid selections.
-#' @param position (\emph{String}): NFL position abbreviation, see [cfbd_draft_positions()] for valid selections.
+#' @param year (*Integer* required): NFL draft class, 4 digit format (*YYYY*)
+#' @param nfl_team (*String*): NFL drafting team, see [cfbd_draft_teams()] for valid selections.
+#' @param college (*String*): NFL draftee college team, see [cfbd_team_info()] for valid selections.
+#' @param conference (*String*): NFL draftee college team conference, see [cfbd_conferences()] for valid selections.
+#' @param position (*String*): NFL position abbreviation, see [cfbd_draft_positions()] for valid selections.
 #' @return [cfbd_draft_picks()] - A data frame with 23 variables:
 #' \describe{
 #'   \item{`college_athlete_id`: integer.}{College athlete referencing id.}
@@ -209,7 +209,7 @@ cfbd_draft_positions <- function() {
 #'   \item{`hometown_info_longitude`: character.}{Hometown longitude of the NFL draftee.}
 #'   \item{`hometown_info_county_fips`: character.}{Hometown FIPS code of the NFL draftee.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/draft/picks}
+#' @source <https://api.collegefootballdata.com/draft/picks>
 #' @keywords NFL Draft Picks
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

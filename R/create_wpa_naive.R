@@ -3,8 +3,8 @@
 #' @title **Create WPA**
 #' @description  Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
 #' This is only for D1 football
-#' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
-#' @param wp_model (\emph{model} default cfbfastR:wp_model): Win Probability (WP) Model
+#' @param df (*data.frame* required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
+#' @param wp_model (*model* default cfbfastR:wp_model): Win Probability (WP) Model
 #' @details Requires the following columns to be present in the input data frame.
 #' @return The original `df` with the following columns appended to it:
 #' \describe{
@@ -145,7 +145,7 @@ create_wpa_naive <- function(df, wp_model) {
 
 
 #' @rdname create_wpa
-#' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
+#' @param df (*data.frame* required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @keywords internal
 #' @importFrom dplyr mutate lead if_else
 #' @export

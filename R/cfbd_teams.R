@@ -59,12 +59,12 @@
 NULL
 #' @title 
 #' **Team info lookup**
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param only_fbs (\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.\cr
+#' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.\cr
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_team_info()] - A data frame with 12 variables:
 #' \describe{
@@ -95,7 +95,7 @@ NULL
 #'   \item{`grass`: character.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
 #'   \item{`dome`: character.}{TRUE/FALSE flag for if the venue is a domed stadium.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/teams}
+#' @source <https://api.collegefootballdata.com/teams>
 #' @keywords Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -230,10 +230,10 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 
 #' @title 
 #' **Get matchup history records between two teams.**
-#' @param team1 (\emph{String} required): D-I Team 1
-#' @param team2 (\emph{String} required): D-I Team 2
-#' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
-#' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
+#' @param team1 (*String* required): D-I Team 1
+#' @param team2 (*String* required): D-I Team 2
+#' @param min_year (*Integer* optional): Minimum of year range, 4 digit format (*YYYY*)
+#' @param max_year (*Integer* optional): Maximum of year range, 4 digit format (*YYYY*)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_team_matchup_records()] - A data frame with 7 variables:
@@ -246,7 +246,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 #'   \item{`team2_wins`: character.}{Second team wins in series against `team1`.}
 #'   \item{`ties`: character.}{Number of ties in the series.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/teams/matchup}
+#' @source <https://api.collegefootballdata.com/teams/matchup>
 #' @keywords Team Matchup Records
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -363,10 +363,10 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 
 #' @title 
 #' **Get matchup history between two teams.**
-#' @param team1 (\emph{String} required): D-I Team 1
-#' @param team2 (\emph{String} required): D-I Team 2
-#' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
-#' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
+#' @param team1 (*String* required): D-I Team 1
+#' @param team2 (*String* required): D-I Team 2
+#' @param min_year (*Integer* optional): Minimum of year range, 4 digit format (*YYYY*)
+#' @param max_year (*Integer* optional): Maximum of year range, 4 digit format (*YYYY*)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_team_matchup] - A data frame with 11 variables:
 #' \describe{
@@ -382,7 +382,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #'   \item{`away_score`: integer.}{Away score in the game.}
 #'   \item{`winner`: character.}{Winner of the matchup.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/teams/matchup}
+#' @source <https://api.collegefootballdata.com/teams/matchup>
 #' @keywords Team Matchup
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -496,8 +496,8 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #' @description
 #' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'
-#' @param year (\emph{Integer} required): Year,  4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): Team, select a valid team in D-I football
+#' @param year (*Integer* required): Year,  4 digit format (*YYYY*)
+#' @param team (*String* optional): Team, select a valid team in D-I football
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_team_roster()] - A data frame with 12 variables:
@@ -519,7 +519,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #'   \item{`home_county_fips`: integer.}{Hometown FIPS code.}
 #'   \item{`headshot_url`: character}{Player ESPN headshot url.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/roster}
+#' @source <https://api.collegefootballdata.com/roster>
 #' @keywords Team Roster
 #' @importFrom dplyr rename mutate
 #' @importFrom jsonlite fromJSON
@@ -608,7 +608,7 @@ cfbd_team_roster <- function(year, team = NULL,
 #' 
 #' @description
 #' Extracts team talent composite as sourced from 247 rankings
-#' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
+#' @param year (*Integer* optional): Year 4 digit format (*YYYY*)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_team_talent()] - A data frame with 3 variables:
@@ -617,7 +617,7 @@ cfbd_team_roster <- function(year, team = NULL,
 #'   \item{`school`: character.}{Team name.}
 #'   \item{`talent`: double.}{Overall roster talent points (as determined by 247Sports).}
 #' }
-#' @source \url{https://api.collegefootballdata.com/talent}
+#' @source <https://api.collegefootballdata.com/talent>
 #' @keywords Team talent
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

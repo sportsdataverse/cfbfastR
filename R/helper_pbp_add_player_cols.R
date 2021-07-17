@@ -1,5 +1,5 @@
 #' @rdname helpers_pbp
-#' @param play_df (\emph{data.frame} required) Extracts player name information from Play-by-Play data frame, as pulled from `cfbd_pbp_data()`
+#' @param play_df (*data.frame* required) Extracts player name information from Play-by-Play data frame, as pulled from `cfbd_pbp_data()`
 #' @details Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:
 #' \itemize{
 #' \item{`rush`}{.}

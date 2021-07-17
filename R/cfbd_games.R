@@ -58,20 +58,20 @@ NULL
 
 #' @title 
 #' **Get results information from games.**
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param home_team (\emph{String} optional): Home D-I Team
-#' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param home_team (*String* optional): Home D-I Team
+#' @param away_team (*String* optional): Away D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' @param quarter_scores (\emph{Logical} default FALSE): This is a parameter to return the
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
+#' @param quarter_scores (*Logical* default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
-#' @param verbose (\emph{Logical}, default: FALSE) to return warnings and messages from function
+#' @param verbose (*Logical*, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_info()] - A data frame with 22 variables:
 #' \describe{
@@ -98,7 +98,7 @@ NULL
 #'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
 #'   \item{`excitement_index`: character.}{Game excitement index.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games}
+#' @source <https://api.collegefootballdata.com/games>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -247,7 +247,7 @@ cfbd_game_info <- function(year,
 
 #' @title  
 #' **Get calendar of weeks by season.**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_calendar()] - A data frame with 5 variables:
 #' \describe{
@@ -257,7 +257,7 @@ cfbd_game_info <- function(year,
 #'   \item{`first_game_start`: character.}{First game start time of the calendar week.}
 #'   \item{`last_game_start`: character.}{Last game start time of the calendar week.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/calendar}
+#' @source <https://api.collegefootballdata.com/calendar>
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
@@ -325,14 +325,14 @@ cfbd_calendar <- function(year,
 
 #' @title 
 #' **Get game media information (TV, radio, etc).**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default both): Select Season Type, regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default both): Select Season Type, regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
+#' @param media_type (*String* optional): Media type filter: tv, radio, web, ppv, or mobile
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_media()] - A data frame with 13 variables:
@@ -351,7 +351,7 @@ cfbd_calendar <- function(year,
 #'   \item{`radio`: logical.}{Radio broadcast networks.}
 #'   \item{`web`: list.}{Web viewing platforms carrying the game.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games/media}
+#' @source <https://api.collegefootballdata.com/games/media>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -472,9 +472,9 @@ cfbd_game_media <- function(year,
 
 #' @title 
 #' **Get game advanced box score information.**
-#' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
+#' @param game_id (*Integer* required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
-#' @param long (\emph{Logical} default `FALSE`): Return the data in a long format.
+#' @param long (*Logical* default `FALSE`): Return the data in a long format.
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_game_box_advanced()] - A data frame with 2 rows and 69 variables:
 #' \describe{
@@ -548,7 +548,7 @@ cfbd_game_media <- function(year,
 #'   \item{`field_pos_avg_start`: double.}{Average starting field position.}
 #'   \item{`field_pos_avg_starting_predicted_pts`: double.}{Average starting predicted points (PP) for the average starting field position.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/game/box/advanced}
+#' @source <https://api.collegefootballdata.com/game/box/advanced>
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
 #' @importFrom jsonlite fromJSON
@@ -683,18 +683,18 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 
 #' @title 
 #' **Get player statistics by game**
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
-#' @param team (\emph{String} optional): D-I Team
-#' @param category (\emph{String} optional): Category filter (e.g defensive)\cr
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param team (*String* optional): D-I Team
+#' @param category (*String* optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns\cr
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
@@ -733,7 +733,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #'   \item{`pd`: double.}{Total passes defensed in the game.}
 #'   \item{`qb_hur`: double.}{Total quarterback hurries in the game.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games/players}
+#' @source <https://api.collegefootballdata.com/games/players>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -914,9 +914,9 @@ cfbd_game_player_stats <- function(year,
 
 #' @title 
 #' **Get team records by year**
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -943,7 +943,7 @@ cfbd_game_player_stats <- function(year,
 #'   \item{`away_losses`: integer.}{Total away losses.}
 #'   \item{`away_ties`: integer.}{Total away ties.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/records}
+#' @source <https://api.collegefootballdata.com/records>
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1052,16 +1052,16 @@ cfbd_game_records <- function(year,
 
 #' @title 
 #' **Get team statistics by game**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game\cr
 #' Can be found using the [cfbd_game_info()] function
-#' @param rows_per_team (\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
+#' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
@@ -1145,7 +1145,7 @@ cfbd_game_records <- function(year,
 #'   \item{`total_penalties_yards_allowed`: character.}{Opponent total penalty yards.}
 #'   \item{`possession_time_allowed`: character.}{Opponent time of possession.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games/teams}
+#' @source <https://api.collegefootballdata.com/games/teams>
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

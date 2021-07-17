@@ -19,7 +19,7 @@
 #' ```
 #' ### **Get SP historical rating data**
 #'
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #' ```r
 #' cfbd_ratings_sp(year = 2018)
 #'
@@ -37,7 +37,7 @@
 #' ```
 #' ### **Get SRS historical rating data**
 #' 
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #' ```r
 #' cfbd_ratings_srs(year = 2019, team = "Texas")
 #'
@@ -46,9 +46,9 @@
 NULL
 #' @title 
 #' **Get historical Coaches and AP poll data**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Season type - regular or postseason
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Season type - regular or postseason
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
@@ -63,7 +63,7 @@ NULL
 #'   \item{`first_place_votes`: integer.}{Number of first place votes.}
 #'   \item{`points`: integer.}{Total poll points.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/rankings}
+#' @source <https://api.collegefootballdata.com/rankings>
 #' @keywords CFB Rankings
 #' @importFrom assertthat assert_that
 #' @importFrom jsonlite fromJSON
@@ -160,10 +160,10 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #' @title 
 #' **Get SP historical rating data**
 #' @description
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
@@ -198,7 +198,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs - Not available for recent seasons.}
 #'   \item{`special_teams_rating`: double.}{Special teams rating.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ratings/sp}
+#' @source <https://api.collegefootballdata.com/ratings/sp>
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -304,8 +304,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 
 #' @title 
 #' **Get conference level SP historical rating data**
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -339,7 +339,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 #'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
 #'   \item{`special_teams_rating`: double.}{Special teams rating for the conference.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ratings/sp/conferences}
+#' @source <https://api.collegefootballdata.com/ratings/sp/conferences>
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -445,11 +445,11 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #' @title 
 #' **Get SRS historical rating data**
 #' @description
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - SRS information by conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - SRS information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -463,7 +463,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
 #'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ratings/srs}
+#' @source <https://api.collegefootballdata.com/ratings/srs>
 #' @keywords SRS
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
