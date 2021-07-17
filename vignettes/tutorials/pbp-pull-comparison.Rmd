@@ -1,0 +1,125 @@
+---
+title: "PBP Pull Comparison"
+description: "Play by play data comparisons using <code>cfbfastR</code> and the now archived <code>cfbscrapR</code>."
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+  twitter:
+    site: "@cfbfastR"
+    card: summary_large_image
+    creator: "@saiemgilani"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load_current_gh("r-lib/pkgapi")
+pacman::p_load_current_gh("hadley/emo")
+library(pkgapi)
+pkg <- pkgapi::map_package(path = "../")
+library(dplyr)
+exported <- pkg$defs %>% dplyr::filter(exported == TRUE)
+cfbd_funcs <- sum(stringr::str_detect(exported$file,"cfbd")) - sum(stringr::str_detect(exported$file,"cfbd_pbp_data"))
+pkg_name <- "saiemgilani/cfbfastR"
+url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/master/DESCRIPTION")
+
+
+x <- readLines(url)
+remote_version <- gsub("Version:\\s*", "", x[grep('Version:', x)])
+```
+
+Play by play data comparisons
+
+### **`cfbfastR::cfbd_pbp_data()`** (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
+
+```{r, cfbfastR_pbp_data, eval=FALSE}
+library(dplyr)
+library(tidyr)
+library(purrr)
+# Play-by-Play Data Pull --------------------------------------------------
+week_vector <- 1:15
+year_vector <- 2019
+weekly_year_df <- expand.grid(year = year_vector, week = week_vector)
+### scrape yearly
+year_split <- split(weekly_year_df, weekly_year_df$year)
+
+### starting time
+tictoc::tic()
+
+for (i in 1:length(year_split)) {
+  i <- 1
+  print(paste0("Working on ", year_split[[i]][1, 1]))
+  future::plan("multisession")
+  progressr::with_progress({
+    year_split[[i]] <- year_split[[i]] %>%
+      dplyr::mutate(
+        pbp = purrr::map2(
+          .x = year,
+          .y = week,
+          cfbd_pbp_data,
+          season_type = "both",
+          epa_wpa = TRUE
+        )
+      )
+  })
+}
+
+tictoc::toc()
+## (~6-7 minutes)
+year_split <- lapply(year_split, function(x) {
+  x %>% tidyr::unnest(pbp, names_repair = "minimal")
+})
+
+all_years <- dplyr::bind_rows(year_split)
+```
+
+### **`cfbscrapR::cfb_pbp_data()`** (1 season, \~8-10 minutes `r emo::ji("old_man")`)
+
+```{r cfbcrapR_pbp_data, message=FALSE,warning=FALSE,eval=FALSE}
+week_vector = 1:15
+year_vector = 2019
+
+weekly_year_df = expand.grid(year = year_vector, week = week_vector)
+### scrape yearly
+year_split = split(weekly_year_df, weekly_year_df$year)
+### starting time
+tictoc::tic()
+for (i in 1:length(year_split)) {
+  print(paste0("Working on ", year_split[[i]][1,1]))
+  year_split[[i]] = year_split[[i]] %>% 
+    dplyr::mutate(
+      pbp = purrr::map2(
+        .x = year,
+        .y = week,
+        cfbscrapR::cfb_pbp_data,
+        season_type = 'both',
+        epa_wpa=TRUE
+      )
+    )
+}
+tictoc::toc()
+## (~8-10 minutes)
+year_split19 = lapply(year_split, function(x) {
+  x %>% tidyr::unnest(pbp)
+})
+
+pbp_2019 = bind_rows(year_split19)
+```
+
+## **The fastR way**: `load_cfb_pbp()` (7 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
+
+We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
+
+```{r load_2014_2020, warning = FALSE}
+tictoc::tic()
+pbp <- data.frame()
+seasons <- 2014:2020
+progressr::with_progress({
+future::plan("multisession")
+  pbp <- cfbfastR::load_cfb_pbp(seasons)
+})
+tictoc::toc()
+
+```
+
