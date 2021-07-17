@@ -181,9 +181,9 @@ navbar:
       - text: --------------------------------
       - text: R Packages
       - text: hoopR
-        href: https://saiemgilani.github.io/hoopR/
+        href: https://hoopR.sportsdataverse.org/
       - text: wehoop
-        href: https://saiemgilani.github.io/wehoop/
+        href: https://wehoop.sportsdataverse.org/
       - text: recruitR
         href: https://saiemgilani.github.io/recruitR/
       - text: puntr
