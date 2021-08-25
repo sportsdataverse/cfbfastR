@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -234,10 +234,10 @@
     <li class="divider">
     <li class="dropdown-header">R Packages</li>
     <li>
-      <a href="https://saiemgilani.github.io/hoopR/">hoopR</a>
+      <a href="https://hoopR.sportsdataverse.org/">hoopR</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+      <a href="https://wehoop.sportsdataverse.org/">wehoop</a>
     </li>
     <li>
       <a href="https://saiemgilani.github.io/recruitR/">recruitR</a>
@@ -342,7 +342,7 @@
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load_current_gh</span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># if you would prefer devtools installation</span>
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'devtools'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
@@ -356,171 +356,6 @@
 <a href="#breaking-changes" class="anchor"></a><strong>Breaking Changes</strong>
 </h2>
 <p><a href="https://saiemgilani.github.io/cfbfastR/news/index.html"><strong>Full News on Releases</strong></a></p>
-<!-- # **cfbfastR v1.9.9** -->
-<!-- ### Expected points and Win Probability data back to 2003  -->
-<!-- - Added to the package functions [```load_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html) -->
-<!-- - There are a few known errors with the calculations that need to be looked into further. One specific one identified by Brendan Farrell noting that short yardage touchdowns for pre-2008 data were often negative EPA plays. This is either a duplication issue or a coding error. -->
-</div>
-</div>
-<div id="cfbfastr-v133" class="section level1">
-<h1 class="hasAnchor">
-<a href="#cfbfastr-v133" class="anchor"></a><strong>cfbfastR v1.3.3</strong>
-</h1>
-<div id="hotfix-cfbd_game_player_stats" class="section level3">
-<h3 class="hasAnchor">
-<a href="#hotfix-cfbd_game_player_stats" class="anchor"></a>Hotfix <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html"><code>cfbd_game_player_stats()</code></a>
-</h3>
-</div>
-</div>
-<div id="section-1" class="section level1">
-<h1></h1>
-<details><p><summary>View more version news</summary></p>
-<div id="cfbfastr-v132" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbfastr-v132" class="anchor"></a><strong>cfbfastR v1.3.2</strong>
-</h2>
-<div id="added-id-linking-to-cfbd_recruiting_players" class="section level3">
-<h3 class="hasAnchor">
-<a href="#added-id-linking-to-cfbd_recruiting_players" class="anchor"></a>Added ID linking to <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html"><code>cfbd_recruiting_players()</code></a>
-</h3>
-</div>
-</div>
-<div id="cfbfastr-v131" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbfastr-v131" class="anchor"></a><strong>cfbfastR v1.3.1</strong>
-</h2>
-<div id="added-three-nfl-draft-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#added-three-nfl-draft-functions" class="anchor"></a>Added three <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html">NFL draft</a> functions:</h3>
-<ul>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_teams.html"><code>cfbd_draft_teams()</code></a>
-<ul>
-<li><strong>Get list of NFL teams</strong></li>
-</ul>
-</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_positions.html"><code>cfbd_draft_positions()</code></a>
-<ul>
-<li><strong>Get list of NFL positions for mapping to collegiate</strong></li>
-</ul>
-</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_picks.html"><code>cfbd_draft_picks()</code></a>
-<ul>
-<li><strong>Get list of NFL Draft picks</strong></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="cfbfastr-v121" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbfastr-v121" class="anchor"></a><strong>cfbfastR v1.2.1</strong>
-</h2>
-<div id="minor-release" class="section level5">
-<h5 class="hasAnchor">
-<a href="#minor-release" class="anchor"></a><strong>Minor release</strong>
-</h5>
-<ul>
-<li><p>Added headshot_url to outputs of <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_team_rosters.html"><code>cfbd_team_rosters</code></a></p></li>
-<li>
-<p>Renamed returns in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_advanced.html"><code>cfbd_game_advanced()</code></a>:</p>
-<ul>
-<li>
-<code>rushing_line_yd_avg</code> to plural <code>rushing_line_yds_avg</code>
-</li>
-<li>
-<code>rushing_second_lvl_yd_avg</code> to plural <code>rushing_second_lvl_yds_avg</code>
-</li>
-<li>
-<code>rushing_open_field_yd_avg</code> to plural <code>rushing_open_field_yds_avg</code>
-</li>
-</ul>
-</li>
-<li><p>Completed documentation for all returns except <code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code></p></li>
-<li><p>Continued work on intro vignette</p></li>
-</ul>
-</div>
-</div>
-<div id="cfbfastr-v120" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbfastr-v120" class="anchor"></a><strong>cfbfastR v1.2.0</strong>
-</h2>
-<div id="add-significant-documentation-to-the-package" class="section level4">
-<h4 class="hasAnchor">
-<a href="#add-significant-documentation-to-the-package" class="anchor"></a><strong>Add significant documentation to the package</strong>
-</h4>
-<ul>
-<li>Added mini-vignettes pertaining to CFB Data functionality:
-<ul>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html"><code>cfbd_betting</code></a>,</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html"><code>cfbd_games</code></a>,</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html"><code>cfbd_plays</code></a>,<br>
-</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html"><code>cfbd_recruiting</code></a>,<br>
-</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html"><code>cfbd_stats</code></a>,</li>
-<li><a href="https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html"><code>cfbd_teams</code></a></li>
-</ul>
-</li>
-<li>
-<a href="https://saiemgilani.github.io/cfbfastR/articles/intro.html">Introductory vignette stub</a> added</li>
-</ul>
-</div>
-<div id="espncfbd-metrics-function-variable-return-standardization" class="section level4">
-<h4 class="hasAnchor">
-<a href="#espncfbd-metrics-function-variable-return-standardization" class="anchor"></a><strong>ESPN/CFBD metrics function variable return standardization</strong>
-</h4>
-<ul>
-<li>Change <code>id</code> variable to <code>team_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a>
-</li>
-<li>Changed <code>espn_game_id</code> variable to <code>game_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a>, corrected the <code>away_win_percentage</code> calculation and added <code>tie_percentage</code> to the returns.</li>
-<li>Change <code>id</code> variable to <code>athlete_id</code> in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_players_season.html"><code>cfbd_metrics_ppa_players_season()</code></a>
-</li>
-</ul>
-</div>
-</div>
-<div id="cfbfastr-v110" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbfastr-v110" class="anchor"></a><strong>cfbfastR v1.1.0</strong>
-</h2>
-<div id="add-loading-from-data-repository-functionality" class="section level4">
-<h4 class="hasAnchor">
-<a href="#add-loading-from-data-repository-functionality" class="anchor"></a><strong>Add loading from Data Repository functionality</strong>
-</h4>
-<ul>
-<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html"><code>load_cfb_pbp()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html"><code>update_cfb_db()</code></a> functions. Pretty much cherry-picking the <code>nflfastR</code> methodology of loading data from the <a href="https://github.com/saiemgilani/cfbfastR-data/"><code>cfbfastR-data</code></a> repository.</li>
-</ul>
-</div>
-<div id="add-support-for-parallel-processing-and-progress-updates" class="section level4">
-<h4 class="hasAnchor">
-<a href="#add-support-for-parallel-processing-and-progress-updates" class="anchor"></a><strong>Add support for parallel processing and progress updates</strong>
-</h4>
-<ul>
-<li>Added <a href="https://furrr.futureverse.org/index.html"><code>furrr</code></a>, <a href="https://future.futureverse.org/"><code>future</code></a>, and <a href="https://progressr.futureverse.org/"><code>progressr</code></a> dependencies to the package to allow for parallel processing of the play-by-play data with progress updates if desired.</li>
-</ul>
-</div>
-</div>
-<div id="cfbfastr-v100" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbfastr-v100" class="anchor"></a><strong>cfbfastR v1.0.0</strong>
-</h2>
-<div id="function-naming-convention-change" class="section level4">
-<h4 class="hasAnchor">
-<a href="#function-naming-convention-change" class="anchor"></a><strong>Function Naming Convention Change</strong>
-</h4>
-<ul>
-<li><p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR). One additional <code>cfbd_</code> function has been added that corresponds to the result when <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> has the parameter <code>epa_wpa=FALSE</code>. It has now been separated into its own function for clarity <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html"><code>cfbd_plays()</code></a>. The parameter and functionality still exists in <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> but we expect this function will still exist but made obsolete in favor of a function more closely matching <code>nflfastR</code>’s naming conventions.</p></li>
-<li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
-<li><p>Data generated from any of the <code>cfbfastR</code> methods will use <code>cfb_</code></p></li>
-</ul>
-</div>
 <div id="college-football-data-api-keys" class="section level4">
 <h4 class="hasAnchor">
 <a href="#college-football-data-api-keys" class="anchor"></a><strong>College Football Data API Keys</strong>
@@ -538,72 +373,14 @@
 </ul>
 <!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></code></pre></div>
-<ul>
-<li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</li>
-</ul>
 </div>
 </div>
-</details>
 </div>
 <div id="follow-cfbfastr-on-twitter-and-star-this-repo" class="section level1">
 <h1 class="hasAnchor">
-<a href="#follow-cfbfastr-on-twitter-and-star-this-repo" class="anchor"></a>Follow cfbfastR on Twitter and star this repo</h1>
+<a href="#follow-cfbfastr-on-twitter-and-star-this-repo" class="anchor"></a>Follow <a href="https://twitter.com/cfbfastR">cfbfastR</a> on Twitter and star this repo</h1>
 <p><a href="https://twitter.com/cfbfastR"><img src="https://img.shields.io/twitter/follow/cfbfastR?color=blue&amp;label=%40cfbfastR&amp;logo=twitter&amp;style=for-the-badge" alt="Twitter Follow"></a></p>
 <p><a href="https://github.com/saiemgilani/cfbfastR/stargazers/"><img src="https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&amp;logo=github&amp;style=for-the-badge&amp;label=Star%20cfbfastR&amp;maxAge=2592000" alt="GitHub stars"></a></p>
-</div>
-<div id="current-issues" class="section level1">
-<h1 class="hasAnchor">
-<a href="#current-issues" class="anchor"></a>Current Issues</h1>
-<table class="table">
-<thead><tr class="header">
-<th align="left">issue</th>
-<th align="left">icon</th>
-<th align="left">title</th>
-<th align="left">labels</th>
-<th align="left">opened_by</th>
-<th align="left">date</th>
-<th align="left">closed</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr></tbody>
-</table>
-<details><p><summary>View More</summary></p>
-<table class="table">
-<colgroup>
-<col width="1%">
-<col width="35%">
-<col width="38%">
-<col width="1%">
-<col width="13%">
-<col width="2%">
-<col width="5%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">issue</th>
-<th align="left">icon</th>
-<th align="left">title</th>
-<th align="left">labels</th>
-<th align="left">opened_by</th>
-<th align="left">date</th>
-<th align="left">closed</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">25</td>
-<td align="left"><span title="Closed Issue"><img src="https://github.com/yonicd/issue/blob/master/inst/icons/issue-closed.png?raw=true"></span></td>
-<td align="left"><span title="**Describe the bug**..."><a href="https://github.com/saiemgilani/cfbfastR/issues/25">cfbfastR::load_cfbd_pbp(seasons) issue</a></span></td>
-<td align="left">invalid</td>
-<td align="left"><a href="https://github.com/ednabaestmode">ednabaestmode</a></td>
-<td align="left">2021-05-28</td>
-<td align="left">2021-05-28 13:32:49</td>
-</tr></tbody>
-</table></details><p><br></p>
 </div>
 <div id="our-authors" class="section level1">
 <h1 class="hasAnchor">

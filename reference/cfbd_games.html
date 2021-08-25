@@ -60,6 +60,7 @@ cfbd_game_box_advanced():Get game advanced box score information.
 cfbd_game_player_stats():Get results information from games.
 cfbd_game_team_stats():Get team statistics by game.
 cfbd_game_info():Get results information from games.
+cfbd_game_weather():Get weather from games.
 cfbd_game_records():Get team records by year.
 cfbd_calendar():Get calendar of weeks by season.
 cfbd_game_media():Get game media information (TV, radio, etc).
@@ -112,7 +113,7 @@ cfbd_game_media():Get game media information (TV, radio, etc).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -295,10 +296,10 @@ cfbd_game_media():Get game media information (TV, radio, etc).
     <li class="divider"></li>
     <li class="dropdown-header">R Packages</li>
     <li>
-      <a href="https://saiemgilani.github.io/hoopR/">hoopR</a>
+      <a href="https://hoopR.sportsdataverse.org/">hoopR</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+      <a href="https://wehoop.sportsdataverse.org/">wehoop</a>
     </li>
     <li>
       <a href="https://saiemgilani.github.io/recruitR/">recruitR</a>
@@ -394,6 +395,7 @@ cfbd_game_media():Get game media information (TV, radio, etc).
 <dt><code><a href='cfbd_game_player_stats.html'>cfbd_game_player_stats()</a></code>:</dt><dd><p>Get results information from games.</p></dd>
 <dt><code><a href='cfbd_game_team_stats.html'>cfbd_game_team_stats()</a></code>:</dt><dd><p>Get team statistics by game.</p></dd>
 <dt><code><a href='cfbd_game_info.html'>cfbd_game_info()</a></code>:</dt><dd><p>Get results information from games.</p></dd>
+<dt><code><a href='cfbd_game_weather.html'>cfbd_game_weather()</a></code>:</dt><dd><p>Get weather from games.</p></dd>
 <dt><code><a href='cfbd_game_records.html'>cfbd_game_records()</a></code>:</dt><dd><p>Get team records by year.</p></dd>
 <dt><code><a href='cfbd_calendar.html'>cfbd_calendar()</a></code>:</dt><dd><p>Get calendar of weeks by season.</p></dd>
 <dt><code><a href='cfbd_game_media.html'>cfbd_game_media()</a></code>:</dt><dd><p>Get game media information (TV, radio, etc).</p></dd>
@@ -436,7 +438,13 @@ cfbd_game_media():Get game media information (TV, radio, etc).
 
 <span class='co'># 7 OTs LSU @ TAMU</span>
 <span class='fu'><a href='cfbd_game_info.html'>cfbd_game_info</a></span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>13</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, quarter_scores <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</pre><p></div></p>
+</pre><p></div></p><pre>### **Get weather from games.**
+```r
+cfbd_game_weather(2018, week = 1)
+
+cfbd_game_info(2018, week = 7, conference = "Ind")
+</pre>
+
 
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get calendar of weeks by season.</strong></h3>
 <p><div class="r"></p><pre><span class='fu'><a href='cfbd_calendar.html'>cfbd_calendar</a></span><span class='op'>(</span><span class='fl'>2019</span><span class='op'>)</span>

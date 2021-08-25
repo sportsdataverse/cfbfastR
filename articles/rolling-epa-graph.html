@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -234,10 +234,10 @@
     <li class="divider">
     <li class="dropdown-header">R Packages</li>
     <li>
-      <a href="https://saiemgilani.github.io/hoopR/">hoopR</a>
+      <a href="https://hoopR.sportsdataverse.org/">hoopR</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+      <a href="https://wehoop.sportsdataverse.org/">wehoop</a>
     </li>
     <li>
       <a href="https://saiemgilani.github.io/recruitR/">recruitR</a>
@@ -361,7 +361,7 @@
 
 <span class="va">team_colors_logos</span> <span class="op">=</span> <span class="va">team_info</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">school</span>, <span class="va">abbreviation</span>, <span class="va">color</span>, <span class="va">logos</span>, <span class="va">alt_color</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">logos</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">unnest</span><span class="op">(</span><span class="va">logos</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">school</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -384,7 +384,7 @@
 <p>We can use the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function to take a quick peak at what our new dataframe looks like. The teams at the top should not be surprising. Remember, EPA is not adjusted for the strength of opponent. It is purely a measure of how teams perform on the field (like yards, but better).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## # A tibble: 6 × 5
 ##   Team             offense_conference off_epa  Rank TeamRank           
 ##   &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;              
 ## 1 Kent State       Mid-American         0.325     1 Kent State #1      
@@ -450,7 +450,7 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_off_start_stop</span> <span class="op">=</span> <span class="va">team_off_start_stop</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">team_colors_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na</a></span><span class="op">(</span><span class="va">color</span>,<span class="st">"gray"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu">replace_na</span><span class="op">(</span><span class="va">color</span>,<span class="st">"gray"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">team</span>, <span class="va">week_team</span>, <span class="va">play_start</span>, <span class="va">play_stop</span>, <span class="va">midpoint</span>, <span class="va">color</span><span class="op">)</span></code></pre></div>
 <p>Are we ready to graph yet? Just a few more steps! We need a named vector to get the right colors on those background tiles.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">

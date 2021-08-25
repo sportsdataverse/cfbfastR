@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -234,10 +234,10 @@
     <li class="divider">
     <li class="dropdown-header">R Packages</li>
     <li>
-      <a href="https://saiemgilani.github.io/hoopR/">hoopR</a>
+      <a href="https://hoopR.sportsdataverse.org/">hoopR</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+      <a href="https://wehoop.sportsdataverse.org/">wehoop</a>
     </li>
     <li>
       <a href="https://saiemgilani.github.io/recruitR/">recruitR</a>
@@ -383,19 +383,19 @@
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 13 x 78
+<pre><code>## # A tibble: 13 × 78
 ##      game_id school conference home_away points total_yards net_passing_yards
 ##        &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;            
 ##  1 401110778 LSU    SEC        away          45 573         471              
 ##  2 401110805 LSU    SEC        away          66 599         418              
 ##  3 401110828 LSU    SEC        away          36 413         327              
-##  4 401110842 LSU    SEC        away          46 559         393              
-##  5 401110833 LSU    SEC        home          23 508         321              
+##  4 401110833 LSU    SEC        home          23 508         321              
+##  5 401110842 LSU    SEC        away          46 559         393              
 ##  6 401110850 LSU    SEC        away          58 714         489              
-##  7 401110869 LSU    SEC        home          50 553         425              
+##  7 401110859 LSU    SEC        home          56 612         352              
 ##  8 401110725 LSU    SEC        home          55 472         350              
 ##  9 401110819 LSU    SEC        home          42 511         293              
-## 10 401110859 LSU    SEC        home          56 612         352              
+## 10 401110869 LSU    SEC        home          50 553         425              
 ## 11 401110790 LSU    SEC        home          65 610         488              
 ## 12 401110813 LSU    SEC        home          42 601         353              
 ## 13 401132981 LSU    SEC        home          37 481         349              
@@ -405,78 +405,32 @@
 ## #   rush_tds &lt;chr&gt;, yards_per_rush_attempt &lt;chr&gt;, first_downs &lt;chr&gt;,
 ## #   third_down_eff &lt;chr&gt;, fourth_down_eff &lt;chr&gt;, punt_returns &lt;chr&gt;,
 ## #   punt_return_yards &lt;chr&gt;, punt_return_tds &lt;chr&gt;, kick_return_yards &lt;chr&gt;,
-## #   kick_return_tds &lt;chr&gt;, kick_returns &lt;chr&gt;, kicking_points &lt;chr&gt;,
-## #   fumbles_recovered &lt;chr&gt;, fumbles_lost &lt;chr&gt;, total_fumbles &lt;chr&gt;,
-## #   tackles &lt;chr&gt;, tackles_for_loss &lt;chr&gt;, sacks &lt;chr&gt;, qb_hurries &lt;chr&gt;,
-## #   interceptions &lt;chr&gt;, passes_deflected &lt;chr&gt;, turnovers &lt;chr&gt;,
-## #   defensive_tds &lt;chr&gt;, total_penalties_yards &lt;chr&gt;, possession_time &lt;chr&gt;,
-## #   conference_allowed &lt;chr&gt;, home_away_allowed &lt;chr&gt;, points_allowed &lt;int&gt;,
-## #   total_yards_allowed &lt;chr&gt;, net_passing_yards_allowed &lt;chr&gt;,
-## #   completion_attempts_allowed &lt;chr&gt;, passing_tds_allowed &lt;chr&gt;,
-## #   yards_per_pass_allowed &lt;chr&gt;, passes_intercepted_allowed &lt;chr&gt;,
-## #   interception_yards_allowed &lt;chr&gt;, interception_tds_allowed &lt;chr&gt;,
-## #   rushing_attempts_allowed &lt;chr&gt;, rushing_yards_allowed &lt;chr&gt;,
-## #   rush_tds_allowed &lt;chr&gt;, yards_per_rush_attempt_allowed &lt;chr&gt;,
-## #   first_downs_allowed &lt;chr&gt;, third_down_eff_allowed &lt;chr&gt;,
-## #   fourth_down_eff_allowed &lt;chr&gt;, punt_returns_allowed &lt;chr&gt;,
-## #   punt_return_yards_allowed &lt;chr&gt;, punt_return_tds_allowed &lt;chr&gt;,
-## #   kick_return_yards_allowed &lt;chr&gt;, kick_return_tds_allowed &lt;chr&gt;,
-## #   kick_returns_allowed &lt;chr&gt;, kicking_points_allowed &lt;chr&gt;,
-## #   fumbles_recovered_allowed &lt;chr&gt;, fumbles_lost_allowed &lt;chr&gt;,
-## #   total_fumbles_allowed &lt;chr&gt;, tackles_allowed &lt;chr&gt;,
-## #   tackles_for_loss_allowed &lt;chr&gt;, sacks_allowed &lt;chr&gt;,
-## #   qb_hurries_allowed &lt;chr&gt;, interceptions_allowed &lt;chr&gt;,
-## #   passes_deflected_allowed &lt;chr&gt;, turnovers_allowed &lt;chr&gt;,
-## #   defensive_tds_allowed &lt;chr&gt;, total_penalties_yards_allowed &lt;chr&gt;,
-## #   possession_time_allowed &lt;chr&gt;</code></pre>
+## #   kick_return_tds &lt;chr&gt;, kick_returns &lt;chr&gt;, kicking_points &lt;chr&gt;, …</code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 13 x 78
-##      game_id school     conference home_away points total_yards net_passing_yar…
-##        &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;           
-##  1 332450221 Florida S… ACC        away          41 533         377             
-##  2 332570052 Florida S… ACC        home          62 617         240             
-##  3 332640052 Florida S… ACC        home          54 492         226             
-##  4 332710103 Florida S… ACC        away          48 489         330             
-##  5 332780052 Florida S… ACC        home          63 614         431             
-##  6 332920228 Florida S… ACC        away          51 565         444             
-##  7 333060052 Florida S… ACC        home          41 517         325             
-##  8 333200052 Florida S… ACC        home          59 523         298             
-##  9 332990052 Florida S… ACC        home          49 566         342             
-## 10 333130154 Florida S… ACC        away          59 296         207             
-## 11 333340057 Florida S… ACC        away          37 456         327             
-## 12 333270052 Florida S… ACC        home          80 645         309             
-## 13 333410052 Florida S… ACC        home          45 569         330             
+<pre><code>## # A tibble: 13 × 78
+##      game_id school        conference home_away points total_yards net_passing_yar…
+##        &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;           
+##  1 332570052 Florida State ACC        home          62 617         240             
+##  2 332640052 Florida State ACC        home          54 492         226             
+##  3 332450221 Florida State ACC        away          41 533         377             
+##  4 332710103 Florida State ACC        away          48 489         330             
+##  5 332780052 Florida State ACC        home          63 614         431             
+##  6 332920228 Florida State ACC        away          51 565         444             
+##  7 332990052 Florida State ACC        home          49 566         342             
+##  8 333060052 Florida State ACC        home          41 517         325             
+##  9 333200052 Florida State ACC        home          59 523         298             
+## 10 333130154 Florida State ACC        away          59 296         207             
+## 11 333270052 Florida State ACC        home          80 645         309             
+## 12 333340057 Florida State ACC        away          37 456         327             
+## 13 333410052 Florida State ACC        home          45 569         330             
 ## # … with 71 more variables: completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;,
 ## #   yards_per_pass &lt;chr&gt;, passes_intercepted &lt;chr&gt;, interception_yards &lt;chr&gt;,
 ## #   interception_tds &lt;chr&gt;, rushing_attempts &lt;chr&gt;, rushing_yards &lt;chr&gt;,
 ## #   rush_tds &lt;chr&gt;, yards_per_rush_attempt &lt;chr&gt;, first_downs &lt;chr&gt;,
 ## #   third_down_eff &lt;chr&gt;, fourth_down_eff &lt;chr&gt;, punt_returns &lt;chr&gt;,
 ## #   punt_return_yards &lt;chr&gt;, punt_return_tds &lt;chr&gt;, kick_return_yards &lt;chr&gt;,
-## #   kick_return_tds &lt;chr&gt;, kick_returns &lt;chr&gt;, kicking_points &lt;chr&gt;,
-## #   fumbles_recovered &lt;chr&gt;, fumbles_lost &lt;chr&gt;, total_fumbles &lt;lgl&gt;,
-## #   tackles &lt;lgl&gt;, tackles_for_loss &lt;lgl&gt;, sacks &lt;lgl&gt;, qb_hurries &lt;lgl&gt;,
-## #   interceptions &lt;chr&gt;, passes_deflected &lt;lgl&gt;, turnovers &lt;chr&gt;,
-## #   defensive_tds &lt;lgl&gt;, total_penalties_yards &lt;chr&gt;, possession_time &lt;chr&gt;,
-## #   conference_allowed &lt;chr&gt;, home_away_allowed &lt;chr&gt;, points_allowed &lt;int&gt;,
-## #   total_yards_allowed &lt;chr&gt;, net_passing_yards_allowed &lt;chr&gt;,
-## #   completion_attempts_allowed &lt;chr&gt;, passing_tds_allowed &lt;chr&gt;,
-## #   yards_per_pass_allowed &lt;chr&gt;, passes_intercepted_allowed &lt;chr&gt;,
-## #   interception_yards_allowed &lt;chr&gt;, interception_tds_allowed &lt;chr&gt;,
-## #   rushing_attempts_allowed &lt;chr&gt;, rushing_yards_allowed &lt;chr&gt;,
-## #   rush_tds_allowed &lt;chr&gt;, yards_per_rush_attempt_allowed &lt;chr&gt;,
-## #   first_downs_allowed &lt;chr&gt;, third_down_eff_allowed &lt;chr&gt;,
-## #   fourth_down_eff_allowed &lt;chr&gt;, punt_returns_allowed &lt;chr&gt;,
-## #   punt_return_yards_allowed &lt;chr&gt;, punt_return_tds_allowed &lt;chr&gt;,
-## #   kick_return_yards_allowed &lt;chr&gt;, kick_return_tds_allowed &lt;chr&gt;,
-## #   kick_returns_allowed &lt;chr&gt;, kicking_points_allowed &lt;chr&gt;,
-## #   fumbles_recovered_allowed &lt;chr&gt;, fumbles_lost_allowed &lt;chr&gt;,
-## #   total_fumbles_allowed &lt;lgl&gt;, tackles_allowed &lt;lgl&gt;,
-## #   tackles_for_loss_allowed &lt;lgl&gt;, sacks_allowed &lt;lgl&gt;,
-## #   qb_hurries_allowed &lt;lgl&gt;, interceptions_allowed &lt;chr&gt;,
-## #   passes_deflected_allowed &lt;lgl&gt;, turnovers_allowed &lt;chr&gt;,
-## #   defensive_tds_allowed &lt;lgl&gt;, total_penalties_yards_allowed &lt;chr&gt;,
-## #   possession_time_allowed &lt;chr&gt;</code></pre>
+## #   kick_return_tds &lt;chr&gt;, kick_returns &lt;chr&gt;, kicking_points &lt;chr&gt;, …</code></pre>
 </div>
 <div id="get-cfbd-game-player-box-scores" class="section level3">
 <h3 class="hasAnchor">

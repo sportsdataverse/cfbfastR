@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CFBD Players Endpoint Overview — cfbd_players • cfbfastR</title>
+<title>Get weather from games. — cfbd_game_weather • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,29 +54,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="CFBD Players Endpoint Overview — cfbd_players" />
-<meta property="og:description" content="
-
-cfbd_player_info():Player information search.
-cfbd_player_returning():Player returning production.
-cfbd_player_usage():Player usage.
-
-
-Player information lookup
- cfbd_player_info(search_term = &quot;James&quot;, position = &quot;DB&quot;, team = &quot;Florida State&quot;, year = 2017)
-
- cfbd_player_info(search_term = &quot;Lawrence&quot;, team = &quot;Clemson&quot;)
-
-
-Get player returning production
- cfbd_player_returning(year = 2019, team = &quot;Florida State&quot;)
-
-
-Get player usage metrics
- cfbd_player_usage(year = 2019, position = &quot;WR&quot;, team = &quot;Florida State&quot;)
-
-
-" />
+<meta property="og:title" content="Get weather from games. — cfbd_game_weather" />
+<meta property="og:description" content="Get weather from games." />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
 <meta name="twitter:card" content="summary_large_image" />
@@ -394,37 +373,80 @@ Get player usage metrics
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1><strong>CFBD Players Endpoint Overview</strong></h1>
+    <h1><strong>Get weather from games.</strong></h1>
     
-    <div class="hidden name"><code>cfbd_players.Rd</code></div>
+    <div class="hidden name"><code>cfbd_game_weather.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-<dl>
-<dt><code><a href='cfbd_player_info.html'>cfbd_player_info()</a></code>:</dt><dd><p>Player information search.</p></dd>
-<dt><code><a href='cfbd_player_returning.html'>cfbd_player_returning()</a></code>:</dt><dd><p>Player returning production.</p></dd>
-<dt><code><a href='cfbd_player_usage.html'>cfbd_player_usage()</a></code>:</dt><dd><p>Player usage.</p></dd>
-
-</dl>
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Player information lookup</strong></h3>
-<p><div class="r"></p><pre> <span class='fu'><a href='cfbd_player_info.html'>cfbd_player_info</a></span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
-
- <span class='fu'><a href='cfbd_player_info.html'>cfbd_player_info</a></span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
-</pre><p></div></p>
-
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get player returning production</strong></h3>
-<p><div class="r"></p><pre> <span class='fu'><a href='cfbd_player_returning.html'>cfbd_player_returning</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</pre><p></div></p>
-
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get player usage metrics</strong></h3>
-<p><div class="r"></p><pre> <span class='fu'><a href='cfbd_player_usage.html'>cfbd_player_usage</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, position <span class='op'>=</span> <span class='st'>"WR"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-
-</pre><p></div></p>
-
+    <p><strong>Get weather from games.</strong></p>
     </div>
 
+    <pre class="usage"><span class='fu'>cfbd_game_weather</span><span class='op'>(</span>
+  <span class='va'>year</span>,
+  week <span class='op'>=</span> <span class='cn'>NULL</span>,
+  season_type <span class='op'>=</span> <span class='st'>"regular"</span>,
+  team <span class='op'>=</span> <span class='cn'>NULL</span>,
+  conference <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>year</th>
+      <td><p>(<em>Integer</em> required): Year, 4 digit format(<em>YYYY</em>)</p></td>
+    </tr>
+    <tr>
+      <th>week</th>
+      <td><p>(<em>Integer</em> optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)</p></td>
+    </tr>
+    <tr>
+      <th>season_type</th>
+      <td><p>(<em>String</em> default regular): Select Season Type: regular, postseason, or both</p></td>
+    </tr>
+    <tr>
+      <th>team</th>
+      <td><p>(<em>String</em> optional): D-I Team</p></td>
+    </tr>
+    <tr>
+      <th>conference</th>
+      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference<br />
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br />
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<br /></p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/games/weather'>https://api.collegefootballdata.com/games/weather</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>cfbd_game_weather()</code> - A data frame with 22 variables:</p><dl>
+<dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
+<dt><code>season</code>: integer.</dt><dd><p>Season of the game.</p></dd>
+<dt><code>week</code>: integer.</dt><dd><p>Game week.</p></dd>
+<dt><code>season_type</code>: character.</dt><dd><p>Season type of the game.</p></dd>
+<dt><code>start_date</code>: character.</dt><dd><p>Game date.</p></dd>
+<dt><code>start_time_tbd</code>: logical.</dt><dd><p>TRUE/FALSE flag for if the game's start time is to be determined.</p></dd>
+<dt><code>home_team</code>: character.</dt><dd><p>Home team name.</p></dd>
+<dt><code>home_conference</code>: character.</dt><dd><p>Home team conference.</p></dd>
+<dt><code>away_team</code>: character.</dt><dd><p>Away team name.</p></dd>
+<dt><code>away_conference</code>: character.</dt><dd><p>Away team conference.</p></dd>
+<dt><code>venue_id</code>: integer.</dt><dd><p>Referencing venue id.</p></dd>
+<dt><code>venue</code>: character.</dt><dd><p>Venue name.</p></dd>
+<dt><code>temperature</code>: integer.</dt><dd><p>Temperature.</p></dd>
+<dt><code>dew_point</code>: integer.</dt><dd><p>Dew Point.</p></dd>
+<dt><code>humidity</code>: integer.</dt><dd><p>Humidity.</p></dd>
+<dt><code>precipitation</code>: integer.</dt><dd><p>Precipitation.</p></dd>
+<dt><code>snowfall</code>: integer.</dt><dd><p>Snowfall.</p></dd>
+<dt><code>wind_direction</code>: integer.</dt><dd><p>Wind direction.</p></dd>
+<dt><code>wind_speed</code>: integer.</dt><dd><p>Wind Speed.</p></dd>
+<dt><code>pressure</code>: integer.</dt><dd><p>Pressure.</p></dd>
+<dt><code>weather_condition_code</code>: integer.</dt><dd><p>Weather condition code.</p></dd>
+<dt><code>weather_condition</code>: character.</dt><dd><p>Weather condition.</p></dd>
+
+</dl>
 
 
   </div>

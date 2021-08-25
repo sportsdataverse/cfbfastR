@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -234,10 +234,10 @@
     <li class="divider">
     <li class="dropdown-header">R Packages</li>
     <li>
-      <a href="https://saiemgilani.github.io/hoopR/">hoopR</a>
+      <a href="https://hoopR.sportsdataverse.org/">hoopR</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+      <a href="https://wehoop.sportsdataverse.org/">wehoop</a>
     </li>
     <li>
       <a href="https://saiemgilani.github.io/recruitR/">recruitR</a>
@@ -390,7 +390,7 @@
 <li><p>Functions that use one of ESPN’s APIs start with <code>espn_</code> by convention and should be assumed as <code>get</code> functions. There are only two of these functions so far: <code><a href="../reference/espn_ratings.html">espn_ratings_fpi()</a></code> and <code><a href="../reference/espn_metrics.html">espn_metrics_wp()</a></code></p></li>
 </ul>
 <p>However, there is only one data <em>provider</em> involved for most game data, ESPN’s data provider.</p>
-<p>As of <code>cfbfastR</code> version 1.3.3, the package exports 64 functions. The bulk (~48) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com">College Football Data API</a>.</p>
+<p>As of <code>cfbfastR</code> version 1.4.0, the package exports 65 functions. The bulk (~49) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com">College Football Data API</a>.</p>
 </div>
 <div id="cfb-data-now-requires-an-api-key-its-free" class="section level4">
 <h4 class="hasAnchor">
@@ -418,91 +418,27 @@
 <h1 class="hasAnchor">
 <a href="#lets-get-some-play-by-play-data" class="anchor"></a>Let’s get some play by play data</h1>
 <p>If you have ever worked with the now archived <a href="https://github.com/saiemgilani/cfbscrapR"><strong><code>cfbscrapR</code></strong></a> package, most of the functions in <strong><code>cfbfastR</code></strong> should be fairly familiar with some slight changes.</p>
-<div id="play-by-play-data-comparisons" class="section level2 tabset">
+<div id="play-by-play-data-comparisons" class="section level2">
 <h2 class="hasAnchor">
 <a href="#play-by-play-data-comparisons" class="anchor"></a>Play by play data comparisons</h2>
-<div id="cfbfastrcfbd_pbp_data-1-season-6-7-minutes" class="section level3">
+<div id="cfbfastrcfbd_pbp_data-1-season-6-7-minutes" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cfbfastrcfbd_pbp_data-1-season-6-7-minutes" class="anchor"></a><strong><code>cfbfastR::cfbd_pbp_data()</code></strong> (1 season, ~6-7 minutes 😕)</h4>
+</div>
+<div id="cfbscraprcfb_pbp_data-1-season-8-10-minutes" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cfbscraprcfb_pbp_data-1-season-8-10-minutes" class="anchor"></a><strong><code>cfbscrapR::cfb_pbp_data()</code></strong> (1 season, ~8-10 minutes 👴)</h4>
+</div>
+<div id="cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes" class="section level4">
+<h4 class="hasAnchor">
+<a href="#cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes" class="anchor"></a><strong><code>cfbfastR::load_cfb_pbp()</code></strong> (7 seasons, ~1-1.5 minutes 🔥)</h4>
+</div>
+<div id="the-fastr-way" class="section level3">
 <h3 class="hasAnchor">
-<a href="#cfbfastrcfbd_pbp_data-1-season-6-7-minutes" class="anchor"></a><strong><code>cfbfastR::cfbd_pbp_data()</code></strong> (1 season, ~6-7 minutes 😕)</h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
-<span class="co"># Play-by-Play Data Pull --------------------------------------------------</span>
-<span class="va">week_vector</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>
-<span class="va">year_vector</span> <span class="op">&lt;-</span> <span class="fl">2019</span>
-<span class="va">weekly_year_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">year_vector</span>, week <span class="op">=</span> <span class="va">week_vector</span><span class="op">)</span>
-<span class="co">### scrape yearly</span>
-<span class="va">year_split</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">weekly_year_df</span>, <span class="va">weekly_year_df</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>
-
-<span class="co">### starting time</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">year_split</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Working on "</span>, <span class="va">year_split</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/future/man/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
-  <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="va">year_split</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">year_split</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span>
-      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-        pbp <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span>
-          .x <span class="op">=</span> <span class="va">year</span>,
-          .y <span class="op">=</span> <span class="va">week</span>,
-          <span class="va">cfbd_pbp_data</span>,
-          season_type <span class="op">=</span> <span class="st">"both"</span>,
-          epa_wpa <span class="op">=</span> <span class="cn">TRUE</span>
-        <span class="op">)</span>
-      <span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## (~6-7 minutes)</span>
-<span class="va">year_split</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">year_split</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">x</span> <span class="op">%&gt;%</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">pbp</span>, names_repair <span class="op">=</span> <span class="st">"minimal"</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span>
-
-<span class="va">all_years</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">year_split</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="cfbscraprcfb_pbp_data-1-season-8-10-minutes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cfbscraprcfb_pbp_data-1-season-8-10-minutes" class="anchor"></a><strong><code>cfbscrapR::cfb_pbp_data()</code></strong> (1 season, ~8-10 minutes 👴)</h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">week_vector</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>
-<span class="va">year_vector</span> <span class="op">=</span> <span class="fl">2019</span>
-
-<span class="va">weekly_year_df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">year_vector</span>, week <span class="op">=</span> <span class="va">week_vector</span><span class="op">)</span>
-<span class="co">### scrape yearly</span>
-<span class="va">year_split</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">weekly_year_df</span>, <span class="va">weekly_year_df</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>
-<span class="co">### starting time</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">year_split</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Working on "</span>, <span class="va">year_split</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">year_split</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="va">year_split</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> 
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-      pbp <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span>
-        .x <span class="op">=</span> <span class="va">year</span>,
-        .y <span class="op">=</span> <span class="va">week</span>,
-        <span class="fu">cfbscrapR</span><span class="fu">::</span><span class="va">cfb_pbp_data</span>,
-        season_type <span class="op">=</span> <span class="st">'both'</span>,
-        epa_wpa<span class="op">=</span><span class="cn">TRUE</span>
-      <span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">}</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">## (~8-10 minutes)</span>
-<span class="va">year_split19</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">year_split</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">x</span> <span class="op">%&gt;%</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span>
-<span class="op">}</span><span class="op">)</span>
-
-<span class="va">pbp_2019</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">year_split19</span><span class="op">)</span></code></pre></div>
-</div>
-</div>
-<div id="the-fastr-way-load_cfb_pbp-7-seasons-1-1-5-minutes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-fastr-way-load_cfb_pbp-7-seasons-1-1-5-minutes" class="anchor"></a><strong>The fastR way</strong>: <code>load_cfb_pbp()</code> (7 seasons, ~1-1.5 minutes 🔥)</h2>
+<a href="#the-fastr-way" class="anchor"></a><strong>The fastR way</strong>
+</h3>
 <p>We are going to load in data for seasons 2014-2020, it’ll take between 45-90 seconds to run.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">seasons</span> <span class="op">&lt;-</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2020</span>
@@ -511,10 +447,10 @@
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 49.104 sec elapsed</code></pre>
+<pre><code>## 45.342 sec elapsed</code></pre>
 <p>In the selected seasons, there are 5770 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1,060,344
 ## Columns: 40
 ## $ year               &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 201…
@@ -564,6 +500,7 @@
 <li>the id for the play (<code>id_play</code> or <code>play_id</code> depending on which data set you are looking at).</li>
 </ul>
 <p>These are useful for all kinds of grouping, joining and sorting tasks. The columns <code>pos_team</code> and <code>def_pos_team</code> are essentially your offense and defense (the main difference is kickoffs, the team receiving the kickoff is the <code>pos_team</code>) for the play/drive. From there you have the typical descriptions, play types and yardage columns. Beyond that, you will see the origin of why this package came to be, building expected points and win probability metrics for in-game valuation of plays.</p>
+</div>
 </div>
 </div>
   </div>

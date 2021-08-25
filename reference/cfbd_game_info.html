@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -285,10 +285,10 @@
     <li class="divider"></li>
     <li class="dropdown-header">R Packages</li>
     <li>
-      <a href="https://saiemgilani.github.io/hoopR/">hoopR</a>
+      <a href="https://hoopR.sportsdataverse.org/">hoopR</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/wehoop/">wehoop</a>
+      <a href="https://wehoop.sportsdataverse.org/">wehoop</a>
     </li>
     <li>
       <a href="https://saiemgilani.github.io/recruitR/">recruitR</a>
@@ -472,6 +472,8 @@ I have defaulted the parameter to false so that you will not have to go to the t
 <dt><code>away_points</code>: integer.</dt><dd><p>Away team points.</p></dd>
 <dt><code>away_post_win_prob</code>: character.</dt><dd><p>Away team post-game win probability.</p></dd>
 <dt><code>excitement_index</code>: character.</dt><dd><p>Game excitement index.</p></dd>
+<dt><code>highlights</code>: character.</dt><dd><p>Game highlight urls.</p></dd>
+<dt><code>notes</code>: character.</dt><dd><p>Game notes.</p></dd>
 
 </dl>
 
@@ -1013,95 +1015,95 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 86       0.5198478586172812       6.9631012532
 #&gt; 87      0.04404470034418717       3.8470693333
 #&gt; 88       0.6875322954307215   3.91834934429999
-#&gt;                                     highlights
-#&gt; 1  https://www.youtube.com/watch?v=uwMMvX-tU_U
-#&gt; 2  https://www.youtube.com/watch?v=z2VFteZqBBw
-#&gt; 3  https://www.youtube.com/watch?v=1FEy3ogBwpM
-#&gt; 4  https://www.youtube.com/watch?v=S3V1Juvj160
-#&gt; 5  https://www.youtube.com/watch?v=hpuPjxkqUWI
-#&gt; 6  https://www.youtube.com/watch?v=ZPI-FjeNw4A
-#&gt; 7                                         &lt;NA&gt;
-#&gt; 8  https://www.youtube.com/watch?v=kUls9PpCkuc
-#&gt; 9  https://www.youtube.com/watch?v=tJjO6_6SP2s
-#&gt; 10 https://www.youtube.com/watch?v=gKQoi3sPeic
-#&gt; 11 https://www.youtube.com/watch?v=9Pgaey84Fhw
-#&gt; 12 https://www.youtube.com/watch?v=6zZEHpc246A
-#&gt; 13 https://www.youtube.com/watch?v=qi5_zqyEvDs
-#&gt; 14                                        &lt;NA&gt;
-#&gt; 15 https://www.youtube.com/watch?v=Vk-bY7sQ4u8
-#&gt; 16                                        &lt;NA&gt;
-#&gt; 17 https://www.youtube.com/watch?v=9KWOUJL0s00
-#&gt; 18                                        &lt;NA&gt;
-#&gt; 19 https://www.youtube.com/watch?v=BtDvvMyLLAg
-#&gt; 20 https://www.youtube.com/watch?v=MBbw4OTY-i4
-#&gt; 21 https://www.youtube.com/watch?v=eiXWWtKGd94
-#&gt; 22 https://www.youtube.com/watch?v=OX6SNSLJTxs
-#&gt; 23 https://www.youtube.com/watch?v=ZqxQVQVhqtE
-#&gt; 24 https://www.youtube.com/watch?v=IVggtfJsL8w
-#&gt; 25 https://www.youtube.com/watch?v=lB6s-pGlo04
-#&gt; 26 https://www.youtube.com/watch?v=kD6TOpVQ5i0
-#&gt; 27 https://www.youtube.com/watch?v=j1z8dudbN9Y
-#&gt; 28 https://www.youtube.com/watch?v=hTluPNefjSQ
-#&gt; 29 https://www.youtube.com/watch?v=G5fwDmKe9cg
-#&gt; 30 https://www.youtube.com/watch?v=FC5iJjIe1X0
-#&gt; 31 https://www.youtube.com/watch?v=aKDo9I4t61U
-#&gt; 32 https://www.youtube.com/watch?v=7oI3YL-nv_k
-#&gt; 33 https://www.youtube.com/watch?v=2WuHl4W40Nw
-#&gt; 34 https://www.youtube.com/watch?v=2uMx20-ZiOE
-#&gt; 35 https://www.youtube.com/watch?v=0SaqgglJe_E
-#&gt; 36 https://www.youtube.com/watch?v=XA6HmGetYJs
-#&gt; 37 https://www.youtube.com/watch?v=n2MfSy_7yOU
-#&gt; 38 https://www.youtube.com/watch?v=Rtj-zNHEd0c
-#&gt; 39 https://www.youtube.com/watch?v=gM086JZoh68
-#&gt; 40                                        &lt;NA&gt;
-#&gt; 41 https://www.youtube.com/watch?v=wASVliw-Jrg
-#&gt; 42 https://www.youtube.com/watch?v=TBzMy1k0cSA
-#&gt; 43                                        &lt;NA&gt;
-#&gt; 44 https://www.youtube.com/watch?v=Os0jOlTmAP4
-#&gt; 45 https://www.youtube.com/watch?v=PeUrYFpqo_A
-#&gt; 46 https://www.youtube.com/watch?v=aMSClbb0CXw
-#&gt; 47 https://www.youtube.com/watch?v=9RBQOKEFC0c
-#&gt; 48 https://www.youtube.com/watch?v=mn8JsJKjexY
-#&gt; 49 https://www.youtube.com/watch?v=gJr3StoaNTM
-#&gt; 50 https://www.youtube.com/watch?v=2FHV0wgV0CE
-#&gt; 51 https://www.youtube.com/watch?v=VuzsUbOUlC0
-#&gt; 52 https://www.youtube.com/watch?v=-YUtG0OfcLs
-#&gt; 53                                        &lt;NA&gt;
-#&gt; 54 https://www.youtube.com/watch?v=FRnrJ3x_Z0Y
-#&gt; 55 https://www.youtube.com/watch?v=dm_U31yHgH0
-#&gt; 56 https://www.youtube.com/watch?v=A_OJM2hCXbc
-#&gt; 57                                        &lt;NA&gt;
-#&gt; 58 https://www.youtube.com/watch?v=5XJe-85pzBM
-#&gt; 59                                        &lt;NA&gt;
-#&gt; 60 https://www.youtube.com/watch?v=gJt4PIvFsxE
-#&gt; 61 https://www.youtube.com/watch?v=zUuVo8okkTw
-#&gt; 62                                        &lt;NA&gt;
-#&gt; 63 https://www.youtube.com/watch?v=c72cGNYWKhw
-#&gt; 64 https://www.youtube.com/watch?v=YBrgW4EWIkQ
-#&gt; 65                                        &lt;NA&gt;
-#&gt; 66 https://www.youtube.com/watch?v=sC1A1nORhXo
-#&gt; 67                                        &lt;NA&gt;
-#&gt; 68 https://www.youtube.com/watch?v=gMbrkMbG29c
-#&gt; 69 https://www.youtube.com/watch?v=CLDKcBwCeEg
-#&gt; 70 https://www.youtube.com/watch?v=vgHOuI_-Zz0
-#&gt; 71                                        &lt;NA&gt;
-#&gt; 72 https://www.youtube.com/watch?v=2UMbpbcZuWY
-#&gt; 73                                        &lt;NA&gt;
-#&gt; 74                                        &lt;NA&gt;
-#&gt; 75 https://www.youtube.com/watch?v=4zlLX9-1Sqc
-#&gt; 76 https://www.youtube.com/watch?v=reeW5x_QkMU
-#&gt; 77 https://www.youtube.com/watch?v=OqsR5HaF5Cg
-#&gt; 78                                        &lt;NA&gt;
-#&gt; 79 https://www.youtube.com/watch?v=v1mQhDaVItY
-#&gt; 80 https://www.youtube.com/watch?v=ln8zA5g1xPo
-#&gt; 81 https://www.youtube.com/watch?v=blF1MPQ5aaw
-#&gt; 82 https://www.youtube.com/watch?v=Ez5o-Ng2KMA
-#&gt; 83 https://www.youtube.com/watch?v=0DqaoprezwQ
-#&gt; 84 https://www.youtube.com/watch?v=_no6VO2XeGI
-#&gt; 85 https://www.youtube.com/watch?v=s880LSIAtMA
-#&gt; 86 https://www.youtube.com/watch?v=6i-7cmf6uCU
-#&gt; 87 https://www.youtube.com/watch?v=SxZrYfJeEG8
-#&gt; 88 https://www.youtube.com/watch?v=xm_amg8qlrA</div><div class='input'>
+#&gt;                                     highlights notes
+#&gt; 1  https://www.youtube.com/watch?v=uwMMvX-tU_U    NA
+#&gt; 2  https://www.youtube.com/watch?v=z2VFteZqBBw    NA
+#&gt; 3  https://www.youtube.com/watch?v=1FEy3ogBwpM    NA
+#&gt; 4  https://www.youtube.com/watch?v=S3V1Juvj160    NA
+#&gt; 5  https://www.youtube.com/watch?v=hpuPjxkqUWI    NA
+#&gt; 6  https://www.youtube.com/watch?v=ZPI-FjeNw4A    NA
+#&gt; 7                                         &lt;NA&gt;    NA
+#&gt; 8  https://www.youtube.com/watch?v=kUls9PpCkuc    NA
+#&gt; 9  https://www.youtube.com/watch?v=tJjO6_6SP2s    NA
+#&gt; 10 https://www.youtube.com/watch?v=gKQoi3sPeic    NA
+#&gt; 11 https://www.youtube.com/watch?v=9Pgaey84Fhw    NA
+#&gt; 12 https://www.youtube.com/watch?v=6zZEHpc246A    NA
+#&gt; 13 https://www.youtube.com/watch?v=qi5_zqyEvDs    NA
+#&gt; 14                                        &lt;NA&gt;    NA
+#&gt; 15 https://www.youtube.com/watch?v=Vk-bY7sQ4u8    NA
+#&gt; 16                                        &lt;NA&gt;    NA
+#&gt; 17 https://www.youtube.com/watch?v=9KWOUJL0s00    NA
+#&gt; 18                                        &lt;NA&gt;    NA
+#&gt; 19 https://www.youtube.com/watch?v=BtDvvMyLLAg    NA
+#&gt; 20 https://www.youtube.com/watch?v=MBbw4OTY-i4    NA
+#&gt; 21 https://www.youtube.com/watch?v=eiXWWtKGd94    NA
+#&gt; 22 https://www.youtube.com/watch?v=OX6SNSLJTxs    NA
+#&gt; 23 https://www.youtube.com/watch?v=ZqxQVQVhqtE    NA
+#&gt; 24 https://www.youtube.com/watch?v=IVggtfJsL8w    NA
+#&gt; 25 https://www.youtube.com/watch?v=lB6s-pGlo04    NA
+#&gt; 26 https://www.youtube.com/watch?v=kD6TOpVQ5i0    NA
+#&gt; 27 https://www.youtube.com/watch?v=j1z8dudbN9Y    NA
+#&gt; 28 https://www.youtube.com/watch?v=hTluPNefjSQ    NA
+#&gt; 29 https://www.youtube.com/watch?v=G5fwDmKe9cg    NA
+#&gt; 30 https://www.youtube.com/watch?v=FC5iJjIe1X0    NA
+#&gt; 31 https://www.youtube.com/watch?v=aKDo9I4t61U    NA
+#&gt; 32 https://www.youtube.com/watch?v=7oI3YL-nv_k    NA
+#&gt; 33 https://www.youtube.com/watch?v=2WuHl4W40Nw    NA
+#&gt; 34 https://www.youtube.com/watch?v=2uMx20-ZiOE    NA
+#&gt; 35 https://www.youtube.com/watch?v=0SaqgglJe_E    NA
+#&gt; 36 https://www.youtube.com/watch?v=XA6HmGetYJs    NA
+#&gt; 37 https://www.youtube.com/watch?v=n2MfSy_7yOU    NA
+#&gt; 38 https://www.youtube.com/watch?v=Rtj-zNHEd0c    NA
+#&gt; 39 https://www.youtube.com/watch?v=gM086JZoh68    NA
+#&gt; 40                                        &lt;NA&gt;    NA
+#&gt; 41 https://www.youtube.com/watch?v=wASVliw-Jrg    NA
+#&gt; 42 https://www.youtube.com/watch?v=TBzMy1k0cSA    NA
+#&gt; 43                                        &lt;NA&gt;    NA
+#&gt; 44 https://www.youtube.com/watch?v=Os0jOlTmAP4    NA
+#&gt; 45 https://www.youtube.com/watch?v=PeUrYFpqo_A    NA
+#&gt; 46 https://www.youtube.com/watch?v=aMSClbb0CXw    NA
+#&gt; 47 https://www.youtube.com/watch?v=9RBQOKEFC0c    NA
+#&gt; 48 https://www.youtube.com/watch?v=mn8JsJKjexY    NA
+#&gt; 49 https://www.youtube.com/watch?v=gJr3StoaNTM    NA
+#&gt; 50 https://www.youtube.com/watch?v=2FHV0wgV0CE    NA
+#&gt; 51 https://www.youtube.com/watch?v=VuzsUbOUlC0    NA
+#&gt; 52 https://www.youtube.com/watch?v=-YUtG0OfcLs    NA
+#&gt; 53                                        &lt;NA&gt;    NA
+#&gt; 54 https://www.youtube.com/watch?v=FRnrJ3x_Z0Y    NA
+#&gt; 55 https://www.youtube.com/watch?v=dm_U31yHgH0    NA
+#&gt; 56 https://www.youtube.com/watch?v=A_OJM2hCXbc    NA
+#&gt; 57                                        &lt;NA&gt;    NA
+#&gt; 58 https://www.youtube.com/watch?v=5XJe-85pzBM    NA
+#&gt; 59                                        &lt;NA&gt;    NA
+#&gt; 60 https://www.youtube.com/watch?v=gJt4PIvFsxE    NA
+#&gt; 61 https://www.youtube.com/watch?v=zUuVo8okkTw    NA
+#&gt; 62                                        &lt;NA&gt;    NA
+#&gt; 63 https://www.youtube.com/watch?v=c72cGNYWKhw    NA
+#&gt; 64 https://www.youtube.com/watch?v=YBrgW4EWIkQ    NA
+#&gt; 65                                        &lt;NA&gt;    NA
+#&gt; 66 https://www.youtube.com/watch?v=sC1A1nORhXo    NA
+#&gt; 67                                        &lt;NA&gt;    NA
+#&gt; 68 https://www.youtube.com/watch?v=gMbrkMbG29c    NA
+#&gt; 69 https://www.youtube.com/watch?v=CLDKcBwCeEg    NA
+#&gt; 70 https://www.youtube.com/watch?v=vgHOuI_-Zz0    NA
+#&gt; 71                                        &lt;NA&gt;    NA
+#&gt; 72 https://www.youtube.com/watch?v=2UMbpbcZuWY    NA
+#&gt; 73                                        &lt;NA&gt;    NA
+#&gt; 74                                        &lt;NA&gt;    NA
+#&gt; 75 https://www.youtube.com/watch?v=4zlLX9-1Sqc    NA
+#&gt; 76 https://www.youtube.com/watch?v=reeW5x_QkMU    NA
+#&gt; 77 https://www.youtube.com/watch?v=OqsR5HaF5Cg    NA
+#&gt; 78                                        &lt;NA&gt;    NA
+#&gt; 79 https://www.youtube.com/watch?v=v1mQhDaVItY    NA
+#&gt; 80 https://www.youtube.com/watch?v=ln8zA5g1xPo    NA
+#&gt; 81 https://www.youtube.com/watch?v=blF1MPQ5aaw    NA
+#&gt; 82 https://www.youtube.com/watch?v=Ez5o-Ng2KMA    NA
+#&gt; 83 https://www.youtube.com/watch?v=0DqaoprezwQ    NA
+#&gt; 84 https://www.youtube.com/watch?v=_no6VO2XeGI    NA
+#&gt; 85 https://www.youtube.com/watch?v=s880LSIAtMA    NA
+#&gt; 86 https://www.youtube.com/watch?v=6i-7cmf6uCU    NA
+#&gt; 87 https://www.youtube.com/watch?v=SxZrYfJeEG8    NA
+#&gt; 88 https://www.youtube.com/watch?v=xm_amg8qlrA    NA</div><div class='input'>
   <span class='fu'>cfbd_game_info</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>7</span>, conference <span class='op'>=</span> <span class='st'>"Ind"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
 #&gt; 1 401013452   2018    7     regular 2018-10-13T18:00:00.000Z             NA
@@ -1127,12 +1129,12 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 3     349             Army FBS Independents          52    0.9963638192478094
 #&gt; 4     166 New Mexico State FBS Independents          38 0.0016936489930551302
 #&gt; 5      62          Hawai'i    Mountain West          23 0.0021842316185342048
-#&gt;   excitement_index                                  highlights
-#&gt; 1     8.1162251011 https://www.youtube.com/watch?v=tC5LVoZMze4
-#&gt; 2     7.2536238281 https://www.youtube.com/watch?v=Aij-ogHy23U
-#&gt; 3     2.2159399162 https://www.youtube.com/watch?v=q3_V-NR-R2g
-#&gt; 4 2.58899975529999                                        &lt;NA&gt;
-#&gt; 5 1.08305180749999                                        &lt;NA&gt;</div><div class='input'>
+#&gt;   excitement_index                                  highlights notes
+#&gt; 1     8.1162251011 https://www.youtube.com/watch?v=tC5LVoZMze4    NA
+#&gt; 2     7.2536238281 https://www.youtube.com/watch?v=Aij-ogHy23U    NA
+#&gt; 3     2.2159399162 https://www.youtube.com/watch?v=q3_V-NR-R2g    NA
+#&gt; 4 2.58899975529999                                        &lt;NA&gt;    NA
+#&gt; 5 1.08305180749999                                        &lt;NA&gt;    NA</div><div class='input'>
   <span class='co'># 7 OTs LSU @ TAMU</span>
   <span class='fu'>cfbd_game_info</span><span class='op'>(</span><span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>13</span>, team <span class='op'>=</span> <span class='st'>"Texas A&amp;M"</span>, quarter_scores <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
@@ -1153,8 +1155,8 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 1              3              6               8               6
 #&gt;    away_post_win_prob excitement_index
 #&gt; 1 0.32137418431169773    14.1962593954
-#&gt;                                    highlights
-#&gt; 1 https://www.youtube.com/watch?v=36oYtGl-n-s</div><div class='input'><span class='co'># }</span>
+#&gt;                                    highlights notes
+#&gt; 1 https://www.youtube.com/watch?v=36oYtGl-n-s    NA</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
