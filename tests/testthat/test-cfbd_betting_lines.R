@@ -19,10 +19,12 @@ test_that("CFB Betting Lines", {
   )
   
   cols <- c(
-    "game_id", "season", "season_type", "week",
-    "home_team", "home_conference", "home_score",
-    "away_team", "away_conference", "away_score",
-    "provider", "spread", "formatted_spread", "over_under"
+    "game_id", "season", "season_type", "week", 
+    "home_team", "home_conference", "home_score", 
+    "away_team", "away_conference", "away_score", 
+    "provider", "spread", "formatted_spread", 
+    "spread_open", "over_under", "over_under_open", 
+    "home_moneyline", "away_moneyline"
   )
   expect_equal(nrow(x), 4)
   expect_equal(nrow(y), 1)

@@ -4,9 +4,9 @@
 #' **Create EPA**
 #' @description Adds Expected Points calculations to Play-by-Play data.frame
 #'
-#' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from [cfbd_pbp_data()]
-#' @param ep_model (\emph{model} default ```cfbfastR```'s `ep_model`): Expected Points (EP) Model
-#' @param fg_model (\emph{model} default ```cfbfastR```'s `fg_model`): Field Goal (FG) Model
+#' @param clean_pbp_dat (*data.frame* required): Clean PBP as input from [cfbd_pbp_data()]
+#' @param ep_model (*model* default ```cfbfastR```'s `ep_model`): Expected Points (EP) Model
+#' @param fg_model (*model* default ```cfbfastR```'s `fg_model`): Field Goal (FG) Model
 #' @details Code Description
 #' \describe{
 #'   \item{1. `pred_df`:}{Use select before play model variables -> Make predictions.}

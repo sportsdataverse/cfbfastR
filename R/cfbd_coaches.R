@@ -5,17 +5,17 @@
 #' @description 
 #' **Coach information search**
 #' A coach search function which provides coaching records and school history for a given coach
-#' ```r
+#' ```
 #' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
 #' ````
-#' @param first (\emph{String} optional): First name for the coach you are trying to look up
-#' @param last (\emph{String} optional): Last name for the coach you are trying to look up
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
-#' @param min_year (\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).
-#' @param max_year (\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY})
+#' @param first (*String* optional): First name for the coach you are trying to look up
+#' @param last (*String* optional): Last name for the coach you are trying to look up
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
+#' @param min_year (*Integer* optional): Minimum Year filter (inclusive), 4 digit format (*YYYY*).
+#' @param max_year (*Integer* optional): Maximum Year filter (inclusive), 4 digit format (*YYYY*)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return [cfbd_coaches()] - A data frame with coach information with the following columns:
+#' @return 
 #' \describe{
 #'   \item{`first_name`:character.}{First name of coach.}
 #'   \item{`last_name`:character.}{Last name of coach.}
@@ -32,7 +32,7 @@
 #'   \item{`sp_offense`:character.}{Bill Connelly's SP+ offense for team.}
 #'   \item{`sp_defense`:character.}{Bill Connelly's SP+ defense for team.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/coaches}
+#' @source <https://api.collegefootballdata.com/coaches>
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

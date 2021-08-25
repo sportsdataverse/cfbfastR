@@ -63,7 +63,7 @@ NULL
 #'   \item{name}{Statistics Categories}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/categories}
+#' @source <https://api.collegefootballdata.com/stats/categories>
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -111,12 +111,12 @@ cfbd_stats_categories <- function() {
 
 #' @title 
 #' **Get game advanced stats**
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param team (\emph{String} optional): D-I Team
-#' @param opponent (\emph{String} optional): Opponent D-I Team
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param season_type (\emph{String} default both): Select Season Type: regular, postseason, or both.
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param team (*String* optional): D-I Team
+#' @param opponent (*String* optional): Opponent D-I Team
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param season_type (*String* default both): Select Season Type: regular, postseason, or both.
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @examples
@@ -190,7 +190,7 @@ cfbd_stats_categories <- function() {
 #'   \item{`def_passing_plays_success_rate`: double.}{Defense passing plays success rate.}
 #'   \item{`def_passing_plays_explosiveness`: double.}{Defense passing plays explosiveness rate.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/game/advanced}
+#' @source <https://api.collegefootballdata.com/stats/game/advanced>
 #' @keywords Game Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -325,11 +325,11 @@ cfbd_stats_game_advanced <- function(year,
 
 #' @title 
 #' **Get season advanced statistics by team**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @examples
@@ -418,7 +418,7 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`def_passing_plays_success_rate`: double.}{Defense passing plays success rate.}
 #'   \item{`def_passing_plays_explosiveness`: double.}{Defense passing plays explosiveness rate.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/season/advanced}
+#' @source <https://api.collegefootballdata.com/stats/season/advanced>
 #' @keywords Team Season Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -549,15 +549,15 @@ cfbd_stats_season_advanced <- function(year,
 
 #' @title 
 #' **Get season statistics by player**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (\emph{Integer} optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param category (\emph{String} optional): Category filter (e.g defensive)\cr
+#' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param category (*String* optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns
@@ -633,7 +633,7 @@ cfbd_stats_season_advanced <- function(year,
 #'   \item{`punt_returns_td`: double.}{Punt Returns - punt return touchdowns.}
 #'   \item{`punt_returns_long`: double.}{Punt Returns - longest punt return yardage.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/player/season}
+#' @source <https://api.collegefootballdata.com/stats/player/season>
 #' @keywords Player Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -819,14 +819,14 @@ cfbd_stats_season_player <- function(year,
 
 #' @title 
 #' **Get season statistics by team**
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @examples
@@ -886,7 +886,7 @@ cfbd_stats_season_player <- function(year,
 #'   \item{`passes_intercepted_yds`: integer.}{Pass interception return yards.}
 #'   \item{`passes_intercepted_TDs`: integer.}{Pass interception return touchdowns.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/season}
+#' @source <https://api.collegefootballdata.com/stats/season>
 #' @keywords Team Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

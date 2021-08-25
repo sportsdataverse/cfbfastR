@@ -102,85 +102,14 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 
 If you have ever worked with the now archived [**`cfbscrapR`**](https://github.com/saiemgilani/cfbscrapR) package, most of the functions in **`cfbfastR`** should be fairly familiar with some slight changes.
 
-## Play by play data comparisons {.tabset}
+## Play by play data comparisons
 
-### **`cfbfastR::cfbd_pbp_data()`** (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
+#### **`cfbfastR::cfbd_pbp_data()`** (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
+#### **`cfbscrapR::cfb_pbp_data()`** (1 season, \~8-10 minutes `r emo::ji("old_man")`)
+#### **`cfbfastR::load_cfb_pbp()`** (7 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
 
-```{r, cfbfastR_pbp_data, eval=FALSE}
-library(dplyr)
-library(tidyr)
-library(purrr)
-# Play-by-Play Data Pull --------------------------------------------------
-week_vector <- 1:15
-year_vector <- 2019
-weekly_year_df <- expand.grid(year = year_vector, week = week_vector)
-### scrape yearly
-year_split <- split(weekly_year_df, weekly_year_df$year)
 
-### starting time
-tictoc::tic()
-
-for (i in 1:length(year_split)) {
-  i <- 1
-  print(paste0("Working on ", year_split[[i]][1, 1]))
-  future::plan("multisession")
-  progressr::with_progress({
-    year_split[[i]] <- year_split[[i]] %>%
-      dplyr::mutate(
-        pbp = purrr::map2(
-          .x = year,
-          .y = week,
-          cfbd_pbp_data,
-          season_type = "both",
-          epa_wpa = TRUE
-        )
-      )
-  })
-}
-
-tictoc::toc()
-## (~6-7 minutes)
-year_split <- lapply(year_split, function(x) {
-  x %>% tidyr::unnest(pbp, names_repair = "minimal")
-})
-
-all_years <- dplyr::bind_rows(year_split)
-```
-
-### **`cfbscrapR::cfb_pbp_data()`** (1 season, \~8-10 minutes `r emo::ji("old_man")`)
-
-```{r cfbcrapR_pbp_data, message=FALSE,warning=FALSE,eval=FALSE}
-week_vector = 1:15
-year_vector = 2019
-
-weekly_year_df = expand.grid(year = year_vector, week = week_vector)
-### scrape yearly
-year_split = split(weekly_year_df, weekly_year_df$year)
-### starting time
-tictoc::tic()
-for (i in 1:length(year_split)) {
-  print(paste0("Working on ", year_split[[i]][1,1]))
-  year_split[[i]] = year_split[[i]] %>% 
-    dplyr::mutate(
-      pbp = purrr::map2(
-        .x = year,
-        .y = week,
-        cfbscrapR::cfb_pbp_data,
-        season_type = 'both',
-        epa_wpa=TRUE
-      )
-    )
-  }
-tictoc::toc()
-## (~8-10 minutes)
-year_split19 = lapply(year_split, function(x) {
-  x %>% tidyr::unnest(pbp)
-})
-
-pbp_2019 = bind_rows(year_split19)
-```
-
-## **The fastR way**: `load_cfb_pbp()` (7 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
+### **The fastR way**
 
 We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
 

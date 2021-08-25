@@ -45,7 +45,7 @@
 #' @details
 #' 
 #' Gets CFB team recruiting ranks with filters available for year and team.
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #'
 #' If you would like CFB recruiting information for players, please
 #' see the [cfbd_recruiting_player()] function
@@ -53,19 +53,19 @@
 #' If you would like to get CFB recruiting information based on position groups during a
 #' time period for all FBS teams, please see the [cfbd_recruiting_position()] function.
 #'
-#' [cfbd_recruiting_player()] - At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' [cfbd_recruiting_player()] - At least one of **year** or **team** must be specified for the function to run
 #'
 #' [cfbd_recruiting_position()] - If only start_year is provided, function will get CFB recruiting information based
 #' on position groups during that year for all FBS teams.
 NULL
 #' @title 
 #' **Get player recruiting rankings**
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) - Minimum: 2000, Maximum: 2020 currently
-#' @param team (\emph{String} optional): D-I Team
-#' @param recruit_type (\emph{String} optional): default API return is 'HighSchool', other options include 'JUCO'
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000, Maximum: 2020 currently
+#' @param team (*String* optional): D-I Team
+#' @param recruit_type (*String* optional): default API return is 'HighSchool', other options include 'JUCO'
 #' or 'PrepSchool'  - For position group information
-#' @param state (\emph{String} optional): Two letter State abbreviation
-#' @param position (\emph{String} optional): Position Group  - options include:\cr
+#' @param state (*String* optional): Two letter State abbreviation
+#' @param position (*String* optional): Position Group  - options include:\cr
 #'  * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
 #'  * Special Teams: 'K', 'P'
@@ -93,7 +93,7 @@ NULL
 #'   \item{`hometown_info_longitude`: character.}{Hometown longitude.}
 #'   \item{`hometown_info_fips_code`: character.}{Hometown FIPS code.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/recruiting/players}
+#' @source <https://api.collegefootballdata.com/recruiting/players>
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -207,10 +207,10 @@ cfbd_recruiting_player <- function(year = NULL,
 
 #' @title 
 #' **Get college football position group recruiting information.**
-#' @param start_year (\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
-#' @param end_year (\emph{Integer} optional): End Year,  4 digit format (\emph{YYYY}). \emph{Note: 2020 is the maximum value currently}
-#' @param team (\emph{String} optional): Team - Select a valid team, D-I football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param start_year (*Integer* optional): Start Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
+#' @param end_year (*Integer* optional): End Year,  4 digit format (*YYYY*). *Note: 2020 is the maximum value currently*
+#' @param team (*String* optional): Team - Select a valid team, D-I football
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -225,7 +225,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #'   \item{`commits`: integer.}{Number of commits in the position group.}
 #'   \item{`avg_stars`: double.}{Average stars of the recruits in the position group.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/recruiting/groups}
+#' @source <https://api.collegefootballdata.com/recruiting/groups>
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -333,8 +333,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
 #' @title 
 #' **Get college football recruiting team rankings information.**
-#' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
+#' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
+#' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_recruiting_team()] - A data frame with 4 variables:
@@ -344,7 +344,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'   \item{`team`: character.}{Recruiting Team.}
 #'   \item{`points`: character.}{Team talent points.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/recruiting/teams}
+#' @source <https://api.collegefootballdata.com/recruiting/teams>
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

@@ -11,28 +11,38 @@ check_status <- function(res) {
 # read qs files form an url
 qs_from_url <- function(url) qs::qdeserialize(curl::curl_fetch_memory(url)$content)
 
+# read rds that has been pre-fetched
+read_raw_rds <- function(raw) {
+  con <- gzcon(rawConnection(raw))
+  ret <- readRDS(con)
+  close(con)
+  return(ret)
+}
 
 
 # The function `message_completed` to create the green "...completed" message
 # only exists to hide the option `in_builder` in dots
 message_completed <- function(x, in_builder = FALSE) {
-  if (!in_builder) {
-    usethis::ui_done("{usethis::ui_field(x)}")
+  if (isFALSE(in_builder)) {
+    str <- paste0(my_time(), " | ", x)
+    cli::cli_alert_success("{{.field {str}}}")
   } else if (in_builder) {
-    usethis::ui_done(x)
+    cli::cli_alert_success("{my_time()} | {x}")
   }
 }
+
 user_message <- function(x, type) {
   if (type == "done") {
-    usethis::ui_done("{my_time()} | {x}")
+    cli::cli_alert_success("{my_time()} | {x}")
   } else if (type == "todo") {
-    usethis::ui_todo("{my_time()} | {x}")
+    cli::cli_ul("{my_time()} | {x}")
   } else if (type == "info") {
-    usethis::ui_info("{my_time()} | {x}")
+    cli::cli_alert_info("{my_time()} | {x}")
   } else if (type == "oops") {
-    usethis::ui_oops("{my_time()} | {x}")
+    cli::cli_alert_danger("{my_time()} | {x}")
   }
 }
+
 # Identify sessions with sequential future resolving
 is_sequential <- function() inherits(future::plan(), "sequential")
 # check if a package is installed
@@ -57,21 +67,35 @@ my_time <- function() strftime(Sys.time(), format = "%H:%M:%S")
 
 
 
-# rule_header <- function(x) {
-#   rlang::inform(
-#     cli::rule(
-#       left = crayon::bold(x),
-#       right = paste0("cfbfastR version ", utils::packageVersion("cfbfastR")),
-#       width = getOption("width")
-#     )
-#   )
-# }
-# 
-# rule_footer <- function(x) {
-#   rlang::inform(
-#     cli::rule(
-#       left = crayon::bold(x),
-#       width = getOption("width")
-#     )
-#   )
-# }
+rule_header <- function(x) {
+  rlang::inform(
+    cli::rule(
+      left = ifelse(is_installed("crayon"), crayon::bold(x), glue::glue("\033[1m{x}\033[22m")),
+      right = paste0("nflfastR version ", utils::packageVersion("nflfastR")),
+      width = getOption("width")
+    )
+  )
+}
+
+rule_footer <- function(x) {
+  rlang::inform(
+    cli::rule(
+      left = ifelse(is_installed("crayon"), crayon::bold(x), glue::glue("\033[1m{x}\033[22m")),
+      width = getOption("width")
+    )
+  )
+}
+# take a time string of the format "MM:SS" and convert it to seconds
+time_to_seconds <- function(time){
+  as.numeric(strptime(time, format = "%M:%S")) -
+    as.numeric(strptime("0", format = "%S"))
+}
+# write season pbp to a connected db
+write_pbp <- function(seasons, dbConnection, tablename){
+  p <- progressr::progressor(along = seasons)
+  purrr::walk(seasons, function(x, p){
+    pbp <- load_cfb_pbp(x)
+    DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
+    p("loading...")
+  }, p)
+}

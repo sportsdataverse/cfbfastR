@@ -17,18 +17,18 @@
 #'    # 7 OTs LSU at TAMU
 #'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 #' }
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
-#' @param team (\emph{String} optional): D-I Team
-#' @param home_team (\emph{String} optional): Home D-I Team
-#' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param team (*String* optional): D-I Team
+#' @param home_team (*String* optional): Home D-I Team
+#' @param away_team (*String* optional): Away D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
+#' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return Betting information for games with the following columns:
 #' \describe{
@@ -45,9 +45,13 @@
 #'   \item{`provider`:character.}{Line provider.}
 #'   \item{`spread`:character.}{Spread for the game.}
 #'   \item{`formatted_spread`:character.}{Formatted spread for the game.}
+#'   \item{`spread_open`:character.}{Opening spread for the game.}
 #'   \item{`over_under`:character.}{Over/Under for the game.}
+#'   \item{`over_under_open`:character.}{Opening over/under for the game.}
+#'   \item{`home_moneyline`:character.}{Home team moneyline.}
+#'   \item{`away_moneyline`:character.}{Away team moneyline.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/lines}
+#' @source <https://api.collegefootballdata.com/lines>
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -70,21 +74,21 @@ cfbd_betting_lines <- function(game_id = NULL,
                                conference = NULL,
                                line_provider=NULL,
                                verbose = FALSE) {
-  if (!is.null(game_id) & !is.numeric(game_id)) {
+  if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
-    usethis::ui_stop( "Enter valid game_id (numeric value)")
+    cli::cli_abort( "Enter valid game_id (numeric value)")
   }
-  if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
+  if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
-    usethis::ui_stop("Enter valid year as a number (YYYY)")
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
+  if (!is.null(week) && !(is.numeric(week) && nchar(week) <= 2)) {
     # Check if week is numeric, if not NULL
-    usethis::ui_stop("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
+    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (season_type != "regular" & season_type != "postseason") {
+  if (season_type != "regular" && season_type != "postseason") {
     # Check if season_type is appropriate, if not regular
-    usethis::ui_stop("Enter valid season_type: regular or postseason")
+    cli::cli_abort("Enter valid season_type: regular or postseason")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -112,7 +116,7 @@ cfbd_betting_lines <- function(game_id = NULL,
   if (!is.null(line_provider) &&  is.character(line_provider) &&
       !(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"))) {
     # Check line_provider parameter is a valid entry
-    usethis::ui_stop("Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
+    cli::cli_abort("Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
   }
   # cfbfastR::cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
   base_url <- "https://api.collegefootballdata.com/lines?"

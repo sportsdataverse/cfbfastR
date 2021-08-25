@@ -27,14 +27,14 @@ NULL
 
 #' @title 
 #' **Player information lookup**
-#' @param search_term (\emph{String} required): Search term for the player you are trying to look up
-#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
+#' @param search_term (*String* required): Search term for the player you are trying to look up
+#' @param position (*string* optional): Position of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).\cr
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).\cr
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_player_info()] - A data frame with 12 variables:
@@ -52,7 +52,7 @@ NULL
 #'   \item{`team_color`:character.}{Player team color.}
 #'   \item{`team_color_secondary`:character.}{Player team secondary color.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/player/search}
+#' @source <https://api.collegefootballdata.com/player/search>
 #' @keywords Players
 
 #' 
@@ -164,9 +164,9 @@ cfbd_player_info <- function(search_term,
 
 #' @title 
 #' **Get player returning production**
-#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -188,7 +188,7 @@ cfbd_player_info <- function(search_term,
 #'   \item{`receiving_usage`:double.}{.}
 #'   \item{`rushing_usage`:double.}{.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/player/returning}
+#' @source <https://api.collegefootballdata.com/player/returning>
 #' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -290,19 +290,19 @@ cfbd_player_returning <- function(year = 2019,
 
 #' @title 
 #' **Get player usage metrics**
-#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conferencer\cr
+#' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conferencer\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
+#' @param position (*string* optional): Position of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
 #' Can be found using the [cfbd_player_info()] function.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_player_usage()] - A data frame with 14 variables:
 #' \describe{
@@ -321,7 +321,7 @@ cfbd_player_returning <- function(year = 2019,
 #'   \item{`usg_standard_downs`: double.}{Player standard down usage percentage.}
 #'   \item{`usg_passing_downs`: double.}{Player passing down usage percentage.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/player/usage}
+#' @source <https://api.collegefootballdata.com/player/usage>
 #' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

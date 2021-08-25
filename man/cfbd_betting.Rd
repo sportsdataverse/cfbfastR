@@ -62,7 +62,11 @@ Betting information for games with the following columns:
 \item{\code{provider}:character.}{Line provider.}
 \item{\code{spread}:character.}{Spread for the game.}
 \item{\code{formatted_spread}:character.}{Formatted spread for the game.}
+\item{\code{spread_open}:character.}{Opening spread for the game.}
 \item{\code{over_under}:character.}{Over/Under for the game.}
+\item{\code{over_under_open}:character.}{Opening over/under for the game.}
+\item{\code{home_moneyline}:character.}{Home team moneyline.}
+\item{\code{away_moneyline}:character.}{Away team moneyline.}
 }
 }
 \description{

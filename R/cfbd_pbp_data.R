@@ -4,7 +4,7 @@
 #' **Get college football play by play data with cfbfastR expected points/win probability added**
 #' @description 
 #' Extract college football (D-I) play by play Data - for plays
-#' @source \url{https://api.collegefootballdata.com/plays}
+#' @source <https://api.collegefootballdata.com/plays>
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
@@ -394,15 +394,15 @@ cfbd_pbp_data <- function(year,
   # Check if year is numeric, if not NULL
   if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
-    usethis::ui_stop("Enter valid year as a number (YYYY)")
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
     # Check if week is numeric, if not NULL
-    usethis::ui_stop("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
+    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (season_type != "regular" & season_type != "postseason" & season_type != "both") {
     # Check if season_type is appropriate, if not regular
-    usethis::ui_stop("Enter valid season_type: regular, postseason, or both")
+    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -418,7 +418,7 @@ cfbd_pbp_data <- function(year,
     abbr <- play_type %in% cfbfastR::cfbd_play_type_df$abbreviation
   
     if ((text | abbr) == FALSE) {
-      usethis::ui_stop("Incorrect play type selected, please look at the available options in the Play Type DF.")
+      cli::cli_abort("Incorrect play type selected, please look at the available options in the Play Type DF.")
     }
     if (text) {
       pt_id <- cfbfastR::cfbd_play_type_df$id[which(cfbfastR::cfbd_play_type_df$text == play_type)]
@@ -553,9 +553,9 @@ cfbd_pbp_data <- function(year,
     builder <- TRUE
     
     if (game_count > 1) {
-      usethis::ui_todo("Start processing of {game_count} games...")
+      user_message("Start processing of {game_count} games...","todo")
     } else {
-      usethis::ui_todo("Start processing of {game_count} game...")
+      user_message("Start processing of {game_count} game...","todo")
     }
     
     p <- progressr::progressor(along = g_ids)
@@ -781,7 +781,7 @@ cfbd_pbp_data <- function(year,
 #' \item{`prep_epa_df_after()`: function}{Creates the post-play inputs for the Expected Points model to predict on for each game.}
 #' \item{`clean_drive_info()`: function}{Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column.}
 #' }
-#' @param play_df (\emph{data.frame} required): Adds play counts to Play-by-Play dataframe, as pulled from `cfbd_pbp_data()`
+#' @param play_df (*data.frame* required): Adds play counts to Play-by-Play dataframe, as pulled from `cfbd_pbp_data()`
 #' @details Requires the following columns to be present
 #' \describe{
 #' \item{`game_id`}{.}
@@ -1173,7 +1173,7 @@ add_play_counts <- function(play_df) {
 #' @title Create new Drive results and id data
 #' @description Cleans Play-by-Play data pulled from the API's raw game data
 #'
-#' @param play_df (\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
+#' @param play_df (*data.frame* required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
 #' @return The original `play_df` with the following columns appended/redefined:
 #' \describe{
 #' \item{`lag_change_of_poss`.}{.}
@@ -1536,7 +1536,7 @@ clean_drive_dat <- function(play_df) {
 
 #' @rdname helpers_pbp
 #'
-#' @param dat (\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`
+#' @param dat (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`
 #' @details Prep for EPA calculations at the end of the play. Requires the following columns be present:
 #' \itemize{
 #' \item{`game_id`.}{.}
@@ -2028,7 +2028,7 @@ prep_epa_df_after <- function(dat) {
 
 #' @rdname helpers_pbp
 #'
-#' @param drive_df (\emph{data.frame} required) Drive dataframe pulled from API via the `cfbd_drives()` function
+#' @param drive_df (*data.frame* required) Drive dataframe pulled from API via the `cfbd_drives()` function
 #' @details Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
 #' \itemize{
 #' \item{`drive_id`: Returned as `drive_id`}{.}

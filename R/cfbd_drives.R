@@ -15,19 +15,19 @@
 #'
 #' cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
 #' }
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param offense_team (\emph{String} optional): Offense D-I Team
-#' @param defense_team (\emph{String} optional): Defense D-I Team
-#' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param offense_team (*String* optional): Offense D-I Team
+#' @param defense_team (*String* optional): Defense D-I Team
+#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param offense_conference (\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param offense_conference (*String* optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param defense_conference (\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param defense_conference (*String* optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
@@ -62,7 +62,7 @@
 #'   \item{`time_minutes_elapsed`:double.}{Minutes elapsed during drive.}
 #'   \item{`time_seconds_elapsed`:integer.}{Seconds elapsed during drive.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/drives}
+#' @source <https://api.collegefootballdata.com/drives>
 #' @keywords Drives
 NULL
 
