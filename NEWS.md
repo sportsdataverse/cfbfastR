@@ -1,3 +1,7 @@
+# **cfbfastR v1.4.0**
+
+### Added [```cfbd_game_weather()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_weather.html)
+
 # **cfbfastR v1.3.3**
 
 ### Hotfix [```cfbd_game_player_stats()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)

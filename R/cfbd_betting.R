@@ -70,19 +70,19 @@ cfbd_betting_lines <- function(game_id = NULL,
                                conference = NULL,
                                line_provider=NULL,
                                verbose = FALSE) {
-  if (!is.null(game_id) & !is.numeric(game_id)) {
+  if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
     usethis::ui_stop( "Enter valid game_id (numeric value)")
   }
-  if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
+  if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
     usethis::ui_stop("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
+  if (!is.null(week) && !(is.numeric(week) && nchar(week) <= 2)) {
     # Check if week is numeric, if not NULL
     usethis::ui_stop("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (season_type != "regular" & season_type != "postseason") {
+  if (season_type != "regular" && season_type != "postseason") {
     # Check if season_type is appropriate, if not regular
     usethis::ui_stop("Enter valid season_type: regular or postseason")
   }
