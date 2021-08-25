@@ -394,15 +394,15 @@ cfbd_pbp_data <- function(year,
   # Check if year is numeric, if not NULL
   if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
-    usethis::ui_stop("Enter valid year as a number (YYYY)")
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
     # Check if week is numeric, if not NULL
-    usethis::ui_stop("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
+    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (season_type != "regular" & season_type != "postseason" & season_type != "both") {
     # Check if season_type is appropriate, if not regular
-    usethis::ui_stop("Enter valid season_type: regular, postseason, or both")
+    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -418,7 +418,7 @@ cfbd_pbp_data <- function(year,
     abbr <- play_type %in% cfbfastR::cfbd_play_type_df$abbreviation
   
     if ((text | abbr) == FALSE) {
-      usethis::ui_stop("Incorrect play type selected, please look at the available options in the Play Type DF.")
+      cli::cli_abort("Incorrect play type selected, please look at the available options in the Play Type DF.")
     }
     if (text) {
       pt_id <- cfbfastR::cfbd_play_type_df$id[which(cfbfastR::cfbd_play_type_df$text == play_type)]
@@ -553,9 +553,9 @@ cfbd_pbp_data <- function(year,
     builder <- TRUE
     
     if (game_count > 1) {
-      usethis::ui_todo("Start processing of {game_count} games...")
+      user_message("Start processing of {game_count} games...","todo")
     } else {
-      usethis::ui_todo("Start processing of {game_count} game...")
+      user_message("Start processing of {game_count} game...","todo")
     }
     
     p <- progressr::progressor(along = g_ids)

@@ -105,6 +105,8 @@ NULL
 #'   \item{`away_points`: integer.}{Away team points.}
 #'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
 #'   \item{`excitement_index`: character.}{Game excitement index.}
+#'   \item{`highlights`: character.}{Game highlight urls.}
+#'   \item{`notes`: character.}{Game notes.}
 #' }
 #' @source <https://api.collegefootballdata.com/games>
 #' @keywords Game Info
@@ -271,22 +273,22 @@ cfbd_game_info <- function(year,
 #'   \item{`season_type`: character.}{Season type of the game.}
 #'   \item{`start_date`: character.}{Game date.}
 #'   \item{`start_time_tbd`: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
-#'   \item{`neutral_site`: logical.}{TRUE/FALSE flag for the game taking place at a neutral site.}
-#'   \item{`conference_game`: logical.}{TRUE/FALSE flag for this game qualifying as a conference game.}
-#'   \item{`attendance`: integer.}{Reported attendance at the game.}
-#'   \item{`venue_id`: integer.}{Referencing venue id.}
-#'   \item{`venue`: character.}{Venue name.}
-#'   \item{`home_id`: integer.}{Home team referencing id.}
 #'   \item{`home_team`: character.}{Home team name.}
 #'   \item{`home_conference`: character.}{Home team conference.}
-#'   \item{`home_points`: integer.}{Home team points.}
-#'   \item{`home_post_win_prob`: character.}{Home team post-game win probability.}
-#'   \item{`away_id`: integer.}{Away team referencing id.}
 #'   \item{`away_team`: character.}{Away team name.}
 #'   \item{`away_conference`: character.}{Away team conference.}
-#'   \item{`away_points`: integer.}{Away team points.}
-#'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
-#'   \item{`excitement_index`: character.}{Game excitement index.}
+#'   \item{`venue_id`: integer.}{Referencing venue id.}
+#'   \item{`venue`: character.}{Venue name.}
+#'   \item{`temperature`: integer.}{Temperature.}
+#'   \item{`dew_point`: integer.}{Dew Point.}
+#'   \item{`humidity`: integer.}{Humidity.}
+#'   \item{`precipitation`: integer.}{Precipitation.}
+#'   \item{`snowfall`: integer.}{Snowfall.}
+#'   \item{`wind_direction`: integer.}{Wind direction.}
+#'   \item{`wind_speed`: integer.}{Wind Speed.}
+#'   \item{`pressure`: integer.}{Pressure.}
+#'   \item{`weather_condition_code`: integer.}{Weather condition code.}
+#'   \item{`weather_condition`: character.}{Weather condition.}
 #' }
 #' @source <https://api.collegefootballdata.com/games/weather>
 #' @keywords Game Weather
@@ -298,12 +300,6 @@ cfbd_game_info <- function(year,
 #' @import dplyr
 #' @import tidyr
 #' @export
-#' @examples
-#' \donttest{
-#'   cat(colnames(cfbd_game_weather(2018, week = 1)),sep="', '")
-#'
-#'   cfbd_game_weather(2018, week = 7, conference = "Ind")
-#' }
 cfbd_game_weather <- function(year,
                               week = NULL,
                               season_type = "regular",
@@ -364,7 +360,10 @@ cfbd_game_weather <- function(year,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        janitor::clean_names() %>%
+        janitor::clean_names()
+      
+      df <- df %>%
+        dplyr::rename(game_id = .data$id) %>%
         as.data.frame()
     },
     error = function(e) {

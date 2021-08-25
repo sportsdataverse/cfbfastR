@@ -10,6 +10,7 @@ Get results, statistics and information for games\cr
 \item{\code{cfbd_game_player_stats()}:}{ Get results information from games.}
 \item{\code{cfbd_game_team_stats()}:}{ Get team statistics by game.}
 \item{\code{cfbd_game_info()}:}{ Get results information from games.}
+\item{\code{cfbd_game_weather()}:}{ Get weather from games.}
 \item{\code{cfbd_game_records()}:}{ Get team records by year.}
 \item{\code{cfbd_calendar()}:}{ Get calendar of weeks by season.}
 \item{\code{cfbd_game_media()}:}{ Get game media information (TV, radio, etc).}
@@ -44,7 +45,12 @@ cfbd_game_info(2018, week = 7, conference = "Ind")
 
 # 7 OTs LSU @ TAMU
 cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-}\if{html}{\out{</div>}}
+}\if{html}{\out{</div>}}\preformatted{### **Get weather from games.**
+```r
+cfbd_game_weather(2018, week = 1)
+
+cfbd_game_info(2018, week = 7, conference = "Ind")
+}
 }
 
 \subsection{\strong{Get calendar of weeks by season.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_calendar(2019)

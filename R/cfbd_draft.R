@@ -233,7 +233,7 @@ cfbd_draft_picks <- function(year = NULL,
                              position = NULL) {
   if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
-    usethis::ui_stop("Enter valid year as a number (YYYY)")
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(nfl_team)) {
     # Encode team parameter for URL if not NULL
