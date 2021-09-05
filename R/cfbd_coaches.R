@@ -70,23 +70,17 @@ cfbd_coaches <- function(first = NULL,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as integer in 4 digit format (YYYY)"
-    )
+  if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
+    # Check if year is numeric, if not NULL
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(min_year)) {
+  if (!is.null(min_year) && !(is.numeric(min_year) && nchar(min_year) == 4)) {
     ## check if min_year is numeric
-    assertthat::assert_that(is.numeric(min_year) & nchar(min_year) == 4,
-      msg = "Enter valid min_year as integer in 4 digit format (YYYY)"
-    )
+    cli::cli_abort("Enter valid min_year as integer in 4 digit format (YYYY)")
   }
-  if (!is.null(max_year)) {
+  if (!is.null(max_year) && !(is.numeric(max_year) && nchar(max_year) == 4)) {
     ## check if max_year is numeric
-    assertthat::assert_that(is.numeric(max_year) & nchar(max_year) == 4,
-      msg = "Enter valid max_year as integer in 4 digit format (YYYY)"
-    )
+    cli::cli_abort("Enter valid max_year as integer in 4 digit format (YYYY)")
   }
 
   base_url <- "https://api.collegefootballdata.com/coaches?"
