@@ -69,7 +69,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
@@ -86,21 +86,17 @@ cfbd_drives <- function(year,
                         verbose = FALSE) {
 
   # Check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year as a number (YYYY)"
-  )
-
-  if (season_type != "regular") {
-    # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c("postseason", "both"),
-      msg = "Enter valid season_type: regular, postseason, or both"
-    )
+  if(!is.numeric(year) && !nchar(year) == 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(week)) {
+
+  if (!(season_type %in% c("regular","postseason","both"))){
+    # Check if season_type is appropriate, if not regular
+    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
+  }
+  if (!is.null(week)&&is.numeric(week) && nchar(week) <= 2) {
     # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-      msg = "Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+    cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {

@@ -34,11 +34,9 @@ NULL
 #'
 espn_metrics_wp <- function(game_id) {
 
-  if (!is.null(game_id)) {
+  if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
-    assertthat::assert_that(is.numeric(game_id),
-      msg = "Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function"
-    )
+    cli::cli_abort("Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function")
   }
 
   espn_game_id <- game_id
