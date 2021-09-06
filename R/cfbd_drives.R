@@ -69,7 +69,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
@@ -86,21 +86,17 @@ cfbd_drives <- function(year,
                         verbose = FALSE) {
 
   # Check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year as a number (YYYY)"
-  )
-
-  if (season_type != "regular") {
-    # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c("postseason", "both"),
-      msg = "Enter valid season_type: regular, postseason, or both"
-    )
+  if(!is.numeric(year) && !nchar(year) == 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(week)) {
+
+  if (!(season_type %in% c("regular","postseason","both"))){
+    # Check if season_type is appropriate, if not regular
+    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
+  }
+  if (!is.null(week)&&is.numeric(week) && nchar(week) <= 2) {
     # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-      msg = "Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+    cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -128,22 +124,16 @@ cfbd_drives <- function(year,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
   if (!is.null(offense_conference)) {
     # # Check offense_conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(offense_conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect offense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode offense_conference parameter for URL, if not NULL
     offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
   }
   if (!is.null(defense_conference)) {
     # # Check defense_conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(defense_conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect defense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode defense_conference parameter for URL, if not NULL
     defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
   }

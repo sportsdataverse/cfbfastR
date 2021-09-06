@@ -65,7 +65,7 @@ NULL
 #' }
 #' @source <https://api.collegefootballdata.com/rankings>
 #' @keywords CFB Rankings
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom dplyr arrange as_tibble group_by ungroup rename
@@ -84,22 +84,17 @@ NULL
 #'
 cfbd_rankings <- function(year, week = NULL, season_type = "regular",
                           verbose = FALSE) {
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year (Integer) in 4 digit format (YYYY)"
-    )
+  # Check if year is numeric
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(week)) {
+  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
     # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-      msg = "Enter valid week 1-15, 1-14 for seasons pre-playoff, \n(i.e. 2014 or earlier)"
-    )
+    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (season_type != "regular") {
-    assertthat::assert_that(season_type == "postseason",
-      msg = "Enter a valid season_type (String): regular or postseason"
-    )
+  if (!(season_type %in% c("postseason", "regular"))) {
+    # Check if season_type is appropriate, if not NULL
+    cli::cli_abort("Enter valid season_type (String): regular or postseason")
   }
 
   base_url <- "https://api.collegefootballdata.com/rankings?"
@@ -203,7 +198,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @export
@@ -219,11 +214,9 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 cfbd_ratings_sp <- function(year = NULL, team = NULL,
                             verbose = FALSE) {
   
-  if (!is.null(year)) {
-    # check if year is numeric and correct length
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as a number in 4 digit format (YYYY)"
-    )
+  # Check if year is numeric
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -344,7 +337,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @export
@@ -360,16 +353,12 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
                                        verbose = FALSE) {
 
-  if (!is.null(year)) {
-    # check if year is numeric and correct length
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as a number in 4 digit format (YYYY)"
-    )
+  # Check if year is numeric
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
@@ -467,7 +456,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #' @keywords SRS
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @export
@@ -481,11 +470,9 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL,
                              verbose = FALSE) {
 
-  if (!is.null(year)) {
-    # check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as a number (YYYY)"
-    )
+  # Check if year is numeric
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -497,8 +484,6 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }

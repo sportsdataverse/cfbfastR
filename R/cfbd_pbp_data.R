@@ -377,7 +377,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils URLencode
 #' @importFrom utils globalVariables
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @export
 #'
 

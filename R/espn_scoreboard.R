@@ -11,7 +11,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode URLdecode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom stringr str_sub str_length
 #' @import dplyr
@@ -23,7 +23,7 @@ NULL
 #'
 espn_cfb_scoreboard <- function(date = NULL) {
   
-  if (!is.null(date)) {
+  if (!is.null(date) && !is.numeric(date)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort("Enter valid date as a number (YYYYMMDD)")
   }

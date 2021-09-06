@@ -59,7 +59,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
 #' @import dplyr
@@ -88,11 +88,9 @@ cfbd_player_info <- function(search_term,
     "K", "P", "PK", "LS"
   )
 
-  if (!is.null(position)) {
+  if (!is.null(position)&&!(position %in% pos_groups)) {
     ## check if position in position group set
-    assertthat::assert_that(position %in% pos_groups,
-      msg = "Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK"
-    )
+    cli::cli_abort("Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -102,11 +100,10 @@ cfbd_player_info <- function(search_term,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020"
-    )
+  
+  # Check if year is numeric
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   base_url <- "https://api.collegefootballdata.com/player/search?"
 
@@ -193,7 +190,7 @@ cfbd_player_info <- function(search_term,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @export
@@ -207,11 +204,9 @@ cfbd_player_returning <- function(year = 2019,
                                   conference = NULL,
                                   verbose = FALSE) {
 
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020"
-    )
+  # Check if year is numeric
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -223,8 +218,6 @@ cfbd_player_returning <- function(year = 2019,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
@@ -326,7 +319,7 @@ cfbd_player_returning <- function(year = 2019,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom purrr map_if
 #' @importFrom dplyr as_tibble rename
@@ -350,11 +343,9 @@ cfbd_player_usage <- function(year = 2019,
     "DB", "CB", "S", "LB", "DE", "NT", "DL", "DT",
     "K", "P", "PK", "LS"
   )
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020"
-    )
+  # Check if year is numeric
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -366,28 +357,20 @@ cfbd_player_usage <- function(year = 2019,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  if (!is.null(position)) {
+  if (!is.null(position)&&!(position %in% pos_groups)) {
     ## check if position in position group set
-    assertthat::assert_that(position %in% pos_groups,
-      msg = "Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK"
-    )
+    cli::cli_abort("Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK")
   }
-  if (!is.null(athlete_id)) {
+  if (!is.null(athlete_id) && !is.numeric(athlete_id)) {
     # Check if athlete_id is numeric, if not NULL
-    assertthat::assert_that(is.numeric(athlete_id),
-      msg = "Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function"
-    )
+    cli::cli_abort("Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function")
   }
-  if (excl_garbage_time != FALSE) {
+  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assertthat::assert_that(excl_garbage_time == TRUE,
-      msg = "Enter valid excl_garbage_time value (Logical) - TRUE or FALSE"
-    )
+    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
   }
 
   base_url <- "https://api.collegefootballdata.com/player/usage?"
