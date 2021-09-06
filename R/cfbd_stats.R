@@ -195,7 +195,7 @@ cfbd_stats_categories <- function() {
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode URLdecode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
 #'
@@ -207,16 +207,14 @@ cfbd_stats_game_advanced <- function(year,
                                      season_type = "both",
                                      verbose = FALSE) {
 
-  # Check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year (Integer): 4-digit (YYYY)"
-  )
-  if (!is.null(week)) {
-    # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
-      msg = "Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
+  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
+    # Check if week is numeric, if not NULL
+    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
+  }
+  
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -229,19 +227,17 @@ cfbd_stats_game_advanced <- function(year,
     # Encode opponent parameter for URL, if not NULL
     opponent <- utils::URLencode(opponent, reserved = TRUE)
   }
-  if (excl_garbage_time != FALSE) {
+  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assertthat::assert_that(excl_garbage_time == TRUE,
-      msg = "Enter valid excl_garbage_time value (Logical) - TRUE or FALSE"
-    )
+    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
   }
 
-  if (season_type != "both") {
-    # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c("postseason", "regular"),
-      msg = "Enter valid season_type (String): regular, postseason, or both"
-    )
+  
+  if (!(season_type %in% c("postseason", "regular","both"))) {
+    # Check if season_type is appropriate, if not NULL
+    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
+  
 
 
 
@@ -423,7 +419,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode URLdecode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
 #'
@@ -434,10 +430,10 @@ cfbd_stats_season_advanced <- function(year,
                                        end_week = NULL,
                                        verbose = FALSE) {
 
-  # Check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year (Integer): 4-digit (YYYY)"
-  )
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
+  }
+  
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -446,28 +442,20 @@ cfbd_stats_season_advanced <- function(year,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if (excl_garbage_time != FALSE) {
+  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assertthat::assert_that(excl_garbage_time == TRUE,
-      msg = "Enter valid excl_garbage_time value (Logical) - TRUE or FALSE"
-    )
+    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
   }
-  if (!is.null(start_week)) {
+  if (!is.null(start_week) && !is.numeric(start_week) && nchar(start_week) > 2) {
     # Check if start_week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(start_week) & nchar(start_week) <= 2,
-      msg = "Enter valid start_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+    cli::cli_abort("Enter valid start_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(end_week)) {
-    # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(end_week) & nchar(end_week) <= 2,
-      msg = "Enter valid end_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+  if (!is.null(end_week) && !is.numeric(end_week) && nchar(end_week) > 2) {
+    # Check if end_week is numeric, if not NULL
+    cli::cli_abort("Enter valid end_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(start_week) & !is.null(end_week)) {
-    assertthat::assert_that(start_week <= end_week,
-      msg = "Enter valid start_week, end_week range"
-    )
+  if (!is.null(start_week) && !is.null(end_week) && start_week <= end_week) {
+    cli::cli_abort("Enter valid start_week, end_week range")
   }
 
 
@@ -638,7 +626,7 @@ cfbd_stats_season_advanced <- function(year,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode URLdecode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
 #' @importFrom dplyr mutate mutate_at rename select
@@ -659,15 +647,13 @@ cfbd_stats_season_player <- function(year,
   )
 
   # Check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year (Integer): 4-digit (YYYY)"
-  )
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
+  }
 
-  if (season_type != "regular") {
+  if (!(season_type %in% c("postseason", "regular","both"))) {
     # Check if season_type is appropriate, if not NULL
-    assertthat::assert_that(season_type %in% c("postseason", "both"),
-      msg = "Enter valid season_type (String): regular, postseason, or both"
-    )
+    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -679,34 +665,26 @@ cfbd_stats_season_player <- function(year,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
 
-  if (!is.null(start_week)) {
+  if (!is.null(start_week) && !is.numeric(start_week) && nchar(start_week) > 2) {
     # Check if start_week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(start_week) & nchar(start_week) <= 2,
-      msg = "Enter valid start_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+    cli::cli_abort("Enter valid start_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(end_week)) {
-    # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(end_week) & nchar(end_week) <= 2,
-      msg = "Enter valid end_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+  if (!is.null(end_week) && !is.numeric(end_week) && nchar(end_week) > 2) {
+    # Check if end_week is numeric, if not NULL
+    cli::cli_abort("Enter valid end_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(start_week) & !is.null(end_week)) {
-    assertthat::assert_that(start_week <= end_week,
-      msg = "Enter valid start_week, end_week range"
-    )
+  if (!is.null(start_week) && !is.null(end_week) && start_week <= end_week) {
+    cli::cli_abort("Enter valid start_week, end_week range")
   }
-  if (!is.null(category)) {
-    # Check category parameter in category if not NULL
-    assertthat::assert_that(category %in% stat_categories,
-      msg = "Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns"
-    )
+  if (!is.null(category)){ 
+    if(!(category %in% stat_categories)) {
+      # Check category parameter in category if not NULL
+      cli::cli_abort("Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns")
+    }
     # Encode conference parameter for URL, if not NULL
     category <- utils::URLencode(category, reserved = TRUE)
   }
@@ -891,7 +869,7 @@ cfbd_stats_season_player <- function(year,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode URLdecode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr select mutate rename
 #' @importFrom tidyr pivot_wider
@@ -906,15 +884,15 @@ cfbd_stats_season_team <- function(year,
                                    verbose = FALSE) {
 
   # Check if year is numeric
-  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year (Integer): 4-digit (YYYY)"
-  )
-  if (season_type != "regular") {
-    # Check if season_type is appropriate, if not NULL
-    assertthat::assert_that(season_type %in% c("postseason", "both"),
-      msg = "Enter valid season_type (String): regular, postseason, or both"
-    )
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
+  
+  if (!(season_type %in% c("postseason", "regular","both"))) {
+    # Check if season_type is appropriate, if not NULL
+    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
+  }
+  
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -925,29 +903,22 @@ cfbd_stats_season_team <- function(year,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
 
-  if (!is.null(start_week)) {
+  if (!is.null(start_week) && !is.numeric(start_week) && nchar(start_week) > 2) {
     # Check if start_week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(start_week) & nchar(start_week) <= 2,
-      msg = "Enter valid start_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+    cli::cli_abort("Enter valid start_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(end_week)) {
-    # Check if week is numeric, if not NULL
-    assertthat::assert_that(is.numeric(end_week) & nchar(end_week) <= 2,
-      msg = "Enter valid end_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"
-    )
+  if (!is.null(end_week) && !is.numeric(end_week) && nchar(end_week) > 2) {
+    # Check if end_week is numeric, if not NULL
+    cli::cli_abort("Enter valid end_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(start_week) & !is.null(end_week)) {
-    assertthat::assert_that(start_week <= end_week,
-      msg = "Enter valid start_week, end_week range"
-    )
+  if (!is.null(start_week) && !is.null(end_week) && start_week <= end_week) {
+    cli::cli_abort("Enter valid start_week, end_week range")
   }
+  
 
 
 

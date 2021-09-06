@@ -98,7 +98,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
 #' @export
@@ -123,11 +123,9 @@ cfbd_recruiting_player <- function(year = NULL,
     "PRO", "DUAL", "RB", "FB", "TE", "OT", "OG", "OC", "WR",
     "CB", "S", "OLB", "ILB", "WDE", "SDE", "DT", "K", "P"
   )
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as a number (YYYY) - Min: 2000, Max: 2020"
-    )
+  # Check if year is numeric
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -137,23 +135,17 @@ cfbd_recruiting_player <- function(year = NULL,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  if (recruit_type != "HighSchool") {
+  if (!(recruit_type %in% c("HighSchool","PrepSchool", "JUCO"))) {
     # Check if recruit_type is appropriate, if not HighSchool
-    assertthat::assert_that(recruit_type %in% c("PrepSchool", "JUCO"),
-      msg = "Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO"
-    )
+    cli::cli_abort("Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO")
   }
-  if (!is.null(state)) {
+  if (!is.null(state) && nchar(state) != 2) {
     ## check if state is length 2
-    assertthat::assert_that(nchar(state) == 2,
-      msg = "Enter valid 2-letter State abbreviation"
-    )
+    cli::cli_abort("Enter valid 2-letter State abbreviation")
   }
-  if (!is.null(position)) {
+  if (!is.null(position) && !(position %in% pos_groups)) {
     ## check if position in position group set
-    assertthat::assert_that(position %in% pos_groups,
-      msg = "Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P"
-    )
+    cli::cli_abort("Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P")
   }
 
   base_url <- "https://api.collegefootballdata.com/recruiting/players?"
@@ -230,7 +222,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @export
@@ -246,17 +238,11 @@ cfbd_recruiting_player <- function(year = NULL,
 cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
                                      team = NULL, conference = NULL,
                                      verbose = FALSE) {
-  if (!is.null(start_year)) {
-    # check if start_year is numeric
-    assertthat::assert_that(is.numeric(start_year) & nchar(start_year) == 4,
-      msg = "Enter valid start_year as a number (YYYY) - Min: 2000, Max: 2020"
-    )
+  if(!is.null(start_year)&& !is.numeric(start_year) && nchar(start_year) != 4){
+    cli::cli_abort("Enter valid start_year as a number (YYYY)")
   }
-  if (!is.null(end_year)) {
-    # check if end_year is numeric
-    assertthat::assert_that(is.numeric(end_year) & nchar(end_year) == 4,
-      msg = "Enter valid end_year as a number (YYYY) - Min: 2000, Max: 2020"
-    )
+  if(!is.null(end_year)&& !is.numeric(end_year) && nchar(end_year) != 4){
+    cli::cli_abort("Enter valid end_year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {
@@ -268,8 +254,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
@@ -349,7 +333,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
 #' @examples
@@ -367,11 +351,9 @@ cfbd_recruiting_team <- function(year = NULL,
                                  team = NULL,
                                  verbose = FALSE) {
   
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020"
-    )
+  # Check if year is numeric
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
     if (team == "San Jose State") {

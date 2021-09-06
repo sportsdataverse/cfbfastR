@@ -50,7 +50,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
 #' @export
@@ -120,7 +120,7 @@ cfbd_draft_teams <- function() {
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
 #' @export
@@ -214,7 +214,7 @@ cfbd_draft_positions <- function() {
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
 #' @export
