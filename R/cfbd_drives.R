@@ -124,22 +124,16 @@ cfbd_drives <- function(year,
   }
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
   if (!is.null(offense_conference)) {
     # # Check offense_conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(offense_conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect offense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode offense_conference parameter for URL, if not NULL
     offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
   }
   if (!is.null(defense_conference)) {
     # # Check defense_conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(defense_conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #                         msg = "Incorrect defense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode defense_conference parameter for URL, if not NULL
     defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
   }

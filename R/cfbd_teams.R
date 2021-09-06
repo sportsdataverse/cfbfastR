@@ -100,7 +100,7 @@ NULL
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom dplyr rename
 #' @export
 #' @examples
@@ -115,8 +115,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
                            verbose = FALSE) {
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # assertthat::assert_that(conference %in% cfbfastR::cfbd_conf_types_df$abbreviation,
-    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
     
@@ -169,11 +167,8 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
     
     return(df)
   } else {
-    if (!is.null(year)) {
-      # Check if year is numeric, if not NULL
-      assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
-        msg = "Enter valid year as a number (YYYY)"
-      )
+    if(!is.numeric(year) && nchar(year) != 4){
+      cli::cli_abort("Enter valid year as a number (YYYY)")
     }
 
     base_url <- "https://api.collegefootballdata.com/teams/fbs?"
@@ -251,7 +246,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom tibble enframe
 #' @importFrom dplyr rename mutate select
@@ -267,17 +262,11 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL,
                                       verbose = FALSE) {
 
-  if (!is.null(min_year)) {
-    # Check if min_year is numeric, if not NULL
-    assertthat::assert_that(is.numeric(min_year) & nchar(min_year) == 4,
-      msg = "Enter valid min_year as a number (YYYY)"
-    )
+  if(!is.null(min_year)&& !is.numeric(min_year) && nchar(min_year) != 4){
+    cli::cli_abort("Enter valid min_year as a number (YYYY)")
   }
-  if (!is.null(max_year)) {
-    # Check if max_year is numeric, if not NULL
-    assert_that(is.numeric(max_year) & nchar(max_year) == 4,
-      msg = "Enter valid max_year as a number (YYYY)"
-    )
+  if(!is.null(max_year)&& !is.numeric(max_year) && nchar(max_year) != 4){
+    cli::cli_abort("Enter valid max_year as a number (YYYY)")
   }
 
   if (!is.null(team1)) {
@@ -387,7 +376,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
 #' @export
@@ -405,17 +394,11 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
                               verbose = FALSE) {
   
-  if (!is.null(min_year)) {
-    # Check if min_year is numeric, if not NULL
-    assertthat::assert_that(is.numeric(min_year) & nchar(min_year) == 4,
-      msg = "Enter valid min_year as a number (YYYY)"
-    )
+  if(!is.null(min_year)&& !is.numeric(min_year) && nchar(min_year) != 4){
+    cli::cli_abort("Enter valid min_year as a number (YYYY)")
   }
-  if (!is.null(max_year)) {
-    # Check if max_year is numeric, if not NULL
-    assertthat::assert_that(is.numeric(max_year) & nchar(max_year) == 4,
-      msg = "Enter valid max_year as a number (YYYY)"
-    )
+  if(!is.null(max_year)&& !is.numeric(max_year) && nchar(max_year) != 4){
+    cli::cli_abort("Enter valid max_year as a number (YYYY)")
   }
 
   if (!is.null(team1)) {
@@ -525,7 +508,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
 #' @examples
@@ -537,10 +520,9 @@ cfbd_team_roster <- function(year, team = NULL,
                              verbose = FALSE) {
   team2 <- team
 
-  # check if year is numeric
-  assert_that(is.numeric(year) & nchar(year) == 4,
-    msg = "Enter valid year as a number (YYYY)"
-  )
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
+  }
 
 
   if (!is.null(team)) {
@@ -622,7 +604,7 @@ cfbd_team_roster <- function(year, team = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
-#' @importFrom assertthat assert_that
+#' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
 #' @examples
@@ -634,11 +616,8 @@ cfbd_team_roster <- function(year, team = NULL,
 #'
 cfbd_team_talent <- function(year = NULL,
                              verbose = FALSE) {
-  if (!is.null(year)) {
-    ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year) == 4,
-      msg = "Enter valid year as a number (YYYY)"
-    )
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
   }
 
   base_url <- "https://api.collegefootballdata.com/talent?"
