@@ -1,3 +1,9 @@
+# **cfbfastR v1.5.0**
+
+### Added [```espn_cfb_scoreboard()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_scoreboard.html)
+
+### Added [```espn_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_pbp.html)
+
 # **cfbfastR v1.4.0**
 
 ### Added [```cfbd_game_weather()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_weather.html)
