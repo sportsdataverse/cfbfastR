@@ -6,7 +6,6 @@
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom dplyr filter select rename bind_cols bind_rows
 #' @importFrom tidyr unnest unnest_wider everything
-#' @import rvest
 #' @export
 #'
 #' @examples
