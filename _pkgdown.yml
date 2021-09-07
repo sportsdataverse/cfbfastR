@@ -289,7 +289,6 @@ reference:
     contents:
       - '`cfbd_metrics`'
       - starts_with("cfbd_metrics_")
-      - '`espn_metrics_wp`'
   - subtitle: Recruiting Data
     desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
@@ -301,6 +300,11 @@ reference:
       - '`cfbd_venues`'
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
+  - title: "ESPN Data"
+  - subtitle: Functions with ESPN connections
+    desc: Functions exported by cfbfastR which allow access to ESPN data
+    contents:
+      - starts_with("espn_")
   - title: Helper Functions and Data
   - subtitle: Included data
     desc: Data included within the package

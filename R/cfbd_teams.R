@@ -167,7 +167,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
     
     return(df)
   } else {
-    if(!is.numeric(year) && nchar(year) != 4){
+    if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
       cli::cli_abort("Enter valid year as a number (YYYY)")
     }
 
