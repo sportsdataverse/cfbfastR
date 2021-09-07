@@ -94,7 +94,7 @@ cfbd_drives <- function(year,
     # Check if season_type is appropriate, if not regular
     cli::cli_abort("Enter valid season_type: regular, postseason, or both")
   }
-  if (!is.null(week)&&is.numeric(week) && nchar(week) <= 2) {
+  if (!is.null(week)&& !is.numeric(week) && !nchar(week) <= 2) {
     # Check if week is numeric, if not NULL
     cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }

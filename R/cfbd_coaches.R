@@ -19,6 +19,7 @@
 #' \describe{
 #'   \item{`first_name`:character.}{First name of coach.}
 #'   \item{`last_name`:character.}{Last name of coach.}
+#'   \item{`hire_date`:character.}{Hire date of coach.}
 #'   \item{`school`:character.}{School of coach.}
 #'   \item{`year`:integer.}{Season of record.}
 #'   \item{`games`:integer.}{Games as coach.}

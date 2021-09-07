@@ -1,7 +1,7 @@
 context("CFB Coaches")
 
 cols <- c(
-  "first_name", "last_name", "school", "year", "games",
+  "first_name", "last_name","hire_date", "school", "year", "games",
   "wins", "losses", "ties", "preseason_rank", "postseason_rank", "srs", "sp_overall",
   "sp_offense", "sp_defense"
 )

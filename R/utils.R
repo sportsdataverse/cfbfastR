@@ -19,6 +19,8 @@ read_raw_rds <- function(raw) {
   return(ret)
 }
 
+#' @import utils
+utils::globalVariables(c("where"))
 
 # The function `message_completed` to create the green "...completed" message
 # only exists to hide the option `in_builder` in dots

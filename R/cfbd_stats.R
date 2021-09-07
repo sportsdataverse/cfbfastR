@@ -454,7 +454,7 @@ cfbd_stats_season_advanced <- function(year,
     # Check if end_week is numeric, if not NULL
     cli::cli_abort("Enter valid end_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(start_week) && !is.null(end_week) && start_week <= end_week) {
+  if (!is.null(start_week) && !is.null(end_week) && start_week > end_week) {
     cli::cli_abort("Enter valid start_week, end_week range")
   }
 
@@ -677,7 +677,7 @@ cfbd_stats_season_player <- function(year,
     # Check if end_week is numeric, if not NULL
     cli::cli_abort("Enter valid end_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(start_week) && !is.null(end_week) && start_week <= end_week) {
+  if (!is.null(start_week) && !is.null(end_week) && start_week > end_week) {
     cli::cli_abort("Enter valid start_week, end_week range")
   }
   if (!is.null(category)){ 
@@ -915,7 +915,7 @@ cfbd_stats_season_team <- function(year,
     # Check if end_week is numeric, if not NULL
     cli::cli_abort("Enter valid end_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  if (!is.null(start_week) && !is.null(end_week) && start_week <= end_week) {
+  if (!is.null(start_week) && !is.null(end_week) && start_week > end_week) {
     cli::cli_abort("Enter valid start_week, end_week range")
   }
   

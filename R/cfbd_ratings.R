@@ -215,7 +215,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
                             verbose = FALSE) {
   
   # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {

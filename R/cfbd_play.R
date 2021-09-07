@@ -340,7 +340,7 @@ cfbd_play_stats_player <- function(year = NULL,
                                    verbose = FALSE) {
   
   # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {

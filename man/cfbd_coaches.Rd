@@ -37,6 +37,7 @@ cfbd_coaches(
 \describe{
 \item{\code{first_name}:character.}{First name of coach.}
 \item{\code{last_name}:character.}{Last name of coach.}
+\item{\code{hire_date}:character.}{Hire date of coach.}
 \item{\code{school}:character.}{School of coach.}
 \item{\code{year}:integer.}{Season of record.}
 \item{\code{games}:integer.}{Games as coach.}
