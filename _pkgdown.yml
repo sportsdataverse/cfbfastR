@@ -133,6 +133,10 @@ navbar:
         href: reference/espn_metrics.html
       - text: "ESPN Ratings"
         href: reference/espn_ratings.html
+      - text: "ESPN Scoreboard"
+        href: reference/espn_cfb_scoreboard.html
+      - text: "ESPN PBP"
+        href: reference/espn_cfb_pbp.html
     articles:
       icon: "fas fa-book-reader"
       text: "Articles"
