@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -140,6 +140,12 @@
     </li>
     <li>
       <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_scoreboard.html">ESPN Scoreboard</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_pbp.html">ESPN PBP</a>
     </li>
   </ul>
 </li>
@@ -346,18 +352,18 @@
 <span class="op">}</span></code></pre></div>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpU75l1n/downloaded_packages</code></pre>
+##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpsHE34o/downloaded_packages</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">animation</span>, <span class="va">glue</span>, <span class="va">zoo</span>, <span class="va">ggimage</span><span class="op">)</span>
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##   
-   checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpU75l1n/remotes1b3a54b6f28/saiemgilani-cfbfastR-94d9a74/DESCRIPTION’ ...
+   checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpsHE34o/remotes155531b8d5be/saiemgilani-cfbfastR-7829a45/DESCRIPTION’ ...
   
-✔  checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpU75l1n/remotes1b3a54b6f28/saiemgilani-cfbfastR-94d9a74/DESCRIPTION’
+✔  checking for file ‘/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpsHE34o/remotes155531b8d5be/saiemgilani-cfbfastR-7829a45/DESCRIPTION’ (1.4s)
 ## 
   
-─  preparing ‘cfbfastR’:
+─  preparing ‘cfbfastR’: (6.6s)
 ## 
   
    checking DESCRIPTION meta-information ...
@@ -371,7 +377,7 @@
 ─  checking for empty or unneeded directories
 ## 
   
-─  building ‘cfbfastR_1.4.0.tar.gz’
+─  building ‘cfbfastR_1.5.0.tar.gz’
 ## 
   
    
@@ -403,7 +409,7 @@
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">down</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">interp_TimeSecsRem</span><span class="op">(</span><span class="op">)</span> 
   
-<span class="va">game</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span><span class="va">year</span>, team <span class="op">=</span> <span class="va">team</span>, week <span class="op">=</span> <span class="va">week</span><span class="op">)</span></code></pre></div>
+<span class="va">game</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="va">year</span>, team <span class="op">=</span> <span class="va">team</span>, week <span class="op">=</span> <span class="va">week</span><span class="op">)</span></code></pre></div>
 <p>We’ll also use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull the color and logo information and add it to the game info. We’ll also add in a <code>result</code> column that is the score difference between the home and the away teams that we’ll use later.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">team_info</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span><span class="op">)</span>

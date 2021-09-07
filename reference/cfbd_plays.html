@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -191,6 +191,12 @@
     </li>
     <li>
       <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_scoreboard.html">ESPN Scoreboard</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_pbp.html">ESPN PBP</a>
     </li>
   </ul>
 </li>
@@ -495,7 +501,7 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)</p></
  <span class='va'>year_split</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>weekly_year_df</span>, <span class='va'>weekly_year_df</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
  <span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>year_split</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
    <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
-   <span class='fu'>future</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/future/man/plan.html'>plan</a></span><span class='op'>(</span><span class='st'>"multisession"</span><span class='op'>)</span>
+   <span class='fu'>future</span><span class='fu'>::</span><span class='fu'><a href='https://future.futureverse.org/reference/plan.html'>plan</a></span><span class='op'>(</span><span class='st'>"multisession"</span><span class='op'>)</span>
    <span class='fu'>progressr</span><span class='fu'>::</span><span class='fu'><a href='https://progressr.futureverse.org/reference/with_progress.html'>with_progress</a></span><span class='op'>(</span><span class='op'>{</span>
       <span class='va'>year_split</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>year_split</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span>
          <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>

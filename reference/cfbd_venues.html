@@ -103,7 +103,7 @@ elevation, dome, timezone and construction year." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -192,6 +192,12 @@ elevation, dome, timezone and construction year." />
     </li>
     <li>
       <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_scoreboard.html">ESPN Scoreboard</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_pbp.html">ESPN PBP</a>
     </li>
   </ul>
 </li>
@@ -420,10 +426,10 @@ elevation, dome, timezone and construction year.</p>
 </div><div class='output co'>#&gt;     venue_id                                                     name capacity
 #&gt; 1       4747                           Abbott Memorial Alumni Stadium    10000
 #&gt; 2       3599                                   Ace W. Mumford Stadium    28500
-#&gt; 3       3601                                   Aggie Memorial Stadium    30343
-#&gt; 4       3603                                            Aggie Stadium    21500
-#&gt; 5       3602                                            Aggie Stadium    10849
-#&gt; 6       3604                                                Alamodome    65000
+#&gt; 3       3601                                   Aggie Memorial Stadium    28853
+#&gt; 4       3602                                            Aggie Stadium    10743
+#&gt; 5       3603                                            Aggie Stadium    21500
+#&gt; 6       3604                                                Alamodome    36582
 #&gt; 7       3653                                       Albertsons Stadium    36387
 #&gt; 8       3605                                            Alerus Center    12283
 #&gt; 9       1027                                   Alex G. Spanos Stadium    11075
@@ -433,340 +439,354 @@ elevation, dome, timezone and construction year.</p>
 #&gt; 13      5363                                          Allianz Stadium    45500
 #&gt; 14      3610                                            Aloha Stadium    50000
 #&gt; 15      3597                                    Alumni Memorial Field    10000
-#&gt; 16      3613                                           Alumni Stadium     7000
+#&gt; 16      3613                                           Alumni Stadium     7193
 #&gt; 17      3615                                           Alumni Stadium    44500
-#&gt; 18      3616                                   Amon G. Carter Stadium    45000
+#&gt; 18      3616                                   Amon G. Carter Stadium    46000
 #&gt; 19      3617                                        Andy Kerr Stadium    10221
 #&gt; 20      5221                                              ANZ Stadium    83500
 #&gt; 21      3825                                           Apogee Stadium    30850
-#&gt; 22      3619                                          Arizona Stadium    56029
-#&gt; 23      3620                                        Armstrong Stadium    17000
+#&gt; 22      3619                                          Arizona Stadium    50782
+#&gt; 23      3620                                        Armstrong Stadium    12000
 #&gt; 24      3622                                        Arrowhead Stadium    76416
 #&gt; 25      3623                          Arthur J. Rooney Athletic Field     2200
-#&gt; 26      3624                                              Arute Field     3500
+#&gt; 26      3624                                              Arute Field     5500
 #&gt; 27      3687                                             AT&amp;T Stadium   100000
-#&gt; 28      3626                                           Autzen Stadium    54000
-#&gt; 29      3504                                            Aviva Stadium    51700
-#&gt; 30      3627                                  Bailey Memorial Stadium     6500
-#&gt; 31      3628                                  Bank of America Stadium    75412
-#&gt; 32      3629                                      Barker-Lane Stadium     5000
-#&gt; 33      3630                                               BB&amp;T Field    31500
-#&gt; 34      3631                                     BBVA Compass Stadium    22039
-#&gt; 35      3632                                           Beaver Stadium   106572
-#&gt; 36      3634                                 Ben Hill Griffin Stadium    88548
-#&gt; 37      4729                           Benson Field at Yulman Stadium    30000
-#&gt; 38      6043                    Bethpage Federal Credit Union Stadium     6000
-#&gt; 39      3636                      Bill Snyder Family Football Stadium    50000
-#&gt; 40      3639                                       Blackshear Stadium    15000
-#&gt; 41      3841                            Blaik Field at Michie Stadium    38000
-#&gt; 42      3697              Bobby Bowden Field at Doak Campbell Stadium    79560
-#&gt; 43       721               Bobby Dodd Stadium at Historic Grant Field    55000
-#&gt; 44      3643                                           Bobcat Stadium    19000
-#&gt; 45      4419                                           Bob Ford Field     8500
-#&gt; 46      3646                                    Boone Pickens Stadium    60218
-#&gt; 47      3647                                           Bowers Stadium    14000
-#&gt; 48      3649                                      Bowman Gray Stadium    17000
-#&gt; 49      3650                                   Bragg Memorial Stadium    25500
-#&gt; 50      4133                                  Braly Municipal Stadium    14215
-#&gt; 51      3651                                      Bridgeforth Stadium    24878
-#&gt; 52      3764                          Brigham Field at Huskie Stadium    23595
-#&gt; 53      3652                            Bright House Networks Stadium    44206
-#&gt; 54      4617                                   Bristol Motor Speedway   162000
-#&gt; 55      3654                                           Brooks Stadium     9214
-#&gt; 56      3655                                              Brown Field     5000
-#&gt; 57      3656                                            Brown Stadium    20000
-#&gt; 58      3657                                     Bryant Denny Stadium   101821
-#&gt; 59      3658                                          Buccaneer Field     4000
-#&gt; 60      3660                                          Bulldog Stadium    41031
+#&gt; 28      6274                                               Audi Field    20000
+#&gt; 29      3626                                           Autzen Stadium    54000
+#&gt; 30      3504                                            Aviva Stadium    51700
+#&gt; 31      3627                                  Bailey Memorial Stadium     6500
+#&gt; 32      3628                                  Bank of America Stadium    73778
+#&gt; 33      3629                                      Barker-Lane Stadium     5500
+#&gt; 34      3630                                               BB&amp;T Field    31500
+#&gt; 35      3631                                     BBVA Compass Stadium    22000
+#&gt; 36      3632                                           Beaver Stadium   106572
+#&gt; 37      3634                                 Ben Hill Griffin Stadium    88548
+#&gt; 38      4729                           Benson Field at Yulman Stadium    30000
+#&gt; 39      6043                    Bethpage Federal Credit Union Stadium     6000
+#&gt; 40      3636                      Bill Snyder Family Football Stadium    50000
+#&gt; 41      3639                                       Blackshear Stadium    15000
+#&gt; 42      3841                            Blaik Field at Michie Stadium    38000
+#&gt; 43      3697              Bobby Bowden Field at Doak Campbell Stadium    79560
+#&gt; 44       721               Bobby Dodd Stadium at Historic Grant Field    55000
+#&gt; 45      3643                                           Bobcat Stadium    17000
+#&gt; 46      4419                                           Bob Ford Field     8500
+#&gt; 47      3646                                    Boone Pickens Stadium    55509
+#&gt; 48      3647                                           Bowers Stadium    14000
+#&gt; 49      3649                                      Bowman Gray Stadium    17000
+#&gt; 50      3650                                   Bragg Memorial Stadium    25500
+#&gt; 51      4133                                  Braly Municipal Stadium    14215
+#&gt; 52      3651                                      Bridgeforth Stadium    24877
+#&gt; 53      3764                          Brigham Field at Huskie Stadium    23595
+#&gt; 54      3652                            Bright House Networks Stadium    44206
+#&gt; 55      4617                                   Bristol Motor Speedway   162000
+#&gt; 56      3654                                           Brooks Stadium    21000
+#&gt; 57      3655                                              Brown Field     5000
+#&gt; 58      3656                                            Brown Stadium    20000
+#&gt; 59      3657                                     Bryant Denny Stadium   101821
+#&gt; 60      3658                                          Buccaneer Field     4000
 #&gt; 61      3661                                          Bulldog Stadium     4400
-#&gt; 62      3664                                              Butler Bowl     5500
-#&gt; 63      3666                                              Cajun Field    36900
-#&gt; 64      3831                              California Memorial Stadium    62717
-#&gt; 65      4013                                    Camping World Stadium    65000
-#&gt; 66       347                                     Camp Randall Stadium    80321
-#&gt; 67      3668                                             Campus Field     4000
-#&gt; 68      5388                                           Canvas Stadium    41000
-#&gt; 69      1964                                             Carrier Dome    49250
-#&gt; 70      3670                                    Carter-Finley Stadium    57583
-#&gt; 71      3671                                               Case Field     2400
-#&gt; 72      3625                                  Centennial Bank Stadium    30964
-#&gt; 73      3673                                        CenturyLink Field    69000
-#&gt; 74      4251                                              Chase Field    48519
-#&gt; 75      3486                                    Children's Mercy Park    18467
-#&gt; 76      3676                       Christy Mathewson-Memorial Stadium    13100
-#&gt; 77      3681                                             Coffey Field     7000
-#&gt; 78      3683                                     Commonwealth Stadium    61000
-#&gt; 79      3847                                             Cooper Field     2500
-#&gt; 80       499                                              Cotton Bowl    92100
-#&gt; 81      3685                                  Coughlin-Alumni Stadium    16700
-#&gt; 82      5237                                  Coughlin-Alumni Stadium    15000
-#&gt; 83      3686                                           Cowboy Stadium    17410
-#&gt; 84      3689                                             Cramton Bowl    21000
-#&gt; 85      4737                                       Croke Park Stadium    82300
-#&gt; 86      1905                                               DakotaDome    10000
-#&gt; 87      3910                   Darrell K Royal-Texas Memorial Stadium   100119
-#&gt; 88      3693                                       Davis Wade Stadium    61337
-#&gt; 89      3691                                        D. B. Milne Field     5000
-#&gt; 90      3694                                              DeGol Field     3500
-#&gt; 91      3695                                         Delaware Stadium    22000
-#&gt; 92      4258                               Dignity Health Sports Park    30000
-#&gt; 93      3696                                              Dix Stadium    25000
-#&gt; 94      3887 Donald W. Reynolds Razorback Stadium Frank Broyles Field    72000
-#&gt; 95      3699                                    Dowdy-Ficklen Stadium    50000
-#&gt; 96      3700                                       Doyt Perry Stadium    24000
-#&gt; 97      3701                                            Drake Stadium    14557
-#&gt; 98      3706                                          Eccles Coliseum     8500
-#&gt; 99      2068                              E. Claiborne Robins Stadium     9000
-#&gt; 100     3902                                   Eddie Robinson Stadium    19600
-#&gt; 101     4757                                     Edwards-Maurer Field     3000
-#&gt; 102     3704                                   E. J. Whitmire Stadium    13742
-#&gt; 103     3710                               Ernest W. Spangler Stadium     8500
-#&gt; 104     3711                                            Estes Stadium     9000
-#&gt; 105     3712                                           EverBank Field    67246
-#&gt; 106     3713                                           Falcon Stadium    46692
-#&gt; 107     3714                                                Fargodome    19000
-#&gt; 108     3838                                             Faurot Field    71168
-#&gt; 109     3715                                              FAU Stadium    30000
-#&gt; 110     3719                                              FedEx Field    82000
-#&gt; 111     4245                                              Fenway Park    38073
-#&gt; 112     4899                                 Fifth Third Bank Stadium     8318
-#&gt; 113     3720                                           Finley Stadium    20668
-#&gt; 114     3721                                             Fisher Field    13132
-#&gt; 115     3722                                             Fitton Field    23500
-#&gt; 116      218                                              FIU Stadium    23500
-#&gt; 117     4417                    Five Star Stadium at the Moye Complex    10200
-#&gt; 118     3724                                      Floyd Casey Stadium    50000
-#&gt; 119     3726                                             Folsom Field    50183
-#&gt; 120     3727                                               Ford Field    65000
-#&gt; 121     3918                                            Foreman Field    20118
-#&gt; 122     3730                                           Franklin Field    52593
-#&gt; 123     5220                                         Garrison Stadium     5000
-#&gt; 124     3734                             Gayle and Tom Benson Stadium     6000
-#&gt; 125     3835                 Gaylord Family Oklahoma Memorial Stadium    84389
-#&gt; 126     3495                                             Georgia Dome    74228
-#&gt; 127     4246                                    Georgia State Stadium    24333
-#&gt; 128     3735                                   Gerald J. Ford Stadium    32000
-#&gt; 129     3737                                            Gibbs Stadium    13000
-#&gt; 130     3738                                         Gillette Stadium    68756
-#&gt; 131     3739                                               Glass Bowl    26248
-#&gt; 132     3740                                      Golden Lion Stadium    16000
-#&gt; 133     3741                                          Goodman Stadium    16000
-#&gt; 134     3742                                        Governors Stadium    10000
-#&gt; 135     3748                                           Graham Stadium     8000
-#&gt; 136     4293                                    Guaranteed Rate Field    40615
-#&gt; 137     4029                                             Hale Stadium    10000
-#&gt; 138     3744                                          Hancock Stadium    15000
-#&gt; 139     6526                                  Hancock Whitney Stadium    25000
-#&gt; 140     3746                                             Hanson Field    16368
-#&gt; 141     3948                                        Hard Rock Stadium    65326
-#&gt; 142     3963                                     Harry Turpin Stadium    15971
-#&gt; 143     3750                                          Harvard Stadium    30323
-#&gt; 144     3752                                              Heinz Field    68400
-#&gt; 145     3754                             High Point Solutions Stadium    52454
-#&gt; 146     4765                                        Hillsboro Stadium     7600
-#&gt; 147     1930                                               Holt Arena    12000
-#&gt; 148     3756                                      Homer Bryce Stadium    15000
-#&gt; 149     3757                                           Hornet Stadium    21195
-#&gt; 150     4582                                           Hornet Stadium    26500
-#&gt; 151     3796                  Houchens Industries-L. T. Smith Stadium    22113
-#&gt; 152     3758                                            Houck Stadium    11015
-#&gt; 153     3762                                           Hughes Stadium    10000
-#&gt; 154     4424                                            Husky Stadium     5000
-#&gt; 155     3765                                            Husky Stadium    70500
-#&gt; 156     3766                                     Independence Stadium    49565
-#&gt; 157     3771                                      Jack Spinks Stadium    22500
-#&gt; 158     3772                                       Jack Trice Stadium    61500
-#&gt; 159     4752                                              Jahna Field        0
-#&gt; 160     3774                                            Jayne Stadium    10000
-#&gt; 161     4418                                 Jerry Richardson Stadium    15314
-#&gt; 162     3644                       Jim Wacker Field at Bobcat Stadium    30000
-#&gt; 163     3775                                  Joan C. Edwards Stadium    38019
-#&gt; 164     3776                                       Joe Aillet Stadium    28019
-#&gt; 165     3777                                       Joe Walton Stadium     3000
-#&gt; 166     3778                                  John F. Kennedy Stadium     5200
-#&gt; 167     3725                             Johnny Red"" Floyd Stadium""    31000
-#&gt; 168     3781                                    Johnny Unitas Stadium    11000
-#&gt; 169     4728                      John O'Quinn Field at TDECU Stadium    40000
-#&gt; 170     3782                                   Johnson Hagood Stadium    21000
-#&gt; 171     3784                                       Jones AT&amp;T Stadium    60862
-#&gt; 172     3785                                      Jordan-Hare Stadium    87451
-#&gt; 173     3662                                              JSU Stadium    24000
-#&gt; 174     3786                                     Kelly/Shorts Stadium    32885
-#&gt; 175     3787                                   Kenan Memorial Stadium    62980
-#&gt; 176     3788                               Kenneth P. LaValle Stadium     8200
-#&gt; 177     4900                                    Kermit Tipton Stadium     6600
-#&gt; 178     3790                                            Kessler Field     4000
-#&gt; 179     5389                                          Kessler Stadium     4200
-#&gt; 180     3791                                              Kibbie Dome    16000
-#&gt; 181     3792                                      Kidd Brewer Stadium    24050
-#&gt; 182     3793                                          Kinnick Stadium    70585
-#&gt; 183     3795                                               Kyle Field   102733
-#&gt; 184     3797                                     Ladd Peebles Stadium    33471
-#&gt; 185     3798                                            Lambeau Field    80735
-#&gt; 186     3799                                             Lane Stadium    66233
-#&gt; 187     3801                                   LaVell Edwards Stadium    63725
-#&gt; 188     3802                                 Lawrence A. Wien Stadium    17000
-#&gt; 189     3803                                             Legion Field    71594
-#&gt; 190       36                                          Leonidoff Field     5000
-#&gt; 191     4738                                           Levi's Stadium    68500
-#&gt; 192     3805                            Liberty Bowl Memorial Stadium    62380
-#&gt; 193     3806                                  Lincoln Financial Field    68532
-#&gt; 194      477                            Los Angeles Memorial Coliseum    93607
-#&gt; 195     3809                                      Louis Crews Stadium    21000
-#&gt; 196     3811                                          Lubbers Stadium    10444
-#&gt; 197     3812                                        Lucas Oil Stadium    70000
-#&gt; 198     3816                                           Mackay Stadium    26000
-#&gt; 199     3817                                           Malone Stadium    30427
-#&gt; 200     3779                  Manning Field at John L. Guidry Stadium    10500
-#&gt; 201     4223                                             Marlins Park    34000
-#&gt; 202     3820                                           Martin Stadium    32248
-#&gt; 203     3665                                         Maryland Stadium    51802
-#&gt; 204     4727                                           McLane Stadium    45140
-#&gt; 205     3824                                            Meade Stadium     5180
-#&gt; 206     3826                                           Memorial Field    15000
-#&gt; 207     3833                                         Memorial Stadium    50071
-#&gt; 208     3830                                         Memorial Stadium    52959
-#&gt; 209     3836                                         Memorial Stadium    81500
-#&gt; 210     3832                                         Memorial Stadium    60670
-#&gt; 211     3829                                         Memorial Stadium    12464
-#&gt; 212     3834                                         Memorial Stadium    86047
-#&gt; 213     5348                                    Mercedes-Benz Stadium    71000
-#&gt; 214     3493                                  Mercedes-Benz Superdome    76468
-#&gt; 215     3839                                          MetLife Stadium    82566
-#&gt; 216     3558                                         Michigan Stadium   107601
-#&gt; 217     3976                    Mississippi Veterans Memorial Stadium    60492
-#&gt; 218     3815                                    M. M. Roberts Stadium    36000
-#&gt; 219     4014                                           Moretz Stadium     8500
-#&gt; 220     3842                Mountaineer Field at Milan Puskar Stadium    60000
-#&gt; 221     3814                                         M&amp;T Bank Stadium    71008
-#&gt; 222     3848                                      Multi-Sport Stadium     1200
-#&gt; 223     3850                                        Municipal Stadium    10000
-#&gt; 224     3851                                          Mustang Stadium     3500
-#&gt; 225     3852                       Navy-Marine Corps Memorial Stadium    34000
-#&gt; 226     5083                                       New Turner Stadium     4400
-#&gt; 227     3853                                          Neyland Stadium   102455
-#&gt; 228     3854                                          Nippert Stadium    40000
-#&gt; 229     3810                                           Nissan Stadium    68798
-#&gt; 230     3855                                       Notre Dame Stadium    80795
-#&gt; 231     3856                                         Nottingham Field     8533
-#&gt; 232     3891                                              NRG Stadium    72220
-#&gt; 233     3858                                          O'Brien Stadium    10000
-#&gt; 234     3861                                             Ohio Stadium   104944
-#&gt; 235     3862                                  O'Kelly-Riddick Stadium    10000
-#&gt; 236     3864                                 Oliver C. Dawson Stadium    22000
-#&gt; 237     5403                                     Orlando City Stadium        0
-#&gt; 238     3868                                          Paladin Stadium    16000
-#&gt; 239     5238                                          Panther Stadium    15000
-#&gt; 240     3873                             Papa John's Cardinal Stadium    55000
-#&gt; 241     3874                                       Paul Brown Stadium    66515
-#&gt; 242     3608                                          Paulson Stadium    24300
-#&gt; 243     3876                                            Peden Stadium    24000
-#&gt; 244     3878                                   Plaster Sports Complex    17500
-#&gt; 245     3881                             Princeton University Stadium    27800
-#&gt; 246     3485                                          Providence Park    19566
-#&gt; 247     3882                                  Provost Umphrey Stadium    16000
-#&gt; 248     3932                                         Qualcomm Stadium    70561
-#&gt; 249     3886                                    Raymond James Stadium    65857
-#&gt; 250     3889                                           Reinhart Field     3500
-#&gt; 251     3892                                         Rentschler Field    40000
-#&gt; 252     3893                                            Reser Stadium    45674
-#&gt; 253     3491                                              RFK Stadium    45596
-#&gt; 254     3894                                           Rhodes Stadium    11250
-#&gt; 255      587                                      Rice-Eccles Stadium    45807
-#&gt; 256     3895                                             Rice Stadium    47000
-#&gt; 257     3896                                        Rice-Totten Field    10000
-#&gt; 258     3897                                       Richardson Stadium     6000
-#&gt; 259      453                                        Robertson Stadium    32000
-#&gt; 260     3905                                           Romney Stadium    25513
-#&gt; 261     3906                                               Roos Field     8600
-#&gt; 262     1056                                                Rose Bowl    92542
-#&gt; 263     3907                                         Ross-Ade Stadium    57236
-#&gt; 264     3908                                         Roy Kidd Stadium    20000
-#&gt; 265     3909                                      Roy Stewart Stadium    16800
-#&gt; 266     3911                                               Ryan Field    47130
-#&gt; 267     3912                                        Rynearson Stadium    30200
-#&gt; 268     3913                                           Saluki Stadium    15276
-#&gt; 269     3914                                         Sam Boyd Stadium    36800
-#&gt; 270     3917                                          Sanford Stadium    92746
-#&gt; 271     3919                                        Scheumann Stadium    22500
-#&gt; 272     3921                                        Schoellkopf Field    25597
-#&gt; 273     3923                                            Scott Stadium    61500
-#&gt; 274     3925                                          Seibert Stadium     6700
-#&gt; 275     3926                                            Setzler Field     4000
-#&gt; 276     6577                                              SHI Stadium    52454
-#&gt; 277     3928                                         Shotwell Stadium    15075
-#&gt; 278     3674                    Skelly Field at H. A. Chapman Stadium    30000
-#&gt; 279     3933                                            Soldier Field    61500
-#&gt; 280     3761                     Sonny Lubick Field at Hughes Stadium    34400
-#&gt; 281     3935                                          Spartan Stadium    30456
-#&gt; 282     3936                                          Spartan Stadium    75005
-#&gt; 283     4416                            Spec Martin Municipal Stadium     6000
-#&gt; 284     3937                      Sports Authority Field at Mile High    76273
-#&gt; 285      844                                        Stambaugh Stadium    20650
-#&gt; 286     3940                                         Stanford Stadium    50424
-#&gt; 287     5263                                           Steele Stadium     3000
-#&gt; 288     3716                           Stewart ""Red"" Faught Stadium     4000
-#&gt; 289     3942                                          Stewart Stadium    17000
-#&gt; 290     3944                                       Strawberry Stadium     7408
-#&gt; 291      538                                           StubHub Center        0
-#&gt; 292     3768                        Summa Field at InfoCision Stadium    30000
-#&gt; 293     3946                                         Sun Bowl Stadium    51500
-#&gt; 294     3947                                        Sun Devil Stadium    56232
-#&gt; 295     5319                                            SunTrust Park    41084
-#&gt; 296     3950                                            Superior Dome     8000
-#&gt; 297     3953                                         TCF Bank Stadium    50805
-#&gt; 298     3952                                       Ted Wright Stadium     7500
-#&gt; 299     4750                                          The Reservation    10000
-#&gt; 300     4779                                  Thomas Robinson Stadium    15023
-#&gt; 301     3958                                            Tiger Stadium   102321
-#&gt; 302      716                                           Torero Stadium     6000
-#&gt; 303     5096                                           Toyota Stadium     5000
-#&gt; 304     1400                                           Toyota Stadium    20500
-#&gt; 305     4113                                          Tropicana Field    31042
-#&gt; 306     3962                                           Tucker Stadium    16500
-#&gt; 307     5015                                           Turner Stadium     4400
-#&gt; 308     3965                                               UB Stadium    29013
-#&gt; 309     3967                                                 UNI-Dome    16000
-#&gt; 310     3969                                    University Field (NY)    10000
-#&gt; 311     3970                            University of Phoenix Stadium    63400
-#&gt; 312     3971                                       University Stadium    39224
-#&gt; 313     3973                                       Vanderbilt Stadium    40350
-#&gt; 314     3974                                 Vaught-Hemingway Stadium    64038
-#&gt; 315     3975                                Veterans Memorial Stadium    30000
-#&gt; 316      717                                        Villanova Stadium    12500
-#&gt; 317     3979                                   Wagner College Stadium     3300
-#&gt; 318     3980                                            Waldo Stadium    30200
-#&gt; 319     2023                                           Walkup Skydome    15300
-#&gt; 320     3982                                     Wallace Wade Stadium    40000
-#&gt; 321     3983                                     War Memorial Stadium    54120
-#&gt; 322     3984                                     War Memorial Stadium    29181
-#&gt; 323     3985                            Warren McGuirk Alumni Stadium    17000
-#&gt; 324     3987                               Washington-Grizzly Stadium    25200
-#&gt; 325     3988                                          Welcome Stadium    11000
-#&gt; 326     3688                                          Wildcat Stadium    11015
-#&gt; 327     5440                                     Wildcat Stadium (TX)    12000
-#&gt; 328     5400                            William B. Greene Jr. Stadium     7694
-#&gt; 329     3991                           William Dick"" Price Stadium""    30000
-#&gt; 330     3990                                William H. Greene Stadium     7086
-#&gt; 331     3994                                   Williams-Brice Stadium    80250
-#&gt; 332     3992                                         Williams Stadium    19200
-#&gt; 333     4250                                            Wrigley Field        0
-#&gt; 334     3996                                            Yager Stadium    24286
-#&gt; 335     3997                                                Yale Bowl    61446
-#&gt; 336     4102                                           Yankee Stadium    54251
-#&gt; 337     3998                                            Zable Stadium    12259
+#&gt; 62      3660                                          Bulldog Stadium    41031
+#&gt; 63      3664                                              Butler Bowl     5647
+#&gt; 64      3666                                              Cajun Field    41426
+#&gt; 65      3831                              California Memorial Stadium    62467
+#&gt; 66      4013                                    Camping World Stadium    65000
+#&gt; 67       347                                     Camp Randall Stadium    80321
+#&gt; 68      3668                                             Campus Field     3334
+#&gt; 69      5388                                           Canvas Stadium    36500
+#&gt; 70      1964                                             Carrier Dome    49057
+#&gt; 71      3670                                    Carter-Finley Stadium    58000
+#&gt; 72      3671                                               Case Field     2400
+#&gt; 73      3625                                  Centennial Bank Stadium    30382
+#&gt; 74      3673                                        CenturyLink Field    69000
+#&gt; 75      4251                                              Chase Field        0
+#&gt; 76      3486                                    Children's Mercy Park    18467
+#&gt; 77      3676                       Christy Mathewson-Memorial Stadium    13100
+#&gt; 78      7220                    Clarence T.C. Ching Athletics Complex     9000
+#&gt; 79      3681                                             Coffey Field     7000
+#&gt; 80      3683                                     Commonwealth Stadium    61000
+#&gt; 81      3847                                             Cooper Field     3750
+#&gt; 82       499                                              Cotton Bowl    92100
+#&gt; 83      5237                                  Coughlin-Alumni Stadium    19340
+#&gt; 84      3685                                  Coughlin-Alumni Stadium    16700
+#&gt; 85      3686                                           Cowboy Stadium    17610
+#&gt; 86      3689                                             Cramton Bowl    25000
+#&gt; 87      4737                                       Croke Park Stadium    82300
+#&gt; 88      1905                                               DakotaDome     9100
+#&gt; 89      3910                   Darrell K Royal-Texas Memorial Stadium   100119
+#&gt; 90      3693                                       Davis Wade Stadium    61337
+#&gt; 91      3691                                        D. B. Milne Field     5000
+#&gt; 92      3694                                              DeGol Field     3500
+#&gt; 93      3695                                         Delaware Stadium    22000
+#&gt; 94      4258                               Dignity Health Sports Park    48114
+#&gt; 95      3696                                              Dix Stadium    25319
+#&gt; 96      3887 Donald W. Reynolds Razorback Stadium Frank Broyles Field    80000
+#&gt; 97      3699                                    Dowdy-Ficklen Stadium    50000
+#&gt; 98      3700                                       Doyt Perry Stadium    24000
+#&gt; 99      3701                                            Drake Stadium    14557
+#&gt; 100     6048                                            Duane Stadium     3500
+#&gt; 101     3706                                          Eccles Coliseum    10000
+#&gt; 102     2068                              E. Claiborne Robins Stadium     8217
+#&gt; 103     3902                                   Eddie Robinson Stadium    19600
+#&gt; 104     4757                                     Edwards-Maurer Field     3000
+#&gt; 105     3704                                   E. J. Whitmire Stadium    13742
+#&gt; 106     3710                               Ernest W. Spangler Stadium     9000
+#&gt; 107     3711                                            Estes Stadium    10000
+#&gt; 108     3712                                           EverBank Field    67858
+#&gt; 109     3713                                           Falcon Stadium    46692
+#&gt; 110     3714                                                Fargodome    18700
+#&gt; 111     3838                                             Faurot Field    71168
+#&gt; 112     3715                                              FAU Stadium    29419
+#&gt; 113     3719                                              FedEx Field    82000
+#&gt; 114     4245                                              Fenway Park    38073
+#&gt; 115     4899                                 Fifth Third Bank Stadium     8318
+#&gt; 116     3720                                           Finley Stadium    20668
+#&gt; 117     3721                                             Fisher Field    13132
+#&gt; 118     3722                                             Fitton Field    23500
+#&gt; 119      218                                              FIU Stadium    20000
+#&gt; 120     4417                    Five Star Stadium at the Moye Complex    10200
+#&gt; 121     3724                                      Floyd Casey Stadium    50000
+#&gt; 122     3726                                             Folsom Field    50183
+#&gt; 123     3727                                               Ford Field    64500
+#&gt; 124     3918                                            Foreman Field    20118
+#&gt; 125     3730                                           Franklin Field    52593
+#&gt; 126     5220                                         Garrison Stadium     5000
+#&gt; 127     3734                             Gayle and Tom Benson Stadium     6000
+#&gt; 128     3835                 Gaylord Family Oklahoma Memorial Stadium    86112
+#&gt; 129     3495                                             Georgia Dome    74228
+#&gt; 130     4246                                    Georgia State Stadium    25000
+#&gt; 131     3735                                   Gerald J. Ford Stadium    32000
+#&gt; 132     3737                                            Gibbs Stadium    13000
+#&gt; 133     3738                                         Gillette Stadium    68756
+#&gt; 134     3739                                               Glass Bowl    26038
+#&gt; 135     3740                                      Golden Lion Stadium    16000
+#&gt; 136     3741                                          Goodman Stadium    16000
+#&gt; 137     3742                                        Governors Stadium    10100
+#&gt; 138     3748                                           Graham Stadium     7500
+#&gt; 139     3745                                     Greater Zion Stadium    10500
+#&gt; 140     4293                                    Guaranteed Rate Field    40615
+#&gt; 141     4029                                             Hale Stadium    10000
+#&gt; 142     3744                                          Hancock Stadium    15000
+#&gt; 143     6526                                  Hancock Whitney Stadium    25450
+#&gt; 144     3746                                             Hanson Field    16368
+#&gt; 145     3948                                        Hard Rock Stadium    64767
+#&gt; 146     3963                                     Harry Turpin Stadium    15971
+#&gt; 147     3750                                          Harvard Stadium    30323
+#&gt; 148     3752                                              Heinz Field    68400
+#&gt; 149     3754                             High Point Solutions Stadium    52454
+#&gt; 150     4765                                        Hillsboro Stadium     7600
+#&gt; 151     1930                                               Holt Arena    12000
+#&gt; 152     3756                                      Homer Bryce Stadium    14575
+#&gt; 153     4582                                           Hornet Stadium    26500
+#&gt; 154     3757                                           Hornet Stadium    21195
+#&gt; 155     3796                  Houchens Industries-L. T. Smith Stadium    22113
+#&gt; 156     7003                                              Houck Field    10000
+#&gt; 157     3758                                            Houck Stadium    11015
+#&gt; 158     3762                                           Hughes Stadium    10000
+#&gt; 159     4424                                            Husky Stadium     5000
+#&gt; 160     3765                                            Husky Stadium    70138
+#&gt; 161     3766                                     Independence Stadium    52000
+#&gt; 162      150                                        Jack Coffey Field     7000
+#&gt; 163     3771                                      Jack Spinks Stadium    22500
+#&gt; 164     3772                                       Jack Trice Stadium    61500
+#&gt; 165     4752                                              Jahna Field        0
+#&gt; 166     3774                                            Jayne Stadium    10000
+#&gt; 167     4418                                 Jerry Richardson Stadium    15300
+#&gt; 168     3644                       Jim Wacker Field at Bobcat Stadium    30000
+#&gt; 169     3775                                  Joan C. Edwards Stadium    38016
+#&gt; 170     3776                                       Joe Aillet Stadium    28019
+#&gt; 171     3777                                       Joe Walton Stadium     3000
+#&gt; 172     3778                                  John F. Kennedy Stadium     5200
+#&gt; 173     3725                             Johnny Red"" Floyd Stadium""    30788
+#&gt; 174     3781                                    Johnny Unitas Stadium    11200
+#&gt; 175     4728                      John O'Quinn Field at TDECU Stadium    40000
+#&gt; 176     3782                                   Johnson Hagood Stadium    11427
+#&gt; 177     3784                                       Jones AT&amp;T Stadium    60454
+#&gt; 178     3785                                      Jordan-Hare Stadium    87451
+#&gt; 179     3662                                              JSU Stadium    24000
+#&gt; 180     3786                                     Kelly/Shorts Stadium    30255
+#&gt; 181     3787                                   Kenan Memorial Stadium    50500
+#&gt; 182     3788                               Kenneth P. LaValle Stadium    12300
+#&gt; 183     4900                                    Kermit Tipton Stadium     6600
+#&gt; 184     3790                                            Kessler Field     4000
+#&gt; 185     5389                                          Kessler Stadium     4200
+#&gt; 186     3791                                              Kibbie Dome    16000
+#&gt; 187     3792                                      Kidd Brewer Stadium    30000
+#&gt; 188     3793                                          Kinnick Stadium    69250
+#&gt; 189     3795                                               Kyle Field   102733
+#&gt; 190     3797                                     Ladd Peebles Stadium    33471
+#&gt; 191     3798                                            Lambeau Field    80735
+#&gt; 192     3799                                             Lane Stadium    65632
+#&gt; 193     3801                                   LaVell Edwards Stadium    63470
+#&gt; 194     3802                                 Lawrence A. Wien Stadium    17000
+#&gt; 195     3803                                             Legion Field    72000
+#&gt; 196       36                                          Leonidoff Field     5000
+#&gt; 197     4738                                           Levi's Stadium    68500
+#&gt; 198     3805                            Liberty Bowl Memorial Stadium    58325
+#&gt; 199     3806                                  Lincoln Financial Field    69879
+#&gt; 200      477                            Los Angeles Memorial Coliseum    77500
+#&gt; 201     3809                                      Louis Crews Stadium    21000
+#&gt; 202     3811                                          Lubbers Stadium    10444
+#&gt; 203     3812                                        Lucas Oil Stadium    63000
+#&gt; 204     3816                                           Mackay Stadium    27000
+#&gt; 205     3817                                           Malone Stadium    30427
+#&gt; 206     3779                  Manning Field at John L. Guidry Stadium    10500
+#&gt; 207     4223                                             Marlins Park    34000
+#&gt; 208     3820                                           Martin Stadium    32952
+#&gt; 209     3665                                         Maryland Stadium    51802
+#&gt; 210     4727                                           McLane Stadium    45140
+#&gt; 211     3824                                            Meade Stadium     8000
+#&gt; 212     3826                                           Memorial Field    11000
+#&gt; 213     3834                                         Memorial Stadium    85458
+#&gt; 214     3829                                         Memorial Stadium    12764
+#&gt; 215     3836                                         Memorial Stadium    81500
+#&gt; 216     3832                                         Memorial Stadium    60670
+#&gt; 217     3833                                         Memorial Stadium    47000
+#&gt; 218     3830                                         Memorial Stadium    52656
+#&gt; 219     3827                      Memorial Stadium (Stephenville, TX)    12000
+#&gt; 220     5348                                    Mercedes-Benz Stadium    75000
+#&gt; 221     3493                                  Mercedes-Benz Superdome    73000
+#&gt; 222     3839                                          MetLife Stadium    82500
+#&gt; 223     3558                                         Michigan Stadium   107601
+#&gt; 224     3976                    Mississippi Veterans Memorial Stadium    44215
+#&gt; 225     3815                                    M. M. Roberts Stadium    36000
+#&gt; 226     4014                                           Moretz Stadium     8500
+#&gt; 227     3842                Mountaineer Field at Milan Puskar Stadium    60000
+#&gt; 228     3814                                         M&amp;T Bank Stadium    71008
+#&gt; 229     3848                                      Multi-Sport Stadium     1200
+#&gt; 230     3850                                        Municipal Stadium    10000
+#&gt; 231     3851                                          Mustang Stadium     3500
+#&gt; 232     3852                       Navy-Marine Corps Memorial Stadium    34000
+#&gt; 233     5083                                       New Turner Stadium     4400
+#&gt; 234     3853                                          Neyland Stadium   102455
+#&gt; 235     3854                                          Nippert Stadium    40000
+#&gt; 236     3810                                           Nissan Stadium    69143
+#&gt; 237     3855                                       Notre Dame Stadium    80795
+#&gt; 238     3856                                         Nottingham Field     8500
+#&gt; 239     3891                                              NRG Stadium    71995
+#&gt; 240     3858                                          O'Brien Stadium    10000
+#&gt; 241     3861                                             Ohio Stadium   102780
+#&gt; 242     3862                                  O'Kelly-Riddick Stadium    10000
+#&gt; 243     3864                                 Oliver C. Dawson Stadium    22000
+#&gt; 244     5403                                     Orlando City Stadium        0
+#&gt; 245     5116                                    O'Shaughnessy Stadium     5025
+#&gt; 246     3868                                          Paladin Stadium    16000
+#&gt; 247     5238                                          Panther Stadium    15000
+#&gt; 248     3873                             Papa John's Cardinal Stadium    60000
+#&gt; 249     3874                                       Paul Brown Stadium    66515
+#&gt; 250     3608                                          Paulson Stadium    25000
+#&gt; 251     3876                                            Peden Stadium    24000
+#&gt; 252     4205                                               Petco Park        0
+#&gt; 253     3878                                   Plaster Sports Complex    17337
+#&gt; 254     7225                                               Polar Park     9508
+#&gt; 255     3881                             Princeton University Stadium    27800
+#&gt; 256     7221                                       Protective Stadium        0
+#&gt; 257     3485                                          Providence Park    19566
+#&gt; 258     3882                                  Provost Umphrey Stadium    16000
+#&gt; 259     3932                                         Qualcomm Stadium    70561
+#&gt; 260     3886                                    Raymond James Stadium    65828
+#&gt; 261     3889                                           Reinhart Field     3500
+#&gt; 262     3892                                         Rentschler Field    40000
+#&gt; 263     3893                                            Reser Stadium    43363
+#&gt; 264     3491                                              RFK Stadium    45596
+#&gt; 265     3894                                           Rhodes Stadium    14000
+#&gt; 266      587                                      Rice-Eccles Stadium    45807
+#&gt; 267     3895                                             Rice Stadium    47000
+#&gt; 268     3896                                        Rice-Totten Field    10000
+#&gt; 269     3897                                       Richardson Stadium     6000
+#&gt; 270      453                                        Robertson Stadium    32000
+#&gt; 271     3905                                           Romney Stadium    25513
+#&gt; 272     3906                                               Roos Field     8500
+#&gt; 273     1056                                                Rose Bowl    88565
+#&gt; 274     3907                                         Ross-Ade Stadium    57282
+#&gt; 275     3908                                         Roy Kidd Stadium    20000
+#&gt; 276     3909                                      Roy Stewart Stadium    16800
+#&gt; 277     3911                                               Ryan Field    47130
+#&gt; 278     3912                                        Rynearson Stadium    30200
+#&gt; 279     3913                                           Saluki Stadium    15000
+#&gt; 280     3914                                         Sam Boyd Stadium    36800
+#&gt; 281     3917                                          Sanford Stadium    92746
+#&gt; 282     3919                                        Scheumann Stadium    22500
+#&gt; 283     3921                                        Schoellkopf Field    21500
+#&gt; 284     3923                                            Scott Stadium    61500
+#&gt; 285     3925                                          Seibert Stadium     6700
+#&gt; 286     3926                                            Setzler Field     4000
+#&gt; 287     3927                                            Sherman Field     4684
+#&gt; 288     6577                                              SHI Stadium    52454
+#&gt; 289     3928                                         Shotwell Stadium    15075
+#&gt; 290     3674                    Skelly Field at H. A. Chapman Stadium    30000
+#&gt; 291     7065                                             SoFi Stadium    71500
+#&gt; 292     3933                                            Soldier Field    61500
+#&gt; 293     3761                     Sonny Lubick Field at Hughes Stadium    34400
+#&gt; 294     3935                                          Spartan Stadium    30456
+#&gt; 295     3936                                          Spartan Stadium    75005
+#&gt; 296     4416                            Spec Martin Municipal Stadium     6000
+#&gt; 297     3937                      Sports Authority Field at Mile High    76125
+#&gt; 298      844                                        Stambaugh Stadium    20630
+#&gt; 299     3940                                         Stanford Stadium    50424
+#&gt; 300     5263                                           Steele Stadium     3000
+#&gt; 301     3716                           Stewart ""Red"" Faught Stadium     4000
+#&gt; 302     3942                                          Stewart Stadium    17500
+#&gt; 303     3944                                       Strawberry Stadium     7408
+#&gt; 304      538                                           StubHub Center    27000
+#&gt; 305     3768                        Summa Field at InfoCision Stadium    30000
+#&gt; 306     3946                                         Sun Bowl Stadium    51500
+#&gt; 307     3947                                        Sun Devil Stadium    65870
+#&gt; 308     5319                                            SunTrust Park    41084
+#&gt; 309     3950                                            Superior Dome     8000
+#&gt; 310     3953                                         TCF Bank Stadium    50850
+#&gt; 311     3952                                       Ted Wright Stadium     7500
+#&gt; 312     4750                                          The Reservation    10000
+#&gt; 313     4779                                  Thomas Robinson Stadium    15000
+#&gt; 314     3958                                            Tiger Stadium   102321
+#&gt; 315     3718                          Tom Benson Hall of Fame Stadium    23000
+#&gt; 316      716                                           Torero Stadium     6000
+#&gt; 317     5096                                           Toyota Stadium     5000
+#&gt; 318     1400                                           Toyota Stadium    20500
+#&gt; 319     4113                                          Tropicana Field    31042
+#&gt; 320     3962                                           Tucker Stadium    16500
+#&gt; 321     5015                                           Turner Stadium     4400
+#&gt; 322     3965                                               UB Stadium    30270
+#&gt; 323     3967                                                 UNI-Dome    16324
+#&gt; 324     3969                                    University Field (NY)    10000
+#&gt; 325     3970                            University of Phoenix Stadium    65000
+#&gt; 326     3971                                       University Stadium    39224
+#&gt; 327     3973                                       Vanderbilt Stadium    40351
+#&gt; 328     3974                                 Vaught-Hemingway Stadium    64038
+#&gt; 329     3975                                Veterans Memorial Stadium    30000
+#&gt; 330      717                                        Villanova Stadium    12500
+#&gt; 331     3979                                   Wagner College Stadium     3300
+#&gt; 332     3980                                            Waldo Stadium    30200
+#&gt; 333     2023                                           Walkup Skydome    10000
+#&gt; 334     3982                                     Wallace Wade Stadium    40004
+#&gt; 335     3983                                     War Memorial Stadium    54120
+#&gt; 336     3984                                     War Memorial Stadium    29181
+#&gt; 337     3985                            Warren McGuirk Alumni Stadium    17000
+#&gt; 338     3987                               Washington-Grizzly Stadium    25217
+#&gt; 339     3988                                          Welcome Stadium    11000
+#&gt; 340     3688                                          Wildcat Stadium    11015
+#&gt; 341     5440                                     Wildcat Stadium (TX)    12000
+#&gt; 342     5400                            William B. Greene Jr. Stadium     7694
+#&gt; 343     3991                           William Dick"" Price Stadium""    30000
+#&gt; 344     3990                                William H. Greene Stadium    10000
+#&gt; 345     3994                                   Williams-Brice Stadium    80250
+#&gt; 346     3992                                         Williams Stadium    25000
+#&gt; 347     4250                                            Wrigley Field        0
+#&gt; 348     3996                                            Yager Stadium    24286
+#&gt; 349     3997                                                Yale Bowl    61446
+#&gt; 350     4102                                           Yankee Stadium    54251
+#&gt; 351     3998                                            Zable Stadium    12400
 #&gt;     grass             city state   zip country_code location.x  location.y
 #&gt; 1      NA         Tuskegee    AL  &lt;NA&gt;           US   32.42403  -85.691620
 #&gt; 2   FALSE      Baton Rouge    LA 70807           US   30.52215  -91.189609
 #&gt; 3   FALSE       Las Cruces    NM 88003           US   32.27962 -106.741115
-#&gt; 4    TRUE       Greensboro    NC 27411           US   36.08143  -79.770039
-#&gt; 5   FALSE            Davis    CA 95616           US   38.53653 -121.762794
+#&gt; 4   FALSE            Davis    CA 95616           US   38.53653 -121.762794
+#&gt; 5    TRUE       Greensboro    NC 27411           US   36.08143  -79.770039
 #&gt; 6   FALSE      San Antonio    TX 78299           US   29.41698  -98.478814
 #&gt; 7   FALSE            Boise    ID 83725           US   43.60288 -116.195888
 #&gt; 8   FALSE      Grand Forks    ND 58201           US   47.91062  -97.090996
 #&gt; 9    TRUE  San Luis Obispo    CA 93405           US   35.29841 -120.665001
 #&gt; 10  FALSE            Orono    ME 4469            US   44.90513  -68.672472
-#&gt; 11     NA        Las Vegas    NV  &lt;NA&gt;           US   36.16726 -115.148516
+#&gt; 11     NA        Las Vegas    NV 89154           US   36.16726 -115.148516
 #&gt; 12   TRUE            Rolla    MO 65401           US   37.95037  -91.780444
 #&gt; 13   TRUE           Sydney   NSW 2021            AU  -33.88891  151.225343
 #&gt; 14  FALSE         Honolulu    HI 96818           US   21.37280 -157.929965
@@ -783,328 +803,342 @@ elevation, dome, timezone and construction year.</p>
 #&gt; 25  FALSE       Pittsburgh    PA 15282           US   40.43558  -79.990026
 #&gt; 26  FALSE      New Britain    CT 6053            US   41.69506  -72.761620
 #&gt; 27  FALSE        Arlington    TX 76011           US   32.74778  -97.092778
-#&gt; 28  FALSE           Eugene    OR 97401           US   44.05827 -123.068488
-#&gt; 29   TRUE           Dublin        &lt;NA&gt;           IE   53.33523   -6.228447
-#&gt; 30   TRUE          Clinton    SC 29325           US   34.46158  -81.861368
-#&gt; 31   TRUE        Charlotte    NC 28202           US   35.22583  -80.852778
-#&gt; 32  FALSE      Buies Creek    NC 27506           US   35.40477  -78.742484
-#&gt; 33  FALSE    Winston-Salem    NC 27105           US   36.13055  -80.254585
-#&gt; 34   TRUE          Houston    TX 77003           US   29.75220  -95.352415
-#&gt; 35  FALSE  University Park    PA 16802           US   40.81220  -77.856102
-#&gt; 36   TRUE      Gainesville    FL 32653           US   29.64994  -82.348579
-#&gt; 37  FALSE      New Orleans    LA 70118           US   29.94462  -90.116692
-#&gt; 38  FALSE       Brookville    NY 11545           US   40.81628  -73.589546
-#&gt; 39  FALSE        Manhattan    KS 66502           US   39.20201  -96.593840
-#&gt; 40  FALSE     Prairie View    TX 77445           US   30.09113  -95.994482
-#&gt; 41  FALSE       West Point    NY 10996           US   41.38749  -73.964089
-#&gt; 42  FALSE      Tallahassee    FL 32306           US   30.43817  -84.304403
-#&gt; 43   TRUE          Atlanta    GA 30332           US   33.77244  -84.392805
-#&gt; 44  FALSE          Bozeman    MT 59718           US   45.65905 -111.049547
-#&gt; 45  FALSE           Albany    NY 12222           US   42.68081  -73.827284
-#&gt; 46  FALSE       Stillwater    OK 74078           US   36.12567  -97.066513
-#&gt; 47  FALSE       Huntsville    TX 77340           US   30.71393  -95.541980
-#&gt; 48   TRUE    Winston-Salem    NC 27107           US   36.08337  -80.222037
-#&gt; 49  FALSE      Tallahassee    FL 32307           US   30.42616  -84.292310
-#&gt; 50  FALSE         Florence    AL 35630           US   34.81091  -87.670587
-#&gt; 51  FALSE     Harrisonburg    VA 22807           US   38.43529  -78.872935
-#&gt; 52  FALSE           DeKalb    IL 60115           US   41.93396  -88.777836
-#&gt; 53  FALSE          Orlando    FL 32816           US   28.60798  -81.192723
-#&gt; 54   TRUE          Briston    TN 37620           US   36.51600  -82.257000
-#&gt; 55  FALSE           Conway    SC 29528           US   33.79285  -79.016695
-#&gt; 56  FALSE       Valparaiso    IN 46383           US   41.46564  -87.047945
-#&gt; 57  FALSE       Providence    RI 2912            US   41.84211  -71.393942
-#&gt; 58   TRUE       Tuscaloosa    AL 35487           US   33.20828  -87.550384
-#&gt; 59  FALSE North Charleston    SC 29406           US   32.98102  -80.065966
-#&gt; 60  FALSE           Fresno    CA 93740           US   36.81435 -119.758009
+#&gt; 28     NA       Washington    DC  &lt;NA&gt;           US         NA          NA
+#&gt; 29  FALSE           Eugene    OR 97401           US   44.05827 -123.068488
+#&gt; 30   TRUE           Dublin        &lt;NA&gt;           IE   53.33523   -6.228447
+#&gt; 31   TRUE          Clinton    SC 29325           US   34.46158  -81.861368
+#&gt; 32   TRUE        Charlotte    NC 28202           US   35.22583  -80.852778
+#&gt; 33  FALSE      Buies Creek    NC 27506           US   35.40477  -78.742484
+#&gt; 34  FALSE    Winston-Salem    NC 27105           US   36.13055  -80.254585
+#&gt; 35   TRUE          Houston    TX 77003           US   29.75220  -95.352415
+#&gt; 36  FALSE  University Park    PA 16802           US   40.81220  -77.856102
+#&gt; 37   TRUE      Gainesville    FL 32653           US   29.64994  -82.348579
+#&gt; 38  FALSE      New Orleans    LA 70118           US   29.94462  -90.116692
+#&gt; 39  FALSE       Brookville    NY 11545           US   40.81628  -73.589546
+#&gt; 40  FALSE        Manhattan    KS 66502           US   39.20201  -96.593840
+#&gt; 41  FALSE     Prairie View    TX 77445           US   30.09113  -95.994482
+#&gt; 42  FALSE       West Point    NY 10996           US   41.38749  -73.964089
+#&gt; 43  FALSE      Tallahassee    FL 32306           US   30.43817  -84.304403
+#&gt; 44   TRUE          Atlanta    GA 30332           US   33.77244  -84.392805
+#&gt; 45  FALSE          Bozeman    MT 59718           US   45.65905 -111.049547
+#&gt; 46  FALSE           Albany    NY 12222           US   42.68081  -73.827284
+#&gt; 47  FALSE       Stillwater    OK 74078           US   36.12567  -97.066513
+#&gt; 48  FALSE       Huntsville    TX 77340           US   30.71393  -95.541980
+#&gt; 49   TRUE    Winston-Salem    NC 27107           US   36.08337  -80.222037
+#&gt; 50  FALSE      Tallahassee    FL 32307           US   30.42616  -84.292310
+#&gt; 51  FALSE         Florence    AL 35630           US   34.81091  -87.670587
+#&gt; 52  FALSE     Harrisonburg    VA 22807           US   38.43529  -78.872935
+#&gt; 53  FALSE           DeKalb    IL 60115           US   41.93396  -88.777836
+#&gt; 54  FALSE          Orlando    FL 32816           US   28.60798  -81.192723
+#&gt; 55   TRUE          Briston    TN 37620           US   36.51600  -82.257000
+#&gt; 56  FALSE           Conway    SC 29528           US   33.79285  -79.016695
+#&gt; 57  FALSE       Valparaiso    IN 46383           US   41.46564  -87.047945
+#&gt; 58  FALSE       Providence    RI 2912            US   41.84211  -71.393942
+#&gt; 59   TRUE       Tuscaloosa    AL 35487           US   33.20828  -87.550384
+#&gt; 60  FALSE North Charleston    SC 29406           US   32.98102  -80.065966
 #&gt; 61  FALSE       Smithfield    RI 93710           US   41.92421  -71.538512
-#&gt; 62  FALSE     Indianapolis    IN 46721           US   39.84447  -86.165924
-#&gt; 63  FALSE        Lafayette    LA 70506           US   30.21584  -92.041737
-#&gt; 64  FALSE         Berkeley    CA 94720           US   37.87104 -122.250773
-#&gt; 65  FALSE          Orlando    FL 32805           US   28.53917  -81.402778
-#&gt; 66  FALSE          Madison    WI 53711           US   43.06994  -89.412694
-#&gt; 67  FALSE        Fairfield    CT 6825            US   41.22125  -73.241743
-#&gt; 68  FALSE     Fort Collins    CO 80521           US   40.57001 -105.088435
-#&gt; 69  FALSE         Syracuse    NY 13244           US   43.03623  -76.136316
-#&gt; 70  FALSE          Raleigh    NC 27695           US   35.80080  -78.719566
-#&gt; 71  FALSE        Cleveland    OH 85099           US   41.51345  -81.603634
-#&gt; 72  FALSE        Jonesboro    AR 72404           US   35.84890  -90.667744
-#&gt; 73  FALSE          Seattle    WA 98134           US   47.59522 -122.331650
-#&gt; 74  FALSE          Phoenix    AZ 85004           US   33.44528 -112.066944
-#&gt; 75   TRUE      Kansas City    KS 66111           US   39.12177  -94.823198
-#&gt; 76  FALSE        Lewisburg    PA 17837           US   40.95194  -76.884752
-#&gt; 77  FALSE        The Bronx    NY 10458           US   40.86158  -73.882765
-#&gt; 78   TRUE        Lexington    KY 40506           US   38.02209  -84.505341
-#&gt; 79  FALSE       Washington    DC 20007           US   38.90802  -77.075314
-#&gt; 80  FALSE           Dallas    TX 75210           US   32.77972  -96.759722
-#&gt; 81  FALSE        Brookings    SD 57007           US   44.32121  -96.780096
-#&gt; 82   TRUE        Brookings    SD 57006           US   44.32102  -96.780139
-#&gt; 83  FALSE     Lake Charles    LA 70607           US   30.18046  -93.217873
-#&gt; 84  FALSE       Montgomery    AL 36101           US   32.37949  -86.293002
-#&gt; 85  FALSE           Dublin        &lt;NA&gt;           IE         NA          NA
-#&gt; 86  FALSE       Vermillion    SD 57069           US   42.79112  -96.927843
-#&gt; 87  FALSE           Austin    TX 78712           US   30.28368  -97.732534
-#&gt; 88   TRUE       Starkville    MS 39762           US   33.45634  -88.793365
-#&gt; 89  FALSE     Jacksonville    FL 32211           US   30.35688  -81.605476
-#&gt; 90  FALSE          Loretto    PA 15940           US   40.50632  -78.637214
-#&gt; 91  FALSE           Newark    DE 19713           US   39.66174  -75.748822
-#&gt; 92   TRUE           Carson    CA 90746           US   33.86400 -118.261000
-#&gt; 93  FALSE             Kent    OH 44242           US   41.13909  -81.313460
-#&gt; 94  FALSE     Fayetteville    AR 72702           US   36.06807  -94.178953
-#&gt; 95  FALSE       Greenville    NC 27858           US   35.59685  -77.364564
-#&gt; 96  FALSE    Bowling Green    OH 43403           US   41.37801  -83.622500
-#&gt; 97  FALSE       Des Moines    IA 50311           US   41.60500  -93.655000
-#&gt; 98  FALSE       Cedar City    UT 84720           US   37.67579 -113.077394
-#&gt; 99  FALSE         Richmond    VA 23173           US   37.58078  -77.537221
-#&gt; 100 FALSE        Grambling    LA 71245           US   32.52587  -92.714641
-#&gt; 101 FALSE      Springfield    OH 45504           US   39.93794  -83.812075
-#&gt; 102 FALSE        Cullowhee    NC 28723           US   35.30484  -83.181815
-#&gt; 103 FALSE  Boiling Springs    NC 28152           US   35.24576  -81.673989
-#&gt; 104 FALSE           Conway    AR 72035           US   35.08026  -92.460045
-#&gt; 105  TRUE     Jacksonville    FL 32022           US   30.32389  -81.637500
-#&gt; 106 FALSE Colorado Springs    CO 80840           US   38.99697 -104.843616
-#&gt; 107 FALSE            Fargo    ND 51802           US   46.90299  -96.800325
-#&gt; 108 FALSE         Columbia    MO 65211           US   38.93585  -92.333201
-#&gt; 109 FALSE       Boca Raton    FL 33499           US   26.37638  -80.101576
-#&gt; 110  TRUE         Landover    MD 20785           US   38.90778  -76.864444
-#&gt; 111  TRUE           Boston    MA 2297            US   42.34639  -71.097500
-#&gt; 112    NA         Kennesaw    GA 48187           US   34.02893  -84.567623
-#&gt; 113 FALSE      Chattanooga    TN 37403           US   35.03638  -85.315883
-#&gt; 114 FALSE           Easton    PA 18042           US   40.70098  -75.210650
-#&gt; 115  TRUE        Worcester    MA 1601            US   42.24036  -71.811142
-#&gt; 116 FALSE            Miami    FL 33199           US   25.75250  -80.377891
-#&gt; 117 FALSE            Macon    GA 31207           US   32.82621  -83.652248
-#&gt; 118 FALSE             Waco    TX 76798           US   31.53021  -97.148358
-#&gt; 119 FALSE          Boulder    CO 80309           US   40.00947 -105.266905
-#&gt; 120 FALSE          Detroit    MI 48226           US   42.34000  -83.045556
-#&gt; 121 FALSE          Norfolk    VA 23551           US   36.88895  -76.304918
-#&gt; 122 FALSE     Philadelphia    PA 19104           US   39.95015  -75.190104
-#&gt; 123    NA     Murfreesboro    TN  &lt;NA&gt;           US   36.43405  -77.098431
-#&gt; 124 FALSE      San Antonio    TX 78209           US   29.46748  -98.470014
-#&gt; 125 FALSE           Norman    OK 73019           US   35.20585  -97.442314
-#&gt; 126 FALSE          Atlanta    GA 39901           US   33.75769  -84.400829
-#&gt; 127 FALSE          Atlanta    GA 30315           US   33.73527  -84.389949
-#&gt; 128 FALSE  University Park    TX 75275           US   32.83772  -96.782786
-#&gt; 129  TRUE      Spartanburg    SC 29303           US   34.96186  -81.932891
-#&gt; 130 FALSE       Foxborough    MA 2035            US   42.09095  -71.264347
-#&gt; 131 FALSE           Toledo    OH 43606           US   41.65748  -83.613565
-#&gt; 132 FALSE       Pine Bluff    AR 71601           US   34.25333  -92.021403
-#&gt; 133 FALSE        Bethlehem    PA 18015           US   40.58908  -75.355387
-#&gt; 134 FALSE      Clarksville    TN 37040           US   36.53626  -87.352551
-#&gt; 135 FALSE           Martin    TN 38238           US   36.34483  -88.861625
-#&gt; 136  TRUE          Chicago    IL 60616           US   41.83000  -87.633889
-#&gt; 137  TRUE        Nashville    TN 37209           US   36.16806  -86.826944
-#&gt; 138 FALSE           Normal    IL 61761           US   40.51251  -88.996718
-#&gt; 139    NA           Mobile    AL 85329           US   30.69436  -88.043054
-#&gt; 140 FALSE           Macomb    IL 61455           US   40.46839  -90.684125
-#&gt; 141  TRUE    Miami Gardens    FL 33299           US   25.95797  -80.238860
-#&gt; 142 FALSE     Natchitoches    LA 71457           US   31.74726  -93.096136
-#&gt; 143 FALSE           Boston    MA 2134            US   42.36670  -71.126751
-#&gt; 144 FALSE       Pittsburgh    PA 15260           US   40.44676  -80.015760
-#&gt; 145 FALSE       Piscataway    NJ 8854            US   40.51368  -74.465574
-#&gt; 146 FALSE         Portland    OR 97124           US   45.55460 -122.906940
-#&gt; 147 FALSE        Pocatello    ID 83201           US   42.87021 -112.428127
-#&gt; 148 FALSE      Nacogdoches    TX 75961           US   31.62572  -94.644403
-#&gt; 149 FALSE       Sacramento    CA 95819           US   38.55567 -121.422961
-#&gt; 150 FALSE       Montgomery    AL 36106           US   32.36422  -86.289690
-#&gt; 151 FALSE    Bowling Green    KY 42101           US   36.98479  -86.459404
-#&gt; 152 FALSE   Cape Girardeau    MO 63701           US   37.30954  -89.531380
-#&gt; 153 FALSE        Baltimore    MD 80521           US   39.34398  -76.582957
-#&gt; 154 FALSE          Houston    TX 77074           US   29.69490  -95.516735
-#&gt; 155 FALSE          Seattle    WA 98195           US   47.65032 -122.301575
-#&gt; 156 FALSE       Shreveport    FL 71107           US   32.47556  -93.791944
-#&gt; 157 FALSE           Lorman    MS 39096           US   31.87362  -91.134880
-#&gt; 158 FALSE             Ames    IA 50011           US   42.01400  -93.635772
-#&gt; 159    NA     Winter Haven    FL 33880           US   28.02224  -81.732857
-#&gt; 160 FALSE         Morehead    KY 40351           US   38.19165  -83.425331
-#&gt; 161 FALSE        Charlotte    NC 28223           US   35.31050  -80.740119
-#&gt; 162 FALSE       San Marcos    TX 78666           US   29.89100  -97.925573
-#&gt; 163 FALSE       Huntington    WV 25755           US   38.42470  -82.421441
-#&gt; 164 FALSE           Ruston    LA 71272           US   32.53215  -92.656002
-#&gt; 165 FALSE    Moon Township    PA 15108           US   40.52105  -80.215923
-#&gt; 166 FALSE      Springfield    MO 19148           US   37.19104  -93.301713
-#&gt; 167 FALSE     Murfreesboro    TN 37132           US   35.85115  -86.368165
-#&gt; 168 FALSE           Towson    MD 21252           US   39.38857  -76.615972
-#&gt; 169 FALSE          Houston    TX 77004           US   29.72199  -95.349162
-#&gt; 170  TRUE       Charleston    SC 29403           US   32.79370  -79.955818
-#&gt; 171 FALSE          Lubbock    TX 79409           US   33.59105 -101.872882
-#&gt; 172  TRUE           Auburn    AL 36849           US   32.60255  -85.489748
-#&gt; 173 FALSE     Jacksonville    AL 36265           US   33.82011  -85.766470
-#&gt; 174 FALSE   Mount Pleasant    MI 48859           US   43.57773  -84.770990
-#&gt; 175 FALSE      Chapel Hill    NC 27515           US   35.90693  -79.047889
-#&gt; 176 FALSE      Stony Brook    NY 11790           US   40.91888  -73.124297
-#&gt; 177 FALSE     Johnson City    TN 37604           US   36.32693  -82.371014
-#&gt; 178 FALSE West Long Branch    NJ 7764            US   40.27938  -74.009264
-#&gt; 179 FALSE West Long Branch    NJ 7764            US   40.27895  -74.009451
-#&gt; 180 FALSE           Moscow    ID 83843           US   46.72629 -117.017371
-#&gt; 181 FALSE            Boone    NC 28608           US   36.21143  -81.685428
-#&gt; 182 FALSE        Iowa City    IA 52242           US   41.65860  -91.551083
-#&gt; 183  TRUE  College Station    TX 77843           US   30.60989  -96.340383
-#&gt; 184 FALSE           Mobile    AL 36695           US   30.67304  -88.075570
-#&gt; 185  TRUE         Greenbay    WI 54304           US   44.50131  -88.062273
-#&gt; 186 FALSE       Blacksburg    VA 24061           US   37.21999  -80.418064
-#&gt; 187 FALSE            Provo    UT 84602           US   40.25753 -111.654525
-#&gt; 188 FALSE        Manhattan    NY 10034           US   40.87327  -73.916459
-#&gt; 189 FALSE       Birmingham    AL 35294           US   33.51139  -86.842778
-#&gt; 190 FALSE     Poughkeepsie    NY 12601           US   41.71914  -73.932955
-#&gt; 191 FALSE      Santa Clara    CA 95054           US   37.40300 -121.970000
-#&gt; 192 FALSE          Memphis    TN 38152           US   35.12094  -89.977147
-#&gt; 193 FALSE     Philadelphia    PA 19122           US   39.90080  -75.167541
-#&gt; 194  TRUE      Los Angeles    CA 90089           US   34.01417 -118.287778
-#&gt; 195 FALSE       Huntsville    AL 35810           US   34.78354  -86.578413
-#&gt; 196 FALSE        Allendale    MI 49401           US   42.96900  -85.894735
-#&gt; 197 FALSE     Indianapolis    IN 46225           US   39.76006  -86.163806
-#&gt; 198 FALSE             Reno    NV 89557           US   39.54695 -119.817543
-#&gt; 199 FALSE           Monroe    LA 71209           US   32.53081  -92.066060
-#&gt; 200 FALSE        Thibodaux    LA 70301           US   29.78673  -90.804550
-#&gt; 201  TRUE            Miami    FL 33125           US   25.77806  -80.219722
-#&gt; 202 FALSE          Pullman    WA 99164           US   46.73183 -117.160499
-#&gt; 203 FALSE     College Park    MD 20742           US   38.99033  -76.947379
-#&gt; 204 FALSE             Waco    TX 76704           US   31.55820  -97.115670
-#&gt; 205  TRUE         Kingston    RI 2881            US   41.48800  -71.534746
-#&gt; 206 FALSE          Hanover    NH 3755            US   43.70130  -72.284278
-#&gt; 207 FALSE         Lawrence    KS 66045           US   38.96294  -95.246369
-#&gt; 208 FALSE      Bloomington    IN 47408           US   39.18090  -86.525622
-#&gt; 209 FALSE          Clemson    SC 29634           US   34.67877  -82.843243
-#&gt; 210 FALSE        Champaign    IL 61820           US   40.09933  -88.235957
-#&gt; 211 FALSE      Terre Haute    IN 47809           US   39.47469  -87.366960
-#&gt; 212 FALSE          Lincoln    NE 68588           US   40.82068  -96.705594
-#&gt; 213 FALSE          Atlanta    GA 30313           US   33.75558  -84.400881
-#&gt; 214 FALSE      New Orleans    LA 70112           US   29.95083  -90.081111
-#&gt; 215 FALSE  East Rutherford    NJ 7073            US   40.81361  -74.074444
-#&gt; 216 FALSE        Ann Arbor    MI 48109           US   42.26584  -83.748696
-#&gt; 217  TRUE          Jackson    MS 39216           US   32.33001  -90.179558
-#&gt; 218 FALSE      Hattiesburg    MS 39402           US   31.32893  -89.331812
-#&gt; 219    NA          Hickory    NC 27244           US   35.73333  -81.344291
-#&gt; 220 FALSE       Morgantown    WV 26507           US   39.65027  -79.955187
-#&gt; 221 FALSE        Baltimore    MD 21230           US   39.27806  -76.622778
-#&gt; 222    NA        Worcester    MA 01613           US   42.26256  -71.801888
-#&gt; 223 FALSE    Daytona Beach    FL 32114           US   29.17347  -81.117511
-#&gt; 224    NA        Stevenson    MD 21153           US   39.41028  -76.712831
-#&gt; 225  TRUE        Annapolis    MD 21402           US   38.98470  -76.507633
-#&gt; 226    NA           Upland    IN 92602           US   40.45685  -85.501181
-#&gt; 227  TRUE        Knoxville    TN 37996           US   35.95501  -83.925013
-#&gt; 228 FALSE       Cincinnati    OH 45221           US   39.13125  -84.516191
-#&gt; 229 FALSE        Nashville    TN 37209           US   36.16648  -86.771290
-#&gt; 230 FALSE       Notre Dame    IN 46556           US   41.69838  -86.233942
-#&gt; 231  TRUE          Greeley    CO 80639           US   40.40349 -104.705139
-#&gt; 232  TRUE          Houston    TX 77054           US   29.68472  -95.410833
-#&gt; 233 FALSE       Charleston    IL 61920           US   39.48050  -88.181162
-#&gt; 234 FALSE         Columbus    OH 43210           US   40.00164  -83.019727
-#&gt; 235 FALSE           Durham    NC 27707           US   35.97386  -78.896969
-#&gt; 236 FALSE       Orangeburg    SC 29115           US   33.49863  -80.844686
-#&gt; 237    NA          Orlanda    FL  &lt;NA&gt;           US   26.32122  -81.692957
-#&gt; 238 FALSE       Greenville    SC 29617           US   34.92019  -82.437092
-#&gt; 239  TRUE     Prairie View    TX 28202           US   30.09379  -95.996091
-#&gt; 240 FALSE       Louisville    KY 40292           US   38.20576  -85.758814
-#&gt; 241 FALSE       Cincinnati    OH 45202           US   39.09555  -84.516071
-#&gt; 242 FALSE       Statesboro    GA 30460           US   32.41225  -81.784930
-#&gt; 243 FALSE           Athens    OH 45701           US   39.32128  -82.103431
-#&gt; 244 FALSE      Springfield    MO 65897           US   37.19762  -93.279812
-#&gt; 245 FALSE        Princeton    NJ 8540            US   40.34579  -74.650005
-#&gt; 246 FALSE         Portland    OR 97205           US   45.52160 -122.691681
-#&gt; 247 FALSE         Beaumont    TX 77705           US   30.04313  -94.069963
-#&gt; 248 FALSE        San Diego    CA 92108           US   32.78311 -117.119572
-#&gt; 249 FALSE            Tampa    FL 33620           US   27.97587  -82.503334
-#&gt; 250 FALSE            Bronx    NY 10465           US   40.80753  -73.797744
-#&gt; 251 FALSE    East Hartford    CT 6118            US   41.75957  -72.618773
-#&gt; 252 FALSE        Corvallis    OR 97331           US   44.55946 -123.281434
-#&gt; 253  TRUE       Washington    DC 20003           US   38.88981  -76.971809
-#&gt; 254  TRUE             Elon    NC 77493           US   36.11013  -79.507998
-#&gt; 255 FALSE   Salt Lake City    UT 84112           US   40.75997 -111.848826
-#&gt; 256 FALSE          Houston    TX 77251           US   29.71633  -95.409326
-#&gt; 257  TRUE        Itta Bena    MS 38941           US   33.51183  -90.339772
-#&gt; 258 FALSE         Davidson    NC 28036           US   35.49957  -80.842842
-#&gt; 259 FALSE          Houston    TX 77004           US   29.72205  -95.349175
-#&gt; 260 FALSE            Logan    UT 84322           US   41.75174 -111.811601
-#&gt; 261 FALSE           Cheney    WA 99004           US   47.49278 -117.587353
-#&gt; 262 FALSE         Pasadena    CA 90095           US   34.16133 -118.167646
-#&gt; 263 FALSE   West Lafayette    IN 47907           US   40.43523  -86.918684
-#&gt; 264 FALSE         Richmond    KY 40475           US   37.73441  -84.297285
-#&gt; 265 FALSE           Murray    KY 42071           US   36.62152  -88.317553
-#&gt; 266 FALSE         Evanston    IL 60208           US   42.06540  -87.692475
-#&gt; 267 FALSE        Ypsilanti    MI 48197           US   42.25613  -83.647285
-#&gt; 268 FALSE       Carbondale    IL 62901           US   37.70864  -89.216212
-#&gt; 269 FALSE          Whitney    NV 89154           US   36.08593 -115.017310
-#&gt; 270  TRUE           Athens    GA 30602           US   33.94982  -83.373381
-#&gt; 271 FALSE           Muncie    IN 47306           US   40.21594  -85.416115
-#&gt; 272 FALSE           Ithaca    NY 14850           US   42.44390  -76.478540
-#&gt; 273 FALSE  Charlottesville    VA 22904           US   38.03118  -78.513790
-#&gt; 274 FALSE         Homewood    AL 35229           US   33.46327  -86.795326
-#&gt; 275    NA         Newberry    SC 29108           US   34.28613  -81.622539
-#&gt; 276    NA       Piscataway    NJ 08854           US   40.54626  -74.466041
-#&gt; 277 FALSE          Abilene    TX 79602           US   32.43369  -99.698625
-#&gt; 278 FALSE            Tulsa    OK 74194           US   36.14892  -95.943785
-#&gt; 279  TRUE          Chicago    IL 60605           US   41.86250  -87.616667
-#&gt; 280 FALSE     Fort Collins    CO 80526           US   40.56212 -105.141625
-#&gt; 281 FALSE         San Jose    CA 95112           US   37.31967 -121.868296
-#&gt; 282 FALSE     East Lansing    MI 48824           US   42.72815  -84.484853
-#&gt; 283    NA           DeLand    FL 32720           US   29.02086  -81.299375
-#&gt; 284  TRUE           Denver    CO 80204           US   39.74389 -105.020000
-#&gt; 285 FALSE       Youngstown    OH 44502           US   41.10930  -80.650188
-#&gt; 286 FALSE         Stanford    CA 94305           US   37.43456 -122.161127
-#&gt; 287    NA        Owensboro    KY  &lt;NA&gt;           US   37.74230  -87.119976
-#&gt; 288    NA         Franklin    IN 92620           US   33.70416 -117.751090
-#&gt; 289 FALSE            Ogden    UT 84408           US   41.19187 -111.940139
-#&gt; 290 FALSE          Hammond    LA 70401           US   30.51103  -90.468579
-#&gt; 291 FALSE           Carson    CA 92620           US   33.83220 -118.251755
-#&gt; 292 FALSE            Akron    OH 44399           US   41.07255  -81.508341
-#&gt; 293 FALSE          El Paso    TX 79968           US   31.77334 -106.507957
-#&gt; 294 FALSE            Tempe    AZ 85287           US   33.42645 -111.932501
-#&gt; 295  TRUE          Atlanta    GA 30339           US   33.89082  -84.467656
-#&gt; 296 FALSE        Marquette    MI 70118           US   46.56059  -87.393741
-#&gt; 297 FALSE      Minneapolis    MN 55488           US   44.97653  -93.224546
-#&gt; 298 FALSE         Savannah    GA 31404           US   32.02743  -81.068749
-#&gt; 299    NA          Gaffney    SC 29342           US   35.07179  -81.649820
-#&gt; 300  TRUE           Nassau        &lt;NA&gt;           BS   25.05557  -77.358736
-#&gt; 301  TRUE      Baton Rouge    LA 70803           US   30.41203  -91.183816
-#&gt; 302  TRUE        San Diego    CA 92111           US   32.77307 -117.183721
-#&gt; 303    NA       Georgetown    KY 40324           US   38.20444  -84.545556
-#&gt; 304  TRUE           Frisco    TX 75033           US   33.15444  -96.835278
-#&gt; 305 FALSE Saint Petersburg    FL 33705           US   27.76833  -82.653333
-#&gt; 306 FALSE       Cookeville    TN 38501           US   36.17806  -85.506183
-#&gt; 307    NA           Upland    IN 92602           US   40.45686  -85.501228
-#&gt; 308 FALSE          Amherst    NY 14260           US   42.99913  -78.777511
-#&gt; 309 FALSE      Cedar Falls    IA 50614           US   42.51561  -92.467231
-#&gt; 310  TRUE           Albany    NY 12206           US   42.68098  -73.827276
-#&gt; 311  TRUE         Glendale    AZ 85305           US   33.52761 -112.262559
-#&gt; 312 FALSE      Albuquerque    NM 87131           US   35.06695 -106.628322
-#&gt; 313 FALSE        Nashville    TN 37212           US   36.14405  -86.808894
-#&gt; 314  TRUE           Oxford    MS 38677           US   34.36198  -89.534208
-#&gt; 315 FALSE             Troy    AL 36082           US   31.79956  -85.951833
-#&gt; 316 FALSE        Villanova    PA 19085           US   40.03433  -75.336767
-#&gt; 317 FALSE    Staten Island    NY 10301           US   40.61469  -74.090639
-#&gt; 318 FALSE        Kalamazoo    MI 49008           US   42.28601  -85.600757
-#&gt; 319 FALSE        Flagstaff    AZ 86001           US   35.18055 -111.652838
-#&gt; 320 FALSE           Durham    NC 27708           US   35.99537  -78.941756
-#&gt; 321 FALSE      Little Rock    AR 72205           US   34.74985  -92.330127
-#&gt; 322 FALSE          Laramie    WY 82071           US   41.31161 -105.568138
-#&gt; 323 FALSE           Hadley    MA 1003            US   42.37732  -72.536059
-#&gt; 324 FALSE         Missoula    MT 59812           US   46.86388 -113.981504
-#&gt; 325 FALSE           Dayton    OH 45417           US   39.73692  -84.198107
-#&gt; 326 FALSE           Durham    NH 3824            US   43.13862  -70.939308
-#&gt; 327 FALSE          Abilene    TX 79601           US   32.47228  -99.710464
-#&gt; 328 FALSE     Johnson City    TN 37604           US   36.29908  -82.374117
-#&gt; 329 FALSE          Norfolk    VA 23504           US   36.84694  -76.260084
-#&gt; 330 FALSE       Washington    DC 20059           US   38.92549  -77.021047
-#&gt; 331  TRUE         Columbia    SC 29208           US   33.97302  -81.019173
-#&gt; 332 FALSE        Lynchburg    VA 24502           US   37.35443  -79.175024
-#&gt; 333    NA          Chicago    IL 60654           US   41.87556  -87.624421
-#&gt; 334 FALSE           Oxford    OH 45056           US   39.51970  -84.733025
-#&gt; 335 FALSE        New Haven    CT 6520            US   41.31324  -72.960533
-#&gt; 336 FALSE         New York    NY 10451           US   40.82917  -73.926389
-#&gt; 337 FALSE     Williamsburg    VA 23186           US   37.27310  -76.713720
+#&gt; 62  FALSE           Fresno    CA 93740           US   36.81435 -119.758009
+#&gt; 63  FALSE     Indianapolis    IN 46721           US   39.84447  -86.165924
+#&gt; 64  FALSE        Lafayette    LA 70506           US   30.21584  -92.041737
+#&gt; 65  FALSE         Berkeley    CA 94720           US   37.87104 -122.250773
+#&gt; 66  FALSE          Orlando    FL 32805           US   28.53917  -81.402778
+#&gt; 67  FALSE          Madison    WI 53711           US   43.06994  -89.412694
+#&gt; 68  FALSE        Fairfield    CT 6825            US   41.22125  -73.241743
+#&gt; 69  FALSE     Fort Collins    CO 80521           US   40.57001 -105.088435
+#&gt; 70  FALSE         Syracuse    NY 13244           US   43.03623  -76.136316
+#&gt; 71  FALSE          Raleigh    NC 27695           US   35.80080  -78.719566
+#&gt; 72  FALSE        Cleveland    OH 85099           US   41.51345  -81.603634
+#&gt; 73  FALSE        Jonesboro    AR 72404           US   35.84890  -90.667744
+#&gt; 74  FALSE          Seattle    WA 98134           US   47.59522 -122.331650
+#&gt; 75  FALSE          Phoenix    AZ 85004           US   33.44528 -112.066944
+#&gt; 76   TRUE      Kansas City    KS 66111           US   39.12177  -94.823198
+#&gt; 77  FALSE        Lewisburg    PA 17837           US   40.95194  -76.884752
+#&gt; 78   TRUE         Honolulu    HI 96822         &lt;NA&gt;         NA          NA
+#&gt; 79  FALSE        The Bronx    NY 10458           US   40.86158  -73.882765
+#&gt; 80   TRUE        Lexington    KY 40506           US   38.02209  -84.505341
+#&gt; 81  FALSE       Washington    DC 20007           US   38.90802  -77.075314
+#&gt; 82  FALSE           Dallas    TX 75210           US   32.77972  -96.759722
+#&gt; 83   TRUE        Brookings    SD 57006           US   44.32102  -96.780139
+#&gt; 84  FALSE        Brookings    SD 57007           US   44.32121  -96.780096
+#&gt; 85  FALSE     Lake Charles    LA 70607           US   30.18046  -93.217873
+#&gt; 86  FALSE       Montgomery    AL 36101           US   32.37949  -86.293002
+#&gt; 87  FALSE           Dublin        &lt;NA&gt;           IE         NA          NA
+#&gt; 88  FALSE       Vermillion    SD 57069           US   42.79112  -96.927843
+#&gt; 89  FALSE           Austin    TX 78712           US   30.28368  -97.732534
+#&gt; 90   TRUE       Starkville    MS 39762           US   33.45634  -88.793365
+#&gt; 91  FALSE     Jacksonville    FL 32211           US   30.35688  -81.605476
+#&gt; 92  FALSE          Loretto    PA 15940           US   40.50632  -78.637214
+#&gt; 93  FALSE           Newark    DE 19713           US   39.66174  -75.748822
+#&gt; 94   TRUE           Carson    CA 90746           US   33.86400 -118.261000
+#&gt; 95  FALSE             Kent    OH 44242           US   41.13909  -81.313460
+#&gt; 96  FALSE     Fayetteville    AR 72702           US   36.06807  -94.178953
+#&gt; 97  FALSE       Greenville    NC 27858           US   35.59685  -77.364564
+#&gt; 98  FALSE    Bowling Green    OH 43403           US   41.37801  -83.622500
+#&gt; 99  FALSE       Des Moines    IA 50311           US   41.60500  -93.655000
+#&gt; 100    NA    North Andover    MA  &lt;NA&gt;           US         NA          NA
+#&gt; 101 FALSE       Cedar City    UT 84720           US   37.67579 -113.077394
+#&gt; 102 FALSE         Richmond    VA 23173           US   37.58078  -77.537221
+#&gt; 103 FALSE        Grambling    LA 71245           US   32.52587  -92.714641
+#&gt; 104 FALSE      Springfield    OH 45504           US   39.93794  -83.812075
+#&gt; 105 FALSE        Cullowhee    NC 28723           US   35.30484  -83.181815
+#&gt; 106 FALSE  Boiling Springs    NC 28152           US   35.24576  -81.673989
+#&gt; 107 FALSE           Conway    AR 72035           US   35.08026  -92.460045
+#&gt; 108  TRUE     Jacksonville    FL 32022           US   30.32389  -81.637500
+#&gt; 109 FALSE Colorado Springs    CO 80840           US   38.99697 -104.843616
+#&gt; 110 FALSE            Fargo    ND 51802           US   46.90299  -96.800325
+#&gt; 111 FALSE         Columbia    MO 65211           US   38.93585  -92.333201
+#&gt; 112 FALSE       Boca Raton    FL 33499           US   26.37638  -80.101576
+#&gt; 113  TRUE         Landover    MD 20785           US   38.90778  -76.864444
+#&gt; 114  TRUE           Boston    MA 2297            US   42.34639  -71.097500
+#&gt; 115    NA         Kennesaw    GA 48187           US   34.02893  -84.567623
+#&gt; 116 FALSE      Chattanooga    TN 37403           US   35.03638  -85.315883
+#&gt; 117 FALSE           Easton    PA 18042           US   40.70098  -75.210650
+#&gt; 118  TRUE        Worcester    MA 1601            US   42.24036  -71.811142
+#&gt; 119 FALSE            Miami    FL 33199           US   25.75250  -80.377891
+#&gt; 120 FALSE            Macon    GA 31207           US   32.82621  -83.652248
+#&gt; 121 FALSE             Waco    TX 76798           US   31.53021  -97.148358
+#&gt; 122 FALSE          Boulder    CO 80309           US   40.00947 -105.266905
+#&gt; 123 FALSE          Detroit    MI 48226           US   42.34000  -83.045556
+#&gt; 124 FALSE          Norfolk    VA 23551           US   36.88895  -76.304918
+#&gt; 125 FALSE     Philadelphia    PA 19104           US   39.95015  -75.190104
+#&gt; 126    NA     Murfreesboro    TN  &lt;NA&gt;           US   36.43405  -77.098431
+#&gt; 127 FALSE      San Antonio    TX 78209           US   29.46748  -98.470014
+#&gt; 128 FALSE           Norman    OK 73019           US   35.20585  -97.442314
+#&gt; 129 FALSE          Atlanta    GA 39901           US   33.75769  -84.400829
+#&gt; 130 FALSE          Atlanta    GA 30315           US   33.73527  -84.389949
+#&gt; 131 FALSE  University Park    TX 75275           US   32.83772  -96.782786
+#&gt; 132  TRUE      Spartanburg    SC 29303           US   34.96186  -81.932891
+#&gt; 133 FALSE       Foxborough    MA 2035            US   42.09095  -71.264347
+#&gt; 134 FALSE           Toledo    OH 43606           US   41.65748  -83.613565
+#&gt; 135 FALSE       Pine Bluff    AR 71601           US   34.25333  -92.021403
+#&gt; 136 FALSE        Bethlehem    PA 18015           US   40.58908  -75.355387
+#&gt; 137 FALSE      Clarksville    TN 37040           US   36.53626  -87.352551
+#&gt; 138 FALSE           Martin    TN 38238           US   36.34483  -88.861625
+#&gt; 139    NA     Saint George    UT  &lt;NA&gt;           US         NA          NA
+#&gt; 140  TRUE          Chicago    IL 60616           US   41.83000  -87.633889
+#&gt; 141  TRUE        Nashville    TN 37209           US   36.16806  -86.826944
+#&gt; 142 FALSE           Normal    IL 61761           US   40.51251  -88.996718
+#&gt; 143    NA           Mobile    AL 85329           US   30.69436  -88.043054
+#&gt; 144 FALSE           Macomb    IL 61455           US   40.46839  -90.684125
+#&gt; 145  TRUE    Miami Gardens    FL 33299           US   25.95797  -80.238860
+#&gt; 146 FALSE     Natchitoches    LA 71457           US   31.74726  -93.096136
+#&gt; 147 FALSE           Boston    MA 2134            US   42.36670  -71.126751
+#&gt; 148 FALSE       Pittsburgh    PA 15260           US   40.44676  -80.015760
+#&gt; 149 FALSE       Piscataway    NJ 8854            US   40.51368  -74.465574
+#&gt; 150 FALSE         Portland    OR 97124           US   45.55460 -122.906940
+#&gt; 151 FALSE        Pocatello    ID 83201           US   42.87021 -112.428127
+#&gt; 152 FALSE      Nacogdoches    TX 75961           US   31.62572  -94.644403
+#&gt; 153 FALSE       Montgomery    AL 36106           US   32.36422  -86.289690
+#&gt; 154 FALSE       Sacramento    CA 95819           US   38.55567 -121.422961
+#&gt; 155 FALSE    Bowling Green    KY 42101           US   36.98479  -86.459404
+#&gt; 156    NA   Cape Girardeau    MO  &lt;NA&gt;           US         NA          NA
+#&gt; 157 FALSE   Cape Girardeau    MO 63701           US   37.30954  -89.531380
+#&gt; 158 FALSE        Baltimore    MD 80521           US   39.34398  -76.582957
+#&gt; 159 FALSE          Houston    TX 77074           US   29.69490  -95.516735
+#&gt; 160 FALSE          Seattle    WA 98195           US   47.65032 -122.301575
+#&gt; 161 FALSE       Shreveport    FL 71107           US   32.47556  -93.791944
+#&gt; 162    NA            Bronx    NY  &lt;NA&gt;           US         NA          NA
+#&gt; 163 FALSE           Lorman    MS 39096           US   31.87362  -91.134880
+#&gt; 164 FALSE             Ames    IA 50011           US   42.01400  -93.635772
+#&gt; 165    NA     Winter Haven    FL 33880           US   28.02224  -81.732857
+#&gt; 166 FALSE         Morehead    KY 40351           US   38.19165  -83.425331
+#&gt; 167 FALSE        Charlotte    NC 28223           US   35.31050  -80.740119
+#&gt; 168 FALSE       San Marcos    TX 78666           US   29.89100  -97.925573
+#&gt; 169 FALSE       Huntington    WV 25755           US   38.42470  -82.421441
+#&gt; 170 FALSE           Ruston    LA 71272           US   32.53215  -92.656002
+#&gt; 171 FALSE    Moon Township    PA 15108           US   40.52105  -80.215923
+#&gt; 172 FALSE      Springfield    MO 19148           US   37.19104  -93.301713
+#&gt; 173 FALSE     Murfreesboro    TN 37132           US   35.85115  -86.368165
+#&gt; 174 FALSE           Towson    MD 21252           US   39.38857  -76.615972
+#&gt; 175 FALSE          Houston    TX 77004           US   29.72199  -95.349162
+#&gt; 176  TRUE       Charleston    SC 29403           US   32.79370  -79.955818
+#&gt; 177 FALSE          Lubbock    TX 79409           US   33.59105 -101.872882
+#&gt; 178  TRUE           Auburn    AL 36849           US   32.60255  -85.489748
+#&gt; 179 FALSE     Jacksonville    AL 36265           US   33.82011  -85.766470
+#&gt; 180 FALSE   Mount Pleasant    MI 48859           US   43.57773  -84.770990
+#&gt; 181 FALSE      Chapel Hill    NC 27515           US   35.90693  -79.047889
+#&gt; 182 FALSE      Stony Brook    NY 11790           US   40.91888  -73.124297
+#&gt; 183 FALSE     Johnson City    TN 37604           US   36.32693  -82.371014
+#&gt; 184 FALSE West Long Branch    NJ 7764            US   40.27938  -74.009264
+#&gt; 185 FALSE West Long Branch    NJ 7764            US   40.27895  -74.009451
+#&gt; 186 FALSE           Moscow    ID 83843           US   46.72629 -117.017371
+#&gt; 187 FALSE            Boone    NC 28608           US   36.21143  -81.685428
+#&gt; 188 FALSE        Iowa City    IA 52242           US   41.65860  -91.551083
+#&gt; 189  TRUE  College Station    TX 77843           US   30.60989  -96.340383
+#&gt; 190 FALSE           Mobile    AL 36695           US   30.67304  -88.075570
+#&gt; 191  TRUE         Greenbay    WI 54304           US   44.50131  -88.062273
+#&gt; 192 FALSE       Blacksburg    VA 24061           US   37.21999  -80.418064
+#&gt; 193 FALSE            Provo    UT 84602           US   40.25753 -111.654525
+#&gt; 194 FALSE        Manhattan    NY 10034           US   40.87327  -73.916459
+#&gt; 195 FALSE       Birmingham    AL 35294           US   33.51139  -86.842778
+#&gt; 196 FALSE     Poughkeepsie    NY 12601           US   41.71914  -73.932955
+#&gt; 197 FALSE      Santa Clara    CA 95054           US   37.40300 -121.970000
+#&gt; 198 FALSE          Memphis    TN 38152           US   35.12094  -89.977147
+#&gt; 199 FALSE     Philadelphia    PA 19122           US   39.90080  -75.167541
+#&gt; 200  TRUE      Los Angeles    CA 90089           US   34.01417 -118.287778
+#&gt; 201 FALSE       Huntsville    AL 35810           US   34.78354  -86.578413
+#&gt; 202 FALSE        Allendale    MI 49401           US   42.96900  -85.894735
+#&gt; 203 FALSE     Indianapolis    IN 46225           US   39.76006  -86.163806
+#&gt; 204 FALSE             Reno    NV 89557           US   39.54695 -119.817543
+#&gt; 205 FALSE           Monroe    LA 71209           US   32.53081  -92.066060
+#&gt; 206 FALSE        Thibodaux    LA 70301           US   29.78673  -90.804550
+#&gt; 207  TRUE            Miami    FL 33125           US   25.77806  -80.219722
+#&gt; 208 FALSE          Pullman    WA 99164           US   46.73183 -117.160499
+#&gt; 209 FALSE     College Park    MD 20742           US   38.99033  -76.947379
+#&gt; 210 FALSE             Waco    TX 76704           US   31.55820  -97.115670
+#&gt; 211  TRUE         Kingston    RI 2881            US   41.48800  -71.534746
+#&gt; 212 FALSE          Hanover    NH 3755            US   43.70130  -72.284278
+#&gt; 213 FALSE          Lincoln    NE 68588           US   40.82068  -96.705594
+#&gt; 214 FALSE      Terre Haute    IN 47809           US   39.47469  -87.366960
+#&gt; 215 FALSE          Clemson    SC 29634           US   34.67877  -82.843243
+#&gt; 216 FALSE        Champaign    IL 61820           US   40.09933  -88.235957
+#&gt; 217 FALSE         Lawrence    KS 66045           US   38.96294  -95.246369
+#&gt; 218 FALSE      Bloomington    IN 47408           US   39.18090  -86.525622
+#&gt; 219    NA     Stephenville    TX  &lt;NA&gt;           US         NA          NA
+#&gt; 220 FALSE          Atlanta    GA 30313           US   33.75558  -84.400881
+#&gt; 221 FALSE      New Orleans    LA 70112           US   29.95083  -90.081111
+#&gt; 222 FALSE  East Rutherford    NJ 7073            US   40.81361  -74.074444
+#&gt; 223 FALSE        Ann Arbor    MI 48109           US   42.26584  -83.748696
+#&gt; 224  TRUE          Jackson    MS 39216           US   32.33001  -90.179558
+#&gt; 225 FALSE      Hattiesburg    MS 39402           US   31.32893  -89.331812
+#&gt; 226    NA          Hickory    NC 27244           US   35.73333  -81.344291
+#&gt; 227 FALSE       Morgantown    WV 26507           US   39.65027  -79.955187
+#&gt; 228 FALSE        Baltimore    MD 21230           US   39.27806  -76.622778
+#&gt; 229    NA        Worcester    MA 01613           US   42.26256  -71.801888
+#&gt; 230 FALSE    Daytona Beach    FL 32114           US   29.17347  -81.117511
+#&gt; 231    NA        Stevenson    MD 21153           US   39.41028  -76.712831
+#&gt; 232  TRUE        Annapolis    MD 21402           US   38.98470  -76.507633
+#&gt; 233    NA           Upland    IN 92602           US   40.45685  -85.501181
+#&gt; 234  TRUE        Knoxville    TN 37996           US   35.95501  -83.925013
+#&gt; 235 FALSE       Cincinnati    OH 45221           US   39.13125  -84.516191
+#&gt; 236 FALSE        Nashville    TN 37209           US   36.16648  -86.771290
+#&gt; 237 FALSE       Notre Dame    IN 46556           US   41.69838  -86.233942
+#&gt; 238  TRUE          Greeley    CO 80639           US   40.40349 -104.705139
+#&gt; 239  TRUE          Houston    TX 77054           US   29.68472  -95.410833
+#&gt; 240 FALSE       Charleston    IL 61920           US   39.48050  -88.181162
+#&gt; 241 FALSE         Columbus    OH 43210           US   40.00164  -83.019727
+#&gt; 242 FALSE           Durham    NC 27707           US   35.97386  -78.896969
+#&gt; 243 FALSE       Orangeburg    SC 29115           US   33.49863  -80.844686
+#&gt; 244    NA          Orlanda    FL  &lt;NA&gt;           US   26.32122  -81.692957
+#&gt; 245    NA       Saint Paul    MN  &lt;NA&gt;           US         NA          NA
+#&gt; 246 FALSE       Greenville    SC 29617           US   34.92019  -82.437092
+#&gt; 247  TRUE     Prairie View    TX 28202           US   30.09379  -95.996091
+#&gt; 248 FALSE       Louisville    KY 40292           US   38.20576  -85.758814
+#&gt; 249 FALSE       Cincinnati    OH 45202           US   39.09555  -84.516071
+#&gt; 250 FALSE       Statesboro    GA 30460           US   32.41225  -81.784930
+#&gt; 251 FALSE           Athens    OH 45701           US   39.32128  -82.103431
+#&gt; 252    NA        San Diego    CA 92093           US   32.71742 -117.162773
+#&gt; 253 FALSE      Springfield    MO 65897           US   37.19762  -93.279812
+#&gt; 254    NA        Worcester    MA  &lt;NA&gt;           US         NA          NA
+#&gt; 255 FALSE        Princeton    NJ 8540            US   40.34579  -74.650005
+#&gt; 256    NA       Birmingham    AL 35203           US   33.52068  -86.802433
+#&gt; 257 FALSE         Portland    OR 97205           US   45.52160 -122.691681
+#&gt; 258 FALSE         Beaumont    TX 77705           US   30.04313  -94.069963
+#&gt; 259 FALSE        San Diego    CA 92108           US   32.78311 -117.119572
+#&gt; 260 FALSE            Tampa    FL 33620           US   27.97587  -82.503334
+#&gt; 261 FALSE            Bronx    NY 10465           US   40.80753  -73.797744
+#&gt; 262 FALSE    East Hartford    CT 6118            US   41.75957  -72.618773
+#&gt; 263 FALSE        Corvallis    OR 97331           US   44.55946 -123.281434
+#&gt; 264  TRUE       Washington    DC 20003           US   38.88981  -76.971809
+#&gt; 265  TRUE             Elon    NC 77493           US   36.11013  -79.507998
+#&gt; 266 FALSE   Salt Lake City    UT 84112           US   40.75997 -111.848826
+#&gt; 267 FALSE          Houston    TX 77251           US   29.71633  -95.409326
+#&gt; 268  TRUE        Itta Bena    MS 38941           US   33.51183  -90.339772
+#&gt; 269 FALSE         Davidson    NC 28036           US   35.49957  -80.842842
+#&gt; 270 FALSE          Houston    TX 77004           US   29.72205  -95.349175
+#&gt; 271 FALSE            Logan    UT 84322           US   41.75174 -111.811601
+#&gt; 272 FALSE           Cheney    WA 99004           US   47.49278 -117.587353
+#&gt; 273 FALSE         Pasadena    CA 90095           US   34.16133 -118.167646
+#&gt; 274 FALSE   West Lafayette    IN 47907           US   40.43523  -86.918684
+#&gt; 275 FALSE         Richmond    KY 40475           US   37.73441  -84.297285
+#&gt; 276 FALSE           Murray    KY 42071           US   36.62152  -88.317553
+#&gt; 277 FALSE         Evanston    IL 60208           US   42.06540  -87.692475
+#&gt; 278 FALSE        Ypsilanti    MI 48197           US   42.25613  -83.647285
+#&gt; 279 FALSE       Carbondale    IL 62901           US   37.70864  -89.216212
+#&gt; 280 FALSE          Whitney    NV 89154           US   36.08593 -115.017310
+#&gt; 281  TRUE           Athens    GA 30602           US   33.94982  -83.373381
+#&gt; 282 FALSE           Muncie    IN 47306           US   40.21594  -85.416115
+#&gt; 283 FALSE           Ithaca    NY 14850           US   42.44390  -76.478540
+#&gt; 284 FALSE  Charlottesville    VA 22904           US   38.03118  -78.513790
+#&gt; 285 FALSE         Homewood    AL 35229           US   33.46327  -86.795326
+#&gt; 286    NA         Newberry    SC 29108           US   34.28613  -81.622539
+#&gt; 287    NA         Houghton    MI  &lt;NA&gt;           US         NA          NA
+#&gt; 288    NA       Piscataway    NJ 08854           US   40.54626  -74.466041
+#&gt; 289 FALSE          Abilene    TX 79602           US   32.43369  -99.698625
+#&gt; 290 FALSE            Tulsa    OK 74194           US   36.14892  -95.943785
+#&gt; 291    NA        Inglewood    CA  &lt;NA&gt;           US   33.95620 -118.353132
+#&gt; 292  TRUE          Chicago    IL 60605           US   41.86250  -87.616667
+#&gt; 293 FALSE     Fort Collins    CO 80526           US   40.56212 -105.141625
+#&gt; 294 FALSE         San Jose    CA 95112           US   37.31967 -121.868296
+#&gt; 295 FALSE     East Lansing    MI 48824           US   42.72815  -84.484853
+#&gt; 296    NA           DeLand    FL 32720           US   29.02086  -81.299375
+#&gt; 297  TRUE           Denver    CO 80204           US   39.74389 -105.020000
+#&gt; 298 FALSE       Youngstown    OH 44502           US   41.10930  -80.650188
+#&gt; 299 FALSE         Stanford    CA 94305           US   37.43456 -122.161127
+#&gt; 300    NA        Owensboro    KY  &lt;NA&gt;           US   37.74230  -87.119976
+#&gt; 301    NA         Franklin    IN 92620           US   33.70416 -117.751090
+#&gt; 302 FALSE            Ogden    UT 84408           US   41.19187 -111.940139
+#&gt; 303 FALSE          Hammond    LA 70401           US   30.51103  -90.468579
+#&gt; 304 FALSE           Carson    CA 92620           US   33.83220 -118.251755
+#&gt; 305 FALSE            Akron    OH 44399           US   41.07255  -81.508341
+#&gt; 306 FALSE          El Paso    TX 79968           US   31.77334 -106.507957
+#&gt; 307 FALSE            Tempe    AZ 85287           US   33.42645 -111.932501
+#&gt; 308  TRUE          Atlanta    GA 30339           US   33.89082  -84.467656
+#&gt; 309 FALSE        Marquette    MI 70118           US   46.56059  -87.393741
+#&gt; 310 FALSE      Minneapolis    MN 55488           US   44.97653  -93.224546
+#&gt; 311 FALSE         Savannah    GA 31404           US   32.02743  -81.068749
+#&gt; 312    NA          Gaffney    SC 29342           US   35.07179  -81.649820
+#&gt; 313  TRUE           Nassau        &lt;NA&gt;           BS   25.05557  -77.358736
+#&gt; 314  TRUE      Baton Rouge    LA 70803           US   30.41203  -91.183816
+#&gt; 315    NA           Canton    OH  &lt;NA&gt;           US         NA          NA
+#&gt; 316  TRUE        San Diego    CA 92111           US   32.77307 -117.183721
+#&gt; 317    NA       Georgetown    KY 40324           US   38.20444  -84.545556
+#&gt; 318  TRUE           Frisco    TX 75033           US   33.15444  -96.835278
+#&gt; 319 FALSE Saint Petersburg    FL 33705           US   27.76833  -82.653333
+#&gt; 320 FALSE       Cookeville    TN 38501           US   36.17806  -85.506183
+#&gt; 321    NA           Upland    IN 92602           US   40.45686  -85.501228
+#&gt; 322 FALSE          Amherst    NY 14260           US   42.99913  -78.777511
+#&gt; 323 FALSE      Cedar Falls    IA 50614           US   42.51561  -92.467231
+#&gt; 324  TRUE           Albany    NY 12206           US   42.68098  -73.827276
+#&gt; 325  TRUE         Glendale    AZ 85305           US   33.52761 -112.262559
+#&gt; 326 FALSE      Albuquerque    NM 87131           US   35.06695 -106.628322
+#&gt; 327 FALSE        Nashville    TN 37212           US   36.14405  -86.808894
+#&gt; 328  TRUE           Oxford    MS 38677           US   34.36198  -89.534208
+#&gt; 329 FALSE             Troy    AL 36082           US   31.79956  -85.951833
+#&gt; 330 FALSE        Villanova    PA 19085           US   40.03433  -75.336767
+#&gt; 331 FALSE    Staten Island    NY 10301           US   40.61469  -74.090639
+#&gt; 332 FALSE        Kalamazoo    MI 49008           US   42.28601  -85.600757
+#&gt; 333 FALSE        Flagstaff    AZ 86001           US   35.18055 -111.652838
+#&gt; 334 FALSE           Durham    NC 27708           US   35.99537  -78.941756
+#&gt; 335 FALSE      Little Rock    AR 72205           US   34.74985  -92.330127
+#&gt; 336 FALSE          Laramie    WY 82071           US   41.31161 -105.568138
+#&gt; 337 FALSE           Hadley    MA 1003            US   42.37732  -72.536059
+#&gt; 338 FALSE         Missoula    MT 59812           US   46.86388 -113.981504
+#&gt; 339 FALSE           Dayton    OH 45417           US   39.73692  -84.198107
+#&gt; 340 FALSE           Durham    NH 3824            US   43.13862  -70.939308
+#&gt; 341 FALSE          Abilene    TX 79601           US   32.47228  -99.710464
+#&gt; 342 FALSE     Johnson City    TN 37604           US   36.29908  -82.374117
+#&gt; 343 FALSE          Norfolk    VA 23504           US   36.84694  -76.260084
+#&gt; 344 FALSE       Washington    DC 20059           US   38.92549  -77.021047
+#&gt; 345  TRUE         Columbia    SC 29208           US   33.97302  -81.019173
+#&gt; 346 FALSE        Lynchburg    VA 24502           US   37.35443  -79.175024
+#&gt; 347    NA          Chicago    IL 60654           US   41.87556  -87.624421
+#&gt; 348 FALSE           Oxford    OH 45056           US   39.51970  -84.733025
+#&gt; 349 FALSE        New Haven    CT 6520            US   41.31324  -72.960533
+#&gt; 350 FALSE         New York    NY 10451           US   40.82917  -73.926389
+#&gt; 351 FALSE     Williamsburg    VA 23186           US   37.27310  -76.713720
 #&gt;                                      elevation year_constructed  dome
 #&gt; 1                                        122.8             1925 FALSE
 #&gt; 2                                  20.24213219             1928 FALSE
 #&gt; 3                                  1208.201294             1978 FALSE
-#&gt; 4                                  235.1224518             1981 FALSE
-#&gt; 5                                   11.3825922             2007 FALSE
-#&gt; 6                                  201.5526886             1993 FALSE
+#&gt; 4                                   11.3825922             2007 FALSE
+#&gt; 5                                  235.1224518             1981 FALSE
+#&gt; 6                                  201.5526886             1993  TRUE
 #&gt; 7                                  823.2221069             1970 FALSE
-#&gt; 8                                  255.2472076             2001 FALSE
+#&gt; 8                                  255.2472076             2001  TRUE
 #&gt; 9                                   84.6832428             2006 FALSE
 #&gt; 10                                  35.4817543             1998 FALSE
-#&gt; 11                                        &lt;NA&gt;               NA FALSE
+#&gt; 11                                        &lt;NA&gt;               NA  TRUE
 #&gt; 12                                       336.1             1967 FALSE
 #&gt; 13                                        42.8             1988 FALSE
 #&gt; 14                                 10.26500511             1975 FALSE
@@ -1121,322 +1155,336 @@ elevation, dome, timezone and construction year.</p>
 #&gt; 25                                 269.4302979             1993 FALSE
 #&gt; 26                                 41.29866409             1969 FALSE
 #&gt; 27                                 172.5047302             2009 FALSE
-#&gt; 28                                 127.4198303             1967 FALSE
-#&gt; 29                                 2.264276505             2010 FALSE
-#&gt; 30                                 194.1601868             2002 FALSE
-#&gt; 31                                 220.8777466             1996 FALSE
-#&gt; 32                                 56.51401138             2008 FALSE
-#&gt; 33                                  283.548584             1968 FALSE
-#&gt; 34                                 13.68128395             2012 FALSE
-#&gt; 35                                 354.1551514             1960 FALSE
-#&gt; 36                                 44.97250748             1930 FALSE
-#&gt; 37  0.0000000000000000000000000000000000000118             2014 FALSE
-#&gt; 38                                         236             1966 FALSE
-#&gt; 39                                 328.0574646             1968 FALSE
-#&gt; 40                                        78.4             2016 FALSE
-#&gt; 41                                 99.21277618             1924 FALSE
-#&gt; 42                                 19.55942535             1950 FALSE
-#&gt; 43                                  279.300415             1913 FALSE
-#&gt; 44                                 1507.508667             1973 FALSE
-#&gt; 45                                 64.42764282             2013 FALSE
-#&gt; 46                                 276.4808655             1919 FALSE
-#&gt; 47                                 127.6225204             1986 FALSE
-#&gt; 48                                       242.5             1937 FALSE
-#&gt; 49                                 31.18483925             1957 FALSE
-#&gt; 50                                       172.3             1949 FALSE
-#&gt; 51                                  399.303009             1975 FALSE
-#&gt; 52                                 267.4530029             1965 FALSE
-#&gt; 53                                 20.94113731             2007 FALSE
-#&gt; 54                                 456.8201294             1961 FALSE
-#&gt; 55                                 13.74894905             2003 FALSE
-#&gt; 56                                 244.6367645             1919 FALSE
-#&gt; 57                                 33.87348557             1925 FALSE
-#&gt; 58                                 70.05136108             1929 FALSE
-#&gt; 59                                  12.6744318             1970 FALSE
-#&gt; 60                                  102.564064             1980 FALSE
+#&gt; 28                                        &lt;NA&gt;               NA FALSE
+#&gt; 29                                 127.4198303             1967 FALSE
+#&gt; 30                                 2.264276505             2010 FALSE
+#&gt; 31                                 194.1601868             2002 FALSE
+#&gt; 32                                 220.8777466             1996 FALSE
+#&gt; 33                                 56.51401138             2008 FALSE
+#&gt; 34                                  283.548584             1968 FALSE
+#&gt; 35                                 13.68128395             2012 FALSE
+#&gt; 36                                 354.1551514             1960 FALSE
+#&gt; 37                                 44.97250748             1930 FALSE
+#&gt; 38  0.0000000000000000000000000000000000000118             2014 FALSE
+#&gt; 39                                         236             1966 FALSE
+#&gt; 40                                 328.0574646             1968 FALSE
+#&gt; 41                                        78.4             2016 FALSE
+#&gt; 42                                 99.21277618             1924 FALSE
+#&gt; 43                                 19.55942535             1950 FALSE
+#&gt; 44                                  279.300415             1913 FALSE
+#&gt; 45                                 1507.508667             1973 FALSE
+#&gt; 46                                 64.42764282             2013 FALSE
+#&gt; 47                                 276.4808655             1919 FALSE
+#&gt; 48                                 127.6225204             1986 FALSE
+#&gt; 49                                       242.5             1937 FALSE
+#&gt; 50                                 31.18483925             1957 FALSE
+#&gt; 51                                       172.3             1949 FALSE
+#&gt; 52                                  399.303009             1975 FALSE
+#&gt; 53                                 267.4530029             1965 FALSE
+#&gt; 54                                 20.94113731             2007 FALSE
+#&gt; 55                                 456.8201294             1961 FALSE
+#&gt; 56                                 13.74894905             2003 FALSE
+#&gt; 57                                 244.6367645             1919 FALSE
+#&gt; 58                                 33.87348557             1925 FALSE
+#&gt; 59                                 70.05136108             1929 FALSE
+#&gt; 60                                  12.6744318             1970 FALSE
 #&gt; 61                                  124.471344             1999 FALSE
-#&gt; 62                                 221.1980591             1928 FALSE
-#&gt; 63                                 3.556508303             1971 FALSE
-#&gt; 64                                 125.3108063             1923 FALSE
-#&gt; 65                                 31.37226868             1946 FALSE
-#&gt; 66                                  263.604126             1917 FALSE
-#&gt; 67                                 82.02420044             1993 FALSE
-#&gt; 68                                      1528.4             2017 FALSE
-#&gt; 69                                 162.6989746             1980 FALSE
-#&gt; 70                                 117.0089951             1966 FALSE
-#&gt; 71                                  -81.603639             2005 FALSE
-#&gt; 72                                 89.52690887             1974 FALSE
-#&gt; 73                                         5.2             2002 FALSE
-#&gt; 74                                 323.2064514             1998 FALSE
-#&gt; 75                                       300.8             2011 FALSE
-#&gt; 76                                  151.194931             1924 FALSE
-#&gt; 77                                  31.2384243             1930 FALSE
-#&gt; 78                                 307.4248962             1973 FALSE
-#&gt; 79                                 32.38431549             2003 FALSE
-#&gt; 80                                 133.2241211             1930 FALSE
-#&gt; 81                                       495.8             1961 FALSE
-#&gt; 82                                 495.7769775             1962 FALSE
-#&gt; 83                                 4.168509007             1965 FALSE
-#&gt; 84                                 75.10210419             1922 FALSE
-#&gt; 85                                         4.7             1884 FALSE
-#&gt; 86                                 373.3928833             1979 FALSE
-#&gt; 87                                 160.3089447             1924 FALSE
-#&gt; 88                                 110.2742081             1914 FALSE
-#&gt; 89                                 12.51101398             1998 FALSE
-#&gt; 90                                 586.9408569             2006 FALSE
-#&gt; 91                                 28.74350357             1952 FALSE
-#&gt; 92                                          39             2003 FALSE
-#&gt; 93                                 321.3641663             1969 FALSE
-#&gt; 94                                 403.7972412             1938 FALSE
-#&gt; 95                                  19.0564537             1963 FALSE
-#&gt; 96                                 205.9057465             1966 FALSE
-#&gt; 97                                 277.8869934             1925 FALSE
-#&gt; 98                                  1763.97644             1967 FALSE
-#&gt; 99                                 60.03879166             2010 FALSE
-#&gt; 100                                94.58428955             1983 FALSE
-#&gt; 101                                      309.1             1993 FALSE
-#&gt; 102                                653.8632813             1974 FALSE
-#&gt; 103                                 253.207016             1969 FALSE
-#&gt; 104                                94.25577545             1939 FALSE
-#&gt; 105                                1.336527586             1995 FALSE
-#&gt; 106                                2024.875732             1962 FALSE
-#&gt; 107                                274.4847717             1992 FALSE
-#&gt; 108                                212.6865692             1927 FALSE
-#&gt; 109                                3.613628864             2011 FALSE
-#&gt; 110                                59.50488663             1997 FALSE
-#&gt; 111                                4.887843609             1912 FALSE
-#&gt; 112                                296.9589844             2010 FALSE
-#&gt; 113                                200.1825104             1997 FALSE
-#&gt; 114                                81.43208313             1926 FALSE
-#&gt; 115                                137.3915253             1924 FALSE
-#&gt; 116                                1.718581796             1995 FALSE
-#&gt; 117                                138.6699677             2013 FALSE
-#&gt; 118                                      151.2             1950 FALSE
-#&gt; 119                                1634.041138             1924 FALSE
-#&gt; 120                                183.9643707             2002 FALSE
-#&gt; 121                                3.147987843             1936 FALSE
-#&gt; 122                                11.71361065             1895 FALSE
-#&gt; 123                                18.69116974             2007 FALSE
-#&gt; 124                                208.4659576             2008 FALSE
-#&gt; 125                                355.0962524             1925 FALSE
-#&gt; 126                                303.1637268             1992 FALSE
-#&gt; 127                                        287             2017 FALSE
-#&gt; 128                                169.4058075             2000 FALSE
-#&gt; 129                                231.6300049             1996 FALSE
-#&gt; 130                                78.00233459             2002 FALSE
-#&gt; 131                                181.4839783             1937 FALSE
-#&gt; 132                                67.71961975             2000 FALSE
-#&gt; 133                                90.32305145             1988 FALSE
-#&gt; 134                                142.8643188             1946 FALSE
-#&gt; 135                                124.6879349             1964 FALSE
-#&gt; 136                                180.8555756             1991 FALSE
-#&gt; 137                                138.4986725             1953 FALSE
-#&gt; 138                                242.8722687             1963 FALSE
+#&gt; 62                                  102.564064             1980 FALSE
+#&gt; 63                                 221.1980591             1928 FALSE
+#&gt; 64                                 3.556508303             1971 FALSE
+#&gt; 65                                 125.3108063             1923 FALSE
+#&gt; 66                                 31.37226868             1946 FALSE
+#&gt; 67                                  263.604126             1917 FALSE
+#&gt; 68                                 82.02420044             1993 FALSE
+#&gt; 69                                      1528.4             2017 FALSE
+#&gt; 70                                 162.6989746             1980  TRUE
+#&gt; 71                                 117.0089951             1966 FALSE
+#&gt; 72                                  -81.603639             2005 FALSE
+#&gt; 73                                 89.52690887             1974 FALSE
+#&gt; 74                                         5.2             2002 FALSE
+#&gt; 75                                 323.2064514             1998  TRUE
+#&gt; 76                                       300.8             2011 FALSE
+#&gt; 77                                  151.194931             1924 FALSE
+#&gt; 78                                        &lt;NA&gt;               NA FALSE
+#&gt; 79                                  31.2384243             1930 FALSE
+#&gt; 80                                 307.4248962             1973 FALSE
+#&gt; 81                                 32.38431549             2003 FALSE
+#&gt; 82                                 133.2241211             1930 FALSE
+#&gt; 83                                 495.7769775             1962 FALSE
+#&gt; 84                                       495.8             1961 FALSE
+#&gt; 85                                 4.168509007             1965 FALSE
+#&gt; 86                                 75.10210419             1922 FALSE
+#&gt; 87                                         4.7             1884 FALSE
+#&gt; 88                                 373.3928833             1979  TRUE
+#&gt; 89                                 160.3089447             1924 FALSE
+#&gt; 90                                 110.2742081             1914 FALSE
+#&gt; 91                                 12.51101398             1998 FALSE
+#&gt; 92                                 586.9408569             2006 FALSE
+#&gt; 93                                 28.74350357             1952 FALSE
+#&gt; 94                                          39             2003 FALSE
+#&gt; 95                                 321.3641663             1969 FALSE
+#&gt; 96                                 403.7972412             1938 FALSE
+#&gt; 97                                  19.0564537             1963 FALSE
+#&gt; 98                                 205.9057465             1966 FALSE
+#&gt; 99                                 277.8869934             1925 FALSE
+#&gt; 100                                       &lt;NA&gt;               NA FALSE
+#&gt; 101                                 1763.97644             1967 FALSE
+#&gt; 102                                60.03879166             2010 FALSE
+#&gt; 103                                94.58428955             1983 FALSE
+#&gt; 104                                      309.1             1993 FALSE
+#&gt; 105                                653.8632813             1974 FALSE
+#&gt; 106                                 253.207016             1969 FALSE
+#&gt; 107                                94.25577545             1939 FALSE
+#&gt; 108                                1.336527586             1995 FALSE
+#&gt; 109                                2024.875732             1962 FALSE
+#&gt; 110                                274.4847717             1992  TRUE
+#&gt; 111                                212.6865692             1927 FALSE
+#&gt; 112                                3.613628864             2011 FALSE
+#&gt; 113                                59.50488663             1997 FALSE
+#&gt; 114                                4.887843609             1912 FALSE
+#&gt; 115                                296.9589844             2010 FALSE
+#&gt; 116                                200.1825104             1997 FALSE
+#&gt; 117                                81.43208313             1926 FALSE
+#&gt; 118                                137.3915253             1924 FALSE
+#&gt; 119                                1.718581796             1995 FALSE
+#&gt; 120                                138.6699677             2013 FALSE
+#&gt; 121                                      151.2             1950 FALSE
+#&gt; 122                                1634.041138             1924 FALSE
+#&gt; 123                                183.9643707             2002  TRUE
+#&gt; 124                                3.147987843             1936 FALSE
+#&gt; 125                                11.71361065             1895 FALSE
+#&gt; 126                                18.69116974             2007 FALSE
+#&gt; 127                                208.4659576             2008 FALSE
+#&gt; 128                                355.0962524             1925 FALSE
+#&gt; 129                                303.1637268             1992 FALSE
+#&gt; 130                                        287             2017 FALSE
+#&gt; 131                                169.4058075             2000 FALSE
+#&gt; 132                                231.6300049             1996 FALSE
+#&gt; 133                                78.00233459             2002 FALSE
+#&gt; 134                                181.4839783             1937 FALSE
+#&gt; 135                                67.71961975             2000 FALSE
+#&gt; 136                                90.32305145             1988 FALSE
+#&gt; 137                                142.8643188             1946 FALSE
+#&gt; 138                                124.6879349             1964 FALSE
 #&gt; 139                                       &lt;NA&gt;               NA FALSE
-#&gt; 140                                192.8755646             1950 FALSE
-#&gt; 141                                2.624486446             1987 FALSE
-#&gt; 142                                36.58879089             1976 FALSE
-#&gt; 143                                 1.96428895             1903 FALSE
-#&gt; 144                                220.5887146             2001 FALSE
-#&gt; 145                                8.543146133             1994 FALSE
-#&gt; 146                                       65.4             1999 FALSE
-#&gt; 147                                1390.252441             1970 FALSE
-#&gt; 148                                89.99433899             1973 FALSE
-#&gt; 149                                12.30015659             1969 FALSE
-#&gt; 150                                79.35839844             2012 FALSE
-#&gt; 151                                154.4346619             1968 FALSE
-#&gt; 152                                137.7152405             1930 FALSE
-#&gt; 153                                67.05336761             1949 FALSE
-#&gt; 154                                19.87884521             2014 FALSE
-#&gt; 155                                11.65622807             1920 FALSE
-#&gt; 156                                78.48539734             1924 FALSE
-#&gt; 157                                72.25324249             1992 FALSE
-#&gt; 158                                274.9135437             1975 FALSE
-#&gt; 159                                       37.3               NA FALSE
-#&gt; 160                                228.1033936             1964 FALSE
-#&gt; 161                                 190.365509             2013 FALSE
-#&gt; 162                                177.8676453             1981 FALSE
-#&gt; 163                                163.7328186             1991 FALSE
-#&gt; 164                                72.87982941             1968 FALSE
-#&gt; 165                                351.4482422             2005 FALSE
-#&gt; 166                                      385.9             1957 FALSE
-#&gt; 167                                191.7279816             1933 FALSE
-#&gt; 168                                117.6974106             1978 FALSE
-#&gt; 169                                 9.57440567             2014 FALSE
-#&gt; 170                                4.137742996             1948 FALSE
-#&gt; 171                                980.7632446             1947 FALSE
-#&gt; 172                                201.1737976             1939 FALSE
-#&gt; 173                                198.0679016             1947 FALSE
-#&gt; 174                                240.9007721             1972 FALSE
-#&gt; 175                                127.7569809             1927 FALSE
-#&gt; 176                                32.63183975             2002 FALSE
-#&gt; 177                                544.1551514             2010 FALSE
-#&gt; 178                                9.979202271             1993 FALSE
-#&gt; 179                                        9.9             1993 FALSE
-#&gt; 180                                794.4794922             1975 FALSE
-#&gt; 181                                991.3414307             1962 FALSE
-#&gt; 182                                220.6357727             1929 FALSE
-#&gt; 183                                 108.824585             1927 FALSE
-#&gt; 184                                9.828813553             1948 FALSE
-#&gt; 185                                192.3498077             1957 FALSE
-#&gt; 186                                632.2631226             1965 FALSE
-#&gt; 187                                1412.097046             1964 FALSE
-#&gt; 188                                10.95070267             1984 FALSE
-#&gt; 189                                174.6382141             1927 FALSE
-#&gt; 190                                24.94474983             1968 FALSE
-#&gt; 191                                4.531901836             2014 FALSE
-#&gt; 192                                90.62445831             1965 FALSE
-#&gt; 193                                3.198706865             2003 FALSE
-#&gt; 194                                42.50374222             1923 FALSE
-#&gt; 195                                214.9181061             1996 FALSE
-#&gt; 196                                      205.8             1973 FALSE
-#&gt; 197                                216.3370361             2008 FALSE
-#&gt; 198                                 1406.57605             1966 FALSE
-#&gt; 199                                  22.998209             1978 FALSE
-#&gt; 200                                 3.23726368             1972 FALSE
-#&gt; 201                                1.853350639             2012 FALSE
-#&gt; 202                                773.9526367             1972 FALSE
-#&gt; 203                                32.68748093             1950 FALSE
-#&gt; 204                                117.0538101             2014 FALSE
-#&gt; 205                                32.68801498             1928 FALSE
-#&gt; 206                                152.3080139             1923 FALSE
-#&gt; 207                                 274.855957             1921 FALSE
-#&gt; 208                                231.6500854             1960 FALSE
-#&gt; 209                                205.6452179             1942 FALSE
-#&gt; 210                                223.2471619             1923 FALSE
-#&gt; 211                                155.5213165             1925 FALSE
-#&gt; 212                                354.9318848             1923 FALSE
-#&gt; 213                                      307.9             2017 FALSE
-#&gt; 214                                0.508185744             1975 FALSE
-#&gt; 215                                 1.68149209             2010 FALSE
-#&gt; 216                                255.5500031             1927 FALSE
-#&gt; 217                                108.4067383             1941 FALSE
-#&gt; 218                                64.52726746             1932 FALSE
-#&gt; 219                                      351.6             1924 FALSE
-#&gt; 220                                 327.409668             1980 FALSE
-#&gt; 221                                2.961556435             1998 FALSE
-#&gt; 222                                      203.4             2005 FALSE
-#&gt; 223                                9.516305923             1979 FALSE
-#&gt; 224                                        154             2012 FALSE
-#&gt; 225                                10.74990082             1959 FALSE
-#&gt; 226                                282.0274963             2012 FALSE
-#&gt; 227                                271.9517212             1921 FALSE
-#&gt; 228                                230.0660553             1915 FALSE
-#&gt; 229                                121.0412598             1999 FALSE
-#&gt; 230                                 222.645401             1930 FALSE
-#&gt; 231                                1455.349976             1995 FALSE
-#&gt; 232                                15.19169617             2002 FALSE
-#&gt; 233                                212.9662933             1970 FALSE
-#&gt; 234                                216.6770325             1922 FALSE
-#&gt; 235                                96.73323059             1975 FALSE
-#&gt; 236                                67.29846191             1955 FALSE
-#&gt; 237                                       &lt;NA&gt;               NA  TRUE
-#&gt; 238                                303.2829285             1981 FALSE
-#&gt; 239                                77.36286926             2016 FALSE
-#&gt; 240                                138.5615997             1998 FALSE
-#&gt; 241                                      146.3             2000 FALSE
-#&gt; 242                                61.25376892             1984 FALSE
-#&gt; 243                                 194.230896             1929 FALSE
-#&gt; 244                                 402.368103             1941 FALSE
-#&gt; 245                                32.00296402             1998 FALSE
-#&gt; 246                                23.84255791             1926 FALSE
-#&gt; 247                                3.981505394             1964 FALSE
-#&gt; 248                                16.28476334             1967 FALSE
-#&gt; 249                                11.07972908             1998 FALSE
-#&gt; 250                                          7             2012 FALSE
-#&gt; 251                                6.515614986             2003 FALSE
-#&gt; 252                                66.90744781             1953 FALSE
-#&gt; 253                                3.029993296             1961 FALSE
-#&gt; 254                                204.2487793             2001 FALSE
-#&gt; 255                                1411.543579             1998 FALSE
-#&gt; 256                                7.148301601             1950 FALSE
-#&gt; 257                                39.88368607             1958 FALSE
-#&gt; 258                                249.4658203             1923 FALSE
-#&gt; 259                                        9.6             1942 FALSE
-#&gt; 260                                1427.914429             1968 FALSE
-#&gt; 261                                750.2774658             1967 FALSE
-#&gt; 262                                245.1772461             1922 FALSE
-#&gt; 263                                197.5337677             1924 FALSE
-#&gt; 264                                298.1834717             1969 FALSE
-#&gt; 265                                152.6495667             1973 FALSE
-#&gt; 266                                181.2376099             1926 FALSE
-#&gt; 267                                 241.248764             1969 FALSE
-#&gt; 268                                126.7586365             2010 FALSE
-#&gt; 269                                490.0622253             1971 FALSE
-#&gt; 270                                186.1120758             1929 FALSE
-#&gt; 271                                 285.481781             1967 FALSE
-#&gt; 272                                257.3187561             1915 FALSE
-#&gt; 273                                170.4677429             1931 FALSE
-#&gt; 274                                208.0207825             1958 FALSE
-#&gt; 275                                160.5950775             1922 FALSE
-#&gt; 276                                       &lt;NA&gt;               NA FALSE
-#&gt; 277                                530.4555664             1959 FALSE
-#&gt; 278                                235.5928345             1930 FALSE
-#&gt; 279                                 177.420578             1924 FALSE
-#&gt; 280                                1574.920898             1968 FALSE
-#&gt; 281                                28.30708694             1933 FALSE
-#&gt; 282                                254.8794861             1923 FALSE
-#&gt; 283                                14.65544891             1941 FALSE
-#&gt; 284                                1583.532593             2001 FALSE
-#&gt; 285                                298.8893127             1982 FALSE
-#&gt; 286                                18.38425636             2006 FALSE
-#&gt; 287                                122.5809097             2004 FALSE
-#&gt; 288                                      222.7             1999 FALSE
-#&gt; 289                                1451.553711             1966 FALSE
-#&gt; 290                                 13.7104578             1936 FALSE
-#&gt; 291                                       &lt;NA&gt;               NA    NA
-#&gt; 292                                321.2875061             2009 FALSE
-#&gt; 293                                1183.697876             1963 FALSE
-#&gt; 294                                360.1569519             1958 FALSE
-#&gt; 295                                      289.7             2017 FALSE
-#&gt; 296                                      186.4             1991 FALSE
-#&gt; 297                                254.3902283             2009 FALSE
-#&gt; 298                                6.564679146             1967 FALSE
-#&gt; 299                                      212.4             2008 FALSE
-#&gt; 300                                3.182889223             1981 FALSE
-#&gt; 301                                7.640734673             1924 FALSE
-#&gt; 302                                57.95064545             1961 FALSE
-#&gt; 303                                270.7148743             1997 FALSE
-#&gt; 304                                181.3815918             2005 FALSE
-#&gt; 305                                12.19581413             1990 FALSE
-#&gt; 306                                340.8609314             1966 FALSE
-#&gt; 307                                282.0275574             2015 FALSE
-#&gt; 308                                181.5759735             1993 FALSE
-#&gt; 309                                281.8959656             1976 FALSE
-#&gt; 310                                       70.1             1970 FALSE
-#&gt; 311                                325.6211243             2006 FALSE
-#&gt; 312                                1554.471924             1960 FALSE
-#&gt; 313                                159.9194641             1922 FALSE
-#&gt; 314                                146.8517151             1915 FALSE
-#&gt; 315                                154.7746277             1950 FALSE
-#&gt; 316                                127.3836746             1927 FALSE
-#&gt; 317                                63.39014053             1967 FALSE
-#&gt; 318                                243.8211212             1939 FALSE
-#&gt; 319                                2097.884766             1977 FALSE
-#&gt; 320                                103.0028152             1929 FALSE
-#&gt; 321                                112.1398163             1948 FALSE
-#&gt; 322                                2200.153564             1950 FALSE
-#&gt; 323                                46.58664703             1965 FALSE
-#&gt; 324                                 970.345459             1986 FALSE
-#&gt; 325                                222.4020081             1949 FALSE
-#&gt; 326                                19.05943298             1936 FALSE
-#&gt; 327                                      520.9             2017 FALSE
-#&gt; 328                                      512.5             2017 FALSE
-#&gt; 329                                4.916433334             1997 FALSE
-#&gt; 330                                53.46718979             1926 FALSE
-#&gt; 331                                60.54548645             1934 FALSE
-#&gt; 332                                272.9237061             1989 FALSE
-#&gt; 333                                       &lt;NA&gt;               NA FALSE
-#&gt; 334                                242.2643585             1983 FALSE
-#&gt; 335                                5.302621841             1914 FALSE
-#&gt; 336                                6.745362282             2009 FALSE
-#&gt; 337                                26.07615852             1935 FALSE
+#&gt; 140                                180.8555756             1991 FALSE
+#&gt; 141                                138.4986725             1953 FALSE
+#&gt; 142                                242.8722687             1963 FALSE
+#&gt; 143                                       &lt;NA&gt;               NA FALSE
+#&gt; 144                                192.8755646             1950 FALSE
+#&gt; 145                                2.624486446             1987 FALSE
+#&gt; 146                                36.58879089             1976 FALSE
+#&gt; 147                                 1.96428895             1903 FALSE
+#&gt; 148                                220.5887146             2001 FALSE
+#&gt; 149                                8.543146133             1994 FALSE
+#&gt; 150                                       65.4             1999 FALSE
+#&gt; 151                                1390.252441             1970  TRUE
+#&gt; 152                                89.99433899             1973 FALSE
+#&gt; 153                                79.35839844             2012 FALSE
+#&gt; 154                                12.30015659             1969 FALSE
+#&gt; 155                                154.4346619             1968 FALSE
+#&gt; 156                                       &lt;NA&gt;               NA FALSE
+#&gt; 157                                137.7152405             1930 FALSE
+#&gt; 158                                67.05336761             1949 FALSE
+#&gt; 159                                19.87884521             2014 FALSE
+#&gt; 160                                11.65622807             1920 FALSE
+#&gt; 161                                78.48539734             1924 FALSE
+#&gt; 162                                       &lt;NA&gt;               NA FALSE
+#&gt; 163                                72.25324249             1992 FALSE
+#&gt; 164                                274.9135437             1975 FALSE
+#&gt; 165                                       37.3               NA FALSE
+#&gt; 166                                228.1033936             1964 FALSE
+#&gt; 167                                 190.365509             2013 FALSE
+#&gt; 168                                177.8676453             1981 FALSE
+#&gt; 169                                163.7328186             1991 FALSE
+#&gt; 170                                72.87982941             1968 FALSE
+#&gt; 171                                351.4482422             2005 FALSE
+#&gt; 172                                      385.9             1957 FALSE
+#&gt; 173                                191.7279816             1933 FALSE
+#&gt; 174                                117.6974106             1978 FALSE
+#&gt; 175                                 9.57440567             2014 FALSE
+#&gt; 176                                4.137742996             1948 FALSE
+#&gt; 177                                980.7632446             1947 FALSE
+#&gt; 178                                201.1737976             1939 FALSE
+#&gt; 179                                198.0679016             1947 FALSE
+#&gt; 180                                240.9007721             1972 FALSE
+#&gt; 181                                127.7569809             1927 FALSE
+#&gt; 182                                32.63183975             2002 FALSE
+#&gt; 183                                544.1551514             2010 FALSE
+#&gt; 184                                9.979202271             1993 FALSE
+#&gt; 185                                        9.9             1993 FALSE
+#&gt; 186                                794.4794922             1975  TRUE
+#&gt; 187                                991.3414307             1962 FALSE
+#&gt; 188                                220.6357727             1929 FALSE
+#&gt; 189                                 108.824585             1927 FALSE
+#&gt; 190                                9.828813553             1948 FALSE
+#&gt; 191                                192.3498077             1957 FALSE
+#&gt; 192                                632.2631226             1965 FALSE
+#&gt; 193                                1412.097046             1964 FALSE
+#&gt; 194                                10.95070267             1984 FALSE
+#&gt; 195                                174.6382141             1927 FALSE
+#&gt; 196                                24.94474983             1968 FALSE
+#&gt; 197                                4.531901836             2014 FALSE
+#&gt; 198                                90.62445831             1965 FALSE
+#&gt; 199                                3.198706865             2003 FALSE
+#&gt; 200                                42.50374222             1923 FALSE
+#&gt; 201                                214.9181061             1996 FALSE
+#&gt; 202                                      205.8             1973 FALSE
+#&gt; 203                                216.3370361             2008  TRUE
+#&gt; 204                                 1406.57605             1966 FALSE
+#&gt; 205                                  22.998209             1978 FALSE
+#&gt; 206                                 3.23726368             1972 FALSE
+#&gt; 207                                1.853350639             2012 FALSE
+#&gt; 208                                773.9526367             1972 FALSE
+#&gt; 209                                32.68748093             1950 FALSE
+#&gt; 210                                117.0538101             2014 FALSE
+#&gt; 211                                32.68801498             1928 FALSE
+#&gt; 212                                152.3080139             1923 FALSE
+#&gt; 213                                354.9318848             1923 FALSE
+#&gt; 214                                155.5213165             1925 FALSE
+#&gt; 215                                205.6452179             1942 FALSE
+#&gt; 216                                223.2471619             1923 FALSE
+#&gt; 217                                 274.855957             1921 FALSE
+#&gt; 218                                231.6500854             1960 FALSE
+#&gt; 219                                       &lt;NA&gt;               NA FALSE
+#&gt; 220                                      307.9             2017  TRUE
+#&gt; 221                                0.508185744             1975  TRUE
+#&gt; 222                                 1.68149209             2010 FALSE
+#&gt; 223                                255.5500031             1927 FALSE
+#&gt; 224                                108.4067383             1941 FALSE
+#&gt; 225                                64.52726746             1932 FALSE
+#&gt; 226                                      351.6             1924 FALSE
+#&gt; 227                                 327.409668             1980 FALSE
+#&gt; 228                                2.961556435             1998 FALSE
+#&gt; 229                                      203.4             2005 FALSE
+#&gt; 230                                9.516305923             1979 FALSE
+#&gt; 231                                        154             2012 FALSE
+#&gt; 232                                10.74990082             1959 FALSE
+#&gt; 233                                282.0274963             2012 FALSE
+#&gt; 234                                271.9517212             1921 FALSE
+#&gt; 235                                230.0660553             1915 FALSE
+#&gt; 236                                121.0412598             1999 FALSE
+#&gt; 237                                 222.645401             1930 FALSE
+#&gt; 238                                1455.349976             1995 FALSE
+#&gt; 239                                15.19169617             2002  TRUE
+#&gt; 240                                212.9662933             1970 FALSE
+#&gt; 241                                216.6770325             1922 FALSE
+#&gt; 242                                96.73323059             1975 FALSE
+#&gt; 243                                67.29846191             1955 FALSE
+#&gt; 244                                       &lt;NA&gt;               NA  TRUE
+#&gt; 245                                       &lt;NA&gt;               NA FALSE
+#&gt; 246                                303.2829285             1981 FALSE
+#&gt; 247                                77.36286926             2016 FALSE
+#&gt; 248                                138.5615997             1998 FALSE
+#&gt; 249                                      146.3             2000 FALSE
+#&gt; 250                                61.25376892             1984 FALSE
+#&gt; 251                                 194.230896             1929 FALSE
+#&gt; 252                                       &lt;NA&gt;               NA FALSE
+#&gt; 253                                 402.368103             1941 FALSE
+#&gt; 254                                       &lt;NA&gt;               NA FALSE
+#&gt; 255                                32.00296402             1998 FALSE
+#&gt; 256                                       &lt;NA&gt;               NA FALSE
+#&gt; 257                                23.84255791             1926 FALSE
+#&gt; 258                                3.981505394             1964 FALSE
+#&gt; 259                                16.28476334             1967 FALSE
+#&gt; 260                                11.07972908             1998 FALSE
+#&gt; 261                                          7             2012 FALSE
+#&gt; 262                                6.515614986             2003 FALSE
+#&gt; 263                                66.90744781             1953 FALSE
+#&gt; 264                                3.029993296             1961 FALSE
+#&gt; 265                                204.2487793             2001 FALSE
+#&gt; 266                                1411.543579             1998 FALSE
+#&gt; 267                                7.148301601             1950 FALSE
+#&gt; 268                                39.88368607             1958 FALSE
+#&gt; 269                                249.4658203             1923 FALSE
+#&gt; 270                                        9.6             1942 FALSE
+#&gt; 271                                1427.914429             1968 FALSE
+#&gt; 272                                750.2774658             1967 FALSE
+#&gt; 273                                245.1772461             1922 FALSE
+#&gt; 274                                197.5337677             1924 FALSE
+#&gt; 275                                298.1834717             1969 FALSE
+#&gt; 276                                152.6495667             1973 FALSE
+#&gt; 277                                181.2376099             1926 FALSE
+#&gt; 278                                 241.248764             1969 FALSE
+#&gt; 279                                126.7586365             2010 FALSE
+#&gt; 280                                490.0622253             1971 FALSE
+#&gt; 281                                186.1120758             1929 FALSE
+#&gt; 282                                 285.481781             1967 FALSE
+#&gt; 283                                257.3187561             1915 FALSE
+#&gt; 284                                170.4677429             1931 FALSE
+#&gt; 285                                208.0207825             1958 FALSE
+#&gt; 286                                160.5950775             1922 FALSE
+#&gt; 287                                       &lt;NA&gt;               NA FALSE
+#&gt; 288                                       &lt;NA&gt;               NA FALSE
+#&gt; 289                                530.4555664             1959 FALSE
+#&gt; 290                                235.5928345             1930 FALSE
+#&gt; 291                                       &lt;NA&gt;               NA  TRUE
+#&gt; 292                                 177.420578             1924 FALSE
+#&gt; 293                                1574.920898             1968 FALSE
+#&gt; 294                                28.30708694             1933 FALSE
+#&gt; 295                                254.8794861             1923 FALSE
+#&gt; 296                                14.65544891             1941 FALSE
+#&gt; 297                                1583.532593             2001 FALSE
+#&gt; 298                                298.8893127             1982 FALSE
+#&gt; 299                                18.38425636             2006 FALSE
+#&gt; 300                                122.5809097             2004 FALSE
+#&gt; 301                                      222.7             1999 FALSE
+#&gt; 302                                1451.553711             1966 FALSE
+#&gt; 303                                 13.7104578             1936 FALSE
+#&gt; 304                                       &lt;NA&gt;               NA FALSE
+#&gt; 305                                321.2875061             2009 FALSE
+#&gt; 306                                1183.697876             1963 FALSE
+#&gt; 307                                360.1569519             1958 FALSE
+#&gt; 308                                      289.7             2017 FALSE
+#&gt; 309                                      186.4             1991 FALSE
+#&gt; 310                                254.3902283             2009 FALSE
+#&gt; 311                                6.564679146             1967 FALSE
+#&gt; 312                                      212.4             2008 FALSE
+#&gt; 313                                3.182889223             1981 FALSE
+#&gt; 314                                7.640734673             1924 FALSE
+#&gt; 315                                       &lt;NA&gt;               NA FALSE
+#&gt; 316                                57.95064545             1961 FALSE
+#&gt; 317                                270.7148743             1997 FALSE
+#&gt; 318                                181.3815918             2005 FALSE
+#&gt; 319                                12.19581413             1990 FALSE
+#&gt; 320                                340.8609314             1966 FALSE
+#&gt; 321                                282.0275574             2015 FALSE
+#&gt; 322                                181.5759735             1993 FALSE
+#&gt; 323                                281.8959656             1976  TRUE
+#&gt; 324                                       70.1             1970 FALSE
+#&gt; 325                                325.6211243             2006  TRUE
+#&gt; 326                                1554.471924             1960 FALSE
+#&gt; 327                                159.9194641             1922 FALSE
+#&gt; 328                                146.8517151             1915 FALSE
+#&gt; 329                                154.7746277             1950 FALSE
+#&gt; 330                                127.3836746             1927 FALSE
+#&gt; 331                                63.39014053             1967 FALSE
+#&gt; 332                                243.8211212             1939 FALSE
+#&gt; 333                                2097.884766             1977  TRUE
+#&gt; 334                                103.0028152             1929 FALSE
+#&gt; 335                                112.1398163             1948 FALSE
+#&gt; 336                                2200.153564             1950 FALSE
+#&gt; 337                                46.58664703             1965 FALSE
+#&gt; 338                                 970.345459             1986 FALSE
+#&gt; 339                                222.4020081             1949 FALSE
+#&gt; 340                                19.05943298             1936 FALSE
+#&gt; 341                                      520.9             2017 FALSE
+#&gt; 342                                      512.5             2017 FALSE
+#&gt; 343                                4.916433334             1997 FALSE
+#&gt; 344                                53.46718979             1926 FALSE
+#&gt; 345                                60.54548645             1934 FALSE
+#&gt; 346                                272.9237061             1989 FALSE
+#&gt; 347                                       &lt;NA&gt;               NA FALSE
+#&gt; 348                                242.2643585             1983 FALSE
+#&gt; 349                                5.302621841             1914 FALSE
+#&gt; 350                                6.745362282             2009 FALSE
+#&gt; 351                                26.07615852             1935 FALSE
 #&gt;                         timezone
 #&gt; 1                           &lt;NA&gt;
 #&gt; 2                America/Chicago
 #&gt; 3                 America/Denver
-#&gt; 4               America/New_York
-#&gt; 5            America/Los_Angeles
+#&gt; 4            America/Los_Angeles
+#&gt; 5               America/New_York
 #&gt; 6                America/Chicago
 #&gt; 7                  America/Boise
 #&gt; 8                America/Chicago
@@ -1459,316 +1507,330 @@ elevation, dome, timezone and construction year.</p>
 #&gt; 25              America/New_York
 #&gt; 26              America/New_York
 #&gt; 27               America/Chicago
-#&gt; 28           America/Los_Angeles
-#&gt; 29                          &lt;NA&gt;
-#&gt; 30              America/New_York
+#&gt; 28                          &lt;NA&gt;
+#&gt; 29           America/Los_Angeles
+#&gt; 30                          &lt;NA&gt;
 #&gt; 31              America/New_York
 #&gt; 32              America/New_York
 #&gt; 33              America/New_York
-#&gt; 34               America/Chicago
-#&gt; 35              America/New_York
+#&gt; 34              America/New_York
+#&gt; 35               America/Chicago
 #&gt; 36              America/New_York
-#&gt; 37               America/Chicago
-#&gt; 38              America/New_York
-#&gt; 39               America/Chicago
+#&gt; 37              America/New_York
+#&gt; 38               America/Chicago
+#&gt; 39              America/New_York
 #&gt; 40               America/Chicago
-#&gt; 41              America/New_York
+#&gt; 41               America/Chicago
 #&gt; 42              America/New_York
 #&gt; 43              America/New_York
-#&gt; 44                America/Denver
-#&gt; 45              America/New_York
-#&gt; 46               America/Chicago
+#&gt; 44              America/New_York
+#&gt; 45                America/Denver
+#&gt; 46              America/New_York
 #&gt; 47               America/Chicago
-#&gt; 48              America/New_York
+#&gt; 48               America/Chicago
 #&gt; 49              America/New_York
-#&gt; 50               America/Chicago
-#&gt; 51              America/New_York
-#&gt; 52               America/Chicago
-#&gt; 53              America/New_York
+#&gt; 50              America/New_York
+#&gt; 51               America/Chicago
+#&gt; 52              America/New_York
+#&gt; 53               America/Chicago
 #&gt; 54              America/New_York
 #&gt; 55              America/New_York
-#&gt; 56               America/Chicago
-#&gt; 57              America/New_York
-#&gt; 58               America/Chicago
-#&gt; 59              America/New_York
-#&gt; 60           America/Los_Angeles
+#&gt; 56              America/New_York
+#&gt; 57               America/Chicago
+#&gt; 58              America/New_York
+#&gt; 59               America/Chicago
+#&gt; 60              America/New_York
 #&gt; 61              America/New_York
-#&gt; 62  America/Indiana/Indianapolis
-#&gt; 63               America/Chicago
-#&gt; 64           America/Los_Angeles
-#&gt; 65              America/New_York
-#&gt; 66               America/Chicago
-#&gt; 67              America/New_York
-#&gt; 68                America/Denver
-#&gt; 69              America/New_York
+#&gt; 62           America/Los_Angeles
+#&gt; 63  America/Indiana/Indianapolis
+#&gt; 64               America/Chicago
+#&gt; 65           America/Los_Angeles
+#&gt; 66              America/New_York
+#&gt; 67               America/Chicago
+#&gt; 68              America/New_York
+#&gt; 69                America/Denver
 #&gt; 70              America/New_York
 #&gt; 71              America/New_York
-#&gt; 72               America/Chicago
-#&gt; 73           America/Los_Angeles
-#&gt; 74               America/Phoenix
-#&gt; 75               America/Chicago
-#&gt; 76              America/New_York
+#&gt; 72              America/New_York
+#&gt; 73               America/Chicago
+#&gt; 74           America/Los_Angeles
+#&gt; 75               America/Phoenix
+#&gt; 76               America/Chicago
 #&gt; 77              America/New_York
-#&gt; 78              America/New_York
+#&gt; 78                          &lt;NA&gt;
 #&gt; 79              America/New_York
-#&gt; 80               America/Chicago
-#&gt; 81               America/Chicago
+#&gt; 80              America/New_York
+#&gt; 81              America/New_York
 #&gt; 82               America/Chicago
 #&gt; 83               America/Chicago
 #&gt; 84               America/Chicago
-#&gt; 85                          &lt;NA&gt;
+#&gt; 85               America/Chicago
 #&gt; 86               America/Chicago
-#&gt; 87               America/Chicago
+#&gt; 87                          &lt;NA&gt;
 #&gt; 88               America/Chicago
-#&gt; 89              America/New_York
-#&gt; 90              America/New_York
+#&gt; 89               America/Chicago
+#&gt; 90               America/Chicago
 #&gt; 91              America/New_York
-#&gt; 92           America/Los_Angeles
+#&gt; 92              America/New_York
 #&gt; 93              America/New_York
-#&gt; 94               America/Chicago
+#&gt; 94           America/Los_Angeles
 #&gt; 95              America/New_York
-#&gt; 96              America/New_York
-#&gt; 97               America/Chicago
-#&gt; 98                America/Denver
-#&gt; 99              America/New_York
-#&gt; 100              America/Chicago
-#&gt; 101             America/New_York
+#&gt; 96               America/Chicago
+#&gt; 97              America/New_York
+#&gt; 98              America/New_York
+#&gt; 99               America/Chicago
+#&gt; 100                         &lt;NA&gt;
+#&gt; 101               America/Denver
 #&gt; 102             America/New_York
-#&gt; 103             America/New_York
-#&gt; 104              America/Chicago
+#&gt; 103              America/Chicago
+#&gt; 104             America/New_York
 #&gt; 105             America/New_York
-#&gt; 106               America/Denver
+#&gt; 106             America/New_York
 #&gt; 107              America/Chicago
-#&gt; 108              America/Chicago
-#&gt; 109             America/New_York
-#&gt; 110             America/New_York
-#&gt; 111             America/New_York
-#&gt; 112                         &lt;NA&gt;
+#&gt; 108             America/New_York
+#&gt; 109               America/Denver
+#&gt; 110              America/Chicago
+#&gt; 111              America/Chicago
+#&gt; 112             America/New_York
 #&gt; 113             America/New_York
 #&gt; 114             America/New_York
-#&gt; 115             America/New_York
+#&gt; 115                         &lt;NA&gt;
 #&gt; 116             America/New_York
 #&gt; 117             America/New_York
-#&gt; 118              America/Chicago
-#&gt; 119               America/Denver
-#&gt; 120              America/Detroit
-#&gt; 121             America/New_York
-#&gt; 122             America/New_York
-#&gt; 123                         &lt;NA&gt;
-#&gt; 124              America/Chicago
-#&gt; 125              America/Chicago
-#&gt; 126             America/New_York
-#&gt; 127             America/New_York
+#&gt; 118             America/New_York
+#&gt; 119             America/New_York
+#&gt; 120             America/New_York
+#&gt; 121              America/Chicago
+#&gt; 122               America/Denver
+#&gt; 123              America/Detroit
+#&gt; 124             America/New_York
+#&gt; 125             America/New_York
+#&gt; 126                         &lt;NA&gt;
+#&gt; 127              America/Chicago
 #&gt; 128              America/Chicago
 #&gt; 129             America/New_York
 #&gt; 130             America/New_York
-#&gt; 131             America/New_York
-#&gt; 132              America/Chicago
+#&gt; 131              America/Chicago
+#&gt; 132             America/New_York
 #&gt; 133             America/New_York
-#&gt; 134              America/Chicago
+#&gt; 134             America/New_York
 #&gt; 135              America/Chicago
-#&gt; 136              America/Chicago
+#&gt; 136             America/New_York
 #&gt; 137              America/Chicago
 #&gt; 138              America/Chicago
 #&gt; 139                         &lt;NA&gt;
 #&gt; 140              America/Chicago
-#&gt; 141             America/New_York
+#&gt; 141              America/Chicago
 #&gt; 142              America/Chicago
-#&gt; 143             America/New_York
-#&gt; 144             America/New_York
+#&gt; 143                         &lt;NA&gt;
+#&gt; 144              America/Chicago
 #&gt; 145             America/New_York
-#&gt; 146          America/Los_Angeles
-#&gt; 147                America/Boise
-#&gt; 148              America/Chicago
-#&gt; 149          America/Los_Angeles
-#&gt; 150              America/Chicago
-#&gt; 151              America/Chicago
+#&gt; 146              America/Chicago
+#&gt; 147             America/New_York
+#&gt; 148             America/New_York
+#&gt; 149             America/New_York
+#&gt; 150          America/Los_Angeles
+#&gt; 151                America/Boise
 #&gt; 152              America/Chicago
-#&gt; 153             America/New_York
-#&gt; 154              America/Chicago
-#&gt; 155          America/Los_Angeles
-#&gt; 156              America/Chicago
+#&gt; 153              America/Chicago
+#&gt; 154          America/Los_Angeles
+#&gt; 155              America/Chicago
+#&gt; 156                         &lt;NA&gt;
 #&gt; 157              America/Chicago
-#&gt; 158              America/Chicago
-#&gt; 159                         &lt;NA&gt;
-#&gt; 160             America/New_York
-#&gt; 161             America/New_York
-#&gt; 162              America/Chicago
-#&gt; 163             America/New_York
+#&gt; 158             America/New_York
+#&gt; 159              America/Chicago
+#&gt; 160          America/Los_Angeles
+#&gt; 161              America/Chicago
+#&gt; 162                         &lt;NA&gt;
+#&gt; 163              America/Chicago
 #&gt; 164              America/Chicago
-#&gt; 165             America/New_York
-#&gt; 166              America/Chicago
-#&gt; 167              America/Chicago
-#&gt; 168             America/New_York
-#&gt; 169              America/Chicago
-#&gt; 170             America/New_York
-#&gt; 171              America/Chicago
+#&gt; 165                         &lt;NA&gt;
+#&gt; 166             America/New_York
+#&gt; 167             America/New_York
+#&gt; 168              America/Chicago
+#&gt; 169             America/New_York
+#&gt; 170              America/Chicago
+#&gt; 171             America/New_York
 #&gt; 172              America/Chicago
 #&gt; 173              America/Chicago
-#&gt; 174              America/Detroit
-#&gt; 175             America/New_York
+#&gt; 174             America/New_York
+#&gt; 175              America/Chicago
 #&gt; 176             America/New_York
-#&gt; 177             America/New_York
-#&gt; 178             America/New_York
-#&gt; 179             America/New_York
-#&gt; 180          America/Los_Angeles
+#&gt; 177              America/Chicago
+#&gt; 178              America/Chicago
+#&gt; 179              America/Chicago
+#&gt; 180              America/Detroit
 #&gt; 181             America/New_York
-#&gt; 182              America/Chicago
-#&gt; 183              America/Chicago
-#&gt; 184              America/Chicago
-#&gt; 185              America/Chicago
-#&gt; 186             America/New_York
-#&gt; 187               America/Denver
-#&gt; 188             America/New_York
+#&gt; 182             America/New_York
+#&gt; 183             America/New_York
+#&gt; 184             America/New_York
+#&gt; 185             America/New_York
+#&gt; 186          America/Los_Angeles
+#&gt; 187             America/New_York
+#&gt; 188              America/Chicago
 #&gt; 189              America/Chicago
-#&gt; 190             America/New_York
-#&gt; 191          America/Los_Angeles
-#&gt; 192              America/Chicago
-#&gt; 193             America/New_York
-#&gt; 194          America/Los_Angeles
+#&gt; 190              America/Chicago
+#&gt; 191              America/Chicago
+#&gt; 192             America/New_York
+#&gt; 193               America/Denver
+#&gt; 194             America/New_York
 #&gt; 195              America/Chicago
-#&gt; 196              America/Detroit
-#&gt; 197 America/Indiana/Indianapolis
-#&gt; 198          America/Los_Angeles
-#&gt; 199              America/Chicago
-#&gt; 200              America/Chicago
-#&gt; 201             America/New_York
-#&gt; 202          America/Los_Angeles
-#&gt; 203             America/New_York
-#&gt; 204              America/Chicago
-#&gt; 205             America/New_York
-#&gt; 206             America/New_York
-#&gt; 207              America/Chicago
-#&gt; 208 America/Indiana/Indianapolis
+#&gt; 196             America/New_York
+#&gt; 197          America/Los_Angeles
+#&gt; 198              America/Chicago
+#&gt; 199             America/New_York
+#&gt; 200          America/Los_Angeles
+#&gt; 201              America/Chicago
+#&gt; 202              America/Detroit
+#&gt; 203 America/Indiana/Indianapolis
+#&gt; 204          America/Los_Angeles
+#&gt; 205              America/Chicago
+#&gt; 206              America/Chicago
+#&gt; 207             America/New_York
+#&gt; 208          America/Los_Angeles
 #&gt; 209             America/New_York
 #&gt; 210              America/Chicago
-#&gt; 211 America/Indiana/Indianapolis
-#&gt; 212              America/Chicago
-#&gt; 213             America/New_York
-#&gt; 214              America/Chicago
+#&gt; 211             America/New_York
+#&gt; 212             America/New_York
+#&gt; 213              America/Chicago
+#&gt; 214 America/Indiana/Indianapolis
 #&gt; 215             America/New_York
-#&gt; 216              America/Detroit
+#&gt; 216              America/Chicago
 #&gt; 217              America/Chicago
-#&gt; 218              America/Chicago
+#&gt; 218 America/Indiana/Indianapolis
 #&gt; 219                         &lt;NA&gt;
 #&gt; 220             America/New_York
-#&gt; 221             America/New_York
-#&gt; 222                         &lt;NA&gt;
-#&gt; 223             America/New_York
-#&gt; 224                         &lt;NA&gt;
-#&gt; 225             America/New_York
+#&gt; 221              America/Chicago
+#&gt; 222             America/New_York
+#&gt; 223              America/Detroit
+#&gt; 224              America/Chicago
+#&gt; 225              America/Chicago
 #&gt; 226                         &lt;NA&gt;
 #&gt; 227             America/New_York
 #&gt; 228             America/New_York
-#&gt; 229              America/Chicago
-#&gt; 230 America/Indiana/Indianapolis
-#&gt; 231               America/Denver
-#&gt; 232              America/Chicago
-#&gt; 233              America/Chicago
+#&gt; 229                         &lt;NA&gt;
+#&gt; 230             America/New_York
+#&gt; 231                         &lt;NA&gt;
+#&gt; 232             America/New_York
+#&gt; 233                         &lt;NA&gt;
 #&gt; 234             America/New_York
 #&gt; 235             America/New_York
-#&gt; 236             America/New_York
-#&gt; 237                         &lt;NA&gt;
-#&gt; 238             America/New_York
+#&gt; 236              America/Chicago
+#&gt; 237 America/Indiana/Indianapolis
+#&gt; 238               America/Denver
 #&gt; 239              America/Chicago
-#&gt; 240  America/Kentucky/Louisville
+#&gt; 240              America/Chicago
 #&gt; 241             America/New_York
 #&gt; 242             America/New_York
 #&gt; 243             America/New_York
-#&gt; 244              America/Chicago
-#&gt; 245             America/New_York
-#&gt; 246          America/Los_Angeles
+#&gt; 244                         &lt;NA&gt;
+#&gt; 245                         &lt;NA&gt;
+#&gt; 246             America/New_York
 #&gt; 247              America/Chicago
-#&gt; 248          America/Los_Angeles
+#&gt; 248  America/Kentucky/Louisville
 #&gt; 249             America/New_York
 #&gt; 250             America/New_York
 #&gt; 251             America/New_York
-#&gt; 252          America/Los_Angeles
-#&gt; 253             America/New_York
-#&gt; 254             America/New_York
-#&gt; 255               America/Denver
-#&gt; 256              America/Chicago
-#&gt; 257              America/Chicago
-#&gt; 258             America/New_York
-#&gt; 259              America/Chicago
-#&gt; 260               America/Denver
-#&gt; 261          America/Los_Angeles
-#&gt; 262          America/Los_Angeles
-#&gt; 263 America/Indiana/Indianapolis
+#&gt; 252                         &lt;NA&gt;
+#&gt; 253              America/Chicago
+#&gt; 254                         &lt;NA&gt;
+#&gt; 255             America/New_York
+#&gt; 256                         &lt;NA&gt;
+#&gt; 257          America/Los_Angeles
+#&gt; 258              America/Chicago
+#&gt; 259          America/Los_Angeles
+#&gt; 260             America/New_York
+#&gt; 261             America/New_York
+#&gt; 262             America/New_York
+#&gt; 263          America/Los_Angeles
 #&gt; 264             America/New_York
-#&gt; 265              America/Chicago
-#&gt; 266              America/Chicago
-#&gt; 267              America/Detroit
+#&gt; 265             America/New_York
+#&gt; 266               America/Denver
+#&gt; 267              America/Chicago
 #&gt; 268              America/Chicago
-#&gt; 269          America/Los_Angeles
-#&gt; 270             America/New_York
-#&gt; 271 America/Indiana/Indianapolis
-#&gt; 272             America/New_York
-#&gt; 273             America/New_York
-#&gt; 274              America/Chicago
-#&gt; 275                         &lt;NA&gt;
-#&gt; 276                         &lt;NA&gt;
+#&gt; 269             America/New_York
+#&gt; 270              America/Chicago
+#&gt; 271               America/Denver
+#&gt; 272          America/Los_Angeles
+#&gt; 273          America/Los_Angeles
+#&gt; 274 America/Indiana/Indianapolis
+#&gt; 275             America/New_York
+#&gt; 276              America/Chicago
 #&gt; 277              America/Chicago
-#&gt; 278              America/Chicago
+#&gt; 278              America/Detroit
 #&gt; 279              America/Chicago
-#&gt; 280               America/Denver
-#&gt; 281          America/Los_Angeles
-#&gt; 282              America/Detroit
-#&gt; 283                         &lt;NA&gt;
-#&gt; 284               America/Denver
-#&gt; 285             America/New_York
-#&gt; 286          America/Los_Angeles
+#&gt; 280          America/Los_Angeles
+#&gt; 281             America/New_York
+#&gt; 282 America/Indiana/Indianapolis
+#&gt; 283             America/New_York
+#&gt; 284             America/New_York
+#&gt; 285              America/Chicago
+#&gt; 286                         &lt;NA&gt;
 #&gt; 287                         &lt;NA&gt;
 #&gt; 288                         &lt;NA&gt;
-#&gt; 289               America/Denver
+#&gt; 289              America/Chicago
 #&gt; 290              America/Chicago
 #&gt; 291                         &lt;NA&gt;
-#&gt; 292             America/New_York
+#&gt; 292              America/Chicago
 #&gt; 293               America/Denver
-#&gt; 294              America/Phoenix
-#&gt; 295             America/New_York
-#&gt; 296              America/Detroit
-#&gt; 297              America/Chicago
+#&gt; 294          America/Los_Angeles
+#&gt; 295              America/Detroit
+#&gt; 296                         &lt;NA&gt;
+#&gt; 297               America/Denver
 #&gt; 298             America/New_York
-#&gt; 299                         &lt;NA&gt;
+#&gt; 299          America/Los_Angeles
 #&gt; 300                         &lt;NA&gt;
-#&gt; 301              America/Chicago
-#&gt; 302          America/Los_Angeles
-#&gt; 303                         &lt;NA&gt;
-#&gt; 304              America/Chicago
+#&gt; 301                         &lt;NA&gt;
+#&gt; 302               America/Denver
+#&gt; 303              America/Chicago
+#&gt; 304                         &lt;NA&gt;
 #&gt; 305             America/New_York
-#&gt; 306              America/Chicago
-#&gt; 307                         &lt;NA&gt;
+#&gt; 306               America/Denver
+#&gt; 307              America/Phoenix
 #&gt; 308             America/New_York
-#&gt; 309              America/Chicago
-#&gt; 310             America/New_York
-#&gt; 311              America/Phoenix
-#&gt; 312               America/Denver
-#&gt; 313              America/Chicago
+#&gt; 309              America/Detroit
+#&gt; 310              America/Chicago
+#&gt; 311             America/New_York
+#&gt; 312                         &lt;NA&gt;
+#&gt; 313                         &lt;NA&gt;
 #&gt; 314              America/Chicago
-#&gt; 315              America/Chicago
-#&gt; 316             America/New_York
-#&gt; 317             America/New_York
-#&gt; 318              America/Detroit
-#&gt; 319              America/Phoenix
-#&gt; 320             America/New_York
-#&gt; 321              America/Chicago
-#&gt; 322               America/Denver
-#&gt; 323             America/New_York
-#&gt; 324               America/Denver
-#&gt; 325             America/New_York
-#&gt; 326             America/New_York
+#&gt; 315                         &lt;NA&gt;
+#&gt; 316          America/Los_Angeles
+#&gt; 317                         &lt;NA&gt;
+#&gt; 318              America/Chicago
+#&gt; 319             America/New_York
+#&gt; 320              America/Chicago
+#&gt; 321                         &lt;NA&gt;
+#&gt; 322             America/New_York
+#&gt; 323              America/Chicago
+#&gt; 324             America/New_York
+#&gt; 325              America/Phoenix
+#&gt; 326               America/Denver
 #&gt; 327              America/Chicago
-#&gt; 328             America/New_York
-#&gt; 329             America/New_York
+#&gt; 328              America/Chicago
+#&gt; 329              America/Chicago
 #&gt; 330             America/New_York
 #&gt; 331             America/New_York
-#&gt; 332             America/New_York
-#&gt; 333                         &lt;NA&gt;
+#&gt; 332              America/Detroit
+#&gt; 333              America/Phoenix
 #&gt; 334             America/New_York
-#&gt; 335             America/New_York
-#&gt; 336             America/New_York
-#&gt; 337             America/New_York</div><div class='input'><span class='co'># }</span>
+#&gt; 335              America/Chicago
+#&gt; 336               America/Denver
+#&gt; 337             America/New_York
+#&gt; 338               America/Denver
+#&gt; 339             America/New_York
+#&gt; 340             America/New_York
+#&gt; 341              America/Chicago
+#&gt; 342             America/New_York
+#&gt; 343             America/New_York
+#&gt; 344             America/New_York
+#&gt; 345             America/New_York
+#&gt; 346             America/New_York
+#&gt; 347                         &lt;NA&gt;
+#&gt; 348             America/New_York
+#&gt; 349             America/New_York
+#&gt; 350             America/New_York
+#&gt; 351             America/New_York</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

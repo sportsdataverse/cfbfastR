@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -140,6 +140,12 @@
     </li>
     <li>
       <a href="../reference/espn_ratings.html">ESPN Ratings</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_scoreboard.html">ESPN Scoreboard</a>
+    </li>
+    <li>
+      <a href="../reference/espn_cfb_pbp.html">ESPN PBP</a>
     </li>
   </ul>
 </li>
@@ -428,7 +434,7 @@
 ## 14       Nashville    TN 37212           US  America/Chicago 36.14405 -86.80889
 ##      elevation capacity year_constructed grass  dome
 ## 1  70.05136108   101821             1929  TRUE FALSE
-## 2  403.7972412    72000             1938 FALSE FALSE
+## 2  403.7972412    80000             1938 FALSE FALSE
 ## 3  201.1737976    87451             1939  TRUE FALSE
 ## 4  44.97250748    88548             1930  TRUE FALSE
 ## 5  186.1120758    92746             1929  TRUE FALSE
@@ -440,7 +446,7 @@
 ## 11 60.54548645    80250             1934  TRUE FALSE
 ## 12 271.9517212   102455             1921  TRUE FALSE
 ## 13  108.824585   102733             1927  TRUE FALSE
-## 14 159.9194641    40350             1922 FALSE FALSE</code></pre>
+## 14 159.9194641    40351             1922 FALSE FALSE</code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></code></pre></div>
 <pre><code>##   team_id           school         mascot abbreviation     alt_name1 alt_name2
@@ -473,9 +479,9 @@
 ## 6     3985 Warren McGuirk Alumni Stadium     Hadley    MA 1003            US
 ##                       timezone latitude  longitude   elevation capacity
 ## 1             America/New_York 41.38749  -73.96409 99.21277618    38000
-## 2               America/Denver 40.25753 -111.65452 1412.097046    63725
-## 3             America/New_York 37.35443  -79.17502 272.9237061    19200
-## 4               America/Denver 32.27962 -106.74111 1208.201294    30343
+## 2               America/Denver 40.25753 -111.65452 1412.097046    63470
+## 3             America/New_York 37.35443  -79.17502 272.9237061    25000
+## 4               America/Denver 32.27962 -106.74111 1208.201294    28853
 ## 5 America/Indiana/Indianapolis 41.69838  -86.23394  222.645401    80795
 ## 6             America/New_York 42.37732  -72.53606 46.58664703    17000
 ##   year_constructed grass  dome
@@ -769,7 +775,7 @@
 ## 17  #001E4C   #ffffff
 ## 18  #031522   #ffc423
 ## 19  #6a0032   #ffffff
-## 20  #ffffff   #cfab7a
+## 20  #cfab7a   #ffffff
 ## 21  #000000   #717073
 ## 22  #F66733   #522d80
 ## 23  #007073   #876447
@@ -1277,11 +1283,11 @@
 ## 1   38.99697 -104.84362                                2024.875732    46692
 ## 2   41.07255  -81.50834                                321.2875061    30000
 ## 3   33.20828  -87.55038                                70.05136108   101821
-## 4   36.21143  -81.68543                                991.3414307    24050
-## 5   32.22881 -110.94887                                742.1530151    56029
-## 6   33.42645 -111.93250                                360.1569519    56232
-## 7   36.06807  -94.17895                                403.7972412    72000
-## 8   35.84890  -90.66774                                89.52690887    30964
+## 4   36.21143  -81.68543                                991.3414307    30000
+## 5   32.22881 -110.94887                                742.1530151    50782
+## 6   33.42645 -111.93250                                360.1569519    65870
+## 7   36.06807  -94.17895                                403.7972412    80000
+## 8   35.84890  -90.66774                                89.52690887    30382
 ## 9   41.38749  -73.96409                                99.21277618    38000
 ## 10  32.60255  -85.48975                                201.1737976    87451
 ## 11  40.21594  -85.41611                                 285.481781    22500
@@ -1289,78 +1295,78 @@
 ## 13  43.60288 -116.19589                                823.2221069    36387
 ## 14  42.33510  -71.16644                                39.82634354    44500
 ## 15  41.37801  -83.62250                                205.9057465    24000
-## 16  42.99913  -78.77751                                181.5759735    29013
-## 17  40.25753 -111.65452                                1412.097046    63725
-## 18  37.87104 -122.25077                                125.3108063    62717
-## 19  43.57773  -84.77099                                240.9007721    32885
-## 20  35.31050  -80.74012                                 190.365509    15314
+## 16  42.99913  -78.77751                                181.5759735    30270
+## 17  40.25753 -111.65452                                1412.097046    63470
+## 18  37.87104 -122.25077                                125.3108063    62467
+## 19  43.57773  -84.77099                                240.9007721    30255
+## 20  35.31050  -80.74012                                 190.365509    15300
 ## 21  39.13125  -84.51619                                230.0660553    40000
 ## 22  34.67877  -82.84324                                205.6452179    81500
-## 23  33.79285  -79.01669                                13.74894905     9214
+## 23  33.79285  -79.01669                                13.74894905    21000
 ## 24  40.00947 -105.26690                                1634.041138    50183
 ## 25  40.56212 -105.14162                                1574.920898    34400
 ## 26  41.75957  -72.61877                                6.515614986    40000
-## 27  35.99537  -78.94176                                103.0028152    40000
+## 27  35.99537  -78.94176                                103.0028152    40004
 ## 28  35.59685  -77.36456                                 19.0564537    50000
 ## 29  42.25613  -83.64728                                 241.248764    30200
 ## 30  29.64994  -82.34858                                44.97250748    88548
-## 31  26.37638  -80.10158                                3.613628864    30000
-## 32  25.75250  -80.37789                                1.718581796    23500
+## 31  26.37638  -80.10158                                3.613628864    29419
+## 32  25.75250  -80.37789                                1.718581796    20000
 ## 33  30.43817  -84.30440                                19.55942535    79560
 ## 34  36.81435 -119.75801                                 102.564064    41031
 ## 35  33.94982  -83.37338                                186.1120758    92746
-## 36  32.41225  -81.78493                                61.25376892    24300
+## 36  32.41225  -81.78493                                61.25376892    25000
 ## 37  33.75769  -84.40083                                303.1637268    74228
 ## 38  33.77244  -84.39281                                 279.300415    55000
 ## 39  21.37280 -157.92996                                10.26500511    50000
 ## 40  29.72205  -95.34918                                        9.6    32000
 ## 41  37.78898  -79.43505                                 294.958252    10000
-## 42  39.18090  -86.52562                                231.6500854    52959
-## 43  41.65860  -91.55108                                220.6357727    70585
+## 42  39.18090  -86.52562                                231.6500854    52656
+## 43  41.65860  -91.55108                                220.6357727    69250
 ## 44  42.01400  -93.63577                                274.9135437    61500
-## 45  38.96294  -95.24637                                 274.855957    50071
+## 45  38.96294  -95.24637                                 274.855957    47000
 ## 46  39.20201  -96.59384                                328.0574646    50000
-## 47  41.13909  -81.31346                                321.3641663    25000
+## 47  41.13909  -81.31346                                321.3641663    25319
 ## 48  38.02209  -84.50534                                307.4248962    61000
-## 49  37.35443  -79.17502                                272.9237061    19200
-## 50  30.21584  -92.04174                                3.556508303    36900
+## 49  37.35443  -79.17502                                272.9237061    25000
+## 50  30.21584  -92.04174                                3.556508303    41426
 ## 51  32.53081  -92.06606                                  22.998209    30427
 ## 52  32.53215  -92.65600                                72.87982941    28019
-## 53  38.20576  -85.75881                                138.5615997    55000
+## 53  38.20576  -85.75881                                138.5615997    60000
 ## 54  30.41203  -91.18382                                7.640734673   102321
-## 55  38.42470  -82.42144                                163.7328186    38019
+## 55  38.42470  -82.42144                                163.7328186    38016
 ## 56  38.99033  -76.94738                                32.68748093    51802
-## 57  35.12094  -89.97715                                90.62445831    62380
-## 58  25.95797  -80.23886                                2.624486446    65326
+## 57  35.12094  -89.97715                                90.62445831    58325
+## 58  25.95797  -80.23886                                2.624486446    64767
 ## 59  39.51970  -84.73303                                242.2643585    24286
 ## 60  42.26584  -83.74870                                255.5500031   107601
 ## 61  42.72815  -84.48485                                254.8794861    75005
-## 62  35.85115  -86.36816                                191.7279816    31000
-## 63  44.97653  -93.22455                                254.3902283    50805
+## 62  35.85115  -86.36816                                191.7279816    30788
+## 63  44.97653  -93.22455                                254.3902283    50850
 ## 64  33.45634  -88.79337                                110.2742081    61337
 ## 65  38.93585  -92.33320                                212.6865692    71168
 ## 66  38.98470  -76.50763                                10.74990082    34000
-## 67  35.80080  -78.71957                                117.0089951    57583
-## 68  40.82068  -96.70559                                354.9318848    86047
-## 69  39.54695 -119.81754                                 1406.57605    26000
+## 67  35.80080  -78.71957                                117.0089951    58000
+## 68  40.82068  -96.70559                                354.9318848    85458
+## 69  39.54695 -119.81754                                 1406.57605    27000
 ## 70  35.06695 -106.62832                                1554.471924    39224
-## 71  32.27962 -106.74111                                1208.201294    30343
-## 72  35.90693  -79.04789                                127.7569809    62980
+## 71  32.27962 -106.74111                                1208.201294    28853
+## 72  35.90693  -79.04789                                127.7569809    50500
 ## 73  41.93396  -88.77784                                267.4530029    23595
 ## 74  33.20390  -97.15924                                198.6871948    30850
 ## 75  42.06540  -87.69248                                181.2376099    47130
 ## 76  41.69838  -86.23394                                 222.645401    80795
 ## 77  39.32128  -82.10343                                 194.230896    24000
-## 78  40.00164  -83.01973                                216.6770325   104944
-## 79  35.20585  -97.44231                                355.0962524    84389
-## 80  36.12567  -97.06651                                276.4808655    60218
+## 78  40.00164  -83.01973                                216.6770325   102780
+## 79  35.20585  -97.44231                                355.0962524    86112
+## 80  36.12567  -97.06651                                276.4808655    55509
 ## 81  36.88895  -76.30492                                3.147987843    20118
 ## 82  34.36198  -89.53421                                146.8517151    64038
 ## 83  44.05827 -123.06849                                127.4198303    54000
-## 84  44.55946 -123.28143                                66.90744781    45674
+## 84  44.55946 -123.28143                                66.90744781    43363
 ## 85  40.81220  -77.85610                                354.1551514   106572
 ## 86  40.44676  -80.01576                                220.5887146    68400
-## 87  40.43523  -86.91868                                197.5337677    57236
+## 87  40.43523  -86.91868                                197.5337677    57282
 ## 88  29.71633  -95.40933                                7.148301601    47000
 ## 89  40.51368  -74.46557                                8.543146133    52454
 ## 90  32.78311 -117.11957                                16.28476334    70561
@@ -1369,36 +1375,36 @@
 ## 93  30.67304  -88.07557                                9.828813553    33471
 ## 94  33.97302  -81.01917                                60.54548645    80250
 ## 95  31.32893  -89.33181                                64.52726746    36000
-## 96  27.97587  -82.50333                                11.07972908    65857
+## 96  27.97587  -82.50333                                11.07972908    65828
 ## 97  37.43456 -122.16113                                18.38425636    50424
-## 98  43.03623  -76.13632                                162.6989746    49250
-## 99  32.70966  -97.36808                                185.4387054    45000
-## 100 39.90080  -75.16754                                3.198706865    68532
+## 98  43.03623  -76.13632                                162.6989746    49057
+## 99  32.70966  -97.36808                                185.4387054    46000
+## 100 39.90080  -75.16754                                3.198706865    69879
 ## 101 35.95501  -83.92501                                271.9517212   102455
 ## 102 30.28368  -97.73253                                160.3089447   100119
 ## 103 30.60989  -96.34038                                 108.824585   102733
 ## 104 29.89100  -97.92557                                177.8676453    30000
-## 105 33.59105 -101.87288                                980.7632446    60862
-## 106 41.65748  -83.61357                                181.4839783    26248
+## 105 33.59105 -101.87288                                980.7632446    60454
+## 106 41.65748  -83.61357                                181.4839783    26038
 ## 107 31.79956  -85.95183                                154.7746277    30000
 ## 108 29.94462  -90.11669 0.0000000000000000000000000000000000000118    30000
 ## 109 36.14892  -95.94379                                235.5928345    30000
-## 110 33.51139  -86.84278                                174.6382141    71594
+## 110 33.51139  -86.84278                                174.6382141    72000
 ## 111 28.60798  -81.19272                                20.94113731    44206
-## 112 34.16133 -118.16765                                245.1772461    92542
+## 112 34.16133 -118.16765                                245.1772461    88565
 ## 113 42.37732  -72.53606                                46.58664703    17000
 ## 114 36.08593 -115.01731                                490.0622253    36800
-## 115 34.01417 -118.28778                                42.50374222    93607
+## 115 34.01417 -118.28778                                42.50374222    77500
 ## 116 40.75997 -111.84883                                1411.543579    45807
 ## 117 41.75174 -111.81160                                1427.914429    25513
 ## 118 31.77334 -106.50796                                1183.697876    51500
-## 119 29.41698  -98.47881                                201.5526886    65000
-## 120 36.14405  -86.80889                                159.9194641    40350
+## 119 29.41698  -98.47881                                201.5526886    36582
+## 120 36.14405  -86.80889                                159.9194641    40351
 ## 121 38.03118  -78.51379                                170.4677429    61500
-## 122 37.21999  -80.41806                                632.2631226    66233
+## 122 37.21999  -80.41806                                632.2631226    65632
 ## 123 36.13055  -80.25459                                 283.548584    31500
-## 124 47.65032 -122.30157                                11.65622807    70500
-## 125 46.73183 -117.16050                                773.9526367    32248
+## 124 47.65032 -122.30157                                11.65622807    70138
+## 125 46.73183 -117.16050                                773.9526367    32952
 ## 126 36.98479  -86.45940                                154.4346619    22113
 ## 127 42.28601  -85.60076                                243.8211212    30200
 ## 128 39.65027  -79.95519                                 327.409668    60000
@@ -1502,7 +1508,7 @@
 ## 95              1932 FALSE FALSE
 ## 96              1998 FALSE FALSE
 ## 97              2006 FALSE FALSE
-## 98              1980 FALSE FALSE
+## 98              1980 FALSE  TRUE
 ## 99              1929 FALSE FALSE
 ## 100             2003 FALSE FALSE
 ## 101             1921  TRUE FALSE
@@ -1523,7 +1529,7 @@
 ## 116             1998 FALSE FALSE
 ## 117             1968 FALSE FALSE
 ## 118             1963 FALSE FALSE
-## 119             1993 FALSE FALSE
+## 119             1993 FALSE  TRUE
 ## 120             1922 FALSE FALSE
 ## 121             1931 FALSE FALSE
 ## 122             1965 FALSE FALSE
@@ -1555,19 +1561,19 @@
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-08-25 02:58:56:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-09-07 00:54:06:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-08-25 02:58:56:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-09-07 00:54:06:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-08-25 02:58:56:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-09-07 00:54:06:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Florida State"</span>, <span class="st">"Florida"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2021-08-25 02:58:56:Invalid arguments or no team matchup data available!</code></pre>
+<pre><code>## 2021-09-07 00:54:06:Invalid arguments or no team matchup data available!</code></pre>
 <pre><code>## data frame with 0 columns and 0 rows</code></pre>
 </div>
 <div id="get-team-rosters" class="section level3">
@@ -1807,1320 +1813,1544 @@
 </h3>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##      year                   school talent
-## 1    2020                  Georgia 990.47
-## 2    2020                  Alabama 985.86
-## 3    2020               Ohio State 976.48
-## 4    2020                  Clemson 915.57
-## 5    2020                    Texas 892.91
-## 6    2020                Texas A&amp;M 875.10
-## 7    2020                      LSU 873.23
-## 8    2020                 Oklahoma 866.36
-## 9    2020               Notre Dame 866.21
-## 10   2020                      USC 853.16
-## 11   2020               Penn State 850.70
-## 12   2020                   Auburn 844.78
-## 13   2020                Tennessee 844.16
-## 14   2020                 Michigan 832.65
-## 15   2020            Florida State 832.59
-## 16   2020                    Miami 822.41
-## 17   2020                   Oregon 816.74
-## 18   2020               Washington 815.23
-## 19   2020                  Florida 809.32
-## 20   2020                 Stanford 801.60
-## 21   2020           South Carolina 771.64
-## 22   2020            Arizona State 743.24
-## 23   2020           North Carolina 740.19
-## 24   2020        Mississippi State 739.30
-## 25   2020                 Nebraska 733.39
-## 26   2020                 Arkansas 719.15
-## 27   2020                 Kentucky 716.65
-## 28   2020                      TCU 712.31
-## 29   2020                 Ole Miss 702.20
-## 30   2020             Georgia Tech 684.42
-## 31   2020                 NC State 680.31
-## 32   2020                Wisconsin 676.48
-## 33   2020           Michigan State 673.43
-## 34   2020            Virginia Tech 670.70
-## 35   2020                     UCLA 660.71
-## 36   2020               Pittsburgh 653.05
-## 37   2020                     Utah 649.86
-## 38   2020                 Maryland 646.29
-## 39   2020                 Illinois 644.09
-## 40   2020                   Purdue 644.03
-## 41   2020                   Baylor 642.13
-## 42   2020           Oklahoma State 639.23
-## 43   2020                     Iowa 631.81
-## 44   2020            West Virginia 631.27
-## 45   2020                 Colorado 630.39
-## 46   2020             Northwestern 629.84
-## 47   2020                 Missouri 627.24
-## 48   2020               Louisville 621.82
-## 49   2020               Texas Tech 619.60
-## 50   2020                     Duke 617.12
-## 51   2020             Oregon State 616.25
-## 52   2020                  Indiana 611.17
-## 53   2020                  Houston 608.28
-## 54   2020               Vanderbilt 607.68
-## 55   2020                      SMU 604.59
-## 56   2020               Iowa State 602.96
-## 57   2020           Boston College 602.69
-## 58   2020               Cincinnati 600.61
-## 59   2020               California 599.17
-## 60   2020                Minnesota 594.70
-## 61   2020                      UCF 593.07
-## 62   2020                  Rutgers 588.56
-## 63   2020                 Virginia 588.54
-## 64   2020                  Memphis 587.17
-## 65   2020                 Syracuse 578.28
-## 66   2020              Wake Forest 577.30
-## 67   2020              Boise State 571.21
-## 68   2020             Kansas State 560.96
-## 69   2020                   Kansas 546.08
-## 70   2020            South Florida 538.18
-## 71   2020            East Carolina 528.47
-## 72   2020                  Arizona 526.23
-## 73   2020                   Tulane 526.19
-## 74   2020         Washington State 516.96
-## 75   2020                      BYU 510.95
-## 76   2020         Florida Atlantic 488.99
-## 77   2020                   Temple 482.14
-## 78   2020    Florida International 480.50
-## 79   2020                    Tulsa 470.03
-## 80   2020           Louisiana Tech 467.46
-## 81   2020                Charlotte 462.29
-## 82   2020           UT San Antonio 458.03
-## 83   2020          San Diego State 454.60
-## 84   2020         Western Kentucky 447.91
-## 85   2020                     UNLV 447.31
-## 86   2020           Colorado State 446.94
-## 87   2020             Fresno State 440.10
-## 88   2020              North Texas 415.68
-## 89   2020                 Marshall 408.98
-## 90   2020         Middle Tennessee 405.40
-## 91   2020     Southern Mississippi 401.05
-## 92   2020                   Nevada 400.84
-## 93   2020               Utah State 400.78
-## 94   2020           San José State 397.99
-## 95   2020                  Hawai'i 393.56
-## 96   2020                   Toledo 391.54
-## 97   2020           Arkansas State 389.49
-## 98   2020                      UAB 383.56
-## 99   2020         Western Michigan 382.78
-## 100  2020              Texas State 382.60
-## 101  2020        Appalachian State 382.58
-## 102  2020                Louisiana 378.95
-## 103  2020                     Rice 358.95
-## 104  2020                  Wyoming 352.91
-## 105  2020             Old Dominion 350.91
-## 106  2020         Central Michigan 350.35
-## 107  2020              Connecticut 347.50
-## 108  2020               New Mexico 340.16
-## 109  2020         Georgia Southern 335.43
-## 110  2020            Georgia State 333.22
-## 111  2020                     Troy 323.67
-## 112  2020                     Ohio 304.79
-## 113  2020                     UTEP 297.36
-## 114  2020         Louisiana Monroe 286.74
-## 115  2020               Kent State 270.29
-## 116  2020                     Navy 266.19
-## 117  2020            South Alabama 265.69
-## 118  2020        Northern Illinois 262.67
-## 119  2020               Miami (OH) 259.14
-## 120  2020               Ball State 257.94
-## 121  2020                  Buffalo 252.86
-## 122  2020                    UMass 246.83
-## 123  2020         Eastern Michigan 246.82
-## 124  2020                    Akron 232.81
-## 125  2020            Bowling Green 215.06
-## 126  2020         Coastal Carolina 213.39
-## 127  2020                  Liberty 158.93
-## 128  2020                     Army 152.03
-## 129  2020              Chattanooga 150.93
-## 130  2020              Austin Peay 149.28
-## 131  2020         Eastern Kentucky 148.05
-## 132  2020           Texas Southern 143.43
-## 133  2020         New Mexico State 143.36
-## 134  2020                   Towson 142.39
-## 135  2020            Alabama State 136.54
-## 136  2020            James Madison 118.89
-## 137  2020       North Carolina A&amp;T 116.79
-## 138  2020              Florida A&amp;M 102.58
-## 139  2020        Stephen F. Austin  99.93
-## 140  2020        Southern Illinois  96.82
-## 141  2020                Grambling  95.67
-## 142  2020                 Campbell  93.73
-## 143  2020             Prairie View  91.02
-## 144  2020           Missouri State  85.24
-## 145  2020           Incarnate Word  81.78
-## 146  2020        Sam Houston State  81.65
-## 147  2020          Tennessee State  80.11
-## 148  2020        Abilene Christian  79.83
-## 149  2020          Bethune-Cookman  76.68
-## 150  2020            Montana State  76.41
-## 151  2020                UT Martin  72.15
-## 152  2020                    Maine  72.07
-## 153  2020                Air Force  71.92
-## 154  2020                  Samford  70.54
-## 155  2020              Stony Brook  68.32
-## 156  2020           Illinois State  67.52
-## 157  2020              Weber State  66.96
-## 158  2020       North Dakota State  61.62
-## 159  2020     East Tennessee State  60.39
-## 160  2020   Southeastern Louisiana  58.98
-## 161  2020                     Elon  55.95
-## 162  2020           Portland State  55.65
-## 163  2020                  Montana  53.39
-## 164  2020         Western Illinois  53.01
-## 165  2020            Norfolk State  52.48
-## 166  2020              Alabama A&amp;M  52.37
-## 167  2020                 UC Davis  50.80
-## 168  2020                 Richmond  49.75
-## 169  2020                    Idaho  47.38
-## 170  2020            North Alabama  46.88
-## 171  2020             Murray State  44.74
-## 172  2020   North Carolina Central  43.62
-## 173  2020                 Duquesne  42.21
-## 174  2020         Northern Arizona  41.84
-## 175  2020 Southeast Missouri State  41.44
-## 176  2020         Youngstown State  35.85
-## 177  2020                  Hampton  33.45
-## 178  2020              Idaho State  32.78
-## 179  2020     South Carolina State  32.50
-## 180  2020        Northern Colorado  31.63
-## 181  2020            Northern Iowa  30.66
-## 182  2020                   Albany  30.44
-## 183  2020       Eastern Washington  30.41
-## 184  2020                   Furman  30.39
-## 185  2020         Sacramento State  30.24
-## 186  2020                 Delaware  29.77
-## 187  2020             Alcorn State  29.54
-## 188  2020                 Monmouth  28.91
-## 189  2020             Rhode Island  28.50
-## 190  2020             Gardner-Webb  28.16
-## 191  2020            Robert Morris  26.82
-## 192  2020          Houston Baptist  26.80
-## 193  2020             South Dakota  26.27
-## 194  2020                   Mercer  25.92
-## 195  2020         Eastern Illinois  25.80
-## 196  2020           Tennessee Tech  25.67
-## 197  2020                 Cal Poly  25.44
-## 198  2020         Central Arkansas  24.08
-## 199  2020              The Citadel  23.94
-## 200  2020       Northwestern State  23.16
-## 201  2020                  Fordham  22.86
-## 202  2020                 Southern  22.17
-## 203  2020            Indiana State  22.02
-## 204  2020                   Wagner  20.43
-## 205  2020             Jacksonville  17.49
-## 206  2020           Kennesaw State  16.24
-## 207  2020      Arkansas-Pine Bluff  15.35
-## 208  2020             Sacred Heart  14.46
-## 209  2020                    Lamar  13.33
-## 210  2020         Western Carolina  12.53
-## 211  2020           William &amp; Mary  12.39
-## 212  2020                    Brown   9.44
-## 213  2020      Central Connecticut   8.93
-## 214  2020          St Francis (PA)   8.83
-## 215  2020                  Wofford   7.83
-## 216  2020            New Hampshire   7.81
-## 217  2020                     Yale   7.81
-## 218  2020                   Bryant   6.30
-## 219  2020             Morgan State   3.80
-## 220  2019                  Alabama 984.96
-## 221  2019               Ohio State 973.56
-## 222  2019                  Georgia 960.16
-## 223  2019                      USC 915.56
-## 224  2019                      LSU 906.17
-## 225  2019            Florida State 878.07
-## 226  2019                    Texas 877.91
-## 227  2019                 Oklahoma 869.53
-## 228  2019                  Clemson 863.03
-## 229  2019               Penn State 857.34
-## 230  2019                 Michigan 853.40
-## 231  2019                Texas A&amp;M 848.89
-## 232  2019                   Auburn 843.93
-## 233  2019               Notre Dame 843.29
-## 234  2019                  Florida 835.68
-## 235  2019                Tennessee 830.34
-## 236  2019                   Oregon 817.70
-## 237  2019                    Miami 815.12
-## 238  2019               Washington 801.33
-## 239  2019                 Stanford 787.59
-## 240  2019           South Carolina 762.68
-## 241  2019                     UCLA 741.40
-## 242  2019        Mississippi State 732.68
-## 243  2019                 Nebraska 729.47
-## 244  2019                 Ole Miss 717.92
-## 245  2019                 Arkansas 707.72
-## 246  2019                 Maryland 703.94
-## 247  2019           North Carolina 697.75
-## 248  2019            Virginia Tech 696.39
-## 249  2019                      TCU 691.63
-## 250  2019           Michigan State 688.74
-## 251  2019            Arizona State 686.44
-## 252  2019                Wisconsin 675.80
-## 253  2019                 Kentucky 672.74
-## 254  2019                   Baylor 668.90
-## 255  2019                 NC State 668.85
-## 256  2019                 Illinois 661.73
-## 257  2019               Louisville 645.84
-## 258  2019           Oklahoma State 644.42
-## 259  2019                 Missouri 642.83
-## 260  2019            West Virginia 639.11
-## 261  2019               Pittsburgh 637.95
-## 262  2019                     Iowa 637.65
-## 263  2019                     Duke 633.24
-## 264  2019             Georgia Tech 629.10
-## 265  2019                Minnesota 621.36
-## 266  2019                     Utah 620.35
-## 267  2019                 Colorado 614.27
-## 268  2019             Northwestern 612.62
-## 269  2019               California 611.58
-## 270  2019                   Purdue 607.40
-## 271  2019               Vanderbilt 605.06
-## 272  2019                  Indiana 603.81
-## 273  2019                      UCF 598.57
-## 274  2019                  Houston 597.62
-## 275  2019               Iowa State 597.15
-## 276  2019             Oregon State 595.50
-## 277  2019                  Rutgers 587.28
-## 278  2019                 Virginia 580.28
-## 279  2019               Texas Tech 577.21
-## 280  2019               Cincinnati 576.61
-## 281  2019                 Syracuse 574.82
-## 282  2019                  Arizona 570.07
-## 283  2019                      SMU 565.15
-## 284  2019           Boston College 564.95
-## 285  2019              Wake Forest 563.24
-## 286  2019              Boise State 561.42
-## 287  2019                      BYU 560.78
-## 288  2019            South Florida 559.66
-## 289  2019         Washington State 556.27
-## 290  2019                  Memphis 551.97
-## 291  2019             Kansas State 543.49
-## 292  2019    Florida International 532.88
-## 293  2019                   Kansas 528.62
-## 294  2019         Florida Atlantic 524.02
-## 295  2019           Colorado State 518.83
-## 296  2019          San Diego State 504.19
-## 297  2019           Louisiana Tech 501.25
-## 298  2019                 Marshall 489.63
-## 299  2019                   Temple 489.03
-## 300  2019                   Tulane 486.98
-## 301  2019         Western Kentucky 486.97
-## 302  2019             Fresno State 482.79
-## 303  2019           UT San Antonio 471.36
-## 304  2019            East Carolina 468.23
-## 305  2019                     UNLV 462.72
-## 306  2019                   Nevada 461.96
-## 307  2019              North Texas 457.24
-## 308  2019     Southern Mississippi 456.29
-## 309  2019         Western Michigan 452.05
-## 310  2019                   Toledo 451.43
-## 311  2019         Middle Tennessee 450.79
-## 312  2019           Arkansas State 447.87
-## 313  2019                      UAB 441.81
-## 314  2019           San José State 433.33
-## 315  2019                    Tulsa 424.54
-## 316  2019               Utah State 424.16
-## 317  2019                  Hawai'i 420.99
-## 318  2019         Central Michigan 416.63
-## 319  2019              Connecticut 412.55
-## 320  2019        Appalachian State 412.32
-## 321  2019         Georgia Southern 411.80
-## 322  2019                Louisiana 406.49
-## 323  2019               New Mexico 401.90
-## 324  2019        Northern Illinois 397.98
-## 325  2019                  Wyoming 397.90
-## 326  2019                     Rice 397.04
-## 327  2019                     Troy 388.67
-## 328  2019                Charlotte 386.38
-## 329  2019            South Alabama 381.38
-## 330  2019             Old Dominion 374.74
-## 331  2019            Georgia State 369.05
-## 332  2019               Miami (OH) 359.14
-## 333  2019                    UMass 358.88
-## 334  2019                     UTEP 355.31
-## 335  2019              Texas State 348.47
-## 336  2019         Louisiana Monroe 346.03
-## 337  2019                     Ohio 337.17
-## 338  2019                     Navy 335.40
-## 339  2019               Ball State 327.92
-## 340  2019         Eastern Michigan 317.49
-## 341  2019            Bowling Green 315.44
-## 342  2019               Kent State 313.22
-## 343  2019                    Akron 312.81
-## 344  2019         Coastal Carolina 305.73
-## 345  2019                  Buffalo 284.74
-## 346  2019         New Mexico State 269.79
-## 347  2019                     Army 265.19
-## 348  2019        Sam Houston State 184.58
-## 349  2019   Southeastern Louisiana 178.38
-## 350  2019                 Nicholls 155.75
-## 351  2019              Chattanooga 155.43
-## 352  2019                  Liberty 153.48
-## 353  2019                Air Force 151.86
-## 354  2019            Alabama State 136.54
-## 355  2019                   Towson 135.03
-## 356  2019                 Duquesne 129.11
-## 357  2019            Montana State 120.95
-## 358  2019           Illinois State 119.34
-## 359  2019            James Madison 110.76
-## 360  2019       Jacksonville State 108.58
-## 361  2019                  Hampton 104.67
-## 362  2019                  Samford  97.76
-## 363  2019                 Campbell  96.70
-## 364  2019             Murray State  96.00
-## 365  2019                 Richmond  95.66
-## 366  2019                UT Martin  93.72
-## 367  2019          Tennessee State  92.64
-## 368  2019        Stephen F. Austin  91.75
-## 369  2019                    Idaho  87.17
-## 370  2019           Kennesaw State  86.45
-## 371  2019                  McNeese  86.21
-## 372  2019         Eastern Kentucky  86.14
-## 373  2019 Southeast Missouri State  83.35
-## 374  2019                 Delaware  77.11
-## 375  2019         Western Illinois  70.98
-## 376  2019           William &amp; Mary  70.28
-## 377  2019        Southern Illinois  69.80
-## 378  2019       North Carolina A&amp;T  69.44
-## 379  2019              Florida A&amp;M  69.36
-## 380  2019         Youngstown State  67.72
-## 381  2019       Northwestern State  67.50
-## 382  2019                Grambling  67.45
-## 383  2019              Stony Brook  66.41
-## 384  2019                  Montana  65.83
-## 385  2019     East Tennessee State  61.69
-## 386  2019          Bethune-Cookman  60.90
-## 387  2019              Austin Peay  58.68
-## 388  2019              Weber State  53.55
-## 389  2019            Norfolk State  52.48
-## 390  2019                 Southern  52.19
-## 391  2019       North Dakota State  50.79
-## 392  2019           Incarnate Word  47.36
-## 393  2019        Abilene Christian  46.84
-## 394  2019           Missouri State  44.24
-## 395  2019            Jackson State  44.19
-## 396  2019            North Alabama  43.90
-## 397  2019   North Carolina Central  43.62
-## 398  2019             South Dakota  42.81
-## 399  2019             Prairie View  42.01
-## 400  2019                    Lamar  41.39
-## 401  2019           Tennessee Tech  41.07
-## 402  2019                   Albany  40.43
-## 403  2019           Texas Southern  40.03
-## 404  2019              Idaho State  39.63
-## 405  2019         Central Arkansas  38.51
-## 406  2019                  Fordham  38.15
-## 407  2019            Northern Iowa  37.29
-## 408  2019            Southern Utah  35.09
-## 409  2019         Northern Arizona  35.00
-## 410  2019     South Carolina State  32.50
-## 411  2019      Charleston Southern  32.36
-## 412  2019           Portland State  30.88
-## 413  2019                    Maine  30.23
-## 414  2019             Alcorn State  29.54
-## 415  2019      Arkansas-Pine Bluff  29.07
-## 416  2019                 Cal Poly  28.91
-## 417  2019                Princeton  27.29
-## 418  2019            Robert Morris  26.82
-## 419  2019          Houston Baptist  26.80
-## 420  2019         Eastern Illinois  24.67
-## 421  2019            Indiana State  24.51
-## 422  2019                   Furman  24.31
-## 423  2019             Morgan State  23.32
-## 424  2019                     Elon  18.77
-## 425  2019         Sacramento State  18.35
-## 426  2019                   Wagner  17.91
-## 427  2019             Jacksonville  17.49
-## 428  2019       South Dakota State  17.26
-## 429  2019                 Monmouth  15.76
-## 430  2019             Rhode Island  15.55
-## 431  2019           Delaware State  15.41
-## 432  2019             Sacred Heart  15.08
-## 433  2019       Eastern Washington  14.80
-## 434  2019             Gardner-Webb  14.72
-## 435  2019                   Lehigh  13.90
-## 436  2019              Alabama A&amp;M  13.54
-## 437  2019        Northern Colorado  13.41
-## 438  2019             North Dakota  13.24
-## 439  2019          St Francis (PA)  13.03
-## 440  2019                   Mercer  12.14
-## 441  2019                   Butler  11.61
-## 442  2019                    Drake  11.10
-## 443  2019                    Brown   9.44
-## 444  2019      Central Connecticut   8.93
-## 445  2019         Western Carolina   8.58
-## 446  2019                  Wofford   7.83
-## 447  2019               Holy Cross   7.31
-## 448  2019 Mississippi Valley State   6.66
-## 449  2019               Georgetown   6.66
-## 450  2019                   Bryant   6.30
-## 451  2018               Ohio State 984.30
-## 452  2018                  Alabama 978.54
-## 453  2018                  Georgia 964.00
-## 454  2018                      USC 933.65
-## 455  2018                  Clemson 893.21
-## 456  2018                      LSU 889.91
-## 457  2018            Florida State 888.75
-## 458  2018                 Michigan 862.35
-## 459  2018                    Texas 861.20
-## 460  2018               Notre Dame 847.85
-## 461  2018                 Oklahoma 843.79
-## 462  2018               Penn State 834.24
-## 463  2018                  Florida 831.78
-## 464  2018                   Auburn 827.37
-## 465  2018                Tennessee 826.98
-## 466  2018                Texas A&amp;M 805.66
-## 467  2018                 Stanford 786.63
-## 468  2018               Washington 772.88
-## 469  2018                     UCLA 754.31
-## 470  2018                    Miami 753.72
-## 471  2018           South Carolina 749.98
-## 472  2018                 Ole Miss 734.00
-## 473  2018        Mississippi State 729.97
-## 474  2018                 Maryland 725.94
-## 475  2018                 Nebraska 711.22
-## 476  2018                   Oregon 695.81
-## 477  2018                 Arkansas 694.63
-## 478  2018           North Carolina 688.48
-## 479  2018            Arizona State 687.72
-## 480  2018            Virginia Tech 675.71
-## 481  2018                      TCU 671.88
-## 482  2018                 Kentucky 670.27
-## 483  2018                   Baylor 668.37
-## 484  2018           Michigan State 658.85
-## 485  2018                Wisconsin 653.50
-## 486  2018            West Virginia 646.91
-## 487  2018           Oklahoma State 645.01
-## 488  2018               Pittsburgh 637.96
-## 489  2018                     Duke 635.63
-## 490  2018               Louisville 632.22
-## 491  2018                 NC State 629.39
-## 492  2018                     Iowa 615.08
-## 493  2018               Vanderbilt 611.99
-## 494  2018             Northwestern 608.89
-## 495  2018               California 596.08
-## 496  2018                 Missouri 595.14
-## 497  2018                     Utah 594.60
-## 498  2018                Minnesota 588.97
-## 499  2018             Georgia Tech 583.49
-## 500  2018                  Arizona 580.54
-## 501  2018                  Houston 577.17
-## 502  2018               Iowa State 575.76
-## 503  2018                 Colorado 575.65
-## 504  2018                 Syracuse 570.20
-## 505  2018                      UCF 568.35
-## 506  2018                      BYU 565.85
-## 507  2018                  Indiana 564.04
-## 508  2018                 Illinois 562.67
-## 509  2018               Texas Tech 561.59
-## 510  2018                  Rutgers 555.24
-## 511  2018         Washington State 554.77
-## 512  2018            South Florida 548.62
-## 513  2018             Kansas State 547.43
-## 514  2018               Cincinnati 543.78
-## 515  2018              Boise State 543.43
-## 516  2018                 Virginia 542.40
-## 517  2018         Florida Atlantic 537.93
-## 518  2018             Oregon State 535.36
-## 519  2018           Boston College 533.43
-## 520  2018              Wake Forest 525.48
-## 521  2018                   Purdue 520.48
-## 522  2018                   Kansas 517.10
-## 523  2018                      SMU 485.46
-## 524  2018                  Memphis 480.07
-## 525  2018           Colorado State 479.97
-## 526  2018                   Temple 478.30
-## 527  2018           Louisiana Tech 477.50
-## 528  2018    Florida International 476.52
-## 529  2018          San Diego State 472.60
-## 530  2018                   Toledo 463.96
-## 531  2018             Fresno State 459.07
-## 532  2018                 Marshall 451.61
-## 533  2018                   Tulane 445.36
-## 534  2018         Western Michigan 442.29
-## 535  2018            East Carolina 434.48
-## 536  2018           Arkansas State 433.73
-## 537  2018                   Nevada 432.40
-## 538  2018        Northern Illinois 432.31
-## 539  2018           San José State 430.62
-## 540  2018               Miami (OH) 421.22
-## 541  2018         Middle Tennessee 414.19
-## 542  2018         Central Michigan 413.60
-## 543  2018               New Mexico 411.95
-## 544  2018           UT San Antonio 405.20
-## 545  2018            Georgia State 404.34
-## 546  2018                     UNLV 400.76
-## 547  2018            South Alabama 394.24
-## 548  2018              Connecticut 389.20
-## 549  2018                    UMass 388.91
-## 550  2018                      UAB 387.71
-## 551  2018     Southern Mississippi 387.32
-## 552  2018               Utah State 377.39
-## 553  2018                Louisiana 376.68
-## 554  2018            Bowling Green 375.14
-## 555  2018                     Rice 375.12
-## 556  2018                  Buffalo 369.14
-## 557  2018              North Texas 368.58
-## 558  2018                    Tulsa 368.14
-## 559  2018               Ball State 362.10
-## 560  2018                    Akron 361.00
-## 561  2018        Appalachian State 356.16
-## 562  2018         Western Kentucky 353.43
-## 563  2018                     Troy 352.36
-## 564  2018               Kent State 351.73
-## 565  2018                     Navy 349.26
-## 566  2018                  Wyoming 348.34
-## 567  2018                     Ohio 346.18
-## 568  2018                     UTEP 345.76
-## 569  2018         Eastern Michigan 344.06
-## 570  2018                  Hawai'i 343.97
-## 571  2018             Old Dominion 333.18
-## 572  2018         Louisiana Monroe 326.66
-## 573  2018                Charlotte 311.00
-## 574  2018         Georgia Southern 303.12
-## 575  2018              Texas State 302.55
-## 576  2018         Coastal Carolina 284.24
-## 577  2018         New Mexico State 249.32
-## 578  2018                     Army 230.75
-## 579  2018                Air Force 186.27
-## 580  2018       Jacksonville State 174.86
-## 581  2018                  Hampton 149.11
-## 582  2018            James Madison 147.11
-## 583  2018   Southeastern Louisiana 135.64
-## 584  2018        Sam Houston State 133.13
-## 585  2018        Sam Houston State 133.13
-## 586  2018              Austin Peay 123.40
-## 587  2018            Alabama State 118.68
-## 588  2018                 Duquesne 113.21
-## 589  2018              Chattanooga 112.15
-## 590  2018           Illinois State 109.44
-## 591  2018        Southern Illinois 108.59
-## 592  2018         Eastern Kentucky 107.58
-## 593  2018              Stony Brook 106.51
-## 594  2018            Montana State  98.98
-## 595  2018                UT Martin  98.34
-## 596  2018                  Liberty  93.99
-## 597  2018                    Idaho  87.35
-## 598  2018           Kennesaw State  86.45
-## 599  2018           Portland State  85.83
-## 600  2018         Northern Arizona  85.03
-## 601  2018                  Samford  84.29
-## 602  2018       North Dakota State  83.68
-## 603  2018                   Towson  83.58
-## 604  2018           Texas Southern  83.08
-## 605  2018          Tennessee State  82.27
-## 606  2018                 Richmond  82.20
-## 607  2018                 Delaware  79.23
-## 608  2018         Youngstown State  70.45
-## 609  2018                Grambling  69.99
-## 610  2018 Southeast Missouri State  69.85
-## 611  2018         Western Illinois  66.84
-## 612  2018                 Nicholls  66.08
-## 613  2018             Rhode Island  62.64
-## 614  2018          Bethune-Cookman  61.90
-## 615  2018                   Furman  59.57
-## 616  2018                 Campbell  58.46
-## 617  2018            Norfolk State  56.44
-## 618  2018           Missouri State  53.43
-## 619  2018              Weber State  51.74
-## 620  2018      Charleston Southern  51.01
-## 621  2018                  Montana  49.16
-## 622  2018             Prairie View  47.10
-## 623  2018        Stephen F. Austin  46.25
-## 624  2018                  McNeese  43.55
-## 625  2018        Abilene Christian  43.10
-## 626  2018       North Carolina A&amp;T  39.98
-## 627  2018              Florida A&amp;M  39.57
-## 628  2018             Murray State  37.82
-## 629  2018                 Cal Poly  37.28
-## 630  2018         Western Carolina  35.54
-## 631  2018             Morgan State  35.38
-## 632  2018     East Tennessee State  35.09
-## 633  2018            Northern Iowa  34.70
-## 634  2018                   Wagner  32.77
-## 635  2018                   Butler  31.53
-## 636  2018                   Albany  31.53
-## 637  2018   North Carolina Central  31.00
-## 638  2018            North Alabama  30.02
-## 639  2018              The Citadel  29.01
-## 640  2018       South Dakota State  28.73
-## 641  2018           William &amp; Mary  28.69
-## 642  2018                 Monmouth  28.13
-## 643  2018           Tennessee Tech  27.77
-## 644  2018                Princeton  27.29
-## 645  2018     South Carolina State  27.01
-## 646  2018          Houston Baptist  26.80
-## 647  2018                   Bryant  24.33
-## 648  2018             North Dakota  23.99
-## 649  2018            Indiana State  23.88
-## 650  2018         Central Arkansas  23.59
-## 651  2018           Incarnate Word  23.03
-## 652  2018             South Dakota  22.43
-## 653  2018                 Southern  22.25
-## 654  2018           Delaware State  21.32
-## 655  2018       Northwestern State  20.95
-## 656  2018              Idaho State  20.50
-## 657  2018         Sacramento State  20.45
-## 658  2018             Alcorn State  20.41
-## 659  2018       Eastern Washington  19.95
-## 660  2018             Sacred Heart  19.62
-## 661  2018                    Maine  18.93
-## 662  2018                   Howard  17.60
-## 663  2018             Jacksonville  17.49
-## 664  2018                  Fordham  15.33
-## 665  2018            Jackson State  14.46
-## 666  2018             Gardner-Webb  14.11
-## 667  2018                   Mercer  13.96
-## 668  2018                    Lamar  13.91
-## 669  2018                  Cornell  13.71
-## 670  2018        Northern Colorado  13.41
-## 671  2018                  Harvard  13.33
-## 672  2018                  Stetson  13.33
-## 673  2018          St Francis (PA)  13.00
-## 674  2018                      VMI  11.90
-## 675  2018            Southern Utah  11.84
-## 676  2018                    Drake  11.10
-## 677  2018               Georgetown  11.10
-## 678  2018            Robert Morris   9.24
-## 679  2018      Arkansas-Pine Bluff   8.98
-## 680  2018                   Dayton   8.88
-## 681  2018               Holy Cross   7.31
-## 682  2018      Central Connecticut   7.09
-## 683  2018         Eastern Illinois   6.75
-## 684  2018                   Lehigh   6.66
-## 685  2018                     Elon   6.66
-## 686  2018                   Marist   4.44
-## 687  2018                     Yale   3.30
-## 688  2017                  Alabama 997.57
-## 689  2017               Ohio State 959.12
-## 690  2017                      USC 934.00
-## 691  2017                  Georgia 930.34
-## 692  2017            Florida State 924.97
-## 693  2017                      LSU 907.10
-## 694  2017                 Michigan 874.28
-## 695  2017                   Auburn 867.43
-## 696  2017                  Clemson 853.65
-## 697  2017               Notre Dame 837.71
-## 698  2017                     UCLA 830.58
-## 699  2017                Tennessee 817.34
-## 700  2017                    Texas 811.03
-## 701  2017                 Stanford 810.31
-## 702  2017                Texas A&amp;M 807.27
-## 703  2017                 Oklahoma 801.67
-## 704  2017                 Ole Miss 795.70
-## 705  2017                  Florida 793.83
-## 706  2017               Penn State 779.26
-## 707  2017                    Miami 749.08
-## 708  2017            Arizona State 720.44
-## 709  2017                   Oregon 720.23
-## 710  2017                 Arkansas 717.01
-## 711  2017               Washington 706.52
-## 712  2017           South Carolina 702.52
-## 713  2017        Mississippi State 701.06
-## 714  2017           North Carolina 697.54
-## 715  2017                 Maryland 696.21
-## 716  2017                 Nebraska 693.46
-## 717  2017           Michigan State 680.94
-## 718  2017                      TCU 672.81
-## 719  2017                 Kentucky 671.45
-## 720  2017            Virginia Tech 662.18
-## 721  2017               Pittsburgh 660.36
-## 722  2017                   Baylor 657.22
-## 723  2017               Louisville 640.98
-## 724  2017                Wisconsin 639.76
-## 725  2017           Oklahoma State 633.57
-## 726  2017                     Utah 630.95
-## 727  2017                     Duke 627.62
-## 728  2017             Northwestern 627.54
-## 729  2017                 Missouri 623.33
-## 730  2017            West Virginia 613.18
-## 731  2017                 NC State 609.76
-## 732  2017               Vanderbilt 607.68
-## 733  2017                  Arizona 607.31
-## 734  2017                 Virginia 603.88
-## 735  2017               California 603.06
-## 736  2017                     Iowa 592.95
-## 737  2017               Texas Tech 574.93
-## 738  2017                  Rutgers 574.78
-## 739  2017             Georgia Tech 574.35
-## 740  2017                      BYU 574.09
-## 741  2017                      UCF 571.52
-## 742  2017                 Colorado 568.59
-## 743  2017               Iowa State 559.34
-## 744  2017                  Houston 558.72
-## 745  2017             Oregon State 557.02
-## 746  2017            South Florida 554.17
-## 747  2017         Washington State 549.42
-## 748  2017                  Indiana 547.92
-## 749  2017                Minnesota 543.80
-## 750  2017                 Syracuse 539.60
-## 751  2017                 Illinois 538.83
-## 752  2017           Boston College 535.21
-## 753  2017              Wake Forest 527.21
-## 754  2017             Kansas State 517.85
-## 755  2017                   Kansas 512.24
-## 756  2017                  Memphis 504.49
-## 757  2017                   Purdue 502.71
-## 758  2017              Boise State 501.53
-## 759  2017               Cincinnati 500.95
-## 760  2017                      SMU 492.63
-## 761  2017            East Carolina 471.10
-## 762  2017         Florida Atlantic 470.88
-## 763  2017                   Temple 468.29
-## 764  2017                 Marshall 445.48
-## 765  2017           Colorado State 441.98
-## 766  2017           Arkansas State 436.05
-## 767  2017                    Tulsa 422.77
-## 768  2017              Connecticut 420.17
-## 769  2017          San Diego State 419.43
-## 770  2017         Western Michigan 414.35
-## 771  2017               Miami (OH) 413.24
-## 772  2017                   Tulane 396.43
-## 773  2017           Louisiana Tech 394.31
-## 774  2017     Southern Mississippi 394.24
-## 775  2017            South Alabama 387.88
-## 776  2017         Central Michigan 387.20
-## 777  2017           San José State 378.56
-## 778  2017                     Navy 376.20
-## 779  2017             Fresno State 374.63
-## 780  2017        Northern Illinois 373.99
-## 781  2017                    UMass 367.59
-## 782  2017                   Toledo 366.47
-## 783  2017         Georgia Southern 365.57
-## 784  2017            Georgia State 364.16
-## 785  2017            Bowling Green 361.82
-## 786  2017                     Troy 352.10
-## 787  2017                     Rice 345.79
-## 788  2017         Middle Tennessee 344.65
-## 789  2017               New Mexico 344.64
-## 790  2017                   Nevada 341.11
-## 791  2017                    Akron 337.11
-## 792  2017        Appalachian State 335.87
-## 793  2017    Florida International 334.18
-## 794  2017         Western Kentucky 332.17
-## 795  2017             Old Dominion 331.20
-## 796  2017                     UNLV 331.18
-## 797  2017                  Hawai'i 330.56
-## 798  2017               Utah State 330.20
-## 799  2017                Louisiana 329.24
-## 800  2017                     Ohio 326.14
-## 801  2017               Ball State 318.17
-## 802  2017         Louisiana Monroe 303.96
-## 803  2017              North Texas 303.13
-## 804  2017                  Buffalo 294.08
-## 805  2017         Eastern Michigan 292.11
-## 806  2017           UT San Antonio 291.62
-## 807  2017               Kent State 288.56
-## 808  2017                Charlotte 283.01
-## 809  2017                  Wyoming 277.07
-## 810  2017              Texas State 274.67
-## 811  2017                     UTEP 264.42
-## 812  2017         New Mexico State 233.47
-## 813  2017                    Idaho 184.75
-## 814  2017            James Madison 179.50
-## 815  2017                      UAB 170.05
-## 816  2017           Portland State 147.63
-## 817  2017         Coastal Carolina 119.43
-## 818  2017              Stony Brook 111.94
-## 819  2017                   Towson 106.93
-## 820  2017                     Army  88.72
-## 821  2017                  Montana  80.03
-## 822  2017                 Cal Poly  76.98
-## 823  2017      Charleston Southern  72.38
-## 824  2017                 Richmond  71.64
-## 825  2017           Kennesaw State  70.97
-## 826  2017         Northern Arizona  69.20
-## 827  2017             Rhode Island  65.72
-## 828  2017              Weber State  51.74
-## 829  2017         Sacramento State  46.67
-## 830  2017           William &amp; Mary  40.05
-## 831  2017                    Maine  38.99
-## 832  2017            Southern Utah  33.11
-## 833  2017        Northern Colorado  32.58
-## 834  2017            Montana State  26.40
-## 835  2017             Gardner-Webb  23.01
-## 836  2017                 Monmouth  21.44
-## 837  2017                Air Force  21.10
-## 838  2017       Eastern Washington  19.95
-## 839  2017                  Liberty  19.85
-## 840  2017              Idaho State  15.22
-## 841  2017     Presbyterian College  14.91
-## 842  2017                     Elon  13.41
-## 843  2017                Villanova  11.65
-## 844  2017            New Hampshire  11.21
-## 845  2016                  Alabama 982.66
-## 846  2016                      USC 936.86
-## 847  2016                      LSU 917.72
-## 848  2016            Florida State 906.64
-## 849  2016               Ohio State 902.46
-## 850  2016                  Georgia 872.00
-## 851  2016                   Auburn 865.36
-## 852  2016                 Michigan 852.78
-## 853  2016                  Clemson 846.00
-## 854  2016               Notre Dame 842.35
-## 855  2016                    Texas 838.97
-## 856  2016                     UCLA 819.16
-## 857  2016                Texas A&amp;M 814.63
-## 858  2016                Tennessee 813.92
-## 859  2016                 Ole Miss 808.15
-## 860  2016                  Florida 798.44
-## 861  2016                 Stanford 778.45
-## 862  2016                 Oklahoma 777.48
-## 863  2016                    Miami 745.93
-## 864  2016               Penn State 742.52
-## 865  2016                   Oregon 738.29
-## 866  2016           Michigan State 719.70
-## 867  2016           South Carolina 706.90
-## 868  2016               Washington 699.64
-## 869  2016            Arizona State 694.21
-## 870  2016                 Nebraska 691.61
-## 871  2016                 Arkansas 689.41
-## 872  2016        Mississippi State 679.14
-## 873  2016           North Carolina 669.61
-## 874  2016                      TCU 665.53
-## 875  2016            West Virginia 654.64
-## 876  2016               Louisville 654.13
-## 877  2016                 Kentucky 652.07
-## 878  2016                 Maryland 651.99
-## 879  2016               Pittsburgh 649.85
-## 880  2016            Virginia Tech 646.82
-## 881  2016                Wisconsin 643.76
-## 882  2016                 Missouri 633.76
-## 883  2016           Oklahoma State 631.68
-## 884  2016                   Baylor 619.18
-## 885  2016               Vanderbilt 619.03
-## 886  2016                 Virginia 618.91
-## 887  2016                  Arizona 616.31
-## 888  2016                 NC State 616.29
-## 889  2016             Northwestern 613.55
-## 890  2016               Texas Tech 604.93
-## 891  2016               California 601.17
-## 892  2016                     Duke 599.82
-## 893  2016                  Rutgers 585.47
-## 894  2016             Georgia Tech 582.55
-## 895  2016                     Utah 580.07
-## 896  2016                  Houston 572.70
-## 897  2016                  Indiana 565.47
-## 898  2016            South Florida 563.99
-## 899  2016                     Iowa 558.73
-## 900  2016               Iowa State 552.17
-## 901  2016              Boise State 548.82
-## 902  2016               Cincinnati 541.58
-## 903  2016                Minnesota 535.44
-## 904  2016           Boston College 533.39
-## 905  2016                      BYU 529.05
-## 906  2016                 Colorado 526.39
-## 907  2016             Oregon State 524.89
-## 908  2016                 Illinois 523.91
-## 909  2016         Washington State 522.58
-## 910  2016                 Syracuse 520.26
-## 911  2016              Wake Forest 517.63
-## 912  2016                   Purdue 512.72
-## 913  2016                      UCF 510.27
-## 914  2016             Kansas State 505.29
-## 915  2016                   Temple 492.72
-## 916  2016                   Kansas 491.00
-## 917  2016                 Marshall 485.46
-## 918  2016          San Diego State 482.31
-## 919  2016                      SMU 474.03
-## 920  2016           Arkansas State 471.45
-## 921  2016                   Toledo 460.86
-## 922  2016           Louisiana Tech 451.38
-## 923  2016                  Memphis 451.24
-## 924  2016                    Akron 443.73
-## 925  2016         Western Michigan 443.16
-## 926  2016            East Carolina 442.26
-## 927  2016     Southern Mississippi 441.29
-## 928  2016           San José State 437.36
-## 929  2016         Middle Tennessee 436.60
-## 930  2016         Georgia Southern 435.33
-## 931  2016              Connecticut 423.56
-## 932  2016                Louisiana 421.37
-## 933  2016               Miami (OH) 418.04
-## 934  2016           Colorado State 412.28
-## 935  2016                    Tulsa 409.17
-## 936  2016         Florida Atlantic 408.40
-## 937  2016             Fresno State 404.97
-## 938  2016        Northern Illinois 403.27
-## 939  2016         Western Kentucky 401.82
-## 940  2016           UT San Antonio 397.64
-## 941  2016                     Rice 394.83
-## 942  2016            Bowling Green 392.66
-## 943  2016         Central Michigan 391.81
-## 944  2016                     Troy 390.47
-## 945  2016                   Nevada 389.56
-## 946  2016            South Alabama 389.36
-## 947  2016                   Tulane 388.04
-## 948  2016               New Mexico 387.26
-## 949  2016                  Hawai'i 384.97
-## 950  2016                     UNLV 376.26
-## 951  2016                     Ohio 372.56
-## 952  2016                    UMass 370.90
-## 953  2016               Ball State 365.94
-## 954  2016    Florida International 362.84
-## 955  2016               Utah State 357.13
-## 956  2016              Texas State 351.76
-## 957  2016              North Texas 351.58
-## 958  2016         Eastern Michigan 347.70
-## 959  2016             Old Dominion 347.20
-## 960  2016                  Buffalo 343.64
-## 961  2016                     Navy 342.77
-## 962  2016               Kent State 334.01
-## 963  2016        Appalachian State 333.36
-## 964  2016                Charlotte 330.55
-## 965  2016         Louisiana Monroe 322.82
-## 966  2016            Georgia State 321.79
-## 967  2016                  Wyoming 316.18
-## 968  2016                     UTEP 290.40
-## 969  2016         New Mexico State 267.66
-## 970  2016                    Idaho 256.78
-## 971  2016       Jacksonville State 254.26
-## 972  2016         Eastern Kentucky 184.88
-## 973  2016                     Yale 165.17
-## 974  2016            Northern Iowa 164.16
-## 975  2016           Portland State 154.68
-## 976  2016                     Army 131.74
-## 977  2016         Youngstown State 130.84
-## 978  2016            James Madison 128.58
-## 979  2016        Southern Illinois 123.69
-## 980  2016   Southeastern Louisiana 121.61
-## 981  2016              Chattanooga 119.20
-## 982  2016         Eastern Illinois 119.04
-## 983  2016                   Wagner 118.43
-## 984  2016              Stony Brook 118.15
-## 985  2016                 Duquesne 116.15
-## 986  2016                UT Martin 107.98
-## 987  2016         Northern Arizona 104.38
-## 988  2016           Illinois State 102.21
-## 989  2016                  Hampton  99.46
-## 990  2016                   Towson  95.18
-## 991  2016                  Samford  94.57
-## 992  2016                Grambling  93.31
-## 993  2016                 Cal Poly  91.73
-## 994  2016                 Nicholls  89.59
-## 995  2016            Jackson State  86.85
-## 996  2016                  Montana  83.10
-## 997  2016       North Dakota State  81.65
-## 998  2016        Stephen F. Austin  80.33
-## 999  2016         Western Illinois  78.62
-## 1000 2016 Southeast Missouri State  76.33
-## 1001 2016     South Carolina State  75.71
-## 1002 2016         Coastal Carolina  71.67
-## 1003 2016                  McNeese  69.85
-## 1004 2016            Southern Utah  68.79
-## 1005 2016             Prairie View  67.68
-## 1006 2016            Norfolk State  67.07
-## 1007 2016                   Furman  66.86
-## 1008 2016      Charleston Southern  65.60
-## 1009 2016            Montana State  64.33
-## 1010 2016          Bethune-Cookman  63.39
-## 1011 2016             Murray State  62.79
-## 1012 2016         Central Arkansas  62.11
-## 1013 2016          Houston Baptist  61.17
-## 1014 2016             Pennsylvania  60.95
-## 1015 2016                   Mercer  57.71
-## 1016 2016           Kennesaw State  54.76
-## 1017 2016              Weber State  54.68
-## 1018 2016            Alabama State  53.46
-## 1019 2016           Tennessee Tech  53.00
-## 1020 2016                 Richmond  51.95
-## 1021 2016          Tennessee State  51.82
-## 1022 2016                 Southern  46.97
-## 1023 2016         Sacramento State  45.18
-## 1024 2016       Eastern Washington  45.10
-## 1025 2016              Austin Peay  44.67
-## 1026 2016                Air Force  44.58
-## 1027 2016           Texas Southern  43.86
-## 1028 2016                    Lamar  43.84
-## 1029 2016            Indiana State  43.84
-## 1030 2016           William &amp; Mary  43.54
-## 1031 2016     Presbyterian College  41.40
-## 1032 2016             Rhode Island  41.24
-## 1033 2016                 Campbell  40.68
-## 1034 2016             Alcorn State  39.30
-## 1035 2016              The Citadel  37.64
-## 1036 2016                  Fordham  36.98
-## 1037 2016                Princeton  36.73
-## 1038 2016                 Monmouth  35.77
-## 1039 2016             South Dakota  32.89
-## 1040 2016       Northwestern State  32.06
-## 1041 2016                      VMI  31.43
-## 1042 2016     East Tennessee State  31.35
-## 1043 2016               Valparaiso  29.84
-## 1044 2016        Northern Colorado  29.66
-## 1045 2016                    Drake  27.37
-## 1046 2016            Robert Morris  26.70
-## 1047 2016              Alabama A&amp;M  26.31
-## 1048 2016              Idaho State  25.18
-## 1049 2016                Villanova  23.98
-## 1050 2016           Savannah State  23.51
-## 1051 2016                    Maine  23.37
-## 1052 2016           Delaware State  22.84
-## 1053 2016             Gardner-Webb  22.66
-## 1054 2016                   Butler  21.56
-## 1055 2016                 Columbia  21.24
-## 1056 2016                  Liberty  21.04
-## 1057 2016        Abilene Christian  19.77
-## 1058 2016                  Wofford  19.48
-## 1059 2016             Sacred Heart  19.44
-## 1060 2016                  Harvard  17.28
-## 1061 2016                    Brown  16.92
-## 1062 2016              Florida A&amp;M  16.64
-## 1063 2016                  Cornell  15.89
-## 1064 2016                   Dayton  14.99
-## 1065 2016               Holy Cross  14.75
-## 1066 2016         Western Carolina  13.67
-## 1067 2016             Jacksonville  13.41
-## 1068 2016   North Carolina Central  13.15
-## 1069 2016           Missouri State  12.70
-## 1070 2016               Georgetown  12.60
-## 1071 2016            New Hampshire  11.21
-## 1072 2016                  Stetson   9.99
-## 1073 2016                   Howard   7.53
-## 1074 2016      Arkansas-Pine Bluff   6.66
-## 1075 2016           Morehead State   6.66
-## 1076 2016      Central Connecticut   6.66
-## 1077 2016                   Lehigh   6.66
-## 1078 2016                San Diego   6.66
-## 1079 2016                   Bryant   6.24
-## 1080 2016       North Carolina A&amp;T   3.81
-## 1081 2016          St Francis (PA)   1.74
-## 1082 2015                  Alabama 981.90
-## 1083 2015                      USC 926.71
-## 1084 2015               Ohio State 907.32
-## 1085 2015            Florida State 889.92
-## 1086 2015                      LSU 889.37
-## 1087 2015                  Georgia 877.74
-## 1088 2015                   Auburn 865.41
-## 1089 2015               Notre Dame 857.33
-## 1090 2015                 Michigan 851.12
-## 1091 2015                Texas A&amp;M 830.34
-## 1092 2015                    Texas 821.26
-## 1093 2015                Tennessee 810.53
-## 1094 2015                  Clemson 807.56
-## 1095 2015                     UCLA 793.22
-## 1096 2015                  Florida 789.79
-## 1097 2015                 Oklahoma 775.90
-## 1098 2015                    Miami 773.23
-## 1099 2015                 Stanford 765.98
-## 1100 2015                 Ole Miss 764.34
-## 1101 2015                   Oregon 757.52
-## 1102 2015               Penn State 732.36
-## 1103 2015           South Carolina 725.72
-## 1104 2015           Michigan State 715.30
-## 1105 2015                 Nebraska 699.89
-## 1106 2015                 Arkansas 695.04
-## 1107 2015           North Carolina 683.03
-## 1108 2015            Arizona State 680.87
-## 1109 2015        Mississippi State 680.06
-## 1110 2015               Washington 667.45
-## 1111 2015                 Virginia 667.05
-## 1112 2015                   Baylor 660.35
-## 1113 2015            Virginia Tech 658.38
-## 1114 2015           Oklahoma State 651.83
-## 1115 2015                 Missouri 642.93
-## 1116 2015               Texas Tech 641.07
-## 1117 2015               Louisville 641.05
-## 1118 2015                Wisconsin 635.77
-## 1119 2015                 Kentucky 634.52
-## 1120 2015                      TCU 630.38
-## 1121 2015               California 626.00
-## 1122 2015            West Virginia 625.85
-## 1123 2015               Pittsburgh 611.18
-## 1124 2015                 NC State 610.33
-## 1125 2015               Vanderbilt 609.76
-## 1126 2015                  Arizona 606.92
-## 1127 2015                 Maryland 603.76
-## 1128 2015                  Rutgers 602.35
-## 1129 2015             Northwestern 595.75
-## 1130 2015             Georgia Tech 590.34
-## 1131 2015                     Utah 574.41
-## 1132 2015                     Iowa 573.06
-## 1133 2015              Boise State 568.96
-## 1134 2015                     Duke 563.19
-## 1135 2015                  Indiana 559.08
-## 1136 2015             Oregon State 544.66
-## 1137 2015                 Colorado 542.06
-## 1138 2015         Washington State 540.86
-## 1139 2015           Boston College 534.60
-## 1140 2015                   Purdue 534.26
-## 1141 2015                 Illinois 530.96
-## 1142 2015            South Florida 529.65
-## 1143 2015               Iowa State 529.12
-## 1144 2015                      BYU 521.43
-## 1145 2015                Minnesota 516.10
-## 1146 2015                  Houston 511.45
-## 1147 2015                 Syracuse 508.80
-## 1148 2015             Kansas State 503.64
-## 1149 2015                   Kansas 499.97
-## 1150 2015              Wake Forest 497.48
-## 1151 2015          San Diego State 494.77
-## 1152 2015               Cincinnati 494.65
-## 1153 2015                 Marshall 489.77
-## 1154 2015                      UCF 484.54
-## 1155 2015     Southern Mississippi 470.84
-## 1156 2015                      SMU 446.83
-## 1157 2015         Western Michigan 442.13
-## 1158 2015           Louisiana Tech 437.99
-## 1159 2015            Bowling Green 433.59
-## 1160 2015                Louisiana 430.17
-## 1161 2015                   Toledo 429.03
-## 1162 2015                    Akron 412.65
-## 1163 2015         Middle Tennessee 409.82
-## 1164 2015                   Tulane 408.22
-## 1165 2015           Arkansas State 408.08
-## 1166 2015                   Temple 405.92
-## 1167 2015                    Tulsa 404.03
-## 1168 2015            East Carolina 403.62
-## 1169 2015             Fresno State 402.58
-## 1170 2015              Connecticut 402.23
-## 1171 2015         Florida Atlantic 401.61
-## 1172 2015                     Rice 399.58
-## 1173 2015               Miami (OH) 397.13
-## 1174 2015         Georgia Southern 391.18
-## 1175 2015           Colorado State 389.10
-## 1176 2015                  Hawai'i 385.63
-## 1177 2015                  Memphis 381.80
-## 1178 2015              North Texas 380.69
-## 1179 2015        Northern Illinois 380.69
-## 1180 2015                   Nevada 380.53
-## 1181 2015           San José State 379.60
-## 1182 2015         Central Michigan 376.81
-## 1183 2015            South Alabama 367.16
-## 1184 2015              Texas State 360.49
-## 1185 2015    Florida International 360.11
-## 1186 2015           UT San Antonio 356.37
-## 1187 2015         Western Kentucky 353.50
-## 1188 2015               Ball State 349.94
-## 1189 2015               New Mexico 341.72
-## 1190 2015         Eastern Michigan 341.36
-## 1191 2015               Kent State 338.40
-## 1192 2015            Georgia State 335.67
-## 1193 2015                     Troy 335.43
-## 1194 2015                     UNLV 332.69
-## 1195 2015               Utah State 331.44
-## 1196 2015                     Ohio 330.61
-## 1197 2015                    UMass 323.73
-## 1198 2015             Old Dominion 319.60
-## 1199 2015                  Buffalo 316.44
-## 1200 2015                  Wyoming 314.72
-## 1201 2015        Appalachian State 312.88
-## 1202 2015                     Navy 306.87
-## 1203 2015                Charlotte 304.05
-## 1204 2015         Louisiana Monroe 292.73
-## 1205 2015                    Idaho 262.39
-## 1206 2015                     UTEP 256.12
-## 1207 2015         New Mexico State 251.16
-## 1208 2015                      UAB 236.34
-## 1209 2015            Northern Iowa 202.77
-## 1210 2015                     Army 186.45
-## 1211 2015                     Yale 181.76
-## 1212 2015       Jacksonville State 173.32
-## 1213 2015              Chattanooga 137.06
-## 1214 2015           Portland State 123.61
-## 1215 2015         Youngstown State 116.79
-## 1216 2015          Bethune-Cookman 116.09
-## 1217 2015     South Carolina State 105.01
-## 1218 2015        Stephen F. Austin 103.72
-## 1219 2015                 Cal Poly  97.73
-## 1220 2015                  Samford  95.68
-## 1221 2015           Illinois State  92.42
-## 1222 2015             Murray State  89.72
-## 1223 2015            James Madison  84.74
-## 1224 2015       North Dakota State  82.26
-## 1225 2015            Jackson State  78.26
-## 1226 2015            Indiana State  74.60
-## 1227 2015          Tennessee State  74.37
-## 1228 2015                   Towson  74.05
-## 1229 2015             Pennsylvania  73.07
-## 1230 2015                Air Force  70.95
-## 1231 2015         Northern Arizona  68.35
-## 1232 2015        Abilene Christian  66.43
-## 1233 2015                  Montana  64.46
-## 1234 2015                   Wagner  64.14
-## 1235 2015                UT Martin  62.12
-## 1236 2015              Stony Brook  61.96
-## 1237 2015                   Furman  61.89
-## 1238 2015        Southern Illinois  60.76
-## 1239 2015                  Hampton  58.39
-## 1240 2015   Southeastern Louisiana  58.08
-## 1241 2015                Villanova  57.42
-## 1242 2015               Valparaiso  56.37
-## 1243 2015         Western Illinois  51.28
-## 1244 2015                  McNeese  51.19
-## 1245 2015                 Duquesne  50.43
-## 1246 2015      Charleston Southern  48.43
-## 1247 2015              The Citadel  47.12
-## 1248 2015         Eastern Illinois  46.56
-## 1249 2015         Eastern Kentucky  46.50
-## 1250 2015                 Richmond  46.34
-## 1251 2015       Eastern Washington  45.10
-## 1252 2015           Texas Southern  43.10
-## 1253 2015                Grambling  41.62
-## 1254 2015         Coastal Carolina  41.50
-## 1255 2015          Houston Baptist  39.71
-## 1256 2015                 Southern  37.48
-## 1257 2015         Sacramento State  37.46
-## 1258 2015             Rhode Island  37.17
-## 1259 2015              Austin Peay  36.99
-## 1260 2015                  Fordham  36.98
-## 1261 2015        Northern Colorado  36.95
-## 1262 2015         Central Arkansas  35.29
-## 1263 2015                   Mercer  35.02
-## 1264 2015            Norfolk State  32.59
-## 1265 2015           Tennessee Tech  31.74
-## 1266 2015                      VMI  31.43
-## 1267 2015                 Campbell  31.21
-## 1268 2015                  Harvard  30.49
-## 1269 2015 Southeast Missouri State  29.79
-## 1270 2015                  Cornell  29.11
-## 1271 2015       Northwestern State  28.02
-## 1272 2015     Presbyterian College  25.63
-## 1273 2015           Delaware State  25.26
-## 1274 2015       South Dakota State  25.25
-## 1275 2015                    Lamar  24.84
-## 1276 2015                 Nicholls  24.71
-## 1277 2015            Alabama State  24.46
-## 1278 2015           Kennesaw State  23.49
-## 1279 2015              Idaho State  21.69
-## 1280 2015                 Columbia  21.24
-## 1281 2015            New Hampshire  21.17
-## 1282 2015             Prairie View  20.76
-## 1283 2015     East Tennessee State  20.07
-## 1284 2015              Weber State  19.80
-## 1285 2015                  Liberty  19.57
-## 1286 2015                  Wofford  19.48
-## 1287 2015             Jacksonville  18.58
-## 1288 2015                    Brown  16.92
-## 1289 2015         Western Carolina  15.77
-## 1290 2015                 Davidson  15.67
-## 1291 2015           William &amp; Mary  15.65
-## 1292 2015              Florida A&amp;M  15.60
-## 1293 2015           Incarnate Word  15.59
-## 1294 2015   North Carolina Central  14.26
-## 1295 2015              Alabama A&amp;M  13.33
-## 1296 2015            Montana State  11.86
-## 1297 2015                   Butler   9.96
-## 1298 2015             Gardner-Webb   8.58
-## 1299 2015                 Monmouth   7.93
-## 1300 2015               Holy Cross   7.45
-## 1301 2015                    Drake   7.43
-## 1302 2015                    Maine   7.24
-## 1303 2015                   Lehigh   6.66
-## 1304 2015                  Stetson   6.66
-## 1305 2015      Arkansas-Pine Bluff   6.66
-## 1306 2015            Southern Utah   6.66
-## 1307 2015                 UC Davis   6.66
-## 1308 2015             South Dakota   3.36
-## 1309 2015            Robert Morris   3.06
-## 1310 2015                Dartmouth   2.96
-## 1311 2015                   Marist   2.63
-## 1312 2015                   Howard   2.22
-## 1313 2015          St Francis (PA)   1.74</code></pre>
+<pre><code>##      year                   school  talent
+## 1    2021                  Alabama 1004.04
+## 2    2021                  Georgia 1001.79
+## 3    2021               Ohio State  985.09
+## 4    2021                  Clemson  935.08
+## 5    2021                      LSU  903.72
+## 6    2021                 Oklahoma  895.38
+## 7    2021                Texas A&amp;M  888.35
+## 8    2021                   Oregon  885.75
+## 9    2021                  Florida  885.67
+## 10   2021                      USC  874.50
+## 11   2021                    Texas  874.19
+## 12   2021               Notre Dame  853.10
+## 13   2021                    Miami  841.45
+## 14   2021                   Auburn  840.38
+## 15   2021                 Michigan  832.60
+## 16   2021               Penn State  820.72
+## 17   2021           North Carolina  798.29
+## 18   2021               Washington  789.51
+## 19   2021                Tennessee  780.83
+## 20   2021            Florida State  769.76
+## 21   2021                Wisconsin  750.89
+## 22   2021           South Carolina  747.88
+## 23   2021                     UCLA  746.02
+## 24   2021                 Stanford  745.30
+## 25   2021                 Nebraska  743.70
+## 26   2021            Arizona State  734.45
+## 27   2021                 Ole Miss  732.02
+## 28   2021                 Arkansas  722.84
+## 29   2021        Mississippi State  716.17
+## 30   2021                 Kentucky  709.07
+## 31   2021                     Utah  707.72
+## 32   2021             Georgia Tech  707.35
+## 33   2021                 Maryland  705.79
+## 34   2021                 NC State  700.36
+## 35   2021                      TCU  698.52
+## 36   2021           Michigan State  677.07
+## 37   2021               Pittsburgh  668.67
+## 38   2021                  Indiana  664.25
+## 39   2021            Virginia Tech  663.78
+## 40   2021               California  662.11
+## 41   2021                   Baylor  660.65
+## 42   2021                     Iowa  657.39
+## 43   2021                Minnesota  653.25
+## 44   2021             Northwestern  648.79
+## 45   2021                 Missouri  647.74
+## 46   2021                   Purdue  644.23
+## 47   2021                 Colorado  640.85
+## 48   2021             Oregon State  640.66
+## 49   2021                      UCF  639.06
+## 50   2021           Boston College  636.46
+## 51   2021                 Illinois  630.16
+## 52   2021               Cincinnati  626.54
+## 53   2021                 Virginia  619.61
+## 54   2021           Oklahoma State  613.69
+## 55   2021               Iowa State  613.60
+## 56   2021            West Virginia  611.29
+## 57   2021               Vanderbilt  609.82
+## 58   2021               Louisville  607.77
+## 59   2021               Texas Tech  607.10
+## 60   2021                     Duke  605.57
+## 61   2021         Washington State  601.16
+## 62   2021              Wake Forest  589.19
+## 63   2021                      SMU  576.03
+## 64   2021                  Rutgers  573.14
+## 65   2021                  Memphis  572.13
+## 66   2021                  Houston  571.21
+## 67   2021             Kansas State  569.65
+## 68   2021                  Arizona  567.61
+## 69   2021                 Syracuse  567.19
+## 70   2021              Boise State  557.69
+## 71   2021         Florida Atlantic  553.28
+## 72   2021                   Kansas  548.10
+## 73   2021            South Florida  540.51
+## 74   2021         Western Kentucky  524.97
+## 75   2021           Louisiana Tech  520.48
+## 76   2021            East Carolina  516.06
+## 77   2021           UT San Antonio  508.77
+## 78   2021                   Temple  501.40
+## 79   2021              North Texas  496.31
+## 80   2021         Middle Tennessee  494.02
+## 81   2021             Fresno State  483.77
+## 82   2021           Arkansas State  475.74
+## 83   2021             Florida Intl  472.59
+## 84   2021                    Tulsa  470.49
+## 85   2021     Southern Mississippi  465.94
+## 86   2021                   Toledo  465.40
+## 87   2021                   Tulane  463.02
+## 88   2021                Charlotte  462.67
+## 89   2021                 Marshall  456.97
+## 90   2021        Appalachian State  450.04
+## 91   2021                     Troy  448.77
+## 92   2021                      UAB  444.37
+## 93   2021           Colorado State  443.16
+## 94   2021                      BYU  443.13
+## 95   2021          San Diego State  441.63
+## 96   2021                Louisiana  435.63
+## 97   2021              Texas State  428.48
+## 98   2021                   Nevada  421.64
+## 99   2021                     Rice  419.65
+## 100  2021         Coastal Carolina  415.91
+## 101  2021            South Alabama  415.07
+## 102  2021            Georgia State  413.91
+## 103  2021           San José State  410.81
+## 104  2021             Old Dominion  409.31
+## 105  2021                  Hawai'i  397.43
+## 106  2021         Western Michigan  396.47
+## 107  2021               Utah State  394.37
+## 108  2021                     UNLV  392.44
+## 109  2021         Georgia Southern  383.76
+## 110  2021            Bowling Green  380.74
+## 111  2021               Miami (OH)  378.03
+## 112  2021               New Mexico  360.77
+## 113  2021               Kent State  357.85
+## 114  2021        Northern Illinois  354.21
+## 115  2021         Eastern Michigan  340.60
+## 116  2021               Ball State  338.31
+## 117  2021                     Ohio  332.25
+## 118  2021              Connecticut  331.90
+## 119  2021                    Akron  330.97
+## 120  2021                  Wyoming  326.65
+## 121  2021                     UTEP  318.65
+## 122  2021         Louisiana Monroe  312.31
+## 123  2021         Central Michigan  268.89
+## 124  2021                  Buffalo  267.09
+## 125  2021   Southeastern Louisiana  231.02
+## 126  2021                    UMass  227.21
+## 127  2021         Eastern Kentucky  222.50
+## 128  2021           Missouri State  205.25
+## 129  2021              Chattanooga  193.46
+## 130  2021                 Nicholls  189.98
+## 131  2021                  McNeese  182.46
+## 132  2021            Jackson State  173.86
+## 133  2021        Northern Colorado  156.11
+## 134  2021       Jacksonville State  155.11
+## 135  2021                  Liberty  154.75
+## 136  2021                UT Martin  149.55
+## 137  2021       North Carolina A&amp;T  132.73
+## 138  2021                   Towson  130.70
+## 139  2021              Florida A&amp;M  127.97
+## 140  2021                     Navy  127.63
+## 141  2021             Rhode Island  127.52
+## 142  2021       Northwestern State  126.22
+## 143  2021            North Alabama  123.39
+## 144  2021                    Idaho  122.44
+## 145  2021                 Southern  120.88
+## 146  2021         New Mexico State  117.43
+## 147  2021              Weber State  116.62
+## 148  2021        Stephen F. Austin  115.81
+## 149  2021         Northern Arizona  115.62
+## 150  2021                     Army  111.53
+## 151  2021        Sam Houston State  111.50
+## 152  2021            Northern Iowa  108.66
+## 153  2021                 Campbell  108.65
+## 154  2021        Southern Illinois  107.83
+## 155  2021             Murray State  104.85
+## 156  2021            James Madison  102.89
+## 157  2021        Abilene Christian   96.46
+## 158  2021                    Maine   95.00
+## 159  2021                  Montana   94.99
+## 160  2021            Montana State   92.72
+## 161  2021         Youngstown State   90.76
+## 162  2021          Tennessee State   88.82
+## 163  2021         Eastern Illinois   87.86
+## 164  2021              Austin Peay   87.48
+## 165  2021         Western Illinois   82.24
+## 166  2021           Portland State   81.34
+## 167  2021   North Carolina Central   80.58
+## 168  2021                 Cal Poly   80.30
+## 169  2021              Stony Brook   80.27
+## 170  2021                 Duquesne   77.09
+## 171  2021             Alcorn State   71.95
+## 172  2021              Idaho State   71.55
+## 173  2021         Sacramento State   71.20
+## 174  2021          Bethune-Cookman   70.64
+## 175  2021                  Samford   70.11
+## 176  2021         Central Arkansas   68.32
+## 177  2021           Texas Southern   62.70
+## 178  2021             Gardner-Webb   58.53
+## 179  2021         Western Carolina   57.52
+## 180  2021       Eastern Washington   57.26
+## 181  2021             Prairie View   56.79
+## 182  2021           Incarnate Word   54.60
+## 183  2021                 UC Davis   51.38
+## 184  2021           Illinois State   51.04
+## 185  2021       North Dakota State   50.33
+## 186  2021     East Tennessee State   49.58
+## 187  2021              Alabama A&amp;M   49.54
+## 188  2021             South Dakota   46.05
+## 189  2021            Indiana State   45.15
+## 190  2021             Morgan State   44.52
+## 191  2021                     Elon   43.03
+## 192  2021                   Furman   39.37
+## 193  2021           William &amp; Mary   38.56
+## 194  2021                San Diego   37.37
+## 195  2021                   Lehigh   36.97
+## 196  2021           Kennesaw State   36.62
+## 197  2021                 Richmond   35.81
+## 198  2021      Charleston Southern   34.78
+## 199  2021                  Hampton   33.45
+## 200  2021                Air Force   30.32
+## 201  2021                 Delaware   29.77
+## 202  2021 Southeast Missouri State   26.12
+## 203  2021             Sacred Heart   24.95
+## 204  2021                   Albany   24.67
+## 205  2021                     Yale   24.05
+## 206  2021              The Citadel   23.94
+## 207  2021                   Mercer   23.81
+## 208  2021                  Fordham   22.86
+## 209  2021                Lafayette   22.41
+## 210  2021                   Wagner   21.98
+## 211  2021           Tennessee Tech   19.20
+## 212  2021           Tarleton State   18.04
+## 213  2021             Jacksonville   17.49
+## 214  2021      Arkansas-Pine Bluff   15.35
+## 215  2021                   Bryant   14.59
+## 216  2021               Valparaiso   14.28
+## 217  2021                  Stetson   14.06
+## 218  2021       South Dakota State   13.27
+## 219  2021                 Monmouth   13.17
+## 220  2021                    Brown    9.44
+## 221  2021                  Wofford    7.83
+## 222  2021            New Hampshire    7.81
+## 223  2021          St Francis (PA)    7.30
+## 224  2021          Houston Baptist    5.41
+## 225  2020                  Georgia  990.47
+## 226  2020                  Alabama  985.86
+## 227  2020               Ohio State  976.48
+## 228  2020                  Clemson  915.57
+## 229  2020                    Texas  892.91
+## 230  2020                Texas A&amp;M  875.10
+## 231  2020                      LSU  873.23
+## 232  2020                 Oklahoma  866.36
+## 233  2020               Notre Dame  866.21
+## 234  2020                      USC  853.16
+## 235  2020               Penn State  850.70
+## 236  2020                   Auburn  844.78
+## 237  2020                Tennessee  844.16
+## 238  2020                 Michigan  832.65
+## 239  2020            Florida State  832.59
+## 240  2020                    Miami  822.41
+## 241  2020                   Oregon  816.74
+## 242  2020               Washington  815.23
+## 243  2020                  Florida  809.32
+## 244  2020                 Stanford  801.60
+## 245  2020           South Carolina  771.64
+## 246  2020            Arizona State  743.24
+## 247  2020           North Carolina  740.19
+## 248  2020        Mississippi State  739.30
+## 249  2020                 Nebraska  733.39
+## 250  2020                 Arkansas  719.15
+## 251  2020                 Kentucky  716.65
+## 252  2020                      TCU  712.31
+## 253  2020                 Ole Miss  702.20
+## 254  2020             Georgia Tech  684.42
+## 255  2020                 NC State  680.31
+## 256  2020                Wisconsin  676.48
+## 257  2020           Michigan State  673.43
+## 258  2020            Virginia Tech  670.70
+## 259  2020                     UCLA  660.71
+## 260  2020               Pittsburgh  653.05
+## 261  2020                     Utah  649.86
+## 262  2020                 Maryland  646.29
+## 263  2020                 Illinois  644.09
+## 264  2020                   Purdue  644.03
+## 265  2020                   Baylor  642.13
+## 266  2020           Oklahoma State  639.23
+## 267  2020                     Iowa  631.81
+## 268  2020            West Virginia  631.27
+## 269  2020                 Colorado  630.39
+## 270  2020             Northwestern  629.84
+## 271  2020                 Missouri  627.24
+## 272  2020               Louisville  621.82
+## 273  2020               Texas Tech  619.60
+## 274  2020                     Duke  617.12
+## 275  2020             Oregon State  616.25
+## 276  2020                  Indiana  611.17
+## 277  2020                  Houston  608.28
+## 278  2020               Vanderbilt  607.68
+## 279  2020                      SMU  604.59
+## 280  2020               Iowa State  602.96
+## 281  2020           Boston College  602.69
+## 282  2020               Cincinnati  600.61
+## 283  2020               California  599.17
+## 284  2020                Minnesota  594.70
+## 285  2020                      UCF  593.07
+## 286  2020                  Rutgers  588.56
+## 287  2020                 Virginia  588.54
+## 288  2020                  Memphis  587.17
+## 289  2020                 Syracuse  578.28
+## 290  2020              Wake Forest  577.30
+## 291  2020              Boise State  571.21
+## 292  2020             Kansas State  560.96
+## 293  2020                   Kansas  546.08
+## 294  2020            South Florida  538.18
+## 295  2020            East Carolina  528.47
+## 296  2020                  Arizona  526.23
+## 297  2020                   Tulane  526.19
+## 298  2020         Washington State  516.96
+## 299  2020                      BYU  510.95
+## 300  2020         Florida Atlantic  488.99
+## 301  2020                   Temple  482.14
+## 302  2020    Florida International  480.50
+## 303  2020                    Tulsa  470.03
+## 304  2020           Louisiana Tech  467.46
+## 305  2020                Charlotte  462.29
+## 306  2020           UT San Antonio  458.03
+## 307  2020          San Diego State  454.60
+## 308  2020         Western Kentucky  447.91
+## 309  2020                     UNLV  447.31
+## 310  2020           Colorado State  446.94
+## 311  2020             Fresno State  440.10
+## 312  2020              North Texas  415.68
+## 313  2020                 Marshall  408.98
+## 314  2020         Middle Tennessee  405.40
+## 315  2020     Southern Mississippi  401.05
+## 316  2020                   Nevada  400.84
+## 317  2020               Utah State  400.78
+## 318  2020           San José State  397.99
+## 319  2020                  Hawai'i  393.56
+## 320  2020                   Toledo  391.54
+## 321  2020           Arkansas State  389.49
+## 322  2020                      UAB  383.56
+## 323  2020         Western Michigan  382.78
+## 324  2020              Texas State  382.60
+## 325  2020        Appalachian State  382.58
+## 326  2020                Louisiana  378.95
+## 327  2020                     Rice  358.95
+## 328  2020                  Wyoming  352.91
+## 329  2020             Old Dominion  350.91
+## 330  2020         Central Michigan  350.35
+## 331  2020              Connecticut  347.50
+## 332  2020               New Mexico  340.16
+## 333  2020         Georgia Southern  335.43
+## 334  2020            Georgia State  333.22
+## 335  2020                     Troy  323.67
+## 336  2020                     Ohio  304.79
+## 337  2020                     UTEP  297.36
+## 338  2020         Louisiana Monroe  286.74
+## 339  2020               Kent State  270.29
+## 340  2020                     Navy  266.19
+## 341  2020            South Alabama  265.69
+## 342  2020        Northern Illinois  262.67
+## 343  2020               Miami (OH)  259.14
+## 344  2020               Ball State  257.94
+## 345  2020                  Buffalo  252.86
+## 346  2020                    UMass  246.83
+## 347  2020         Eastern Michigan  246.82
+## 348  2020                    Akron  232.81
+## 349  2020            Bowling Green  215.06
+## 350  2020         Coastal Carolina  213.39
+## 351  2020                  Liberty  158.93
+## 352  2020                     Army  152.03
+## 353  2020              Chattanooga  150.93
+## 354  2020              Austin Peay  149.28
+## 355  2020         Eastern Kentucky  148.05
+## 356  2020           Texas Southern  143.43
+## 357  2020         New Mexico State  143.36
+## 358  2020                   Towson  142.39
+## 359  2020            Alabama State  136.54
+## 360  2020            James Madison  118.89
+## 361  2020       North Carolina A&amp;T  116.79
+## 362  2020              Florida A&amp;M  102.58
+## 363  2020        Stephen F. Austin   99.93
+## 364  2020        Southern Illinois   96.82
+## 365  2020                Grambling   95.67
+## 366  2020                 Campbell   93.73
+## 367  2020             Prairie View   91.02
+## 368  2020           Missouri State   85.24
+## 369  2020           Incarnate Word   81.78
+## 370  2020        Sam Houston State   81.65
+## 371  2020          Tennessee State   80.11
+## 372  2020        Abilene Christian   79.83
+## 373  2020          Bethune-Cookman   76.68
+## 374  2020            Montana State   76.41
+## 375  2020                UT Martin   72.15
+## 376  2020                    Maine   72.07
+## 377  2020                Air Force   71.92
+## 378  2020                  Samford   70.54
+## 379  2020              Stony Brook   68.32
+## 380  2020           Illinois State   67.52
+## 381  2020              Weber State   66.96
+## 382  2020       North Dakota State   61.62
+## 383  2020     East Tennessee State   60.39
+## 384  2020   Southeastern Louisiana   58.98
+## 385  2020                     Elon   55.95
+## 386  2020           Portland State   55.65
+## 387  2020                  Montana   53.39
+## 388  2020         Western Illinois   53.01
+## 389  2020            Norfolk State   52.48
+## 390  2020              Alabama A&amp;M   52.37
+## 391  2020                 UC Davis   50.80
+## 392  2020                 Richmond   49.75
+## 393  2020                    Idaho   47.38
+## 394  2020            North Alabama   46.88
+## 395  2020             Murray State   44.74
+## 396  2020   North Carolina Central   43.62
+## 397  2020                 Duquesne   42.21
+## 398  2020         Northern Arizona   41.84
+## 399  2020 Southeast Missouri State   41.44
+## 400  2020         Youngstown State   35.85
+## 401  2020                  Hampton   33.45
+## 402  2020              Idaho State   32.78
+## 403  2020     South Carolina State   32.50
+## 404  2020        Northern Colorado   31.63
+## 405  2020            Northern Iowa   30.66
+## 406  2020                   Albany   30.44
+## 407  2020       Eastern Washington   30.41
+## 408  2020                   Furman   30.39
+## 409  2020         Sacramento State   30.24
+## 410  2020                 Delaware   29.77
+## 411  2020             Alcorn State   29.54
+## 412  2020                 Monmouth   28.91
+## 413  2020             Rhode Island   28.50
+## 414  2020             Gardner-Webb   28.16
+## 415  2020            Robert Morris   26.82
+## 416  2020          Houston Baptist   26.80
+## 417  2020             South Dakota   26.27
+## 418  2020                   Mercer   25.92
+## 419  2020         Eastern Illinois   25.80
+## 420  2020           Tennessee Tech   25.67
+## 421  2020                 Cal Poly   25.44
+## 422  2020         Central Arkansas   24.08
+## 423  2020              The Citadel   23.94
+## 424  2020       Northwestern State   23.16
+## 425  2020                  Fordham   22.86
+## 426  2020                 Southern   22.17
+## 427  2020            Indiana State   22.02
+## 428  2020                   Wagner   20.43
+## 429  2020             Jacksonville   17.49
+## 430  2020           Kennesaw State   16.24
+## 431  2020      Arkansas-Pine Bluff   15.35
+## 432  2020             Sacred Heart   14.46
+## 433  2020                    Lamar   13.33
+## 434  2020         Western Carolina   12.53
+## 435  2020           William &amp; Mary   12.39
+## 436  2020                    Brown    9.44
+## 437  2020      Central Connecticut    8.93
+## 438  2020          St Francis (PA)    8.83
+## 439  2020                  Wofford    7.83
+## 440  2020                     Yale    7.81
+## 441  2020            New Hampshire    7.81
+## 442  2020                   Bryant    6.30
+## 443  2020             Morgan State    3.80
+## 444  2019                  Alabama  984.96
+## 445  2019               Ohio State  973.56
+## 446  2019                  Georgia  960.16
+## 447  2019                      USC  915.56
+## 448  2019                      LSU  906.17
+## 449  2019            Florida State  878.07
+## 450  2019                    Texas  877.91
+## 451  2019                 Oklahoma  869.53
+## 452  2019                  Clemson  863.03
+## 453  2019               Penn State  857.34
+## 454  2019                 Michigan  853.40
+## 455  2019                Texas A&amp;M  848.89
+## 456  2019                   Auburn  843.93
+## 457  2019               Notre Dame  843.29
+## 458  2019                  Florida  835.68
+## 459  2019                Tennessee  830.34
+## 460  2019                   Oregon  817.70
+## 461  2019                    Miami  815.12
+## 462  2019               Washington  801.33
+## 463  2019                 Stanford  787.59
+## 464  2019           South Carolina  762.68
+## 465  2019                     UCLA  741.40
+## 466  2019        Mississippi State  732.68
+## 467  2019                 Nebraska  729.47
+## 468  2019                 Ole Miss  717.92
+## 469  2019                 Arkansas  707.72
+## 470  2019                 Maryland  703.94
+## 471  2019           North Carolina  697.75
+## 472  2019            Virginia Tech  696.39
+## 473  2019                      TCU  691.63
+## 474  2019           Michigan State  688.74
+## 475  2019            Arizona State  686.44
+## 476  2019                Wisconsin  675.80
+## 477  2019                 Kentucky  672.74
+## 478  2019                   Baylor  668.90
+## 479  2019                 NC State  668.85
+## 480  2019                 Illinois  661.73
+## 481  2019               Louisville  645.84
+## 482  2019           Oklahoma State  644.42
+## 483  2019                 Missouri  642.83
+## 484  2019            West Virginia  639.11
+## 485  2019               Pittsburgh  637.95
+## 486  2019                     Iowa  637.65
+## 487  2019                     Duke  633.24
+## 488  2019             Georgia Tech  629.10
+## 489  2019                Minnesota  621.36
+## 490  2019                     Utah  620.35
+## 491  2019                 Colorado  614.27
+## 492  2019             Northwestern  612.62
+## 493  2019               California  611.58
+## 494  2019                   Purdue  607.40
+## 495  2019               Vanderbilt  605.06
+## 496  2019                  Indiana  603.81
+## 497  2019                      UCF  598.57
+## 498  2019                  Houston  597.62
+## 499  2019               Iowa State  597.15
+## 500  2019             Oregon State  595.50
+## 501  2019                  Rutgers  587.28
+## 502  2019                 Virginia  580.28
+## 503  2019               Texas Tech  577.21
+## 504  2019               Cincinnati  576.61
+## 505  2019                 Syracuse  574.82
+## 506  2019                  Arizona  570.07
+## 507  2019                      SMU  565.15
+## 508  2019           Boston College  564.95
+## 509  2019              Wake Forest  563.24
+## 510  2019              Boise State  561.42
+## 511  2019                      BYU  560.78
+## 512  2019            South Florida  559.66
+## 513  2019         Washington State  556.27
+## 514  2019                  Memphis  551.97
+## 515  2019             Kansas State  543.49
+## 516  2019    Florida International  532.88
+## 517  2019                   Kansas  528.62
+## 518  2019         Florida Atlantic  524.02
+## 519  2019           Colorado State  518.83
+## 520  2019          San Diego State  504.19
+## 521  2019           Louisiana Tech  501.25
+## 522  2019                 Marshall  489.63
+## 523  2019                   Temple  489.03
+## 524  2019                   Tulane  486.98
+## 525  2019         Western Kentucky  486.97
+## 526  2019             Fresno State  482.79
+## 527  2019           UT San Antonio  471.36
+## 528  2019            East Carolina  468.23
+## 529  2019                     UNLV  462.72
+## 530  2019                   Nevada  461.96
+## 531  2019              North Texas  457.24
+## 532  2019     Southern Mississippi  456.29
+## 533  2019         Western Michigan  452.05
+## 534  2019                   Toledo  451.43
+## 535  2019         Middle Tennessee  450.79
+## 536  2019           Arkansas State  447.87
+## 537  2019                      UAB  441.81
+## 538  2019           San José State  433.33
+## 539  2019                    Tulsa  424.54
+## 540  2019               Utah State  424.16
+## 541  2019                  Hawai'i  420.99
+## 542  2019         Central Michigan  416.63
+## 543  2019              Connecticut  412.55
+## 544  2019        Appalachian State  412.32
+## 545  2019         Georgia Southern  411.80
+## 546  2019                Louisiana  406.49
+## 547  2019               New Mexico  401.90
+## 548  2019        Northern Illinois  397.98
+## 549  2019                  Wyoming  397.90
+## 550  2019                     Rice  397.04
+## 551  2019                     Troy  388.67
+## 552  2019                Charlotte  386.38
+## 553  2019            South Alabama  381.38
+## 554  2019             Old Dominion  374.74
+## 555  2019            Georgia State  369.05
+## 556  2019               Miami (OH)  359.14
+## 557  2019                    UMass  358.88
+## 558  2019                     UTEP  355.31
+## 559  2019              Texas State  348.47
+## 560  2019         Louisiana Monroe  346.03
+## 561  2019                     Ohio  337.17
+## 562  2019                     Navy  335.40
+## 563  2019               Ball State  327.92
+## 564  2019         Eastern Michigan  317.49
+## 565  2019            Bowling Green  315.44
+## 566  2019               Kent State  313.22
+## 567  2019                    Akron  312.81
+## 568  2019         Coastal Carolina  305.73
+## 569  2019                  Buffalo  284.74
+## 570  2019         New Mexico State  269.79
+## 571  2019                     Army  265.19
+## 572  2019        Sam Houston State  184.58
+## 573  2019   Southeastern Louisiana  178.38
+## 574  2019                 Nicholls  155.75
+## 575  2019              Chattanooga  155.43
+## 576  2019                  Liberty  153.48
+## 577  2019                Air Force  151.86
+## 578  2019            Alabama State  136.54
+## 579  2019                   Towson  135.03
+## 580  2019                 Duquesne  129.11
+## 581  2019            Montana State  120.95
+## 582  2019           Illinois State  119.34
+## 583  2019            James Madison  110.76
+## 584  2019       Jacksonville State  108.58
+## 585  2019                  Hampton  104.67
+## 586  2019                  Samford   97.76
+## 587  2019                 Campbell   96.70
+## 588  2019             Murray State   96.00
+## 589  2019                 Richmond   95.66
+## 590  2019                UT Martin   93.72
+## 591  2019          Tennessee State   92.64
+## 592  2019        Stephen F. Austin   91.75
+## 593  2019                    Idaho   87.17
+## 594  2019           Kennesaw State   86.45
+## 595  2019                  McNeese   86.21
+## 596  2019         Eastern Kentucky   86.14
+## 597  2019 Southeast Missouri State   83.35
+## 598  2019                 Delaware   77.11
+## 599  2019         Western Illinois   70.98
+## 600  2019           William &amp; Mary   70.28
+## 601  2019        Southern Illinois   69.80
+## 602  2019       North Carolina A&amp;T   69.44
+## 603  2019              Florida A&amp;M   69.36
+## 604  2019         Youngstown State   67.72
+## 605  2019       Northwestern State   67.50
+## 606  2019                Grambling   67.45
+## 607  2019              Stony Brook   66.41
+## 608  2019                  Montana   65.83
+## 609  2019     East Tennessee State   61.69
+## 610  2019          Bethune-Cookman   60.90
+## 611  2019              Austin Peay   58.68
+## 612  2019              Weber State   53.55
+## 613  2019            Norfolk State   52.48
+## 614  2019                 Southern   52.19
+## 615  2019       North Dakota State   50.79
+## 616  2019           Incarnate Word   47.36
+## 617  2019        Abilene Christian   46.84
+## 618  2019           Missouri State   44.24
+## 619  2019            Jackson State   44.19
+## 620  2019            North Alabama   43.90
+## 621  2019   North Carolina Central   43.62
+## 622  2019             South Dakota   42.81
+## 623  2019             Prairie View   42.01
+## 624  2019                    Lamar   41.39
+## 625  2019           Tennessee Tech   41.07
+## 626  2019                   Albany   40.43
+## 627  2019           Texas Southern   40.03
+## 628  2019              Idaho State   39.63
+## 629  2019         Central Arkansas   38.51
+## 630  2019                  Fordham   38.15
+## 631  2019            Northern Iowa   37.29
+## 632  2019            Southern Utah   35.09
+## 633  2019         Northern Arizona   35.00
+## 634  2019     South Carolina State   32.50
+## 635  2019      Charleston Southern   32.36
+## 636  2019           Portland State   30.88
+## 637  2019                    Maine   30.23
+## 638  2019             Alcorn State   29.54
+## 639  2019      Arkansas-Pine Bluff   29.07
+## 640  2019                 Cal Poly   28.91
+## 641  2019                Princeton   27.29
+## 642  2019            Robert Morris   26.82
+## 643  2019          Houston Baptist   26.80
+## 644  2019         Eastern Illinois   24.67
+## 645  2019            Indiana State   24.51
+## 646  2019                   Furman   24.31
+## 647  2019             Morgan State   23.32
+## 648  2019                     Elon   18.77
+## 649  2019         Sacramento State   18.35
+## 650  2019                   Wagner   17.91
+## 651  2019             Jacksonville   17.49
+## 652  2019       South Dakota State   17.26
+## 653  2019                 Monmouth   15.76
+## 654  2019             Rhode Island   15.55
+## 655  2019           Delaware State   15.41
+## 656  2019             Sacred Heart   15.08
+## 657  2019       Eastern Washington   14.80
+## 658  2019             Gardner-Webb   14.72
+## 659  2019                   Lehigh   13.90
+## 660  2019              Alabama A&amp;M   13.54
+## 661  2019        Northern Colorado   13.41
+## 662  2019             North Dakota   13.24
+## 663  2019          St Francis (PA)   13.03
+## 664  2019                   Mercer   12.14
+## 665  2019                   Butler   11.61
+## 666  2019                    Drake   11.10
+## 667  2019                    Brown    9.44
+## 668  2019      Central Connecticut    8.93
+## 669  2019         Western Carolina    8.58
+## 670  2019                  Wofford    7.83
+## 671  2019               Holy Cross    7.31
+## 672  2019 Mississippi Valley State    6.66
+## 673  2019               Georgetown    6.66
+## 674  2019                   Bryant    6.30
+## 675  2018               Ohio State  984.30
+## 676  2018                  Alabama  978.54
+## 677  2018                  Georgia  964.00
+## 678  2018                      USC  933.65
+## 679  2018                  Clemson  893.21
+## 680  2018                      LSU  889.91
+## 681  2018            Florida State  888.75
+## 682  2018                 Michigan  862.35
+## 683  2018                    Texas  861.20
+## 684  2018               Notre Dame  847.85
+## 685  2018                 Oklahoma  843.79
+## 686  2018               Penn State  834.24
+## 687  2018                  Florida  831.78
+## 688  2018                   Auburn  827.37
+## 689  2018                Tennessee  826.98
+## 690  2018                Texas A&amp;M  805.66
+## 691  2018                 Stanford  786.63
+## 692  2018               Washington  772.88
+## 693  2018                     UCLA  754.31
+## 694  2018                    Miami  753.72
+## 695  2018           South Carolina  749.98
+## 696  2018                 Ole Miss  734.00
+## 697  2018        Mississippi State  729.97
+## 698  2018                 Maryland  725.94
+## 699  2018                 Nebraska  711.22
+## 700  2018                   Oregon  695.81
+## 701  2018                 Arkansas  694.63
+## 702  2018           North Carolina  688.48
+## 703  2018            Arizona State  687.72
+## 704  2018            Virginia Tech  675.71
+## 705  2018                      TCU  671.88
+## 706  2018                 Kentucky  670.27
+## 707  2018                   Baylor  668.37
+## 708  2018           Michigan State  658.85
+## 709  2018                Wisconsin  653.50
+## 710  2018            West Virginia  646.91
+## 711  2018           Oklahoma State  645.01
+## 712  2018               Pittsburgh  637.96
+## 713  2018                     Duke  635.63
+## 714  2018               Louisville  632.22
+## 715  2018                 NC State  629.39
+## 716  2018                     Iowa  615.08
+## 717  2018               Vanderbilt  611.99
+## 718  2018             Northwestern  608.89
+## 719  2018               California  596.08
+## 720  2018                 Missouri  595.14
+## 721  2018                     Utah  594.60
+## 722  2018                Minnesota  588.97
+## 723  2018             Georgia Tech  583.49
+## 724  2018                  Arizona  580.54
+## 725  2018                  Houston  577.17
+## 726  2018               Iowa State  575.76
+## 727  2018                 Colorado  575.65
+## 728  2018                 Syracuse  570.20
+## 729  2018                      UCF  568.35
+## 730  2018                      BYU  565.85
+## 731  2018                  Indiana  564.04
+## 732  2018                 Illinois  562.67
+## 733  2018               Texas Tech  561.59
+## 734  2018                  Rutgers  555.24
+## 735  2018         Washington State  554.77
+## 736  2018            South Florida  548.62
+## 737  2018             Kansas State  547.43
+## 738  2018               Cincinnati  543.78
+## 739  2018              Boise State  543.43
+## 740  2018                 Virginia  542.40
+## 741  2018         Florida Atlantic  537.93
+## 742  2018             Oregon State  535.36
+## 743  2018           Boston College  533.43
+## 744  2018              Wake Forest  525.48
+## 745  2018                   Purdue  520.48
+## 746  2018                   Kansas  517.10
+## 747  2018                      SMU  485.46
+## 748  2018                  Memphis  480.07
+## 749  2018           Colorado State  479.97
+## 750  2018                   Temple  478.30
+## 751  2018           Louisiana Tech  477.50
+## 752  2018    Florida International  476.52
+## 753  2018          San Diego State  472.60
+## 754  2018                   Toledo  463.96
+## 755  2018             Fresno State  459.07
+## 756  2018                 Marshall  451.61
+## 757  2018                   Tulane  445.36
+## 758  2018         Western Michigan  442.29
+## 759  2018            East Carolina  434.48
+## 760  2018           Arkansas State  433.73
+## 761  2018                   Nevada  432.40
+## 762  2018        Northern Illinois  432.31
+## 763  2018           San José State  430.62
+## 764  2018               Miami (OH)  421.22
+## 765  2018         Middle Tennessee  414.19
+## 766  2018         Central Michigan  413.60
+## 767  2018               New Mexico  411.95
+## 768  2018           UT San Antonio  405.20
+## 769  2018            Georgia State  404.34
+## 770  2018                     UNLV  400.76
+## 771  2018            South Alabama  394.24
+## 772  2018              Connecticut  389.20
+## 773  2018                    UMass  388.91
+## 774  2018                      UAB  387.71
+## 775  2018     Southern Mississippi  387.32
+## 776  2018               Utah State  377.39
+## 777  2018                Louisiana  376.68
+## 778  2018            Bowling Green  375.14
+## 779  2018                     Rice  375.12
+## 780  2018                  Buffalo  369.14
+## 781  2018              North Texas  368.58
+## 782  2018                    Tulsa  368.14
+## 783  2018               Ball State  362.10
+## 784  2018                    Akron  361.00
+## 785  2018        Appalachian State  356.16
+## 786  2018         Western Kentucky  353.43
+## 787  2018                     Troy  352.36
+## 788  2018               Kent State  351.73
+## 789  2018                     Navy  349.26
+## 790  2018                  Wyoming  348.34
+## 791  2018                     Ohio  346.18
+## 792  2018                     UTEP  345.76
+## 793  2018         Eastern Michigan  344.06
+## 794  2018                  Hawai'i  343.97
+## 795  2018             Old Dominion  333.18
+## 796  2018         Louisiana Monroe  326.66
+## 797  2018                Charlotte  311.00
+## 798  2018         Georgia Southern  303.12
+## 799  2018              Texas State  302.55
+## 800  2018         Coastal Carolina  284.24
+## 801  2018         New Mexico State  249.32
+## 802  2018                     Army  230.75
+## 803  2018                Air Force  186.27
+## 804  2018       Jacksonville State  174.86
+## 805  2018                  Hampton  149.11
+## 806  2018            James Madison  147.11
+## 807  2018   Southeastern Louisiana  135.64
+## 808  2018        Sam Houston State  133.13
+## 809  2018        Sam Houston State  133.13
+## 810  2018              Austin Peay  123.40
+## 811  2018            Alabama State  118.68
+## 812  2018                 Duquesne  113.21
+## 813  2018              Chattanooga  112.15
+## 814  2018           Illinois State  109.44
+## 815  2018        Southern Illinois  108.59
+## 816  2018         Eastern Kentucky  107.58
+## 817  2018              Stony Brook  106.51
+## 818  2018            Montana State   98.98
+## 819  2018                UT Martin   98.34
+## 820  2018                  Liberty   93.99
+## 821  2018                    Idaho   87.35
+## 822  2018           Kennesaw State   86.45
+## 823  2018           Portland State   85.83
+## 824  2018         Northern Arizona   85.03
+## 825  2018                  Samford   84.29
+## 826  2018       North Dakota State   83.68
+## 827  2018                   Towson   83.58
+## 828  2018           Texas Southern   83.08
+## 829  2018          Tennessee State   82.27
+## 830  2018                 Richmond   82.20
+## 831  2018                 Delaware   79.23
+## 832  2018         Youngstown State   70.45
+## 833  2018                Grambling   69.99
+## 834  2018 Southeast Missouri State   69.85
+## 835  2018         Western Illinois   66.84
+## 836  2018                 Nicholls   66.08
+## 837  2018             Rhode Island   62.64
+## 838  2018          Bethune-Cookman   61.90
+## 839  2018                   Furman   59.57
+## 840  2018                 Campbell   58.46
+## 841  2018            Norfolk State   56.44
+## 842  2018           Missouri State   53.43
+## 843  2018              Weber State   51.74
+## 844  2018      Charleston Southern   51.01
+## 845  2018                  Montana   49.16
+## 846  2018             Prairie View   47.10
+## 847  2018        Stephen F. Austin   46.25
+## 848  2018                  McNeese   43.55
+## 849  2018        Abilene Christian   43.10
+## 850  2018       North Carolina A&amp;T   39.98
+## 851  2018              Florida A&amp;M   39.57
+## 852  2018             Murray State   37.82
+## 853  2018                 Cal Poly   37.28
+## 854  2018         Western Carolina   35.54
+## 855  2018             Morgan State   35.38
+## 856  2018     East Tennessee State   35.09
+## 857  2018            Northern Iowa   34.70
+## 858  2018                   Wagner   32.77
+## 859  2018                   Albany   31.53
+## 860  2018                   Butler   31.53
+## 861  2018   North Carolina Central   31.00
+## 862  2018            North Alabama   30.02
+## 863  2018              The Citadel   29.01
+## 864  2018       South Dakota State   28.73
+## 865  2018           William &amp; Mary   28.69
+## 866  2018                 Monmouth   28.13
+## 867  2018           Tennessee Tech   27.77
+## 868  2018                Princeton   27.29
+## 869  2018     South Carolina State   27.01
+## 870  2018          Houston Baptist   26.80
+## 871  2018                   Bryant   24.33
+## 872  2018             North Dakota   23.99
+## 873  2018            Indiana State   23.88
+## 874  2018         Central Arkansas   23.59
+## 875  2018           Incarnate Word   23.03
+## 876  2018             South Dakota   22.43
+## 877  2018                 Southern   22.25
+## 878  2018           Delaware State   21.32
+## 879  2018       Northwestern State   20.95
+## 880  2018              Idaho State   20.50
+## 881  2018         Sacramento State   20.45
+## 882  2018             Alcorn State   20.41
+## 883  2018       Eastern Washington   19.95
+## 884  2018             Sacred Heart   19.62
+## 885  2018                    Maine   18.93
+## 886  2018                   Howard   17.60
+## 887  2018             Jacksonville   17.49
+## 888  2018                  Fordham   15.33
+## 889  2018            Jackson State   14.46
+## 890  2018             Gardner-Webb   14.11
+## 891  2018                   Mercer   13.96
+## 892  2018                    Lamar   13.91
+## 893  2018                  Cornell   13.71
+## 894  2018        Northern Colorado   13.41
+## 895  2018                  Stetson   13.33
+## 896  2018                  Harvard   13.33
+## 897  2018          St Francis (PA)   13.00
+## 898  2018                      VMI   11.90
+## 899  2018            Southern Utah   11.84
+## 900  2018                    Drake   11.10
+## 901  2018               Georgetown   11.10
+## 902  2018            Robert Morris    9.24
+## 903  2018      Arkansas-Pine Bluff    8.98
+## 904  2018                   Dayton    8.88
+## 905  2018               Holy Cross    7.31
+## 906  2018      Central Connecticut    7.09
+## 907  2018         Eastern Illinois    6.75
+## 908  2018                     Elon    6.66
+## 909  2018                   Lehigh    6.66
+## 910  2018                   Marist    4.44
+## 911  2018                     Yale    3.30
+## 912  2017                  Alabama  997.57
+## 913  2017               Ohio State  959.12
+## 914  2017                      USC  934.00
+## 915  2017                  Georgia  930.34
+## 916  2017            Florida State  924.97
+## 917  2017                      LSU  907.10
+## 918  2017                 Michigan  874.28
+## 919  2017                   Auburn  867.43
+## 920  2017                  Clemson  853.65
+## 921  2017               Notre Dame  837.71
+## 922  2017                     UCLA  830.58
+## 923  2017                Tennessee  817.34
+## 924  2017                    Texas  811.03
+## 925  2017                 Stanford  810.31
+## 926  2017                Texas A&amp;M  807.27
+## 927  2017                 Oklahoma  801.67
+## 928  2017                 Ole Miss  795.70
+## 929  2017                  Florida  793.83
+## 930  2017               Penn State  779.26
+## 931  2017                    Miami  749.08
+## 932  2017            Arizona State  720.44
+## 933  2017                   Oregon  720.23
+## 934  2017                 Arkansas  717.01
+## 935  2017               Washington  706.52
+## 936  2017           South Carolina  702.52
+## 937  2017        Mississippi State  701.06
+## 938  2017           North Carolina  697.54
+## 939  2017                 Maryland  696.21
+## 940  2017                 Nebraska  693.46
+## 941  2017           Michigan State  680.94
+## 942  2017                      TCU  672.81
+## 943  2017                 Kentucky  671.45
+## 944  2017            Virginia Tech  662.18
+## 945  2017               Pittsburgh  660.36
+## 946  2017                   Baylor  657.22
+## 947  2017               Louisville  640.98
+## 948  2017                Wisconsin  639.76
+## 949  2017           Oklahoma State  633.57
+## 950  2017                     Utah  630.95
+## 951  2017                     Duke  627.62
+## 952  2017             Northwestern  627.54
+## 953  2017                 Missouri  623.33
+## 954  2017            West Virginia  613.18
+## 955  2017                 NC State  609.76
+## 956  2017               Vanderbilt  607.68
+## 957  2017                  Arizona  607.31
+## 958  2017                 Virginia  603.88
+## 959  2017               California  603.06
+## 960  2017                     Iowa  592.95
+## 961  2017               Texas Tech  574.93
+## 962  2017                  Rutgers  574.78
+## 963  2017             Georgia Tech  574.35
+## 964  2017                      BYU  574.09
+## 965  2017                      UCF  571.52
+## 966  2017                 Colorado  568.59
+## 967  2017               Iowa State  559.34
+## 968  2017                  Houston  558.72
+## 969  2017             Oregon State  557.02
+## 970  2017            South Florida  554.17
+## 971  2017         Washington State  549.42
+## 972  2017                  Indiana  547.92
+## 973  2017                Minnesota  543.80
+## 974  2017                 Syracuse  539.60
+## 975  2017                 Illinois  538.83
+## 976  2017           Boston College  535.21
+## 977  2017              Wake Forest  527.21
+## 978  2017             Kansas State  517.85
+## 979  2017                   Kansas  512.24
+## 980  2017                  Memphis  504.49
+## 981  2017                   Purdue  502.71
+## 982  2017              Boise State  501.53
+## 983  2017               Cincinnati  500.95
+## 984  2017                      SMU  492.63
+## 985  2017            East Carolina  471.10
+## 986  2017         Florida Atlantic  470.88
+## 987  2017                   Temple  468.29
+## 988  2017                 Marshall  445.48
+## 989  2017           Colorado State  441.98
+## 990  2017           Arkansas State  436.05
+## 991  2017                    Tulsa  422.77
+## 992  2017              Connecticut  420.17
+## 993  2017          San Diego State  419.43
+## 994  2017         Western Michigan  414.35
+## 995  2017               Miami (OH)  413.24
+## 996  2017                   Tulane  396.43
+## 997  2017           Louisiana Tech  394.31
+## 998  2017     Southern Mississippi  394.24
+## 999  2017            South Alabama  387.88
+## 1000 2017         Central Michigan  387.20
+## 1001 2017           San José State  378.56
+## 1002 2017                     Navy  376.20
+## 1003 2017             Fresno State  374.63
+## 1004 2017        Northern Illinois  373.99
+## 1005 2017                    UMass  367.59
+## 1006 2017                   Toledo  366.47
+## 1007 2017         Georgia Southern  365.57
+## 1008 2017            Georgia State  364.16
+## 1009 2017            Bowling Green  361.82
+## 1010 2017                     Troy  352.10
+## 1011 2017                     Rice  345.79
+## 1012 2017         Middle Tennessee  344.65
+## 1013 2017               New Mexico  344.64
+## 1014 2017                   Nevada  341.11
+## 1015 2017                    Akron  337.11
+## 1016 2017        Appalachian State  335.87
+## 1017 2017    Florida International  334.18
+## 1018 2017         Western Kentucky  332.17
+## 1019 2017             Old Dominion  331.20
+## 1020 2017                     UNLV  331.18
+## 1021 2017                  Hawai'i  330.56
+## 1022 2017               Utah State  330.20
+## 1023 2017                Louisiana  329.24
+## 1024 2017                     Ohio  326.14
+## 1025 2017               Ball State  318.17
+## 1026 2017         Louisiana Monroe  303.96
+## 1027 2017              North Texas  303.13
+## 1028 2017                  Buffalo  294.08
+## 1029 2017         Eastern Michigan  292.11
+## 1030 2017           UT San Antonio  291.62
+## 1031 2017               Kent State  288.56
+## 1032 2017                Charlotte  283.01
+## 1033 2017                  Wyoming  277.07
+## 1034 2017              Texas State  274.67
+## 1035 2017                     UTEP  264.42
+## 1036 2017         New Mexico State  233.47
+## 1037 2017                    Idaho  184.75
+## 1038 2017            James Madison  179.50
+## 1039 2017                      UAB  170.05
+## 1040 2017           Portland State  147.63
+## 1041 2017         Coastal Carolina  119.43
+## 1042 2017              Stony Brook  111.94
+## 1043 2017                   Towson  106.93
+## 1044 2017                     Army   88.72
+## 1045 2017                  Montana   80.03
+## 1046 2017                 Cal Poly   76.98
+## 1047 2017      Charleston Southern   72.38
+## 1048 2017                 Richmond   71.64
+## 1049 2017           Kennesaw State   70.97
+## 1050 2017         Northern Arizona   69.20
+## 1051 2017             Rhode Island   65.72
+## 1052 2017              Weber State   51.74
+## 1053 2017         Sacramento State   46.67
+## 1054 2017           William &amp; Mary   40.05
+## 1055 2017                    Maine   38.99
+## 1056 2017            Southern Utah   33.11
+## 1057 2017        Northern Colorado   32.58
+## 1058 2017            Montana State   26.40
+## 1059 2017             Gardner-Webb   23.01
+## 1060 2017                 Monmouth   21.44
+## 1061 2017                Air Force   21.10
+## 1062 2017       Eastern Washington   19.95
+## 1063 2017                  Liberty   19.85
+## 1064 2017              Idaho State   15.22
+## 1065 2017     Presbyterian College   14.91
+## 1066 2017                     Elon   13.41
+## 1067 2017                Villanova   11.65
+## 1068 2017            New Hampshire   11.21
+## 1069 2016                  Alabama  982.66
+## 1070 2016                      USC  936.86
+## 1071 2016                      LSU  917.72
+## 1072 2016            Florida State  906.64
+## 1073 2016               Ohio State  902.46
+## 1074 2016                  Georgia  872.00
+## 1075 2016                   Auburn  865.36
+## 1076 2016                 Michigan  852.78
+## 1077 2016                  Clemson  846.00
+## 1078 2016               Notre Dame  842.35
+## 1079 2016                    Texas  838.97
+## 1080 2016                     UCLA  819.16
+## 1081 2016                Texas A&amp;M  814.63
+## 1082 2016                Tennessee  813.92
+## 1083 2016                 Ole Miss  808.15
+## 1084 2016                  Florida  798.44
+## 1085 2016                 Stanford  778.45
+## 1086 2016                 Oklahoma  777.48
+## 1087 2016                    Miami  745.93
+## 1088 2016               Penn State  742.52
+## 1089 2016                   Oregon  738.29
+## 1090 2016           Michigan State  719.70
+## 1091 2016           South Carolina  706.90
+## 1092 2016               Washington  699.64
+## 1093 2016            Arizona State  694.21
+## 1094 2016                 Nebraska  691.61
+## 1095 2016                 Arkansas  689.41
+## 1096 2016        Mississippi State  679.14
+## 1097 2016           North Carolina  669.61
+## 1098 2016                      TCU  665.53
+## 1099 2016            West Virginia  654.64
+## 1100 2016               Louisville  654.13
+## 1101 2016                 Kentucky  652.07
+## 1102 2016                 Maryland  651.99
+## 1103 2016               Pittsburgh  649.85
+## 1104 2016            Virginia Tech  646.82
+## 1105 2016                Wisconsin  643.76
+## 1106 2016                 Missouri  633.76
+## 1107 2016           Oklahoma State  631.68
+## 1108 2016                   Baylor  619.18
+## 1109 2016               Vanderbilt  619.03
+## 1110 2016                 Virginia  618.91
+## 1111 2016                  Arizona  616.31
+## 1112 2016                 NC State  616.29
+## 1113 2016             Northwestern  613.55
+## 1114 2016               Texas Tech  604.93
+## 1115 2016               California  601.17
+## 1116 2016                     Duke  599.82
+## 1117 2016                  Rutgers  585.47
+## 1118 2016             Georgia Tech  582.55
+## 1119 2016                     Utah  580.07
+## 1120 2016                  Houston  572.70
+## 1121 2016                  Indiana  565.47
+## 1122 2016            South Florida  563.99
+## 1123 2016                     Iowa  558.73
+## 1124 2016               Iowa State  552.17
+## 1125 2016              Boise State  548.82
+## 1126 2016               Cincinnati  541.58
+## 1127 2016                Minnesota  535.44
+## 1128 2016           Boston College  533.39
+## 1129 2016                      BYU  529.05
+## 1130 2016                 Colorado  526.39
+## 1131 2016             Oregon State  524.89
+## 1132 2016                 Illinois  523.91
+## 1133 2016         Washington State  522.58
+## 1134 2016                 Syracuse  520.26
+## 1135 2016              Wake Forest  517.63
+## 1136 2016                   Purdue  512.72
+## 1137 2016                      UCF  510.27
+## 1138 2016             Kansas State  505.29
+## 1139 2016                   Temple  492.72
+## 1140 2016                   Kansas  491.00
+## 1141 2016                 Marshall  485.46
+## 1142 2016          San Diego State  482.31
+## 1143 2016                      SMU  474.03
+## 1144 2016           Arkansas State  471.45
+## 1145 2016                   Toledo  460.86
+## 1146 2016           Louisiana Tech  451.38
+## 1147 2016                  Memphis  451.24
+## 1148 2016                    Akron  443.73
+## 1149 2016         Western Michigan  443.16
+## 1150 2016            East Carolina  442.26
+## 1151 2016     Southern Mississippi  441.29
+## 1152 2016           San José State  437.36
+## 1153 2016         Middle Tennessee  436.60
+## 1154 2016         Georgia Southern  435.33
+## 1155 2016              Connecticut  423.56
+## 1156 2016                Louisiana  421.37
+## 1157 2016               Miami (OH)  418.04
+## 1158 2016           Colorado State  412.28
+## 1159 2016                    Tulsa  409.17
+## 1160 2016         Florida Atlantic  408.40
+## 1161 2016             Fresno State  404.97
+## 1162 2016        Northern Illinois  403.27
+## 1163 2016         Western Kentucky  401.82
+## 1164 2016           UT San Antonio  397.64
+## 1165 2016                     Rice  394.83
+## 1166 2016            Bowling Green  392.66
+## 1167 2016         Central Michigan  391.81
+## 1168 2016                     Troy  390.47
+## 1169 2016                   Nevada  389.56
+## 1170 2016            South Alabama  389.36
+## 1171 2016                   Tulane  388.04
+## 1172 2016               New Mexico  387.26
+## 1173 2016                  Hawai'i  384.97
+## 1174 2016                     UNLV  376.26
+## 1175 2016                     Ohio  372.56
+## 1176 2016                    UMass  370.90
+## 1177 2016               Ball State  365.94
+## 1178 2016    Florida International  362.84
+## 1179 2016               Utah State  357.13
+## 1180 2016              Texas State  351.76
+## 1181 2016              North Texas  351.58
+## 1182 2016         Eastern Michigan  347.70
+## 1183 2016             Old Dominion  347.20
+## 1184 2016                  Buffalo  343.64
+## 1185 2016                     Navy  342.77
+## 1186 2016               Kent State  334.01
+## 1187 2016        Appalachian State  333.36
+## 1188 2016                Charlotte  330.55
+## 1189 2016         Louisiana Monroe  322.82
+## 1190 2016            Georgia State  321.79
+## 1191 2016                  Wyoming  316.18
+## 1192 2016                     UTEP  290.40
+## 1193 2016         New Mexico State  267.66
+## 1194 2016                    Idaho  256.78
+## 1195 2016       Jacksonville State  254.26
+## 1196 2016         Eastern Kentucky  184.88
+## 1197 2016                     Yale  165.17
+## 1198 2016            Northern Iowa  164.16
+## 1199 2016           Portland State  154.68
+## 1200 2016                     Army  131.74
+## 1201 2016         Youngstown State  130.84
+## 1202 2016            James Madison  128.58
+## 1203 2016        Southern Illinois  123.69
+## 1204 2016   Southeastern Louisiana  121.61
+## 1205 2016              Chattanooga  119.20
+## 1206 2016         Eastern Illinois  119.04
+## 1207 2016                   Wagner  118.43
+## 1208 2016              Stony Brook  118.15
+## 1209 2016                 Duquesne  116.15
+## 1210 2016                UT Martin  107.98
+## 1211 2016         Northern Arizona  104.38
+## 1212 2016           Illinois State  102.21
+## 1213 2016                  Hampton   99.46
+## 1214 2016                   Towson   95.18
+## 1215 2016                  Samford   94.57
+## 1216 2016                Grambling   93.31
+## 1217 2016                 Cal Poly   91.73
+## 1218 2016                 Nicholls   89.59
+## 1219 2016            Jackson State   86.85
+## 1220 2016                  Montana   83.10
+## 1221 2016       North Dakota State   81.65
+## 1222 2016        Stephen F. Austin   80.33
+## 1223 2016         Western Illinois   78.62
+## 1224 2016 Southeast Missouri State   76.33
+## 1225 2016     South Carolina State   75.71
+## 1226 2016         Coastal Carolina   71.67
+## 1227 2016                  McNeese   69.85
+## 1228 2016            Southern Utah   68.79
+## 1229 2016             Prairie View   67.68
+## 1230 2016            Norfolk State   67.07
+## 1231 2016                   Furman   66.86
+## 1232 2016      Charleston Southern   65.60
+## 1233 2016            Montana State   64.33
+## 1234 2016          Bethune-Cookman   63.39
+## 1235 2016             Murray State   62.79
+## 1236 2016         Central Arkansas   62.11
+## 1237 2016          Houston Baptist   61.17
+## 1238 2016             Pennsylvania   60.95
+## 1239 2016                   Mercer   57.71
+## 1240 2016           Kennesaw State   54.76
+## 1241 2016              Weber State   54.68
+## 1242 2016            Alabama State   53.46
+## 1243 2016           Tennessee Tech   53.00
+## 1244 2016                 Richmond   51.95
+## 1245 2016          Tennessee State   51.82
+## 1246 2016                 Southern   46.97
+## 1247 2016         Sacramento State   45.18
+## 1248 2016       Eastern Washington   45.10
+## 1249 2016              Austin Peay   44.67
+## 1250 2016                Air Force   44.58
+## 1251 2016           Texas Southern   43.86
+## 1252 2016                    Lamar   43.84
+## 1253 2016            Indiana State   43.84
+## 1254 2016           William &amp; Mary   43.54
+## 1255 2016     Presbyterian College   41.40
+## 1256 2016             Rhode Island   41.24
+## 1257 2016                 Campbell   40.68
+## 1258 2016             Alcorn State   39.30
+## 1259 2016              The Citadel   37.64
+## 1260 2016                  Fordham   36.98
+## 1261 2016                Princeton   36.73
+## 1262 2016                 Monmouth   35.77
+## 1263 2016             South Dakota   32.89
+## 1264 2016       Northwestern State   32.06
+## 1265 2016                      VMI   31.43
+## 1266 2016     East Tennessee State   31.35
+## 1267 2016               Valparaiso   29.84
+## 1268 2016        Northern Colorado   29.66
+## 1269 2016                    Drake   27.37
+## 1270 2016            Robert Morris   26.70
+## 1271 2016              Alabama A&amp;M   26.31
+## 1272 2016              Idaho State   25.18
+## 1273 2016                Villanova   23.98
+## 1274 2016           Savannah State   23.51
+## 1275 2016                    Maine   23.37
+## 1276 2016           Delaware State   22.84
+## 1277 2016             Gardner-Webb   22.66
+## 1278 2016                   Butler   21.56
+## 1279 2016                 Columbia   21.24
+## 1280 2016                  Liberty   21.04
+## 1281 2016        Abilene Christian   19.77
+## 1282 2016                  Wofford   19.48
+## 1283 2016             Sacred Heart   19.44
+## 1284 2016                  Harvard   17.28
+## 1285 2016                    Brown   16.92
+## 1286 2016              Florida A&amp;M   16.64
+## 1287 2016                  Cornell   15.89
+## 1288 2016                   Dayton   14.99
+## 1289 2016               Holy Cross   14.75
+## 1290 2016         Western Carolina   13.67
+## 1291 2016             Jacksonville   13.41
+## 1292 2016   North Carolina Central   13.15
+## 1293 2016           Missouri State   12.70
+## 1294 2016               Georgetown   12.60
+## 1295 2016            New Hampshire   11.21
+## 1296 2016                  Stetson    9.99
+## 1297 2016                   Howard    7.53
+## 1298 2016                   Lehigh    6.66
+## 1299 2016      Arkansas-Pine Bluff    6.66
+## 1300 2016           Morehead State    6.66
+## 1301 2016      Central Connecticut    6.66
+## 1302 2016                San Diego    6.66
+## 1303 2016                   Bryant    6.24
+## 1304 2016       North Carolina A&amp;T    3.81
+## 1305 2016          St Francis (PA)    1.74
+## 1306 2015                  Alabama  981.90
+## 1307 2015                      USC  926.71
+## 1308 2015               Ohio State  907.32
+## 1309 2015            Florida State  889.92
+## 1310 2015                      LSU  889.37
+## 1311 2015                  Georgia  877.74
+## 1312 2015                   Auburn  865.41
+## 1313 2015               Notre Dame  857.33
+## 1314 2015                 Michigan  851.12
+## 1315 2015                Texas A&amp;M  830.34
+## 1316 2015                    Texas  821.26
+## 1317 2015                Tennessee  810.53
+## 1318 2015                  Clemson  807.56
+## 1319 2015                     UCLA  793.22
+## 1320 2015                  Florida  789.79
+## 1321 2015                 Oklahoma  775.90
+## 1322 2015                    Miami  773.23
+## 1323 2015                 Stanford  765.98
+## 1324 2015                 Ole Miss  764.34
+## 1325 2015                   Oregon  757.52
+## 1326 2015               Penn State  732.36
+## 1327 2015           South Carolina  725.72
+## 1328 2015           Michigan State  715.30
+## 1329 2015                 Nebraska  699.89
+## 1330 2015                 Arkansas  695.04
+## 1331 2015           North Carolina  683.03
+## 1332 2015            Arizona State  680.87
+## 1333 2015        Mississippi State  680.06
+## 1334 2015               Washington  667.45
+## 1335 2015                 Virginia  667.05
+## 1336 2015                   Baylor  660.35
+## 1337 2015            Virginia Tech  658.38
+## 1338 2015           Oklahoma State  651.83
+## 1339 2015                 Missouri  642.93
+## 1340 2015               Texas Tech  641.07
+## 1341 2015               Louisville  641.05
+## 1342 2015                Wisconsin  635.77
+## 1343 2015                 Kentucky  634.52
+## 1344 2015                      TCU  630.38
+## 1345 2015               California  626.00
+## 1346 2015            West Virginia  625.85
+## 1347 2015               Pittsburgh  611.18
+## 1348 2015                 NC State  610.33
+## 1349 2015               Vanderbilt  609.76
+## 1350 2015                  Arizona  606.92
+## 1351 2015                 Maryland  603.76
+## 1352 2015                  Rutgers  602.35
+## 1353 2015             Northwestern  595.75
+## 1354 2015             Georgia Tech  590.34
+## 1355 2015                     Utah  574.41
+## 1356 2015                     Iowa  573.06
+## 1357 2015              Boise State  568.96
+## 1358 2015                     Duke  563.19
+## 1359 2015                  Indiana  559.08
+## 1360 2015             Oregon State  544.66
+## 1361 2015                 Colorado  542.06
+## 1362 2015         Washington State  540.86
+## 1363 2015           Boston College  534.60
+## 1364 2015                   Purdue  534.26
+## 1365 2015                 Illinois  530.96
+## 1366 2015            South Florida  529.65
+## 1367 2015               Iowa State  529.12
+## 1368 2015                      BYU  521.43
+## 1369 2015                Minnesota  516.10
+## 1370 2015                  Houston  511.45
+## 1371 2015                 Syracuse  508.80
+## 1372 2015             Kansas State  503.64
+## 1373 2015                   Kansas  499.97
+## 1374 2015              Wake Forest  497.48
+## 1375 2015          San Diego State  494.77
+## 1376 2015               Cincinnati  494.65
+## 1377 2015                 Marshall  489.77
+## 1378 2015                      UCF  484.54
+## 1379 2015     Southern Mississippi  470.84
+## 1380 2015                      SMU  446.83
+## 1381 2015         Western Michigan  442.13
+## 1382 2015           Louisiana Tech  437.99
+## 1383 2015            Bowling Green  433.59
+## 1384 2015                Louisiana  430.17
+## 1385 2015                   Toledo  429.03
+## 1386 2015                    Akron  412.65
+## 1387 2015         Middle Tennessee  409.82
+## 1388 2015                   Tulane  408.22
+## 1389 2015           Arkansas State  408.08
+## 1390 2015                   Temple  405.92
+## 1391 2015                    Tulsa  404.03
+## 1392 2015            East Carolina  403.62
+## 1393 2015             Fresno State  402.58
+## 1394 2015              Connecticut  402.23
+## 1395 2015         Florida Atlantic  401.61
+## 1396 2015                     Rice  399.58
+## 1397 2015               Miami (OH)  397.13
+## 1398 2015         Georgia Southern  391.18
+## 1399 2015           Colorado State  389.10
+## 1400 2015                  Hawai'i  385.63
+## 1401 2015                  Memphis  381.80
+## 1402 2015              North Texas  380.69
+## 1403 2015        Northern Illinois  380.69
+## 1404 2015                   Nevada  380.53
+## 1405 2015           San José State  379.60
+## 1406 2015         Central Michigan  376.81
+## 1407 2015            South Alabama  367.16
+## 1408 2015              Texas State  360.49
+## 1409 2015    Florida International  360.11
+## 1410 2015           UT San Antonio  356.37
+## 1411 2015         Western Kentucky  353.50
+## 1412 2015               Ball State  349.94
+## 1413 2015               New Mexico  341.72
+## 1414 2015         Eastern Michigan  341.36
+## 1415 2015               Kent State  338.40
+## 1416 2015            Georgia State  335.67
+## 1417 2015                     Troy  335.43
+## 1418 2015                     UNLV  332.69
+## 1419 2015               Utah State  331.44
+## 1420 2015                     Ohio  330.61
+## 1421 2015                    UMass  323.73
+## 1422 2015             Old Dominion  319.60
+## 1423 2015                  Buffalo  316.44
+## 1424 2015                  Wyoming  314.72
+## 1425 2015        Appalachian State  312.88
+## 1426 2015                     Navy  306.87
+## 1427 2015                Charlotte  304.05
+## 1428 2015         Louisiana Monroe  292.73
+## 1429 2015                    Idaho  262.39
+## 1430 2015                     UTEP  256.12
+## 1431 2015         New Mexico State  251.16
+## 1432 2015                      UAB  236.34
+## 1433 2015            Northern Iowa  202.77
+## 1434 2015                     Army  186.45
+## 1435 2015                     Yale  181.76
+## 1436 2015       Jacksonville State  173.32
+## 1437 2015              Chattanooga  137.06
+## 1438 2015           Portland State  123.61
+## 1439 2015         Youngstown State  116.79
+## 1440 2015          Bethune-Cookman  116.09
+## 1441 2015     South Carolina State  105.01
+## 1442 2015        Stephen F. Austin  103.72
+## 1443 2015                 Cal Poly   97.73
+## 1444 2015                  Samford   95.68
+## 1445 2015           Illinois State   92.42
+## 1446 2015             Murray State   89.72
+## 1447 2015            James Madison   84.74
+## 1448 2015       North Dakota State   82.26
+## 1449 2015            Jackson State   78.26
+## 1450 2015            Indiana State   74.60
+## 1451 2015          Tennessee State   74.37
+## 1452 2015                   Towson   74.05
+## 1453 2015             Pennsylvania   73.07
+## 1454 2015                Air Force   70.95
+## 1455 2015         Northern Arizona   68.35
+## 1456 2015        Abilene Christian   66.43
+## 1457 2015                  Montana   64.46
+## 1458 2015                   Wagner   64.14
+## 1459 2015                UT Martin   62.12
+## 1460 2015              Stony Brook   61.96
+## 1461 2015                   Furman   61.89
+## 1462 2015        Southern Illinois   60.76
+## 1463 2015                  Hampton   58.39
+## 1464 2015   Southeastern Louisiana   58.08
+## 1465 2015                Villanova   57.42
+## 1466 2015               Valparaiso   56.37
+## 1467 2015         Western Illinois   51.28
+## 1468 2015                  McNeese   51.19
+## 1469 2015                 Duquesne   50.43
+## 1470 2015      Charleston Southern   48.43
+## 1471 2015              The Citadel   47.12
+## 1472 2015         Eastern Illinois   46.56
+## 1473 2015         Eastern Kentucky   46.50
+## 1474 2015                 Richmond   46.34
+## 1475 2015       Eastern Washington   45.10
+## 1476 2015           Texas Southern   43.10
+## 1477 2015                Grambling   41.62
+## 1478 2015         Coastal Carolina   41.50
+## 1479 2015          Houston Baptist   39.71
+## 1480 2015                 Southern   37.48
+## 1481 2015         Sacramento State   37.46
+## 1482 2015             Rhode Island   37.17
+## 1483 2015              Austin Peay   36.99
+## 1484 2015                  Fordham   36.98
+## 1485 2015        Northern Colorado   36.95
+## 1486 2015         Central Arkansas   35.29
+## 1487 2015                   Mercer   35.02
+## 1488 2015            Norfolk State   32.59
+## 1489 2015           Tennessee Tech   31.74
+## 1490 2015                      VMI   31.43
+## 1491 2015                 Campbell   31.21
+## 1492 2015                  Harvard   30.49
+## 1493 2015 Southeast Missouri State   29.79
+## 1494 2015                  Cornell   29.11
+## 1495 2015       Northwestern State   28.02
+## 1496 2015     Presbyterian College   25.63
+## 1497 2015           Delaware State   25.26
+## 1498 2015       South Dakota State   25.25
+## 1499 2015                    Lamar   24.84
+## 1500 2015                 Nicholls   24.71
+## 1501 2015            Alabama State   24.46
+## 1502 2015           Kennesaw State   23.49
+## 1503 2015              Idaho State   21.69
+## 1504 2015                 Columbia   21.24
+## 1505 2015            New Hampshire   21.17
+## 1506 2015             Prairie View   20.76
+## 1507 2015     East Tennessee State   20.07
+## 1508 2015              Weber State   19.80
+## 1509 2015                  Liberty   19.57
+## 1510 2015                  Wofford   19.48
+## 1511 2015             Jacksonville   18.58
+## 1512 2015                    Brown   16.92
+## 1513 2015         Western Carolina   15.77
+## 1514 2015                 Davidson   15.67
+## 1515 2015           William &amp; Mary   15.65
+## 1516 2015              Florida A&amp;M   15.60
+## 1517 2015           Incarnate Word   15.59
+## 1518 2015   North Carolina Central   14.26
+## 1519 2015              Alabama A&amp;M   13.33
+## 1520 2015            Montana State   11.86
+## 1521 2015                   Butler    9.96
+## 1522 2015             Gardner-Webb    8.58
+## 1523 2015                 Monmouth    7.93
+## 1524 2015               Holy Cross    7.45
+## 1525 2015                    Drake    7.43
+## 1526 2015                    Maine    7.24
+## 1527 2015                   Lehigh    6.66
+## 1528 2015                  Stetson    6.66
+## 1529 2015      Arkansas-Pine Bluff    6.66
+## 1530 2015            Southern Utah    6.66
+## 1531 2015                 UC Davis    6.66
+## 1532 2015             South Dakota    3.36
+## 1533 2015            Robert Morris    3.06
+## 1534 2015                Dartmouth    2.96
+## 1535 2015                   Marist    2.63
+## 1536 2015                   Howard    2.22
+## 1537 2015          St Francis (PA)    1.74</code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></code></pre></div>
 <pre><code>##     year                   school talent
@@ -3308,8 +3538,8 @@
 ## 182 2018     East Tennessee State  35.09
 ## 183 2018            Northern Iowa  34.70
 ## 184 2018                   Wagner  32.77
-## 185 2018                   Albany  31.53
-## 186 2018                   Butler  31.53
+## 185 2018                   Butler  31.53
+## 186 2018                   Albany  31.53
 ## 187 2018   North Carolina Central  31.00
 ## 188 2018            North Alabama  30.02
 ## 189 2018              The Citadel  29.01
@@ -3344,8 +3574,8 @@
 ## 218 2018                    Lamar  13.91
 ## 219 2018                  Cornell  13.71
 ## 220 2018        Northern Colorado  13.41
-## 221 2018                  Stetson  13.33
-## 222 2018                  Harvard  13.33
+## 221 2018                  Harvard  13.33
+## 222 2018                  Stetson  13.33
 ## 223 2018          St Francis (PA)  13.00
 ## 224 2018                      VMI  11.90
 ## 225 2018            Southern Utah  11.84
