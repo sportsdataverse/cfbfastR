@@ -415,41 +415,101 @@ You can call this function simply with:<div class="r"></p><pre><span class='fu'>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
    <span class='fu'>cfbd_conferences</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    conference_id              name
-#&gt; 1              1               ACC
-#&gt; 2              4            Big 12
-#&gt; 3              5           Big Ten
-#&gt; 4              8               SEC
-#&gt; 5              9            Pac-12
-#&gt; 6             12    Conference USA
-#&gt; 7             15      Mid-American
-#&gt; 8             17     Mountain West
-#&gt; 9             18  FBS Independents
-#&gt; 10            37          Sun Belt
-#&gt; 11           151 American Athletic
-#&gt; 12           201           Western
-#&gt; 13           202   Missouri Valley
-#&gt; 14           203    Rocky Mountain
-#&gt; 15           204         Southwest
-#&gt; 16           205           Pacific
-#&gt; 17           206          Southern
-#&gt; 18           207             Big 6
-#&gt; 19           208   Missouri Valley
-#&gt; 20           209    Mountain State
-#&gt; 21           210             Big 7
-#&gt; 22           211           Skyline
-#&gt; 23           212               Ivy
-#&gt; 24           213              AAWU
-#&gt; 25           214             Big 8
-#&gt; 26           215  Western Athletic
-#&gt; 27           216             Pac-8
-#&gt; 28           217              PCAA
-#&gt; 29           218         Southland
-#&gt; 30           219              SWAC
-#&gt; 31           220            Pac-10
-#&gt; 32           221          Big West
-#&gt; 33           222          Big East
-#&gt; 34           223            Border
+</div><div class='output co'>#&gt;    conference_id                        name
+#&gt; 1              1                         ACC
+#&gt; 2              4                      Big 12
+#&gt; 3              5                     Big Ten
+#&gt; 4              8                         SEC
+#&gt; 5              9                      Pac-12
+#&gt; 6             12              Conference USA
+#&gt; 7             15                Mid-American
+#&gt; 8             17               Mountain West
+#&gt; 9             18            FBS Independents
+#&gt; 10            20                     Big Sky
+#&gt; 11            21                        MVFC
+#&gt; 12            22                         Ivy
+#&gt; 13            24                        MEAC
+#&gt; 14            25                         NEC
+#&gt; 15            26                         OVC
+#&gt; 16            27                     Patriot
+#&gt; 17            28                     Pioneer
+#&gt; 18            29                    Southern
+#&gt; 19            30                   Southland
+#&gt; 20            31                        SWAC
+#&gt; 21            37                    Sun Belt
+#&gt; 22            40                   Big South
+#&gt; 23            48                         CAA
+#&gt; 24           100          American Southwest
+#&gt; 25           102                        CCIW
+#&gt; 26           103                  Centennial
+#&gt; 27           104                        CIAA
+#&gt; 28           105                        ECFC
+#&gt; 29           106                    Empire 8
+#&gt; 30           107                       GLIAC
+#&gt; 31           108                 Great Lakes
+#&gt; 32           109             Great Northwest
+#&gt; 33           110                  Gulf South
+#&gt; 34           111                   Heartland
+#&gt; 35           112             Independent DII
+#&gt; 36           113            Independent DIII
+#&gt; 37           114             American Rivers
+#&gt; 38           115              Liberty League
+#&gt; 39           116                   Lone Star
+#&gt; 40           117                    Michigan
+#&gt; 41           118                 Mid America
+#&gt; 42           119                Mid Atlantic
+#&gt; 43           120                     Midwest
+#&gt; 44           121                   Minnesota
+#&gt; 45           122                      NESCAC
+#&gt; 46           123          Commonwealth Coast
+#&gt; 47           124                  New Jersey
+#&gt; 48           126                 North Coast
+#&gt; 49           127                Northeast 10
+#&gt; 50           128                        NACC
+#&gt; 51           129                Northern Sun
+#&gt; 52           130                   Northwest
+#&gt; 53           131                        Ohio
+#&gt; 54           132                Old Dominion
+#&gt; 55           133 Pennsylvania State Athletic
+#&gt; 56           134                 Presidents'
+#&gt; 57           135              Rocky Mountain
+#&gt; 58           136                        SIAC
+#&gt; 59           138                    So. Cal.
+#&gt; 60           139              South Atlantic
+#&gt; 61           142               Upper Midwest
+#&gt; 62           143                   USA South
+#&gt; 63           144               Mountain East
+#&gt; 64           145                   Wisconsin
+#&gt; 65           146              Great American
+#&gt; 66           147           Southern Athletic
+#&gt; 67           151           American Athletic
+#&gt; 68           160                       MSCAC
+#&gt; 69           165      Great Midwest Athletic
+#&gt; 70           166                      NEWMAC
+#&gt; 71           175                         AWC
+#&gt; 72           201                     Western
+#&gt; 73           202             Missouri Valley
+#&gt; 74           203              Rocky Mountain
+#&gt; 75           204                   Southwest
+#&gt; 76           205                     Pacific
+#&gt; 77           206                    Southern
+#&gt; 78           207                       Big 6
+#&gt; 79           208             Missouri Valley
+#&gt; 80           209              Mountain State
+#&gt; 81           210                       Big 7
+#&gt; 82           211                     Skyline
+#&gt; 83           212                         Ivy
+#&gt; 84           213                        AAWU
+#&gt; 85           214                       Big 8
+#&gt; 86           215            Western Athletic
+#&gt; 87           216                       Pac-8
+#&gt; 88           217                        PCAA
+#&gt; 89           218                   Southland
+#&gt; 90           219                        SWAC
+#&gt; 91           220                      Pac-10
+#&gt; 92           221                    Big West
+#&gt; 93           222                    Big East
+#&gt; 94           223                      Border
 #&gt;                                               long_name abbreviation
 #&gt; 1                             Atlantic Coast Conference          ACC
 #&gt; 2                                     Big 12 Conference          B12
@@ -460,31 +520,91 @@ You can call this function simply with:<div class="r"></p><pre><span class='fu'>
 #&gt; 7                               Mid-American Conference          MAC
 #&gt; 8                              Mountain West Conference          MWC
 #&gt; 9                                      FBS Independents          Ind
-#&gt; 10                                  Sun Belt Conference          SBC
-#&gt; 11                         American Athletic Conference          AAC
-#&gt; 12                                   Western Conference      Western
-#&gt; 13 Missouri Valley Intercollegiate Athletic Association        MVIAA
-#&gt; 14                            Rocky Mountain Conference          RMC
-#&gt; 15                                 Southwest Conference          SWC
-#&gt; 16                             Pacific Coast Conference          PCC
-#&gt; 17                                  Southern Conference     Southern
-#&gt; 18                                     Big 6 Conference        Big 6
-#&gt; 19                           Missouri Valley Conference          MVC
-#&gt; 20                   Mountain State Athletic Conference         MSAC
-#&gt; 21                                     Big 7 Conference        Big 7
-#&gt; 22                                   Skyline Conference      Skyline
-#&gt; 23                                       The Ivy League          Ivy
-#&gt; 24         Athletic Association of Western Universities         AAWU
-#&gt; 25                                     Big 8 Conference        Big 8
-#&gt; 26                          Western Athletic Conference          WAC
-#&gt; 27                                 Pacific 8 Conference        Pac-8
-#&gt; 28                   Pacific Coast Athletic Association         PCAA
-#&gt; 29                                 Southland Conference    Southland
-#&gt; 30                        Southwest Athletic Conference         SWAC
-#&gt; 31                                           Pacific 10       Pac-10
-#&gt; 32                                  Big West Conference           BW
-#&gt; 33                                  Big East Conference           BE
-#&gt; 34          Border Intercollegiate Athletic Association         BIAA</div><div class='input'><span class='co'># }</span>
+#&gt; 10                                   Big Sky Conference         &lt;NA&gt;
+#&gt; 11                  Missouri Valley Football Conference         &lt;NA&gt;
+#&gt; 12                                           Ivy League         &lt;NA&gt;
+#&gt; 13                      Mid-Eastern Athletic Conference         &lt;NA&gt;
+#&gt; 14                                 Northeast Conference         &lt;NA&gt;
+#&gt; 15                               Ohio Valley Conference         &lt;NA&gt;
+#&gt; 16                                       Patriot League         &lt;NA&gt;
+#&gt; 17                              Pioneer Football League         &lt;NA&gt;
+#&gt; 18                                  Southern Conference         &lt;NA&gt;
+#&gt; 19                                 Southland Conference         &lt;NA&gt;
+#&gt; 20                     Southwestern Athletic Conference         &lt;NA&gt;
+#&gt; 21                                  Sun Belt Conference          SBC
+#&gt; 22                                 Big South Conference         &lt;NA&gt;
+#&gt; 23                        Colonial Athletic Association         &lt;NA&gt;
+#&gt; 24                                   American Southwest         &lt;NA&gt;
+#&gt; 25                                                 CCIW         &lt;NA&gt;
+#&gt; 26                                           Centennial         &lt;NA&gt;
+#&gt; 27                                                 CIAA         &lt;NA&gt;
+#&gt; 28                                                 ECFC         &lt;NA&gt;
+#&gt; 29                                             Empire 8         &lt;NA&gt;
+#&gt; 30                                                GLIAC         &lt;NA&gt;
+#&gt; 31                                          Great Lakes         &lt;NA&gt;
+#&gt; 32                                      Great Northwest         &lt;NA&gt;
+#&gt; 33                                           Gulf South         &lt;NA&gt;
+#&gt; 34                                            Heartland         &lt;NA&gt;
+#&gt; 35                                      Independent DII         &lt;NA&gt;
+#&gt; 36                                     Independent DIII         &lt;NA&gt;
+#&gt; 37                           American Rivers Conference         &lt;NA&gt;
+#&gt; 38                                       Liberty League         &lt;NA&gt;
+#&gt; 39                                            Lone Star         &lt;NA&gt;
+#&gt; 40                                             Michigan         &lt;NA&gt;
+#&gt; 41                                          Mid America         &lt;NA&gt;
+#&gt; 42                           Middle Atlantic Conference         &lt;NA&gt;
+#&gt; 43                                              Midwest         &lt;NA&gt;
+#&gt; 44                                            Minnesota         &lt;NA&gt;
+#&gt; 45                                               NESCAC         &lt;NA&gt;
+#&gt; 46                        Commonwealth Coast Conference         &lt;NA&gt;
+#&gt; 47                                           New Jersey         &lt;NA&gt;
+#&gt; 48                                          North Coast         &lt;NA&gt;
+#&gt; 49                                         Northeast 10         &lt;NA&gt;
+#&gt; 50             Northern Athletics Collegiate Conference         &lt;NA&gt;
+#&gt; 51                                         Northern Sun         &lt;NA&gt;
+#&gt; 52                                            Northwest         &lt;NA&gt;
+#&gt; 53                                                 Ohio         &lt;NA&gt;
+#&gt; 54                                         Old Dominion         &lt;NA&gt;
+#&gt; 55               Pennsylvania State Athletic Conference         &lt;NA&gt;
+#&gt; 56                                          Presidents'         &lt;NA&gt;
+#&gt; 57                                       Rocky Mountain         &lt;NA&gt;
+#&gt; 58                                                 SIAC         &lt;NA&gt;
+#&gt; 59                                             So. Cal.         &lt;NA&gt;
+#&gt; 60                                       South Atlantic         &lt;NA&gt;
+#&gt; 61                                        Upper Midwest         &lt;NA&gt;
+#&gt; 62                                            USA South         &lt;NA&gt;
+#&gt; 63                             Mountain East Conference         &lt;NA&gt;
+#&gt; 64                                            Wisconsin         &lt;NA&gt;
+#&gt; 65                            Great American Conference         &lt;NA&gt;
+#&gt; 66                        Southern Athletic Association         &lt;NA&gt;
+#&gt; 67                         American Athletic Conference          AAC
+#&gt; 68   Massachusetts State Collegiate Athletic Conference         &lt;NA&gt;
+#&gt; 69                    Great Midwest Athletic Conference         &lt;NA&gt;
+#&gt; 70    New England Women's and Men's Athletic Conference         &lt;NA&gt;
+#&gt; 71                                   ASUN-WAC Challenge         &lt;NA&gt;
+#&gt; 72                                   Western Conference      Western
+#&gt; 73 Missouri Valley Intercollegiate Athletic Association        MVIAA
+#&gt; 74                            Rocky Mountain Conference          RMC
+#&gt; 75                                 Southwest Conference          SWC
+#&gt; 76                             Pacific Coast Conference          PCC
+#&gt; 77                                  Southern Conference     Southern
+#&gt; 78                                     Big 6 Conference        Big 6
+#&gt; 79                           Missouri Valley Conference          MVC
+#&gt; 80                   Mountain State Athletic Conference         MSAC
+#&gt; 81                                     Big 7 Conference        Big 7
+#&gt; 82                                   Skyline Conference      Skyline
+#&gt; 83                                       The Ivy League          Ivy
+#&gt; 84         Athletic Association of Western Universities         AAWU
+#&gt; 85                                     Big 8 Conference        Big 8
+#&gt; 86                          Western Athletic Conference          WAC
+#&gt; 87                                 Pacific 8 Conference        Pac-8
+#&gt; 88                   Pacific Coast Athletic Association         PCAA
+#&gt; 89                                 Southland Conference    Southland
+#&gt; 90                        Southwest Athletic Conference         SWAC
+#&gt; 91                                           Pacific 10       Pac-10
+#&gt; 92                                  Big West Conference           BW
+#&gt; 93                                  Big East Conference           BE
+#&gt; 94          Border Intercollegiate Athletic Association         BIAA</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
