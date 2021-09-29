@@ -73,7 +73,7 @@ rule_header <- function(x) {
   rlang::inform(
     cli::rule(
       left = ifelse(is_installed("crayon"), crayon::bold(x), glue::glue("\033[1m{x}\033[22m")),
-      right = paste0("nflfastR version ", utils::packageVersion("nflfastR")),
+      right = paste0("cfbfastR version ", utils::packageVersion("cfbfastR")),
       width = getOption("width")
     )
   )

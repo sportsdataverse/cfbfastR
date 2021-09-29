@@ -131,8 +131,7 @@ update_cfb_db <- function(dbdir = ".",
   
   rule_header("Update cfbfastR Play-by-Play Database")
   
-  if (!is_installed("DBI") | !is_installed("purrr") |
-      (!is_installed("RSQLite") & is.null(db_connection))) {
+  if (!is_installed("DBI") | !is_installed("purrr") ) {
     cli::cli_abort("{my_time()} | Packages {.val DBI}, {.val RSQLite} and {.val purrr} required for database communication. Please install them.")
   }
   
