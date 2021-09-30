@@ -29,7 +29,7 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 }
 \value{
-\code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 22 variables:
+\code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:
 \describe{
 \item{\code{game_id}: integer.}{Referencing game id.}
 \item{\code{season}: integer.}{Season of the game.}
@@ -37,6 +37,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \item{\code{season_type}: character.}{Season type of the game.}
 \item{\code{start_date}: character.}{Game date.}
 \item{\code{start_time_tbd}: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
+\item{\code{game_indoors}: logical.}{TRUE/FALSE flag for if the game is indoors}
 \item{\code{home_team}: character.}{Home team name.}
 \item{\code{home_conference}: character.}{Home team conference.}
 \item{\code{away_team}: character.}{Away team name.}

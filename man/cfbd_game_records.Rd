@@ -21,12 +21,13 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
-\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 20 variables:
+\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 21 variables:
 \describe{
 \item{\code{year}: integer.}{Season of the games.}
 \item{\code{team}: character.}{Team name.}
 \item{\code{conference}: character.}{Conference of the team.}
 \item{\code{division}: character.}{Division in the conference of the team.}
+\item{\code{expected_wins}: numeric}{Expected number of wins based on post-game win probability.}
 \item{\code{total_games}: integer.}{Total number of games played.}
 \item{\code{total_wins}: integer.}{Total wins.}
 \item{\code{total_losses}: integer.}{Total losses.}

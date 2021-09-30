@@ -15,7 +15,7 @@
 \subsection{\strong{Get player recruiting rankings}}{
 
 Get college football player recruiting information for a single year with filters available
-for team, recruit type, state and position.\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_player(2018, team = "Texas")
+for team, recruit type, state and position.\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_recruiting_player(2018, team = "Texas")
 
 cfbd_recruiting_player(2016, recruit_type = "JUCO")
 
@@ -23,7 +23,7 @@ cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get college football position group recruiting information.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_position(2018, team = "Texas")
+\subsection{\strong{Get college football position group recruiting information.}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_recruiting_position(2018, team = "Texas")
 
 cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
@@ -31,7 +31,7 @@ cfbd_recruiting_position(2015, 2020, conference = "SEC")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get college football recruiting team rankings information.}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_recruiting_team(2018, team = "Texas")
+\subsection{\strong{Get college football recruiting team rankings information.}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_recruiting_team(2018, team = "Texas")
 
 cfbd_recruiting_team(2016, team = "Virginia")
 

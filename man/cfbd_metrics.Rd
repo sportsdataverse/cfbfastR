@@ -13,28 +13,28 @@
 \item{\code{cfbd_metrics_wp_pregame()}:}{ Get pre-game win probability data from CFBD API.}
 \item{\code{cfbd_metrics_wp()}:}{ Get win probability chart data from CFBD API.}
 }
-\subsection{\strong{Get team game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+\subsection{\strong{Get team game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get player game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
+\subsection{\strong{Get player game averages for predicted points added (PPA)}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get player season averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
+\subsection{\strong{Get player season averages for predicted points added (PPA)}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get team averages for predicted points added (PPA)}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
+\subsection{\strong{Get team averages for predicted points added (PPA)}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get pre-game and post-game win probability data from CFBD API}}{\if{html}{\out{<div class="r">}}\preformatted{  cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
+\subsection{\strong{Get pre-game and post-game win probability data from CFBD API}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
   cfbd_metrics_wp(game_id = 401012356)
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Calculate predicted points using down and distance}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_metrics_ppa_predicted(down = 1, distance = 10)
+\subsection{\strong{Calculate predicted points using down and distance}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_metrics_ppa_predicted(down = 1, distance = 10)
 }\if{html}{\out{</div>}}
 }
 }

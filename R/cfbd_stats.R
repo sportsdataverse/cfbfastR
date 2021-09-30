@@ -332,7 +332,7 @@ cfbd_stats_game_advanced <- function(year,
 #' \donttest{
 #'    cfbd_stats_season_advanced(2019, team = "LSU")
 #' }
-#' @return [cfbd_stats_season_advanced()] - A data frame with 79 variables:
+#' @return [cfbd_stats_season_advanced()] - A data frame with 81 variables:
 #' \describe{
 #'   \item{`season`: integer.}{Season of the statistics.}
 #'   \item{`team`: character.}{Team name.}
@@ -351,6 +351,7 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`off_second_lvl_yds_total`: integer.}{Offense second-level yards total.}
 #'   \item{`off_open_field_yds`: integer.}{Offense open field yards.}
 #'   \item{`off_open_field_yds_total`: integer.}{Offense open field yards total.}
+#'   \item{`off_total_opportunities`: integer.}{Offense opportunities.}
 #'   \item{`off_pts_per_opp`: double.}{Offense points per scoring opportunity.}
 #'   \item{`off_field_pos_avg_start`: double.}{Offense starting average field position.}
 #'   \item{`off_field_pos_avg_predicted_points`: double.}{Offense starting average field position predicted points (PP).}
@@ -389,6 +390,7 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`def_second_lvl_yds_total`: integer.}{Defense second-level yards total.}
 #'   \item{`def_open_field_yds`: integer.}{Defense open field yards.}
 #'   \item{`def_open_field_yds_total`: integer.}{Defense open field yards total.}
+#'   \item{`def_total_opportunities`: integer.}{Defense opportunities.}
 #'   \item{`def_pts_per_opp`: double.}{Defense points per scoring opportunity.}
 #'   \item{`def_field_pos_avg_start`: double.}{Defense starting average field position.}
 #'   \item{`def_field_pos_avg_predicted_points`: double.}{Defense starting average field position predicted points (PP).}
@@ -515,6 +517,7 @@ cfbd_stats_season_advanced <- function(year,
       colnames(df) <- gsub(".front", "_front", colnames(df))
       colnames(df) <- gsub("_Start", "_start", colnames(df))
       colnames(df) <- gsub(".db", "_db", colnames(df))
+      colnames(df) <- gsub("Opportunies", "_opportunities", colnames(df))
 
       df <- df %>%
         as.data.frame()
@@ -815,51 +818,51 @@ cfbd_stats_season_player <- function(year,
 #'
 #'    cfbd_stats_season_team(2013, team = "Florida State")
 #' }
-#' @return [cfbd_stats_season_team()] - A data frame with 46 variables:
+#' @return [cfbd_stats_season_team()] - A data frame with 32 variables:
 #' \describe{
-#'   \item{`games`: integer.}{Number of games.}
+#'   \item{`season`: integer}{Season for stats.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of team.}
 #'   \item{`games`: integer.}{Number of games.}
 #'   \item{`time_of_poss_total`: integer.}{Time of possession total.}
-#'   \item{`time_of_poss_pg`: double.}{Time of possession per game.}
+# #'   \item{`time_of_poss_pg`: double.}{Time of possession per game.}
 #'   \item{`pass_comps`: integer.}{Total number of pass completions.}
 #'   \item{`pass_atts`: integer.}{Total number of pass attempts.}
-#'   \item{`completion_pct`: double.}{Passing completion percentage.}
+# #'   \item{`completion_pct`: double.}{Passing completion percentage.}
 #'   \item{`net_pass_yds`: integer.}{Net passing yards.}
-#'   \item{`pass_ypa`: double.}{Passing yards per attempt.}
-#'   \item{`pass_ypr`: double.}{Passing yards per reception.}
+# #'   \item{`pass_ypa`: double.}{Passing yards per attempt.}
+# #'   \item{`pass_ypr`: double.}{Passing yards per reception.}
 #'   \item{`pass_TDs`: integer.}{Passing touchdowns.}
 #'   \item{`interceptions`: integer.}{Passing interceptions.}
-#'   \item{`int_pct`: double.}{Interception percentage (of attempts).}
+# #'   \item{`int_pct`: double.}{Interception percentage (of attempts).}
 #'   \item{`rush_atts`: integer.}{Rushing attempts.}
 #'   \item{`rush_yds`: integer.}{Rushing yards.}
 #'   \item{`rush_TDs`: integer.}{Rushing touchdowns.}
-#'   \item{`rush_ypc`: double.}{Rushing yards per carry.}
+# #'   \item{`rush_ypc`: double.}{Rushing yards per carry.}
 #'   \item{`total_yds`: integer.}{Rushing total yards.}
 #'   \item{`fumbles_lost`: integer.}{Fumbles lost.}
 #'   \item{`turnovers`: integer.}{Turnovers total.}
-#'   \item{`turnovers_pg`: double.}{Turnovers per game.}
+# #'   \item{`turnovers_pg`: double.}{Turnovers per game.}
 #'   \item{`first_downs`: integer.}{Number of first downs.}
 #'   \item{`third_downs`: integer.}{Number of third downs.}
 #'   \item{`third_down_convs`: integer.}{Number of third down conversions.}
-#'   \item{`third_conv_rate`: double.}{Third down conversion rate.}
+# #'   \item{`third_conv_rate`: double.}{Third down conversion rate.}
 #'   \item{`fourth_down_convs`: integer.}{Fourth down conversions.}
 #'   \item{`fourth_downs`: integer.}{Fourth downs.}
-#'   \item{`fourth_conv_rate`: double.}{Fourth down conversion rate.}
+# #'   \item{`fourth_conv_rate`: double.}{Fourth down conversion rate.}
 #'   \item{`penalties`: integer.}{Total number of penalties.}
 #'   \item{`penalty_yds`: integer.}{Penalty yards total.}
-#'   \item{`penalties_pg`: double.}{Penalties per game.}
-#'   \item{`penalty_yds_pg`: double.}{Penalty yardage per game.}
-#'   \item{`yards_per_penalty`: double.}{Average yards per penalty.}
+# #'   \item{`penalties_pg`: double.}{Penalties per game.}
+# #'   \item{`penalty_yds_pg`: double.}{Penalty yardage per game.}
+# #'   \item{`yards_per_penalty`: double.}{Average yards per penalty.}
 #'   \item{`kick_returns`: integer.}{Number of kick returns.}
 #'   \item{`kick_return_yds`: integer.}{Total kick return yards.}
 #'   \item{`kick_return_TDs`: integer.}{Total kick return touchdowns.}
-#'   \item{`kick_return_avg`: double.}{Kick return yards average.}
+# #'   \item{`kick_return_avg`: double.}{Kick return yards average.}
 #'   \item{`punt_returns`: integer.}{Number of punt returns.}
 #'   \item{`punt_return_yds`: integer.}{Punt return total yards.}
 #'   \item{`punt_return_TDs`: integer.}{Punt return total touchdowns.}
-#'   \item{`punt_return_avg`: double.}{Punt return yards average.}
+# #'   \item{`punt_return_avg`: double.}{Punt return yards average.}
 #'   \item{`passes_intercepted`: integer.}{Passes intercepted.}
 #'   \item{`passes_intercepted_yds`: integer.}{Pass interception return yards.}
 #'   \item{`passes_intercepted_TDs`: integer.}{Pass interception return touchdowns.}
@@ -994,22 +997,24 @@ cfbd_stats_season_team <- function(year,
         # ) %>%
         dplyr::select(
           .data$season, .data$team, .data$conference,
-          .data$games, .data$possessionTime, .data$time_of_poss_pg,
-          .data$passCompletions, .data$passAttempts, .data$completion_pct,
-          .data$netPassingYards, .data$pass_ypa, .data$pass_ypr,
-          .data$passingTDs, .data$interceptions, .data$int_pct,
+          .data$games, .data$possessionTime, #.data$time_of_poss_pg,
+          .data$passCompletions, .data$passAttempts, #.data$completion_pct,
+          .data$netPassingYards, #.data$pass_ypa, .data$pass_ypr,
+          .data$passingTDs, .data$interceptions, #.data$int_pct,
           .data$rushingAttempts, .data$rushingYards, .data$rushingTDs,
-          .data$rush_ypc, .data$totalYards,
-          .data$fumblesLost, .data$turnovers, .data$turnovers_pg,
+          #.data$rush_ypc, 
+          .data$totalYards,
+          .data$fumblesLost, .data$turnovers, #.data$turnovers_pg,
           .data$firstDowns, .data$thirdDowns, .data$thirdDownConversions,
-          .data$third_conv_rate, .data$fourthDownConversions,
-          .data$fourthDowns, .data$fourth_conv_rate,
-          .data$penalties, .data$penaltyYards, .data$penalties_pg,
-          .data$penalty_yds_pg, .data$yards_per_penalty,
+          #.data$third_conv_rate, 
+          .data$fourthDownConversions,
+          .data$fourthDowns, #.data$fourth_conv_rate,
+          .data$penalties, .data$penaltyYards, #.data$penalties_pg,
+          #.data$penalty_yds_pg, .data$yards_per_penalty,
           .data$kickReturns, .data$kickReturnYards,
-          .data$kickReturnTDs, .data$kick_return_avg,
+          .data$kickReturnTDs, #.data$kick_return_avg,
           .data$puntReturns, .data$puntReturnYards,
-          .data$puntReturnTDs, .data$punt_return_avg,
+          .data$puntReturnTDs, #.data$punt_return_avg,
           .data$passesIntercepted, .data$interceptionYards, .data$interceptionTDs
         ) %>%
         dplyr::rename(

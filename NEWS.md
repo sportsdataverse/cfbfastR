@@ -1,3 +1,9 @@
+# **cfbfastR v1.5.1**
+
+##### **Minor release**
+* Removed calculated columns from `cfbd_stats_season_team()` that were not behaving correctly
+* Fixed bug where `only_fbs` input in `cfbd_team_info()` was ignored. It is now possible to get the team info for all the colleges in the API instead of only FBS schools.
+
 # **cfbfastR v1.5.0**
 
 ### Added [```espn_cfb_scoreboard()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_scoreboard.html)
