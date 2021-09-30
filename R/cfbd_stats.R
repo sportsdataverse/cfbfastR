@@ -779,6 +779,17 @@ cfbd_stats_season_player <- function(year,
         dplyr::select(cols, tidyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
         as.data.frame()
+      
+      # Check if Category is Null
+      if (is.null(category)) {
+        df <- df %>% 
+          dplyr::select(-category) %>%
+          dplyr::group_by(team, conference, athlete_id, player, year) %>%
+          dplyr::summarise_all(.,~mean(.,na.rm = TRUE)) %>%
+          dplyr::arrange(year, athlete_id) %>%
+          dplyr::ungroup() %>%
+          dplyr::mutate_all(~replace(., is.nan(.), NA))
+      }
 
       if(verbose){ 
         message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
