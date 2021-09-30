@@ -180,7 +180,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' **Get player game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (*String* optional): D-I Team
+#' @param team (*String* optional): D-I Team. Required if year not provided.
 #' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
@@ -235,7 +235,10 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
     "K", "P", "PK", "LS"
   )
 
-
+  # Check if both year and team is null
+  if(is.null(year) & is.null(team)){
+    cli::cli_abort("Either year or team must be specified")
+  }
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -396,7 +399,10 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
     "DB", "CB", "S", "LB", "DE", "NT", "DL", "DT",
     "K", "P", "PK", "LS"
   )
-
+  # Check if both year and team is null
+  if(is.null(year) & is.null(team)){
+    cli::cli_abort("Either year or team must be specified")
+  }
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -629,12 +635,15 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
 #' }
 #'
-cfbd_metrics_ppa_teams <- function(year = 2019,
+cfbd_metrics_ppa_teams <- function(year = NULL,
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE,
                                    verbose = FALSE) {
-
+  # Check if both year and team is null
+  if(is.null(year) & is.null(team)){
+    cli::cli_abort("Either year or team must be specified")
+  }
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")

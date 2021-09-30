@@ -23,7 +23,7 @@ cfbd_metrics_ppa_players_games(
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team. Required if year not provided.}
 
 \item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
 Position Group  - options include:\cr

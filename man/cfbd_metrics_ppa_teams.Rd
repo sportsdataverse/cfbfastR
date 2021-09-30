@@ -8,7 +8,7 @@
 }
 \usage{
 cfbd_metrics_ppa_teams(
-  year = 2019,
+  year = NULL,
   team = NULL,
   conference = NULL,
   excl_garbage_time = FALSE,
