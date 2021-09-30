@@ -73,19 +73,19 @@ NULL
 #'
 cfbd_stats_categories <- function() {
   full_url <- "https://api.collegefootballdata.com/stats/categories"
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr = {
@@ -95,7 +95,7 @@ cfbd_stats_categories <- function() {
         jsonlite::fromJSON()
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
         dplyr::rename(category = .data$V1)
-      
+
       # message(glue::glue("{Sys.time()}: Scraping stats categories data..."))
     },
     error = function(e) {
@@ -206,7 +206,7 @@ cfbd_stats_game_advanced <- function(year,
                                      excl_garbage_time = FALSE,
                                      season_type = "both",
                                      verbose = FALSE) {
-  
+
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
@@ -231,18 +231,18 @@ cfbd_stats_game_advanced <- function(year,
     # Check if excl_garbage_time is TRUE, if not FALSE
     cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
   }
-  
+
   
   if (!(season_type %in% c("postseason", "regular","both"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
   
-  
-  
-  
+
+
+
   base_url <- "https://api.collegefootballdata.com/stats/game/advanced?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year,
@@ -252,19 +252,19 @@ cfbd_stats_game_advanced <- function(year,
     "&excludeGarbageTime=", excl_garbage_time,
     "&seasonType=", season_type
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr = {
@@ -272,7 +272,7 @@ cfbd_stats_game_advanced <- function(year,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
-      
+
       # Column renaming for the 76 returned columns
       colnames(df) <- gsub("offense.", "off_", colnames(df))
       colnames(df) <- gsub("defense.", "def_", colnames(df))
@@ -300,16 +300,16 @@ cfbd_stats_game_advanced <- function(year,
       colnames(df) <- gsub("_Start", "_start", colnames(df))
       colnames(df) <- gsub(".db", "_db", colnames(df))
       colnames(df) <- gsub("Id", "_id", colnames(df))
-      
+
       df <- df %>%
         as.data.frame()
-      
+
       if(verbose){ 
         message(glue::glue("{Sys.time()}: Scraping game advanced stats..."))
       }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
+        message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
     },
     warning = function(w) {
     },
@@ -429,7 +429,7 @@ cfbd_stats_season_advanced <- function(year,
                                        start_week = NULL,
                                        end_week = NULL,
                                        verbose = FALSE) {
-  
+
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
@@ -457,11 +457,11 @@ cfbd_stats_season_advanced <- function(year,
   if (!is.null(start_week) && !is.null(end_week) && start_week > end_week) {
     cli::cli_abort("Enter valid start_week, end_week range")
   }
-  
-  
-  
+
+
+
   base_url <- "https://api.collegefootballdata.com/stats/season/advanced?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year,
@@ -470,19 +470,19 @@ cfbd_stats_season_advanced <- function(year,
     "&startWeek=", start_week,
     "&endWeek=", end_week
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr = {
@@ -515,16 +515,16 @@ cfbd_stats_season_advanced <- function(year,
       colnames(df) <- gsub(".front", "_front", colnames(df))
       colnames(df) <- gsub("_Start", "_start", colnames(df))
       colnames(df) <- gsub(".db", "_db", colnames(df))
-      
+
       df <- df %>%
         as.data.frame()
-      
+
       if(verbose){ 
         message(glue::glue("{Sys.time()}: Scraping season advanced stats..."))
       }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
+        message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
     },
     warning = function(w) {
     },
@@ -645,12 +645,12 @@ cfbd_stats_season_player <- function(year,
     "passing", "receiving", "rushing", "defensive", "fumbles",
     "interceptions", "punting", "puntReturns", "kicking", "kickReturns"
   )
-  
+
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  
+
   if (!(season_type %in% c("postseason", "regular","both"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
@@ -668,7 +668,7 @@ cfbd_stats_season_player <- function(year,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  
+
   if (!is.null(start_week) && !is.numeric(start_week) && nchar(start_week) > 2) {
     # Check if start_week is numeric, if not NULL
     cli::cli_abort("Enter valid start_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
@@ -688,10 +688,10 @@ cfbd_stats_season_player <- function(year,
     # Encode conference parameter for URL, if not NULL
     category <- utils::URLencode(category, reserved = TRUE)
   }
-  
-  
+
+
   base_url <- "https://api.collegefootballdata.com/stats/player/season?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year,
@@ -702,19 +702,19 @@ cfbd_stats_season_player <- function(year,
     "&conference=", conference,
     "&category=", category
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   cols <- c(
     "team", "conference", "athlete_id", "player", "category",
     "passing_completions", "passing_att", "passing_pct", "passing_yds",
@@ -734,7 +734,7 @@ cfbd_stats_season_player <- function(year,
     "punt_returns_no", "punt_returns_yds", "punt_returns_avg",
     "punt_returns_td", "punt_returns_long"
   )
-  
+
   numeric_cols <- c(
     "passing_completions", "passing_att", "passing_pct", "passing_yds",
     "passing_td", "passing_int", "passing_ypa",
@@ -753,9 +753,9 @@ cfbd_stats_season_player <- function(year,
     "punt_returns_no", "punt_returns_yds", "punt_returns_avg",
     "punt_returns_td", "punt_returns_long"
   )
-  
-  
-  
+
+
+
   df <- data.frame()
   tryCatch(
     expr = {
@@ -772,9 +772,9 @@ cfbd_stats_season_player <- function(year,
         ) %>%
         dplyr::rename(athlete_id = .data$playerId) %>%
         janitor::clean_names()
-      
+
       df[cols[!(cols %in% colnames(df))]] <- NA
-      
+
       df <- df %>%
         dplyr::select(cols, tidyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
@@ -789,20 +789,20 @@ cfbd_stats_season_player <- function(year,
           arrange(year, athlete_id) %>%
           ungroup()
       }
-           
-     if(verbose){ 
-       message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
-     }
+
+      if(verbose){ 
+        message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
+        message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
     },
     warning = function(w) {
     },
     finally = {
     }
-      )
-      return(df)
+  )
+  return(df)
 }
 
 #' @title 
@@ -892,7 +892,7 @@ cfbd_stats_season_team <- function(year,
                                    start_week = NULL,
                                    end_week = NULL,
                                    verbose = FALSE) {
-  
+
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -916,7 +916,7 @@ cfbd_stats_season_team <- function(year,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  
+
   if (!is.null(start_week) && !is.numeric(start_week) && nchar(start_week) > 2) {
     # Check if start_week is numeric, if not NULL
     cli::cli_abort("Enter valid start_week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
@@ -929,11 +929,11 @@ cfbd_stats_season_team <- function(year,
     cli::cli_abort("Enter valid start_week, end_week range")
   }
   
-  
-  
-  
+
+
+
   base_url <- "https://api.collegefootballdata.com/stats/season?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year,
@@ -943,21 +943,21 @@ cfbd_stats_season_team <- function(year,
     "&team=", team,
     "&conference=", conference
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
-  
+
   # Expected column names for full season data
   expected_colnames <- c(
     "season", "team", "conference", "passesIntercepted", "turnovers",
@@ -974,17 +974,17 @@ cfbd_stats_season_team <- function(year,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()
-      
+
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,
-                               names_from = .data$statName,
-                               values_from = .data$statValue
+        names_from = .data$statName,
+        values_from = .data$statValue
       )
-      
+
       # Find missing columns, if any, and add them to found data
       missing <- setdiff(expected_colnames, colnames(df))
       df[missing] <- NA_real_
-      
+
       df <- df %>%
         dplyr::mutate(
           time_of_poss_pg = ifelse(is.na("games"), NA_real_, .data$possessionTime / 3600 / .data$games),
@@ -1050,13 +1050,13 @@ cfbd_stats_season_team <- function(year,
           passes_intercepted_TDs = .data$interceptionTDs
         ) %>%
         as.data.frame()
-      
+
       if(verbose){ 
         message(glue::glue("{Sys.time()}: Scraping season team stats..."))
       }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
+        message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
     },
     warning = function(w) {
     },
