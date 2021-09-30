@@ -171,12 +171,19 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
       cli::cli_abort("Enter valid year as a number (YYYY)")
     }
 
-    base_url <- "https://api.collegefootballdata.com/teams/fbs?"
+    base_url <- "https://api.collegefootballdata.com/teams"
 
+    
     # if they want all fbs
+    if (only_fbs) {
+      base_url <- paste0(
+        base_url,
+        "/fbs"
+      )
+    }
     full_url <- paste0(
       base_url,
-      "year=", year
+      "?year=", year
     )
 
     # Check for CFBD API key

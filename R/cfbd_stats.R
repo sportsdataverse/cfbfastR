@@ -976,22 +976,22 @@ cfbd_stats_season_team <- function(year,
       df[missing] <- NA_real_
 
       df <- df %>%
-        dplyr::mutate(
-          time_of_poss_pg = ifelse(is.na(.data$games), NA_real_, .data$possessionTime / 3600 / .data$games),
-          completion_pct = ifelse(is.na(.data$passAttempts), NA_real_, .data$passCompletions / .data$passAttempts),
-          pass_ypa = ifelse(is.na(.data$passAttempts), NA_real_, .data$netPassingYards / .data$passAttempts),
-          pass_ypr = ifelse(is.na(.data$passCompletions), NA_real_, .data$netPassingYards / .data$passCompletions),
-          int_pct = ifelse(is.na(.data$passAttempts), NA_real_, .data$interceptions / .data$passAttempts),
-          rush_ypc = ifelse(is.na(.data$rushingAttempts), NA_real_, .data$rushingYards / .data$rushingAttempts),
-          third_conv_rate = ifelse(is.na(.data$thirdDowns), NA_real_, .data$thirdDownConversions / .data$thirdDowns),
-          fourth_conv_rate = ifelse(is.na(.data$fourthDowns), NA_real_, .data$fourthDownConversions / .data$fourthDowns),
-          penalties_pg = ifelse(is.na(.data$games), NA_real_, .data$penalties / .data$games),
-          penalty_yds_pg = ifelse(is.na(.data$games), NA_real_, .data$penaltyYards / .data$games),
-          yards_per_penalty = ifelse(is.na(.data$penalties), NA_real_, .data$penaltyYards / .data$penalties),
-          turnovers_pg = ifelse(is.na(.data$games), NA_real_, .data$turnovers / .data$games),
-          kick_return_avg = ifelse(is.na(.data$kickReturns), NA_real_, .data$kickReturnYards / .data$kickReturns),
-          punt_return_avg = ifelse(is.na(.data$puntReturns), NA_real_, .data$puntReturnYards / .data$puntReturns)
-        ) %>%
+        # dplyr::mutate(
+        #   time_of_poss_pg = ifelse(is.na(.data$games), NA_real_, .data$possessionTime / .data$games),
+        #   completion_pct = ifelse(is.na(.data$passAttempts), NA_real_, .data$passCompletions / .data$passAttempts),
+        #   pass_ypa = ifelse(is.na(.data$passAttempts), NA_real_, .data$netPassingYards / .data$passAttempts),
+        #   pass_ypr = ifelse(is.na(.data$passCompletions), NA_real_, .data$netPassingYards / .data$passCompletions),
+        #   int_pct = ifelse(is.na(.data$passAttempts), NA_real_, .data$interceptions / .data$passAttempts),
+        #   rush_ypc = ifelse(is.na(.data$rushingAttempts), NA_real_, .data$rushingYards / .data$rushingAttempts),
+        #   third_conv_rate = ifelse(is.na(.data$thirdDowns), NA_real_, .data$thirdDownConversions / .data$thirdDowns),
+        #   fourth_conv_rate = ifelse(is.na(.data$fourthDowns), NA_real_, .data$fourthDownConversions / .data$fourthDowns),
+        #   penalties_pg = ifelse(is.na(.data$games), NA_real_, .data$penalties / .data$games),
+        #   penalty_yds_pg = ifelse(is.na(.data$games), NA_real_, .data$penaltyYards / .data$games),
+        #   yards_per_penalty = ifelse(is.na(.data$penalties), NA_real_, .data$penaltyYards / .data$penalties),
+        #   turnovers_pg = ifelse(is.na(.data$games), NA_real_, .data$turnovers / .data$games),
+        #   kick_return_avg = ifelse(is.na(.data$kickReturns), NA_real_, .data$kickReturnYards / .data$kickReturns),
+        #   punt_return_avg = ifelse(is.na(.data$puntReturns), NA_real_, .data$puntReturnYards / .data$puntReturns)
+        # ) %>%
         dplyr::select(
           .data$season, .data$team, .data$conference,
           .data$games, .data$possessionTime, .data$time_of_poss_pg,
