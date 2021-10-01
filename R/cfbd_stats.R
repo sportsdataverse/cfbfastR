@@ -788,10 +788,10 @@ cfbd_stats_season_player <- function(year,
         df <- df %>% 
           dplyr::select(-.data$category) %>%
           dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
-          dplyr::summarise_all(.,~mean(.,na.rm = TRUE)) %>%
+          dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
           dplyr::arrange(.data$year, .data$athlete_id) %>%
           dplyr::ungroup() %>%
-          dplyr::mutate_all(~replace(., is.nan(.), NA))
+          dplyr::mutate_all(function(x) replace(x, is.nan(x), NA))
       }
 
       if(verbose){ 
