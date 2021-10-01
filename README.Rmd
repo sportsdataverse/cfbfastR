@@ -11,40 +11,7 @@ if (!requireNamespace('issue') & !requireNamespace('pacman')){
   install.packages('pacman')
 }
 pacman::p_load(magick, grid, dplyr, lubridate)
-pacman::p_load_gh("yonicd/issue")
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "95%"
-)
-opts_template$set(stripfigure = list(fig.height = 8, out.width = "95%"))
-token <- tryCatch(
-  gitcreds::gitcreds_get(),
-  error = function(e) NULL
-)
-raw_data <- issue::get_issues(
-  repo = 'saiemgilani/cfbfastR',
-  last = 20,
-  PAT  = token$password
-)
 
-tbl <- raw_data%>%
-  issue::issue_tibble()
-open_tbl <- tbl[tbl$pull_request==FALSE & tbl$state=="open",]
-closed_tbl <- tbl[tbl$state=="closed",]
-x <- open_tbl %>%
-  issue::md_table() %>% 
-  dplyr::mutate(
-    date = lubridate::as_date(.data$created)
-  ) %>% 
-  dplyr::select(.data$issue, .data$icon, .data$title, .data$labels, .data$opened_by, .data$date, .data$closed)
-x2 <- closed_tbl %>% 
-  issue::md_table()%>% 
-  dplyr::mutate(
-    date = lubridate::as_date(.data$created)
-  ) %>% 
-  dplyr::select(.data$issue, .data$icon, .data$title, .data$labels, .data$opened_by, .data$date, .data$closed)
 ```
 
 
@@ -155,8 +122,12 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 <a href="https://github.com/tanho63" target="blank"><img src="https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge" alt="@tanho63" /></a>
 
 -   [Keegan Abdoo](https://twitter.com/KeeganAbdoo)      
-<a href="https://twitter.com/KeeganAbdoo" target="blank"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=twitter&style=for-the-badge" alt="@_TanHo" /></a>
+<a href="https://twitter.com/KeeganAbdoo" target="blank"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=twitter&style=for-the-badge" alt="@KeeganAbdoo" /></a>
 <a href="https://github.com/keegan-abdoo" target="blank"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge" alt="@keegan-abdoo" /></a>
+
+-   [Maat Spencer](https://twitter.com/Maatspencer)      
+<a href="https://twitter.com/Maatspencer" target="blank"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=twitter&style=for-the-badge" alt="@Maatspencer" /></a>
+<a href="https://github.com/Maatspencer" target="blank"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge" alt="@Maatspencer" /></a>
 
 # **Authors Emeritus - `cfbscrapR`[archived]**
 
