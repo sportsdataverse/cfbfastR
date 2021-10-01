@@ -46,7 +46,7 @@ Authors@R:
              family = "Abdoo",
              role = "ctb",
              email = "kabdoo@draft.ly"),
-      person(given = "Maat",
+      person(given = "Matt",
              family = "Spencer",
              role = "ctb",
              email = "maatspencer@gmail.com"))

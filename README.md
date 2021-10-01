@@ -141,7 +141,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
     <a href="https://twitter.com/KeeganAbdoo" target="blank"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=twitter&style=for-the-badge" alt="@KeeganAbdoo" /></a>
     <a href="https://github.com/keegan-abdoo" target="blank"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge" alt="@keegan-abdoo" /></a>
 
--   [Maat Spencer](https://twitter.com/Maatspencer)  
+-   [Matt Spencer](https://twitter.com/Maatspencer)  
     <a href="https://twitter.com/Maatspencer" target="blank"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=twitter&style=for-the-badge" alt="@Maatspencer" /></a>
     <a href="https://github.com/Maatspencer" target="blank"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge" alt="@Maatspencer" /></a>
 

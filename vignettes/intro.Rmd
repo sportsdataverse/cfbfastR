@@ -48,7 +48,7 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 
 #### **Load and install the necessary packages**
 
-```{r load_cfbfastR_tidy, echo=FALSE}
+```{r load_cfbfastR_tidy, message=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
