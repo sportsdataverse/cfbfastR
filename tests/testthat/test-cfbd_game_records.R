@@ -3,7 +3,7 @@ context("CFB Game Records")
 
 
 cols <- c(
-  "year", "team", "conference", "division",
+  "year", "team", "conference", "division", "expected_wins",
   "total_games", "total_wins", "total_losses", "total_ties",
   "conference_games", "conference_wins", "conference_losses", "conference_ties",
   "home_games", "home_wins", "home_losses", "home_ties",

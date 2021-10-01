@@ -7,6 +7,7 @@ context("CFB Game Weather")
     "week",
     "season_type",
     "start_time",
+    "game_indoors",
     "home_team",
     "home_conference",
     "away_team",

@@ -11,7 +11,7 @@
 \item{\code{cfbd_stats_game_advanced()}:}{ Get game advanced stats.}
 \item{\code{cfbd_stats_season_player()}:}{ Get season statistics by player.}
 }
-\subsection{\strong{Get game advanced stats}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
+\subsection{\strong{Get game advanced stats}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
 
 cfbd_stats_game_advanced(2019, team = "LSU")
 
@@ -19,11 +19,11 @@ cfbd_stats_game_advanced(2013, team = "Florida State")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get season advanced statistics by team}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_stats_season_advanced(2019, team = "LSU")
+\subsection{\strong{Get season advanced statistics by team}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_season_advanced(2019, team = "LSU")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get season statistics by player}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
+\subsection{\strong{Get season statistics by player}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
 
 cfbd_stats_season_player(2019, team = "LSU", category = "passing")
 
@@ -31,7 +31,7 @@ cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get season statistics by team}}{\if{html}{\out{<div class="r">}}\preformatted{cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+\subsection{\strong{Get season statistics by team}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
 
 cfbd_stats_season_team(2019, team = "LSU")
 
@@ -41,7 +41,7 @@ cfbd_stats_season_team(2013, team = "Florida State")
 
 \subsection{\strong{Get stats categories}}{
 
-This function identifies all Stats Categories identified in the regular stats endpoint.\if{html}{\out{<div class="r">}}\preformatted{cfbd_stats_categories() 
+This function identifies all Stats Categories identified in the regular stats endpoint.\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_categories() 
 }\if{html}{\out{</div>}}
 }
 }

@@ -13,12 +13,13 @@
 #' \donttest{
 #'    cfbd_conferences()
 #' }
-#' @return [cfbd_conferences()] - A data frame with 11 rows and 4 variables:
+#' @return [cfbd_conferences()] - A data frame with 94 rows and 5 variables:
 #' \describe{
 #'   \item{`conference_id`:}{Referencing conference id.}
 #'   \item{`name`:}{Conference name.}
 #'   \item{`long_name`:}{Long name for Conference.}
 #'   \item{`abbreviation`:}{Conference abbreviation.}
+#'   \item{`classification`:}{Conference classification (fbs,fcs,ii,iii)}
 #'   ...
 #' }
 #' @source <https://api.collegefootballdata.com/conferences>

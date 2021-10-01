@@ -32,7 +32,7 @@ Pulls all college football venues and data on capacity, grass, city/state, locat
 elevation, dome, timezone and construction year.
 }
 \details{
-CFB Venue Information\if{html}{\out{<div class="r">}}\preformatted{ cfbd_venues()
+CFB Venue Information\if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_venues()
 }\if{html}{\out{</div>}}
 }
 \examples{

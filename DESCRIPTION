@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Functions to Access College Football Play by Play Data
-Version: 1.5.0
+Version: 1.5.1
 Authors@R: 
     c(person(given = "Saiem",
              family = "Gilani",
@@ -88,6 +88,5 @@ Suggests:
     usethis (>= 1.6.0)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
-

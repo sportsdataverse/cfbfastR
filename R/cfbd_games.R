@@ -258,7 +258,7 @@ cfbd_game_info <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
-#' @return [cfbd_game_weather()] - A data frame with 22 variables:
+#' @return [cfbd_game_weather()] - A data frame with 23 variables:
 #' \describe{
 #'   \item{`game_id`: integer.}{Referencing game id.}
 #'   \item{`season`: integer.}{Season of the game.}
@@ -266,6 +266,7 @@ cfbd_game_info <- function(year,
 #'   \item{`season_type`: character.}{Season type of the game.}
 #'   \item{`start_date`: character.}{Game date.}
 #'   \item{`start_time_tbd`: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
+#'   \item{`game_indoors`: logical.}{TRUE/FALSE flag for if the game is indoors}
 #'   \item{`home_team`: character.}{Home team name.}
 #'   \item{`home_conference`: character.}{Home team conference.}
 #'   \item{`away_team`: character.}{Away team name.}
@@ -1034,12 +1035,13 @@ cfbd_game_player_stats <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
-#' @return [cfbd_game_records()] - A data frame with 20 variables:
+#' @return [cfbd_game_records()] - A data frame with 21 variables:
 #' \describe{
 #'   \item{`year`: integer.}{Season of the games.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`division`: character.}{Division in the conference of the team.}
+#'   \item{`expected_wins`: numeric}{Expected number of wins based on post-game win probability.}
 #'   \item{`total_games`: integer.}{Total number of games played.}
 #'   \item{`total_wins`: integer.}{Total wins.}
 #'   \item{`total_losses`: integer.}{Total losses.}
@@ -1127,6 +1129,7 @@ cfbd_game_records <- function(year,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
+          expected_wins = .data$expectedWins,
           total_games = .data$total.games,
           total_wins = .data$total.wins,
           total_losses = .data$total.losses,

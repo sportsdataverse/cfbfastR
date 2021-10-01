@@ -30,7 +30,7 @@ cfbd_stats_season_advanced(
 \item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
-\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 79 variables:
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 81 variables:
 \describe{
 \item{\code{season}: integer.}{Season of the statistics.}
 \item{\code{team}: character.}{Team name.}
@@ -49,6 +49,7 @@ cfbd_stats_season_advanced(
 \item{\code{off_second_lvl_yds_total}: integer.}{Offense second-level yards total.}
 \item{\code{off_open_field_yds}: integer.}{Offense open field yards.}
 \item{\code{off_open_field_yds_total}: integer.}{Offense open field yards total.}
+\item{\code{off_total_opportunities}: integer.}{Offense opportunities.}
 \item{\code{off_pts_per_opp}: double.}{Offense points per scoring opportunity.}
 \item{\code{off_field_pos_avg_start}: double.}{Offense starting average field position.}
 \item{\code{off_field_pos_avg_predicted_points}: double.}{Offense starting average field position predicted points (PP).}
@@ -87,6 +88,7 @@ cfbd_stats_season_advanced(
 \item{\code{def_second_lvl_yds_total}: integer.}{Defense second-level yards total.}
 \item{\code{def_open_field_yds}: integer.}{Defense open field yards.}
 \item{\code{def_open_field_yds_total}: integer.}{Defense open field yards total.}
+\item{\code{def_total_opportunities}: integer.}{Defense opportunities.}
 \item{\code{def_pts_per_opp}: double.}{Defense points per scoring opportunity.}
 \item{\code{def_field_pos_avg_start}: double.}{Defense starting average field position.}
 \item{\code{def_field_pos_avg_predicted_points}: double.}{Defense starting average field position predicted points (PP).}
