@@ -156,7 +156,7 @@ cfbd_team_matchup_records(&quot;Texas A&amp;amp;M&quot;, &quot;TCU&quot;, min_ye
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -452,7 +452,7 @@ cfbd_team_matchup_records(&quot;Texas A&amp;amp;M&quot;, &quot;TCU&quot;, min_ye
 
 
 <p>Lists all teams in conference or all D-I teams if conference is left NULL
-Currently, support is only provided for D-I<div class="r"></p><pre><span class='fu'><a href='cfbd_team_info.html'>cfbd_team_info</a></span><span class='op'>(</span>conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
+Currently, support is only provided for D-I<div class="sourceCode r"></p><pre><span class='fu'><a href='cfbd_team_info.html'>cfbd_team_info</a></span><span class='op'>(</span>conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
 
 <span class='fu'><a href='cfbd_team_info.html'>cfbd_team_info</a></span><span class='op'>(</span>conference <span class='op'>=</span> <span class='st'>"Ind"</span><span class='op'>)</span>
 
@@ -462,24 +462,24 @@ Currently, support is only provided for D-I<div class="r"></p><pre><span class='
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get team rosters</strong></h3>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>It is now possible to access yearly rosters</strong></h4>
-<p><div class="r"></p><pre><span class='fu'><a href='cfbd_team_roster.html'>cfbd_team_roster</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2020</span><span class='op'>)</span>
+<p><div class="sourceCode r"></p><pre><span class='fu'><a href='cfbd_team_roster.html'>cfbd_team_roster</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2020</span><span class='op'>)</span>
 </pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.</h4>
-<p><div class="r"></p><pre><span class='fu'><a href='cfbd_team_roster.html'>cfbd_team_roster</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+<p><div class="sourceCode r"></p><pre><span class='fu'><a href='cfbd_team_roster.html'>cfbd_team_roster</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
 </pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Get composite team talent rankings</h4>
 
 
-<p>Extracts team talent composite for all teams in a given year as sourced from 247 rankings<div class="r"></p><pre><span class='fu'><a href='cfbd_team_talent.html'>cfbd_team_talent</a></span><span class='op'>(</span><span class='op'>)</span>
+<p>Extracts team talent composite for all teams in a given year as sourced from 247 rankings<div class="sourceCode r"></p><pre><span class='fu'><a href='cfbd_team_talent.html'>cfbd_team_talent</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='fu'><a href='cfbd_team_talent.html'>cfbd_team_talent</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span><span class='op'>)</span>
 
 </pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get matchup history between two teams.</strong></h4>
-<p><div class="r"></p><pre><span class='fu'><a href='cfbd_team_matchup.html'>cfbd_team_matchup</a></span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span><span class='op'>)</span>
+<p><div class="sourceCode r"></p><pre><span class='fu'><a href='cfbd_team_matchup.html'>cfbd_team_matchup</a></span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span><span class='op'>)</span>
 
 <span class='fu'><a href='cfbd_team_matchup.html'>cfbd_team_matchup</a></span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
 
@@ -487,7 +487,7 @@ Currently, support is only provided for D-I<div class="r"></p><pre><span class='
 </pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a><strong>Get matchup history records between two teams.</strong></h4>
-<p><div class="r"></p><pre><span class='fu'><a href='cfbd_team_matchup_records.html'>cfbd_team_matchup_records</a></span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
+<p><div class="sourceCode r"></p><pre><span class='fu'><a href='cfbd_team_matchup_records.html'>cfbd_team_matchup_records</a></span><span class='op'>(</span><span class='st'>"Texas"</span>, <span class='st'>"Oklahoma"</span><span class='op'>)</span>
 
 <span class='fu'><a href='cfbd_team_matchup_records.html'>cfbd_team_matchup_records</a></span><span class='op'>(</span><span class='st'>"Texas A&amp;M"</span>, <span class='st'>"TCU"</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
 </pre><p></div></p>

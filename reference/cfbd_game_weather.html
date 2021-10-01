@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -428,13 +428,14 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <p><a href='https://api.collegefootballdata.com/games/weather'>https://api.collegefootballdata.com/games/weather</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbd_game_weather()</code> - A data frame with 22 variables:</p><dl>
+    <p><code>cfbd_game_weather()</code> - A data frame with 23 variables:</p><dl>
 <dt><code>game_id</code>: integer.</dt><dd><p>Referencing game id.</p></dd>
 <dt><code>season</code>: integer.</dt><dd><p>Season of the game.</p></dd>
 <dt><code>week</code>: integer.</dt><dd><p>Game week.</p></dd>
 <dt><code>season_type</code>: character.</dt><dd><p>Season type of the game.</p></dd>
 <dt><code>start_date</code>: character.</dt><dd><p>Game date.</p></dd>
 <dt><code>start_time_tbd</code>: logical.</dt><dd><p>TRUE/FALSE flag for if the game's start time is to be determined.</p></dd>
+<dt><code>game_indoors</code>: logical.</dt><dd><p>TRUE/FALSE flag for if the game is indoors</p></dd>
 <dt><code>home_team</code>: character.</dt><dd><p>Home team name.</p></dd>
 <dt><code>home_conference</code>: character.</dt><dd><p>Home team conference.</p></dd>
 <dt><code>away_team</code>: character.</dt><dd><p>Away team name.</p></dd>

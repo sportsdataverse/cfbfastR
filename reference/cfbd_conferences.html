@@ -105,7 +105,7 @@ You can call this function simply with:cfbd_conferences()
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -390,7 +390,7 @@ You can call this function simply with:cfbd_conferences()
     <div class="ref-description">
     <p><strong>Get college football conference information</strong>
 Pulls all college football conferences and returns as data frame
-You can call this function simply with:<div class="r"></p><pre><span class='fu'>cfbd_conferences</span><span class='op'>(</span><span class='op'>)</span>
+You can call this function simply with:<div class="sourceCode r"></p><pre><span class='fu'>cfbd_conferences</span><span class='op'>(</span><span class='op'>)</span>
 </pre><p></div></p>
     </div>
 
@@ -402,11 +402,12 @@ You can call this function simply with:<div class="r"></p><pre><span class='fu'>
     <p><a href='https://api.collegefootballdata.com/conferences'>https://api.collegefootballdata.com/conferences</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbd_conferences()</code> - A data frame with 11 rows and 4 variables:</p><dl>
+    <p><code>cfbd_conferences()</code> - A data frame with 94 rows and 5 variables:</p><dl>
 <dt><code>conference_id</code>:</dt><dd><p>Referencing conference id.</p></dd>
 <dt><code>name</code>:</dt><dd><p>Conference name.</p></dd>
 <dt><code>long_name</code>:</dt><dd><p>Long name for Conference.</p></dd>
 <dt><code>abbreviation</code>:</dt><dd><p>Conference abbreviation.</p></dd>
+<dt><code>classification</code>:</dt><dd><p>Conference classification (fbs,fcs,ii,iii)</p></dd>
 ...
 
 </dl>
@@ -604,7 +605,102 @@ You can call this function simply with:<div class="r"></p><pre><span class='fu'>
 #&gt; 91                                           Pacific 10       Pac-10
 #&gt; 92                                  Big West Conference           BW
 #&gt; 93                                  Big East Conference           BE
-#&gt; 94          Border Intercollegiate Athletic Association         BIAA</div><div class='input'><span class='co'># }</span>
+#&gt; 94          Border Intercollegiate Athletic Association         BIAA
+#&gt;    classification
+#&gt; 1             fbs
+#&gt; 2             fbs
+#&gt; 3             fbs
+#&gt; 4             fbs
+#&gt; 5             fbs
+#&gt; 6             fbs
+#&gt; 7             fbs
+#&gt; 8             fbs
+#&gt; 9             fbs
+#&gt; 10            fcs
+#&gt; 11            fcs
+#&gt; 12            fcs
+#&gt; 13            fcs
+#&gt; 14            fcs
+#&gt; 15            fcs
+#&gt; 16            fcs
+#&gt; 17            fcs
+#&gt; 18            fcs
+#&gt; 19            fcs
+#&gt; 20            fcs
+#&gt; 21            fbs
+#&gt; 22            fcs
+#&gt; 23            fcs
+#&gt; 24            iii
+#&gt; 25            iii
+#&gt; 26            iii
+#&gt; 27             ii
+#&gt; 28            iii
+#&gt; 29            iii
+#&gt; 30             ii
+#&gt; 31             ii
+#&gt; 32             ii
+#&gt; 33             ii
+#&gt; 34            iii
+#&gt; 35             ii
+#&gt; 36            iii
+#&gt; 37            iii
+#&gt; 38            iii
+#&gt; 39             ii
+#&gt; 40            iii
+#&gt; 41             ii
+#&gt; 42            iii
+#&gt; 43            iii
+#&gt; 44            iii
+#&gt; 45            iii
+#&gt; 46            iii
+#&gt; 47            iii
+#&gt; 48            iii
+#&gt; 49             ii
+#&gt; 50            iii
+#&gt; 51             ii
+#&gt; 52            iii
+#&gt; 53            iii
+#&gt; 54            iii
+#&gt; 55             ii
+#&gt; 56            iii
+#&gt; 57             ii
+#&gt; 58             ii
+#&gt; 59            iii
+#&gt; 60             ii
+#&gt; 61            iii
+#&gt; 62            iii
+#&gt; 63             ii
+#&gt; 64            iii
+#&gt; 65             ii
+#&gt; 66            iii
+#&gt; 67            fbs
+#&gt; 68            iii
+#&gt; 69             ii
+#&gt; 70            iii
+#&gt; 71            fcs
+#&gt; 72           &lt;NA&gt;
+#&gt; 73           &lt;NA&gt;
+#&gt; 74           &lt;NA&gt;
+#&gt; 75           &lt;NA&gt;
+#&gt; 76           &lt;NA&gt;
+#&gt; 77           &lt;NA&gt;
+#&gt; 78           &lt;NA&gt;
+#&gt; 79           &lt;NA&gt;
+#&gt; 80           &lt;NA&gt;
+#&gt; 81           &lt;NA&gt;
+#&gt; 82           &lt;NA&gt;
+#&gt; 83           &lt;NA&gt;
+#&gt; 84           &lt;NA&gt;
+#&gt; 85           &lt;NA&gt;
+#&gt; 86           &lt;NA&gt;
+#&gt; 87           &lt;NA&gt;
+#&gt; 88           &lt;NA&gt;
+#&gt; 89           &lt;NA&gt;
+#&gt; 90           &lt;NA&gt;
+#&gt; 91            fbs
+#&gt; 92           &lt;NA&gt;
+#&gt; 93            fbs
+#&gt; 94           &lt;NA&gt;</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

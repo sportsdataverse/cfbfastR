@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -438,50 +438,36 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <p><a href='https://api.collegefootballdata.com/stats/season'>https://api.collegefootballdata.com/stats/season</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbd_stats_season_team()</code> - A data frame with 46 variables:</p><dl>
-<dt><code>games</code>: integer.</dt><dd><p>Number of games.</p></dd>
+    <p><code>cfbd_stats_season_team()</code> - A data frame with 32 variables:</p><dl>
+<dt><code>season</code>: integer</dt><dd><p>Season for stats.</p></dd>
 <dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
 <dt><code>conference</code>: character.</dt><dd><p>Conference of team.</p></dd>
 <dt><code>games</code>: integer.</dt><dd><p>Number of games.</p></dd>
 <dt><code>time_of_poss_total</code>: integer.</dt><dd><p>Time of possession total.</p></dd>
-<dt><code>time_of_poss_pg</code>: double.</dt><dd><p>Time of possession per game.</p></dd>
 <dt><code>pass_comps</code>: integer.</dt><dd><p>Total number of pass completions.</p></dd>
 <dt><code>pass_atts</code>: integer.</dt><dd><p>Total number of pass attempts.</p></dd>
-<dt><code>completion_pct</code>: double.</dt><dd><p>Passing completion percentage.</p></dd>
 <dt><code>net_pass_yds</code>: integer.</dt><dd><p>Net passing yards.</p></dd>
-<dt><code>pass_ypa</code>: double.</dt><dd><p>Passing yards per attempt.</p></dd>
-<dt><code>pass_ypr</code>: double.</dt><dd><p>Passing yards per reception.</p></dd>
 <dt><code>pass_TDs</code>: integer.</dt><dd><p>Passing touchdowns.</p></dd>
 <dt><code>interceptions</code>: integer.</dt><dd><p>Passing interceptions.</p></dd>
-<dt><code>int_pct</code>: double.</dt><dd><p>Interception percentage (of attempts).</p></dd>
 <dt><code>rush_atts</code>: integer.</dt><dd><p>Rushing attempts.</p></dd>
 <dt><code>rush_yds</code>: integer.</dt><dd><p>Rushing yards.</p></dd>
 <dt><code>rush_TDs</code>: integer.</dt><dd><p>Rushing touchdowns.</p></dd>
-<dt><code>rush_ypc</code>: double.</dt><dd><p>Rushing yards per carry.</p></dd>
 <dt><code>total_yds</code>: integer.</dt><dd><p>Rushing total yards.</p></dd>
 <dt><code>fumbles_lost</code>: integer.</dt><dd><p>Fumbles lost.</p></dd>
 <dt><code>turnovers</code>: integer.</dt><dd><p>Turnovers total.</p></dd>
-<dt><code>turnovers_pg</code>: double.</dt><dd><p>Turnovers per game.</p></dd>
 <dt><code>first_downs</code>: integer.</dt><dd><p>Number of first downs.</p></dd>
 <dt><code>third_downs</code>: integer.</dt><dd><p>Number of third downs.</p></dd>
 <dt><code>third_down_convs</code>: integer.</dt><dd><p>Number of third down conversions.</p></dd>
-<dt><code>third_conv_rate</code>: double.</dt><dd><p>Third down conversion rate.</p></dd>
 <dt><code>fourth_down_convs</code>: integer.</dt><dd><p>Fourth down conversions.</p></dd>
 <dt><code>fourth_downs</code>: integer.</dt><dd><p>Fourth downs.</p></dd>
-<dt><code>fourth_conv_rate</code>: double.</dt><dd><p>Fourth down conversion rate.</p></dd>
 <dt><code>penalties</code>: integer.</dt><dd><p>Total number of penalties.</p></dd>
 <dt><code>penalty_yds</code>: integer.</dt><dd><p>Penalty yards total.</p></dd>
-<dt><code>penalties_pg</code>: double.</dt><dd><p>Penalties per game.</p></dd>
-<dt><code>penalty_yds_pg</code>: double.</dt><dd><p>Penalty yardage per game.</p></dd>
-<dt><code>yards_per_penalty</code>: double.</dt><dd><p>Average yards per penalty.</p></dd>
 <dt><code>kick_returns</code>: integer.</dt><dd><p>Number of kick returns.</p></dd>
 <dt><code>kick_return_yds</code>: integer.</dt><dd><p>Total kick return yards.</p></dd>
 <dt><code>kick_return_TDs</code>: integer.</dt><dd><p>Total kick return touchdowns.</p></dd>
-<dt><code>kick_return_avg</code>: double.</dt><dd><p>Kick return yards average.</p></dd>
 <dt><code>punt_returns</code>: integer.</dt><dd><p>Number of punt returns.</p></dd>
 <dt><code>punt_return_yds</code>: integer.</dt><dd><p>Punt return total yards.</p></dd>
 <dt><code>punt_return_TDs</code>: integer.</dt><dd><p>Punt return total touchdowns.</p></dd>
-<dt><code>punt_return_avg</code>: double.</dt><dd><p>Punt return yards average.</p></dd>
 <dt><code>passes_intercepted</code>: integer.</dt><dd><p>Passes intercepted.</p></dd>
 <dt><code>passes_intercepted_yds</code>: integer.</dt><dd><p>Pass interception return yards.</p></dd>
 <dt><code>passes_intercepted_TDs</code>: integer.</dt><dd><p>Pass interception return touchdowns.</p></dd>
@@ -492,143 +478,98 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
    <span class='fu'>cfbd_stats_season_team</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>"B12"</span>, start_week <span class='op'>=</span> <span class='fl'>1</span>, end_week <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    season           team conference games time_of_poss_total time_of_poss_pg
-#&gt; 1    2018     Iowa State     Big 12     6              10683       0.4945833
-#&gt; 2    2018 Oklahoma State     Big 12     7              11418       0.4945833
-#&gt; 3    2018         Baylor     Big 12     7              13974       0.4945833
-#&gt; 4    2018  West Virginia     Big 12     6              10212       0.4945833
-#&gt; 5    2018          Texas     Big 12     7              13593       0.4945833
-#&gt; 6    2018         Kansas     Big 12     7              12405       0.4945833
-#&gt; 7    2018     Texas Tech     Big 12     7              14014       0.4945833
-#&gt; 8    2018            TCU     Big 12     7              12200       0.4945833
-#&gt; 9    2018   Kansas State     Big 12     7              11392       0.4945833
-#&gt; 10   2018       Oklahoma     Big 12     7              11600       0.4945833
-#&gt;    pass_comps pass_atts completion_pct net_pass_yds pass_ypa pass_ypr pass_TDs
-#&gt; 1         121       179      0.6759777         1420 7.932961 11.73554       11
-#&gt; 2         136       232      0.6759777         2038 7.932961 11.73554       17
-#&gt; 3         179       288      0.6759777         2198 7.932961 11.73554       13
-#&gt; 4         138       196      0.6759777         1923 7.932961 11.73554       22
-#&gt; 5         160       246      0.6759777         1760 7.932961 11.73554       13
-#&gt; 6         133       224      0.6759777         1311 7.932961 11.73554       12
-#&gt; 7         220       319      0.6759777         2681 7.932961 11.73554       17
-#&gt; 8         137       239      0.6759777         1584 7.932961 11.73554       12
-#&gt; 9          91       170      0.6759777         1153 7.932961 11.73554        6
-#&gt; 10        125       176      0.6759777         2111 7.932961 11.73554       26
-#&gt;    interceptions    int_pct rush_atts rush_yds rush_TDs rush_ypc total_yds
-#&gt; 1              3 0.01675978       200      715        6    3.575      2135
-#&gt; 2              8 0.01675978       277     1415       16    3.575      3453
-#&gt; 3              5 0.01675978       257     1126       14    3.575      3324
-#&gt; 4              8 0.01675978       199      859        6    3.575      2782
-#&gt; 5              3 0.01675978       284     1113       11    3.575      2873
-#&gt; 6              3 0.01675978       240     1082        8    3.575      2393
-#&gt; 7              8 0.01675978       297     1182       22    3.575      3863
-#&gt; 8             10 0.01675978       260     1170        8    3.575      2754
-#&gt; 9              5 0.01675978       291     1341       12    3.575      2494
-#&gt; 10             3 0.01675978       247     1576       19    3.575      3687
-#&gt;    fumbles_lost turnovers turnovers_pg first_downs third_downs third_down_convs
-#&gt; 1             5         8     1.333333         112          79               28
-#&gt; 2             4        12     1.333333         164          99               40
-#&gt; 3             3         8     1.333333         185         106               51
-#&gt; 4             3        11     1.333333         139          69               34
-#&gt; 5             3         6     1.333333         162         107               46
-#&gt; 6             4         7     1.333333         120         101               33
-#&gt; 7             3        11     1.333333         209         110               54
-#&gt; 8             6        16     1.333333         140         104               41
-#&gt; 9             6        11     1.333333         116          88               37
-#&gt; 10            2         5     1.333333         165          64               30
-#&gt;    third_conv_rate fourth_down_convs fourth_downs fourth_conv_rate penalties
-#&gt; 1        0.3544304                 5            9        0.5555556        32
-#&gt; 2        0.3544304                10           15        0.5555556        52
-#&gt; 3        0.3544304                 2            4        0.5555556        52
-#&gt; 4        0.3544304                 1            2        0.5555556        45
-#&gt; 5        0.3544304                 6            8        0.5555556        53
-#&gt; 6        0.3544304                 4            8        0.5555556        44
-#&gt; 7        0.3544304                 6           10        0.5555556        57
-#&gt; 8        0.3544304                 4           11        0.5555556        32
-#&gt; 9        0.3544304                 4            8        0.5555556        35
-#&gt; 10       0.3544304                 4            6        0.5555556        43
-#&gt;    penalty_yds penalties_pg penalty_yds_pg yards_per_penalty kick_returns
-#&gt; 1          292     5.333333       48.66667             9.125           10
-#&gt; 2          514     5.333333       48.66667             9.125           18
-#&gt; 3          552     5.333333       48.66667             9.125           14
-#&gt; 4          432     5.333333       48.66667             9.125           11
-#&gt; 5          441     5.333333       48.66667             9.125           13
-#&gt; 6          381     5.333333       48.66667             9.125           12
-#&gt; 7          527     5.333333       48.66667             9.125           17
-#&gt; 8          281     5.333333       48.66667             9.125           19
-#&gt; 9          334     5.333333       48.66667             9.125           26
-#&gt; 10         403     5.333333       48.66667             9.125           15
-#&gt;    kick_return_yds kick_return_TDs kick_return_avg punt_returns punt_return_yds
-#&gt; 1              230               0              23            8              74
-#&gt; 2              366               0              23           14             107
-#&gt; 3              262               0              23           13              74
-#&gt; 4              213               0              23            6              58
-#&gt; 5              250               0              23            9             134
-#&gt; 6              246               0              23            9              59
-#&gt; 7              401               0              23           10              71
-#&gt; 8              408               0              23           11             241
-#&gt; 9              452               0              23           11             156
-#&gt; 10             392               0              23            9             123
-#&gt;    punt_return_TDs punt_return_avg passes_intercepted passes_intercepted_yds
-#&gt; 1                0            9.25                  4                      0
-#&gt; 2                1            9.25                  4                     39
-#&gt; 3                1            9.25                  6                     22
-#&gt; 4                0            9.25                  7                    128
-#&gt; 5                1            9.25                  8                     59
-#&gt; 6                0            9.25                 12                    285
-#&gt; 7                0            9.25                  7                     56
-#&gt; 8                2            9.25                  3                     21
-#&gt; 9                1            9.25                  8                     45
-#&gt; 10               1            9.25                  4                     55
-#&gt;    passes_intercepted_TDs
-#&gt; 1                       0
-#&gt; 2                       1
-#&gt; 3                       0
-#&gt; 4                       1
-#&gt; 5                       0
-#&gt; 6                       3
-#&gt; 7                       1
-#&gt; 8                       0
-#&gt; 9                       0
-#&gt; 10                      0</div><div class='input'>
+</div><div class='output co'>#&gt;    season           team conference games time_of_poss_total pass_comps
+#&gt; 1    2018     Iowa State     Big 12     6              10683        121
+#&gt; 2    2018 Oklahoma State     Big 12     7              11418        136
+#&gt; 3    2018         Baylor     Big 12     7              13974        179
+#&gt; 4    2018  West Virginia     Big 12     6              10212        138
+#&gt; 5    2018          Texas     Big 12     7              13593        160
+#&gt; 6    2018         Kansas     Big 12     7              12405        133
+#&gt; 7    2018     Texas Tech     Big 12     7              14014        220
+#&gt; 8    2018            TCU     Big 12     7              12200        137
+#&gt; 9    2018   Kansas State     Big 12     7              11392         91
+#&gt; 10   2018       Oklahoma     Big 12     7              11600        125
+#&gt;    pass_atts net_pass_yds pass_TDs interceptions rush_atts rush_yds rush_TDs
+#&gt; 1        179         1420       11             3       200      715        6
+#&gt; 2        232         2038       17             8       277     1415       16
+#&gt; 3        288         2198       13             5       257     1126       14
+#&gt; 4        196         1923       22             8       199      859        6
+#&gt; 5        246         1760       13             3       284     1113       11
+#&gt; 6        224         1311       12             3       240     1082        8
+#&gt; 7        319         2681       17             8       297     1182       22
+#&gt; 8        239         1584       12            10       260     1170        8
+#&gt; 9        170         1153        6             5       291     1341       12
+#&gt; 10       176         2111       26             3       247     1576       19
+#&gt;    total_yds fumbles_lost turnovers first_downs third_downs third_down_convs
+#&gt; 1       2135            5         8         112          79               28
+#&gt; 2       3453            4        12         164          99               40
+#&gt; 3       3324            3         8         185         106               51
+#&gt; 4       2782            3        11         139          69               34
+#&gt; 5       2873            3         6         162         107               46
+#&gt; 6       2393            4         7         120         101               33
+#&gt; 7       3863            3        11         209         110               54
+#&gt; 8       2754            6        16         140         104               41
+#&gt; 9       2494            6        11         116          88               37
+#&gt; 10      3687            2         5         165          64               30
+#&gt;    fourth_down_convs fourth_downs penalties penalty_yds kick_returns
+#&gt; 1                  5            9        32         292           10
+#&gt; 2                 10           15        52         514           18
+#&gt; 3                  2            4        52         552           14
+#&gt; 4                  1            2        45         432           11
+#&gt; 5                  6            8        53         441           13
+#&gt; 6                  4            8        44         381           12
+#&gt; 7                  6           10        57         527           17
+#&gt; 8                  4           11        32         281           19
+#&gt; 9                  4            8        35         334           26
+#&gt; 10                 4            6        43         403           15
+#&gt;    kick_return_yds kick_return_TDs punt_returns punt_return_yds punt_return_TDs
+#&gt; 1              230               0            8              74               0
+#&gt; 2              366               0           14             107               1
+#&gt; 3              262               0           13              74               1
+#&gt; 4              213               0            6              58               0
+#&gt; 5              250               0            9             134               1
+#&gt; 6              246               0            9              59               0
+#&gt; 7              401               0           10              71               0
+#&gt; 8              408               0           11             241               2
+#&gt; 9              452               0           11             156               1
+#&gt; 10             392               0            9             123               1
+#&gt;    passes_intercepted passes_intercepted_yds passes_intercepted_TDs
+#&gt; 1                   4                      0                      0
+#&gt; 2                   4                     39                      1
+#&gt; 3                   6                     22                      0
+#&gt; 4                   7                    128                      1
+#&gt; 5                   8                     59                      0
+#&gt; 6                  12                    285                      3
+#&gt; 7                   7                     56                      1
+#&gt; 8                   3                     21                      0
+#&gt; 9                   8                     45                      0
+#&gt; 10                  4                     55                      0</div><div class='input'>
    <span class='fu'>cfbd_stats_season_team</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"LSU"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   season team conference games time_of_poss_total time_of_poss_pg pass_comps
-#&gt; 1   2019  LSU        SEC    15              27200       0.5037037        426
-#&gt;   pass_atts completion_pct net_pass_yds pass_ypa pass_ypr pass_TDs
-#&gt; 1       567      0.7513228         6024 10.62434 14.14085       61
-#&gt;   interceptions    int_pct rush_atts rush_yds rush_TDs rush_ypc total_yds
-#&gt; 1             7 0.01234568       513     2502       32 4.877193      8526
-#&gt;   fumbles_lost turnovers turnovers_pg first_downs third_downs third_down_convs
-#&gt; 1            5        12          0.8         419         183               90
-#&gt;   third_conv_rate fourth_down_convs fourth_downs fourth_conv_rate penalties
-#&gt; 1       0.4918033                 7           10              0.7        93
-#&gt;   penalty_yds penalties_pg penalty_yds_pg yards_per_penalty kick_returns
-#&gt; 1         936          6.2           62.4          10.06452           23
-#&gt;   kick_return_yds kick_return_TDs kick_return_avg punt_returns punt_return_yds
-#&gt; 1             291               0        12.65217           22             252
-#&gt;   punt_return_TDs punt_return_avg passes_intercepted passes_intercepted_yds
-#&gt; 1               2        11.45455                 17                     87
-#&gt;   passes_intercepted_TDs
-#&gt; 1                      0</div><div class='input'>
+</div><div class='output co'>#&gt;   season team conference games time_of_poss_total pass_comps pass_atts
+#&gt; 1   2019  LSU        SEC    15              27200        426       567
+#&gt;   net_pass_yds pass_TDs interceptions rush_atts rush_yds rush_TDs total_yds
+#&gt; 1         6024       61             7       513     2502       32      8526
+#&gt;   fumbles_lost turnovers first_downs third_downs third_down_convs
+#&gt; 1            5        12         419         183               90
+#&gt;   fourth_down_convs fourth_downs penalties penalty_yds kick_returns
+#&gt; 1                 7           10        93         936           23
+#&gt;   kick_return_yds kick_return_TDs punt_returns punt_return_yds punt_return_TDs
+#&gt; 1             291               0           22             252               2
+#&gt;   passes_intercepted passes_intercepted_yds passes_intercepted_TDs
+#&gt; 1                 17                     87                      0</div><div class='input'>
    <span class='fu'>cfbd_stats_season_team</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   season          team conference games time_of_poss_total time_of_poss_pg
-#&gt; 1   2013 Florida State        ACC    14              24612       0.4883333
-#&gt;   pass_comps pass_atts completion_pct net_pass_yds pass_ypa pass_ypr pass_TDs
-#&gt; 1        288       442      0.6515837         4423 10.00679 15.35764       42
-#&gt;   interceptions    int_pct rush_atts rush_yds rush_TDs rush_ypc total_yds
-#&gt; 1            13 0.02941176       505     2844       42 5.631683      7267
-#&gt;   fumbles_lost turnovers turnovers_pg first_downs third_downs third_down_convs
-#&gt; 1            5        18     1.285714         357         157               82
-#&gt;   third_conv_rate fourth_down_convs fourth_downs fourth_conv_rate penalties
-#&gt; 1        0.522293                 3            4             0.75        79
-#&gt;   penalty_yds penalties_pg penalty_yds_pg yards_per_penalty kick_returns
-#&gt; 1         694     5.642857       49.57143           8.78481           32
-#&gt;   kick_return_yds kick_return_TDs kick_return_avg punt_returns punt_return_yds
-#&gt; 1             873               2        27.28125           37             340
-#&gt;   punt_return_TDs punt_return_avg passes_intercepted passes_intercepted_yds
-#&gt; 1               0        9.189189                 26                    529
-#&gt;   passes_intercepted_TDs
-#&gt; 1                      5</div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt;   season          team conference games time_of_poss_total pass_comps pass_atts
+#&gt; 1   2013 Florida State        ACC    14              24612        288       442
+#&gt;   net_pass_yds pass_TDs interceptions rush_atts rush_yds rush_TDs total_yds
+#&gt; 1         4423       42            13       505     2844       42      7267
+#&gt;   fumbles_lost turnovers first_downs third_downs third_down_convs
+#&gt; 1            5        18         357         157               82
+#&gt;   fourth_down_convs fourth_downs penalties penalty_yds kick_returns
+#&gt; 1                 3            4        79         694           32
+#&gt;   kick_return_yds kick_return_TDs punt_returns punt_return_yds punt_return_TDs
+#&gt; 1             873               2           37             340               0
+#&gt;   passes_intercepted passes_intercepted_yds passes_intercepted_TDs
+#&gt; 1                 26                    529                      5</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

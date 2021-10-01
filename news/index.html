@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -382,6 +382,21 @@
       
     </div>
 
+    <div id="cfbfastr-v151" class="section level1">
+<h1 class="page-header" data-toc-text="1.5.1">
+<a href="#cfbfastr-v151" class="anchor"></a><strong>cfbfastR v1.5.1</strong>
+</h1>
+<div id="minor-release" class="section level5">
+<h5 class="hasAnchor">
+<a href="#minor-release" class="anchor"></a><strong>Minor release</strong>
+</h5>
+<ul>
+<li>Removed calculated columns from <code><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team()</a></code> that were not behaving correctly</li>
+<li>Fixed bug where <code>only_fbs</code> input in <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> was ignored. It is now possible to get the team info for all the colleges in the API instead of only FBS schools.</li>
+<li>Removed default year from <code>cfbd_metrics_ppa_teams</code>. <code>cfbd_metrics_ppa_teams</code> and <code>cfbd_metrics_ppa_players_season</code> now require one of <code>team</code> or <code>year</code> to be specified</li>
+</ul>
+</div>
+</div>
     <div id="cfbfastr-v150" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.0">
 <a href="#cfbfastr-v150" class="anchor"></a><strong>cfbfastR v1.5.0</strong>
@@ -451,9 +466,9 @@
 <h1 class="page-header" data-toc-text="1.2.1">
 <a href="#cfbfastr-v121" class="anchor"></a><strong>cfbfastR v1.2.1</strong>
 </h1>
-<div id="minor-release" class="section level5">
+<div id="minor-release-1" class="section level5">
 <h5 class="hasAnchor">
-<a href="#minor-release" class="anchor"></a><strong>Minor release</strong>
+<a href="#minor-release-1" class="anchor"></a><strong>Minor release</strong>
 </h5>
 <ul>
 <li><p>Added headshot_url to outputs of <a href="https://saiemgilani.github.io/cfbfastR/reference/cfbd_team_rosters.html"><code>cfbd_team_rosters</code></a></p></li>

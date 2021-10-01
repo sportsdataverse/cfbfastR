@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -431,7 +431,7 @@
     <p><a href='https://api.collegefootballdata.com/stats/season/advanced'>https://api.collegefootballdata.com/stats/season/advanced</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbd_stats_season_advanced()</code> - A data frame with 79 variables:</p><dl>
+    <p><code>cfbd_stats_season_advanced()</code> - A data frame with 81 variables:</p><dl>
 <dt><code>season</code>: integer.</dt><dd><p>Season of the statistics.</p></dd>
 <dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
 <dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
@@ -449,6 +449,7 @@
 <dt><code>off_second_lvl_yds_total</code>: integer.</dt><dd><p>Offense second-level yards total.</p></dd>
 <dt><code>off_open_field_yds</code>: integer.</dt><dd><p>Offense open field yards.</p></dd>
 <dt><code>off_open_field_yds_total</code>: integer.</dt><dd><p>Offense open field yards total.</p></dd>
+<dt><code>off_total_opportunities</code>: integer.</dt><dd><p>Offense opportunities.</p></dd>
 <dt><code>off_pts_per_opp</code>: double.</dt><dd><p>Offense points per scoring opportunity.</p></dd>
 <dt><code>off_field_pos_avg_start</code>: double.</dt><dd><p>Offense starting average field position.</p></dd>
 <dt><code>off_field_pos_avg_predicted_points</code>: double.</dt><dd><p>Offense starting average field position predicted points (PP).</p></dd>
@@ -487,6 +488,7 @@
 <dt><code>def_second_lvl_yds_total</code>: integer.</dt><dd><p>Defense second-level yards total.</p></dd>
 <dt><code>def_open_field_yds</code>: integer.</dt><dd><p>Defense open field yards.</p></dd>
 <dt><code>def_open_field_yds_total</code>: integer.</dt><dd><p>Defense open field yards total.</p></dd>
+<dt><code>def_total_opportunities</code>: integer.</dt><dd><p>Defense opportunities.</p></dd>
 <dt><code>def_pts_per_opp</code>: double.</dt><dd><p>Defense points per scoring opportunity.</p></dd>
 <dt><code>def_field_pos_avg_start</code>: double.</dt><dd><p>Defense starting average field position.</p></dd>
 <dt><code>def_field_pos_avg_predicted_points</code>: double.</dt><dd><p>Defense starting average field position predicted points (PP).</p></dd>
@@ -523,13 +525,13 @@
 #&gt;   off_success_rate off_explosiveness off_power_success off_stuff_rate
 #&gt; 1         0.558097          1.243812          0.742268      0.1844864
 #&gt;   off_line_yds off_line_yds_total off_second_lvl_yds off_second_lvl_yds_total
-#&gt; 1     3.242138               1547           2.967136                      632
-#&gt;   off_open_field_yds off_open_field_yds_total off_pts_per_opp
-#&gt; 1           8.903614                      739        4.740157
-#&gt;   off_field_pos_avg_start off_field_pos_avg_predicted_points off_havoc_total
-#&gt; 1                    70.5                              1.412       0.1619396
-#&gt;   off_havoc_front_seven off_havoc_db off_standard_downs_rate
-#&gt; 1            0.09606587   0.06587374               0.7465691
+#&gt; 1     3.242138               1547           1.324948                      632
+#&gt;   off_open_field_yds off_open_field_yds_total off_total_opportunities
+#&gt; 1           1.549266                      739                     127
+#&gt;   off_pts_per_opp off_field_pos_avg_start off_field_pos_avg_predicted_points
+#&gt; 1        4.740157                    70.5                              1.412
+#&gt;   off_havoc_total off_havoc_front_seven off_havoc_db off_standard_downs_rate
+#&gt; 1       0.1619396            0.09606587   0.06587374               0.7465691
 #&gt;   off_standard_downs_ppa off_standard_downs_success_rate
 #&gt; 1              0.3764261                       0.5919118
 #&gt;   off_standard_downs_explosiveness off_passing_downs_rate off_passing_downs_ppa
@@ -549,27 +551,27 @@
 #&gt;   def_power_success def_stuff_rate def_line_yds def_line_yds_total
 #&gt; 1         0.5384615      0.2117117     2.729955               1212
 #&gt;   def_second_lvl_yds def_second_lvl_yds_total def_open_field_yds
-#&gt; 1           2.572289                      427               10.2
-#&gt;   def_open_field_yds_total def_pts_per_opp def_field_pos_avg_start
-#&gt; 1                      612         3.08642                      74
-#&gt;   def_field_pos_avg_predicted_points def_havoc_total def_havoc_front_seven
-#&gt; 1                             -1.064       0.2334322             0.1256182
-#&gt;   def_havoc_db def_standard_downs_rate def_standard_downs_ppa
-#&gt; 1     0.107814               0.6320475             0.08309526
-#&gt;   def_standard_downs_success_rate def_standard_downs_explosiveness
-#&gt; 1                       0.4334898                         1.152798
-#&gt;   def_passing_downs_rate def_passing_downs_ppa def_passing_downs_total_ppa
-#&gt; 1              0.3679525             0.1226301                    84.26781
-#&gt;   def_passing_downs_success_rate def_passing_downs_explosiveness
-#&gt; 1                      0.2553763                        1.823152
-#&gt;   def_rushing_plays_rate def_rushing_plays_ppa def_rushing_plays_total_ppa
-#&gt; 1              0.4391691            0.04297987                    19.08306
-#&gt;   def_rushing_plays_success_rate def_rushing_plays_explosiveness
-#&gt; 1                      0.3828829                       0.9555979
-#&gt;   def_passing_plays_rate def_passing_plays_ppa def_passing_plays_success_rate
-#&gt; 1              0.5489614             0.1518339                      0.3423423
-#&gt;   def_passing_plays_explosiveness
-#&gt; 1                        1.761618</div><div class='input'><span class='co'># }</span>
+#&gt; 1          0.9617117                      427           1.378378
+#&gt;   def_open_field_yds_total def_total_opportunities def_pts_per_opp
+#&gt; 1                      612                      81         3.08642
+#&gt;   def_field_pos_avg_start def_field_pos_avg_predicted_points def_havoc_total
+#&gt; 1                      74                             -1.064       0.2334322
+#&gt;   def_havoc_front_seven def_havoc_db def_standard_downs_rate
+#&gt; 1             0.1256182     0.107814               0.6320475
+#&gt;   def_standard_downs_ppa def_standard_downs_success_rate
+#&gt; 1             0.08309526                       0.4334898
+#&gt;   def_standard_downs_explosiveness def_passing_downs_rate def_passing_downs_ppa
+#&gt; 1                         1.152798              0.3679525             0.1226301
+#&gt;   def_passing_downs_total_ppa def_passing_downs_success_rate
+#&gt; 1                    84.26781                      0.2553763
+#&gt;   def_passing_downs_explosiveness def_rushing_plays_rate def_rushing_plays_ppa
+#&gt; 1                        1.823152              0.4391691            0.04297987
+#&gt;   def_rushing_plays_total_ppa def_rushing_plays_success_rate
+#&gt; 1                    19.08306                      0.3828829
+#&gt;   def_rushing_plays_explosiveness def_passing_plays_rate def_passing_plays_ppa
+#&gt; 1                       0.9555979              0.5489614             0.1518339
+#&gt;   def_passing_plays_success_rate def_passing_plays_explosiveness
+#&gt; 1                      0.3423423                        1.761618</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

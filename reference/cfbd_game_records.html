@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
       </span>
     </div>
 
@@ -418,11 +418,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <p><a href='https://api.collegefootballdata.com/records'>https://api.collegefootballdata.com/records</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>cfbd_game_records()</code> - A data frame with 20 variables:</p><dl>
+    <p><code>cfbd_game_records()</code> - A data frame with 21 variables:</p><dl>
 <dt><code>year</code>: integer.</dt><dd><p>Season of the games.</p></dd>
 <dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
 <dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
 <dt><code>division</code>: character.</dt><dd><p>Division in the conference of the team.</p></dd>
+<dt><code>expected_wins</code>: numeric</dt><dd><p>Expected number of wins based on post-game win probability.</p></dd>
 <dt><code>total_games</code>: integer.</dt><dd><p>Total number of games played.</p></dd>
 <dt><code>total_wins</code>: integer.</dt><dd><p>Total wins.</p></dd>
 <dt><code>total_losses</code>: integer.</dt><dd><p>Total losses.</p></dd>
@@ -446,23 +447,23 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
   <span class='fu'>cfbd_game_records</span><span class='op'>(</span><span class='fl'>2018</span>, team <span class='op'>=</span> <span class='st'>"Notre Dame"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   year       team       conference division total_games total_wins total_losses
-#&gt; 1 2018 Notre Dame FBS Independents                   13         12            1
-#&gt;   total_ties conference_games conference_wins conference_losses conference_ties
-#&gt; 1          0                0               0                 0               0
-#&gt;   home_games home_wins home_losses home_ties away_games away_wins away_losses
-#&gt; 1          6         6           0         0          4         4           0
-#&gt;   away_ties
-#&gt; 1         0</div><div class='input'>
+</div><div class='output co'>#&gt;   year       team       conference division expected_wins total_games
+#&gt; 1 2018 Notre Dame FBS Independents                   10.5          13
+#&gt;   total_wins total_losses total_ties conference_games conference_wins
+#&gt; 1         12            1          0                0               0
+#&gt;   conference_losses conference_ties home_games home_wins home_losses home_ties
+#&gt; 1                 0               0          6         6           0         0
+#&gt;   away_games away_wins away_losses away_ties
+#&gt; 1          4         4           0         0</div><div class='input'>
   <span class='fu'>cfbd_game_records</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   year          team conference division total_games total_wins total_losses
-#&gt; 1 2013 Florida State        ACC Atlantic          14         14            0
-#&gt;   total_ties conference_games conference_wins conference_losses conference_ties
-#&gt; 1          0                9               9                 0               0
-#&gt;   home_games home_wins home_losses home_ties away_games away_wins away_losses
-#&gt; 1          7         7           0         0          5         5           0
-#&gt;   away_ties
-#&gt; 1         0</div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt;   year          team conference division expected_wins total_games total_wins
+#&gt; 1 2013 Florida State        ACC Atlantic          12.3          14         14
+#&gt;   total_losses total_ties conference_games conference_wins conference_losses
+#&gt; 1            0          0                9               9                 0
+#&gt;   conference_ties home_games home_wins home_losses home_ties away_games
+#&gt; 1               0          7         7           0         0          5
+#&gt;   away_wins away_losses away_ties
+#&gt; 1         5           0         0</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
