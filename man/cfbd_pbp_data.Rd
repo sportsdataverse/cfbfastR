@@ -33,8 +33,6 @@ cfbd_pbp_data(
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 
 \item{...}{Additional arguments passed to an underlying function.}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 A data frame with 351 variables:

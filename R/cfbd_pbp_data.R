@@ -11,7 +11,6 @@
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
 #' @param epa_wpa Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @param ... Additional arguments passed to an underlying function.
 #' @return A data frame with 351 variables:
 #' \describe{
