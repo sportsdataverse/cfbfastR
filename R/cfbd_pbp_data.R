@@ -544,9 +544,9 @@ cfbd_pbp_data <- function(year,
     builder <- TRUE
     
     if (game_count > 1) {
-      user_message(glue::glue("Start processing of {game_count} games...","todo"))
+      user_message(glue::glue("Start processing of {game_count} games..."),"todo")
     } else {
-      user_message(glue::glue("Start processing of {game_count} game...","todo"))
+      user_message(glue::glue("Start processing of {game_count} game..."),"todo")
     }
     
     p <- progressr::progressor(along = g_ids)
