@@ -14,8 +14,7 @@ cfbd_stats_season_player(
   conference = NULL,
   start_week = NULL,
   end_week = NULL,
-  category = NULL,
-  verbose = FALSE
+  category = NULL
 )
 }
 \arguments{
@@ -37,8 +36,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 Offense: passing, receiving, rushing\cr
 Defense: defensive, fumbles, interceptions\cr
 Special Teams: punting, puntReturns, kicking, kickReturns}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}} - A data frame with 59 variables:

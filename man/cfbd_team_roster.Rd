@@ -7,14 +7,12 @@
 \url{https://api.collegefootballdata.com/roster}
 }
 \usage{
-cfbd_team_roster(year, team = NULL, verbose = FALSE)
+cfbd_team_roster(year, team = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
 
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 12 variables:

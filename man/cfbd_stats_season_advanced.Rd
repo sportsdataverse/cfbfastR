@@ -12,8 +12,7 @@ cfbd_stats_season_advanced(
   team = NULL,
   excl_garbage_time = FALSE,
   start_week = NULL,
-  end_week = NULL,
-  verbose = FALSE
+  end_week = NULL
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ cfbd_stats_season_advanced(
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 81 variables:

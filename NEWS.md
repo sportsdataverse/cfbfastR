@@ -1,3 +1,7 @@
+# **cfbfastR v1.5.2**
+
+* Remove verbose parameter
+
 # **cfbfastR v1.5.1**
 
 ##### **Minor release**

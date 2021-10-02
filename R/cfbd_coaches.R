@@ -14,24 +14,23 @@
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
 #' @param min_year (*Integer* optional): Minimum Year filter (inclusive), 4 digit format (*YYYY*).
 #' @param max_year (*Integer* optional): Maximum Year filter (inclusive), 4 digit format (*YYYY*)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return 
 #' \describe{
-#'   \item{`first_name`:character.}{First name of coach.}
-#'   \item{`last_name`:character.}{Last name of coach.}
-#'   \item{`hire_date`:character.}{Hire date of coach.}
-#'   \item{`school`:character.}{School of coach.}
-#'   \item{`year`:integer.}{Season of record.}
-#'   \item{`games`:integer.}{Games as coach.}
-#'   \item{`wins`:integer.}{Wins for the season.}
-#'   \item{`losses`:integer.}{ Losses for the season.}
-#'   \item{`ties`:integer.}{Ties for the season.}
-#'   \item{`preseason_rank`:integer.}{Preseason rank for the school of coach.}
-#'   \item{`postseason_rank`:integer.}{Postseason rank for the school of coach.}
-#'   \item{`srs`:character.}{Simple Rating System adjustment for team.}
-#'   \item{`sp_overall`:character.}{Bill Connelly's SP+ overall for team.}
-#'   \item{`sp_offense`:character.}{Bill Connelly's SP+ offense for team.}
-#'   \item{`sp_defense`:character.}{Bill Connelly's SP+ defense for team.}
+#'   \item{first_name:character.}{First name of coach.}
+#'   \item{last_name:character.}{Last name of coach.}
+#'   \item{hire_date:character.}{Hire date of coach.}
+#'   \item{school:character.}{School of coach.}
+#'   \item{year:integer.}{Season of record.}
+#'   \item{games:integer.}{Games as coach.}
+#'   \item{wins:integer.}{Wins for the season.}
+#'   \item{losses:integer.}{ Losses for the season.}
+#'   \item{ties:integer.}{Ties for the season.}
+#'   \item{preseason_rank:integer.}{Preseason rank for the school of coach.}
+#'   \item{postseason_rank:integer.}{Postseason rank for the school of coach.}
+#'   \item{srs:character.}{Simple Rating System adjustment for team.}
+#'   \item{sp_overall:character.}{Bill Connelly's SP+ overall for team.}
+#'   \item{sp_offense:character.}{Bill Connelly's SP+ offense for team.}
+#'   \item{sp_defense:character.}{Bill Connelly's SP+ defense for team.}
 #' }
 #' @source <https://api.collegefootballdata.com/coaches>
 #' @keywords Coaches
@@ -53,8 +52,7 @@ cfbd_coaches <- function(first = NULL,
                          team = NULL,
                          year = NULL,
                          min_year = NULL,
-                         max_year = NULL,
-                         verbose=FALSE) {
+                         max_year = NULL) {
   if (!is.null(first)) {
     # Encode first parameter for URL if not NULL
     first <- utils::URLencode(first, reserved = TRUE)
@@ -121,10 +119,6 @@ cfbd_coaches <- function(first = NULL,
         tidyr::unnest(.data$seasons) %>%
         as.data.frame() %>%
         dplyr::arrange(.data$year)
-      
-      if (verbose) {
-        message(glue::glue("{Sys.time()}: Scraping coaches data..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))

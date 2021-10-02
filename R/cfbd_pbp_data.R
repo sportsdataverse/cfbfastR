@@ -11,7 +11,6 @@
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
 #' @param epa_wpa Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @param ... Additional arguments passed to an underlying function.
 #' @return A data frame with 351 variables:
 #' \describe{
@@ -387,7 +386,6 @@ cfbd_pbp_data <- function(year,
                           team = NULL,
                           play_type = NULL,
                           epa_wpa = FALSE,
-                          verbose = FALSE,
                           ...) {
   options(stringsAsFactors = FALSE)
   options(scipen = 999)
@@ -459,10 +457,8 @@ cfbd_pbp_data <- function(year,
   raw_play_df <- do.call(data.frame, raw_play_df)
 
   if (nrow(raw_play_df) == 0) {
-    if (verbose) {
       warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
               for this one week or team.")
-    }
     return(NULL)
   }
   raw_play_df$spread <- NA_real_
@@ -485,9 +481,6 @@ cfbd_pbp_data <- function(year,
           dplyr::left_join(game_spread, by = c("game_id"))
       },
       error = function(e) {
-        if (verbose) {
-          message(glue::glue("{Sys.time()} - game_id : Invalid arguments or no betting lines data available!"))
-        }
       },
       warning = function(w) {
       },
@@ -540,11 +533,9 @@ cfbd_pbp_data <- function(year,
 
   if (epa_wpa) {
     if (year <= 2005) {
-      if (verbose) {
         warning(
           "Data Quality prior to 2005 is not as consistent. This can affect the EPA/WPA values, proceed with caution."
         )
-      }
     }
 
     #---- Purrr Map Function -----
@@ -553,9 +544,9 @@ cfbd_pbp_data <- function(year,
     builder <- TRUE
     
     if (game_count > 1) {
-      user_message("Start processing of {game_count} games...","todo")
+      user_message(glue::glue("Start processing of {game_count} games...","todo"))
     } else {
-      user_message("Start processing of {game_count} game...","todo")
+      user_message(glue::glue("Start processing of {game_count} game...","todo"))
     }
     
     p <- progressr::progressor(along = g_ids)

@@ -31,8 +31,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{defense_conference}{(\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_drives]{cfbd_drives()}} - A data frame with 23 variables as follows:

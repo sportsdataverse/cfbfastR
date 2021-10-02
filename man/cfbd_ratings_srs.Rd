@@ -7,7 +7,7 @@
 \url{https://api.collegefootballdata.com/ratings/srs}
 }
 \usage{
-cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL, verbose = FALSE)
+cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
@@ -17,8 +17,6 @@ cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL, verbose = FALSE)
 \item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}} - A data frame with 6 variables:

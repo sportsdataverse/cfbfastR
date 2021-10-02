@@ -49,7 +49,6 @@ NULL
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Season type - regular or postseason
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
 #' \describe{
@@ -82,8 +81,7 @@ NULL
 #' cfbd_rankings(year = 2013, season_type = "postseason")
 #' }
 #'
-cfbd_rankings <- function(year, week = NULL, season_type = "regular",
-                          verbose = FALSE) {
+cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -136,13 +134,9 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
           first_place_votes = .data$firstPlaceVotes
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping rankings data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
     },
     warning = function(w) {
     },
@@ -159,7 +153,6 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #'
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
 #' \describe{
@@ -211,8 +204,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular",
 #' cfbd_ratings_sp(year = 2019, team = "Texas")
 #' }
 #'
-cfbd_ratings_sp <- function(year = NULL, team = NULL,
-                            verbose = FALSE) {
+cfbd_ratings_sp <- function(year = NULL, team = NULL) {
   
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
@@ -279,13 +271,9 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
           special_teams_rating = .data$specialTeams.rating
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping S&P+ ratings data..."))
-      }
     },
-    error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
+    error = function(e){
+      message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
     },
     warning = function(w) {
     },
@@ -301,7 +289,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_ratings_sp_conference()] - A data frame with 25 variables:
 #' \describe{
@@ -350,8 +337,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL,
 #' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 #' }
 #'
-cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
-                                       verbose = FALSE) {
+cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
@@ -414,13 +400,9 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
           special_teams_rating = .data$specialTeams.rating
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping conference-level S&P+ ratings data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
     },
     warning = function(w) {
     },
@@ -441,7 +423,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #' @param conference (*String* optional): Conference abbreviation - SRS information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_ratings_srs()] - A data frame with 6 variables:
 #' \describe{
@@ -467,8 +448,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #' cfbd_ratings_srs(year = 2018, conference = "SEC")
 #' }
 #'
-cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL,
-                             verbose = FALSE) {
+cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
@@ -517,17 +497,13 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
-        mutate(
+        dplyr::mutate(
           rating = as.numeric(.data$rating),
           ranking = as.integer(.data$ranking)
         )
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping simple rating system (SRS) data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
     },
     warning = function(w) {
     },

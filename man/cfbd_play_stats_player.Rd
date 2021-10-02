@@ -14,8 +14,7 @@ cfbd_play_stats_player(
   game_id = NULL,
   athlete_id = NULL,
   stat_type_id = NULL,
-  season_type = "regular",
-  verbose = FALSE
+  season_type = "regular"
 )
 }
 \arguments{
@@ -35,8 +34,6 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} function}
 
 \item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, or both}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}} - A data frame with 54 variables:

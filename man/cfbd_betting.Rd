@@ -18,8 +18,7 @@ cfbd_betting_lines(
   home_team = NULL,
   away_team = NULL,
   conference = NULL,
-  line_provider = NULL,
-  verbose = FALSE
+  line_provider = NULL
 )
 }
 \arguments{
@@ -43,8 +42,6 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 Betting information for games with the following columns:

@@ -7,14 +7,12 @@
 \url{https://api.collegefootballdata.com/ppa/predicted}
 }
 \usage{
-cfbd_metrics_ppa_predicted(down, distance, verbose = FALSE)
+cfbd_metrics_ppa_predicted(down, distance)
 }
 \arguments{
 \item{down}{(\emph{Integer} required): Down filter}
 
 \item{distance}{(\emph{Integer} required): Distance filter}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:

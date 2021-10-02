@@ -7,15 +7,13 @@
 \url{https://api.collegefootballdata.com/game/box/advanced}
 }
 \usage{
-cfbd_game_box_advanced(game_id, long = FALSE, verbose = FALSE)
+cfbd_game_box_advanced(game_id, long = FALSE)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{long}{(\emph{Logical} default \code{FALSE}): Return the data in a long format.}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_game_box_advanced]{cfbd_game_box_advanced()}} - A data frame with 2 rows and 69 variables:

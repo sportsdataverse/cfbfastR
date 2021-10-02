@@ -36,7 +36,6 @@ NULL
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).\cr
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_player_info()] - A data frame with 12 variables:
 #' \describe{
 #'   \item{`athlete_id`:character.}{Unique player identifier `athlete_id`.}
@@ -75,8 +74,7 @@ NULL
 cfbd_player_info <- function(search_term,
                              position = NULL,
                              team = NULL,
-                             year = NULL,
-                             verbose = FALSE) {
+                             year = NULL) {
 
   # Encode search_term parameter for URL
   search_term <- utils::URLencode(search_term, reserved = TRUE)
@@ -141,13 +139,9 @@ cfbd_player_info <- function(search_term,
           home_town = .data$hometown
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping player info data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
     },
     warning = function(w) {
     },
@@ -166,7 +160,6 @@ cfbd_player_info <- function(search_term,
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_player_returning()] - A data frame with 15 variables:
 #' \describe{
 #'   \item{`season`:integer.}{Returning player season.}
@@ -201,8 +194,7 @@ cfbd_player_info <- function(search_term,
 #'
 cfbd_player_returning <- function(year = 2019,
                                   team = NULL,
-                                  conference = NULL,
-                                  verbose = FALSE) {
+                                  conference = NULL) {
 
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
@@ -265,13 +257,9 @@ cfbd_player_returning <- function(year = 2019,
           rushing_usage = .data$rushingUsage
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping returning player data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
     },
     warning = function(w) {
     },
@@ -296,7 +284,6 @@ cfbd_player_returning <- function(year = 2019,
 #' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
 #' Can be found using the [cfbd_player_info()] function.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_player_usage()] - A data frame with 14 variables:
 #' \describe{
 #'   \item{`season`: integer.}{Player usage season.}
@@ -334,8 +321,7 @@ cfbd_player_usage <- function(year = 2019,
                               conference = NULL,
                               position = NULL,
                               athlete_id = NULL,
-                              excl_garbage_time = FALSE,
-                              verbose = FALSE) {
+                              excl_garbage_time = FALSE) {
   
   # Position Group vector to check input arguments against
   pos_groups <- c(
@@ -420,13 +406,9 @@ cfbd_player_usage <- function(year = 2019,
           usg_passing_downs = .data$usage.passingDowns
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping player usage data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
     },
     warning = function(w) {
     },

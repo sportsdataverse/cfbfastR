@@ -7,13 +7,7 @@
 \url{https://api.collegefootballdata.com/player/search}
 }
 \usage{
-cfbd_player_info(
-  search_term,
-  position = NULL,
-  team = NULL,
-  year = NULL,
-  verbose = FALSE
-)
+cfbd_player_info(search_term, position = NULL, team = NULL, year = NULL)
 }
 \arguments{
 \item{search_term}{(\emph{String} required): Search term for the player you are trying to look up}
@@ -30,8 +24,6 @@ Position Group  - options include:\cr
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).\cr
 If left NULL, API default will only provide results for most recent year of final rosters: 2020}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_player_info]{cfbd_player_info()}} - A data frame with 12 variables:

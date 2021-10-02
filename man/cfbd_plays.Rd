@@ -19,8 +19,7 @@ cfbd_plays(
   conference = NULL,
   offense_conference = NULL,
   defense_conference = NULL,
-  play_type = NULL,
-  verbose = FALSE
+  play_type = NULL
 )
 }
 \arguments{
@@ -46,8 +45,6 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
 \item{play_type}{Select play type (example: see the \link{cfbd_play_type_df})}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_plays]{cfbd_plays()}} - A data frame with 29 columns:

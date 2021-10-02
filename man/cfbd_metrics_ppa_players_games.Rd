@@ -14,8 +14,7 @@ cfbd_metrics_ppa_players_games(
   position = NULL,
   athlete_id = NULL,
   threshold = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
+  excl_garbage_time = FALSE
 )
 }
 \arguments{
@@ -39,8 +38,6 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:

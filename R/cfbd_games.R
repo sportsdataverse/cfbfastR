@@ -79,7 +79,6 @@ NULL
 #' @param quarter_scores (*Logical* default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
-#' @param verbose (*Logical*, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_info()] - A data frame with 22 variables:
 #' \describe{
@@ -136,8 +135,7 @@ cfbd_game_info <- function(year,
                            away_team = NULL,
                            conference = NULL,
                            game_id = NULL,
-                           quarter_scores = FALSE,
-                           verbose = FALSE) {
+                           quarter_scores = FALSE) {
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -232,9 +230,6 @@ cfbd_game_info <- function(year,
         df <- df %>%
           dplyr::rename(game_id = .data$id) %>%
           as.data.frame()
-      }
-      if(verbose){
-        message(glue::glue("{Sys.time()}: Scraping game info data..."))
       }
     },
     error = function(e) {
@@ -374,7 +369,6 @@ cfbd_game_weather <- function(year,
 #' @title  
 #' **Get calendar of weeks by season.**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_calendar()] - A data frame with 5 variables:
 #' \describe{
 #'   \item{`season`: character.}{Calendar season.}
@@ -397,8 +391,7 @@ cfbd_game_weather <- function(year,
 #'   cfbd_calendar(2019)
 #' }
 
-cfbd_calendar <- function(year,
-                          verbose = FALSE) {
+cfbd_calendar <- function(year) {
 
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
@@ -434,9 +427,6 @@ cfbd_calendar <- function(year,
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         as.data.frame()
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping calendar..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available!"))
@@ -459,7 +449,6 @@ cfbd_calendar <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param media_type (*String* optional): Media type filter: tv, radio, web, ppv, or mobile
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_media()] - A data frame with 13 variables:
 #' \describe{
@@ -497,8 +486,7 @@ cfbd_game_media <- function(year,
                             season_type = "both",
                             team = NULL,
                             conference = NULL,
-                            media_type = NULL,
-                            verbose = FALSE) {
+                            media_type = NULL) {
 
   
   # Check if year is numeric
@@ -577,10 +565,6 @@ cfbd_game_media <- function(year,
       df <- df %>%
         dplyr::select(cols, tidyr::everything()) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping game media data..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
@@ -599,7 +583,6 @@ cfbd_game_media <- function(year,
 #' @param game_id (*Integer* required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param long (*Logical* default `FALSE`): Return the data in a long format.
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_game_box_advanced()] - A data frame with 2 rows and 69 variables:
 #' \describe{
 #'   \item{`team`: character.}{Team name.}
@@ -691,8 +674,7 @@ cfbd_game_media <- function(year,
 #' }
 #' 
 
-cfbd_game_box_advanced <- function(game_id, long = FALSE,
-                                   verbose = FALSE) {
+cfbd_game_box_advanced <- function(game_id, long = FALSE) {
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort("Enter valid game_id (numeric value)")
@@ -787,10 +769,6 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
             rushing_second_lvl_yds_avg = .data$rushing_second_lvl_yd_avg,
             rushing_open_field_yds_avg = .data$rushing_open_field_yd_avg)
       }
-
-      if(verbose){
-        message(glue::glue("{Sys.time()}: Scraping game advanced box score data for game_id '{game_id}'..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: game_id '{game_id}' invalid or no game advanced box score data available!"))
@@ -818,7 +796,6 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
 #' \describe{
@@ -880,8 +857,7 @@ cfbd_game_player_stats <- function(year,
                                    team = NULL,
                                    conference = NULL,
                                    category = NULL,
-                                   game_id = NULL,
-                                   verbose = FALSE) {
+                                   game_id = NULL) {
 
   stat_categories <- c(
     "passing", "receiving", "rushing", "defensive", "fumbles",
@@ -1003,10 +979,6 @@ cfbd_game_player_stats <- function(year,
 
       df <- df %>%
         dplyr::select(cols, dplyr::everything())
-
-      if(verbose){
-        message(glue::glue("{Sys.time()}: Scraping game player stats data..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available!"))
@@ -1034,7 +1006,6 @@ cfbd_game_player_stats <- function(year,
 #' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_game_records()] - A data frame with 21 variables:
 #' \describe{
 #'   \item{`year`: integer.}{Season of the games.}
@@ -1077,8 +1048,7 @@ cfbd_game_player_stats <- function(year,
 
 cfbd_game_records <- function(year, 
                               team = NULL, 
-                              conference = NULL,
-                              verbose = FALSE) {
+                              conference = NULL) {
 
 
   ## check if year is numeric
@@ -1147,9 +1117,6 @@ cfbd_game_records <- function(year,
           away_losses = .data$awayGames.losses,
           away_ties = .data$awayGames.ties
         )
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping game records data..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
@@ -1176,7 +1143,6 @@ cfbd_game_records <- function(year,
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game\cr
 #' Can be found using the [cfbd_game_info()] function
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
 #' \describe{
@@ -1284,8 +1250,7 @@ cfbd_game_team_stats <- function(year,
                                  team = NULL,
                                  conference = NULL,
                                  game_id = NULL,
-                                 rows_per_team = 1,
-                                 verbose = FALSE) {
+                                 rows_per_team = 1) {
 
   # Check if year is numeric
   if(!is.numeric(year) && !nchar(year) == 4){
@@ -1370,10 +1335,8 @@ cfbd_game_team_stats <- function(year,
     dplyr::as_tibble()
 
   if (nrow(df) == 0) {
-    if(verbose){  
       warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
               for this one week or team.")
-    }
     return(NULL)
   }
   df <- df %>%

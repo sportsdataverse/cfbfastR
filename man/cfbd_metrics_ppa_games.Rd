@@ -9,8 +9,7 @@ cfbd_metrics_ppa_games(
   week = NULL,
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
+  excl_garbage_time = FALSE
 )
 }
 \arguments{
@@ -25,8 +24,6 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 18 variables:

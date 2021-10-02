@@ -16,8 +16,7 @@ cfbd_game_info(
   away_team = NULL,
   conference = NULL,
   game_id = NULL,
-  quarter_scores = FALSE,
-  verbose = FALSE
+  quarter_scores = FALSE
 )
 }
 \arguments{
@@ -42,8 +41,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
 list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.\cr
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
-
-\item{verbose}{(\emph{Logical}, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_game_info]{cfbd_game_info()}} - A data frame with 22 variables:

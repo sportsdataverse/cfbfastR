@@ -13,8 +13,7 @@ cfbd_stats_game_advanced(
   team = NULL,
   opponent = NULL,
   excl_garbage_time = FALSE,
-  season_type = "both",
-  verbose = FALSE
+  season_type = "both"
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ cfbd_stats_game_advanced(
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 
 \item{season_type}{(\emph{String} default both): Select Season Type: regular, postseason, or both.}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}} - A data frame with 60 variables:

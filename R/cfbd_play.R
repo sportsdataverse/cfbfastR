@@ -70,7 +70,6 @@ NULL
 #' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,\cr
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_plays()] - A data frame with 29 columns:
 #' \describe{
 #'   \item{`play_id`: character.}{Referencing play id.}
@@ -148,8 +147,7 @@ cfbd_plays <- function(year = 2020,
                        conference = NULL,
                        offense_conference = NULL,
                        defense_conference = NULL,
-                       play_type = NULL,
-                       verbose = FALSE) {
+                       play_type = NULL) {
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -229,10 +227,6 @@ cfbd_plays <- function(year = 2020,
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(play_id = .data$id) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping plays data..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
@@ -258,7 +252,6 @@ cfbd_plays <- function(year = 2020,
 #' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
 #' \describe{
 #'   \item{`play_id`: character.}{Referencing play id.}
@@ -336,8 +329,7 @@ cfbd_play_stats_player <- function(year = NULL,
                                    game_id = NULL,
                                    athlete_id = NULL,
                                    stat_type_id = NULL,
-                                   season_type = "regular",
-                                   verbose = FALSE) {
+                                   season_type = "regular") {
   
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
@@ -564,12 +556,9 @@ cfbd_play_stats_player <- function(year = NULL,
         dplyr::ungroup()
 
       clean_df <- as.data.frame(clean_df)
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping play-level player stats data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
     },
     warning = function(w) {
     },

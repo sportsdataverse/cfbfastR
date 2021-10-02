@@ -7,13 +7,7 @@
 \url{https://api.collegefootballdata.com/teams/matchup}
 }
 \usage{
-cfbd_team_matchup_records(
-  team1,
-  team2,
-  min_year = NULL,
-  max_year = NULL,
-  verbose = FALSE
-)
+cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 }
 \arguments{
 \item{team1}{(\emph{String} required): D-I Team 1}
@@ -23,8 +17,6 @@ cfbd_team_matchup_records(
 \item{min_year}{(\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})}
 
 \item{max_year}{(\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}} - A data frame with 7 variables:

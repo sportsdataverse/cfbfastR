@@ -12,8 +12,7 @@ cfbd_recruiting_player(
   team = NULL,
   recruit_type = "HighSchool",
   state = NULL,
-  position = NULL,
-  verbose = FALSE
+  position = NULL
 )
 }
 \arguments{
@@ -32,8 +31,6 @@ or 'PrepSchool'  - For position group information}
 \item Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
 \item Special Teams: 'K', 'P'
 }}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 14 variables:

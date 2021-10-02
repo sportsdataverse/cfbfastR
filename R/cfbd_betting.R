@@ -29,7 +29,6 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return Betting information for games with the following columns:
 #' \describe{
 #'   \item{`game_id`:integer.}{Unique game identifier - `game_id`.}
@@ -72,8 +71,7 @@ cfbd_betting_lines <- function(game_id = NULL,
                                home_team = NULL,
                                away_team = NULL,
                                conference = NULL,
-                               line_provider=NULL,
-                               verbose = FALSE) {
+                               line_provider=NULL) {
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort( "Enter valid game_id (numeric value)")
@@ -179,9 +177,7 @@ cfbd_betting_lines <- function(game_id = NULL,
       }
     },
     error = function(e) {
-      if (verbose) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
-      }
+      message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
     },
     warning = function(w) {
     },

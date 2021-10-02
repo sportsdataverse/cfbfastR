@@ -69,7 +69,6 @@ NULL
 #'  * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
 #'  * Special Teams: 'K', 'P'
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_recruiting_player()] - A data frame with 14 variables:
 #' \describe{
@@ -115,8 +114,7 @@ cfbd_recruiting_player <- function(year = NULL,
                                    team = NULL,
                                    recruit_type = "HighSchool",
                                    state = NULL,
-                                   position = NULL,
-                                   verbose = FALSE) {
+                                   position = NULL) {
   
   # Position Group vector to check arguments against
   pos_groups <- c(
@@ -181,13 +179,9 @@ cfbd_recruiting_player <- function(year = NULL,
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>% 
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping player recruiting data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
     },
     warning = function(w) {
     },
@@ -205,7 +199,6 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_recruiting_position()] - A data frame with 7 variables:
 #' \describe{
@@ -236,8 +229,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #' }
 #'
 cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
-                                     team = NULL, conference = NULL,
-                                     verbose = FALSE) {
+                                     team = NULL, conference = NULL) {
   if(!is.null(start_year)&& !is.numeric(start_year) && nchar(start_year) != 4){
     cli::cli_abort("Enter valid start_year as a number (YYYY)")
   }
@@ -299,13 +291,9 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
           avg_stars = .data$averageStars
         ) %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping position group recruiting data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
     },
     warning = function(w) {
     },
@@ -319,7 +307,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' **Get college football recruiting team rankings information.**
 #' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_recruiting_team()] - A data frame with 4 variables:
 #' \describe{
@@ -348,8 +335,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' }
 #'
 cfbd_recruiting_team <- function(year = NULL,
-                                 team = NULL,
-                                 verbose = FALSE) {
+                                 team = NULL) {
   
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
@@ -393,13 +379,9 @@ cfbd_recruiting_team <- function(year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping team recruiting data..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
     },
     warning = function(w) {
     },

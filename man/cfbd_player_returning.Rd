@@ -7,12 +7,7 @@
 \url{https://api.collegefootballdata.com/player/returning}
 }
 \usage{
-cfbd_player_returning(
-  year = 2019,
-  team = NULL,
-  conference = NULL,
-  verbose = FALSE
-)
+cfbd_player_returning(year = 2019, team = NULL, conference = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).}
@@ -22,8 +17,6 @@ cfbd_player_returning(
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_player_returning]{cfbd_player_returning()}} - A data frame with 15 variables:

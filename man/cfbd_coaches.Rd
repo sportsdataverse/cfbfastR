@@ -14,8 +14,7 @@ cfbd_coaches(
   team = NULL,
   year = NULL,
   min_year = NULL,
-  max_year = NULL,
-  verbose = FALSE
+  max_year = NULL
 )
 }
 \arguments{
@@ -30,26 +29,24 @@ cfbd_coaches(
 \item{min_year}{(\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).}
 
 \item{max_year}{(\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY})}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \describe{
-\item{\code{first_name}:character.}{First name of coach.}
-\item{\code{last_name}:character.}{Last name of coach.}
-\item{\code{hire_date}:character.}{Hire date of coach.}
-\item{\code{school}:character.}{School of coach.}
-\item{\code{year}:integer.}{Season of record.}
-\item{\code{games}:integer.}{Games as coach.}
-\item{\code{wins}:integer.}{Wins for the season.}
-\item{\code{losses}:integer.}{ Losses for the season.}
-\item{\code{ties}:integer.}{Ties for the season.}
-\item{\code{preseason_rank}:integer.}{Preseason rank for the school of coach.}
-\item{\code{postseason_rank}:integer.}{Postseason rank for the school of coach.}
-\item{\code{srs}:character.}{Simple Rating System adjustment for team.}
-\item{\code{sp_overall}:character.}{Bill Connelly's SP+ overall for team.}
-\item{\code{sp_offense}:character.}{Bill Connelly's SP+ offense for team.}
-\item{\code{sp_defense}:character.}{Bill Connelly's SP+ defense for team.}
+\item{first_name:character.}{First name of coach.}
+\item{last_name:character.}{Last name of coach.}
+\item{hire_date:character.}{Hire date of coach.}
+\item{school:character.}{School of coach.}
+\item{year:integer.}{Season of record.}
+\item{games:integer.}{Games as coach.}
+\item{wins:integer.}{Wins for the season.}
+\item{losses:integer.}{ Losses for the season.}
+\item{ties:integer.}{Ties for the season.}
+\item{preseason_rank:integer.}{Preseason rank for the school of coach.}
+\item{postseason_rank:integer.}{Postseason rank for the school of coach.}
+\item{srs:character.}{Simple Rating System adjustment for team.}
+\item{sp_overall:character.}{Bill Connelly's SP+ overall for team.}
+\item{sp_offense:character.}{Bill Connelly's SP+ offense for team.}
+\item{sp_defense:character.}{Bill Connelly's SP+ defense for team.}
 }
 }
 \description{
