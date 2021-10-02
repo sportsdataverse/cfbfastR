@@ -28,3 +28,4 @@
 ^\.github$
 ^man/figures
 ^README\.Rmd$
+^md
