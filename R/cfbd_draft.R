@@ -93,10 +93,6 @@ cfbd_draft_teams <- function() {
           nfl_display_name = .data$display_name,
           nfl_logo = .data$logo
         )
-     
-     
-      message(glue::glue("{Sys.time()}: Scraping NFL teams data..."))
-      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available!"))
@@ -161,10 +157,6 @@ cfbd_draft_positions <- function() {
           position_name = .data$name,
           position_abbreviation = .data$abbreviation
         )
-      
-      
-      message(glue::glue("{Sys.time()}: Scraping NFL positions data..."))
-      
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL positions data available!"))

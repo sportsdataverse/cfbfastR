@@ -13,8 +13,7 @@ cfbd_player_usage(
   conference = NULL,
   position = NULL,
   athlete_id = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
+  excl_garbage_time = FALSE
 )
 }
 \arguments{
@@ -38,8 +37,6 @@ Position Group  - options include:\cr
 Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_player_usage]{cfbd_player_usage()}} - A data frame with 14 variables:

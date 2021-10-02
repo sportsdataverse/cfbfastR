@@ -13,8 +13,7 @@ cfbd_game_media(
   season_type = "both",
   team = NULL,
   conference = NULL,
-  media_type = NULL,
-  verbose = FALSE
+  media_type = NULL
 )
 }
 \arguments{
@@ -31,8 +30,6 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_game_media]{cfbd_game_media()}} - A data frame with 13 variables:

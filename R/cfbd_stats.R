@@ -95,8 +95,6 @@ cfbd_stats_categories <- function() {
         jsonlite::fromJSON()
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
         dplyr::rename(category = .data$V1)
-
-      # message(glue::glue("{Sys.time()}: Scraping stats categories data..."))
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
@@ -117,7 +115,6 @@ cfbd_stats_categories <- function() {
 #' @param opponent (*String* optional): Opponent D-I Team
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param season_type (*String* default both): Select Season Type: regular, postseason, or both.
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @examples
 #' \donttest{
@@ -204,8 +201,7 @@ cfbd_stats_game_advanced <- function(year,
                                      team = NULL,
                                      opponent = NULL,
                                      excl_garbage_time = FALSE,
-                                     season_type = "both",
-                                     verbose = FALSE) {
+                                     season_type = "both") {
 
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -303,13 +299,9 @@ cfbd_stats_game_advanced <- function(year,
 
       df <- df %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping game advanced stats..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
     },
     warning = function(w) {
     },
@@ -326,7 +318,6 @@ cfbd_stats_game_advanced <- function(year,
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @examples
 #' \donttest{
@@ -429,8 +420,7 @@ cfbd_stats_season_advanced <- function(year,
                                        team = NULL,
                                        excl_garbage_time = FALSE,
                                        start_week = NULL,
-                                       end_week = NULL,
-                                       verbose = FALSE) {
+                                       end_week = NULL) {
 
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -521,13 +511,9 @@ cfbd_stats_season_advanced <- function(year,
 
       df <- df %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping season advanced stats..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
     },
     warning = function(w) {
     },
@@ -552,7 +538,6 @@ cfbd_stats_season_advanced <- function(year,
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' 
 #' @examples
 #' \donttest{
@@ -642,8 +627,7 @@ cfbd_stats_season_player <- function(year,
                                      conference = NULL,
                                      start_week = NULL,
                                      end_week = NULL,
-                                     category = NULL,
-                                     verbose = FALSE) {
+                                     category = NULL) {
   stat_categories <- c(
     "passing", "receiving", "rushing", "defensive", "fumbles",
     "interceptions", "punting", "puntReturns", "kicking", "kickReturns"
@@ -793,13 +777,9 @@ cfbd_stats_season_player <- function(year,
           dplyr::ungroup() %>%
           dplyr::mutate_all(function(x) replace(x, is.nan(x), NA))
       }
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
     },
     warning = function(w) {
     },

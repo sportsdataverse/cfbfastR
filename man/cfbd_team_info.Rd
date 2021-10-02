@@ -7,12 +7,7 @@
 \url{https://api.collegefootballdata.com/teams}
 }
 \usage{
-cfbd_team_info(
-  conference = NULL,
-  only_fbs = TRUE,
-  year = NULL,
-  verbose = FALSE
-)
+cfbd_team_info(conference = NULL, only_fbs = TRUE, year = NULL)
 }
 \arguments{
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
@@ -23,8 +18,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 If year is left blank while only_fbs is TRUE, then will return values for most current year}
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 12 variables:

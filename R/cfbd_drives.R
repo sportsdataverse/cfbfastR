@@ -30,7 +30,6 @@
 #' @param defense_conference (*String* optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_drives()] - A data frame with 23 variables as follows:
 #' \describe{
 #'   \item{`offense`:character.}{Drive offense.}
@@ -82,8 +81,7 @@ cfbd_drives <- function(year,
                         defense_team = NULL,
                         conference = NULL,
                         offense_conference = NULL,
-                        defense_conference = NULL,
-                        verbose = FALSE) {
+                        defense_conference = NULL) {
 
   # Check if year is numeric
   if(!is.numeric(year) && !nchar(year) == 4){

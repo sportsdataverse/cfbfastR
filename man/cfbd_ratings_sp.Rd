@@ -7,14 +7,12 @@
 \url{https://api.collegefootballdata.com/ratings/sp}
 }
 \usage{
-cfbd_ratings_sp(year = NULL, team = NULL, verbose = FALSE)
+cfbd_ratings_sp(year = NULL, team = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
 
 \item{team}{(\emph{String} optional): D-I Team}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:

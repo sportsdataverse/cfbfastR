@@ -7,13 +7,11 @@
 \url{https://api.collegefootballdata.com/metrics/wp}
 }
 \usage{
-cfbd_metrics_wp(game_id, verbose = FALSE)
+cfbd_metrics_wp(game_id)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}} - A data frame with 16 variables:

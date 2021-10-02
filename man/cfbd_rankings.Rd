@@ -7,7 +7,7 @@
 \url{https://api.collegefootballdata.com/rankings}
 }
 \usage{
-cfbd_rankings(year, week = NULL, season_type = "regular", verbose = FALSE)
+cfbd_rankings(year, week = NULL, season_type = "regular")
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
@@ -15,8 +15,6 @@ cfbd_rankings(year, week = NULL, season_type = "regular", verbose = FALSE)
 \item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
 \item{season_type}{(\emph{String} default regular): Season type - regular or postseason}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:

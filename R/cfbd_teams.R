@@ -65,7 +65,6 @@ NULL
 #' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.\cr
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_team_info()] - A data frame with 12 variables:
 #' \describe{
 #'   \item{`team_id`: integer.}{Referencing team id.}
@@ -111,8 +110,7 @@ NULL
 #'
 #' cfbd_team_info(year = 2019)
 #' }
-cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
-                           verbose = FALSE) {
+cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # Encode conference parameter for URL, if not NULL
@@ -236,7 +234,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 #' @param team2 (*String* required): D-I Team 2
 #' @param min_year (*Integer* optional): Minimum of year range, 4 digit format (*YYYY*)
 #' @param max_year (*Integer* optional): Maximum of year range, 4 digit format (*YYYY*)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_team_matchup_records()] - A data frame with 7 variables:
 #' \describe{
@@ -266,8 +263,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL,
 #' cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 #' }
 #'
-cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL,
-                                      verbose = FALSE) {
+cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
   if(!is.null(min_year)&& !is.numeric(min_year) && nchar(min_year) != 4){
     cli::cli_abort("Enter valid min_year as a number (YYYY)")
@@ -340,13 +336,9 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
           .data$ties
         )
       df <- as.data.frame(df)
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping team matchup records..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
     },
     warning = function(w) {
     },
@@ -363,7 +355,6 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @param team2 (*String* required): D-I Team 2
 #' @param min_year (*Integer* optional): Minimum of year range, 4 digit format (*YYYY*)
 #' @param max_year (*Integer* optional): Maximum of year range, 4 digit format (*YYYY*)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #' @return [cfbd_team_matchup] - A data frame with 11 variables:
 #' \describe{
 #'   \item{`season`: integer.}{Season the game took place.}
@@ -398,8 +389,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 #' }
 #'
-cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
-                              verbose = FALSE) {
+cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
   
   if(!is.null(min_year)&& !is.numeric(min_year) && nchar(min_year) != 4){
     cli::cli_abort("Enter valid min_year as a number (YYYY)")
@@ -455,21 +445,15 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()$games
       if (nrow(df) == 0) {
-        if(verbose){ 
           warning("The data pulled from the API was empty.")
-        }
         return(NULL)
       }
       df <- df %>%
         janitor::clean_names() %>%
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping team matchup..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
     },
     warning = function(w) {
     },
@@ -488,7 +472,6 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #'
 #' @param year (*Integer* required): Year,  4 digit format (*YYYY*)
 #' @param team (*String* optional): Team, select a valid team in D-I football
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_team_roster()] - A data frame with 12 variables:
 #' \describe{
@@ -523,8 +506,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL,
 #' cfbd_team_roster(year = 2013, team = "Florida State")
 #' }
 #'
-cfbd_team_roster <- function(year, team = NULL,
-                             verbose = FALSE) {
+cfbd_team_roster <- function(year, team = NULL) {
   team2 <- team
 
   if(!is.numeric(year) && nchar(year) != 4){
@@ -576,13 +558,9 @@ cfbd_team_roster <- function(year, team = NULL,
         dplyr::rename(athlete_id = .data$id) %>%
         dplyr::mutate(headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>% 
         as.data.frame()
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping team roster..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
     },
     warning = function(w) {
     },
@@ -598,7 +576,6 @@ cfbd_team_roster <- function(year, team = NULL,
 #' @description
 #' Extracts team talent composite as sourced from 247 rankings
 #' @param year (*Integer* optional): Year 4 digit format (*YYYY*)
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @return [cfbd_team_talent()] - A data frame with 3 variables:
 #' \describe{
@@ -621,8 +598,7 @@ cfbd_team_roster <- function(year, team = NULL,
 #' cfbd_team_talent(year = 2018)
 #' }
 #'
-cfbd_team_talent <- function(year = NULL,
-                             verbose = FALSE) {
+cfbd_team_talent <- function(year = NULL) {
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
@@ -655,13 +631,9 @@ cfbd_team_talent <- function(year = NULL,
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
         mutate(talent = as.numeric(.data$talent))
-
-      if(verbose){ 
-        message(glue::glue("{Sys.time()}: Scraping team talent..."))
-      }
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
     },
     warning = function(w) {
     },

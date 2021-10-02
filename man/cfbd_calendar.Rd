@@ -7,12 +7,10 @@
 \url{https://api.collegefootballdata.com/calendar}
 }
 \usage{
-cfbd_calendar(year, verbose = FALSE)
+cfbd_calendar(year)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_calendar]{cfbd_calendar()}} - A data frame with 5 variables:

@@ -14,8 +14,7 @@ cfbd_game_player_stats(
   team = NULL,
   conference = NULL,
   category = NULL,
-  game_id = NULL,
-  verbose = FALSE
+  game_id = NULL
 )
 }
 \arguments{
@@ -38,8 +37,6 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:

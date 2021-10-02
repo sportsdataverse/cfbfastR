@@ -11,8 +11,7 @@ cfbd_metrics_ppa_teams(
   year = NULL,
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE,
-  verbose = FALSE
+  excl_garbage_time = FALSE
 )
 }
 \arguments{
@@ -25,8 +24,6 @@ Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:

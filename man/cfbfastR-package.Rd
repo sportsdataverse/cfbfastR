@@ -8,11 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-An R package for working with College Football Data. It is an
-    R API wrapper around <https://collegefootballdata.com/> made available
-    by the cfbfastR team. It provides users the capability to access a
-    plethora of endpoints, and supplement that data with additional
-    information (Expected Points Added/Win Probability added).
+An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the cfbfastR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
 }
 \seealso{
 Useful links:
@@ -41,6 +37,8 @@ Other contributors:
   \item Tej Seth \email{tejseth@umich.edu} [contributor]
   \item Conor McQuiston \email{mcqconor@umich.edu} [contributor]
   \item Tan Ho \email{tan@tanho.ca} [contributor]
+  \item Keegan Abdoo \email{kabdoo@draft.ly} [contributor]
+  \item Matt Spencer \email{maatspencer@gmail.com} [contributor]
 }
 
 }

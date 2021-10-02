@@ -7,12 +7,10 @@
 \url{https://api.collegefootballdata.com/talent}
 }
 \usage{
-cfbd_team_talent(year = NULL, verbose = FALSE)
+cfbd_team_talent(year = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:

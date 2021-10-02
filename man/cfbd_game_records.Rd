@@ -7,7 +7,7 @@
 \url{https://api.collegefootballdata.com/records}
 }
 \usage{
-cfbd_game_records(year, team = NULL, conference = NULL, verbose = FALSE)
+cfbd_game_records(year, team = NULL, conference = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
@@ -17,8 +17,6 @@ cfbd_game_records(year, team = NULL, conference = NULL, verbose = FALSE)
 \item{conference}{(\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 21 variables:

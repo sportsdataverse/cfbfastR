@@ -224,7 +224,7 @@ navbar:
       icon: "fab fa-github fa-lg"
       href: https://github.com/saiemgilani/cfbfastR/
     repo:
-      url:
+      url: https://github.com/saiemgilani/cfbfastR/
       home: https://github.com/saiemgilani/cfbfastR/
       source: https://github.com/saiemgilani/cfbfastR/blob/master/
       issue: https://github.com/saiemgilani/cfbfastR/issues/issues/

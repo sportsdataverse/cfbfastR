@@ -67,7 +67,6 @@ espn_metrics_wp <- function(game_id) {
           .data$game_id, .data$play_id, .data$seconds_left,
           .data$home_win_percentage, .data$away_win_percentage, .data$tie_percentage
         )
-      message(glue::glue("{Sys.time()}: Scraping ESPN win probability data for game_id '{espn_game_id}'..."))
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))

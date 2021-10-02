@@ -14,8 +14,7 @@ cfbd_game_team_stats(
   team = NULL,
   conference = NULL,
   game_id = NULL,
-  rows_per_team = 1,
-  verbose = FALSE
+  rows_per_team = 1
 )
 }
 \arguments{
@@ -35,8 +34,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}} - A data frame with 78 variables:

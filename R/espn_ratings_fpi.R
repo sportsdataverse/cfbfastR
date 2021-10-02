@@ -46,10 +46,7 @@ espn_ratings_fpi <- function(year = 2019) {
     stop(paste("Please choose year between 2004 and", current_year))
   }
 
-  # Add message according to totals or weeks
-  message(
-    glue::glue("Scraping FPI totals for {year}!")
-  )
+
   # Base URL
   fpi_full_url <- "http://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/powerindex?region=us&lang=en"
 
