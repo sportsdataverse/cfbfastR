@@ -105,7 +105,7 @@ A coach search function which provides coaching records and school history for a
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.2</span>
       </span>
     </div>
 
@@ -333,6 +333,9 @@ A coach search function which provides coaching records and school history for a
     <li>
       <a href="https://saiemgilani.github.io/sportsdataverse/">sportsdataverse.js</a>
     </li>
+    <li>
+      <a href="https://github.com/nntrn/nfl-nerd/">nfl-nerd</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -409,8 +412,7 @@ A coach search function which provides coaching records and school history for a
   team <span class='op'>=</span> <span class='cn'>NULL</span>,
   year <span class='op'>=</span> <span class='cn'>NULL</span>,
   min_year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  max_year <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+  max_year <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -440,10 +442,6 @@ A coach search function which provides coaching records and school history for a
       <th>max_year</th>
       <td><p>(<em>Integer</em> optional): Maximum Year filter (inclusive), 4 digit format (<em>YYYY</em>)</p></td>
     </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -453,21 +451,21 @@ A coach search function which provides coaching records and school history for a
 
     
 <dl>
-<dt><code>first_name</code>:character.</dt><dd><p>First name of coach.</p></dd>
-<dt><code>last_name</code>:character.</dt><dd><p>Last name of coach.</p></dd>
-<dt><code>hire_date</code>:character.</dt><dd><p>Hire date of coach.</p></dd>
-<dt><code>school</code>:character.</dt><dd><p>School of coach.</p></dd>
-<dt><code>year</code>:integer.</dt><dd><p>Season of record.</p></dd>
-<dt><code>games</code>:integer.</dt><dd><p>Games as coach.</p></dd>
-<dt><code>wins</code>:integer.</dt><dd><p>Wins for the season.</p></dd>
-<dt><code>losses</code>:integer.</dt><dd><p>Losses for the season.</p></dd>
-<dt><code>ties</code>:integer.</dt><dd><p>Ties for the season.</p></dd>
-<dt><code>preseason_rank</code>:integer.</dt><dd><p>Preseason rank for the school of coach.</p></dd>
-<dt><code>postseason_rank</code>:integer.</dt><dd><p>Postseason rank for the school of coach.</p></dd>
-<dt><code>srs</code>:character.</dt><dd><p>Simple Rating System adjustment for team.</p></dd>
-<dt><code>sp_overall</code>:character.</dt><dd><p>Bill Connelly's SP+ overall for team.</p></dd>
-<dt><code>sp_offense</code>:character.</dt><dd><p>Bill Connelly's SP+ offense for team.</p></dd>
-<dt><code>sp_defense</code>:character.</dt><dd><p>Bill Connelly's SP+ defense for team.</p></dd>
+<dt>first_name:character.</dt><dd><p>First name of coach.</p></dd>
+<dt>last_name:character.</dt><dd><p>Last name of coach.</p></dd>
+<dt>hire_date:character.</dt><dd><p>Hire date of coach.</p></dd>
+<dt>school:character.</dt><dd><p>School of coach.</p></dd>
+<dt>year:integer.</dt><dd><p>Season of record.</p></dd>
+<dt>games:integer.</dt><dd><p>Games as coach.</p></dd>
+<dt>wins:integer.</dt><dd><p>Wins for the season.</p></dd>
+<dt>losses:integer.</dt><dd><p>Losses for the season.</p></dd>
+<dt>ties:integer.</dt><dd><p>Ties for the season.</p></dd>
+<dt>preseason_rank:integer.</dt><dd><p>Preseason rank for the school of coach.</p></dd>
+<dt>postseason_rank:integer.</dt><dd><p>Postseason rank for the school of coach.</p></dd>
+<dt>srs:character.</dt><dd><p>Simple Rating System adjustment for team.</p></dd>
+<dt>sp_overall:character.</dt><dd><p>Bill Connelly's SP+ overall for team.</p></dd>
+<dt>sp_offense:character.</dt><dd><p>Bill Connelly's SP+ offense for team.</p></dd>
+<dt>sp_defense:character.</dt><dd><p>Bill Connelly's SP+ defense for team.</p></dd>
 
 </dl>
 

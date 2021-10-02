@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.2</span>
       </span>
     </div>
 
@@ -330,6 +330,9 @@
     <li>
       <a href="https://saiemgilani.github.io/sportsdataverse/">sportsdataverse.js</a>
     </li>
+    <li>
+      <a href="https://github.com/nntrn/nfl-nerd/">nfl-nerd</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -397,7 +400,7 @@
     <p><strong>Get win probability chart data from API</strong></p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span><span class='va'>game_id</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span><span class='va'>game_id</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -406,10 +409,6 @@
       <th>game_id</th>
       <td><p>(<em>Integer</em> required): Game ID filter for querying a single game<br />
 Can be found using the <code><a href='cfbd_game_info.html'>cfbd_game_info()</a></code> function</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function</p></td>
     </tr>
     </table>
 
@@ -442,7 +441,7 @@ Can be found using the <code><a href='cfbd_game_info.html'>cfbd_game_info()</a><
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='fu'>cfbd_metrics_wp</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401012356</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2021-10-01 18:07:10: Invalid arguments or no CFBData metrics win probability data available!</span></div><div class='output co'>#&gt;                play_id
+</div><div class='output co'>#&gt; <span class='message'>2021-10-02 23:43:04: Invalid arguments or no CFBData metrics win probability data available!</span></div><div class='output co'>#&gt;                play_id
 #&gt; 1   401012356101855402
 #&gt; 2   401012356101855901
 #&gt; 3   401012356101856401
