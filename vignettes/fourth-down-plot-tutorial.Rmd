@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Hey everyone, my name is Michael and over the summer I worked on a daily series of plots using ```ggplot``` and the ```cfbfastR``` package. One of my favorite plots I put together was the fourth down tendency plot for various head coaches. This visualization was inspired by Michael Lopez doing the same thing for NFL coaches. This tutorial is going to walk through how they're put together. If you haven't already, you should read the introduction tutorial that Parker made to get used to the data and download the package.
 
 ## First, we'll have to install and import the necessary packages
-```{r install_packages}
+```{r install_packages, message = FALSE, warning = FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
