@@ -455,27 +455,27 @@
 </div>
 <div id="cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes" class="section level4">
 <h4 class="hasAnchor">
-<a href="#cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes" class="anchor"></a><strong><code>cfbfastR::load_cfb_pbp()</code></strong> (7 seasons, ~1-1.5 minutes 🔥)</h4>
+<a href="#cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes" class="anchor"></a><strong><code>cfbfastR::load_cfb_pbp()</code></strong> (7+ seasons, ~1-1.5 minutes 🔥)</h4>
 </div>
 <div id="the-fastr-way" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-fastr-way" class="anchor"></a><strong>The fastR way</strong>
 </h3>
-<p>We are going to load in data for seasons 2014-2020, it’ll take between 45-90 seconds to run.</p>
+<p>We are going to load in data for seasons 2014-2021, it’ll take between 45-90 seconds to run.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">seasons</span> <span class="op">&lt;-</span> <span class="fl">2014</span><span class="op">:</span><span class="fl">2020</span>
+<span class="va">seasons</span> <span class="op">&lt;-</span> <span class="fl">2014</span><span class="op">:</span><span class="fu">cfbfastR</span><span class="fu">:::</span><span class="fu">most_recent_season</span><span class="op">(</span><span class="op">)</span>
 <span class="fu">progressr</span><span class="fu">::</span><span class="fu"><a href="https://progressr.futureverse.org/reference/with_progress.html">with_progress</a></span><span class="op">(</span><span class="op">{</span>
 <span class="fu">future</span><span class="fu">::</span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html">plan</a></span><span class="op">(</span><span class="st">"multisession"</span><span class="op">)</span>
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 45.954 sec elapsed</code></pre>
-<p>In the selected seasons, there are 5770 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
+<pre><code>## 66.568 sec elapsed</code></pre>
+<p>In the selected seasons, there are 6083 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 1,060,344
+<pre><code>## Rows: 1,115,641
 ## Columns: 40
 ## $ year               &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 201…
 ## $ week               &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …

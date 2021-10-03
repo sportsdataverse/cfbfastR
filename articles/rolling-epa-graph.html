@@ -366,16 +366,17 @@
 <div id="pull-the-play-by-play-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pull-the-play-by-play-data" class="anchor"></a>Pull the play by play data</h2>
-<p>Using the <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html">load_cfb_pbp()</a> method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in 2020. This method only takes about 30 seconds.</p>
+<p>Using the <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html">load_cfb_pbp()</a> method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in 2021. This method only takes about 30 seconds.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbp_2020</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">yr</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">:::</span><span class="fu">most_recent_season</span><span class="op">(</span><span class="op">)</span>
+<span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">yr</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="pull-team-info-and-team-colors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pull-team-info-and-team-colors" class="anchor"></a>Pull team info and team colors</h2>
 <p>We can use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull information about each FBS school including their logo, color, and abbreviation. We’re going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_info</span> <span class="op">=</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">team_info</span> <span class="op">=</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">yr</span><span class="op">)</span>
 
 <span class="va">team_colors_logos</span> <span class="op">=</span> <span class="va">team_info</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">school</span>, <span class="va">abbreviation</span>, <span class="va">color</span>, <span class="va">logos</span>, <span class="va">alt_color</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -389,7 +390,7 @@
 <a href="#basic-overview-of-all-fbs-offenses" class="anchor"></a>Basic overview of all FBS Offenses</h2>
 <p>Let’s create a basic overview of offensive EPA per play. We’ll start by creating a dataframe listing all 130 FBS teams from best to worst based on their average EPA per play across all games played.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">off_epa</span> <span class="op">=</span> <span class="va">pbp_2020</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">off_epa</span> <span class="op">=</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">offense_play</span>, <span class="va">offense_conference</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>off_epa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">EPA</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -405,12 +406,12 @@
 <pre><code>## # A tibble: 6 × 5
 ##   Team             offense_conference off_epa  Rank TeamRank           
 ##   &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;              
-## 1 Kent State       Mid-American         0.325     1 Kent State #1      
-## 2 Alabama          SEC                  0.289     2 Alabama #2         
-## 3 BYU              FBS Independents     0.239     3 BYU #3             
-## 4 North Carolina   ACC                  0.228     4 North Carolina #4  
-## 5 Buffalo          Mid-American         0.221     5 Buffalo #5         
-## 6 Western Michigan Mid-American         0.207     6 Western Michigan #6</code></pre>
+## 1 Western Kentucky Conference USA       0.374     1 Western Kentucky #1
+## 2 Coastal Carolina Sun Belt             0.343     2 Coastal Carolina #2
+## 3 Baylor           Big 12               0.320     3 Baylor #3          
+## 4 SMU              American Athletic    0.318     4 SMU #4             
+## 5 Ohio State       Big Ten              0.286     5 Ohio State #5      
+## 6 TCU              Big 12               0.273     6 TCU #6</code></pre>
 <p>Ok, now let’s start to visualize the data beyond the top few schools. Let’s graph all the teams that have a positive EPA on the year.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">off_epa</span> <span class="op">%&gt;%</span>
@@ -434,7 +435,7 @@
 <span class="va">ma_plays</span> <span class="op">=</span> <span class="fl">100</span></code></pre></div>
 <p>Now that we have defined our team of interest, we can prepare the data for this specific team. We’re going to create a dataframe called <code>team_off</code> that is subsetted from our full season play by play data. This new dataframe will be specific to our team of interest and it will add fields for the moving average and the play count.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_off</span> <span class="op">=</span> <span class="va">pbp_2020</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">team_off</span> <span class="op">=</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">offense_play</span> <span class="op">==</span> <span class="va">team</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">EPA</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
