@@ -60,9 +60,8 @@ URL: https://saiemgilani.github.io/cfbfastR,
     http://www.github.com/saiemgilani/cfbfastR
 BugReports: http://www.github.com/saiemgilani/cfbfastR/issues
 Depends: 
-  R (>= 3.5.0)
+  R (>= 4.0.0)
 Imports: 
-    assertthat,
     cli (>= 1.1.0),
     dplyr,
     furrr,

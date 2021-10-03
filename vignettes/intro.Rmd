@@ -106,17 +106,17 @@ If you have ever worked with the now archived [**`cfbscrapR`**](https://github.c
 
 #### **`cfbfastR::cfbd_pbp_data()`** (1 season, \~6-7 minutes `r emo::ji("confused_face")`)
 #### **`cfbscrapR::cfb_pbp_data()`** (1 season, \~8-10 minutes `r emo::ji("old_man")`)
-#### **`cfbfastR::load_cfb_pbp()`** (7 seasons, \~1-1.5 minutes `r emo::ji("flame")`)
+#### **`cfbfastR::load_cfb_pbp()`** (7+ seasons, \~1-1.5 minutes `r emo::ji("flame")`)
 
 
 ### **The fastR way**
 
-We are going to load in data for seasons 2014-2020, it'll take between 45-90 seconds to run.
+We are going to load in data for seasons 2014-`r cfbfastR:::most_recent_season()`, it'll take between 45-90 seconds to run.
 
-```{r load_2014_2020, warning = FALSE}
+```{r load_2014_plus, warning = FALSE}
 tictoc::tic()
 pbp <- data.frame()
-seasons <- 2014:2020
+seasons <- 2014:cfbfastR:::most_recent_season()
 progressr::with_progress({
 future::plan("multisession")
   pbp <- cfbfastR::load_cfb_pbp(seasons)

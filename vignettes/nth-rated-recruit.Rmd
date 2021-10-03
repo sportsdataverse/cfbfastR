@@ -20,7 +20,7 @@ Hi ```cfbfastR``` users, I'm Eric Hess and I run the [Twitter account](https://t
 
 We start by loading the packages we need. The ```cfbfastR``` package will provide us with our source of data. The ```dplyr``` package gives us handy data manipulation tools and the ever useful pipe (```%>%```) syntax. Finally, ```ggplot2``` will allow us to make a simple, functional graph of our results.
 
-```{r packages}
+```{r packages, message=FALSE,warning=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -28,31 +28,46 @@ pacman::p_load(dplyr, ggplot2)
 pacman::p_load_current_gh("saiemgilani/cfbfastR")
 ```
 
-To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```). I also have the loop pause for 5 seconds between each team. While this causes the function to take a little longer to run it also helps with server load on the back end.
+To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```).
 
 ```{r cfb}
 teams <- cfbfastR::cfbd_team_info(conference = "B1G")
-all.recruits <- do.call("rbind", apply(teams, 1, function(x) {
-  t <- as.character(x["school"])
-  team.2017 <- cfbfastR::cfbd_recruiting_player(year = 2017, team = t, recruit_type = "HighSchool")
-  team.2018 <- cfbfastR::cfbd_recruiting_player(year = 2018, team = t, recruit_type = "HighSchool")
-  team.2019 <- cfbfastR::cfbd_recruiting_player(year = 2019, team = t, recruit_type = "HighSchool")
-  team.2020 <- cfbfastR::cfbd_recruiting_player(year = 2020, team = t, recruit_type = "HighSchool")
-  
-  all.team <- rbind(team.2017, team.2018, team.2019, team.2020)
-  Sys.sleep(5)
-  return(all.team)
-}))
+schools <- teams$school
+yr <- cfbfastR:::most_recent_season()
+year_range <- (yr-3):yr
+team_year_df <- expand.grid(year=year_range, school = schools)
+tictoc::tic()
+future::plan("multisession")
+all.recruits <- furrr::future_map2_dfr(
+  .x = team_year_df$year,
+  .y = team_year_df$school,
+  function(.x,.y){
+    cfbfastR::cfbd_recruiting_player(
+      year = as.character(.x),
+      team = as.character(.y),
+      recruit_type = "HighSchool"
+    )
+  }
+)
 
+tictoc::toc()
+dplyr::glimpse(all.recruits)
 ```
 
 The next step is cleaning the data. The ```cfbd_recruiting_player()``` function gives us 14 pieces of data for each player. Our graph is going to focus on just the rating and what school they committed to. I'm going to keep the player name as well as a check field so I can go back and check my data set more quickly if I have any errors. The next line uses ```dplyr``` syntax to give me just the highest rated 85 recruits in order by their rating. I use this info to assign a ranking for each school's 1-nth recruit. Finally, I use the teams data frame again so each recruits school information can be used on our graph.
 
 ```{r cleaning}
-recruits.limited <- all.recruits %>% select(name, rating, committed_to)
-recruits.sorted <- recruits.limited %>% group_by(committed_to) %>% top_n(85, rating) %>% arrange(committed_to, -rating)
-recruits.sorted <- recruits.sorted %>% group_by(committed_to) %>% mutate(num = row_number())
-recruits.final <- merge(recruits.sorted, teams, by.x = "committed_to", by.y = "school")
+recruits.limited <- all.recruits %>% 
+  dplyr::select(name, rating, committed_to)
+recruits.sorted <- recruits.limited %>% 
+  dplyr::group_by(committed_to) %>% 
+  dplyr::top_n(85, rating) %>% 
+  dplyr::arrange(committed_to, -rating,.by_group=TRUE) %>% 
+  dplyr::mutate(num = dplyr::row_number()) %>% 
+  dplyr::ungroup()
+
+recruits.final <- recruits.sorted %>% 
+  dplyr::left_join(teams, by = c("committed_to"="school"))
 ```
 
 If you follow the Big Ten you know a lot of schools have a shade of red as their primary color. This can make some plots hard to read. Because of this I'm filtering down my data to look at just recruits who committed to a Big Ten West division school. For ```ggplot2``` to use a manually defined color set, I must get a vector of colors that I want, each team's primary color, and assign each value a name corresponding to the school I'm interested in.
@@ -77,8 +92,8 @@ ggplot(big.ten.west, aes(x=num, y=rating, color = committed_to)) +
   annotate("text", label = "~ 3 Star", y = .81, x = 10) +
   labs(y = "Player Rating",
        x = "Player Rank",
-       title = "nth Ranked High School Recruit",
-       subtitle = "Top 85 High School Signees 2017-2020 by Big Ten West Program",
+       title = "nth-Ranked High School Recruit",
+       subtitle = glue::glue("Top 85 High School Signees {yr-3}-{yr} by Big Ten West Programs"),
        caption = "Graph by @arbitanalytics, Data from @cfbfastR")
 ```
 

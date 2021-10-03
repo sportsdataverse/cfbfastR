@@ -15,7 +15,7 @@ output: html_document
 This vignette will use data from the ```cfbfastR``` package to create a moving average graph of offensive EPA over the course of a season.  This lets us visualize how a team's performance has changed over time and compare that performance to other teams around the country.
 
 ## Load and Install the necessary packages
-```{r install_packages}
+```{r install_packages, message=FALSE, warning=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -25,11 +25,11 @@ pacman::p_load_current_gh("saiemgilani/cfbfastR")
 
 ## Pull the play by play data
 
-Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in 2020. This method only takes about 30 seconds.
+Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in `r cfbfastR:::most_recent_season()`. This method only takes about 30 seconds.
 
-```{r load_cfb_pbp_2020, message=FALSE, warning=FALSE}
-
-pbp_2020 <- cfbfastR::load_cfb_pbp(2020)
+```{r load_cfb_pbp_most_recent, message=FALSE, warning=FALSE}
+yr <- cfbfastR:::most_recent_season()
+pbp <- cfbfastR::load_cfb_pbp(yr)
 
 ```
 
@@ -38,7 +38,7 @@ pbp_2020 <- cfbfastR::load_cfb_pbp(2020)
 We can use the ```cfbd_team_info()``` function to pull information about each FBS school including their logo, color, and abbreviation.  We're going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.
 
 ```{r cfbd_teams_info}
-team_info = cfbfastR::cfbd_team_info(year = 2020)
+team_info = cfbfastR::cfbd_team_info(year = yr)
 
 team_colors_logos = team_info %>% 
   select(school, abbreviation, color, logos, alt_color) %>%
@@ -53,7 +53,7 @@ team_colors_logos = team_info %>%
 Let's create a basic overview of offensive EPA per play.  We'll start by creating a dataframe listing all 130 FBS teams from best to worst based on their average EPA per play across all games played.  
 
 ```{r off_epa_all_team, message=FALSE, warning=FALSE}
-off_epa = pbp_2020 %>%
+off_epa = pbp %>%
   filter(rush == 1 | pass == 1) %>% 
   group_by(offense_play, offense_conference) %>%
   summarize(off_epa = mean(EPA, na.rm = TRUE)) %>%
@@ -98,7 +98,7 @@ ma_plays = 100
 Now that we have defined our team of interest, we can prepare the data for this specific team.  We're going to create a dataframe called ```team_off``` that is subsetted from our full season play by play data.  This new dataframe will be specific to our team of interest and it will add fields for the moving average and the play count.
 
 ```{r define_team_off}
-team_off = pbp_2020 %>%
+team_off = pbp %>%
   filter(offense_play == team) %>%
   filter(rush == 1 | pass == 1) %>%
   filter(!is.na(EPA)) %>%
