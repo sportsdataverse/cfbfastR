@@ -7,8 +7,12 @@ cols <- c(
   "attendance", "venue_id", "venue",
   "home_id", "home_team", "home_conference",
   "home_points", "home_post_win_prob",
+  "home_pregame_elo",
+  "home_postgame_elo",
   "away_id", "away_team", "away_conference",
-  "away_points", "away_post_win_prob", "excitement_index",
+  "away_points", "away_post_win_prob",
+  "away_pregame_elo",
+  "away_postgame_elo", "excitement_index",
   "highlights","notes"
 )
 

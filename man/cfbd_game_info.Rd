@@ -61,11 +61,15 @@ I have defaulted the parameter to false so that you will not have to go to the t
 \item{\code{home_conference}: character.}{Home team conference.}
 \item{\code{home_points}: integer.}{Home team points.}
 \item{\code{home_post_win_prob}: character.}{Home team post-game win probability.}
+\item{\code{home_pregame_elo}: character.}{Home team pre-game ELO rating.}
+\item{\code{home_postgame_elo}: character.}{Home team post-game ELO rating.}
 \item{\code{away_id}: integer.}{Away team referencing id.}
 \item{\code{away_team}: character.}{Away team name.}
 \item{\code{away_conference}: character.}{Away team conference.}
 \item{\code{away_points}: integer.}{Away team points.}
 \item{\code{away_post_win_prob}: character.}{Away team post-game win probability.}
+\item{\code{away_pregame_elo}: character.}{Away team pre-game ELO rating.}
+\item{\code{away_postgame_elo}: character.}{Away team post-game ELO rating.}
 \item{\code{excitement_index}: character.}{Game excitement index.}
 \item{\code{highlights}: character.}{Game highlight urls.}
 \item{\code{notes}: character.}{Game notes.}
