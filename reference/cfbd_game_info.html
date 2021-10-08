@@ -309,10 +309,16 @@
       <a href="https://kazink36.github.io/cfbplotR/">cfbplotR</a>
     </li>
     <li>
+      <a href="https://kazink36.github.io/cfb4th/">cfb4th</a>
+    </li>
+    <li>
       <a href="https://jaseziv.github.io/worldfootballR/">worldfootballR</a>
     </li>
     <li>
       <a href="https://hockeyr.netlify.app/">hockeyR</a>
+    </li>
+    <li>
+      <a href="https://BillPetti.github.io/baseballr/">baseballr</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Python Packages</li>
@@ -479,11 +485,15 @@ I have defaulted the parameter to false so that you will not have to go to the t
 <dt><code>home_conference</code>: character.</dt><dd><p>Home team conference.</p></dd>
 <dt><code>home_points</code>: integer.</dt><dd><p>Home team points.</p></dd>
 <dt><code>home_post_win_prob</code>: character.</dt><dd><p>Home team post-game win probability.</p></dd>
+<dt><code>home_pregame_elo</code>: character.</dt><dd><p>Home team pre-game ELO rating.</p></dd>
+<dt><code>home_postgame_elo</code>: character.</dt><dd><p>Home team post-game ELO rating.</p></dd>
 <dt><code>away_id</code>: integer.</dt><dd><p>Away team referencing id.</p></dd>
 <dt><code>away_team</code>: character.</dt><dd><p>Away team name.</p></dd>
 <dt><code>away_conference</code>: character.</dt><dd><p>Away team conference.</p></dd>
 <dt><code>away_points</code>: integer.</dt><dd><p>Away team points.</p></dd>
 <dt><code>away_post_win_prob</code>: character.</dt><dd><p>Away team post-game win probability.</p></dd>
+<dt><code>away_pregame_elo</code>: character.</dt><dd><p>Away team pre-game ELO rating.</p></dd>
+<dt><code>away_postgame_elo</code>: character.</dt><dd><p>Away team post-game ELO rating.</p></dd>
 <dt><code>excitement_index</code>: character.</dt><dd><p>Game excitement index.</p></dd>
 <dt><code>highlights</code>: character.</dt><dd><p>Game highlight urls.</p></dd>
 <dt><code>notes</code>: character.</dt><dd><p>Game notes.</p></dd>
@@ -850,184 +860,273 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 86         East Carolina American Athletic          23   0.4801521413827188
 #&gt; 87                   LSU               SEC          33   0.9559552996558128
 #&gt; 88         Florida State               ACC           3  0.31246770456927847
-#&gt;    away_id                away_team   away_conference away_points
-#&gt; 1     2184                 Duquesne              &lt;NA&gt;          15
-#&gt; 2     2504             Prairie View              &lt;NA&gt;          28
-#&gt; 3       62                  Hawai'i     Mountain West          43
-#&gt; 4     2751                  Wyoming     Mountain West          29
-#&gt; 5     2115      Central Connecticut              &lt;NA&gt;           6
-#&gt; 6      166         New Mexico State  FBS Independents          10
-#&gt; 7     2116                      UCF American Athletic          56
-#&gt; 8      338           Kennesaw State              &lt;NA&gt;          20
-#&gt; 9     2542           Savannah State              &lt;NA&gt;           0
-#&gt; 10    2623           Missouri State              &lt;NA&gt;          17
-#&gt; 11    2545   Southeastern Louisiana              &lt;NA&gt;          31
-#&gt; 12    2692              Weber State              &lt;NA&gt;          10
-#&gt; 13      77             Northwestern           Big Ten          31
-#&gt; 14     154              Wake Forest               ACC          23
-#&gt; 15    2466       Northwestern State              &lt;NA&gt;           7
-#&gt; 16     302                 UC Davis              &lt;NA&gt;          44
-#&gt; 17     183                 Syracuse               ACC          55
-#&gt; 18    2405                 Monmouth              &lt;NA&gt;          17
-#&gt; 19     349                     Army  FBS Independents          14
-#&gt; 20     328               Utah State     Mountain West          31
-#&gt; 21      98         Western Kentucky    Conference USA           3
-#&gt; 22      21          San Diego State     Mountain West          10
-#&gt; 23    2502           Portland State              &lt;NA&gt;          19
-#&gt; 24      38                 Colorado            Pac-12          45
-#&gt; 25     145                 Ole Miss               SEC          47
-#&gt; 26     326              Texas State          Sun Belt           7
-#&gt; 27     251                    Texas            Big 12          29
-#&gt; 28     324         Coastal Carolina          Sun Belt          15
-#&gt; 29     256            James Madison              &lt;NA&gt;          13
-#&gt; 30     204             Oregon State            Pac-12          31
-#&gt; 31     248                  Houston American Athletic          45
-#&gt; 32    2309               Kent State      Mid-American          24
-#&gt; 33    2582                 Southern              &lt;NA&gt;           7
-#&gt; 34     222                Villanova              &lt;NA&gt;          19
-#&gt; 35    2226         Florida Atlantic    Conference USA          14
-#&gt; 36     231                   Furman              &lt;NA&gt;           7
-#&gt; 37    2016             Alcorn State              &lt;NA&gt;           0
-#&gt; 38     113                    UMass  FBS Independents          21
-#&gt; 39    2619              Stony Brook              &lt;NA&gt;           0
-#&gt; 40      47                   Howard              &lt;NA&gt;          32
-#&gt; 41    2046              Austin Peay              &lt;NA&gt;           0
-#&gt; 42     264               Washington            Pac-12          16
-#&gt; 43    2117         Central Michigan      Mid-American          20
-#&gt; 44    2026        Appalachian State          Sun Belt          38
-#&gt; 45     265         Washington State            Pac-12          41
-#&gt; 46     277            West Virginia            Big 12          40
-#&gt; 47     399                   Albany              &lt;NA&gt;           7
-#&gt; 48    2459        Northern Illinois      Mid-American           7
-#&gt; 49    2630                UT Martin              &lt;NA&gt;          14
-#&gt; 50    2197         Eastern Illinois              &lt;NA&gt;          20
-#&gt; 51     153           North Carolina               ACC          17
-#&gt; 52    2439                     UNLV     Mountain West          21
-#&gt; 53     276                 Marshall    Conference USA          35
-#&gt; 54    2169           Delaware State              &lt;NA&gt;          10
-#&gt; 55    2230                  Fordham              &lt;NA&gt;          10
-#&gt; 56      68              Boise State     Mountain West          56
-#&gt; 57    2210                     Elon              &lt;NA&gt;          14
-#&gt; 58    2569     South Carolina State              &lt;NA&gt;           6
-#&gt; 59     257                 Richmond              &lt;NA&gt;          13
-#&gt; 60     295             Old Dominion    Conference USA          10
-#&gt; 61    2447                 Nicholls              &lt;NA&gt;          26
-#&gt; 62      84                  Indiana           Big Ten          38
-#&gt; 63     233             South Dakota              &lt;NA&gt;          24
-#&gt; 64    2296            Jackson State              &lt;NA&gt;           7
-#&gt; 65    2110         Central Arkansas              &lt;NA&gt;          27
-#&gt; 66    2132               Cincinnati American Athletic          26
-#&gt; 67    2382                   Mercer              &lt;NA&gt;          14
-#&gt; 68    2678                      VMI              &lt;NA&gt;           3
-#&gt; 69    2546 Southeast Missouri State              &lt;NA&gt;          21
-#&gt; 70    2348           Louisiana Tech    Conference USA          30
-#&gt; 71    2755                Grambling              &lt;NA&gt;          17
-#&gt; 72    2567                      SMU American Athletic          23
-#&gt; 73    2393         Middle Tennessee    Conference USA           7
-#&gt; 74     130                 Michigan           Big Ten          17
-#&gt; 75    2127      Charleston Southern              &lt;NA&gt;           6
-#&gt; 76    2617        Stephen F. Austin              &lt;NA&gt;           6
-#&gt; 77    2464         Northern Arizona              &lt;NA&gt;          30
-#&gt; 78    2000        Abilene Christian              &lt;NA&gt;          27
-#&gt; 79    2916           Incarnate Word              &lt;NA&gt;          30
-#&gt; 80     189            Bowling Green      Mid-American          24
-#&gt; 81      97               Louisville               ACC          14
-#&gt; 82      70                    Idaho              &lt;NA&gt;          13
-#&gt; 83    2636           UT San Antonio    Conference USA           7
-#&gt; 84     252                      BYU  FBS Independents          28
-#&gt; 85    2426                     Navy American Athletic          41
-#&gt; 86    2448       North Carolina A&amp;T              &lt;NA&gt;          28
-#&gt; 87    2390                    Miami               ACC          17
-#&gt; 88     259            Virginia Tech               ACC          24
-#&gt;          away_post_win_prob   excitement_index
-#&gt; 1      0.001545757783768864       0.2139101303
-#&gt; 2        0.5838880202309529       5.6012773743
-#&gt; 3        0.6682602321107232       4.5649361931
-#&gt; 4         0.995727890153676       2.7057118396
-#&gt; 5   0.000027906209577710506  0.760100617799999
-#&gt; 6    0.00003616354229352137   3.06144440259999
-#&gt; 7         0.995796536566131  0.830061928399999
-#&gt; 8         0.130409812028494       5.8512641491
-#&gt; 9  0.0000026543058769812333       0.1406151783
-#&gt; 10    0.0007301439484914685 0.0663753880999998
-#&gt; 11       0.4279140694384427       8.4160129207
-#&gt; 12    0.0002001311170733988        0.922426719
-#&gt; 13       0.8479341999795307       6.6741715963
-#&gt; 14       0.7803386787674967       9.7884823983
-#&gt; 15  0.000007197648553836089 0.0327134787999997
-#&gt; 16       0.7744181567341348       5.5811874724
-#&gt; 17        0.899300244378823       2.7679697627
-#&gt; 18    0.0004489835305245826  0.565053273800001
-#&gt; 19    0.0026153808032013393   1.69744162409999
-#&gt; 20      0.09381640925756696       4.1366972475
-#&gt; 21   0.00003415174045540148       0.2437023338
-#&gt; 22     0.006232259663422335       2.8895508744
-#&gt; 23  0.000005322779891625551   1.08662059399999
-#&gt; 24       0.9960643920785637         3.41109204
-#&gt; 25        0.992269255191677       3.6518173425
-#&gt; 26     0.000741869037904852   1.11697903199999
-#&gt; 27       0.0868499023945547   9.13837292739999
-#&gt; 28  0.000018607215708787983  0.182912192500001
-#&gt; 29        0.160909039239306       3.8739046233
-#&gt; 30   0.00005647238115735753       0.1409114981
-#&gt; 31       0.9499480396694673       3.9567502631
-#&gt; 32       0.1659846892966097   6.71988011069999
-#&gt; 33  0.000007824349748219994 0.0225499731999999
-#&gt; 34       0.9198198198934802   6.43306846939999
-#&gt; 35  0.000007197183002127794  0.451379604799999
-#&gt; 36    0.0000159215720431094 0.0250883832000001
-#&gt; 37   0.00000401221546419972 0.0701338293999992
-#&gt; 38   0.00017443080013468393       0.6622090949
-#&gt; 39  0.000005297055129194206       0.8860730608
-#&gt; 40       0.5472741906553065       3.8302068262
-#&gt; 41  0.000007796744580956805 0.0234045444000003
-#&gt; 42       0.3918178053441286   7.48070415839999
-#&gt; 43    0.0051032998085885906   5.87733304869999
-#&gt; 44     0.019490398477755022   6.47689498139999
-#&gt; 45       0.9946412752895979       7.1429531895
-#&gt; 46       0.9957266821334012   2.82384215719999
-#&gt; 47    0.0002634114615062133       0.2208688393
-#&gt; 48    0.0012162595369955564       3.0460114328
-#&gt; 49     0.004031849640397045 0.0905773775999997
-#&gt; 50     0.003256819107921749  0.179641016199999
-#&gt; 51      0.10317998221501223       3.2874759002
-#&gt; 52    0.0032590209677643145       2.4032706517
-#&gt; 53       0.7085646902378377       5.2033164459
-#&gt; 54   0.00008576772798907228   1.62547624519999
-#&gt; 55  0.000015835535093988717       2.6062499703
-#&gt; 56       0.9407697074417514   2.27508502569999
-#&gt; 57  0.000036258261760346855       0.5439158967
-#&gt; 58    0.0012713340353657232  0.435713163799999
-#&gt; 59     0.001028011004730045   1.87596885599999
-#&gt; 60   0.00015972691607413214       5.0482463785
-#&gt; 61        0.844213116573793   9.41128064859999
-#&gt; 62       0.9118309902912132       2.7499679181
-#&gt; 63       0.4288198994607003   7.73617338379999
-#&gt; 64    0.0005047783187366317  0.188652225199998
-#&gt; 65     0.002248910317168673       6.0252868305
-#&gt; 66       0.7803958762265931       8.7869201591
-#&gt; 67  0.000004165417503809721       1.0251003832
-#&gt; 68  0.000012685559573455407 0.0266620140000006
-#&gt; 69    0.0011154194995069977        0.727200521
-#&gt; 70       0.8265336617017218   3.39524150609999
-#&gt; 71   0.00020727821340027486       1.0627373025
-#&gt; 72    0.0012626697935577136       2.0082988577
-#&gt; 73    0.0003796669053852675       3.6034339205
-#&gt; 74      0.07216956854098999       4.2446507286
-#&gt; 75    0.0001742161652431573 0.0448168873999993
-#&gt; 76  0.000004404477775943327 0.0254067829000002
-#&gt; 77       0.9939689644437355   3.04488015159999
-#&gt; 78   0.00017042791751720188  0.146911048999999
-#&gt; 79    0.0008418813561436034  0.307032200699999
-#&gt; 80    0.0001606326780763112  0.738405284700001
-#&gt; 81   0.00007443135335916118  0.394188331699999
-#&gt; 82    0.0004597288685521672       0.4491663395
-#&gt; 83  0.000007992926103650433  0.574617268999999
-#&gt; 84        0.747621775556108   5.07418613049999
-#&gt; 85      0.02035858702878457       3.7631715548
-#&gt; 86       0.5198478586172812       6.9631012532
-#&gt; 87      0.04404470034418717       3.8470693333
-#&gt; 88       0.6875322954307215   3.91834934429999
+#&gt;    home_pregame_elo home_postgame_elo away_id                away_team
+#&gt; 1                NA                NA    2184                 Duquesne
+#&gt; 2                NA                NA    2504             Prairie View
+#&gt; 3              1529              1482      62                  Hawai'i
+#&gt; 4              1339              1304    2751                  Wyoming
+#&gt; 5                NA                NA    2115      Central Connecticut
+#&gt; 6              1499              1582     166         New Mexico State
+#&gt; 7              1242              1190    2116                      UCF
+#&gt; 8                NA                NA     338           Kennesaw State
+#&gt; 9                NA                NA    2542           Savannah State
+#&gt; 10               NA                NA    2623           Missouri State
+#&gt; 11               NA                NA    2545   Southeastern Louisiana
+#&gt; 12               NA                NA    2692              Weber State
+#&gt; 13             1554              1556      77             Northwestern
+#&gt; 14             1391              1394     154              Wake Forest
+#&gt; 15               NA                NA    2466       Northwestern State
+#&gt; 16               NA                NA     302                 UC Davis
+#&gt; 17             1553              1502     183                 Syracuse
+#&gt; 18               NA                NA    2405                 Monmouth
+#&gt; 19             1593              1632     349                     Army
+#&gt; 20             1622              1623     328               Utah State
+#&gt; 21             1851              1886      98         Western Kentucky
+#&gt; 22             1757              1789      21          San Diego State
+#&gt; 23               NA                NA    2502           Portland State
+#&gt; 24             1482              1401      38                 Colorado
+#&gt; 25             1518              1477     145                 Ole Miss
+#&gt; 26             1231              1292     326              Texas State
+#&gt; 27             1301              1335     251                    Texas
+#&gt; 28             1572              1634     324         Coastal Carolina
+#&gt; 29               NA                NA     256            James Madison
+#&gt; 30             1915              1963     204             Oregon State
+#&gt; 31             1164              1160     248                  Houston
+#&gt; 32             1305              1305    2309               Kent State
+#&gt; 33               NA                NA    2582                 Southern
+#&gt; 34               NA                NA     222                Villanova
+#&gt; 35             1876              1992    2226         Florida Atlantic
+#&gt; 36               NA                NA     231                   Furman
+#&gt; 37               NA                NA    2016             Alcorn State
+#&gt; 38             1609              1674     113                    UMass
+#&gt; 39               NA                NA    2619              Stony Brook
+#&gt; 40               NA                NA      47                   Howard
+#&gt; 41               NA                NA    2046              Austin Peay
+#&gt; 42             1829              1840     264               Washington
+#&gt; 43             1453              1482    2117         Central Michigan
+#&gt; 44             1922              1917    2026        Appalachian State
+#&gt; 45             1572              1513     265         Washington State
+#&gt; 46             1411              1368     277            West Virginia
+#&gt; 47               NA                NA     399                   Albany
+#&gt; 48             1712              1756    2459        Northern Illinois
+#&gt; 49               NA                NA    2630                UT Martin
+#&gt; 50               NA                NA    2197         Eastern Illinois
+#&gt; 51             1556              1560     153           North Carolina
+#&gt; 52             1713              1730    2439                     UNLV
+#&gt; 53             1385              1379     276                 Marshall
+#&gt; 54               NA                NA    2169           Delaware State
+#&gt; 55               NA                NA    2230                  Fordham
+#&gt; 56             1594              1496      68              Boise State
+#&gt; 57               NA                NA    2210                     Elon
+#&gt; 58               NA                NA    2569     South Carolina State
+#&gt; 59               NA                NA     257                 Richmond
+#&gt; 60             1444              1541     295             Old Dominion
+#&gt; 61               NA                NA    2447                 Nicholls
+#&gt; 62             1377              1371      84                  Indiana
+#&gt; 63               NA                NA     233             South Dakota
+#&gt; 64               NA                NA    2296            Jackson State
+#&gt; 65               NA                NA    2110         Central Arkansas
+#&gt; 66             1471              1437    2132               Cincinnati
+#&gt; 67               NA                NA    2382                   Mercer
+#&gt; 68               NA                NA    2678                      VMI
+#&gt; 69               NA                NA    2546 Southeast Missouri State
+#&gt; 70             1233              1245    2348           Louisiana Tech
+#&gt; 71               NA                NA    2755                Grambling
+#&gt; 72             1335              1397    2567                      SMU
+#&gt; 73             1414              1488    2393         Middle Tennessee
+#&gt; 74             1722              1730     130                 Michigan
+#&gt; 75               NA                NA    2127      Charleston Southern
+#&gt; 76               NA                NA    2617        Stephen F. Austin
+#&gt; 77               NA                NA    2464         Northern Arizona
+#&gt; 78               NA                NA    2000        Abilene Christian
+#&gt; 79               NA                NA    2916           Incarnate Word
+#&gt; 80             1613              1664     189            Bowling Green
+#&gt; 81             1986              2062      97               Louisville
+#&gt; 82               NA                NA      70                    Idaho
+#&gt; 83             1498              1612    2636           UT San Antonio
+#&gt; 84             1513              1496     252                      BYU
+#&gt; 85             1264              1345    2426                     Navy
+#&gt; 86               NA                NA    2448       North Carolina A&amp;T
+#&gt; 87             1736              1774    2390                    Miami
+#&gt; 88             1647              1603     259            Virginia Tech
+#&gt;      away_conference away_points       away_post_win_prob away_pregame_elo
+#&gt; 1               &lt;NA&gt;          15     0.001545757783768864               NA
+#&gt; 2               &lt;NA&gt;          28       0.5838880202309529               NA
+#&gt; 3      Mountain West          43       0.6682602321107232             1217
+#&gt; 4      Mountain West          29        0.995727890153676             1537
+#&gt; 5               &lt;NA&gt;           6  0.000027906209577710506               NA
+#&gt; 6   FBS Independents          10   0.00003616354229352137             1304
+#&gt; 7  American Athletic          56        0.995796536566131             1729
+#&gt; 8               &lt;NA&gt;          20        0.130409812028494               NA
+#&gt; 9               &lt;NA&gt;           0 0.0000026543058769812333               NA
+#&gt; 10              &lt;NA&gt;          17    0.0007301439484914685               NA
+#&gt; 11              &lt;NA&gt;          31       0.4279140694384427               NA
+#&gt; 12              &lt;NA&gt;          10    0.0002001311170733988               NA
+#&gt; 13           Big Ten          31       0.8479341999795307             1690
+#&gt; 14               ACC          23       0.7803386787674967             1590
+#&gt; 15              &lt;NA&gt;           7  0.000007197648553836089               NA
+#&gt; 16              &lt;NA&gt;          44       0.7744181567341348               NA
+#&gt; 17               ACC          55        0.899300244378823             1340
+#&gt; 18              &lt;NA&gt;          17    0.0004489835305245826               NA
+#&gt; 19  FBS Independents          14    0.0026153808032013393             1521
+#&gt; 20     Mountain West          31      0.09381640925756696             1475
+#&gt; 21    Conference USA           3   0.00003415174045540148             1436
+#&gt; 22     Mountain West          10     0.006232259663422335             1584
+#&gt; 23              &lt;NA&gt;          19  0.000005322779891625551               NA
+#&gt; 24            Pac-12          45       0.9960643920785637             1495
+#&gt; 25               SEC          47        0.992269255191677             1533
+#&gt; 26          Sun Belt           7     0.000741869037904852             1131
+#&gt; 27            Big 12          29       0.0868499023945547             1657
+#&gt; 28          Sun Belt          15  0.000018607215708787983             1315
+#&gt; 29              &lt;NA&gt;          13        0.160909039239306               NA
+#&gt; 30            Pac-12          31   0.00005647238115735753             1229
+#&gt; 31 American Athletic          45       0.9499480396694673             1574
+#&gt; 32      Mid-American          24       0.1659846892966097             1129
+#&gt; 33              &lt;NA&gt;           7  0.000007824349748219994               NA
+#&gt; 34              &lt;NA&gt;          19       0.9198198198934802               NA
+#&gt; 35    Conference USA          14  0.000007197183002127794             1642
+#&gt; 36              &lt;NA&gt;           7    0.0000159215720431094               NA
+#&gt; 37              &lt;NA&gt;           0   0.00000401221546419972               NA
+#&gt; 38  FBS Independents          21   0.00017443080013468393             1377
+#&gt; 39              &lt;NA&gt;           0  0.000005297055129194206               NA
+#&gt; 40              &lt;NA&gt;          32       0.5472741906553065               NA
+#&gt; 41              &lt;NA&gt;           0  0.000007796744580956805               NA
+#&gt; 42            Pac-12          16       0.3918178053441286             1839
+#&gt; 43      Mid-American          20    0.0051032998085885906             1424
+#&gt; 44          Sun Belt          38     0.019490398477755022             1652
+#&gt; 45            Pac-12          41       0.9946412752895979             1551
+#&gt; 46            Big 12          40       0.9957266821334012             1570
+#&gt; 47              &lt;NA&gt;           7    0.0002634114615062133               NA
+#&gt; 48      Mid-American           7    0.0012162595369955564             1515
+#&gt; 49              &lt;NA&gt;          14     0.004031849640397045               NA
+#&gt; 50              &lt;NA&gt;          20     0.003256819107921749               NA
+#&gt; 51               ACC          17      0.10317998221501223             1459
+#&gt; 52     Mountain West          21    0.0032590209677643145             1350
+#&gt; 53    Conference USA          35       0.7085646902378377             1475
+#&gt; 54              &lt;NA&gt;          10   0.00008576772798907228               NA
+#&gt; 55              &lt;NA&gt;          10  0.000015835535093988717               NA
+#&gt; 56     Mountain West          56       0.9407697074417514             1648
+#&gt; 57              &lt;NA&gt;          14  0.000036258261760346855               NA
+#&gt; 58              &lt;NA&gt;           6    0.0012713340353657232               NA
+#&gt; 59              &lt;NA&gt;          13     0.001028011004730045               NA
+#&gt; 60    Conference USA          10   0.00015972691607413214             1251
+#&gt; 61              &lt;NA&gt;          26        0.844213116573793               NA
+#&gt; 62           Big Ten          38       0.9118309902912132             1557
+#&gt; 63              &lt;NA&gt;          24       0.4288198994607003               NA
+#&gt; 64              &lt;NA&gt;           7    0.0005047783187366317               NA
+#&gt; 65              &lt;NA&gt;          27     0.002248910317168673               NA
+#&gt; 66 American Athletic          26       0.7803958762265931             1291
+#&gt; 67              &lt;NA&gt;          14  0.000004165417503809721               NA
+#&gt; 68              &lt;NA&gt;           3  0.000012685559573455407               NA
+#&gt; 69              &lt;NA&gt;          21    0.0011154194995069977               NA
+#&gt; 70    Conference USA          30       0.8265336617017218             1537
+#&gt; 71              &lt;NA&gt;          17   0.00020727821340027486               NA
+#&gt; 72 American Athletic          23    0.0012626697935577136             1387
+#&gt; 73    Conference USA           7    0.0003796669053852675             1421
+#&gt; 74           Big Ten          17      0.07216956854098999             1701
+#&gt; 75              &lt;NA&gt;           6    0.0001742161652431573               NA
+#&gt; 76              &lt;NA&gt;           6  0.000004404477775943327               NA
+#&gt; 77              &lt;NA&gt;          30       0.9939689644437355               NA
+#&gt; 78              &lt;NA&gt;          27   0.00017042791751720188               NA
+#&gt; 79              &lt;NA&gt;          30    0.0008418813561436034               NA
+#&gt; 80      Mid-American          24    0.0001606326780763112             1265
+#&gt; 81               ACC          14   0.00007443135335916118             1701
+#&gt; 82              &lt;NA&gt;          13    0.0004597288685521672               NA
+#&gt; 83    Conference USA           7  0.000007992926103650433             1429
+#&gt; 84  FBS Independents          28        0.747621775556108             1396
+#&gt; 85 American Athletic          41      0.02035858702878457             1633
+#&gt; 86              &lt;NA&gt;          28       0.5198478586172812               NA
+#&gt; 87               ACC          17      0.04404470034418717             1695
+#&gt; 88               ACC          24       0.6875322954307215             1731
+#&gt;    away_postgame_elo   excitement_index
+#&gt; 1                 NA       0.2139101303
+#&gt; 2                 NA       5.6012773743
+#&gt; 3               1264       4.5649361931
+#&gt; 4               1572       2.7057118396
+#&gt; 5                 NA  0.760100617799999
+#&gt; 6               1221   3.06144440259999
+#&gt; 7               1781  0.830061928399999
+#&gt; 8                 NA       5.8512641491
+#&gt; 9                 NA       0.1406151783
+#&gt; 10                NA 0.0663753880999998
+#&gt; 11                NA       8.4160129207
+#&gt; 12                NA        0.922426719
+#&gt; 13              1688       6.6741715963
+#&gt; 14              1587       9.7884823983
+#&gt; 15                NA 0.0327134787999997
+#&gt; 16                NA       5.5811874724
+#&gt; 17              1391       2.7679697627
+#&gt; 18                NA  0.565053273800001
+#&gt; 19              1482   1.69744162409999
+#&gt; 20              1474       4.1366972475
+#&gt; 21              1401       0.2437023338
+#&gt; 22              1552       2.8895508744
+#&gt; 23                NA   1.08662059399999
+#&gt; 24              1576         3.41109204
+#&gt; 25              1574       3.6518173425
+#&gt; 26              1070   1.11697903199999
+#&gt; 27              1623   9.13837292739999
+#&gt; 28              1253  0.182912192500001
+#&gt; 29                NA       3.8739046233
+#&gt; 30              1181       0.1409114981
+#&gt; 31              1578       3.9567502631
+#&gt; 32              1129   6.71988011069999
+#&gt; 33                NA 0.0225499731999999
+#&gt; 34                NA   6.43306846939999
+#&gt; 35              1526  0.451379604799999
+#&gt; 36                NA 0.0250883832000001
+#&gt; 37                NA 0.0701338293999992
+#&gt; 38              1312       0.6622090949
+#&gt; 39                NA       0.8860730608
+#&gt; 40                NA       3.8302068262
+#&gt; 41                NA 0.0234045444000003
+#&gt; 42              1828   7.48070415839999
+#&gt; 43              1395   5.87733304869999
+#&gt; 44              1657   6.47689498139999
+#&gt; 45              1610       7.1429531895
+#&gt; 46              1613   2.82384215719999
+#&gt; 47                NA       0.2208688393
+#&gt; 48              1471       3.0460114328
+#&gt; 49                NA 0.0905773775999997
+#&gt; 50                NA  0.179641016199999
+#&gt; 51              1455       3.2874759002
+#&gt; 52              1333       2.4032706517
+#&gt; 53              1481       5.2033164459
+#&gt; 54                NA   1.62547624519999
+#&gt; 55                NA       2.6062499703
+#&gt; 56              1746   2.27508502569999
+#&gt; 57                NA       0.5439158967
+#&gt; 58                NA  0.435713163799999
+#&gt; 59                NA   1.87596885599999
+#&gt; 60              1154       5.0482463785
+#&gt; 61                NA   9.41128064859999
+#&gt; 62              1563       2.7499679181
+#&gt; 63                NA   7.73617338379999
+#&gt; 64                NA  0.188652225199998
+#&gt; 65                NA       6.0252868305
+#&gt; 66              1325       8.7869201591
+#&gt; 67                NA       1.0251003832
+#&gt; 68                NA 0.0266620140000006
+#&gt; 69                NA        0.727200521
+#&gt; 70              1525   3.39524150609999
+#&gt; 71                NA       1.0627373025
+#&gt; 72              1325       2.0082988577
+#&gt; 73              1347       3.6034339205
+#&gt; 74              1693       4.2446507286
+#&gt; 75                NA 0.0448168873999993
+#&gt; 76                NA 0.0254067829000002
+#&gt; 77                NA   3.04488015159999
+#&gt; 78                NA  0.146911048999999
+#&gt; 79                NA  0.307032200699999
+#&gt; 80              1214  0.738405284700001
+#&gt; 81              1625  0.394188331699999
+#&gt; 82                NA       0.4491663395
+#&gt; 83              1315  0.574617268999999
+#&gt; 84              1413   5.07418613049999
+#&gt; 85              1552       3.7631715548
+#&gt; 86                NA       6.9631012532
+#&gt; 87              1657       3.8470693333
+#&gt; 88              1775   3.91834934429999
 #&gt;                                     highlights notes
 #&gt; 1  https://www.youtube.com/watch?v=uwMMvX-tU_U    NA
 #&gt; 2  https://www.youtube.com/watch?v=z2VFteZqBBw    NA
@@ -1136,12 +1235,18 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 3      23 San José State    Mountain West           3 0.0036361807521906077
 #&gt; 4     309      Louisiana         Sun Belt          66    0.9983063510069449
 #&gt; 5     252            BYU FBS Independents          49    0.9978157683814658
-#&gt;   away_id        away_team  away_conference away_points    away_post_win_prob
-#&gt; 1    2653             Troy         Sun Belt          16   0.45161003246455234
-#&gt; 2     221       Pittsburgh              ACC          14  0.033872209385313434
-#&gt; 3     349             Army FBS Independents          52    0.9963638192478094
-#&gt; 4     166 New Mexico State FBS Independents          38 0.0016936489930551302
-#&gt; 5      62          Hawai'i    Mountain West          23 0.0021842316185342048
+#&gt;   home_pregame_elo home_postgame_elo away_id        away_team  away_conference
+#&gt; 1             1336              1354    2653             Troy         Sun Belt
+#&gt; 2             1869              1858     221       Pittsburgh              ACC
+#&gt; 3             1041               978     349             Army FBS Independents
+#&gt; 4             1194              1259     166 New Mexico State FBS Independents
+#&gt; 5             1377              1440      62          Hawai'i    Mountain West
+#&gt;   away_points    away_post_win_prob away_pregame_elo away_postgame_elo
+#&gt; 1          16   0.45161003246455234             1548              1530
+#&gt; 2          14  0.033872209385313434             1444              1455
+#&gt; 3          52    0.9963638192478094             1628              1691
+#&gt; 4          38 0.0016936489930551302             1126              1061
+#&gt; 5          23 0.0021842316185342048             1351              1288
 #&gt;   excitement_index                                  highlights notes
 #&gt; 1     8.1162251011 https://www.youtube.com/watch?v=tC5LVoZMze4    NA
 #&gt; 2     7.2536238281 https://www.youtube.com/watch?v=Aij-ogHy23U    NA
@@ -1158,16 +1263,18 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 1             SEC          74              7             10              7
 #&gt;   home_scores_Q4 home_scores_Q5 home_scores_Q6 home_scores_Q7 home_scores_Q8
 #&gt; 1              7              3              7              8              3
-#&gt;   home_scores_Q9 home_scores_Q10 home_scores_Q11 home_post_win_prob away_id
-#&gt; 1              6               8               8 0.6786258156883023      99
-#&gt;   away_team away_conference away_points away_scores_Q1 away_scores_Q2
-#&gt; 1       LSU             SEC          72              7              3
-#&gt;   away_scores_Q3 away_scores_Q4 away_scores_Q5 away_scores_Q6 away_scores_Q7
-#&gt; 1              7             14              3              7              8
-#&gt;   away_scores_Q8 away_scores_Q9 away_scores_Q10 away_scores_Q11
-#&gt; 1              3              6               8               6
-#&gt;    away_post_win_prob excitement_index
-#&gt; 1 0.32137418431169773    14.1962593954
+#&gt;   home_scores_Q9 home_scores_Q10 home_scores_Q11 home_post_win_prob
+#&gt; 1              6               8               8 0.6786258156883023
+#&gt;   home_pregame_elo home_postgame_elo away_id away_team away_conference
+#&gt; 1             1722              1724      99       LSU             SEC
+#&gt;   away_points away_scores_Q1 away_scores_Q2 away_scores_Q3 away_scores_Q4
+#&gt; 1          72              7              3              7             14
+#&gt;   away_scores_Q5 away_scores_Q6 away_scores_Q7 away_scores_Q8 away_scores_Q9
+#&gt; 1              3              7              8              3              6
+#&gt;   away_scores_Q10 away_scores_Q11  away_post_win_prob away_pregame_elo
+#&gt; 1               8               6 0.32137418431169773             1836
+#&gt;   away_postgame_elo excitement_index
+#&gt; 1              1834    14.1962593954
 #&gt;                                    highlights notes
 #&gt; 1 https://www.youtube.com/watch?v=36oYtGl-n-s    NA</div><div class='input'><span class='co'># }</span>
 </div></pre>
