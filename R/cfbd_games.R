@@ -98,11 +98,15 @@ NULL
 #'   \item{`home_conference`: character.}{Home team conference.}
 #'   \item{`home_points`: integer.}{Home team points.}
 #'   \item{`home_post_win_prob`: character.}{Home team post-game win probability.}
+#'   \item{`home_pregame_elo`: character.}{Home team pre-game ELO rating.}
+#'   \item{`home_postgame_elo`: character.}{Home team post-game ELO rating.}
 #'   \item{`away_id`: integer.}{Away team referencing id.}
 #'   \item{`away_team`: character.}{Away team name.}
 #'   \item{`away_conference`: character.}{Away team conference.}
 #'   \item{`away_points`: integer.}{Away team points.}
 #'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
+#'   \item{`away_pregame_elo`: character.}{Away team pre-game ELO rating.}
+#'   \item{`away_postgame_elo`: character.}{Away team post-game ELO rating.}
 #'   \item{`excitement_index`: character.}{Game excitement index.}
 #'   \item{`highlights`: character.}{Game highlight urls.}
 #'   \item{`notes`: character.}{Game notes.}
