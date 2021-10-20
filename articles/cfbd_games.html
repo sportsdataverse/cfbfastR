@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.2.9000</span>
       </span>
     </div>
 
@@ -411,18 +411,18 @@
 ##      game_id school conference home_away points total_yards net_passing_yards
 ##        &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;            
 ##  1 401110778 LSU    SEC        away          45 573         471              
-##  2 401110842 LSU    SEC        away          46 559         393              
-##  3 401110725 LSU    SEC        home          55 472         350              
-##  4 401110828 LSU    SEC        away          36 413         327              
-##  5 401110833 LSU    SEC        home          23 508         321              
-##  6 401110859 LSU    SEC        home          56 612         352              
-##  7 401110805 LSU    SEC        away          66 599         418              
-##  8 401110850 LSU    SEC        away          58 714         489              
-##  9 401110869 LSU    SEC        home          50 553         425              
-## 10 401132981 LSU    SEC        home          37 481         349              
-## 11 401110819 LSU    SEC        home          42 511         293              
-## 12 401110813 LSU    SEC        home          42 601         353              
-## 13 401110790 LSU    SEC        home          65 610         488              
+##  2 401110828 LSU    SEC        away          36 413         327              
+##  3 401110833 LSU    SEC        home          23 508         321              
+##  4 401110842 LSU    SEC        away          46 559         393              
+##  5 401110859 LSU    SEC        home          56 612         352              
+##  6 401110819 LSU    SEC        home          42 511         293              
+##  7 401110813 LSU    SEC        home          42 601         353              
+##  8 401110805 LSU    SEC        away          66 599         418              
+##  9 401110850 LSU    SEC        away          58 714         489              
+## 10 401110869 LSU    SEC        home          50 553         425              
+## 11 401110725 LSU    SEC        home          55 472         350              
+## 12 401110790 LSU    SEC        home          65 610         488              
+## 13 401132981 LSU    SEC        home          37 481         349              
 ## # … with 71 more variables: completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;,
 ## #   yards_per_pass &lt;chr&gt;, passes_intercepted &lt;chr&gt;, interception_yards &lt;chr&gt;,
 ## #   interception_tds &lt;chr&gt;, rushing_attempts &lt;chr&gt;, rushing_yards &lt;chr&gt;,
@@ -433,21 +433,21 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 13 × 78
-##      game_id school        conference home_away points total_yards net_passing_yar…
-##        &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;           
-##  1 332640052 Florida State ACC        home          54 492         226             
-##  2 332450221 Florida State ACC        away          41 533         377             
-##  3 332710103 Florida State ACC        away          48 489         330             
-##  4 332780052 Florida State ACC        home          63 614         431             
-##  5 332570052 Florida State ACC        home          62 617         240             
-##  6 332920228 Florida State ACC        away          51 565         444             
-##  7 332990052 Florida State ACC        home          49 566         342             
-##  8 333200052 Florida State ACC        home          59 523         298             
-##  9 333060052 Florida State ACC        home          41 517         325             
-## 10 333130154 Florida State ACC        away          59 296         207             
-## 11 333270052 Florida State ACC        home          80 645         309             
-## 12 333340057 Florida State ACC        away          37 456         327             
-## 13 333410052 Florida State ACC        home          45 569         330             
+##      game_id school     conference home_away points total_yards net_passing_yar…
+##        &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;           
+##  1 332640052 Florida S… ACC        home          54 492         226             
+##  2 332450221 Florida S… ACC        away          41 533         377             
+##  3 332570052 Florida S… ACC        home          62 617         240             
+##  4 332710103 Florida S… ACC        away          48 489         330             
+##  5 332780052 Florida S… ACC        home          63 614         431             
+##  6 332920228 Florida S… ACC        away          51 565         444             
+##  7 333060052 Florida S… ACC        home          41 517         325             
+##  8 332990052 Florida S… ACC        home          49 566         342             
+##  9 333130154 Florida S… ACC        away          59 296         207             
+## 10 333270052 Florida S… ACC        home          80 645         309             
+## 11 333200052 Florida S… ACC        home          59 523         298             
+## 12 333410052 Florida S… ACC        home          45 569         330             
+## 13 333340057 Florida S… ACC        away          37 456         327             
 ## # … with 71 more variables: completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;,
 ## #   yards_per_pass &lt;chr&gt;, passes_intercepted &lt;chr&gt;, interception_yards &lt;chr&gt;,
 ## #   interception_tds &lt;chr&gt;, rushing_attempts &lt;chr&gt;, rushing_yards &lt;chr&gt;,
