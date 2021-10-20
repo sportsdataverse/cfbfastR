@@ -9,7 +9,7 @@
 \title{\strong{Update or create a cfbfastR play-by-play database}}
 \usage{
 update_cfb_db(
-  dbdir = ".",
+  dbdir = getOption("cfbfastR.dbdirectory", default = "."),
   dbname = "cfb_pbp_db",
   tblname = "cfbfastR_pbp",
   force_rebuild = FALSE,
@@ -17,7 +17,8 @@ update_cfb_db(
 )
 }
 \arguments{
-\item{dbdir}{Directory in which the database is or shall be located}
+\item{dbdir}{Directory in which the database is or shall be located. Can also
+be set globally with \code{options(cfbfastR.dbdirectory)}.}
 
 \item{dbname}{File name of an existing or desired SQLite database within \code{dbdir}}
 
