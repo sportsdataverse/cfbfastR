@@ -168,16 +168,22 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
     # completed games since 2014, excluding the broken games
     dplyr::filter(.data$season >= 2014) %>%
     dplyr::arrange(.data$week) %>%
-    dplyr::pull(.data$game_id)
+    dplyr::select("game_id", "season")
   
   # function below
   missing <- get_missing_cfb_games(completed_games, connection, tblname)
   
-  # rebuild db if number of missing games is too large
-  if(length(missing) > 16) {# limit set to >16 to make sure this doesn't get triggered on gameday (e.g. week 17)
-    # message("The number of missing games is so large that rebuilding the database is more efficient.")
-    build_cfb_db(tblname, connection, show_message = FALSE, rebuild = as.numeric(unique(stringr::str_sub(missing, 1, 4))))
+  # rebuild db always because below code block is commented out
+  if(length(missing) > 0) {
+    seasons_to_rebuild <- completed_games %>%
+      dplyr::filter(.data$game_id %in% missing) %>%
+      dplyr::pull(.data$season) %>%
+      unique()
+    build_cfb_db(tblname, connection, show_message = FALSE, rebuild = seasons_to_rebuild)
     missing <- get_missing_cfb_games(completed_games, connection, tblname)
+    if (length(missing) > 0) {
+      cli::cli_alert_info("{my_time()} | There {cli::qty(length(missing))}{?is/are} still {length(missing)} missing game{?s} because the data repo isn't ready. Please try again later.")
+    }
   }
   
   # # if there's missing games, scrape and write to db
@@ -240,7 +246,7 @@ get_missing_cfb_games <- function(completed_games, dbConnection, tablename) {
     dplyr::collect() %>%
     dplyr::pull("game_id")
   
-  need_scrape <- completed_games[!completed_games %in% db_ids]
+  need_scrape <- completed_games$game_id[!completed_games$game_id %in% db_ids]
   
   cli::cli_alert_info("{my_time()} | You have {length(db_ids)} games and are missing {length(need_scrape)}.")
   return(need_scrape)
