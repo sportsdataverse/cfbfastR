@@ -115,7 +115,8 @@ load_games <- function(){
 #' is provided but the argument `tblname` will still be used to write the
 #' data table into the database.
 #'
-#' @param dbdir Directory in which the database is or shall be located
+#' @param dbdir Directory in which the database is or shall be located. Can also
+#'   be set globally with `options(cfbfastR.dbdirectory)`.
 #' @param dbname File name of an existing or desired SQLite database within `dbdir`
 #' @param tblname The name of the play by play data table within the database
 #' @param force_rebuild Hybrid parameter (logical or numeric) to rebuild parts
@@ -123,7 +124,7 @@ load_games <- function(){
 #' @param db_connection A `DBIConnection` object, as returned by
 #' [DBI::dbConnect()] (please see details for further information)
 #' @export
-update_cfb_db <- function(dbdir = ".",
+update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = "."),
                           dbname = "cfb_pbp_db",
                           tblname = "cfbfastR_pbp",
                           force_rebuild = FALSE,
@@ -167,16 +168,22 @@ update_cfb_db <- function(dbdir = ".",
     # completed games since 2014, excluding the broken games
     dplyr::filter(.data$season >= 2014) %>%
     dplyr::arrange(.data$week) %>%
-    dplyr::pull(.data$game_id)
+    dplyr::select("game_id", "season")
   
   # function below
   missing <- get_missing_cfb_games(completed_games, connection, tblname)
   
-  # rebuild db if number of missing games is too large
-  if(length(missing) > 16) {# limit set to >16 to make sure this doesn't get triggered on gameday (e.g. week 17)
-    # message("The number of missing games is so large that rebuilding the database is more efficient.")
-    build_cfb_db(tblname, connection, show_message = FALSE, rebuild = as.numeric(unique(stringr::str_sub(missing, 1, 4))))
+  # rebuild db always because below code block is commented out
+  if(length(missing) > 0) {
+    seasons_to_rebuild <- completed_games %>%
+      dplyr::filter(.data$game_id %in% missing) %>%
+      dplyr::pull(.data$season) %>%
+      unique()
+    build_cfb_db(tblname, connection, show_message = FALSE, rebuild = seasons_to_rebuild)
     missing <- get_missing_cfb_games(completed_games, connection, tblname)
+    if (length(missing) > 0) {
+      cli::cli_alert_info("{my_time()} | There {cli::qty(length(missing))}{?is/are} still {length(missing)} missing game{?s} because the data repo isn't ready. Please try again later.")
+    }
   }
   
   # # if there's missing games, scrape and write to db
@@ -211,15 +218,14 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
     seasons <- valid_seasons %>% dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
   } else if (is.numeric(rebuild) & all(rebuild %in% valid_seasons$season)) {
-    string <- paste0(rebuild, collapse = ", ")
-    if (show_message){cli::cli_ul("{my_time()} | Purging {string} season(s) from the data table {.val {tblname}} in your connected database...")}
+    if (show_message){cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
     DBI::dbExecute(db_conn, glue::glue_sql("DELETE FROM {`tblname`} WHERE season IN ({vals*})", vals = rebuild, .con = db_conn))
     seasons <- valid_seasons %>% dplyr::filter(.data$season %in% rebuild) %>% dplyr::pull("season")
-    cli::cli_ul("{my_time()} | Starting download of the {string} season(s)...")
+    cli::cli_ul("{my_time()} | Starting download of the {cli::qty(length(rebuild))}season{?s} {rebuild}...")
   } else if (all(rebuild == "NEW")) {
     cli::cli_alert_info("{my_time()} | Can't find the data table {.val {tblname}} in your database. Will load the play by play data from scratch.")
     seasons <- valid_seasons %>% dplyr::pull("season")
-    cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
+    cli::cli_ul("{my_time()} | Starting download of {length(seasons)} season{?s} between {min(seasons)} and {max(seasons)}...")
   } else {
     seasons <- NULL
     cli::cli_alert_danger("{my_time()} | At least one invalid value passed to argument {.val force_rebuild}. Please try again with valid input.")
@@ -240,7 +246,7 @@ get_missing_cfb_games <- function(completed_games, dbConnection, tablename) {
     dplyr::collect() %>%
     dplyr::pull("game_id")
   
-  need_scrape <- completed_games[!completed_games %in% db_ids]
+  need_scrape <- completed_games$game_id[!completed_games$game_id %in% db_ids]
   
   cli::cli_alert_info("{my_time()} | You have {length(db_ids)} games and are missing {length(need_scrape)}.")
   return(need_scrape)
