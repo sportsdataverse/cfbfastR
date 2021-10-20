@@ -1,3 +1,8 @@
+# cfbfastR (development version)
+
+* Fixed a bug in `update_cfb_db()` where the function failed when trying to load recent games from the data repo. (#35)
+* Added the option `cfbfastR.dbdirectory` that allows to set the database directory in `update_cfb_db()` globally.
+
 # **cfbfastR v1.5.2**
 
 * Remove verbose parameter
