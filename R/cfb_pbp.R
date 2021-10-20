@@ -115,7 +115,8 @@ load_games <- function(){
 #' is provided but the argument `tblname` will still be used to write the
 #' data table into the database.
 #'
-#' @param dbdir Directory in which the database is or shall be located
+#' @param dbdir Directory in which the database is or shall be located. Can also
+#'   be set globally with `options(cfbfastR.dbdirectory)`.
 #' @param dbname File name of an existing or desired SQLite database within `dbdir`
 #' @param tblname The name of the play by play data table within the database
 #' @param force_rebuild Hybrid parameter (logical or numeric) to rebuild parts
@@ -123,7 +124,7 @@ load_games <- function(){
 #' @param db_connection A `DBIConnection` object, as returned by
 #' [DBI::dbConnect()] (please see details for further information)
 #' @export
-update_cfb_db <- function(dbdir = ".",
+update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = "."),
                           dbname = "cfb_pbp_db",
                           tblname = "cfbfastR_pbp",
                           force_rebuild = FALSE,
