@@ -39,6 +39,7 @@ Other contributors:
   \item Tan Ho \email{tan@tanho.ca} [contributor]
   \item Keegan Abdoo \email{kabdoo@draft.ly} [contributor]
   \item Matt Spencer \email{maatspencer@gmail.com} [contributor]
+  \item Sebastian Carl \email{mrcaseb@gmail.com} [contributor]
 }
 
 }

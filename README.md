@@ -32,7 +32,7 @@ You can install the released version of
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("saiemgilani/cfbfastR", dependencies = TRUE, update = TRUE)
 ```
 
 ``` r
@@ -145,6 +145,10 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
     <a href="https://twitter.com/Maatspencer" target="blank"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=twitter&style=for-the-badge" alt="@Maatspencer" /></a>
     <a href="https://github.com/Maatspencer" target="blank"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge" alt="@Maatspencer" /></a>
 
+-   [Sebastian Carl](https://twitter.com/mrcaseb)  
+    <a href="https://twitter.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=twitter&style=for-the-badge" alt="@mrcaseb" /></a>
+    <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge" alt="@mrcaseb" /></a>
+
 # **Authors Emeritus - `cfbscrapR`\[archived\]**
 
 -   [Meyappan Subbiah](https://twitter.com/msubbaiah1)  
@@ -158,9 +162,6 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
 # **Special Thanks**
 
 -   [Nick Tice](https://github.com/NickTice)
--   [Sebastian Carl](https://twitter.com/mrcaseb)  
-    <a href="https://twitter.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=twitter&style=for-the-badge" alt="@mrcaseb" /></a>
-    <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge" alt="@mrcaseb" /></a>
 
 ## **Citations**
 
