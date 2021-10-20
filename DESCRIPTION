@@ -49,7 +49,11 @@ Authors@R:
       person(given = "Matt",
              family = "Spencer",
              role = "ctb",
-             email = "maatspencer@gmail.com"))
+             email = "maatspencer@gmail.com"),
+      person(given = "Sebastian",
+             family = "Carl",
+             role = "ctb",
+             email = "mrcaseb@gmail.com"))
 Description: An R package for working with College Football Data. It is an
     R API wrapper around <https://collegefootballdata.com/> made available
     by the cfbfastR team. It provides users the capability to access a
