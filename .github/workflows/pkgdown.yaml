@@ -1,7 +1,7 @@
 on:
   push:
-    branches:
-      - master
+    branches: [main, master]
+    tags: ['*']
   workflow_dispatch:
 
 name: pkgdown
@@ -27,8 +27,10 @@ jobs:
             pkgdown
             animation
             ggimage
+            hadley/emo
             knitr
             ragg
+            r-lib/pkgapi
             rsconnect
             tictoc
             tidyverse
