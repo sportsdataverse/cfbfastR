@@ -212,15 +212,14 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
     seasons <- valid_seasons %>% dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
   } else if (is.numeric(rebuild) & all(rebuild %in% valid_seasons$season)) {
-    string <- paste0(rebuild, collapse = ", ")
-    if (show_message){cli::cli_ul("{my_time()} | Purging {string} season(s) from the data table {.val {tblname}} in your connected database...")}
+    if (show_message){cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
     DBI::dbExecute(db_conn, glue::glue_sql("DELETE FROM {`tblname`} WHERE season IN ({vals*})", vals = rebuild, .con = db_conn))
     seasons <- valid_seasons %>% dplyr::filter(.data$season %in% rebuild) %>% dplyr::pull("season")
-    cli::cli_ul("{my_time()} | Starting download of the {string} season(s)...")
+    cli::cli_ul("{my_time()} | Starting download of the {cli::qty(length(rebuild))}season{?s} {rebuild}...")
   } else if (all(rebuild == "NEW")) {
     cli::cli_alert_info("{my_time()} | Can't find the data table {.val {tblname}} in your database. Will load the play by play data from scratch.")
     seasons <- valid_seasons %>% dplyr::pull("season")
-    cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
+    cli::cli_ul("{my_time()} | Starting download of {length(seasons)} season{?s} between {min(seasons)} and {max(seasons)}...")
   } else {
     seasons <- NULL
     cli::cli_alert_danger("{my_time()} | At least one invalid value passed to argument {.val force_rebuild}. Please try again with valid input.")
