@@ -14,8 +14,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-pacman::p_load_current_gh("r-lib/pkgapi")
-pacman::p_load_current_gh("hadley/emo")
 library(pkgapi)
 pkg <- pkgapi::map_package(path = "../")
 library(dplyr)
@@ -48,7 +46,7 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 
 #### **Load and install the necessary packages**
 
-```{r load_cfbfastR_tidy, message=FALSE}
+```{r load_cfbfastR_tidy, message=FALSE, eval=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
