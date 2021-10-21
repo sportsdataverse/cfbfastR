@@ -43,4 +43,12 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 cfbd_ratings_srs(year = 2018, conference = "SEC")
 }\if{html}{\out{</div>}}
 }
+
+\subsection{\strong{Get Elo historical rating data}}{
+
+Acquire the CFBD calculated elo ratings data by \strong{team}, \strong{year}, \strong{week}, and \strong{conference}\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_elo(year = 2019, team = "Texas")
+
+cfbd_ratings_elo(year = 2018, conference = "SEC")
+}\if{html}{\out{</div>}}
+}
 }

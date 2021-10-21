@@ -1,5 +1,6 @@
-# cfbfastR (development version)
+# **cfbfastR v1.6.0**
 
+* Added [```cfbd_ratings_elo()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_elo.html) function
 * Fixed a bug in `update_cfb_db()` where the function failed when trying to load recent games from the data repo. (#35)
 * Added the option `cfbfastR.dbdirectory` that allows to set the database directory in `update_cfb_db()` globally.
 
