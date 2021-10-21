@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update or create a cfbfastR play-by-play database — update_cfb_db • cfbfastR</title>
+<title>Get Elo historical rating data — cfbd_ratings_elo • cfbfastR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,9 +54,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Update or create a cfbfastR play-by-play database — update_cfb_db" />
-<meta property="og:description" content="update_cfb_db() updates or creates a database with cfbfastR
-play by play data of all completed games since 2014." />
+<meta property="og:title" content="Get Elo historical rating data — cfbd_ratings_elo" />
+<meta property="og:description" content="Acquire the CFBD calculated elo ratings data by team, year, week, and conference" />
 <meta property="og:image" content="https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true" />
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good." />
 <meta name="twitter:card" content="summary_large_image" />
@@ -398,79 +397,79 @@ play by play data of all completed games since 2014." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1><strong>Update or create a cfbfastR play-by-play database</strong></h1>
+    <h1><strong>Get Elo historical rating data</strong></h1>
     
-    <div class="hidden name"><code>update_cfb_db.Rd</code></div>
+    <div class="hidden name"><code>cfbd_ratings_elo.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>update_cfb_db()</code> updates or creates a database with <code>cfbfastR</code>
-play by play data of all completed games since 2014.</p>
+    <p>Acquire the CFBD calculated elo ratings data by team, year, week, and conference</p>
     </div>
 
-    <pre class="usage"><span class='fu'>update_cfb_db</span><span class='op'>(</span>
-  dbdir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cfbfastR.dbdirectory"</span>, default <span class='op'>=</span> <span class='st'>"."</span><span class='op'>)</span>,
-  dbname <span class='op'>=</span> <span class='st'>"cfb_pbp_db"</span>,
-  tblname <span class='op'>=</span> <span class='st'>"cfbfastR_pbp"</span>,
-  force_rebuild <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  db_connection <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cfbd_ratings_elo</span><span class='op'>(</span>year <span class='op'>=</span> <span class='cn'>NULL</span>, week <span class='op'>=</span> <span class='cn'>NULL</span>, team <span class='op'>=</span> <span class='cn'>NULL</span>, conference <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dbdir</th>
-      <td><p>Directory in which the database is or shall be located. Can also
-be set globally with <code><a href='https://rdrr.io/r/base/options.html'>options(cfbfastR.dbdirectory)</a></code>.</p></td>
+      <th>year</th>
+      <td><p>(<em>Integer</em> optional): Year, 4 digit format (<em>YYYY</em>)</p></td>
     </tr>
     <tr>
-      <th>dbname</th>
-      <td><p>File name of an existing or desired SQLite database within <code>dbdir</code></p></td>
+      <th>week</th>
+      <td><p>(<em>Integer</em> optional): Maximum Week of ratings.</p></td>
     </tr>
     <tr>
-      <th>tblname</th>
-      <td><p>The name of the play by play data table within the database</p></td>
+      <th>team</th>
+      <td><p>(<em>String</em> optional): D-I Team</p></td>
     </tr>
     <tr>
-      <th>force_rebuild</th>
-      <td><p>Hybrid parameter (logical or numeric) to rebuild parts
-of or the complete play by play data table within the database (please see details for further information)</p></td>
-    </tr>
-    <tr>
-      <th>db_connection</th>
-      <td><p>A <code>DBIConnection</code> object, as returned by
-<code><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>DBI::dbConnect()</a></code> (please see details for further information)</p></td>
+      <th>conference</th>
+      <td><p>(<em>String</em> optional): Conference abbreviation - SRS information by conference<br />
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br />
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>This function creates and updates a data table with the name <code>tblname</code>
-within a SQLite database (other drivers via <code>db_connection</code>) located in
-<code>dbdir</code> and named <code>dbname</code>.
-The data table combines all play by play data for every available game back
-to the 2014 season and adds the most recent completed games as soon as they
-are available for <code>cfbfastR</code>.</p>
-<p>The argument <code>force_rebuild</code> is of hybrid type. It can rebuild the play
-by play data table either for the whole cfbfastR era (with <code>force_rebuild = TRUE</code>)
-or just for specified seasons (e.g. <code>force_rebuild = c(2019, 2020)</code>).
-Please note the following behavior:</p><ul>
-<li><p><code>force_rebuild = TRUE</code>: The data table with the name <code>tblname</code>
-will be removed completely and rebuilt from scratch. This is helpful when
-new columns are added during the Off-Season.</p></li>
-<li><p><code>force_rebuild = c(2019, 2020)</code>: The data table with the name <code>tblname</code>
-will be preserved and only rows from the 2019 and 2020 seasons will be
-deleted and re-added. This is intended to be used for ongoing seasons because
-ESPN's data provider can make changes to the underlying data during the week.</p></li>
-</ul>
+    <p><a href='https://api.collegefootballdata.com/ratings/elo'>https://api.collegefootballdata.com/ratings/elo</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-<p>The parameter <code>db_connection</code> is intended for advanced users who want
-to use other DBI drivers, such as MariaDB, Postgres or odbc. Please note that
-the arguments <code>dbdir</code> and <code>dbname</code> are dropped in case a <code>db_connection</code>
-is provided but the argument <code>tblname</code> will still be used to write the
-data table into the database.</p>
+    <p><code>cfbd_ratings_elo()</code> - A data frame with 6 variables:</p><dl>
+<dt><code>year</code>: integer.</dt><dd><p>Season of the SRS rating.</p></dd>
+<dt><code>team</code>: character.</dt><dd><p>Team name.</p></dd>
+<dt><code>conference</code>: character.</dt><dd><p>Conference of the team.</p></dd>
+<dt><code>division</code>: logical.</dt><dd><p>Division in the conference for the team.</p></dd>
+<dt><code>rating</code>: double.</dt><dd><p>Simple Rating System (SRS) rating.</p></dd>
+<dt><code>ranking</code>: integer.</dt><dd><p>Simple Rating System ranking within the group returned.</p></dd>
 
+</dl>
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'>cfbd_ratings_elo</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Texas"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   year  team conference  elo
+#&gt; 1 2019 Texas     Big 12 1866</div><div class='input'>
+<span class='fu'>cfbd_ratings_elo</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    year              team conference  elo
+#&gt; 1  2018           Alabama        SEC 2257
+#&gt; 2  2018          Arkansas        SEC 1285
+#&gt; 3  2018            Auburn        SEC 1957
+#&gt; 4  2018           Florida        SEC 1775
+#&gt; 5  2018           Georgia        SEC 2006
+#&gt; 6  2018          Kentucky        SEC 1671
+#&gt; 7  2018               LSU        SEC 1851
+#&gt; 8  2018 Mississippi State        SEC 1937
+#&gt; 9  2018          Missouri        SEC 1851
+#&gt; 10 2018          Ole Miss        SEC 1465
+#&gt; 11 2018    South Carolina        SEC 1548
+#&gt; 12 2018         Tennessee        SEC 1350
+#&gt; 13 2018         Texas A&amp;M        SEC 1858
+#&gt; 14 2018        Vanderbilt        SEC 1550</div><div class='input'><span class='co'># }</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
