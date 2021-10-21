@@ -42,6 +42,14 @@
 #' cfbd_ratings_srs(year = 2019, team = "Texas")
 #'
 #' cfbd_ratings_srs(year = 2018, conference = "SEC")
+#' ````
+#'
+#' ### **Get Elo historical rating data**
+#' Acquire the CFBD calculated elo ratings data by **team**, **year**, **week**, and **conference**
+#' ```r
+#' cfbd_ratings_elo(year = 2019, team = "Texas")
+#'
+#' cfbd_ratings_elo(year = 2018, conference = "SEC")
 #' ```
 NULL
 #' @title 
@@ -504,6 +512,109 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+
+#' @title 
+#' **Get Elo historical rating data**
+#' @description
+#' Acquire the CFBD calculated elo ratings data by team, year, week, and conference
+#' 
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Maximum Week of ratings.
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - SRS information by conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#'
+#' @return [cfbd_ratings_elo()] - A data frame with 6 variables:
+#' \describe{
+#'   \item{`year`: integer.}{Season of the SRS rating.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`division`: logical.}{Division in the conference for the team.}
+#'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
+#'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
+#' }
+#' @source <https://api.collegefootballdata.com/ratings/elo>
+#' @keywords elo
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom utils URLencode
+#' @importFrom glue glue
+#' @export
+#' @examples
+#' \donttest{
+#' cfbd_ratings_elo(year = 2019, team = "Texas")
+#'
+#' cfbd_ratings_elo(year = 2018, conference = "SEC")
+#' }
+#'
+cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference = NULL) {
+  
+  # Check if year is numeric
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
+  }
+  # Check if year is numeric
+  if(!is.null(week) && !is.numeric(week) && nchar(week) > 2){
+    cli::cli_abort("Enter valid week as a number")
+  }
+  if (!is.null(team)) {
+    if (team == "San Jose State") {
+      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
+    } else {
+      # Encode team parameter for URL if not NULL
+      team <- utils::URLencode(team, reserved = TRUE)
+    }
+  }
+  if (!is.null(conference)) {
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # Encode conference parameter for URL, if not NULL
+    conference <- utils::URLencode(conference, reserved = TRUE)
+  }
+  
+  base_url <- "https://api.collegefootballdata.com/ratings/elo?"
+  
+  full_url <- paste0(
+    base_url,
+    "year=", year,
+    "&week=", week,
+    "&team=", team,
+    "&conference=", conference
+  )
+  
+  # Check for CFBD API key
+  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  
+  # Create the GET request and set response as res
+  res <- httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
+  
+  # Check the result
+  check_status(res)
+  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON() %>%
+        as.data.frame() 
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
     },
     warning = function(w) {
     },
