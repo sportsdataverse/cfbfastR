@@ -1,8 +1,12 @@
+# **cfbfastR v1.6.2**
+
+* Switched package urls in README and DESCRIPTION files to https://
+
 # **cfbfastR v1.6.1**
 
 * Removed source urls from many package documentation entries.
 * Updated a test to skip on CRAN
-*
+
 
 # **cfbfastR v1.6.0**
 
