@@ -31,10 +31,6 @@
 #' cfbd_draft_picks(nfl_team = "Cincinatti")
 #' ````
 #' 
-#' **ROBERTOOOOOOOOOOOOOOOOOO**
-#' ```r
-#' cfbd_draft_picks(year = 2016, position = "PK")
-#' ```
 NULL
 #' @title 
 #' **Get list of NFL teams**

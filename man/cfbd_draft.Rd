@@ -28,8 +28,5 @@
 
 cfbd_draft_picks(nfl_team = "Cincinatti")
 }\if{html}{\out{</div>}}
-
-\strong{ROBERTOOOOOOOOOOOOOOOOOO}\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_picks(year = 2016, position = "PK")
-}\if{html}{\out{</div>}}
 }
 }
