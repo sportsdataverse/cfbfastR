@@ -84,12 +84,12 @@ Pull first 3 weeks of 2020 season using cfbd_plays()
      Sys.sleep(1)
    })
  }
- 
+
  tictoc::toc()
  year_split &amp;lt;- lapply(year_split, function(x) {
      x %&amp;gt;% tidyr::unnest(pbp, names_repair = &quot;minimal&quot;)
  })
- 
+
  all_years &amp;lt;- dplyr::bind_rows(year_split)
  glimpse(all_years)
 
@@ -152,7 +152,7 @@ cfbd_play_types()
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -482,12 +482,12 @@ cfbd_play_types()
      <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
    <span class='op'>}</span><span class='op'>)</span>
  <span class='op'>}</span>
- 
+
  <span class='fu'>tictoc</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/tictoc/man/tic.html'>toc</a></span><span class='op'>(</span><span class='op'>)</span>
  <span class='va'>year_split</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>year_split</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
      <span class='va'>x</span> <span class='op'>%&gt;%</span> <span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/nest.html'>unnest</a></span><span class='op'>(</span><span class='va'>pbp</span>, names_repair <span class='op'>=</span> <span class='st'>"minimal"</span><span class='op'>)</span>
  <span class='op'>}</span><span class='op'>)</span>
- 
+
  <span class='va'>all_years</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>year_split</span><span class='op'>)</span>
  <span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>all_years</span><span class='op'>)</span>
 </pre><p></div></p>
