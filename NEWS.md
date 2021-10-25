@@ -1,3 +1,7 @@
+# **cfbfastR v1.6.3**
+
+* Switched package urls in DESCRIPTION again.
+
 # **cfbfastR v1.6.2**
 
 * Switched package urls in README and DESCRIPTION files to https://

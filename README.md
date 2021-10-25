@@ -1,7 +1,7 @@
 
 # 
 
-# **cfbfastR** <a href='https://saiemgilani.github.io/cfbfastR'><img src='man/figures/logo.png' align="right" height="150" /></a>
+# **cfbfastR** <a href='https://saiemgilani.github.io/cfbfastR/'><img src='man/figures/logo.png' align="right" height="150" /></a>
 
 <!-- badges: start -->
 
