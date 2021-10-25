@@ -14,8 +14,8 @@ An R package for working with College Football Data. It is an R API wrapper arou
 Useful links:
 \itemize{
   \item \url{https://saiemgilani.github.io/cfbfastR}
-  \item \url{https://www.github.com/saiemgilani/cfbfastR}
-  \item Report bugs at \url{https://www.github.com/saiemgilani/cfbfastR/issues}
+  \item \url{https://github.com/saiemgilani/cfbfastR}
+  \item Report bugs at \url{https://github.com/saiemgilani/cfbfastR/issues}
 }
 
 }
