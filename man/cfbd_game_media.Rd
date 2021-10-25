@@ -3,9 +3,6 @@
 \name{cfbd_game_media}
 \alias{cfbd_game_media}
 \title{\strong{Get game media information (TV, radio, etc).}}
-\source{
-\url{https://api.collegefootballdata.com/games/media}
-}
 \usage{
 cfbd_game_media(
   year,

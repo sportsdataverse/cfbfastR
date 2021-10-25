@@ -3,9 +3,6 @@
 \name{cfbd_play_stats_player}
 \alias{cfbd_play_stats_player}
 \title{\strong{Gets player info associated by play}}
-\source{
-\url{https://api.collegefootballdata.com/play/stats}
-}
 \usage{
 cfbd_play_stats_player(
   year = NULL,

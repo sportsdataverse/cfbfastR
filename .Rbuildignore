@@ -30,3 +30,4 @@
 ^README\.Rmd$
 ^md
 cfb_pbp_db
+^CRAN-RELEASE$

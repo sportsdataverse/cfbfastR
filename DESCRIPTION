@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Functions to Access College Football Play by Play Data
-Version: 1.6.0
+Version: 1.6.1
 Authors@R: 
     c(person(given = "Saiem",
              family = "Gilani",
@@ -56,13 +56,13 @@ Authors@R:
              email = "mrcaseb@gmail.com"))
 Description: An R package for working with College Football Data. It is an
     R API wrapper around <https://collegefootballdata.com/> made available
-    by the cfbfastR team. It provides users the capability to access a
+    by the package development team. It provides users the capability to access a
     plethora of endpoints, and supplement that data with additional
     information (Expected Points Added/Win Probability added).
 License: MIT + file LICENSE
 URL: https://saiemgilani.github.io/cfbfastR,
-    http://www.github.com/saiemgilani/cfbfastR
-BugReports: http://www.github.com/saiemgilani/cfbfastR/issues
+    https://www.github.com/saiemgilani/cfbfastR
+BugReports: https://www.github.com/saiemgilani/cfbfastR/issues
 Depends: 
   R (>= 4.0.0)
 Imports: 

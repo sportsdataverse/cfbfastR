@@ -1,8 +1,8 @@
 #' @name cfbd_players
 #' @aliases cfbd_player
-#' @title 
+#' @title
 #' **CFBD Players Endpoint Overview**
-#' @description 
+#' @description
 #' \describe{
 #' \item{`cfbd_player_info()`:}{ Player information search.}
 #' \item{`cfbd_player_returning()`:}{ Player returning production.}
@@ -19,13 +19,13 @@
 #'  cfbd_player_returning(year = 2019, team = "Florida State")
 #' ```
 #' ### **Get player usage metrics**
-#' ```r  
+#' ```r
 #'  cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
-#' 
+#'
 #' ```
 NULL
 
-#' @title 
+#' @title
 #' **Player information lookup**
 #' @param search_term (*String* required): Search term for the player you are trying to look up
 #' @param position (*string* optional): Position of the player you are searching for.\cr
@@ -51,10 +51,9 @@ NULL
 #'   \item{`team_color`:character.}{Player team color.}
 #'   \item{`team_color_secondary`:character.}{Player team secondary color.}
 #' }
-#' @source <https://api.collegefootballdata.com/player/search>
 #' @keywords Players
 
-#' 
+#'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -69,7 +68,7 @@ NULL
 #' cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
 #'
 #' cfbd_player_info(search_term = "Lawrence", team = "Clemson")
-#' 
+#'
 #' }
 cfbd_player_info <- function(search_term,
                              position = NULL,
@@ -98,7 +97,7 @@ cfbd_player_info <- function(search_term,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  
+
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -153,7 +152,7 @@ cfbd_player_info <- function(search_term,
 
 
 
-#' @title 
+#' @title
 #' **Get player returning production**
 #' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
@@ -178,7 +177,6 @@ cfbd_player_info <- function(search_term,
 #'   \item{`receiving_usage`:double.}{.}
 #'   \item{`rushing_usage`:double.}{.}
 #' }
-#' @source <https://api.collegefootballdata.com/player/returning>
 #' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -269,7 +267,7 @@ cfbd_player_returning <- function(year = 2019,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get player usage metrics**
 #' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
@@ -301,7 +299,6 @@ cfbd_player_returning <- function(year = 2019,
 #'   \item{`usg_standard_downs`: double.}{Player standard down usage percentage.}
 #'   \item{`usg_passing_downs`: double.}{Player passing down usage percentage.}
 #' }
-#' @source <https://api.collegefootballdata.com/player/usage>
 #' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -322,7 +319,7 @@ cfbd_player_usage <- function(year = 2019,
                               position = NULL,
                               athlete_id = NULL,
                               excl_garbage_time = FALSE) {
-  
+
   # Position Group vector to check input arguments against
   pos_groups <- c(
     "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",

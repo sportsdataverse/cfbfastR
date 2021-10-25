@@ -3,9 +3,6 @@
 \name{cfbd_player_usage}
 \alias{cfbd_player_usage}
 \title{\strong{Get player usage metrics}}
-\source{
-\url{https://api.collegefootballdata.com/player/usage}
-}
 \usage{
 cfbd_player_usage(
   year = 2019,

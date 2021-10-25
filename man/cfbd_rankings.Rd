@@ -3,9 +3,6 @@
 \name{cfbd_rankings}
 \alias{cfbd_rankings}
 \title{\strong{Get historical Coaches and AP poll data}}
-\source{
-\url{https://api.collegefootballdata.com/rankings}
-}
 \usage{
 cfbd_rankings(year, week = NULL, season_type = "regular")
 }

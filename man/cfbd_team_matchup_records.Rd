@@ -3,9 +3,6 @@
 \name{cfbd_team_matchup_records}
 \alias{cfbd_team_matchup_records}
 \title{\strong{Get matchup history records between two teams.}}
-\source{
-\url{https://api.collegefootballdata.com/teams/matchup}
-}
 \usage{
 cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 }

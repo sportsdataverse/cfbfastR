@@ -3,9 +3,6 @@
 \name{cfbd_recruiting_team}
 \alias{cfbd_recruiting_team}
 \title{\strong{Get college football recruiting team rankings information.}}
-\source{
-\url{https://api.collegefootballdata.com/recruiting/teams}
-}
 \usage{
 cfbd_recruiting_team(year = NULL, team = NULL)
 }

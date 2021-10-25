@@ -3,9 +3,6 @@
 \name{cfbd_stats_season_player}
 \alias{cfbd_stats_season_player}
 \title{\strong{Get season statistics by player}}
-\source{
-\url{https://api.collegefootballdata.com/stats/player/season}
-}
 \usage{
 cfbd_stats_season_player(
   year,

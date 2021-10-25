@@ -3,9 +3,6 @@
 \name{cfbd_ratings_sp}
 \alias{cfbd_ratings_sp}
 \title{\strong{Get SP historical rating data}}
-\source{
-\url{https://api.collegefootballdata.com/ratings/sp}
-}
 \usage{
 cfbd_ratings_sp(year = NULL, team = NULL)
 }

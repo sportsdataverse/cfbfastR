@@ -3,9 +3,6 @@
 \name{cfbd_game_records}
 \alias{cfbd_game_records}
 \title{\strong{Get team records by year}}
-\source{
-\url{https://api.collegefootballdata.com/records}
-}
 \usage{
 cfbd_game_records(year, team = NULL, conference = NULL)
 }

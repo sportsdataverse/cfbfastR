@@ -1,7 +1,7 @@
 #' @name cfbd_teams
-#' @title 
+#' @title
 #' **CFBD Teams Endpoint Overview**
-#' @description 
+#' @description
 #' \describe{
 #' \item{`cfbd_team_info()`:}{ Team Info Lookup.}
 #' \item{`cfbd_team_roster()`:}{ Get a team's full roster by year.}
@@ -10,10 +10,10 @@
 #' \item{`cfbd_team_matchup()`:}{ Get matchup history between two teams.}
 #' }
 #' ## **Team info lookup**
-#' 
+#'
 #' Lists all teams in conference or all D-I teams if conference is left NULL
 #' Currently, support is only provided for D-I
-#'   
+#'
 #' ```r
 #' cfbd_team_info(conference = "SEC")
 #'
@@ -22,19 +22,19 @@
 #' cfbd_team_info(year = 2019)
 #' ```
 #' ## **Get team rosters**
-#' 
+#'
 #' ### **It is now possible to access yearly rosters**
 #' ```r
 #' cfbd_team_roster(year = 2020)
 #' ```
-#' 
+#'
 #' ### Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #' ```r
 #' cfbd_team_roster(year = 2013, team = "Florida State")
 #' ```
-#' 
-#' ### Get composite team talent rankings 
-#' 
+#'
+#' ### Get composite team talent rankings
+#'
 #' Extracts team talent composite for all teams in a given year as sourced from 247 rankings
 #' ```r
 #' cfbd_team_talent()
@@ -53,11 +53,11 @@
 #' ### **Get matchup history records between two teams.**
 #' ```r
 #' cfbd_team_matchup_records("Texas", "Oklahoma")
-#' 
+#'
 #' cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 #' ```
 NULL
-#' @title 
+#' @title
 #' **Team info lookup**
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
@@ -94,7 +94,6 @@ NULL
 #'   \item{`grass`: character.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
 #'   \item{`dome`: character.}{TRUE/FALSE flag for if the venue is a domed stadium.}
 #' }
-#' @source <https://api.collegefootballdata.com/teams>
 #' @keywords Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -115,9 +114,9 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
-    
-  
-  
+
+
+
   base_url <- "https://api.collegefootballdata.com/teams?"
 
   full_url <- paste0(
@@ -140,29 +139,29 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
   # Get the content and return it as data.frame
   df <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
-    jsonlite::fromJSON() 
+    jsonlite::fromJSON()
   locs <- df$location
-  locs <- locs %>% 
+  locs <- locs %>%
     jsonlite::flatten()
   df <- df %>% select(-.data$location)
   # suppressWarnings(
-  #   logos_list <- df %>% 
-  #     dplyr::group_by(.data$id) %>% 
-  #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
+  #   logos_list <- df %>%
+  #     dplyr::group_by(.data$id) %>%
+  #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>%
   #     dplyr::mutate(
   #       logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
   #       logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
   #       logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
   #       logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
   #     )
-  # 
+  #
   # )
-  df <- dplyr::bind_cols(df, locs) %>% 
+  df <- dplyr::bind_cols(df, locs) %>%
     dplyr::rename(
       team_id = .data$id,
       venue_name = .data$name) %>%
     as.data.frame()
-    
+
     return(df)
   } else {
     if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
@@ -171,7 +170,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 
     base_url <- "https://api.collegefootballdata.com/teams"
 
-    
+
     # if they want all fbs
     if (only_fbs) {
       base_url <- paste0(
@@ -200,24 +199,24 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     # Get the content and return it as data.frame
     df <- res %>%
       httr::content(as = "text", encoding = "UTF-8") %>%
-      jsonlite::fromJSON() 
+      jsonlite::fromJSON()
     locs <- df$location
-    locs <- locs %>% 
+    locs <- locs %>%
       jsonlite::flatten()
     df <- df %>% select(-.data$location)
     # suppressWarnings(
-    #   logos_list <- df %>% 
-    #     dplyr::group_by(.data$id) %>% 
-    #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>% 
+    #   logos_list <- df %>%
+    #     dplyr::group_by(.data$id) %>%
+    #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>%
     #     dplyr::mutate(
     #       logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
     #       logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
     #       logo_2 = stringr::str_remove(.data$logo_2,"\\)"),
     #       logo_2 = ifelse(.data$logo_2 == 'NULL', NA_character_, .data$logo_2),
     #     )
-    #   
+    #
     # )
-    df <- dplyr::bind_cols(df, locs) %>% 
+    df <- dplyr::bind_cols(df, locs) %>%
       dplyr::rename(
         team_id = .data$id,
         venue_name = .data$name) %>%
@@ -228,7 +227,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 }
 
 
-#' @title 
+#' @title
 #' **Get matchup history records between two teams.**
 #' @param team1 (*String* required): D-I Team 1
 #' @param team2 (*String* required): D-I Team 2
@@ -245,7 +244,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 #'   \item{`team2_wins`: character.}{Second team wins in series against `team1`.}
 #'   \item{`ties`: character.}{Number of ties in the series.}
 #' }
-#' @source <https://api.collegefootballdata.com/teams/matchup>
 #' @keywords Team Matchup Records
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -349,7 +347,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 }
 
 
-#' @title 
+#' @title
 #' **Get matchup history between two teams.**
 #' @param team1 (*String* required): D-I Team 1
 #' @param team2 (*String* required): D-I Team 2
@@ -369,7 +367,6 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #'   \item{`away_score`: integer.}{Away score in the game.}
 #'   \item{`winner`: character.}{Winner of the matchup.}
 #' }
-#' @source <https://api.collegefootballdata.com/teams/matchup>
 #' @keywords Team Matchup
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -390,7 +387,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' }
 #'
 cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
-  
+
   if(!is.null(min_year)&& !is.numeric(min_year) && nchar(min_year) != 4){
     cli::cli_abort("Enter valid min_year as a number (YYYY)")
   }
@@ -465,7 +462,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
 
 
-#' @title 
+#' @title
 #' **Get team rosters**
 #' @description
 #' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
@@ -492,7 +489,6 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'   \item{`home_county_fips`: integer.}{Hometown FIPS code.}
 #'   \item{`headshot_url`: character}{Player ESPN headshot url.}
 #' }
-#' @source <https://api.collegefootballdata.com/roster>
 #' @keywords Team Roster
 #' @importFrom dplyr rename mutate
 #' @importFrom jsonlite fromJSON
@@ -556,7 +552,7 @@ cfbd_team_roster <- function(year, team = NULL) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(athlete_id = .data$id) %>%
-        dplyr::mutate(headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>% 
+        dplyr::mutate(headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
         as.data.frame()
     },
     error = function(e) {
@@ -570,9 +566,9 @@ cfbd_team_roster <- function(year, team = NULL) {
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get composite team talent rankings for all teams in a given year**\cr
-#' 
+#'
 #' @description
 #' Extracts team talent composite as sourced from 247 rankings
 #' @param year (*Integer* optional): Year 4 digit format (*YYYY*)
@@ -583,7 +579,6 @@ cfbd_team_roster <- function(year, team = NULL) {
 #'   \item{`school`: character.}{Team name.}
 #'   \item{`talent`: double.}{Overall roster talent points (as determined by 247Sports).}
 #' }
-#' @source <https://api.collegefootballdata.com/talent>
 #' @keywords Team talent
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -609,7 +604,7 @@ cfbd_team_talent <- function(year = NULL) {
     base_url,
     "year=", year
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 

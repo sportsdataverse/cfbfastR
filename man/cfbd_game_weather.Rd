@@ -3,9 +3,6 @@
 \name{cfbd_game_weather}
 \alias{cfbd_game_weather}
 \title{\strong{Get weather from games.}}
-\source{
-\url{https://api.collegefootballdata.com/games/weather}
-}
 \usage{
 cfbd_game_weather(
   year,

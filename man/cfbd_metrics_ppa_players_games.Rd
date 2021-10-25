@@ -3,9 +3,6 @@
 \name{cfbd_metrics_ppa_players_games}
 \alias{cfbd_metrics_ppa_players_games}
 \title{\strong{Get player game averages for predicted points added (PPA)}}
-\source{
-\url{https://api.collegefootballdata.com/ppa/players/games}
-}
 \usage{
 cfbd_metrics_ppa_players_games(
   year = NULL,

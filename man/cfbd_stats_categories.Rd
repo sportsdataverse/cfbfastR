@@ -3,9 +3,6 @@
 \name{cfbd_stats_categories}
 \alias{cfbd_stats_categories}
 \title{\strong{Get stats categories}}
-\source{
-\url{https://api.collegefootballdata.com/stats/categories}
-}
 \usage{
 cfbd_stats_categories()
 }

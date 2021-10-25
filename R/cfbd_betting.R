@@ -1,8 +1,8 @@
 #' @name cfbd_betting
 #' @aliases betting cfbd_betting cfbd_betting_lines
-#' @title 
+#' @title
 #' **CFBD Betting Lines Endpoint Overview**
-#' @description 
+#' @description
 #' **Get betting lines information for games**
 #' ```r
 #'  cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
@@ -50,7 +50,6 @@
 #'   \item{`home_moneyline`:character.}{Home team moneyline.}
 #'   \item{`away_moneyline`:character.}{Away team moneyline.}
 #' }
-#' @source <https://api.collegefootballdata.com/lines>
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

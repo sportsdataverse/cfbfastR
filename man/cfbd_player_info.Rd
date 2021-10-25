@@ -3,9 +3,6 @@
 \name{cfbd_player_info}
 \alias{cfbd_player_info}
 \title{\strong{Player information lookup}}
-\source{
-\url{https://api.collegefootballdata.com/player/search}
-}
 \usage{
 cfbd_player_info(search_term, position = NULL, team = NULL, year = NULL)
 }

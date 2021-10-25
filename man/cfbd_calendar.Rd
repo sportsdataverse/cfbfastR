@@ -3,9 +3,6 @@
 \name{cfbd_calendar}
 \alias{cfbd_calendar}
 \title{\strong{Get calendar of weeks by season.}}
-\source{
-\url{https://api.collegefootballdata.com/calendar}
-}
 \usage{
 cfbd_calendar(year)
 }

@@ -1,10 +1,9 @@
 #' @name cfbd_pbp_data
 #' @aliases play-by-play pbp_data cfbd_pbp_data
-#' @title 
+#' @title
 #' **Get college football play by play data with cfbfastR expected points/win probability added**
-#' @description 
+#' @description
 #' Extract college football (D-I) play by play Data - for plays
-#' @source <https://api.collegefootballdata.com/plays>
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
@@ -410,11 +409,11 @@ cfbd_pbp_data <- function(year,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  
+
   if (!is.null(play_type)) {
     text <- play_type %in% cfbfastR::cfbd_play_type_df$text
     abbr <- play_type %in% cfbfastR::cfbd_play_type_df$abbreviation
-  
+
     if ((text | abbr) == FALSE) {
       cli::cli_abort("Incorrect play type selected, please look at the available options in the Play Type DF.")
     }
@@ -542,15 +541,15 @@ cfbd_pbp_data <- function(year,
     g_ids <- sort(unique(play_df$game_id))
     game_count <- length(g_ids)
     builder <- TRUE
-    
+
     if (game_count > 1) {
       user_message(glue::glue("Start processing of {game_count} games..."),"todo")
     } else {
       user_message(glue::glue("Start processing of {game_count} game..."),"todo")
     }
-    
+
     p <- progressr::progressor(along = g_ids)
-    
+
     play_df <- furrr::future_map_dfr(
       g_ids,
       function(x){
@@ -571,7 +570,7 @@ cfbd_pbp_data <- function(year,
       }, ...)
     # } else{
     #   play_df <- purrr::map_dfr(
-    #     g_ids,  
+    #     g_ids,
     #     function(x) {
     #       play_df <- play_df %>%
     #         dplyr::filter(.data$game_id == x) %>%
@@ -590,8 +589,8 @@ cfbd_pbp_data <- function(year,
     #     }
     #   )
     # }
-      
-    
+
+
 
     #---- Select Output Ordering -----
 
@@ -757,11 +756,11 @@ cfbd_pbp_data <- function(year,
 
 
 #' @name helpers_pbp
-#' @aliases add_play_counts clean_drive_dat prep_epa_df_after clean_drive_info 
+#' @aliases add_play_counts clean_drive_dat prep_epa_df_after clean_drive_info
 #' add_player_cols add_yardage clean_pbp_dat penalty_detection
-#' @title 
+#' @title
 #' **Series of functions to help clean the play-by-play data for analysis**
-#' @description 
+#' @description
 #' \describe{
 #' \item{`add_play_counts()`: function}{Adds play counts to Play-by-Play data pulled from the API's raw game data.}
 #' \item{`add_yardage()`: Add yardage extracted from play text}{.}

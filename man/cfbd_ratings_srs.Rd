@@ -3,9 +3,6 @@
 \name{cfbd_ratings_srs}
 \alias{cfbd_ratings_srs}
 \title{\strong{Get SRS historical rating data}}
-\source{
-\url{https://api.collegefootballdata.com/ratings/srs}
-}
 \usage{
 cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 }

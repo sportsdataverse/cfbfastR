@@ -3,9 +3,6 @@
 \name{cfbd_venues}
 \alias{cfbd_venues}
 \title{\strong{CFBD Venues Endpoint Overview}}
-\source{
-\url{https://api.collegefootballdata.com/venues}
-}
 \usage{
 cfbd_venues()
 }

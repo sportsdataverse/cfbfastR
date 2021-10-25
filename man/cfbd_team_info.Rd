@@ -3,9 +3,6 @@
 \name{cfbd_team_info}
 \alias{cfbd_team_info}
 \title{\strong{Team info lookup}}
-\source{
-\url{https://api.collegefootballdata.com/teams}
-}
 \usage{
 cfbd_team_info(conference = NULL, only_fbs = TRUE, year = NULL)
 }

@@ -3,9 +3,6 @@
 \name{cfbd_stats_game_advanced}
 \alias{cfbd_stats_game_advanced}
 \title{\strong{Get game advanced stats}}
-\source{
-\url{https://api.collegefootballdata.com/stats/game/advanced}
-}
 \usage{
 cfbd_stats_game_advanced(
   year,

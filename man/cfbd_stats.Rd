@@ -41,7 +41,7 @@ cfbd_stats_season_team(2013, team = "Florida State")
 
 \subsection{\strong{Get stats categories}}{
 
-This function identifies all Stats Categories identified in the regular stats endpoint.\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_categories() 
+This function identifies all Stats Categories identified in the regular stats endpoint.\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_categories()
 }\if{html}{\out{</div>}}
 }
 }

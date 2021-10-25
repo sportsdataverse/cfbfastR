@@ -1,12 +1,12 @@
 #' @name cfbd_coaches
 #' @aliases coaches cfbd_coaches
-#' @title 
+#' @title
 #' **CFBD Coaches Endpoint Overview**
-#' @description 
+#' @description
 #' **Coach information search**
 #' A coach search function which provides coaching records and school history for a given coach
 #' ```
-#' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
+#' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
 #' ````
 #' @param first (*String* optional): First name for the coach you are trying to look up
 #' @param last (*String* optional): Last name for the coach you are trying to look up
@@ -14,7 +14,7 @@
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
 #' @param min_year (*Integer* optional): Minimum Year filter (inclusive), 4 digit format (*YYYY*).
 #' @param max_year (*Integer* optional): Maximum Year filter (inclusive), 4 digit format (*YYYY*)
-#' @return 
+#' @return
 #' \describe{
 #'   \item{first_name:character.}{First name of coach.}
 #'   \item{last_name:character.}{Last name of coach.}
@@ -32,7 +32,6 @@
 #'   \item{sp_offense:character.}{Bill Connelly's SP+ offense for team.}
 #'   \item{sp_defense:character.}{Bill Connelly's SP+ defense for team.}
 #' }
-#' @source <https://api.collegefootballdata.com/coaches>
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -122,7 +121,7 @@ cfbd_coaches <- function(first = NULL,
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))
-      
+
     },
     warning = function(w) {
     },

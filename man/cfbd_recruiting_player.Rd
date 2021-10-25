@@ -3,9 +3,6 @@
 \name{cfbd_recruiting_player}
 \alias{cfbd_recruiting_player}
 \title{\strong{Get player recruiting rankings}}
-\source{
-\url{https://api.collegefootballdata.com/recruiting/players}
-}
 \usage{
 cfbd_recruiting_player(
   year = NULL,

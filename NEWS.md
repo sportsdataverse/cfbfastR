@@ -1,3 +1,9 @@
+# **cfbfastR v1.6.1**
+
+* Removed source urls from many package documentation entries.
+* Updated a test to skip on CRAN
+*
+
 # **cfbfastR v1.6.0**
 
 * Added [```cfbd_ratings_elo()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_elo.html) function
@@ -44,9 +50,9 @@
 
 ##### **Minor release**
 
-* Added headshot_url to outputs of [```cfbd_team_rosters```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_team_rosters.html)
+* Added headshot_url to outputs of [```cfbd_team_roster()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_team_roster.html)
 
-* Renamed returns in [```cfbd_game_advanced()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_advanced.html):
+* Renamed returns in [```cfbd_game_box_advanced()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_box_advanced.html):
   - `rushing_line_yd_avg` to plural `rushing_line_yds_avg`
   - `rushing_second_lvl_yd_avg` to plural `rushing_second_lvl_yds_avg`
   - `rushing_open_field_yd_avg` to plural `rushing_open_field_yds_avg`

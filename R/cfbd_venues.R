@@ -1,4 +1,4 @@
-#' @title 
+#' @title
 #' **CFBD Venues Endpoint Overview**
 #' @description Pulls all college football venues and data on capacity, grass, city/state, location,
 #' elevation, dome, timezone and construction year.
@@ -22,7 +22,6 @@
 #'   \item{`dome`:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
 #'   \item{`timezone`:character.}{Time zone in which the venue resides (i.e. Eastern Time -> "America/New York").}
 #' }
-#' @source <https://api.collegefootballdata.com/venues>
 #' @keywords Venues
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

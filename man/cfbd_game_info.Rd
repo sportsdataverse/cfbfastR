@@ -3,9 +3,6 @@
 \name{cfbd_game_info}
 \alias{cfbd_game_info}
 \title{\strong{Get results information from games.}}
-\source{
-\url{https://api.collegefootballdata.com/games}
-}
 \usage{
 cfbd_game_info(
   year,

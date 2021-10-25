@@ -3,9 +3,6 @@
 \name{cfbd_game_box_advanced}
 \alias{cfbd_game_box_advanced}
 \title{\strong{Get game advanced box score information.}}
-\source{
-\url{https://api.collegefootballdata.com/game/box/advanced}
-}
 \usage{
 cfbd_game_box_advanced(game_id, long = FALSE)
 }

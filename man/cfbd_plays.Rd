@@ -3,11 +3,6 @@
 \name{cfbd_plays}
 \alias{cfbd_plays}
 \title{\strong{Get college football play-by-play data.}}
-\source{
-\url{https://api.collegefootballdata.com/plays}
-
-\url{https://api.collegefootballdata.com/plays}
-}
 \usage{
 cfbd_plays(
   year = 2020,
@@ -103,12 +98,12 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
          )
    })
  }
- 
+
  tictoc::toc()
  year_split <- lapply(year_split, function(x) {
      x \%>\% tidyr::unnest(pbp, names_repair = "minimal")
  })
- 
+
  all_years <- dplyr::bind_rows(year_split)
  glimpse(all_years)
 }

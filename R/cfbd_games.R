@@ -1,6 +1,6 @@
 #' @name cfbd_games
-#' @aliases cfbd_games 
-#' @title 
+#' @aliases cfbd_games
+#' @title
 #' **CFBD Games Endpoint Overview**
 #' @description Get results, statistics and information for games\cr
 #' \describe{
@@ -14,7 +14,7 @@
 #'   \item{`cfbd_game_media()`:}{ Get game media information (TV, radio, etc).}
 #' }
 #' @details
-#' 
+#'
 #' ### **Get game advanced box score information.**
 #' ```r
 #' cfbd_game_box_advanced(game_id = 401114233)
@@ -61,10 +61,10 @@
 #' ```r
 #' cfbd_game_media(2019, week = 4, conference = "ACC")
 #' ```
-#' 
+#'
 NULL
 
-#' @title 
+#' @title
 #' **Get results information from games.**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -111,7 +111,6 @@ NULL
 #'   \item{`highlights`: character.}{Game highlight urls.}
 #'   \item{`notes`: character.}{Game notes.}
 #' }
-#' @source <https://api.collegefootballdata.com/games>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -148,7 +147,7 @@ cfbd_game_info <- function(year,
     # Check if week is numeric, if not NULL
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  
+
   if (!(season_type %in% c("postseason", "both","regular"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
@@ -247,7 +246,7 @@ cfbd_game_info <- function(year,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get weather from games.**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -283,7 +282,6 @@ cfbd_game_info <- function(year,
 #'   \item{`weather_condition_code`: integer.}{Weather condition code.}
 #'   \item{`weather_condition`: character.}{Weather condition.}
 #' }
-#' @source <https://api.collegefootballdata.com/games/weather>
 #' @keywords Game Weather
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -324,7 +322,7 @@ cfbd_game_weather <- function(year,
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
   base_url <- "https://api.collegefootballdata.com/games/weather?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year,
@@ -333,19 +331,19 @@ cfbd_game_weather <- function(year,
     "&team=", team,
     "&conference=", conference
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr = {
@@ -354,7 +352,7 @@ cfbd_game_weather <- function(year,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
-      
+
       df <- df %>%
         dplyr::rename(game_id = .data$id) %>%
         as.data.frame()
@@ -370,7 +368,7 @@ cfbd_game_weather <- function(year,
   return(df)
 }
 
-#' @title  
+#' @title
 #' **Get calendar of weeks by season.**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @return [cfbd_calendar()] - A data frame with 5 variables:
@@ -381,7 +379,6 @@ cfbd_game_weather <- function(year,
 #'   \item{`first_game_start`: character.}{First game start time of the calendar week.}
 #'   \item{`last_game_start`: character.}{Last game start time of the calendar week.}
 #' }
-#' @source <https://api.collegefootballdata.com/calendar>
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
@@ -401,9 +398,9 @@ cfbd_calendar <- function(year) {
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  
+
   base_url <- "https://api.collegefootballdata.com/calendar?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year
@@ -443,7 +440,7 @@ cfbd_calendar <- function(year) {
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get game media information (TV, radio, etc).**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -470,7 +467,6 @@ cfbd_calendar <- function(year) {
 #'   \item{`radio`: logical.}{Radio broadcast networks.}
 #'   \item{`web`: list.}{Web viewing platforms carrying the game.}
 #' }
-#' @source <https://api.collegefootballdata.com/games/media>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -492,7 +488,7 @@ cfbd_game_media <- function(year,
                             conference = NULL,
                             media_type = NULL) {
 
-  
+
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -529,7 +525,7 @@ cfbd_game_media <- function(year,
     "&conference=", conference,
     "&mediaType=", media_type
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -582,7 +578,7 @@ cfbd_game_media <- function(year,
 }
 
 
-#' @title 
+#' @title
 #' **Get game advanced box score information.**
 #' @param game_id (*Integer* required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
@@ -659,7 +655,6 @@ cfbd_game_media <- function(year,
 #'   \item{`field_pos_avg_start`: double.}{Average starting field position.}
 #'   \item{`field_pos_avg_starting_predicted_pts`: double.}{Average starting predicted points (PP) for the average starting field position.}
 #' }
-#' @source <https://api.collegefootballdata.com/game/box/advanced>
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
 #' @importFrom jsonlite fromJSON
@@ -676,7 +671,7 @@ cfbd_game_media <- function(year,
 #' \donttest{
 #'  cfbd_game_box_advanced(game_id = 401114233)
 #' }
-#' 
+#'
 
 cfbd_game_box_advanced <- function(game_id, long = FALSE) {
   if (!is.null(game_id) && !is.numeric(game_id)) {
@@ -690,7 +685,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
     base_url,
     "gameId=", game_id
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
@@ -764,7 +759,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
           tidyr::pivot_wider(names_from = .data$stat, values_from = .data$value) %>%
           dplyr::select(-.data$name) %>%
           dplyr::mutate_all(as.numeric) %>%
-          dplyr::bind_cols(team)  %>% 
+          dplyr::bind_cols(team)  %>%
           dplyr::select(.data$team, tidyr::everything()) %>%
           as.data.frame()
         df <- df %>%
@@ -785,7 +780,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get player statistics by game**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -836,7 +831,6 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #'   \item{`pd`: double.}{Total passes defensed in the game.}
 #'   \item{`qb_hur`: double.}{Total quarterback hurries in the game.}
 #' }
-#' @source <https://api.collegefootballdata.com/games/players>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -880,7 +874,7 @@ cfbd_game_player_stats <- function(year,
     # Check if week is numeric, if not NULL
       cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  
+
   if (!(season_type %in% c("postseason", "both","regular"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
@@ -1003,7 +997,7 @@ cfbd_game_player_stats <- function(year,
 
 
 
-#' @title 
+#' @title
 #' **Get team records by year**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): Team - Select a valid team, D1 football
@@ -1034,7 +1028,6 @@ cfbd_game_player_stats <- function(year,
 #'   \item{`away_losses`: integer.}{Total away losses.}
 #'   \item{`away_ties`: integer.}{Total away ties.}
 #' }
-#' @source <https://api.collegefootballdata.com/records>
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1050,8 +1043,8 @@ cfbd_game_player_stats <- function(year,
 #'   cfbd_game_records(2013, team = "Florida State")
 #' }
 
-cfbd_game_records <- function(year, 
-                              team = NULL, 
+cfbd_game_records <- function(year,
+                              team = NULL,
                               conference = NULL) {
 
 
@@ -1135,7 +1128,7 @@ cfbd_game_records <- function(year,
 
 
 
-#' @title 
+#' @title
 #' **Get team statistics by game**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -1229,7 +1222,6 @@ cfbd_game_records <- function(year,
 #'   \item{`total_penalties_yards_allowed`: character.}{Opponent total penalty yards.}
 #'   \item{`possession_time_allowed`: character.}{Opponent time of possession.}
 #' }
-#' @source <https://api.collegefootballdata.com/games/teams>
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1283,7 +1275,7 @@ cfbd_game_team_stats <- function(year,
   }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
-    
+
     cli::cli_abort("Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function")
   }
   if (rows_per_team != 1 && rows_per_team != 2) {

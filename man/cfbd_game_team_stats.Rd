@@ -3,9 +3,6 @@
 \name{cfbd_game_team_stats}
 \alias{cfbd_game_team_stats}
 \title{\strong{Get team statistics by game}}
-\source{
-\url{https://api.collegefootballdata.com/games/teams}
-}
 \usage{
 cfbd_game_team_stats(
   year,
