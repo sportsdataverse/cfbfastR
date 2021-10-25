@@ -86,7 +86,7 @@ Before we look at the code there's a couple `ggplot2` basics I would like to cov
 
 1. `ggplot2` uses `+` instead of `%>%` as a pipe for reasons that are beyond my feeble mind's capabilities. 
 2. You place individual plot elements with the `geom_` functions. For example if you want to place a scatter plot that's `geom_point`, for bars it's `geom_bar`, for lines its `geom_line`, etc. Specifically for maps we use `geom_polygon`
-3. We map variables from a given dataframe to geoms using the `aes` function. 
+3. We map variables from a given data frame to geoms using the `aes` function. 
 4. The world isn't flat, but plotting maps in R defaults to a flat projection (Mercator) which can cause some pretty massive distortion. We can fix this by changing to another projection which better maintains an area's proportions (an Albers projection in this case)
 
 ```{r gg_continental}
@@ -101,7 +101,7 @@ ggplot()+ #ggplot uses + instead of %>% as a pipe for some reason.
   
 ```
 
-Great! We have successfully made a map where we can see where every single 5 star recruit in the Class of 2021 is from. We can see some overall trends, a lot in the southeast, a bunch collected in one spot in North Texas (that's the Dallas-Fort Worth metroplex), and a surprising amount in Washington state (that's Seattle). But what if we want to actually see who each of these dots represent? That's not too hard! There is a `geom_text` geom which allows us to place text onto a plot given x and y coordinates. But with a plot like this we'll probably get some overlap and it'll be hard to read. 
+Great! We have successfully made a map where we can see where every single 5 star recruit in the Class of 2021 is from. We can see some overall trends, a lot in the southeast, a bunch collected in one spot in North Texas (that's the Dallas-Fort Worth metro), and a surprising amount in Washington state (that's Seattle). But what if we want to actually see who each of these dots represent? That's not too hard! There is a `geom_text` geom which allows us to place text onto a plot given x and y coordinates. But with a plot like this we'll probably get some overlap and it'll be hard to read. 
 
 To avoid that, we'll bring in the `ggrepel` library, which is on CRAN, which makes sure text doesn't overlap on `ggplot2` plots. Uncomment the first line if you don't have this package already installed. 
 
@@ -168,7 +168,7 @@ So now we have the recruit count for every state from 2017-2021! You may be conf
 
 We have the data, now we want to visualize this data. How should we go about it. We could just make a bar chart, and if we really wanted to emphasize the small and large differences between states this is a totally valid decision. But there's some issues here. For one we totally lose the spatial aspects of recruiting in a bar chart, which I believe is important for our specific problem. Also, I think it's boring. So what I want to do instead is represent this on a map using a color scale to show how many recruits came from the given state, if you care about jargon this is called a choropleth. The major issue with this is that humans are just bad at telling minute differences in color so we will only really get directional ideas of how many recruits from a given area. We won't be able to tell if Tennessee has 3 more recruits than North Carolina, but we will be able to tell if Texas produces 250 more recruits than Nebraska. I think for the purpose of this plot its fine, and also it looks rad so we'll do it. 
 
-Another issue we have is that the data we use to make the map doesn't have the counts. So we need to merge these datasets together to make the plot. We'll do this via an `inner_join` where we match the groups in the first dataset to groups in the second dataset and we end up with a dataset that has everything asssociated with each group.
+Another issue we have is that the data we use to make the map doesn't have the counts. So we need to merge these datasets together to make the plot. We'll do this via an `inner_join` where we match the groups in the first dataset to groups in the second dataset and we end up with a dataset that has everything associated with each group.
 
 ```{r map_counts}
 map_counts <- dplyr::inner_join(states, clean_rec_classes, by = c('state_abbv'='state_province'))

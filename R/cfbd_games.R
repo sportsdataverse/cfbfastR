@@ -1203,7 +1203,7 @@ cfbd_game_records <- function(year,
 #'   \item{`interception_tds_allowed`: character.}{Opponent interception TDs.}
 #'   \item{`rushing_attempts_allowed`: character.}{Opponent rushing attempts.}
 #'   \item{`rushing_yards_allowed`: character.}{Opponent rushing yards.}
-#'   \item{`rush_tds_allowed`: character.}{Opponent rushing touchdownss.}
+#'   \item{`rush_tds_allowed`: character.}{Opponent rushing touchdowns.}
 #'   \item{`yards_per_rush_attempt_allowed`: character.}{Opponent rushing yards per attempt.}
 #'   \item{`first_downs_allowed`: character.}{Opponent first downs.}
 #'   \item{`third_down_eff_allowed`: character.}{Opponent third down efficiency.}

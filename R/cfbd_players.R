@@ -273,7 +273,7 @@ cfbd_player_returning <- function(year = 2019,
 #' **Get player usage metrics**
 #' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conferencer\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param position (*string* optional): Position of the player you are searching for.\cr

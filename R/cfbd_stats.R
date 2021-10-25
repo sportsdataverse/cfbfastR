@@ -346,9 +346,9 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`off_pts_per_opp`: double.}{Offense points per scoring opportunity.}
 #'   \item{`off_field_pos_avg_start`: double.}{Offense starting average field position.}
 #'   \item{`off_field_pos_avg_predicted_points`: double.}{Offense starting average field position predicted points (PP).}
-#'   \item{`off_havoc_total`: double.}{Offense havor rate total.}
+#'   \item{`off_havoc_total`: double.}{Offense havoc rate total.}
 #'   \item{`off_havoc_front_seven`: double.}{Offense front-7 havoc rate.}
-#'   \item{`off_havoc_db`: double.}{Offense defensive back havor rate.}
+#'   \item{`off_havoc_db`: double.}{Offense defensive back havoc rate.}
 #'   \item{`off_standard_downs_rate`: double.}{Offense standard downs rate.}
 #'   \item{`off_standard_downs_ppa`: double.}{Offense standard downs predicted points added (PPA).}
 #'   \item{`off_standard_downs_success_rate`: double.}{Offense standard downs success rate.}
@@ -385,9 +385,9 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`def_pts_per_opp`: double.}{Defense points per scoring opportunity.}
 #'   \item{`def_field_pos_avg_start`: double.}{Defense starting average field position.}
 #'   \item{`def_field_pos_avg_predicted_points`: double.}{Defense starting average field position predicted points (PP).}
-#'   \item{`def_havoc_total`: double.}{Defense havor rate total.}
+#'   \item{`def_havoc_total`: double.}{Defense havoc rate total.}
 #'   \item{`def_havoc_front_seven`: double.}{Defense front-7 havoc rate.}
-#'   \item{`def_havoc_db`: double.}{Defense defensive back havor rate.}
+#'   \item{`def_havoc_db`: double.}{Defense defensive back havoc rate.}
 #'   \item{`def_standard_downs_rate`: double.}{Defense standard downs rate.}
 #'   \item{`def_standard_downs_ppa`: double.}{Defense standard downs predicted points added (PPA).}
 #'   \item{`def_standard_downs_success_rate`: double.}{Defense standard downs success rate.}
@@ -533,7 +533,7 @@ cfbd_stats_season_advanced <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (*Integer* optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param category (*String* optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr

@@ -91,7 +91,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \item{\code{interception_tds_allowed}: character.}{Opponent interception TDs.}
 \item{\code{rushing_attempts_allowed}: character.}{Opponent rushing attempts.}
 \item{\code{rushing_yards_allowed}: character.}{Opponent rushing yards.}
-\item{\code{rush_tds_allowed}: character.}{Opponent rushing touchdownss.}
+\item{\code{rush_tds_allowed}: character.}{Opponent rushing touchdowns.}
 \item{\code{yards_per_rush_attempt_allowed}: character.}{Opponent rushing yards per attempt.}
 \item{\code{first_downs_allowed}: character.}{Opponent first downs.}
 \item{\code{third_down_eff_allowed}: character.}{Opponent third down efficiency.}

@@ -30,7 +30,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
-\item{end_week}{(\emph{Integer} optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
+\item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
 \item{category}{(\emph{String} optional): Category filter (e.g defensive)\cr
 Offense: passing, receiving, rushing\cr
