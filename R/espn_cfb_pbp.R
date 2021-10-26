@@ -13,10 +13,8 @@
 #'  espn_cfb_pbp(game_id = 401282614)
 #'
 espn_cfb_pbp <- function(game_id){
-  old <- options()
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
-  options(stringsAsFactors = FALSE)
-  options(scipen = 999)
 
   play_base_url <- "http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?"
 

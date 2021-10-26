@@ -386,10 +386,8 @@ cfbd_pbp_data <- function(year,
                           play_type = NULL,
                           epa_wpa = FALSE,
                           ...) {
-  old <- options()
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
-  options(stringsAsFactors = FALSE)
-  options(scipen = 999)
   # Check if year is numeric, if not NULL
   if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
     # Check if year is numeric, if not NULL
