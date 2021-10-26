@@ -1,3 +1,8 @@
+# **cfbfastR v1.6.4**
+
+* Changed options to revert to old options on exit of function. 
+* Removed check_github functions. 
+
 # **cfbfastR v1.6.3**
 
 * Switched package urls in DESCRIPTION again.
