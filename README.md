@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![CRAN/METACRAN](https://img.shields.io/cran/v/cfbfastR?logo=R&style=for-the-badge)](https://cran.r-project.org/web/packages/cfbfastR/index.html)
 [![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/cfbfastR?label=cfbfastR&logo=R&style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/)
 [![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/cfbfastR/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/saiemgilani/cfbfastR/)
@@ -23,6 +24,14 @@ metrics.
 
 ## **Installation**
 
+You can install the CRAN version of
+[**`cfbfastR`**](https://cran.r-project.org/web/packages/cfbfastR/index.html)
+with:
+
+``` r
+install.packages("cfbfastR")
+```
+
 You can install the released version of
 [**`cfbfastR`**](https://github.com/saiemgilani/cfbfastR/) from
 [GitHub](https://github.com/saiemgilani/cfbfastR) with:
@@ -33,15 +42,6 @@ if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load_current_gh("saiemgilani/cfbfastR", dependencies = TRUE, update = TRUE)
-```
-
-``` r
-# if you would prefer devtools installation
-if (!requireNamespace('devtools', quietly = TRUE)){
-  install.packages('devtools')
-}
-# Alternatively, using the devtools package:
-devtools::install_github(repo = "saiemgilani/cfbfastR")
 ```
 
 ## **Breaking Changes**
