@@ -24,8 +24,7 @@ Hey everyone, my name is Michael and over the summer I worked on a daily series 
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(tidyverse)
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
+pacman::p_load(tidyverse, cfbfastR)
 ```
 
 

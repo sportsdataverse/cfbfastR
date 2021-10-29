@@ -21,22 +21,15 @@ Let's start off with loading all the packages we'll need:
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(dplyr)
-pacman::p_load(ggplot2)
-pacman::p_load(ggrepel)
+pacman::p_load(dplyr, ggplot2, ggrepel, cfbfastR)
 pacman::p_load_current_gh("UrbanInstitute/urbnmapr")
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
 library(dplyr) #This is to manipulate data
 library(ggplot2) #This is the primary plotting package
 library(urbnmapr) #This is to make the maps
-
-```
-
-All of these packages are available on CRAN and thus can be installed by running `install.packages("your_package_here")`. `cfbfastR` at time of writing, however, is not currently available on CRAN, and thus must be installed using the `pacman` (ex. above) or `devtools` (ex. below) package. Uncomment the first line of the next chunk if you don't have cfbfastR installed. 
-``` {r load_cfbfastR_devtools, include=TRUE, message = FALSE, warning = FALSE}
-#devtools::install_github('saiemgilani/cfbfastR')
 library(cfbfastR) #This has our CFB Data primarily via collegefootballdata.com
 ```
+
+All of these packages are available on CRAN and thus can be installed by running `install.packages("your_package_here")`. 
 
 Now that we have all of our necessary packages loaded, we are free to start making some recruiting viz!
 
