@@ -171,7 +171,7 @@ package in publications, use:
 BibTex Citation
 
 ``` bibtex
-@misc{sgetal2021cfbfastr,
+@misc{gilani_et_al_2021_cfbfastr,
   author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
   title = {cfbfastR: The SportsDataverse's R Package for College Football Data.},
   url = {https://saiemgilani.github.io/cfbfastR/},
