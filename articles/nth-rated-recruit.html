@@ -364,8 +364,7 @@
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span>,<span class="va">cfbfastR</span><span class="op">)</span></code></pre></div>
 <p>To create the plot I’m going to use two functions from <code>cfbfastR</code>. The first is the <code>cfbd_team_info</code> function. I’m going to pass <code>"B1G"</code> to the function for the <code>conference</code> argument to get info for just Big Ten teams. The next function I’m going to use is the <code>cfbd_recruiting_player</code> function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I’m calling this function four times to get each year’s class. I’ll combine all of these into one large data frame with every team’s recruits. For the sake of simplicity, I am only using High School recruits as shown by the <code>recruit_type</code> argument. You can also get Prep School recruits (<code>recruit_type = "PrepSchool"</code>) or junior college recruits (<code>recruit_type = "JUCO"</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"B1G"</span><span class="op">)</span>
@@ -388,7 +387,7 @@
 <span class="op">)</span>
 
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 18.326 sec elapsed</code></pre>
+<pre><code>## 15.799 sec elapsed</code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">all.recruits</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1,226
