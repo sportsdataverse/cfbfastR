@@ -15,6 +15,8 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/cfbfastR)](https://CRAN.
 [![Contributors](https://img.shields.io/github/contributors/saiemgilani/cfbfastR?style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/graphs/contributors)
 [![Twitter
 Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
+[![Twitter
+Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
 <!-- badges: end -->
 
 The goal of [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) is
@@ -88,10 +90,12 @@ functions without any other changes.
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
-# Follow [cfbfastR](https://twitter.com/cfbfastR) on Twitter and star this repo
+# Follow [cfbfastR](https://twitter.com/cfbfastR) and the [SportsDataverse](https://twitter.com/SportsDataverse) on Twitter and star this repo
 
 [![Twitter
 Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
+[![Twitter
+Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
 
 [![GitHub
 stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20cfbfastR&maxAge=2592000)](https://github.com/saiemgilani/cfbfastR/stargazers/)
