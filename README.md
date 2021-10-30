@@ -5,7 +5,10 @@
 
 <!-- badges: start -->
 
-[![CRAN/METACRAN](https://img.shields.io/cran/v/cfbfastR?logo=R&style=for-the-badge)](https://cran.r-project.org/web/packages/cfbfastR/index.html)
+[![CRAN
+status](https://www.r-pkg.org/badges/version-last-release/cfbfastR?style=for-the-badge)](https://CRAN.R-project.org/package=cfbfastR)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/cfbfastR)](https://CRAN.R-project.org/package=cfbfastR)
 [![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/cfbfastR?label=cfbfastR&logo=R&style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/)
 [![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/cfbfastR/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/saiemgilani/cfbfastR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/saiemgilani/cfbfastR/)
