@@ -51,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -389,7 +389,7 @@
   <span class="va">temp</span><span class="op">$</span><span class="va">TimeSecsRem</span><span class="op">[</span><span class="va">ind</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>
   <span class="va">pbp</span><span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span> 
     <span class="fu">mutate</span><span class="op">(</span>TimeSecsRem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu">zoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/zoo/man/na.approx.html">na.approx</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">TimeSecsRem</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu">mutate</span><span class="op">(</span>clock.minutes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="va">TimeSecsRem</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span>,clock.seconds <span class="op">=</span> <span class="va">TimeSecsRem</span> <span class="op">%%</span> <span class="fl">60</span><span class="op">)</span>
+    <span class="fu">mutate</span><span class="op">(</span>clock.minutes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="va">TimeSecsRem</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span>,clock.seconds <span class="op">=</span> <span class="va">TimeSecsRem</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">60</span><span class="op">)</span>
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="va">game_pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_pbp_data.html">cfbd_pbp_data</a></span><span class="op">(</span><span class="va">year</span>, team <span class="op">=</span> <span class="va">team</span>, week <span class="op">=</span> <span class="va">week</span>, epa_wpa <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> 

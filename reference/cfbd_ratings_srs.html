@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -441,28 +441,30 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_ratings_srs</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Texas"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   year  team conference division   rating ranking
-#&gt; 1 2019 Texas     Big 12       NA 15.97154       1</div><div class='input'>
-<span class='fu'>cfbd_ratings_srs</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    year              team conference division     rating ranking
-#&gt; 1  2018           Alabama        SEC     West 33.5327042       1
-#&gt; 2  2018           Georgia        SEC     East 26.2706653       2
-#&gt; 3  2018 Mississippi State        SEC     West 19.8323291       3
-#&gt; 4  2018           Florida        SEC     East 19.2588533       4
-#&gt; 5  2018          Missouri        SEC     East 18.8779385       5
-#&gt; 6  2018               LSU        SEC     West 18.3332724       6
-#&gt; 7  2018         Texas A&amp;M        SEC     West 17.9329220       7
-#&gt; 8  2018            Auburn        SEC     West 15.0330923       8
-#&gt; 9  2018          Kentucky        SEC     East 14.6950441       9
-#&gt; 10 2018        Vanderbilt        SEC     East  9.9257639      10
-#&gt; 11 2018    South Carolina        SEC     East  9.6523826      11
-#&gt; 12 2018          Ole Miss        SEC     West  3.4581633      12
-#&gt; 13 2018         Tennessee        SEC     East  0.9340553      13
-#&gt; 14 2018          Arkansas        SEC     West -7.1577748      14</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='fu'>cfbd_ratings_srs</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>"Texas"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   year  team conference division   rating ranking</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 2019 Texas     Big 12       NA 15.97154       1</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>cfbd_ratings_srs</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    year              team conference division     rating ranking</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  2018           Alabama        SEC     West 33.5327042       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  2018           Georgia        SEC     East 26.2706653       2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  2018 Mississippi State        SEC     West 19.8323291       3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  2018           Florida        SEC     East 19.2588533       4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  2018          Missouri        SEC     East 18.8779385       5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  2018               LSU        SEC     West 18.3332724       6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  2018         Texas A&amp;M        SEC     West 17.9329220       7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  2018            Auburn        SEC     West 15.0330923       8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  2018          Kentucky        SEC     East 14.6950441       9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 2018        Vanderbilt        SEC     East  9.9257639      10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 2018    South Carolina        SEC     East  9.6523826      11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12 2018          Ole Miss        SEC     West  3.4581633      12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13 2018         Tennessee        SEC     East  0.9340553      13</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 2018          Arkansas        SEC     West -7.1577748      14</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

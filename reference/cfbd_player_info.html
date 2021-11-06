@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -455,21 +455,23 @@ If left NULL, API default will only provide results for most recent year of fina
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
-#&gt; 1    3691739 Florida State Derwin James     Derwin     James    211     75
-#&gt;   jersey position       home_town team_color team_color_secondary
-#&gt; 1      3       DB Haines City, FL    #782F40              #ceb888</div><div class='input'>
-<span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
-#&gt; 1    4035483 Clemson Dexter Lawrence     Dexter  Lawrence    340     76     90
-#&gt; 2    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16
-#&gt;   position        home_town team_color team_color_secondary
-#&gt; 1       DT  Wake Forest, NC    #F66733              #522d80
-#&gt; 2       QB Cartersville, GA    #F66733              #522d80</div><div class='input'>
-<span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"James"</span>, position <span class='op'>=</span> <span class='st'>"DB"</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   athlete_id          team         name first_name last_name weight height</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    3691739 Florida State Derwin James     Derwin     James    211     75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   jersey position       home_town team_color team_color_secondary</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      3       DB Haines City, FL    #782F40              #ceb888</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>cfbd_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>"Lawrence"</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   athlete_id    team            name first_name last_name weight height jersey</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    4035483 Clemson Dexter Lawrence     Dexter  Lawrence    340     76     90</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   position        home_town team_color team_color_secondary</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       DT  Wake Forest, NC    #F66733              #522d80</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2       QB Cartersville, GA    #F66733              #522d80</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

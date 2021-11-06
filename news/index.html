@@ -101,7 +101,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -400,6 +400,16 @@
       <small>Source: <a href='https://github.com/saiemgilani/cfbfastR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="cfbfastr-v165" class="section level1">
+<h1 class="page-header" data-toc-text="1.6.5">
+<a href="#cfbfastr-v165" class="anchor"></a><small> Unreleased </small><strong>cfbfastR v1.6.5</strong>
+</h1>
+<ul>
+<li>Updated tests and documentation for <code><a href="../reference/cfbd_betting.html">cfbd_betting_lines()</a></code>
+</li>
+<li>API call in <code><a href="../reference/espn_ratings.html">espn_ratings_fpi()</a></code> now requires headers in httr request</li>
+</ul>
+</div>
     <div id="cfbfastr-v164" class="section level1">
 <h1 class="page-header" data-toc-text="1.6.4">
 <a href="#cfbfastr-v164" class="anchor"></a><small> 2021-10-27 </small><strong>cfbfastR v1.6.4</strong>
@@ -656,7 +666,7 @@
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
 </ul>
-<pre class="{r}"><code><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")</a></code></pre>
+<pre class="{r}"><code>Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")</code></pre>
 <ul>
 <li>Added <a href="https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html">API Key methods</a>. If you forget to set your environment variable, functions will give you a warning and ask for one.</li>
 </ul>

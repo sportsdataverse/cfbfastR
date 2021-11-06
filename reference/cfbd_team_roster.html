@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -445,234 +445,235 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_team_roster</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    athlete_id first_name   last_name          team weight height jersey year
-#&gt; 1      480772        Dan       Hicks Florida State     NA     76      6   NA
-#&gt; 2      480781    Jacobbi    McDaniel Florida State     NA     72     55   NA
-#&gt; 3      501075       Chad       Abram Florida State     NA     72     41   NA
-#&gt; 4      501076   Terrence      Brooks Florida State     NA     71     31   NA
-#&gt; 5      501077     Shayne     Broxsie Florida State     NA     74     42   NA
-#&gt; 6      501082     Jarred     Haggins Florida State     NA     72     12   NA
-#&gt; 7      501083  Christian       Jones Florida State     NA     76      7   NA
-#&gt; 8      501084   Lamarcus      Joyner Florida State     NA     68     20   NA
-#&gt; 9      501095     Telvin       Smith Florida State     NA     75     22   NA
-#&gt; 10     501097      Nigel     Terrell Florida State     NA     74     43   NA
-#&gt; 11     501535      Kenny        Shaw Florida State     NA     72     81   NA
-#&gt; 12     501553  Christian       Green Florida State     NA     74     89   NA
-#&gt; 13     503330      Kevin      Haplea Florida State     NA     76     33   NA
-#&gt; 14     514119     Kelvin    Benjamin Florida State     NA     77      1   NA
-#&gt; 15     514121   Lamarcus      Brutus Florida State     NA     72     42   NA
-#&gt; 16     514124       Jake       Coker Florida State     NA     77     14   NA
-#&gt; 17     514134    Devonta     Freeman Florida State     NA     69      8   NA
-#&gt; 18     514136     Rashad  Greene Sr. Florida State     NA     NA     NA   NA
-#&gt; 19     517364      Tyler      Hunter Florida State     NA     71      1   NA
-#&gt; 20     517377       Nick     O'Leary Florida State     NA     75     35   NA
-#&gt; 21     517381     Keelin       Smith Florida State     NA     75     37   NA
-#&gt; 22     517382   Terrance       Smith Florida State     NA     76     24   NA
-#&gt; 23     517387       Nick     Waisome Florida State     NA     70      6   NA
-#&gt; 24     517388      James  Wilder Jr. Florida State     NA     NA     NA   NA
-#&gt; 25     517390     Karlos    Williams Florida State     NA     73      9   NA
-#&gt; 26     530282      Cason      Beatty Florida State     NA     75     38   NA
-#&gt; 27     530285       Will     Burnham Florida State     NA     72     45   NA
-#&gt; 28     530289     Ronald       Darby Florida State     NA     71      3   NA
-#&gt; 29     530290      Mario Edwards Jr. Florida State     NA     NA     NA   NA
-#&gt; 30     530299       Sean     Maguire Florida State     NA     75     10   NA
-#&gt; 31     530301     Reggie    Northrup Florida State     NA     73      5   NA
-#&gt; 32     530302      Mario      Pender Florida State     NA     70      7   NA
-#&gt; 33     530303     Justin      Shanks Florida State     NA     74     92   NA
-#&gt; 34     530308     Jameis     Winston Florida State     NA     76      5   NA
-#&gt; 35     534576       P.J.    Williams Florida State     NA     72     26   NA
-#&gt; 36     535422    Roberto      Aguayo Florida State     NA     73     19   NA
-#&gt; 37     546778       Nate     Andrews Florida State    214     72     29   NA
-#&gt; 38     546794       Ryan       Green Florida State    204     70      7   NA
-#&gt; 39     546795   Jonathan   Hernandez Florida State    230     76     44   NA
-#&gt; 40     546798 Ro'Derrick     Hoskins Florida State    240     75     18   NA
-#&gt; 41     546800     Isaiah       Jones Florida State    195     76     88   NA
-#&gt; 42     546801     Jeremy        Kerr Florida State     NA     78     85   NA
-#&gt; 43     546804      Bryan    LaCivita Florida State    178     72     83   NA
-#&gt; 44     546805       E.J.  Levenberry Florida State    250     75     12   NA
-#&gt; 45     546809        Cam      Ponder Florida State     NA     NA     NA   NA
-#&gt; 46     546810      Jalen      Ramsey Florida State     NA     73      8   NA
-#&gt; 47     546812    Freddie   Stevenson Florida State     NA     73     23   NA
-#&gt; 48     546813    Matthew      Thomas Florida State    227     76      6   NA
-#&gt; 49     546814   DeMarcus      Walker Florida State     NA     76     44   NA
-#&gt; 50     546815    Marquez       White Florida State     NA     72     27   NA
-#&gt; 51     546816     Kermit   Whitfield Florida State     NA     68      8   NA
-#&gt; 52     546817      Jesus      Wilson Florida State     NA     70      3   NA
-#&gt; 53     551553      Jared     Jackson Florida State    199     74     87   NA
-#&gt; 54    3122936      Mavin    Saunders Florida State    256     77     89    4
-#&gt; 55    3921562     Marcus       Lewis Florida State    197     73      8    4
-#&gt;    position              home_city home_state home_country      home_latitude
-#&gt; 1        DE                 Oxford         MS          USA         34.3664127
-#&gt; 2        DT             Greenville         FL          USA         30.4694812
-#&gt; 3        FB               Lakeland         FL          USA         28.0394654
-#&gt; 4        DB              Dunnellon         FL          USA         29.0491426
-#&gt; 5        TE             Monticello         FL          USA         30.5452022
-#&gt; 6        WR               Lakeland         FL          USA         28.0394654
-#&gt; 7        LB            Winter Park         FL          USA        26.13784445
-#&gt; 8        DB         Ft. Lauderdale         FL          USA         26.1223084
-#&gt; 9        LB               Valdosta         GA          USA         30.8327022
-#&gt; 10       LB                 Helena         AL          USA         33.2937354
-#&gt; 11       WR                Orlando         FL          USA         28.5421109
-#&gt; 12       WR                  Tampa         FL          USA         27.9477595
-#&gt; 13       TE              Annandale         NJ          USA         40.6451477
-#&gt; 14       WR            Belle Glade         FL          USA         26.6845104
-#&gt; 15       DB         Port St. Lucie         FL          USA         27.2939333
-#&gt; 16       QB                 Mobile         AL          USA         30.6943566
-#&gt; 17       RB                  Miami         FL          USA         25.7742658
-#&gt; 18     &lt;NA&gt;                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-#&gt; 19       DB               Valdosta         GA          USA         30.8327022
-#&gt; 20       TE             Palm Beach         FL          USA         26.7056172
-#&gt; 21       DB            Fort Pierce         FL          USA         27.4467056
-#&gt; 22       LB                Decatur         GA          USA         33.7737582
-#&gt; 23       DB              Groveland         FL          USA         28.5580546
-#&gt; 24       WR                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-#&gt; 25       RB              Davenport         FL          USA         28.1614046
-#&gt; 26        P              Charlotte         NC          USA            35.2272
-#&gt; 27       RB                 Lithia         FL          USA         27.8651063
-#&gt; 28       CB              Oxon Hill         MD          USA         38.8035961
-#&gt; 29       RB                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-#&gt; 30       QB                 Sparta         NJ          USA         41.0401567
-#&gt; 31       LB           Jacksonville         FL          USA         30.3321838
-#&gt; 32       RB             Cape Coral         FL          USA         26.6059432
-#&gt; 33       DT             Prattville         AL          USA         32.4640245
-#&gt; 34       QB               Bessemer         AL          USA         33.3823635
-#&gt; 35       DB                  Ocala         FL          USA         29.1871986
-#&gt; 36       PK               Mascotte         FL          USA         28.5783313
-#&gt; 37       DB               Fairhope         AL          USA          30.507956
-#&gt; 38       RB         St. Petersburg         FL          USA         27.7703796
-#&gt; 39        P              Bradenton         FL          USA         27.4989278
-#&gt; 40       LB                Orlando         FL          USA         28.5421109
-#&gt; 41       WR                 Milton         FL          USA         30.6324149
-#&gt; 42       TE         St. Petersburg         FL          USA         27.7703796
-#&gt; 43       WR            Gainesville         FL          USA         29.6519684
-#&gt; 44       LB             Woodbridge         VA          USA         38.6581723
-#&gt; 45     &lt;NA&gt;                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;
-#&gt; 46       DB                 Smyrna         TN          USA         35.9828413
-#&gt; 47       FB                 Bartow         FL          USA 27.885186599999997
-#&gt; 48       LB                  Miami         FL          USA         25.7742658
-#&gt; 49       DE           Jacksonville         FL          USA         30.3321838
-#&gt; 50       DB                 Dothan         AL          USA         31.2237434
-#&gt; 51       WR                Orlando         FL          USA         28.5421109
-#&gt; 52       WR                  Miami         FL          USA         25.7742658
-#&gt; 53       WR             Monticello         FL          USA         30.5452022
-#&gt; 54       TE                 Bimini         BS      Bahamas               &lt;NA&gt;
-#&gt; 55       DB Prince George's County         MD          USA          38.803929
-#&gt;        home_longitude home_county_fips  recruit_ids
-#&gt; 1         -89.5187664            28071        16026
-#&gt; 2         -83.6299688            12079        14801
-#&gt; 3         -81.9498042            12105        17703
-#&gt; 4         -82.4609331            12083        17717
-#&gt; 5         -83.8701636            12065             
-#&gt; 6         -81.9498042            12105        17754
-#&gt; 7  -81.75399813758739            12021        17113
-#&gt; 8         -80.1433786            12011        17104
-#&gt; 9         -83.2784851            13185        17526
-#&gt; 10 -86.93437519805573            01073        17582
-#&gt; 11        -81.3790304            12095        17188
-#&gt; 12         -82.458444            12057        17126
-#&gt; 13        -74.8789057            34019        17374
-#&gt; 14        -80.6675577            12099        19694
-#&gt; 15        -80.3503283            12111        20186
-#&gt; 16        -88.0430541            01097        20081
-#&gt; 17        -80.1936589            12086        19672
-#&gt; 18               &lt;NA&gt;             &lt;NA&gt;             
-#&gt; 19        -83.2784851            13185        19991
-#&gt; 20        -80.0361517            12099        19597
-#&gt; 21        -80.3256056            12111        19886
-#&gt; 22         -84.296069            13089        19844
-#&gt; 23        -81.8511889            12069        19630
-#&gt; 24               &lt;NA&gt;             &lt;NA&gt;        19595
-#&gt; 25        -81.6017417            12105        19574
-#&gt; 26         -80.843083            37119        23604
-#&gt; 27  -82.2268749493648            12057             
-#&gt; 28        -76.9896573            24033        22061
-#&gt; 29               &lt;NA&gt;             &lt;NA&gt;        22038
-#&gt; 30        -74.6310081            34037        22599
-#&gt; 31         -81.655651            12031        22369
-#&gt; 32        -81.9806771            12071        22073
-#&gt; 33        -86.4596966            01001        22192
-#&gt; 34       -86.91720475            01073        22051
-#&gt; 35        -82.1400923            12083        22155
-#&gt; 36        -81.8867452            12069        22809
-#&gt; 37 -87.89742922432941            01003        25649
-#&gt; 38        -82.6695085            12103        25006
-#&gt; 39        -82.5748194            12081             
-#&gt; 40        -81.3790304            12095        25362
-#&gt; 41        -87.0396881            12113 25175, 55355
-#&gt; 42        -82.6695085            12103        26383
-#&gt; 43        -82.3249846            12001             
-#&gt; 44        -77.2497049            51153        25135
-#&gt; 45               &lt;NA&gt;             &lt;NA&gt;             
-#&gt; 46        -86.5186045            47149        24971
-#&gt; 47 -81.81408775862916            12105        25303
-#&gt; 48        -80.1936589            12086        24964
-#&gt; 49         -81.655651            12031        24992
-#&gt; 50        -85.3933906            01069        25272
-#&gt; 51        -81.3790304            12095        25228
-#&gt; 52        -80.1936589            12086        25445
-#&gt; 53        -83.8701636            12065             
-#&gt; 54               &lt;NA&gt;             &lt;NA&gt;        28463
-#&gt; 55        -76.8518695            24033        31998
-#&gt;                                                                   headshot_url
-#&gt; 1   https://a.espncdn.com/i/headshots/college-football/players/full/480772.png
-#&gt; 2   https://a.espncdn.com/i/headshots/college-football/players/full/480781.png
-#&gt; 3   https://a.espncdn.com/i/headshots/college-football/players/full/501075.png
-#&gt; 4   https://a.espncdn.com/i/headshots/college-football/players/full/501076.png
-#&gt; 5   https://a.espncdn.com/i/headshots/college-football/players/full/501077.png
-#&gt; 6   https://a.espncdn.com/i/headshots/college-football/players/full/501082.png
-#&gt; 7   https://a.espncdn.com/i/headshots/college-football/players/full/501083.png
-#&gt; 8   https://a.espncdn.com/i/headshots/college-football/players/full/501084.png
-#&gt; 9   https://a.espncdn.com/i/headshots/college-football/players/full/501095.png
-#&gt; 10  https://a.espncdn.com/i/headshots/college-football/players/full/501097.png
-#&gt; 11  https://a.espncdn.com/i/headshots/college-football/players/full/501535.png
-#&gt; 12  https://a.espncdn.com/i/headshots/college-football/players/full/501553.png
-#&gt; 13  https://a.espncdn.com/i/headshots/college-football/players/full/503330.png
-#&gt; 14  https://a.espncdn.com/i/headshots/college-football/players/full/514119.png
-#&gt; 15  https://a.espncdn.com/i/headshots/college-football/players/full/514121.png
-#&gt; 16  https://a.espncdn.com/i/headshots/college-football/players/full/514124.png
-#&gt; 17  https://a.espncdn.com/i/headshots/college-football/players/full/514134.png
-#&gt; 18  https://a.espncdn.com/i/headshots/college-football/players/full/514136.png
-#&gt; 19  https://a.espncdn.com/i/headshots/college-football/players/full/517364.png
-#&gt; 20  https://a.espncdn.com/i/headshots/college-football/players/full/517377.png
-#&gt; 21  https://a.espncdn.com/i/headshots/college-football/players/full/517381.png
-#&gt; 22  https://a.espncdn.com/i/headshots/college-football/players/full/517382.png
-#&gt; 23  https://a.espncdn.com/i/headshots/college-football/players/full/517387.png
-#&gt; 24  https://a.espncdn.com/i/headshots/college-football/players/full/517388.png
-#&gt; 25  https://a.espncdn.com/i/headshots/college-football/players/full/517390.png
-#&gt; 26  https://a.espncdn.com/i/headshots/college-football/players/full/530282.png
-#&gt; 27  https://a.espncdn.com/i/headshots/college-football/players/full/530285.png
-#&gt; 28  https://a.espncdn.com/i/headshots/college-football/players/full/530289.png
-#&gt; 29  https://a.espncdn.com/i/headshots/college-football/players/full/530290.png
-#&gt; 30  https://a.espncdn.com/i/headshots/college-football/players/full/530299.png
-#&gt; 31  https://a.espncdn.com/i/headshots/college-football/players/full/530301.png
-#&gt; 32  https://a.espncdn.com/i/headshots/college-football/players/full/530302.png
-#&gt; 33  https://a.espncdn.com/i/headshots/college-football/players/full/530303.png
-#&gt; 34  https://a.espncdn.com/i/headshots/college-football/players/full/530308.png
-#&gt; 35  https://a.espncdn.com/i/headshots/college-football/players/full/534576.png
-#&gt; 36  https://a.espncdn.com/i/headshots/college-football/players/full/535422.png
-#&gt; 37  https://a.espncdn.com/i/headshots/college-football/players/full/546778.png
-#&gt; 38  https://a.espncdn.com/i/headshots/college-football/players/full/546794.png
-#&gt; 39  https://a.espncdn.com/i/headshots/college-football/players/full/546795.png
-#&gt; 40  https://a.espncdn.com/i/headshots/college-football/players/full/546798.png
-#&gt; 41  https://a.espncdn.com/i/headshots/college-football/players/full/546800.png
-#&gt; 42  https://a.espncdn.com/i/headshots/college-football/players/full/546801.png
-#&gt; 43  https://a.espncdn.com/i/headshots/college-football/players/full/546804.png
-#&gt; 44  https://a.espncdn.com/i/headshots/college-football/players/full/546805.png
-#&gt; 45  https://a.espncdn.com/i/headshots/college-football/players/full/546809.png
-#&gt; 46  https://a.espncdn.com/i/headshots/college-football/players/full/546810.png
-#&gt; 47  https://a.espncdn.com/i/headshots/college-football/players/full/546812.png
-#&gt; 48  https://a.espncdn.com/i/headshots/college-football/players/full/546813.png
-#&gt; 49  https://a.espncdn.com/i/headshots/college-football/players/full/546814.png
-#&gt; 50  https://a.espncdn.com/i/headshots/college-football/players/full/546815.png
-#&gt; 51  https://a.espncdn.com/i/headshots/college-football/players/full/546816.png
-#&gt; 52  https://a.espncdn.com/i/headshots/college-football/players/full/546817.png
-#&gt; 53  https://a.espncdn.com/i/headshots/college-football/players/full/551553.png
-#&gt; 54 https://a.espncdn.com/i/headshots/college-football/players/full/3122936.png
-#&gt; 55 https://a.espncdn.com/i/headshots/college-football/players/full/3921562.png</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='fu'>cfbd_team_roster</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    athlete_id first_name   last_name          team weight height jersey year</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      480772        Dan       Hicks Florida State     NA     76      6   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      480781    Jacobbi    McDaniel Florida State     NA     72     55   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3      501075       Chad       Abram Florida State     NA     72     41   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4      501076   Terrence      Brooks Florida State     NA     71     31   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      501077     Shayne     Broxsie Florida State     NA     74     42   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6      501082     Jarred     Haggins Florida State     NA     72     12   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7      501083  Christian       Jones Florida State     NA     76      7   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8      501084   Lamarcus      Joyner Florida State     NA     68     20   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9      501095     Telvin       Smith Florida State     NA     75     22   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10     501097      Nigel     Terrell Florida State     NA     74     43   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11     501535      Kenny        Shaw Florida State     NA     72     81   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12     501553  Christian       Green Florida State     NA     74     89   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13     503330      Kevin      Haplea Florida State     NA     76     33   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14     514119     Kelvin    Benjamin Florida State     NA     77      1   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15     514121   Lamarcus      Brutus Florida State     NA     72     42   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16     514124       Jake       Coker Florida State     NA     77     14   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17     514134    Devonta     Freeman Florida State     NA     69      8   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18     514136     Rashad  Greene Sr. Florida State     NA     NA     NA   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19     517364      Tyler      Hunter Florida State     NA     71      1   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20     517377       Nick     O'Leary Florida State     NA     75     35   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21     517381     Keelin       Smith Florida State     NA     75     37   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22     517382   Terrance       Smith Florida State     NA     76     24   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23     517387       Nick     Waisome Florida State     NA     70      6   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24     517388      James  Wilder Jr. Florida State     NA     NA     NA   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25     517390     Karlos    Williams Florida State     NA     73      9   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26     530282      Cason      Beatty Florida State     NA     75     38   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27     530285       Will     Burnham Florida State     NA     72     45   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28     530289     Ronald       Darby Florida State     NA     71      3   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29     530290      Mario Edwards Jr. Florida State     NA     NA     NA   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30     530299       Sean     Maguire Florida State     NA     75     10   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31     530301     Reggie    Northrup Florida State     NA     73      5   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32     530302      Mario      Pender Florida State     NA     70      7   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33     530303     Justin      Shanks Florida State     NA     74     92   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34     530308     Jameis     Winston Florida State     NA     76      5   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35     534576       P.J.    Williams Florida State     NA     72     26   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36     535422    Roberto      Aguayo Florida State     NA     73     19   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37     546778       Nate     Andrews Florida State    214     72     29   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38     546794       Ryan       Green Florida State    204     70      7   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39     546795   Jonathan   Hernandez Florida State    230     76     44   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40     546798 Ro'Derrick     Hoskins Florida State    240     75     18   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41     546800     Isaiah       Jones Florida State    195     76     88   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42     546801     Jeremy        Kerr Florida State     NA     78     85   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43     546804      Bryan    LaCivita Florida State    178     72     83   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44     546805       E.J.  Levenberry Florida State    250     75     12   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45     546809        Cam      Ponder Florida State     NA     NA     NA   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46     546810      Jalen      Ramsey Florida State     NA     73      8   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47     546812    Freddie   Stevenson Florida State     NA     73     23   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48     546813    Matthew      Thomas Florida State    227     76      6   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49     546814   DeMarcus      Walker Florida State     NA     76     44   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50     546815    Marquez       White Florida State     NA     72     27   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51     546816     Kermit   Whitfield Florida State     NA     68      8   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52     546817      Jesus      Wilson Florida State     NA     70      3   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53     551553      Jared     Jackson Florida State    199     74     87   NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54    3122936      Mavin    Saunders Florida State    256     77     89    4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55    3921562     Marcus       Lewis Florida State    197     73      8    4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    position              home_city home_state home_country      home_latitude</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        DE                 Oxford         MS          USA         34.3664127</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2        DT             Greenville         FL          USA         30.4694812</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3        FB               Lakeland         FL          USA         28.0394654</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        DB              Dunnellon         FL          USA         29.0491426</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        TE             Monticello         FL          USA         30.5452022</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6        WR               Lakeland         FL          USA         28.0394654</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7        LB            Winter Park         FL          USA        26.13784445</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8        DB         Ft. Lauderdale         FL          USA         26.1223084</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9        LB               Valdosta         GA          USA         30.8327022</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10       LB                 Helena         AL          USA         33.2937354</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11       WR                Orlando         FL          USA         28.5421109</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12       WR                  Tampa         FL          USA         27.9477595</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13       TE              Annandale         NJ          USA         40.6451477</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14       WR            Belle Glade         FL          USA         26.6845104</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15       DB         Port St. Lucie         FL          USA         27.2939333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16       QB                 Mobile         AL          USA         30.6943566</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17       RB                  Miami         FL          USA         25.7742658</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18     &lt;NA&gt;                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19       DB               Valdosta         GA          USA         30.8327022</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20       TE             Palm Beach         FL          USA         26.7056172</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21       DB            Fort Pierce         FL          USA         27.4467056</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22       LB                Decatur         GA          USA         33.7737582</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23       DB              Groveland         FL          USA         28.5580546</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24       WR                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25       RB              Davenport         FL          USA         28.1614046</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26        P              Charlotte         NC          USA            35.2272</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27       RB                 Lithia         FL          USA         27.8651063</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28       CB              Oxon Hill         MD          USA         38.8035961</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29       RB                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30       QB                 Sparta         NJ          USA         41.0401567</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31       LB           Jacksonville         FL          USA         30.3321838</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32       RB             Cape Coral         FL          USA         26.6059432</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33       DT             Prattville         AL          USA         32.4640245</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34       QB               Bessemer         AL          USA         33.3823635</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35       DB                  Ocala         FL          USA         29.1871986</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36       PK               Mascotte         FL          USA         28.5783313</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37       DB               Fairhope         AL          USA          30.507956</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38       RB         St. Petersburg         FL          USA         27.7703796</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39        P              Bradenton         FL          USA         27.4989278</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40       LB                Orlando         FL          USA         28.5421109</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41       WR                 Milton         FL          USA         30.6324149</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42       TE         St. Petersburg         FL          USA         27.7703796</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43       WR            Gainesville         FL          USA         29.6519684</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44       LB             Woodbridge         VA          USA         38.6581723</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45     &lt;NA&gt;                   &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;               &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46       DB                 Smyrna         TN          USA         35.9828413</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47       FB                 Bartow         FL          USA 27.885186599999997</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48       LB                  Miami         FL          USA         25.7742658</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49       DE           Jacksonville         FL          USA         30.3321838</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50       DB                 Dothan         AL          USA         31.2237434</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51       WR                Orlando         FL          USA         28.5421109</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52       WR                  Miami         FL          USA         25.7742658</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53       WR             Monticello         FL          USA         30.5452022</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54       TE                 Bimini         BS      Bahamas               &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55       DB Prince George's County         MD          USA          38.803929</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        home_longitude home_county_fips  recruit_ids</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         -89.5187664            28071        16026</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         -83.6299688            12079        14801</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3         -81.9498042            12105        17703</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4         -82.4609331            12083        17717</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5         -83.8701636            12065             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6         -81.9498042            12105        17754</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  -81.75399813758739            12021        17113</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8         -80.1433786            12011        17104</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9         -83.2784851            13185        17526</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 -86.93437519805573            01073        17582</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11        -81.3790304            12095        17188</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12         -82.458444            12057        17126</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13        -74.8789057            34019        17374</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14        -80.6675577            12099        19694</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15        -80.3503283            12111        20186</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16        -88.0430541            01097        20081</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17        -80.1936589            12086        19672</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18               &lt;NA&gt;             &lt;NA&gt;             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19        -83.2784851            13185        19991</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20        -80.0361517            12099        19597</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21        -80.3256056            12111        19886</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22         -84.296069            13089        19844</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23        -81.8511889            12069        19630</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24               &lt;NA&gt;             &lt;NA&gt;        19595</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25        -81.6017417            12105        19574</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26         -80.843083            37119        23604</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27  -82.2268749493648            12057             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28        -76.9896573            24033        22061</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29               &lt;NA&gt;             &lt;NA&gt;        22038</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30        -74.6310081            34037        22599</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31         -81.655651            12031        22369</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32        -81.9806771            12071        22073</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33        -86.4596966            01001        22192</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34       -86.91720475            01073        22051</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35        -82.1400923            12083        22155</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36        -81.8867452            12069        22809</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37 -87.89742922432941            01003        25649</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38        -82.6695085            12103        25006</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39        -82.5748194            12081             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40        -81.3790304            12095        25362</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41        -87.0396881            12113 25175, 55355</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42        -82.6695085            12103        26383</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43        -82.3249846            12001             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44        -77.2497049            51153        25135</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45               &lt;NA&gt;             &lt;NA&gt;             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46        -86.5186045            47149        24971</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47 -81.81408775862916            12105        25303</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48        -80.1936589            12086        24964</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49         -81.655651            12031        24992</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50        -85.3933906            01069        25272</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51        -81.3790304            12095        25228</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52        -80.1936589            12086        25445</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53        -83.8701636            12065             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54               &lt;NA&gt;             &lt;NA&gt;        28463</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55        -76.8518695            24033        31998</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                   headshot_url</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1   https://a.espncdn.com/i/headshots/college-football/players/full/480772.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2   https://a.espncdn.com/i/headshots/college-football/players/full/480781.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3   https://a.espncdn.com/i/headshots/college-football/players/full/501075.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4   https://a.espncdn.com/i/headshots/college-football/players/full/501076.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5   https://a.espncdn.com/i/headshots/college-football/players/full/501077.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6   https://a.espncdn.com/i/headshots/college-football/players/full/501082.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7   https://a.espncdn.com/i/headshots/college-football/players/full/501083.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8   https://a.espncdn.com/i/headshots/college-football/players/full/501084.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9   https://a.espncdn.com/i/headshots/college-football/players/full/501095.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10  https://a.espncdn.com/i/headshots/college-football/players/full/501097.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11  https://a.espncdn.com/i/headshots/college-football/players/full/501535.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12  https://a.espncdn.com/i/headshots/college-football/players/full/501553.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13  https://a.espncdn.com/i/headshots/college-football/players/full/503330.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14  https://a.espncdn.com/i/headshots/college-football/players/full/514119.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15  https://a.espncdn.com/i/headshots/college-football/players/full/514121.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16  https://a.espncdn.com/i/headshots/college-football/players/full/514124.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17  https://a.espncdn.com/i/headshots/college-football/players/full/514134.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18  https://a.espncdn.com/i/headshots/college-football/players/full/514136.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19  https://a.espncdn.com/i/headshots/college-football/players/full/517364.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20  https://a.espncdn.com/i/headshots/college-football/players/full/517377.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21  https://a.espncdn.com/i/headshots/college-football/players/full/517381.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22  https://a.espncdn.com/i/headshots/college-football/players/full/517382.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23  https://a.espncdn.com/i/headshots/college-football/players/full/517387.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24  https://a.espncdn.com/i/headshots/college-football/players/full/517388.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25  https://a.espncdn.com/i/headshots/college-football/players/full/517390.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26  https://a.espncdn.com/i/headshots/college-football/players/full/530282.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27  https://a.espncdn.com/i/headshots/college-football/players/full/530285.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28  https://a.espncdn.com/i/headshots/college-football/players/full/530289.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29  https://a.espncdn.com/i/headshots/college-football/players/full/530290.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30  https://a.espncdn.com/i/headshots/college-football/players/full/530299.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31  https://a.espncdn.com/i/headshots/college-football/players/full/530301.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32  https://a.espncdn.com/i/headshots/college-football/players/full/530302.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33  https://a.espncdn.com/i/headshots/college-football/players/full/530303.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34  https://a.espncdn.com/i/headshots/college-football/players/full/530308.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35  https://a.espncdn.com/i/headshots/college-football/players/full/534576.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36  https://a.espncdn.com/i/headshots/college-football/players/full/535422.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37  https://a.espncdn.com/i/headshots/college-football/players/full/546778.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38  https://a.espncdn.com/i/headshots/college-football/players/full/546794.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 39  https://a.espncdn.com/i/headshots/college-football/players/full/546795.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 40  https://a.espncdn.com/i/headshots/college-football/players/full/546798.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 41  https://a.espncdn.com/i/headshots/college-football/players/full/546800.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 42  https://a.espncdn.com/i/headshots/college-football/players/full/546801.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 43  https://a.espncdn.com/i/headshots/college-football/players/full/546804.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 44  https://a.espncdn.com/i/headshots/college-football/players/full/546805.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 45  https://a.espncdn.com/i/headshots/college-football/players/full/546809.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 46  https://a.espncdn.com/i/headshots/college-football/players/full/546810.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 47  https://a.espncdn.com/i/headshots/college-football/players/full/546812.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 48  https://a.espncdn.com/i/headshots/college-football/players/full/546813.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 49  https://a.espncdn.com/i/headshots/college-football/players/full/546814.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 50  https://a.espncdn.com/i/headshots/college-football/players/full/546815.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 51  https://a.espncdn.com/i/headshots/college-football/players/full/546816.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 52  https://a.espncdn.com/i/headshots/college-football/players/full/546817.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 53  https://a.espncdn.com/i/headshots/college-football/players/full/551553.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 54 https://a.espncdn.com/i/headshots/college-football/players/full/3122936.png</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 55 https://a.espncdn.com/i/headshots/college-football/players/full/3921562.png</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

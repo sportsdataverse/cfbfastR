@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -430,26 +430,27 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-  <span class='fu'>cfbd_calendar</span><span class='op'>(</span><span class='fl'>2019</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    season week season_type         first_game_start          last_game_start
-#&gt; 1    2019    1     regular 2019-08-24T23:00:00.000Z 2019-09-03T00:00:00.000Z
-#&gt; 2    2019    2     regular 2019-09-07T00:00:00.000Z 2019-09-08T03:59:00.000Z
-#&gt; 3    2019    3     regular 2019-09-13T22:00:00.000Z 2019-09-15T02:45:00.000Z
-#&gt; 4    2019    4     regular 2019-09-20T00:00:00.000Z 2019-09-22T03:59:00.000Z
-#&gt; 5    2019    5     regular 2019-09-27T00:00:00.000Z 2019-09-29T02:30:00.000Z
-#&gt; 6    2019    6     regular 2019-10-03T23:30:00.000Z 2019-10-06T02:30:00.000Z
-#&gt; 7    2019    7     regular 2019-10-10T00:00:00.000Z 2019-10-13T03:00:00.000Z
-#&gt; 8    2019    8     regular 2019-10-17T00:00:00.000Z 2019-10-20T03:00:00.000Z
-#&gt; 9    2019    9     regular 2019-10-24T23:30:00.000Z 2019-10-27T02:30:00.000Z
-#&gt; 10   2019   10     regular 2019-11-01T00:00:00.000Z 2019-11-03T03:59:00.000Z
-#&gt; 11   2019   11     regular 2019-11-06T00:00:00.000Z 2019-11-10T04:00:00.000Z
-#&gt; 12   2019   12     regular 2019-11-12T23:00:00.000Z 2019-11-17T04:00:00.000Z
-#&gt; 13   2019   13     regular 2019-11-20T00:30:00.000Z 2019-11-24T04:00:00.000Z
-#&gt; 14   2019   14     regular 2019-11-26T23:00:00.000Z 2019-12-01T04:59:00.000Z
-#&gt; 15   2019   15     regular 2019-12-07T01:00:00.000Z 2019-12-14T20:00:00.000Z
-#&gt; 16   2019    1  postseason 2019-12-20T19:00:00.000Z 2020-01-14T01:00:00.000Z</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'>  <span class='fu'>cfbd_calendar</span><span class='op'>(</span><span class='fl'>2019</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    season week season_type         first_game_start          last_game_start</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    2019    1     regular 2019-08-24T23:00:00.000Z 2019-09-03T00:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2    2019    2     regular 2019-09-07T00:00:00.000Z 2019-09-08T03:59:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3    2019    3     regular 2019-09-13T22:00:00.000Z 2019-09-15T02:45:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4    2019    4     regular 2019-09-20T00:00:00.000Z 2019-09-22T03:59:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5    2019    5     regular 2019-09-27T00:00:00.000Z 2019-09-29T02:30:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6    2019    6     regular 2019-10-03T23:30:00.000Z 2019-10-06T02:30:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7    2019    7     regular 2019-10-10T00:00:00.000Z 2019-10-13T03:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8    2019    8     regular 2019-10-17T00:00:00.000Z 2019-10-20T03:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9    2019    9     regular 2019-10-24T23:30:00.000Z 2019-10-27T02:30:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10   2019   10     regular 2019-11-01T00:00:00.000Z 2019-11-03T03:59:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11   2019   11     regular 2019-11-06T00:00:00.000Z 2019-11-10T04:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12   2019   12     regular 2019-11-12T23:00:00.000Z 2019-11-17T04:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13   2019   13     regular 2019-11-20T00:30:00.000Z 2019-11-24T04:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14   2019   14     regular 2019-11-26T23:00:00.000Z 2019-12-01T04:59:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15   2019   15     regular 2019-12-07T01:00:00.000Z 2019-12-14T20:00:00.000Z</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16   2019    1  postseason 2019-12-20T19:00:00.000Z 2020-01-14T01:00:00.000Z</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

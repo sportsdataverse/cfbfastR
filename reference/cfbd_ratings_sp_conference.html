@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -457,124 +457,127 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'>cfbd_ratings_sp_conference</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;    year        conference     rating second_order_wins sos offense_rating
-#&gt; 1  2019               ACC   2.971429                NA  NA       28.27143
-#&gt; 2  2019 American Athletic   1.350000                NA  NA       29.08333
-#&gt; 3  2019            Big 12   7.260000                NA  NA       32.55000
-#&gt; 4  2019           Big Ten   9.492857                NA  NA       30.90714
-#&gt; 5  2019    Conference USA  -9.228571                NA  NA       22.13571
-#&gt; 6  2019  FBS Independents  -7.050000                NA  NA       26.10000
-#&gt; 7  2019      Mid-American -10.416667                NA  NA       24.15833
-#&gt; 8  2019     Mountain West  -3.908333                NA  NA       26.05833
-#&gt; 9  2019            Pac-12   5.275000                NA  NA       32.45833
-#&gt; 10 2019               SEC  12.157143                NA  NA       31.96429
-#&gt; 11 2019          Sun Belt  -6.140000                NA  NA       27.37000
-#&gt;    offense_success offense_explosiveness offense_rushing offense_passing
-#&gt; 1               NA                    NA              NA              NA
-#&gt; 2               NA                    NA              NA              NA
-#&gt; 3               NA                    NA              NA              NA
-#&gt; 4               NA                    NA              NA              NA
-#&gt; 5               NA                    NA              NA              NA
-#&gt; 6               NA                    NA              NA              NA
-#&gt; 7               NA                    NA              NA              NA
-#&gt; 8               NA                    NA              NA              NA
-#&gt; 9               NA                    NA              NA              NA
-#&gt; 10              NA                    NA              NA              NA
-#&gt; 11              NA                    NA              NA              NA
-#&gt;    offense_standard_downs offense_passing_downs offense_run_rate offense_pace
-#&gt; 1                      NA                    NA               NA           NA
-#&gt; 2                      NA                    NA               NA           NA
-#&gt; 3                      NA                    NA               NA           NA
-#&gt; 4                      NA                    NA               NA           NA
-#&gt; 5                      NA                    NA               NA           NA
-#&gt; 6                      NA                    NA               NA           NA
-#&gt; 7                      NA                    NA               NA           NA
-#&gt; 8                      NA                    NA               NA           NA
-#&gt; 9                      NA                    NA               NA           NA
-#&gt; 10                     NA                    NA               NA           NA
-#&gt; 11                     NA                    NA               NA           NA
-#&gt;    defense_rating defense_success defense_explosiveness defense_rushing
-#&gt; 1        25.37143              NA                    NA              NA
-#&gt; 2        27.40833              NA                    NA              NA
-#&gt; 3        25.92000              NA                    NA              NA
-#&gt; 4        21.40714              NA                    NA              NA
-#&gt; 5        31.23571              NA                    NA              NA
-#&gt; 6        32.78333              NA                    NA              NA
-#&gt; 7        33.77500              NA                    NA              NA
-#&gt; 8        30.29167              NA                    NA              NA
-#&gt; 9        27.37500              NA                    NA              NA
-#&gt; 10       20.57143              NA                    NA              NA
-#&gt; 11       33.00000              NA                    NA              NA
-#&gt;    defense_passing defense_standard_downs defense_passing_downs
-#&gt; 1               NA                     NA                    NA
-#&gt; 2               NA                     NA                    NA
-#&gt; 3               NA                     NA                    NA
-#&gt; 4               NA                     NA                    NA
-#&gt; 5               NA                     NA                    NA
-#&gt; 6               NA                     NA                    NA
-#&gt; 7               NA                     NA                    NA
-#&gt; 8               NA                     NA                    NA
-#&gt; 9               NA                     NA                    NA
-#&gt; 10              NA                     NA                    NA
-#&gt; 11              NA                     NA                    NA
-#&gt;    defense_havoc_total defense_havoc_front_seven defense_havoc_db
-#&gt; 1                   NA                        NA               NA
-#&gt; 2                   NA                        NA               NA
-#&gt; 3                   NA                        NA               NA
-#&gt; 4                   NA                        NA               NA
-#&gt; 5                   NA                        NA               NA
-#&gt; 6                   NA                        NA               NA
-#&gt; 7                   NA                        NA               NA
-#&gt; 8                   NA                        NA               NA
-#&gt; 9                   NA                        NA               NA
-#&gt; 10                  NA                        NA               NA
-#&gt; 11                  NA                        NA               NA
-#&gt;    special_teams_rating
-#&gt; 1           0.064285714
-#&gt; 2          -0.333333333
-#&gt; 3           0.640000000
-#&gt; 4          -0.007142857
-#&gt; 5          -0.135714286
-#&gt; 6          -0.366666667
-#&gt; 7          -0.808333333
-#&gt; 8           0.316666667
-#&gt; 9           0.166666667
-#&gt; 10          0.764285714
-#&gt; 11         -0.520000000</div><div class='input'>
-<span class='fu'>cfbd_ratings_sp_conference</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2012</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   year conference   rating second_order_wins       sos offense_rating
-#&gt; 1 2012        SEC 15.72143              7.85 0.8165714       34.77857
-#&gt;   offense_success offense_explosiveness offense_rushing offense_passing
-#&gt; 1        105.0786              104.3857        105.5857        104.2786
-#&gt;   offense_standard_downs offense_passing_downs offense_run_rate offense_pace
-#&gt; 1               103.4357                 107.8        0.5085714          0.5
-#&gt;   defense_rating defense_success defense_explosiveness defense_rushing
-#&gt; 1       19.55714        107.7214              107.6643        110.2643
-#&gt;   defense_passing defense_standard_downs defense_passing_downs
-#&gt; 1           106.5               106.6929              108.9214
-#&gt;   defense_havoc_total defense_havoc_front_seven defense_havoc_db
-#&gt; 1           0.1727143                 0.1032857           0.0685
-#&gt;   special_teams_rating
-#&gt; 1            0.4928571</div><div class='input'>
-<span class='fu'>cfbd_ratings_sp_conference</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2016</span>, conference <span class='op'>=</span> <span class='st'>"ACC"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   year conference   rating second_order_wins       sos offense_rating
-#&gt; 1 2016        ACC 10.29286          7.571429 0.8486429          33.25
-#&gt;   offense_success offense_explosiveness offense_rushing offense_passing
-#&gt; 1        104.2929              101.1286        101.4143        104.4714
-#&gt;   offense_standard_downs offense_passing_downs offense_run_rate offense_pace
-#&gt; 1               102.2714                 103.9        0.5140714    0.3214286
-#&gt;   defense_rating defense_success defense_explosiveness defense_rushing
-#&gt; 1       22.87857        107.2571              99.42857        104.6857
-#&gt;   defense_passing defense_standard_downs defense_passing_downs
-#&gt; 1        103.2143               103.1357              102.9857
-#&gt;   defense_havoc_total defense_havoc_front_seven defense_havoc_db
-#&gt; 1           0.1726429                     0.109       0.06264286
-#&gt;   special_teams_rating
-#&gt; 1                -0.05</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='fu'>cfbd_ratings_sp_conference</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    year        conference     rating second_order_wins sos offense_rating</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  2019               ACC   2.971429                NA  NA       28.27143</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  2019 American Athletic   1.350000                NA  NA       29.08333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  2019            Big 12   7.260000                NA  NA       32.55000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  2019           Big Ten   9.492857                NA  NA       30.90714</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  2019    Conference USA  -9.228571                NA  NA       22.13571</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  2019  FBS Independents  -7.050000                NA  NA       26.10000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  2019      Mid-American -10.416667                NA  NA       24.15833</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  2019     Mountain West  -3.908333                NA  NA       26.05833</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  2019            Pac-12   5.275000                NA  NA       32.45833</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 2019               SEC  12.157143                NA  NA       31.96429</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 2019          Sun Belt  -6.140000                NA  NA       27.37000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    offense_success offense_explosiveness offense_rushing offense_passing</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9               NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10              NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11              NA                    NA              NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    offense_standard_downs offense_passing_downs offense_run_rate offense_pace</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                      NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                     NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                     NA                    NA               NA           NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    defense_rating defense_success defense_explosiveness defense_rushing</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        25.37143              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2        27.40833              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3        25.92000              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        21.40714              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        31.23571              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6        32.78333              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7        33.77500              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8        30.29167              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9        27.37500              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10       20.57143              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11       33.00000              NA                    NA              NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    defense_passing defense_standard_downs defense_passing_downs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9               NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10              NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11              NA                     NA                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    defense_havoc_total defense_havoc_front_seven defense_havoc_db</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                   NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                  NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                  NA                        NA               NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    special_teams_rating</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1           0.064285714</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2          -0.333333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3           0.640000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4          -0.007142857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5          -0.135714286</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6          -0.366666667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7          -0.808333333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8           0.316666667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9           0.166666667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10          0.764285714</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11         -0.520000000</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>cfbd_ratings_sp_conference</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2012</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   year conference   rating second_order_wins       sos offense_rating</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 2012        SEC 15.72143              7.85 0.8165714       34.77857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   offense_success offense_explosiveness offense_rushing offense_passing</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        105.0786              104.3857        105.5857        104.2786</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   offense_standard_downs offense_passing_downs offense_run_rate offense_pace</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1               103.4357                 107.8        0.5085714          0.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   defense_rating defense_success defense_explosiveness defense_rushing</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       19.55714        107.7214              107.6643        110.2643</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   defense_passing defense_standard_downs defense_passing_downs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1           106.5               106.6929              108.9214</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   defense_havoc_total defense_havoc_front_seven defense_havoc_db</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1           0.1727143                 0.1032857           0.0685</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   special_teams_rating</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1            0.4928571</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>cfbd_ratings_sp_conference</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2016</span>, conference <span class='op'>=</span> <span class='st'>"ACC"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   year conference   rating second_order_wins       sos offense_rating</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 2016        ACC 10.29286          7.571429 0.8486429          33.25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   offense_success offense_explosiveness offense_rushing offense_passing</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        104.2929              101.1286        101.4143        104.4714</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   offense_standard_downs offense_passing_downs offense_run_rate offense_pace</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1               102.2714                 103.9        0.5140714    0.3214286</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   defense_rating defense_success defense_explosiveness defense_rushing</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       22.87857        107.2571              99.42857        104.6857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   defense_passing defense_standard_downs defense_passing_downs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        103.2143               103.1357              102.9857</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   defense_havoc_total defense_havoc_front_seven defense_havoc_db</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1           0.1726429                     0.109       0.06264286</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   special_teams_rating</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                -0.05</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -467,42 +467,43 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-  <span class='fu'>cfbd_game_media</span><span class='op'>(</span><span class='fl'>2019</span>, week <span class='op'>=</span> <span class='fl'>4</span>, conference <span class='op'>=</span> <span class='st'>"ACC"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      game_id season week season_type               start_time is_start_time_tbd
-#&gt; 1  401112456   2019    4     regular 2019-09-21T23:30:00.000Z                NA
-#&gt; 2  401112461   2019    4     regular 2019-09-21T19:30:00.000Z                NA
-#&gt; 3  401112463   2019    4     regular 2019-09-21T23:00:00.000Z                NA
-#&gt; 4  401112462   2019    4     regular 2019-09-21T16:00:00.000Z                NA
-#&gt; 5  401112464   2019    4     regular 2019-09-21T16:00:00.000Z                NA
-#&gt; 6  401112265   2019    4     regular 2019-09-21T16:00:00.000Z                NA
-#&gt; 7  401112457   2019    4     regular 2019-09-21T19:30:00.000Z                NA
-#&gt; 8  401112459   2019    4     regular 2019-09-21T19:30:00.000Z                NA
-#&gt; 9  401112458   2019    4     regular 2019-09-21T20:00:00.000Z                NA
-#&gt; 10 401112460   2019    4     regular 2019-09-21T23:00:00.000Z                NA
-#&gt;         home_team home_conference         away_team   away_conference
-#&gt; 1         Clemson             ACC         Charlotte    Conference USA
-#&gt; 2      Pittsburgh             ACC               UCF American Athletic
-#&gt; 3        Virginia             ACC      Old Dominion    Conference USA
-#&gt; 4        Syracuse             ACC  Western Michigan      Mid-American
-#&gt; 5     Wake Forest             ACC              Elon              &lt;NA&gt;
-#&gt; 6         Rutgers         Big Ten    Boston College               ACC
-#&gt; 7   Florida State             ACC        Louisville               ACC
-#&gt; 8  North Carolina             ACC Appalachian State          Sun Belt
-#&gt; 9           Miami             ACC  Central Michigan      Mid-American
-#&gt; 10       NC State             ACC        Ball State      Mid-American
-#&gt;            tv radio   web
-#&gt; 1        ACCN    NA  NULL
-#&gt; 2  ABC, ESPN2    NA  NULL
-#&gt; 3       ESPN2    NA  NULL
-#&gt; 4        ACCN    NA  NULL
-#&gt; 5        NULL    NA ACCNX
-#&gt; 6         BTN    NA  NULL
-#&gt; 7        ESPN    NA  NULL
-#&gt; 8        NULL    NA ACCNX
-#&gt; 9        ACCN    NA  NULL
-#&gt; 10      ESPNU    NA  NULL</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'>  <span class='fu'>cfbd_game_media</span><span class='op'>(</span><span class='fl'>2019</span>, week <span class='op'>=</span> <span class='fl'>4</span>, conference <span class='op'>=</span> <span class='st'>"ACC"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      game_id season week season_type               start_time is_start_time_tbd</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1  401112456   2019    4     regular 2019-09-21T23:30:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  401112461   2019    4     regular 2019-09-21T19:30:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3  401112463   2019    4     regular 2019-09-21T23:00:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4  401112462   2019    4     regular 2019-09-21T16:00:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  401112464   2019    4     regular 2019-09-21T16:00:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  401112265   2019    4     regular 2019-09-21T16:00:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7  401112457   2019    4     regular 2019-09-21T19:30:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  401112459   2019    4     regular 2019-09-21T19:30:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9  401112458   2019    4     regular 2019-09-21T20:00:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 401112460   2019    4     regular 2019-09-21T23:00:00.000Z                NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         home_team home_conference         away_team   away_conference</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1         Clemson             ACC         Charlotte    Conference USA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      Pittsburgh             ACC               UCF American Athletic</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3        Virginia             ACC      Old Dominion    Conference USA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        Syracuse             ACC  Western Michigan      Mid-American</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5     Wake Forest             ACC              Elon              &lt;NA&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6         Rutgers         Big Ten    Boston College               ACC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7   Florida State             ACC        Louisville               ACC</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  North Carolina             ACC Appalachian State          Sun Belt</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9           Miami             ACC  Central Michigan      Mid-American</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10       NC State             ACC        Ball State      Mid-American</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            tv radio   web</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        ACCN    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  ABC, ESPN2    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3       ESPN2    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        ACCN    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        NULL    NA ACCNX</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6         BTN    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7        ESPN    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8        NULL    NA ACCNX</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9        ACCN    NA  NULL</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10      ESPNU    NA  NULL</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

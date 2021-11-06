@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -419,48 +419,49 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-   <span class='fu'>cfbd_stats_categories</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;               category
-#&gt; 1   completionAttempts
-#&gt; 2         defensiveTDs
-#&gt; 3          extraPoints
-#&gt; 4         fieldGoalPct
-#&gt; 5           fieldGoals
-#&gt; 6           firstDowns
-#&gt; 7        fourthDownEff
-#&gt; 8          fumblesLost
-#&gt; 9     fumblesRecovered
-#&gt; 10       interceptions
-#&gt; 11     interceptionTDs
-#&gt; 12   interceptionYards
-#&gt; 13       kickingPoints
-#&gt; 14         kickReturns
-#&gt; 15       kickReturnTDs
-#&gt; 16     kickReturnYards
-#&gt; 17     netPassingYards
-#&gt; 18     passesDeflected
-#&gt; 19   passesIntercepted
-#&gt; 20          passingTDs
-#&gt; 21      possessionTime
-#&gt; 22         puntReturns
-#&gt; 23       puntReturnTDs
-#&gt; 24     puntReturnYards
-#&gt; 25           qbHurries
-#&gt; 26     rushingAttempts
-#&gt; 27          rushingTDs
-#&gt; 28        rushingYards
-#&gt; 29               sacks
-#&gt; 30             tackles
-#&gt; 31      tacklesForLoss
-#&gt; 32        thirdDownEff
-#&gt; 33        totalFumbles
-#&gt; 34 totalPenaltiesYards
-#&gt; 35          totalYards
-#&gt; 36           turnovers
-#&gt; 37        yardsPerPass
-#&gt; 38 yardsPerRushAttempt</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'>   <span class='fu'>cfbd_stats_categories</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               category</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1   completionAttempts</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         defensiveTDs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3          extraPoints</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4         fieldGoalPct</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5           fieldGoals</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6           firstDowns</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7        fourthDownEff</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8          fumblesLost</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9     fumblesRecovered</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10       interceptions</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11     interceptionTDs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12   interceptionYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13       kickingPoints</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14         kickReturns</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15       kickReturnTDs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16     kickReturnYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17     netPassingYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18     passesDeflected</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19   passesIntercepted</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20          passingTDs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21      possessionTime</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22         puntReturns</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23       puntReturnTDs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24     puntReturnYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25           qbHurries</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26     rushingAttempts</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27          rushingTDs</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28        rushingYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29               sacks</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30             tackles</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31      tacklesForLoss</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32        thirdDownEff</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33        totalFumbles</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34 totalPenaltiesYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35          totalYards</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 36           turnovers</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 37        yardsPerPass</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 38 yardsPerRushAttempt</span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

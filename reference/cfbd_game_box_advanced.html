@@ -102,7 +102,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.5</span>
       </span>
     </div>
 
@@ -499,97 +499,98 @@ Can be found using the <code><a href='cfbd_game_info.html'>cfbd_game_info()</a><
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
- <span class='fu'>cfbd_game_box_advanced</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401114233</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                 team ppa_plays ppa_overall_total ppa_overall_quarter1
-#&gt; 1 Eastern Washington        45           -0.2013               -0.569
-#&gt; 2         Washington        56            0.9988                1.080
-#&gt;   ppa_overall_quarter2 ppa_overall_quarter3 ppa_overall_quarter4
-#&gt; 1                0.122               -0.658                2.696
-#&gt; 2                0.741                1.124                0.000
-#&gt;   ppa_passing_total ppa_passing_quarter1 ppa_passing_quarter2
-#&gt; 1            -0.320               -0.794                0.382
-#&gt; 2             1.318                1.489                0.889
-#&gt;   ppa_passing_quarter3 ppa_passing_quarter4 ppa_rushing_total
-#&gt; 1               -0.889                    0             0.014
-#&gt; 2                1.552                    0             0.603
-#&gt;   ppa_rushing_quarter1 ppa_rushing_quarter2 ppa_rushing_quarter3
-#&gt; 1                0.014               -0.267               -0.198
-#&gt; 2                0.671                0.493                0.602
-#&gt;   ppa_rushing_quarter4 cumulative_ppa_plays cumulative_ppa_overall_total
-#&gt; 1                2.696                   45                         -9.1
-#&gt; 2                0.000                   56                         55.9
-#&gt;   cumulative_ppa_overall_quarter1 cumulative_ppa_overall_quarter2
-#&gt; 1                           -10.2                             2.4
-#&gt; 2                            21.6                            11.8
-#&gt;   cumulative_ppa_overall_quarter3 cumulative_ppa_overall_quarter4
-#&gt; 1                            -4.0                             2.7
-#&gt; 2                            22.5                             0.0
-#&gt;   cumulative_ppa_passing_total cumulative_ppa_passing_quarter1
-#&gt; 1                         -9.3                           -10.3
-#&gt; 2                         40.8                            14.9
-#&gt;   cumulative_ppa_passing_quarter2 cumulative_ppa_passing_quarter3
-#&gt; 1                             4.6                            -3.6
-#&gt; 2                             8.9                            17.1
-#&gt;   cumulative_ppa_passing_quarter4 cumulative_ppa_rushing_total
-#&gt; 1                               0                          0.2
-#&gt; 2                               0                         15.1
-#&gt;   cumulative_ppa_rushing_quarter1 cumulative_ppa_rushing_quarter2
-#&gt; 1                             0.1                            -2.1
-#&gt; 2                             6.7                             3.0
-#&gt;   cumulative_ppa_rushing_quarter3 cumulative_ppa_rushing_quarter4
-#&gt; 1                            -0.4                             2.7
-#&gt; 2                             5.4                             0.0
-#&gt;   success_rates_overall_total success_rates_overall_quarter1
-#&gt; 1                       0.289                          0.222
-#&gt; 2                       0.554                          0.600
-#&gt;   success_rates_overall_quarter2 success_rates_overall_quarter3
-#&gt; 1                            0.4                           0.00
-#&gt; 2                            0.5                           0.55
-#&gt;   success_rates_overall_quarter4 success_rates_standard_downs_total
-#&gt; 1                              1                              0.333
-#&gt; 2                             NA                              0.561
-#&gt;   success_rates_standard_downs_quarter1 success_rates_standard_downs_quarter2
-#&gt; 1                                 0.273                                 0.417
-#&gt; 2                                 0.563                                 0.545
-#&gt;   success_rates_standard_downs_quarter3 success_rates_standard_downs_quarter4
-#&gt; 1                                 0.000                                     1
-#&gt; 2                                 0.571                                    NA
-#&gt;   success_rates_passing_downs_total success_rates_passing_downs_quarter1
-#&gt; 1                             0.222                                0.143
-#&gt; 2                             0.533                                0.750
-#&gt;   success_rates_passing_downs_quarter2 success_rates_passing_downs_quarter3
-#&gt; 1                                0.375                                  0.0
-#&gt; 2                                0.400                                  0.5
-#&gt;   success_rates_passing_downs_quarter4 explosiveness_overall_total
-#&gt; 1                                   NA                        0.97
-#&gt; 2                                   NA                        2.19
-#&gt;   explosiveness_overall_quarter1 explosiveness_overall_quarter2
-#&gt; 1                           0.28                           1.10
-#&gt; 2                           2.16                           2.02
-#&gt;   explosiveness_overall_quarter3 explosiveness_overall_quarter4
-#&gt; 1                             NA                            2.7
-#&gt; 2                           2.35                            0.0
-#&gt;   rushing_power_success rushing_stuff_rate rushing_line_yds
-#&gt; 1                     1               0.25               32
-#&gt; 2                     1               0.20               70
-#&gt;   rushing_line_yds_avg rushing_second_lvl_yds rushing_second_lvl_yds_avg
-#&gt; 1                  2.0                     10                        0.6
-#&gt; 2                  2.8                     29                        1.2
-#&gt;   rushing_open_field_yds rushing_open_field_yds_avg havoc_total
-#&gt; 1                      1                        0.1       0.467
-#&gt; 2                     28                        1.1       0.179
-#&gt;   havoc_front_seven havoc_db scoring_opps_opportunities scoring_opps_points
-#&gt; 1             0.400    0.067                         12                  12
-#&gt; 2             0.107    0.071                          0                   0
-#&gt;   scoring_opps_pts_per_opp field_pos_avg_start
-#&gt; 1                        1                79.6
-#&gt; 2                        0                64.9
-#&gt;   field_pos_avg_starting_predicted_pts
-#&gt; 1                                 0.75
-#&gt; 2                                 1.85</div><div class='input'><span class='co'># }</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'> <span class='fu'>cfbd_game_box_advanced</span><span class='op'>(</span>game_id <span class='op'>=</span> <span class='fl'>401114233</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 team ppa_plays ppa_overall_total ppa_overall_quarter1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 Eastern Washington        45           -0.2013               -0.569</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2         Washington        56            0.9988                1.080</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ppa_overall_quarter2 ppa_overall_quarter3 ppa_overall_quarter4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                0.122               -0.658                2.696</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                0.741                1.124                0.000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ppa_passing_total ppa_passing_quarter1 ppa_passing_quarter2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1            -0.320               -0.794                0.382</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2             1.318                1.489                0.889</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ppa_passing_quarter3 ppa_passing_quarter4 ppa_rushing_total</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1               -0.889                    0             0.014</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                1.552                    0             0.603</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ppa_rushing_quarter1 ppa_rushing_quarter2 ppa_rushing_quarter3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                0.014               -0.267               -0.198</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                0.671                0.493                0.602</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ppa_rushing_quarter4 cumulative_ppa_plays cumulative_ppa_overall_total</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                2.696                   45                         -9.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                0.000                   56                         55.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_overall_quarter1 cumulative_ppa_overall_quarter2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                           -10.2                             2.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                            21.6                            11.8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_overall_quarter3 cumulative_ppa_overall_quarter4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                            -4.0                             2.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                            22.5                             0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_passing_total cumulative_ppa_passing_quarter1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                         -9.3                           -10.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                         40.8                            14.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_passing_quarter2 cumulative_ppa_passing_quarter3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                             4.6                            -3.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                             8.9                            17.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_passing_quarter4 cumulative_ppa_rushing_total</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                               0                          0.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                               0                         15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_rushing_quarter1 cumulative_ppa_rushing_quarter2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                             0.1                            -2.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                             6.7                             3.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   cumulative_ppa_rushing_quarter3 cumulative_ppa_rushing_quarter4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                            -0.4                             2.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                             5.4                             0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_overall_total success_rates_overall_quarter1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                       0.267                          0.222</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                       0.482                          0.500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_overall_quarter2 success_rates_overall_quarter3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                          0.350                            0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                          0.438                            0.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_overall_quarter4 success_rates_standard_downs_total</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                              1                              0.296</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                             NA                              0.488</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_standard_downs_quarter1 success_rates_standard_downs_quarter2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                 0.273                                 0.333</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                 0.500                                 0.455</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_standard_downs_quarter3 success_rates_standard_downs_quarter4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                   0.0                                     1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                   0.5                                    NA</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_passing_downs_total success_rates_passing_downs_quarter1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                             0.222                                0.143</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                             0.467                                0.500</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_passing_downs_quarter2 success_rates_passing_downs_quarter3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                0.375                                  0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                0.400                                  0.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   success_rates_passing_downs_quarter4 explosiveness_overall_total</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                   NA                        0.80</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                   NA                        1.61</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   explosiveness_overall_quarter1 explosiveness_overall_quarter2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                           0.28                           0.83</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                           1.48                           1.34</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   explosiveness_overall_quarter3 explosiveness_overall_quarter4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                             NA                            2.7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                           1.93                            0.0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   rushing_power_success rushing_stuff_rate rushing_line_yds</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                     1               0.25               32</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                     1               0.20               70</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   rushing_line_yds_avg rushing_second_lvl_yds rushing_second_lvl_yds_avg</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                  2.0                     10                        0.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                  2.8                     29                        1.2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   rushing_open_field_yds rushing_open_field_yds_avg havoc_total</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                      1                        0.1       0.467</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                     28                        1.1       0.179</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   havoc_front_seven havoc_db scoring_opps_opportunities scoring_opps_points</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1             0.400    0.067                         12                  12</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2             0.107    0.071                          0                   0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   scoring_opps_pts_per_opp field_pos_avg_start</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                        1                79.6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                        0                64.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   field_pos_avg_starting_predicted_pts</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                                 0.75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                 1.85</span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
