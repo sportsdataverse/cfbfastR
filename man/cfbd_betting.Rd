@@ -50,6 +50,7 @@ Betting information for games with the following columns:
 \item{\code{season}:integer.}{Season parameter.}
 \item{\code{season_type}:character.)}{Season Type (regular, postseason, both}
 \item{\code{week}:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+\item{\code{start_date}:character.}{Start Date}
 \item{\code{home_team}:character.}{Home D-I Team.}
 \item{\code{home_conference}:character.}{Home D-I Conference.}
 \item{\code{home_score}:integer.}{Home Score.}

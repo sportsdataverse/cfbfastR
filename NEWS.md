@@ -1,3 +1,26 @@
+# **cfbfastR v1.6.5**
+
+* Updated tests and documentation for `cfbd_betting_lines()`
+* API call in `espn_ratings_fpi()` now requires headers in httr request
+
+# **cfbfastR v1.6.4**
+
+* Changed options to revert to old options on exit of function. 
+* Removed check_github functions. 
+
+# **cfbfastR v1.6.3**
+
+* Switched package urls in DESCRIPTION again.
+
+# **cfbfastR v1.6.2**
+
+* Switched package urls in README and DESCRIPTION files to https://
+
+# **cfbfastR v1.6.1**
+
+* Removed source urls from many package documentation entries.
+* Updated a test to skip on CRAN
+
 # **cfbfastR v1.6.0**
 
 * Added [```cfbd_ratings_elo()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_elo.html) function

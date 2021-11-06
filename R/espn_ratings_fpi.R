@@ -48,12 +48,29 @@ espn_ratings_fpi <- function(year = 2019) {
 
 
   # Base URL
-  fpi_full_url <- "http://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/powerindex?region=us&lang=en"
+  fpi_full_url <- "https://site.web.api.espn.com/apis/fitt/v3/sports/football/college-football/powerindex?region=us&lang=en"
 
-  url <- glue::glue("{fpi_full_url}&season={year}&limit=200")
+  url <- glue::glue("{fpi_full_url}&season={year}&sort=fpi.fpi%3Adesc")
 
-
-  raw_json_fpi <- jsonlite::fromJSON(url)
+  headers <- c(
+    `authority`= 'site.web.api.espn.com',
+    `User-Agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36',
+    `Accept` = 'application/json, text/plain, */*',
+    `Accept-Language` = 'en-US,en;q=0.9',
+    `sec-fetch-site` = 'same-site',
+    `sec-fetch-mode` = 'cors',
+    `sec-fetch-dest` = 'empty',
+    `Origin` = "https://www.espn.com",
+    `Referer` = 'https://www.espn.com/',
+    `Pragma` = 'no-cache',
+    `Cache-Control` = 'no-cache'
+  )
+  res <-
+    httr::RETRY("GET", url,
+                httr::add_headers(.headers = headers))
+  resp <- res %>%
+    httr::content(as = "text", encoding = "UTF-8")
+  raw_json_fpi <- jsonlite::fromJSON(resp)
 
   ## get team fpi stats
   get_fpi_data <- function(row_n) {
