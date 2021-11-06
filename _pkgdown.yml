@@ -48,7 +48,6 @@ authors:
     href: https://twitter.com/MaatSpencer
   Sebastian Carl:
     href: https://twitter.com/mrcaseb
-
 home:
   title: An R package to quickly obtain clean and tidy College Football play by play data
   description: Functions to Access College Football Play by Play Data

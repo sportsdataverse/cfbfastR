@@ -1,3 +1,8 @@
+# **cfbfastR v1.6.5**
+
+* Updated tests and documentation for `cfbd_betting_lines()`
+* API call in `espn_ratings_fpi()` now requires headers in httr request
+
 # **cfbfastR v1.6.4**
 
 * Changed options to revert to old options on exit of function. 
@@ -15,7 +20,6 @@
 
 * Removed source urls from many package documentation entries.
 * Updated a test to skip on CRAN
-
 
 # **cfbfastR v1.6.0**
 

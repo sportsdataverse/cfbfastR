@@ -35,6 +35,7 @@
 #'   \item{`season`:integer.}{Season parameter.}
 #'   \item{`season_type`:character.)}{Season Type (regular, postseason, both}
 #'   \item{`week`:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+#'   \item{`start_date`:character.}{Start Date}
 #'   \item{`home_team`:character.}{Home D-I Team.}
 #'   \item{`home_conference`:character.}{Home D-I Conference.}
 #'   \item{`home_score`:integer.}{Home Score.}
