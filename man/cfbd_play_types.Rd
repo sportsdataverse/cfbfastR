@@ -3,9 +3,6 @@
 \name{cfbd_play_types}
 \alias{cfbd_play_types}
 \title{\strong{Get college football mapping for play types}}
-\source{
-\url{https://api.collegefootballdata.com/play/types}
-}
 \usage{
 cfbd_play_types()
 }

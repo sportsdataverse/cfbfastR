@@ -4,9 +4,6 @@
 \alias{espn_metrics}
 \alias{espn_metrics_wp}
 \title{\strong{ESPN Metrics}}
-\source{
-\url{https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07}
-}
 \usage{
 espn_metrics_wp(game_id)
 }

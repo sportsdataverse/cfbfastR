@@ -3,9 +3,6 @@
 \name{cfbd_team_roster}
 \alias{cfbd_team_roster}
 \title{\strong{Get team rosters}}
-\source{
-\url{https://api.collegefootballdata.com/roster}
-}
 \usage{
 cfbd_team_roster(year, team = NULL)
 }

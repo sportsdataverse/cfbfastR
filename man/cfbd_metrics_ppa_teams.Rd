@@ -3,9 +3,6 @@
 \name{cfbd_metrics_ppa_teams}
 \alias{cfbd_metrics_ppa_teams}
 \title{\strong{Get team averages for predicted points added (PPA)}}
-\source{
-\url{https://api.collegefootballdata.com/ppa/teams}
-}
 \usage{
 cfbd_metrics_ppa_teams(
   year = NULL,

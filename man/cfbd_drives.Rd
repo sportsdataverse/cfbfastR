@@ -4,9 +4,6 @@
 \alias{cfbd_drives}
 \alias{drives}
 \title{\strong{CFBD Drives Endpoint}}
-\source{
-\url{https://api.collegefootballdata.com/drives}
-}
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 

@@ -1,7 +1,7 @@
 #' @name cfbd_stats
-#' @title 
+#' @title
 #' **CFBD Stats Endpoint Overview**
-#' @description 
+#' @description
 #' \describe{
 #' \item{`cfbd_stats_categories()`:}{ Get college football mapping for stats categories.}
 #' \item{`cfbd_stats_season_team()`:}{ Get season statistics by team.}
@@ -9,7 +9,7 @@
 #' \item{`cfbd_stats_game_advanced()`:}{ Get game advanced stats.}
 #' \item{`cfbd_stats_season_player()`:}{ Get season statistics by player.}
 #' }
-#' 
+#'
 #' ### **Get game advanced stats**
 #' ```r
 #' cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
@@ -18,12 +18,12 @@
 #'
 #' cfbd_stats_game_advanced(2013, team = "Florida State")
 #' ```
-#' 
+#'
 #' ### **Get season advanced statistics by team**
 #' ```r
 #' cfbd_stats_season_advanced(2019, team = "LSU")
 #' ```
-#' 
+#'
 #' ### **Get season statistics by player**
 #' ```r
 #' cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
@@ -40,17 +40,17 @@
 #'
 #' cfbd_stats_season_team(2013, team = "Florida State")
 #' ````
-#' 
+#'
 #' ### **Get stats categories**
-#' 
+#'
 #' This function identifies all Stats Categories identified in the regular stats endpoint.
 #' ```r
-#' cfbd_stats_categories() 
+#' cfbd_stats_categories()
 #' ````
 #'
 NULL
 
-#' @title  
+#' @title
 #' **Get stats categories**
 #' @description
 #' This function identifies all Stats Categories identified in the regular stats endpoint.
@@ -63,7 +63,6 @@ NULL
 #'   \item{name}{Statistics Categories}
 #'   ...
 #' }
-#' @source <https://api.collegefootballdata.com/stats/categories>
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -107,7 +106,7 @@ cfbd_stats_categories <- function() {
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get game advanced stats**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -187,7 +186,6 @@ cfbd_stats_categories <- function() {
 #'   \item{`def_passing_plays_success_rate`: double.}{Defense passing plays success rate.}
 #'   \item{`def_passing_plays_explosiveness`: double.}{Defense passing plays explosiveness rate.}
 #' }
-#' @source <https://api.collegefootballdata.com/stats/game/advanced>
 #' @keywords Game Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -210,7 +208,7 @@ cfbd_stats_game_advanced <- function(year,
     # Check if week is numeric, if not NULL
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
-  
+
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -228,12 +226,12 @@ cfbd_stats_game_advanced <- function(year,
     cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
   }
 
-  
+
   if (!(season_type %in% c("postseason", "regular","both"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
-  
+
 
 
 
@@ -311,7 +309,7 @@ cfbd_stats_game_advanced <- function(year,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get season advanced statistics by team**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
@@ -346,9 +344,9 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`off_pts_per_opp`: double.}{Offense points per scoring opportunity.}
 #'   \item{`off_field_pos_avg_start`: double.}{Offense starting average field position.}
 #'   \item{`off_field_pos_avg_predicted_points`: double.}{Offense starting average field position predicted points (PP).}
-#'   \item{`off_havoc_total`: double.}{Offense havor rate total.}
+#'   \item{`off_havoc_total`: double.}{Offense havoc rate total.}
 #'   \item{`off_havoc_front_seven`: double.}{Offense front-7 havoc rate.}
-#'   \item{`off_havoc_db`: double.}{Offense defensive back havor rate.}
+#'   \item{`off_havoc_db`: double.}{Offense defensive back havoc rate.}
 #'   \item{`off_standard_downs_rate`: double.}{Offense standard downs rate.}
 #'   \item{`off_standard_downs_ppa`: double.}{Offense standard downs predicted points added (PPA).}
 #'   \item{`off_standard_downs_success_rate`: double.}{Offense standard downs success rate.}
@@ -385,9 +383,9 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`def_pts_per_opp`: double.}{Defense points per scoring opportunity.}
 #'   \item{`def_field_pos_avg_start`: double.}{Defense starting average field position.}
 #'   \item{`def_field_pos_avg_predicted_points`: double.}{Defense starting average field position predicted points (PP).}
-#'   \item{`def_havoc_total`: double.}{Defense havor rate total.}
+#'   \item{`def_havoc_total`: double.}{Defense havoc rate total.}
 #'   \item{`def_havoc_front_seven`: double.}{Defense front-7 havoc rate.}
-#'   \item{`def_havoc_db`: double.}{Defense defensive back havor rate.}
+#'   \item{`def_havoc_db`: double.}{Defense defensive back havoc rate.}
 #'   \item{`def_standard_downs_rate`: double.}{Defense standard downs rate.}
 #'   \item{`def_standard_downs_ppa`: double.}{Defense standard downs predicted points added (PPA).}
 #'   \item{`def_standard_downs_success_rate`: double.}{Defense standard downs success rate.}
@@ -407,7 +405,6 @@ cfbd_stats_game_advanced <- function(year,
 #'   \item{`def_passing_plays_success_rate`: double.}{Defense passing plays success rate.}
 #'   \item{`def_passing_plays_explosiveness`: double.}{Defense passing plays explosiveness rate.}
 #' }
-#' @source <https://api.collegefootballdata.com/stats/season/advanced>
 #' @keywords Team Season Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -425,7 +422,7 @@ cfbd_stats_season_advanced <- function(year,
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  
+
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -524,7 +521,7 @@ cfbd_stats_season_advanced <- function(year,
 }
 
 
-#' @title 
+#' @title
 #' **Get season statistics by player**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
@@ -533,12 +530,12 @@ cfbd_stats_season_advanced <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (*Integer* optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param category (*String* optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns
-#' 
+#'
 #' @examples
 #' \donttest{
 #'    cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
@@ -609,7 +606,6 @@ cfbd_stats_season_advanced <- function(year,
 #'   \item{`punt_returns_td`: double.}{Punt Returns - punt return touchdowns.}
 #'   \item{`punt_returns_long`: double.}{Punt Returns - longest punt return yardage.}
 #' }
-#' @source <https://api.collegefootballdata.com/stats/player/season>
 #' @keywords Player Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -667,7 +663,7 @@ cfbd_stats_season_player <- function(year,
   if (!is.null(start_week) && !is.null(end_week) && start_week > end_week) {
     cli::cli_abort("Enter valid start_week, end_week range")
   }
-  if (!is.null(category)){ 
+  if (!is.null(category)){
     if(!(category %in% stat_categories)) {
       # Check category parameter in category if not NULL
       cli::cli_abort("Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns")
@@ -766,10 +762,10 @@ cfbd_stats_season_player <- function(year,
         dplyr::select(cols, tidyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
         as.data.frame()
-      
+
       # Check if Category is Null
       if (is.null(category)) {
-        df <- df %>% 
+        df <- df %>%
           dplyr::select(-.data$category) %>%
           dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
           dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
@@ -789,7 +785,7 @@ cfbd_stats_season_player <- function(year,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get season statistics by team**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
@@ -858,7 +854,6 @@ cfbd_stats_season_player <- function(year,
 #'   \item{`passes_intercepted_yds`: integer.}{Pass interception return yards.}
 #'   \item{`passes_intercepted_TDs`: integer.}{Pass interception return touchdowns.}
 #' }
-#' @source <https://api.collegefootballdata.com/stats/season>
 #' @keywords Team Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -881,12 +876,12 @@ cfbd_stats_season_team <- function(year,
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  
+
   if (!(season_type %in% c("postseason", "regular","both"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
-  
+
   if (!is.null(team)) {
     if (team == "San Jose State") {
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
@@ -912,7 +907,7 @@ cfbd_stats_season_team <- function(year,
   if (!is.null(start_week) && !is.null(end_week) && start_week > end_week) {
     cli::cli_abort("Enter valid start_week, end_week range")
   }
-  
+
 
 
 
@@ -993,11 +988,11 @@ cfbd_stats_season_team <- function(year,
           .data$netPassingYards, #.data$pass_ypa, .data$pass_ypr,
           .data$passingTDs, .data$interceptions, #.data$int_pct,
           .data$rushingAttempts, .data$rushingYards, .data$rushingTDs,
-          #.data$rush_ypc, 
+          #.data$rush_ypc,
           .data$totalYards,
           .data$fumblesLost, .data$turnovers, #.data$turnovers_pg,
           .data$firstDowns, .data$thirdDowns, .data$thirdDownConversions,
-          #.data$third_conv_rate, 
+          #.data$third_conv_rate,
           .data$fourthDownConversions,
           .data$fourthDowns, #.data$fourth_conv_rate,
           .data$penalties, .data$penaltyYards, #.data$penalties_pg,
@@ -1037,7 +1032,7 @@ cfbd_stats_season_team <- function(year,
         ) %>%
         as.data.frame()
 
-      if(verbose){ 
+      if(verbose){
         message(glue::glue("{Sys.time()}: Scraping season team stats..."))
       }
     },

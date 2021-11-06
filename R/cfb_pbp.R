@@ -9,7 +9,7 @@ NULL
 #' @param seasons A vector of 4-digit years associated with given College Football seasons.
 #' @param ... Additional arguments passed to an underlying function that writes
 #' the season data into a database (used by [`update_cfb_db()`][update_cfb_db]).
-#' @param qs Wheter to use the function [qs::qdeserialize()] for more efficient loading.
+#' @param qs Whether to use the function [qs::qdeserialize()] for more efficient loading.
 #' @export
 load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
   dots <- rlang::dots_list(...)

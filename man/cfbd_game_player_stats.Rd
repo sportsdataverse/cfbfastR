@@ -3,9 +3,6 @@
 \name{cfbd_game_player_stats}
 \alias{cfbd_game_player_stats}
 \title{\strong{Get player statistics by game}}
-\source{
-\url{https://api.collegefootballdata.com/games/players}
-}
 \usage{
 cfbd_game_player_stats(
   year,

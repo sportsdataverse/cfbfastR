@@ -3,9 +3,6 @@
 \name{cfbd_player_returning}
 \alias{cfbd_player_returning}
 \title{\strong{Get player returning production}}
-\source{
-\url{https://api.collegefootballdata.com/player/returning}
-}
 \usage{
 cfbd_player_returning(year = 2019, team = NULL, conference = NULL)
 }

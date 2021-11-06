@@ -3,9 +3,6 @@
 \name{cfbd_metrics_wp}
 \alias{cfbd_metrics_wp}
 \title{\strong{Get win probability chart data from API}}
-\source{
-\url{https://api.collegefootballdata.com/metrics/wp}
-}
 \usage{
 cfbd_metrics_wp(game_id)
 }

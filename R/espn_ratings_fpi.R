@@ -1,10 +1,9 @@
 #' @name espn_ratings
 #' @aliases espn_ratings_fpi
-#' @title 
+#' @title
 #' **ESPN FPI Ratings**
 #' @description Get FPI historical rating data (most recent of each year)
 #' @details Adapted from sabinanalytic's fork of the cfbfastR repo
-#' @source <https://github.com/sabinanalytics/cfbfastR/blob/master/R/cfbd_ratings_fpi.R>
 #' @param year Year
 #' @return A data frame with 20 variables:
 #' \describe{
@@ -99,9 +98,9 @@ espn_ratings_fpi <- function(year = 2019) {
     dplyr::select(-c("logos", "links")) %>%
     dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
     dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
-    dplyr::select(.data$year, tidyr::everything()) %>% 
-    dplyr::select(-.data$row_n) %>% 
-    dplyr::rename(team_id = .data$id) %>% 
+    dplyr::select(.data$year, tidyr::everything()) %>%
+    dplyr::select(-.data$row_n) %>%
+    dplyr::rename(team_id = .data$id) %>%
     as.data.frame()
 
   return(df)

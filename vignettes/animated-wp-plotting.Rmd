@@ -28,8 +28,7 @@ We're going to need several packages to generate the winning percentage plot: ``
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(tidyverse, animation, glue, zoo, ggimage)
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
+pacman::p_load(tidyverse, animation, glue, zoo, ggimage, cfbfastR)
 ```
 
 ## cfbfastR

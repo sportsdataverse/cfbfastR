@@ -3,9 +3,6 @@
 \name{cfbd_ratings_elo}
 \alias{cfbd_ratings_elo}
 \title{\strong{Get Elo historical rating data}}
-\source{
-\url{https://api.collegefootballdata.com/ratings/elo}
-}
 \usage{
 cfbd_ratings_elo(year = NULL, week = NULL, team = NULL, conference = NULL)
 }

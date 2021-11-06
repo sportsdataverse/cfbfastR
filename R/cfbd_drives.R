@@ -1,8 +1,8 @@
 #' @name cfbd_drives
 #' @aliases drives cfbd_drives
-#' @title 
+#' @title
 #' **CFBD Drives Endpoint**
-#' @description 
+#' @description
 #' **Get college football game drives**
 #' ```r
 #' cfbd_drives(2018, week = 1, team = "TCU")
@@ -61,7 +61,6 @@
 #'   \item{`time_minutes_elapsed`:double.}{Minutes elapsed during drive.}
 #'   \item{`time_seconds_elapsed`:integer.}{Seconds elapsed during drive.}
 #' }
-#' @source <https://api.collegefootballdata.com/drives>
 #' @keywords Drives
 NULL
 

@@ -1,5 +1,5 @@
 #' @name cfbd_play
-#' @title 
+#' @title
 #' **CFBD Plays Endpoint Overview**
 #' @description College football plays data
 #' \describe{
@@ -8,7 +8,7 @@
 #' \item{`cfbd_play_stats_types()`:}{ Gets CFBD play stat types.}
 #' \item{`cfbd_play_types()`:}{ Gets CFBD play types.}
 #' }
-#' 
+#'
 #' ### **Pull first 3 weeks of 2020 season using `cfbd_plays()`**
 #' ```r
 #'  year_vector <- 2020
@@ -32,12 +32,12 @@
 #'      Sys.sleep(1)
 #'    })
 #'  }
-#'  
+#'
 #'  tictoc::toc()
 #'  year_split <- lapply(year_split, function(x) {
 #'      x %>% tidyr::unnest(pbp, names_repair = "minimal")
 #'  })
-#'  
+#'
 #'  all_years <- dplyr::bind_rows(year_split)
 #'  glimpse(all_years)
 #' ```
@@ -45,7 +45,7 @@
 #' ```r
 #' cfbd_play_stats_player(game_id = 401110722)
 #' ```
-#' ### **Gets CFBD play stat types** 
+#' ### **Gets CFBD play stat types**
 #' ```r
 #' cfbd_play_stats_types()
 #' ```
@@ -54,9 +54,8 @@
 #' cfbd_play_types()
 #' ```
 NULL
-#' @title 
+#' @title
 #' **Get college football play-by-play data.**
-#' @source <https://api.collegefootballdata.com/plays>
 #' @param season_type Select Season Type (regular, postseason, both)
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
@@ -100,7 +99,6 @@ NULL
 #'   \item{`clock.minutes`: integer.}{Minutes left on the clock.}
 #'   \item{`clock.seconds`: integer.}{Seconds left on the clock.}
 #' }
-#' @source <https://api.collegefootballdata.com/plays>
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -129,12 +127,12 @@ NULL
 #'          )
 #'    })
 #'  }
-#'  
+#'
 #'  tictoc::toc()
 #'  year_split <- lapply(year_split, function(x) {
 #'      x %>% tidyr::unnest(pbp, names_repair = "minimal")
 #'  })
-#'  
+#'
 #'  all_years <- dplyr::bind_rows(year_split)
 #'  glimpse(all_years)
 #' }
@@ -240,7 +238,7 @@ cfbd_plays <- function(year = 2020,
 }
 
 
-#' @title 
+#' @title
 #' **Gets player info associated by play**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -309,7 +307,6 @@ cfbd_plays <- function(year = 2020,
 #'   \item{`pass_breakup_player`: logical.}{Pass breakup player name.}
 #'   \item{`pass_breakup_stat`: logical.}{Pass breakup (PBU) stat.}
 #' }
-#' @source <https://api.collegefootballdata.com/play/stats>
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -330,7 +327,7 @@ cfbd_play_stats_player <- function(year = NULL,
                                    athlete_id = NULL,
                                    stat_type_id = NULL,
                                    season_type = "regular") {
-  
+
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -351,7 +348,7 @@ cfbd_play_stats_player <- function(year = NULL,
     # Check if game_id is numeric, if not NULL
     cli::cli_abort("Enter valid game_id (numeric value)")
   }
-  
+
   if (!is.null(athlete_id) && !is.numeric(athlete_id)) {
     # Check if athlete_id is numeric, if not NULL
     cli::cli_abort("Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function")
@@ -568,14 +565,13 @@ cfbd_play_stats_player <- function(year = NULL,
   return(clean_df)
 }
 
-#' @title 
+#' @title
 #' **Get college football mapping for play stats types**
 #' @return [cfbd_play_stats_types()] - A data frame with 22 rows and 2 variables:
 #' \describe{
 #'   \item{`play_stat_type_id`: integer}{Referencing play stat type ID.}
 #'   \item{`name`: character}{Type of play stats.}
 #' }
-#' @source <https://api.collegefootballdata.com/play/stat/types>
 #' @keywords Plays
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -609,7 +605,7 @@ cfbd_play_stats_types <- function() {
         jsonlite::fromJSON() %>%
         dplyr::rename(play_stat_type_id = .data$id) %>%
         as.data.frame()
-      
+
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available!"))
@@ -622,7 +618,7 @@ cfbd_play_stats_types <- function() {
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get college football mapping for play types**
 #' @return [cfbd_play_types()] - A data frame with 48 rows and 3 variables:
 #' \describe{
@@ -630,7 +626,6 @@ cfbd_play_stats_types <- function() {
 #'   \item{`text`: character}{play type description.}
 #'   \item{`abbreviation`: character}{play type abbreviation used for function call}
 #' }
-#' @source <https://api.collegefootballdata.com/play/types>
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -662,7 +657,7 @@ cfbd_play_types <- function() {
         dplyr::rename(play_type_id = .data$id) %>%
         as.data.frame()
 
-      
+
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available!"))

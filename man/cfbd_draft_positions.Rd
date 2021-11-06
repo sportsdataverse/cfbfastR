@@ -3,9 +3,6 @@
 \name{cfbd_draft_positions}
 \alias{cfbd_draft_positions}
 \title{\strong{Get list of NFL positions}}
-\source{
-\url{https://api.collegefootballdata.com/draft/positions}
-}
 \usage{
 cfbd_draft_positions()
 }

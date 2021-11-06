@@ -32,12 +32,12 @@ College football plays data
      Sys.sleep(1)
    \})
  \}
- 
+
  tictoc::toc()
  year_split <- lapply(year_split, function(x) \{
      x \%>\% tidyr::unnest(pbp, names_repair = "minimal")
  \})
- 
+
  all_years <- dplyr::bind_rows(year_split)
  glimpse(all_years)
 }\if{html}{\out{</div>}}

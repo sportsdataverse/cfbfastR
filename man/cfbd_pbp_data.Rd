@@ -5,9 +5,6 @@
 \alias{play-by-play}
 \alias{pbp_data}
 \title{\strong{Get college football play by play data with cfbfastR expected points/win probability added}}
-\source{
-\url{https://api.collegefootballdata.com/plays}
-}
 \usage{
 cfbd_pbp_data(
   year,

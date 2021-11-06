@@ -38,60 +38,6 @@ load_wp_model <- function(){
   return (wp_model)
 }
 
-#' Check latest GitHub version of R package
-#'
-#' @param pkg package name
-#' @return list
-#' @importFrom utils packageVersion
-#' @keywords internal
-check_github <- function(pkg) {
-  installed_version <- tryCatch(utils::packageVersion(gsub(".*/", "", pkg)), error=function(e) NA)
-
-
-  url <- paste0("https://raw.githubusercontent.com/", pkg, "/master/DESCRIPTION")
-
-
-  x <- readLines(url)
-  remote_version <- gsub("Version:\\s*", "", x[grep('Version:', x)])
-
-  res <- list(package = pkg,
-              installed_version = installed_version,
-              latest_version = remote_version,
-              up_to_date = NA)
-
-  if (is.na(installed_version)) {
-    message(paste("##", pkg, "is not installed..."))
-  } else {
-    if (remote_version > installed_version) {
-      msg <- paste("##", pkg, "is out of date...")
-      message(msg)
-      res$up_to_date <- FALSE
-    } else if (remote_version == installed_version) {
-      message("package is up-to-date devel version")
-      res$up_to_date <- TRUE
-    }
-  }
-  return(res)
-}
-
-#' @importFrom utils installed.packages
-#' @importFrom utils packageDescription
-#' @keywords internal
-update_github <- function(lib.loc = NULL, ...) {
-  message("upgrading github packages...")
-  pkgs <- installed.packages()[, 'Package']
-  install_github <- get_fun_from_pkg("remotes", "install_github")
-  tmp <- sapply(pkgs, function(pkg) {
-    desc <- packageDescription(pkg, lib.loc = lib.loc)
-    if (length(desc) <= 1 || is.null(desc$GithubSHA1))
-      return(NULL)
-    tryCatch(install_github(repo=paste0(desc$GithubUsername, '/', desc$GithubRepo),
-                            ref = desc$GithubRef,
-                            checkBuilt=TRUE,
-                            lib.loc = lib.loc, ...),
-             error=function(e) NULL)
-  })
-}
 
 #' load function from package
 #' @param pkg package

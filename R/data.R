@@ -11,7 +11,6 @@ NULL
 #'   \item{abbreviation}{play type abbreviation used for function call}
 #'   ...
 #' }
-#' @source <https://api.collegefootballdata.com>
 "cfbd_play_type_df"
 
 
@@ -26,5 +25,4 @@ NULL
 #'   \item{abbreviation}{Conference abbreviation}
 #'   ...
 #' }
-#' @source <https://api.collegefootballdata.com>
 "cfbd_conf_types_df"

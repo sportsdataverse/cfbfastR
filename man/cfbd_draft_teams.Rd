@@ -3,9 +3,6 @@
 \name{cfbd_draft_teams}
 \alias{cfbd_draft_teams}
 \title{\strong{Get list of NFL teams}}
-\source{
-\url{https://api.collegefootballdata.com/draft/teams}
-}
 \usage{
 cfbd_draft_teams()
 }

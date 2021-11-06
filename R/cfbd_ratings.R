@@ -1,5 +1,5 @@
 #' @name cfbd_ratings
-#' @title 
+#' @title
 #' **CFBD Ratings and Rankings Endpoints Overview**
 #' @description
 #' \describe{
@@ -8,7 +8,7 @@
 #' \item{`cfbd_ratings_sp_conference()`:}{ Get SP conference-level historical rating data.}
 #' \item{`cfbd_ratings_srs()`:}{ Get SRS historical rating data.}
 #' }
-#' 
+#'
 #' ### **Get historical Coaches and AP poll data**
 #' ```r
 #' cfbd_rankings(year = 2019, week = 12)
@@ -36,7 +36,7 @@
 #' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 #' ```
 #' ### **Get SRS historical rating data**
-#' 
+#'
 #' At least one of **year** or **team** must be specified for the function to run
 #' ```r
 #' cfbd_ratings_srs(year = 2019, team = "Texas")
@@ -52,7 +52,7 @@
 #' cfbd_ratings_elo(year = 2018, conference = "SEC")
 #' ```
 NULL
-#' @title 
+#' @title
 #' **Get historical Coaches and AP poll data**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -70,7 +70,6 @@ NULL
 #'   \item{`first_place_votes`: integer.}{Number of first place votes.}
 #'   \item{`points`: integer.}{Total poll points.}
 #' }
-#' @source <https://api.collegefootballdata.com/rankings>
 #' @keywords CFB Rankings
 #' @importFrom cli cli_abort
 #' @importFrom jsonlite fromJSON
@@ -154,7 +153,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
   return(polls)
 }
 
-#' @title 
+#' @title
 #' **Get SP historical rating data**
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
@@ -194,7 +193,6 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs - Not available for recent seasons.}
 #'   \item{`special_teams_rating`: double.}{Special teams rating.}
 #' }
-#' @source <https://api.collegefootballdata.com/ratings/sp>
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -213,7 +211,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' }
 #'
 cfbd_ratings_sp <- function(year = NULL, team = NULL) {
-  
+
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -291,7 +289,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get conference level SP historical rating data**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
@@ -327,7 +325,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
 #'   \item{`special_teams_rating`: double.}{Special teams rating for the conference.}
 #' }
-#' @source <https://api.collegefootballdata.com/ratings/sp/conferences>
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -421,7 +418,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 }
 
 
-#' @title 
+#' @title
 #' **Get SRS historical rating data**
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
@@ -441,7 +438,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
 #'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
 #' }
-#' @source <https://api.collegefootballdata.com/ratings/srs>
 #' @keywords SRS
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -522,11 +518,11 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 }
 
 
-#' @title 
+#' @title
 #' **Get Elo historical rating data**
 #' @description
 #' Acquire the CFBD calculated elo ratings data by team, year, week, and conference
-#' 
+#'
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Maximum Week of ratings.
 #' @param team (*String* optional): D-I Team
@@ -543,7 +539,6 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
 #'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
 #' }
-#' @source <https://api.collegefootballdata.com/ratings/elo>
 #' @keywords elo
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -559,7 +554,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' }
 #'
 cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference = NULL) {
-  
+
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -581,9 +576,9 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  
+
   base_url <- "https://api.collegefootballdata.com/ratings/elo?"
-  
+
   full_url <- paste0(
     base_url,
     "year=", year,
@@ -591,19 +586,19 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
     "&team=", team,
     "&conference=", conference
   )
-  
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-  
+
   # Create the GET request and set response as res
   res <- httr::RETRY(
     "GET", full_url,
     httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
   )
-  
+
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr = {
@@ -611,7 +606,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        as.data.frame() 
+        as.data.frame()
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))

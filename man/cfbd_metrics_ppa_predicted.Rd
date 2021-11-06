@@ -3,9 +3,6 @@
 \name{cfbd_metrics_ppa_predicted}
 \alias{cfbd_metrics_ppa_predicted}
 \title{\strong{Calculate predicted points using down and distance}}
-\source{
-\url{https://api.collegefootballdata.com/ppa/predicted}
-}
 \usage{
 cfbd_metrics_ppa_predicted(down, distance)
 }

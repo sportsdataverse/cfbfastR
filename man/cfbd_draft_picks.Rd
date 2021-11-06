@@ -3,9 +3,6 @@
 \name{cfbd_draft_picks}
 \alias{cfbd_draft_picks}
 \title{\strong{Get list of NFL draft picks}}
-\source{
-\url{https://api.collegefootballdata.com/draft/picks}
-}
 \usage{
 cfbd_draft_picks(
   year = NULL,
@@ -60,7 +57,7 @@ cfbd_draft_picks(
 \examples{
 \donttest{
  cfbd_draft_picks(year = 2020)
-   
+
  ### **ROBERTOOOOOOOOOOOOOOOOOO**
  cfbd_draft_picks(year = 2016, position = "PK")
 }

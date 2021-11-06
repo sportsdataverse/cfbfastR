@@ -3,9 +3,6 @@
 \name{cfbd_stats_season_advanced}
 \alias{cfbd_stats_season_advanced}
 \title{\strong{Get season advanced statistics by team}}
-\source{
-\url{https://api.collegefootballdata.com/stats/season/advanced}
-}
 \usage{
 cfbd_stats_season_advanced(
   year,
@@ -50,9 +47,9 @@ cfbd_stats_season_advanced(
 \item{\code{off_pts_per_opp}: double.}{Offense points per scoring opportunity.}
 \item{\code{off_field_pos_avg_start}: double.}{Offense starting average field position.}
 \item{\code{off_field_pos_avg_predicted_points}: double.}{Offense starting average field position predicted points (PP).}
-\item{\code{off_havoc_total}: double.}{Offense havor rate total.}
+\item{\code{off_havoc_total}: double.}{Offense havoc rate total.}
 \item{\code{off_havoc_front_seven}: double.}{Offense front-7 havoc rate.}
-\item{\code{off_havoc_db}: double.}{Offense defensive back havor rate.}
+\item{\code{off_havoc_db}: double.}{Offense defensive back havoc rate.}
 \item{\code{off_standard_downs_rate}: double.}{Offense standard downs rate.}
 \item{\code{off_standard_downs_ppa}: double.}{Offense standard downs predicted points added (PPA).}
 \item{\code{off_standard_downs_success_rate}: double.}{Offense standard downs success rate.}
@@ -89,9 +86,9 @@ cfbd_stats_season_advanced(
 \item{\code{def_pts_per_opp}: double.}{Defense points per scoring opportunity.}
 \item{\code{def_field_pos_avg_start}: double.}{Defense starting average field position.}
 \item{\code{def_field_pos_avg_predicted_points}: double.}{Defense starting average field position predicted points (PP).}
-\item{\code{def_havoc_total}: double.}{Defense havor rate total.}
+\item{\code{def_havoc_total}: double.}{Defense havoc rate total.}
 \item{\code{def_havoc_front_seven}: double.}{Defense front-7 havoc rate.}
-\item{\code{def_havoc_db}: double.}{Defense defensive back havor rate.}
+\item{\code{def_havoc_db}: double.}{Defense defensive back havoc rate.}
 \item{\code{def_standard_downs_rate}: double.}{Defense standard downs rate.}
 \item{\code{def_standard_downs_ppa}: double.}{Defense standard downs predicted points added (PPA).}
 \item{\code{def_standard_downs_success_rate}: double.}{Defense standard downs success rate.}

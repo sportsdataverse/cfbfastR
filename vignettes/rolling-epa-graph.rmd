@@ -19,8 +19,7 @@ This vignette will use data from the ```cfbfastR``` package to create a moving a
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(tidyverse, zoo, ggimage)
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
+pacman::p_load(tidyverse, zoo, ggimage, cfbfastR)
 ```
 
 ## Pull the play by play data

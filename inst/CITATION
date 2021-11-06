@@ -11,7 +11,7 @@ citEntry(entry = "Misc",
          as.person("Eric Hess")
          ),
          title = "cfbfastR: The SportsDataverse's R Package for College Football Data.",
-         url = c("saiemgilani.github.io/cfbfastR/"),
+         url = c("https://saiemgilani.github.io/cfbfastR/"),
          year = year,
          note = note,
          textVersion = paste(

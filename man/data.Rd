@@ -24,11 +24,6 @@ A data frame with 11 rows and 4 variables:
 ...
 }
 }
-\source{
-\url{https://api.collegefootballdata.com}
-
-\url{https://api.collegefootballdata.com}
-}
 \usage{
 cfbd_play_type_df
 

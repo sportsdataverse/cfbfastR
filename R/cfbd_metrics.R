@@ -1,7 +1,7 @@
 #' @name cfbd_metrics
-#' @title 
+#' @title
 #' **CFBD Metrics Endpoint Overview**
-#' @description 
+#' @description
 #' \describe{
 #' \item{`cfbd_metrics_ppa_games()`:}{ Get team game averages for predicted points added (PPA).}
 #' \item{`cfbd_metrics_ppa_players_games()`:}{ Get player game averages for predicted points added (PPA).}
@@ -36,7 +36,7 @@
 #' ```r
 #' cfbd_metrics_ppa_predicted(down = 1, distance = 10)
 #' ```
-#' 
+#'
 NULL
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
@@ -168,7 +168,7 @@ cfbd_metrics_ppa_games <- function(year,
 
 
 
-#' @title 
+#' @title
 #' **Get player game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -195,7 +195,6 @@ cfbd_metrics_ppa_games <- function(year,
 #'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
 #'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
 #' }
-#' @source <https://api.collegefootballdata.com/ppa/players/games>
 #' @keywords Players Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -309,7 +308,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 
 
-#' @title 
+#' @title
 #' **Get player season averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
@@ -352,7 +351,6 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'   \item{`total_PPA_standard_downs`: double.}{Total standard down predicted points added (PPA).}
 #'   \item{`total_PPA_passing_downs`: double.}{Total passing down predicted points added (PPA).}
 #' }
-#' @source <https://api.collegefootballdata.com/ppa/players/season>
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -402,7 +400,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
-  
+
   if (!is.null(position) && !(position %in% pos_groups)) {
     ## check if position in position group set
     cli::cli_abort("Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK")
@@ -457,8 +455,8 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
       colnames(df) <- gsub("countablePlays", "countable_plays", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
-      df <- df %>% 
-        dplyr::rename(athlete_id = .data$id) %>% 
+      df <- df %>%
+        dplyr::rename(athlete_id = .data$id) %>%
         dplyr::arrange(-.data$countable_plays) %>%
         as.data.frame()
     },
@@ -476,7 +474,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
 
 
-#' @title 
+#' @title
 #' **Calculate predicted points using down and distance**
 #' @param down (*Integer* required): Down filter
 #' @param distance (*Integer* required): Distance filter
@@ -486,7 +484,6 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'   \item{`yard_line`: integer.}{Yards to goal}
 #'   \item{`predicted_points`: character.}{Predicted points at in that down-distance-yardline scenario}
 #' }
-#' @source <https://api.collegefootballdata.com/ppa/predicted>
 #' @keywords Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -554,7 +551,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 }
 
 
-#' @title 
+#' @title
 #' **Get team averages for predicted points added (PPA)**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
@@ -562,7 +559,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
-#' 
+#'
 #' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
 #' \describe{
 #'   \item{`season`: integer.}{.}
@@ -587,7 +584,6 @@ cfbd_metrics_ppa_predicted <- function(down,
 #'   \item{`def_cumulative_passing`: character.}{Defense cumulative total passing predicted points added (PPA).}
 #'   \item{`def_cumulative_rushing`: character.}{Defense cumulative total rushing predicted points added (PPA).}
 #' }
-#' @source <https://api.collegefootballdata.com/ppa/teams>
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -677,7 +673,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get pre-game win probability data from API**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -731,7 +727,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
       team <- utils::URLencode(team, reserved = TRUE)
     }
   }
-  
+
   if (!(season_type %in% c("postseason", "regular"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular or postseason")
@@ -786,7 +782,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get win probability chart data from API**
 #' @param game_id (*Integer* required): Game ID filter for querying a single game\cr
 #' Can be found using the [cfbd_game_info()] function
@@ -810,7 +806,6 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #'   \item{`play_number`: integer.}{Game play number.}
 #'   \item{`yard_line`: integer.}{Yard line of the play (0-100 yards).}
 #' }
-#' @source <https://api.collegefootballdata.com/metrics/wp>
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -827,16 +822,16 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' }
 #'
 cfbd_metrics_wp <- function(game_id) {
-  
 
-  
+
+
   # Check if game_id is numeric, if not NULL
-  
+
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort("Enter valid game_id (numeric value)")
   }
-  
+
 
   base_url <- "https://api.collegefootballdata.com/metrics/wp?"
 

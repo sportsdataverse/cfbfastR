@@ -17,10 +17,10 @@ template:
     twitter:
       site: "@cfbfastR"
       card: summary_large_image
-      
+
 toc:
   depth: 3
-  
+
 authors:
   Saiem Gilani:
     href: https://twitter.com/saiemgilani
@@ -29,7 +29,7 @@ authors:
   Jared Lee:
     href: https://twitter.com/JaredDLee
   Eric Hess:
-    href: https://twitter.com/arbitanalytics 
+    href: https://twitter.com/arbitanalytics
   Nate Manzo:
     href: https://twitter.com/cfbNate
   Michael Egle:
@@ -48,7 +48,6 @@ authors:
     href: https://twitter.com/MaatSpencer
   Sebastian Carl:
     href: https://twitter.com/mrcaseb
-  
 home:
   title: An R package to quickly obtain clean and tidy College Football play by play data
   description: Functions to Access College Football Play by Play Data
@@ -59,7 +58,7 @@ home:
     href: articles/intro.html
   - text: cfbfastR stats landing page
     href: https://gameonpaper.com/cfb/
-    
+
 navbar:
   structure:
     left:  [home, intro, reference, articles, news, games, network, data, repo]
@@ -206,24 +205,24 @@ navbar:
         href: https://kazink36.github.io/cfb4th/
       - text: worldfootballR
         href: https://jaseziv.github.io/worldfootballR/
-      - text: hockeyR
-        href: https://hockeyr.netlify.app/
       - text: baseballr
         href: https://BillPetti.github.io/baseballr/
+      - text: hockeyR
+        href: https://hockeyr.netlify.app/
+      - text: fastRhockey
+        href: https://BenHowell71.github.io/fastRhockey/
+      - text: powerplay
+        href: https://saiemgilani.github.io/powerplay/
       - text: --------------------------------
       - text: Python Packages
-      - text: cfbfastR-py
-        href: https://cfbfastR-py.sportsdataverse.org/
-      - text: hoopR-py
-        href: https://hoopR-py.sportsdataverse.org/
-      - text: wehoop-py
-        href: https://wehoop-py.sportsdataverse.org/
+      - text: sportsdataverse-py
+        href: https://py.sportsdataverse.org/
       - text: --------------------------------
       - text: Node.js Packages
       - text: sportsdataverse.js
-        href: https://saiemgilani.github.io/sportsdataverse/ 
+        href: https://saiemgilani.github.io/sportsdataverse/
       - text: nfl-nerd
-        href: https://github.com/nntrn/nfl-nerd/       
+        href: https://github.com/nntrn/nfl-nerd/
     github:
       icon: "fab fa-github fa-lg"
       href: https://github.com/saiemgilani/cfbfastR/
@@ -272,7 +271,7 @@ reference:
       - '`cfbd_play`'
       - '`cfbd_plays`'
       - starts_with("cfbd_play_stat")
-      - starts_with("cfbd_play_types") 
+      - starts_with("cfbd_play_types")
   - subtitle: Teams Data
     desc: Functions exported by cfbfastR sourced from the teams endpoint of the CollegeFootballData API
     contents:
@@ -339,7 +338,7 @@ reference:
 articles:
   - title: Introductory
     navbar: Introductory
-    contents: 
+    contents:
       - intro
       - animated-wp-plotting
       - fourth-down-plot-tutorial

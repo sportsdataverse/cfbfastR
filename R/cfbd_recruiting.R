@@ -1,20 +1,20 @@
 
 #' @name cfbd_recruiting
-#' @aliases cfbd_recruiting recruiting 
-#' @title 
+#' @aliases cfbd_recruiting recruiting
+#' @title
 #' **CFB Recruiting Endpoint Overview**
 #' @description
 #' \describe{
 #'   \item{`cfbd_recruiting_player()`:}{ Get college football player recruiting information for a single year with filters available for team, recruit type, state and position.}
-#'   
+#'
 #'   \item{`cfbd_recruiting_position()`:}{ Get college football position group recruiting information .}
-#'   
+#'
 #'   \item{`cfbd_recruiting_team()`:}{ Get college football recruiting team rankings information.}
 #' }
-#' 
+#'
 #' ## **Get player recruiting rankings**
-#' 
-#' Get college football player recruiting information for a single year with filters available 
+#'
+#' Get college football player recruiting information for a single year with filters available
 #' for team, recruit type, state and position.
 #' ```r
 #' cfbd_recruiting_player(2018, team = "Texas")
@@ -32,7 +32,7 @@
 #' cfbd_recruiting_position(2015, 2020, conference = "SEC")
 #' ```
 #' ## **Get college football recruiting team rankings information.**
-#' ```r 
+#' ```r
 #' cfbd_recruiting_team(2018, team = "Texas")
 #'
 #' cfbd_recruiting_team(2016, team = "Virginia")
@@ -41,9 +41,9 @@
 #'
 #' cfbd_recruiting_team(2011)
 #' ```
-#' 
+#'
 #' @details
-#' 
+#'
 #' Gets CFB team recruiting ranks with filters available for year and team.
 #' At least one of **year** or **team** must be specified for the function to run
 #'
@@ -58,7 +58,7 @@
 #' [cfbd_recruiting_position()] - If only start_year is provided, function will get CFB recruiting information based
 #' on position groups during that year for all FBS teams.
 NULL
-#' @title 
+#' @title
 #' **Get player recruiting rankings**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000, Maximum: 2020 currently
 #' @param team (*String* optional): D-I Team
@@ -92,7 +92,6 @@ NULL
 #'   \item{`hometown_info_longitude`: character.}{Hometown longitude.}
 #'   \item{`hometown_info_fips_code`: character.}{Hometown FIPS code.}
 #' }
-#' @source <https://api.collegefootballdata.com/recruiting/players>
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -115,7 +114,7 @@ cfbd_recruiting_player <- function(year = NULL,
                                    recruit_type = "HighSchool",
                                    state = NULL,
                                    position = NULL) {
-  
+
   # Position Group vector to check arguments against
   pos_groups <- c(
     "PRO", "DUAL", "RB", "FB", "TE", "OT", "OG", "OC", "WR",
@@ -177,7 +176,7 @@ cfbd_recruiting_player <- function(year = NULL,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
-        janitor::clean_names() %>% 
+        janitor::clean_names() %>%
         as.data.frame()
     },
     error = function(e) {
@@ -191,7 +190,7 @@ cfbd_recruiting_player <- function(year = NULL,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get college football position group recruiting information.**
 #' @param start_year (*Integer* optional): Start Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
 #' @param end_year (*Integer* optional): End Year,  4 digit format (*YYYY*). *Note: 2020 is the maximum value currently*
@@ -210,7 +209,6 @@ cfbd_recruiting_player <- function(year = NULL,
 #'   \item{`commits`: integer.}{Number of commits in the position group.}
 #'   \item{`avg_stars`: double.}{Average stars of the recruits in the position group.}
 #' }
-#' @source <https://api.collegefootballdata.com/recruiting/groups>
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -303,7 +301,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
   return(df)
 }
 
-#' @title 
+#' @title
 #' **Get college football recruiting team rankings information.**
 #' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
 #' @param team (*String* optional): Team - Select a valid team, D1 football
@@ -315,7 +313,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'   \item{`team`: character.}{Recruiting Team.}
 #'   \item{`points`: character.}{Team talent points.}
 #' }
-#' @source <https://api.collegefootballdata.com/recruiting/teams>
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -336,7 +333,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'
 cfbd_recruiting_team <- function(year = NULL,
                                  team = NULL) {
-  
+
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")

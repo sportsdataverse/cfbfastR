@@ -13,24 +13,24 @@
 #'  espn_cfb_pbp(game_id = 401282614)
 #'
 espn_cfb_pbp <- function(game_id){
-  options(stringsAsFactors = FALSE)
-  options(scipen = 999)
-  
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
+  on.exit(options(old))
+
   play_base_url <- "http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?"
-  
+
   ## Inputs
   ## game_id
   full_url <- paste0(play_base_url,
                      "event=", game_id)
-  
+
   res <- httr::RETRY("GET", full_url)
-  
+
   # Check the result
   check_status(res)
-  
+
   resp <- res %>%
     httr::content(as = "text", encoding = "UTF-8")
-  
+
   tryCatch(
     expr = {
       raw_df <- jsonlite::fromJSON(resp)
@@ -39,46 +39,46 @@ espn_cfb_pbp <- function(game_id){
       plays_df <- data.frame()
       #---- Play-by-Play ------
       if(playByPlaySource == 'full'){
-        drives <- raw_play_df[["drives"]] 
+        drives <- raw_play_df[["drives"]]
         plays_prev <- data.frame()
         plays_curr <- data.frame()
         if("previous" %in% names(drives)){
           drives_previous <- drives[["previous"]]
-          
+
           colnames(drives_previous)[1:8] <- paste0("drive_", colnames(drives_previous)[1:8])
           colnames(drives_previous)[10:25] <- paste0("drive_", colnames(drives_previous)[10:25])
           drive_nums <- c(1:nrow(drives_previous))
-          
+
           drives_prev <- purrr::map_df(drive_nums, function(x){
             drives_previous[x,"drive_team.logo"]<- drives_previous$drive_team.logos[[x]]$href[1]
             drives_previous[x,"drive_team.logo_dark"]<- drives_previous$drive_team.logos[[x]]$href[2]
-            df <- drives_previous[x,] %>% 
+            df <- drives_previous[x,] %>%
               tidyr::unnest_longer('plays')
             return(df)
           })
           plays_prev <- jsonlite::fromJSON(jsonlite::toJSON(drives_prev),flatten=TRUE)
-        } 
+        }
         if("current" %in% names(drives)){
           drives_current <- drives[["current"]]
-          
+
           colnames(drives_current)[1:8] <- paste0("drive_", colnames(drives_current)[1:8])
           colnames(drives_current)[10:25] <- paste0("drive_", colnames(drives_current)[10:25])
           drive_nums_cur <- c(1:nrow(drives_current))
           drives_curr <- purrr::map_df(drive_nums_cur, function(x){
             drives_current[x,"drive_team.logo"]<- drives_current$drive_team.logos[[x]]$href[1]
             drives_current[x,"drive_team.logo_dark"]<- drives_current$drive_team.logos[[x]]$href[2]
-            df <- drives_current[x,] %>% 
+            df <- drives_current[x,] %>%
               tidyr::unnest_longer('plays')
             return(df)
           })
           plays_curr <- jsonlite::fromJSON(jsonlite::toJSON(drives_curr),flatten=TRUE)
         }
-        
-        plays_df <- plays_curr %>% 
-          dplyr::bind_rows(plays_prev) %>% 
-          janitor::clean_names() %>% 
+
+        plays_df <- plays_curr %>%
+          dplyr::bind_rows(plays_prev) %>%
+          janitor::clean_names() %>%
           dplyr::select(-.data$drive_team_logos)
-          
+
       }
       plays_df$season <- raw_df[['header']][['season']][['year']]
       plays_df$season_type <- raw_df[['header']][['season']][['type']]
@@ -101,7 +101,7 @@ espn_cfb_pbp <- function(game_id){
       plays_df$away_team_color <- (competitors %>% dplyr::filter(.data$homeAway =='away'))[['team.color']]
       plays_df$away_team_alternate_color <- (competitors %>% dplyr::filter(.data$homeAway =='away'))[['team.alternateColor']]
       plays_df$away_team_rank <- (competitors %>% dplyr::filter(.data$homeAway =='away'))[['rank']]
-      
+
       # #---- Pickcenter ------
       # pickcenter <- raw_df[['pickcenter']]
     },
@@ -113,6 +113,6 @@ espn_cfb_pbp <- function(game_id){
     finally = {
     }
   )
-  
+
   return(plays_df)
 }

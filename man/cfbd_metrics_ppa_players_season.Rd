@@ -3,9 +3,6 @@
 \name{cfbd_metrics_ppa_players_season}
 \alias{cfbd_metrics_ppa_players_season}
 \title{\strong{Get player season averages for predicted points added (PPA)}}
-\source{
-\url{https://api.collegefootballdata.com/ppa/players/season}
-}
 \usage{
 cfbd_metrics_ppa_players_season(
   year = NULL,

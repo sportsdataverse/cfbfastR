@@ -3,9 +3,6 @@
 \name{cfbd_ratings_sp_conference}
 \alias{cfbd_ratings_sp_conference}
 \title{\strong{Get conference level SP historical rating data}}
-\source{
-\url{https://api.collegefootballdata.com/ratings/sp/conferences}
-}
 \usage{
 cfbd_ratings_sp_conference(year = NULL, conference = NULL)
 }

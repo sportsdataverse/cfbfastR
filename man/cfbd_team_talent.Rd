@@ -3,9 +3,6 @@
 \name{cfbd_team_talent}
 \alias{cfbd_team_talent}
 \title{\strong{Get composite team talent rankings for all teams in a given year}\cr}
-\source{
-\url{https://api.collegefootballdata.com/talent}
-}
 \usage{
 cfbd_team_talent(year = NULL)
 }

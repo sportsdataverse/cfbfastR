@@ -12,7 +12,7 @@ opengraph:
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, warning=FALSE, message=FALSE, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(pkgapi)
 pkg <- pkgapi::map_package(path = "../")
@@ -50,8 +50,7 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load_current_gh("saiemgilani/cfbfastR", dependencies = TRUE, update = TRUE)
-pacman::p_load(tidyverse, zoo, ggimage, gt)
+pacman::p_load(tidyverse, cfbfastR, zoo, ggimage, gt)
 ```
 
 ### **The Data**

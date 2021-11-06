@@ -5,9 +5,6 @@
 \alias{cfbd_betting_lines}
 \alias{betting}
 \title{\strong{CFBD Betting Lines Endpoint Overview}}
-\source{
-\url{https://api.collegefootballdata.com/lines}
-}
 \usage{
 cfbd_betting_lines(
   game_id = NULL,

@@ -3,9 +3,6 @@
 \name{cfbd_player_usage}
 \alias{cfbd_player_usage}
 \title{\strong{Get player usage metrics}}
-\source{
-\url{https://api.collegefootballdata.com/player/usage}
-}
 \usage{
 cfbd_player_usage(
   year = 2019,
@@ -21,7 +18,7 @@ cfbd_player_usage(
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conferencer\cr
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 

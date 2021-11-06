@@ -4,9 +4,6 @@
 \alias{cfbd_coaches}
 \alias{coaches}
 \title{\strong{CFBD Coaches Endpoint Overview}}
-\source{
-\url{https://api.collegefootballdata.com/coaches}
-}
 \usage{
 cfbd_coaches(
   first = NULL,
@@ -51,7 +48,7 @@ cfbd_coaches(
 }
 \description{
 \strong{Coach information search}
-A coach search function which provides coaching records and school history for a given coach\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")  
+A coach search function which provides coaching records and school history for a given coach\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
 }
 }
 \examples{
