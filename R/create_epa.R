@@ -1,6 +1,6 @@
 #' @name create_epa
 #' @aliases create_epa epa_fg_probs
-#' @title 
+#' @title
 #' **Create EPA**
 #' @description Adds Expected Points calculations to Play-by-Play data.frame
 #'
@@ -38,11 +38,11 @@ create_epa <- function(play_df,
   ## 5) Calculate ep_before for kickoffs as if the pre-play assumption is a touchback
   ## 6) Prep variables for WPA
   ##
-  
-  
+
+
   clean_pbp <- play_df %>%
     dplyr::mutate(down = as.numeric(.data$down)) %>%
-    dplyr::filter(.data$down > 0) %>%
+    dplyr::filter(.data$down > 0, .data$down < 5) %>%
     dplyr::filter(.data$period <= 4)
 
   ## 1) pred_df and pred_df_after selection and prediction ----
@@ -63,7 +63,7 @@ create_epa <- function(play_df,
       .data$Goal_To_Go,
       .data$pos_score_diff_start
     ) %>%
-    dplyr::filter(.data$down > 0) %>%
+    dplyr::filter(.data$down > 0, .data$down < 5) %>%
     dplyr::mutate(down = as.factor(.data$down))
 
   # get after play expected points model variables
@@ -84,7 +84,7 @@ create_epa <- function(play_df,
       .data$new_pos_score_diff_start
     ) %>%
     dplyr::mutate(new_down = as.numeric(.data$new_down)) %>%
-    dplyr::filter(.data$new_down > 0) %>%
+    dplyr::filter(.data$new_down > 0, .data$new_down < 5) %>%
     dplyr::mutate(new_down = as.factor(.data$new_down))
   # rename column names for post play variables to expected points model variables
   colnames(pred_df_after)[6:13] <- gsub("new_", "", colnames(pred_df_after)[6:13])
