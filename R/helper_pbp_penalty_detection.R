@@ -154,7 +154,9 @@ penalty_detection <- function(raw_df) {
         "Penalty (Kickoff)", .data$play_type
       ),
       down = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Penalty"), 1, .data$down),
-      half = ifelse(.data$period <= 2, 1, 2)
+      half = ifelse(.data$period <= 2, 1, 2),
+      # Timeouts on kickoffs
+      down = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Timeout"), 1, .data$down),
     ) %>%
     dplyr::filter(!(.data$game_id == "302610012" & .data$down == 5 & .data$play_type == "Rush"))
   return(raw_df)
