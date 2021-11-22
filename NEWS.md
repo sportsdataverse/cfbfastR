@@ -1,3 +1,7 @@
+# **cfbfastR v1.6.6**
+
+* Updated function `cfbd_pbp_data()` to account for additional timeout cases (namely, kickoffs/extra point attempts)
+
 # **cfbfastR v1.6.5**
 
 * Updated tests and documentation for `cfbd_betting_lines()`
