@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   animated-wp-plotting: animated-wp-plotting.html
@@ -17,7 +17,7 @@ articles:
   map-tutorial: map-tutorial.html
   nth-rated-recruit: nth-rated-recruit.html
   rolling-epa-graph: rolling-epa-graph.html
-last_built: 2021-11-22T19:31Z
+last_built: 2021-12-06T18:44Z
 urls:
   reference: http://saiemgilani.github.io/cfbfastR/reference
   article: http://saiemgilani.github.io/cfbfastR/articles

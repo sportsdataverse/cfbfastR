@@ -1,7 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/404.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/animated-wp-plotting.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/college-football-expected-points-model-fundamentals-part-i.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/college-football-expected-points-model-fundamentals-part-ii.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/college-football-expected-points-model-fundamentals-part-iii.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/fourth-down-plot-tutorial.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/intro.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/map-tutorial.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/nth-rated-recruit.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/articles/rolling-epa-graph.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/authors.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/index.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/news/index.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/cfbd_betting.html</loc>
@@ -208,6 +271,9 @@
     <loc>http://saiemgilani.github.io/cfbfastR/reference/helpers_pbp.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbfastR/reference/index.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html</loc>
   </url>
   <url>
@@ -215,50 +281,5 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/animated-wp-plotting.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/college-football-expected-points-model-fundamentals-part-i.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/college-football-expected-points-model-fundamentals-part-ii.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/college-football-expected-points-model-fundamentals-part-iii.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/fourth-down-plot-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/intro.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/map-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/nth-rated-recruit.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbfastR/articles/rolling-epa-graph.html</loc>
   </url>
 </urlset>
