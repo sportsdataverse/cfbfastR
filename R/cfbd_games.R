@@ -1147,6 +1147,8 @@ cfbd_game_records <- function(year,
 #'   \item{`school`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`home_away`: character.}{Home/Away Flag.}
+#'   \item{`opponent`: character.}{Opponent team name.}
+#'   \item{`opponent_conference`: character.}{Conference of the opponent team.}
 #'   \item{`points`: integer.}{Team points.}
 #'   \item{`total_yards`: character.}{Team total yards.}
 #'   \item{`net_passing_yards`: character.}{Team net passing yards.}
@@ -1183,8 +1185,6 @@ cfbd_game_records <- function(year,
 #'   \item{`defensive_tds`: character.}{Team defensive touchdowns.}
 #'   \item{`total_penalties_yards`: character.}{Team total penalty yards.}
 #'   \item{`possession_time`: character.}{Team time of possession.}
-#'   \item{`conference_allowed`: character.}{Conference of the opponent team.}
-#'   \item{`home_away_allowed`: character.}{Flag for if the opponent was the home or away team.}
 #'   \item{`points_allowed`: integer.}{Points for the opponent.}
 #'   \item{`total_yards_allowed`: character.}{Opponent total yards.}
 #'   \item{`net_passing_yards_allowed`: character.}{Opponent net passing yards.}
@@ -1362,13 +1362,16 @@ cfbd_game_team_stats <- function(year,
     # Join pivoted data with itself to get ultra-wide row
     # containing all game stats on one row for both teams
     df <- df %>%
+      dplyr::mutate(opponent_home_away = ifelse(.data$home_away == "home","away","home")) %>%
       dplyr::left_join(df,
-        by = c("game_id", "school"),
+        by = c("game_id", "opponent_home_away" = "home_away"),
         suffix = c("", "_allowed")
-      )
+      ) %>%
+      dplyr::rename(opponent = .data$school_allowed,
+                    opponent_conference = .data$conference_allowed)
 
     cols1 <- c(
-      "game_id", "school", "conference", "home_away",
+      "game_id", "school", "conference", "home_away","opponent","opponent_conference",
       "points", "total_yards", "net_passing_yards",
       "completion_attempts", "passing_tds", "yards_per_pass",
       "passes_intercepted", "interception_yards", "interception_tds",
@@ -1380,7 +1383,6 @@ cfbd_game_team_stats <- function(year,
       "tackles", "tackles_for_loss", "sacks", "qb_hurries",
       "interceptions", "passes_deflected", "turnovers", "defensive_tds",
       "total_penalties_yards", "possession_time",
-      "conference_allowed", "home_away_allowed",
       "points_allowed", "total_yards_allowed", "net_passing_yards_allowed",
       "completion_attempts_allowed", "passing_tds_allowed", "yards_per_pass_allowed",
       "passes_intercepted_allowed", "interception_yards_allowed", "interception_tds_allowed",
