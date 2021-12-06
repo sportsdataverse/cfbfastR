@@ -1,3 +1,8 @@
+# **cfbfastR v1.6.6**
+
+* Fixed bug in `cfbd_game_team_stats()` with _allowed columns duplicating team stats instead of showing opponent stats.
+* Updated tests and documentation for `cfbd_game_team_stats()`
+
 # **cfbfastR v1.6.5**
 
 * Updated tests and documentation for `cfbd_betting_lines()`
