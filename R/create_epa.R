@@ -1,6 +1,6 @@
 #' @name create_epa
 #' @aliases create_epa epa_fg_probs
-#' @title 
+#' @title
 #' **Create EPA**
 #' @description Adds Expected Points calculations to Play-by-Play data.frame
 #'
@@ -38,8 +38,8 @@ create_epa <- function(play_df,
   ## 5) Calculate ep_before for kickoffs as if the pre-play assumption is a touchback
   ## 6) Prep variables for WPA
   ##
-  
-  
+
+
   clean_pbp <- play_df %>%
     dplyr::mutate(down = as.numeric(.data$down)) %>%
     dplyr::filter(.data$down > 0) %>%

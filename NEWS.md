@@ -1,7 +1,12 @@
-# **cfbfastR v1.6.6**
+
+# **cfbfastR v1.6.7**
 
 * Fixed bug in `cfbd_game_team_stats()` with _allowed columns duplicating team stats instead of showing opponent stats.
 * Updated tests and documentation for `cfbd_game_team_stats()`
+
+# **cfbfastR v1.6.6**
+
+* Updated function `cfbd_pbp_data()` to account for additional timeout cases (namely, kickoffs/extra point attempts)
 
 # **cfbfastR v1.6.5**
 
@@ -142,3 +147,4 @@ Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
 * Added [API Key methods](https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html). If you forget to set your environment variable, functions will give you a warning and ask for one. 
+
