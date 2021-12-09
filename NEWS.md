@@ -1,3 +1,6 @@
+# **cfbfastR v1.7.0**
+
+### Added [```cfbd_recruiting_transfer_portal()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_transfer_portal.html)
 
 # **cfbfastR v1.6.7**
 
