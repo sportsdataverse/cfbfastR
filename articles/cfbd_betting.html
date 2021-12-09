@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
       </span>
     </div>
 
@@ -368,27 +368,21 @@
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Installing package into '/home/runner/work/_temp/Library'</span>
-<span class="co">## (as 'lib' is unspecified)</span></code></pre>
-<pre><code><span class="co">## also installing the dependencies 'bitops', 'checkmate'</span></code></pre>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## </span>
-<span class="co">## gt installed</span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"saiemgilani/cfbfastR"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## </span>
-<span class="co">## * checking for file ‘/tmp/RtmpxSQegC/remotes52785db8c86a/saiemgilani-cfbfastR-7a19ca4/DESCRIPTION’ ... OK</span>
+<span class="co">## * checking for file ‘/tmp/Rtmptr9HMY/remotes89187d8d2699/saiemgilani-cfbfastR-f3ceb63/DESCRIPTION’ ... OK</span>
 <span class="co">## * preparing ‘cfbfastR’:</span>
 <span class="co">## * checking DESCRIPTION meta-information ... OK</span>
 <span class="co">## * checking for LF line-endings in source and make files and shell scripts</span>
 <span class="co">## * checking for empty or unneeded directories</span>
-<span class="co">## * building ‘cfbfastR_1.6.7.tar.gz’</span></code></pre>
+<span class="co">## * building ‘cfbfastR_1.7.0.tar.gz’</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="get-betting-information-from-games">
 <strong>Get Betting information from games</strong><a class="anchor" aria-label="anchor" href="#get-betting-information-from-games"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_betting.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">12</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##     game_id season season_type week               start_date     home_team</span>
 <span class="co">## 1 401013175   2018     regular   12 2018-11-17T20:30:00.000Z Florida State</span>
@@ -410,7 +404,7 @@
 <span class="co">## 2              NA             NA             NA</span>
 <span class="co">## 3              NA             NA             NA</span>
 <span class="co">## 4              NA             NA             NA</span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># 7 OTs LSU at TAMU</span>
 <span class="fu"><a href="../reference/cfbd_betting.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">13</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">##     game_id season season_type week               start_date home_team</span>
