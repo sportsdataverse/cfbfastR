@@ -1,3 +1,6 @@
+# **cfbfastR v1.7.0**
+
+### Added [```cfbd_player_portal()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_player_portal.html)
 
 # **cfbfastR v1.6.7**
 
