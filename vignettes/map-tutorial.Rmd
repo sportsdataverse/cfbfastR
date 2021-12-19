@@ -17,7 +17,7 @@ I'm going to assume you have R and RStudio installed throughout this tutorial, s
 
 Let's start off with loading all the packages we'll need:
 
-``` {r map_tutorial_packages, include=TRUE, message = FALSE, warning = FALSE}
+``` {r map_tutorial_packages, include=FALSE, message = FALSE, warning = FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
