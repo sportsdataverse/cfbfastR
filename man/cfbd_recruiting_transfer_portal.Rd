@@ -12,7 +12,6 @@ cfbd_recruiting_transfer_portal(year)
 \value{
 \code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}} - A data frame with 11 variables:
 \describe{
-\item{\code{athlete_id}:integer}{Unique player identifier \code{athlete_id}.}
 \item{\code{season}:integer}{Season of transfer.}
 \item{\code{first_name}:character.}{Player's first name.}
 \item{\code{last_name}:character.}{Player's last name.}
