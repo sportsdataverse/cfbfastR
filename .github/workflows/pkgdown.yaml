@@ -26,7 +26,6 @@ jobs:
           extra-packages: |
             pkgdown
             animation
-            cfbfastR
             fastRhockey
             ggimage
             hadley/emo
