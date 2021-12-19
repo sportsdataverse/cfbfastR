@@ -201,25 +201,16 @@ Get live scoreboard data from ESPN"><meta property="og:image" content="https://g
     <li class="divider">
     <li class="dropdown-header">R Packages</li>
     <li>
+      <a href="https://saiemgilani.github.io/cfbfastR/" class="external-link">cfbfastR</a>
+    </li>
+    <li>
       <a href="https://hoopR.sportsdataverse.org/" class="external-link">hoopR</a>
     </li>
     <li>
       <a href="https://wehoop.sportsdataverse.org/" class="external-link">wehoop</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/recruitR/" class="external-link">recruitR</a>
-    </li>
-    <li>
-      <a href="https://puntalytics.github.io/puntr" class="external-link">puntr</a>
-    </li>
-    <li>
-      <a href="https://jacklich10.github.io/gamezoneR/" class="external-link">gamezoneR</a>
-    </li>
-    <li>
-      <a href="https://kazink36.github.io/cfbplotR/" class="external-link">cfbplotR</a>
-    </li>
-    <li>
-      <a href="https://kazink36.github.io/cfb4th/" class="external-link">cfb4th</a>
+      <a href="https://BenHowell71.github.io/fastRhockey/" class="external-link">fastRhockey</a>
     </li>
     <li>
       <a href="https://jaseziv.github.io/worldfootballR/" class="external-link">worldfootballR</a>
@@ -228,13 +219,19 @@ Get live scoreboard data from ESPN"><meta property="og:image" content="https://g
       <a href="https://BillPetti.github.io/baseballr/" class="external-link">baseballr</a>
     </li>
     <li>
-      <a href="https://hockeyr.netlify.app/" class="external-link">hockeyR</a>
+      <a href="https://kazink36.github.io/cfbplotR/" class="external-link">cfbplotR</a>
     </li>
     <li>
-      <a href="https://BenHowell71.github.io/fastRhockey/" class="external-link">fastRhockey</a>
+      <a href="https://kazink36.github.io/cfb4th/" class="external-link">cfb4th</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/powerplay/" class="external-link">powerplay</a>
+      <a href="https://saiemgilani.github.io/recruitR/" class="external-link">recruitR</a>
+    </li>
+    <li>
+      <a href="https://jacklich10.github.io/gamezoneR/" class="external-link">gamezoneR</a>
+    </li>
+    <li>
+      <a href="https://puntalytics.github.io/puntr/" class="external-link">puntr</a>
     </li>
     <li class="divider">
     <li class="dropdown-header">Python Packages</li>
@@ -325,17 +322,26 @@ Get live scoreboard data from ESPN"><meta property="og:image" content="https://g
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 54</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   matchup matchup_short season  type slug  game_id game_uid game_date attendance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Army B… ARMY @ NAVY     <span style="text-decoration: underline;">2</span>021     2 regu… 401301… s:20~l:… 2021-12-…          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 45 more variables: home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_full &lt;chr&gt;, home_team_color &lt;chr&gt;, home_score &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_score &lt;int&gt;, away_win &lt;int&gt;, away_record &lt;chr&gt;, status_name &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 43 × 54</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    matchup       matchup_short season  type slug   game_id  game_uid   game_date</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Middle Tenne… MTSU @ TOL      <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Northern Ill… NIU @ CCU       <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> UAB Blazers … UAB @ BYU       <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Louisiana Ra… UL @ MRSH       <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Western Kent… WKU @ APP       <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> UTEP Miners … UTEP @ FRES     <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Eastern Mich… EMU @ LIB       <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Utah State A… USU @ ORST      <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Old Dominion… ODU @ TLSA      <span style="text-decoration: underline;">2</span>021     3 post-… 4013311… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Kent State G… KENT @ WYO      <span style="text-decoration: underline;">2</span>021     3 post-… 4013312… s:20~l:23… 2021-12-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 33 more rows, and 46 more variables: attendance &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;, home_team_abb &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;, home_team_full &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_color &lt;chr&gt;, home_score &lt;int&gt;, home_win &lt;int&gt;, home_record &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_name &lt;chr&gt;, away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_id &lt;chr&gt;, away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_color &lt;chr&gt;, away_score &lt;int&gt;, away_win &lt;int&gt;, …</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>
