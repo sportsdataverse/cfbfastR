@@ -29,11 +29,14 @@ jobs:
             ggimage
             hadley/emo
             knitr
+            pacman
             ragg
             r-lib/pkgapi
             rsconnect
+            sf
             tictoc
             tidyverse
+            UrbanInstitute/urbnmapr
             zoo
           needs: website
 
