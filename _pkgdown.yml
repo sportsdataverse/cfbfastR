@@ -49,8 +49,8 @@ authors:
   Sebastian Carl:
     href: https://twitter.com/mrcaseb
 home:
-  title: An R package to quickly obtain clean and tidy College Football play by play data
-  description: Functions to Access College Football Play by Play Data
+  title: cfbfastR
+  description: An R package to quickly obtain clean and tidy College Football play by play data
   icon: fa-home
   href: index.html
   links:
