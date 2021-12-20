@@ -59,6 +59,12 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-code"></span>
@@ -228,7 +234,7 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa-project-diagram"></span>
      
-    SDV
+     SDV
      
     <span class="caret"></span>
   </a>
@@ -239,6 +245,9 @@
     <li class="divider">
     </li>
 <li class="dropdown-header">R Packages</li>
+    <li>
+      <a href="https://saiemgilani.github.io/sportsdataverse-R/" class="external-link">sportsdataverse-R</a>
+    </li>
     <li>
       <a href="https://saiemgilani.github.io/cfbfastR/" class="external-link">cfbfastR</a>
     </li>
@@ -478,7 +487,7 @@
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 71.076 sec elapsed</span></code></pre>
+<pre><code><span class="co">## 71.813 sec elapsed</span></code></pre>
 <p>In the selected seasons, there are 6586 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></code></pre></div>
