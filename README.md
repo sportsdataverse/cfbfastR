@@ -1,7 +1,7 @@
 
 # 
 
-# **cfbfastR** <a href='https://saiemgilani.github.io/cfbfastR/'><img src='https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/logo.png' align="right" width="20%" min-width="100px"/></a>
+# **cfbfastR** <a href='https://cfbfastR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/saiemgilani/cfbfastR/master/logo.png' align="right" width="20%" min-width="100px"/></a>
 
 <!-- badges: start -->
 
@@ -19,19 +19,17 @@ Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfa
 Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
 <!-- badges: end -->
 
-The goal of [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) is
+The goal of [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) is
 to provide the community with an R package for working with CFB data. It
 is an R API wrapper around <https://collegefootballdata.com/>. Beyond
 data aggregation and tidying ease, one of the multitude of services that
-[**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) provides is
-for benchmarking open-source expected points and win probability
-metrics.
+[**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) provides is for
+benchmarking open-source expected points and win probability metrics.
 
 ## **Installation**
 
 You can install the CRAN version of
-[**`cfbfastR`**](https://cran.r-project.org/web/packages/cfbfastR/index.html)
-with:
+[**`cfbfastR`**](https://CRAN.R-project.org/package=cfbfastR) with:
 
 ``` r
 install.packages("cfbfastR")
@@ -52,7 +50,7 @@ pacman::p_load_current_gh("saiemgilani/cfbfastR", dependencies = TRUE, update = 
 ## **Breaking Changes**
 
 [**Full News on
-Releases**](https://saiemgilani.github.io/cfbfastR/news/index.html)
+Releases**](https://cfbfastR.sportsdataverse.org/news/index.html)
 
 #### **College Football Data API Keys**
 
@@ -172,7 +170,7 @@ stars](https://img.shields.io/github/stars/saiemgilani/cfbfastR.svg?color=eee&lo
 
 ## **Citations**
 
-To cite the [**`cfbfastR`**](https://saiemgilani.github.io/cfbfastR/) R
+To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R
 package in publications, use:
 
 BibTex Citation
@@ -181,7 +179,7 @@ BibTex Citation
 @misc{gilani_et_al_2021_cfbfastr,
   author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
   title = {cfbfastR: The SportsDataverse's R Package for College Football Data.},
-  url = {https://saiemgilani.github.io/cfbfastR/},
+  url = {https://cfbfastR.sportsdataverse.org/},
   year = {2021}
 }
 ```
