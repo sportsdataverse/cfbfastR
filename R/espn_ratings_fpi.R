@@ -37,6 +37,7 @@
 #' @importFrom utils globalVariables
 #' @importFrom purrr pluck set_names quietly map
 #' @importFrom glue glue
+#' @export
 espn_ratings_fpi <- function(year = 2019) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
