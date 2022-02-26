@@ -1,15 +1,19 @@
+# **cfbfastR v1.7.1**
+
+### Added [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings_fpi.html) to exports.
+
 # **cfbfastR v1.7.0**
 
-### Added [```cfbd_recruiting_transfer_portal()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_transfer_portal.html)
+### Added [```cfbd_recruiting_transfer_portal()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_transfer_portal.html).
 
 # **cfbfastR v1.6.7**
 
 * Fixed bug in `cfbd_game_team_stats()` with _allowed columns duplicating team stats instead of showing opponent stats.
-* Updated tests and documentation for `cfbd_game_team_stats()`
+* Updated tests and documentation for `cfbd_game_team_stats()`.
 
 # **cfbfastR v1.6.6**
 
-* Updated function `cfbd_pbp_data()` to account for additional timeout cases (namely, kickoffs/extra point attempts)
+* Updated function `cfbd_pbp_data()` to account for additional timeout cases (namely, kickoffs/extra point attempts).
 
 # **cfbfastR v1.6.5**
 

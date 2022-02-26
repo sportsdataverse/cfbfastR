@@ -1,4 +1,4 @@
-url: http://saiemgilani.github.io/cfbfastR
+url: https://cfbfastR.sportsdataverse.org/
 
 title: cfbfastR
 description: "An R package to quickly obtain clean and tidy college football play by play data"
@@ -206,7 +206,7 @@ navbar:
       - text: cfb4th
         href: https://kazink36.github.io/cfb4th/
       - text: recruitR
-        href: https://saiemgilani.github.io/recruitR/
+        href: https://recruitR.sportsdataverse.org/
       - text: gamezoneR
         href: https://jacklich10.github.io/gamezoneR/
       - text: puntr
