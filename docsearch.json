@@ -2,21 +2,21 @@
   "index_name": "cfbfastR",
   "start_urls": [
     {
-      "url": "http://saiemgilani.github.io/cfbfastR/index.html",
+      "url": "https://cfbfastR.sportsdataverse.org/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "http://saiemgilani.github.io/cfbfastR/reference",
+      "url": "https://cfbfastR.sportsdataverse.org/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "http://saiemgilani.github.io/cfbfastR/articles",
+      "url": "https://cfbfastR.sportsdataverse.org/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "http://saiemgilani.github.io/cfbfastR/sitemap.xml"
+    "https://cfbfastR.sportsdataverse.org/sitemap.xml"
   ],
   "selectors": {
     "homepage": {

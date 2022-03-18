@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-code"></span>
      
     Funcs
@@ -155,7 +155,7 @@
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-book-reader"></span>
      
     Articles
@@ -231,7 +231,7 @@
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-project-diagram"></span>
      
      SDV
@@ -249,7 +249,7 @@
       <a href="https://r.sportsdataverse.org/" class="external-link">sportsdataverse-R</a>
     </li>
     <li>
-      <a href="https://cfbfastR.sportsdataverse.org/" class="external-link">cfbfastR</a>
+      <a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a>
     </li>
     <li>
       <a href="https://hoopR.sportsdataverse.org/" class="external-link">hoopR</a>
@@ -273,7 +273,7 @@
       <a href="https://kazink36.github.io/cfb4th/" class="external-link">cfb4th</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/recruitR/" class="external-link">recruitR</a>
+      <a href="https://recruitR.sportsdataverse.org/" class="external-link">recruitR</a>
     </li>
     <li>
       <a href="https://jacklich10.github.io/gamezoneR/" class="external-link">gamezoneR</a>
@@ -299,7 +299,7 @@
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-database"></span>
      
      Data
@@ -368,17 +368,17 @@
     
 <p>Previously in part 1, we left off discussing field position and expected points, including a breakdown by down. Generally, what was presented could be considered the most top-level results discussion and model definition information. In part 2, we went into some detail about regression model building methods and how the model generates the next score probabilities, with some depth into how we arrived at the model from a technical perspective. Today, I feel it necessary for us to cover some history of the expected points model in football. This article will show you how we arrive at the model factors that we currently have from a historical perspective.</p>
 <p>The entire purpose of these series of articles is to show you as transparently as I can how the College Football Expected Points model works, how well it works, and how the model is limited. Additionally, this research is reproducible.</p>
-<div class="section level2">
-<h2 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
+</h3>
 <p>We will be acquiring data from <a href="collegefootballdata.com">CollegeFootballData.com</a>, courtesy of @<a href="https://twitter.com/CFB_data" class="external-link">CFB_data</a>, using <code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
-<div class="section level1">
-<h1 id="an-abridged-history-of-expected-points-models-in-football">An Abridged History of Expected Points Models in Football<a class="anchor" aria-label="anchor" href="#an-abridged-history-of-expected-points-models-in-football"></a>
-</h1>
 <div class="section level2">
-<h2 id="field-position-models">Field Position models<a class="anchor" aria-label="anchor" href="#field-position-models"></a>
+<h2 id="an-abridged-history-of-expected-points-models-in-football">An Abridged History of Expected Points Models in Football<a class="anchor" aria-label="anchor" href="#an-abridged-history-of-expected-points-models-in-football"></a>
 </h2>
+<div class="section level3">
+<h3 id="field-position-models">Field Position models<a class="anchor" aria-label="anchor" href="#field-position-models"></a>
+</h3>
 <p>One of the earliest discussions and attempts at building an expected points model in football was made by <a href="https://vault.si.com/vault/1972/10/16/handy-pair-of-brainy-bengals" class="external-link">Virgil Carter of the Cincinatti Bengals</a> in his graduate research paper, “<a href="https://pubsonline.informs.org/doi/pdf/10.1287/opre.19.2.541" class="external-link">Operations Research on Football</a>”. Carter found some time to write the research paper while pursuing his MBA at Northwestern in the off-season from his main gig of being quarterback for the Chicago Bears.</p>
 <p>For the study, Carter and his wife Judy coded 8,373 plays with 53 variables — including time, down, and distance — from 56 games played during the first half of the 1969 season. From the paper:</p>
 <blockquote>
@@ -401,9 +401,9 @@
 <p>We have looked at the Carter model, which only looked at field position for a specific down and distance situation (namely, 1st-and-10) and modeled expected points as the average of the points scored in each of the 10 field position bins.</p>
 <p>We additionally covered a model that ignored down and distance altogether and modeled the expected points as a function of field position. Now, let’s look at some of the more recent attempts at modeling that include both down and distance, in addition to field position.</p>
 </div>
-<div class="section level2">
-<h2 id="down-distance-field-position-models">Down-Distance-Field Position models<a class="anchor" aria-label="anchor" href="#down-distance-field-position-models"></a>
-</h2>
+<div class="section level3">
+<h3 id="down-distance-field-position-models">Down-Distance-Field Position models<a class="anchor" aria-label="anchor" href="#down-distance-field-position-models"></a>
+</h3>
 <p>Belur V. Dasarthy wrote a paper in 1991 with the three above factors using a nearest-neighbor approach and averaging the next points scored that I have not been able to get my hands on.</p>
 <p>Some time in 2009 or earlier, Brian Burke posited that every down-distance-field position combination had an <a href="http://archive.advancedfootballanalytics.com/2009/12/expected-point-values.html" class="external-link">average net point advantage</a>. He built a model demonstrating as such with a smoothing technique called locally estimated scatterplot smoothing (LOESS) but not much else in terms of detail provided.</p>
 <p>You can read more about his model at the link above, but among the noted limitations with the model were that it only included first and third quarter data since he correctly noted end-of-half drive plays was a factor that needed to be accounted for.</p>
@@ -411,9 +411,9 @@
 <p>Trey Causey did a quality write-up on a very similar style <a href="http://thespread.us/expected-points.html" class="external-link">model</a> and has done some interesting <a href="http://thespread.us/clustering.html" class="external-link">nearest-neighbors</a> player similarity modeling that is worth reading and, at the time, was reproducible.</p>
 <p>So all of these models are curve fitting attempts that lead us to the topic of regression.</p>
 </div>
-<div class="section level2">
-<h2 id="game-state-situational-probability-models">Game-State Situational Probability models<a class="anchor" aria-label="anchor" href="#game-state-situational-probability-models"></a>
-</h2>
+<div class="section level3">
+<h3 id="game-state-situational-probability-models">Game-State Situational Probability models<a class="anchor" aria-label="anchor" href="#game-state-situational-probability-models"></a>
+</h3>
 <p>Alok Pattani’s 2012 writeup on <a href="https://www.espn.com/nfl/story/_/id/8379024/nfl-explaining-expected-points-metric" class="external-link">ESPN’s NFL Expected Points model</a>, which additionally included home-field advantage and time remaining, left a lot of the detail out, giving few reproducible details.</p>
 <p>However, in subsequent years, more details regarding the technical specifics of ESPN’s Bayesian hierarchical statistical expected points model were discussed in an article on the <a href="https://www.espn.com/college-football/story/_/page/PSimpactrating0819/introducing-new-way-rate-college-football-players" class="external-link">PlayStation Player Impact Rating</a>.</p>
 <p>Additionally, Kenneth Goldner wrote a paper in 2017 about using a Markov modeling of a possession with stochastic processes which I have been unable to get my hands on. EDIT: A very kind Columbia professor saw this article and sent me the paper. Among other things, the paper demonstrates that on 1st and 10 at any point on the field, the expected points is positive.</p>
@@ -471,7 +471,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

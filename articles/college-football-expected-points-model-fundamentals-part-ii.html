@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-code"></span>
      
     Funcs
@@ -155,7 +155,7 @@
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-book-reader"></span>
      
     Articles
@@ -231,7 +231,7 @@
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-project-diagram"></span>
      
      SDV
@@ -249,7 +249,7 @@
       <a href="https://r.sportsdataverse.org/" class="external-link">sportsdataverse-R</a>
     </li>
     <li>
-      <a href="https://cfbfastR.sportsdataverse.org/" class="external-link">cfbfastR</a>
+      <a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a>
     </li>
     <li>
       <a href="https://hoopR.sportsdataverse.org/" class="external-link">hoopR</a>
@@ -273,7 +273,7 @@
       <a href="https://kazink36.github.io/cfb4th/" class="external-link">cfb4th</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/recruitR/" class="external-link">recruitR</a>
+      <a href="https://recruitR.sportsdataverse.org/" class="external-link">recruitR</a>
     </li>
     <li>
       <a href="https://jacklich10.github.io/gamezoneR/" class="external-link">gamezoneR</a>
@@ -299,7 +299,7 @@
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-database"></span>
      
      Data
@@ -369,25 +369,25 @@
 <p>Previously in Part 1, we left off discussing field position and expected points, including a breakdown by down. Generally, what was presented could be considered the most top-level results discussion and model definition information without much depth into how we arrived at the model, or detail on how the predictions the model provides generate the expected points.</p>
 <p>In order to remedy that, I feel it necessary for us to cover some model building methods. This article will show you how we arrive at the model that we currently have from a modeling perspective. The entire purpose of this series of articles is to show you as transparently as I can how the Expected Points model works, how well it works, and how the model is limited.</p>
 <p>Additionally, and maybe most importantly, this research is reproducible. The following link contains an <a href="https://rpubs.com/saiemgilani/625433" class="external-link">R notebook</a> and supporting figures for the article which should be sufficient to work through (it is large, ~284Mb when unzipped). <a href="https://drive.google.com/file/d/1jJZBEUvqvEC9I_0-3TFtKQGww7qICVJ2/view?usp=sharing" class="external-link">Link</a></p>
-<div class="section level2">
-<h2 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
+</h3>
 <p>We will be acquiring data from <a href="collegefootballdata.com">CollegeFootballData.com</a>, courtesy of @<a href="https://twitter.com/CFB_data" class="external-link">CFB_data</a>, using <code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
-<div class="section level1">
-<h1 id="regression-methods">Regression Methods<a class="anchor" aria-label="anchor" href="#regression-methods"></a>
-</h1>
+<div class="section level2">
+<h2 id="regression-methods">Regression Methods<a class="anchor" aria-label="anchor" href="#regression-methods"></a>
+</h2>
 <p><a href="https://imgur.com/rOjdyUC" class="external-link"><img src="https://i.imgur.com/rOjdyUCl.png" title="Figure: @ChrisAlbon"></a></p>
 <p><strong>Figure 1</strong>: Regression | <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
 <p>Regression is a set of techniques for estimating relationships between multiple variables on a quantitative target variable, and our focus will be on one of the simplest types of relationships: linear.</p>
-<div class="section level2">
-<h2 id="linear-regression">Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
-</h2>
+<div class="section level3">
+<h3 id="linear-regression">Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
+</h3>
 <p><a href="https://imgur.com/MegfSse" class="external-link"><img src="https://i.imgur.com/MegfSsel.png" title="Figure: @SaiemGilani"></a></p>
 <p><strong>Figure 2</strong>: Linear Regression Model</p>
-<div class="section level3">
-<h3 id="assumptions">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions"></a>
-</h3>
+<div class="section level4">
+<h4 id="assumptions">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions"></a>
+</h4>
 <ul>
 <li>Dependent variable is continuous, unbounded, and measured on an interval or ratio scale</li>
 <li>Model has linear relation between independent and dependent variables</li>
@@ -410,17 +410,17 @@
 <p>Upon viewing these plots, I quickly realized that several assumptions of linear regression are being violated here, namely the constant variance assumption and normal distribution of error terms (see Figure 4), at minimum. We need to keep adding to our regression toolbox, so let us now take a look at a type of regression that does not restrict us to these assumptions.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="logistic-regression">Logistic Regression<a class="anchor" aria-label="anchor" href="#logistic-regression"></a>
-</h2>
+<div class="section level3">
+<h3 id="logistic-regression">Logistic Regression<a class="anchor" aria-label="anchor" href="#logistic-regression"></a>
+</h3>
 <p>Suppose we have a binary output variable Y, let’s say Y is a variable that gives a response of 1 if the next score in the half is a TD for the offense and a 0 otherwise. If we wanted to predict the probability that the next score in the half is a TD for the offense, one of the prime candidate models would be logistic regression.</p>
 <p><a href="https://imgur.com/ZePALn7" class="external-link"><img src="https://i.imgur.com/ZePALn7l.png" title="Figure: @ChrisAlbon"></a></p>
 <p><strong>Figure 5</strong>: Logistic Regression <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
 <p><a href="https://imgur.com/PJXbgfq" class="external-link"><img src="https://i.imgur.com/PJXbgfql.png" title="Figure: @SaiemGilani"></a></p>
 <p><strong>Figure 6</strong>: Logistic Regression Model</p>
-<div class="section level3">
-<h3 id="assumptions-1">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions-1"></a>
-</h3>
+<div class="section level4">
+<h4 id="assumptions-1">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions-1"></a>
+</h4>
 <ul>
 <li>Binary logistic regression requires the dependent variable to be binary (i.e. 0/1)</li>
 <li>There is a linear relationship between the log-odds of the outcome and each of the predictor variables.</li>
@@ -446,9 +446,9 @@
 <p>You might be asking “Yeah, that’s great, but you’re still only predicting the probability of one scoring type relative to another. You’d need to do this like 6 times, right?” Well, fair point. How does one do logistic regression on a categorical variable that has more than one class?</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="multinomial-logistic-regression-or-softmax-regression">Multinomial Logistic Regression (or Softmax regression)<a class="anchor" aria-label="anchor" href="#multinomial-logistic-regression-or-softmax-regression"></a>
-</h2>
+<div class="section level3">
+<h3 id="multinomial-logistic-regression-or-softmax-regression">Multinomial Logistic Regression (or Softmax regression)<a class="anchor" aria-label="anchor" href="#multinomial-logistic-regression-or-softmax-regression"></a>
+</h3>
 <p>A multinomial logistic regression model uses the independent (predictor) variables and target variable data from the training set to build relationships between the independent variables and each of the classes of the target variable.</p>
 <p><a href="https://imgur.com/c18pbOL" class="external-link"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon"></a></p>
 <p><strong>Figure 11</strong>: Multinomial Logistic Regression <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
@@ -481,7 +481,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

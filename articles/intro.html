@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-code"></span>
      
     Funcs
@@ -155,7 +155,7 @@
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-book-reader"></span>
      
     Articles
@@ -231,7 +231,7 @@
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-project-diagram"></span>
      
      SDV
@@ -249,7 +249,7 @@
       <a href="https://r.sportsdataverse.org/" class="external-link">sportsdataverse-R</a>
     </li>
     <li>
-      <a href="https://cfbfastR.sportsdataverse.org/" class="external-link">cfbfastR</a>
+      <a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a>
     </li>
     <li>
       <a href="https://hoopR.sportsdataverse.org/" class="external-link">hoopR</a>
@@ -273,7 +273,7 @@
       <a href="https://kazink36.github.io/cfb4th/" class="external-link">cfb4th</a>
     </li>
     <li>
-      <a href="https://saiemgilani.github.io/recruitR/" class="external-link">recruitR</a>
+      <a href="https://recruitR.sportsdataverse.org/" class="external-link">recruitR</a>
     </li>
     <li>
       <a href="https://jacklich10.github.io/gamezoneR/" class="external-link">gamezoneR</a>
@@ -299,7 +299,7 @@
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-database"></span>
      
      Data
@@ -368,10 +368,10 @@
     
 <p>Hey folks,</p>
 <p>Welcome to the football analytics community! I’m Saiem Gilani, one of the <a href="https://saiemgilani.github.io/cfbfastR/authors.html" title="Authors and contributors to cfbfastR" class="external-link">authors</a> of <a href="https://twitter.com/cfbfastR" title="Follow @cfbfastR on Twitter! Tag us in your tweets using cfbfastR and we'll share it!" class="external-link"><code>cfbfastR</code></a>, and I hope to give the community a high-quality resource for accessing college football data for statistical analysis, football research, and more. I am excited to show you some of what you can do with this edition of the package.</p>
-<div class="section level3">
-<h3 id="installing-r-and-rstudio">
+<div class="section level4">
+<h4 id="installing-r-and-rstudio">
 <strong>Installing R and RStudio</strong><a class="anchor" aria-label="anchor" href="#installing-r-and-rstudio"></a>
-</h3>
+</h4>
 <ol style="list-style-type: decimal">
 <li>Head to <a href="https://cran.r-project.org" class="external-link uri">https://cran.r-project.org</a>
 </li>
@@ -392,10 +392,10 @@
 <li>Start peering over the <a href="%22https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf%22" class="external-link">RStudio IDE Cheatsheet</a>. <em>An IDE is an integrated development environment.</em>
 </li>
 </ol>
-<div class="section level4">
-<h4 id="load-and-install-the-necessary-packages">
+<div class="section level5">
+<h5 id="load-and-install-the-necessary-packages">
 <strong>Load and install the necessary packages</strong><a class="anchor" aria-label="anchor" href="#load-and-install-the-necessary-packages"></a>
-</h4>
+</h5>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
@@ -403,10 +403,10 @@
 <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">cfbfastR</span>, <span class="va">zoo</span>, <span class="va">ggimage</span>, <span class="va">gt</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="the-data">
+<div class="section level4">
+<h4 id="the-data">
 <strong>The Data</strong><a class="anchor" aria-label="anchor" href="#the-data"></a>
-</h3>
+</h4>
 <p>There are generally speaking <strong>three</strong> college football data sources accessed from this package:</p>
 <ul>
 <li>
@@ -417,31 +417,31 @@
 </li>
 <li><a href="https://espn.com" class="external-link">ESPN</a></li>
 </ul>
-<div class="section level4">
-<h4 id="function-names-indicate-the-data-source">
+<div class="section level5">
+<h5 id="function-names-indicate-the-data-source">
 <strong>Function names indicate the data source</strong><a class="anchor" aria-label="anchor" href="#function-names-indicate-the-data-source"></a>
-</h4>
+</h5>
 <ul>
 <li><p>Functions that use the <a href="https://github.com/saiemgilani/cfbfastR-data" class="external-link"><code>cfbfastR-data</code> repository</a> will contain <code>_cfb</code> or <code>cfb_</code> in the function name and would be considered loading functions for the play-by-play data.</p></li>
 <li><p>Functions that use the CFB Data API start with <code>cfbd_</code> by convention and should be assumed as <code>get</code> functions.</p></li>
 <li><p>Functions that use one of ESPN’s APIs start with <code>espn_</code> by convention and should be assumed as <code>get</code> functions. There are only two of these functions so far: <code><a href="../reference/espn_ratings.html">espn_ratings_fpi()</a></code> and <code><a href="../reference/espn_metrics.html">espn_metrics_wp()</a></code></p></li>
 </ul>
 <p>However, there is only one data <em>provider</em> involved for most game data, ESPN’s data provider.</p>
-<p>As of <code>cfbfastR</code> version 1.7.0, the package exports 69 functions. The bulk (~51) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com" class="external-link">College Football Data API</a>.</p>
+<p>As of <code>cfbfastR</code> version 1.7.1, the package exports 70 functions. The bulk (~51) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com" class="external-link">College Football Data API</a>.</p>
 </div>
-<div class="section level4">
-<h4 id="cfb-data-now-requires-an-api-key-its-free">
+<div class="section level5">
+<h5 id="cfb-data-now-requires-an-api-key-its-free">
 <strong>CFB Data now requires an API key (it’s free)</strong><a class="anchor" aria-label="anchor" href="#cfb-data-now-requires-an-api-key-its-free"></a>
-</h4>
+</h5>
 <ul>
 <li><p>Since April 1, 2021, the College Football Data API requires <a href="https://collegefootballdata.com/key" class="external-link">key authentication</a>, but the <strong>key is free to acquire and use</strong>.</p></li>
 <li><p><a href="https://collegefootballdata.com/key" class="external-link">Follow the instructions</a> and wait for your API key to be delivered to the e-mail account associated with your key.</p></li>
 </ul>
 </div>
-<div class="section level4">
-<h4 id="using-the-cfb-data-api-key">
+<div class="section level5">
+<h5 id="using-the-cfb-data-api-key">
 <strong>Using the CFB Data API key</strong><a class="anchor" aria-label="anchor" href="#using-the-cfb-data-api-key"></a>
-</h4>
+</h5>
 <p>You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre></div>
@@ -451,32 +451,32 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="lets-get-some-play-by-play-data">Let’s get some play by play data<a class="anchor" aria-label="anchor" href="#lets-get-some-play-by-play-data"></a>
-</h1>
-<p>If you have ever worked with the now archived <a href="https://github.com/saiemgilani/cfbscrapR" class="external-link"><strong><code>cfbscrapR</code></strong></a> package, most of the functions in <strong><code>cfbfastR</code></strong> should be fairly familiar with some slight changes.</p>
 <div class="section level2">
-<h2 id="play-by-play-data-comparisons">Play by play data comparisons<a class="anchor" aria-label="anchor" href="#play-by-play-data-comparisons"></a>
+<h2 id="lets-get-some-play-by-play-data">Let’s get some play by play data<a class="anchor" aria-label="anchor" href="#lets-get-some-play-by-play-data"></a>
 </h2>
-<div class="section level4">
-<h4 id="cfbfastrcfbd_pbp_data-1-season-6-7-minutes">
-<strong><code>cfbfastR::cfbd_pbp_data()</code></strong> (1 season, ~6-7 minutes 😕)<a class="anchor" aria-label="anchor" href="#cfbfastrcfbd_pbp_data-1-season-6-7-minutes"></a>
-</h4>
-</div>
-<div class="section level4">
-<h4 id="cfbscraprcfb_pbp_data-1-season-8-10-minutes">
-<strong><code>cfbscrapR::cfb_pbp_data()</code></strong> (1 season, ~8-10 minutes 👴)<a class="anchor" aria-label="anchor" href="#cfbscraprcfb_pbp_data-1-season-8-10-minutes"></a>
-</h4>
-</div>
-<div class="section level4">
-<h4 id="cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes">
-<strong><code>cfbfastR::load_cfb_pbp()</code></strong> (7+ seasons, ~1-1.5 minutes 🔥)<a class="anchor" aria-label="anchor" href="#cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes"></a>
-</h4>
-</div>
+<p>If you have ever worked with the now archived <a href="https://github.com/saiemgilani/cfbscrapR" class="external-link"><strong><code>cfbscrapR</code></strong></a> package, most of the functions in <strong><code>cfbfastR</code></strong> should be fairly familiar with some slight changes.</p>
 <div class="section level3">
-<h3 id="the-fastr-way">
-<strong>The fastR way</strong><a class="anchor" aria-label="anchor" href="#the-fastr-way"></a>
+<h3 id="play-by-play-data-comparisons">Play by play data comparisons<a class="anchor" aria-label="anchor" href="#play-by-play-data-comparisons"></a>
 </h3>
+<div class="section level5">
+<h5 id="cfbfastrcfbd_pbp_data-1-season-6-7-minutes">
+<strong><code>cfbfastR::cfbd_pbp_data()</code></strong> (1 season, ~6-7 minutes 😕)<a class="anchor" aria-label="anchor" href="#cfbfastrcfbd_pbp_data-1-season-6-7-minutes"></a>
+</h5>
+</div>
+<div class="section level5">
+<h5 id="cfbscraprcfb_pbp_data-1-season-8-10-minutes">
+<strong><code>cfbscrapR::cfb_pbp_data()</code></strong> (1 season, ~8-10 minutes 👴)<a class="anchor" aria-label="anchor" href="#cfbscraprcfb_pbp_data-1-season-8-10-minutes"></a>
+</h5>
+</div>
+<div class="section level5">
+<h5 id="cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes">
+<strong><code>cfbfastR::load_cfb_pbp()</code></strong> (7+ seasons, ~1-1.5 minutes 🔥)<a class="anchor" aria-label="anchor" href="#cfbfastrload_cfb_pbp-7-seasons-1-1-5-minutes"></a>
+</h5>
+</div>
+<div class="section level4">
+<h4 id="the-fastr-way">
+<strong>The fastR way</strong><a class="anchor" aria-label="anchor" href="#the-fastr-way"></a>
+</h4>
 <p>We are going to load in data for seasons 2014-2021, it’ll take between 45-90 seconds to run.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">tic</a></span><span class="op">(</span><span class="op">)</span>
@@ -487,11 +487,11 @@
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 67.408 sec elapsed</span></code></pre>
-<p>In the selected seasons, there are 6593 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
+<pre><code><span class="co">## 70.051 sec elapsed</span></code></pre>
+<p>In the selected seasons, there are 6616 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Rows: 1,207,853</span>
+<pre><code><span class="co">## Rows: 1,211,945</span>
 <span class="co">## Columns: 40</span>
 <span class="co">## $ year               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 201…</span>
 <span class="co">## $ week               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</span>
@@ -562,7 +562,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
