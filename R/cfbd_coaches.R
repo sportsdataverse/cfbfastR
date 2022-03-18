@@ -116,8 +116,10 @@ cfbd_coaches <- function(first = NULL,
         furrr::future_map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest(.data$seasons) %>%
-        as.data.frame() %>%
         dplyr::arrange(.data$year)
+
+      df <- df %>%
+        make_cfbfastR_data("Coaches data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))

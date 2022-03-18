@@ -4,7 +4,7 @@ NULL
 #' Get live scoreboard data from ESPN
 #' @rdname espn_cfb_scoreboard
 #'
-#' @param date (*Integer* required - YYYYMMDD): Date to pull 
+#' @param date (*Integer* required - YYYYMMDD): Date to pull
 #'
 #' @return [espn_cfb_scoreboard()]
 #' @keywords Scoreboard Data
@@ -22,26 +22,26 @@ NULL
 #' }
 #'
 espn_cfb_scoreboard <- function(date = NULL) {
-  
+
   if (!is.null(date) && !is.numeric(date)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort("Enter valid date as a number (YYYYMMDD)")
   }
-  
+
   espn_date <- date
   url = paste0("http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=150",
                "&groups=", 80,
                "&dates=",date)
   res <- httr::RETRY("GET", url)
   espn_sched <- data.frame()
-  
+
   tryCatch(
     expr = {
       raw_sched <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
-      
-      
+
+
       cfb_data <- raw_sched[["events"]] %>%
         tibble::tibble(data = .data$.) %>%
         tidyr::unnest_wider(.data$data) %>%
@@ -83,7 +83,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
                       away_win = as.integer(.data$away_win),
                       home_score = as.integer(.data$home_score),
                       away_score = as.integer(.data$away_score))
-      
+
       if("leaders" %in% names(cfb_data)){
         schedule_out <- cfb_data %>%
           tidyr::hoist(
@@ -113,9 +113,9 @@ espn_cfb_scoreboard <- function(date = NULL) {
             assists_leader_team_id = list(3, "leaders", 1, "team", "id"),
             assists_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
           )
-        
+
         if("broadcasts" %in% names(schedule_out)) {
-          schedule_out %>%
+          schedule_out <- schedule_out %>%
             tidyr::hoist(
               .data$broadcasts,
               broadcast_market = list(1, "market"),
@@ -124,14 +124,15 @@ espn_cfb_scoreboard <- function(date = NULL) {
             dplyr::select(!where(is.list)) %>%
             janitor::clean_names()
         } else {
-          schedule_out %>%
+          schedule_out <- schedule_out %>%
             janitor::clean_names()
         }
       } else {
-        cfb_data %>% dplyr::select(!where(is.list)) %>%
+        schedule_out <- cfb_data %>% dplyr::select(!where(is.list)) %>%
           janitor::clean_names()
       }
-      
+      schedule_out %>%
+        make_cfbfastR_data("Live Scoreboard Data from ESPN",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))

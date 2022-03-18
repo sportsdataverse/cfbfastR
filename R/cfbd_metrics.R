@@ -153,6 +153,9 @@ cfbd_metrics_ppa_games <- function(year,
       df <- df %>%
         dplyr::rename(game_id = .data$gameId) %>%
         as.data.frame()
+
+      df <- df %>%
+        make_cfbfastR_data("PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
@@ -294,6 +297,9 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
       colnames(df) <- gsub("averagePPA.", "avg_PPA_", colnames(df))
+
+      df <- df %>%
+        make_cfbfastR_data("Player PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA game-level players data available!"))
@@ -457,8 +463,10 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
       df <- df %>%
         dplyr::rename(athlete_id = .data$id) %>%
-        dplyr::arrange(-.data$countable_plays) %>%
-        as.data.frame()
+        dplyr::arrange(-.data$countable_plays)
+
+      df <- df %>%
+        make_cfbfastR_data("Player season PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA season-level players data available!"))
@@ -538,6 +546,9 @@ cfbd_metrics_ppa_predicted <- function(down,
         jsonlite::fromJSON()
       colnames(df) <- gsub("Line", "_line", colnames(df))
       colnames(df) <- gsub("Points", "_points", colnames(df))
+
+      df <- df %>%
+        make_cfbfastR_data("PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA predicted data available!"))
@@ -661,6 +672,9 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
       colnames(df) <- gsub("defense.", "def_", colnames(df))
       colnames(df) <- gsub("cumulative.", "cumulative_", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
+
+      df <- df %>%
+        make_cfbfastR_data("Team PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA teams data available!"))
@@ -768,8 +782,10 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
-        dplyr::select(cols) %>%
-        as.data.frame()
+        dplyr::select(cols)
+
+      df <- df %>%
+        make_cfbfastR_data("pre-game WP data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no pre-game win probability data available!"))
@@ -868,7 +884,9 @@ cfbd_metrics_wp <- function(game_id) {
         janitor::clean_names() %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(cols)
-      as.data.frame()
+
+      df <- df %>%
+        make_cfbfastR_data("WP data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics win probability data available!"))

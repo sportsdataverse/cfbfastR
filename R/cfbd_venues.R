@@ -54,5 +54,9 @@ cfbd_venues <- function() {
     dplyr::rename(venue_id = .data$id) %>%
     as.data.frame()
 
+
+  df <- df %>%
+    make_cfbfastR_data("venue data from CollegeFootballData.com",Sys.time())
+
   return(df)
 }

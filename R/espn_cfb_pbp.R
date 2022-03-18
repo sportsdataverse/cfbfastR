@@ -102,6 +102,9 @@ espn_cfb_pbp <- function(game_id){
       plays_df$away_team_alternate_color <- (competitors %>% dplyr::filter(.data$homeAway =='away'))[['team.alternateColor']]
       plays_df$away_team_rank <- (competitors %>% dplyr::filter(.data$homeAway =='away'))[['rank']]
 
+
+      plays_df <- plays_df %>%
+        make_cfbfastR_data("play by play data from ESPN",Sys.time())
       # #---- Pickcenter ------
       # pickcenter <- raw_df[['pickcenter']]
     },

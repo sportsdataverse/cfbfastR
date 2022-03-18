@@ -104,5 +104,8 @@ espn_ratings_fpi <- function(year = 2019) {
     dplyr::rename(team_id = .data$id) %>%
     as.data.frame()
 
+  df <- df %>%
+    make_cfbfastR_data("FPI rating data from ESPN",Sys.time())
+
   return(df)
 }

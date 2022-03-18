@@ -55,5 +55,8 @@ cfbd_conferences <- function() {
       long_name = .data$short_name
     )
 
+  df <- df %>%
+    make_cfbfastR_data("Conference data from CollegeFootballData.com",Sys.time())
+
   return(df)
 }

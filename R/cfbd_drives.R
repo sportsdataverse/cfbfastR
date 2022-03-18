@@ -180,8 +180,10 @@ cfbd_drives <- function(year,
         dplyr::mutate(
           time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
           time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-        ) %>%
-        as.data.frame()
+        )
+
+      df <- df %>%
+        make_cfbfastR_data("Drives data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))

@@ -94,6 +94,10 @@ cfbd_stats_categories <- function() {
         jsonlite::fromJSON()
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
         dplyr::rename(category = .data$V1)
+
+
+      df <- df %>%
+        make_cfbfastR_data("Stat categories for CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
@@ -295,8 +299,9 @@ cfbd_stats_game_advanced <- function(year,
       colnames(df) <- gsub(".db", "_db", colnames(df))
       colnames(df) <- gsub("Id", "_id", colnames(df))
 
+
       df <- df %>%
-        as.data.frame()
+        make_cfbfastR_data("Advanced game stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
@@ -506,8 +511,9 @@ cfbd_stats_season_advanced <- function(year,
       colnames(df) <- gsub(".db", "_db", colnames(df))
       colnames(df) <- gsub("Opportunies", "_opportunities", colnames(df))
 
+
       df <- df %>%
-        as.data.frame()
+        make_cfbfastR_data("Advanced season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
@@ -773,6 +779,10 @@ cfbd_stats_season_player <- function(year,
           dplyr::ungroup() %>%
           dplyr::mutate_all(function(x) replace(x, is.nan(x), NA))
       }
+
+
+      df <- df %>%
+        make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
@@ -1029,8 +1039,11 @@ cfbd_stats_season_team <- function(year,
           passes_intercepted = .data$passesIntercepted,
           passes_intercepted_yds = .data$interceptionYards,
           passes_intercepted_TDs = .data$interceptionTDs
-        ) %>%
-        as.data.frame()
+        )
+
+
+      df <- df %>%
+        make_cfbfastR_data("Season stats from CollegeFootballData.com",Sys.time())
 
       if(verbose){
         message(glue::glue("{Sys.time()}: Scraping season team stats..."))

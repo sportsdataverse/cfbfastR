@@ -136,8 +136,11 @@ cfbd_player_info <- function(search_term,
         dplyr::rename(
           athlete_id = .data$id,
           home_town = .data$hometown
-        ) %>%
-        as.data.frame()
+        )
+
+
+      df <- df %>%
+        make_cfbfastR_data("Player information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
@@ -253,8 +256,11 @@ cfbd_player_returning <- function(year = 2019,
           passing_usage = .data$passingUsage,
           receiving_usage = .data$receivingUsage,
           rushing_usage = .data$rushingUsage
-        ) %>%
-        as.data.frame()
+        )
+
+
+      df <- df %>%
+        make_cfbfastR_data("Returning production data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
@@ -401,8 +407,11 @@ cfbd_player_usage <- function(year = 2019,
           usg_3rd_down = .data$usage.thirdDown,
           usg_standard_downs = .data$usage.standardDowns,
           usg_passing_downs = .data$usage.passingDowns
-        ) %>%
-        as.data.frame()
+        )
+
+
+      df <- df %>%
+        make_cfbfastR_data("Player usage data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))

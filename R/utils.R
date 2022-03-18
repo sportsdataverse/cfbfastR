@@ -2,11 +2,11 @@
 #' @importFrom httr status_code
 #'
 check_status <- function(res) {
-  
+
     x = status_code(res)
-    
-    if(x != 200) stop("The API returned an error", call. = FALSE) 
-  
+
+    if(x != 200) stop("The API returned an error", call. = FALSE)
+
 }
 # read qs files form an url
 qs_from_url <- function(url) qs::qdeserialize(curl::curl_fetch_memory(url)$content)
@@ -100,4 +100,31 @@ write_pbp <- function(seasons, dbConnection, tablename){
     DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
     p("loading...")
   }, p)
+}
+
+# Functions for custom class
+# turn a data.frame into a tibble/cfbfastR_data
+make_cfbfastR_data <- function(df,type,timestamp){
+  out <- df %>%
+    tidyr::as_tibble()
+
+  class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+  attr(out,"cfbfastR_timestamp") <- timestamp
+  attr(out,"cfbfastR_type") <- type
+  return(out)
+}
+
+#' @export
+#' @noRd
+print.cfbfastR_data <- function(x,...) {
+  cli::cli_rule("{.emph cfbfastR {attr(x,'cfbfastR_type')}}")
+
+  if(!is.null(attr(x,'cfbfastR_timestamp'))) {
+    cli::cli_alert_info(
+      "Data loaded: {.field {format(attr(x,'cfbfastR_timestamp'), tz = Sys.timezone(), usetz = TRUE)}}"
+    )
+  }
+
+  NextMethod(print,x)
+  invisible(x)
 }

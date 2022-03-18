@@ -1,7 +1,7 @@
 #' **Load cfbfastR play-by-play**
 #' @name load_cfb_pbp
 NULL
-#' @title 
+#' @title
 #' **Load cleaned play-by-play from the data repo**
 #' @rdname load_cfb_pbp
 #' @description helper that loads multiple seasons from the data repo either into memory
@@ -13,19 +13,19 @@ NULL
 #' @export
 load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
   dots <- rlang::dots_list(...)
-  
+
   if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
-  
+
   if (isTRUE(qs) && !is_installed("qs")) {
     cli::cli_abort("Package {.val qs} required for argument {.val qs = TRUE}. Please install it.")
   }
-  
+
   most_recent <- most_recent_season()
-  
+
   if (!all(seasons %in% 2014:most_recent)) {
     cli::cli_abort("Please pass valid seasons between 2014 and {most_recent}")
   }
-  
+
   if (length(seasons) > 1 && is_sequential() && isFALSE(in_db)) {
     cli::cli_alert_info(c(
       "It is recommended to use parallel processing when trying to load multiple seasons.",
@@ -33,28 +33,30 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
       "Will go on sequentially..."
     ))
   }
-  
-  
+
+
   p <- progressr::progressor(along = seasons)
-  
+
   if (isFALSE(in_db)) {
     out <- furrr::future_map_dfr(seasons, cfb_single_season, p = p, qs = qs)
   }
-  
+
   if (isTRUE(in_db)) {
     purrr::walk(seasons, cfb_single_season, p, ..., qs = qs)
     out <- NULL
   }
-  
+  # change this later when data in repo has attributes
+  out <- out %>%
+    make_cfbfastR_data("play-by-play data from cfbfastR data repo",Sys.time())
   return(out)
 }
 
 cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
   if (isTRUE(qs)) {
-    
+
     .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs")
     pbp <- qs_from_url(.url)
-    
+
   }
   if (isFALSE(qs)) {
     .url <- glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
@@ -83,7 +85,7 @@ load_games <- function(){
 
 #' @name update_cfb_db
 #' @aliases update_cfb_db cfb_db cfb database cfb_pbp_db
-#' @title 
+#' @title
 #' **Update or create a cfbfastR play-by-play database**
 #' @description `update_cfb_db()` updates or creates a database with `cfbfastR`
 #' play by play data of all completed games since 2014.
@@ -129,39 +131,39 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
                           tblname = "cfbfastR_pbp",
                           force_rebuild = FALSE,
                           db_connection = NULL) {
-  
+
   rule_header("Update cfbfastR Play-by-Play Database")
-  
+
   if (!is_installed("DBI") | !is_installed("purrr") ) {
     cli::cli_abort("{my_time()} | Packages {.val DBI}, {.val RSQLite} and {.val purrr} required for database communication. Please install them.")
   }
-  
+
   if (any(force_rebuild == "NEW")) {
     cli::cli_abort("{my_time()} | The argument {.val 'force_rebuild = NEW'} is only for internal usage!")
   }
-  
+
   if (!(is.logical(force_rebuild) | is.numeric(force_rebuild))) {
     cli::cli_abort("{my_time()} | The argument {.val 'force_rebuild'} has to be either logical or numeric!")
   }
-  
+
   if (!dir.exists(dbdir) & is.null(db_connection)) {
     cli::cli_alert_danger("{my_time()} | Directory {.file {dbdir}} doesn't exist yet. Try creating...")
     dir.create(dbdir)
   }
-  
+
   if (is.null(db_connection)) {
     connection <- DBI::dbConnect(RSQLite::SQLite(), glue::glue("{dbdir}/{dbname}"))
   } else {
     connection <- db_connection
   }
-  
+
   # create db if it doesn't exist or user forces rebuild
   if (!DBI::dbExistsTable(connection, tblname)) {
     build_cfb_db(tblname, connection, rebuild = "NEW")
   } else if (DBI::dbExistsTable(connection, tblname) & all(force_rebuild != FALSE)) {
     build_cfb_db(tblname, connection, rebuild = force_rebuild)
   }
-  
+
   # get completed games using Lee's file (thanks Lee!)
   user_message("Checking for missing completed games...", "todo")
   completed_games <- load_games() %>%
@@ -169,10 +171,10 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
     dplyr::filter(.data$season >= 2014) %>%
     dplyr::arrange(.data$week) %>%
     dplyr::select("game_id", "season")
-  
+
   # function below
   missing <- get_missing_cfb_games(completed_games, connection, tblname)
-  
+
   # rebuild db always because below code block is commented out
   if(length(missing) > 0) {
     seasons_to_rebuild <- completed_games %>%
@@ -185,11 +187,11 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
       cli::cli_alert_info("{my_time()} | There {cli::qty(length(missing))}{?is/are} still {length(missing)} missing game{?s} because the data repo isn't ready. Please try again later.")
     }
   }
-  
+
   # # if there's missing games, scrape and write to db
   # if (length(missing) > 0) {
   #   new_pbp <- build_cfbfastR_pbp(missing, rules = FALSE)
-  #   
+  #
   #   if (nrow(new_pbp) == 0) {
   #     user_message("Raw data of new games are not yet ready. Please try again in about 10 minutes.", "oops")
   #   } else {
@@ -197,7 +199,7 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
   #     DBI::dbWriteTable(connection, tblname, new_pbp, append = TRUE)
   #   }
   # }
-  
+
   message_completed("Database update completed", in_builder = TRUE)
   cli::cli_alert_info("{my_time()} | Path to your db: {.file {DBI::dbGetInfo(connection)$dbname}}")
   if (is.null(db_connection)) DBI::dbDisconnect(connection)
@@ -205,13 +207,13 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
 }
 # this is a helper function to build cfbfastR database from Scratch
 build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_message = TRUE) {
-  
+
   valid_seasons <- load_games() %>%
     dplyr::filter(.data$season >= 2014) %>%
     dplyr::group_by(.data$season) %>%
     dplyr::summarise() %>%
     dplyr::ungroup()
-  
+
   if (all(rebuild == TRUE)) {
     cli::cli_ul("{my_time()} | Purging the complete data table {.val {tblname}} in your connected database...")
     DBI::dbRemoveTable(db_conn, tblname)
@@ -230,7 +232,7 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
     seasons <- NULL
     cli::cli_alert_danger("{my_time()} | At least one invalid value passed to argument {.val force_rebuild}. Please try again with valid input.")
   }
-  
+
   if (!is.null(seasons)) {
     # this function lives in R/utils.R
     load_cfb_pbp(seasons, dbConnection = db_conn, tablename = tblname, qs = FALSE)
@@ -245,9 +247,9 @@ get_missing_cfb_games <- function(completed_games, dbConnection, tablename) {
     dplyr::distinct() %>%
     dplyr::collect() %>%
     dplyr::pull("game_id")
-  
+
   need_scrape <- completed_games$game_id[!completed_games$game_id %in% db_ids]
-  
+
   cli::cli_alert_info("{my_time()} | You have {length(db_ids)} games and are missing {length(need_scrape)}.")
   return(need_scrape)
 }

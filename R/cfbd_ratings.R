@@ -139,8 +139,11 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
         dplyr::rename(
           season_type = .data$seasonType,
           first_place_votes = .data$firstPlaceVotes
-        ) %>%
-        as.data.frame()
+        )
+
+
+      polls <- polls %>%
+        make_cfbfastR_data("Rankings data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
@@ -275,8 +278,11 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
           defense_havoc_front_seven = .data$defense.havoc.frontSeven,
           defense_havoc_db = .data$defense.havoc.db,
           special_teams_rating = .data$specialTeams.rating
-        ) %>%
-        as.data.frame()
+        )
+
+
+      df <- df %>%
+        make_cfbfastR_data("SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e){
       message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
@@ -403,8 +409,11 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
           defense_havoc_front_seven = .data$defense.havoc.frontSeven,
           defense_havoc_db = .data$defense.havoc.db,
           special_teams_rating = .data$specialTeams.rating
-        ) %>%
-        as.data.frame()
+        )
+
+
+      df <- df %>%
+        make_cfbfastR_data("Conference SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
@@ -505,6 +514,10 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
           rating = as.numeric(.data$rating),
           ranking = as.integer(.data$ranking)
         )
+
+
+      df <- df %>%
+        make_cfbfastR_data("SRS data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
@@ -605,8 +618,11 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        as.data.frame()
+        jsonlite::fromJSON()
+
+
+      df <- df %>%
+        make_cfbfastR_data("ELO ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
