@@ -412,7 +412,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        .$games
+        .data$games
       if (nrow(df) == 0) {
           warning("The data pulled from the API was empty.")
         return(NULL)

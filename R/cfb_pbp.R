@@ -46,8 +46,10 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
     out <- NULL
   }
   # change this later when data in repo has attributes
-  out <- out %>%
-    make_cfbfastR_data("play-by-play data from cfbfastR data repo",Sys.time())
+  if(is.null(attr(out,"cfbfastR_timestamp"))) {
+    out <- out %>%
+      make_cfbfastR_data("play-by-play data from cfbfastR data repo",Sys.time())
+  }
   return(out)
 }
 

@@ -117,7 +117,7 @@ make_cfbfastR_data <- function(df,type,timestamp){
 #' @export
 #' @noRd
 print.cfbfastR_data <- function(x,...) {
-  cli::cli_rule("{.emph cfbfastR {attr(x,'cfbfastR_type')}}")
+  cli::cli_rule(left = "{attr(x,'cfbfastR_type')}",right = "{.emph cfbfastR {utils::packageVersion('cfbfastR')}}")
 
   if(!is.null(attr(x,'cfbfastR_timestamp'))) {
     cli::cli_alert_info(

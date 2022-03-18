@@ -56,7 +56,7 @@ cfbd_venues <- function() {
 
 
   df <- df %>%
-    make_cfbfastR_data("venue data from CollegeFootballData.com",Sys.time())
+    make_cfbfastR_data("Venue data from CollegeFootballData.com",Sys.time())
 
   return(df)
 }
