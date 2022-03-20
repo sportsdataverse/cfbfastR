@@ -65,9 +65,7 @@ We'll also use the ```cfbd_team_info()``` function to pull the color and logo in
 ```{r logos, message=FALSE, warning=FALSE}
 team_info <- cfbfastR::cfbd_team_info()
 team_logos <- team_info %>%
-  select(school, color, alt_color, logos, alt_name2) %>%
-  mutate(logo = map(logos, magrittr::extract2, 1),
-         logo = as.character(logo)) %>% select(-logos)
+  select(school, color, alt_color, logo, alt_name2)
 game <- game %>% 
   left_join(team_logos, by = c("away_team" = "school"),) %>% 
   rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2) 
