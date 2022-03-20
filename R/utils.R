@@ -19,6 +19,53 @@ read_raw_rds <- function(raw) {
   return(ret)
 }
 
+
+# Load .rds file from a remote connection, taken from nflreadr
+rds_from_url <- function(url) {
+#  cache_message()
+  con <- url(url)
+  on.exit(close(con))
+  load <- try(readRDS(con), silent = TRUE)
+
+  if (inherits(load, "try-error")) {
+    warning(paste0("Failed to readRDS from <", url, ">"), call. = FALSE)
+    return(tibble::tibble())
+  }
+
+#  data.table::setDT(load)
+  tibble::as_tibble(load)
+}
+
+
+# Progressively
+#
+# This function helps add progress-reporting to any function - given function `f()` and progressor `p()`, it will return a new function that calls `f()` and then (on-exiting) will call `p()` after every iteration.
+#
+# This is inspired by purrr's `safely`, `quietly`, and `possibly` function decorators.
+# Taken from nflreadr
+progressively <- function(f, p = NULL){
+  if(!is.null(p) && !inherits(p, "progressor")) stop("`p` must be a progressor function!")
+  if(is.null(p)) p <- function(...) NULL
+  force(f)
+
+  function(...){
+    on.exit(p("loading..."))
+    f(...)
+  }
+
+}
+
+# rbindlist but maintain attributes of last file, taken from nflreadr
+rbindlist_with_attrs <- function(dflist){
+
+  cfbfastR_timestamp <- attr(dflist[[length(dflist)]], "cfbfastR_timestamp")
+  cfbfastR_type <- attr(dflist[[length(dflist)]], "cfbfastR_type")
+  out <- data.table::rbindlist(dflist, use.names = TRUE, fill = TRUE)
+  attr(out,"cfbfastR_timestamp") <- cfbfastR_timestamp
+  attr(out,"cfbfastR_type") <- cfbfastR_type
+  out
+}
+
 #' @import utils
 utils::globalVariables(c("where"))
 
