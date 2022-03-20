@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -405,20 +405,18 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">cfbd_metrics_ppa_teams</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   season conference team            off_overall            off_passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   2019     Big 12  TCU 0.14284900710267590785 0.05969839430565045558</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              off_rushing         off_first_down        off_second_down</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.24555316538556237570 0.02767274681667826127 0.00773853003126703071</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           off_third_down   off_cumulative_total off_cumulative_passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.58223198811068089534 132.135331569975214762  25.192722396984492254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_cumulative_rushing            def_overall            def_passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 117.128859888913253208 0.10199678395123563165 0.19418874863784592826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              def_rushing          def_first_down        def_second_down</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.02264010122843028193 -0.07272723168308124368 0.19314079870883884681</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           def_third_down   def_cumulative_total def_cumulative_passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.39629731519334590343 79.6594882659150283173 73.5975357337436068123</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_cumulative_rushing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   8.761719175402519105</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team PPA data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:17 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   season conference team  off_overall     off_passing off_rushing off_first_down</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   <span style="text-decoration: underline;">2</span>019 Big 12     TCU   0.142849007102… 0.05969839… 0.24555316… 0.02767274681…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 14 more variables: off_second_down &lt;chr&gt;, off_third_down &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_cumulative_total &lt;chr&gt;, off_cumulative_passing &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_cumulative_rushing &lt;chr&gt;, def_overall &lt;chr&gt;, def_passing &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   def_rushing &lt;chr&gt;, def_first_down &lt;chr&gt;, def_second_down &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   def_third_down &lt;chr&gt;, def_cumulative_total &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   def_cumulative_passing &lt;chr&gt;, def_cumulative_rushing &lt;chr&gt;</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>

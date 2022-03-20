@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -526,736 +526,76 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">   <span class="fu">cfbd_stats_game_advanced</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">12</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     game_id week      team opponent off_plays off_drives   off_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 401012347   12 Texas A&amp;M      UAB        55         10 0.4231882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_total_ppa off_success_rate off_explosiveness off_power_success</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      23.27535        0.5454545          1.145034         0.6666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_stuff_rate off_line_yds off_line_yds_total off_second_lvl_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        0.15625      3.95625                127             1.8125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_second_lvl_yds_total off_open_field_yds off_open_field_yds_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       58                  3                       96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_standard_downs_ppa off_standard_downs_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.3384946                           0.575</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_standard_downs_explosiveness off_passing_downs_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         0.972693             0.6490379</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_passing_downs_success_rate off_passing_downs_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      0.4666667                        1.711296</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_rushing_plays_ppa off_rushing_plays_total_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0.4657159                    14.90291</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_rushing_plays_success_rate off_rushing_plays_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.53125                        1.078526</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_passing_plays_ppa off_passing_plays_total_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0.4461266                    9.368658</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off_passing_plays_success_rate off_passing_plays_explosiveness def_plays</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      0.5238095                        1.546572        76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_drives   def_ppa def_total_ppa def_success_rate def_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         10 0.2456718      18.67106        0.4868421          1.267811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_power_success def_stuff_rate def_line_yds def_line_yds_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         0.8333333      0.2285714     2.445714                 86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_second_lvl_yds def_second_lvl_yds_total def_open_field_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          0.8857143                       31          0.3714286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_open_field_yds_total def_standard_downs_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       13            -0.03328632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_standard_downs_success_rate def_standard_downs_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.4901961                        0.7023339</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_passing_downs_ppa def_passing_downs_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0.8147464                           0.48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_passing_downs_explosiveness def_rushing_plays_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        2.445888           -0.06233556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_rushing_plays_total_ppa def_rushing_plays_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   -2.181745                      0.4285714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_rushing_plays_explosiveness def_passing_plays_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.637701              0.508605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_passing_plays_total_ppa def_passing_plays_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     20.8528                      0.5365854</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   def_passing_plays_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        1.697431</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced game stats from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:36 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     game_id  week team      opponent off_plays off_drives off_ppa off_total_ppa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 401<span style="text-decoration: underline;">012</span>347    12 Texas A&amp;M UAB             55         10   0.423          23.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 52 more variables: off_success_rate &lt;dbl&gt;, off_explosiveness &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_power_success &lt;dbl&gt;, off_stuff_rate &lt;dbl&gt;, off_line_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_line_yds_total &lt;int&gt;, off_second_lvl_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_second_lvl_yds_total &lt;int&gt;, off_open_field_yds &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_open_field_yds_total &lt;int&gt;, off_standard_downs_ppa &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_standard_downs_success_rate &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_standard_downs_explosiveness &lt;dbl&gt;, off_passing_downs_ppa &lt;dbl&gt;, …</span></span>
 <span class="r-in"></span>
 <span class="r-in">   <span class="fu">cfbd_stats_game_advanced</span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      game_id week team           opponent off_plays off_drives   off_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  401110725    1  LSU   Georgia Southern        73         13 0.3769046</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  401110778    2  LSU              Texas        70         12 0.4844575</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  401110790    3  LSU Northwestern State        69         12 0.5982315</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  401110805    4  LSU         Vanderbilt        74         17 0.2859103</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  401110813    6  LSU         Utah State        89         13 0.3794281</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  401110819    7  LSU            Florida        48         11 0.7356236</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  401110828    8  LSU  Mississippi State        63         13 0.2153307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  401110833    9  LSU             Auburn        88         15 0.1185946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  401110842   11  LSU            Alabama        82         14 0.2846862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 401110850   12  LSU           Ole Miss        83         14 0.4926894</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 401110859   13  LSU           Arkansas        47         12 0.8607627</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 401110869   14  LSU          Texas A&amp;M        77         13 0.4224209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 401132981   15  LSU            Georgia        77         11 0.3230134</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 401135278    1  LSU           Oklahoma        73         12 0.6323174</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 401135295    1  LSU            Clemson        80         15 0.4227179</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_total_ppa off_success_rate off_explosiveness off_power_success</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       27.51404        0.5616438         1.1061234         0.7777778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       33.91203        0.5714286         1.2388253         0.7500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       41.27797        0.7101449         1.0801814         0.9230769</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       21.15736        0.5135135         1.4127542         0.8333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       33.76910        0.5617978         1.1256299         0.6250000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       35.30993        0.5833333         1.6196943         1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       13.56583        0.5079365         0.9742060         0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       10.43632        0.4886364         0.9655609         0.4545455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       23.34427        0.5609756         1.1701728         0.7142857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      40.89322        0.6024096         1.2696008         0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      40.45585        0.5957447         1.8036682         1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      32.52641        0.5324675         1.3828746         0.8333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13      24.87204        0.5064935         1.1656588         0.8571429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      46.15917        0.6027397         1.4265609         0.7142857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      33.81743        0.5000000         1.4247809         0.6666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_stuff_rate off_line_yds off_line_yds_total off_second_lvl_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       0.2187500     2.650000                 85          0.8437500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       0.1600000     3.268000                 82          1.2800000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       0.1764706     2.358824                 80          0.9705882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       0.1470588     3.335294                113          1.2352941</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       0.1224490     3.873469                190          1.3877551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       0.1666667     3.454167                 83          1.5416667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       0.3181818     2.304545                 51          1.3181818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       0.2380952     3.126190                131          1.1190476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       0.1666667     3.619444                130          1.5277778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      0.1351351     3.805405                141          1.7297297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      0.1250000     3.737500                 60          2.1250000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      0.2571429     3.334286                117          1.3714286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13      0.2058824     2.908824                 99          0.9705882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      0.1666667     2.876667                 86          1.2333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      0.1851852     3.662963                 99          1.7037037</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_second_lvl_yds_total off_open_field_yds off_open_field_yds_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        27         0.40625000                       13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        32         0.88000000                       22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        33         0.08823529                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        42         1.82352941                       62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        68         0.40816327                       20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        37         4.62500000                      111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        29         1.18181818                       26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        47         0.88095238                       37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        55         1.02777778                       37</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       64         2.56756757                       95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       34        11.12500000                      178</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       48         0.62857143                       22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       33         0.67647059                       23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       37         0.96666667                       29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                       46         2.25925926                       61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_standard_downs_ppa off_standard_downs_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.33307391                       0.5961538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.30812966                       0.5882353</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              0.59637830                       0.7457627</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.50408082                       0.5740741</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              0.27353141                       0.6000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              0.68334653                       0.6111111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              0.22783691                       0.5869565</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.03507692                       0.5294118</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              0.41921900                       0.6190476</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10             0.41892574                       0.5967742</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11             0.89009486                       0.6285714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12             0.28485811                       0.5600000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13             0.21982939                       0.5263158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             0.44217178                       0.6000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             0.35308595                       0.5344828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_standard_downs_explosiveness off_passing_downs_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         1.0339674             0.4854377</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                         0.9598372             0.9577586</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                         1.0313088             0.6091651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                         1.4086677            -0.3031500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                         0.9431544             0.7695737</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                         1.4879770             0.8924549</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                         0.9527880             0.1814902</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                         0.8438489             0.4025546</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                         1.1196507            -0.1613961</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                        1.1531402             0.7104677</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                        1.8288721             0.7752107</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                        1.0098488             0.6771669</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                        0.9375434             0.6170880</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                        1.1558141             1.2133180</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                        1.2775524             0.6062930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_downs_success_rate off_passing_downs_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.4761905                        1.329807</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.5263158                        2.075790</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.5000000                        1.510260</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       0.3500000                        1.430851</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.4210526                        2.083626</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.5000000                        2.102658</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.2941176                        1.089863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       0.3500000                        1.591509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.3684211                        1.451653</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      0.6190476                        1.601065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.5000000                        1.711254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      0.4814815                        2.186315</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      0.4500000                        1.926044</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      0.6111111                        2.238801</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                      0.4090909                        1.931902</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_rushing_plays_ppa off_rushing_plays_total_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0.05760766                   1.8434450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             0.16804403                   4.2011007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3             0.28528855                   9.6998106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             0.11054558                   3.7585496</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             0.11719481                   5.7425458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             0.45329120                  10.8789887</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            -0.02257815                  -0.4967193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             0.12269555                   5.1532133</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             0.29319352                  10.5549668</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10            0.43316598                  16.0271413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11            1.07826095                  17.2521752</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12            0.11217711                   3.9261987</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13            0.05102630                   1.7348941</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            0.05569756                   1.6709267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15            0.37757801                  10.1946064</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_rushing_plays_success_rate off_rushing_plays_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.5000000                       0.6833959</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.4800000                       0.7583078</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.6470588                       0.7711903</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       0.4705882                       1.0397576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.5918367                       0.5872410</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.4166667                       1.7281415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.4090909                       0.9062297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       0.4523810                       0.9326134</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.6111111                       0.8178430</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      0.5945946                       1.0443612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.5625000                       2.3905641</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      0.5142857                       0.8055851</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      0.4411765                       0.7811010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      0.4666667                       0.8417708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                      0.5925926                       0.9338172</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_plays_ppa off_passing_plays_total_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.6575442                   25.644224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.7116414                   29.888939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              0.9556012                   32.490439</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.4663893                   18.189184</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              0.7006638                   28.026554</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              1.0179561                   24.430946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              0.4443153                   16.883982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.1440473                    6.482129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              0.4221756                   18.153553</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10             0.5647154                   24.282762</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11             0.7485056                   23.203673</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12             0.6299224                   25.196897</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13             0.5729035                   22.916141</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             1.0346103                   44.488245</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             0.4457137                   23.622824</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_plays_success_rate off_passing_plays_explosiveness def_plays</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.5897436                        1.495233        50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.5952381                        1.625253        85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.7647059                        1.418268        64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       0.5384615                        1.801853        75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.5250000                        1.869119        55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.7500000                        1.559446        84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.5263158                        1.291998        65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       0.5111111                        1.086891        71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.5116279                        1.561441        66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      0.5813953                        1.596831        71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.6129032                        1.525665        73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      0.5250000                        1.847334        59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      0.5250000                        1.596342        69</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      0.6976744                        1.699463        62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                      0.4528302                        1.752090        62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_drives       def_ppa def_total_ppa def_success_rate def_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          13 -0.0999201229   -4.99600615        0.2600000         0.9740276</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          12  0.2543624745   21.62081033        0.4705882         1.3908560</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          13  0.0174565018    1.11721611        0.2968750         1.3076155</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          16  0.0267124996    2.00343747        0.3066667         1.7074809</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          13 -0.2300473594  -12.65260477        0.2545455         1.1655059</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          10  0.2091466323   17.56831712        0.4523810         1.1555251</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7          13  0.1147563297    7.45916143        0.4000000         1.1264767</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          15  0.0005697175    0.04044994        0.2957746         1.2026720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9          13  0.4502182108   29.71440191        0.4545455         1.7748032</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         14  0.3904237675   27.72008750        0.4929577         1.4449730</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11         14 -0.0238991246   -1.74463609        0.3150685         1.3005436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         13 -0.1983538109  -11.70287484        0.2542373         1.4624075</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13         11 -0.0355421659   -2.45240945        0.3333333         1.4072167</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         12  0.2661925116   16.50393572        0.3709677         1.4005092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15         15  0.1373704940    8.51697063        0.4354839         1.2453571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_power_success def_stuff_rate def_line_yds def_line_yds_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          0.0000000     0.33333333     2.086111                 75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          0.5000000     0.12903226     3.519355                109</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          1.0000000     0.22727273     2.100000                 46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          0.0000000     0.25806452     2.461290                 76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          0.3333333     0.45000000     1.045000                 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          0.2857143     0.15789474     3.223684                123</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7          0.3333333     0.22857143     2.574286                 90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          0.6666667     0.16666667     1.693333                 51</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9          0.5555556     0.28000000     3.068000                 77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         0.7500000     0.13636364     3.800000                167</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11         0.7500000     0.22500000     2.165000                 87</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         1.0000000     0.05263158     3.621053                 69</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13         0.5000000     0.22727273     2.322727                 51</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         0.6666667     0.11538462     3.342308                 87</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15         1.0000000     0.24000000     3.352000                 84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_second_lvl_yds def_second_lvl_yds_total def_open_field_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           0.6111111                       22          0.5277778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           0.9354839                       29          0.5161290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           0.1818182                        4                 NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           0.7096774                       22          2.3870968</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           0.2000000                        4                 NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           1.0789474                       41          0.3157895</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           0.6285714                       22          0.3428571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           0.6000000                       18          3.1333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           1.5600000                       39          1.9200000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          1.7272727                       76          4.1590909</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          0.9000000                       36          0.6500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          1.6842105                       32          1.9473684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          0.8636364                       19          0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          0.9615385                       25          0.1538462</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          1.5200000                       38          3.0400000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_open_field_yds_total def_standard_downs_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        19           -0.150251189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        16           -0.057499377</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        NA            0.056062830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        74            0.137790520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        NA           -0.281761078</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        12            0.014853838</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        12            0.136841989</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        94           -0.004501426</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        48            0.439037872</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      183            0.669424008</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       26           -0.089542150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       37           -0.026270234</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       11           -0.066633361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                        4            0.079215439</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                       76            0.070100541</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_standard_downs_success_rate def_standard_downs_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.3571429                        0.7996024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        0.4590164                        1.0301043</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        0.4054054                        1.0434068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        0.3636364                        1.5651992</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        0.2500000                        0.8915013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        0.4754098                        0.8533429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        0.4772727                        1.0075871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        0.3500000                        1.1616701</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        0.4897959                        1.7069754</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       0.6226415                        1.4288453</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       0.3421053                        1.2258815</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       0.3636364                        1.3133930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       0.4054054                        1.1649970</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       0.4473684                        0.9153232</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                       0.5250000                        0.8926964</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_downs_ppa def_passing_downs_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          -0.0358624023                      0.1363636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           1.0470113482                      0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          -0.0354484670                      0.1481481</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          -0.1309466258                      0.2258065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          -0.1320634720                      0.2631579</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           0.7244449126                      0.3913043</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           0.0684816156                      0.2380952</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           0.0071131291                      0.2258065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           0.4824438920                      0.3529412</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         -0.4310769413                      0.1111111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          0.0473704459                      0.2857143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         -0.4167675821                      0.1153846</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          0.0004070281                      0.2500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          0.5622395427                      0.2500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          0.2596794999                      0.2727273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_downs_explosiveness def_rushing_plays_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         1.555445           -0.18810782</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                         2.232610            0.07237071</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                         2.298398           -0.19521474</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                         2.032696           -0.01168865</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                         1.658714           -0.48757050</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                         2.129223           -0.08333241</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                         1.625813           -0.07315572</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                         1.284676            0.02915657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                         2.046114            0.20976320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                        1.711080            0.36727375</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                        1.397604           -0.13942793</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                        2.058466            0.50458623</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                        1.861379           -0.17102410</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                        2.775203            0.36785579</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                        2.479669            0.46625803</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_rushing_plays_total_ppa def_rushing_plays_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   -6.7718815                      0.2500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    2.2434920                      0.5161290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   -4.2947242                      0.2727273</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                   -0.3623481                      0.3225806</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   -9.7514099                      0.1000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   -3.1666315                      0.3684211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                   -2.5604501                      0.3428571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                    0.8746970                      0.3000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                    5.2440800                      0.5200000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                  16.1600451                      0.5681818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                  -5.5771173                      0.2500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                   9.5871384                      0.5263158</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                  -3.7625302                      0.2272727</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                   9.5642506                      0.4615385</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                  11.6564508                      0.6800000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_rushing_plays_explosiveness def_passing_plays_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.75219048           0.059209272</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.59821958           0.348464449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.54934842           0.128855723</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       1.28656299           0.185561607</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.06077941          -0.119884532</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.43059671           0.450759753</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.85213512           0.333987052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       1.24118346           0.006680249</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.96879665           0.596837119</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      1.20365907           0.428149718</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.82147939           0.103788980</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      1.53743068          -0.498376318</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      1.32396339           0.025080402</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      1.01676743           0.192769032</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                      1.01803183          -0.084850816</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_plays_total_ppa def_passing_plays_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    0.7697205                      0.2307692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   18.4686158                      0.4339623</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    5.4119404                      0.3095238</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    7.7935875                      0.2857143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   -3.9561896                      0.3030303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   20.7349487                      0.5217391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                   10.0196116                      0.4666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                    0.2605297                      0.2564103</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                   24.4703219                      0.4146341</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                  11.5600424                      0.3703704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                   3.2174584                      0.3548387</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                 -19.4366764                      0.1282051</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                   1.1536985                      0.3695652</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                   6.9396852                      0.3055556</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                  -3.1394802                      0.2702703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_plays_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         1.628830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                         1.963218</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                         1.657585</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                         2.096500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                         1.514053</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                         1.578400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                         1.361627</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                         1.518024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                         2.391161</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                        2.048258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                        1.916608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                        1.312361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                        1.505279</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                        1.819137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                        1.631810</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced game stats from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:36 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      game_id  week team  opponent     off_plays off_drives off_ppa off_total_ppa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 401<span style="text-decoration: underline;">110</span>725     1 LSU   Georgia Sou…        73         13   0.377          27.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401<span style="text-decoration: underline;">110</span>778     2 LSU   Texas               70         12   0.484          33.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401<span style="text-decoration: underline;">110</span>790     3 LSU   Northwester…        69         12   0.598          41.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401<span style="text-decoration: underline;">110</span>805     4 LSU   Vanderbilt          74         17   0.286          21.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401<span style="text-decoration: underline;">110</span>813     6 LSU   Utah State          89         13   0.379          33.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401<span style="text-decoration: underline;">110</span>819     7 LSU   Florida             48         11   0.736          35.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401<span style="text-decoration: underline;">110</span>828     8 LSU   Mississippi…        63         13   0.215          13.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401<span style="text-decoration: underline;">110</span>833     9 LSU   Auburn              88         15   0.119          10.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401<span style="text-decoration: underline;">110</span>842    11 LSU   Alabama             82         14   0.285          23.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401<span style="text-decoration: underline;">110</span>850    12 LSU   Ole Miss            83         14   0.493          40.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 401<span style="text-decoration: underline;">110</span>859    13 LSU   Arkansas            47         12   0.861          40.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 401<span style="text-decoration: underline;">110</span>869    14 LSU   Texas A&amp;M           77         13   0.422          32.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 401<span style="text-decoration: underline;">132</span>981    15 LSU   Georgia             77         11   0.323          24.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 401<span style="text-decoration: underline;">135</span>278     1 LSU   Oklahoma            73         12   0.632          46.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 401<span style="text-decoration: underline;">135</span>295     1 LSU   Clemson             80         15   0.423          33.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 52 more variables: off_success_rate &lt;dbl&gt;, off_explosiveness &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_power_success &lt;dbl&gt;, off_stuff_rate &lt;dbl&gt;, off_line_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_line_yds_total &lt;int&gt;, off_second_lvl_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_second_lvl_yds_total &lt;int&gt;, off_open_field_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_open_field_yds_total &lt;int&gt;, off_standard_downs_ppa &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_standard_downs_success_rate &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_standard_downs_explosiveness &lt;dbl&gt;, off_passing_downs_ppa &lt;dbl&gt;, …</span></span>
 <span class="r-in"></span>
 <span class="r-in">   <span class="fu">cfbd_stats_game_advanced</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      game_id week          team        opponent off_plays off_drives</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  332450221    1 Florida State      Pittsburgh        58         10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  332570052    3 Florida State          Nevada        56         12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  332640052    4 Florida State Bethune-Cookman        55         11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  332710103    5 Florida State  Boston College        56         12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  332780052    6 Florida State        Maryland        72         12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  332920228    8 Florida State         Clemson        68         12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  332990052    9 Florida State        NC State        58         14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  333060052   10 Florida State           Miami        69         11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  333130154   11 Florida State     Wake Forest        64         14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 333200052   12 Florida State        Syracuse        36         10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 333270052   13 Florida State           Idaho        68         14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 333340057   14 Florida State         Florida        60         11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 333410052   15 Florida State            Duke        69         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 340060002    1 Florida State          Auburn        61         12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         off_ppa off_total_ppa off_success_rate off_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.445776066   25.85501182        0.6206897         0.9235491</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.436669576   24.45349625        0.6071429         0.9304103</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.333541040   18.34475718        0.5818182         0.9892065</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.222772292   12.47524837        0.5714286         0.8638144</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0.276488692   19.90718580        0.4861111         1.2344435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0.239534936   16.28837562        0.5147059         0.8426512</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0.352914509   20.46904150        0.5517241         1.1142064</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   0.306822672   21.17076435        0.5072464         1.1205423</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  -0.000427409   -0.02735417        0.4375000         0.7944384</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  0.449623500   16.18644599        0.6111111         1.1433200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11  0.211722168   14.39710743        0.4852941         1.1984120</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  0.212106538   12.72639228        0.4166667         1.2466134</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13  0.230596785   15.91117819        0.5217391         0.9178257</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  0.220226134   13.43379418        0.4426230         0.9249988</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_power_success off_stuff_rate off_line_yds off_line_yds_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          0.7500000     0.19354839     3.641935                113</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          1.0000000     0.23529412     3.632353                124</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          1.0000000     0.09677419     4.254839                132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          0.6666667     0.19354839     3.874194                120</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          1.0000000     0.26315789     2.205263                 84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          0.5714286     0.30303030     2.687879                 89</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7          1.0000000     0.11111111     4.092593                111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          1.0000000     0.17948718     3.020513                118</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9          0.8571429     0.25925926     2.585185                 70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         1.0000000     0.08333333     4.466667                 54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11         0.6666667     0.21212121     2.566667                 85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         1.0000000     0.10344828     3.286207                 95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13         0.8333333     0.07692308     3.923077                153</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         1.0000000     0.07692308     4.134615                108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_second_lvl_yds off_second_lvl_yds_total off_open_field_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           1.2258065                       38          0.6451613</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           1.9705882                       67          4.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           2.0645161                       64          2.8387097</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           1.5806452                       49          1.0322581</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           1.2105263                       46          0.6578947</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           1.3030303                       43          0.6363636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           1.7407407                       47          1.5185185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           0.8461538                       33          0.7692308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           1.2592593                       34          0.6296296</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          2.4166667                       29          4.6666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          1.5151515                       50          4.3030303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          1.0689655                       31          0.6206897</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          1.4358974                       56          0.5384615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          1.2692308                       33          1.4230769</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_open_field_yds_total off_standard_downs_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        20             0.41684777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       136             0.50681686</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        88             0.05809374</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        32             0.13206200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        25             0.06594239</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        21            -0.13572090</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        41             0.16277093</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        30             0.09849435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        17            -0.03986080</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       56             0.33945881</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      142             0.07134760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       18            -0.11836163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       21             0.01072227</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       37             0.24180670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_standard_downs_success_rate off_standard_downs_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.6666667                        0.8630997</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        0.6585366                        1.0062175</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        0.5897436                        0.5099625</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        0.6250000                        0.6669857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        0.4693878                        0.7978832</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        0.4468085                        0.3286605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        0.5581395                        0.8398274</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        0.5000000                        0.8293216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        0.4680851                        0.6897047</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       0.6538462                        0.8676706</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       0.4782609                        0.9306069</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       0.3428571                        0.8874443</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       0.5000000                        0.6699503</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       0.5000000                        0.8356380</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_downs_ppa off_passing_downs_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.5459125                      0.4615385</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.2449337                      0.4666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              1.0049438                      0.5625000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.4495480                      0.4375000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              0.7250439                      0.5217391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              1.0793932                      0.6666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              0.8979928                      0.5333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.7234793                      0.5217391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              0.1085943                      0.3529412</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10             0.7360517                      0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11             0.5052326                      0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12             0.6747620                      0.5200000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13             0.7331671                      0.5714286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             0.1791203                      0.3333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_downs_explosiveness off_rushing_plays_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        1.2257959           0.035351656</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        0.6380109           0.383097120</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        2.2139412           0.425249819</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        1.5667741           0.131504845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        2.0711841          -0.119732541</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        1.6136372           0.073096321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        1.9373433           0.227784528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        1.6787153           0.090096102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        1.1784617          -0.086609159</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       2.0805282           0.417595237</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       1.7340223           0.200233341</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       1.5781541          -0.007384924</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       1.4135766           0.184239337</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       1.1803152           0.267394823</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_rushing_plays_total_ppa off_rushing_plays_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    1.0959013                      0.4516129</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   13.0253021                      0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   13.1827444                      0.7096774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    4.0766502                      0.5806452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                   -4.5498366                      0.3684211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                    2.4121786                      0.4242424</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                    6.1501822                      0.5185185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                    3.5137480                      0.4102564</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                   -2.3384473                      0.4074074</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                   5.0111428                      0.5833333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                   6.6077003                      0.5151515</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                  -0.2141628                      0.3448276</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                   7.1853342                      0.4871795</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                   6.9522654                      0.3846154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_rushing_plays_explosiveness off_passing_plays_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.3608632            1.02690801</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        1.1274091            0.63722707</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        0.8257620            0.18913896</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        0.6911673            0.40991528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        0.5504255            0.71932419</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        0.7721478            0.53554902</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        0.8239386            0.46189869</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        0.9038824            0.68655255</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        0.4396597            0.06246198</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       0.9751430            0.43677336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       1.0262466            0.22338671</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       0.6073359            0.43111662</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       0.7561327            0.27218301</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       0.9410163            0.19520709</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_plays_total_ppa off_passing_plays_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    25.672700                      0.8000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    12.744541                      0.7500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                     4.350196                      0.3913043</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                     9.428051                      0.5217391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    24.457022                      0.6176471</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                    17.137569                      0.5625000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                    14.318859                      0.5806452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                    19.223471                      0.6071429</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                     2.311093                      0.4594595</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                   10.045787                      0.6086957</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                    7.595148                      0.4411765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                   12.071265                      0.4285714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                    7.893307                      0.5517241</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                    6.441834                      0.4545455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    off_passing_plays_explosiveness def_plays def_drives      def_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        1.4554636        53         10  0.155978303</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        0.9189561        61         13 -0.191232733</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        1.4084474        70         13  0.001682677</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        1.3525419        69         13  0.065091299</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        1.6904555        56         14 -0.034255702</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        1.2191163        80         12 -0.082515777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        1.3399702        71         15 -0.079329978</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        1.5484303        53         11  0.006121979</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        1.0240010        65         19 -0.242077480</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       1.2283946        76         13 -0.037756555</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       1.4604763        71         15 -0.032435031</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       2.0185571        47         10 -0.074637188</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                       1.1151668        71         15 -0.138477766</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       1.0350073        75         14  0.053395568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_total_ppa def_success_rate def_explosiveness def_power_success</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      8.2668501        0.4528302         0.8171763         1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    -11.6651967        0.2950820         0.4835763         1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      0.1177874        0.3857143         0.8689731         0.6666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      4.4912996        0.4347826         0.6028603         0.8000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     -1.9183193        0.2857143         1.3055735         0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     -6.6012621        0.4250000         0.8152193         0.6666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     -5.6324284        0.2816901         0.9621910         1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      0.3244649        0.3773585         1.1439215         0.7500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    -15.7350362        0.2461538         0.4189025         0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    -2.8694981        0.3289474         0.9261638         0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    -2.3028872        0.3521127         0.8750352         0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12    -3.5079478        0.1914894         1.6841332         1.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13    -9.8319214        0.3239437         0.8080393         0.8333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14     4.0046676        0.3733333         0.9978384         0.8000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_stuff_rate def_line_yds def_line_yds_total def_second_lvl_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       0.1666667     3.516667                 84          1.4583333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       0.2105263     2.515789                 96          0.5526316</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       0.2115385     3.034615                158          0.8076923</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       0.1904762     3.245238                136          1.3333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       0.2916667     1.858333                 45          0.2500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       0.1388889     3.100000                112          0.7777778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       0.1891892     2.332432                 86          0.6486486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       0.1851852     2.629630                 71          1.1111111</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9       0.2051282     2.484615                 97          0.3589744</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      0.1914894     2.287234                108          0.6595745</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      0.2500000     2.346429                 66          1.2857143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      0.3043478     1.434783                 33          0.4347826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13      0.1034483     2.710345                 79          0.3103448</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      0.1020408     3.034694                149          1.0408163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_second_lvl_yds_total def_open_field_yds def_open_field_yds_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        35         1.00000000                       24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                        21         0.42105263                       16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        42         0.26923077                       14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        56         1.14285714                       48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                         6                 NA                       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                        28         0.58333333                       21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                        24         0.62162162                       23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                        30         0.70370370                       19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        14         0.07692308                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                       31         0.44680851                       21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                       36         0.35714286                       10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       10         1.86956522                       43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                        9         0.37931034                       11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                       51         0.42857143                       21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_standard_downs_ppa def_standard_downs_success_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.08616741                       0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             -0.07692069                       0.3750000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3             -0.04990535                       0.4081633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.08030694                       0.5238095</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             -0.23050631                       0.3103448</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             -0.23382884                       0.4406780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7             -0.07883538                       0.3333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.05981124                       0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             -0.48287237                       0.2250000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10            -0.14538942                       0.3333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11            -0.24042021                       0.3095238</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12            -0.26205880                       0.1851852</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13            -0.23553047                       0.3809524</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            -0.05257358                       0.4230769</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_standard_downs_explosiveness def_passing_downs_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                         0.6402444           0.262356812</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                         0.6340849          -0.408969960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                         0.7256243           0.122054733</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                         0.5842620           0.041422515</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                         0.8590774           0.176531984</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                         0.4436667           0.342601879</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                         0.7462644          -0.080046298</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                         0.9575379          -0.107572933</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                        -0.2313034           0.143194350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                        0.7726657           0.181814500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                        0.6493186           0.268784876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                        1.6277013           0.178381985</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                        0.5305382           0.002081326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                        0.6735440           0.292977997</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_downs_success_rate def_passing_downs_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.3809524                       1.1710400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.1428571                      -0.2689667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.3333333                       1.2785412</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       0.2962963                       0.6540055</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.2592593                       1.8796400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.3809524                       2.0227652</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.2068966                       1.4660196</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       0.1176471                       2.8213731</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.2800000                       1.2548815</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      0.3200000                       1.2523473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.4137931                       1.1195616</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      0.2000000                       1.7546731</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      0.2413793                       1.4423274</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      0.2608696                       2.1869177</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_rushing_plays_ppa def_rushing_plays_total_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            0.095761267                   2.2982704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           -0.253153307                  -9.6198257</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            0.044233672                   2.3001510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            0.151255919                   6.3527486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           -0.327141284                  -7.8513908</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           -0.140283556                  -5.0502080</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           -0.073414669                  -2.7163428</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           -0.081210319                  -2.1926786</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           -0.218065579                  -8.5045576</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          -0.129605896                  -6.0914771</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11           0.098409645                   2.7554701</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          -0.219808521                  -5.0555960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          -0.103016086                  -2.9874665</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           0.007801564                   0.3822766</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_rushing_plays_success_rate def_rushing_plays_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.4166667                       0.7795191</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.2631579                       0.4629994</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.4230769                       0.8139038</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       0.4285714                       0.8347017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.2083333                       0.3667772</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.4444444                       0.5801687</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.2432432                       0.9335986</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       0.3333333                       1.0596011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.2051282                       0.7764393</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      0.2978723                       0.7792009</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.2857143                       1.2458660</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      0.1304348                       2.2679748</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      0.3793103                       0.4384671</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      0.3877551                       0.7864374</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_plays_ppa def_passing_plays_total_ppa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0.22723359                   6.1353070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            -0.08892918                  -2.0453710</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            -0.02107724                  -0.3583132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             0.00754347                   0.1885868</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             0.18540848                   5.9330715</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            -0.03525123                  -1.5510541</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            -0.08322463                  -2.7464126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             0.09681321                   2.5171435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9            -0.25760436                  -6.4401091</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10            0.12686472                   3.5522121</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11           -0.11763622                  -5.0583573</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12            0.06448534                   1.5476482</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13           -0.16296321                  -6.8444549</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            0.18363090                   4.5907724</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    def_passing_plays_success_rate def_passing_plays_explosiveness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.4444444                       0.9986473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.3478261                       0.5092973</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.2941176                       1.1112782</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       0.4000000                       0.5111212</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       0.3437500                       1.7322992</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                       0.4090909                       1.0241532</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       0.3030303                       1.1011106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       0.4230769                       1.2129109</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                       0.2800000                       0.1830421</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      0.3571429                       1.2575516</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                      0.3953488                       0.7005267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                      0.2500000                       1.3922124</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                      0.2857143                       1.1468137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                      0.3200000                       1.7456931</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced game stats from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:36 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      game_id  week team     opponent off_plays off_drives  off_ppa off_total_ppa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 332<span style="text-decoration: underline;">450</span>221     1 Florida… Pittsbu…        58         10  4.46<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       25.9   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 332<span style="text-decoration: underline;">570</span>052     3 Florida… Nevada          56         12  4.37<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       24.5   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 332<span style="text-decoration: underline;">640</span>052     4 Florida… Bethune…        55         11  3.34<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       18.3   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 332<span style="text-decoration: underline;">710</span>103     5 Florida… Boston …        56         12  2.23<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       12.5   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 332<span style="text-decoration: underline;">780</span>052     6 Florida… Maryland        72         12  2.76<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       19.9   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 332<span style="text-decoration: underline;">920</span>228     8 Florida… Clemson         68         12  2.40<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       16.3   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 332<span style="text-decoration: underline;">990</span>052     9 Florida… NC State        58         14  3.53<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       20.5   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 333<span style="text-decoration: underline;">060</span>052    10 Florida… Miami           69         11  3.07<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       21.2   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 333<span style="text-decoration: underline;">130</span>154    11 Florida… Wake Fo…        64         14 -<span style="color: #BB0000;">4.27</span><span style="color: #949494;">e</span><span style="color: #BB0000;">-4</span>       -<span style="color: #BB0000;">0.027</span><span style="color: #BB0000; text-decoration: underline;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 333<span style="text-decoration: underline;">200</span>052    12 Florida… Syracuse        36         10  4.50<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       16.2   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 333<span style="text-decoration: underline;">270</span>052    13 Florida… Idaho           68         14  2.12<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       14.4   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 333<span style="text-decoration: underline;">340</span>057    14 Florida… Florida         60         11  2.12<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       12.7   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 333<span style="text-decoration: underline;">410</span>052    15 Florida… Duke            69         15  2.31<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       15.9   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 340<span style="text-decoration: underline;">060</span>002     1 Florida… Auburn          61         12  2.20<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span>       13.4   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 52 more variables: off_success_rate &lt;dbl&gt;, off_explosiveness &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_power_success &lt;dbl&gt;, off_stuff_rate &lt;dbl&gt;, off_line_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_line_yds_total &lt;int&gt;, off_second_lvl_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_second_lvl_yds_total &lt;int&gt;, off_open_field_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_open_field_yds_total &lt;int&gt;, off_standard_downs_ppa &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_standard_downs_success_rate &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   off_standard_downs_explosiveness &lt;dbl&gt;, off_passing_downs_ppa &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>

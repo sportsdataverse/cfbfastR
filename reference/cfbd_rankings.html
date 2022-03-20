@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -360,516 +360,58 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">cfbd_rankings</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">12</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     season season_type week                       poll rank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     2019     regular   12                  AP Top 25    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2019     regular   12                  AP Top 25    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     2019     regular   12                  AP Top 25    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     2019     regular   12                  AP Top 25    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     2019     regular   12                  AP Top 25    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     2019     regular   12                  AP Top 25    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     2019     regular   12                  AP Top 25    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     2019     regular   12                  AP Top 25    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     2019     regular   12                  AP Top 25    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    2019     regular   12                  AP Top 25   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    2019     regular   12                  AP Top 25   11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12    2019     regular   12                  AP Top 25   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13    2019     regular   12                  AP Top 25   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14    2019     regular   12                  AP Top 25   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15    2019     regular   12                  AP Top 25   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16    2019     regular   12                  AP Top 25   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17    2019     regular   12                  AP Top 25   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18    2019     regular   12                  AP Top 25   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19    2019     regular   12                  AP Top 25   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20    2019     regular   12                  AP Top 25   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21    2019     regular   12                  AP Top 25   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22    2019     regular   12                  AP Top 25   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23    2019     regular   12                  AP Top 25   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24    2019     regular   12                  AP Top 25   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25    2019     regular   12                  AP Top 25   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26    2019     regular   12               Coaches Poll    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27    2019     regular   12               Coaches Poll    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28    2019     regular   12               Coaches Poll    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29    2019     regular   12               Coaches Poll    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30    2019     regular   12               Coaches Poll    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31    2019     regular   12               Coaches Poll    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32    2019     regular   12               Coaches Poll    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33    2019     regular   12               Coaches Poll    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34    2019     regular   12               Coaches Poll    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35    2019     regular   12               Coaches Poll   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36    2019     regular   12               Coaches Poll   11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37    2019     regular   12               Coaches Poll   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38    2019     regular   12               Coaches Poll   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39    2019     regular   12               Coaches Poll   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40    2019     regular   12               Coaches Poll   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41    2019     regular   12               Coaches Poll   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42    2019     regular   12               Coaches Poll   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43    2019     regular   12               Coaches Poll   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44    2019     regular   12               Coaches Poll   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45    2019     regular   12               Coaches Poll   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46    2019     regular   12               Coaches Poll   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47    2019     regular   12               Coaches Poll   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48    2019     regular   12               Coaches Poll   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49    2019     regular   12               Coaches Poll   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50    2019     regular   12               Coaches Poll   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51    2019     regular   12           FCS Coaches Poll    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52    2019     regular   12           FCS Coaches Poll    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53    2019     regular   12           FCS Coaches Poll    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54    2019     regular   12           FCS Coaches Poll    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55    2019     regular   12           FCS Coaches Poll    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56    2019     regular   12           FCS Coaches Poll    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57    2019     regular   12           FCS Coaches Poll    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58    2019     regular   12           FCS Coaches Poll    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59    2019     regular   12           FCS Coaches Poll    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60    2019     regular   12           FCS Coaches Poll   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61    2019     regular   12           FCS Coaches Poll   11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62    2019     regular   12           FCS Coaches Poll   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63    2019     regular   12           FCS Coaches Poll   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64    2019     regular   12           FCS Coaches Poll   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65    2019     regular   12           FCS Coaches Poll   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66    2019     regular   12           FCS Coaches Poll   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67    2019     regular   12           FCS Coaches Poll   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68    2019     regular   12           FCS Coaches Poll   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69    2019     regular   12           FCS Coaches Poll   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70    2019     regular   12           FCS Coaches Poll   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71    2019     regular   12           FCS Coaches Poll   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72    2019     regular   12           FCS Coaches Poll   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73    2019     regular   12           FCS Coaches Poll   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74    2019     regular   12           FCS Coaches Poll   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75    2019     regular   12           FCS Coaches Poll   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76    2019     regular   12 Playoff Committee Rankings    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77    2019     regular   12 Playoff Committee Rankings    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78    2019     regular   12 Playoff Committee Rankings    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79    2019     regular   12 Playoff Committee Rankings    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80    2019     regular   12 Playoff Committee Rankings    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81    2019     regular   12 Playoff Committee Rankings    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82    2019     regular   12 Playoff Committee Rankings    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83    2019     regular   12 Playoff Committee Rankings    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84    2019     regular   12 Playoff Committee Rankings    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85    2019     regular   12 Playoff Committee Rankings   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86    2019     regular   12 Playoff Committee Rankings   11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87    2019     regular   12 Playoff Committee Rankings   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88    2019     regular   12 Playoff Committee Rankings   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89    2019     regular   12 Playoff Committee Rankings   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90    2019     regular   12 Playoff Committee Rankings   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91    2019     regular   12 Playoff Committee Rankings   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92    2019     regular   12 Playoff Committee Rankings   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93    2019     regular   12 Playoff Committee Rankings   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94    2019     regular   12 Playoff Committee Rankings   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95    2019     regular   12 Playoff Committee Rankings   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96    2019     regular   12 Playoff Committee Rankings   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97    2019     regular   12 Playoff Committee Rankings   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98    2019     regular   12 Playoff Committee Rankings   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99    2019     regular   12 Playoff Committee Rankings   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100   2019     regular   12 Playoff Committee Rankings   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       school        conference first_place_votes points</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        LSU               SEC                54   1542</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 Ohio State           Big Ten                 5   1480</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    Clemson               ACC                 3   1441</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    Alabama               SEC                 0   1312</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    Georgia               SEC                 0   1267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                     Oregon            Pac-12                 0   1224</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                  Minnesota           Big Ten                 0   1164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                       Utah            Pac-12                 0   1099</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                 Penn State           Big Ten                 0   1003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                  Oklahoma            Big 12                 0   1000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                   Florida               SEC                 0    934</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                    Baylor            Big 12                 0    932</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                    Auburn               SEC                 0    871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                  Michigan           Big Ten                 0    744</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                 Wisconsin           Big Ten                 0    657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                Notre Dame  FBS Independents                 0    593</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                Cincinnati American Athletic                 0    567</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                   Memphis American Athletic                 0    510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19               Boise State     Mountain West                 0    371</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                       SMU American Athletic                 0    346</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                      Navy American Athletic                 0    228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22                     Texas            Big 12                 0    199</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                      Iowa           Big Ten                 0    197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                   Indiana           Big Ten                 0    108</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25            Oklahoma State            Big 12                 0     77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                       LSU               SEC                55   1591</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                Ohio State           Big Ten                 5   1523</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                   Clemson               ACC                 4   1491</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29                   Alabama               SEC                 0   1356</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                   Georgia               SEC                 0   1327</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                    Oregon            Pac-12                 0   1269</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                 Minnesota           Big Ten                 0   1154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                  Oklahoma            Big 12                 0   1128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                      Utah            Pac-12                 0   1096</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                    Baylor            Big 12                 0   1028</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                Penn State           Big Ten                 0    942</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37                   Florida               SEC                 0    937</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                    Auburn               SEC                 0    863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                  Michigan           Big Ten                 0    731</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40                 Wisconsin           Big Ten                 0    670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                Notre Dame  FBS Independents                 0    659</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42                Cincinnati American Athletic                 0    590</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43                   Memphis American Athletic                 0    517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44               Boise State     Mountain West                 0    452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45                       SMU American Athletic                 0    326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46                      Navy American Athletic                 0    249</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                      Iowa           Big Ten                 0    187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                     Texas            Big 12                 0    163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49         Appalachian State          Sun Belt                 0    133</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50                   Indiana           Big Ten                 0    123</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51        North Dakota State              &lt;NA&gt;                26    650</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52             James Madison              &lt;NA&gt;                 0    624</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53               Weber State              &lt;NA&gt;                 0    575</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54                   Montana              &lt;NA&gt;                 0    561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55             Northern Iowa              &lt;NA&gt;                 0    539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56          Sacramento State              &lt;NA&gt;                 0    508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                    Furman              &lt;NA&gt;                 0    467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58            Illinois State              &lt;NA&gt;                 0    450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59        South Dakota State              &lt;NA&gt;                 0    425</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60             Montana State              &lt;NA&gt;                 0    366</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61            Kennesaw State              &lt;NA&gt;                 0    365</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                 Dartmouth              &lt;NA&gt;                 0    364</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63          Central Arkansas              &lt;NA&gt;                 0    300</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64               Florida A&amp;M              &lt;NA&gt;                 0    285</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65                  Monmouth              &lt;NA&gt;                 0    256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                 Villanova              &lt;NA&gt;                 0    246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67  Southeast Missouri State              &lt;NA&gt;                 0    244</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68       Central Connecticut              &lt;NA&gt;                 0    236</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                 Princeton              &lt;NA&gt;                 0    203</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70                   Wofford              &lt;NA&gt;                 0    157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                    Towson              &lt;NA&gt;                 0    146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72               Austin Peay              &lt;NA&gt;                 0    139</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73    Southeastern Louisiana              &lt;NA&gt;                 0     83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74                  Nicholls              &lt;NA&gt;                 0     53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75        North Carolina A&amp;T              &lt;NA&gt;                 0     40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76                       LSU               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77                Ohio State           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78                   Clemson               ACC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79                   Georgia               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80                   Alabama               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81                    Oregon            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82                      Utah            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83                 Minnesota           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84                Penn State           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85                  Oklahoma            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86                   Florida               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87                    Auburn               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88                    Baylor            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89                 Wisconsin           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90                  Michigan           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91                Notre Dame  FBS Independents                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92                Cincinnati American Athletic                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93                   Memphis American Athletic                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94                     Texas            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95                      Iowa           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96               Boise State     Mountain West                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97            Oklahoma State            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98                      Navy American Athletic                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99              Kansas State            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100        Appalachian State          Sun Belt                 0      0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Rankings data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:27 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type  week poll       rank school   conference first_place_vot…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     1 LSU      SEC                      54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     2 Ohio St… Big Ten                   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     3 Clemson  ACC                       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     4 Alabama  SEC                       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     5 Georgia  SEC                       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     6 Oregon   Pac-12                    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     7 Minneso… Big Ten                   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     8 Utah     Pac-12                    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25     9 Penn St… Big Ten                   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>019 regular        12 AP Top 25    10 Oklahoma Big 12                    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 90 more rows, and 1 more variable: points &lt;int&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">cfbd_rankings</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type week                       poll rank            school</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2018     regular   14                  AP Top 25    1           Alabama</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2018     regular   14                  AP Top 25    2           Clemson</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2018     regular   14                  AP Top 25    3        Notre Dame</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    2018     regular   14                  AP Top 25    4           Georgia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    2018     regular   14                  AP Top 25    5          Oklahoma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    2018     regular   14                  AP Top 25    6        Ohio State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    2018     regular   14                  AP Top 25    7               UCF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    2018     regular   14                  AP Top 25    8          Michigan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    2018     regular   14                  AP Top 25    9             Texas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   2018     regular   14                  AP Top 25   10        Washington</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   2018     regular   14                  AP Top 25   11           Florida</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   2018     regular   14                  AP Top 25   12               LSU</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   2018     regular   14                  AP Top 25   12  Washington State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   2018     regular   14                  AP Top 25   14        Penn State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   2018     regular   14                  AP Top 25   15     West Virginia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   2018     regular   14                  AP Top 25   16          Kentucky</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   2018     regular   14                  AP Top 25   17              Utah</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   2018     regular   14                  AP Top 25   18          Syracuse</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   2018     regular   14                  AP Top 25   19       Boise State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20   2018     regular   14                  AP Top 25   20 Mississippi State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21   2018     regular   14                  AP Top 25   21      Northwestern</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22   2018     regular   14                  AP Top 25   22         Texas A&amp;M</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23   2018     regular   14                  AP Top 25   23              Army</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24   2018     regular   14                  AP Top 25   24        Iowa State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25   2018     regular   14                  AP Top 25   25      Fresno State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26   2018     regular   14               Coaches Poll    1           Alabama</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27   2018     regular   14               Coaches Poll    2           Clemson</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28   2018     regular   14               Coaches Poll    3        Notre Dame</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29   2018     regular   14               Coaches Poll    4           Georgia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30   2018     regular   14               Coaches Poll    5          Oklahoma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31   2018     regular   14               Coaches Poll    6        Ohio State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32   2018     regular   14               Coaches Poll    7               UCF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33   2018     regular   14               Coaches Poll    8          Michigan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34   2018     regular   14               Coaches Poll    9             Texas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35   2018     regular   14               Coaches Poll   10           Florida</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36   2018     regular   14               Coaches Poll   11        Washington</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37   2018     regular   14               Coaches Poll   12        Penn State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38   2018     regular   14               Coaches Poll   13  Washington State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39   2018     regular   14               Coaches Poll   14               LSU</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40   2018     regular   14               Coaches Poll   15          Kentucky</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41   2018     regular   14               Coaches Poll   16     West Virginia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42   2018     regular   14               Coaches Poll   17              Utah</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43   2018     regular   14               Coaches Poll   18          Syracuse</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44   2018     regular   14               Coaches Poll   19 Mississippi State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45   2018     regular   14               Coaches Poll   20       Boise State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46   2018     regular   14               Coaches Poll   21      Northwestern</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47   2018     regular   14               Coaches Poll   22         Texas A&amp;M</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48   2018     regular   14               Coaches Poll   23      Fresno State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49   2018     regular   14               Coaches Poll   24        Utah State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50   2018     regular   14               Coaches Poll   25              Army</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51   2018     regular   14 Playoff Committee Rankings    1           Alabama</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52   2018     regular   14 Playoff Committee Rankings    2           Clemson</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53   2018     regular   14 Playoff Committee Rankings    3        Notre Dame</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54   2018     regular   14 Playoff Committee Rankings    4           Georgia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55   2018     regular   14 Playoff Committee Rankings    5          Oklahoma</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56   2018     regular   14 Playoff Committee Rankings    6        Ohio State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57   2018     regular   14 Playoff Committee Rankings    7          Michigan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58   2018     regular   14 Playoff Committee Rankings    8               UCF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59   2018     regular   14 Playoff Committee Rankings    9           Florida</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60   2018     regular   14 Playoff Committee Rankings   10               LSU</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61   2018     regular   14 Playoff Committee Rankings   11        Washington</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62   2018     regular   14 Playoff Committee Rankings   12        Penn State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63   2018     regular   14 Playoff Committee Rankings   13  Washington State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64   2018     regular   14 Playoff Committee Rankings   14             Texas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65   2018     regular   14 Playoff Committee Rankings   15          Kentucky</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66   2018     regular   14 Playoff Committee Rankings   16     West Virginia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67   2018     regular   14 Playoff Committee Rankings   17              Utah</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68   2018     regular   14 Playoff Committee Rankings   18 Mississippi State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69   2018     regular   14 Playoff Committee Rankings   19         Texas A&amp;M</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70   2018     regular   14 Playoff Committee Rankings   20          Syracuse</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71   2018     regular   14 Playoff Committee Rankings   21      Northwestern</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72   2018     regular   14 Playoff Committee Rankings   22       Boise State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73   2018     regular   14 Playoff Committee Rankings   23        Iowa State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74   2018     regular   14 Playoff Committee Rankings   24          Missouri</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75   2018     regular   14 Playoff Committee Rankings   25      Fresno State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           conference first_place_votes points</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                SEC                61   1525</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                ACC                 0   1458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   FBS Independents                 0   1409</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                SEC                 0   1336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             Big 12                 0   1266</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            Big Ten                 0   1229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  American Athletic                 0   1146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8            Big Ten                 0   1058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             Big 12                 0    959</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10            Pac-12                 0    897</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11               SEC                 0    876</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12               SEC                 0    818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13            Pac-12                 0    818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           Big Ten                 0    751</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15            Big 12                 0    672</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16               SEC                 0    602</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17            Pac-12                 0    536</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18               ACC                 0    475</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19     Mountain West                 0    409</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20               SEC                 0    324</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21           Big Ten                 0    322</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22               SEC                 0    283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  FBS Independents                 0    169</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24            Big 12                 0    116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25     Mountain West                 0    102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26               SEC                63   1599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27               ACC                 1   1536</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  FBS Independents                 0   1469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29               SEC                 0   1398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30            Big 12                 0   1324</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31           Big Ten                 0   1292</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32 American Athletic                 0   1200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33           Big Ten                 0   1041</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34            Big 12                 0    939</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35               SEC                 0    937</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36            Pac-12                 0    921</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37           Big Ten                 0    889</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38            Pac-12                 0    829</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39               SEC                 0    821</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40               SEC                 0    634</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41            Big 12                 0    621</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42            Pac-12                 0    610</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43               ACC                 0    499</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44               SEC                 0    460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45     Mountain West                 0    375</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46           Big Ten                 0    363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47               SEC                 0    295</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48     Mountain West                 0    157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49     Mountain West                 0    130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50  FBS Independents                 0    119</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52               ACC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53  FBS Independents                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58 American Athletic                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70               ACC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72     Mountain West                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75     Mountain West                 0      0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Rankings data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:27 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 75 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type  week poll       rank school   conference first_place_vot…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     1 Alabama  SEC                      61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     2 Clemson  ACC                       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     3 Notre D… FBS Indep…                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     4 Georgia  SEC                       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     5 Oklahoma Big 12                    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     6 Ohio St… Big Ten                   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     7 UCF      American …                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     8 Michigan Big Ten                   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25     9 Texas    Big 12                    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>018 regular        14 AP Top 25    10 Washing… Pac-12                    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 65 more rows, and 1 more variable: points &lt;int&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">cfbd_rankings</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2013</span>, season_type <span class="op">=</span> <span class="st">"postseason"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type week                          poll rank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2013  postseason    1 AFCA Division II Coaches Poll    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2013  postseason    1 AFCA Division II Coaches Poll    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2013  postseason    1 AFCA Division II Coaches Poll    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    2013  postseason    1 AFCA Division II Coaches Poll    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    2013  postseason    1 AFCA Division II Coaches Poll    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    2013  postseason    1 AFCA Division II Coaches Poll    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    2013  postseason    1 AFCA Division II Coaches Poll    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    2013  postseason    1 AFCA Division II Coaches Poll    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    2013  postseason    1 AFCA Division II Coaches Poll    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   2013  postseason    1 AFCA Division II Coaches Poll   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   2013  postseason    1 AFCA Division II Coaches Poll   11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   2013  postseason    1 AFCA Division II Coaches Poll   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   2013  postseason    1 AFCA Division II Coaches Poll   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   2013  postseason    1 AFCA Division II Coaches Poll   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   2013  postseason    1 AFCA Division II Coaches Poll   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   2013  postseason    1 AFCA Division II Coaches Poll   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   2013  postseason    1 AFCA Division II Coaches Poll   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   2013  postseason    1 AFCA Division II Coaches Poll   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   2013  postseason    1 AFCA Division II Coaches Poll   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20   2013  postseason    1 AFCA Division II Coaches Poll   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21   2013  postseason    1 AFCA Division II Coaches Poll   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22   2013  postseason    1 AFCA Division II Coaches Poll   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23   2013  postseason    1 AFCA Division II Coaches Poll   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24   2013  postseason    1 AFCA Division II Coaches Poll   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25   2013  postseason    1 AFCA Division II Coaches Poll   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26   2013  postseason    1                     AP Top 25    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27   2013  postseason    1                     AP Top 25    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28   2013  postseason    1                     AP Top 25    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29   2013  postseason    1                     AP Top 25    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30   2013  postseason    1                     AP Top 25    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31   2013  postseason    1                     AP Top 25    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32   2013  postseason    1                     AP Top 25    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33   2013  postseason    1                     AP Top 25    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34   2013  postseason    1                     AP Top 25    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35   2013  postseason    1                     AP Top 25   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36   2013  postseason    1                     AP Top 25   11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37   2013  postseason    1                     AP Top 25   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38   2013  postseason    1                     AP Top 25   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39   2013  postseason    1                     AP Top 25   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40   2013  postseason    1                     AP Top 25   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41   2013  postseason    1                     AP Top 25   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42   2013  postseason    1                     AP Top 25   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43   2013  postseason    1                     AP Top 25   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44   2013  postseason    1                     AP Top 25   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45   2013  postseason    1                     AP Top 25   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46   2013  postseason    1                     AP Top 25   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47   2013  postseason    1                     AP Top 25   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48   2013  postseason    1                     AP Top 25   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49   2013  postseason    1                     AP Top 25   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50   2013  postseason    1                     AP Top 25   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51   2013  postseason    1                  Coaches Poll    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52   2013  postseason    1                  Coaches Poll    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53   2013  postseason    1                  Coaches Poll    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54   2013  postseason    1                  Coaches Poll    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55   2013  postseason    1                  Coaches Poll    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56   2013  postseason    1                  Coaches Poll    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57   2013  postseason    1                  Coaches Poll    7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58   2013  postseason    1                  Coaches Poll    8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59   2013  postseason    1                  Coaches Poll    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60   2013  postseason    1                  Coaches Poll   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61   2013  postseason    1                  Coaches Poll   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62   2013  postseason    1                  Coaches Poll   12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63   2013  postseason    1                  Coaches Poll   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64   2013  postseason    1                  Coaches Poll   14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65   2013  postseason    1                  Coaches Poll   15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66   2013  postseason    1                  Coaches Poll   16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67   2013  postseason    1                  Coaches Poll   17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68   2013  postseason    1                  Coaches Poll   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69   2013  postseason    1                  Coaches Poll   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70   2013  postseason    1                  Coaches Poll   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71   2013  postseason    1                  Coaches Poll   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72   2013  postseason    1                  Coaches Poll   22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73   2013  postseason    1                  Coaches Poll   23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74   2013  postseason    1                  Coaches Poll   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75   2013  postseason    1                  Coaches Poll   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      school        conference first_place_votes points</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Northwest Missouri State              &lt;NA&gt;                32      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              Lenoir-Rhyne              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Grand Valley State              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              West Chester              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           St. Cloud State              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           Minnesota State              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     Colorado State-Pueblo              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          Minnesota-Duluth              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                  Shepherd              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10            North Alabama              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11           West Texas A&amp;M              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12           Ohio Dominican              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          Henderson State              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14            Winston-Salem              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             UNC Pembroke              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16               Bloomsburg              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17            Carson-Newman              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18             Indianapolis              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19          Pittsburg State              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20            Emporia State              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21            Slippery Rock              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22           Saginaw Valley              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                 Newberry              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24             Indiana (PA)              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25                 Tuskegee              &lt;NA&gt;                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26            Florida State               ACC                60      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                   Auburn               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28           Michigan State           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29           South Carolina               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                 Missouri               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                 Oklahoma            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                  Alabama               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                  Clemson               ACC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                   Oregon            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                      UCF American Athletic                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                 Stanford            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37               Ohio State           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                   Baylor            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                      LSU               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40               Louisville American Athletic                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                     UCLA            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42           Oklahoma State            Big 12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43                Texas A&amp;M               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44                      USC            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45               Notre Dame  FBS Independents                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46            Arizona State            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                Wisconsin           Big Ten                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                     Duke               ACC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49               Vanderbilt               SEC                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50               Washington            Pac-12                 0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51            Florida State               ACC                59   1475</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52                   Auburn               SEC                 0   1388</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53           Michigan State           Big Ten                 0   1375</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54           South Carolina               SEC                 0   1219</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55                 Missouri               SEC                 0   1200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56                 Oklahoma            Big 12                 0   1189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                  Clemson               ACC                 0   1091</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58                  Alabama               SEC                 0   1086</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59                   Oregon            Pac-12                 0    975</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60               Ohio State           Big Ten                 0    872</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61                 Stanford            Pac-12                 0    872</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                      UCF American Athletic                 0    865</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63                   Baylor            Big 12                 0    796</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64                      LSU               SEC                 0    719</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65               Louisville American Athletic                 0    703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                     UCLA            Pac-12                 0    597</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67           Oklahoma State            Big 12                 0    587</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68                Texas A&amp;M               SEC                 0    443</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                      USC            Pac-12                 0    313</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70            Arizona State            Pac-12                 0    302</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                Wisconsin           Big Ten                 0    266</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72                     Duke               ACC                 0    202</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73               Vanderbilt               SEC                 0    180</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74               Notre Dame  FBS Independents                 0    125</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75                 Nebraska           Big Ten                 0    123</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Rankings data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:27 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 75 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type  week poll         rank school conference first_place_vot…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     1 North… <span style="color: #BB0000;">NA</span>                       32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     2 Lenoi… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     3 Grand… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     4 West … <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     5 St. C… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     6 Minne… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     7 Color… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     8 Minne… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…     9 Sheph… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>013 postseason      1 AFCA Divis…    10 North… <span style="color: #BB0000;">NA</span>                        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 65 more rows, and 1 more variable: points &lt;int&gt;</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>

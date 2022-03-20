@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -383,26 +383,28 @@
 <p>The first thing we have to do is load in the data, and <code>cfbfastR</code> has a nice function which allows us to do just this, <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player()</a></code> which gives us info on every rated player in a class! Let’s see what sort of data we get from it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 'data.frame':    2737 obs. of  19 variables:</span>
-<span class="co">##  $ id                     : chr  "71458" "71459" "71460" "71461" ...</span>
-<span class="co">##  $ athlete_id             : chr  "4431274" "4431437" NA "4431590" ...</span>
-<span class="co">##  $ recruit_type           : chr  "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span>
-<span class="co">##  $ year                   : int  2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span>
-<span class="co">##  $ ranking                : int  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">##  $ name                   : chr  "Korey Foreman" "JC Latham" "J.T. Tuimoloau" "Jack Sawyer" ...</span>
-<span class="co">##  $ school                 : chr  "Centennial" "IMG Academy" "Eastside Catholic" "Pickerington North" ...</span>
-<span class="co">##  $ committed_to           : chr  "USC" "Alabama" NA "Ohio State" ...</span>
-<span class="co">##  $ position               : chr  "SDE" "OT" "SDE" "SDE" ...</span>
-<span class="co">##  $ height                 : int  76 78 76 77 78 73 79 76 73 76 ...</span>
-<span class="co">##  $ weight                 : int  265 305 277 248 283 210 315 245 190 265 ...</span>
-<span class="co">##  $ stars                  : int  5 5 5 5 5 5 5 5 5 5 ...</span>
-<span class="co">##  $ rating                 : num  0.999 0.999 0.999 0.998 0.998 ...</span>
-<span class="co">##  $ city                   : chr  "Corona" "Bradenton" "Sammamish" "Pickerington" ...</span>
-<span class="co">##  $ state_province         : chr  "CA" "FL" "WA" "OH" ...</span>
-<span class="co">##  $ country                : chr  "USA" "USA" "USA" "USA" ...</span>
-<span class="co">##  $ hometown_info_latitude : chr  "33.8752945" "27.4989278" "47.6088445" "39.896277299999994" ...</span>
-<span class="co">##  $ hometown_info_longitude: chr  "-117.5664449" "-82.5748194" "-122.0423067" "-82.77319049748806" ...</span>
-<span class="co">##  $ hometown_info_fips_code: chr  "06065" "12081" "53033" "39045" ...</span></code></pre>
+<pre><code><span class="co">## cfbfastR_data [2,737 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span>
+<span class="co">##  $ id                     : chr [1:2737] "71458" "71459" "71460" "71461" ...</span>
+<span class="co">##  $ athlete_id             : chr [1:2737] "4431274" "4431437" NA "4431590" ...</span>
+<span class="co">##  $ recruit_type           : chr [1:2737] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span>
+<span class="co">##  $ year                   : int [1:2737] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span>
+<span class="co">##  $ ranking                : int [1:2737] 1 2 3 4 5 6 7 8 9 10 ...</span>
+<span class="co">##  $ name                   : chr [1:2737] "Korey Foreman" "JC Latham" "J.T. Tuimoloau" "Jack Sawyer" ...</span>
+<span class="co">##  $ school                 : chr [1:2737] "Centennial" "IMG Academy" "Eastside Catholic" "Pickerington North" ...</span>
+<span class="co">##  $ committed_to           : chr [1:2737] "USC" "Alabama" NA "Ohio State" ...</span>
+<span class="co">##  $ position               : chr [1:2737] "SDE" "OT" "SDE" "SDE" ...</span>
+<span class="co">##  $ height                 : int [1:2737] 76 78 76 77 78 73 79 76 73 76 ...</span>
+<span class="co">##  $ weight                 : int [1:2737] 265 305 277 248 283 210 315 245 190 265 ...</span>
+<span class="co">##  $ stars                  : int [1:2737] 5 5 5 5 5 5 5 5 5 5 ...</span>
+<span class="co">##  $ rating                 : num [1:2737] 0.999 0.999 0.999 0.998 0.998 ...</span>
+<span class="co">##  $ city                   : chr [1:2737] "Corona" "Bradenton" "Sammamish" "Pickerington" ...</span>
+<span class="co">##  $ state_province         : chr [1:2737] "CA" "FL" "WA" "OH" ...</span>
+<span class="co">##  $ country                : chr [1:2737] "USA" "USA" "USA" "USA" ...</span>
+<span class="co">##  $ hometown_info_latitude : chr [1:2737] "33.8752945" "27.4989278" "47.6088445" "39.896277299999994" ...</span>
+<span class="co">##  $ hometown_info_longitude: chr [1:2737] "-117.5664449" "-82.5748194" "-122.0423067" "-82.77319049748806" ...</span>
+<span class="co">##  $ hometown_info_fips_code: chr [1:2737] "06065" "12081" "53033" "39045" ...</span>
+<span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2022-03-20 11:54:17"</span>
+<span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can merge on other <code>cfbfastR</code> datasets, basic information on each player, their high school, their rating and stars, their hometown, and geographic information about their hometown. A small issue we have is that for some reason the <code>hometown_info_longitude</code> and <code>hometown_info_latitude</code> variables which contain the longitude and latitude of each town are saved as characters (read: text) instead of numbers. But since we understand the data we’re looking at now, we can go ahead <code>filter</code> out for the set of players we want (5 stars) and <code>mutate</code> the data to make a new variable so that have longitudes and latitudes as numbers.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Save the class of 2021 to its own variable</span>

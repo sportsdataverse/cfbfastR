@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -344,23 +344,27 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="fu">cfbd_calendar</span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    season week season_type         first_game_start          last_game_start</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2019    1     regular 2019-08-24T23:00:00.000Z 2019-09-03T00:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2019    2     regular 2019-09-07T00:00:00.000Z 2019-09-08T03:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    2019    3     regular 2019-09-13T22:00:00.000Z 2019-09-15T02:45:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    2019    4     regular 2019-09-20T00:00:00.000Z 2019-09-22T03:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    2019    5     regular 2019-09-27T00:00:00.000Z 2019-09-29T02:30:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    2019    6     regular 2019-10-03T23:30:00.000Z 2019-10-06T02:30:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    2019    7     regular 2019-10-10T00:00:00.000Z 2019-10-13T03:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    2019    8     regular 2019-10-17T00:00:00.000Z 2019-10-20T03:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    2019    9     regular 2019-10-24T23:30:00.000Z 2019-10-27T02:30:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   2019   10     regular 2019-11-01T00:00:00.000Z 2019-11-03T03:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   2019   11     regular 2019-11-06T00:00:00.000Z 2019-11-10T04:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   2019   12     regular 2019-11-12T23:00:00.000Z 2019-11-17T04:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   2019   13     regular 2019-11-20T00:30:00.000Z 2019-11-24T04:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   2019   14     regular 2019-11-26T23:00:00.000Z 2019-12-01T04:59:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   2019   15     regular 2019-12-07T01:00:00.000Z 2019-12-14T20:00:00.000Z</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   2019    1  postseason 2019-12-20T19:00:00.000Z 2020-01-14T01:00:00.000Z</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── calendar data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:04 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    season  week season_type first_game_start         last_game_start         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2019       1 regular     2019-08-24T23:00:00.000Z 2019-09-03T00:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2019       2 regular     2019-09-07T00:00:00.000Z 2019-09-08T03:59:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2019       3 regular     2019-09-13T22:00:00.000Z 2019-09-15T02:45:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2019       4 regular     2019-09-20T00:00:00.000Z 2019-09-22T03:59:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2019       5 regular     2019-09-27T00:00:00.000Z 2019-09-29T02:30:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2019       6 regular     2019-10-03T23:30:00.000Z 2019-10-06T02:30:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2019       7 regular     2019-10-10T00:00:00.000Z 2019-10-13T03:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2019       8 regular     2019-10-17T00:00:00.000Z 2019-10-20T03:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2019       9 regular     2019-10-24T23:30:00.000Z 2019-10-27T02:30:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2019      10 regular     2019-11-01T00:00:00.000Z 2019-11-03T03:59:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 2019      11 regular     2019-11-06T00:00:00.000Z 2019-11-10T04:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 2019      12 regular     2019-11-12T23:00:00.000Z 2019-11-17T04:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 2019      13 regular     2019-11-20T00:30:00.000Z 2019-11-24T04:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 2019      14 regular     2019-11-26T23:00:00.000Z 2019-12-01T04:59:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 2019      15 regular     2019-12-07T01:00:00.000Z 2019-12-14T20:00:00.000Z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 2019       1 postseason  2019-12-20T19:00:00.000Z 2020-01-14T01:00:00.000Z</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>

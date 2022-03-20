@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -398,24 +398,30 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="fu">cfbd_game_records</span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Notre Dame"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   year       team       conference division expected_wins total_games</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2018 Notre Dame FBS Independents                   10.5          13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   total_wins total_losses total_ties conference_games conference_wins</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         12            1          0                0               0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conference_losses conference_ties home_games home_wins home_losses home_ties</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 0               0          6         6           0         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   away_games away_wins away_losses away_ties</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          4         4           0         0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── game records data from CollegeFootballData.com ──────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:12 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    year team       conference      division expected_wins total_games total_wins</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>018 Notre Dame FBS Independen… <span style="color: #949494;">""</span>                10.5          13         12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 14 more variables: total_losses &lt;int&gt;, total_ties &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   conference_games &lt;int&gt;, conference_wins &lt;int&gt;, conference_losses &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   conference_ties &lt;int&gt;, home_games &lt;int&gt;, home_wins &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_losses &lt;int&gt;, home_ties &lt;int&gt;, away_games &lt;int&gt;, away_wins &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_losses &lt;int&gt;, away_ties &lt;int&gt;</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="fu">cfbd_game_records</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   year          team conference division expected_wins total_games total_wins</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2013 Florida State        ACC Atlantic          12.3          14         14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   total_losses total_ties conference_games conference_wins conference_losses</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            0          0                9               9                 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   conference_ties home_games home_wins home_losses home_ties away_games</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               0          7         7           0         0          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   away_wins away_losses away_ties</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         5           0         0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── game records data from CollegeFootballData.com ──────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:12 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    year team          conference division expected_wins total_games total_wins</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>013 Florida State ACC        Atlantic          12.3          14         14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 14 more variables: total_losses &lt;int&gt;, total_ties &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   conference_games &lt;int&gt;, conference_wins &lt;int&gt;, conference_losses &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   conference_ties &lt;int&gt;, home_games &lt;int&gt;, home_wins &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_losses &lt;int&gt;, home_ties &lt;int&gt;, away_games &lt;int&gt;, away_wins &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_losses &lt;int&gt;, away_ties &lt;int&gt;</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>

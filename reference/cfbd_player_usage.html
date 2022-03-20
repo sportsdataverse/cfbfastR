@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -395,36 +395,23 @@ Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()<
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="fu">cfbd_player_usage</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, position <span class="op">=</span> <span class="st">"WR"</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   season athlete_id               name position          team conference</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   2019    4240028    Tamorrion Terry       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2019    4240034      D.J. Matthews       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   2019    4363046 Tre'Shaun Harrison       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   2019    4240033     Ontaria Wilson       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   2019    4363032    Keyshawn Helton       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   2019    4035628        Keith Gavin       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   2019    4363030    Warren Thompson       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   2019    4363044       Jordan Young       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   2019    4360473       Adarius Dent       WR Florida State        ACC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   usg_overall usg_pass usg_rush usg_1st_down usg_2nd_down usg_3rd_down</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      0.1287   0.2363   0.0120       0.1513        0.110        0.120</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      0.0672   0.1204   0.0096       0.0513        0.082        0.087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      0.0456   0.0810   0.0072       0.0410        0.046        0.060</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      0.0376   0.0656   0.0072       0.0410        0.032        0.044</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      0.0296   0.0525   0.0048       0.0359        0.025        0.027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      0.0239   0.0460   0.0000       0.0205        0.028        0.027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      0.0080   0.0153   0.0000       0.0077        0.014        0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      0.0068   0.0109   0.0024       0.0051        0.007        0.011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      0.0046   0.0088   0.0000       0.0077        0.004        0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   usg_standard_downs usg_passing_downs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.063             0.138</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.043             0.101</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              0.053             0.044</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.043             0.034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              0.010             0.034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              0.014             0.034</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              0.005             0.010</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.010             0.007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              0.014             0.000</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player usage data from CollegeFootballData.com ──────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:26 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   season athlete_id name          position team  conference usg_overall usg_pass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   <span style="text-decoration: underline;">2</span>019 4240028    Tamorrion Te… WR       Flor… ACC             0.129    0.236 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>   <span style="text-decoration: underline;">2</span>019 4240034    D.J. Matthews WR       Flor… ACC             0.067<span style="text-decoration: underline;">2</span>   0.120 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>   <span style="text-decoration: underline;">2</span>019 4363046    Tre'Shaun Ha… WR       Flor… ACC             0.045<span style="text-decoration: underline;">6</span>   0.081 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>   <span style="text-decoration: underline;">2</span>019 4240033    Ontaria Wils… WR       Flor… ACC             0.037<span style="text-decoration: underline;">6</span>   0.065<span style="text-decoration: underline;">6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>   <span style="text-decoration: underline;">2</span>019 4363032    Keyshawn Hel… WR       Flor… ACC             0.029<span style="text-decoration: underline;">6</span>   0.052<span style="text-decoration: underline;">5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>   <span style="text-decoration: underline;">2</span>019 4035628    Keith Gavin   WR       Flor… ACC             0.023<span style="text-decoration: underline;">9</span>   0.046 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>   <span style="text-decoration: underline;">2</span>019 4363030    Warren Thomp… WR       Flor… ACC             0.008    0.015<span style="text-decoration: underline;">3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>   <span style="text-decoration: underline;">2</span>019 4363044    Jordan Young  WR       Flor… ACC             0.006<span style="text-decoration: underline;">8</span>   0.010<span style="text-decoration: underline;">9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span>   <span style="text-decoration: underline;">2</span>019 4360473    Adarius Dent  WR       Flor… ACC             0.004<span style="text-decoration: underline;">6</span>   0.008<span style="text-decoration: underline;">8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 6 more variables: usg_rush &lt;dbl&gt;, usg_1st_down &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   usg_2nd_down &lt;dbl&gt;, usg_3rd_down &lt;dbl&gt;, usg_standard_downs &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   usg_passing_downs &lt;dbl&gt;</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>

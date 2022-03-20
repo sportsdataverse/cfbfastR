@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -328,45 +328,22 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">   <span class="fu">cfbd_stats_categories</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               category</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   completionAttempts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         defensiveTDs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          extraPoints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         fieldGoalPct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           fieldGoals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           firstDowns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        fourthDownEff</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          fumblesLost</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     fumblesRecovered</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       interceptions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11     interceptionTDs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   interceptionYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       kickingPoints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         kickReturns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15       kickReturnTDs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16     kickReturnYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17     netPassingYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18     passesDeflected</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   passesIntercepted</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20          passingTDs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21      possessionTime</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22         puntReturns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23       puntReturnTDs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24     puntReturnYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25           qbHurries</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26     rushingAttempts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27          rushingTDs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28        rushingYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29               sacks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30             tackles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31      tacklesForLoss</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32        thirdDownEff</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33        totalFumbles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34 totalPenaltiesYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35          totalYards</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36           turnovers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37        yardsPerPass</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38 yardsPerRushAttempt</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Stat categories for CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:35 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 38 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    category          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> completionAttempts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> defensiveTDs      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> extraPoints       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> fieldGoalPct      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> fieldGoals        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> firstDowns        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> fourthDownEff     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> fumblesLost       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> fumblesRecovered  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> interceptions     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 28 more rows</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -531,7 +531,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">   <span class="fu">cfbd_stats_season_player</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, conference <span class="op">=</span> <span class="st">"B12"</span>, start_week <span class="op">=</span> <span class="fl">1</span>, end_week <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2022-03-18 20:16:02: Invalid arguments or no season stats - player data available!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2022-03-20 11:48:39: Invalid arguments or no season stats - player data available!</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               team conference athlete_id                   player      category</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1            Texas     Big 12    4362087          Keaontay Ingram       rushing</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         Oklahoma     Big 12    3705353          Rodney Anderson       rushing</span>
@@ -11130,92 +11130,37 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 882               NA               NA              NA                NA</span>
 <span class="r-in"></span>
 <span class="r-in">   <span class="fu">cfbd_stats_season_player</span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   team conference athlete_id        player category passing_completions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  LSU        SEC    3915511    Joe Burrow  passing                 342</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  LSU        SEC    4242210 Myles Brennan  passing                  21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   passing_att passing_pct passing_yds passing_td passing_int passing_ypa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         439       0.779        4715         48           6        10.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          37       0.568         314          1           1         8.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rushing_car rushing_yds rushing_td rushing_ypc rushing_long receiving_rec</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          NA          NA         NA          NA           NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          NA          NA         NA          NA           NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   receiving_yds receiving_td receiving_ypr receiving_long fumbles_fum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            NA           NA            NA             NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            NA           NA            NA             NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   fumbles_rec fumbles_lost defensive_solo defensive_tot defensive_tfl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          NA           NA             NA            NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          NA           NA             NA            NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   defensive_sacks defensive_qb_hur interceptions_int interceptions_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              NA               NA                NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              NA               NA                NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   interceptions_avg interceptions_td defensive_pd defensive_td kicking_fgm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                NA               NA           NA           NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                NA               NA           NA           NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   kicking_fga kicking_pct kicking_xpa kicking_xpm kicking_pts kicking_long</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          NA          NA          NA          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          NA          NA          NA          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   kick_returns_no kick_returns_yds kick_returns_avg kick_returns_td</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              NA               NA               NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              NA               NA               NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   kick_returns_long punting_no punting_yds punting_ypp punting_long</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                NA         NA          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                NA         NA          NA          NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   punting_in_20 punting_tb punt_returns_no punt_returns_yds punt_returns_avg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            NA         NA              NA               NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            NA         NA              NA               NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   punt_returns_td punt_returns_long</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              NA                NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced player season stats from CollegeFootballData.com ───────────────────</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:40 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 59</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   team  conference athlete_id player       category passing_complet… passing_att</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> LSU   SEC        3915511    Joe Burrow   passing               342         439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> LSU   SEC        4242210    Myles Brenn… passing                21          37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 52 more variables: passing_pct &lt;dbl&gt;, passing_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_td &lt;dbl&gt;, passing_int &lt;dbl&gt;, passing_ypa &lt;dbl&gt;, rushing_car &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   rushing_yds &lt;dbl&gt;, rushing_td &lt;dbl&gt;, rushing_ypc &lt;dbl&gt;, rushing_long &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   receiving_rec &lt;dbl&gt;, receiving_yds &lt;dbl&gt;, receiving_td &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   receiving_ypr &lt;dbl&gt;, receiving_long &lt;dbl&gt;, fumbles_fum &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fumbles_rec &lt;dbl&gt;, fumbles_lost &lt;dbl&gt;, defensive_solo &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   defensive_tot &lt;dbl&gt;, defensive_tfl &lt;dbl&gt;, defensive_sacks &lt;dbl&gt;, …</span></span>
 <span class="r-in"></span>
 <span class="r-in">   <span class="fu">cfbd_stats_season_player</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            team conference athlete_id         player category</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Florida State        ACC     514124     Jake Coker  passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Florida State        ACC     530299   Sean Maguire  passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Florida State        ACC     530308 Jameis Winston  passing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   passing_completions passing_att passing_pct passing_yds passing_td</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                  18          36       0.500         250          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  13          21       0.619         116          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                 237         349       0.679        3820         38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   passing_int passing_ypa rushing_car rushing_yds rushing_td rushing_ypc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           1         6.9          NA          NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           2         5.5          NA          NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          10        10.9          NA          NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   rushing_long receiving_rec receiving_yds receiving_td receiving_ypr</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           NA            NA            NA           NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           NA            NA            NA           NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           NA            NA            NA           NA            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   receiving_long fumbles_fum fumbles_rec fumbles_lost defensive_solo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             NA          NA          NA           NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             NA          NA          NA           NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3             NA          NA          NA           NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   defensive_tot defensive_tfl defensive_sacks defensive_qb_hur</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            NA            NA              NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            NA            NA              NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            NA            NA              NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   interceptions_int interceptions_yds interceptions_avg interceptions_td</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                NA                NA                NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                NA                NA                NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                NA                NA                NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   defensive_pd defensive_td kicking_fgm kicking_fga kicking_pct kicking_xpa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           NA           NA          NA          NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           NA           NA          NA          NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           NA           NA          NA          NA          NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   kicking_xpm kicking_pts kicking_long kick_returns_no kick_returns_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          NA          NA           NA              NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          NA          NA           NA              NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          NA          NA           NA              NA               NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   kick_returns_avg kick_returns_td kick_returns_long punting_no punting_yds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               NA              NA                NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2               NA              NA                NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3               NA              NA                NA         NA          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   punting_ypp punting_long punting_in_20 punting_tb punt_returns_no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          NA           NA            NA         NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          NA           NA            NA         NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          NA           NA            NA         NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   punt_returns_yds punt_returns_avg punt_returns_td punt_returns_long</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               NA               NA              NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2               NA               NA              NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3               NA               NA              NA                NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced player season stats from CollegeFootballData.com ───────────────────</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:40 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 59</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   team        conference athlete_id player category passing_complet… passing_att</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Florida St… ACC        514124     Jake … passing                18          36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Florida St… ACC        530299     Sean … passing                13          21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Florida St… ACC        530308     Jamei… passing               237         349</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 52 more variables: passing_pct &lt;dbl&gt;, passing_yds &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_td &lt;dbl&gt;, passing_int &lt;dbl&gt;, passing_ypa &lt;dbl&gt;, rushing_car &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   rushing_yds &lt;dbl&gt;, rushing_td &lt;dbl&gt;, rushing_ypc &lt;dbl&gt;, rushing_long &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   receiving_rec &lt;dbl&gt;, receiving_yds &lt;dbl&gt;, receiving_td &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   receiving_ypr &lt;dbl&gt;, receiving_long &lt;dbl&gt;, fumbles_fum &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fumbles_rec &lt;dbl&gt;, fumbles_lost &lt;dbl&gt;, defensive_solo &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   defensive_tot &lt;dbl&gt;, defensive_tfl &lt;dbl&gt;, defensive_sacks &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>

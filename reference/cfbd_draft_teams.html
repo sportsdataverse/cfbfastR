@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
       </span>
     </div>
 
@@ -336,72 +336,22 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"> <span class="fu">cfbd_draft_teams</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     nfl_location nfl_nickname     nfl_display_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        Arizona    Cardinals    Arizona Cardinals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        Atlanta      Falcons      Atlanta Falcons</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Baltimore       Ravens     Baltimore Ravens</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        Buffalo        Bills        Buffalo Bills</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Carolina     Panthers    Carolina Panthers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        Chicago        Bears        Chicago Bears</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     Cincinnati      Bengals   Cincinnati Bengals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      Cleveland       Browns     Cleveland Browns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         Dallas      Cowboys       Dallas Cowboys</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        Denver      Broncos       Denver Broncos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11       Detroit        Lions        Detroit Lions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12     Green Bay      Packers    Green Bay Packers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       Houston       Texans       Houston Texans</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14  Indianapolis        Colts   Indianapolis Colts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15  Jacksonville      Jaguars Jacksonville Jaguars</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   Kansas City       Chiefs   Kansas City Chiefs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17     Las Vegas      Raiders    Las Vegas Raiders</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   Los Angeles     Chargers Los Angeles Chargers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19   Los Angeles         Rams     Los Angeles Rams</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20         Miami     Dolphins       Miami Dolphins</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21     Minnesota      Vikings    Minnesota Vikings</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22   New England     Patriots New England Patriots</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23   New Orleans       Saints   New Orleans Saints</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24      New York       Giants      New York Giants</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25      New York         Jets        New York Jets</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26  Philadelphia       Eagles  Philadelphia Eagles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27    Pittsburgh     Steelers  Pittsburgh Steelers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28 San Francisco        49ers  San Francisco 49ers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29       Seattle     Seahawks     Seattle Seahawks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30     Tampa Bay   Buccaneers Tampa Bay Buccaneers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31     Tennessee       Titans     Tennessee Titans</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32    Washington         &lt;NA&gt;           Washington</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                        nfl_logo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ari.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/atl.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/bal.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/buf.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/car.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/chi.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/cin.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/cle.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/dal.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/den.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/det.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/gb.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/hou.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ind.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/jax.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/kc.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/lv.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/lac.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/lar.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/mia.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/min.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ne.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/no.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/nyg.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/nyj.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/phi.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/pit.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/sf.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/sea.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30  https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/tb.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/ten.png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32 https://a.espncdn.com/i/teamlogos/nfl/500/scoreboard/wsh.png</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── NFL teams data from CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 1.8.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:07 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    nfl_location nfl_nickname nfl_display_name   nfl_logo                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Arizona      Cardinals    Arizona Cardinals  https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Atlanta      Falcons      Atlanta Falcons    https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Baltimore    Ravens       Baltimore Ravens   https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Buffalo      Bills        Buffalo Bills      https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Carolina     Panthers     Carolina Panthers  https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Chicago      Bears        Chicago Bears      https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Cincinnati   Bengals      Cincinnati Bengals https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Cleveland    Browns       Cleveland Browns   https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Dallas       Cowboys      Dallas Cowboys     https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Denver       Broncos      Denver Broncos     https://a.espncdn.com/i/teamlog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 22 more rows</span></span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
 </code></pre></div>
