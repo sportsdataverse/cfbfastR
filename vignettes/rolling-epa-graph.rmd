@@ -40,8 +40,7 @@ We can use the ```cfbd_team_info()``` function to pull information about each FB
 team_info = cfbfastR::cfbd_team_info(year = yr)
 
 team_colors_logos = team_info %>% 
-  select(school, abbreviation, color, logos, alt_color) %>%
-  unnest(logos) %>%
+  select(school, abbreviation, color, logo, alt_color) %>%
   group_by(school) %>%
   slice(1) %>% 
   ungroup()
