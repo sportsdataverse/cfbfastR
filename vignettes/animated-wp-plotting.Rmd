@@ -69,9 +69,11 @@ team_logos <- team_info %>%
   mutate(logo = map(logos, magrittr::extract2, 1),
          logo = as.character(logo)) %>% select(-logos)
 game <- game %>% 
-  inner_join(team_logos, by = c("away_team" = "school")) %>% 
-  rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2) %>% 
-  inner_join(team_logos, by = c("home_team" = "school")) %>% 
+  left_join(team_logos, by = c("away_team" = "school"),) %>% 
+  rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2) 
+
+game <- game %>% 
+  left_join(team_logos, by = c("home_team" = "school")) %>% 
   rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) %>%
   mutate(result = home_points - away_points) %>%
   rename(home_score = home_points, away_score = away_points)
