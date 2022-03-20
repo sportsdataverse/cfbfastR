@@ -180,8 +180,21 @@ cfbd_drives <- function(year,
         dplyr::mutate(
           time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
           time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-        ) %>%
-        as.data.frame()
+        )
+
+      # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.
+      # Minutes and seconds from these games are also suspect
+      if("start_time.hours" %in% names(df)) {
+        df <- df %>%
+          dplyr::select(-.data$start_time.hours)
+      }
+      if("end_time.hours" %in% names(df)) {
+        df <- df %>%
+          dplyr::select(-.data$end_time.hours)
+      }
+
+      df <- df %>%
+        make_cfbfastR_data("Drives data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))

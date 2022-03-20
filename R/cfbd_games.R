@@ -231,8 +231,10 @@ cfbd_game_info <- function(year,
 
         colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
         df <- df %>%
-          dplyr::rename(game_id = .data$id) %>%
-          as.data.frame()
+          dplyr::rename(game_id = .data$id)
+
+        df <- df %>%
+          make_cfbfastR_data("game information from CollegeFootballData.com",Sys.time())
       }
     },
     error = function(e) {
@@ -354,8 +356,11 @@ cfbd_game_weather <- function(year,
         janitor::clean_names()
 
       df <- df %>%
-        dplyr::rename(game_id = .data$id) %>%
-        as.data.frame()
+        dplyr::rename(game_id = .data$id)
+
+
+      df <- df %>%
+        make_cfbfastR_data("game weather data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no game weather data available!"))
@@ -426,8 +431,11 @@ cfbd_calendar <- function(year) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        janitor::clean_names() %>%
-        as.data.frame()
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("calendar data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available!"))
@@ -563,8 +571,11 @@ cfbd_game_media <- function(year,
       df <- df[!duplicated(df), ]
 
       df <- df %>%
-        dplyr::select(cols, tidyr::everything()) %>%
-        as.data.frame()
+        dplyr::select(cols, tidyr::everything())
+
+
+      df <- df %>%
+        make_cfbfastR_data("game media data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
@@ -760,13 +771,16 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
           dplyr::select(-.data$name) %>%
           dplyr::mutate_all(as.numeric) %>%
           dplyr::bind_cols(team)  %>%
-          dplyr::select(.data$team, tidyr::everything()) %>%
-          as.data.frame()
+          dplyr::select(.data$team, tidyr::everything())
         df <- df %>%
           dplyr::rename(
             rushing_line_yds_avg = .data$rushing_line_yd_avg,
             rushing_second_lvl_yds_avg = .data$rushing_second_lvl_yd_avg,
             rushing_open_field_yds_avg = .data$rushing_open_field_yd_avg)
+
+        df <- df %>%
+          make_cfbfastR_data("advanced box score data from CollegeFootballData.com",Sys.time())
+
       }
     },
     error = function(e) {
@@ -977,6 +991,10 @@ cfbd_game_player_stats <- function(year,
 
       df <- df %>%
         dplyr::select(cols, dplyr::everything())
+
+
+      df <- df %>%
+        make_cfbfastR_data("game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available!"))
@@ -1114,6 +1132,9 @@ cfbd_game_records <- function(year,
           away_losses = .data$awayGames.losses,
           away_ties = .data$awayGames.ties
         )
+
+      df <- df %>%
+        make_cfbfastR_data("game records data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
@@ -1403,7 +1424,7 @@ cfbd_game_team_stats <- function(year,
         dplyr::filter(.data$school == team) %>%
         dplyr::select(cols1)
 
-      return(df)
+
     } else if (!is.null(conference)) {
       confs <- cfbd_conferences()
 
@@ -1415,11 +1436,11 @@ cfbd_game_team_stats <- function(year,
         dplyr::filter(conference == conf_name) %>%
         dplyr::select(cols1)
 
-      return(df)
+
     } else {
       df <- df %>%
         dplyr::select(cols1)
-      return(df)
+
     }
   } else {
     cols2 <- c(
@@ -1442,7 +1463,7 @@ cfbd_game_team_stats <- function(year,
       df <- df %>%
         dplyr::filter(.data$school == team) %>%
         dplyr::select(cols2)
-      return(df)
+
     } else if (!is.null(conference)) {
       confs <- cfbd_conferences()
 
@@ -1454,11 +1475,16 @@ cfbd_game_team_stats <- function(year,
         dplyr::filter(conference == conf_name) %>%
         dplyr::select(cols2)
 
-      return(df)
+
     } else {
       df <- df %>%
         dplyr::select(cols2)
-      return(df)
+
     }
   }
+
+
+  df <- df %>%
+    make_cfbfastR_data("team stats data from CollegeFootballData.com",Sys.time())
+  return(df)
 }

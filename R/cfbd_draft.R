@@ -88,6 +88,8 @@ cfbd_draft_teams <- function() {
           nfl_display_name = .data$display_name,
           nfl_logo = .data$logo
         )
+      df <- df %>%
+        make_cfbfastR_data("NFL teams data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available!"))
@@ -151,6 +153,9 @@ cfbd_draft_positions <- function() {
           position_name = .data$name,
           position_abbreviation = .data$abbreviation
         )
+
+      df <- df %>%
+        make_cfbfastR_data("NFL positions data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no NFL positions data available!"))
@@ -269,11 +274,13 @@ cfbd_draft_picks <- function(year = NULL,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
-        janitor::clean_names() %>%
-        as.data.frame()
+        janitor::clean_names()
+
+      df <- df %>%
+        make_cfbfastR_data("NFL draft data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL draft data available!"))
     },
     warning = function(w) {
     },

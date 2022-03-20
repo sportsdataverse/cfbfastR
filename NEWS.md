@@ -1,3 +1,8 @@
+# **cfbfastR v1.8.0**
+
+* All functions now default to return tibbles.
+* Added S3 method to print outputs with data info and retrieval timestamps (Thanks to Tan Ho for idea).
+
 # **cfbfastR v1.7.1**
 
 ### Added [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings_fpi.html) to exports.

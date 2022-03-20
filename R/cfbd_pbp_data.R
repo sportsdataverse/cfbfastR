@@ -747,7 +747,9 @@ cfbd_pbp_data <- function(year,
         tidyr::everything()
       )
   }
-  play_df <- as.data.frame(play_df)
+
+  play_df <- play_df %>%
+    make_cfbfastR_data("play-by-play data from CollegeFootballData.com",Sys.time())
 
   return(play_df)
 }

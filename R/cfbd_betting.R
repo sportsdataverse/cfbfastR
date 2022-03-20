@@ -175,6 +175,9 @@ cfbd_betting_lines <- function(game_id = NULL,
           dplyr::rename(game_id = .data$id) %>%
           as.data.frame()
       }
+
+      df <- df %>%
+        make_cfbfastR_data("betting lines data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))

@@ -223,8 +223,11 @@ cfbd_plays <- function(year = 2020,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        dplyr::rename(play_id = .data$id) %>%
-        as.data.frame()
+        dplyr::rename(play_id = .data$id)
+
+
+      df <- df %>%
+        make_cfbfastR_data("play-by-play data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
@@ -552,7 +555,9 @@ cfbd_play_stats_player <- function(year = NULL,
         dplyr::summarise_all(coalesce_by_column) %>%
         dplyr::ungroup()
 
-      clean_df <- as.data.frame(clean_df)
+
+      clean_df <- clean_df %>%
+        make_cfbfastR_data("play-level player data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
@@ -603,8 +608,11 @@ cfbd_play_stats_types <- function() {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        dplyr::rename(play_stat_type_id = .data$id) %>%
-        as.data.frame()
+        dplyr::rename(play_stat_type_id = .data$id)
+
+
+      df <- df %>%
+        make_cfbfastR_data("play stats type data from CollegeFootballData.com",Sys.time())
 
     },
     error = function(e) {
@@ -654,9 +662,10 @@ cfbd_play_types <- function() {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        dplyr::rename(play_type_id = .data$id) %>%
-        as.data.frame()
+        dplyr::rename(play_type_id = .data$id)
 
+      df <- df %>%
+        make_cfbfastR_data("play types data from CollegeFootballData.com",Sys.time())
 
     },
     error = function(e) {
