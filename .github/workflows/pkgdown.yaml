@@ -28,21 +28,24 @@ jobs:
             animation
             fastRhockey
             ggimage
-            hadley/emo
             hoopR
             knitr
             pacman
             ragg
-            r-lib/pkgapi
             rsconnect
             sf
             tictoc
             tidyverse
-            UrbanInstitute/urbnmapr
             wehoop
             worldfootballR
             zoo
           needs: website
+      - name: Install system dependencies
+        run: |
+          pak::pkg_install("hadley/emo")
+          pak::pkg_install("r-lib/pkgapi")
+          pak::pkg_install("UrbanInstitute/urbnmapr")
+        shell: Rscript {0}
 
       - name: Deploy package
         run: |
