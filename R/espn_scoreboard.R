@@ -82,36 +82,40 @@ espn_cfb_scoreboard <- function(date = NULL) {
         dplyr::mutate(home_win = as.integer(.data$home_win),
                       away_win = as.integer(.data$away_win),
                       home_score = as.integer(.data$home_score),
-                      away_score = as.integer(.data$away_score))
+                      away_score = as.integer(.data$away_score),
+                      type = case_when(type == 2 ~ "regular",
+                                       type == 3 ~ "postseason",
+                                       type == 4 ~ "off-season",
+                                       TRUE ~ as.character(type)))
 
       if("leaders" %in% names(cfb_data)){
         schedule_out <- cfb_data %>%
           tidyr::hoist(
             .data$leaders,
-            # points
-            points_leader_points = list(1, "leaders", 1, "value"),
-            points_leader_stat = list(1, "leaders", 1, "displayValue"),
-            points_leader_name = list(1, "leaders", 1, "athlete", "displayName"),
-            points_leader_shortname = list(1, "leaders", 1, "athlete", "shortName"),
-            points_leader_headshot = list(1, "leaders", 1, "athlete", "headshot"),
-            points_leader_team_id = list(1, "leaders", 1, "team", "id"),
-            points_leader_pos = list(1, "leaders", 1, "athlete", "position", "abbreviation"),
-            # rebounds
-            rebounds_leader_rebounds = list(2, "leaders", 1, "value"),
-            rebounds_leader_stat = list(2, "leaders", 1, "displayValue"),
-            rebounds_leader_name = list(2, "leaders", 1, "athlete", "displayName"),
-            rebounds_leader_shortname = list(2, "leaders", 1, "athlete", "shortName"),
-            rebounds_leader_headshot = list(2, "leaders", 1, "athlete", "headshot"),
-            rebounds_leader_team_id = list(2, "leaders", 1, "team", "id"),
-            rebounds_leader_pos = list(2, "leaders", 1, "athlete", "position", "abbreviation"),
-            # assists
-            assists_leader_assists = list(3, "leaders", 1, "value"),
-            assists_leader_stat = list(3, "leaders", 1, "displayValue"),
-            assists_leader_name = list(3, "leaders", 1, "athlete", "displayName"),
-            assists_leader_shortname = list(3, "leaders", 1, "athlete", "shortName"),
-            assists_leader_headshot = list(3, "leaders", 1, "athlete", "headshot"),
-            assists_leader_team_id = list(3, "leaders", 1, "team", "id"),
-            assists_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
+            # passing
+            passing_leader_yards = list(1, "leaders", 1, "value"),
+            passing_leader_stat = list(1, "leaders", 1, "displayValue"),
+            passing_leader_name = list(1, "leaders", 1, "athlete", "displayName"),
+            passing_leader_shortname = list(1, "leaders", 1, "athlete", "shortName"),
+            passing_leader_headshot = list(1, "leaders", 1, "athlete", "headshot"),
+            passing_leader_team_id = list(1, "leaders", 1, "team", "id"),
+            passing_leader_pos = list(1, "leaders", 1, "athlete", "position", "abbreviation"),
+            # rushing
+            rushing_leader_yards = list(2, "leaders", 1, "value"),
+            rushing_leader_stat = list(2, "leaders", 1, "displayValue"),
+            rushing_leader_name = list(2, "leaders", 1, "athlete", "displayName"),
+            rushing_leader_shortname = list(2, "leaders", 1, "athlete", "shortName"),
+            rushing_leader_headshot = list(2, "leaders", 1, "athlete", "headshot"),
+            rushing_leader_team_id = list(2, "leaders", 1, "team", "id"),
+            rushing_leader_pos = list(2, "leaders", 1, "athlete", "position", "abbreviation"),
+            # receiving
+            receiving_leader_yards = list(3, "leaders", 1, "value"),
+            receiving_leader_stat = list(3, "leaders", 1, "displayValue"),
+            receiving_leader_name = list(3, "leaders", 1, "athlete", "displayName"),
+            receiving_leader_shortname = list(3, "leaders", 1, "athlete", "shortName"),
+            receiving_leader_headshot = list(3, "leaders", 1, "athlete", "headshot"),
+            receiving_leader_team_id = list(3, "leaders", 1, "team", "id"),
+            receiving_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
           )
 
         if("broadcasts" %in% names(schedule_out)) {
@@ -143,3 +147,279 @@ espn_cfb_scoreboard <- function(date = NULL) {
     }
   )
 }
+
+#' ESPN Schedule
+#'
+#' look up the college football schedule for a given season
+#'
+#' @param year (int): Used to define different seasons. 2002 is the earliest available season.
+#' @param week (int): Week of the schedule.
+#' @param groups (string): Used to define different divisions. FBS or FCS.
+#' @param season_type (string): "regular", "postseason", "off-season", or "both".
+#' @param limit (int): number of records to return, default: 500.
+#'
+#' @return [espn_cfb_schedule()]
+#'
+#' @keywords Schedule Data
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom utils URLencode URLdecode
+#' @importFrom cli cli_abort
+#' @importFrom janitor clean_names
+#' @importFrom stringr str_sub str_length
+#' @import dplyr
+#' @export
+#' @examples
+#' \donttest{
+#' espn_cfb_schedule(2021, week = 8)
+#' }
+
+espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NULL, limit=500){
+
+  if(!is.numeric(year) && nchar(year) != 4){
+    cli::cli_abort("Enter valid year as a number (YYYY)")
+  }
+  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
+    # Check if week is numeric, if not NULL
+    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
+  }
+
+  if(is.null(week)){
+    week = ''
+  } else {
+    week = paste0('&week=',week)
+  }
+  if(is.null(year)) {
+    year <- ''
+  } else {
+    year <- paste0('&dates=',year)
+  }
+  if(is.null(season_type)) {
+    season_type <- ''
+  } else {
+    if (season_type %in% c("regular","postseason","off-season","both")) {
+      season_type <- dplyr::case_when(
+        season_type=="regular" ~ "2",
+        season_type=="postseason" ~ "3",
+        season_type=="off-season" ~ "4",
+        season_type=="both" ~ ''
+      )
+    } else {
+      cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
+    }
+    season_type <- paste0('&seasontype=',season_type)
+  }
+  if(is.null(groups)) {
+    groups <- '&groups=80'
+  } else {
+    if (tolower(groups) %in% c("fbs","fcs")) {
+      groups <- dplyr::case_when(tolower(groups) == "fbs" ~ 80,
+                                 tolower(groups) == "fcs" ~ 81)
+    } else {
+      cli::cli_abort("Enter valid group (String): FBS or FCS")
+    }
+    groups <- paste0('&groups=',groups)
+  }
+  url <- paste0( "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=",
+                 limit, groups, year, week, season_type)
+
+  res <- httr::RETRY("GET", url)
+  schedule_out <- data.frame()
+
+  tryCatch(
+    expr = {
+      raw_sched <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
+
+
+      cfb_data <- raw_sched[["events"]] %>%
+        tibble::tibble(data = .data$.) %>%
+        tidyr::unnest_wider(.data$data) %>%
+        tidyr::unchop(.data$competitions) %>%
+        dplyr::select(-.data$id, -.data$uid, -.data$date, -.data$status) %>%
+        tidyr::unnest_wider(.data$competitions) %>%
+        dplyr::rename(matchup = .data$name, matchup_short = .data$shortName, game_id = .data$id, game_uid = .data$uid, game_date = .data$date) %>%
+        tidyr::hoist(.data$status,
+                     status_name = list("type", "name")) %>%
+        dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) %>%
+        tidyr::unnest_wider(.data$season) %>%
+        dplyr::rename(season = .data$year) %>%
+        dplyr::select(-dplyr::any_of("status")) %>%
+        tidyr::hoist(
+          .data$competitors,
+          home_team_name = list(1, "team", "name"),
+          home_team_logo = list(1, "team", "logo"),
+          home_team_abb = list(1, "team", "abbreviation"),
+          home_team_id = list(1, "team", "id"),
+          home_team_location = list(1, "team", "location"),
+          home_team_full = list(1, "team", "displayName"),
+          home_team_color = list(1, "team", "color"),
+          home_score = list(1, "score"),
+          home_win = list(1, "winner"),
+          home_record = list(1, "records", 1, "summary"),
+          # away team
+          away_team_name = list(2, "team", "name"),
+          away_team_logo = list(2, "team", "logo"),
+          away_team_abb = list(2, "team", "abbreviation"),
+          away_team_id = list(2, "team", "id"),
+          away_team_location = list(2, "team", "location"),
+          away_team_full = list(2, "team", "displayName"),
+          away_team_color = list(2, "team", "color"),
+          away_score = list(2, "score"),
+          away_win = list(2, "winner"),
+          away_record = list(2, "records", 1, "summary"),
+        ) %>%
+        dplyr::mutate(home_win = as.integer(.data$home_win),
+                      away_win = as.integer(.data$away_win),
+                      home_score = as.integer(.data$home_score),
+                      away_score = as.integer(.data$away_score),
+                      type = case_when(type == 2 ~ "regular",
+                                       type == 3 ~ "postseason",
+                                       type == 4 ~ "off-season",
+                                       TRUE ~ as.character(type)))
+
+      if("leaders" %in% names(cfb_data)){
+        schedule_out <- cfb_data %>%
+          tidyr::hoist(
+            .data$leaders,
+            # passing
+            passing_leader_yards = list(1, "leaders", 1, "value"),
+            passing_leader_stat = list(1, "leaders", 1, "displayValue"),
+            passing_leader_name = list(1, "leaders", 1, "athlete", "displayName"),
+            passing_leader_shortname = list(1, "leaders", 1, "athlete", "shortName"),
+            passing_leader_headshot = list(1, "leaders", 1, "athlete", "headshot"),
+            passing_leader_team_id = list(1, "leaders", 1, "team", "id"),
+            passing_leader_pos = list(1, "leaders", 1, "athlete", "position", "abbreviation"),
+            # rushing
+            rushing_leader_yards = list(2, "leaders", 1, "value"),
+            rushing_leader_stat = list(2, "leaders", 1, "displayValue"),
+            rushing_leader_name = list(2, "leaders", 1, "athlete", "displayName"),
+            rushing_leader_shortname = list(2, "leaders", 1, "athlete", "shortName"),
+            rushing_leader_headshot = list(2, "leaders", 1, "athlete", "headshot"),
+            rushing_leader_team_id = list(2, "leaders", 1, "team", "id"),
+            rushing_leader_pos = list(2, "leaders", 1, "athlete", "position", "abbreviation"),
+            # receiving
+            receiving_leader_yards = list(3, "leaders", 1, "value"),
+            receiving_leader_stat = list(3, "leaders", 1, "displayValue"),
+            receiving_leader_name = list(3, "leaders", 1, "athlete", "displayName"),
+            receiving_leader_shortname = list(3, "leaders", 1, "athlete", "shortName"),
+            receiving_leader_headshot = list(3, "leaders", 1, "athlete", "headshot"),
+            receiving_leader_team_id = list(3, "leaders", 1, "team", "id"),
+            receiving_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
+          )
+
+        if("broadcasts" %in% names(schedule_out)) {
+          schedule_out <- schedule_out %>%
+            tidyr::hoist(
+              .data$broadcasts,
+              broadcast_market = list(1, "market"),
+              broadcast_name = list(1, "names", 1)
+            ) %>%
+            dplyr::select(!where(is.list)) %>%
+            janitor::clean_names()
+        } else {
+          schedule_out <- schedule_out %>%
+            janitor::clean_names()
+        }
+      } else {
+        schedule_out <- cfb_data %>% dplyr::select(!where(is.list)) %>%
+          janitor::clean_names()
+      }
+      schedule_out <- schedule_out %>%
+        make_cfbfastR_data("Schedule Data from ESPN",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid input or no ESPN schedule data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
+  return(schedule_out)
+}
+
+#' ESPN Calendar
+#'
+#' look up the men's college football calendar for a given season
+#'
+#' @param year (int): Used to define different seasons. 2002 is the earliest available season.
+#' @param groups (string): Used to define different divisions. FBS or FCS.
+#'
+#' @return [espn_cfb_calendar()]
+#'
+#' @keywords Schedule Data
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom janitor clean_names
+#' @importFrom tidyr unnest unnest_wider
+#' @import dplyr
+#' @export
+#' @examples
+#' \donttest{
+#' espn_cfb_calendar(2021)
+#' }
+espn_cfb_calendar <- function(year=NULL, groups=NULL){
+
+  if(is.null(year)) {
+    year <- ''
+  } else {
+    year <- paste0('&dates=',year)
+  }
+  if(is.null(groups)) {
+    groups <- '&groups=80'
+  } else {
+    if (tolower(groups) %in% c("fbs","fcs")) {
+      groups <- dplyr::case_when(tolower(groups) == "fbs" ~ 80,
+                                 tolower(groups) == "fcs" ~ 81)
+    } else {
+      cli::cli_abort("Enter valid group (String): FBS or FCS")
+    }
+    groups <- paste0('&groups=',groups)
+  }
+  url <- paste0( "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?",
+                 year, groups)
+  res <- httr::RETRY("GET", url)
+  calendar_out <- data.frame()
+
+
+  tryCatch(
+    expr = {
+      raw_cal <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
+
+      calendar_out <- raw_cal[["leagues"]] %>%
+        tibble::tibble(data = .data$.) %>%
+        tidyr::unnest_wider(.data$data) %>%
+        tidyr::unnest(.data$calendar) %>%
+        tidyr::unnest_wider(.data$calendar) %>%
+        tidyr::unnest(.data$entries) %>%
+        dplyr::rename(season_type = .data$label)
+
+      calendar_out$season <- substr(calendar_out$calendarStartDate[1],1,4)
+
+      calendar_out <- calendar_out %>%
+        dplyr::select(.data$season,.data$season_type,.data$entries) %>%
+        tidyr::unnest_wider(.data$entries) %>%
+        janitor::clean_names() %>%
+        dplyr::rename(week = .data$value)
+
+      calendar_out <- calendar_out %>%
+        make_cfbfastR_data("Calendar Data from ESPN",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid input or no ESPN calendar available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
+  return(calendar_out)
+}
+
+
+
