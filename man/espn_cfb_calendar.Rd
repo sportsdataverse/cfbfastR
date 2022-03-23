@@ -4,10 +4,10 @@
 \alias{espn_cfb_calendar}
 \title{ESPN Calendar}
 \usage{
-espn_cfb_calendar(season = NULL, groups = NULL)
+espn_cfb_calendar(year = NULL, groups = NULL)
 }
 \arguments{
-\item{season}{(int): Used to define different seasons. 2002 is the earliest available season.}
+\item{year}{(int): Used to define different seasons. 2002 is the earliest available season.}
 
 \item{groups}{(string): Used to define different divisions. FBS or FCS.}
 }

@@ -6,6 +6,9 @@
 \usage{
 load_cfb_teams(fbs_only = TRUE)
 }
+\arguments{
+\item{fbs_only}{if TRUE, returns only FBS teams, otherwise returns all teams in the dataset}
+}
 \value{
 A tibble of team-level image URLs and hex color codes.
 }

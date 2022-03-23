@@ -28,10 +28,17 @@ load_cfb_schedules <- function(seasons = most_recent_season()){
   urls <- paste0("https://github.com/saiemgilani/cfbfastR-data/raw/master/schedules/rds/cfb_schedules_",
                  seasons, ".rds")
 
+  # out <- furrr::future_map_dfr(urls, progressively(rds_from_url, p = p))
+
   out <- lapply(urls, progressively(rds_from_url, p))
   out <- rbindlist_with_attrs(out)
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
   attr(out,"cfbfastR_type") <- "Games and schedules from data repository"
+  # change this later when data in repo has attributes
+  if(is.null(attr(out,"cfbfastR_timestamp"))) {
+    out <- out %>%
+      make_cfbfastR_data("Games and schedules from data repository",Sys.time())
+  }
   out
 }
 
@@ -64,15 +71,24 @@ load_cfb_rosters <- function(seasons = most_recent_season()){
   urls <- paste0("https://github.com/saiemgilani/cfbfastR-data/raw/master/rosters/rds/cfb_rosters_",
                  seasons, ".rds")
 
+  # out <- furrr::future_map_dfr(urls, progressively(rds_from_url, p = p))
+
   out <- lapply(urls, progressively(rds_from_url, p))
   out <- rbindlist_with_attrs(out)
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+  # change this later when data in repo has attributes
+  if(is.null(attr(out,"cfbfastR_timestamp"))) {
+    out <- out %>%
+      make_cfbfastR_data("Roster data from data repository",Sys.time())
+  }
   out
 }
 
 #' Load CFB team info from the data repo
 #'
 #' @description Loads team information including colors and logos - useful for plots!
+#'
+#' @param fbs_only if TRUE, returns only FBS teams, otherwise returns all teams in the dataset
 #'
 #' @examples
 #' \donttest{
