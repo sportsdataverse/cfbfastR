@@ -233,9 +233,9 @@ cfbd_game_info <- function(year,
         df <- df %>%
           dplyr::rename(game_id = .data$id)
 
-        df <- df %>%
-          make_cfbfastR_data("game information from CollegeFootballData.com",Sys.time())
       }
+      df <- df %>%
+        make_cfbfastR_data("game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
