@@ -168,7 +168,7 @@ print.cfbfastR_data <- function(x,...) {
 
   if(!is.null(attr(x,'cfbfastR_timestamp'))) {
     cli::cli_alert_info(
-      "Data loaded: {.field {format(attr(x,'cfbfastR_timestamp'), tz = Sys.timezone(), usetz = TRUE)}}"
+      "Data updated: {.field {format(attr(x,'cfbfastR_timestamp'), tz = Sys.timezone(), usetz = TRUE)}}"
     )
   }
 
