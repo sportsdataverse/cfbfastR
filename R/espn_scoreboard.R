@@ -115,7 +115,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
             receiving_leader_shortname = list(3, "leaders", 1, "athlete", "shortName"),
             receiving_leader_headshot = list(3, "leaders", 1, "athlete", "headshot"),
             receiving_leader_team_id = list(3, "leaders", 1, "team", "id"),
-            receiving_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation"),
+            receiving_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation")
           )
 
         if("broadcasts" %in% names(schedule_out)) {
@@ -420,6 +420,4 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
   )
   return(calendar_out)
 }
-
-
 

@@ -19,7 +19,6 @@ read_raw_rds <- function(raw) {
   return(ret)
 }
 
-
 # Load .rds file from a remote connection, taken from nflreadr
 rds_from_url <- function(url) {
 #  cache_message()

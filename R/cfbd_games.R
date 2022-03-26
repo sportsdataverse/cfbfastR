@@ -232,7 +232,6 @@ cfbd_game_info <- function(year,
         colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
         df <- df %>%
           dplyr::rename(game_id = .data$id)
-
       }
       df <- df %>%
         make_cfbfastR_data("game information from CollegeFootballData.com",Sys.time())
