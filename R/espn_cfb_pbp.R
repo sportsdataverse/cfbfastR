@@ -148,7 +148,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
             ppa = NA_real_ #ppa is from CFBD but is coded into a select in the EPA functions so needs a placeholder
           ) %>%
           #Timeout handling
-          dplyr::group_by(half) %>%
+          dplyr::group_by(.data$half) %>%
           dplyr::mutate(
             timeout_team = stringr::str_extract(.data$play_text,"(?<=Timeout ).{1,10}(?=,)"),
             home_timeouts = 3-cumsum(dplyr::case_when(.data$timeout_team == .data$home_team_abbreviation ~ 1,TRUE ~0)),

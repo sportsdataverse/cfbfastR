@@ -1,20 +1,22 @@
-# **cfbfastR v1.8.0**
-
-* All functions now default to return tibbles.
-* Added S3 method to print outputs with data info and retrieval timestamps (Thanks to Tan Ho for idea).
-
-### v1.8.1
+# **cfbfastR v1.8.1**
 
 #### Added functions to access ESPN API:
 
 * [```espn_cfb_calendar()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_calendar.html)
 * [```espn_cfb_schedule()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_schedule.html)
+* Added EPA and WPA processing to [```espn_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_pbp.html)
 
 #### Added functions to pull data from the data repo:
 
 * [```load_cfb_rosters()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_rosters.html)
 * [```load_cfb_schedules()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_schedules.html)
 * [```load_cfb_teams()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_teams.html)
+
+# **cfbfastR v1.8.0**
+
+* All functions now default to return tibbles.
+* Added S3 method to print outputs with data info and retrieval timestamps (Thanks to Tan Ho for idea).
+
 
 # **cfbfastR v1.7.1**
 
