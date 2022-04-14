@@ -306,7 +306,7 @@ Requires the following columns to be present
 \item{\code{offense_score}}{.}
 \item{\code{defense_score}}{.}
 \item{\code{offense_timeouts}}{.}
-\item{\code{offense_timeouts}}{.}
+\item{\code{defense_timeouts}}{.}
 \item{\code{play_text}}{.}
 \item{\code{play_type}}{.}
 }

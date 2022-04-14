@@ -133,7 +133,7 @@ create_epa <- function(play_df,
   turnover_play_type <- c(
     "Blocked Field Goal",
     "Blocked Field Goal Touchdown",
-    "Blocked Punt",
+    #"Blocked Punt",
     "Blocked Punt Touchdown",
     "Punt",
     "Punt Touchdown",
@@ -244,6 +244,8 @@ create_epa <- function(play_df,
   pred_df_after[turnover_plays, "ep_after"] <- -1 * pred_df_after[turnover_plays, "ep_after"]
   kickoff_turnovers <- which(pred_df_after$play_type %in% c("Kickoff Team Fumble Recovery", "Kickoff Team Fumble Recovery Touchdown"))
   pred_df_after[kickoff_turnovers, "ep_after"] <- -1 * pred_df_after[kickoff_turnovers, "ep_after"]
+  punt_turnovers <- which(pred_df_after$play_type %in% punt)
+  pred_df_after[punt_turnovers, "ep_after"] <- -1 * pred_df_after[punt_turnovers, "ep_after"]
 
   # Game end EP is 0
   pred_df[pred_df$end_of_half == 1, "ep_after"] <- 0
@@ -261,7 +263,7 @@ create_epa <- function(play_df,
 
   pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] <- 0
 
-  # insert begore lags here
+  # insert before lags here
   pred_df <- pred_df %>%
     dplyr::group_by(.data$game_id) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
