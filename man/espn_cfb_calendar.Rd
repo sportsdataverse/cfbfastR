@@ -12,7 +12,17 @@ espn_cfb_calendar(year = NULL, groups = NULL)
 \item{groups}{(string): Used to define different divisions. FBS or FCS.}
 }
 \value{
-\code{\link[=espn_cfb_calendar]{espn_cfb_calendar()}}
+\code{\link[=espn_cfb_calendar]{espn_cfb_calendar()}} - A data frame with 8 variables:
+\describe{
+\item{\code{season}: character.}{}
+\item{\code{season_type}: character.}{}
+\item{\code{label}: character.}{}
+\item{\code{alternate_label}: character.}{}
+\item{\code{detail}: character.}{}
+\item{\code{week}: character.}{}
+\item{\code{start_date}: character.}{}
+\item{\code{end_date}: character.}{}
+}
 }
 \description{
 look up the men's college football calendar for a given season

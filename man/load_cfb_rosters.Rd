@@ -23,5 +23,7 @@ Load College Football Rosters
 
 }
 \seealso{
+\code{\link[=cfbd_team_roster]{cfbd_team_roster()}}
+
 Issues with this data should be filed here: \url{https://github.com/saiemgilani/cfbfastR-data}
 }

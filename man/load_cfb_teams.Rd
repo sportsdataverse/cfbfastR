@@ -22,5 +22,7 @@ Loads team information including colors and logos - useful for plots!
 
 }
 \seealso{
+\code{\link[=cfbd_team_info]{cfbd_team_info()}}
+
 Issues with this data should be filed here: \url{https://github.com/saiemgilani/cfbfastR-data}
 }

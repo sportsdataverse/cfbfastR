@@ -6,6 +6,7 @@
 #'
 #' @return A tibble of game information for past and/or future games.
 #'
+#' @seealso [cfbd_game_info()]
 #' @seealso Issues with this data should be filed here: <https://github.com/saiemgilani/cfbfastR-data>
 #'
 #' @examples
@@ -54,6 +55,8 @@ load_cfb_schedules <- function(seasons = most_recent_season()){
 #' }
 #'
 #' @return A tibble of season-level roster data.
+#'
+#' @seealso [cfbd_team_roster()]
 #' @seealso Issues with this data should be filed here: <https://github.com/saiemgilani/cfbfastR-data>
 #'
 #' @export
@@ -97,6 +100,7 @@ load_cfb_rosters <- function(seasons = most_recent_season()){
 #'
 #' @return A tibble of team-level image URLs and hex color codes.
 #'
+#' @seealso [cfbd_team_info()]
 #' @seealso Issues with this data should be filed here: <https://github.com/saiemgilani/cfbfastR-data>
 #'
 #' @export

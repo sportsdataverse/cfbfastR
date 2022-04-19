@@ -22,5 +22,7 @@ This returns game/schedule information
 
 }
 \seealso{
+\code{\link[=cfbd_game_info]{cfbd_game_info()}}
+
 Issues with this data should be filed here: \url{https://github.com/saiemgilani/cfbfastR-data}
 }

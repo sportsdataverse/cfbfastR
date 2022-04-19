@@ -1,12 +1,70 @@
 #' **ESPN Scoreboard**
 #' @name espn_cfb_scoreboard
 NULL
-#' Get live scoreboard data from ESPN
+#' Get live scoreboard data from ESPN or look up the college football schedule for a given season
 #' @rdname espn_cfb_scoreboard
 #'
 #' @param date (*Integer* required - YYYYMMDD): Date to pull
 #'
-#' @return [espn_cfb_scoreboard()]
+#' @return [espn_cfb_scoreboard()] & [espn_cfb_schedule()] - A data frame with 33 or 54 variables depending on if there are completed games:
+#' \describe{ shared variables
+#'   \item{`matchup`: character.}{Long matchup description with full team names (Utah Utes at UCLA Bruins).}
+#'   \item{`matchup_short`: character.}{Short matchup description with team abbreviations (UTAH @ UCLA).}
+#'   \item{`season`: integer.}{Season of the game.}
+#'   \item{`type`: character.}{Season type of the game in CFBD format.}
+#'   \item{`slug`: character.}{Season type of the game in ESPN format.}
+#'   \item{`game_id`: character.}{Referencing game ID.}
+#'   \item{`game_uid`: character.}{}
+#'   \item{`game_date`: character.}{Game date.}
+#'   \item{`attendance`: integer.}{Reported attendance at the game.}
+#'   \item{`home_team_name`: character.}{Home team mascot name (Sun Devils).}
+#'   \item{`home_team_logo`: character.}{Home team logo url.}
+#'   \item{`home_team_abb`: character.}{Home team abbreviation (ASU).}
+#'   \item{`home_team_id`: character.}{Home team ID.}
+#'   \item{`home_team_location`: character.}{Home team name (Arizona State).}
+#'   \item{`home_team_full`: character.}{Home team full name (Arizona State Sun Devils).}
+#'   \item{`home_team_color`: character.}{Home team color.}
+#'   \item{`home_score`: integer.}{Home team points.}
+#'   \item{`home_win`: integer.}{1 if home team won, 0 if home team lost, NA if game is unfinished}
+#'   \item{`home_record`: character}{Home team record.}
+#'   \item{`away_team_name`: character.}{Away team mascot name (Sun Devils).}
+#'   \item{`away_team_logo`: character.}{Away team logo url.}
+#'   \item{`away_team_abb`: character.}{Away team abbreviation (ASU).}
+#'   \item{`away_team_id`: character.}{Away team ID.}
+#'   \item{`away_team_location`: character.}{Away team name (Arizona State).}
+#'   \item{`away_team_full`: character.}{Away team full name (Arizona State Sun Devils).}
+#'   \item{`away_team_color`: character.}{Away team color.}
+#'   \item{`away_score`: integer.}{Away team points.}
+#'   \item{`away_win`: integer.}{1 if away team won, 0 if home team lost, NA if game is unfinished}
+#'   \item{`away_record`: character}{Away team record.}
+#'   \item{`status_name`: character.}{Status of the game}
+#'   \item{`start_date`: character.}{Game date.}
+#' }
+#' \describe{Unique variables when there are completed games
+#'   \item{`broadcast_market`: character.}{Broadcast market (typically "national" or NA)}
+#'   \item{`broadcast_name`: character.}{Broadcast channel i.e. ESPN, ABC, FOX}
+#'   \item{`passing_leader_yards`: numeric.}{Passing yards of game's passing leader}
+#'   \item{`passing_leader_stat`: character.}{Stat line of game's passing leader}
+#'   \item{`passing_leader_name`: character.}{Name of game's passing leader}
+#'   \item{`passing_leader_shortname`: character.}{First initial and last name of game's passing leader}
+#'   \item{`passing_leader_headshot`: character.}{Headshot url of game's passing leader}
+#'   \item{`passing_leader_team_id`: character.}{Team ID of game's passing leader}
+#'   \item{`passing_leader_pos`: character.}{Position of game's passing leader}
+#'   \item{`rushing_leader_yards`: numeric.}{Passing yards of game's rushing leader}
+#'   \item{`rushing_leader_stat`: character.}{Stat line of game's rushing leader}
+#'   \item{`rushing_leader_name`: character.}{Name of game's rushing leader}
+#'   \item{`rushing_leader_shortname`: character.}{First initial and last name of game's rushing leader}
+#'   \item{`rushing_leader_headshot`: character.}{Headshot url of game's rushing leader}
+#'   \item{`rushing_leader_team_id`: character.}{Team ID of game's rushing leader}
+#'   \item{`rushing_leader_pos`: character.}{Position of game's rushing leader}
+#'   \item{`receiving_leader_yards`: numeric.}{Passing yards of game's receiving leader}
+#'   \item{`receiving_leader_stat`: character.}{Stat line of game's receiving leader}
+#'   \item{`receiving_leader_name`: character.}{Name of game's receiving leader}
+#'   \item{`receiving_leader_shortname`: character.}{First initial and last name of game's receiving leader}
+#'   \item{`receiving_leader_headshot`: character.}{Headshot url of game's receiving leader}
+#'   \item{`receiving_leader_team_id`: character.}{Team ID of game's receiving leader}
+#'   \item{`receiving_leader_pos`: character.}{Position of game's receiving leader}
+#' }
 #' @keywords Scoreboard Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -149,17 +207,12 @@ espn_cfb_scoreboard <- function(date = NULL) {
 }
 
 #' ESPN Schedule
-#'
-#' look up the college football schedule for a given season
-#'
+#' @rdname espn_cfb_scoreboard
 #' @param year (int): Used to define different seasons. 2002 is the earliest available season.
 #' @param week (int): Week of the schedule.
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #' @param season_type (string): "regular", "postseason", "off-season", or "both".
 #' @param limit (int): number of records to return, default: 500.
-#'
-#' @return [espn_cfb_schedule()]
-#'
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -347,8 +400,17 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 #' @param year (int): Used to define different seasons. 2002 is the earliest available season.
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #'
-#' @return [espn_cfb_calendar()]
-#'
+#' @return [espn_cfb_calendar()] - A data frame with 8 variables:
+#' \describe{
+#'   \item{`season`: character.}{}
+#'   \item{`season_type`: character.}{}
+#'   \item{`label`: character.}{}
+#'   \item{`alternate_label`: character.}{}
+#'   \item{`detail`: character.}{}
+#'   \item{`week`: character.}{}
+#'   \item{`start_date`: character.}{}
+#'   \item{`end_date`: character.}{}
+#' }
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
