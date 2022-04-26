@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Functions to Access College Football Play by Play Data
-Version: 1.8.0
+Version: 1.8.1
 Authors@R: 
     c(person(given = "Saiem",
              family = "Gilani",
@@ -67,6 +67,7 @@ Depends:
   R (>= 4.0.0)
 Imports: 
     cli (>= 3.0.0),
+    data.table (>= 1.14.0),
     dplyr,
     furrr,
     future,

@@ -4,10 +4,12 @@
 \alias{espn_cfb_pbp}
 \title{Get ESPN college football PBP data}
 \usage{
-espn_cfb_pbp(game_id)
+espn_cfb_pbp(game_id, epa_wpa = FALSE)
 }
 \arguments{
 \item{game_id}{Game ID}
+
+\item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 }
 \description{
 Get ESPN college football PBP data

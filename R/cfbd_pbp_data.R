@@ -789,7 +789,7 @@ cfbd_pbp_data <- function(year,
 #' \item{`offense_score`}{.}
 #' \item{`defense_score`}{.}
 #' \item{`offense_timeouts`}{.}
-#' \item{`offense_timeouts`}{.}
+#' \item{`defense_timeouts`}{.}
 #' \item{`play_text`}{.}
 #' \item{`play_type`}{.}
 #' }
