@@ -253,6 +253,9 @@ reference:
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data
     contents:
       - '`load_cfb_pbp`'
+      - '`load_cfb_rosters`'
+      - '`load_cfb_schedules`'
+      - '`load_cfb_teams`'
   - subtitle: "Update or Create Database"
     desc: Functions exported by cfbfastR which update and create a database of cfbfastR play-by-play data
     contents:
