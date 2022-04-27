@@ -256,6 +256,9 @@
     <loc>https://cfbfastR.sportsdataverse.org/reference/data.html</loc>
   </url>
   <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.html</loc>
+  </url>
+  <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html</loc>
   </url>
   <url>
@@ -278,6 +281,15 @@
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html</loc>
+  </url>
+  <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.html</loc>
+  </url>
+  <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.html</loc>
+  </url>
+  <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html</loc>
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html</loc>

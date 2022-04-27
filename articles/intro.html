@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
       </span>
     </div>
 
@@ -427,7 +427,7 @@
 <li><p>Functions that use one of ESPN’s APIs start with <code>espn_</code> by convention and should be assumed as <code>get</code> functions. There are only two of these functions so far: <code><a href="../reference/espn_ratings.html">espn_ratings_fpi()</a></code> and <code><a href="../reference/espn_metrics.html">espn_metrics_wp()</a></code></p></li>
 </ul>
 <p>However, there is only one data <em>provider</em> involved for most game data, ESPN’s data provider.</p>
-<p>As of <code>cfbfastR</code> version 1.8.0, the package exports 70 functions. The bulk (~51) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com" class="external-link">College Football Data API</a>.</p>
+<p>As of <code>cfbfastR</code> version 1.8.1, the package exports 75 functions. The bulk (~51) of the functions within the package serve as the unofficial R API client for the <a href="https://collegefootballdata.com" class="external-link">College Football Data API</a>.</p>
 </div>
 <div class="section level5">
 <h5 id="cfb-data-now-requires-an-api-key-its-free">
@@ -487,7 +487,7 @@
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 70.475 sec elapsed</span></code></pre>
+<pre><code><span class="co">## 65.069 sec elapsed</span></code></pre>
 <p>In the selected seasons, there are 6616 games for which the data repository has play by play data. In the present term, the data repository supplies over a million rows of play by play data with 331 columns of data. The most relevant play columns are kept to the left of the data frame for clarity, let’s take a look at the first 40 or so.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></code></pre></div>
@@ -562,7 +562,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>

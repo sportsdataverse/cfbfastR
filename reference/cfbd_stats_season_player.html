@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbfastR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.8.1</span>
       </span>
     </div>
 
@@ -531,7 +531,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">   <span class="fu">cfbd_stats_season_player</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, conference <span class="op">=</span> <span class="st">"B12"</span>, start_week <span class="op">=</span> <span class="fl">1</span>, end_week <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2022-03-20 11:48:39: Invalid arguments or no season stats - player data available!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2022-04-27 01:17:00: Invalid arguments or no season stats - player data available!</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               team conference athlete_id                   player      category</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1            Texas     Big 12    4362087          Keaontay Ingram       rushing</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         Oklahoma     Big 12    3705353          Rodney Anderson       rushing</span>
@@ -11131,7 +11131,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 <span class="r-in"></span>
 <span class="r-in">   <span class="fu">cfbd_stats_season_player</span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced player season stats from CollegeFootballData.com ───────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:40 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-04-27 01:17:01 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 59</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   team  conference athlete_id player       category passing_complet… passing_att</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -11147,7 +11147,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 <span class="r-in"></span>
 <span class="r-in">   <span class="fu">cfbd_stats_season_player</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced player season stats from CollegeFootballData.com ───────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data loaded: <span style="color: #00BB00;">2022-03-20 11:48:40 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-04-27 01:17:02 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 59</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   team        conference athlete_id player category passing_complet… passing_att</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -11176,7 +11176,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
