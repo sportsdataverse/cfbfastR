@@ -31,3 +31,4 @@
 ^md
 cfb_pbp_db
 ^CRAN-RELEASE$
+^\.pre-commit-config\.yaml$
