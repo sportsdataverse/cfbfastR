@@ -13,6 +13,8 @@
 * [```load_cfb_schedules()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.html)
 * [```load_cfb_teams()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html)
 
+- Removes `furrr`, `future` dependencies, adds `Rcpp`, `RcppParallel`, and `purrr` dependencies
+
 # **cfbfastR v1.8.0**
 
 * All functions now default to return tibbles.

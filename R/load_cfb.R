@@ -29,7 +29,7 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
   urls <- paste0("https://github.com/sportsdataverse/cfbfastR-data/raw/main/schedules/rds/cfb_schedules_",
                  seasons, ".rds")
 
-  # out <- furrr::future_map_dfr(urls, progressively(rds_from_url, p = p))
+  # out <- purrr::map_dfr(urls, progressively(rds_from_url, p = p))
 
   out <- lapply(urls, progressively(rds_from_url, p))
   out <- rbindlist_with_attrs(out)
@@ -74,7 +74,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
   urls <- paste0("https://github.com/sportsdataverse/cfbfastR-data/raw/main/rosters/rds/cfb_rosters_",
                  seasons, ".rds")
 
-  # out <- furrr::future_map_dfr(urls, progressively(rds_from_url, p = p))
+  # out <- purrr::map_dfr(urls, progressively(rds_from_url, p = p))
 
   out <- lapply(urls, progressively(rds_from_url, p))
   out <- rbindlist_with_attrs(out)

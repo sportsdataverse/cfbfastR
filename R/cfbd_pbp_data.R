@@ -550,7 +550,7 @@ cfbd_pbp_data <- function(year,
 
     p <- progressr::progressor(along = g_ids)
 
-    play_df <- furrr::future_map_dfr(
+    play_df <- purrr::map_dfr(
       g_ids,
       function(x){
         play_df <- play_df %>%

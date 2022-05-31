@@ -34,7 +34,7 @@ tictoc::tic()
 pbp <- data.frame()
 seasons <- 2014:2020
 progressr::with_progress({
-future::plan("multisession")
+
   pbp <- cfbfastR::load_cfb_pbp(seasons)
 })
 tictoc::toc()

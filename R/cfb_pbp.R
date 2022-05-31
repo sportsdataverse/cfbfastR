@@ -8,48 +8,39 @@ NULL
 #' or writes it into a db using some forwarded arguments in the dots
 #' @param seasons A vector of 4-digit years associated with given College Football seasons.
 #' @param ... Additional arguments passed to an underlying function that writes
-#' the season data into a database (used by [`update_cfb_db()`][update_cfb_db]).
-#' @param qs Whether to use the function [qs::qdeserialize()] for more efficient loading.
+#' the season data into a database (used by [`update_cfb_db()`][update_cfb_db])
+#' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
+#' @param tablename The name of the play by play data table within the database
 #' @export
-load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
+load_cfb_pbp <- function(seasons = most_recent_cfb_season(),...,
+                         dbConnection = NULL, tablename = NULL) {
   dots <- rlang::dots_list(...)
 
-  if (all(c("dbConnection", "tablename") %in% names(dots))) in_db <- TRUE else in_db <- FALSE
+  loader <- rds_from_url
 
-  if (isTRUE(qs) && !is_installed("qs")) {
-    cli::cli_abort("Package {.val qs} required for argument {.val qs = TRUE}. Please install it.")
-  }
+  if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
-  most_recent <- most_recent_cfb_season()
+  if(isTRUE(seasons)) seasons <- 2014:most_recent_cfb_season()
 
-  if (!all(seasons %in% 2014:most_recent)) {
-    cli::cli_abort("Please pass valid seasons between 2014 and {most_recent}")
-  }
+  stopifnot(is.numeric(seasons),
+            seasons >= 2014,
+            seasons <= most_recent_cfb_season())
 
-  if (length(seasons) > 1 && is_sequential() && isFALSE(in_db)) {
-    cli::cli_alert_info(c(
-      "It is recommended to use parallel processing when trying to load multiple seasons.",
-      "Please consider running {.code future::plan(\"multisession\")}!",
-      "Will go on sequentially..."
-    ))
-  }
+  urls <- paste0("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/rds/pbp_players_pos_",seasons,".rds")
 
+  p <- NULL
+  if (is_installed("progressr")) p <- progressr::progressor(along = seasons)
 
-  p <- progressr::progressor(along = seasons)
-
-  if (isFALSE(in_db)) {
-    out <- furrr::future_map_dfr(seasons, cfb_single_season, p = p, qs = qs)
-  }
-
-  if (isTRUE(in_db)) {
-    purrr::walk(seasons, cfb_single_season, p, ..., qs = qs)
+  out <- lapply(urls, progressively(loader, p))
+  out <- data.table::rbindlist(out, use.names = TRUE, fill = TRUE)
+  if (in_db) {
+    DBI::dbWriteTable(dbConnection, tablename, out, append = TRUE)
     out <- NULL
+  } else {
+    class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
+
   }
-  # change this later when data in repo has attributes
-  if(is.null(attr(out,"cfbfastR_timestamp"))) {
-    out <- out %>%
-      make_cfbfastR_data("play-by-play data from cfbfastR data repo",Sys.time())
-  }
+  out
   return(out)
 }
 

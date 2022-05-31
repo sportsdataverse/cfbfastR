@@ -50,7 +50,7 @@ tictoc::tic()
 for (i in 1:length(year_split)) {
   i <- 1
   print(paste0("Working on ", year_split[[i]][1, 1]))
-  future::plan("multisession")
+  
   progressr::with_progress({
     year_split[[i]] <- year_split[[i]] %>%
       dplyr::mutate(
@@ -116,7 +116,7 @@ tictoc::tic()
 pbp <- data.frame()
 seasons <- 2014:2020
 progressr::with_progress({
-future::plan("multisession")
+
   pbp <- cfbfastR::load_cfb_pbp(seasons)
 })
 tictoc::toc()

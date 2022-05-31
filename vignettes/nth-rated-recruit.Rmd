@@ -36,8 +36,8 @@ yr <- cfbfastR:::most_recent_cfb_season()
 year_range <- (yr-3):yr
 team_year_df <- expand.grid(year=year_range, school = schools)
 tictoc::tic()
-future::plan("multisession")
-all.recruits <- furrr::future_map2_dfr(
+
+all.recruits <- purrr::map2_dfr(
   .x = team_year_df$year,
   .y = team_year_df$school,
   function(.x,.y){

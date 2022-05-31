@@ -20,7 +20,7 @@ College football plays data
  year_split <- split(weekly_year_df, weekly_year_df$year)
  for (i in 1:length(year_split)) \{
    i <- 1
-   future::plan("multisession")
+   
    progressr::with_progress(\{
       year_split[[i]] <- year_split[[i]] \%>\%
          dplyr::mutate(

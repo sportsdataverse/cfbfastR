@@ -149,7 +149,7 @@ cfbd_betting_lines <- function(game_id = NULL,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        furrr::future_map_if(is.data.frame, list) %>%
+        purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest(.data$lines)
 
