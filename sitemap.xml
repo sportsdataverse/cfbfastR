@@ -253,6 +253,9 @@
     <loc>https://cfbfastR.sportsdataverse.org/reference/create_wpa.html</loc>
   </url>
   <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/csv_from_url.html</loc>
+  </url>
+  <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/data.html</loc>
   </url>
   <url>
@@ -293,6 +296,9 @@
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html</loc>
+  </url>
+  <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/rds_from_url.html</loc>
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html</loc>

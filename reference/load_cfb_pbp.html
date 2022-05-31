@@ -187,7 +187,12 @@ or writes it into a db using some forwarded arguments in the dots</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">load_cfb_pbp</span><span class="op">(</span><span class="va">seasons</span>, <span class="va">...</span>, qs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">load_cfb_pbp</span><span class="op">(</span>
+  seasons <span class="op">=</span> <span class="fu">most_recent_cfb_season</span><span class="op">(</span><span class="op">)</span>,
+  <span class="va">...</span>,
+  dbConnection <span class="op">=</span> <span class="cn">NULL</span>,
+  tablename <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -196,9 +201,11 @@ or writes it into a db using some forwarded arguments in the dots</p>
 <dd><p>A vector of 4-digit years associated with given College Football seasons.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments passed to an underlying function that writes
-the season data into a database (used by <code><a href="update_cfb_db.html">update_cfb_db()</a></code>).</p></dd>
-<dt>qs</dt>
-<dd><p>Whether to use the function <code><a href="https://rdrr.io/pkg/qs/man/qdeserialize.html" class="external-link">qs::qdeserialize()</a></code> for more efficient loading.</p></dd>
+the season data into a database (used by <code><a href="update_cfb_db.html">update_cfb_db()</a></code>)</p></dd>
+<dt>dbConnection</dt>
+<dd><p>A <code>DBIConnection</code> object, as returned by <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">DBI::dbConnect()</a></code></p></dd>
+<dt>tablename</dt>
+<dd><p>The name of the play by play data table within the database</p></dd>
 </dl></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
