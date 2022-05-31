@@ -3,7 +3,7 @@
 #### Added functions to access ESPN API:
 
 * [```espn_cfb_calendar()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.html)
-* [```espn_cfb_schedule()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_schedule.html)
+* [```espn_cfb_schedule()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html)
 * Added EPA and WPA processing to [```espn_cfb_pbp()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html)
 * [```espn_cfb_team_stats()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.html)
 
@@ -134,7 +134,7 @@
 
 #### **ESPN/CFBD metrics function variable return standardization**
 
-* Change `id` variable to `team_id` in [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html)
+* Change `id` variable to `team_id` in [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html)
 * Changed `espn_game_id` variable to `game_id` in [```espn_metrics_wp()```](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html), corrected the `away_win_percentage` calculation and added `tie_percentage` to the returns.
 * Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html)
 
@@ -154,7 +154,7 @@
 
 * All functions sourced from the College Football Data API will start with `cfbd_` as opposed to `cfb_` (as in cfbscrapR). One additional `cfbd_` function has been added that corresponds to the result when [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) has the parameter `epa_wpa=FALSE`. It has now been separated into its own function for clarity [```cfbd_plays()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_play.html). The parameter and functionality still exists in [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) but we expect this function will still exist but made obsolete in favor of a function more closely matching `nflfastR`'s naming conventions.
 
-* Similarly, data and metrics sourced from ESPN will begin with `espn_` as opposed to `cfb_`. In particular, the two functions are now [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html) and [```espn_metrics_wp()```](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html)
+* Similarly, data and metrics sourced from ESPN will begin with `espn_` as opposed to `cfb_`. In particular, the two functions are now [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html) and [```espn_metrics_wp()```](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html)
 
 * Data generated from any of the ```cfbfastR``` methods will use `cfb_`
 
