@@ -204,17 +204,17 @@
 <dt>team</dt>
 <dd><p>(<em>String</em> optional): D-I Team</p></dd>
 <dt>conference</dt>
-<dd><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference<br>
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br>
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<br></p></dd>
+<dd><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></dd>
 <dt>start_week</dt>
 <dd><p>(<em>Integer</em> optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier</p></dd>
 <dt>end_week</dt>
 <dd><p>(<em>Integer</em> optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier</p></dd>
 <dt>category</dt>
-<dd><p>(<em>String</em> optional): Category filter (e.g defensive)<br>
-Offense: passing, receiving, rushing<br>
-Defense: defensive, fumbles, interceptions<br>
+<dd><p>(<em>String</em> optional): Category filter (e.g defensive)
+Offense: passing, receiving, rushing
+Defense: defensive, fumbles, interceptions
 Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 </dl></div>
     <div class="section level2">
@@ -403,7 +403,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_season_player</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, conference <span class="op">=</span> <span class="st">"B12"</span>, start_week <span class="op">=</span> <span class="fl">1</span>, end_week <span class="op">=</span> <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2022-05-31 15:29:21: Invalid arguments or no season stats - player data available!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2022-05-31 16:20:48: Invalid arguments or no season stats - player data available!</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               team conference athlete_id                   player      category</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1            Texas     Big 12    4362087          Keaontay Ingram       rushing</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         Oklahoma     Big 12    3705353          Rodney Anderson       rushing</span>
@@ -11003,7 +11003,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 <span class="r-in"></span>
 <span class="r-in">   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_season_player</span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced player season stats from CollegeFootballData.com ───────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 15:29:23 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:20:49 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 59</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   team  conference athlete_id player       category passing_complet… passing_att</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -11019,7 +11019,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 <span class="r-in"></span>
 <span class="r-in">   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_season_player</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Advanced player season stats from CollegeFootballData.com ───────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 15:29:24 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:20:49 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 59</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   team        conference athlete_id player category passing_complet… passing_att</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>

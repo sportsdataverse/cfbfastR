@@ -191,16 +191,17 @@
 
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>To get access to an API key, follow the instructions at <a href="https://collegefootballdata.com/key" class="external-link">https://collegefootballdata.com/key</a><br><br><strong>Using the key:</strong> <br>
-You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code></strong></a>). <br>
+    <p>To get access to an API key, follow the instructions at <a href="https://collegefootballdata.com/key" class="external-link">https://collegefootballdata.com/key</a></p>
+<p><strong>Using the key:</strong>
+You can save the key for consistent usage by adding <code>CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code></strong></a>).
 Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code></strong></a>,
-a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> <br>
+a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong>
 paste the following in the new script that pops up (with<strong>out</strong> quotations)</p>
 <p></p><div class="sourceCode r"><pre><code><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre><p></p></div>
-<p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> <br>
+<p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code>
 (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session).</p>
 <p>If set correctly, from then on you should be able to use any of the <code>cfbd_</code> functions without any other changes.</p>
-<p><strong>For less consistent usage:</strong> <br>
+<p><strong>For less consistent usage:</strong>
 At the beginning of every session or within an R environment,
 save your API key as the environment variable <code>CFBD_API_KEY</code> (<strong>with</strong> quotations)
 using a command like the following.</p>

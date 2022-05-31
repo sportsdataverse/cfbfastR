@@ -203,9 +203,9 @@
 <dt>team</dt>
 <dd><p>(<em>String</em> optional): D-I Team</p></dd>
 <dt>conference</dt>
-<dd><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference<br>
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br>
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<br></p></dd>
+<dd><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></dd>
 <dt>start_week</dt>
 <dd><p>(<em>Integer</em> optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier</p></dd>
 <dt>end_week</dt>
@@ -228,20 +228,35 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <dt><code>time_of_poss_total</code>: integer.</dt>
 <dd><p>Time of possession total.</p></dd>
 
+<dt><code>time_of_poss_pg</code>: double.</dt>
+<dd><p>Time of possession per game.</p></dd>
+
 <dt><code>pass_comps</code>: integer.</dt>
 <dd><p>Total number of pass completions.</p></dd>
 
 <dt><code>pass_atts</code>: integer.</dt>
 <dd><p>Total number of pass attempts.</p></dd>
 
+<dt><code>completion_pct</code>: double.</dt>
+<dd><p>Passing completion percentage.</p></dd>
+
 <dt><code>net_pass_yds</code>: integer.</dt>
 <dd><p>Net passing yards.</p></dd>
+
+<dt><code>pass_ypa</code>: double.</dt>
+<dd><p>Passing yards per attempt.</p></dd>
+
+<dt><code>pass_ypr</code>: double.</dt>
+<dd><p>Passing yards per reception.</p></dd>
 
 <dt><code>pass_TDs</code>: integer.</dt>
 <dd><p>Passing touchdowns.</p></dd>
 
 <dt><code>interceptions</code>: integer.</dt>
 <dd><p>Passing interceptions.</p></dd>
+
+<dt><code>int_pct</code>: double.</dt>
+<dd><p>Interception percentage (of attempts).</p></dd>
 
 <dt><code>rush_atts</code>: integer.</dt>
 <dd><p>Rushing attempts.</p></dd>
@@ -252,6 +267,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <dt><code>rush_TDs</code>: integer.</dt>
 <dd><p>Rushing touchdowns.</p></dd>
 
+<dt><code>rush_ypc</code>: double.</dt>
+<dd><p>Rushing yards per carry.</p></dd>
+
 <dt><code>total_yds</code>: integer.</dt>
 <dd><p>Rushing total yards.</p></dd>
 
@@ -260,6 +278,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 <dt><code>turnovers</code>: integer.</dt>
 <dd><p>Turnovers total.</p></dd>
+
+<dt><code>turnovers_pg</code>: double.</dt>
+<dd><p>Turnovers per game.</p></dd>
 
 <dt><code>first_downs</code>: integer.</dt>
 <dd><p>Number of first downs.</p></dd>
@@ -270,17 +291,32 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <dt><code>third_down_convs</code>: integer.</dt>
 <dd><p>Number of third down conversions.</p></dd>
 
+<dt><code>third_conv_rate</code>: double.</dt>
+<dd><p>Third down conversion rate.</p></dd>
+
 <dt><code>fourth_down_convs</code>: integer.</dt>
 <dd><p>Fourth down conversions.</p></dd>
 
 <dt><code>fourth_downs</code>: integer.</dt>
 <dd><p>Fourth downs.</p></dd>
 
+<dt><code>fourth_conv_rate</code>: double.</dt>
+<dd><p>Fourth down conversion rate.</p></dd>
+
 <dt><code>penalties</code>: integer.</dt>
 <dd><p>Total number of penalties.</p></dd>
 
 <dt><code>penalty_yds</code>: integer.</dt>
 <dd><p>Penalty yards total.</p></dd>
+
+<dt><code>penalties_pg</code>: double.</dt>
+<dd><p>Penalties per game.</p></dd>
+
+<dt><code>penalty_yds_pg</code>: double.</dt>
+<dd><p>Penalty yardage per game.</p></dd>
+
+<dt><code>yards_per_penalty</code>: double.</dt>
+<dd><p>Average yards per penalty.</p></dd>
 
 <dt><code>kick_returns</code>: integer.</dt>
 <dd><p>Number of kick returns.</p></dd>
@@ -291,6 +327,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <dt><code>kick_return_TDs</code>: integer.</dt>
 <dd><p>Total kick return touchdowns.</p></dd>
 
+<dt><code>kick_return_avg</code>: double.</dt>
+<dd><p>Kick return yards average.</p></dd>
+
 <dt><code>punt_returns</code>: integer.</dt>
 <dd><p>Number of punt returns.</p></dd>
 
@@ -299,6 +338,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 <dt><code>punt_return_TDs</code>: integer.</dt>
 <dd><p>Punt return total touchdowns.</p></dd>
+
+<dt><code>punt_return_avg</code>: double.</dt>
+<dd><p>Punt return yards average.</p></dd>
 
 <dt><code>passes_intercepted</code>: integer.</dt>
 <dd><p>Passes intercepted.</p></dd>
@@ -317,7 +359,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_season_team</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, conference <span class="op">=</span> <span class="st">"B12"</span>, start_week <span class="op">=</span> <span class="fl">1</span>, end_week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Season stats from CollegeFootballData.com ───────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 15:29:26 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:20:50 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 32</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season team           conference games time_of_poss_tot… pass_comps pass_atts</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -341,7 +383,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <span class="r-in"></span>
 <span class="r-in">   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_season_team</span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Season stats from CollegeFootballData.com ───────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 15:29:27 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:20:50 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 32</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season team  conference games time_of_poss_total pass_comps pass_atts</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -356,7 +398,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <span class="r-in"></span>
 <span class="r-in">   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_season_team</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Season stats from CollegeFootballData.com ───────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 15:29:28 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:20:51 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 32</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season team          conference games time_of_poss_total pass_comps pass_atts</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
