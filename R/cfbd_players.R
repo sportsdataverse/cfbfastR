@@ -395,7 +395,7 @@ cfbd_player_usage <- function(year = 2019,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        furrr::future_map_if(is.data.frame, list) %>%
+        purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         dplyr::rename(
           athlete_id = .data$id,

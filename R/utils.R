@@ -1,3 +1,5 @@
+.datatable.aware <- TRUE
+
 #' @keywords Internal
 #' @importFrom httr status_code
 #'
@@ -8,32 +10,8 @@ check_status <- function(res) {
     if(x != 200) stop("The API returned an error", call. = FALSE)
 
 }
-# read qs files form an url
-qs_from_url <- function(url) qs::qdeserialize(curl::curl_fetch_memory(url)$content)
 
-# read rds that has been pre-fetched
-read_raw_rds <- function(raw) {
-  con <- gzcon(rawConnection(raw))
-  ret <- readRDS(con)
-  close(con)
-  return(ret)
-}
 
-# Load .rds file from a remote connection, taken from nflreadr
-rds_from_url <- function(url) {
-#  cache_message()
-  con <- url(url)
-  on.exit(close(con))
-  load <- try(readRDS(con), silent = TRUE)
-
-  if (inherits(load, "try-error")) {
-    warning(paste0("Failed to readRDS from <", url, ">"), call. = FALSE)
-    return(tibble::tibble())
-  }
-
-#  data.table::setDT(load)
-  tibble::as_tibble(load)
-}
 
 
 # Progressively
@@ -54,19 +32,49 @@ progressively <- function(f, p = NULL){
 
 }
 
-# rbindlist but maintain attributes of last file, taken from nflreadr
-rbindlist_with_attrs <- function(dflist){
 
-  cfbfastR_timestamp <- attr(dflist[[length(dflist)]], "cfbfastR_timestamp")
-  cfbfastR_type <- attr(dflist[[length(dflist)]], "cfbfastR_type")
-  out <- data.table::rbindlist(dflist, use.names = TRUE, fill = TRUE)
-  attr(out,"cfbfastR_timestamp") <- cfbfastR_timestamp
-  attr(out,"cfbfastR_type") <- cfbfastR_type
-  out
+#' @title
+#' **Load .csv / .csv.gz file from a remote connection**
+#' @description
+#' This is a thin wrapper on data.table::fread
+#' @param ... passed to data.table::fread
+#' @keywords Internal
+#' @importFrom data.table fread
+csv_from_url <- function(...){
+  data.table::fread(...)
 }
 
-#' @import utils
-utils::globalVariables(c("where"))
+
+#' @title
+#' **Load .rds file from a remote connection**
+#' @param url a character url
+#' @keywords Internal
+#' @return a dataframe as created by [`readRDS()`]
+#' @importFrom data.table data.table setDT
+rds_from_url <- function(url) {
+  con <- url(url)
+  on.exit(close(con))
+  load <- try(readRDS(con), silent = TRUE)
+
+  if (inherits(load, "try-error")) {
+    warning(paste0("Failed to readRDS from <", url, ">"), call. = FALSE)
+    return(data.table::data.table())
+  }
+
+  data.table::setDT(load)
+  return(load)
+}
+# read rds that has been pre-fetched
+read_raw_rds <- function(raw) {
+  con <- gzcon(rawConnection(raw))
+  ret <- readRDS(con)
+  close(con)
+  return(ret)
+}
+
+# read qs files form an url
+qs_from_url <- function(url) qs::qdeserialize(curl::curl_fetch_memory(url)$content)
+
 
 # The function `message_completed` to create the green "...completed" message
 # only exists to hide the option `in_builder` in dots
@@ -91,10 +99,30 @@ user_message <- function(x, type) {
   }
 }
 
-# Identify sessions with sequential future resolving
-is_sequential <- function() inherits(future::plan(), "sequential")
+#' @import utils
+utils::globalVariables(c("where"))
+
+
 # check if a package is installed
 is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
+
+
+#' @importFrom magrittr %>%
+#' @usage lhs \%>\% rhs
+NULL
+
+#' @keywords internal
+"_PACKAGE"
+
+#' @importFrom Rcpp getRcppVersion
+#' @importFrom RcppParallel defaultNumThreads
+NULL
+
+
+`%c%` <- function(x,y){
+  ifelse(!is.na(x),x,y)
+}
+
 # custom mode function from https://stackoverflow.com/questions/2547402/is-there-a-built-in-function-for-finding-the-mode/8189441
 custom_mode <- function(x, na.rm = TRUE) {
   if (na.rm) {
@@ -173,4 +201,16 @@ print.cfbfastR_data <- function(x,...) {
 
   NextMethod(print,x)
   invisible(x)
+}
+
+
+# rbindlist but maintain attributes of last file, taken from nflreadr
+rbindlist_with_attrs <- function(dflist){
+
+  cfbfastR_timestamp <- attr(dflist[[length(dflist)]], "cfbfastR_timestamp")
+  cfbfastR_type <- attr(dflist[[length(dflist)]], "cfbfastR_type")
+  out <- data.table::rbindlist(dflist, use.names = TRUE, fill = TRUE)
+  attr(out,"cfbfastR_timestamp") <- cfbfastR_timestamp
+  attr(out,"cfbfastR_type") <- cfbfastR_type
+  out
 }

@@ -132,7 +132,7 @@ create_wpa_naive <- function(df, wp_model) {
     df[kickoff_ind, "wp_before"] <- as.vector(predict(wp_model, new_kick, type = "response"))
   }
   g_ids <- sort(unique(df$game_id))
-  df2 <- furrr::future_map_dfr(
+  df2 <- purrr::map_dfr(
     g_ids,
     function(x) {
       df %>%

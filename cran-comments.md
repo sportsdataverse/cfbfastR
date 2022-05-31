@@ -13,6 +13,7 @@ This is a minor release that
  - ```load_cfb_schedules()```
  - ```load_cfb_teams()```
 * Adds attributes to exported functions to include timestamps on print
+* Removes `furrr`, `future` dependencies, adds `Rcpp`, `RcppParallel`, and `purrr` dependencies
 
 ## R CMD check results
 
