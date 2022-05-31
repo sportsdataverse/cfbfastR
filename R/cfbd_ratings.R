@@ -81,11 +81,11 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_rankings(year = 2019, week = 12)
+#'   try(cfbd_rankings(year = 2019, week = 12))
 #'
-#' cfbd_rankings(year = 2018, week = 14)
+#'   try(cfbd_rankings(year = 2018, week = 14))
 #'
-#' cfbd_rankings(year = 2013, season_type = "postseason")
+#'   try(cfbd_rankings(year = 2013, season_type = "postseason"))
 #' }
 #'
 cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
@@ -206,11 +206,11 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_ratings_sp(year = 2018)
+#'   try(cfbd_ratings_sp(year = 2018))
 #'
-#' cfbd_ratings_sp(team = "Texas A&M")
+#'   try(cfbd_ratings_sp(team = "Texas A&M"))
 #'
-#' cfbd_ratings_sp(year = 2019, team = "Texas")
+#'   try(cfbd_ratings_sp(year = 2019, team = "Texas"))
 #' }
 #'
 cfbd_ratings_sp <- function(year = NULL, team = NULL) {
@@ -341,11 +341,11 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_ratings_sp_conference(year = 2019)
+#'   try(cfbd_ratings_sp_conference(year = 2019))
 #'
-#' cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
+#'   try(cfbd_ratings_sp_conference(year = 2012, conference = "SEC"))
 #'
-#' cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
+#'   try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
 #' }
 #'
 cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
@@ -456,9 +456,9 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_ratings_srs(year = 2019, team = "Texas")
+#'   try(cfbd_ratings_srs(year = 2019, team = "Texas"))
 #'
-#' cfbd_ratings_srs(year = 2018, conference = "SEC")
+#'   try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
 #' }
 #'
 cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
@@ -561,9 +561,9 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_ratings_elo(year = 2019, team = "Texas")
+#'   try(cfbd_ratings_elo(year = 2019, team = "Texas"))
 #'
-#' cfbd_ratings_elo(year = 2018, conference = "SEC")
+#'   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #' }
 #'
 cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference = NULL) {

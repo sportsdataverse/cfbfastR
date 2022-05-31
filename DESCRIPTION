@@ -1,70 +1,36 @@
 Package: cfbfastR
-Title: Functions to Access College Football Play by Play Data
-Version: 1.8.1
-Authors@R: 
-    c(person(given = "Saiem",
-             family = "Gilani",
-             role = c("cre", "aut"),
-             email = "saiem.gilani@gmail.com"),
-      person(given = "Akshay",
-             family = "Easwaran",
-             role = "aut",
-             email = "akeaswaran@me.com"),
-      person(given = "Jared",
-             family = "Lee",
-             role = "aut",
-             email = "13jaredlee@gmail.com"),
-      person(given = "Eric",
-             family = "Hess",
-             role = "aut",
-             email = "eric.hess.13@gmail.com"),
-      person(given = "Michael",
-             family = "Egle",
-             role = "ctb",
-             email = "mjegle@iastate.edu"),
-      person(given = "Nate",
-             family = "Manzo",
-             role = "ctb",
-             email = "natem67@gmail.com"),
-      person(given = "Jason",
-             family = "DeLoach",
-             role = "ctb",
-             email = "jdeloach5@gmail.com"),
-      person(given = "Tej",
-             family = "Seth",
-             role = "ctb",
-             email = "tejseth@umich.edu"),
-      person(given = "Conor",
-             family = "McQuiston",
-             role = "ctb",
-             email = "mcqconor@umich.edu"),
-      person(given = "Tan",
-             family = "Ho",
-             role = "ctb",
-             email = "tan@tanho.ca"),
-      person(given = "Keegan",
-             family = "Abdoo",
-             role = "ctb",
-             email = "kabdoo@draft.ly"),
-      person(given = "Matt",
-             family = "Spencer",
-             role = "ctb",
-             email = "maatspencer@gmail.com"),
-      person(given = "Sebastian",
-             family = "Carl",
-             role = "ctb",
-             email = "mrcaseb@gmail.com"))
-Description: An R package for working with College Football Data. It is an
-    R API wrapper around <https://collegefootballdata.com/> made available
-    by the package development team. It provides users the capability to access a
-    plethora of endpoints, and supplement that data with additional
-    information (Expected Points Added/Win Probability added).
+Title: Access College Football Play by Play Data
+Version: 1.9.0
+Authors@R: c(
+    person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut")),
+    person("Akshay", "Easwaran", , "akeaswaran@me.com", role = "aut"),
+    person("Jared", "Lee", , "13jaredlee@gmail.com", role = "aut"),
+    person("Eric", "Hess", , "eric.hess.13@gmail.com", role = "aut"),
+    person("Michael", "Egle", , "mjegle@iastate.edu", role = "ctb"),
+    person("Nate", "Manzo", , "natem67@gmail.com", role = "ctb"),
+    person("Jason", "DeLoach", , "jdeloach5@gmail.com", role = "ctb"),
+    person("Tej", "Seth", , "tejseth@umich.edu", role = "ctb"),
+    person("Conor", "McQuiston", , "mcqconor@umich.edu", role = "ctb"),
+    person("Tan", "Ho", , "tan@tanho.ca", role = "ctb"),
+    person("Keegan", "Abdoo", , "kabdoo@draft.ly", role = "ctb"),
+    person("Matt", "Spencer", , "maatspencer@gmail.com", role = "ctb"),
+    person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = "ctb"),
+    person("John", "Edwards", , "edwards1860@gmail.com", role = "ctb")
+  )
+Description: A utility to quickly obtain clean and tidy college football
+    data. Serves as a wrapper around the
+    <https://collegefootballdata.com/> API and provides functions to
+    access live play by play and box score data from ESPN
+    <https://www.espn.com> when available. It provides users the
+    capability to access a plethora of endpoints, and supplement that data
+    with additional information (Expected Points Added/Win Probability
+    added).
 License: MIT + file LICENSE
-URL: https://saiemgilani.github.io/cfbfastR/,
-    https://github.com/saiemgilani/cfbfastR
-BugReports: https://github.com/saiemgilani/cfbfastR/issues
+URL: https://cfbfastR.sportsdataverse.org/,
+    https://github.com/sportsdataverse/cfbfastR
+BugReports: https://github.com/sportsdataverse/cfbfastR/issues
 Depends: 
-  R (>= 4.0.0)
+    R (>= 4.0.0)
 Imports: 
     cli (>= 3.0.0),
     data.table (>= 1.14.0),
@@ -100,5 +66,5 @@ Suggests:
     xgboost (>= 1.1)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0

@@ -76,7 +76,7 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#' espn_cfb_scoreboard()
+#'   try(espn_cfb_scoreboard())
 #' }
 #'
 espn_cfb_scoreboard <- function(date = NULL) {
@@ -87,14 +87,16 @@ espn_cfb_scoreboard <- function(date = NULL) {
   }
 
   espn_date <- date
+
   url = paste0("http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=150",
                "&groups=", 80,
                "&dates=",date)
-  res <- httr::RETRY("GET", url)
-  espn_sched <- data.frame()
 
+  espn_sched <- data.frame()
   tryCatch(
     expr = {
+
+      res <- httr::RETRY("GET", url)
       raw_sched <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
@@ -197,7 +199,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
         make_cfbfastR_data("Live Scoreboard Data from ESPN",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN scoreboard data available!"))
     },
     warning = function(w) {
     },
@@ -224,12 +226,12 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #' @export
 #' @examples
 #' \donttest{
-#' espn_cfb_schedule(2021, week = 8)
+#'   try(espn_cfb_schedule(2021, week = 8))
 #' }
 
 espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NULL, limit=500){
 
-  if(!is.numeric(year) && nchar(year) != 4){
+  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
@@ -276,11 +278,14 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
   url <- paste0( "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?limit=",
                  limit, groups, year, week, season_type)
 
-  res <- httr::RETRY("GET", url)
+
   schedule_out <- data.frame()
 
   tryCatch(
     expr = {
+
+      res <- httr::RETRY("GET", url)
+
       raw_sched <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
@@ -421,7 +426,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 #' @export
 #' @examples
 #' \donttest{
-#' espn_cfb_calendar(2021)
+#'   try(espn_cfb_calendar(2021))
 #' }
 espn_cfb_calendar <- function(year=NULL, groups=NULL){
 
@@ -443,12 +448,16 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
   }
   url <- paste0( "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?",
                  year, groups)
-  res <- httr::RETRY("GET", url)
+
   calendar_out <- data.frame()
-
-
   tryCatch(
     expr = {
+
+      res <- httr::RETRY("GET", url)
+
+      # Check the result
+      check_status(res)
+
       raw_cal <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
@@ -482,4 +491,3 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
   )
   return(calendar_out)
 }
-

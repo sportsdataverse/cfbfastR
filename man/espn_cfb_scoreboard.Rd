@@ -98,11 +98,11 @@ ESPN Schedule
 }
 \examples{
 \donttest{
-espn_cfb_scoreboard()
+  try(espn_cfb_scoreboard())
 }
 
 \donttest{
-espn_cfb_schedule(2021, week = 8)
+  try(espn_cfb_schedule(2021, week = 8))
 }
 }
 \keyword{Data}

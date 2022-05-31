@@ -4,7 +4,7 @@
 \alias{load_cfb_rosters}
 \title{Load College Football Rosters}
 \usage{
-load_cfb_rosters(seasons = most_recent_season())
+load_cfb_rosters(seasons = most_recent_cfb_season())
 }
 \arguments{
 \item{seasons}{a numeric vector of seasons to return, defaults to returning
@@ -18,12 +18,12 @@ Load College Football Rosters
 }
 \examples{
 \donttest{
-  load_cfb_rosters(2020)
+  try(load_cfb_rosters(2020))
 }
 
 }
 \seealso{
 \code{\link[=cfbd_team_roster]{cfbd_team_roster()}}
 
-Issues with this data should be filed here: \url{https://github.com/saiemgilani/cfbfastR-data}
+Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
 }

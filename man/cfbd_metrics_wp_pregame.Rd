@@ -39,7 +39,7 @@ cfbd_metrics_wp_pregame(
 }
 \examples{
 \donttest{
-cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
+  try(cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M"))
 }
 
 }

@@ -4,7 +4,7 @@ description: "<strong>IT'S GRAPHIN' TIME</strong><br> ^<em>To be said in an extr
 author: "Nate Manzo <br><a href='https://twitter.com/cfbnate' target='blank'><img src='https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=twitter&style=for-the-badge' alt='@cfbnate' /></a> <a href='https://github.com/natemanzo' target='blank'><img src='https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge' alt='@natemanzo' /></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -24,10 +24,10 @@ pacman::p_load(tidyverse, zoo, ggimage, cfbfastR)
 
 ## Pull the play by play data
 
-Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in `r cfbfastR:::most_recent_season()`. This method only takes about 30 seconds.
+Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in `r cfbfastR:::most_recent_cfb_season()`. This method only takes about 30 seconds.
 
 ```{r load_cfb_pbp_most_recent, message=FALSE, warning=FALSE}
-yr <- cfbfastR:::most_recent_season()
+yr <- cfbfastR:::most_recent_cfb_season()
 pbp <- cfbfastR::load_cfb_pbp(yr)
 
 ```

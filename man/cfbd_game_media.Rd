@@ -51,7 +51,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 }
 \examples{
 \donttest{
-  cfbd_game_media(2019, week = 4, conference = "ACC")
+  try(cfbd_game_media(2019, week = 4, conference = "ACC"))
 }
 }
 \keyword{Game}

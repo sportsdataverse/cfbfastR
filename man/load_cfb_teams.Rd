@@ -17,12 +17,12 @@ Loads team information including colors and logos - useful for plots!
 }
 \examples{
 \donttest{
-  load_cfb_teams()
+  try(load_cfb_teams())
 }
 
 }
 \seealso{
 \code{\link[=cfbd_team_info]{cfbd_team_info()}}
 
-Issues with this data should be filed here: \url{https://github.com/saiemgilani/cfbfastR-data}
+Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
 }

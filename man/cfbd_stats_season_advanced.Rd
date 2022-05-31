@@ -114,7 +114,7 @@ cfbd_stats_season_advanced(
 }
 \examples{
 \donttest{
-   cfbd_stats_season_advanced(2019, team = "LSU")
+   try(cfbd_stats_season_advanced(2019, team = "LSU"))
 }
 }
 \keyword{Advanced}

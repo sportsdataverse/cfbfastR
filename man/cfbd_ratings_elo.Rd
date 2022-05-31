@@ -33,9 +33,9 @@ Acquire the CFBD calculated elo ratings data by team, year, week, and conference
 }
 \examples{
 \donttest{
-cfbd_ratings_elo(year = 2019, team = "Texas")
+  try(cfbd_ratings_elo(year = 2019, team = "Texas"))
 
-cfbd_ratings_elo(year = 2018, conference = "SEC")
+  try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 }
 
 }

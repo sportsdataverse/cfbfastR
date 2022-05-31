@@ -4,7 +4,7 @@ description: "Step-by-step walk-through of the process of adapting <a href='http
 author: "Jared Lee <br><a href='https://twitter.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=twitter&style=for-the-badge' alt='@JaredDLee' /></a> <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge' alt='@Kazink36' /></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -426,7 +426,7 @@ Finally, we run our ```draw_game()``` function inside of ```saveGIF()```.
   # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
-![Result](https://github.com/saiemgilani/cfbfastR/blob/master/man/figures/animated_wp.gif?raw=true)
+![Result](https://github.com/sportsdataverse/cfbfastR/blob/main/man/figures/animated_wp.gif?raw=true)
 
 This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the `ani.width`, `ani.height` and `ani.res` parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.
 

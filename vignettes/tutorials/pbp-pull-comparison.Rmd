@@ -4,7 +4,7 @@ description: "Play by play data comparisons using <code>cfbfastR</code> and the 
 author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -21,8 +21,8 @@ pkg <- pkgapi::map_package(path = "../")
 library(dplyr)
 exported <- pkg$defs %>% dplyr::filter(exported == TRUE)
 cfbd_funcs <- sum(stringr::str_detect(exported$file,"cfbd")) - sum(stringr::str_detect(exported$file,"cfbd_pbp_data"))
-pkg_name <- "saiemgilani/cfbfastR"
-url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/master/DESCRIPTION")
+pkg_name <- "sportsdataverse/cfbfastR"
+url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/main/DESCRIPTION")
 
 
 x <- readLines(url)
@@ -122,4 +122,3 @@ future::plan("multisession")
 tictoc::toc()
 
 ```
-

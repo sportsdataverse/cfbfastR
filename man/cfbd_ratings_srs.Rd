@@ -31,9 +31,9 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 }
 \examples{
 \donttest{
-cfbd_ratings_srs(year = 2019, team = "Texas")
+  try(cfbd_ratings_srs(year = 2019, team = "Texas"))
 
-cfbd_ratings_srs(year = 2018, conference = "SEC")
+  try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
 }
 
 }

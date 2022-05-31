@@ -14,7 +14,9 @@
 \subsection{\strong{Team info lookup}}{
 
 Lists all teams in conference or all D-I teams if conference is left NULL
-Currently, support is only provided for D-I\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_info(conference = "SEC")
+Currently, support is only provided for D-I
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_info(conference = "SEC")
 
 cfbd_team_info(conference = "Ind")
 
@@ -23,24 +25,32 @@ cfbd_team_info(year = 2019)
 }
 
 \subsection{\strong{Get team rosters}}{
-\subsection{\strong{It is now possible to access yearly rosters}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_roster(year = 2020)
+\subsection{\strong{It is now possible to access yearly rosters}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_roster(year = 2020)
 }\if{html}{\out{</div>}}
 }
 
-\subsection{Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_roster(year = 2013, team = "Florida State")
+\subsection{Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_roster(year = 2013, team = "Florida State")
 }\if{html}{\out{</div>}}
 }
 
 \subsection{Get composite team talent rankings}{
 
-Extracts team talent composite for all teams in a given year as sourced from 247 rankings\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_talent()
+Extracts team talent composite for all teams in a given year as sourced from 247 rankings
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_talent()
 
 cfbd_team_talent(year = 2018)
 
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get matchup history between two teams.}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_matchup("Texas A&M", "TCU")
+\subsection{\strong{Get matchup history between two teams.}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_matchup("Texas A&M", "TCU")
 
 cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 
@@ -48,7 +58,9 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get matchup history records between two teams.}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_matchup_records("Texas", "Oklahoma")
+\subsection{\strong{Get matchup history records between two teams.}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_team_matchup_records("Texas", "Oklahoma")
 
 cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 }\if{html}{\out{</div>}}

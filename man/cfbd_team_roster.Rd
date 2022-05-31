@@ -37,7 +37,7 @@ Get a teams full roster by year. If team is not selected, API returns rosters fo
 }
 \examples{
 \donttest{
-cfbd_team_roster(year = 2013, team = "Florida State")
+  try(cfbd_team_roster(year = 2013, team = "Florida State"))
 }
 
 }

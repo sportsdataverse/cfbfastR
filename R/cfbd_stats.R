@@ -3,11 +3,11 @@
 #' **CFBD Stats Endpoint Overview**
 #' @description
 #' \describe{
-#' \item{`cfbd_stats_categories()`:}{ Get college football mapping for stats categories.}
-#' \item{`cfbd_stats_season_team()`:}{ Get season statistics by team.}
-#' \item{`cfbd_stats_season_advanced()`:}{ Get season advanced statistics by team.}
-#' \item{`cfbd_stats_game_advanced()`:}{ Get game advanced stats.}
-#' \item{`cfbd_stats_season_player()`:}{ Get season statistics by player.}
+#' \item{```cfbd_stats_categories()```:}{ Get college football mapping for stats categories.}
+#' \item{```cfbd_stats_season_team()```:}{ Get season statistics by team.}
+#' \item{```cfbd_stats_season_advanced()```:}{ Get season advanced statistics by team.}
+#' \item{```cfbd_stats_game_advanced()```:}{ Get game advanced stats.}
+#' \item{```cfbd_stats_season_player()```:}{ Get season statistics by player.}
 #' }
 #'
 #' ### **Get game advanced stats**
@@ -56,7 +56,7 @@ NULL
 #' This function identifies all Stats Categories identified in the regular stats endpoint.
 #' @examples
 #' \donttest{
-#'    cfbd_stats_categories()
+#'    try(cfbd_stats_categories())
 #' }
 #' @return [cfbd_stats_categories()] A data frame with 38 values:
 #' \describe{
@@ -76,18 +76,19 @@ cfbd_stats_categories <- function() {
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as list
       list <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -121,11 +122,11 @@ cfbd_stats_categories <- function() {
 #'
 #' @examples
 #' \donttest{
-#'    cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
+#'    try(cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M"))
 #'
-#'    cfbd_stats_game_advanced(2019, team = "LSU")
+#'    try(cfbd_stats_game_advanced(2019, team = "LSU"))
 #'
-#'    cfbd_stats_game_advanced(2013, team = "Florida State")
+#'    try(cfbd_stats_game_advanced(2013, team = "Florida State"))
 #' }
 #' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
 #' \describe{
@@ -254,18 +255,19 @@ cfbd_stats_game_advanced <- function(year,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content, flatten and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -324,7 +326,7 @@ cfbd_stats_game_advanced <- function(year,
 #'
 #' @examples
 #' \donttest{
-#'    cfbd_stats_season_advanced(2019, team = "LSU")
+#'    try(cfbd_stats_season_advanced(2019, team = "LSU"))
 #' }
 #' @return [cfbd_stats_season_advanced()] - A data frame with 81 variables:
 #' \describe{
@@ -468,18 +470,19 @@ cfbd_stats_season_advanced <- function(year,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -544,11 +547,11 @@ cfbd_stats_season_advanced <- function(year,
 #'
 #' @examples
 #' \donttest{
-#'    cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
+#'    try(cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7))
 #'
-#'    cfbd_stats_season_player(2019, team = "LSU", category = "passing")
+#'    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 #'
-#'    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
+#'    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
 #' }
 #' @return [cfbd_stats_season_player()] - A data frame with 59 variables:
 #' \describe{
@@ -695,15 +698,6 @@ cfbd_stats_season_player <- function(year,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   cols <- c(
     "team", "conference", "athlete_id", "player", "category",
     "passing_completions", "passing_att", "passing_pct", "passing_yds",
@@ -748,6 +742,16 @@ cfbd_stats_season_player <- function(year,
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -805,15 +809,14 @@ cfbd_stats_season_player <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param verbose Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function
 #'
 #' @examples
 #' \donttest{
-#'    cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+#'    try(cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8))
 #'
-#'    cfbd_stats_season_team(2019, team = "LSU")
+#'    try(cfbd_stats_season_team(2019, team = "LSU"))
 #'
-#'    cfbd_stats_season_team(2013, team = "Florida State")
+#'    try(cfbd_stats_season_team(2013, team = "Florida State"))
 #' }
 #' @return [cfbd_stats_season_team()] - A data frame with 32 variables:
 #' \describe{
@@ -879,8 +882,7 @@ cfbd_stats_season_team <- function(year,
                                    team = NULL,
                                    conference = NULL,
                                    start_week = NULL,
-                                   end_week = NULL,
-                                   verbose = FALSE) {
+                                   end_week = NULL) {
 
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
@@ -936,17 +938,6 @@ cfbd_stats_season_team <- function(year,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
-  df <- data.frame()
-
   # Expected column names for full season data
   expected_colnames <- c(
     "season", "team", "conference", "passesIntercepted", "turnovers",
@@ -957,8 +948,19 @@ cfbd_stats_season_team <- function(year,
     "interceptionTDs", "penaltyYards", "passAttempts", "kickReturnTDs", "interceptions",
     "thirdDownConversions", "thirdDowns", "fumblesLost"
   )
+  df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -1045,9 +1047,6 @@ cfbd_stats_season_team <- function(year,
       df <- df %>%
         make_cfbfastR_data("Season stats from CollegeFootballData.com",Sys.time())
 
-      if(verbose){
-        message(glue::glue("{Sys.time()}: Scraping season team stats..."))
-      }
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))

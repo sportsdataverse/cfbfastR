@@ -20,7 +20,7 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
     cli::cli_abort("Package {.val qs} required for argument {.val qs = TRUE}. Please install it.")
   }
 
-  most_recent <- most_recent_season()
+  most_recent <- most_recent_cfb_season()
 
   if (!all(seasons %in% 2014:most_recent)) {
     cli::cli_abort("Please pass valid seasons between 2014 and {most_recent}")
@@ -56,12 +56,12 @@ load_cfb_pbp <- function(seasons, ..., qs = FALSE) {
 cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
   if (isTRUE(qs)) {
 
-    .url <- glue::glue("https://github.com/saiemgilani/cfbfastR-data/blob/master/data/rds/pbp_players_pos_{season}.qs")
+    .url <- glue::glue("https://github.com/sportsdataverse/cfbfastR-data/blob/main/data/rds/pbp_players_pos_{season}.qs")
     pbp <- qs_from_url(.url)
 
   }
   if (isFALSE(qs)) {
-    .url <- glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/rds/pbp_players_pos_{season}.rds")
+    .url <- glue::glue("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/rds/pbp_players_pos_{season}.rds")
     con <- url(.url)
     pbp <- readRDS(con)
     close(con)
@@ -78,7 +78,7 @@ cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, 
 
 # load games file
 load_games <- function(){
-  .url <- "https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/data/games_in_data_repo.csv"
+  .url <- "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/games_in_data_repo.csv"
   con <- url(.url)
   dat <- utils::read.csv(con)
   # close(con)

@@ -4,7 +4,7 @@ description: "Settling <strong>2019 LSU</strong> and <strong>2013 Florida State<
 author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     creator: "@saiemgilani"
     card: summary_large_image
@@ -23,7 +23,7 @@ if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load(dplyr,tidyr, gt)
-pacman::p_load_current_gh("saiemgilani/cfbfastR")
+pacman::p_load_current_gh("sportsdataverse/cfbfastR")
 ```
 
 ## Settling **2019 LSU** and **2013 Florida State** offense debates
@@ -35,7 +35,7 @@ team_season_stats <- dplyr::bind_rows(
    cfbd_stats_season_team(2019, team = "LSU"),
    cfbd_stats_season_team(2013, team = "Florida State")
 )
-logos <- read.csv("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/themes/logos.csv")
+logos <- read.csv("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv")
 logos<- logos %>% dplyr::select(-.data$conference)
 df_team_season <- team_season_stats %>% 
    dplyr::left_join(logos, by=c("team"="school"))
@@ -72,7 +72,7 @@ df_team_game_adv <- df_team_game_adv %>%
 ### **Get Season Statistics by Player**
  
 ```{r passing_stats_table_ex}   
-source("https://raw.githubusercontent.com/saiemgilani/cfbfastR-data/master/themes/gt_theme_code_SG.R")
+source("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R")
 passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2019, team = "LSU", category = "passing"), 
    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) %>% 

@@ -30,7 +30,7 @@ Graciously contributed by MrCaseB:
 }
 \examples{
 \donttest{
-espn_metrics_wp(game_id = 401114164)
+  try(espn_metrics_wp(game_id = 401114164))
 }
 
 }

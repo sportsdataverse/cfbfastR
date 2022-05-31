@@ -44,7 +44,7 @@
 #' @export
 #' @examples
 #'\donttest{
-#'   cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+#'   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 #' }
 cfbd_coaches <- function(first = NULL,
                          last = NULL,
@@ -97,18 +97,19 @@ cfbd_coaches <- function(first = NULL,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%

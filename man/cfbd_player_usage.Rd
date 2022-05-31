@@ -59,7 +59,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 }
 \examples{
 \donttest{
-cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+  try(cfbd_player_usage(year = 2019, position = "WR", team = "Florida State"))
 }
 
 }

@@ -29,7 +29,7 @@ cfbd_recruiting_transfer_portal(year)
 }
 \examples{
 \donttest{
-cfbd_recruiting_transfer_portal(year = 2021)
+  try(cfbd_recruiting_transfer_portal(year = 2021))
 }
 }
 \keyword{Recruiting}

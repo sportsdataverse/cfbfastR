@@ -49,11 +49,11 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \examples{
 \donttest{
-cfbd_ratings_sp_conference(year = 2019)
+  try(cfbd_ratings_sp_conference(year = 2019))
 
-cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
+  try(cfbd_ratings_sp_conference(year = 2012, conference = "SEC"))
 
-cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
+  try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
 }
 
 }

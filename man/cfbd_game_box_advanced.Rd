@@ -91,7 +91,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \examples{
 \donttest{
- cfbd_game_box_advanced(game_id = 401114233)
+  try(cfbd_game_box_advanced(game_id = 401114233))
 }
 
 }

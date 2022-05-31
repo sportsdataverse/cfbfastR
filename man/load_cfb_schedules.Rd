@@ -4,7 +4,7 @@
 \alias{load_cfb_schedules}
 \title{Load CFB Game/Schedule Data from data repo}
 \usage{
-load_cfb_schedules(seasons = most_recent_season())
+load_cfb_schedules(seasons = most_recent_cfb_season())
 }
 \arguments{
 \item{seasons}{a numeric vector of seasons to return, default \code{TRUE} returns all available data.}
@@ -17,12 +17,12 @@ This returns game/schedule information
 }
 \examples{
 \donttest{
- load_cfb_schedules(2020)
+  try(load_cfb_schedules(2020))
 }
 
 }
 \seealso{
 \code{\link[=cfbd_game_info]{cfbd_game_info()}}
 
-Issues with this data should be filed here: \url{https://github.com/saiemgilani/cfbfastR-data}
+Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
 }

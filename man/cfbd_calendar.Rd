@@ -24,6 +24,6 @@ cfbd_calendar(year)
 }
 \examples{
 \donttest{
-  cfbd_calendar(2019)
+  try(cfbd_calendar(2019))
 }
 }

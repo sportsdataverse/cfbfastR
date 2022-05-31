@@ -32,9 +32,9 @@ cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 }
 \examples{
 \donttest{
-cfbd_team_matchup_records("Texas", "Oklahoma")
+  try(cfbd_team_matchup_records("Texas", "Oklahoma"))
 
-cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
+  try(cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975))
 }
 
 }

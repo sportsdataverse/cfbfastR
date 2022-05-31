@@ -32,11 +32,11 @@ cfbd_rankings(year, week = NULL, season_type = "regular")
 }
 \examples{
 \donttest{
-cfbd_rankings(year = 2019, week = 12)
+  try(cfbd_rankings(year = 2019, week = 12))
 
-cfbd_rankings(year = 2018, week = 14)
+  try(cfbd_rankings(year = 2018, week = 14))
 
-cfbd_rankings(year = 2013, season_type = "postseason")
+  try(cfbd_rankings(year = 2013, season_type = "postseason"))
 }
 
 }

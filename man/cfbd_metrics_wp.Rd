@@ -36,7 +36,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \examples{
 \donttest{
-cfbd_metrics_wp(game_id = 401012356)
+  try(cfbd_metrics_wp(game_id = 401012356))
 }
 
 }

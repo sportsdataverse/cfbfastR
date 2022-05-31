@@ -4,7 +4,7 @@ description: "Getting started with using <code>cfbfastR</code> and college footb
 author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -19,8 +19,8 @@ pkg <- pkgapi::map_package(path = "../")
 library(dplyr)
 exported <- pkg$defs %>% dplyr::filter(exported == TRUE)
 cfbd_funcs <- sum(stringr::str_detect(exported$file,"cfbd")) - sum(stringr::str_detect(exported$file,"cfbd_pbp_data"))
-pkg_name <- "saiemgilani/cfbfastR"
-url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/master/DESCRIPTION")
+pkg_name <- "sportsdataverse/cfbfastR"
+url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/main/DESCRIPTION")
 
 
 x <- readLines(url)
@@ -42,7 +42,8 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 
 3.  Head to [RStudio.com](https://www.rstudio.com/products/rstudio/download/#download "Download the appropriate version of RStudio (Free) for your operating system to use with R")
 4.  Follow the associated download and installation instructions for RStudio.
-5.  Start peering over the [RStudio IDE Cheatsheet](%22https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf%22). *An IDE is an integrated development environment.*
+5.  Start peering over the [RStudio IDE Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf). *An IDE is an integrated development environment.*
+6.  For **Windows** users: I recommend you install [Rtools](https://cran.r-project.org/bin/windows/Rtools/). This is not an R package! It is “a collection of resources for building packages for R under Microsoft Windows, or for building R itself”. Go to [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/) and follow the directions for installation.
 
 #### **Load and install the necessary packages**
 
@@ -57,13 +58,13 @@ pacman::p_load(tidyverse, cfbfastR, zoo, ggimage, gt)
 
 There are generally speaking **three** college football data sources accessed from this package:
 
--   [`cfbfastR-data` repo](https://github.com/saiemgilani/cfbfastR-data) [![Twitter Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
+-   [`cfbfastR-data` repo](https://github.com/sportsdataverse/cfbfastR-data) [![Twitter Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
 -   [College Football Data API](https://collegefootballdata.com) [![Twitter Follow](https://img.shields.io/twitter/follow/cfb_data?color=blue&label=%40cfb_data&logo=twitter&style=for-the-badge)](https://twitter.com/cfb_data)
 -   [ESPN](https://espn.com)
 
 #### **Function names indicate the data source**
 
--   Functions that use the [`cfbfastR-data` repository](https://github.com/saiemgilani/cfbfastR-data) will contain `_cfb` or `cfb_` in the function name and would be considered loading functions for the play-by-play data.
+-   Functions that use the [`cfbfastR-data` repository](https://github.com/sportsdataverse/cfbfastR-data) will contain `_cfb` or `cfb_` in the function name and would be considered loading functions for the play-by-play data.
 
 -   Functions that use the CFB Data API start with `cfbd_` by convention and should be assumed as `get` functions.
 
@@ -108,12 +109,12 @@ If you have ever worked with the now archived [**`cfbscrapR`**](https://github.c
 
 ### **The fastR way**
 
-We are going to load in data for seasons 2014-`r cfbfastR:::most_recent_season()`, it'll take between 45-90 seconds to run.
+We are going to load in data for seasons 2014-`r cfbfastR:::most_recent_cfb_season()`, it'll take between 45-90 seconds to run.
 
 ```{r load_2014_plus, warning = FALSE}
 tictoc::tic()
 pbp <- data.frame()
-seasons <- 2014:cfbfastR:::most_recent_season()
+seasons <- 2014:cfbfastR:::most_recent_cfb_season()
 progressr::with_progress({
 future::plan("multisession")
   pbp <- cfbfastR::load_cfb_pbp(seasons)

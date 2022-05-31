@@ -44,9 +44,9 @@ If left NULL, API default will only provide results for most recent year of fina
 }
 \examples{
 \donttest{
-cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
+  try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
 
-cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+  try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
 
 }
 }

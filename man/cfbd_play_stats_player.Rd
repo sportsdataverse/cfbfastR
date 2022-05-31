@@ -96,7 +96,7 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 }
 \examples{
 \donttest{
-  cfbd_play_stats_player(game_id = 401110722)
+  try(cfbd_play_stats_player(game_id = 401110722))
 }
 }
 \keyword{PBP}

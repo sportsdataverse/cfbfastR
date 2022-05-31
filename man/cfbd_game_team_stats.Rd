@@ -120,9 +120,9 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \examples{
 \donttest{
-  cfbd_game_team_stats(2019, team = "LSU")
+  try(cfbd_game_team_stats(2019, team = "LSU"))
 
-  cfbd_game_team_stats(2013, team = "Florida State")
+  try(cfbd_game_team_stats(2013, team = "Florida State"))
 }
 }
 \keyword{Game}

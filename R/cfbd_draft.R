@@ -51,7 +51,7 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#'  cfbd_draft_teams()
+#'   try(cfbd_draft_teams())
 #' }
 #'
 cfbd_draft_teams <- function() {
@@ -64,18 +64,20 @@ cfbd_draft_teams <- function() {
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
 
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -118,7 +120,7 @@ cfbd_draft_teams <- function() {
 #' @export
 #' @examples
 #' \donttest{
-#'  cfbd_draft_positions()
+#'   try(cfbd_draft_positions())
 #' }
 #'
 cfbd_draft_positions <- function() {
@@ -131,18 +133,19 @@ cfbd_draft_positions <- function() {
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -210,10 +213,10 @@ cfbd_draft_positions <- function() {
 #' @export
 #' @examples
 #' \donttest{
-#'  cfbd_draft_picks(year = 2020)
+#'   try(cfbd_draft_picks(year = 2020))
 #'
 #'  ### **ROBERTOOOOOOOOOOOOOOOOOO**
-#'  cfbd_draft_picks(year = 2016, position = "PK")
+#'   try(cfbd_draft_picks(year = 2016, position = "PK"))
 #' }
 #'
 cfbd_draft_picks <- function(year = NULL,
@@ -258,18 +261,20 @@ cfbd_draft_picks <- function(year = NULL,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
 
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%

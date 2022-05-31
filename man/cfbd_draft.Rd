@@ -15,16 +15,22 @@
 }
 }
 \details{
-\subsection{\strong{Get list of NFL teams}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_teams()
+\subsection{\strong{Get list of NFL teams}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_teams()
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get list of NFL positions for mapping to collegiate}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_positions()
+\subsection{\strong{Get list of NFL positions for mapping to collegiate}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_positions()
 
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get list of NFL Draft picks}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_picks(year = 2020, college = "Texas")
+\subsection{\strong{Get list of NFL Draft picks}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_draft_picks(year = 2020, college = "Texas")
 
 cfbd_draft_picks(nfl_team = "Cincinatti")
 }\if{html}{\out{</div>}}

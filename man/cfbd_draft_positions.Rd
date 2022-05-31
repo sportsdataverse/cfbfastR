@@ -18,7 +18,7 @@ cfbd_draft_positions()
 }
 \examples{
 \donttest{
- cfbd_draft_positions()
+  try(cfbd_draft_positions())
 }
 
 }

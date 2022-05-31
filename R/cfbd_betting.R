@@ -12,10 +12,10 @@
 #' ```
 #' @examples
 #' \donttest{
-#'    cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
+#'    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
 #'
 #'    # 7 OTs LSU at TAMU
-#'    cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
+#'    try(cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC"))
 #' }
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
@@ -132,18 +132,19 @@ cfbd_betting_lines <- function(game_id = NULL,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -177,7 +178,7 @@ cfbd_betting_lines <- function(game_id = NULL,
       }
 
       df <- df %>%
-        make_cfbfastR_data("betting lines data from CollegeFootballData.com",Sys.time())
+        make_cfbfastR_data("Betting lines data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))

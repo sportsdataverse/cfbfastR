@@ -11,9 +11,9 @@
 #' ````
 #' @examples
 #' \donttest{
-#' cfbd_drives(2018, week = 1, team = "TCU")
+#'   try(fbd_drives(2018, week = 1, team = "TCU"))
 #'
-#' cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
+#'   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 #' }
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
@@ -153,17 +153,19 @@ cfbd_drives <- function(year,
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
-
+  df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- httr::RETRY(
+        "GET", full_url,
+        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+      )
+
+      # Check the result
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -204,6 +206,5 @@ cfbd_drives <- function(year,
     finally = {
     }
   )
-
   return(df)
 }
