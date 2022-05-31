@@ -77,12 +77,12 @@ I have defaulted the parameter to false so that you will not have to go to the t
 }
 \examples{
 \donttest{
-  cfbd_game_info(2018, week = 1)
+  try(cfbd_game_info(2018, week = 1))
 
-  cfbd_game_info(2018, week = 7, conference = "Ind")
+  try(cfbd_game_info(2018, week = 7, conference = "Ind"))
 
   # 7 OTs LSU @ TAMU
-  cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
+  try(cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE))
 }
 }
 \keyword{Game}

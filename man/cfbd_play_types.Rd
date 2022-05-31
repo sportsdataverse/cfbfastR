@@ -17,3 +17,8 @@ cfbd_play_types()
 \description{
 \strong{Get college football mapping for play types}
 }
+\examples{
+\donttest{
+  try(cfbd_play_types())
+}
+}

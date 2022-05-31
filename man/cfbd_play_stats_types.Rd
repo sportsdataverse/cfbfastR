@@ -18,7 +18,7 @@ cfbd_play_stats_types()
 }
 \examples{
 \donttest{
-  cfbd_play_stats_types()
+  try(cfbd_play_stats_types())
 }
 }
 \keyword{Plays}

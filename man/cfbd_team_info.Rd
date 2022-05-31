@@ -52,11 +52,11 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 }
 \examples{
 \donttest{
-cfbd_team_info(conference = "SEC")
+  try(cfbd_team_info(conference = "SEC"))
 
-cfbd_team_info(conference = "Ind")
+  try(cfbd_team_info(conference = "Ind"))
 
-cfbd_team_info(year = 2019)
+  try(cfbd_team_info(year = 2019))
 }
 }
 \keyword{Teams}

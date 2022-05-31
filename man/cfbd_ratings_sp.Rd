@@ -50,11 +50,11 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 }
 \examples{
 \donttest{
-cfbd_ratings_sp(year = 2018)
+  try(cfbd_ratings_sp(year = 2018))
 
-cfbd_ratings_sp(team = "Texas A&M")
+  try(cfbd_ratings_sp(team = "Texas A&M"))
 
-cfbd_ratings_sp(year = 2019, team = "Texas")
+  try(cfbd_ratings_sp(year = 2019, team = "Texas"))
 }
 
 }

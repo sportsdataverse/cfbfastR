@@ -10,8 +10,7 @@ cfbd_stats_season_team(
   team = NULL,
   conference = NULL,
   start_week = NULL,
-  end_week = NULL,
-  verbose = FALSE
+  end_week = NULL
 )
 }
 \arguments{
@@ -28,8 +27,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
-
-\item{verbose}{Logical parameter (TRUE/FALSE, default: FALSE) to return warnings and messages from function}
 }
 \value{
 \code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}} - A data frame with 32 variables:
@@ -73,11 +70,11 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 }
 \examples{
 \donttest{
-   cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+   try(cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8))
 
-   cfbd_stats_season_team(2019, team = "LSU")
+   try(cfbd_stats_season_team(2019, team = "LSU"))
 
-   cfbd_stats_season_team(2013, team = "Florida State")
+   try(cfbd_stats_season_team(2013, team = "Florida State"))
 }
 }
 \keyword{Season}

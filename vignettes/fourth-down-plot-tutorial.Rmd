@@ -5,7 +5,7 @@ author: "Michael Egle <br><a href='https://twitter.com/deceptivespeed_' target='
 date: "9/5/2020"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image

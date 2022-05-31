@@ -103,11 +103,11 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 }
 \examples{
 \donttest{
-   cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7)
+   try(cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7))
 
-   cfbd_stats_season_player(2019, team = "LSU", category = "passing")
+   try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 
-   cfbd_stats_season_player(2013, team = "Florida State", category = "passing")
+   try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
 }
 }
 \keyword{Player}

@@ -53,7 +53,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 }
 \examples{
 \donttest{
-cfbd_metrics_ppa_games(year = 2019, team = "TCU")
+  try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 }
 
 }

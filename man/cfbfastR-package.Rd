@@ -4,18 +4,18 @@
 \name{cfbfastR-package}
 \alias{cfbfastR}
 \alias{cfbfastR-package}
-\title{cfbfastR: Functions to Access College Football Play by Play Data}
+\title{cfbfastR: Access College Football Play by Play Data}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the package development team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
+A utility to quickly obtain clean and tidy college football data. Serves as a wrapper around the \url{https://collegefootballdata.com/} API and provides functions to access live play by play and box score data from ESPN \url{https://www.espn.com} when available. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://saiemgilani.github.io/cfbfastR/}
-  \item \url{https://github.com/saiemgilani/cfbfastR}
-  \item Report bugs at \url{https://github.com/saiemgilani/cfbfastR/issues}
+  \item \url{https://cfbfastR.sportsdataverse.org/}
+  \item \url{https://github.com/sportsdataverse/cfbfastR}
+  \item Report bugs at \url{https://github.com/sportsdataverse/cfbfastR/issues}
 }
 
 }
@@ -40,6 +40,7 @@ Other contributors:
   \item Keegan Abdoo \email{kabdoo@draft.ly} [contributor]
   \item Matt Spencer \email{maatspencer@gmail.com} [contributor]
   \item Sebastian Carl \email{mrcaseb@gmail.com} [contributor]
+  \item John Edwards \email{edwards1860@gmail.com} [contributor]
 }
 
 }

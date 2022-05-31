@@ -65,9 +65,9 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
+#'   try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
 #'
-#' cfbd_player_info(search_term = "Lawrence", team = "Clemson")
+#'   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
 #'
 #' }
 cfbd_player_info <- function(search_term,
@@ -190,7 +190,7 @@ cfbd_player_info <- function(search_term,
 #' @export
 #' @examples
 #' \donttest{
-#'  cfbd_player_returning(year = 2019, team = "Florida State")
+#'    try(cfbd_player_returning(year = 2019, team = "Florida State"))
 #' }
 #'
 cfbd_player_returning <- function(year = 2019,
@@ -316,7 +316,7 @@ cfbd_player_returning <- function(year = 2019,
 #' @export
 #' @examples
 #' \donttest{
-#' cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+#'   try(cfbd_player_usage(year = 2019, position = "WR", team = "Florida State"))
 #' }
 #'
 cfbd_player_usage <- function(year = 2019,

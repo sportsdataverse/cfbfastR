@@ -10,7 +10,9 @@
 \item{\code{cfbd_ratings_sp_conference()}:}{ Get SP conference-level historical rating data.}
 \item{\code{cfbd_ratings_srs()}:}{ Get SRS historical rating data.}
 }
-\subsection{\strong{Get historical Coaches and AP poll data}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_rankings(year = 2019, week = 12)
+\subsection{\strong{Get historical Coaches and AP poll data}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_rankings(year = 2019, week = 12)
 
 cfbd_rankings(year = 2018, week = 14)
 
@@ -20,7 +22,9 @@ cfbd_rankings(year = 2013, season_type = "postseason")
 
 \subsection{\strong{Get SP historical rating data}}{
 
-At least one of \strong{year} or \strong{team} must be specified for the function to run\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_sp(year = 2018)
+At least one of \strong{year} or \strong{team} must be specified for the function to run
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_sp(year = 2018)
 
 cfbd_ratings_sp(team = "Texas A&M")
 
@@ -28,7 +32,9 @@ cfbd_ratings_sp(year = 2019, team = "Texas")
 }\if{html}{\out{</div>}}
 }
 
-\subsection{\strong{Get conference level SP historical rating data}}{\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_sp_conference(year = 2019)
+\subsection{\strong{Get conference level SP historical rating data}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_sp_conference(year = 2019)
 
 cfbd_ratings_sp_conference(year = 2012, conference = "SEC")
 
@@ -38,7 +44,9 @@ cfbd_ratings_sp_conference(year = 2016, conference = "ACC")
 
 \subsection{\strong{Get SRS historical rating data}}{
 
-At least one of \strong{year} or \strong{team} must be specified for the function to run\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_srs(year = 2019, team = "Texas")
+At least one of \strong{year} or \strong{team} must be specified for the function to run
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_srs(year = 2019, team = "Texas")
 
 cfbd_ratings_srs(year = 2018, conference = "SEC")
 }\if{html}{\out{</div>}}
@@ -46,7 +54,9 @@ cfbd_ratings_srs(year = 2018, conference = "SEC")
 
 \subsection{\strong{Get Elo historical rating data}}{
 
-Acquire the CFBD calculated elo ratings data by \strong{team}, \strong{year}, \strong{week}, and \strong{conference}\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_elo(year = 2019, team = "Texas")
+Acquire the CFBD calculated elo ratings data by \strong{team}, \strong{year}, \strong{week}, and \strong{conference}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_elo(year = 2019, team = "Texas")
 
 cfbd_ratings_elo(year = 2018, conference = "SEC")
 }\if{html}{\out{</div>}}

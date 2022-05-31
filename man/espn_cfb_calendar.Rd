@@ -29,7 +29,7 @@ look up the men's college football calendar for a given season
 }
 \examples{
 \donttest{
-espn_cfb_calendar(2021)
+  try(espn_cfb_calendar(2021))
 }
 }
 \keyword{Data}

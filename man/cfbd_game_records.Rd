@@ -46,9 +46,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \examples{
 \donttest{
-  cfbd_game_records(2018, team = "Notre Dame")
+  try(cfbd_game_records(2018, team = "Notre Dame"))
 
-  cfbd_game_records(2013, team = "Florida State")
+  try(cfbd_game_records(2013, team = "Florida State"))
 }
 }
 \keyword{Info}

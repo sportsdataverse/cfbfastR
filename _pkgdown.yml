@@ -1,20 +1,38 @@
 url: https://cfbfastR.sportsdataverse.org/
-
 title: cfbfastR
-description: "An R package to quickly obtain clean and tidy college football play by play data"
+description: "A utility to quickly obtain clean and tidy college football play by play data"
 alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
 template:
-  params:
-    bootswatch: cosmo
-    ganalytics: G-SE5ZJL93W6
-    docsearch:
-      api_key: 002e977de61519c48dce057f58ed1d24
-      index_name: cfbfastR
+  bootstrap: 5
+  bootswatch: flatly
+  ganalytics: G-SE5ZJL93W6
+  bslib:
+    primary: "#222222"
+    secondary: "#B7B9BB"
+    success: "#EAEBEC"
+    link-color: "#024992"
+    link-hover-color: "#23B7EE"
+    nav-link-color: "#FFFFF"
+    nav-link-hover-color: "#EAEBEC"
+    nav-link-focus-color: "#EAEBEC"
+    nav-link-dropdown-toggle-hover-color: "#EAEBEC"
+    navbar-hover-color: "#EAEBEC"
+    navbar-brand-hover-color: "#EAEBEC"
+    nav-tabs-link-active-bg	: "#EAEBEC"
+    nav-pills-link-active-color: "#EAEBEC"
+    btn-link-color: "#EAEBEC"
+    btn-link-hover-color: "#EAEBEC"
+    dropdown-link-color: "#EAEBEC"
+    input-btn-focus-color: "#EAEBEC"
+    dropdown-dark-link-hover-bg: "#EAEBEC"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
   opengraph:
     image:
-      src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+      src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
       alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
     twitter:
+      creator: "@saiemgilani"
       site: "@cfbfastR"
       card: summary_large_image
 
@@ -48,10 +66,13 @@ authors:
     href: https://twitter.com/MaatSpencer
   Sebastian Carl:
     href: https://twitter.com/mrcaseb
+  John B. Edwards:
+    href: https://twitter.com/John_B_Edwards
 
 home:
-  title: cfbfastR
-  description: An R package to quickly obtain clean and tidy College Football play-by-play data
+  title: cfbfastR • Data and Tools for College Football
+  description: >
+    A collection of data and a R package designed for college football!
   icon: fa-home
   href: index.html
   links:
@@ -62,8 +83,10 @@ home:
 
 navbar:
   structure:
-    left:  [home, intro, reference, articles, news, games, network, data, repo]
+    left:  [home, reference, articles, news, network, data, games]
     right: [twitter, github]
+  icon: https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/man/figures/logo.ico
+  title: "cfbfastR"
   components:
     home:
       title: cfbfastR
@@ -75,27 +98,6 @@ navbar:
         href: articles/intro.html
       - text: cfbfastR stats landing page
         href: https://gameonpaper.com/cfb/
-    twitter:
-      icon: "fab fa-twitter fa-lg"
-      href: http://twitter.com/cfbfastR
-    news:
-      icon: "fas fa-newspaper"
-      text: " News"
-      href: news/index.html
-    data:
-      icon: "fas fa-database"
-      text: " Data"
-      menu:
-      - text: "CFBData.com"
-        href: https://collegefootballdata.com
-      - text: "Data Repository"
-        href: https://github.com/saiemgilani/cfbfastR-data
-      - text: "Raw Data Repository"
-        href: https://github.com/saiemgilani/cfbfastR-raw
-    games:
-      icon: "fas fa-football-ball"
-      text: " GP"
-      href: http://gameonpaper.com/cfb
     reference:
       icon: "fas fa-code"
       text: "Funcs"
@@ -148,7 +150,7 @@ navbar:
       - text: "ESPN Metrics"
         href: reference/espn_metrics.html
       - text: "ESPN Ratings"
-        href: reference/espn_ratings.html
+        href: reference/espn_ratings_fpi.html
       - text: "ESPN Scoreboard"
         href: reference/espn_cfb_scoreboard.html
       - text: "ESPN PBP"
@@ -192,6 +194,10 @@ navbar:
         href: articles/cfbd_stats.html
       - text: "CFBD Teams"
         href: articles/cfbd_teams.html
+    news:
+      icon: "fas fa-newspaper"
+      text: " News"
+      href: news/index.html
     network:
       icon: "fas fa-project-diagram"
       text: " SDV"
@@ -218,10 +224,14 @@ navbar:
         href: https://jaseziv.github.io/worldfootballR/
       - text: chessR
         href: https://jaseziv.github.io/chessR/
+      - text: sportyR
+        href: https://sportyR.sportsdataverse.org/
       - text: cfbplotR
         href: https://kazink36.github.io/cfbplotR/
       - text: cfb4th
         href: https://kazink36.github.io/cfb4th/
+      - text: mlbplotR
+        href: https://github.com/camdenk/mlbplotR
       - text: recruitR
         href: https://recruitr.sportsdataverse.org/
       - text: gamezoneR
@@ -238,19 +248,27 @@ navbar:
         href: https://js.sportsdataverse.org/
       - text: nfl-nerd
         href: https://github.com/nntrn/nfl-nerd/
+    data:
+      icon: "fas fa-database"
+      text: " Data"
+      menu:
+      - text: "CFBData.com"
+        href: https://collegefootballdata.com
+      - text: "Data Repository"
+        href: https://github.com/sportsdataverse/cfbfastR-data
+      - text: "Raw Data Repository"
+        href: https://github.com/sportsdataverse/cfbfastR-raw
+    games:
+      icon: "fas fa-football-ball"
+      text: " GP"
+      href: http://gameonpaper.com/cfb
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: http://twitter.com/cfbfastR
     github:
       icon: "fab fa-github fa-lg"
-      href: https://github.com/saiemgilani/cfbfastR/
-    repo:
-      url: https://github.com/saiemgilani/cfbfastR/
-      home: https://github.com/saiemgilani/cfbfastR/
-      source: https://github.com/saiemgilani/cfbfastR/blob/master/
-      issue: https://github.com/saiemgilani/cfbfastR/issues/issues/
-      user: https://github.com/saiemgilani/
-bold:
- - "cfbfastR Data"
- - "College Football Data API and ESPN Functions"
- - "Helper Functions and Data"
+      href: https://github.com/sportsdataverse/cfbfastR/
+
 reference:
   - title: "cfbfastR Data"
   - subtitle: Full Seasons PBP Data

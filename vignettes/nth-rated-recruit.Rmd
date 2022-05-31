@@ -4,7 +4,7 @@ description: "A quick way to visually approximate how much talent each school re
 author: "Eric Hess - Arbitrary Analytics <br><a href='https://twitter.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=twitter&amp;style=for-the-badge' alt='@arbitanalytics'/></a> <a href='https://github.com/ehess' target='blank'><img src='https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@ehess'/></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -32,7 +32,7 @@ To create the plot I'm going to use two functions from ```cfbfastR```. The first
 ```{r cfb}
 teams <- cfbfastR::cfbd_team_info(conference = "B1G")
 schools <- teams$school
-yr <- cfbfastR:::most_recent_season()
+yr <- cfbfastR:::most_recent_cfb_season()
 year_range <- (yr-3):yr
 team_year_df <- expand.grid(year=year_range, school = schools)
 tictoc::tic()

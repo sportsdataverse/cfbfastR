@@ -104,7 +104,7 @@ custom_mode <- function(x, na.rm = TRUE) {
   return(ux[which.max(tabulate(match(x, ux)))])
 }
 
-most_recent_season <- function() {
+most_recent_cfb_season <- function() {
   dplyr::if_else(
     as.double(substr(Sys.Date(), 6, 7)) >= 9,
     as.double(substr(Sys.Date(), 1, 4)),

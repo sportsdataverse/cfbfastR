@@ -25,13 +25,13 @@ cfbd_recruiting_team(year = NULL, team = NULL)
 }
 \examples{
 \donttest{
-cfbd_recruiting_team(2018, team = "Texas")
+  try(cfbd_recruiting_team(2018, team = "Texas"))
 
-cfbd_recruiting_team(2016, team = "Virginia")
+  try(cfbd_recruiting_team(2016, team = "Virginia"))
 
-cfbd_recruiting_team(2016, team = "Texas A&M")
+  try(cfbd_recruiting_team(2016, team = "Texas A&M"))
 
-cfbd_recruiting_team(2011)
+  try(cfbd_recruiting_team(2011))
 }
 
 }

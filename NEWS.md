@@ -1,30 +1,31 @@
-# **cfbfastR v1.8.1**
+# **cfbfastR v1.9.0**
 
 #### Added functions to access ESPN API:
 
-* [```espn_cfb_calendar()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_calendar.html)
-* [```espn_cfb_schedule()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_schedule.html)
-* Added EPA and WPA processing to [```espn_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_pbp.html)
+* [```espn_cfb_calendar()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.html)
+* [```espn_cfb_schedule()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_schedule.html)
+* Added EPA and WPA processing to [```espn_cfb_pbp()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html)
+* [```espn_cfb_team_stats()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.html)
 
 #### Added functions to pull data from the data repo:
 
-* [```load_cfb_rosters()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_rosters.html)
-* [```load_cfb_schedules()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_schedules.html)
-* [```load_cfb_teams()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_teams.html)
+* [```load_cfb_rosters()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.html)
+* [```load_cfb_schedules()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.html)
+* [```load_cfb_teams()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html)
 
 # **cfbfastR v1.8.0**
 
 * All functions now default to return tibbles.
-* Added S3 method to print outputs with data info and retrieval timestamps (Thanks to Tan Ho for idea).
+* Added S3 method to print outputs with data info and retrieval timestamps. Thank you to Tan Ho ([\@tanho36](https://github.com/tanho63)) for the idea.
 
 
 # **cfbfastR v1.7.1**
 
-### Added [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings_fpi.html) to exports.
+* Added [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html) to exports.
 
 # **cfbfastR v1.7.0**
 
-### Added [```cfbd_recruiting_transfer_portal()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_transfer_portal.html).
+* Added [```cfbd_recruiting_transfer_portal()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.html).
 
 # **cfbfastR v1.6.7**
 
@@ -60,7 +61,7 @@
 
 # **cfbfastR v1.6.0**
 
-* Added [```cfbd_ratings_elo()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_ratings_elo.html) function
+* Added [```cfbd_ratings_elo()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.html) function
 * Fixed a bug in `update_cfb_db()` where the function failed when trying to load recent games from the data repo. (#35)
 * Added the option `cfbfastR.dbdirectory` that allows to set the database directory in `update_cfb_db()` globally.
 
@@ -77,36 +78,36 @@
 
 # **cfbfastR v1.5.0**
 
-### Added [```espn_cfb_scoreboard()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_scoreboard.html)
+### Added [```espn_cfb_scoreboard()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html)
 
-### Added [```espn_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_cfb_pbp.html)
+### Added [```espn_cfb_pbp()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html)
 
 # **cfbfastR v1.4.0**
 
-### Added [```cfbd_game_weather()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_weather.html)
+### Added [```cfbd_game_weather()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.html)
 
 # **cfbfastR v1.3.3**
 
-### Hotfix [```cfbd_game_player_stats()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_player_stats.html)
+### Hotfix [```cfbd_game_player_stats()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.html)
 
 # **cfbfastR v1.3.2**
 
-### Added ID linking to [```cfbd_recruiting_players()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_recruiting_player.html)
+### Added ID linking to [```cfbd_recruiting_players()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.html)
 
 # **cfbfastR v1.3.0-1**
 
-### Added three [NFL draft](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft.html) functions:
-  - [```cfbd_draft_teams()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_teams.html) - **Get list of NFL teams**
-  - [```cfbd_draft_positions()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_positions.html) - **Get list of NFL positions for mapping to collegiate**
-  - [```cfbd_draft_picks()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_draft_picks.html) - **Get list of NFL Draft picks**
+### Added three [NFL draft](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.html) functions:
+  - [```cfbd_draft_teams()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_teams.html) - **Get list of NFL teams**
+  - [```cfbd_draft_positions()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_positions.html) - **Get list of NFL positions for mapping to collegiate**
+  - [```cfbd_draft_picks()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_picks.html) - **Get list of NFL Draft picks**
 
 # **cfbfastR v1.2.1**
 
 ##### **Minor release**
 
-* Added headshot_url to outputs of [```cfbd_team_roster()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_team_roster.html)
+* Added headshot_url to outputs of [```cfbd_team_roster()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.html)
 
-* Renamed returns in [```cfbd_game_box_advanced()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_game_box_advanced.html):
+* Renamed returns in [```cfbd_game_box_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.html):
   - `rushing_line_yd_avg` to plural `rushing_line_yds_avg`
   - `rushing_second_lvl_yd_avg` to plural `rushing_second_lvl_yds_avg`
   - `rushing_open_field_yd_avg` to plural `rushing_open_field_yds_avg`
@@ -120,26 +121,26 @@
 #### **Add significant documentation to the package**
 
 * Added mini-vignettes pertaining to CFB Data functionality:   
-  - [```cfbd_betting```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_betting.html),
-  - [```cfbd_games```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_games.html),
-  - [```cfbd_plays```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_plays.html),    
-  - [```cfbd_recruiting```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_recruiting.html),    
-  - [```cfbd_stats```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_stats.html), 
-  - [```cfbd_teams```](https://saiemgilani.github.io/cfbfastR/articles/cfbd_teams.html)
+  - [```cfbd_betting```](https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.html),
+  - [```cfbd_games```](https://cfbfastR.sportsdataverse.org/articles/cfbd_games.html),
+  - [```cfbd_plays```](https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html),    
+  - [```cfbd_recruiting```](https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html),    
+  - [```cfbd_stats```](https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html), 
+  - [```cfbd_teams```](https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html)
   
-* [Introductory vignette stub](https://saiemgilani.github.io/cfbfastR/articles/intro.html) added
+* [Introductory vignette stub](https://cfbfastR.sportsdataverse.org/articles/intro.html) added
 
 #### **ESPN/CFBD metrics function variable return standardization**
 
-* Change `id` variable to `team_id` in [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html)
-* Changed `espn_game_id` variable to `game_id` in [```espn_metrics_wp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html), corrected the `away_win_percentage` calculation and added `tie_percentage` to the returns.
-* Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_metrics_ppa_players_season.html)
+* Change `id` variable to `team_id` in [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html)
+* Changed `espn_game_id` variable to `game_id` in [```espn_metrics_wp()```](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html), corrected the `away_win_percentage` calculation and added `tie_percentage` to the returns.
+* Change `id` variable to `athlete_id` in [```cfbd_metrics_ppa_players_season()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html)
 
 # **cfbfastR v1.1.0**
 
 #### **Add loading from Data Repository functionality**
 
-* Added [```load_cfb_pbp()```](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://saiemgilani.github.io/cfbfastR/reference/update_cfb_db.html) functions. Pretty much cherry-picking the `nflfastR` methodology of loading data from the [`cfbfastR-data`](https://github.com/saiemgilani/cfbfastR-data/) repository. 
+* Added [```load_cfb_pbp()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.html) functions. Pretty much cherry-picking the `nflfastR` methodology of loading data from the [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data) repository. 
 
 #### **Add support for parallel processing and progress updates**
 
@@ -149,9 +150,9 @@
 
 #### **Function Naming Convention Change**
 
-* All functions sourced from the College Football Data API will start with `cfbd_` as opposed to `cfb_` (as in cfbscrapR). One additional `cfbd_` function has been added that corresponds to the result when [```cfbd_pbp_data()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html) has the parameter `epa_wpa=FALSE`. It has now been separated into its own function for clarity [```cfbd_plays()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_play.html). The parameter and functionality still exists in [```cfbd_pbp_data()```](https://saiemgilani.github.io/cfbfastR/reference/cfbd_pbp_data.html) but we expect this function will still exist but made obsolete in favor of a function more closely matching `nflfastR`'s naming conventions.
+* All functions sourced from the College Football Data API will start with `cfbd_` as opposed to `cfb_` (as in cfbscrapR). One additional `cfbd_` function has been added that corresponds to the result when [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) has the parameter `epa_wpa=FALSE`. It has now been separated into its own function for clarity [```cfbd_plays()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_play.html). The parameter and functionality still exists in [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) but we expect this function will still exist but made obsolete in favor of a function more closely matching `nflfastR`'s naming conventions.
 
-* Similarly, data and metrics sourced from ESPN will begin with `espn_` as opposed to `cfb_`. In particular, the two functions are now [```espn_ratings_fpi()```](https://saiemgilani.github.io/cfbfastR/reference/espn_ratings.html) and [```espn_metrics_wp()```](https://saiemgilani.github.io/cfbfastR/reference/espn_metrics.html)
+* Similarly, data and metrics sourced from ESPN will begin with `espn_` as opposed to `cfb_`. In particular, the two functions are now [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html) and [```espn_metrics_wp()```](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html)
 
 * Data generated from any of the ```cfbfastR``` methods will use `cfb_`
 
@@ -173,5 +174,4 @@ Save the script and restart your RStudio session, by clicking `Session` (in betw
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
-* Added [API Key methods](https://saiemgilani.github.io/cfbfastR/reference/register_cfbd.html). If you forget to set your environment variable, functions will give you a warning and ask for one. 
-
+* Added [API Key methods](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html). If you forget to set your environment variable, functions will give you a warning and ask for one. 

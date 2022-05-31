@@ -15,8 +15,9 @@ espn_cfb_pbp(game_id, epa_wpa = FALSE)
 Get ESPN college football PBP data
 }
 \examples{
-
- espn_cfb_pbp(game_id = 401282614)
+ \donttest{
+   try(espn_cfb_pbp(game_id = 401282614))
+ }
 
 }
 \author{

@@ -4,7 +4,7 @@ description: "A brief history of expected points models. Learn about Virgil Cart
 author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
-    src: "https://github.com/saiemgilani/cfbfastR-data/blob/master/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -131,8 +131,3 @@ We also include several interaction terms between our independent and derived va
 The model outputs the probability predictions of each next score type for every play before the play. Then using the play outcomes to adjust our four main independent variables, it then outputs the model probability predictions for all 7 types post-play. 
 
 Next time will cover the underlying next score type probabilities and their influence on the change in expected points as the offense progresses down the field. 
-
-
-
-
-

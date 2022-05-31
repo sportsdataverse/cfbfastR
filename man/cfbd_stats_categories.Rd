@@ -18,7 +18,7 @@ This function identifies all Stats Categories identified in the regular stats en
 }
 \examples{
 \donttest{
-   cfbd_stats_categories()
+   try(cfbd_stats_categories())
 }
 }
 \keyword{Categories}

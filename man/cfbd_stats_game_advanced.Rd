@@ -96,11 +96,11 @@ cfbd_stats_game_advanced(
 }
 \examples{
 \donttest{
-   cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")
+   try(cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M"))
 
-   cfbd_stats_game_advanced(2019, team = "LSU")
+   try(cfbd_stats_game_advanced(2019, team = "LSU"))
 
-   cfbd_stats_game_advanced(2013, team = "Florida State")
+   try(cfbd_stats_game_advanced(2013, team = "Florida State"))
 }
 }
 \keyword{Advanced}

@@ -58,11 +58,11 @@ or 'PrepSchool'  - For position group information}
 }
 \examples{
 \donttest{
-   cfbd_recruiting_player(2018, team = "Texas")
+  try(cfbd_recruiting_player(2018, team = "Texas"))
 
-   cfbd_recruiting_player(2016, recruit_type = "JUCO")
+  try(cfbd_recruiting_player(2016, recruit_type = "JUCO"))
 
-   cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
+  try(cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL"))
 }
 
 }

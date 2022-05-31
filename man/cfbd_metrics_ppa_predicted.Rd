@@ -23,9 +23,9 @@ cfbd_metrics_ppa_predicted(down, distance)
 }
 \examples{
 \donttest{
-cfbd_metrics_ppa_predicted(down = 1, distance = 10)
+  try(cfbd_metrics_ppa_predicted(down = 1, distance = 10))
 
-cfbd_metrics_ppa_predicted(down = 3, distance = 10)
+  try(cfbd_metrics_ppa_predicted(down = 3, distance = 10))
 }
 
 }

@@ -28,7 +28,7 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#' espn_metrics_wp(game_id = 401114164)
+#'   try(espn_metrics_wp(game_id = 401114164))
 #' }
 #'
 espn_metrics_wp <- function(game_id) {
@@ -68,7 +68,7 @@ espn_metrics_wp <- function(game_id) {
         )
 
       espn_wp <- espn_wp %>%
-        make_cfbfastR_data("win probability chart data from ESPN",Sys.time())
+        make_cfbfastR_data("Win probability chart data from ESPN",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))

@@ -71,7 +71,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 }
 \examples{
 \donttest{
-cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
+  try(cfbd_metrics_ppa_players_season(year = 2019, team = "TCU"))
 }
 
 }

@@ -10,8 +10,9 @@
 #' @export
 #'
 #' @examples
-#'
-#'  espn_cfb_pbp(game_id = 401282614)
+#'  \donttest{
+#'    try(espn_cfb_pbp(game_id = 401282614))
+#'  }
 #'
 espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
@@ -24,16 +25,17 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
   full_url <- paste0(play_base_url,
                      "event=", game_id)
 
-  res <- httr::RETRY("GET", full_url)
-
-  # Check the result
-  check_status(res)
-
-  resp <- res %>%
-    httr::content(as = "text", encoding = "UTF-8")
-
   tryCatch(
     expr = {
+
+      res <- httr::RETRY("GET", full_url)
+
+      # Check the result
+      check_status(res)
+
+      resp <- res %>%
+        httr::content(as = "text", encoding = "UTF-8")
+
       raw_df <- jsonlite::fromJSON(resp)
       playByPlaySource = raw_df[["header"]][["competitions"]][["playByPlaySource"]]
       raw_play_df <- jsonlite::fromJSON(jsonlite::toJSON(raw_df),flatten=TRUE)
@@ -173,7 +175,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 
       }
       plays_df <- plays_df %>%
-        make_cfbfastR_data("play by play data from ESPN",Sys.time())
+        make_cfbfastR_data("Play-by-play data from ESPN.com",Sys.time())
 
     },
     error = function(e) {

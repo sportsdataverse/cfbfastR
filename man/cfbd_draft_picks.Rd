@@ -56,10 +56,10 @@ cfbd_draft_picks(
 }
 \examples{
 \donttest{
- cfbd_draft_picks(year = 2020)
+  try(cfbd_draft_picks(year = 2020))
 
  ### **ROBERTOOOOOOOOOOOOOOOOOO**
- cfbd_draft_picks(year = 2016, position = "PK")
+  try(cfbd_draft_picks(year = 2016, position = "PK"))
 }
 
 }

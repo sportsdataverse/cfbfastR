@@ -40,7 +40,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \examples{
 \donttest{
- cfbd_player_returning(year = 2019, team = "Florida State")
+   try(cfbd_player_returning(year = 2019, team = "Florida State"))
 }
 
 }

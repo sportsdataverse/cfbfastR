@@ -1,5 +1,3 @@
-#' @name espn_ratings
-#' @aliases espn_ratings_fpi
 #' @title
 #' **ESPN FPI Ratings**
 #' @description Get FPI historical rating data (most recent of each year)
@@ -38,6 +36,10 @@
 #' @importFrom purrr pluck set_names quietly map
 #' @importFrom glue glue
 #' @export
+#' @examples
+#' \donttest{
+#'   try(espn_ratings_fpi(year=2019))
+#' }
 espn_ratings_fpi <- function(year = 2019) {
   current_year <- as.double(substr(Sys.Date(), 1, 4))
 
@@ -65,47 +67,64 @@ espn_ratings_fpi <- function(year = 2019) {
     `Pragma` = 'no-cache',
     `Cache-Control` = 'no-cache'
   )
-  res <-
-    httr::RETRY("GET", url,
-                httr::add_headers(.headers = headers))
-  resp <- res %>%
-    httr::content(as = "text", encoding = "UTF-8")
-  raw_json_fpi <- jsonlite::fromJSON(resp)
 
-  ## get team fpi stats
-  get_fpi_data <- function(row_n) {
-    purrr::pluck(raw_json_fpi, "teams", "categories", row_n, "totals", 1)
-  }
-  purrr::pluck(raw_json_fpi, "categories", "labels", 1)
+  df <- data.frame()
+  tryCatch(
+    expr = {
 
-  # tidyr::unnest_wider() name repair is noisy
-  # Let's make it quiet with purrr::quietly()
-  quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
+      res <-
+        httr::RETRY("GET", url,
+                    httr::add_headers(.headers = headers))
 
-  df <- purrr::pluck(raw_json_fpi, "teams", "team") %>%
-    dplyr::as_tibble() %>%
-    dplyr::select(.data$id, .data$nickname, .data$abbreviation, .data$logos, .data$links) %>%
-    dplyr::mutate(row_n = dplyr::row_number()) %>%
-    dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data)) %>%
-    # lots of name_repair here that I am silencing
-    quiet_unnest_wider(data) %>%
-    purrr::pluck("result") %>%
-    purrr::set_names(nm = c(
-      "id", "name", "abbr", "logos", "links", "row_n",
-      "fpi", "fpi_rk", "trend", "proj_w", "proj_l", "win_out",
-      "win_6", "win_div", "playoff", "nc_game", "nc_win",
-      "win_conf", "w", "l", "t"
-    )) %>%
-    dplyr::select(-c("logos", "links")) %>%
-    dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
-    dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
-    dplyr::select(.data$year, tidyr::everything()) %>%
-    dplyr::select(-.data$row_n) %>%
-    dplyr::rename(team_id = .data$id) %>%
-    as.data.frame()
+      # Check the result
+      check_status(res)
 
-  df <- df %>%
-    make_cfbfastR_data("FPI rating data from ESPN",Sys.time())
+      resp <- res %>%
+        httr::content(as = "text", encoding = "UTF-8")
+      raw_json_fpi <- jsonlite::fromJSON(resp)
 
+      ## get team fpi stats
+      get_fpi_data <- function(row_n) {
+        purrr::pluck(raw_json_fpi, "teams", "categories", row_n, "totals", 1)
+      }
+      purrr::pluck(raw_json_fpi, "categories", "labels", 1)
+
+      # tidyr::unnest_wider() name repair is noisy
+      # Let's make it quiet with purrr::quietly()
+      quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
+
+      df <- purrr::pluck(raw_json_fpi, "teams", "team") %>%
+        dplyr::as_tibble() %>%
+        dplyr::select(.data$id, .data$nickname, .data$abbreviation, .data$logos, .data$links) %>%
+        dplyr::mutate(row_n = dplyr::row_number()) %>%
+        dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data)) %>%
+        # lots of name_repair here that I am silencing
+        quiet_unnest_wider(data) %>%
+        purrr::pluck("result") %>%
+        purrr::set_names(nm = c(
+          "id", "name", "abbr", "logos", "links", "row_n",
+          "fpi", "fpi_rk", "trend", "proj_w", "proj_l", "win_out",
+          "win_6", "win_div", "playoff", "nc_game", "nc_win",
+          "win_conf", "w", "l", "t"
+        )) %>%
+        dplyr::select(-c("logos", "links")) %>%
+        dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
+        dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
+        dplyr::select(.data$year, tidyr::everything()) %>%
+        dplyr::select(-.data$row_n) %>%
+        dplyr::rename(team_id = .data$id) %>%
+        as.data.frame()
+
+      df <- df %>%
+        make_cfbfastR_data("FPI rating data from ESPN",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }

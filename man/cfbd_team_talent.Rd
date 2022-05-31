@@ -22,9 +22,9 @@ Extracts team talent composite as sourced from 247 rankings
 }
 \examples{
 \donttest{
-cfbd_team_talent()
+  try(cfbd_team_talent())
 
-cfbd_team_talent(year = 2018)
+  try(cfbd_team_talent(year = 2018))
 }
 
 }

@@ -53,7 +53,7 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 }
 \examples{
 \donttest{
-cfbd_metrics_ppa_teams(year = 2019, team = "TCU")
+  try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
 }
 
 }

@@ -48,12 +48,14 @@ cfbd_coaches(
 }
 \description{
 \strong{Coach information search}
-A coach search function which provides coaching records and school history for a given coach\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
-}
+A coach search function which provides coaching records and school history for a given coach
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{
-  cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+  try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 }
 }
 \keyword{Coaches}

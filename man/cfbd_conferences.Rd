@@ -21,12 +21,14 @@ cfbd_conferences()
 \description{
 \strong{Get college football conference information}
 Pulls all college football conferences and returns as data frame
-You can call this function simply with:\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conferences()
+You can call this function simply with:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conferences()
 }\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{
-   cfbd_conferences()
+  try(cfbd_conferences())
 }
 }
 \keyword{Conferences}
