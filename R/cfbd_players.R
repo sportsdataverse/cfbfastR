@@ -28,13 +28,13 @@ NULL
 #' @title
 #' **Player information lookup**
 #' @param search_term (*String* required): Search term for the player you are trying to look up
-#' @param position (*string* optional): Position of the player you are searching for.\cr
-#' Position Group  - options include:\cr
-#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+#' @param position (*string* optional): Position of the player you are searching for.
+#' Position Group  - options include:
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
 #'  * Special Teams: K, P, LS, PK
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
 #' @return [cfbd_player_info()] - A data frame with 12 variables:
 #' \describe{
@@ -159,8 +159,8 @@ cfbd_player_info <- function(search_term,
 #' **Get player returning production**
 #' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return [cfbd_player_returning()] - A data frame with 15 variables:
 #' \describe{
@@ -277,15 +277,15 @@ cfbd_player_returning <- function(year = 2019,
 #' **Get player usage metrics**
 #' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param position (*string* optional): Position of the player you are searching for.\cr
-#' Position Group  - options include:\cr
-#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+#' @param position (*string* optional): Position of the player you are searching for.
+#' Position Group  - options include:
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
 #'  * Special Teams: K, P, LS, PK
-#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
 #' Can be found using the [cfbd_player_info()] function.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @return [cfbd_player_usage()] - A data frame with 14 variables:

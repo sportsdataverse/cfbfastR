@@ -18,19 +18,19 @@ cfbd_player_usage(
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
-\item{position}{(\emph{string} optional): Position of the player you are searching for.\cr
-Position Group  - options include:\cr
+\item{position}{(\emph{string} optional): Position of the player you are searching for.
+Position Group  - options include:
 \itemize{
-\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL
 \item Special Teams: K, P, LS, PK
 }}
 
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
+\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
 Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}

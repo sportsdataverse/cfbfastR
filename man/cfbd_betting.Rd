@@ -3,7 +3,6 @@
 \name{cfbd_betting}
 \alias{cfbd_betting}
 \alias{cfbd_betting_lines}
-\alias{betting}
 \title{\strong{CFBD Betting Lines Endpoint Overview}}
 \usage{
 cfbd_betting_lines(
@@ -34,8 +33,8 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{away_team}{(\emph{String} optional): Away D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
@@ -69,15 +68,12 @@ Betting information for games with the following columns:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
- # 7 OTs LSU at TAMU
  cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 }\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
-
-   # 7 OTs LSU at TAMU
    try(cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC"))
 }
 }

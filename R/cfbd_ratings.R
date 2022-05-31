@@ -298,8 +298,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' @title
 #' **Get conference level SP historical rating data**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
-#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_ratings_sp_conference()] - A data frame with 25 variables:
@@ -434,8 +434,8 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #'
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - SRS information by conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - SRS information by conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_ratings_srs()] - A data frame with 6 variables:
@@ -539,8 +539,8 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Maximum Week of ratings.
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - SRS information by conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - SRS information by conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_ratings_elo()] - A data frame with 6 variables:

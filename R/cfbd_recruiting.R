@@ -65,9 +65,9 @@ NULL
 #' @param recruit_type (*String* optional): default API return is 'HighSchool', other options include 'JUCO'
 #' or 'PrepSchool'  - For position group information
 #' @param state (*String* optional): Two letter State abbreviation
-#' @param position (*String* optional): Position Group  - options include:\cr
-#'  * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
-#'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
+#' @param position (*String* optional): Position Group  - options include:
+#'  * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'
+#'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'
 #'  * Special Teams: 'K', 'P'
 #'
 #' @return [cfbd_recruiting_player()] - A data frame with 14 variables:
@@ -200,8 +200,8 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @param start_year (*Integer* optional): Start Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
 #' @param end_year (*Integer* optional): End Year,  4 digit format (*YYYY*). *Note: 2020 is the maximum value currently*
 #' @param team (*String* optional): Team - Select a valid team, D-I football
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_recruiting_position()] - A data frame with 7 variables:
@@ -403,7 +403,7 @@ cfbd_recruiting_team <- function(year = NULL,
 
 #' @title
 #' **Get Transfer Portal Data**
-#' @param year (*Integer* required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (*YYYY*).\cr
+#' @param year (*Integer* required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (*YYYY*).
 #' @return [cfbd_recruiting_transfer_portal()] - A data frame with 11 variables:
 #' \describe{
 #'   \item{`season`:integer}{Season of transfer.}

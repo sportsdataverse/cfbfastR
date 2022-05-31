@@ -21,15 +21,15 @@ cfbd_metrics_ppa_players_games(
 
 \item{team}{(\emph{String} optional): D-I Team. Required if year not provided.}
 
-\item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
-Position Group  - options include:\cr
+\item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.
+Position Group  - options include:
 \itemize{
-\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
-\item Special Teams: K, P, LS, PK\cr
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL
+\item Special Teams: K, P, LS, PK
 }}
 
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
+\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
 Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}

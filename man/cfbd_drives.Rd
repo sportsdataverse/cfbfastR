@@ -2,8 +2,20 @@
 % Please edit documentation in R/cfbd_drives.R
 \name{cfbd_drives}
 \alias{cfbd_drives}
-\alias{drives}
 \title{\strong{CFBD Drives Endpoint}}
+\usage{
+cfbd_drives(
+  year,
+  season_type = "regular",
+  week = NULL,
+  team = NULL,
+  offense_team = NULL,
+  defense_team = NULL,
+  conference = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL
+)
+}
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
@@ -17,16 +29,16 @@
 
 \item{defense_team}{(\emph{String} optional): Defense D-I Team}
 
-\item{conference}{(\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+\item{conference}{(\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
-\item{offense_conference}{(\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+\item{offense_conference}{(\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
-\item{defense_conference}{(\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+\item{defense_conference}{(\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{

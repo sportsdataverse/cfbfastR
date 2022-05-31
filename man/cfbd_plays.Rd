@@ -30,13 +30,13 @@ cfbd_plays(
 
 \item{defense}{Select defense name (example: Texas, Texas A&M, Clemson)}
 
-\item{conference}{Select conference name (example: ACC, B1G, B12, SEC,\cr
+\item{conference}{Select conference name (example: ACC, B1G, B12, SEC,
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
-\item{offense_conference}{Select conference name (example: ACC, B1G, B12, SEC,\cr
+\item{offense_conference}{Select conference name (example: ACC, B1G, B12, SEC,
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
-\item{defense_conference}{Select conference name (example: ACC, B1G, B12, SEC,\cr
+\item{defense_conference}{Select conference name (example: ACC, B1G, B12, SEC,
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
 \item{play_type}{Select play type (example: see the \link{cfbd_play_type_df})}

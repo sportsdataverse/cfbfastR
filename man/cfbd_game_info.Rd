@@ -29,14 +29,14 @@ cfbd_game_info(
 
 \item{away_team}{(\emph{String} optional): Away D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game}
 
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
-list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.\cr
+list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
 }
 \value{
@@ -77,12 +77,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
 }
 \examples{
 \donttest{
-  try(cfbd_game_info(2018, week = 1))
-
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
-
-  # 7 OTs LSU @ TAMU
-  try(cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE))
 }
 }
 \keyword{Game}

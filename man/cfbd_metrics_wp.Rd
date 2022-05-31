@@ -7,7 +7,7 @@
 cfbd_metrics_wp(game_id)
 }
 \arguments{
-\item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
+\item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{

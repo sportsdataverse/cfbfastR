@@ -1,20 +1,20 @@
+#' **CFBD Betting Lines Endpoint Overview**
 #' @name cfbd_betting
-#' @aliases betting cfbd_betting cfbd_betting_lines
+NULL
+
 #' @title
 #' **CFBD Betting Lines Endpoint Overview**
+#' @rdname cfbd_betting
 #' @description
 #' **Get betting lines information for games**
 #' ```r
 #'  cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 #'
-#'  # 7 OTs LSU at TAMU
 #'  cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 #' ```
 #' @examples
 #' \donttest{
 #'    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
-#'
-#'    # 7 OTs LSU at TAMU
 #'    try(cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC"))
 #' }
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
@@ -25,8 +25,8 @@
 #' @param team (*String* optional): D-I Team
 #' @param home_team (*String* optional): Home D-I Team
 #' @param away_team (*String* optional): Away D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' @return Betting information for games with the following columns:
@@ -62,7 +62,6 @@
 #' @importFrom dplyr filter as_tibble rename
 #' @importFrom tidyr unnest
 #' @export
-#'
 cfbd_betting_lines <- function(game_id = NULL,
                                year = NULL,
                                week = NULL,

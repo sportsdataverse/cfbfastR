@@ -59,10 +59,10 @@
 NULL
 #' @title
 #' **Team info lookup**
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year
 #' @return [cfbd_team_info()] - A data frame with 12 variables:
@@ -562,7 +562,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 }
 
 #' @title
-#' **Get composite team talent rankings for all teams in a given year**\cr
+#' **Get composite team talent rankings for all teams in a given year**
 #'
 #' @description
 #' Extracts team talent composite as sourced from 247 rankings

@@ -21,9 +21,9 @@ cfbd_game_weather(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
 \code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:

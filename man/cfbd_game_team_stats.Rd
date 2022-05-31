@@ -23,11 +23,11 @@ cfbd_game_team_stats(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}

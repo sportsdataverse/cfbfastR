@@ -9,17 +9,17 @@ cfbd_player_info(search_term, position = NULL, team = NULL, year = NULL)
 \arguments{
 \item{search_term}{(\emph{String} required): Search term for the player you are trying to look up}
 
-\item{position}{(\emph{string} optional): Position of the player you are searching for.\cr
-Position Group  - options include:\cr
+\item{position}{(\emph{string} optional): Position of the player you are searching for.
+Position Group  - options include:
 \itemize{
-\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL
 \item Special Teams: K, P, LS, PK
 }}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).\cr
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
 If left NULL, API default will only provide results for most recent year of final rosters: 2020}
 }
 \value{

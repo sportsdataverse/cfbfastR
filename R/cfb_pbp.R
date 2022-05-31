@@ -44,28 +44,6 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(),...,
   return(out)
 }
 
-cfb_single_season <- function(season, p, dbConnection = NULL, tablename = NULL, qs = FALSE) {
-  if (isTRUE(qs)) {
-
-    .url <- glue::glue("https://github.com/sportsdataverse/cfbfastR-data/blob/main/data/rds/pbp_players_pos_{season}.qs")
-    pbp <- qs_from_url(.url)
-
-  }
-  if (isFALSE(qs)) {
-    .url <- glue::glue("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/rds/pbp_players_pos_{season}.rds")
-    con <- url(.url)
-    pbp <- readRDS(con)
-    close(con)
-  }
-  if (!is.null(dbConnection) && !is.null(tablename)) {
-    DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
-    out <- NULL
-  } else {
-    out <- pbp
-  }
-  p(sprintf("season=%g", season))
-  return(out)
-}
 
 # load games file
 load_games <- function(){
@@ -94,7 +72,7 @@ load_games <- function(){
 #' by play data table either for the whole cfbfastR era (with `force_rebuild = TRUE`)
 #' or just for specified seasons (e.g. `force_rebuild = c(2019, 2020)`).
 #' Please note the following behavior:
-#' \itemize{
+#' \describe{
 #'  \item{`force_rebuild = TRUE`}{: The data table with the name `tblname`
 #'   will be removed completely and rebuilt from scratch. This is helpful when
 #'   new columns are added during the Off-Season.}

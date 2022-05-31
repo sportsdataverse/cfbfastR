@@ -61,7 +61,6 @@ NULL
 #' @return [cfbd_stats_categories()] A data frame with 38 values:
 #' \describe{
 #'   \item{name}{Statistics Categories}
-#'   ...
 #' }
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
@@ -535,14 +534,14 @@ cfbd_stats_season_advanced <- function(year,
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param category (*String* optional): Category filter (e.g defensive)\cr
-#' Offense: passing, receiving, rushing\cr
-#' Defense: defensive, fumbles, interceptions\cr
+#' @param category (*String* optional): Category filter (e.g defensive)
+#' Offense: passing, receiving, rushing
+#' Defense: defensive, fumbles, interceptions
 #' Special Teams: punting, puntReturns, kicking, kickReturns
 #'
 #' @examples
@@ -804,9 +803,9 @@ cfbd_stats_season_player <- function(year,
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
@@ -825,44 +824,44 @@ cfbd_stats_season_player <- function(year,
 #'   \item{`conference`: character.}{Conference of team.}
 #'   \item{`games`: integer.}{Number of games.}
 #'   \item{`time_of_poss_total`: integer.}{Time of possession total.}
-# #'   \item{`time_of_poss_pg`: double.}{Time of possession per game.}
+#'   \item{`time_of_poss_pg`: double.}{Time of possession per game.}
 #'   \item{`pass_comps`: integer.}{Total number of pass completions.}
 #'   \item{`pass_atts`: integer.}{Total number of pass attempts.}
-# #'   \item{`completion_pct`: double.}{Passing completion percentage.}
+#'   \item{`completion_pct`: double.}{Passing completion percentage.}
 #'   \item{`net_pass_yds`: integer.}{Net passing yards.}
-# #'   \item{`pass_ypa`: double.}{Passing yards per attempt.}
-# #'   \item{`pass_ypr`: double.}{Passing yards per reception.}
+#'   \item{`pass_ypa`: double.}{Passing yards per attempt.}
+#'   \item{`pass_ypr`: double.}{Passing yards per reception.}
 #'   \item{`pass_TDs`: integer.}{Passing touchdowns.}
 #'   \item{`interceptions`: integer.}{Passing interceptions.}
-# #'   \item{`int_pct`: double.}{Interception percentage (of attempts).}
+#'   \item{`int_pct`: double.}{Interception percentage (of attempts).}
 #'   \item{`rush_atts`: integer.}{Rushing attempts.}
 #'   \item{`rush_yds`: integer.}{Rushing yards.}
 #'   \item{`rush_TDs`: integer.}{Rushing touchdowns.}
-# #'   \item{`rush_ypc`: double.}{Rushing yards per carry.}
+#'   \item{`rush_ypc`: double.}{Rushing yards per carry.}
 #'   \item{`total_yds`: integer.}{Rushing total yards.}
 #'   \item{`fumbles_lost`: integer.}{Fumbles lost.}
 #'   \item{`turnovers`: integer.}{Turnovers total.}
-# #'   \item{`turnovers_pg`: double.}{Turnovers per game.}
+#'   \item{`turnovers_pg`: double.}{Turnovers per game.}
 #'   \item{`first_downs`: integer.}{Number of first downs.}
 #'   \item{`third_downs`: integer.}{Number of third downs.}
 #'   \item{`third_down_convs`: integer.}{Number of third down conversions.}
-# #'   \item{`third_conv_rate`: double.}{Third down conversion rate.}
+#'   \item{`third_conv_rate`: double.}{Third down conversion rate.}
 #'   \item{`fourth_down_convs`: integer.}{Fourth down conversions.}
 #'   \item{`fourth_downs`: integer.}{Fourth downs.}
-# #'   \item{`fourth_conv_rate`: double.}{Fourth down conversion rate.}
+#'   \item{`fourth_conv_rate`: double.}{Fourth down conversion rate.}
 #'   \item{`penalties`: integer.}{Total number of penalties.}
 #'   \item{`penalty_yds`: integer.}{Penalty yards total.}
-# #'   \item{`penalties_pg`: double.}{Penalties per game.}
-# #'   \item{`penalty_yds_pg`: double.}{Penalty yardage per game.}
-# #'   \item{`yards_per_penalty`: double.}{Average yards per penalty.}
+#'   \item{`penalties_pg`: double.}{Penalties per game.}
+#'   \item{`penalty_yds_pg`: double.}{Penalty yardage per game.}
+#'   \item{`yards_per_penalty`: double.}{Average yards per penalty.}
 #'   \item{`kick_returns`: integer.}{Number of kick returns.}
 #'   \item{`kick_return_yds`: integer.}{Total kick return yards.}
 #'   \item{`kick_return_TDs`: integer.}{Total kick return touchdowns.}
-# #'   \item{`kick_return_avg`: double.}{Kick return yards average.}
+#'   \item{`kick_return_avg`: double.}{Kick return yards average.}
 #'   \item{`punt_returns`: integer.}{Number of punt returns.}
 #'   \item{`punt_return_yds`: integer.}{Punt return total yards.}
 #'   \item{`punt_return_TDs`: integer.}{Punt return total touchdowns.}
-# #'   \item{`punt_return_avg`: double.}{Punt return yards average.}
+#'   \item{`punt_return_avg`: double.}{Punt return yards average.}
 #'   \item{`passes_intercepted`: integer.}{Passes intercepted.}
 #'   \item{`passes_intercepted_yds`: integer.}{Pass interception return yards.}
 #'   \item{`passes_intercepted_TDs`: integer.}{Pass interception return touchdowns.}

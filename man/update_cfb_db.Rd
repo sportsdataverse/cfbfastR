@@ -46,7 +46,7 @@ The argument \code{force_rebuild} is of hybrid type. It can rebuild the play
 by play data table either for the whole cfbfastR era (with \code{force_rebuild = TRUE})
 or just for specified seasons (e.g. \code{force_rebuild = c(2019, 2020)}).
 Please note the following behavior:
-\itemize{
+\describe{
 \item{\code{force_rebuild = TRUE}}{: The data table with the name \code{tblname}
 will be removed completely and rebuilt from scratch. This is helpful when
 new columns are added during the Off-Season.}

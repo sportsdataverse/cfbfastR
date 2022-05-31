@@ -13,8 +13,8 @@ cfbd_ratings_elo(year = NULL, week = NULL, team = NULL, conference = NULL)
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+\item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{

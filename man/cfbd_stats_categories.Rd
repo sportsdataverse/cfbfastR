@@ -10,7 +10,6 @@ cfbd_stats_categories()
 \code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}} A data frame with 38 values:
 \describe{
 \item{name}{Statistics Categories}
-...
 }
 }
 \description{

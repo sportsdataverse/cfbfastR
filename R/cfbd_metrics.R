@@ -43,9 +43,9 @@ NULL
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
 #' @return [cfbd_metrics_ppa_games()] - A data frame with 18 variables:
@@ -177,12 +177,12 @@ cfbd_metrics_ppa_games <- function(year,
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team. Required if year not provided.
-#' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
-#' Position Group  - options include:\cr
-#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
-#'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.
+#' Position Group  - options include:
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
+#'  * Special Teams: K, P, LS, PK
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
 #' Can be found using the [cfbd_player_info()] function.
 #' @param threshold (*Integer* optional): Minimum threshold of plays.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
@@ -320,15 +320,15 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' **Get player season averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
-#' Position Group  - options include:\cr
-#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
-#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
-#'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
+#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.
+#' Position Group  - options include:
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
+#'  * Special Teams: K, P, LS, PK
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
 #' Can be found using the [cfbd_player_info()] function.
 #' @param threshold (*Integer* optional): Minimum threshold of plays.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
@@ -571,9 +571,9 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' **Get team averages for predicted points added (PPA)**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference name - select a valid FBS conference\cr
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
+#' @param conference (*String* optional): Conference name - select a valid FBS conference
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
 #' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
@@ -807,7 +807,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 
 #' @title
 #' **Get win probability chart data from API**
-#' @param game_id (*Integer* required): Game ID filter for querying a single game\cr
+#' @param game_id (*Integer* required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @return [cfbd_metrics_wp()] - A data frame with 16 variables:

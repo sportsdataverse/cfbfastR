@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_teams.R
 \name{cfbd_team_talent}
 \alias{cfbd_team_talent}
-\title{\strong{Get composite team talent rankings for all teams in a given year}\cr}
+\title{\strong{Get composite team talent rankings for all teams in a given year}}
 \usage{
 cfbd_team_talent(year = NULL)
 }

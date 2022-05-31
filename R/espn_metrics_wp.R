@@ -5,7 +5,7 @@ NULL
 #' Graciously contributed by MrCaseB:
 #' @rdname espn_metrics
 #'
-#' @param game_id (*Integer* required): Game ID filter for querying a single game\cr
+#' @param game_id (*Integer* required): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @return [espn_metrics_wp()] - A data frame with 5 variables:

@@ -1,5 +1,4 @@
-#' @name cfbd_drives
-#' @aliases drives cfbd_drives
+
 #' @title
 #' **CFBD Drives Endpoint**
 #' @description
@@ -21,14 +20,14 @@
 #' @param team (*String* optional): D-I Team
 #' @param offense_team (*String* optional): Offense D-I Team
 #' @param defense_team (*String* optional): Defense D-I Team
-#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param offense_conference (*String* optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param offense_conference (*String* optional): Offense DI Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param defense_conference (*String* optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param defense_conference (*String* optional): Defense DI Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return [cfbd_drives()] - A data frame with 23 variables as follows:
 #' \describe{
@@ -62,8 +61,6 @@
 #'   \item{`time_seconds_elapsed`:integer.}{Seconds elapsed during drive.}
 #' }
 #' @keywords Drives
-NULL
-
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode

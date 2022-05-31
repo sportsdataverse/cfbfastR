@@ -20,9 +20,9 @@ cfbd_stats_season_team(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
@@ -36,30 +36,44 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \item{\code{conference}: character.}{Conference of team.}
 \item{\code{games}: integer.}{Number of games.}
 \item{\code{time_of_poss_total}: integer.}{Time of possession total.}
+\item{\code{time_of_poss_pg}: double.}{Time of possession per game.}
 \item{\code{pass_comps}: integer.}{Total number of pass completions.}
 \item{\code{pass_atts}: integer.}{Total number of pass attempts.}
+\item{\code{completion_pct}: double.}{Passing completion percentage.}
 \item{\code{net_pass_yds}: integer.}{Net passing yards.}
+\item{\code{pass_ypa}: double.}{Passing yards per attempt.}
+\item{\code{pass_ypr}: double.}{Passing yards per reception.}
 \item{\code{pass_TDs}: integer.}{Passing touchdowns.}
 \item{\code{interceptions}: integer.}{Passing interceptions.}
+\item{\code{int_pct}: double.}{Interception percentage (of attempts).}
 \item{\code{rush_atts}: integer.}{Rushing attempts.}
 \item{\code{rush_yds}: integer.}{Rushing yards.}
 \item{\code{rush_TDs}: integer.}{Rushing touchdowns.}
+\item{\code{rush_ypc}: double.}{Rushing yards per carry.}
 \item{\code{total_yds}: integer.}{Rushing total yards.}
 \item{\code{fumbles_lost}: integer.}{Fumbles lost.}
 \item{\code{turnovers}: integer.}{Turnovers total.}
+\item{\code{turnovers_pg}: double.}{Turnovers per game.}
 \item{\code{first_downs}: integer.}{Number of first downs.}
 \item{\code{third_downs}: integer.}{Number of third downs.}
 \item{\code{third_down_convs}: integer.}{Number of third down conversions.}
+\item{\code{third_conv_rate}: double.}{Third down conversion rate.}
 \item{\code{fourth_down_convs}: integer.}{Fourth down conversions.}
 \item{\code{fourth_downs}: integer.}{Fourth downs.}
+\item{\code{fourth_conv_rate}: double.}{Fourth down conversion rate.}
 \item{\code{penalties}: integer.}{Total number of penalties.}
 \item{\code{penalty_yds}: integer.}{Penalty yards total.}
+\item{\code{penalties_pg}: double.}{Penalties per game.}
+\item{\code{penalty_yds_pg}: double.}{Penalty yardage per game.}
+\item{\code{yards_per_penalty}: double.}{Average yards per penalty.}
 \item{\code{kick_returns}: integer.}{Number of kick returns.}
 \item{\code{kick_return_yds}: integer.}{Total kick return yards.}
 \item{\code{kick_return_TDs}: integer.}{Total kick return touchdowns.}
+\item{\code{kick_return_avg}: double.}{Kick return yards average.}
 \item{\code{punt_returns}: integer.}{Number of punt returns.}
 \item{\code{punt_return_yds}: integer.}{Punt return total yards.}
 \item{\code{punt_return_TDs}: integer.}{Punt return total touchdowns.}
+\item{\code{punt_return_avg}: double.}{Punt return yards average.}
 \item{\code{passes_intercepted}: integer.}{Passes intercepted.}
 \item{\code{passes_intercepted_yds}: integer.}{Pass interception return yards.}
 \item{\code{passes_intercepted_TDs}: integer.}{Pass interception return touchdowns.}

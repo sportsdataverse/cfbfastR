@@ -2,7 +2,7 @@
 #' @aliases cfbd_games
 #' @title
 #' **CFBD Games Endpoint Overview**
-#' @description Get results, statistics and information for games\cr
+#' @description Get results, statistics and information for games
 #' \describe{
 #'   \item{`cfbd_game_box_advanced()`:}{ Get game advanced box score information.}
 #'   \item{`cfbd_game_player_stats()`:}{ Get results information from games.}
@@ -72,12 +72,12 @@ NULL
 #' @param team (*String* optional): D-I Team
 #' @param home_team (*String* optional): Home D-I Team
 #' @param away_team (*String* optional): Away D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' @param quarter_scores (*Logical* default FALSE): This is a parameter to return the
-#' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.\cr
+#' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #'
 #' @return [cfbd_game_info()] - A data frame with 22 variables:
@@ -122,12 +122,7 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_game_info(2018, week = 1))
-#'
 #'   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
-#'
-#'   # 7 OTs LSU @ TAMU
-#'   try(cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE))
 #' }
 
 cfbd_game_info <- function(year,
@@ -254,9 +249,9 @@ cfbd_game_info <- function(year,
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_game_weather()] - A data frame with 23 variables:
 #' \describe{
@@ -456,9 +451,9 @@ cfbd_calendar <- function(year) {
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default both): Select Season Type, regular, postseason, or both
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param media_type (*String* optional): Media type filter: tv, radio, web, ppv, or mobile
 #'
 #' @return [cfbd_game_media()] - A data frame with 13 variables:
@@ -805,13 +800,13 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular or postseason
 #' @param team (*String* optional): D-I Team
-#' @param category (*String* optional): Category filter (e.g defensive)\cr
-#' Offense: passing, receiving, rushing\cr
-#' Defense: defensive, fumbles, interceptions\cr
-#' Special Teams: punting, puntReturns, kicking, kickReturns\cr
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param category (*String* optional): Category filter (e.g defensive)
+#' Offense: passing, receiving, rushing
+#' Defense: defensive, fumbles, interceptions
+#' Special Teams: punting, puntReturns, kicking, kickReturns
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #'
@@ -1024,8 +1019,8 @@ cfbd_game_player_stats <- function(year,
 #' **Get team records by year**
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return [cfbd_game_records()] - A data frame with 21 variables:
 #' \describe{
@@ -1160,10 +1155,10 @@ cfbd_game_records <- function(year,
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (*Integer* optional): Game ID filter for querying a single game\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'

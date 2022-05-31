@@ -62,11 +62,11 @@ NULL
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
 #' @param offense Select offense name (example: Texas, Texas A&M, Clemson)
 #' @param defense Select defense name (example: Texas, Texas A&M, Clemson)
-#' @param conference Select conference name (example: ACC, B1G, B12, SEC,\cr
+#' @param conference Select conference name (example: ACC, B1G, B12, SEC,
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
-#' @param offense_conference Select conference name (example: ACC, B1G, B12, SEC,\cr
+#' @param offense_conference Select conference name (example: ACC, B1G, B12, SEC,
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
-#' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,\cr
+#' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
 #' @return [cfbd_plays()] - A data frame with 29 columns:

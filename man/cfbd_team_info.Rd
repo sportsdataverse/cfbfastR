@@ -7,11 +7,11 @@
 cfbd_team_info(conference = NULL, only_fbs = TRUE, year = NULL)
 }
 \arguments{
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
-\item{only_fbs}{(\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.\cr
+\item{only_fbs}{(\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.
 If year is left blank while only_fbs is TRUE, then will return values for most current year}
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year}

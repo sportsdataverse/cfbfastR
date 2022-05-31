@@ -4,7 +4,7 @@
 \alias{cfbd_games}
 \title{\strong{CFBD Games Endpoint Overview}}
 \description{
-Get results, statistics and information for games\cr
+Get results, statistics and information for games
 \describe{
 \item{\code{cfbd_game_box_advanced()}:}{ Get game advanced box score information.}
 \item{\code{cfbd_game_player_stats()}:}{ Get results information from games.}
