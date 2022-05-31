@@ -371,6 +371,11 @@ reference:
       - '`create_epa`'
       - '`create_wpa`'
       - '`helpers_pbp`'
+  - subtitle: cfbfastR Helper Functions
+    desc: Internal functions used by cfbfastR
+    contents:
+      - '`csv_from_url`'
+      - '`rds_from_url`'
 articles:
   - title: Introductory
     navbar: Introductory
