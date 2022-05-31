@@ -182,7 +182,7 @@
 <div class="section level5">
 <h5 id="added-functions-to-access-espn-api-1-9-0">Added functions to access ESPN API:<a class="anchor" aria-label="anchor" href="#added-functions-to-access-espn-api-1-9-0"></a></h5>
 <ul><li><a href="https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.html"><code>espn_cfb_calendar()</code></a></li>
-<li><a href="https://cfbfastR.sportsdataverse.org/reference/espn_cfb_schedule.html"><code>espn_cfb_schedule()</code></a></li>
+<li><a href="https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html"><code>espn_cfb_schedule()</code></a></li>
 <li>Added EPA and WPA processing to <a href="https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html"><code>espn_cfb_pbp()</code></a>
 </li>
 <li><a href="https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.html"><code>espn_cfb_team_stats()</code></a></li>
@@ -334,7 +334,7 @@
 </ul></div>
 <div class="section level5">
 <h5 id="espncfbd-metrics-function-variable-return-standardization-1-2-0-1"><strong>ESPN/CFBD metrics function variable return standardization</strong><a class="anchor" aria-label="anchor" href="#espncfbd-metrics-function-variable-return-standardization-1-2-0-1"></a></h5>
-<ul><li>Change <code>id</code> variable to <code>team_id</code> in <a href="https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a>
+<ul><li>Change <code>id</code> variable to <code>team_id</code> in <a href="https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html"><code>espn_ratings_fpi()</code></a>
 </li>
 <li>Changed <code>espn_game_id</code> variable to <code>game_id</code> in <a href="https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a>, corrected the <code>away_win_percentage</code> calculation and added <code>tie_percentage</code> to the returns.</li>
 <li>Change <code>id</code> variable to <code>athlete_id</code> in <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html"><code>cfbd_metrics_ppa_players_season()</code></a>
@@ -355,7 +355,7 @@
 <div class="section level5">
 <h5 id="function-naming-convention-change-1-0-0"><strong>Function Naming Convention Change</strong><a class="anchor" aria-label="anchor" href="#function-naming-convention-change-1-0-0"></a></h5>
 <ul><li><p>All functions sourced from the College Football Data API will start with <code>cfbd_</code> as opposed to <code>cfb_</code> (as in cfbscrapR). One additional <code>cfbd_</code> function has been added that corresponds to the result when <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> has the parameter <code>epa_wpa=FALSE</code>. It has now been separated into its own function for clarity <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_play.html"><code>cfbd_plays()</code></a>. The parameter and functionality still exists in <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> but we expect this function will still exist but made obsolete in favor of a function more closely matching <code>nflfastR</code>’s naming conventions.</p></li>
-<li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html"><code>espn_ratings_fpi()</code></a> and <a href="https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
+<li><p>Similarly, data and metrics sourced from ESPN will begin with <code>espn_</code> as opposed to <code>cfb_</code>. In particular, the two functions are now <a href="https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html"><code>espn_ratings_fpi()</code></a> and <a href="https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html"><code>espn_metrics_wp()</code></a></p></li>
 <li><p>Data generated from any of the <code>cfbfastR</code> methods will use <code>cfb_</code></p></li>
 </ul></div>
 <div class="section level5">
