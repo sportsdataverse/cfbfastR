@@ -265,10 +265,13 @@
     <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html</loc>
   </url>
   <url>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.html</loc>
+  </url>
+  <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html</loc>
   </url>
   <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_ratings.html</loc>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html</loc>
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/get_fun_from_pkg.html</loc>
