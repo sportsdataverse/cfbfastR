@@ -78,7 +78,7 @@
     <a class="dropdown-item" href="../reference/cfbd_metrics.html">Metrics</a>
     <a class="dropdown-item" href="../reference/cfbd_ratings.html">Ratings</a>
     <a class="dropdown-item" href="../reference/cfbd_draft.html">Draft</a>
-    <a class="dropdown-item" href="../reference/cfbd_betting.html">Betting</a>
+    <a class="dropdown-item" href="../reference/cfbd_betting_lines.html">Betting</a>
     <a class="dropdown-item" href="../reference/cfbd_recruiting.html">Recruiting</a>
     <a class="dropdown-item" href="../reference/cfbd_coaches.html">Coaches</a>
     <a class="dropdown-item" href="../reference/cfbd_conferences.html">Conferences</a>
@@ -240,7 +240,7 @@
   <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 39.008 sec elapsed</span></code></pre>
+<pre><code><span class="co">## 39.809 sec elapsed</span></code></pre>
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="va">seasons</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>

@@ -53,7 +53,7 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
     <a class="dropdown-item" href="../reference/cfbd_metrics.html">Metrics</a>
     <a class="dropdown-item" href="../reference/cfbd_ratings.html">Ratings</a>
     <a class="dropdown-item" href="../reference/cfbd_draft.html">Draft</a>
-    <a class="dropdown-item" href="../reference/cfbd_betting.html">Betting</a>
+    <a class="dropdown-item" href="../reference/cfbd_betting_lines.html">Betting</a>
     <a class="dropdown-item" href="../reference/cfbd_recruiting.html">Recruiting</a>
     <a class="dropdown-item" href="../reference/cfbd_coaches.html">Coaches</a>
     <a class="dropdown-item" href="../reference/cfbd_conferences.html">Conferences</a>
@@ -218,7 +218,8 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>espn_cfb_scoreboard()</code> &amp; <code>espn_cfb_schedule()</code> - A data frame with 33 or 54 variables depending on if there are completed games:</p><dl><dt><code>matchup</code>: character.</dt>
+    <p><code>espn_cfb_scoreboard()</code> &amp; <code>espn_cfb_schedule()</code> - A data frame with 33 or 54 variables depending on if there are completed games:
+shared variables</p><dl><dt><code>matchup</code>: character.</dt>
 <dd><p>Long matchup description with full team names (Utah Utes at UCLA Bruins).</p></dd>
 
 <dt><code>matchup_short</code>: character.</dt>
@@ -312,7 +313,7 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
 <dd><p>Game date.</p></dd>
 
 
-</dl><dl><dt><code>broadcast_market</code>: character.</dt>
+</dl><p>Unique variables when there are completed games</p><dl><dt><code>broadcast_market</code>: character.</dt>
 <dd><p>Broadcast market (typically "national" or NA)</p></dd>
 
 <dt><code>broadcast_name</code>: character.</dt>
@@ -389,7 +390,7 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ──────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:21:00 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:17:27 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 31</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup           matchup_short season type  slug  game_id game_uid game_date</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
@@ -415,7 +416,7 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
 <span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_schedule</span><span class="op">(</span><span class="fl">2021</span>, week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ─────────────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:21:01 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:17:27 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 55</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup           matchup_short season type  slug  game_id game_uid game_date</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>

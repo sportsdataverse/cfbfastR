@@ -67,7 +67,7 @@
     <loc>https://cfbfastR.sportsdataverse.org/news/index.html</loc>
   </url>
   <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.html</loc>
+    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.html</loc>
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_calendar.html</loc>
@@ -275,9 +275,6 @@
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/get_fun_from_pkg.html</loc>
   </url>
   <url>
     <loc>https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.html</loc>

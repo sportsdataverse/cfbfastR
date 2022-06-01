@@ -49,7 +49,7 @@
     <a class="dropdown-item" href="../reference/cfbd_metrics.html">Metrics</a>
     <a class="dropdown-item" href="../reference/cfbd_ratings.html">Ratings</a>
     <a class="dropdown-item" href="../reference/cfbd_draft.html">Draft</a>
-    <a class="dropdown-item" href="../reference/cfbd_betting.html">Betting</a>
+    <a class="dropdown-item" href="../reference/cfbd_betting_lines.html">Betting</a>
     <a class="dropdown-item" href="../reference/cfbd_recruiting.html">Recruiting</a>
     <a class="dropdown-item" href="../reference/cfbd_coaches.html">Coaches</a>
     <a class="dropdown-item" href="../reference/cfbd_conferences.html">Conferences</a>
@@ -254,7 +254,7 @@ Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()<
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_metrics_ppa_players_games</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">3</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player PPA data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-05-31 16:20:13 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:16:42 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season  week name            position team  opponent avg_PPA_all avg_PPA_pass</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -268,7 +268,6 @@ Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()<
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span>   <span style="text-decoration: underline;">2</span>019     3 Al'Dontre Davis WR       TCU   Purdue         3.18         3.18 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: avg_PPA_rush &lt;dbl&gt;</span></span>
 <span class="r-in"><span class="co"># }</span></span>
-<span class="r-in"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

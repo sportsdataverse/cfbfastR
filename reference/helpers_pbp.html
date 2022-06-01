@@ -4,8 +4,8 @@
 add_play_counts(): function
 Adds play counts to Play-by-Play data pulled from the API's raw game data.
 
-add_yardage(): Add yardage extracted from play text
-.
+add_yardage(): function
+Add yardage extracted from play text.
 
 add_player_cols():  function
 Add player columns extracted from play text.
@@ -33,8 +33,8 @@ Cleans Play-by-Play data pulled from the API's raw game data"><title>Series of f
 add_play_counts(): function
 Adds play counts to Play-by-Play data pulled from the API's raw game data.
 
-add_yardage(): Add yardage extracted from play text
-.
+add_yardage(): function
+Add yardage extracted from play text.
 
 add_player_cols():  function
 Add player columns extracted from play text.
@@ -107,7 +107,7 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
     <a class="dropdown-item" href="../reference/cfbd_metrics.html">Metrics</a>
     <a class="dropdown-item" href="../reference/cfbd_ratings.html">Ratings</a>
     <a class="dropdown-item" href="../reference/cfbd_draft.html">Draft</a>
-    <a class="dropdown-item" href="../reference/cfbd_betting.html">Betting</a>
+    <a class="dropdown-item" href="../reference/cfbd_betting_lines.html">Betting</a>
     <a class="dropdown-item" href="../reference/cfbd_recruiting.html">Recruiting</a>
     <a class="dropdown-item" href="../reference/cfbd_coaches.html">Coaches</a>
     <a class="dropdown-item" href="../reference/cfbd_conferences.html">Conferences</a>
@@ -241,8 +241,8 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
 <dl><dt><code>add_play_counts()</code>: function</dt>
 <dd><p>Adds play counts to Play-by-Play data pulled from the API's raw game data.</p></dd>
 
-<dt><code>add_yardage()</code>: Add yardage extracted from play text</dt>
-<dd><p>.</p></dd>
+<dt><code>add_yardage()</code>: function</dt>
+<dd><p>Add yardage extracted from play text.</p></dd>
 
 <dt><code>add_player_cols()</code>:  function</dt>
 <dd><p>Add player columns extracted from play text.</p></dd>
@@ -555,38 +555,101 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
 <dd><p>.</p></dd>
 
 
-</dl><p><code>dat</code> with the following columns appended/modified:</p><ul><li><p><code>turnover_indicator</code>..</p></li>
-<li><p><code>down</code>..</p></li>
-<li><p><code>new_id</code>..</p></li>
-<li><p><code>new_down</code>..</p></li>
-<li><p><code>distance</code>..</p></li>
-<li><p><code>yards_to_goal</code>..</p></li>
-<li><p><code>yards_gained</code>..</p></li>
-<li><p><code>turnover</code>..</p></li>
-<li><p><code>drive_start_yards_to_goal</code>..</p></li>
-<li><p><code>end_of_half</code>..</p></li>
-<li><p><code>new_yardline</code>..</p></li>
-<li><p><code>new_distance</code>..</p></li>
-<li><p><code>new_log_ydstogo</code>..</p></li>
-<li><p><code>new_Goal_To_Go</code>..</p></li>
-<li><p><code>new_TimeSecsRem</code>..</p></li>
-<li><p><code>new_Under_two</code>..</p></li>
-<li><p><code>first_by_penalty</code>..</p></li>
-<li><p><code>lag_first_by_penalty</code>..</p></li>
-<li><p><code>lag_first_by_penalty2</code>..</p></li>
-<li><p><code>first_by_yards</code>..</p></li>
-<li><p><code>lag_first_by_yards</code>..</p></li>
-<li><p><code>lag_first_by_yards2</code>..</p></li>
-<li><p><code>row</code>..</p></li>
-<li><p><code>new_series</code>..</p></li>
-<li><p><code>firstD_by_kickoff</code>..</p></li>
-<li><p><code>firstD_by_poss</code>..</p></li>
-<li><p><code>firstD_by_yards</code>..</p></li>
-<li><p><code>firstD_by_penalty</code>..</p></li>
-<li><p><code>yds_punted</code>..</p></li>
-<li><p><code>yds_punt_gained</code>..</p></li>
-<li><p><code>missing_yard_flag</code>..</p></li>
-</ul><p>The original <code>drive_df</code> with the following columns appended to it:</p><dl><dt><code>drive_id</code>: Returned as <code>drive_id</code> from original variable <code>drive_id</code></dt>
+</dl><p><code>dat</code> with the following columns appended/modified:</p><dl><dt><code>turnover_indicator</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>down</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_id</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_down</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>distance</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>yards_to_goal</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>yards_gained</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>turnover</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>drive_start_yards_to_goal</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>end_of_half</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_yardline</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_distance</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_log_ydstogo</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_Goal_To_Go</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_TimeSecsRem</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_Under_two</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>first_by_penalty</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>lag_first_by_penalty</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>lag_first_by_penalty2</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>first_by_yards</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>lag_first_by_yards</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>lag_first_by_yards2</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>row</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>new_series</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>firstD_by_kickoff</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>firstD_by_poss</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>firstD_by_yards</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>firstD_by_penalty</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>yds_punted</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>yds_punt_gained</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>missing_yard_flag</code>.</dt>
+<dd><p>.</p></dd>
+
+
+</dl><p>The original <code>drive_df</code> with the following columns appended to it:</p><dl><dt><code>drive_id</code>: Returned as <code>drive_id</code> from original variable <code>drive_id</code></dt>
 <dd><p>.</p></dd>
 
 <dt><code>pts_drive</code>: End result of the drive</dt>
@@ -907,19 +970,45 @@ Cleans Play-by-Play data pulled from the API's raw game data"><meta property="og
 <dd><p>.</p></dd>
 
 
-</dl><p>Prep for EPA calculations at the end of the play. Requires the following columns be present:</p><ul><li><p><code>game_id</code>..</p></li>
-<li><p><code>id_play</code>..</p></li>
-<li><p><code>drive_id</code>..</p></li>
-<li><p><code>down</code>..</p></li>
-<li><p><code>distance</code>..</p></li>
-<li><p><code>period</code>..</p></li>
-<li><p><code>yards_to_goal</code>..</p></li>
-<li><p><code>play_type</code>..</p></li>
-</ul><p>Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column. Requires the following columns be present:</p><ul><li><p><code>drive_id</code>: Returned as <code>drive_id</code>.</p></li>
-<li><p><code>drive_result</code>: End result of the drive.</p></li>
-<li><p><code>scoring</code>: Logical flag for if drive was a scoring drive.</p></li>
-<li><p><code>game_id</code>: Unique game identifier.</p></li>
-</ul><p>Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:</p><ul><li><p><code>rush</code>.</p></li>
+</dl><p>Prep for EPA calculations at the end of the play. Requires the following columns be present:</p><dl><dt><code>game_id</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>id_play</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>drive_id</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>down</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>distance</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>period</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>yards_to_goal</code>.</dt>
+<dd><p>.</p></dd>
+
+<dt><code>play_type</code>.</dt>
+<dd><p>.</p></dd>
+
+
+</dl><p>Cleans CFB (D-I) Drive-By-Drive Data to create <code>pts_drive</code> column. Requires the following columns be present:</p><dl><dt><code>drive_id</code>: Returned as <code>drive_id</code></dt>
+<dd><p>.</p></dd>
+
+<dt><code>drive_result</code>: End result of the drive</dt>
+<dd><p>.</p></dd>
+
+<dt><code>scoring</code>: Logical flag for if drive was a scoring drive</dt>
+<dd><p>.</p></dd>
+
+<dt><code>game_id</code>: Unique game identifier</dt>
+<dd><p>.</p></dd>
+
+
+</dl><p>Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:</p><ul><li><p><code>rush</code>.</p></li>
 <li><p><code>pass</code>.</p></li>
 <li><p><code>play_text</code>.</p></li>
 <li><p><code>play_type</code>.</p></li>
