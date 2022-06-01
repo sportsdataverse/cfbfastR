@@ -8,7 +8,7 @@
 #' \item{`cfbd_play_stats_types()`:}{ Gets CFBD play stat types.}
 #' \item{`cfbd_play_types()`:}{ Gets CFBD play types.}
 #' }
-#'
+#' @details
 #' ### **Pull first 3 weeks of 2020 season using `cfbd_plays()`**
 #' ```r
 #'  year_vector <- 2020
@@ -18,7 +18,7 @@
 #'  year_split <- split(weekly_year_df, weekly_year_df$year)
 #'  for (i in 1:length(year_split)) {
 #'    i <- 1
-#'    
+#'
 #'    progressr::with_progress({
 #'       year_split[[i]] <- year_split[[i]] %>%
 #'          dplyr::mutate(

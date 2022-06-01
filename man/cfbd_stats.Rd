@@ -11,6 +11,8 @@
 \item{\code{cfbd_stats_game_advanced()}:}{ Get game advanced stats.}
 \item{\code{cfbd_stats_season_player()}:}{ Get season statistics by player.}
 }
+}
+\details{
 \subsection{\strong{Get game advanced stats}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M")

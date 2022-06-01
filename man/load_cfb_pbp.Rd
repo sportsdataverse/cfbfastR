@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfb_pbp.R
 \name{load_cfb_pbp}
 \alias{load_cfb_pbp}
-\title{\strong{Load cfbfastR play-by-play}}
+\title{\strong{Load cleaned play-by-play from the data repo}}
 \usage{
 load_cfb_pbp(
   seasons = most_recent_cfb_season(),

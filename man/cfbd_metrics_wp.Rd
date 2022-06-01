@@ -38,7 +38,6 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \donttest{
   try(cfbd_metrics_wp(game_id = 401012356))
 }
-
 }
 \keyword{Chart}
 \keyword{Data}

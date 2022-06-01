@@ -1,18 +1,9 @@
-#' @name cfbd_conferences
-#' @aliases conferences cfbd_conferences
 #' @title
 #' **CFBD Conferences Endpoint Overview**
 #' @description
 #' **Get college football conference information**
 #' Pulls all college football conferences and returns as data frame
-#' You can call this function simply with:
-#' ```r
-#' cfbd_conferences()
-#' ```
-#' @examples
-#' \donttest{
-#'   try(cfbd_conferences())
-#' }
+#'
 #' @return [cfbd_conferences()] - A data frame with 94 rows and 5 variables:
 #' \describe{
 #'   \item{`conference_id`:}{Referencing conference id.}
@@ -20,7 +11,6 @@
 #'   \item{`long_name`:}{Long name for Conference.}
 #'   \item{`abbreviation`:}{Conference abbreviation.}
 #'   \item{`classification`:}{Conference classification (fbs,fcs,ii,iii)}
-#'   ...
 #' }
 #' @keywords Conferences
 #' @importFrom jsonlite fromJSON
@@ -28,6 +18,10 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_conferences())
+#' }
 cfbd_conferences <- function() {
   full_url <- "https://api.collegefootballdata.com/conferences"
 

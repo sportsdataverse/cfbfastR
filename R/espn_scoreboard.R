@@ -7,7 +7,8 @@ NULL
 #' @param date (*Integer* required - YYYYMMDD): Date to pull
 #'
 #' @return [espn_cfb_scoreboard()] & [espn_cfb_schedule()] - A data frame with 33 or 54 variables depending on if there are completed games:
-#' \describe{ shared variables
+#'  shared variables
+#' \describe{
 #'   \item{`matchup`: character.}{Long matchup description with full team names (Utah Utes at UCLA Bruins).}
 #'   \item{`matchup_short`: character.}{Short matchup description with team abbreviations (UTAH @ UCLA).}
 #'   \item{`season`: integer.}{Season of the game.}
@@ -40,7 +41,8 @@ NULL
 #'   \item{`status_name`: character.}{Status of the game}
 #'   \item{`start_date`: character.}{Game date.}
 #' }
-#' \describe{Unique variables when there are completed games
+#' Unique variables when there are completed games
+#' \describe{
 #'   \item{`broadcast_market`: character.}{Broadcast market (typically "national" or NA)}
 #'   \item{`broadcast_name`: character.}{Broadcast channel i.e. ESPN, ABC, FOX}
 #'   \item{`passing_leader_yards`: numeric.}{Passing yards of game's passing leader}
@@ -407,14 +409,14 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 #'
 #' @return [espn_cfb_calendar()] - A data frame with 8 variables:
 #' \describe{
-#'   \item{`season`: character.}{}
-#'   \item{`season_type`: character.}{}
-#'   \item{`label`: character.}{}
-#'   \item{`alternate_label`: character.}{}
-#'   \item{`detail`: character.}{}
-#'   \item{`week`: character.}{}
-#'   \item{`start_date`: character.}{}
-#'   \item{`end_date`: character.}{}
+#'   \item{`season`: character.}{.}
+#'   \item{`season_type`: character.}{.}
+#'   \item{`label`: character.}{.}
+#'   \item{`alternate_label`: character.}{.}
+#'   \item{`detail`: character.}{.}
+#'   \item{`week`: character.}{.}
+#'   \item{`start_date`: character.}{.}
+#'   \item{`end_date`: character.}{.}
 #' }
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON

@@ -38,13 +38,3 @@ load_wp_model <- function(){
   return (wp_model)
 }
 
-
-#' load function from package
-#' @param pkg package
-#' @param fun function
-#' @return function
-#' @keywords internal
-get_fun_from_pkg <- function(pkg, fun) {
-  require(pkg, character.only = TRUE)
-  eval(parse(text = fun))
-}

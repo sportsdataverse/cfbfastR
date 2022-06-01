@@ -13,6 +13,8 @@
 \item{\code{cfbd_metrics_wp_pregame()}:}{ Get pre-game win probability data from CFBD API.}
 \item{\code{cfbd_metrics_wp()}:}{ Get win probability chart data from CFBD API.}
 }
+}
+\details{
 \subsection{\strong{Get team game averages for predicted points added (PPA)}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")

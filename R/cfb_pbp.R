@@ -1,9 +1,5 @@
-#' **Load cfbfastR play-by-play**
-#' @name load_cfb_pbp
-NULL
 #' @title
 #' **Load cleaned play-by-play from the data repo**
-#' @rdname load_cfb_pbp
 #' @description helper that loads multiple seasons from the data repo either into memory
 #' or writes it into a db using some forwarded arguments in the dots
 #' @param seasons A vector of 4-digit years associated with given College Football seasons.
@@ -54,8 +50,6 @@ load_games <- function(){
   return (dat)
 }
 
-#' @name update_cfb_db
-#' @aliases update_cfb_db cfb_db cfb database cfb_pbp_db
 #' @title
 #' **Update or create a cfbfastR play-by-play database**
 #' @description `update_cfb_db()` updates or creates a database with `cfbfastR`
@@ -72,7 +66,7 @@ load_games <- function(){
 #' by play data table either for the whole cfbfastR era (with `force_rebuild = TRUE`)
 #' or just for specified seasons (e.g. `force_rebuild = c(2019, 2020)`).
 #' Please note the following behavior:
-#' \describe{
+#' \itemize{
 #'  \item{`force_rebuild = TRUE`}{: The data table with the name `tblname`
 #'   will be removed completely and rebuilt from scratch. This is helpful when
 #'   new columns are added during the Off-Season.}

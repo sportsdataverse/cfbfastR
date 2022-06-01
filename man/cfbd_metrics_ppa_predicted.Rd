@@ -27,7 +27,6 @@ cfbd_metrics_ppa_predicted(down, distance)
 
   try(cfbd_metrics_ppa_predicted(down = 3, distance = 10))
 }
-
 }
 \keyword{Points}
 \keyword{Predicted}

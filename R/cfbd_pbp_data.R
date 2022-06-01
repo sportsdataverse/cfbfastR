@@ -1,5 +1,3 @@
-#' @name cfbd_pbp_data
-#' @aliases play-by-play pbp_data cfbd_pbp_data
 #' @title
 #' **Get college football play by play data with cfbfastR expected points/win probability added**
 #' @description
@@ -377,7 +375,6 @@
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
 #' @export
-#'
 
 cfbd_pbp_data <- function(year,
                           season_type = "regular",
@@ -756,16 +753,17 @@ cfbd_pbp_data <- function(year,
 
 
 
-
+#' **Series of functions to help clean the play-by-play data for analysis**
 #' @name helpers_pbp
-#' @aliases add_play_counts clean_drive_dat prep_epa_df_after clean_drive_info
-#' add_player_cols add_yardage clean_pbp_dat penalty_detection
+NULL
+#'
 #' @title
 #' **Series of functions to help clean the play-by-play data for analysis**
+#' @rdname helpers_pbp
 #' @description
 #' \describe{
 #' \item{`add_play_counts()`: function}{Adds play counts to Play-by-Play data pulled from the API's raw game data.}
-#' \item{`add_yardage()`: Add yardage extracted from play text}{.}
+#' \item{`add_yardage()`: function}{Add yardage extracted from play text.}
 #' \item{`add_player_cols()`:  function}{Add player columns extracted from play text.}
 #' \item{`clean_drive_dat()`: function}{Create new Drive results and id data.}
 #' \item{`clean_pbp_dat()`: function}{Clean Play-by-Play data.}
@@ -856,8 +854,6 @@ cfbd_pbp_data <- function(year,
 #' @importFrom dplyr group_by mutate ungroup lead lag arrange n case_when
 #' @importFrom tidyr fill
 #' @export
-#'
-#'
 
 add_play_counts <- function(play_df) {
   ## --Play type vectors------
@@ -1205,7 +1201,6 @@ add_play_counts <- function(play_df) {
 #' @importFrom stringr str_detect
 #' @importFrom tidyr fill
 #' @export
-#'
 
 clean_drive_dat <- function(play_df) {
   play_df <- play_df %>%
@@ -1530,7 +1525,7 @@ clean_drive_dat <- function(play_df) {
 #'
 #' @param dat (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`
 #' @details Prep for EPA calculations at the end of the play. Requires the following columns be present:
-#' \itemize{
+#' \describe{
 #' \item{`game_id`.}{.}
 #' \item{`id_play`.}{.}
 #' \item{`drive_id`.}{.}
@@ -1541,7 +1536,7 @@ clean_drive_dat <- function(play_df) {
 #' \item{`play_type`.}{.}
 #' }
 #' @return `dat` with the following columns appended/modified:
-#' \itemize{
+#' \describe{
 #'  \item{`turnover_indicator`.}{.}
 #'  \item{`down`.}{.}
 #'  \item{`new_id`.}{.}
@@ -1578,7 +1573,6 @@ clean_drive_dat <- function(play_df) {
 #' @importFrom rlang .data
 #' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n lag lead if_else
 #' @export
-#'
 
 prep_epa_df_after <- function(dat) {
   ## --Play type vectors------
@@ -2022,7 +2016,7 @@ prep_epa_df_after <- function(dat) {
 #'
 #' @param drive_df (*data.frame* required) Drive dataframe pulled from API via the `cfbd_drives()` function
 #' @details Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
-#' \itemize{
+#' \describe{
 #' \item{`drive_id`: Returned as `drive_id`}{.}
 #' \item{`drive_result`: End result of the drive}{.}
 #' \item{`scoring`: Logical flag for if drive was a scoring drive}{.}

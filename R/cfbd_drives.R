@@ -3,17 +3,6 @@
 #' **CFBD Drives Endpoint**
 #' @description
 #' **Get college football game drives**
-#' ```r
-#' cfbd_drives(2018, week = 1, team = "TCU")
-#'
-#' cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
-#' ````
-#' @examples
-#' \donttest{
-#'   try(fbd_drives(2018, week = 1, team = "TCU"))
-#'
-#'   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
-#' }
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -69,6 +58,12 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
+#' @examples
+#' \donttest{
+#'   try(fbd_drives(2018, week = 1, team = "TCU"))
+#'
+#'   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
+#' }
 cfbd_drives <- function(year,
                         season_type = "regular",
                         week = NULL,

@@ -11,6 +11,8 @@
 #' \item{`cfbd_metrics_wp_pregame()`:}{ Get pre-game win probability data from CFBD API.}
 #' \item{`cfbd_metrics_wp()`:}{ Get win probability chart data from CFBD API.}
 #' }
+#'
+#' @details
 #' ### **Get team game averages for predicted points added (PPA)**
 #' ```r
 #'   cfbd_metrics_ppa_games(year = 2019, team = "TCU")
@@ -36,7 +38,6 @@
 #' ```r
 #' cfbd_metrics_ppa_predicted(down = 1, distance = 10)
 #' ```
-#'
 NULL
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
@@ -82,7 +83,7 @@ NULL
 #' \donttest{
 #'   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 #' }
-#'
+
 cfbd_metrics_ppa_games <- function(year,
                                    week = NULL,
                                    team = NULL,
@@ -212,7 +213,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' \donttest{
 #'   try(cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU"))
 #' }
-#'
+
 cfbd_metrics_ppa_players_games <- function(year = NULL,
                                            week = NULL,
                                            team = NULL,
@@ -509,7 +510,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'
 #'   try(cfbd_metrics_ppa_predicted(down = 3, distance = 10))
 #' }
-#'
+
 cfbd_metrics_ppa_predicted <- function(down,
                                        distance) {
   # Check if down is numeric
@@ -613,7 +614,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' \donttest{
 #'   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
 #' }
-#'
+
 cfbd_metrics_ppa_teams <- function(year = NULL,
                                    team = NULL,
                                    conference = NULL,
@@ -726,7 +727,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' \donttest{
 #'   try(cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M"))
 #' }
-#'
+
 cfbd_metrics_wp_pregame <- function(year = NULL,
                                     week = NULL,
                                     team = NULL,
@@ -843,7 +844,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' \donttest{
 #'   try(cfbd_metrics_wp(game_id = 401012356))
 #' }
-#'
+
 cfbd_metrics_wp <- function(game_id) {
 
 

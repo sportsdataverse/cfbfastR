@@ -32,3 +32,4 @@
 cfb_pbp_db
 ^CRAN-RELEASE$
 ^\.pre-commit-config\.yaml$
+^man_backup$

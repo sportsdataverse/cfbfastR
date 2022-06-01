@@ -136,7 +136,7 @@ navbar:
       - text: "Draft"
         href: reference/cfbd_draft.html
       - text: "Betting"
-        href: reference/cfbd_betting.html
+        href: reference/cfbd_betting_lines.html
       - text: "Recruiting"
         href: reference/cfbd_recruiting.html
       - text: "Coaches"
@@ -338,7 +338,7 @@ reference:
   - subtitle: Betting Data
     desc: Functions exported by cfbfastR sourced from lines endpoint of the CollegeFootballData API
     contents:
-      - '`cfbd_betting`'
+      - '`cfbd_betting_lines`'
   - subtitle: Metrics Data
     desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API and ESPN
     contents:

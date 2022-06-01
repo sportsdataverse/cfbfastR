@@ -1243,6 +1243,7 @@ cfbd_game_records <- function(year,
 #'   \item{`total_penalties_yards_allowed`: character.}{Opponent total penalty yards.}
 #'   \item{`possession_time_allowed`: character.}{Opponent time of possession.}
 #' }
+#'
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

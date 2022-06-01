@@ -1,23 +1,7 @@
-#' **CFBD Betting Lines Endpoint Overview**
-#' @name cfbd_betting
-NULL
 
-#' @title
-#' **CFBD Betting Lines Endpoint Overview**
-#' @rdname cfbd_betting
-#' @description
-#' **Get betting lines information for games**
-#' ```r
-#'  cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
-#'
-#'  cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
-#' ```
-#' @examples
-#' \donttest{
-#'    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
-#'    try(cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC"))
-#' }
-#' @param game_id (*Integer* optional): Game ID filter for querying a single game
+#' @title **CFBD Betting Lines Endpoint Overview**
+#' @description **Get betting lines information for games**
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game \cr
 #' Can be found using the [cfbd_game_info()] function
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
@@ -25,33 +9,34 @@ NULL
 #' @param team (*String* optional): D-I Team
 #' @param home_team (*String* optional): Home D-I Team
 #' @param away_team (*String* optional): Away D-I Team
-#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference \cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr
 #' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' @return Betting information for games with the following columns:
+#'
 #' \describe{
-#'   \item{`game_id`:integer.}{Unique game identifier - `game_id`.}
-#'   \item{`season`:integer.}{Season parameter.}
-#'   \item{`season_type`:character.)}{Season Type (regular, postseason, both}
-#'   \item{`week`:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
-#'   \item{`start_date`:character.}{Start Date}
-#'   \item{`home_team`:character.}{Home D-I Team.}
-#'   \item{`home_conference`:character.}{Home D-I Conference.}
-#'   \item{`home_score`:integer.}{Home Score.}
-#'   \item{`away_team`:character.}{Away D-I Team.}
-#'   \item{`away_conference`:character.}{Away D-I Conference.}
-#'   \item{`away_score`:integer.}{Away Score.}
-#'   \item{`provider`:character.}{Line provider.}
-#'   \item{`spread`:character.}{Spread for the game.}
-#'   \item{`formatted_spread`:character.}{Formatted spread for the game.}
-#'   \item{`spread_open`:character.}{Opening spread for the game.}
-#'   \item{`over_under`:character.}{Over/Under for the game.}
-#'   \item{`over_under_open`:character.}{Opening over/under for the game.}
-#'   \item{`home_moneyline`:character.}{Home team moneyline.}
-#'   \item{`away_moneyline`:character.}{Away team moneyline.}
+#'   \item{game_id:integer.}{Unique game identifier - game_id.}
+#'   \item{season:integer.}{Season parameter.}
+#'   \item{season_type:character.)}{Season Type (regular, postseason, both}
+#'   \item{week:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+#'   \item{start_date:character.}{Start Date}
+#'   \item{home_team:character.}{Home D-I Team.}
+#'   \item{home_conference:character.}{Home D-I Conference.}
+#'   \item{home_score:integer.}{Home Score.}
+#'   \item{away_team:character.}{Away D-I Team.}
+#'   \item{away_conference:character.}{Away D-I Conference.}
+#'   \item{away_score:integer.}{Away Score.}
+#'   \item{provider:character.}{Line provider.}
+#'   \item{spread:character.}{Spread for the game.}
+#'   \item{formatted_spread:character.}{Formatted spread for the game.}
+#'   \item{spread_open:character.}{Opening spread for the game.}
+#'   \item{over_under:character.}{Over/Under for the game.}
+#'   \item{over_under_open:character.}{Opening over/under for the game.}
+#'   \item{home_moneyline:character.}{Home team moneyline.}
+#'   \item{away_moneyline:character.}{Away team moneyline.}
 #' }
-#' @keywords Betting Lines
+#'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode
@@ -62,6 +47,10 @@ NULL
 #' @importFrom dplyr filter as_tibble rename
 #' @importFrom tidyr unnest
 #' @export
+#' @examples
+#' \donttest{
+#'    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
+#' }
 cfbd_betting_lines <- function(game_id = NULL,
                                year = NULL,
                                week = NULL,

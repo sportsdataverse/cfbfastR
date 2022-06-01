@@ -9,7 +9,6 @@ NULL
 #'   \item{id}{Referencing play id}
 #'   \item{text}{play type description}
 #'   \item{abbreviation}{play type abbreviation used for function call}
-#'   ...
 #' }
 "cfbd_play_type_df"
 
@@ -23,6 +22,5 @@ NULL
 #'   \item{name}{Conference name}
 #'   \item{short_name}{Short name for Conference}
 #'   \item{abbreviation}{Conference abbreviation}
-#'   ...
 #' }
 "cfbd_conf_types_df"

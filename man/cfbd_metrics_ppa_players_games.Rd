@@ -57,7 +57,6 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \donttest{
   try(cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU"))
 }
-
 }
 \keyword{Players}
 \keyword{Points}

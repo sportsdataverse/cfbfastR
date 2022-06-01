@@ -32,6 +32,7 @@
 #' ````
 #'
 NULL
+
 #' @title
 #' **Get list of NFL teams**
 #' @return [cfbd_draft_teams()] - A data frame with 4 variables:
@@ -170,6 +171,7 @@ cfbd_draft_positions <- function() {
   )
   return(df)
 }
+
 #' @title
 #' **Get list of NFL draft picks**
 #' @param year (*Integer* required): NFL draft class, 4 digit format (*YYYY*)
@@ -215,10 +217,9 @@ cfbd_draft_positions <- function() {
 #' \donttest{
 #'   try(cfbd_draft_picks(year = 2020))
 #'
-#'  ### **ROBERTOOOOOOOOOOOOOOOOOO**
 #'   try(cfbd_draft_picks(year = 2016, position = "PK"))
 #' }
-#'
+
 cfbd_draft_picks <- function(year = NULL,
                              nfl_team = NULL,
                              college = NULL,

@@ -12,7 +12,6 @@ A data frame with 45 rows and 3 variables:
 \item{id}{Referencing play id}
 \item{text}{play type description}
 \item{abbreviation}{play type abbreviation used for function call}
-...
 }
 
 A data frame with 11 rows and 4 variables:
@@ -21,7 +20,6 @@ A data frame with 11 rows and 4 variables:
 \item{name}{Conference name}
 \item{short_name}{Short name for Conference}
 \item{abbreviation}{Conference abbreviation}
-...
 }
 }
 \usage{

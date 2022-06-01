@@ -58,10 +58,8 @@ cfbd_draft_picks(
 \donttest{
   try(cfbd_draft_picks(year = 2020))
 
- ### **ROBERTOOOOOOOOOOOOOOOOOO**
   try(cfbd_draft_picks(year = 2016, position = "PK"))
 }
-
 }
 \keyword{Draft}
 \keyword{NFL}

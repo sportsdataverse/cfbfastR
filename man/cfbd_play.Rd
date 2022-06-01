@@ -11,6 +11,8 @@ College football plays data
 \item{\code{cfbd_play_stats_types()}:}{ Gets CFBD play stat types.}
 \item{\code{cfbd_play_types()}:}{ Gets CFBD play types.}
 }
+}
+\details{
 \subsection{\strong{Pull first 3 weeks of 2020 season using \code{cfbd_plays()}}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ year_vector <- 2020
@@ -20,7 +22,7 @@ College football plays data
  year_split <- split(weekly_year_df, weekly_year_df$year)
  for (i in 1:length(year_split)) \{
    i <- 1
-   
+
    progressr::with_progress(\{
       year_split[[i]] <- year_split[[i]] \%>\%
          dplyr::mutate(

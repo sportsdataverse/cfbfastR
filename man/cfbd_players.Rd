@@ -10,6 +10,8 @@
 \item{\code{cfbd_player_returning()}:}{ Player returning production.}
 \item{\code{cfbd_player_usage()}:}{ Player usage.}
 }
+}
+\details{
 \subsection{\strong{Player information lookup}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
@@ -27,7 +29,6 @@
 \subsection{\strong{Get player usage metrics}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
-
 }\if{html}{\out{</div>}}
 }
 }

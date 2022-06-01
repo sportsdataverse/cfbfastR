@@ -55,7 +55,6 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 \donttest{
   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
 }
-
 }
 \keyword{Points}
 \keyword{Predicted}

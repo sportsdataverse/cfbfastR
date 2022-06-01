@@ -30,7 +30,8 @@ espn_cfb_schedule(
 }
 \value{
 \code{\link[=espn_cfb_scoreboard]{espn_cfb_scoreboard()}} & \code{\link[=espn_cfb_schedule]{espn_cfb_schedule()}} - A data frame with 33 or 54 variables depending on if there are completed games:
-\describe{ shared variables
+shared variables
+\describe{
 \item{\code{matchup}: character.}{Long matchup description with full team names (Utah Utes at UCLA Bruins).}
 \item{\code{matchup_short}: character.}{Short matchup description with team abbreviations (UTAH @ UCLA).}
 \item{\code{season}: integer.}{Season of the game.}
@@ -63,7 +64,8 @@ espn_cfb_schedule(
 \item{\code{status_name}: character.}{Status of the game}
 \item{\code{start_date}: character.}{Game date.}
 }
-\describe{Unique variables when there are completed games
+Unique variables when there are completed games
+\describe{
 \item{\code{broadcast_market}: character.}{Broadcast market (typically "national" or NA)}
 \item{\code{broadcast_name}: character.}{Broadcast channel i.e. ESPN, ABC, FOX}
 \item{\code{passing_leader_yards}: numeric.}{Passing yards of game's passing leader}

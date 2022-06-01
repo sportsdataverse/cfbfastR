@@ -102,6 +102,7 @@ cfbd_stats_game_advanced(
 
    try(cfbd_stats_game_advanced(2013, team = "Florida State"))
 }
+
 }
 \keyword{Advanced}
 \keyword{Game}

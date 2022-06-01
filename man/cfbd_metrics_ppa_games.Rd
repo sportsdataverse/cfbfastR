@@ -55,7 +55,6 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \donttest{
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 }
-
 }
 \keyword{Points}
 \keyword{Predicted}

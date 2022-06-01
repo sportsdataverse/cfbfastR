@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbd_conferences.R
 \name{cfbd_conferences}
 \alias{cfbd_conferences}
-\alias{conferences}
 \title{\strong{CFBD Conferences Endpoint Overview}}
 \usage{
 cfbd_conferences()
@@ -15,16 +14,11 @@ cfbd_conferences()
 \item{\code{long_name}:}{Long name for Conference.}
 \item{\code{abbreviation}:}{Conference abbreviation.}
 \item{\code{classification}:}{Conference classification (fbs,fcs,ii,iii)}
-...
 }
 }
 \description{
 \strong{Get college football conference information}
 Pulls all college football conferences and returns as data frame
-You can call this function simply with:
-
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conferences()
-}\if{html}{\out{</div>}}
 }
 \examples{
 \donttest{

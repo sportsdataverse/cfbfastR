@@ -134,7 +134,7 @@ The original \code{play_df} with the following columns appended/redefined:
 }
 
 \code{dat} with the following columns appended/modified:
-\itemize{
+\describe{
 \item{\code{turnover_indicator}.}{.}
 \item{\code{down}.}{.}
 \item{\code{new_id}.}{.}
@@ -279,7 +279,7 @@ The original \code{raw_df} with the following columns appended/redefined:
 \description{
 \describe{
 \item{\code{add_play_counts()}: function}{Adds play counts to Play-by-Play data pulled from the API's raw game data.}
-\item{\code{add_yardage()}: Add yardage extracted from play text}{.}
+\item{\code{add_yardage()}: function}{Add yardage extracted from play text.}
 \item{\code{add_player_cols()}:  function}{Add player columns extracted from play text.}
 \item{\code{clean_drive_dat()}: function}{Create new Drive results and id data.}
 \item{\code{clean_pbp_dat()}: function}{Clean Play-by-Play data.}
@@ -312,7 +312,7 @@ Requires the following columns to be present
 }
 
 Prep for EPA calculations at the end of the play. Requires the following columns be present:
-\itemize{
+\describe{
 \item{\code{game_id}.}{.}
 \item{\code{id_play}.}{.}
 \item{\code{drive_id}.}{.}
@@ -324,7 +324,7 @@ Prep for EPA calculations at the end of the play. Requires the following columns
 }
 
 Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column. Requires the following columns be present:
-\itemize{
+\describe{
 \item{\code{drive_id}: Returned as \code{drive_id}}{.}
 \item{\code{drive_result}: End result of the drive}{.}
 \item{\code{scoring}: Logical flag for if drive was a scoring drive}{.}

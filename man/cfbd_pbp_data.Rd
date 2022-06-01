@@ -2,8 +2,6 @@
 % Please edit documentation in R/cfbd_pbp_data.R
 \name{cfbd_pbp_data}
 \alias{cfbd_pbp_data}
-\alias{play-by-play}
-\alias{pbp_data}
 \title{\strong{Get college football play by play data with cfbfastR expected points/win probability added}}
 \usage{
 cfbd_pbp_data(

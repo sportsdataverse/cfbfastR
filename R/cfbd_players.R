@@ -8,6 +8,7 @@
 #' \item{`cfbd_player_returning()`:}{ Player returning production.}
 #' \item{`cfbd_player_usage()`:}{ Player usage.}
 #' }
+#' @details
 #' ### **Player information lookup**
 #' ```r
 #'  cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
@@ -21,7 +22,6 @@
 #' ### **Get player usage metrics**
 #' ```r
 #'  cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
-#'
 #' ```
 NULL
 
@@ -52,8 +52,6 @@ NULL
 #'   \item{`team_color_secondary`:character.}{Player team secondary color.}
 #' }
 #' @keywords Players
-
-#'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom utils URLencode
@@ -68,7 +66,6 @@ NULL
 #'   try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
 #'
 #'   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
-#'
 #' }
 cfbd_player_info <- function(search_term,
                              position = NULL,

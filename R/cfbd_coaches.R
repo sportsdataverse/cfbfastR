@@ -1,13 +1,9 @@
-#' @name cfbd_coaches
-#' @aliases coaches cfbd_coaches
 #' @title
 #' **CFBD Coaches Endpoint Overview**
 #' @description
 #' **Coach information search**
 #' A coach search function which provides coaching records and school history for a given coach
-#' ```
-#' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
-#' ````
+#'
 #' @param first (*String* optional): First name for the coach you are trying to look up
 #' @param last (*String* optional): Last name for the coach you are trying to look up
 #' @param team (*String* optional): Team - Select a valid team, D1 football
@@ -43,7 +39,7 @@
 #' @import purrr
 #' @export
 #' @examples
-#'\donttest{
+#' \donttest{
 #'   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 #' }
 cfbd_coaches <- function(first = NULL,

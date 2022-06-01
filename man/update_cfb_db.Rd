@@ -2,10 +2,6 @@
 % Please edit documentation in R/cfb_pbp.R
 \name{update_cfb_db}
 \alias{update_cfb_db}
-\alias{cfb_db}
-\alias{cfb}
-\alias{database}
-\alias{cfb_pbp_db}
 \title{\strong{Update or create a cfbfastR play-by-play database}}
 \usage{
 update_cfb_db(
@@ -46,7 +42,7 @@ The argument \code{force_rebuild} is of hybrid type. It can rebuild the play
 by play data table either for the whole cfbfastR era (with \code{force_rebuild = TRUE})
 or just for specified seasons (e.g. \code{force_rebuild = c(2019, 2020)}).
 Please note the following behavior:
-\describe{
+\itemize{
 \item{\code{force_rebuild = TRUE}}{: The data table with the name \code{tblname}
 will be removed completely and rebuilt from scratch. This is helpful when
 new columns are added during the Off-Season.}
