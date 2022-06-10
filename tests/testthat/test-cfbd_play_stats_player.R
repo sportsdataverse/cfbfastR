@@ -1,4 +1,3 @@
-context("CFB Play Stats - Player")
 
 
 cols <- c(
@@ -23,7 +22,7 @@ cols <- c(
 test_that("CFB Play Stats - Player", {
   skip_on_cran()
   x <- cfbd_play_stats_player(game_id = 401012356)
-  
+
   y <- cfbd_play_stats_player(game_id = 401110720)
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

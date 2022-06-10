@@ -1,4 +1,3 @@
-context("CFB Calendar")
 
 cols <- c(
   "season", "week", "season_type",

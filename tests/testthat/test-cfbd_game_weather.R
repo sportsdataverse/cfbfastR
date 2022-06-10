@@ -1,4 +1,3 @@
-context("CFB Game Weather")
 
 
   cols <- c(
@@ -29,7 +28,7 @@ context("CFB Game Weather")
 test_that("CFB Game Info", {
   skip_on_cran()
   x <- cfbd_game_weather(2019, week = 1, conference = "ACC")
-  
+
   y <- cfbd_game_weather(2018, week = 4, conference = "Ind")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

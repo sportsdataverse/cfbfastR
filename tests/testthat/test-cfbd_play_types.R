@@ -1,4 +1,3 @@
-context("CFB Play Types")
 
 
 cols <- c("play_type_id", "text", "abbreviation")

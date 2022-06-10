@@ -1,4 +1,3 @@
-context("CFB Team Info")
 
 cols <- c(
   "team_id", "school", "mascot", "abbreviation", "alt_name1", "alt_name2",

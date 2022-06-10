@@ -1,4 +1,3 @@
-context("CFB Player Usage")
 
 
 cols <- c(

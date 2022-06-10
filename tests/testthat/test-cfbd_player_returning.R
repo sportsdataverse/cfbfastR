@@ -1,4 +1,3 @@
-context("CFB Player Returning")
 
 cols <- c(
   "season", "team", "conference", "total_ppa", "total_passing_ppa",
@@ -8,7 +7,7 @@ cols <- c(
 )
 
 test_that("CFB Player Returning", {
-  
+
   skip_on_cran()
   x <- cfbd_player_returning(year = 2020, team = "Florida State")
   expect_equal(colnames(x), cols)

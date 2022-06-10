@@ -1,4 +1,3 @@
-context("CFB Play Stats Types")
 
 
 cols <- c("play_stat_type_id", "name")

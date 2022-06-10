@@ -1,4 +1,3 @@
-context("CFB Game Records")
 
 
 
@@ -13,7 +12,7 @@ cols <- c(
 test_that("CFB Game Records", {
   skip_on_cran()
   x <- cfbd_game_records(2018, team = "Notre Dame")
-  
+
   y <- cfbd_game_records(2013, team = "Florida State")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

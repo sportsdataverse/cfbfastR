@@ -1,4 +1,3 @@
-context("CFB Drives")
 cols <- c(
   "offense", "offense_conference", "defense", "defense_conference",
   "game_id", "drive_id", "drive_number", "scoring", "start_period", "start_yardline",

@@ -1,4 +1,3 @@
-context("CFB Metrics PPA Players Season")
 
 
 cols <- c(
@@ -14,7 +13,7 @@ cols <- c(
 test_that("CFB Metrics PPA Players Season", {
   skip_on_cran()
   x <- cfbd_metrics_ppa_players_season(year = 2019, team = "TCU")
-  
+
   y <- cfbd_metrics_ppa_players_season(year = 2019, team = "Alabama")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

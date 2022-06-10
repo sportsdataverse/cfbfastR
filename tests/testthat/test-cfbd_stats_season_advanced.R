@@ -1,11 +1,10 @@
-context("CFB Stats Season - Advanced")
 
 cols <- c(
   "season", "team", "conference", "off_plays", "off_drives",
   "off_ppa", "off_total_ppa", "off_success_rate", "off_explosiveness",
   "off_power_success", "off_stuff_rate", "off_line_yds",
   "off_line_yds_total", "off_second_lvl_yds", "off_second_lvl_yds_total",
-  "off_open_field_yds", "off_open_field_yds_total", 
+  "off_open_field_yds", "off_open_field_yds_total",
   "off_total_opportunities","off_pts_per_opp",
   "off_field_pos_avg_start", "off_field_pos_avg_predicted_points",
   "off_havoc_total", "off_havoc_front_seven", "off_havoc_db",
@@ -37,12 +36,12 @@ cols <- c(
 )
 
 test_that("CFB Stats Season - Advanced", {
-  
+
   skip_on_cran()
   x <- cfbd_stats_season_advanced(year = 2018, start_week = 8, end_week = 12, team = "Texas A&M")
-  
+
   y <- cfbd_stats_season_advanced(2019, team = "LSU")
-  
+
   z <- cfbd_stats_season_advanced(2013, team = "Florida State")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

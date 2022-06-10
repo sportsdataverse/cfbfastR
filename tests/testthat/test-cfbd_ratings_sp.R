@@ -1,4 +1,3 @@
-context("CFB Ratings - Bill C.'s SP+")
 
 cols <- c(
   "year", "team",
@@ -15,11 +14,11 @@ cols <- c(
 test_that("CFB Ratings - Bill C.'s SP+", {
   skip_on_cran()
   x <- cfbd_ratings_sp(year = 2019)
-  
+
   y <- cfbd_ratings_sp(team = "Texas A&M")
-  
+
   z <- cfbd_ratings_sp(year = 2019, team = "LSU")
-  
+
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_equal(colnames(z), cols)

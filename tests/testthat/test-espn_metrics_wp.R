@@ -1,4 +1,3 @@
-context("CFB Metrics ESPN Win Probability")
 
 
 cols <- c(

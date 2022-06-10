@@ -1,4 +1,3 @@
-context("CFB Player Info")
 
 
 cols <- c(
@@ -10,9 +9,9 @@ cols <- c(
 test_that("CFB Player Info", {
   skip_on_cran()
   x <- cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017)
-  
+
   y <- cfbd_player_info(search_term = "Lawrence", team = "Clemson")
-  
+
   w <- cfbd_player_info(search_term = "Duggan")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

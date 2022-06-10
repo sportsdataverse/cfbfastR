@@ -1,4 +1,3 @@
-context("CFB Coaches")
 
 cols <- c(
   "first_name", "last_name","hire_date", "school", "year", "games",

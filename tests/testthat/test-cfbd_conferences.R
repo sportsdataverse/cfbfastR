@@ -1,4 +1,3 @@
-context("CFB Conferences")
 
 
 cols <- c("conference_id", "name", "long_name", "abbreviation", "classification")

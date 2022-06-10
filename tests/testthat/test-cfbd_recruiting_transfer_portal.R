@@ -1,5 +1,3 @@
-context("CFB Transfer Portal")
-
 
 cols <- c(
   #"athlete_id",

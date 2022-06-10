@@ -1,4 +1,3 @@
-context("CFB Game Info")
 
 
 cols <- c(
@@ -19,7 +18,7 @@ cols <- c(
 test_that("CFB Game Info", {
   skip_on_cran()
   x <- cfbd_game_info(2019, week = 1, conference = "ACC")
-  
+
   y <- cfbd_game_info(2018, week = 4, conference = "Ind")
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)

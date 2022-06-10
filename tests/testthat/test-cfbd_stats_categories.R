@@ -1,4 +1,3 @@
-context("CFB Stats Categories")
 
 
 cols <- c("category")

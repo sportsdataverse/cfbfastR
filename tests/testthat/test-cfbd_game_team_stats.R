@@ -1,4 +1,3 @@
-context("CFB Game Team Stats")
 cols1 <- c("game_id", "school",  "conference", "home_away","opponent","opponent_conference",
            "points", "total_yards", "net_passing_yards",
            "completion_attempts","passing_tds","yards_per_pass",

@@ -1,4 +1,3 @@
-context("NFL Draft Teams")
 
 
 cols <- c(
