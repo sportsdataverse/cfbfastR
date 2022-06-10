@@ -28,7 +28,7 @@
 #' @importFrom dplyr rename
 #' @examples
 #' \donttest{
-#'   cfbd_venues()
+#'   try(cfbd_venues())
 #' }
 #' @export
 

@@ -1,4 +1,4 @@
-#' @name create_wpa 
+#' @name create_wpa
 #' @aliases create_wpa_naive wpa_calcs_naive
 #' @title **Create WPA**
 #' @description  Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
@@ -8,25 +8,25 @@
 #' @details Requires the following columns to be present in the input data frame.
 #' @return The original `df` with the following columns appended to it:
 #' \describe{
-#' \item{wp_before}{}
-#' \item{def_wp_before}{}
-#' \item{home_wp_before}{}
-#' \item{away_wp_before}{}
-#' \item{lead_wp_before}{}
-#' \item{lead_wp_before2}{}
-#' \item{wpa_base}{}
-#' \item{wpa_base_nxt}{}
-#' \item{wpa_base_ind}{}
-#' \item{wpa_base_nxt_ind}{}
-#' \item{wpa_change}{}
-#' \item{wpa_change_nxt}{}
-#' \item{wpa_change_ind}{}
-#' \item{wpa_change_nxt_ind}{}
-#' \item{wpa}{}
-#' \item{wp_after}{}
-#' \item{def_wp_after}{}
-#' \item{home_wp_after}{}
-#' \item{away_wp_after}{}
+#' \item{wp_before}{.}
+#' \item{def_wp_before}{.}
+#' \item{home_wp_before}{.}
+#' \item{away_wp_before}{.}
+#' \item{lead_wp_before}{.}
+#' \item{lead_wp_before2}{.}
+#' \item{wpa_base}{.}
+#' \item{wpa_base_nxt}{.}
+#' \item{wpa_base_ind}{.}
+#' \item{wpa_base_nxt_ind}{.}
+#' \item{wpa_change}{.}
+#' \item{wpa_change_nxt}{.}
+#' \item{wpa_change_ind}{.}
+#' \item{wpa_change_nxt_ind}{.}
+#' \item{wpa}{.}
+#' \item{wp_after}{.}
+#' \item{def_wp_after}{.}
+#' \item{home_wp_after}{.}
+#' \item{away_wp_after}{.}
 #' }
 #' @keywords internal
 #' @importFrom dplyr mutate lag lead filter case_when arrange

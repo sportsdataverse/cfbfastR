@@ -36,7 +36,7 @@ CFB Venue Information
 }
 \examples{
 \donttest{
-  cfbd_venues()
+  try(cfbd_venues())
 }
 }
 \keyword{Venues}

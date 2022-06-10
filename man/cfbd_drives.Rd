@@ -79,7 +79,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \examples{
 \donttest{
-  try(fbd_drives(2018, week = 1, team = "TCU"))
+  try(cfbd_drives(2018, week = 1, team = "TCU"))
 
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 }
