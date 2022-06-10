@@ -197,18 +197,29 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>year</dt>
 <dd><p>(<em>Integer</em> required): NFL draft class, 4 digit format (<em>YYYY</em>)</p></dd>
+
+
 <dt>nfl_team</dt>
 <dd><p>(<em>String</em>): NFL drafting team, see <code><a href="cfbd_draft_teams.html">cfbd_draft_teams()</a></code> for valid selections.</p></dd>
+
+
 <dt>college</dt>
 <dd><p>(<em>String</em>): NFL draftee college team, see <code><a href="cfbd_team_info.html">cfbd_team_info()</a></code> for valid selections.</p></dd>
+
+
 <dt>conference</dt>
 <dd><p>(<em>String</em>): NFL draftee college team conference, see <code><a href="cfbd_conferences.html">cfbd_conferences()</a></code> for valid selections.</p></dd>
+
+
 <dt>position</dt>
 <dd><p>(<em>String</em>): NFL position abbreviation, see <code><a href="cfbd_draft_positions.html">cfbd_draft_positions()</a></code> for valid selections.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_draft_picks()</code> - A data frame with 23 variables:</p><dl><dt><code>college_athlete_id</code>: integer.</dt>
+    
+
+<p><code>cfbd_draft_picks()</code> - A data frame with 23 variables:</p><dl><dt><code>college_athlete_id</code>: integer.</dt>
 <dd><p>College athlete referencing id.</p></dd>
 
 <dt><code>nfl_athlete_id</code>: integer</dt>
@@ -285,7 +296,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_draft_picks</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── NFL draft data from CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:16:32 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-10 19:06:24 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 255 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    college_athlete_id nfl_athlete_id college_id college_team college_conference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
@@ -309,7 +320,7 @@
 <span class="r-in"></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_draft_picks</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2016</span>, position <span class="op">=</span> <span class="st">"PK"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── NFL draft data from CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:16:32 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-10 19:06:24 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   college_athlete_id nfl_athlete_id college_id college_team  college_conference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
@@ -332,7 +343,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

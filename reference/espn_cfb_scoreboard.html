@@ -205,20 +205,33 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>date</dt>
 <dd><p>(<em>Integer</em> required - YYYYMMDD): Date to pull</p></dd>
+
+
 <dt>year</dt>
 <dd><p>(int): Used to define different seasons. 2002 is the earliest available season.</p></dd>
+
+
 <dt>week</dt>
 <dd><p>(int): Week of the schedule.</p></dd>
+
+
 <dt>season_type</dt>
 <dd><p>(string): "regular", "postseason", "off-season", or "both".</p></dd>
+
+
 <dt>groups</dt>
 <dd><p>(string): Used to define different divisions. FBS or FCS.</p></dd>
+
+
 <dt>limit</dt>
 <dd><p>(int): number of records to return, default: 500.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>espn_cfb_scoreboard()</code> &amp; <code>espn_cfb_schedule()</code> - A data frame with 33 or 54 variables depending on if there are completed games:
+    
+
+<p><code>espn_cfb_scoreboard()</code> &amp; <code>espn_cfb_schedule()</code> - A data frame with 33 or 54 variables depending on if there are completed games:
 shared variables</p><dl><dt><code>matchup</code>: character.</dt>
 <dd><p>Long matchup description with full team names (Utah Utes at UCLA Bruins).</p></dd>
 
@@ -390,20 +403,20 @@ shared variables</p><dl><dt><code>matchup</code>: character.</dt>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ──────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:17:27 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-10 19:07:10 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 31</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup           matchup_short season type  slug  game_id game_uid game_date</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Nevada Wolf Pack… NEV @ NMSU      <span style="text-decoration: underline;">2</span>022 regu… regu… 401409… s:20~l:… 2022-08-…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Austin Peay Gove… APSU @ WKU      <span style="text-decoration: underline;">2</span>022 regu… regu… 401426… s:20~l:… 2022-08-…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Northwestern Wil… NU @ NEB        <span style="text-decoration: underline;">2</span>022 regu… regu… 401405… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> UConn Huskies at… CONN @ USU      <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Wyoming Cowboys … WYO @ ILL       <span style="text-decoration: underline;">2</span>022 regu… regu… 401405… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Duquesne Dukes a… DUQ @ FSU       <span style="text-decoration: underline;">2</span>022 regu… regu… 401411… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Charlotte 49ers … CLT @ FAU       <span style="text-decoration: underline;">2</span>022 regu… regu… 401426… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Florida A&amp;M Ratt… FAMU @ UNC      <span style="text-decoration: underline;">2</span>022 regu… regu… 401411… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> North Texas Mean… UNT @ UTEP      <span style="text-decoration: underline;">2</span>022 regu… regu… 401426… s:20~l:… 2022-08-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Vanderbilt Commo… VAN @ HAW       <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Idaho State Beng… IDST @ UNLV     <span style="text-decoration: underline;">2</span>022 regu… regu… 401413… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> UConn Huskies at… CONN @ USU      <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Wyoming Cowboys … WYO @ ILL       <span style="text-decoration: underline;">2</span>022 regu… regu… 401405… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Duquesne Dukes a… DUQ @ FSU       <span style="text-decoration: underline;">2</span>022 regu… regu… 401411… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Charlotte 49ers … CLT @ FAU       <span style="text-decoration: underline;">2</span>022 regu… regu… 401426… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Florida A&amp;M Ratt… FAMU @ UNC      <span style="text-decoration: underline;">2</span>022 regu… regu… 401411… s:20~l:… 2022-08-…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> North Texas Mean… UNT @ UTEP      <span style="text-decoration: underline;">2</span>022 regu… regu… 401426… s:20~l:… 2022-08-…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 84 more rows, and 23 more variables: attendance &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;, home_team_abb &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;, home_team_full &lt;chr&gt;,</span></span>
@@ -416,7 +429,7 @@ shared variables</p><dl><dt><code>matchup</code>: character.</dt>
 <span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_schedule</span><span class="op">(</span><span class="fl">2021</span>, week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ─────────────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:17:27 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-10 19:07:10 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 55</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup           matchup_short season type  slug  game_id game_uid game_date</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
@@ -449,7 +462,7 @@ shared variables</p><dl><dt><code>matchup</code>: character.</dt>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

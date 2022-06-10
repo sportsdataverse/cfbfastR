@@ -199,29 +199,44 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>year</dt>
 <dd><p>(<em>Integer</em> required): Year, 4 digit format (<em>YYYY</em>)</p></dd>
+
+
 <dt>team</dt>
 <dd><p>(<em>String</em> optional): D-I Team</p></dd>
+
+
 <dt>conference</dt>
 <dd><p>(<em>String</em> optional): Conference abbreviation - S&amp;P+ information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></dd>
+
+
 <dt>position</dt>
 <dd><p>(<em>string</em> optional): Position abbreviation of the player you are searching for.
 Position Group  - options include:</p><ul><li><p>Offense: QB, RB, FB, TE,  OL, G, OT, C, WR</p></li>
 <li><p>Defense: DB, CB, S, LB,  DE, DT, NT, DL</p></li>
 <li><p>Special Teams: K, P, LS, PK</p></li>
 </ul></dd>
+
+
 <dt>athlete_id</dt>
 <dd><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete
 Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()</a></code> function.</p></dd>
+
+
 <dt>threshold</dt>
 <dd><p>(<em>Integer</em> optional): Minimum threshold of plays.</p></dd>
+
+
 <dt>excl_garbage_time</dt>
 <dd><p>(<em>Logical</em> default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_metrics_ppa_players_season()</code> - A data frame with 23 variables:</p><dl><dt><code>season</code>: integer.</dt>
+    
+
+<p><code>cfbd_metrics_ppa_players_season()</code> - A data frame with 23 variables:</p><dl><dt><code>season</code>: integer.</dt>
 <dd><p>Season.</p></dd>
 
 <dt><code>athlete_id</code>: character.</dt>
@@ -298,7 +313,7 @@ Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()<
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_metrics_ppa_players_season</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player season PPA data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-01 07:16:42 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-10 19:06:33 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 19 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season athlete_id name  position team  conference countable_plays avg_PPA_all</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -341,7 +356,7 @@ Can be found using the <code><a href="cfbd_player_info.html">cfbd_player_info()<
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>

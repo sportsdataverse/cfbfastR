@@ -208,7 +208,7 @@
 
 
 <script src="map-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Intro to Visualizing Recruiting Geography</h1>
                         <h4 data-toc-skip class="author">Conor R. McQuiston <br><a href="https://twitter.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=twitter&amp;style=for-the-badge" alt="@ConorMcQ5"></a> <a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
 </h4>
@@ -257,7 +257,7 @@
 <span class="co">##  $ hometown_info_latitude : chr [1:2737] "33.8752945" "27.4989278" "47.6088445" "39.896277299999994" ...</span>
 <span class="co">##  $ hometown_info_longitude: chr [1:2737] "-117.5664449" "-82.5748194" "-122.0423067" "-82.77319049748806" ...</span>
 <span class="co">##  $ hometown_info_fips_code: chr [1:2737] "06065" "12081" "53033" "39045" ...</span>
-<span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2022-06-01 07:21:44"</span>
+<span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2022-06-10 19:12:49"</span>
 <span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can merge on other <code>cfbfastR</code> datasets, basic information on each player, their high school, their rating and stars, their hometown, and geographic information about their hometown. A small issue we have is that for some reason the <code>hometown_info_longitude</code> and <code>hometown_info_latitude</code> variables which contain the longitude and latitude of each town are saved as characters (read: text) instead of numbers. But since we understand the data we’re looking at now, we can go ahead <code>filter</code> out for the set of players we want (5 stars) and <code>mutate</code> the data to make a new variable so that have longitudes and latitudes as numbers.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -423,7 +423,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer>
