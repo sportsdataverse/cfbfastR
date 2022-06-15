@@ -257,7 +257,7 @@
 <span class="co">##  $ hometown_info_latitude : chr [1:2737] "33.8752945" "27.4989278" "47.6088445" "39.896277299999994" ...</span>
 <span class="co">##  $ hometown_info_longitude: chr [1:2737] "-117.5664449" "-82.5748194" "-122.0423067" "-82.77319049748806" ...</span>
 <span class="co">##  $ hometown_info_fips_code: chr [1:2737] "06065" "12081" "53033" "39045" ...</span>
-<span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2022-06-10 19:21:33"</span>
+<span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2022-06-15 19:55:46"</span>
 <span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can merge on other <code>cfbfastR</code> datasets, basic information on each player, their high school, their rating and stars, their hometown, and geographic information about their hometown. A small issue we have is that for some reason the <code>hometown_info_longitude</code> and <code>hometown_info_latitude</code> variables which contain the longitude and latitude of each town are saved as characters (read: text) instead of numbers. But since we understand the data we’re looking at now, we can go ahead <code>filter</code> out for the set of players we want (5 stars) and <code>mutate</code> the data to make a new variable so that have longitudes and latitudes as numbers.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
