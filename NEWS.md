@@ -15,6 +15,10 @@
 
 - Removes `furrr`, `future` dependencies, adds `Rcpp`, `RcppParallel`, and `purrr` dependencies
 
+#### v1.9.1
+
+- Improved drive_pts logic in play-by-play data.
+
 # **cfbfastR v1.8.0**
 
 * All functions now default to return tibbles.
