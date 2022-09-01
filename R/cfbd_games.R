@@ -1364,6 +1364,8 @@ cfbd_game_team_stats <- function(year,
       df <- df %>%
         tidyr::unnest(.data$teams) %>%
         tidyr::unnest(.data$stats) %>%
+        # Occasionally CFBD will have duplicated stats that causes an error here
+        #and the current long df is returned. Distinct removes duplicates.
         dplyr::distinct()
 
       # Pivot category columns to get stats for each team game on one row

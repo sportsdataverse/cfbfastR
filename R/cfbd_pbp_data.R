@@ -2038,7 +2038,7 @@ prep_epa_df_after <- function(dat) {
 clean_drive_info <- function(drive_df) {
   clean_drive <- drive_df %>%
     dplyr::mutate(
-      drive_pts1 = dplyr::case_when(
+      drive_pts_rules = dplyr::case_when(
         .data$drive_result == "TD" ~ 7,
         stringr::str_detect(.data$drive_result, "SF") ~ -2,
         .data$drive_result == "FG GOOD" ~ 3,
@@ -2057,18 +2057,26 @@ clean_drive_info <- function(drive_df) {
         stringr::str_detect(.data$drive_result, "TD") ~ 7,
         TRUE ~ 0
       ),
-      drive_pts2 = as.numeric(.data$end_offense_score - .data$start_offense_score - .data$end_defense_score + .data$start_defense_score),
+      drive_pts_calculated = as.numeric(.data$end_offense_score - .data$start_offense_score - .data$end_defense_score + .data$start_defense_score),
       pts_drive = dplyr::case_when(
-        abs(.data$drive_pts2) > 8 ~ .data$drive_pts1,
-        .data$drive_pts1 == 3 ~ .data$drive_pts1,
-        .data$drive_pts2 == 5 ~ .data$drive_pts1,
-        abs(.data$drive_pts2) == 1 ~ .data$drive_pts1,
-        .data$drive_pts2 == 0 & .data$drive_pts1 != 0 ~ .data$drive_pts1,
-        .data$drive_pts1 == 0 & .data$drive_pts2 != 0 ~ .data$drive_pts2,
-        TRUE ~ .data$drive_pts2),
+        # If calculated pt change is bigger than possible, data issue, use rule.
+        abs(.data$drive_pts_calculated) > 8 ~ .data$drive_pts_rules,
+        # If drive result is made fg, use rule to avoid calculation errors from bad data.
+        .data$drive_pts_rules == 3 ~ .data$drive_pts_rules,
+        # Calculated pts can only be 5 if the offense scores,and then the defense scores a safety on the xp attempt.
+        # This does not happen. More likely comes from data issue, use rule.
+        .data$drive_pts_calculated == 5 ~ .data$drive_pts_rules,
+        # Impossible for change in net score to be 1, data issue, use rule.
+        abs(.data$drive_pts_calculated) == 1 ~ .data$drive_pts_rules,
+        # If calculation says 0 but rule says there should be points, data issue, use rule.
+        .data$drive_pts_calculated == 0 & .data$drive_pts_rules != 0 ~ .data$drive_pts_rules,
+        # If rule says 0 but score changed, likely mislabeled, use calculation.
+        .data$drive_pts_rules == 0 & .data$drive_pts_calculated != 0 ~ .data$drive_pts_calculated,
+        # Default is to use calculated value.
+        TRUE ~ .data$drive_pts_calculated),
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)
     ) %>%
-    dplyr::select(-.data$drive_pts1,-.data$drive_pts2) %>%
+    dplyr::select(-.data$drive_pts_rules,-.data$drive_pts_calculated) %>%
     dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
     dplyr::arrange(.data$game_id, .data$drive_id)
 
