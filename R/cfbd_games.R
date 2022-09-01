@@ -1363,7 +1363,8 @@ cfbd_game_team_stats <- function(year,
       }
       df <- df %>%
         tidyr::unnest(.data$teams) %>%
-        tidyr::unnest(.data$stats)
+        tidyr::unnest(.data$stats) %>%
+        dplyr::distinct()
 
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,
