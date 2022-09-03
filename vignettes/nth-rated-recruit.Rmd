@@ -31,7 +31,7 @@ To create the plot I'm going to use two functions from ```cfbfastR```. The first
 
 ```{r cfb}
 teams <- cfbfastR::cfbd_team_info() %>% 
-  dplyr::filter(conference = "Big Ten")
+  dplyr::filter(conference == "Big Ten")
 schools <- teams$school
 yr <- cfbfastR:::most_recent_cfb_season()
 year_range <- (yr-3):yr
