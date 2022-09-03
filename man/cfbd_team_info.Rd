@@ -4,7 +4,11 @@
 \alias{cfbd_team_info}
 \title{\strong{Team info lookup}}
 \usage{
-cfbd_team_info(conference = NULL, only_fbs = TRUE, year = NULL)
+cfbd_team_info(
+  conference = NULL,
+  only_fbs = TRUE,
+  year = most_recent_cfb_season()
+)
 }
 \arguments{
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
