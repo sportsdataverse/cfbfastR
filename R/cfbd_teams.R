@@ -109,7 +109,7 @@ NULL
 #'
 #'   try(cfbd_team_info(year = 2019))
 #' }
-cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
+cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recent_cfb_season()) {
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
     # Encode conference parameter for URL, if not NULL
