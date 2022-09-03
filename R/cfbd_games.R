@@ -96,6 +96,7 @@ NULL
 #'   \item{`home_id`: integer.}{Home team referencing id.}
 #'   \item{`home_team`: character.}{Home team name.}
 #'   \item{`home_conference`: character.}{Home team conference.}
+#'   \item{`home_division`: character.}{Home team division.}
 #'   \item{`home_points`: integer.}{Home team points.}
 #'   \item{`home_post_win_prob`: character.}{Home team post-game win probability.}
 #'   \item{`home_pregame_elo`: character.}{Home team pre-game ELO rating.}
@@ -103,6 +104,7 @@ NULL
 #'   \item{`away_id`: integer.}{Away team referencing id.}
 #'   \item{`away_team`: character.}{Away team name.}
 #'   \item{`away_conference`: character.}{Away team conference.}
+#'   \item{`away_division`: character.}{Away team division.}
 #'   \item{`away_points`: integer.}{Away team points.}
 #'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
 #'   \item{`away_pregame_elo`: character.}{Away team pre-game ELO rating.}
@@ -1363,7 +1365,10 @@ cfbd_game_team_stats <- function(year,
       }
       df <- df %>%
         tidyr::unnest(.data$teams) %>%
-        tidyr::unnest(.data$stats)
+        tidyr::unnest(.data$stats) %>%
+        # Occasionally CFBD will have duplicated stats that causes an error here
+        #and the current long df is returned. Distinct removes duplicates.
+        dplyr::distinct()
 
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,

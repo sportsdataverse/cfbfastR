@@ -1,18 +1,36 @@
 
 
 cols <- c(
-  "game_id", "season", "week", "season_type", "start_date",
-  "start_time_tbd", "neutral_site", "conference_game",
-  "attendance", "venue_id", "venue",
-  "home_id", "home_team", "home_conference",
-  "home_points", "home_post_win_prob",
+  "game_id",
+  "season",
+  "week",
+  "season_type",
+  "start_date",
+  "start_time_tbd",
+  "neutral_site",
+  "conference_game",
+  "attendance",
+  "venue_id",
+  "venue",
+  "home_id",
+  "home_team",
+  "home_conference",
+  "home_division",
+  "home_points",
+  "home_post_win_prob",
   "home_pregame_elo",
   "home_postgame_elo",
-  "away_id", "away_team", "away_conference",
-  "away_points", "away_post_win_prob",
+  "away_id",
+  "away_team",
+  "away_conference",
+  "away_division",
+  "away_points",
+  "away_post_win_prob",
   "away_pregame_elo",
-  "away_postgame_elo", "excitement_index",
-  "highlights","notes"
+  "away_postgame_elo",
+  "excitement_index",
+  "highlights",
+  "notes"
 )
 
 test_that("CFB Game Info", {
