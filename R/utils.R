@@ -133,10 +133,11 @@ custom_mode <- function(x, na.rm = TRUE) {
 }
 
 most_recent_cfb_season <- function() {
-  dplyr::if_else(
-    as.double(substr(Sys.Date(), 6, 7)) >= 9,
-    as.double(substr(Sys.Date(), 1, 4)),
-    as.double(substr(Sys.Date(), 1, 4)) - 1
+  date <- Sys.Date()
+  dplyr::case_when(
+    as.double(substr(date, 6, 7)) >= 8 & as.double(substr(date, 9, 10)) >= 15  ~ as.double(substr(date, 1, 4)),
+    as.double(substr(date, 6, 7)) >= 9 ~ as.double(substr(date, 1, 4)),
+    TRUE ~ as.double(substr(date, 1, 4)) - 1
   )
 }
 my_time <- function() strftime(Sys.time(), format = "%H:%M:%S")
