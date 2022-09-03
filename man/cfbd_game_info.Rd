@@ -56,6 +56,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
 \item{\code{home_id}: integer.}{Home team referencing id.}
 \item{\code{home_team}: character.}{Home team name.}
 \item{\code{home_conference}: character.}{Home team conference.}
+\item{\code{home_division}: character.}{Home team division.}
 \item{\code{home_points}: integer.}{Home team points.}
 \item{\code{home_post_win_prob}: character.}{Home team post-game win probability.}
 \item{\code{home_pregame_elo}: character.}{Home team pre-game ELO rating.}
@@ -63,6 +64,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
 \item{\code{away_id}: integer.}{Away team referencing id.}
 \item{\code{away_team}: character.}{Away team name.}
 \item{\code{away_conference}: character.}{Away team conference.}
+\item{\code{away_division}: character.}{Away team division.}
 \item{\code{away_points}: integer.}{Away team points.}
 \item{\code{away_post_win_prob}: character.}{Away team post-game win probability.}
 \item{\code{away_pregame_elo}: character.}{Away team pre-game ELO rating.}

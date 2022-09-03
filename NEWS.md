@@ -1,3 +1,9 @@
+# **cfbfastR v1.9.1**
+
+* Improved drive_pts logic in play-by-play data.
+* Fixed an issue that occasionally made the `cfbd_game_team_stats()` function return data in a long format
+* Minor documentation and test updates
+
 # **cfbfastR v1.9.0**
 
 #### Added functions to access ESPN API:
@@ -15,10 +21,6 @@
 
 - Removes `furrr`, `future` dependencies, adds `Rcpp`, `RcppParallel`, and `purrr` dependencies
 
-#### v1.9.1
-
-- Improved drive_pts logic in play-by-play data.
-- Fixed an issue that occasionally made the `cfbd_game_team_stats()` function return data in a long format
 
 # **cfbfastR v1.8.0**
 
