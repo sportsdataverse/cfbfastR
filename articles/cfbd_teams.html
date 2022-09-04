@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="CFB Data Teams Examples">
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -225,191 +225,195 @@
 <strong>Load and Install Packages</strong><a class="anchor" aria-label="anchor" href="#load-and-install-packages"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/cfbfastR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-team-info">
 <strong>Get Team Info</strong><a class="anchor" aria-label="anchor" href="#get-team-info"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span></code></pre>
-<pre><code><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:25 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 14 × 27</span></span>
-<span class="co">##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span>
-<span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span>     333 Alabama  Crims… ALA          <span style="color: #BB0000;">NA</span>        ALA       Alabama   SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span>       8 Arkansas Razor… ARK          <span style="color: #BB0000;">NA</span>        ARK       Arkansas  SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span>       2 Auburn   Tigers AUB          <span style="color: #BB0000;">NA</span>        AUB       Auburn    SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span>      57 Florida  Gators FLA          <span style="color: #BB0000;">NA</span>        FLA       Florida   SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span>      61 Georgia  Bulld… UGA          <span style="color: #BB0000;">NA</span>        UGA       Georgia   SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span>      96 Kentucky Wildc… UK           <span style="color: #BB0000;">NA</span>        UK        Kentucky  SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span>      99 LSU      Tigers LSU          Louisian… LSU       LSU       SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span>     344 Mississ… Bulld… MSST         <span style="color: #BB0000;">NA</span>        MSST      Miss St   SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span>     142 Missouri Tigers MIZ          <span style="color: #BB0000;">NA</span>        MIZ       Missouri  SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;">10</span>     145 Ole Miss Rebels MISS         <span style="color: #BB0000;">NA</span>        MISS      Ole Miss  SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;">11</span>    <span style="text-decoration: underline;">2</span>579 South C… Gamec… SC           <span style="color: #BB0000;">NA</span>        SC        South Ca… SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;">12</span>    <span style="text-decoration: underline;">2</span>633 Tenness… Volun… TENN         <span style="color: #BB0000;">NA</span>        TENN      Tennessee SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;">13</span>     245 Texas A… Aggies TA&amp;M         <span style="color: #BB0000;">NA</span>        TA&amp;M      Texas A&amp;M SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;">14</span>     238 Vanderb… Commo… VAN          <span style="color: #BB0000;">NA</span>        VAN       Vanderbi… SEC       </span>
-<span class="co">## <span style="color: #949494;"># … with 19 more variables: division &lt;chr&gt;, color &lt;chr&gt;, alt_color &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   logo &lt;chr&gt;, logo_2 &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   state &lt;chr&gt;, zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   longitude &lt;dbl&gt;, elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   grass &lt;lgl&gt;, dome &lt;lgl&gt;</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:45 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 14 × 27</span></span></span>
+<span><span class="co">##    team_id school   mascot abbre…¹ alt_n…² alt_n…³ alt_n…⁴ confe…⁵ class…⁶ color</span></span>
+<span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>     333 Alabama  Crims… ALA     <span style="color: #BB0000;">NA</span>      ALA     Alabama SEC     fbs     #690…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>       8 Arkansas Razor… ARK     <span style="color: #BB0000;">NA</span>      ARK     Arkans… SEC     fbs     #9c1…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>       2 Auburn   Tigers AUB     <span style="color: #BB0000;">NA</span>      AUB     Auburn  SEC     fbs     #032…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>      57 Florida  Gators FLA     <span style="color: #BB0000;">NA</span>      FLA     Florida SEC     fbs     #002…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>      61 Georgia  Bulld… UGA     <span style="color: #BB0000;">NA</span>      UGA     Georgia SEC     fbs     #CC0…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>      96 Kentucky Wildc… UK      <span style="color: #BB0000;">NA</span>      UK      Kentuc… SEC     fbs     #005…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>      99 LSU      Tigers LSU     Louisi… LSU     LSU     SEC     fbs     #fdd…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>     344 Mississ… Bulld… MSST    <span style="color: #BB0000;">NA</span>      MSST    Miss St SEC     fbs     #762…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span>     142 Missouri Tigers MIZ     <span style="color: #BB0000;">NA</span>      MIZ     Missou… SEC     fbs     #000…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span>     145 Ole Miss Rebels MISS    <span style="color: #BB0000;">NA</span>      MISS    Ole Mi… SEC     fbs     #001…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">11</span>    <span style="text-decoration: underline;">2</span>579 South C… Gamec… SC      <span style="color: #BB0000;">NA</span>      SC      South … SEC     fbs     #670…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">12</span>    <span style="text-decoration: underline;">2</span>633 Tenness… Volun… TENN    <span style="color: #BB0000;">NA</span>      TENN    Tennes… SEC     fbs     #EE9…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">13</span>     245 Texas A… Aggies TA&amp;M    <span style="color: #BB0000;">NA</span>      TA&amp;M    Texas … SEC     fbs     #5C0…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">14</span>     238 Vanderb… Commo… VAN     <span style="color: #BB0000;">NA</span>      VAN     Vander… SEC     fbs     #000…</span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 17 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;, grass &lt;lgl&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation, ²​alt_name1,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​classification</span></span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:25 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 7 × 27</span></span>
-<span class="co">##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span>
-<span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="co">## <span style="color: #BCBCBC;">1</span>     349 Army      Black… ARMY         <span style="color: #BB0000;">NA</span>        ARMY      Army      FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">2</span>     252 BYU       Couga… BYU          Brigham … BYU       BYU       FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">3</span>      41 Connecti… Huski… CONN         <span style="color: #BB0000;">NA</span>        CONN      UConn     FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">4</span>    <span style="text-decoration: underline;">2</span>335 Liberty   Flames LIB          <span style="color: #BB0000;">NA</span>        LIB       Liberty   FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">5</span>     166 New Mexi… Aggies NMSU         <span style="color: #BB0000;">NA</span>        NMSU      New Mexi… FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">6</span>      87 Notre Da… Fight… ND           <span style="color: #BB0000;">NA</span>        ND        Notre Da… FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">7</span>     113 UMass     Minut… UMASS        <span style="color: #BB0000;">NA</span>        UMASS     UMass     FBS Indep…</span>
-<span class="co">## <span style="color: #949494;"># … with 19 more variables: division &lt;lgl&gt;, color &lt;chr&gt;, alt_color &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   logo &lt;chr&gt;, logo_2 &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   state &lt;chr&gt;, zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   longitude &lt;dbl&gt;, elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   grass &lt;lgl&gt;, dome &lt;lgl&gt;</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:45 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 7 × 27</span></span></span>
+<span><span class="co">##   team_id school    mascot abbre…¹ alt_n…² alt_n…³ alt_n…⁴ confe…⁵ class…⁶ color</span></span>
+<span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span>     349 Army      Black… ARMY    <span style="color: #BB0000;">NA</span>      ARMY    Army    FBS In… fbs     #ce9…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span>     252 BYU       Couga… BYU     Brigha… BYU     BYU     FBS In… fbs     #001…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span>      41 Connecti… Huski… CONN    <span style="color: #BB0000;">NA</span>      CONN    UConn   FBS In… fbs     #001…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span>    <span style="text-decoration: underline;">2</span>335 Liberty   Flames LIB     <span style="color: #BB0000;">NA</span>      LIB     Liberty FBS In… fbs     #071…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span>     166 New Mexi… Aggies NMSU    <span style="color: #BB0000;">NA</span>      NMSU    New Me… FBS In… fbs     #891…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">6</span>      87 Notre Da… Fight… ND      <span style="color: #BB0000;">NA</span>      ND      Notre … FBS In… fbs     #001…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">7</span>     113 UMass     Minut… UMASS   <span style="color: #BB0000;">NA</span>      UMASS   UMass   FBS In… fbs     #880…</span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 17 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;, grass &lt;lgl&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation, ²​alt_name1,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​classification</span></span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span></code></pre>
-<pre><code><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:26 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 130 × 27</span></span>
-<span class="co">##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span>
-<span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span>    <span style="text-decoration: underline;">2</span>005 Air For… Falco… AFA          <span style="color: #BB0000;">NA</span>        AFA       Air Force Mountain …</span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span>    <span style="text-decoration: underline;">2</span>006 Akron    Zips   AKR          <span style="color: #BB0000;">NA</span>        AKR       Akron     Mid-Ameri…</span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span>     333 Alabama  Crims… ALA          <span style="color: #BB0000;">NA</span>        ALA       Alabama   SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span>    <span style="text-decoration: underline;">2</span>026 Appalac… Mount… APP          <span style="color: #BB0000;">NA</span>        APP       Appalach… Sun Belt  </span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span>      12 Arizona  Wildc… ARIZ         <span style="color: #BB0000;">NA</span>        ARIZ      Arizona   Pac-12    </span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span>       9 Arizona… Sun D… ASU          <span style="color: #BB0000;">NA</span>        ASU       Arizona … Pac-12    </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span>       8 Arkansas Razor… ARK          <span style="color: #BB0000;">NA</span>        ARK       Arkansas  SEC       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span>    <span style="text-decoration: underline;">2</span>032 Arkansa… Red W… ARST         <span style="color: #BB0000;">NA</span>        ARST      Arkansas… Sun Belt  </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span>     349 Army     Black… ARMY         <span style="color: #BB0000;">NA</span>        ARMY      Army      FBS Indep…</span>
-<span class="co">## <span style="color: #BCBCBC;">10</span>       2 Auburn   Tigers AUB          <span style="color: #BB0000;">NA</span>        AUB       Auburn    SEC       </span>
-<span class="co">## <span style="color: #949494;"># … with 120 more rows, and 19 more variables: division &lt;chr&gt;, color &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;, venue_id &lt;int&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;, country_code &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, elevation &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   capacity &lt;int&gt;, year_constructed &lt;int&gt;, grass &lt;lgl&gt;, dome &lt;lgl&gt;</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:45 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 130 × 27</span></span></span>
+<span><span class="co">##    team_id school   mascot abbre…¹ alt_n…² alt_n…³ alt_n…⁴ confe…⁵ divis…⁶ color</span></span>
+<span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>    <span style="text-decoration: underline;">2</span>005 Air For… Falco… AFA     <span style="color: #BB0000;">NA</span>      AFA     Air Fo… Mounta… Mounta… #004…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>    <span style="text-decoration: underline;">2</span>006 Akron    Zips   AKR     <span style="color: #BB0000;">NA</span>      AKR     Akron   Mid-Am… East    #002…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>     333 Alabama  Crims… ALA     <span style="color: #BB0000;">NA</span>      ALA     Alabama SEC     West    #690…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>    <span style="text-decoration: underline;">2</span>026 Appalac… Mount… APP     <span style="color: #BB0000;">NA</span>      APP     Appala… Sun Be… West    #000…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>      12 Arizona  Wildc… ARIZ    <span style="color: #BB0000;">NA</span>      ARIZ    Arizona Pac-12  South   #002…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>       9 Arizona… Sun D… ASU     <span style="color: #BB0000;">NA</span>      ASU     Arizon… Pac-12  South   #942…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>       8 Arkansas Razor… ARK     <span style="color: #BB0000;">NA</span>      ARK     Arkans… SEC     West    #9c1…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>    <span style="text-decoration: underline;">2</span>032 Arkansa… Red W… ARST    <span style="color: #BB0000;">NA</span>      ARST    Arkans… Sun Be… East    #e81…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span>     349 Army     Black… ARMY    <span style="color: #BB0000;">NA</span>      ARMY    Army    FBS In… <span style="color: #BB0000;">NA</span>      #ce9…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span>       2 Auburn   Tigers AUB     <span style="color: #BB0000;">NA</span>      AUB     Auburn  SEC     West    #032…</span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 120 more rows, 17 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   logo_2 &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   longitude &lt;dbl&gt;, elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   grass &lt;lgl&gt;, dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   ²​alt_name1, ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​division</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="get-team-matchup-history-total-record">
 <strong>Get Team Matchup History (Total Record)</strong><a class="anchor" aria-label="anchor" href="#get-team-matchup-history-total-record"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Team matchup record from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span></code></pre>
-<pre><code><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:26 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span>
-<span class="co">##   start_year end_year team1 team1_wins team2    team2_wins ties </span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">""</span>         <span style="color: #949494;">""</span>       Texas 59         Oklahoma 50         5</span></code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Team matchup record from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span>
-<span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:26 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span>
-<span class="co">##   start_year end_year team1     team1_wins team2 team2_wins ties </span>
-<span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;">1</span> 1975       <span style="color: #949494;">""</span>       Texas A&amp;M 22         TCU   0          0</span></code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Team matchup record from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:45 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
+<span><span class="co">##   start_year end_year team1 team1_wins team2    team2_wins ties </span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">""</span>         <span style="color: #949494;">""</span>       Texas 59         Oklahoma 50         5</span></span></code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Team matchup record from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:45 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
+<span><span class="co">##   start_year end_year team1     team1_wins team2 team2_wins ties </span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> 1975       <span style="color: #949494;">""</span>       Texas A&amp;M 22         TCU   0          0</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="get-team-matchup-history">
 <strong>Get Team Matchup History</strong><a class="anchor" aria-label="anchor" href="#get-team-matchup-history"></a>
 </h3>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 2022-06-15 19:53:26:Invalid arguments or no team matchup data available!</span></code></pre>
-<pre><code><span class="co">## data frame with 0 columns and 0 rows</span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 2022-06-15 19:53:26:Invalid arguments or no team matchup data available!</span></code></pre>
-<pre><code><span class="co">## data frame with 0 columns and 0 rows</span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 2022-06-15 19:53:27:Invalid arguments or no team matchup data available!</span></code></pre>
-<pre><code><span class="co">## data frame with 0 columns and 0 rows</span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Florida State"</span>, <span class="st">"Florida"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## 2022-06-15 19:53:27:Invalid arguments or no team matchup data available!</span></code></pre>
-<pre><code><span class="co">## data frame with 0 columns and 0 rows</span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 2022-09-04 02:10:46:Invalid arguments or no team matchup data available!</span></span></code></pre>
+<pre><code><span><span class="co">## data frame with 0 columns and 0 rows</span></span></code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 2022-09-04 02:10:46:Invalid arguments or no team matchup data available!</span></span></code></pre>
+<pre><code><span><span class="co">## data frame with 0 columns and 0 rows</span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 2022-09-04 02:10:46:Invalid arguments or no team matchup data available!</span></span></code></pre>
+<pre><code><span><span class="co">## data frame with 0 columns and 0 rows</span></span></code></pre>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Florida State"</span>, <span class="st">"Florida"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## 2022-09-04 02:10:46:Invalid arguments or no team matchup data available!</span></span></code></pre>
+<pre><code><span><span class="co">## data frame with 0 columns and 0 rows</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="get-team-rosters">
 <strong>Get Team Rosters</strong><a class="anchor" aria-label="anchor" href="#get-team-rosters"></a>
 </h3>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_roster.html">cfbd_team_roster</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Team roster data from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span></code></pre>
-<pre><code><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:27 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 55 × 17</span></span>
-<span class="co">##    athlete_id first_name last_name team      weight height jersey  year position</span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span> 480772     Dan        Hicks     Florida …     <span style="color: #BB0000;">NA</span>     76      6    <span style="color: #BB0000;">NA</span> DE      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span> 480781     Jacobbi    McDaniel  Florida …     <span style="color: #BB0000;">NA</span>     72     55    <span style="color: #BB0000;">NA</span> DT      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span> 501075     Chad       Abram     Florida …     <span style="color: #BB0000;">NA</span>     72     41    <span style="color: #BB0000;">NA</span> FB      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span> 501076     Terrence   Brooks    Florida …     <span style="color: #BB0000;">NA</span>     71     31    <span style="color: #BB0000;">NA</span> DB      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span> 501077     Shayne     Broxsie   Florida …     <span style="color: #BB0000;">NA</span>     74     42    <span style="color: #BB0000;">NA</span> TE      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span> 501082     Jarred     Haggins   Florida …     <span style="color: #BB0000;">NA</span>     72     12    <span style="color: #BB0000;">NA</span> WR      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span> 501083     Christian  Jones     Florida …     <span style="color: #BB0000;">NA</span>     76      7    <span style="color: #BB0000;">NA</span> LB      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span> 501084     Lamarcus   Joyner    Florida …     <span style="color: #BB0000;">NA</span>     68     20    <span style="color: #BB0000;">NA</span> DB      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span> 501095     Telvin     Smith     Florida …     <span style="color: #BB0000;">NA</span>     75     22    <span style="color: #BB0000;">NA</span> LB      </span>
-<span class="co">## <span style="color: #BCBCBC;">10</span> 501097     Nigel      Terrell   Florida …     <span style="color: #BB0000;">NA</span>     74     43    <span style="color: #BB0000;">NA</span> LB      </span>
-<span class="co">## <span style="color: #949494;"># … with 45 more rows, and 8 more variables: home_city &lt;chr&gt;, home_state &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   home_country &lt;chr&gt;, home_latitude &lt;chr&gt;, home_longitude &lt;chr&gt;,</span></span>
-<span class="co">## <span style="color: #949494;">#   home_county_fips &lt;chr&gt;, recruit_ids &lt;list&gt;, headshot_url &lt;chr&gt;</span></span></code></pre>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_roster.html">cfbd_team_roster</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Team roster data from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:46 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 55 × 17</span></span></span>
+<span><span class="co">##    athlete_id first_n…¹ last_…² team  weight height jersey  year posit…³ home_…⁴</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 480772     Dan       Hicks   Flor…     <span style="color: #BB0000;">NA</span>     76      6    <span style="color: #BB0000;">NA</span> DE      Oxford </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 480781     Jacobbi   McDani… Flor…     <span style="color: #BB0000;">NA</span>     72     55    <span style="color: #BB0000;">NA</span> DT      Greenv…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 501075     Chad      Abram   Flor…     <span style="color: #BB0000;">NA</span>     72     41    <span style="color: #BB0000;">NA</span> FB      Lakela…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 501076     Terrence  Brooks  Flor…     <span style="color: #BB0000;">NA</span>     71     31    <span style="color: #BB0000;">NA</span> DB      Dunnel…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 501077     Shayne    Broxsie Flor…     <span style="color: #BB0000;">NA</span>     74     42    <span style="color: #BB0000;">NA</span> TE      Montic…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 501082     Jarred    Haggins Flor…     <span style="color: #BB0000;">NA</span>     72     12    <span style="color: #BB0000;">NA</span> WR      Lakela…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 501083     Christian Jones   Flor…     <span style="color: #BB0000;">NA</span>     76      7    <span style="color: #BB0000;">NA</span> LB      Winter…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 501084     Lamarcus  Joyner  Flor…     <span style="color: #BB0000;">NA</span>     68     20    <span style="color: #BB0000;">NA</span> DB      Ft. La…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 501095     Telvin    Smith   Flor…     <span style="color: #BB0000;">NA</span>     75     22    <span style="color: #BB0000;">NA</span> LB      Valdos…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> 501097     Nigel     Terrell Flor…     <span style="color: #BB0000;">NA</span>     74     43    <span style="color: #BB0000;">NA</span> LB      Helena </span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 45 more rows, 7 more variables: home_state &lt;chr&gt;, home_country &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   home_latitude &lt;chr&gt;, home_longitude &lt;chr&gt;, home_county_fips &lt;chr&gt;,</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   recruit_ids &lt;list&gt;, headshot_url &lt;chr&gt;, and abbreviated variable names</span></span></span>
+<span><span class="co">## <span style="color: #949494;">#   ¹​first_name, ²​last_name, ³​position, ⁴​home_city</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="get-team-talent">
 <strong>Get Team Talent</strong><a class="anchor" aria-label="anchor" href="#get-team-talent"></a>
 </h3>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span></code></pre>
-<pre><code><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:27 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 1,537 × 3</span></span>
-<span class="co">##     year school     talent</span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>021 Alabama     <span style="text-decoration: underline;">1</span>004.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>021 Georgia     <span style="text-decoration: underline;">1</span>002.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>021 Ohio State   985.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>021 Clemson      935.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>021 LSU          904.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>021 Oklahoma     895.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>021 Texas A&amp;M    888.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>021 Oregon       886.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>021 Florida      886.</span>
-<span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>021 USC          874.</span>
-<span class="co">## <span style="color: #949494;"># … with 1,527 more rows</span></span></code></pre>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span>
-<span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:27 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 237 × 3</span></span>
-<span class="co">##     year school        talent</span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>018 Ohio State      984.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>018 Alabama         979.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>018 Georgia         964 </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>018 USC             934.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>018 Clemson         893.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>018 LSU             890.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>018 Florida State   889.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>018 Michigan        862.</span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>018 Texas           861.</span>
-<span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>018 Notre Dame      848.</span>
-<span class="co">## <span style="color: #949494;"># … with 227 more rows</span></span></code></pre>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:46 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1,768 × 3</span></span></span>
+<span><span class="co">##     year school     talent</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>022 Alabama     <span style="text-decoration: underline;">1</span>017.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>022 Georgia      990.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>022 Ohio State   983.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>022 Texas A&amp;M    947.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>022 Clemson      943 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>022 Texas        887.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>022 Oregon       878.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>022 LSU          873.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>022 Oklahoma     870.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>022 Notre Dame   866.</span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 1,758 more rows</span></span></span></code></pre>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:46 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 237 × 3</span></span></span>
+<span><span class="co">##     year school        talent</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>018 Ohio State      984.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>018 Alabama         979.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>018 Georgia         964 </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">2</span>018 USC             934.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">2</span>018 Clemson         893.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">2</span>018 LSU             890.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">2</span>018 Florida State   889.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>018 Michigan        862.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>018 Texas           861.</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>018 Notre Dame      848.</span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 227 more rows</span></span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -424,7 +428,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

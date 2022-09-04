@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="CFB Data Stats Examples">
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -225,11 +225,11 @@
 <strong>Load and Install Packages</strong><a class="anchor" aria-label="anchor" href="#load-and-install-packages"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/cfbfastR"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/cfbfastR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="settling-2019-lsu-and-2013-florida-state-offense-debates">Settling <strong>2019 LSU</strong> and <strong>2013 Florida State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settling-2019-lsu-and-2013-florida-state-offense-debates"></a>
@@ -239,122 +239,119 @@
 <strong>Get Season Statistics by Team</strong><a class="anchor" aria-label="anchor" href="#get-season-statistics-by-team"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">team_season_stats</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span>
-   <span class="fu"><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,
-   <span class="fu"><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="va">logos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv"</span><span class="op">)</span>
-<span class="va">logos</span><span class="op">&lt;-</span> <span class="va">logos</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">.data</span><span class="op">$</span><span class="va">conference</span><span class="op">)</span>
-<span class="va">df_team_season</span> <span class="op">&lt;-</span> <span class="va">team_season_stats</span> <span class="op">%&gt;%</span> 
-   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">team_season_stats</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,</span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">logos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv"</span><span class="op">)</span></span>
+<span><span class="va">logos</span><span class="op">&lt;-</span> <span class="va">logos</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">.data</span><span class="op">$</span><span class="va">conference</span><span class="op">)</span></span>
+<span><span class="va">df_team_season</span> <span class="op">&lt;-</span> <span class="va">team_season_stats</span> <span class="op">%&gt;%</span> </span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_team_season_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">df_team_season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df_team_season_long</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">df_team_season</span><span class="op">$</span><span class="va">team</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_team_season_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">df_team_season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df_team_season_long</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">df_team_season</span><span class="op">$</span><span class="va">team</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-season-advanced-statistics-by-team">
 <strong>Get Season Advanced Statistics by Team</strong><a class="anchor" aria-label="anchor" href="#get-season-advanced-statistics-by-team"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_team_season_adv</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span>
-   <span class="fu"><a href="../reference/cfbd_stats_season_advanced.html">cfbd_stats_season_advanced</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,
-   <span class="fu"><a href="../reference/cfbd_stats_season_advanced.html">cfbd_stats_season_advanced</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="va">df_team_season_adv</span> <span class="op">&lt;-</span> <span class="va">df_team_season_adv</span> <span class="op">%&gt;%</span> 
-   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_team_season_adv</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_season_advanced.html">cfbd_stats_season_advanced</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,</span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_season_advanced.html">cfbd_stats_season_advanced</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">df_team_season_adv</span> <span class="op">&lt;-</span> <span class="va">df_team_season_adv</span> <span class="op">%&gt;%</span> </span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-game-advanced-stats">
 <strong>Get Game Advanced Stats</strong><a class="anchor" aria-label="anchor" href="#get-game-advanced-stats"></a>
 </h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_team_game_adv</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span>
-   <span class="fu"><a href="../reference/cfbd_stats_game_advanced.html">cfbd_stats_game_advanced</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,
-   <span class="fu"><a href="../reference/cfbd_stats_game_advanced.html">cfbd_stats_game_advanced</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="va">df_team_game_adv</span> <span class="op">&lt;-</span> <span class="va">df_team_game_adv</span> <span class="op">%&gt;%</span> 
-   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_team_game_adv</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_game_advanced.html">cfbd_stats_game_advanced</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,</span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_game_advanced.html">cfbd_stats_game_advanced</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">df_team_game_adv</span> <span class="op">&lt;-</span> <span class="va">df_team_game_adv</span> <span class="op">%&gt;%</span> </span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-season-statistics-by-player">
 <strong>Get Season Statistics by Player</strong><a class="anchor" aria-label="anchor" href="#get-season-statistics-by-player"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R"</span><span class="op">)</span>
-<span class="va">passing_df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span>
-   <span class="fu"><a href="../reference/cfbd_stats_season_player.html">cfbd_stats_season_player</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span>, 
-   <span class="fu"><a href="../reference/cfbd_stats_season_player.html">cfbd_stats_season_player</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">team</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">logo</span>, 
-                 <span class="va">player</span>,
-                 <span class="va">passing_completions</span>,
-                 <span class="va">passing_att</span>,
-                 <span class="va">passing_yds</span>,
-                 <span class="va">passing_td</span>,
-                 <span class="va">passing_int</span>,
-                 <span class="va">passing_ypa</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-   <span class="fu">arrange</span><span class="op">(</span> <span class="fu">desc</span><span class="op">(</span><span class="va">passing_yds</span><span class="op">)</span>, <span class="va">team</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Adding missing grouping variables: `team`</span></code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R"</span><span class="op">)</span></span>
+<span><span class="va">passing_df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_season_player.html">cfbd_stats_season_player</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span>, </span>
+<span>   <span class="fu"><a href="../reference/cfbd_stats_season_player.html">cfbd_stats_season_player</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">team</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">logo</span>, </span>
+<span>                 <span class="va">player</span>,</span>
+<span>                 <span class="va">passing_completions</span>,</span>
+<span>                 <span class="va">passing_att</span>,</span>
+<span>                 <span class="va">passing_yds</span>,</span>
+<span>                 <span class="va">passing_td</span>,</span>
+<span>                 <span class="va">passing_int</span>,</span>
+<span>                 <span class="va">passing_ypa</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>   <span class="fu">arrange</span><span class="op">(</span> <span class="fu">desc</span><span class="op">(</span><span class="va">passing_yds</span><span class="op">)</span>, <span class="va">team</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Adding missing grouping variables: `team`</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">passing_df</span> <span class="op">%&gt;%</span> <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">tab_header</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Passing Summary"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">cols_label</span><span class="op">(</span>logo<span class="op">=</span><span class="st">""</span>,
-             player <span class="op">=</span> <span class="st">"Player"</span>, 
-             passing_completions <span class="op">=</span> <span class="st">"C"</span>, 
-             passing_att <span class="op">=</span> <span class="st">"Att"</span>,
-             passing_yds <span class="op">=</span> <span class="st">"Yds"</span>,
-             passing_td <span class="op">=</span> <span class="st">"TDs"</span>,
-             passing_int <span class="op">=</span> <span class="st">"INTs"</span>,
-             passing_ypa <span class="op">=</span> <span class="st">"YPA"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">data_color</span><span class="op">(</span>
-    columns <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">passing_yds</span><span class="op">)</span>,
-    colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html" class="external-link">col_numeric</a></span><span class="op">(</span>
-      palette <span class="op">=</span> <span class="st">"RdBu"</span>,
-      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">6000</span>,<span class="fl">6000</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">data_color</span><span class="op">(</span>
-    columns <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">passing_td</span><span class="op">)</span>,
-    colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html" class="external-link">col_numeric</a></span><span class="op">(</span>
-      palette <span class="op">=</span> <span class="st">"RdBu"</span>,
-      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,<span class="fl">60</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">data_color</span><span class="op">(</span>
-    columns <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">passing_td</span><span class="op">)</span>,
-    colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html" class="external-link">col_numeric</a></span><span class="op">(</span>
-      palette <span class="op">=</span> <span class="st">"RdBu"</span>,
-      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,<span class="fl">60</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">text_transform</span><span class="op">(</span>
-    locations <span class="op">=</span> <span class="fu">cells_body</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">logo</span><span class="op">)</span><span class="op">)</span>,
-    fn <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">logo</span><span class="op">)</span><span class="op">{</span>
-      <span class="fu">web_image</span><span class="op">(</span>url<span class="op">=</span> <span class="va">logo</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">tab_source_note</span><span class="op">(</span>source_note <span class="op">=</span> <span class="fu">md</span><span class="op">(</span><span class="st">"**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v1.1.0"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">gt_theme_538</span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:</span>
-<span class="co">## * please use `columns = c(...)` instead</span>
-
-<span class="co">## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:</span>
-<span class="co">## * please use `columns = c(...)` instead</span>
-
-<span class="co">## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:</span>
-<span class="co">## * please use `columns = c(...)` instead</span>
-
-<span class="co">## Warning: `columns = vars(...)` has been deprecated in gt 0.3.0:</span>
-<span class="co">## * please use `columns = c(...)` instead</span></code></pre>
-<pre><code><span class="co">## Warning: `columns = TRUE` has been deprecated in gt 0.3.0:</span>
-<span class="co">## * please use `columns = everything()` instead</span></code></pre>
-<div id="kocyehpbnl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<code class="sourceCode R"><span><span class="va">passing_df</span> <span class="op">%&gt;%</span> <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">tab_header</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Passing Summary"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">cols_label</span><span class="op">(</span>logo<span class="op">=</span><span class="st">""</span>,</span>
+<span>             player <span class="op">=</span> <span class="st">"Player"</span>, </span>
+<span>             passing_completions <span class="op">=</span> <span class="st">"C"</span>, </span>
+<span>             passing_att <span class="op">=</span> <span class="st">"Att"</span>,</span>
+<span>             passing_yds <span class="op">=</span> <span class="st">"Yds"</span>,</span>
+<span>             passing_td <span class="op">=</span> <span class="st">"TDs"</span>,</span>
+<span>             passing_int <span class="op">=</span> <span class="st">"INTs"</span>,</span>
+<span>             passing_ypa <span class="op">=</span> <span class="st">"YPA"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">data_color</span><span class="op">(</span></span>
+<span>    columns <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">passing_yds</span><span class="op">)</span>,</span>
+<span>    colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html" class="external-link">col_numeric</a></span><span class="op">(</span></span>
+<span>      palette <span class="op">=</span> <span class="st">"RdBu"</span>,</span>
+<span>      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">6000</span>,<span class="fl">6000</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">data_color</span><span class="op">(</span></span>
+<span>    columns <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">passing_td</span><span class="op">)</span>,</span>
+<span>    colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html" class="external-link">col_numeric</a></span><span class="op">(</span></span>
+<span>      palette <span class="op">=</span> <span class="st">"RdBu"</span>,</span>
+<span>      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,<span class="fl">60</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">data_color</span><span class="op">(</span></span>
+<span>    columns <span class="op">=</span> <span class="fu">vars</span><span class="op">(</span><span class="va">passing_td</span><span class="op">)</span>,</span>
+<span>    colors <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/col_numeric.html" class="external-link">col_numeric</a></span><span class="op">(</span></span>
+<span>      palette <span class="op">=</span> <span class="st">"RdBu"</span>,</span>
+<span>      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,<span class="fl">60</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">text_transform</span><span class="op">(</span></span>
+<span>    locations <span class="op">=</span> <span class="fu">cells_body</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">logo</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    fn <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">logo</span><span class="op">)</span><span class="op">{</span></span>
+<span>      <span class="fu">web_image</span><span class="op">(</span>url<span class="op">=</span> <span class="va">logo</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">tab_source_note</span><span class="op">(</span>source_note <span class="op">=</span> <span class="fu">md</span><span class="op">(</span><span class="st">"**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v1.1.0"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">gt_theme_538</span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: Since gt v0.3.0, `columns = vars(...)` has been deprecated.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">•</span> Please use `columns = c(...)` instead.</span></span>
+<span><span class="co">## Since gt v0.3.0, `columns = vars(...)` has been deprecated.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">•</span> Please use `columns = c(...)` instead.</span></span>
+<span><span class="co">## Since gt v0.3.0, `columns = vars(...)` has been deprecated.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">•</span> Please use `columns = c(...)` instead.</span></span>
+<span><span class="co">## Since gt v0.3.0, `columns = vars(...)` has been deprecated.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">•</span> Please use `columns = c(...)` instead.</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Since gt v0.3.0, `columns = TRUE` has been deprecated.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">•</span> Please use `columns = everything()` instead.</span></span></code></pre>
+<div id="xnoreevxwe" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kocyehpbnl .gt_table {
+#xnoreevxwe .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -379,7 +376,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_heading {
+#xnoreevxwe .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -391,7 +388,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_title {
+#xnoreevxwe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -403,7 +400,7 @@ html {
   border-bottom-width: 0;
 }
 
-#kocyehpbnl .gt_subtitle {
+#xnoreevxwe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -415,13 +412,13 @@ html {
   border-top-width: 0;
 }
 
-#kocyehpbnl .gt_bottom_border {
+#xnoreevxwe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_col_headings {
+#xnoreevxwe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -436,7 +433,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_col_heading {
+#xnoreevxwe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -456,7 +453,7 @@ html {
   overflow-x: hidden;
 }
 
-#kocyehpbnl .gt_column_spanner_outer {
+#xnoreevxwe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -468,15 +465,15 @@ html {
   padding-right: 4px;
 }
 
-#kocyehpbnl .gt_column_spanner_outer:first-child {
+#xnoreevxwe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kocyehpbnl .gt_column_spanner_outer:last-child {
+#xnoreevxwe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kocyehpbnl .gt_column_spanner {
+#xnoreevxwe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -488,7 +485,7 @@ html {
   width: 100%;
 }
 
-#kocyehpbnl .gt_group_heading {
+#xnoreevxwe .gt_group_heading {
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 5px;
@@ -513,7 +510,7 @@ html {
   vertical-align: middle;
 }
 
-#kocyehpbnl .gt_empty_group_heading {
+#xnoreevxwe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -528,15 +525,15 @@ html {
   vertical-align: middle;
 }
 
-#kocyehpbnl .gt_from_md > :first-child {
+#xnoreevxwe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kocyehpbnl .gt_from_md > :last-child {
+#xnoreevxwe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kocyehpbnl .gt_row {
+#xnoreevxwe .gt_row {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 5px;
@@ -555,7 +552,7 @@ html {
   overflow-x: hidden;
 }
 
-#kocyehpbnl .gt_stub {
+#xnoreevxwe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -568,7 +565,7 @@ html {
   padding-right: 5px;
 }
 
-#kocyehpbnl .gt_stub_row_group {
+#xnoreevxwe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -582,11 +579,11 @@ html {
   vertical-align: top;
 }
 
-#kocyehpbnl .gt_row_group_first td {
+#xnoreevxwe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kocyehpbnl .gt_summary_row {
+#xnoreevxwe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -596,16 +593,16 @@ html {
   padding-right: 5px;
 }
 
-#kocyehpbnl .gt_first_summary_row {
+#xnoreevxwe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_first_summary_row.thick {
+#xnoreevxwe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kocyehpbnl .gt_last_summary_row {
+#xnoreevxwe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -615,7 +612,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_grand_summary_row {
+#xnoreevxwe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -625,7 +622,7 @@ html {
   padding-right: 5px;
 }
 
-#kocyehpbnl .gt_first_grand_summary_row {
+#xnoreevxwe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -635,11 +632,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_striped {
+#xnoreevxwe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kocyehpbnl .gt_table_body {
+#xnoreevxwe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -648,7 +645,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_footnotes {
+#xnoreevxwe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -662,7 +659,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_footnote {
+#xnoreevxwe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 12px;
@@ -671,7 +668,7 @@ html {
   padding-right: 5px;
 }
 
-#kocyehpbnl .gt_sourcenotes {
+#xnoreevxwe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -685,7 +682,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#kocyehpbnl .gt_sourcenote {
+#xnoreevxwe .gt_sourcenote {
   font-size: 12px;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -693,87 +690,80 @@ html {
   padding-right: 5px;
 }
 
-#kocyehpbnl .gt_left {
+#xnoreevxwe .gt_left {
   text-align: left;
 }
 
-#kocyehpbnl .gt_center {
+#xnoreevxwe .gt_center {
   text-align: center;
 }
 
-#kocyehpbnl .gt_right {
+#xnoreevxwe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kocyehpbnl .gt_font_normal {
+#xnoreevxwe .gt_font_normal {
   font-weight: normal;
 }
 
-#kocyehpbnl .gt_font_bold {
+#xnoreevxwe .gt_font_bold {
   font-weight: bold;
 }
 
-#kocyehpbnl .gt_font_italic {
+#xnoreevxwe .gt_font_italic {
   font-style: italic;
 }
 
-#kocyehpbnl .gt_super {
+#xnoreevxwe .gt_super {
   font-size: 65%;
 }
 
-#kocyehpbnl .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#kocyehpbnl .gt_footnote_marks {
+#xnoreevxwe .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#kocyehpbnl .gt_asterisk {
+#xnoreevxwe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kocyehpbnl .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#xnoreevxwe .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#kocyehpbnl .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#xnoreevxwe .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#kocyehpbnl .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#xnoreevxwe .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xnoreevxwe .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xnoreevxwe .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
 <table class="table gt_table">
 <thead class="gt_header"><tr>
-<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Passing Summary</th>
+<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>Passing Summary</td>
     </tr></thead>
 <thead class="gt_col_headings"><tr>
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Player</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">C</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Att</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Yds</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">TDs</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">INTs</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">YPA</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Player</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">C</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Att</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">Yds</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">TDs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">INTs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col">YPA</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row">
@@ -845,23 +835,23 @@ html {
 <strong>College Football Mapping for Stats Categories</strong><a class="anchor" aria-label="anchor" href="#college-football-mapping-for-stats-categories"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## ── Stat categories for CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 1.9.0</span> ──</span></code></pre>
-<pre><code><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-15 19:53:20 UTC</span></span></code></pre>
-<pre><code><span class="co">## <span style="color: #949494;"># A tibble: 38 × 1</span></span>
-<span class="co">##    category          </span>
-<span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">## <span style="color: #BCBCBC;"> 1</span> completionAttempts</span>
-<span class="co">## <span style="color: #BCBCBC;"> 2</span> defensiveTDs      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 3</span> extraPoints       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 4</span> fieldGoalPct      </span>
-<span class="co">## <span style="color: #BCBCBC;"> 5</span> fieldGoals        </span>
-<span class="co">## <span style="color: #BCBCBC;"> 6</span> firstDowns        </span>
-<span class="co">## <span style="color: #BCBCBC;"> 7</span> fourthDownEff     </span>
-<span class="co">## <span style="color: #BCBCBC;"> 8</span> fumblesLost       </span>
-<span class="co">## <span style="color: #BCBCBC;"> 9</span> fumblesRecovered  </span>
-<span class="co">## <span style="color: #BCBCBC;">10</span> interceptions     </span>
-<span class="co">## <span style="color: #949494;"># … with 28 more rows</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Stat categories for CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:10:39 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 38 × 1</span></span></span>
+<span><span class="co">##    category          </span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> completionAttempts</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> defensiveTDs      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> extraPoints       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> fieldGoalPct      </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> fieldGoals        </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> firstDowns        </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> fourthDownEff     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> fumblesLost       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> fumblesRecovered  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> interceptions     </span></span>
+<span><span class="co">## <span style="color: #949494;"># … with 28 more rows</span></span></span></code></pre>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -877,7 +867,7 @@ html {
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
