@@ -27,7 +27,7 @@ pacman::p_load(tidyverse, zoo, ggimage, cfbfastR)
 Using the [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html) method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in `r cfbfastR:::most_recent_cfb_season()`. This method only takes about 30 seconds.
 
 ```{r load_cfb_pbp_most_recent, message=FALSE, warning=FALSE}
-yr <- cfbfastR:::most_recent_cfb_season()
+yr <- cfbfastR:::most_recent_cfb_season()-1
 pbp <- cfbfastR::load_cfb_pbp(yr)
 
 ```
@@ -37,7 +37,7 @@ pbp <- cfbfastR::load_cfb_pbp(yr)
 We can use the ```cfbd_team_info()``` function to pull information about each FBS school including their logo, color, and abbreviation.  We're going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.
 
 ```{r cfbd_teams_info}
-team_info = cfbfastR::cfbd_team_info(year = yr)
+team_info = cfbfastR::cfbd_team_info(year = yr, only_fbs = FALSE)
 
 team_colors_logos = team_info %>% 
   select(school, abbreviation, color, logo, alt_color) %>%
