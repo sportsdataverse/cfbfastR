@@ -1411,7 +1411,7 @@ cfbd_game_records <- function(year,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_game_team_stats(2019, team = "LSU"))
+#'   try(cfbd_game_team_stats(2022, team = "LSU"))
 #'
 #'   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #' }

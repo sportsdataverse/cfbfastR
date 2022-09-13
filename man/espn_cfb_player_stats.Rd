@@ -18,27 +18,45 @@ espn_cfb_player_stats(athlete_id, year, season_type = "regular", total = FALSE)
 \value{
 Returns a tibble with the following columns:\tabular{ll}{
    col_name \tab types \cr
-   team_id \tab character \cr
-   team_guid \tab character \cr
-   team_uid \tab character \cr
-   team_sdr \tab character \cr
-   team_slug \tab character \cr
-   team_location \tab character \cr
-   team_name \tab character \cr
-   team_nickname \tab character \cr
-   team_abbreviation \tab character \cr
-   team_display_name \tab character \cr
-   team_short_display_name \tab character \cr
-   team_color \tab character \cr
-   team_alternate_color \tab character \cr
-   is_active \tab logical \cr
-   is_all_star \tab logical \cr
-   logo_href \tab character \cr
-   logo_dark_href \tab character \cr
+   athlete_id \tab character \cr
+   athlete_uid \tab character \cr
+   athlete_guid \tab character \cr
+   athlete_type \tab character \cr
+   sdr \tab character \cr
+   first_name \tab character \cr
+   last_name \tab character \cr
+   full_name \tab character \cr
+   display_name \tab character \cr
+   short_name \tab character \cr
+   weight \tab numeric \cr
+   display_weight \tab character \cr
+   height \tab numeric \cr
+   display_height \tab character \cr
+   age \tab integer \cr
+   date_of_birth \tab character \cr
+   birth_place_city \tab character \cr
+   birth_place_state \tab character \cr
+   birth_place_country \tab character \cr
+   slug \tab character \cr
+   jersey \tab character \cr
+   position_id \tab character \cr
+   position_name \tab character \cr
+   position_display_name \tab character \cr
+   position_abbreviation \tab character \cr
+   position_leaf \tab logical \cr
+   linked \tab logical \cr
+   experience_years \tab integer \cr
+   experience_display_value \tab character \cr
+   experience_abbreviation \tab character \cr
+   active \tab logical \cr
+   status_id \tab character \cr
+   status_name \tab character \cr
+   status_type \tab character \cr
+   status_abbreviation \tab character \cr
+   headshot_href \tab character \cr
+   headshot_alt \tab character \cr
    general_fumbles \tab numeric \cr
    general_fumbles_lost \tab numeric \cr
-   general_fumbles_forced \tab numeric \cr
-   general_fumbles_recovered \tab numeric \cr
    general_fumbles_touchdowns \tab numeric \cr
    general_games_played \tab numeric \cr
    general_offensive_two_pt_returns \tab numeric \cr
@@ -51,7 +69,6 @@ Returns a tibble with the following columns:\tabular{ll}{
    passing_interception_pct \tab numeric \cr
    passing_interceptions \tab numeric \cr
    passing_long_passing \tab numeric \cr
-   passing_misc_yards \tab numeric \cr
    passing_net_passing_yards \tab numeric \cr
    passing_net_passing_yards_per_game \tab numeric \cr
    passing_net_total_yards \tab numeric \cr
@@ -72,7 +89,6 @@ Returns a tibble with the following columns:\tabular{ll}{
    passing_sack_yards_lost \tab numeric \cr
    passing_team_games_played \tab numeric \cr
    passing_total_offensive_plays \tab numeric \cr
-   passing_total_points \tab numeric \cr
    passing_total_points_per_game \tab numeric \cr
    passing_total_touchdowns \tab numeric \cr
    passing_total_yards \tab numeric \cr
@@ -85,11 +101,12 @@ Returns a tibble with the following columns:\tabular{ll}{
    passing_yards_per_game \tab numeric \cr
    passing_yards_per_pass_attempt \tab numeric \cr
    passing_net_yards_per_pass_attempt \tab numeric \cr
+   passing_qbr \tab numeric \cr
+   passing_adj_qbr \tab numeric \cr
    passing_quarterback_rating \tab numeric \cr
    rushing_avg_gain \tab numeric \cr
    rushing_espnrb_rating \tab numeric \cr
    rushing_long_rushing \tab numeric \cr
-   rushing_misc_yards \tab numeric \cr
    rushing_net_total_yards \tab numeric \cr
    rushing_net_yards_per_game \tab numeric \cr
    rushing_rushing_attempts \tab numeric \cr
@@ -104,7 +121,6 @@ Returns a tibble with the following columns:\tabular{ll}{
    rushing_stuff_yards_lost \tab numeric \cr
    rushing_team_games_played \tab numeric \cr
    rushing_total_offensive_plays \tab numeric \cr
-   rushing_total_points \tab numeric \cr
    rushing_total_points_per_game \tab numeric \cr
    rushing_total_touchdowns \tab numeric \cr
    rushing_total_yards \tab numeric \cr
@@ -118,7 +134,6 @@ Returns a tibble with the following columns:\tabular{ll}{
    receiving_avg_gain \tab numeric \cr
    receiving_espnwr_rating \tab numeric \cr
    receiving_long_reception \tab numeric \cr
-   receiving_misc_yards \tab numeric \cr
    receiving_net_total_yards \tab numeric \cr
    receiving_net_yards_per_game \tab numeric \cr
    receiving_receiving_big_plays \tab numeric \cr
@@ -134,7 +149,6 @@ Returns a tibble with the following columns:\tabular{ll}{
    receiving_receptions \tab numeric \cr
    receiving_team_games_played \tab numeric \cr
    receiving_total_offensive_plays \tab numeric \cr
-   receiving_total_points \tab numeric \cr
    receiving_total_points_per_game \tab numeric \cr
    receiving_total_touchdowns \tab numeric \cr
    receiving_total_yards \tab numeric \cr
@@ -145,130 +159,6 @@ Returns a tibble with the following columns:\tabular{ll}{
    receiving_yards_from_scrimmage_per_game \tab numeric \cr
    receiving_yards_per_game \tab numeric \cr
    receiving_yards_per_reception \tab numeric \cr
-   defensive_assist_tackles \tab numeric \cr
-   defensive_avg_interception_yards \tab numeric \cr
-   defensive_avg_sack_yards \tab numeric \cr
-   defensive_avg_stuff_yards \tab numeric \cr
-   defensive_blocked_field_goal_touchdowns \tab numeric \cr
-   defensive_blocked_punt_touchdowns \tab numeric \cr
-   defensive_defensive_touchdowns \tab numeric \cr
-   defensive_hurries \tab numeric \cr
-   defensive_kicks_blocked \tab numeric \cr
-   defensive_long_interception \tab numeric \cr
-   defensive_misc_touchdowns \tab numeric \cr
-   defensive_passes_batted_down \tab numeric \cr
-   defensive_passes_defended \tab numeric \cr
-   defensive_two_pt_returns \tab numeric \cr
-   defensive_sacks \tab numeric \cr
-   defensive_sack_yards \tab numeric \cr
-   defensive_safeties \tab numeric \cr
-   defensive_solo_tackles \tab numeric \cr
-   defensive_stuffs \tab numeric \cr
-   defensive_stuff_yards \tab numeric \cr
-   defensive_tackles_for_loss \tab numeric \cr
-   defensive_team_games_played \tab numeric \cr
-   defensive_total_tackles \tab numeric \cr
-   defensive_yards_allowed \tab numeric \cr
-   defensive_points_allowed \tab numeric \cr
-   defensive_one_pt_safeties_made \tab numeric \cr
-   defensive_interceptions_interceptions \tab numeric \cr
-   defensive_interceptions_interception_touchdowns \tab numeric \cr
-   defensive_interceptions_interception_yards \tab numeric \cr
-   kicking_avg_kickoff_return_yards \tab numeric \cr
-   kicking_avg_kickoff_yards \tab numeric \cr
-   kicking_extra_point_attempts \tab numeric \cr
-   kicking_extra_point_pct \tab numeric \cr
-   kicking_extra_points_blocked \tab numeric \cr
-   kicking_extra_points_blocked_pct \tab numeric \cr
-   kicking_extra_points_made \tab numeric \cr
-   kicking_fair_catches \tab numeric \cr
-   kicking_fair_catch_pct \tab numeric \cr
-   kicking_field_goal_attempts \tab numeric \cr
-   kicking_field_goal_attempts1_19 \tab numeric \cr
-   kicking_field_goal_attempts20_29 \tab numeric \cr
-   kicking_field_goal_attempts30_39 \tab numeric \cr
-   kicking_field_goal_attempts40_49 \tab numeric \cr
-   kicking_field_goal_attempts50_59 \tab numeric \cr
-   kicking_field_goal_attempts60_99 \tab numeric \cr
-   kicking_field_goal_attempts50 \tab numeric \cr
-   kicking_field_goal_attempt_yards \tab numeric \cr
-   kicking_field_goal_pct \tab numeric \cr
-   kicking_field_goals_blocked \tab numeric \cr
-   kicking_field_goals_blocked_pct \tab numeric \cr
-   kicking_field_goals_made \tab numeric \cr
-   kicking_field_goals_made1_19 \tab numeric \cr
-   kicking_field_goals_made20_29 \tab numeric \cr
-   kicking_field_goals_made30_39 \tab numeric \cr
-   kicking_field_goals_made40_49 \tab numeric \cr
-   kicking_field_goals_made50_59 \tab numeric \cr
-   kicking_field_goals_made60_99 \tab numeric \cr
-   kicking_field_goals_made50 \tab numeric \cr
-   kicking_field_goals_made_yards \tab numeric \cr
-   kicking_field_goals_missed_yards \tab numeric \cr
-   kicking_kickoff_returns \tab numeric \cr
-   kicking_kickoff_return_touchdowns \tab numeric \cr
-   kicking_kickoff_return_yards \tab numeric \cr
-   kicking_kickoffs \tab numeric \cr
-   kicking_kickoff_yards \tab numeric \cr
-   kicking_long_field_goal_attempt \tab numeric \cr
-   kicking_long_field_goal_made \tab numeric \cr
-   kicking_long_kickoff \tab numeric \cr
-   kicking_team_games_played \tab numeric \cr
-   kicking_total_kicking_points \tab numeric \cr
-   kicking_touchback_pct \tab numeric \cr
-   kicking_touchbacks \tab numeric \cr
-   returning_def_fumble_returns \tab numeric \cr
-   returning_def_fumble_return_yards \tab numeric \cr
-   returning_fumble_recoveries \tab numeric \cr
-   returning_fumble_recovery_yards \tab numeric \cr
-   returning_kick_return_fair_catches \tab numeric \cr
-   returning_kick_return_fair_catch_pct \tab numeric \cr
-   returning_kick_return_fumbles \tab numeric \cr
-   returning_kick_return_fumbles_lost \tab numeric \cr
-   returning_kick_returns \tab numeric \cr
-   returning_kick_return_touchdowns \tab numeric \cr
-   returning_kick_return_yards \tab numeric \cr
-   returning_long_kick_return \tab numeric \cr
-   returning_long_punt_return \tab numeric \cr
-   returning_misc_fumble_returns \tab numeric \cr
-   returning_misc_fumble_return_yards \tab numeric \cr
-   returning_opp_fumble_recoveries \tab numeric \cr
-   returning_opp_fumble_recovery_yards \tab numeric \cr
-   returning_opp_special_team_fumble_returns \tab numeric \cr
-   returning_opp_special_team_fumble_return_yards \tab numeric \cr
-   returning_punt_return_fair_catches \tab numeric \cr
-   returning_punt_return_fair_catch_pct \tab numeric \cr
-   returning_punt_return_fumbles \tab numeric \cr
-   returning_punt_return_fumbles_lost \tab numeric \cr
-   returning_punt_returns \tab numeric \cr
-   returning_punt_returns_started_inside_the10 \tab numeric \cr
-   returning_punt_returns_started_inside_the20 \tab numeric \cr
-   returning_punt_return_touchdowns \tab numeric \cr
-   returning_punt_return_yards \tab numeric \cr
-   returning_special_team_fumble_returns \tab numeric \cr
-   returning_special_team_fumble_return_yards \tab numeric \cr
-   returning_team_games_played \tab numeric \cr
-   returning_yards_per_kick_return \tab numeric \cr
-   returning_yards_per_punt_return \tab numeric \cr
-   returning_yards_per_return \tab numeric \cr
-   punting_avg_punt_return_yards \tab numeric \cr
-   punting_fair_catches \tab numeric \cr
-   punting_gross_avg_punt_yards \tab numeric \cr
-   punting_long_punt \tab numeric \cr
-   punting_net_avg_punt_yards \tab numeric \cr
-   punting_punt_returns \tab numeric \cr
-   punting_punt_return_yards \tab numeric \cr
-   punting_punts \tab numeric \cr
-   punting_punts_blocked \tab numeric \cr
-   punting_punts_blocked_pct \tab numeric \cr
-   punting_punts_inside10 \tab numeric \cr
-   punting_punts_inside10pct \tab numeric \cr
-   punting_punts_inside20 \tab numeric \cr
-   punting_punts_inside20pct \tab numeric \cr
-   punting_punt_yards \tab numeric \cr
-   punting_team_games_played \tab numeric \cr
-   punting_touchback_pct \tab numeric \cr
-   punting_touchbacks \tab numeric \cr
    scoring_defensive_points \tab numeric \cr
    scoring_field_goals \tab numeric \cr
    scoring_kick_extra_points \tab numeric \cr
@@ -285,29 +175,178 @@ Returns a tibble with the following columns:\tabular{ll}{
    scoring_two_point_rec_convs \tab numeric \cr
    scoring_two_point_rush_convs \tab numeric \cr
    scoring_one_pt_safeties_made \tab numeric \cr
-   miscellaneous_first_downs \tab numeric \cr
-   miscellaneous_first_downs_passing \tab numeric \cr
-   miscellaneous_first_downs_penalty \tab numeric \cr
-   miscellaneous_first_downs_per_game \tab numeric \cr
-   miscellaneous_first_downs_rushing \tab numeric \cr
-   miscellaneous_fourth_down_attempts \tab numeric \cr
-   miscellaneous_fourth_down_conv_pct \tab numeric \cr
-   miscellaneous_fourth_down_convs \tab numeric \cr
-   miscellaneous_fumbles_lost \tab numeric \cr
-   miscellaneous_possession_time_seconds \tab numeric \cr
-   miscellaneous_redzone_efficiency_pct \tab numeric \cr
-   miscellaneous_redzone_field_goal_pct \tab numeric \cr
-   miscellaneous_redzone_scoring_pct \tab numeric \cr
-   miscellaneous_redzone_touchdown_pct \tab numeric \cr
-   miscellaneous_third_down_attempts \tab numeric \cr
-   miscellaneous_third_down_conv_pct \tab numeric \cr
-   miscellaneous_third_down_convs \tab numeric \cr
-   miscellaneous_total_giveaways \tab numeric \cr
-   miscellaneous_total_penalties \tab numeric \cr
-   miscellaneous_total_penalty_yards \tab numeric \cr
-   miscellaneous_total_takeaways \tab numeric \cr
-   miscellaneous_total_drives \tab numeric \cr
-   miscellaneous_turn_over_differential \tab numeric \cr
+   general_fumbles_forced \tab logical \cr
+   general_fumbles_recovered \tab logical \cr
+   passing_misc_yards \tab logical \cr
+   passing_total_points \tab logical \cr
+   rushing_misc_yards \tab logical \cr
+   rushing_total_points \tab logical \cr
+   receiving_misc_yards \tab logical \cr
+   receiving_total_points \tab logical \cr
+   defensive_assist_tackles \tab logical \cr
+   defensive_avg_interception_yards \tab logical \cr
+   defensive_avg_sack_yards \tab logical \cr
+   defensive_avg_stuff_yards \tab logical \cr
+   defensive_blocked_field_goal_touchdowns \tab logical \cr
+   defensive_blocked_punt_touchdowns \tab logical \cr
+   defensive_defensive_touchdowns \tab logical \cr
+   defensive_hurries \tab logical \cr
+   defensive_kicks_blocked \tab logical \cr
+   defensive_long_interception \tab logical \cr
+   defensive_misc_touchdowns \tab logical \cr
+   defensive_passes_batted_down \tab logical \cr
+   defensive_passes_defended \tab logical \cr
+   defensive_two_pt_returns \tab logical \cr
+   defensive_sacks \tab logical \cr
+   defensive_sack_yards \tab logical \cr
+   defensive_safeties \tab logical \cr
+   defensive_solo_tackles \tab logical \cr
+   defensive_stuffs \tab logical \cr
+   defensive_stuff_yards \tab logical \cr
+   defensive_tackles_for_loss \tab logical \cr
+   defensive_team_games_played \tab logical \cr
+   defensive_total_tackles \tab logical \cr
+   defensive_yards_allowed \tab logical \cr
+   defensive_points_allowed \tab logical \cr
+   defensive_one_pt_safeties_made \tab logical \cr
+   defensive_interceptions_interceptions \tab logical \cr
+   defensive_interceptions_interception_touchdowns \tab logical \cr
+   defensive_interceptions_interception_yards \tab logical \cr
+   kicking_avg_kickoff_return_yards \tab logical \cr
+   kicking_avg_kickoff_yards \tab logical \cr
+   kicking_extra_point_attempts \tab logical \cr
+   kicking_extra_point_pct \tab logical \cr
+   kicking_extra_points_blocked \tab logical \cr
+   kicking_extra_points_blocked_pct \tab logical \cr
+   kicking_extra_points_made \tab logical \cr
+   kicking_fair_catches \tab logical \cr
+   kicking_fair_catch_pct \tab logical \cr
+   kicking_field_goal_attempts \tab logical \cr
+   kicking_field_goal_attempts1_19 \tab logical \cr
+   kicking_field_goal_attempts20_29 \tab logical \cr
+   kicking_field_goal_attempts30_39 \tab logical \cr
+   kicking_field_goal_attempts40_49 \tab logical \cr
+   kicking_field_goal_attempts50_59 \tab logical \cr
+   kicking_field_goal_attempts60_99 \tab logical \cr
+   kicking_field_goal_attempts50 \tab logical \cr
+   kicking_field_goal_attempt_yards \tab logical \cr
+   kicking_field_goal_pct \tab logical \cr
+   kicking_field_goals_blocked \tab logical \cr
+   kicking_field_goals_blocked_pct \tab logical \cr
+   kicking_field_goals_made \tab logical \cr
+   kicking_field_goals_made1_19 \tab logical \cr
+   kicking_field_goals_made20_29 \tab logical \cr
+   kicking_field_goals_made30_39 \tab logical \cr
+   kicking_field_goals_made40_49 \tab logical \cr
+   kicking_field_goals_made50_59 \tab logical \cr
+   kicking_field_goals_made60_99 \tab logical \cr
+   kicking_field_goals_made50 \tab logical \cr
+   kicking_field_goals_made_yards \tab logical \cr
+   kicking_field_goals_missed_yards \tab logical \cr
+   kicking_kickoff_returns \tab logical \cr
+   kicking_kickoff_return_touchdowns \tab logical \cr
+   kicking_kickoff_return_yards \tab logical \cr
+   kicking_kickoffs \tab logical \cr
+   kicking_kickoff_yards \tab logical \cr
+   kicking_long_field_goal_attempt \tab logical \cr
+   kicking_long_field_goal_made \tab logical \cr
+   kicking_long_kickoff \tab logical \cr
+   kicking_team_games_played \tab logical \cr
+   kicking_total_kicking_points \tab logical \cr
+   kicking_touchback_pct \tab logical \cr
+   kicking_touchbacks \tab logical \cr
+   returning_def_fumble_returns \tab logical \cr
+   returning_def_fumble_return_yards \tab logical \cr
+   returning_fumble_recoveries \tab logical \cr
+   returning_fumble_recovery_yards \tab logical \cr
+   returning_kick_return_fair_catches \tab logical \cr
+   returning_kick_return_fair_catch_pct \tab logical \cr
+   returning_kick_return_fumbles \tab logical \cr
+   returning_kick_return_fumbles_lost \tab logical \cr
+   returning_kick_returns \tab logical \cr
+   returning_kick_return_touchdowns \tab logical \cr
+   returning_kick_return_yards \tab logical \cr
+   returning_long_kick_return \tab logical \cr
+   returning_long_punt_return \tab logical \cr
+   returning_misc_fumble_returns \tab logical \cr
+   returning_misc_fumble_return_yards \tab logical \cr
+   returning_opp_fumble_recoveries \tab logical \cr
+   returning_opp_fumble_recovery_yards \tab logical \cr
+   returning_opp_special_team_fumble_returns \tab logical \cr
+   returning_opp_special_team_fumble_return_yards \tab logical \cr
+   returning_punt_return_fair_catches \tab logical \cr
+   returning_punt_return_fair_catch_pct \tab logical \cr
+   returning_punt_return_fumbles \tab logical \cr
+   returning_punt_return_fumbles_lost \tab logical \cr
+   returning_punt_returns \tab logical \cr
+   returning_punt_returns_started_inside_the10 \tab logical \cr
+   returning_punt_returns_started_inside_the20 \tab logical \cr
+   returning_punt_return_touchdowns \tab logical \cr
+   returning_punt_return_yards \tab logical \cr
+   returning_special_team_fumble_returns \tab logical \cr
+   returning_special_team_fumble_return_yards \tab logical \cr
+   returning_team_games_played \tab logical \cr
+   returning_yards_per_kick_return \tab logical \cr
+   returning_yards_per_punt_return \tab logical \cr
+   returning_yards_per_return \tab logical \cr
+   punting_avg_punt_return_yards \tab logical \cr
+   punting_fair_catches \tab logical \cr
+   punting_gross_avg_punt_yards \tab logical \cr
+   punting_long_punt \tab logical \cr
+   punting_net_avg_punt_yards \tab logical \cr
+   punting_punt_returns \tab logical \cr
+   punting_punt_return_yards \tab logical \cr
+   punting_punts \tab logical \cr
+   punting_punts_blocked \tab logical \cr
+   punting_punts_blocked_pct \tab logical \cr
+   punting_punts_inside10 \tab logical \cr
+   punting_punts_inside10pct \tab logical \cr
+   punting_punts_inside20 \tab logical \cr
+   punting_punts_inside20pct \tab logical \cr
+   punting_punt_yards \tab logical \cr
+   punting_team_games_played \tab logical \cr
+   punting_touchback_pct \tab logical \cr
+   punting_touchbacks \tab logical \cr
+   miscellaneous_first_downs \tab logical \cr
+   miscellaneous_first_downs_passing \tab logical \cr
+   miscellaneous_first_downs_penalty \tab logical \cr
+   miscellaneous_first_downs_per_game \tab logical \cr
+   miscellaneous_first_downs_rushing \tab logical \cr
+   miscellaneous_fourth_down_attempts \tab logical \cr
+   miscellaneous_fourth_down_conv_pct \tab logical \cr
+   miscellaneous_fourth_down_convs \tab logical \cr
+   miscellaneous_fumbles_lost \tab logical \cr
+   miscellaneous_possession_time_seconds \tab logical \cr
+   miscellaneous_redzone_efficiency_pct \tab logical \cr
+   miscellaneous_redzone_field_goal_pct \tab logical \cr
+   miscellaneous_redzone_scoring_pct \tab logical \cr
+   miscellaneous_redzone_touchdown_pct \tab logical \cr
+   miscellaneous_third_down_attempts \tab logical \cr
+   miscellaneous_third_down_conv_pct \tab logical \cr
+   miscellaneous_third_down_convs \tab logical \cr
+   miscellaneous_total_giveaways \tab logical \cr
+   miscellaneous_total_penalties \tab logical \cr
+   miscellaneous_total_penalty_yards \tab logical \cr
+   miscellaneous_total_takeaways \tab logical \cr
+   miscellaneous_total_drives \tab logical \cr
+   miscellaneous_turn_over_differential \tab logical \cr
+   team_id \tab character \cr
+   team_guid \tab character \cr
+   team_uid \tab character \cr
+   team_sdr \tab character \cr
+   team_slug \tab character \cr
+   team_location \tab character \cr
+   team_name \tab character \cr
+   team_nickname \tab character \cr
+   team_abbreviation \tab character \cr
+   team_display_name \tab character \cr
+   team_short_display_name \tab character \cr
+   team_color \tab character \cr
+   team_alternate_color \tab character \cr
+   is_active \tab logical \cr
+   is_all_star \tab logical \cr
+   logo_href \tab character \cr
+   logo_dark_href \tab character \cr
 }
 }
 \description{
@@ -316,6 +355,7 @@ Returns a tibble with the following columns:\tabular{ll}{
 \examples{
 \donttest{
   try(espn_cfb_player_stats(athlete_id = 530308, year = 2013))
+  try(espn_cfb_player_stats(athlete_id = 4360799, year = 2022))
 }
 
 }
