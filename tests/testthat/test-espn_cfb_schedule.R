@@ -42,6 +42,7 @@ test_that("ESPN CFB Schedule", {
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),
       -dplyr::any_of(dplyr::starts_with("receiving")),
+      -dplyr::any_of(c("notes"))
     )
 
   y <- espn_cfb_schedule(2021, week = 8) %>%

@@ -42,6 +42,7 @@ test_that("ESPN CFB Scoreboard", {
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),
       -dplyr::any_of(dplyr::starts_with("receiving")),
+      -dplyr::any_of(c("notes"))
     )
 
   y <- espn_cfb_scoreboard(date=20210101) %>%
@@ -50,6 +51,7 @@ test_that("ESPN CFB Scoreboard", {
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),
       -dplyr::any_of(dplyr::starts_with("receiving")),
+      -dplyr::any_of(c("notes"))
     )
 
   expect_equal(sort(colnames(x)), sort(cols))

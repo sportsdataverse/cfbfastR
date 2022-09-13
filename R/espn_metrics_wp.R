@@ -28,7 +28,7 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_metrics_wp(game_id = 401114164))
+#'   try(espn_metrics_wp(game_id = 401012356))
 #' }
 #'
 espn_metrics_wp <- function(game_id) {
