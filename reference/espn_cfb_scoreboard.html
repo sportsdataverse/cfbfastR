@@ -14,7 +14,7 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -402,34 +402,34 @@ shared variables</p><dl><dt><code>matchup</code>: character.</dt>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ──────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:08:07 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 54</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ──────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-13 05:57:18 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 72 × 55</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup    match…¹ season type  slug  game_id game_…² game_…³ atten…⁴ home_…⁵</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Utah Utes… UTAH @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Gators </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Albany Gr… ALB @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401424… s:20~l… 2022-0…       0 Bears  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Illinois … ILST @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401405… s:20~l… 2022-0…       0 Badgers</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Miami (OH… M-OH @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Wildca…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Mercer Be… MER @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Tigers </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Elon Phoe… ELON @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Commod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> South Dak… SDAK @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Wildca…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Army Blac… ARMY @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Chanti…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Liberty F… LIB @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Golden…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> UMass Min… MASS @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401414… s:20~l… 2022-0…       0 Green …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 84 more rows, 44 more variables: home_team_logo &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Florida S… FSU @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401411… s:20~l… 2022-0…       0 Cardin…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Air Force… AFA @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401415… s:20~l… 2022-0…       0 Cowboys</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Wofford T… WOF @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401411… s:20~l… 2022-0…       0 Hokies </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Georgia B… UGA @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Gameco…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> UConn Hus… CONN @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Wolver…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Oklahoma … OU @ N…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Cornhu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Youngstow… YSU @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Wildca…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Texas Sta… TXST @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Bears  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Abilene C… ACU @ …   <span style="text-decoration: underline;">2</span>022 regu… regu… 401403… s:20~l… 2022-0…       0 Tigers </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Villanova… VILL @…   <span style="text-decoration: underline;">2</span>022 regu… regu… 401404… s:20~l… 2022-0…       0 Black …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 62 more rows, 45 more variables: home_team_logo &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_full &lt;chr&gt;, home_team_color &lt;chr&gt;, home_score &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_win &lt;int&gt;, home_record &lt;chr&gt;, away_team_name &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_logo &lt;chr&gt;, away_team_abb &lt;chr&gt;, away_team_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_team_location &lt;chr&gt;, away_team_full &lt;chr&gt;, away_team_color &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_score &lt;int&gt;, away_win &lt;int&gt;, away_record &lt;chr&gt;, status_name &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   away_score &lt;int&gt;, away_win &lt;int&gt;, away_record &lt;chr&gt;, notes &lt;lgl&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_schedule</span><span class="op">(</span><span class="fl">2021</span>, week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ─────────────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:08:07 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ─────────────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-13 05:57:18 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 55</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup    match…¹ season type  slug  game_id game_…² game_…³ atten…⁴ home_…⁵</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>

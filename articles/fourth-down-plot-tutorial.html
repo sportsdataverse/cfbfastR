@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,7 +240,7 @@
 <span>  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 43.305 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 47.425 sec elapsed</span></span></code></pre>
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="va">seasons</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_coaches.html">cfbd_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span></span></code></pre></div>

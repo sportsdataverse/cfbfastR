@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -235,145 +235,51 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p><code>cfbd_game_player_stats()</code> - A data frame with 32 variables:</p><dl><dt><code>game_id</code>: integer.</dt>
-<dd><p>Referencing game id.</p></dd>
-
-<dt><code>team</code>: character.</dt>
-<dd><p>Team name.</p></dd>
-
-<dt><code>conference</code>: character.</dt>
-<dd><p>Conference of the team.</p></dd>
-
-<dt><code>home_away</code>: character.</dt>
-<dd><p>Flag for if the team was the home or away team.</p></dd>
-
-<dt><code>points</code>: integer.</dt>
-<dd><p>Team points.</p></dd>
-
-<dt><code>category</code>: character.</dt>
-<dd><p>Statistic category.</p></dd>
-
-<dt><code>athlete_id</code>: character.</dt>
-<dd><p>Athlete referencing id.</p></dd>
-
-<dt><code>name</code>: character.</dt>
-<dd><p>Player name.</p></dd>
-
-<dt><code>c_att</code>: character.</dt>
-<dd><p>Completions - Pass attempts.</p></dd>
-
-<dt><code>yds</code>: double.</dt>
-<dd><p>Statistic yardage.</p></dd>
-
-<dt><code>avg</code>: double.</dt>
-<dd><p>Average per statistic.</p></dd>
-
-<dt><code>td</code>: double.</dt>
-<dd><p>Touchdowns scored.</p></dd>
-
-<dt><code>int</code>: double.</dt>
-<dd><p>Interceptions thrown.</p></dd>
-
-<dt><code>qbr</code>: double.</dt>
-<dd><p>Quarterback rating.</p></dd>
-
-<dt><code>car</code>: double.</dt>
-<dd><p>Number of rushing carries.</p></dd>
-
-<dt><code>long</code>: double.</dt>
-<dd><p>Longest carry/reception of the game.</p></dd>
-
-<dt><code>rec</code>: double.</dt>
-<dd><p>Number of pass receptions.</p></dd>
-
-<dt><code>no</code>: double.</dt>
-<dd><p>Player number.</p></dd>
-
-<dt><code>fg</code>: character.</dt>
-<dd><p>Field goal attempts in the game.</p></dd>
-
-<dt><code>pct</code>: double.</dt>
-<dd><p>Field goal percentage in the game.</p></dd>
-
-<dt><code>xp</code>: character.</dt>
-<dd><p>Extra points kicked in the game.</p></dd>
-
-<dt><code>pts</code>: double.</dt>
-<dd><p>Total kicking points in the game.</p></dd>
-
-<dt><code>tb</code>: double.</dt>
-<dd><p>Touchbacks (for kicking) in the game.</p></dd>
-
-<dt><code>in_20</code>: double.</dt>
-<dd><p>Punts inside the 20 yardline in the game.</p></dd>
-
-<dt><code>fum</code>: double.</dt>
-<dd><p>Player fumbles in the game.</p></dd>
-
-<dt><code>lost</code>: double.</dt>
-<dd><p>Player fumbles lost in the game.</p></dd>
-
-<dt><code>tot</code>: double.</dt>
-<dd><p>Total tackles in the game.</p></dd>
-
-<dt><code>solo</code>: double.</dt>
-<dd><p>Solo tackles in the game.</p></dd>
-
-<dt><code>sacks</code>: double.</dt>
-<dd><p>Total sacks in the game.</p></dd>
-
-<dt><code>tfl</code>: double.</dt>
-<dd><p>Total tackles for loss in the game.</p></dd>
-
-<dt><code>pd</code>: double.</dt>
-<dd><p>Total passes defensed in the game.</p></dd>
-
-<dt><code>qb_hur</code>: double.</dt>
-<dd><p>Total quarterback hurries in the game.</p></dd>
-
-
-</dl></div>
+<p><code>cfbd_game_player_stats()</code> - A data frame with 32 variables:</p><table class="table table"><tr><td>col_name</td><td>types</td></tr><tr><td>game_id</td><td>integer</td></tr><tr><td>team</td><td>character</td></tr><tr><td>conference</td><td>character</td></tr><tr><td>home_away</td><td>character</td></tr><tr><td>team_points</td><td>integer</td></tr><tr><td>athlete_id</td><td>integer</td></tr><tr><td>athlete_name</td><td>character</td></tr><tr><td>defensive_td</td><td>numeric</td></tr><tr><td>defensive_qb_hur</td><td>numeric</td></tr><tr><td>defensive_pd</td><td>numeric</td></tr><tr><td>defensive_tfl</td><td>numeric</td></tr><tr><td>defensive_sacks</td><td>numeric</td></tr><tr><td>defensive_solo</td><td>numeric</td></tr><tr><td>defensive_tot</td><td>numeric</td></tr><tr><td>fumbles_rec</td><td>numeric</td></tr><tr><td>fumbles_lost</td><td>numeric</td></tr><tr><td>fumbles_fum</td><td>numeric</td></tr><tr><td>punting_long</td><td>numeric</td></tr><tr><td>punting_in_20</td><td>numeric</td></tr><tr><td>punting_tb</td><td>numeric</td></tr><tr><td>punting_avg</td><td>numeric</td></tr><tr><td>punting_yds</td><td>numeric</td></tr><tr><td>punting_no</td><td>numeric</td></tr><tr><td>kicking_pts</td><td>numeric</td></tr><tr><td>kicking_long</td><td>numeric</td></tr><tr><td>kicking_pct</td><td>numeric</td></tr><tr><td>punt_returns_td</td><td>numeric</td></tr><tr><td>punt_returns_long</td><td>numeric</td></tr><tr><td>punt_returns_avg</td><td>numeric</td></tr><tr><td>punt_returns_yds</td><td>numeric</td></tr><tr><td>punt_returns_no</td><td>numeric</td></tr><tr><td>kick_returns_td</td><td>numeric</td></tr><tr><td>kick_returns_long</td><td>numeric</td></tr><tr><td>kick_returns_avg</td><td>numeric</td></tr><tr><td>kick_returns_yds</td><td>numeric</td></tr><tr><td>kick_returns_no</td><td>numeric</td></tr><tr><td>interceptions_td</td><td>numeric</td></tr><tr><td>interceptions_yds</td><td>numeric</td></tr><tr><td>interceptions_int</td><td>numeric</td></tr><tr><td>receiving_long</td><td>numeric</td></tr><tr><td>receiving_td</td><td>numeric</td></tr><tr><td>receiving_avg</td><td>numeric</td></tr><tr><td>receiving_yds</td><td>numeric</td></tr><tr><td>receiving_rec</td><td>numeric</td></tr><tr><td>rushing_long</td><td>numeric</td></tr><tr><td>rushing_td</td><td>numeric</td></tr><tr><td>rushing_avg</td><td>numeric</td></tr><tr><td>rushing_yds</td><td>numeric</td></tr><tr><td>rushing_car</td><td>numeric</td></tr><tr><td>passing_int</td><td>numeric</td></tr><tr><td>passing_td</td><td>numeric</td></tr><tr><td>passing_avg</td><td>numeric</td></tr><tr><td>passing_yds</td><td>numeric</td></tr><tr><td>passing_completions</td><td>numeric</td></tr><tr><td>passing_attempts</td><td>numeric</td></tr><tr><td>passing_qbr</td><td>numeric</td></tr><tr><td>kicking_xpm</td><td>numeric</td></tr><tr><td>kicking_xpa</td><td>numeric</td></tr><tr><td>kicking_fgm</td><td>numeric</td></tr><tr><td>kicking_fga</td><td>numeric</td></tr></table></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_player_stats</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span>, week <span class="op">=</span> <span class="fl">15</span>, team <span class="op">=</span> <span class="st">"Alabama"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:07:23 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 65 × 32</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      game_id team    confer…¹ home_…² points categ…³ athle…⁴ name  c_att  yds   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 defens… 4241478 DeVo… <span style="color: #949494;">&lt;NULL&gt;</span> <span style="color: #949494;">&lt;NULL&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 fumbles 4685723 Royd… <span style="color: #949494;">&lt;NULL&gt;</span> <span style="color: #949494;">&lt;NULL&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 fumbles 4567140 DJ D… <span style="color: #949494;">&lt;NULL&gt;</span> <span style="color: #949494;">&lt;NULL&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 fumbles 4567123 Byro… <span style="color: #949494;">&lt;NULL&gt;</span> <span style="color: #949494;">&lt;NULL&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 fumbles 4372025 Jayl… <span style="color: #949494;">&lt;NULL&gt;</span> <span style="color: #949494;">&lt;NULL&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 punting 4261098 Char… <span style="color: #949494;">&lt;NULL&gt;</span> &lt;chr&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 kicking 4567104 Will… <span style="color: #949494;">&lt;NULL&gt;</span> <span style="color: #949494;">&lt;NULL&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 puntRe… 4241478 DeVo… <span style="color: #949494;">&lt;NULL&gt;</span> &lt;chr&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 kickRe… 4241474 Bria… <span style="color: #949494;">&lt;NULL&gt;</span> &lt;chr&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401<span style="text-decoration: underline;">267</span>164 Alabama SEC      away        52 interc… 4692025 Bria… <span style="color: #949494;">&lt;NULL&gt;</span> &lt;chr&gt; </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 55 more rows, 22 more variables: avg &lt;list&gt;, td &lt;list&gt;, int &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   qbr &lt;lgl&gt;, car &lt;list&gt;, long &lt;list&gt;, rec &lt;list&gt;, no &lt;list&gt;, fg &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pct &lt;list&gt;, xp &lt;list&gt;, pts &lt;list&gt;, tb &lt;list&gt;, in_20 &lt;list&gt;, fum &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   lost &lt;list&gt;, tot &lt;list&gt;, solo &lt;list&gt;, sacks &lt;list&gt;, tfl &lt;list&gt;, pd &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   qb_hur &lt;list&gt;, and abbreviated variable names ¹​conference, ²​home_away,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​category, ⁴​athlete_id</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-13 05:56:35 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48 × 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    game_id team  confe…¹ home_…² team_…³ athle…⁴ athle…⁵ defen…⁶ defen…⁷ defen…⁸</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">241</span>478 DeVont…       1       0       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">685</span>723 Roydel…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">567</span>140 DJ Dale      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">567</span>123 Byron …      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">372</span>025 Jaylen…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">261</span>098 Charli…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">567</span>104 Will R…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">241</span>474 Brian …      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">692</span>025 Brian …      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>  4.01<span style="color: #949494;">e</span>8 Alab… SEC     away         52 4<span style="text-decoration: underline;">430</span>823 Thaiu …      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 38 more rows, 50 more variables: defensive_tfl &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   defensive_sacks &lt;dbl&gt;, defensive_solo &lt;dbl&gt;, defensive_tot &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fumbles_rec &lt;dbl&gt;, fumbles_lost &lt;dbl&gt;, fumbles_fum &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punting_long &lt;dbl&gt;, punting_in_20 &lt;dbl&gt;, punting_tb &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punting_avg &lt;dbl&gt;, punting_yds &lt;dbl&gt;, punting_no &lt;dbl&gt;, kicking_pts &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   kicking_long &lt;dbl&gt;, kicking_pct &lt;dbl&gt;, punt_returns_td &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punt_returns_long &lt;dbl&gt;, punt_returns_avg &lt;dbl&gt;, punt_returns_yds &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_player_stats</span><span class="op">(</span><span class="fl">2013</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.1</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-04 02:07:24 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 32</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     game_id team  confe…¹ home_…² points categ…³ athle…⁴ name  c_att yds   avg  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lis&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 332<span style="text-decoration: underline;">450</span>221 Flor… ACC     away        41 passing 530308  Jame… &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 332<span style="text-decoration: underline;">450</span>221 Flor… ACC     away        41 passing 514124  Jake… &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 332<span style="text-decoration: underline;">450</span>221 Pitt… ACC     home        13 passing 514116  Tom … &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 21 more variables: td &lt;list&gt;, int &lt;list&gt;, qbr &lt;list&gt;, car &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   long &lt;lgl&gt;, rec &lt;lgl&gt;, no &lt;lgl&gt;, fg &lt;lgl&gt;, pct &lt;lgl&gt;, xp &lt;lgl&gt;, pts &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tb &lt;lgl&gt;, in_20 &lt;lgl&gt;, fum &lt;lgl&gt;, lost &lt;lgl&gt;, tot &lt;lgl&gt;, solo &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sacks &lt;lgl&gt;, tfl &lt;lgl&gt;, pd &lt;lgl&gt;, qb_hur &lt;lgl&gt;, and abbreviated variable</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   names ¹​conference, ²​home_away, ³​category, ⁴​athlete_id</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-13 05:56:35 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 60</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    game_id team  confe…¹ home_…² team_…³ athle…⁴ athle…⁵ defen…⁶ defen…⁷ defen…⁸</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>   3.32<span style="color: #949494;">e</span>8 Flor… ACC     away         41  <span style="text-decoration: underline;">530</span>308 Jameis…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>   3.32<span style="color: #949494;">e</span>8 Flor… ACC     away         41  <span style="text-decoration: underline;">514</span>124 Jake C…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>   3.32<span style="color: #949494;">e</span>8 Pitt… ACC     home         13  <span style="text-decoration: underline;">514</span>116 Tom Sa…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 50 more variables: defensive_tfl &lt;dbl&gt;, defensive_sacks &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   defensive_solo &lt;dbl&gt;, defensive_tot &lt;dbl&gt;, fumbles_rec &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fumbles_lost &lt;dbl&gt;, fumbles_fum &lt;dbl&gt;, punting_long &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punting_in_20 &lt;dbl&gt;, punting_tb &lt;dbl&gt;, punting_avg &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punting_yds &lt;dbl&gt;, punting_no &lt;dbl&gt;, kicking_pts &lt;dbl&gt;, kicking_long &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   kicking_pct &lt;dbl&gt;, punt_returns_td &lt;dbl&gt;, punt_returns_long &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punt_returns_avg &lt;dbl&gt;, punt_returns_yds &lt;dbl&gt;, punt_returns_no &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
