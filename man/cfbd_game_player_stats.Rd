@@ -36,40 +36,68 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
-\code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{home_away}: character.}{Flag for if the team was the home or away team.}
-\item{\code{points}: integer.}{Team points.}
-\item{\code{category}: character.}{Statistic category.}
-\item{\code{athlete_id}: character.}{Athlete referencing id.}
-\item{\code{name}: character.}{Player name.}
-\item{\code{c_att}: character.}{Completions - Pass attempts.}
-\item{\code{yds}: double.}{Statistic yardage.}
-\item{\code{avg}: double.}{Average per statistic.}
-\item{\code{td}: double.}{Touchdowns scored.}
-\item{\code{int}: double.}{Interceptions thrown.}
-\item{\code{qbr}: double.}{Quarterback rating.}
-\item{\code{car}: double.}{Number of rushing carries.}
-\item{\code{long}: double.}{Longest carry/reception of the game.}
-\item{\code{rec}: double.}{Number of pass receptions.}
-\item{\code{no}: double.}{Player number.}
-\item{\code{fg}: character.}{Field goal attempts in the game.}
-\item{\code{pct}: double.}{Field goal percentage in the game.}
-\item{\code{xp}: character.}{Extra points kicked in the game.}
-\item{\code{pts}: double.}{Total kicking points in the game.}
-\item{\code{tb}: double.}{Touchbacks (for kicking) in the game.}
-\item{\code{in_20}: double.}{Punts inside the 20 yardline in the game.}
-\item{\code{fum}: double.}{Player fumbles in the game.}
-\item{\code{lost}: double.}{Player fumbles lost in the game.}
-\item{\code{tot}: double.}{Total tackles in the game.}
-\item{\code{solo}: double.}{Solo tackles in the game.}
-\item{\code{sacks}: double.}{Total sacks in the game.}
-\item{\code{tfl}: double.}{Total tackles for loss in the game.}
-\item{\code{pd}: double.}{Total passes defensed in the game.}
-\item{\code{qb_hur}: double.}{Total quarterback hurries in the game.}
+\code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:\tabular{ll}{
+   col_name \tab types \cr
+   game_id \tab integer \cr
+   team \tab character \cr
+   conference \tab character \cr
+   home_away \tab character \cr
+   team_points \tab integer \cr
+   athlete_id \tab integer \cr
+   athlete_name \tab character \cr
+   defensive_td \tab numeric \cr
+   defensive_qb_hur \tab numeric \cr
+   defensive_pd \tab numeric \cr
+   defensive_tfl \tab numeric \cr
+   defensive_sacks \tab numeric \cr
+   defensive_solo \tab numeric \cr
+   defensive_tot \tab numeric \cr
+   fumbles_rec \tab numeric \cr
+   fumbles_lost \tab numeric \cr
+   fumbles_fum \tab numeric \cr
+   punting_long \tab numeric \cr
+   punting_in_20 \tab numeric \cr
+   punting_tb \tab numeric \cr
+   punting_avg \tab numeric \cr
+   punting_yds \tab numeric \cr
+   punting_no \tab numeric \cr
+   kicking_pts \tab numeric \cr
+   kicking_long \tab numeric \cr
+   kicking_pct \tab numeric \cr
+   punt_returns_td \tab numeric \cr
+   punt_returns_long \tab numeric \cr
+   punt_returns_avg \tab numeric \cr
+   punt_returns_yds \tab numeric \cr
+   punt_returns_no \tab numeric \cr
+   kick_returns_td \tab numeric \cr
+   kick_returns_long \tab numeric \cr
+   kick_returns_avg \tab numeric \cr
+   kick_returns_yds \tab numeric \cr
+   kick_returns_no \tab numeric \cr
+   interceptions_td \tab numeric \cr
+   interceptions_yds \tab numeric \cr
+   interceptions_int \tab numeric \cr
+   receiving_long \tab numeric \cr
+   receiving_td \tab numeric \cr
+   receiving_avg \tab numeric \cr
+   receiving_yds \tab numeric \cr
+   receiving_rec \tab numeric \cr
+   rushing_long \tab numeric \cr
+   rushing_td \tab numeric \cr
+   rushing_avg \tab numeric \cr
+   rushing_yds \tab numeric \cr
+   rushing_car \tab numeric \cr
+   passing_int \tab numeric \cr
+   passing_td \tab numeric \cr
+   passing_avg \tab numeric \cr
+   passing_yds \tab numeric \cr
+   passing_completions \tab numeric \cr
+   passing_attempts \tab numeric \cr
+   passing_qbr \tab numeric \cr
+   kicking_xpm \tab numeric \cr
+   kicking_xpa \tab numeric \cr
+   kicking_fgm \tab numeric \cr
+   kicking_fga \tab numeric \cr
 }
 }
 \description{

@@ -813,40 +813,70 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`home_away`: character.}{Flag for if the team was the home or away team.}
-#'   \item{`points`: integer.}{Team points.}
-#'   \item{`category`: character.}{Statistic category.}
-#'   \item{`athlete_id`: character.}{Athlete referencing id.}
-#'   \item{`name`: character.}{Player name.}
-#'   \item{`c_att`: character.}{Completions - Pass attempts.}
-#'   \item{`yds`: double.}{Statistic yardage.}
-#'   \item{`avg`: double.}{Average per statistic.}
-#'   \item{`td`: double.}{Touchdowns scored.}
-#'   \item{`int`: double.}{Interceptions thrown.}
-#'   \item{`qbr`: double.}{Quarterback rating.}
-#'   \item{`car`: double.}{Number of rushing carries.}
-#'   \item{`long`: double.}{Longest carry/reception of the game.}
-#'   \item{`rec`: double.}{Number of pass receptions.}
-#'   \item{`no`: double.}{Player number.}
-#'   \item{`fg`: character.}{Field goal attempts in the game.}
-#'   \item{`pct`: double.}{Field goal percentage in the game.}
-#'   \item{`xp`: character.}{Extra points kicked in the game.}
-#'   \item{`pts`: double.}{Total kicking points in the game.}
-#'   \item{`tb`: double.}{Touchbacks (for kicking) in the game.}
-#'   \item{`in_20`: double.}{Punts inside the 20 yardline in the game.}
-#'   \item{`fum`: double.}{Player fumbles in the game.}
-#'   \item{`lost`: double.}{Player fumbles lost in the game.}
-#'   \item{`tot`: double.}{Total tackles in the game.}
-#'   \item{`solo`: double.}{Solo tackles in the game.}
-#'   \item{`sacks`: double.}{Total sacks in the game.}
-#'   \item{`tfl`: double.}{Total tackles for loss in the game.}
-#'   \item{`pd`: double.}{Total passes defensed in the game.}
-#'   \item{`qb_hur`: double.}{Total quarterback hurries in the game.}
-#' }
+#'
+#'   |col_name            |types     |
+#'   |:-------------------|:---------|
+#'   |game_id             |integer   |
+#'   |team                |character |
+#'   |conference          |character |
+#'   |home_away           |character |
+#'   |team_points         |integer   |
+#'   |athlete_id          |integer   |
+#'   |athlete_name        |character |
+#'   |defensive_td        |numeric   |
+#'   |defensive_qb_hur    |numeric   |
+#'   |defensive_pd        |numeric   |
+#'   |defensive_tfl       |numeric   |
+#'   |defensive_sacks     |numeric   |
+#'   |defensive_solo      |numeric   |
+#'   |defensive_tot       |numeric   |
+#'   |fumbles_rec         |numeric   |
+#'   |fumbles_lost        |numeric   |
+#'   |fumbles_fum         |numeric   |
+#'   |punting_long        |numeric   |
+#'   |punting_in_20       |numeric   |
+#'   |punting_tb          |numeric   |
+#'   |punting_avg         |numeric   |
+#'   |punting_yds         |numeric   |
+#'   |punting_no          |numeric   |
+#'   |kicking_pts         |numeric   |
+#'   |kicking_long        |numeric   |
+#'   |kicking_pct         |numeric   |
+#'   |punt_returns_td     |numeric   |
+#'   |punt_returns_long   |numeric   |
+#'   |punt_returns_avg    |numeric   |
+#'   |punt_returns_yds    |numeric   |
+#'   |punt_returns_no     |numeric   |
+#'   |kick_returns_td     |numeric   |
+#'   |kick_returns_long   |numeric   |
+#'   |kick_returns_avg    |numeric   |
+#'   |kick_returns_yds    |numeric   |
+#'   |kick_returns_no     |numeric   |
+#'   |interceptions_td    |numeric   |
+#'   |interceptions_yds   |numeric   |
+#'   |interceptions_int   |numeric   |
+#'   |receiving_long      |numeric   |
+#'   |receiving_td        |numeric   |
+#'   |receiving_avg       |numeric   |
+#'   |receiving_yds       |numeric   |
+#'   |receiving_rec       |numeric   |
+#'   |rushing_long        |numeric   |
+#'   |rushing_td          |numeric   |
+#'   |rushing_avg         |numeric   |
+#'   |rushing_yds         |numeric   |
+#'   |rushing_car         |numeric   |
+#'   |passing_int         |numeric   |
+#'   |passing_td          |numeric   |
+#'   |passing_avg         |numeric   |
+#'   |passing_yds         |numeric   |
+#'   |passing_completions |numeric   |
+#'   |passing_attempts    |numeric   |
+#'   |passing_qbr         |numeric   |
+#'   |kicking_xpm         |numeric   |
+#'   |kicking_xpa         |numeric   |
+#'   |kicking_fgm         |numeric   |
+#'   |kicking_fga         |numeric   |
+#'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -985,10 +1015,14 @@ cfbd_game_player_stats <- function(year,
     "passing_td",
     "passing_avg",
     "passing_yds",
+    "passing_c_att",
     "passing_completions",
     "passing_attempts",
+    "passing_qbr",
+    "kicking_xp",
     "kicking_xpm",
     "kicking_xpa",
+    "kicking_fg",
     "kicking_fgm",
     "kicking_fga"
   )
@@ -1046,6 +1080,7 @@ cfbd_game_player_stats <- function(year,
     "passing_yds",
     "passing_completions",
     "passing_attempts",
+    "passing_qbr",
     "kicking_xpm",
     "kicking_xpa",
     "kicking_fgm",
@@ -1112,7 +1147,7 @@ cfbd_game_player_stats <- function(year,
 
 
       df <- df %>%
-        dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
+        dplyr::select(dplyr::any_of(cols), tidyr::everything()) %>%
         make_cfbfastR_data("Game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
