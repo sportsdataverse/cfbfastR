@@ -13,8 +13,7 @@ test_that("CFB Betting Lines", {
     year = 2018,
     week = 13,
     team = "Texas A&M",
-    conference = "SEC",
-    line_provider = "numberfire"
+    conference = "SEC"
   )
 
   cols <- c(
@@ -27,7 +26,7 @@ test_that("CFB Betting Lines", {
     "home_moneyline", "away_moneyline"
   )
   expect_equal(nrow(x), 4)
-  expect_equal(nrow(y), 1)
+  expect_equal(nrow(y), 4)
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
   expect_s3_class(x, "data.frame")

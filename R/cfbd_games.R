@@ -572,7 +572,7 @@ cfbd_game_media <- function(year,
       df <- df[!duplicated(df), ]
 
       df <- df %>%
-        dplyr::select(cols, tidyr::everything())
+        dplyr::select(dplyr::all_of(cols), tidyr::everything())
 
 
       df <- df %>%
@@ -813,40 +813,70 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`home_away`: character.}{Flag for if the team was the home or away team.}
-#'   \item{`points`: integer.}{Team points.}
-#'   \item{`category`: character.}{Statistic category.}
-#'   \item{`athlete_id`: character.}{Athlete referencing id.}
-#'   \item{`name`: character.}{Player name.}
-#'   \item{`c_att`: character.}{Completions - Pass attempts.}
-#'   \item{`yds`: double.}{Statistic yardage.}
-#'   \item{`avg`: double.}{Average per statistic.}
-#'   \item{`td`: double.}{Touchdowns scored.}
-#'   \item{`int`: double.}{Interceptions thrown.}
-#'   \item{`qbr`: double.}{Quarterback rating.}
-#'   \item{`car`: double.}{Number of rushing carries.}
-#'   \item{`long`: double.}{Longest carry/reception of the game.}
-#'   \item{`rec`: double.}{Number of pass receptions.}
-#'   \item{`no`: double.}{Player number.}
-#'   \item{`fg`: character.}{Field goal attempts in the game.}
-#'   \item{`pct`: double.}{Field goal percentage in the game.}
-#'   \item{`xp`: character.}{Extra points kicked in the game.}
-#'   \item{`pts`: double.}{Total kicking points in the game.}
-#'   \item{`tb`: double.}{Touchbacks (for kicking) in the game.}
-#'   \item{`in_20`: double.}{Punts inside the 20 yardline in the game.}
-#'   \item{`fum`: double.}{Player fumbles in the game.}
-#'   \item{`lost`: double.}{Player fumbles lost in the game.}
-#'   \item{`tot`: double.}{Total tackles in the game.}
-#'   \item{`solo`: double.}{Solo tackles in the game.}
-#'   \item{`sacks`: double.}{Total sacks in the game.}
-#'   \item{`tfl`: double.}{Total tackles for loss in the game.}
-#'   \item{`pd`: double.}{Total passes defensed in the game.}
-#'   \item{`qb_hur`: double.}{Total quarterback hurries in the game.}
-#' }
+#'
+#'   |col_name            |types     |
+#'   |:-------------------|:---------|
+#'   |game_id             |integer   |
+#'   |team                |character |
+#'   |conference          |character |
+#'   |home_away           |character |
+#'   |team_points         |integer   |
+#'   |athlete_id          |integer   |
+#'   |athlete_name        |character |
+#'   |defensive_td        |numeric   |
+#'   |defensive_qb_hur    |numeric   |
+#'   |defensive_pd        |numeric   |
+#'   |defensive_tfl       |numeric   |
+#'   |defensive_sacks     |numeric   |
+#'   |defensive_solo      |numeric   |
+#'   |defensive_tot       |numeric   |
+#'   |fumbles_rec         |numeric   |
+#'   |fumbles_lost        |numeric   |
+#'   |fumbles_fum         |numeric   |
+#'   |punting_long        |numeric   |
+#'   |punting_in_20       |numeric   |
+#'   |punting_tb          |numeric   |
+#'   |punting_avg         |numeric   |
+#'   |punting_yds         |numeric   |
+#'   |punting_no          |numeric   |
+#'   |kicking_pts         |numeric   |
+#'   |kicking_long        |numeric   |
+#'   |kicking_pct         |numeric   |
+#'   |punt_returns_td     |numeric   |
+#'   |punt_returns_long   |numeric   |
+#'   |punt_returns_avg    |numeric   |
+#'   |punt_returns_yds    |numeric   |
+#'   |punt_returns_no     |numeric   |
+#'   |kick_returns_td     |numeric   |
+#'   |kick_returns_long   |numeric   |
+#'   |kick_returns_avg    |numeric   |
+#'   |kick_returns_yds    |numeric   |
+#'   |kick_returns_no     |numeric   |
+#'   |interceptions_td    |numeric   |
+#'   |interceptions_yds   |numeric   |
+#'   |interceptions_int   |numeric   |
+#'   |receiving_long      |numeric   |
+#'   |receiving_td        |numeric   |
+#'   |receiving_avg       |numeric   |
+#'   |receiving_yds       |numeric   |
+#'   |receiving_rec       |numeric   |
+#'   |rushing_long        |numeric   |
+#'   |rushing_td          |numeric   |
+#'   |rushing_avg         |numeric   |
+#'   |rushing_yds         |numeric   |
+#'   |rushing_car         |numeric   |
+#'   |passing_int         |numeric   |
+#'   |passing_td          |numeric   |
+#'   |passing_avg         |numeric   |
+#'   |passing_yds         |numeric   |
+#'   |passing_completions |numeric   |
+#'   |passing_attempts    |numeric   |
+#'   |passing_qbr         |numeric   |
+#'   |kicking_xpm         |numeric   |
+#'   |kicking_xpa         |numeric   |
+#'   |kicking_fgm         |numeric   |
+#'   |kicking_fga         |numeric   |
+#'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -938,15 +968,123 @@ cfbd_game_player_stats <- function(year,
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   cols <- c(
-    "game_id", "team", "conference", "home_away", "points", "category",
-    "athlete_id", "name", "c_att", "yds", "avg", "td", "int", "qbr",
-    "car", "long", "rec", "no", "fg", "pct", "xp", "pts", "tb", "in_20",
-    "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur"
+    "game_id", "team", "conference", "home_away", "team_points",
+    "athlete_id", "athlete_name", "defensive_td",
+    "defensive_qb_hur",
+    "defensive_pd",
+    "defensive_tfl",
+    "defensive_sacks",
+    "defensive_solo",
+    "defensive_tot",
+    "fumbles_rec",
+    "fumbles_lost",
+    "fumbles_fum",
+    "punting_long",
+    "punting_in_20",
+    "punting_tb",
+    "punting_avg",
+    "punting_yds",
+    "punting_no",
+    "kicking_pts",
+    "kicking_long",
+    "kicking_pct",
+    "punt_returns_td",
+    "punt_returns_long",
+    "punt_returns_avg",
+    "punt_returns_yds",
+    "punt_returns_no",
+    "kick_returns_td",
+    "kick_returns_long",
+    "kick_returns_avg",
+    "kick_returns_yds",
+    "kick_returns_no",
+    "interceptions_td",
+    "interceptions_yds",
+    "interceptions_int",
+    "receiving_long",
+    "receiving_td",
+    "receiving_avg",
+    "receiving_yds",
+    "receiving_rec",
+    "rushing_long",
+    "rushing_td",
+    "rushing_avg",
+    "rushing_yds",
+    "rushing_car",
+    "passing_int",
+    "passing_td",
+    "passing_avg",
+    "passing_yds",
+    "passing_c_att",
+    "passing_completions",
+    "passing_attempts",
+    "passing_qbr",
+    "kicking_xp",
+    "kicking_xpm",
+    "kicking_xpa",
+    "kicking_fg",
+    "kicking_fgm",
+    "kicking_fga"
+  )
+  split_cols <-   c(
+    "passing_c_att",
+    "kicking_xp",
+    "kicking_fg"
   )
   numeric_cols <- c(
-    "yds", "avg", "td", "int", "qbr",
-    "car", "long", "rec", "no", "pct", "pts", "tb", "in_20",
-    "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur"
+    "defensive_td",
+    "defensive_qb_hur",
+    "defensive_pd",
+    "defensive_tfl",
+    "defensive_sacks",
+    "defensive_solo",
+    "defensive_tot",
+    "fumbles_rec",
+    "fumbles_lost",
+    "fumbles_fum",
+    "punting_long",
+    "punting_in_20",
+    "punting_tb",
+    "punting_avg",
+    "punting_yds",
+    "punting_no",
+    "kicking_pts",
+    "kicking_long",
+    "kicking_pct",
+    "punt_returns_td",
+    "punt_returns_long",
+    "punt_returns_avg",
+    "punt_returns_yds",
+    "punt_returns_no",
+    "kick_returns_td",
+    "kick_returns_long",
+    "kick_returns_avg",
+    "kick_returns_yds",
+    "kick_returns_no",
+    "interceptions_td",
+    "interceptions_yds",
+    "interceptions_int",
+    "receiving_long",
+    "receiving_td",
+    "receiving_avg",
+    "receiving_yds",
+    "receiving_rec",
+    "rushing_long",
+    "rushing_td",
+    "rushing_avg",
+    "rushing_yds",
+    "rushing_car",
+    "passing_int",
+    "passing_td",
+    "passing_avg",
+    "passing_yds",
+    "passing_completions",
+    "passing_attempts",
+    "passing_qbr",
+    "kicking_xpm",
+    "kicking_xpa",
+    "kicking_fgm",
+    "kicking_fga"
   )
 
   df <- data.frame()
@@ -958,9 +1096,6 @@ cfbd_game_player_stats <- function(year,
         "GET", full_url,
         httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
       )
-
-      # Check the result
-      check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
@@ -980,22 +1115,39 @@ cfbd_game_player_stats <- function(year,
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         dplyr::rename(stat_category = .data$name) %>%
+        dplyr::mutate(
+          statType = paste0(.data$category, "_", .data$stat_category)) %>%
         tidyr::unnest(.data$athletes) %>%
         dplyr::rename(
           athlete_id = .data$id,
+          athlete_name = .data$name,
+          team_points = .data$points,
           team = .data$school,
           value = .data$stat
         ) %>%
-        tidyr::pivot_wider(names_from = .data$stat_category, values_from = .data$value, values_fn = list) %>%
+        dplyr::select(-dplyr::any_of(c("category", "stat_category"))) %>%
+        dplyr::group_by(.data$game_id, .data$team, .data$conference, .data$athlete_id, .data$athlete_name,
+                        .data$homeAway, .data$team_points) %>%
+        tidyr::pivot_wider(names_from = .data$statType, values_from = .data$value, values_fn = first) %>%
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
 
-      df <- df %>%
-        dplyr::select(cols, dplyr::everything())
+      suppressWarnings(
+        df <- df %>%
+          dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
+          tidyr::separate(.data$passing_c_att,into=c("passing_completions","passing_attempts"),sep="/") %>%
+          tidyr::separate(.data$kicking_xp,into=c("kicking_xpm","kicking_xpa"),sep="/") %>%
+          tidyr::separate(.data$kicking_fg,into=c("kicking_fgm","kicking_fga"),sep="/") %>%
+          dplyr::mutate_at(numeric_cols, as.numeric) %>%
+          dplyr::mutate(athlete_id = as.integer(.data$athlete_id)) %>%
+          as.data.frame()
+      )
 
 
+
       df <- df %>%
+        dplyr::select(dplyr::any_of(cols), tidyr::everything()) %>%
         make_cfbfastR_data("Game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1259,7 +1411,7 @@ cfbd_game_records <- function(year,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_game_team_stats(2019, team = "LSU"))
+#'   try(cfbd_game_team_stats(2022, team = "LSU"))
 #'
 #'   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #' }
@@ -1432,7 +1584,7 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(.data$school == team) %>%
-            dplyr::select(cols1)
+            dplyr::select(dplyr::all_of(cols1))
 
 
         } else if (!is.null(conference)) {
@@ -1444,12 +1596,12 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(conference == conf_name) %>%
-            dplyr::select(cols1)
+            dplyr::select(dplyr::all_of(cols1))
 
 
         } else {
           df <- df %>%
-            dplyr::select(cols1)
+            dplyr::select(dplyr::all_of(cols1))
 
         }
       } else {
@@ -1472,7 +1624,7 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(.data$school == team) %>%
-            dplyr::select(cols2)
+            dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
           confs <- cfbd_conferences()
@@ -1483,12 +1635,12 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(conference == conf_name) %>%
-            dplyr::select(cols2)
+            dplyr::select(dplyr::all_of(cols2))
 
 
         } else {
           df <- df %>%
-            dplyr::select(cols2)
+            dplyr::select(dplyr::all_of(cols2))
 
         }
       }

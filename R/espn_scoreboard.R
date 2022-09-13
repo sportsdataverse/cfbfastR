@@ -189,11 +189,13 @@ espn_cfb_scoreboard <- function(date = NULL) {
             ) %>%
             dplyr::select(!where(is.list)) %>%
             janitor::clean_names()
-        } else {
+        }
+        else {
           schedule_out <- schedule_out %>%
             janitor::clean_names()
         }
-      } else {
+      }
+      else {
         schedule_out <- cfb_data %>% dplyr::select(!where(is.list)) %>%
           janitor::clean_names()
       }
@@ -338,6 +340,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
                                        type == 3 ~ "postseason",
                                        type == 4 ~ "off-season",
                                        TRUE ~ as.character(type)))
+
 
       if("leaders" %in% names(cfb_data)){
         schedule_out <- cfb_data %>%

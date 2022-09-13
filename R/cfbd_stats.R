@@ -651,7 +651,7 @@ cfbd_stats_season_player <- function(year,
       team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
     } else {
       # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
+      # team <- utils::URLencode(team, reserved = TRUE)
     }
   }
   if (!is.null(conference)) {
@@ -682,17 +682,18 @@ cfbd_stats_season_player <- function(year,
 
 
   base_url <- "https://api.collegefootballdata.com/stats/player/season?"
-
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&seasonType=", season_type,
-    "&startWeek=", start_week,
-    "&endWeek=", end_week,
-    "&team=", team,
-    "&conference=", conference,
-    "&category=", category
+  query_params = list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "startWeek" = start_week,
+    "endWeek" = end_week,
+    "seasonType" = season_type,
+    "category" = category
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
+
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -766,16 +767,17 @@ cfbd_stats_season_player <- function(year,
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
-
+      suppressWarnings(
       df <- df %>%
-        dplyr::select(cols, tidyr::everything()) %>%
+        dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
-        as.data.frame()
+        as.data.frame() %>%
+        dplyr::mutate(year = year))
 
       # Check if Category is Null
       if (is.null(category)) {
         df <- df %>%
-          dplyr::select(-.data$category) %>%
+          dplyr::select(-dplyr::any_of(c("category"))) %>%
           dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
           dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
           dplyr::arrange(.data$year, .data$athlete_id) %>%
@@ -784,7 +786,9 @@ cfbd_stats_season_player <- function(year,
       }
 
 
-      df <- df %>%
+      df <- df  %>%
+        dplyr::select(-dplyr::any_of(c("category"))) %>%
+        dplyr::select(.data$year, tidyr::everything()) %>%
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

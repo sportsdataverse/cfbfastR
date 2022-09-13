@@ -18,6 +18,23 @@ espn_cfb_team_stats(team_id, year, season_type = "regular", total = FALSE)
 \value{
 Returns a tibble with the following columns:\tabular{ll}{
    col_name \tab types \cr
+   team_id \tab character \cr
+   team_guid \tab character \cr
+   team_uid \tab character \cr
+   team_sdr \tab character \cr
+   team_slug \tab character \cr
+   team_location \tab character \cr
+   team_name \tab character \cr
+   team_nickname \tab character \cr
+   team_abbreviation \tab character \cr
+   team_display_name \tab character \cr
+   team_short_display_name \tab character \cr
+   team_color \tab character \cr
+   team_alternate_color \tab character \cr
+   is_active \tab logical \cr
+   is_all_star \tab logical \cr
+   logo_href \tab character \cr
+   logo_dark_href \tab character \cr
    general_fumbles \tab numeric \cr
    general_fumbles_lost \tab numeric \cr
    general_fumbles_forced \tab numeric \cr

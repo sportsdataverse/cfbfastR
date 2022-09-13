@@ -790,7 +790,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
-        dplyr::select(cols)
+        dplyr::select(all_of(cols))
 
       df <- df %>%
         make_cfbfastR_data("pre-game WP data from CollegeFootballData.com",Sys.time())
@@ -892,7 +892,7 @@ cfbd_metrics_wp <- function(game_id) {
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
-        dplyr::select(cols)
+        dplyr::select(all_of(cols))
 
       df <- df %>%
         make_cfbfastR_data("WP data from CollegeFootballData.com",Sys.time())
