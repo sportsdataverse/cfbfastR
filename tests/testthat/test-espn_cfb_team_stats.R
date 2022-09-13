@@ -3,6 +3,23 @@ test_that("ESPN CFB Team Stats", {
   skip_on_cran()
 
   cols <- c(
+    "team_id",
+    "team_guid",
+    "team_uid",
+    "team_sdr",
+    "team_slug",
+    "team_location",
+    "team_name",
+    "team_nickname",
+    "team_abbreviation",
+    "team_display_name",
+    "team_short_display_name",
+    "team_color",
+    "team_alternate_color",
+    "is_active",
+    "is_all_star",
+    "logo_href",
+    "logo_dark_href",
     "general_fumbles",
     "general_fumbles_lost",
     "general_fumbles_forced",

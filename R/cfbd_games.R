@@ -572,7 +572,7 @@ cfbd_game_media <- function(year,
       df <- df[!duplicated(df), ]
 
       df <- df %>%
-        dplyr::select(cols, tidyr::everything())
+        dplyr::select(dplyr::all_of(cols), tidyr::everything())
 
 
       df <- df %>%
@@ -992,7 +992,7 @@ cfbd_game_player_stats <- function(year,
       df[cols[!(cols %in% colnames(df))]] <- NA
 
       df <- df %>%
-        dplyr::select(cols, dplyr::everything())
+        dplyr::select(dplyr::all_of(cols), dplyr::everything())
 
 
       df <- df %>%
@@ -1432,7 +1432,7 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(.data$school == team) %>%
-            dplyr::select(cols1)
+            dplyr::select(dplyr::all_of(cols1))
 
 
         } else if (!is.null(conference)) {
@@ -1444,12 +1444,12 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(conference == conf_name) %>%
-            dplyr::select(cols1)
+            dplyr::select(dplyr::all_of(cols1))
 
 
         } else {
           df <- df %>%
-            dplyr::select(cols1)
+            dplyr::select(dplyr::all_of(cols1))
 
         }
       } else {
@@ -1472,7 +1472,7 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(.data$school == team) %>%
-            dplyr::select(cols2)
+            dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
           confs <- cfbd_conferences()
@@ -1483,12 +1483,12 @@ cfbd_game_team_stats <- function(year,
 
           df <- df %>%
             dplyr::filter(conference == conf_name) %>%
-            dplyr::select(cols2)
+            dplyr::select(dplyr::all_of(cols2))
 
 
         } else {
           df <- df %>%
-            dplyr::select(cols2)
+            dplyr::select(dplyr::all_of(cols2))
 
         }
       }

@@ -768,7 +768,7 @@ cfbd_stats_season_player <- function(year,
       df[cols[!(cols %in% colnames(df))]] <- NA
 
       df <- df %>%
-        dplyr::select(cols, tidyr::everything()) %>%
+        dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
         as.data.frame()
 

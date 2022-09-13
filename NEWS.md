@@ -1,3 +1,7 @@
+# **cfbfastR v1.9.2**
+
+* [```espn_cfb_player_stats()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.html) function added.
+
 # **cfbfastR v1.9.1**
 
 * Improved drive_pts logic in play-by-play data.

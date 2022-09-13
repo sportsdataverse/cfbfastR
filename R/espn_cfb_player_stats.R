@@ -1,12 +1,12 @@
 
 #' @title
-#' **Get ESPN college football team stats data**
+#' **Get ESPN college football player stats data**
 #' @author Saiem Gilani
-#' @param team_id Team ID
+#' @param athlete_id Athlete ID
 #' @param year Year
 #' @param season_type (character, default: regular): Season type - regular or postseason
 #' @param total (boolean, default: FALSE): Totals
-#' @keywords CFB Team Stats
+#' @keywords CFB Player Stats
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom dplyr filter select rename bind_cols bind_rows
 #' @importFrom tidyr unnest unnest_wider everything
@@ -308,10 +308,10 @@
 #'
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_team_stats(team_id = 52, year = 2020))
+#'   try(espn_cfb_player_stats(athlete_id = 530308, year = 2013))
 #' }
 #'
-espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALSE){
+espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total=FALSE){
   if (!(tolower(season_type) %in% c("regular","postseason"))) {
     # Check if season_type is appropriate, if not regular
     cli::cli_abort("Enter valid season_type: regular or postseason")
@@ -325,10 +325,14 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
     base_url,
     year,
     '/types/',s_type,
-    '/teams/',team_id,
+    '/athletes/', athlete_id,
     '/statistics/', totals
   )
-
+  athlete_url <- paste0(
+    base_url,
+    year,
+    '/athletes/', athlete_id
+  )
   df <- data.frame()
   tryCatch(
     expr = {
@@ -338,13 +342,17 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
 
       # Check the result
       check_status(res)
+      # Create the GET request and set response as res
+      athlete_res <- httr::RETRY("GET", athlete_url)
 
-      # Get the content and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8")  %>%
+      # Check the result
+      check_status(athlete_res)
+
+      athlete_df <- athlete_res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
-      team_url <- df[["team"]][["$ref"]]
+      team_url <- athlete_df[["team"]][["$ref"]]
 
       # Create the GET request and set response as res
       team_res <- httr::RETRY("GET", team_url)
@@ -414,13 +422,32 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
               "X.ref.1",
               "X.ref.2"))) %>%
         janitor::clean_names()
-
       colnames(team_df)[1:13] <- paste0("team_",colnames(team_df)[1:13])
 
       team_df <- team_df %>%
         dplyr::rename(
           logo_href = .data$logos_href,
           logo_dark_href = .data$logos_href_1)
+
+      athlete_df[["links"]] <- NULL
+      athlete_df[["injuries"]] <- NULL
+
+      athlete_df <- athlete_df %>%
+        purrr::map_if(is.list, as.data.frame) %>%
+        tibble::tibble(data=.data$.)
+
+      athlete_df <- athlete_df$data %>%
+        as.data.frame() %>%
+        dplyr::select(-dplyr::any_of(c("X.ref","X.ref.1","X.ref.2","X.ref.3","X.ref.4","X.ref.5","X.ref.6","X.ref.7","X.ref.8",
+                                       "position.X.ref","position.X.ref.1",
+                                       "contract.x.ref","contract.x.ref.1","contract.x.ref.2",
+                                       "draft.x.ref","draft.x.ref.1"))) %>%
+        janitor::clean_names() %>%
+        dplyr::rename(
+          athlete_id = .data$id,
+          athlete_uid = .data$uid,
+          athlete_guid = .data$guid,
+          athlete_type = .data$type)
 
 
       # Get the content and return result as data.frame
@@ -439,14 +466,16 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
                            values_fn = dplyr::first) %>%
         janitor::clean_names()
 
-      df <- team_df %>%
-        dplyr::bind_cols(df)
+      df <- athlete_df %>%
+        dplyr::bind_cols(df) %>%
+        dplyr::bind_cols(team_df)
+
       df <- df %>%
-        make_cfbfastR_data("CFB Team Season stats from ESPN.com",Sys.time())
+        make_cfbfastR_data("CFB Player Season stats from ESPN.com",Sys.time())
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no season player stats data available!"))
     },
     warning = function(w) {
     },
