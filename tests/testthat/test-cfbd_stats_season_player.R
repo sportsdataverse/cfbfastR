@@ -1,5 +1,5 @@
 cols <- c(
-  "team", "conference", "athlete_id", "player", "category",
+  "year", "team", "conference", "athlete_id", "player",
   "passing_completions", "passing_att", "passing_pct", "passing_yds",
   "passing_td", "passing_int", "passing_ypa",
   "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long",
@@ -20,11 +20,11 @@ cols <- c(
 
 test_that("CFB Season Player Stats", {
   skip_on_cran()
-  x <- cfbd_stats_season_player(2018, conference = "Ind")
+  x <- cfbd_stats_season_player(year = 2018, conference = "Ind")
 
-  y <- cfbd_stats_season_player(2019, team = "Florida State", category = "passing")
+  y <- cfbd_stats_season_player(year = 2019, team = "Florida State", category = "passing")
 
-  z <- cfbd_stats_season_player(2018, team = "Florida State")
+  z <- cfbd_stats_season_player(year = 2018, team = "Florida State")
 
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
