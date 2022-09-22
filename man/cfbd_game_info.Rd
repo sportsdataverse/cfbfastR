@@ -12,6 +12,7 @@ cfbd_game_info(
   home_team = NULL,
   away_team = NULL,
   conference = NULL,
+  division = "fbs",
   game_id = NULL,
   quarter_scores = FALSE
 )
@@ -32,6 +33,8 @@ cfbd_game_info(
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game}
 

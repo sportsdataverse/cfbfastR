@@ -75,6 +75,7 @@ NULL
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' @param quarter_scores (*Logical* default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.
@@ -134,6 +135,7 @@ cfbd_game_info <- function(year,
                            home_team = NULL,
                            away_team = NULL,
                            conference = NULL,
+                           division = 'fbs',
                            game_id = NULL,
                            quarter_scores = FALSE) {
   # Check if year is numeric
@@ -194,6 +196,7 @@ cfbd_game_info <- function(year,
     "&home=", home_team,
     "&away=", away_team,
     "&conference=", conference,
+    "&division=", division,
     "&id=", game_id
   )
 
