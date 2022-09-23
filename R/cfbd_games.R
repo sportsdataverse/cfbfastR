@@ -544,7 +544,8 @@ cfbd_game_media <- function(year,
     "&team=", team,
     "&conference=", conference,
     "&mediaType=", media_type,
-    "&classification=", division
+    "&classification=", division,
+    "&mediaType=", media_type
   )
 
   # Check for CFBD API key
