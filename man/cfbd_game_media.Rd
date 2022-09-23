@@ -10,7 +10,8 @@ cfbd_game_media(
   season_type = "both",
   team = NULL,
   conference = NULL,
-  media_type = NULL
+  media_type = NULL,
+  division = "fbs"
 )
 }
 \arguments{
@@ -27,6 +28,8 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
+
+\item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 }
 \value{
 \code{\link[=cfbd_game_media]{cfbd_game_media()}} - A data frame with 13 variables:

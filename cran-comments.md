@@ -1,19 +1,8 @@
 ## Release summary
 
 This is a minor release that 
-* Updates examples to fail gracefully per CRAN Request
-* Adds the following functions
- - ```espn_cfb_calendar()```
- - ```espn_cfb_schedule()```
- - ```espn_cfb_pbp()```
- - ```espn_cfb_team_stats()```
- - ```espn_ratings_fpi()``` is now exported
- - ```cfbd_recruiting_transfer_portal()```
- - ```load_cfb_rosters()```
- - ```load_cfb_schedules()```
- - ```load_cfb_teams()```
-* Adds attributes to exported functions to include timestamps on print
-* Removes `furrr`, `future` dependencies, adds `Rcpp`, `RcppParallel`, and `purrr` dependencies
+* Adds the division parameter to functions: `cfbd_game_info()`, `cfbd_plays()`, 
+`cfbd_drives()`, `cfbd_game_media()`, `cfbd_game_team_stats()`
 
 ## R CMD check results
 

@@ -180,6 +180,10 @@ cfbd_game_info <- function(year,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
+  if (!is.null(division)) {
+    # # Check division parameter
+    division <- utils::URLencode(division, reserved = TRUE)
+  }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort("Enter valid game_id (numeric value)")
@@ -460,6 +464,7 @@ cfbd_calendar <- function(year) {
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param media_type (*String* optional): Media type filter: tv, radio, web, ppv, or mobile
+#' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #'
 #' @return [cfbd_game_media()] - A data frame with 13 variables:
 #' \describe{
@@ -496,7 +501,8 @@ cfbd_game_media <- function(year,
                             season_type = "both",
                             team = NULL,
                             conference = NULL,
-                            media_type = NULL) {
+                            media_type = NULL,
+                            division = 'fbs') {
 
 
   # Check if year is numeric
@@ -523,6 +529,10 @@ cfbd_game_media <- function(year,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
+  if (!is.null(division)) {
+    # # Check division parameter
+    division <- utils::URLencode(division, reserved = TRUE)
+  }
 
   base_url <- "https://api.collegefootballdata.com/games/media?"
 
@@ -533,7 +543,8 @@ cfbd_game_media <- function(year,
     "&seasonType=", season_type,
     "&team=", team,
     "&conference=", conference,
-    "&mediaType=", media_type
+    "&mediaType=", media_type,
+    "&classification=", division
   )
 
   # Check for CFBD API key
@@ -1315,6 +1326,7 @@ cfbd_game_records <- function(year,
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
@@ -1425,6 +1437,7 @@ cfbd_game_team_stats <- function(year,
                                  team = NULL,
                                  conference = NULL,
                                  game_id = NULL,
+                                 division = 'fbs',
                                  rows_per_team = 1) {
 
   # Check if year is numeric
@@ -1452,6 +1465,10 @@ cfbd_game_team_stats <- function(year,
     # Encode conference parameter for URL, if not NULL
     conference <- utils::URLencode(conference, reserved = TRUE)
   }
+  if (!is.null(division)) {
+    # # Check division parameter
+    division <- utils::URLencode(division, reserved = TRUE)
+  }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
 
@@ -1471,6 +1488,7 @@ cfbd_game_team_stats <- function(year,
     "&seasonType=", season_type,
     "&team=", team,
     "&conference=", conference,
+    "&classification=", division,
     "&gameId=", game_id
   )
 

@@ -13,7 +13,8 @@ cfbd_drives(
   defense_team = NULL,
   conference = NULL,
   offense_conference = NULL,
-  defense_conference = NULL
+  defense_conference = NULL,
+  division = "fbs"
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{defense_conference}{(\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 }
 \value{
 \code{\link[=cfbd_drives]{cfbd_drives()}} - A data frame with 23 variables as follows:

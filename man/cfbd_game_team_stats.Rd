@@ -11,6 +11,7 @@ cfbd_game_team_stats(
   team = NULL,
   conference = NULL,
   game_id = NULL,
+  division = "fbs",
   rows_per_team = 1
 )
 }
@@ -29,6 +30,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
+
+\item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
 }

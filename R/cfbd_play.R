@@ -69,6 +69,7 @@ NULL
 #' @param defense_conference Select conference name (example: ACC, B1G, B12, SEC,
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
+#' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #' @return [cfbd_plays()] - A data frame with 29 columns:
 #' \describe{
 #'   \item{`play_id`: character.}{Referencing play id.}
@@ -118,7 +119,8 @@ cfbd_plays <- function(year = 2020,
                        conference = NULL,
                        offense_conference = NULL,
                        defense_conference = NULL,
-                       play_type = NULL) {
+                       play_type = NULL,
+                       division = 'fbs') {
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -163,6 +165,11 @@ cfbd_plays <- function(year = 2020,
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
+  if (!is.null(division)) {
+    # # Check division parameter
+    division <- utils::URLencode(division, reserved = TRUE)
+  }
+
 
   base_url <- "https://api.collegefootballdata.com/plays?"
   full_url <- paste0(
@@ -174,7 +181,9 @@ cfbd_plays <- function(year = 2020,
     "&defense=", defense,
     "&offenseConference=", offense_conference,
     "&defenseConference=", defense_conference,
-    "&seasonType=", season_type
+    "&seasonType=", season_type,
+    "&playType=", play_type,
+    "&classification=", division
   )
 
   # Check for CFBD API key
