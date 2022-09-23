@@ -192,6 +192,7 @@
 <span>  home_team <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  away_team <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  division <span class="op">=</span> <span class="st">"fbs"</span>,</span>
 <span>  game_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  quarter_scores <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -227,6 +228,10 @@
 <dd><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></dd>
+
+
+<dt>division</dt>
+<dd><p>(<em>String</em> optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii</p></dd>
 
 
 <dt>game_id</dt>
@@ -341,7 +346,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_info</span><span class="op">(</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">7</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-13 05:56:34 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 01:17:56 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 30</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     game_id season  week seaso…¹ start…² start…³ neutr…⁴ confe…⁵ atten…⁶ venue…⁷</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>

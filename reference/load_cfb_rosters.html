@@ -210,21 +210,21 @@ this year's data if it is September or later. If set to <code>TRUE</code>, will 
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_cfb_rosters</span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Roster data from data repository ────────────────────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-13 05:57:59 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team roster data from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-17 20:50:28 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16,468 × 18</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    athlete_id first_n…¹ last_…² team  weight height jersey  year posit…³ home_…⁴</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 32312      Ben       Brown   Ole …    315     77     55     3 OL      Vicksb…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 102597     Will      Rogers  Miss…    205     74      2     1 QB      Brandon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 107494     Trey      Sanders Alab…    214     72      6     2 RB      Port S…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 102597     Will      Rogers  Miss…    210     74      2     3 QB      Brandon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 107494     Trey      Sanders Alab…    214     72      6     3 RB      Port S…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 385291     Matt      Duncan  Temp…    213     73     <span style="color: #BB0000;">NA</span>     1 QB      Summer…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 501592     Patrick   McNeil  Midd…    320     73     78     3 OL      Mobile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 516230     Aaron     Davis   Navy     202     74     81     1 LB      Upper …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 516230     Aaron     Davis   Navy     215     74     58     3 LB      Upper …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 517461     Greg      DeLuca  Nort…    214     74     42     4 RB      Boonto…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 533859     Randall   Brown   Coas…    180     69     17     2 RB      Lugoff </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 533859     Randall   Brown   Coas…    180     69     17     3 RB      Lugoff </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 548077     Ryan      Smith   Duke     210     74     40     1 LB      Las Ve…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 550577     Jordan    Brown   Fres…    227     52     81     1 WR      Bellfl…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 550577     Jordan    Brown   Fres…    227     72     81     3 WR      Bellfl…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 16,458 more rows, 8 more variables: home_state &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_country &lt;chr&gt;, home_latitude &lt;chr&gt;, home_longitude &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_county_fips &lt;chr&gt;, recruit_ids &lt;list&gt;, headshot_url &lt;chr&gt;,</span></span>
