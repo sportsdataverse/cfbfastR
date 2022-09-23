@@ -18,6 +18,7 @@
 #' @param defense_conference (*String* optional): Defense DI Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #' @return [cfbd_drives()] - A data frame with 23 variables as follows:
 #' \describe{
 #'   \item{`offense`:character.}{Drive offense.}
@@ -72,7 +73,8 @@ cfbd_drives <- function(year,
                         defense_team = NULL,
                         conference = NULL,
                         offense_conference = NULL,
-                        defense_conference = NULL) {
+                        defense_conference = NULL,
+                        division = 'fbs') {
 
   # Check if year is numeric
   if(!is.numeric(year) && !nchar(year) == 4){
@@ -83,7 +85,7 @@ cfbd_drives <- function(year,
     # Check if season_type is appropriate, if not regular
     cli::cli_abort("Enter valid season_type: regular, postseason, or both")
   }
-  if (!is.null(week)&& !is.numeric(week) && !nchar(week) <= 2) {
+  if (!is.null(week)&& !nchar(week) <= 2) {
     # Check if week is numeric, if not NULL
     cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
@@ -126,6 +128,11 @@ cfbd_drives <- function(year,
     # Encode defense_conference parameter for URL, if not NULL
     defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
   }
+  if (!is.null(division)) {
+    # # Check division parameter
+    division <- utils::URLencode(division, reserved = TRUE)
+  }
+
 
   base_url <- "https://api.collegefootballdata.com/drives?"
 
@@ -139,7 +146,8 @@ cfbd_drives <- function(year,
     "&defense=", defense_team,
     "&conference=", conference,
     "&offenseConference=", offense_conference,
-    "&defenseConference=", defense_conference
+    "&defenseConference=", defense_conference,
+    "&classification=", division
   )
 
   # Check for CFBD API key

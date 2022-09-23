@@ -14,7 +14,8 @@ cfbd_plays(
   conference = NULL,
   offense_conference = NULL,
   defense_conference = NULL,
-  play_type = NULL
+  play_type = NULL,
+  division = "fbs"
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 
 \item{play_type}{Select play type (example: see the \link{cfbd_play_type_df})}
+
+\item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 }
 \value{
 \code{\link[=cfbd_plays]{cfbd_plays()}} - A data frame with 29 columns:
