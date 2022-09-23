@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -190,7 +190,8 @@
 <span>  season_type <span class="op">=</span> <span class="st">"both"</span>,</span>
 <span>  team <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  media_type <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  media_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  division <span class="op">=</span> <span class="st">"fbs"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -220,6 +221,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
 <dt>media_type</dt>
 <dd><p>(<em>String</em> optional): Media type filter: tv, radio, web, ppv, or mobile</p></dd>
+
+
+<dt>division</dt>
+<dd><p>(<em>String</em> optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -272,8 +277,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_media</span><span class="op">(</span><span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">4</span>, conference <span class="op">=</span> <span class="st">"ACC"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game media data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 01:17:56 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game media data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 02:55:17 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     game_id season  week seaso…¹ start…² is_st…³ home_…⁴ home_…⁵ away_…⁶ away_…⁷</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>

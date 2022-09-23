@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -297,9 +297,9 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_team_info</span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 01:18:42 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 27</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 02:56:08 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 28</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    team_id school   mascot abbre…¹ alt_n…² alt_n…³ alt_n…⁴ confe…⁵ class…⁶ color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     333 Alabama  Crims… ALA     <span style="color: #BB0000;">NA</span>      ALA     Alabama SEC     fbs     #690…</span>
@@ -316,17 +316,17 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>    <span style="text-decoration: underline;">2</span>633 Tenness… Volun… TENN    <span style="color: #BB0000;">NA</span>      TENN    Tennes… SEC     fbs     #EE9…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>     245 Texas A… Aggies TA&amp;M    <span style="color: #BB0000;">NA</span>      TA&amp;M    Texas … SEC     fbs     #5C0…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>     238 Vanderb… Commo… VAN     <span style="color: #BB0000;">NA</span>      VAN     Vander… SEC     fbs     #000…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;, grass &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation, ²​alt_name1,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​classification</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 18 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   twitter &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longitude &lt;dbl&gt;, elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   grass &lt;lgl&gt;, dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​alt_name1, ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​classification</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_team_info</span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 01:18:42 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 27</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 02:56:08 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 28</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   team_id school    mascot abbre…¹ alt_n…² alt_n…³ alt_n…⁴ confe…⁵ class…⁶ color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     349 Army      Black… ARMY    <span style="color: #BB0000;">NA</span>      ARMY    Army    FBS In… fbs     #ce9…</span>
@@ -336,17 +336,17 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>     166 New Mexi… Aggies NMSU    <span style="color: #BB0000;">NA</span>      NMSU    New Me… FBS In… fbs     #891…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>      87 Notre Da… Fight… ND      <span style="color: #BB0000;">NA</span>      ND      Notre … FBS In… fbs     #001…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span>     113 UMass     Minut… UMASS   <span style="color: #BB0000;">NA</span>      UMASS   UMass   FBS In… fbs     #880…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;, grass &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation, ²​alt_name1,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​classification</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 18 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;, logo_2 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   twitter &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longitude &lt;dbl&gt;, elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   grass &lt;lgl&gt;, dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​alt_name1, ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​classification</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_team_info</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.2</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 01:18:43 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 130 × 27</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-09-23 02:56:09 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 130 × 28</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    team_id school   mascot abbre…¹ alt_n…² alt_n…³ alt_n…⁴ confe…⁵ divis…⁶ color</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>    <span style="text-decoration: underline;">2</span>005 Air For… Falco… AFA     <span style="color: #BB0000;">NA</span>      AFA     Air Fo… Mounta… Mounta… #004…</span>
@@ -359,9 +359,9 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>    <span style="text-decoration: underline;">2</span>032 Arkansa… Red W… ARST    <span style="color: #BB0000;">NA</span>      ARST    Arkans… Sun Be… East    #e81…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     349 Army     Black… ARMY    <span style="color: #BB0000;">NA</span>      ARMY    Army    FBS In… <span style="color: #BB0000;">NA</span>      #ce9…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>       2 Auburn   Tigers AUB     <span style="color: #BB0000;">NA</span>      AUB     Auburn  SEC     West    #032…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 120 more rows, 17 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   logo_2 &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 120 more rows, 18 more variables: alt_color &lt;chr&gt;, logo &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   logo_2 &lt;chr&gt;, twitter &lt;chr&gt;, venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   state &lt;chr&gt;, zip &lt;chr&gt;, country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longitude &lt;dbl&gt;, elevation &lt;chr&gt;, capacity &lt;int&gt;, year_constructed &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   grass &lt;lgl&gt;, dome &lt;lgl&gt;, and abbreviated variable names ¹​abbreviation,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​alt_name1, ³​alt_name2, ⁴​alt_name3, ⁵​conference, ⁶​division</span></span>

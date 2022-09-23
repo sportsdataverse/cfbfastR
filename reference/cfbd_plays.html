@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -194,7 +194,8 @@
 <span>  conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  offense_conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  defense_conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  play_type <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  play_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  division <span class="op">=</span> <span class="st">"fbs"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -241,6 +242,10 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)</p></
 
 <dt>play_type</dt>
 <dd><p>Select play type (example: see the <a href="data.html">cfbd_play_type_df</a>)</p></dd>
+
+
+<dt>division</dt>
+<dd><p>(<em>String</em> optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii</p></dd>
 
 </dl></div>
     <div class="section level2">
