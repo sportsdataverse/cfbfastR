@@ -543,9 +543,12 @@ cfbd_team_roster <- function(year, team = NULL) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(athlete_id = .data$id) %>%
-        dplyr::mutate(headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
+        dplyr::mutate(
+          headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
         as.data.frame()
-
+      df$recruit_ids <- lapply(df$recruit_ids, function(y){
+        if(length(y) == 0) as.integer(0) else y
+      })
 
       df <- df %>%
         make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
