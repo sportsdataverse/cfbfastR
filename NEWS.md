@@ -1,3 +1,12 @@
+# **cfbfastR v1.9.3**
+
+* Add division parameter to the following functions: 
+  - [```cfbd_game_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.html)
+  - [```cfbd_plays()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.html)
+  - [```cfbd_drives()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.html)
+  - [```cfbd_game_media()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.html)
+  - [```cfbd_game_team_stats()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html)
+
 # **cfbfastR v1.9.2**
 
 * [```espn_cfb_player_stats()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.html) function added.
