@@ -187,8 +187,6 @@ cfbd_recruiting_player <- function(year = NULL,
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
     },
-    warning = function(w) {
-    },
     finally = {
     }
   )
@@ -289,10 +287,10 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
-          position_group = .data$positionGroup,
-          avg_rating = .data$averageRating,
-          total_rating = .data$totalRating,
-          avg_stars = .data$averageStars
+          "position_group" = "positionGroup",
+          "avg_rating" = "averageRating",
+          "total_rating" = "totalRating",
+          "avg_stars" = "averageStars"
         )
 
 
@@ -301,8 +299,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -393,8 +389,6 @@ cfbd_recruiting_team <- function(year = NULL,
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
     },
-    warning = function(w) {
-    },
     finally = {
     }
   )
@@ -476,8 +470,6 @@ cfbd_recruiting_transfer_portal <- function(year) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no transfer portal data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

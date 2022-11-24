@@ -54,17 +54,21 @@ espn_metrics_wp <- function(game_id) {
           espn_game_id = stringr::str_sub(.data$play_id, end = stringr::str_length(espn_game_id))
         ) %>%
         dplyr::rename(
-          home_win_percentage = .data$home_win_percentage,
-          seconds_left = .data$seconds_left,
-          play_id = .data$play_id,
-          game_id = .data$espn_game_id
+          "home_win_percentage" = "home_win_percentage",
+          "seconds_left" = "seconds_left",
+          "play_id" = "play_id",
+          "game_id" = "espn_game_id"
         ) %>%
         dplyr::mutate(
           away_win_percentage = 1 - .data$home_win_percentage - .data$tie_percentage
         ) %>%
         dplyr::select(
-          .data$game_id, .data$play_id, .data$seconds_left,
-          .data$home_win_percentage, .data$away_win_percentage, .data$tie_percentage
+          "game_id",
+          "play_id",
+          "seconds_left",
+          "home_win_percentage",
+          "away_win_percentage",
+          "tie_percentage"
         )
 
       espn_wp <- espn_wp %>%
@@ -72,8 +76,6 @@ espn_metrics_wp <- function(game_id) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

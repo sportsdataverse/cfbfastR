@@ -226,25 +226,23 @@ cfbd_game_info <- function(year,
         jsonlite::fromJSON()
 
       if (!quarter_scores) {
-        df <- dplyr::select(df, -.data$home_line_scores, -.data$away_line_scores) %>%
-          dplyr::rename(game_id = .data$id) %>%
+        df <- dplyr::select(df, -"home_line_scores", -"away_line_scores") %>%
+          dplyr::rename("game_id" = "id") %>%
           as.data.frame()
       } else {
         df <- df %>%
-          tidyr::unnest_wider(.data$home_line_scores, names_sep = "_Q") %>%
-          tidyr::unnest_wider(.data$away_line_scores, names_sep = "_Q")
+          tidyr::unnest_wider("home_line_scores", names_sep = "_Q") %>%
+          tidyr::unnest_wider("away_line_scores", names_sep = "_Q")
 
         colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
         df <- df %>%
-          dplyr::rename(game_id = .data$id)
+          dplyr::rename("game_id" = "id")
       }
       df <- df %>%
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -361,7 +359,7 @@ cfbd_game_weather <- function(year,
         janitor::clean_names()
 
       df <- df %>%
-        dplyr::rename(game_id = .data$id)
+        dplyr::rename("game_id" = "id")
 
 
       df <- df %>%
@@ -369,8 +367,6 @@ cfbd_game_weather <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no game weather data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -405,7 +401,7 @@ cfbd_game_weather <- function(year,
 cfbd_calendar <- function(year) {
 
   # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
+  if (!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
 
@@ -445,8 +441,6 @@ cfbd_calendar <- function(year) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -575,12 +569,12 @@ cfbd_game_media <- function(year,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         tidyr::pivot_wider(
-          names_from = .data$mediaType,
-          values_from = .data$outlet,
+          names_from = "mediaType",
+          values_from = "outlet",
           values_fn = list
         ) %>%
         janitor::clean_names() %>%
-        dplyr::rename(game_id = .data$id)
+        dplyr::rename("game_id" = "id")
 
       df[cols[!(cols %in% colnames(df))]] <- NA
       df <- df[!duplicated(df), ]
@@ -594,8 +588,6 @@ cfbd_game_media <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -739,14 +731,14 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       team1 <- seq(1, nrow(df) - 1, by = 2)
       df1 <- df[team1, ] %>%
         dplyr::rename(
-          stat = .data$name,
-          team1 = .data$value
+          "stat" = "name",
+          "team1" = "value"
         )
 
       team2 <- seq(2, nrow(df), by = 2)
       df2 <- df[team2, ] %>%
-        dplyr::rename(team2 = .data$value) %>%
-        dplyr::select(.data$team2)
+        dplyr::rename("team2" = "value") %>%
+        dplyr::select("team2")
 
       df <- data.frame(cbind(df1, df2))
       df$stat <- substr(df$stat, 1, nchar(df$stat) - 1)
@@ -777,22 +769,22 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       if (!long) {
         team <- df %>%
           dplyr::filter(.data$stat == "ppa_team") %>%
-          tidyr::pivot_longer(cols = c(.data$team1, .data$team2)) %>%
+          tidyr::pivot_longer(cols = c("team1", "team2")) %>%
           dplyr::transmute(team = .data$value)
 
         df <- df %>%
           dplyr::filter(!stringr::str_detect(.data$stat, "team")) %>%
-          tidyr::pivot_longer(cols = c(.data$team1, .data$team2)) %>%
-          tidyr::pivot_wider(names_from = .data$stat, values_from = .data$value) %>%
-          dplyr::select(-.data$name) %>%
+          tidyr::pivot_longer(cols = c("team1", "team2")) %>%
+          tidyr::pivot_wider(names_from = "stat", values_from = "value") %>%
+          dplyr::select(-"name") %>%
           dplyr::mutate_all(as.numeric) %>%
           dplyr::bind_cols(team)  %>%
-          dplyr::select(.data$team, tidyr::everything())
+          dplyr::select("team", tidyr::everything())
         df <- df %>%
           dplyr::rename(
-            rushing_line_yds_avg = .data$rushing_line_yd_avg,
-            rushing_second_lvl_yds_avg = .data$rushing_second_lvl_yd_avg,
-            rushing_open_field_yds_avg = .data$rushing_open_field_yd_avg)
+            "rushing_line_yds_avg" = "rushing_line_yd_avg",
+            "rushing_second_lvl_yds_avg" = "rushing_second_lvl_yd_avg",
+            "rushing_open_field_yds_avg" = "rushing_open_field_yd_avg")
 
         df <- df %>%
           make_cfbfastR_data("Advanced box score data from CollegeFootballData.com",Sys.time())
@@ -801,8 +793,6 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: game_id '{game_id}' invalid or no game advanced box score data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -1117,32 +1107,32 @@ cfbd_game_player_stats <- function(year,
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        dplyr::rename(game_id = .data$id) %>%
-        tidyr::unnest(.data$teams) %>%
+        dplyr::rename("game_id" = "id") %>%
+        tidyr::unnest("teams") %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        tidyr::unnest(.data$categories) %>%
+        tidyr::unnest("categories") %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        dplyr::rename(category = .data$name) %>%
-        tidyr::unnest(.data$types) %>%
+        dplyr::rename("category" = "name") %>%
+        tidyr::unnest("types") %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        dplyr::rename(stat_category = .data$name) %>%
+        dplyr::rename("stat_category" = "name") %>%
         dplyr::mutate(
           statType = paste0(.data$category, "_", .data$stat_category)) %>%
-        tidyr::unnest(.data$athletes) %>%
+        tidyr::unnest("athletes") %>%
         dplyr::rename(
-          athlete_id = .data$id,
-          athlete_name = .data$name,
-          team_points = .data$points,
-          team = .data$school,
-          value = .data$stat
+          "athlete_id" = "id",
+          "athlete_name" = "name",
+          "team_points" = "points",
+          "team" = "school",
+          "value" = "stat"
         ) %>%
         dplyr::select(-dplyr::any_of(c("category", "stat_category"))) %>%
         dplyr::group_by(.data$game_id, .data$team, .data$conference, .data$athlete_id, .data$athlete_name,
                         .data$homeAway, .data$team_points) %>%
-        tidyr::pivot_wider(names_from = .data$statType, values_from = .data$value, values_fn = first) %>%
+        tidyr::pivot_wider(names_from = "statType", values_from = "value", values_fn = first) %>%
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
@@ -1150,9 +1140,9 @@ cfbd_game_player_stats <- function(year,
       suppressWarnings(
         df <- df %>%
           dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
-          tidyr::separate(.data$passing_c_att,into=c("passing_completions","passing_attempts"),sep="/") %>%
-          tidyr::separate(.data$kicking_xp,into=c("kicking_xpm","kicking_xpa"),sep="/") %>%
-          tidyr::separate(.data$kicking_fg,into=c("kicking_fgm","kicking_fga"),sep="/") %>%
+          tidyr::separate("passing_c_att",into = c("passing_completions","passing_attempts"), sep = "/") %>%
+          tidyr::separate("kicking_xp",into = c("kicking_xpm","kicking_xpa"), sep = "/") %>%
+          tidyr::separate("kicking_fg",into = c("kicking_fgm","kicking_fga"), sep = "/") %>%
           dplyr::mutate_at(numeric_cols, as.numeric) %>%
           dplyr::mutate(athlete_id = as.integer(.data$athlete_id)) %>%
           as.data.frame()
@@ -1166,8 +1156,6 @@ cfbd_game_player_stats <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -1235,7 +1223,7 @@ cfbd_game_records <- function(year,
 
 
   ## check if year is numeric
-  if(!is.numeric(year) && !nchar(year) == 4){
+  if (!is.numeric(year) && !nchar(year) == 4){
     cli::cli_abort("Enter valid year (Integer): 4 digits (YYYY)")
   }
   if (!is.null(team)) {
@@ -1282,23 +1270,23 @@ cfbd_game_records <- function(year,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
-          expected_wins = .data$expectedWins,
-          total_games = .data$total.games,
-          total_wins = .data$total.wins,
-          total_losses = .data$total.losses,
-          total_ties = .data$total.ties,
-          conference_games = .data$conferenceGames.games,
-          conference_wins = .data$conferenceGames.wins,
-          conference_losses = .data$conferenceGames.losses,
-          conference_ties = .data$conferenceGames.ties,
-          home_games = .data$homeGames.games,
-          home_wins = .data$homeGames.wins,
-          home_losses = .data$homeGames.losses,
-          home_ties = .data$homeGames.ties,
-          away_games = .data$awayGames.games,
-          away_wins = .data$awayGames.wins,
-          away_losses = .data$awayGames.losses,
-          away_ties = .data$awayGames.ties
+          "expected_wins" = "expectedWins",
+          "total_games" = "total.games",
+          "total_wins" = "total.wins",
+          "total_losses" = "total.losses",
+          "total_ties" = "total.ties",
+          "conference_games" = "conferenceGames.games",
+          "conference_wins" = "conferenceGames.wins",
+          "conference_losses" = "conferenceGames.losses",
+          "conference_ties" = "conferenceGames.ties",
+          "home_games" = "homeGames.games",
+          "home_wins" = "homeGames.wins",
+          "home_losses" = "homeGames.losses",
+          "home_ties" = "homeGames.ties",
+          "away_games" = "awayGames.games",
+          "away_wins" = "awayGames.wins",
+          "away_losses" = "awayGames.losses",
+          "away_ties" = "awayGames.ties"
         )
 
       df <- df %>%
@@ -1306,8 +1294,6 @@ cfbd_game_records <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -1441,7 +1427,7 @@ cfbd_game_team_stats <- function(year,
                                  rows_per_team = 1) {
 
   # Check if year is numeric
-  if(!is.numeric(year) && !nchar(year) == 4){
+  if (!is.numeric(year) && !nchar(year) == 4){
     cli::cli_abort("Enter valid year (Integer): 4-digit (YYYY)")
   }
   if (!is.null(week) && !is.numeric(week) && !nchar(week) <= 2) {
@@ -1537,29 +1523,29 @@ cfbd_game_team_stats <- function(year,
         return(NULL)
       }
       df <- df %>%
-        tidyr::unnest(.data$teams) %>%
-        tidyr::unnest(.data$stats) %>%
+        tidyr::unnest("teams") %>%
+        tidyr::unnest("stats") %>%
         # Occasionally CFBD will have duplicated stats that causes an error here
         #and the current long df is returned. Distinct removes duplicates.
         dplyr::distinct()
 
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,
-                               names_from = .data$category,
-                               values_from = .data$stat
+                               names_from = "category",
+                               values_from = "stat"
       )
       df <- df %>%
         janitor::clean_names()
       df[cols[!(cols %in% colnames(df))]] <- NA
       df <- df %>%
         dplyr::rename(
-          game_id = .data$id,
-          rush_tds = .data$rushing_t_ds,
-          punt_return_tds = .data$punt_return_t_ds,
-          passing_tds = .data$passing_t_ds,
-          interception_tds = .data$interception_t_ds,
-          defensive_tds = .data$defensive_t_ds,
-          kick_return_tds = .data$kick_return_t_ds
+          "game_id" = "id",
+          "rush_tds" = "rushing_t_ds",
+          "punt_return_tds" = "punt_return_t_ds",
+          "passing_tds" = "passing_t_ds",
+          "interception_tds" = "interception_t_ds",
+          "defensive_tds" = "defensive_t_ds",
+          "kick_return_tds" = "kick_return_t_ds"
         )
 
       if (rows_per_team == 1) {
@@ -1571,8 +1557,9 @@ cfbd_game_team_stats <- function(year,
                            by = c("game_id", "opponent_home_away" = "home_away"),
                            suffix = c("", "_allowed")
           ) %>%
-          dplyr::rename(opponent = .data$school_allowed,
-                        opponent_conference = .data$conference_allowed)
+          dplyr::rename(
+            "opponent" = "school_allowed",
+            "opponent_conference" = "conference_allowed")
 
         cols1 <- c(
           "game_id", "school", "conference", "home_away","opponent","opponent_conference",
@@ -1672,8 +1659,6 @@ cfbd_game_team_stats <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no team stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

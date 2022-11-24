@@ -428,25 +428,25 @@ add_player_cols <- function(pbp) {
       fumble_recovered_player_name = stringr::str_trim(.data$fumble_recovered_player)
     ) %>%
     dplyr::select(
-      -.data$rush_player,
-      -.data$receiver_player,
-      -.data$pass_player,
-      -.data$sack_player1,
-      -.data$sack_player2,
-      -.data$pass_breakup_player,
-      -.data$interception_player,
-      -.data$punter_player,
-      -.data$fg_kicker_player,
-      -.data$fg_block_player,
-      -.data$fg_return_player,
-      -.data$kickoff_player,
-      -.data$kickoff_returner_player,
-      -.data$punt_returner_player,
-      -.data$punt_block_player,
-      -.data$punt_block_return_player,
-      -.data$fumble_player,
-      -.data$fumble_forced_player,
-      -.data$fumble_recovered_player
+      -"rush_player",
+      -"receiver_player",
+      -"pass_player",
+      -"sack_player1",
+      -"sack_player2",
+      -"pass_breakup_player",
+      -"interception_player",
+      -"punter_player",
+      -"fg_kicker_player",
+      -"fg_block_player",
+      -"fg_return_player",
+      -"kickoff_player",
+      -"kickoff_returner_player",
+      -"punt_returner_player",
+      -"punt_block_player",
+      -"punt_block_return_player",
+      -"fumble_player",
+      -"fumble_forced_player",
+      -"fumble_recovered_player"
     )
   return(pbp)
 }

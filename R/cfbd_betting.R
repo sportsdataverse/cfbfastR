@@ -139,20 +139,18 @@ cfbd_betting_lines <- function(game_id = NULL,
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        tidyr::unnest(.data$lines)
+        tidyr::unnest("lines")
 
       if (!is.null(line_provider)) {
         if (is.list(df) & length(df) == 0) {
           df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
-        }
-        else if (!is.null(df$provider)) {
+        } else if (!is.null(df$provider)) {
           df <- df %>%
             dplyr::filter(.data$provider == line_provider) %>%
             janitor::clean_names() %>%
-            dplyr::rename(game_id = .data$id) %>%
+            dplyr::rename("game_id" = "id") %>%
             as.data.frame()
-        }
-        else {
+        } else {
           df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
         }
       }
@@ -161,7 +159,7 @@ cfbd_betting_lines <- function(game_id = NULL,
       } else {
         df <- df %>%
           janitor::clean_names() %>%
-          dplyr::rename(game_id = .data$id) %>%
+          dplyr::rename("game_id" = "id") %>%
           as.data.frame()
       }
 

@@ -42,6 +42,7 @@ test_that("ESPN CFB Player Stats", {
     "headshot_alt",
     "general_fumbles",
     "general_fumbles_lost",
+    "general_fumbles_recovered_yards",
     "general_fumbles_touchdowns",
     "general_games_played",
     "general_offensive_two_pt_returns",
@@ -182,6 +183,7 @@ test_that("ESPN CFB Player Stats", {
     "defensive_passes_batted_down",
     "defensive_passes_defended",
     "defensive_two_pt_returns",
+    "defensive_qb_hits",
     "defensive_sacks",
     "defensive_sack_yards",
     "defensive_safeties",
@@ -189,6 +191,7 @@ test_that("ESPN CFB Player Stats", {
     "defensive_stuffs",
     "defensive_stuff_yards",
     "defensive_tackles_for_loss",
+    "defensive_tackles_yards_lost",
     "defensive_team_games_played",
     "defensive_total_tackles",
     "defensive_yards_allowed",
@@ -338,7 +341,7 @@ test_that("ESPN CFB Player Stats", {
 
   y <- espn_cfb_player_stats(athlete_id = 4360799, year = 2022)
 
-  expect_equal(sort(colnames(x)), sort(cols))
+  expect_true(all(colnames(x) %in% cols))
   expect_equal(sort(colnames(y)), sort(cols))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")

@@ -95,7 +95,12 @@ espn_ratings_fpi <- function(year = 2019) {
 
       df <- purrr::pluck(raw_json_fpi, "teams", "team") %>%
         dplyr::as_tibble() %>%
-        dplyr::select(.data$id, .data$nickname, .data$abbreviation, .data$logos, .data$links) %>%
+        dplyr::select(
+          "id",
+          "nickname",
+          "abbreviation",
+          "logos",
+          "links") %>%
         dplyr::mutate(row_n = dplyr::row_number()) %>%
         dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data)) %>%
         # lots of name_repair here that I am silencing
@@ -109,10 +114,10 @@ espn_ratings_fpi <- function(year = 2019) {
         )) %>%
         dplyr::select(-c("logos", "links")) %>%
         dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
-        dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
-        dplyr::select(.data$year, tidyr::everything()) %>%
-        dplyr::select(-.data$row_n) %>%
-        dplyr::rename(team_id = .data$id) %>%
+        dplyr::mutate_at(vars("win_out":"win_conf"), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
+        dplyr::select("year", tidyr::everything()) %>%
+        dplyr::select(-"row_n") %>%
+        dplyr::rename("team_id" = "id") %>%
         as.data.frame()
 
       df <- df %>%
@@ -120,8 +125,6 @@ espn_ratings_fpi <- function(year = 2019) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

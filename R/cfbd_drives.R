@@ -171,13 +171,13 @@ cfbd_drives <- function(year,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
-          drive_id = .data$id,
-          time_minutes_start = .data$start_time.minutes,
-          time_seconds_start = .data$start_time.seconds,
-          time_minutes_end = .data$end_time.minutes,
-          time_seconds_end = .data$end_time.seconds,
-          time_minutes_elapsed = .data$elapsed.minutes,
-          time_seconds_elapsed = .data$elapsed.seconds
+          "drive_id" = "id",
+          "time_minutes_start" = "start_time.minutes",
+          "time_seconds_start" = "start_time.seconds",
+          "time_minutes_end" = "end_time.minutes",
+          "time_seconds_end" = "end_time.seconds",
+          "time_minutes_elapsed" = "elapsed.minutes",
+          "time_seconds_elapsed" = "elapsed.seconds"
         ) %>%
         dplyr::mutate(
           time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
@@ -186,13 +186,13 @@ cfbd_drives <- function(year,
 
       # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.
       # Minutes and seconds from these games are also suspect
-      if("start_time.hours" %in% names(df)) {
+      if ("start_time.hours" %in% names(df)) {
         df <- df %>%
-          dplyr::select(-.data$start_time.hours)
+          dplyr::select(-"start_time.hours")
       }
-      if("end_time.hours" %in% names(df)) {
+      if ("end_time.hours" %in% names(df)) {
         df <- df %>%
-          dplyr::select(-.data$end_time.hours)
+          dplyr::select(-"end_time.hours")
       }
 
       df <- df %>%
@@ -200,8 +200,6 @@ cfbd_drives <- function(year,
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

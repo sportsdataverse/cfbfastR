@@ -3,6 +3,7 @@
 This is a minor release that 
 * Adds the division parameter to functions: `cfbd_game_info()`, `cfbd_plays()`, 
 `cfbd_drives()`, `cfbd_game_media()`, `cfbd_game_team_stats()`
+* Makes tidyselect updates to various tidyr and dplyr functions under the hood
 
 ## R CMD check results
 

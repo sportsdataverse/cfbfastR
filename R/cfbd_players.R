@@ -131,8 +131,8 @@ cfbd_player_info <- function(search_term,
         jsonlite::fromJSON(flatten = TRUE) %>%
         janitor::clean_names() %>%
         dplyr::rename(
-          athlete_id = .data$id,
-          home_town = .data$hometown
+          "athlete_id" = "id",
+          "home_town" = "hometown"
         )
 
 
@@ -141,8 +141,6 @@ cfbd_player_info <- function(search_term,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -242,17 +240,17 @@ cfbd_player_returning <- function(year = 2019,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
-          total_ppa = .data$totalPPA,
-          total_passing_ppa = .data$totalPassingPPA,
-          total_receiving_ppa = .data$totalReceivingPPA,
-          total_rushing_ppa = .data$totalRushingPPA,
-          percent_ppa = .data$percentPPA,
-          percent_passing_ppa = .data$percentPassingPPA,
-          percent_receiving_ppa = .data$percentReceivingPPA,
-          percent_rushing_ppa = .data$percentRushingPPA,
-          passing_usage = .data$passingUsage,
-          receiving_usage = .data$receivingUsage,
-          rushing_usage = .data$rushingUsage
+          "total_ppa" = "totalPPA",
+          "total_passing_ppa" = "totalPassingPPA",
+          "total_receiving_ppa" = "totalReceivingPPA",
+          "total_rushing_ppa" = "totalRushingPPA",
+          "percent_ppa" = "percentPPA",
+          "percent_passing_ppa" = "percentPassingPPA",
+          "percent_receiving_ppa" = "percentReceivingPPA",
+          "percent_rushing_ppa" = "percentRushingPPA",
+          "passing_usage" = "passingUsage",
+          "receiving_usage" = "receivingUsage",
+          "rushing_usage" = "rushingUsage"
         )
 
 
@@ -261,8 +259,6 @@ cfbd_player_returning <- function(year = 2019,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -395,15 +391,15 @@ cfbd_player_usage <- function(year = 2019,
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         dplyr::rename(
-          athlete_id = .data$id,
-          usg_overall = .data$usage.overall,
-          usg_pass = .data$usage.pass,
-          usg_rush = .data$usage.rush,
-          usg_1st_down = .data$usage.firstDown,
-          usg_2nd_down = .data$usage.secondDown,
-          usg_3rd_down = .data$usage.thirdDown,
-          usg_standard_downs = .data$usage.standardDowns,
-          usg_passing_downs = .data$usage.passingDowns
+          "athlete_id" = "id",
+          "usg_overall" = "usage.overall",
+          "usg_pass" = "usage.pass",
+          "usg_rush" = "usage.rush",
+          "usg_1st_down" = "usage.firstDown",
+          "usg_2nd_down" = "usage.secondDown",
+          "usg_3rd_down" = "usage.thirdDown",
+          "usg_standard_downs" = "usage.standardDowns",
+          "usg_passing_downs" = "usage.passingDowns"
         )
 
 
@@ -412,8 +408,6 @@ cfbd_player_usage <- function(year = 2019,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

@@ -49,8 +49,8 @@ cfbd_conferences <- function() {
       # Rename id as conference_id, short_name as long_name
       df <- df %>%
         dplyr::rename(
-          conference_id = .data$id,
-          long_name = .data$short_name
+          "conference_id" = "id",
+          "long_name" = "short_name"
         )
 
       df <- df %>%

@@ -112,7 +112,7 @@ cfbd_coaches <- function(first = NULL,
         jsonlite::fromJSON() %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        tidyr::unnest(.data$seasons) %>%
+        tidyr::unnest("seasons") %>%
         dplyr::arrange(.data$year)
 
       df <- df %>%

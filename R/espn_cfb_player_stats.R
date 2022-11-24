@@ -782,8 +782,8 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
 
       team_df <- team_df %>%
         dplyr::rename(
-          logo_href = .data$logos_href,
-          logo_dark_href = .data$logos_href_1)
+          "logo_href" = "logos_href",
+          "logo_dark_href" = "logos_href_1")
 
       athlete_df[["links"]] <- NULL
       athlete_df[["injuries"]] <- NULL
@@ -800,10 +800,10 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
                                        "draft.x.ref","draft.x.ref.1"))) %>%
         janitor::clean_names() %>%
         dplyr::rename(
-          athlete_id = .data$id,
-          athlete_uid = .data$uid,
-          athlete_guid = .data$guid,
-          athlete_type = .data$type)
+          "athlete_id" = "id",
+          "athlete_uid" = "uid",
+          "athlete_guid" = "guid",
+          "athlete_type" = "type")
 
 
       # Get the content and return result as data.frame
@@ -812,13 +812,13 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
         jsonlite::fromJSON() %>%
         purrr::pluck("splits") %>%
         purrr::pluck("categories") %>%
-        tidyr::unnest(.data$stats, names_sep="_")
+        tidyr::unnest("stats", names_sep="_")
       df <- df %>%
         dplyr::mutate(
           stats_category_name = glue::glue("{.data$name}_{.data$stats_name}")) %>%
-        dplyr::select(.data$stats_category_name, .data$stats_value) %>%
-        tidyr::pivot_wider(names_from = .data$stats_category_name,
-                           values_from = .data$stats_value,
+        dplyr::select("stats_category_name", "stats_value") %>%
+        tidyr::pivot_wider(names_from = "stats_category_name",
+                           values_from = "stats_value",
                            values_fn = dplyr::first) %>%
         janitor::clean_names()
 
@@ -835,8 +835,6 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no season player stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
