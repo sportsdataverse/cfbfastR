@@ -28,11 +28,11 @@ jobs:
             pkgdown
             animation
             baseballr
-            chessR
             fastRhockey
             ggimage
             hoopR
             knitr
+            oddsapiR
             pacman
             ragg
             rsconnect
