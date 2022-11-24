@@ -7,6 +7,7 @@ cols <- c(
   "season_type",
   "start_date",
   "start_time_tbd",
+  "completed",
   "neutral_site",
   "conference_game",
   "attendance",

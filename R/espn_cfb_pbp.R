@@ -80,7 +80,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
         plays_df <- plays_curr %>%
           dplyr::bind_rows(plays_prev) %>%
           janitor::clean_names() %>%
-          dplyr::select(-.data$drive_team_logos)
+          dplyr::select(-"drive_team_logos")
 
       }
       plays_df$season <- raw_df[['header']][['season']][['year']]
@@ -111,17 +111,17 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
       if (isTRUE(epa_wpa)) {
         plays_df <- plays_df %>%
           dplyr::rename(
-            play_text = .data$plays_text,
-            play_type = .data$plays_type_text,
-            down = .data$plays_start_down,
-            distance = .data$plays_start_distance,
-            period = .data$plays_period_number,
-            id_play = .data$plays_id,
-            home = .data$home_team,
-            away = .data$away_team,
-            yards_to_goal = .data$plays_start_yards_to_endzone,
-            yards_gained = .data$plays_stat_yardage,
-            yard_line = .data$plays_start_yard_line
+            "play_text" = "plays_text",
+            "play_type" = "plays_type_text",
+            "down" = "plays_start_down",
+            "distance" = "plays_start_distance",
+            "period" = "plays_period_number",
+            "id_play" = "plays_id",
+            "home" = "home_team",
+            "away" = "away_team",
+            "yards_to_goal" = "plays_start_yards_to_endzone",
+            "yards_gained" = "plays_stat_yardage",
+            "yard_line" = "plays_start_yard_line"
           ) %>%
           dplyr::mutate(
             game_id = game_id,
@@ -171,7 +171,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
           create_epa(ep_model = ep_model, fg_model = fg_model) %>%
           # create_wpa_betting() %>%
           create_wpa_naive(wp_model = wp_model) %>%
-          dplyr::select(-.data$ppa) #drop placeholder column
+          dplyr::select(-"ppa") #drop placeholder column
 
       }
       plays_df <- plays_df %>%
@@ -180,8 +180,6 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play-by-play data for {game_id} available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

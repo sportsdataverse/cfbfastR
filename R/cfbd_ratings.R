@@ -131,14 +131,14 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        tidyr::unnest(.data$polls) %>%
-        tidyr::unnest(.data$ranks) %>%
+        tidyr::unnest("polls") %>%
+        tidyr::unnest("ranks") %>%
         dplyr::group_by(.data$week, .data$poll) %>%
         dplyr::arrange(.data$rank, .by_group = TRUE) %>%
         dplyr::ungroup() %>%
         dplyr::rename(
-          season_type = .data$seasonType,
-          first_place_votes = .data$firstPlaceVotes
+          "season_type" = "seasonType",
+          "first_place_votes" = "firstPlaceVotes"
         )
 
 
@@ -147,8 +147,6 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -255,29 +253,29 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
-          second_order_wins = .data$secondOrderWins,
-          offense_ranking = .data$offense.ranking,
-          offense_rating = .data$offense.rating,
-          offense_success = .data$offense.success,
-          offense_explosiveness = .data$offense.explosiveness,
-          offense_rushing = .data$offense.rushing,
-          offense_passing = .data$offense.passing,
-          offense_standard_downs = .data$offense.standardDowns,
-          offense_passing_downs = .data$offense.passingDowns,
-          offense_run_rate = .data$offense.runRate,
-          offense_pace = .data$offense.pace,
-          defense_ranking = .data$defense.ranking,
-          defense_rating = .data$defense.rating,
-          defense_success = .data$defense.success,
-          defense_explosiveness = .data$defense.explosiveness,
-          defense_rushing = .data$defense.rushing,
-          defense_passing = .data$defense.passing,
-          defense_standard_downs = .data$defense.standardDowns,
-          defense_passing_downs = .data$defense.passingDowns,
-          defense_havoc_total = .data$defense.havoc.total,
-          defense_havoc_front_seven = .data$defense.havoc.frontSeven,
-          defense_havoc_db = .data$defense.havoc.db,
-          special_teams_rating = .data$specialTeams.rating
+          "second_order_wins" = "secondOrderWins",
+          "offense_ranking" = "offense.ranking",
+          "offense_rating" = "offense.rating",
+          "offense_success" = "offense.success",
+          "offense_explosiveness" = "offense.explosiveness",
+          "offense_rushing" = "offense.rushing",
+          "offense_passing" = "offense.passing",
+          "offense_standard_downs" = "offense.standardDowns",
+          "offense_passing_downs" = "offense.passingDowns",
+          "offense_run_rate" = "offense.runRate",
+          "offense_pace" = "offense.pace",
+          "defense_ranking" = "defense.ranking",
+          "defense_rating" = "defense.rating",
+          "defense_success" = "defense.success",
+          "defense_explosiveness" = "defense.explosiveness",
+          "defense_rushing" = "defense.rushing",
+          "defense_passing" = "defense.passing",
+          "defense_standard_downs" = "defense.standardDowns",
+          "defense_passing_downs" = "defense.passingDowns",
+          "defense_havoc_total" = "defense.havoc.total",
+          "defense_havoc_front_seven" = "defense.havoc.frontSeven",
+          "defense_havoc_db" = "defense.havoc.db",
+          "special_teams_rating" = "specialTeams.rating"
         )
 
 
@@ -286,8 +284,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
     },
     error = function(e){
       message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -388,27 +384,27 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame() %>%
         dplyr::rename(
-          second_order_wins = .data$secondOrderWins,
-          offense_rating = .data$offense.rating,
-          offense_success = .data$offense.success,
-          offense_explosiveness = .data$offense.explosiveness,
-          offense_rushing = .data$offense.rushing,
-          offense_passing = .data$offense.passing,
-          offense_standard_downs = .data$offense.standardDowns,
-          offense_passing_downs = .data$offense.passingDowns,
-          offense_run_rate = .data$offense.runRate,
-          offense_pace = .data$offense.pace,
-          defense_rating = .data$defense.rating,
-          defense_success = .data$defense.success,
-          defense_explosiveness = .data$defense.explosiveness,
-          defense_rushing = .data$defense.rushing,
-          defense_passing = .data$defense.passing,
-          defense_standard_downs = .data$defense.standardDowns,
-          defense_passing_downs = .data$defense.passingDowns,
-          defense_havoc_total = .data$defense.havoc.total,
-          defense_havoc_front_seven = .data$defense.havoc.frontSeven,
-          defense_havoc_db = .data$defense.havoc.db,
-          special_teams_rating = .data$specialTeams.rating
+          "second_order_wins" = "secondOrderWins",
+          "offense_rating" = "offense.rating",
+          "offense_success" = "offense.success",
+          "offense_explosiveness" = "offense.explosiveness",
+          "offense_rushing" = "offense.rushing",
+          "offense_passing" = "offense.passing",
+          "offense_standard_downs" = "offense.standardDowns",
+          "offense_passing_downs" = "offense.passingDowns",
+          "offense_run_rate" = "offense.runRate",
+          "offense_pace" = "offense.pace",
+          "defense_rating" = "defense.rating",
+          "defense_success" = "defense.success",
+          "defense_explosiveness" = "defense.explosiveness",
+          "defense_rushing" = "defense.rushing",
+          "defense_passing" = "defense.passing",
+          "defense_standard_downs" = "defense.standardDowns",
+          "defense_passing_downs" = "defense.passingDowns",
+          "defense_havoc_total" = "defense.havoc.total",
+          "defense_havoc_front_seven" = "defense.havoc.frontSeven",
+          "defense_havoc_db" = "defense.havoc.db",
+          "special_teams_rating" = "specialTeams.rating"
         )
 
 
@@ -417,8 +413,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -522,8 +516,6 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
     },
-    warning = function(w) {
-    },
     finally = {
     }
   )
@@ -626,8 +618,6 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

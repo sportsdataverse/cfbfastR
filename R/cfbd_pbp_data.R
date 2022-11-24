@@ -471,14 +471,12 @@ cfbd_pbp_data <- function(year,
             spread = as.numeric(.data$spread),
             over_under = as.numeric(.data$over_under)
           ) %>%
-          dplyr::select(.data$game_id, .data$spread, .data$formatted_spread, .data$over_under)
+          dplyr::select("game_id", "spread", "formatted_spread", "over_under")
 
         raw_play_df <- raw_play_df %>%
           dplyr::left_join(game_spread, by = c("game_id"))
       },
       error = function(e) {
-      },
-      warning = function(w) {
       },
       finally = {
       }
@@ -515,12 +513,12 @@ cfbd_pbp_data <- function(year,
   play_df <- play_df %>%
     dplyr::select(dplyr::setdiff(names(play_df), rm_cols)) %>%
     dplyr::rename(
-      drive_pts = .data$drive_pts_drive,
-      drive_result = .data$drive_drive_result,
-      orig_drive_number = .data$drive_drive_number,
-      id_play = .data$id,
-      offense_play = .data$offense,
-      defense_play = .data$defense
+      "drive_pts" = "drive_pts_drive",
+      "drive_result" = "drive_drive_result",
+      "orig_drive_number" = "drive_drive_number",
+      "id_play" = "id",
+      "offense_play" = "offense",
+      "defense_play" = "defense"
     ) %>%
     dplyr::mutate(
       season = year,
@@ -746,7 +744,7 @@ cfbd_pbp_data <- function(year,
   }
 
   play_df <- play_df %>%
-    make_cfbfastR_data("play-by-play data from CollegeFootballData.com",Sys.time())
+    make_cfbfastR_data("Play-by-Play data from CollegeFootballData.com",Sys.time())
 
   return(play_df)
 }
@@ -1459,10 +1457,10 @@ clean_drive_dat <- function(play_df) {
       .data$id_play,
       .by_group = TRUE
     ) %>%
-    tidyr::fill(.data$drive_result_detailed, .direction = c("updown")) %>%
-    tidyr::fill(.data$drive_result2, .direction = c("updown")) %>%
-    tidyr::fill(.data$drive_scoring, .direction = c("updown")) %>%
-    tidyr::fill(.data$new_drive_pts, .direction = c("updown")) %>%
+    tidyr::fill("drive_result_detailed", .direction = c("updown")) %>%
+    tidyr::fill("drive_result2", .direction = c("updown")) %>%
+    tidyr::fill("drive_scoring", .direction = c("updown")) %>%
+    tidyr::fill("new_drive_pts", .direction = c("updown")) %>%
     dplyr::ungroup() %>%
     dplyr::arrange(
       .data$game_id, .data$half, .data$period,
@@ -1501,7 +1499,7 @@ clean_drive_dat <- function(play_df) {
       drive_event_number = cumsum(.data$drive_event)
     ) %>%
     dplyr::ungroup() %>%
-    dplyr::select(-.data$td_check)
+    dplyr::select(-"td_check")
   suppressWarnings(
     play_df <- play_df %>%
       dplyr::mutate(
@@ -2076,7 +2074,7 @@ clean_drive_info <- function(drive_df) {
         TRUE ~ .data$drive_pts_calculated),
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)
     ) %>%
-    dplyr::select(-.data$drive_pts_rules,-.data$drive_pts_calculated) %>%
+    dplyr::select(-"drive_pts_rules",-"drive_pts_calculated") %>%
     dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
     dplyr::arrange(.data$game_id, .data$drive_id)
 

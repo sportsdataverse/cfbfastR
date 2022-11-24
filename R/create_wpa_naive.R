@@ -96,7 +96,7 @@ create_wpa_naive <- function(df, wp_model) {
           -1 * .data$lag_pos_score_diff
         )
       ) %>%
-      tidyr::fill(.data$receives_2H_kickoff) %>%
+      tidyr::fill("receives_2H_kickoff") %>%
       dplyr::mutate(
         offense_receives_2H_kickoff = case_when(
           .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,

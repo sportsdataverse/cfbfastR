@@ -153,7 +153,7 @@ cfbd_metrics_ppa_games <- function(year,
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
       df <- df %>%
-        dplyr::rename(game_id = .data$gameId) %>%
+        dplyr::rename("game_id" = "gameId") %>%
         as.data.frame()
 
       df <- df %>%
@@ -161,8 +161,6 @@ cfbd_metrics_ppa_games <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -306,8 +304,6 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA game-level players data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -466,7 +462,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
       df <- df %>%
-        dplyr::rename(athlete_id = .data$id) %>%
+        dplyr::rename("athlete_id" = "id") %>%
         dplyr::arrange(-.data$countable_plays)
 
       df <- df %>%
@@ -474,8 +470,6 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA season-level players data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -558,8 +552,6 @@ cfbd_metrics_ppa_predicted <- function(down,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA predicted data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -686,8 +678,6 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA teams data available!"))
     },
-    warning = function(w) {
-    },
     finally = {
     }
   )
@@ -798,8 +788,6 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no pre-game win probability data available!"))
     },
-    warning = function(w) {
-    },
     finally = {
     }
   )
@@ -899,8 +887,6 @@ cfbd_metrics_wp <- function(game_id) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics win probability data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

@@ -86,10 +86,10 @@ cfbd_draft_teams <- function() {
         janitor::clean_names() %>%
         as.data.frame() %>%
         dplyr::rename(
-          nfl_location = .data$location,
-          nfl_nickname = .data$nickname,
-          nfl_display_name = .data$display_name,
-          nfl_logo = .data$logo
+          "nfl_location" = "location",
+          "nfl_nickname" = "nickname",
+          "nfl_display_name" = "display_name",
+          "nfl_logo" = "logo"
         )
       df <- df %>%
         make_cfbfastR_data("NFL teams data from CollegeFootballData.com",Sys.time())
@@ -154,8 +154,8 @@ cfbd_draft_positions <- function() {
         janitor::clean_names() %>%
         as.data.frame() %>%
         dplyr::rename(
-          position_name = .data$name,
-          position_abbreviation = .data$abbreviation
+          "position_name" = "name",
+          "position_abbreviation" = "abbreviation"
         )
 
       df <- df %>%

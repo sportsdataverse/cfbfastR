@@ -419,8 +419,8 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
 
       team_df <- team_df %>%
         dplyr::rename(
-          logo_href = .data$logos_href,
-          logo_dark_href = .data$logos_href_1)
+          "logo_href" = "logos_href",
+          "logo_dark_href" = "logos_href_1")
 
 
       # Get the content and return result as data.frame
@@ -429,13 +429,13 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
         jsonlite::fromJSON() %>%
         purrr::pluck("splits") %>%
         purrr::pluck("categories") %>%
-        tidyr::unnest(.data$stats, names_sep="_")
+        tidyr::unnest("stats", names_sep="_")
       df <- df %>%
         dplyr::mutate(
           stats_category_name = glue::glue("{.data$name}_{.data$stats_name}")) %>%
-        dplyr::select(.data$stats_category_name, .data$stats_value) %>%
-        tidyr::pivot_wider(names_from = .data$stats_category_name,
-                           values_from = .data$stats_value,
+        dplyr::select("stats_category_name", "stats_value") %>%
+        tidyr::pivot_wider(names_from = "stats_category_name",
+                           values_from = "stats_value",
                            values_fn = dplyr::first) %>%
         janitor::clean_names()
 
@@ -447,8 +447,6 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

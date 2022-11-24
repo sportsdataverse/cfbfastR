@@ -167,7 +167,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       locs <- df$location
       locs <- locs %>%
         jsonlite::flatten()
-      df <- df %>% select(-.data$location)
+      df <- df %>% select(-"location")
       # suppressWarnings(
       #   logos_list <- df %>%
       #     dplyr::group_by(.data$id) %>%
@@ -181,12 +181,14 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       #
       # )
       df <- df %>%
-        tidyr::unnest_wider(.data$logos,names_sep = "_") %>%
-        dplyr::rename(logo = .data$logos_1,logo_2 = .data$logos_2)
+        tidyr::unnest_wider("logos",names_sep = "_") %>%
+        dplyr::rename(
+          "logo" = "logos_1",
+          "logo_2" = "logos_2")
       df <- dplyr::bind_cols(df, locs) %>%
         dplyr::rename(
-          team_id = .data$id,
-          venue_name = .data$name) %>%
+          team_id = "id",
+          venue_name = "name") %>%
         as.data.frame()
 
 
@@ -196,8 +198,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no team data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -298,20 +298,23 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
         jsonlite::fromJSON()
       df1 <- tibble::enframe(unlist(df, use.names = TRUE))[1:7, ]
       df <- tidyr::pivot_wider(df1,
-                               names_from = .data$name,
-                               values_from = .data$value
+                               names_from = "name",
+                               values_from = "value"
       ) %>%
         dplyr::rename(
-          start_year = .data$startYear,
-          end_year = .data$endYear,
-          team1_wins = .data$team1Wins,
-          team2_wins = .data$team2Wins
+          "start_year" = "startYear",
+          "end_year" = "endYear",
+          "team1_wins" = "team1Wins",
+          "team2_wins" = "team2Wins"
         ) %>%
         dplyr::select(
-          .data$start_year, .data$end_year,
-          .data$team1, .data$team1_wins,
-          .data$team2, .data$team2_wins,
-          .data$ties
+          "start_year",
+          "end_year",
+          "team1",
+          "team1_wins",
+          "team2",
+          "team2_wins",
+          "ties"
         )
       df <- as.data.frame(df)
 
@@ -426,7 +429,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        .data$games
+        purrr::pluck("games")
       if (nrow(df) == 0) {
         warning("The data pulled from the API was empty.")
         return(NULL)
@@ -441,8 +444,6 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -542,7 +543,7 @@ cfbd_team_roster <- function(year, team = NULL) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        dplyr::rename(athlete_id = .data$id) %>%
+        dplyr::rename("athlete_id" = "id") %>%
         dplyr::mutate(
           headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
         as.data.frame()
@@ -555,8 +556,6 @@ cfbd_team_roster <- function(year, team = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -625,7 +624,7 @@ cfbd_team_talent <- function(year = NULL) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
-        mutate(talent = as.numeric(.data$talent))
+        dplyr::mutate(talent = as.numeric(.data$talent))
 
 
       df <- df %>%
@@ -633,8 +632,6 @@ cfbd_team_talent <- function(year = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }

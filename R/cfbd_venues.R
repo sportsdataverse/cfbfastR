@@ -51,7 +51,7 @@ cfbd_venues <- function() {
   df <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
     jsonlite::fromJSON() %>%
-    dplyr::rename(venue_id = .data$id) %>%
+    dplyr::rename("venue_id" = "id") %>%
     as.data.frame()
 
 

@@ -92,7 +92,7 @@ cfbd_stats_categories <- function() {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
-        dplyr::rename(category = .data$V1)
+        dplyr::rename("category" = "V1")
 
 
       df <- df %>%
@@ -100,8 +100,6 @@ cfbd_stats_categories <- function() {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -305,8 +303,6 @@ cfbd_stats_game_advanced <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -518,8 +514,6 @@ cfbd_stats_season_advanced <- function(year,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -760,10 +754,10 @@ cfbd_stats_season_player <- function(year,
           statType = paste0(.data$category, "_", .data$statType)
         ) %>%
         tidyr::pivot_wider(
-          names_from = .data$statType,
-          values_from = .data$stat
+          names_from = "statType",
+          values_from = "stat"
         ) %>%
-        dplyr::rename(athlete_id = .data$playerId) %>%
+        dplyr::rename("athlete_id" = "playerId") %>%
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
@@ -788,13 +782,11 @@ cfbd_stats_season_player <- function(year,
 
       df <- df  %>%
         dplyr::select(-dplyr::any_of(c("category"))) %>%
-        dplyr::select(.data$year, tidyr::everything()) %>%
+        dplyr::select("year", tidyr::everything()) %>%
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
@@ -972,8 +964,8 @@ cfbd_stats_season_team <- function(year,
 
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,
-        names_from = .data$statName,
-        values_from = .data$statValue
+        names_from = "statName",
+        values_from = "statValue"
       )
 
       # Find missing columns, if any, and add them to found data
@@ -998,53 +990,65 @@ cfbd_stats_season_team <- function(year,
         #   punt_return_avg = ifelse(is.na(.data$puntReturns), NA_real_, .data$puntReturnYards / .data$puntReturns)
         # ) %>%
         dplyr::select(
-          .data$season, .data$team, .data$conference,
-          .data$games, .data$possessionTime, #.data$time_of_poss_pg,
-          .data$passCompletions, .data$passAttempts, #.data$completion_pct,
-          .data$netPassingYards, #.data$pass_ypa, .data$pass_ypr,
-          .data$passingTDs, .data$interceptions, #.data$int_pct,
-          .data$rushingAttempts, .data$rushingYards, .data$rushingTDs,
-          #.data$rush_ypc,
-          .data$totalYards,
-          .data$fumblesLost, .data$turnovers, #.data$turnovers_pg,
-          .data$firstDowns, .data$thirdDowns, .data$thirdDownConversions,
-          #.data$third_conv_rate,
-          .data$fourthDownConversions,
-          .data$fourthDowns, #.data$fourth_conv_rate,
-          .data$penalties, .data$penaltyYards, #.data$penalties_pg,
-          #.data$penalty_yds_pg, .data$yards_per_penalty,
-          .data$kickReturns, .data$kickReturnYards,
-          .data$kickReturnTDs, #.data$kick_return_avg,
-          .data$puntReturns, .data$puntReturnYards,
-          .data$puntReturnTDs, #.data$punt_return_avg,
-          .data$passesIntercepted, .data$interceptionYards, .data$interceptionTDs
+          "season",
+          "team",
+          "conference",
+          "games",
+          "possessionTime",
+          "passCompletions",
+          "passAttempts",
+          "netPassingYards",
+          "passingTDs",
+          "interceptions",
+          "rushingAttempts",
+          "rushingYards",
+          "rushingTDs",
+          "totalYards",
+          "fumblesLost",
+          "turnovers",
+          "firstDowns",
+          "thirdDowns",
+          "thirdDownConversions",
+          "fourthDownConversions",
+          "fourthDowns",
+          "penalties",
+          "penaltyYards",
+          "kickReturns",
+          "kickReturnYards",
+          "kickReturnTDs",
+          "puntReturns",
+          "puntReturnYards",
+          "puntReturnTDs",
+          "passesIntercepted",
+          "interceptionYards",
+          "interceptionTDs"
         ) %>%
         dplyr::rename(
-          time_of_poss_total = .data$possessionTime,
-          pass_comps = .data$passCompletions,
-          pass_atts = .data$passAttempts,
-          net_pass_yds = .data$netPassingYards,
-          pass_TDs = .data$passingTDs,
-          rush_atts = .data$rushingAttempts,
-          rush_yds = .data$rushingYards,
-          rush_TDs = .data$rushingTDs,
-          total_yds = .data$totalYards,
-          fumbles_lost = .data$fumblesLost,
-          first_downs = .data$firstDowns,
-          third_downs = .data$thirdDowns,
-          third_down_convs = .data$thirdDownConversions,
-          fourth_downs = .data$fourthDowns,
-          fourth_down_convs = .data$fourthDownConversions,
-          penalty_yds = .data$penaltyYards,
-          kick_returns = .data$kickReturns,
-          kick_return_yds = .data$kickReturnYards,
-          kick_return_TDs = .data$kickReturnTDs,
-          punt_returns = .data$puntReturns,
-          punt_return_yds = .data$puntReturnYards,
-          punt_return_TDs = .data$puntReturnTDs,
-          passes_intercepted = .data$passesIntercepted,
-          passes_intercepted_yds = .data$interceptionYards,
-          passes_intercepted_TDs = .data$interceptionTDs
+          "time_of_poss_total" = "possessionTime",
+          "pass_comps" = "passCompletions",
+          "pass_atts" = "passAttempts",
+          "net_pass_yds" = "netPassingYards",
+          "pass_TDs" = "passingTDs",
+          "rush_atts" = "rushingAttempts",
+          "rush_yds" = "rushingYards",
+          "rush_TDs" = "rushingTDs",
+          "total_yds" = "totalYards",
+          "fumbles_lost" = "fumblesLost",
+          "first_downs" = "firstDowns",
+          "third_downs" = "thirdDowns",
+          "third_down_convs" = "thirdDownConversions",
+          "fourth_downs" = "fourthDowns",
+          "fourth_down_convs" = "fourthDownConversions",
+          "penalty_yds" = "penaltyYards",
+          "kick_returns" = "kickReturns",
+          "kick_return_yds" = "kickReturnYards",
+          "kick_return_TDs" = "kickReturnTDs",
+          "punt_returns" = "puntReturns",
+          "punt_return_yds" = "puntReturnYards",
+          "punt_return_TDs" = "puntReturnTDs",
+          "passes_intercepted" = "passesIntercepted",
+          "passes_intercepted_yds" = "interceptionYards",
+          "passes_intercepted_TDs" = "interceptionTDs"
         )
 
 
@@ -1054,8 +1058,6 @@ cfbd_stats_season_team <- function(year,
     },
     error = function(e) {
         message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
-    },
-    warning = function(w) {
     },
     finally = {
     }
