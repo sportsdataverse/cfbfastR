@@ -207,10 +207,14 @@
 
 
 
-<script src="nth-rated-recruit_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Visualizing Team Talent from Player Recruiting Rankings</h1>
-                        <h4 data-toc-skip class="author">Eric Hess - Arbitrary Analytics <br><a href="https://twitter.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=twitter&amp;style=for-the-badge" alt="@arbitanalytics"></a> <a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+                        <h4 data-toc-skip class="author">Eric Hess -
+Arbitrary Analytics
+<br><a href="https://twitter.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=twitter&amp;style=for-the-badge" alt="@arbitanalytics"></a>
+<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
 </h4>
             
       
@@ -220,14 +224,39 @@
 
     
     
-<p>Hi <code>cfbfastR</code> users, I’m Eric Hess and I run the <a href="https://twitter.com/arbitanalytics" class="external-link">Twitter account</a> and blog called <a href="https://arbitraryanalytics.com/" class="external-link">Arbitrary Analytics</a>. My work focuses on sports analytics mainly for Nebraska and the Big Ten. Today, I’m going to walk through how I used the <code>cfbfastR</code> package to make a simple plot of recent recruiting classes. The final output will give you a quick way to visually approximate how much talent each school has recruited. I’m going to assume you have a basic understanding of working with R and that your development environment is already setup.</p>
-<p>We start by loading the packages we need. The <code>cfbfastR</code> package will provide us with our source of data. The <code>dplyr</code> package gives us handy data manipulation tools and the ever useful pipe (<code>%&gt;%</code>) syntax. Finally, <code>ggplot2</code> will allow us to make a simple, functional graph of our results.</p>
+<p>Hi <code>cfbfastR</code> users, I’m Eric Hess and I run the <a href="https://twitter.com/arbitanalytics" class="external-link">Twitter account</a> and blog
+called <a href="https://arbitraryanalytics.com/" class="external-link">Arbitrary
+Analytics</a>. My work focuses on sports analytics mainly for Nebraska
+and the Big Ten. Today, I’m going to walk through how I used the
+<code>cfbfastR</code> package to make a simple plot of recent recruiting
+classes. The final output will give you a quick way to visually
+approximate how much talent each school has recruited. I’m going to
+assume you have a basic understanding of working with R and that your
+development environment is already setup.</p>
+<p>We start by loading the packages we need. The <code>cfbfastR</code>
+package will provide us with our source of data. The <code>dplyr</code>
+package gives us handy data manipulation tools and the ever useful pipe
+(<code>%&gt;%</code>) syntax. Finally, <code>ggplot2</code> will allow
+us to make a simple, functional graph of our results.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span>,<span class="va">cfbfastR</span><span class="op">)</span></span></code></pre></div>
-<p>To create the plot I’m going to use two functions from <code>cfbfastR</code>. The first is the <code>cfbd_team_info</code> function. I’m going to pass <code>"B1G"</code> to the function for the <code>conference</code> argument to get info for just Big Ten teams. The next function I’m going to use is the <code>cfbd_recruiting_player</code> function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I’m calling this function four times to get each year’s class. I’ll combine all of these into one large data frame with every team’s recruits. For the sake of simplicity, I am only using High School recruits as shown by the <code>recruit_type</code> argument. You can also get Prep School recruits (<code>recruit_type = "PrepSchool"</code>) or junior college recruits (<code>recruit_type = "JUCO"</code>).</p>
+<p>To create the plot I’m going to use two functions from
+<code>cfbfastR</code>. The first is the <code>cfbd_team_info</code>
+function. I’m going to pass <code>"B1G"</code> to the function for the
+<code>conference</code> argument to get info for just Big Ten teams. The
+next function I’m going to use is the
+<code>cfbd_recruiting_player</code> function. The apply function allows
+me to run the given function for each item in the data frame I pass to
+it. In this case I run it for each team in the Big Ten. I’m calling this
+function four times to get each year’s class. I’ll combine all of these
+into one large data frame with every team’s recruits. For the sake of
+simplicity, I am only using High School recruits as shown by the
+<code>recruit_type</code> argument. You can also get Prep School
+recruits (<code>recruit_type = "PrepSchool"</code>) or junior college
+recruits (<code>recruit_type = "JUCO"</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">conference</span> <span class="op">==</span> <span class="st">"Big Ten"</span><span class="op">)</span></span>
@@ -250,10 +279,10 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 13.285 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 13.409 sec elapsed</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">all.recruits</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 1,167</span></span>
+<pre><code><span><span class="co">## Rows: 1,169</span></span>
 <span><span class="co">## Columns: 19</span></span>
 <span><span class="co">## $ id                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "46895", "46912", "47082", "47339", "47469", "…</span></span>
 <span><span class="co">## $ athlete_id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4426379", "4569371", "4426415", "4428155", "4…</span></span>
@@ -274,7 +303,16 @@
 <span><span class="co">## $ hometown_info_latitude  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "32.6518004", "38.6264178", "38.6264178", "38.…</span></span>
 <span><span class="co">## $ hometown_info_longitude <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-96.9083366", "-90.1998378", "-90.1998378", "…</span></span>
 <span><span class="co">## $ hometown_info_fips_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "48113", "29510", "29510", "29510", "17163", "…</span></span></code></pre>
-<p>The next step is cleaning the data. The <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player()</a></code> function gives us 14 pieces of data for each player. Our graph is going to focus on just the rating and what school they committed to. I’m going to keep the player name as well as a check field so I can go back and check my data set more quickly if I have any errors. The next line uses <code>dplyr</code> syntax to give me just the highest rated 85 recruits in order by their rating. I use this info to assign a ranking for each school’s 1-nth recruit. Finally, I use the teams data frame again so each recruits school information can be used on our graph.</p>
+<p>The next step is cleaning the data. The
+<code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player()</a></code> function gives us 14 pieces of
+data for each player. Our graph is going to focus on just the rating and
+what school they committed to. I’m going to keep the player name as well
+as a check field so I can go back and check my data set more quickly if
+I have any errors. The next line uses <code>dplyr</code> syntax to give
+me just the highest rated 85 recruits in order by their rating. I use
+this info to assign a ranking for each school’s 1-nth recruit. Finally,
+I use the teams data frame again so each recruits school information can
+be used on our graph.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">recruits.limited</span> <span class="op">&lt;-</span> <span class="va">all.recruits</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">rating</span>, <span class="va">committed_to</span><span class="op">)</span></span>
@@ -287,14 +325,24 @@
 <span></span>
 <span><span class="va">recruits.final</span> <span class="op">&lt;-</span> <span class="va">recruits.sorted</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">teams</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"committed_to"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>If you follow the Big Ten you know a lot of schools have a shade of red as their primary color. This can make some plots hard to read. Because of this I’m filtering down my data to look at just recruits who committed to a Big Ten West division school. For <code>ggplot2</code> to use a manually defined color set, I must get a vector of colors that I want, each team’s primary color, and assign each value a name corresponding to the school I’m interested in.</p>
+<p>If you follow the Big Ten you know a lot of schools have a shade of
+red as their primary color. This can make some plots hard to read.
+Because of this I’m filtering down my data to look at just recruits who
+committed to a Big Ten West division school. For <code>ggplot2</code> to
+use a manually defined color set, I must get a vector of colors that I
+want, each team’s primary color, and assign each value a name
+corresponding to the school I’m interested in.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">big.ten.west</span> <span class="op">&lt;-</span> <span class="va">recruits.final</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">division</span> <span class="op">==</span> <span class="st">"West"</span><span class="op">)</span></span>
 <span><span class="va">big.ten.west.teams</span> <span class="op">&lt;-</span> <span class="va">teams</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">division</span> <span class="op">==</span> <span class="st">"West"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">big.ten.west.colors</span> <span class="op">&lt;-</span> <span class="va">big.ten.west.teams</span><span class="op">$</span><span class="va">color</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">big.ten.west.colors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">big.ten.west.teams</span><span class="op">$</span><span class="va">school</span></span></code></pre></div>
-<p>Now that we have our data collected and cleaned we finally get to the fun part - plotting. We plot each player’s rating based on the ranking of commit they are to a school. We also tell ggplot to use the manual color values we defined earlier. I added some extra horizontal lines to approximate the ratings of 3, 4, and 5 star recruits.</p>
+<p>Now that we have our data collected and cleaned we finally get to the
+fun part - plotting. We plot each player’s rating based on the ranking
+of commit they are to a school. We also tell ggplot to use the manual
+color values we defined earlier. I added some extra horizontal lines to
+approximate the ratings of 3, 4, and 5 star recruits.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">big.ten.west</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num</span>, y<span class="op">=</span><span class="va">rating</span>, color <span class="op">=</span> <span class="va">committed_to</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
@@ -309,7 +357,15 @@
 <span>       subtitle <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Top 85 High School Signees {yr-3}-{yr} by Big Ten West Programs"</span><span class="op">)</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"Graph by @arbitanalytics, Data from @cfbfastR"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="nth-rated-recruit_files/figure-html/recruit_plot-1.png" width="700"></p>
-<p>From this graph we can see how well teams have recruited the last four years. A large gap between two of the lines shows that one team has recruited much more talent at that relative position of recruiting. In the Big Ten West graph above, we can see that Nebraska and Wisconsin recruit similar top level recruits. Both schools top 5 recruits are 0.95 rated or higher. However, Nebraska’s classes are much stronger from the 10th recruit on. While this graphic oversimplifies the team building process (excluding transfers, walk-ons, etc.), it gives the reader a good feel for the talent level at a program in a quick glance.</p>
+<p>From this graph we can see how well teams have recruited the last
+four years. A large gap between two of the lines shows that one team has
+recruited much more talent at that relative position of recruiting. In
+the Big Ten West graph above, we can see that Nebraska and Wisconsin
+recruit similar top level recruits. Both schools top 5 recruits are 0.95
+rated or higher. However, Nebraska’s classes are much stronger from the
+10th recruit on. While this graphic oversimplifies the team building
+process (excluding transfers, walk-ons, etc.), it gives the reader a
+good feel for the talent level at a program in a quick glance.</p>
   </main>
 </div>
 

@@ -207,10 +207,13 @@
 
 
 
-<script src="cfbd_games_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>CFB Data Games Examples</h1>
-                        <h4 data-toc-skip class="author">Saiem Gilani <br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a> <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani
+<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </h4>
             
       
@@ -230,12 +233,15 @@
 <span><span class="op">}</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span><span class="op">)</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/cfbfastR"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning in p_install_gh(package, dependencies = dependencies, ...): The following may have incorrect capitalization specification:</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## cfbfastR</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="get-game-information">
 <strong>Get game information</strong><a class="anchor" aria-label="anchor" href="#get-game-information"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_2018_wk_1</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span> </span>
 <span><span class="va">df_2018_wk_7_ind</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_info.html">cfbd_game_info</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">7</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></span>
@@ -246,39 +252,40 @@
 <h3 id="get-calendar-weeks-and-dates">
 <strong>Get calendar weeks and dates</strong><a class="anchor" aria-label="anchor" href="#get-calendar-weeks-and-dates"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_calendar.html">cfbd_calendar</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="find-game-broadcast-and-media-information">
 <strong>Find game broadcast and media information</strong><a class="anchor" aria-label="anchor" href="#find-game-broadcast-and-media-information"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_media.html">cfbd_game_media</a></span><span class="op">(</span><span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">4</span>, conference <span class="op">=</span> <span class="st">"ACC"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-cfbd-advanced-game-box-scores-by-game_id">
-<strong>Get CFBD Advanced Game Box Scores (by <code>game_id</code>)</strong><a class="anchor" aria-label="anchor" href="#get-cfbd-advanced-game-box-scores-by-game_id"></a>
+<strong>Get CFBD Advanced Game Box Scores (by
+<code>game_id</code>)</strong><a class="anchor" aria-label="anchor" href="#get-cfbd-advanced-game-box-scores-by-game_id"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_box_advanced.html">cfbd_game_box_advanced</a></span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401114233</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-cfbd-game-team-box-scores">
 <strong>Get CFBD Game Team Box Scores</strong><a class="anchor" aria-label="anchor" href="#get-cfbd-game-team-box-scores"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team stats data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-11-24 08:48:27 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-12-13 01:08:31 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 13 × 78</span></span></span>
 <span><span class="co">##    game_id school confe…¹ home_…² oppon…³ oppon…⁴ points total…⁵ net_p…⁶ compl…⁷</span></span>
 <span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     home    Auburn  SEC         23 508     321     32-42  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     away    Missis… SEC         36 413     327     25-35  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 2</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     away    Texas   Big 12      45 573     471     31-39  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     away    Missis… SEC         36 413     327     25-35  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     home    Arkans… SEC         56 612     352     25-32  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     away    Alabama SEC         46 559     393     31-39  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     home    Auburn  SEC         23 508     321     32-42  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     away    Alabama SEC         46 559     393     31-39  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     home    Arkans… SEC         56 612     352     25-32  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 6</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     home    Florida SEC         42 511     293     21-24  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 7</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     home    Utah S… Mounta…     42 601     353     28-39  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 8</span>  4.01<span style="color: #949494;">e</span>8 LSU    SEC     away    Ole Mi… SEC         58 714     489     32-42  </span></span>
@@ -294,20 +301,20 @@
 <span><span class="co">## <span style="color: #949494;">#   fourth_down_eff &lt;chr&gt;, punt_returns &lt;chr&gt;, punt_return_yards &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   punt_return_tds &lt;chr&gt;, kick_return_yards &lt;chr&gt;, kick_return_tds &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   kick_returns &lt;chr&gt;, kicking_points &lt;chr&gt;, fumbles_recovered &lt;chr&gt;, …</span></span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_team_stats.html">cfbd_game_team_stats</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team stats data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-11-24 08:48:27 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-12-13 01:08:31 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 13 × 78</span></span></span>
 <span><span class="co">##    game_id school confe…¹ home_…² oppon…³ oppon…⁴ points total…⁵ net_p…⁶ compl…⁷</span></span>
 <span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  3.32<span style="color: #949494;">e</span>8 Flori… ACC     away    Pittsb… ACC         41 533     377     27-29  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Bethun… MEAC        54 492     226     13-25  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Bethun… MEAC        54 492     226     13-25  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>  3.32<span style="color: #949494;">e</span>8 Flori… ACC     away    Pittsb… ACC         41 533     377     27-29  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 3</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     away    Boston… ACC         48 489     330     17-27  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 4</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Nevada  Mounta…     62 617     240     17-22  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Maryla… ACC         63 614     431     26-39  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    NC Sta… ACC         49 566     342     20-34  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Miami   ACC         41 517     325     21-29  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    NC Sta… ACC         49 566     342     20-34  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Miami   ACC         41 517     325     21-29  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Maryla… ACC         63 614     431     26-39  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 8</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Syracu… ACC         59 523     298     22-26  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     away    Florida SEC         37 456     327     19-31  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>  3.33<span style="color: #949494;">e</span>8 Flori… ACC     home    Duke    ACC         45 569     330     19-32  </span></span>
@@ -326,7 +333,7 @@
 <h3 id="get-cfbd-game-player-box-scores">
 <strong>Get CFBD Game Player Box Scores</strong><a class="anchor" aria-label="anchor" href="#get-cfbd-game-player-box-scores"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_player_stats.html">cfbd_game_player_stats</a></span><span class="op">(</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">15</span>, conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_player_stats.html">cfbd_game_player_stats</a></span><span class="op">(</span><span class="fl">2013</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span></span></code></pre></div>
@@ -335,7 +342,7 @@
 <h3 id="get-cfbd-team-game-records">
 <strong>Get CFBD Team Game Records</strong><a class="anchor" aria-label="anchor" href="#get-cfbd-team-game-records"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_records.html">cfbd_game_records</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Notre Dame"</span><span class="op">)</span></span>
 <span>   </span>
 <span><span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_game_records.html">cfbd_game_records</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>

@@ -207,10 +207,13 @@
 
 
 
-<script src="rolling-epa-graph_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Rolling EPA Graph</h1>
-                        <h4 data-toc-skip class="author">Nate Manzo <br><a href="https://twitter.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=twitter&amp;style=for-the-badge" alt="@cfbnate"></a> <a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+                        <h4 data-toc-skip class="author">Nate Manzo
+<br><a href="https://twitter.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=twitter&amp;style=for-the-badge" alt="@cfbnate"></a>
+<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
 </h4>
             
       
@@ -220,7 +223,10 @@
 
     
     
-<p>This vignette will use data from the <code>cfbfastR</code> package to create a moving average graph of offensive EPA over the course of a season. This lets us visualize how a team’s performance has changed over time and compare that performance to other teams around the country.</p>
+<p>This vignette will use data from the <code>cfbfastR</code> package to
+create a moving average graph of offensive EPA over the course of a
+season. This lets us visualize how a team’s performance has changed over
+time and compare that performance to other teams around the country.</p>
 <div class="section level2">
 <h2 id="load-and-install-the-necessary-packages">Load and Install the necessary packages<a class="anchor" aria-label="anchor" href="#load-and-install-the-necessary-packages"></a>
 </h2>
@@ -233,7 +239,10 @@
 <div class="section level2">
 <h2 id="pull-the-play-by-play-data">Pull the play by play data<a class="anchor" aria-label="anchor" href="#pull-the-play-by-play-data"></a>
 </h2>
-<p>Using the <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html" class="external-link">load_cfb_pbp()</a> method, we will pull down a dataframe that contains ALL of the play by play data for ALL teams in 2022. This method only takes about 30 seconds.</p>
+<p>Using the <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html" class="external-link">load_cfb_pbp()</a>
+method, we will pull down a dataframe that contains ALL of the play by
+play data for ALL teams in 2022. This method only takes about 30
+seconds.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">yr</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">:::</span><span class="fu">most_recent_cfb_season</span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span></span>
 <span><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">yr</span><span class="op">)</span></span></code></pre></div>
@@ -241,7 +250,10 @@
 <div class="section level2">
 <h2 id="pull-team-info-and-team-colors">Pull team info and team colors<a class="anchor" aria-label="anchor" href="#pull-team-info-and-team-colors"></a>
 </h2>
-<p>We can use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull information about each FBS school including their logo, color, and abbreviation. We’re going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.</p>
+<p>We can use the <code><a href="../reference/cfbd_team_info.html">cfbd_team_info()</a></code> function to pull
+information about each FBS school including their logo, color, and
+abbreviation. We’re going to take a subset of the cfb_team_info data and
+clean it up for use in our graphs later on.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_info</span> <span class="op">=</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="va">yr</span>, only_fbs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -254,7 +266,9 @@
 <div class="section level2">
 <h2 id="basic-overview-of-all-fbs-offenses">Basic overview of all FBS Offenses<a class="anchor" aria-label="anchor" href="#basic-overview-of-all-fbs-offenses"></a>
 </h2>
-<p>Let’s create a basic overview of offensive EPA per play. We’ll start by creating a dataframe listing all 130 FBS teams from best to worst based on their average EPA per play across all games played.</p>
+<p>Let’s create a basic overview of offensive EPA per play. We’ll start
+by creating a dataframe listing all 130 FBS teams from best to worst
+based on their average EPA per play across all games played.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">off_epa</span> <span class="op">=</span> <span class="va">pbp</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
@@ -266,7 +280,11 @@
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>Rank <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>TeamRank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">Team</span>, <span class="st">" #"</span>, <span class="va">Rank</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We can use the <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code> function to take a quick peak at what our new dataframe looks like. The teams at the top should not be surprising. Remember, EPA is not adjusted for the strength of opponent. It is purely a measure of how teams perform on the field (like yards, but better).</p>
+<p>We can use the <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code> function to take a quick peak at
+what our new dataframe looks like. The teams at the top should not be
+surprising. Remember, EPA is not adjusted for the strength of opponent.
+It is purely a measure of how teams perform on the field (like yards,
+but better).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
@@ -278,7 +296,8 @@
 <span><span class="co">## <span style="color: #BCBCBC;">4</span> Utah State               Mountain West        0.277     4 Utah State #4       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">5</span> Ohio State               Big Ten              0.275     5 Ohio State #5       </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">6</span> Western Michigan         Mid-American         0.231     6 Western Michigan #6</span></span></code></pre>
-<p>Ok, now let’s start to visualize the data beyond the top few schools. Let’s graph all the teams that have a positive EPA on the year.</p>
+<p>Ok, now let’s start to visualize the data beyond the top few schools.
+Let’s graph all the teams that have a positive EPA on the year.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">off_epa</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">off_epa</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -295,11 +314,20 @@
 <div class="section level2">
 <h2 id="prepare-the-data-for-the-moving-average-chart">Prepare the data for the moving average chart<a class="anchor" aria-label="anchor" href="#prepare-the-data-for-the-moving-average-chart"></a>
 </h2>
-<p>So far, so good, but we came here to build a moving average chart! Let’s proceed by defining the team of interest and the moving average window by editing the cell block below. I like to use 100 plays when looking at a full season to smooth out as much of the variability as possible, but for a mid-season view 50 plays or even 25 plays might be more appropriate. Play around!</p>
+<p>So far, so good, but we came here to build a moving average chart!
+Let’s proceed by defining the team of interest and the moving average
+window by editing the cell block below. I like to use 100 plays when
+looking at a full season to smooth out as much of the variability as
+possible, but for a mid-season view 50 plays or even 25 plays might be
+more appropriate. Play around!</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team</span> <span class="op">=</span> <span class="st">"Oklahoma"</span></span>
 <span><span class="va">ma_plays</span> <span class="op">=</span> <span class="fl">100</span></span></code></pre></div>
-<p>Now that we have defined our team of interest, we can prepare the data for this specific team. We’re going to create a dataframe called <code>team_off</code> that is subsetted from our full season play by play data. This new dataframe will be specific to our team of interest and it will add fields for the moving average and the play count.</p>
+<p>Now that we have defined our team of interest, we can prepare the
+data for this specific team. We’re going to create a dataframe called
+<code>team_off</code> that is subsetted from our full season play by
+play data. This new dataframe will be specific to our team of interest
+and it will add fields for the moving average and the play count.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off</span> <span class="op">=</span> <span class="va">pbp</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">offense_play</span> <span class="op">==</span> <span class="va">team</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -309,7 +337,8 @@
 <span>         ma_epa<span class="op">=</span><span class="fu">rollapply</span><span class="op">(</span><span class="va">EPA</span>,<span class="va">ma_plays</span>,<span class="va">mean</span>,align<span class="op">=</span><span class="st">'right'</span>,fill<span class="op">=</span><span class="cn">NA</span><span class="op">)</span>,</span>
 <span>         play_count <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>         week_team <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"WK"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">week</span> <span class="op">&gt;</span> <span class="fl">9</span>, <span class="va">week</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">week</span><span class="op">)</span><span class="op">)</span>, <span class="st">" "</span>, <span class="va">defense_play</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We’re going to graph different background tiles for each opponent so we need to define where one opponent stops and another one begins.</p>
+<p>We’re going to graph different background tiles for each opponent so
+we need to define where one opponent stops and another one begins.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off_play_start</span> <span class="op">=</span> <span class="va">team_off</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">week_team</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -323,31 +352,41 @@
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">row_number</span><span class="op">(</span><span class="op">)</span> <span class="op">==</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">week_team</span>, <span class="va">play_count</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">rename</span><span class="op">(</span>play_stop <span class="op">=</span> <span class="va">play_count</span><span class="op">)</span></span></code></pre></div>
-<p>We’re going to add the opponent’s logo in the middle of each background tile, so we need to define the midpoint of each background tile as well.</p>
+<p>We’re going to add the opponent’s logo in the middle of each
+background tile, so we need to define the midpoint of each background
+tile as well.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off_start_stop</span> <span class="op">=</span> <span class="va">team_off_play_start</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">team_off_play_stop</span>, by <span class="op">=</span> <span class="st">"week_team"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>midpoint <span class="op">=</span> <span class="op">(</span><span class="va">play_start</span> <span class="op">+</span> <span class="va">play_stop</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p>We need to make a simple vector that says how many total plays are in our <code>team_off</code> dataframe.</p>
+<p>We need to make a simple vector that says how many total plays are in
+our <code>team_off</code> dataframe.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">play_count</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">team_off</span><span class="op">$</span><span class="va">play_count</span><span class="op">)</span></span></code></pre></div>
-<p>Next we are going to update our background tile dataframe to include the color info that we pulled earlier. FCS color data is not available, so we will default those to gray.</p>
+<p>Next we are going to update our background tile dataframe to include
+the color info that we pulled earlier. FCS color data is not available,
+so we will default those to gray.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_off_start_stop</span> <span class="op">=</span> <span class="va">team_off_start_stop</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">team_colors_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>color <span class="op">=</span> <span class="fu">replace_na</span><span class="op">(</span><span class="va">color</span>,<span class="st">"gray"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">team</span>, <span class="va">week_team</span>, <span class="va">play_start</span>, <span class="va">play_stop</span>, <span class="va">midpoint</span>, <span class="va">color</span><span class="op">)</span></span></code></pre></div>
-<p>Are we ready to graph yet? Just a few more steps! We need a named vector to get the right colors on those background tiles.</p>
+<p>Are we ready to graph yet? Just a few more steps! We need a named
+vector to get the right colors on those background tiles.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">team_off_start_stop</span><span class="op">$</span><span class="va">color</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">team_colors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">team_off_start_stop</span><span class="op">$</span><span class="va">team</span><span class="op">)</span></span></code></pre></div>
-<p>Now we need to pull in an alternate source of team logos that includes FCS schools. Then we’ll join that new table of logos with our background tile dataframe.</p>
+<p>Now we need to pull in an alternate source of team logos that
+includes FCS schools. Then we’ll join that new table of logos with our
+background tile dataframe.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">all_logos</span> <span class="op">=</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/natemanzo/cfb_data/master/_team_logos.csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">team_off_start_stop</span> <span class="op">=</span> <span class="va">team_off_start_stop</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">all_logos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Almost done! The last thing we need is your signature to go in the caption of the graph. You can use your twitter handle or your real name here.</p>
+<p>Almost done! The last thing we need is your signature to go in the
+caption of the graph. You can use your twitter handle or your real name
+here.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">signature</span> <span class="op">=</span> <span class="st">"@cfbNate"</span></span></code></pre></div>
 </div>
@@ -355,7 +394,12 @@
 <h2 id="its-graphin-time">IT’S GRAPHIN’ TIME*<a class="anchor" aria-label="anchor" href="#its-graphin-time"></a>
 </h2>
 <p><sup>*To be said in an extremely Power Rangers voice</sup></p>
-<p>The beginning of the line graph will depend on the <code>ma_plays</code> variable that you defined earlier. Dashed lines indicating the EPA/play of the 25th percentile, median, 75th percentile, and top and bottom teams in the country are drawn on the graph to show context for how the team of interest compares to the rest of the country.</p>
+<p>The beginning of the line graph will depend on the
+<code>ma_plays</code> variable that you defined earlier. Dashed lines
+indicating the EPA/play of the 25th percentile, median, 75th percentile,
+and top and bottom teams in the country are drawn on the graph to show
+context for how the team of interest compares to the rest of the
+country.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">graph_team_off</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_rect</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">team_off_start_stop</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">play_start</span>, xmax <span class="op">=</span> <span class="va">play_stop</span>, fill <span class="op">=</span> <span class="va">team</span>, ymin <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>, ymax <span class="op">=</span> <span class="fl">.9</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"gray90"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -381,12 +425,21 @@
 <span></span>
 <span><span class="va">graph_team_off</span></span></code></pre></div>
 <p><img src="rolling-epa-graph_files/figure-html/graph_the_graph-1.png" width="672" style="display: block; margin: auto;"></p>
-<p>Lastly, you can save your graph to your working directory by running the line below. PC users will notice the saved graphic will have a higher resolution and less pixelization than the graphic generated above.</p>
-<p>Reminder: You can always use <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code> to find out what your current working directory is if you’re not sure.</p>
+<p>Lastly, you can save your graph to your working directory by running
+the line below. PC users will notice the saved graphic will have a
+higher resolution and less pixelization than the graphic generated
+above.</p>
+<p>Reminder: You can always use <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code> to find out what
+your current working directory is if you’re not sure.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggsave</a></span><span class="op">(</span><span class="va">graph_team_off</span>, filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"off_epa_rolling_"</span>,<span class="va">team</span>,<span class="st">".png"</span><span class="op">)</span>, </span>
 <span>       dpi <span class="op">=</span> <span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">7</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></span></code></pre></div>
-<p>I hope you found this useful! As always, thanks to <a href="https://twitter.com/CFB_Data" class="external-link">@CFB_Data</a> and the <a href="https://twitter.com/cfbfastR" class="external-link">@cfbfastR</a> team for making this possible. And shout out to folks like Parker Fleming (<a href="https://twitter.com/statsowar" class="external-link">@statsowar</a>) and Meyappan Subbaiah (<a href="https://twitter.com/msubbiah1" class="external-link">@msubbiah1</a>) for their feedback, advice, and encouragement while refining the look of this visualization. Tag me in any of these graphs you post on twitter and I’ll share them as much as possible.</p>
+<p>I hope you found this useful! As always, thanks to <a href="https://twitter.com/CFB_Data" class="external-link">@CFB_Data</a> and the <a href="https://twitter.com/cfbfastR" class="external-link">@cfbfastR</a> team for making this
+possible. And shout out to folks like Parker Fleming (<a href="https://twitter.com/statsowar" class="external-link">@statsowar</a>) and Meyappan
+Subbaiah (<a href="https://twitter.com/msubbiah1" class="external-link">@msubbiah1</a>) for
+their feedback, advice, and encouragement while refining the look of
+this visualization. Tag me in any of these graphs you post on twitter
+and I’ll share them as much as possible.</p>
 <p>-<a href="https://twitter.com/cfbNate" class="external-link">Nate Manzo</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -207,10 +207,13 @@
 
 
 
-<script src="college-football-expected-points-model-fundamentals-part-i_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>College Football Expected Points Model Fundamentals - Part I</h1>
-                        <h4 data-toc-skip class="author">Saiem Gilani <br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a> <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani
+<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </h4>
             
       
@@ -220,13 +223,18 @@
 
     
     
-<p>In this tutorial, we are going to get more familiar with the Expected Points portion of College Football Expected Points Added model.</p>
-<p>We will be using these ideas as a tool for valuation of plays with the goal of contextualizing team and player performance relative to the average, given the situational factors at the start of the play.</p>
+<p>In this tutorial, we are going to get more familiar with the Expected
+Points portion of College Football Expected Points Added model.</p>
+<p>We will be using these ideas as a tool for valuation of plays with
+the goal of contextualizing team and player performance relative to the
+average, given the situational factors at the start of the play.</p>
 <p>Let’s dig in.</p>
 <div class="section level3">
 <h3 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
 </h3>
-<p>We will be acquiring data from <a href="collegefootballdata.com">CollegeFootballData.com</a>, courtesy of @<a href="https://twitter.com/CFB_data" class="external-link">CFB_data</a>, using <code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
+<p>We will be acquiring data from <a href="collegefootballdata.com">CollegeFootballData.com</a>, courtesy of
+@<a href="https://twitter.com/CFB_data" class="external-link">CFB_data</a>, using
+<code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="the-expected-points-model">The Expected Points Model<a class="anchor" aria-label="anchor" href="#the-expected-points-model"></a>
@@ -234,7 +242,9 @@
 <div class="section level3">
 <h3 id="outcome-target-variables">Outcome (target) variables<a class="anchor" aria-label="anchor" href="#outcome-target-variables"></a>
 </h3>
-<p>This model generates probabilities for the possible types of next scoring events within the same half. The 7 scoring possibilities are:</p>
+<p>This model generates probabilities for the possible types of next
+scoring events within the same half. The 7 scoring possibilities
+are:</p>
 <ul>
 <li>Touchdown (7)</li>
 <li>Field Goal (3)</li>
@@ -244,7 +254,11 @@
 <li>Opponent Field Goal (-3)</li>
 <li>Opponent Touchdown (-7)</li>
 </ul>
-<p>For each play, the multinomial logistic regression model calculates what the probability () of each of those scoring outcomes is and the expected points can be calculated by multiplying each of the scoring event probabilities by their associated point values and summing the products, like so:</p>
+<p>For each play, the multinomial logistic regression model calculates
+what the probability () of each of those scoring outcomes is and the
+expected points can be calculated by multiplying each of the scoring
+event probabilities by their associated point values and summing the
+products, like so:</p>
 <p><a href="https://imgur.com/sJTs6j6" class="external-link"><img src="https://i.imgur.com/sJTs6j6.png" title="Figure: @SaiemGilani"></a></p>
 </div>
 <div class="section level3">
@@ -258,7 +272,8 @@
 <li>Yards from opponent’s end zone (6)</li>
 <li>log(yards to convert 1st/Goal) (6)</li>
 <li>Indicator for goal-to-go situations (6)</li>
-<li>Interaction between log(yards to convert 1st/Goal) and goal-to-go indicator (6)</li>
+<li>Interaction between log(yards to convert 1st/Goal) and goal-to-go
+indicator (6)</li>
 </ul>
 </div>
 <div class="section level4">
@@ -266,8 +281,10 @@
 </h4>
 <ul>
 <li>Down (18 since Down is a categorical factor)</li>
-<li>Interaction between log(yards to convert 1st/Goal) and down (18)</li>
-<li>Interaction between yards from opponent’s end zone and down (18)</li>
+<li>Interaction between log(yards to convert 1st/Goal) and down
+(18)</li>
+<li>Interaction between yards from opponent’s end zone and down
+(18)</li>
 </ul>
 </div>
 <div class="section level4">
@@ -276,59 +293,146 @@
 <ul>
 <li>Seconds remaining in the current half (6)</li>
 <li>Indicator for under two-minutes to the end of half/game (6)</li>
-<li>Intercept for each next score type, used as the combined mean value for reference variables, in this case 1st Down, not a goal-to-go situation and outside of under two minutes left to the end of half or game. (6)</li>
+<li>Intercept for each next score type, used as the combined mean value
+for reference variables, in this case 1st Down, not a goal-to-go
+situation and outside of under two minutes left to the end of half or
+game. (6)</li>
 </ul>
-<p>You might be asking at this point, “how are there 96 variables, if there are only 10 bullet points here?” (skip to the next section if you didn’t ask.) The answer is a little technical if answered completely, but to model this appropriately, one next score type is used as the reference target (we chose “No Score” as our reference) and the coefficients are fitted to the predictive variables for each of the remaining 6 target score types. This is why you see each factor comprising at least 6 variables.</p>
-<p>The additional complexity is that down must be treated as a categorical factor, meaning 1st down is treated as the reference and there are then 6 variables for 2nd down, 6 variables for 3rd down, and 6 variables for 4th down. The same logic would then also apply to each of the down interactions. The Boolean indicators for goal-to-go and under two-minutes are also factors that give relative coefficients to the ‘False’ case, but since there only two cases, only 6 additional variables are created for each.</p>
+<p>You might be asking at this point, “how are there 96 variables, if
+there are only 10 bullet points here?” (skip to the next section if you
+didn’t ask.) The answer is a little technical if answered completely,
+but to model this appropriately, one next score type is used as the
+reference target (we chose “No Score” as our reference) and the
+coefficients are fitted to the predictive variables for each of the
+remaining 6 target score types. This is why you see each factor
+comprising at least 6 variables.</p>
+<p>The additional complexity is that down must be treated as a
+categorical factor, meaning 1st down is treated as the reference and
+there are then 6 variables for 2nd down, 6 variables for 3rd down, and 6
+variables for 4th down. The same logic would then also apply to each of
+the down interactions. The Boolean indicators for goal-to-go and under
+two-minutes are also factors that give relative coefficients to the
+‘False’ case, but since there only two cases, only 6 additional
+variables are created for each.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="model-weights">Model Weights<a class="anchor" aria-label="anchor" href="#model-weights"></a>
 </h3>
-<p>Observations are weighted by both score differential and difference in number of drives between play and the next score. The former weighting is intended to accomplish the goal of valuing plays where the score differential is higher less than possessions where the score differential is closer to zero.</p>
-<p>Additionally, the latter model weighting places more emphasis on plays on drives that occur closer to the next scoring drive more than plays on prior drives. An example would be if a game begins with 6 scoreless drives to start before one team scores, the plays of the first drive would have a weight of 1/7*, the plays of the second drive a 2/7 weighting, with the plays of the first scoring drive (i.e. the 7th possession) having a full 7/7 weighting.</p>
-<p>*Full disclosure: it would be 7 as the denominator if 6 scoreless drives was the largest distance between scoring drives for the entire season across all games (it could be 12 for the games across the entire season, in which case the values would have been 1/12, 2/12, …, 7/12.)</p>
-<p>This way the model weighs all games with the same denominator and scales the weight of each scoring drive distance to a value between 0 and 1. This same caveat also applies for score differential. Score difference is scaled by largest score differential across all games in a given season. Both of the score differential and scoring drive distance weightings are combined to create a single scaled weighting for each play across each season.</p>
+<p>Observations are weighted by both score differential and difference
+in number of drives between play and the next score. The former
+weighting is intended to accomplish the goal of valuing plays where the
+score differential is higher less than possessions where the score
+differential is closer to zero.</p>
+<p>Additionally, the latter model weighting places more emphasis on
+plays on drives that occur closer to the next scoring drive more than
+plays on prior drives. An example would be if a game begins with 6
+scoreless drives to start before one team scores, the plays of the first
+drive would have a weight of 1/7*, the plays of the second drive a 2/7
+weighting, with the plays of the first scoring drive (i.e. the 7th
+possession) having a full 7/7 weighting.</p>
+<p>*Full disclosure: it would be 7 as the denominator if 6 scoreless
+drives was the largest distance between scoring drives for the entire
+season across all games (it could be 12 for the games across the entire
+season, in which case the values would have been 1/12, 2/12, …,
+7/12.)</p>
+<p>This way the model weighs all games with the same denominator and
+scales the weight of each scoring drive distance to a value between 0
+and 1. This same caveat also applies for score differential. Score
+difference is scaled by largest score differential across all games in a
+given season. Both of the score differential and scoring drive distance
+weightings are combined to create a single scaled weighting for each
+play across each season.</p>
 <div class="section level4">
 <h4 id="kicking-kickoffs-and-punts">Kicking, Kickoffs, and Punts<a class="anchor" aria-label="anchor" href="#kicking-kickoffs-and-punts"></a>
 </h4>
-<p>Field goals and kickoffs are treated separately. The probability that a field goal is made is calculated using a general additive model using the (smoothed) distance of the kick as the predictor, calculated as the yard-line plus an additional 17 yards. Each field goal attempt’s expected points are weighted by the probability it is made (resulting in 3 expected points) and adjusted by the probability of a missed field goal (i.e. Pr(Missed FG) = 1 - Pr(Made FG)) and the resulting change in EPA due to changes in field position, down, etc. that would occur from the missed field goal.</p>
-<p>Touch-backs are considered the standard expected outcome for kickoffs and anything returned past the 25 would be a points added situation and vice versa for those not returned to at least the 25. considered</p>
-<p>PATs are not currently being treated separately, the extra point is treated as a given, which is less than ideal.</p>
-<p>Punts are not treated separately, since their primary effect lies mostly in the change in field position. It is a situation the expected points model is well suited to predict on.</p>
+<p>Field goals and kickoffs are treated separately. The probability that
+a field goal is made is calculated using a general additive model using
+the (smoothed) distance of the kick as the predictor, calculated as the
+yard-line plus an additional 17 yards. Each field goal attempt’s
+expected points are weighted by the probability it is made (resulting in
+3 expected points) and adjusted by the probability of a missed field
+goal (i.e. Pr(Missed FG) = 1 - Pr(Made FG)) and the resulting change in
+EPA due to changes in field position, down, etc. that would occur from
+the missed field goal.</p>
+<p>Touch-backs are considered the standard expected outcome for kickoffs
+and anything returned past the 25 would be a points added situation and
+vice versa for those not returned to at least the 25. considered</p>
+<p>PATs are not currently being treated separately, the extra point is
+treated as a given, which is less than ideal.</p>
+<p>Punts are not treated separately, since their primary effect lies
+mostly in the change in field position. It is a situation the expected
+points model is well suited to predict on.</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="field-position-and-expected-points">Field Position and Expected Points<a class="anchor" aria-label="anchor" href="#field-position-and-expected-points"></a>
 </h3>
-<p>The model was trained on non-overtime data from 2014-2019 using leave-one-season-out cross-validation. This means the model holds one season for test data validation and uses the remaining seasons as the training set, then uses the trained model to make predictions on the season held out. This process is then iterated for each season in the data.</p>
+<p>The model was trained on non-overtime data from 2014-2019 using
+leave-one-season-out cross-validation. This means the model holds one
+season for test data validation and uses the remaining seasons as the
+training set, then uses the trained model to make predictions on the
+season held out. This process is then iterated for each season in the
+data.</p>
 <p><a href="https://imgur.com/g5rSRUX" class="external-link"><img src="https://i.imgur.com/g5rSRUXl.png" title="Figure: @SaiemGilani"></a></p>
-<p>This is the plot of expected points in relation to field position alone, grouped in 10 yard bins and labeled on the plot with the mean expected points for the bin. The point at the bottom left is roughly the expected points from having the ball at the offense’s own 1-yard line, -1.28 expected points. The observed mean expected value for receiving the ball from the offense’s own 21-30-yard line (or 70 to 79 yards from opponent’s end-zone) is 0.29 expected points.</p>
-<p>It should be no surprise that as offenses move closer to their opponent’s goal line, the expected points trend upward for the offense. Notice for the point representing the 30-39-yard line grouping, the expected points is right around the value of a field goal. This aligns with one of the common definitions of a scoring opportunity, giving support to the appropriateness of the definition.</p>
-<p>The observed average expected points in the red-zone are 4.05 in the 10-19-yard line bin and 5.17 inside the 10, with plays at the 1-yard line averaging 6.06 expected points. Note: There are some plays that were input as yard 0 that I interpreted as an “&amp; inches” situation. There are 66 such plays (compared to 5.3k plays at the 1-yard line) and their observed mean expected points is 4.62.</p>
+<p>This is the plot of expected points in relation to field position
+alone, grouped in 10 yard bins and labeled on the plot with the mean
+expected points for the bin. The point at the bottom left is roughly the
+expected points from having the ball at the offense’s own 1-yard line,
+-1.28 expected points. The observed mean expected value for receiving
+the ball from the offense’s own 21-30-yard line (or 70 to 79 yards from
+opponent’s end-zone) is 0.29 expected points.</p>
+<p>It should be no surprise that as offenses move closer to their
+opponent’s goal line, the expected points trend upward for the offense.
+Notice for the point representing the 30-39-yard line grouping, the
+expected points is right around the value of a field goal. This aligns
+with one of the common definitions of a scoring opportunity, giving
+support to the appropriateness of the definition.</p>
+<p>The observed average expected points in the red-zone are 4.05 in the
+10-19-yard line bin and 5.17 inside the 10, with plays at the 1-yard
+line averaging 6.06 expected points. Note: There are some plays that
+were input as yard 0 that I interpreted as an “&amp; inches” situation.
+There are 66 such plays (compared to 5.3k plays at the 1-yard line) and
+their observed mean expected points is 4.62.</p>
 </div>
 <div class="section level3">
 <h3 id="field-position-and-expected-points-by-down">Field Position and Expected Points by Down<a class="anchor" aria-label="anchor" href="#field-position-and-expected-points-by-down"></a>
 </h3>
-<p>Recall that down and down interactions were three of the predictors in the model, so here is the field position view of expected points separated by down. The plot below demonstrates that your expected points are higher (on average) on 1st down than 2nd, and 2nd down than 3rd, etc at every point on the field, except possibly near the offense’s own goal line where there is risk of giving up a safety.</p>
+<p>Recall that down and down interactions were three of the predictors
+in the model, so here is the field position view of expected points
+separated by down. The plot below demonstrates that your expected points
+are higher (on average) on 1st down than 2nd, and 2nd down than 3rd, etc
+at every point on the field, except possibly near the offense’s own goal
+line where there is risk of giving up a safety.</p>
 <p><a href="https://imgur.com/S7etCxQ" class="external-link"><img src="https://i.imgur.com/S7etCxQl.png" title="Figure: @SaiemGilani"></a></p>
-<p>This graph should be somewhat intuitive, but to understand what the relative expected points difference for each down at the same field position, we are interested in the vertical distance between each of the lines.</p>
+<p>This graph should be somewhat intuitive, but to understand what the
+relative expected points difference for each down at the same field
+position, we are interested in the vertical distance between each of the
+lines.</p>
 </div>
 <div class="section level3">
 <h3 id="st-and-2nd-down">1st and 2nd Down<a class="anchor" aria-label="anchor" href="#st-and-2nd-down"></a>
 </h3>
-<p>Noting that, we see that difference between 1st and 2nd down is steady across most of the field from left to right, starting wider near the offense’s own goal line and narrowing as the offense progresses toward the opponent’s end-zone.</p>
+<p>Noting that, we see that difference between 1st and 2nd down is
+steady across most of the field from left to right, starting wider near
+the offense’s own goal line and narrowing as the offense progresses
+toward the opponent’s end-zone.</p>
 </div>
 <div class="section level3">
 <h3 id="nd-and-3rd-down">2nd and 3rd Down<a class="anchor" aria-label="anchor" href="#nd-and-3rd-down"></a>
 </h3>
-<p>Examining the difference between the 2nd and 3rd down lines, the distance is much wider, doubling the relative difference between 1st and 2nd for most portions of the middle 60 yards of the field.</p>
+<p>Examining the difference between the 2nd and 3rd down lines, the
+distance is much wider, doubling the relative difference between 1st and
+2nd for most portions of the middle 60 yards of the field.</p>
 </div>
 <div class="section level3">
 <h3 id="rd-and-4th-down">3rd and 4th Down<a class="anchor" aria-label="anchor" href="#rd-and-4th-down"></a>
 </h3>
-<p>Further yet is the 4th down line, which has an interesting track, narrowing closest to the other down lines around the 25 yard line.</p>
-<p>Perhaps we should examine the next score probabilities underlying each of these down lines to see what drives these relative differences. More on that in Part 2, coming your way next.</p>
+<p>Further yet is the 4th down line, which has an interesting track,
+narrowing closest to the other down lines around the 25 yard line.</p>
+<p>Perhaps we should examine the next score probabilities underlying
+each of these down lines to see what drives these relative differences.
+More on that in Part 2, coming your way next.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -207,15 +207,18 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
 <img src="logo.png" class="logo" alt=""><h1 id="section"></h1>
-</div></div>
+</div>
+</div>
 <div class="section level1">
 <h1 id="cfbfastr-">
 <strong>cfbfastR</strong> 
 <a class="anchor" aria-label="anchor" href="#cfbfastr-"></a>
 </h1>
 <!-- badges: start -->
+
 <p>The goal of <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> is to provide the community with an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="external-link uri">https://collegefootballdata.com/</a>. Beyond data aggregation and tidying ease, one of the multitude of services that <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> provides is for benchmarking open-source expected points and win probability metrics.</p>
 <div class="section level2">
 <h2 id="installation">
@@ -249,7 +252,9 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></span></code></pre></div>
 <p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the <code>cfbd_</code> functions without any other changes.</p>
-<ul><li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li></ul>
+<ul>
+<li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
+</ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -302,19 +307,21 @@
 <h1 id="special-thanks">
 <strong>Special Thanks</strong><a class="anchor" aria-label="anchor" href="#special-thanks"></a>
 </h1>
-<ul><li><a href="https://github.com/NickTice" class="external-link">Nick Tice</a></li></ul>
+<ul>
+<li><a href="https://github.com/NickTice" class="external-link">Nick Tice</a></li>
+</ul>
 <div class="section level2">
 <h2 id="citations">
 <strong>Citations</strong><a class="anchor" aria-label="anchor" href="#citations"></a>
 </h2>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> R package in publications, use:</p>
 <p>BibTex Citation</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb5-1"><a href="#cb5-1"></a><span class="va">@misc</span>{<span class="ot">gilani_et_al_2021_cfbfastr</span>,</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="dt">title</span> = {cfbfastR: The SportsDataverse's R Package for College Football Data.},</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb5-6"><a href="#cb5-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">gilani_et_al_2021_cfbfastr</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: The SportsDataverse's R Package for College Football Data.},</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 
