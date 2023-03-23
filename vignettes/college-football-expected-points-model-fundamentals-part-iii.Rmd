@@ -67,7 +67,7 @@ We additionally covered a model that ignored down and distance altogether and mo
 
 Belur V. Dasarthy wrote a paper in 1991 with the three above factors using a nearest-neighbor approach and averaging the next points scored that I have not been able to get my hands on. 
 
-Some time in 2009 or earlier, Brian Burke posited that every down-distance-field position combination had an [average net point advantage](http://archive.advancedfootballanalytics.com/2009/12/expected-point-values.html). He built a model demonstrating as such with a smoothing technique called locally estimated scatterplot smoothing (LOESS) but not much else in terms of detail provided. 
+Some time in 2009 or earlier, Brian Burke posited that every down-distance-field position combination had an [average net point advantage](http://www.advancedfootballanalytics.com/2009/12/expected-point-values.html). He built a model demonstrating as such with a smoothing technique called locally estimated scatterplot smoothing (LOESS) but not much else in terms of detail provided. 
 
 You can read more about his model at the link above, but among the noted limitations with the model were that it only included first and third quarter data since he correctly noted end-of-half drive plays was a factor that needed to be accounted for. 
 
