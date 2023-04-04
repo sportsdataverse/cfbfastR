@@ -61,8 +61,8 @@ requires an API key, here’s a quick run-down:
     Data Key Registration.](https://collegefootballdata.com/key)
 
 -   Using the key: You can save the key for consistent usage by adding
-    `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file
-    (easily accessed via
+    `CFBD_API_KEY=YOUR-API-KEY-HERE` to your .Renviron file (easily
+    accessed via
     [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
     Run
     [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
@@ -70,7 +70,7 @@ requires an API key, here’s a quick run-down:
     following in the new script that pops up (with**out** quotations)
 
 ``` r
-CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+CFBD_API_KEY = YOUR-API-KEY-HERE
 ```
 
 Save the script and restart your RStudio session, by clicking `Session`
@@ -85,7 +85,7 @@ functions without any other changes.
     following.
 
 ``` r
-Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
 
 ## Follow [cfbfastR](https://twitter.com/cfbfastR) and the [SportsDataverse](https://twitter.com/SportsDataverse) on Twitter and star this repo

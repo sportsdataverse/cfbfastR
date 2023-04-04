@@ -82,10 +82,10 @@ As of `cfbfastR` version `r remote_version`, the package exports `r nrow(exporte
 
 #### **Using the CFB Data API key**
 
-You can save the key for consistent usage by adding `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html), a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations)
+You can save the key for consistent usage by adding `CFBD_API_KEY=YOUR-API-KEY-HERE` to your .Renviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html), a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations)
 
 ```{r, eval = FALSE}
-CFBD_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+CFBD_API_KEY = YOUR-API-KEY-HERE
 ```
 
 Save the script and restart your RStudio session, by clicking `Session` (in between `Plots` and `Build`) and click `Restart R` (n.b. there also exists the shortcut `Ctrl + Shift + F10` to restart your session). If set correctly, from then on you should be able to use any of the `cfbd_` functions without any other changes.
@@ -93,7 +93,7 @@ Save the script and restart your RStudio session, by clicking `Session` (in betw
 For less consistent usage, save your API key as the environment variable `CFBD_API_KEY` (**with** quotations) at the beginning of every session, using a command like the following.
 
 ```{r, eval = FALSE}
-Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
 
 # Let's get some play by play data
