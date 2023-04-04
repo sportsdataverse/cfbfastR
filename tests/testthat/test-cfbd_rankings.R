@@ -15,11 +15,11 @@ test_that("CFB Poll Rankings", {
   z <- cfbd_rankings(year = 2013, season_type = "postseason")
   first_team_AP_13 <- z %>%
     filter(.data$poll == "AP Top 25" & .data$rank == 1) %>%
-    select(.data$school)
+    select("school")
 
   first_team_coaches_13 <- z %>%
     filter(.data$poll == "Coaches Poll" & .data$rank == 1) %>%
-    select(.data$school)
+    select("school")
 
   expect_equal(colnames(x), cols)
   expect_equal(colnames(y), cols)
