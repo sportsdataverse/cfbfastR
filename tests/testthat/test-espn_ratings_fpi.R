@@ -3,10 +3,25 @@ test_that("ESPN FPI Ratings", {
   skip_on_cran()
 
   cols <- c(
-    "year", "team_id", "name", "abbr",
-    "fpi", "fpi_rk", "trend", "proj_w", "proj_l", "win_out",
-    "win_6", "win_div", "playoff", "nc_game", "nc_win",
-    "win_conf", "w", "l", "t"
+    "year",
+    "team_id",
+    "team_name",
+    "team_abbreviation",
+    "fpi",
+    "fpi_rk",
+    "trend",
+    "projected_wins",
+    "projected_losses",
+    "win_out_pct",
+    "win_6_pct",
+    "win_division_pct",
+    "playoff_pct",
+    "nc_game_pct",
+    "nc_win_pct",
+    "win_conference_pct",
+    "w",
+    "l",
+    "t"
   )
 
   x <- espn_ratings_fpi(2019)

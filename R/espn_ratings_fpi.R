@@ -5,24 +5,24 @@
 #' @param year Year
 #' @return A data frame with 20 variables:
 #' \describe{
-#'   \item{`year`: double.}{Season of the Football Power Index (FPI) Rating.}
-#'   \item{`team_id`: character.}{Unique ESPN team ID - `team_id`.}
-#'   \item{`name`: character.}{Team Name.}
-#'   \item{`abbr`: character.}{Team abbreviation.}
+#'   \item{`year`: integer.}{Season of the Football Power Index (FPI) Rating.}
+#'   \item{`team_id`: integer.}{Unique ESPN team ID - `team_id`.}
+#'   \item{`team_name`: character.}{Team Name.}
+#'   \item{`team_abbreviation`: character.}{Team abbreviation.}
 #'   \item{`fpi`: character.}{Football Power Index (FPI) Rating.}
 #'   \item{`fpi_rk`: character.}{Football Power Index (FPI) Rank.}
 #'   \item{`trend`: character.}{Football Power Index (FPI) ranking trend.}
-#'   \item{`proj_w`: character.}{Projected Win total for the season.}
-#'   \item{`proj_l`: character.}{Projected Loss total for the season.}
-#'   \item{`win_out`: double.}{Probability the team wins out.}
-#'   \item{`win_6`: double.}{Probability the team wins at least six games.}
-#'   \item{`win_div`: double.}{Probability the team wins at their division.}
-#'   \item{`playoff`: double.}{Probability the team reaches the playoff.}
-#'   \item{`nc_game`: double.}{Probability the team reaches the national championship game.}
-#'   \item{`nc_win`: double.}{Probability the team wins the national championship game.}
-#'   \item{`win_conf`: double.}{Probability the team wins their conference game.}
-#'   \item{`w`: character.}{Wins on the season.}
-#'   \item{`l`: character.}{Losses on the season.}
+#'   \item{`projected_wins`: character.}{Projected Win total for the season.}
+#'   \item{`projected_losses`: character.}{Projected Loss total for the season.}
+#'   \item{`win_out_pct`: double.}{Probability the team wins out.}
+#'   \item{`win_6_pct`: double.}{Probability the team wins at least six games.}
+#'   \item{`win_division_pct`: double.}{Probability the team wins at their division.}
+#'   \item{`playoff_pct`: double.}{Probability the team reaches the playoff.}
+#'   \item{`nc_game_pct`: double.}{Probability the team reaches the national championship game.}
+#'   \item{`nc_win_pct`: double.}{Probability the team wins the national championship game.}
+#'   \item{`win_conference_pct`: double.}{Probability the team wins their conference game.}
+#'   \item{`w`: integer.}{Wins on the season.}
+#'   \item{`l`: integer.}{Losses on the season.}
 #'   \item{`t`: character.}{Ties on the season.}
 #' }
 #' @keywords Ratings FPI
@@ -55,7 +55,7 @@ espn_ratings_fpi <- function(year = 2019) {
   url <- glue::glue("{fpi_full_url}&season={year}&sort=fpi.fpi%3Adesc")
 
   headers <- c(
-    `authority`= 'site.web.api.espn.com',
+    `authority` = 'site.web.api.espn.com',
     `User-Agent` = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36',
     `Accept` = 'application/json, text/plain, */*',
     `Accept-Language` = 'en-US,en;q=0.9',
@@ -102,22 +102,29 @@ espn_ratings_fpi <- function(year = 2019) {
           "logos",
           "links") %>%
         dplyr::mutate(row_n = dplyr::row_number()) %>%
-        dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data)) %>%
-        # lots of name_repair here that I am silencing
-        quiet_unnest_wider(data) %>%
-        purrr::pluck("result") %>%
+        dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data))
+
+      df <- df %>%
+        tidyr::unnest_wider("data", names_sep = "_") %>%
         purrr::set_names(nm = c(
-          "id", "name", "abbr", "logos", "links", "row_n",
-          "fpi", "fpi_rk", "trend", "proj_w", "proj_l", "win_out",
-          "win_6", "win_div", "playoff", "nc_game", "nc_win",
-          "win_conf", "w", "l", "t"
+          "team_id", "team_name", "team_abbreviation", "logos", "links", "row_n",
+          "fpi", "fpi_rk", "trend", "projected_wins", "projected_losses", "win_out_pct",
+          "win_6_pct", "win_division_pct", "playoff_pct", "nc_game_pct", "nc_win_pct",
+          "win_conference_pct", "w", "l", "t"
         )) %>%
         dplyr::select(-c("logos", "links")) %>%
-        dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
-        dplyr::mutate_at(vars("win_out":"win_conf"), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
+        dplyr::mutate(
+          year = year,
+          t = ifelse(is.na(t), 0, t)) %>%
+        dplyr::mutate_at(vars("win_out_pct":"win_conference_pct"), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
         dplyr::select("year", tidyr::everything()) %>%
         dplyr::select(-"row_n") %>%
-        dplyr::rename("team_id" = "id") %>%
+        dplyr::mutate(dplyr::across(dplyr::any_of(c(
+          "year",
+          "team_id",
+          "w",
+          "l"
+        )), ~as.integer(.x))) %>%
         as.data.frame()
 
       df <- df %>%
