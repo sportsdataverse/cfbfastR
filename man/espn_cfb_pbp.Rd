@@ -11,12 +11,15 @@ espn_cfb_pbp(game_id, epa_wpa = FALSE)
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 }
+\value{
+A data frame with college football play-by-play data
+}
 \description{
 Get ESPN college football PBP data
 }
 \examples{
  \donttest{
-   try(espn_cfb_pbp(game_id = 401282614))
+   try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
  }
 
 }
