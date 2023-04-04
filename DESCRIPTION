@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 1.9.3
+Version: 1.9.4
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut")),
     person("Akshay", "Easwaran", , "akeaswaran@me.com", role = "aut"),
@@ -39,6 +39,7 @@ Imports:
     httr,
     janitor,
     jsonlite,
+    lubridate,
     magrittr,
     mgcv (>= 1.8-33),
     nnet,
@@ -67,5 +68,5 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3

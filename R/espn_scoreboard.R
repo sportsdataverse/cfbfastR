@@ -125,7 +125,15 @@ espn_cfb_scoreboard <- function(date = NULL) {
         dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) %>%
         tidyr::unnest_wider("season") %>%
         dplyr::rename("season" = "year") %>%
-        dplyr::select(-dplyr::any_of("status")) %>%
+        dplyr::select(-dplyr::any_of("status"))
+
+      cfb_data <- cfb_data %>%
+        dplyr::mutate(
+          game_date_time = lubridate::ymd_hm(substr(.data$game_date, 1, nchar(.data$game_date) - 1)) %>%
+            lubridate::with_tz(tzone = "America/New_York"),
+          game_date = as.Date(substr(.data$game_date_time, 1, 10)))
+
+      cfb_data <- cfb_data %>%
         tidyr::hoist(
           "competitors",
           home_team_name = list(1, "team", "name"),
@@ -154,12 +162,12 @@ espn_cfb_scoreboard <- function(date = NULL) {
                       away_win = as.integer(.data$away_win),
                       home_score = as.integer(.data$home_score),
                       away_score = as.integer(.data$away_score),
-                      type = case_when(type == 2 ~ "regular",
+                      type = dplyr::case_when(type == 2 ~ "regular",
                                        type == 3 ~ "postseason",
                                        type == 4 ~ "off-season",
                                        TRUE ~ as.character(type)))
 
-      if("leaders" %in% names(cfb_data)){
+      if ("leaders" %in% names(cfb_data)) {
         schedule_out <- cfb_data %>%
           tidyr::hoist(
             "leaders",
@@ -189,7 +197,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
             receiving_leader_pos = list(3, "leaders", 1, "athlete", "position", "abbreviation")
           )
 
-        if("broadcasts" %in% names(schedule_out)) {
+        if ("broadcasts" %in% names(schedule_out)) {
           schedule_out <- schedule_out %>%
             tidyr::hoist(
               "broadcasts",
@@ -232,6 +240,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom stringr str_sub str_length
+#' @importFrom lubridate ymd_hm with_tz
 #' @import dplyr
 #' @export
 #' @examples
@@ -241,7 +250,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
 
 espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NULL, limit=500){
 
-  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
+  if (!is.null(year) && !is.numeric(year) && nchar(year) != 4) {
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
@@ -249,17 +258,17 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
 
-  if(is.null(week)){
+  if (is.null(week)) {
     week = ''
   } else {
     week = paste0('&week=',week)
   }
-  if(is.null(year)) {
+  if (is.null(year)) {
     year <- ''
   } else {
     year <- paste0('&dates=',year)
   }
-  if(is.null(season_type)) {
+  if (is.null(season_type)) {
     season_type <- ''
   } else {
     if (season_type %in% c("regular","postseason","off-season","both")) {
@@ -274,7 +283,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
     }
     season_type <- paste0('&seasontype=',season_type)
   }
-  if(is.null(groups)) {
+  if (is.null(groups)) {
     groups <- '&groups=80'
   } else {
     if (tolower(groups) %in% c("fbs","fcs")) {
@@ -322,7 +331,15 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
         dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) %>%
         tidyr::unnest_wider("season") %>%
         dplyr::rename("season" = "year") %>%
-        dplyr::select(-dplyr::any_of("status")) %>%
+        dplyr::select(-dplyr::any_of("status"))
+
+      cfb_data <- cfb_data %>%
+        dplyr::mutate(
+          game_date_time = lubridate::ymd_hm(substr(.data$game_date, 1, nchar(.data$game_date) - 1)) %>%
+            lubridate::with_tz(tzone = "America/New_York"),
+          game_date = as.Date(substr(.data$game_date_time, 1, 10)))
+
+      cfb_data <- cfb_data %>%
         tidyr::hoist(
           "competitors",
           home_team_name = list(1, "team", "name"),
@@ -351,7 +368,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
                       away_win = as.integer(.data$away_win),
                       home_score = as.integer(.data$home_score),
                       away_score = as.integer(.data$away_score),
-                      type = case_when(type == 2 ~ "regular",
+                      type = dplyr::case_when(type == 2 ~ "regular",
                                        type == 3 ~ "postseason",
                                        type == 4 ~ "off-season",
                                        TRUE ~ as.character(type)))

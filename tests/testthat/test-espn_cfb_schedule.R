@@ -11,6 +11,7 @@ test_that("ESPN CFB Schedule", {
     "game_id",
     "game_uid",
     "game_date",
+    "game_date_time",
     "attendance",
     "home_team_name",
     "home_team_logo",
@@ -38,6 +39,7 @@ test_that("ESPN CFB Schedule", {
 
   x <- espn_cfb_schedule() %>%
     dplyr::select(
+      -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),
@@ -47,6 +49,7 @@ test_that("ESPN CFB Schedule", {
 
   y <- espn_cfb_schedule(2021, week = 8) %>%
     dplyr::select(
+      -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),

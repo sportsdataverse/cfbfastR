@@ -18,7 +18,7 @@
 load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
 
   current_year <- most_recent_cfb_season()
-  if(isTRUE(seasons)) seasons <- 2001:current_year
+  if (isTRUE(seasons)) seasons <- 2001:current_year
   stopifnot(is.numeric(seasons),
             seasons >= 2001,
             seasons <= current_year)
@@ -36,7 +36,7 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
   attr(out,"cfbfastR_type") <- "Games and schedules from data repository"
   # change this later when data in repo has attributes
-  if(is.null(attr(out,"cfbfastR_timestamp"))) {
+  if (is.null(attr(out,"cfbfastR_timestamp"))) {
     out <- out %>%
       make_cfbfastR_data("Games and schedules from data repository",Sys.time())
   }
@@ -63,7 +63,7 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
 load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 
   current_year <- most_recent_cfb_season()
-  if(isTRUE(seasons)) seasons <- 2001:current_year
+  if (isTRUE(seasons)) seasons <- 2001:current_year
   stopifnot(is.numeric(seasons),
             seasons >= 2001,
             seasons <= current_year)
@@ -80,7 +80,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
   out <- rbindlist_with_attrs(out)
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
   # change this later when data in repo has attributes
-  if(is.null(attr(out,"cfbfastR_timestamp"))) {
+  if (is.null(attr(out,"cfbfastR_timestamp"))) {
     out <- out %>%
       make_cfbfastR_data("Roster data from data repository",Sys.time())
   }
@@ -107,7 +107,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 load_cfb_teams <- function(fbs_only = TRUE){
 
   out <- rds_from_url("https://github.com/sportsdataverse/cfbfastR-data/raw/main/team_info/rds/cfb_team_info_2020.rds")
-  if(isTRUE(fbs_only)) out <- dplyr::filter(out,!is.na(.data$conference))
+  if (isTRUE(fbs_only)) out <- dplyr::filter(out,!is.na(.data$conference))
 
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
   attr(out,"cfbfastR_type") <- "Team information"
