@@ -28,7 +28,7 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -245,70 +245,70 @@
 available for team, recruit type, state and position.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:35 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:27 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 29 × 19</span></span></span>
-<span><span class="co">##    id    athlete_id recruit_…¹  year ranking name  school commi…² posit…³ height</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 42926 4362077    HighSchool  <span style="text-decoration: underline;">2</span>018      19 Cade… Steele Texas   S         73  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 42931 4362086    HighSchool  <span style="text-decoration: underline;">2</span>018      24 B.J.… Angle… Texas   S         73  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 42954 4362074    HighSchool  <span style="text-decoration: underline;">2</span>018      47 Jale… Heigh… Texas   CB        72  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 42959 4362088    HighSchool  <span style="text-decoration: underline;">2</span>018      52 DeMa… Arp    Texas   S         76  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 42968 4362107    HighSchool  <span style="text-decoration: underline;">2</span>018      61 Bren… Alief… Texas   WR        75.5</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 42971 4362076    HighSchool  <span style="text-decoration: underline;">2</span>018      64 Anth… Lamar  Texas   CB        72  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 43003 4362079    HighSchool  <span style="text-decoration: underline;">2</span>018      96 Josh… Yoakum Texas   WR        73  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 43011 <span style="color: #BB0000;">NA</span>         HighSchool  <span style="text-decoration: underline;">2</span>018     104 Al'v… Lamar  Texas   WR        73  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 43022 <span style="color: #BB0000;">NA</span>         HighSchool  <span style="text-decoration: underline;">2</span>018     115 D'sh… Lamar  Texas   CB        70  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> 43026 4362091    HighSchool  <span style="text-decoration: underline;">2</span>018     119 Ayod… IMG A… Texas   ILB       72  </span></span>
-<span><span class="co">## <span style="color: #949494;"># … with 19 more rows, 9 more variables: weight &lt;int&gt;, stars &lt;int&gt;,</span></span></span>
+<span><span class="co">##    id    athlete_id recruit_type  year ranking name          school committed_to</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 42926 4362077    HighSchool    <span style="text-decoration: underline;">2</span>018      19 Caden Sterns  Steele Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 42931 4362086    HighSchool    <span style="text-decoration: underline;">2</span>018      24 B.J. Foster   Angle… Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 42954 4362074    HighSchool    <span style="text-decoration: underline;">2</span>018      47 Jalen Green   Heigh… Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 42959 4362088    HighSchool    <span style="text-decoration: underline;">2</span>018      52 DeMarvion Ov… Arp    Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 42968 4362107    HighSchool    <span style="text-decoration: underline;">2</span>018      61 Brennan Eagl… Alief… Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 42971 4362076    HighSchool    <span style="text-decoration: underline;">2</span>018      64 Anthony Cook  Lamar  Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 43003 4362079    HighSchool    <span style="text-decoration: underline;">2</span>018      96 Joshua Moore  Yoakum Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 43011 <span style="color: #BB0000;">NA</span>         HighSchool    <span style="text-decoration: underline;">2</span>018     104 Al'vonte Woo… Lamar  Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 43022 <span style="color: #BB0000;">NA</span>         HighSchool    <span style="text-decoration: underline;">2</span>018     115 D'shawn Jami… Lamar  Texas       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> 43026 4362091    HighSchool    <span style="text-decoration: underline;">2</span>018     119 Ayodele Adeo… IMG A… Texas       </span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 19 more rows</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 11 more variables: position &lt;chr&gt;, height &lt;dbl&gt;, weight &lt;int&gt;, stars &lt;int&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   rating &lt;dbl&gt;, city &lt;chr&gt;, state_province &lt;chr&gt;, country &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   hometown_info_latitude &lt;chr&gt;, hometown_info_longitude &lt;chr&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;, and abbreviated variable names</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   ¹​recruit_type, ²​committed_to, ³​position</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;</span></span></span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2016</span>, recruit_type <span class="op">=</span> <span class="st">"JUCO"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:35 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:27 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 476 × 19</span></span></span>
-<span><span class="co">##    id    athlete_id recruit_…¹  year ranking name  school commi…² posit…³ height</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 55123 <span style="color: #BB0000;">NA</span>         JUCO        <span style="text-decoration: underline;">2</span>016       1 Jona… Arizo… Tennes… SDE       77.5</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 55124 <span style="color: #BB0000;">NA</span>         JUCO        <span style="text-decoration: underline;">2</span>016       2 Char… ASA C… Alabama OT        77  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 55125 -1039929   JUCO        <span style="text-decoration: underline;">2</span>016       3 Gare… Snow … Utah    OT        77  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 55126 <span style="color: #BB0000;">NA</span>         JUCO        <span style="text-decoration: underline;">2</span>016       4 Malc… Nassa… Ohio S… OT        80  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 55127 4057659    JUCO        <span style="text-decoration: underline;">2</span>016       5 Mark… Dodge… Florida RB        74  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 55128 4038530    JUCO        <span style="text-decoration: underline;">2</span>016       6 Taj … Iowa … TCU     WR        75  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 55129 556465     JUCO        <span style="text-decoration: underline;">2</span>016       7 Jero… Trini… Virgin… DUAL      76  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 55130 <span style="color: #BB0000;">NA</span>         JUCO        <span style="text-decoration: underline;">2</span>016       8 Tyre… Highl… TCU     OLB       72  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 55131 <span style="color: #BB0000;">NA</span>         JUCO        <span style="text-decoration: underline;">2</span>016       9 Ryan… Tyler… TCU     WR        74  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> 55132 545367     JUCO        <span style="text-decoration: underline;">2</span>016      10 Derr… Trini… Texas … WR        76  </span></span>
-<span><span class="co">## <span style="color: #949494;"># … with 466 more rows, 9 more variables: weight &lt;int&gt;, stars &lt;int&gt;,</span></span></span>
+<span><span class="co">##    id    athlete_id recruit_type  year ranking name          school committed_to</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 55123 <span style="color: #BB0000;">NA</span>         JUCO          <span style="text-decoration: underline;">2</span>016       1 Jonathan Kon… Arizo… Tennessee   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 55124 <span style="color: #BB0000;">NA</span>         JUCO          <span style="text-decoration: underline;">2</span>016       2 Charles Bald… ASA C… Alabama     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 55125 -1039929   JUCO          <span style="text-decoration: underline;">2</span>016       3 Garett Bolles Snow … Utah        </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 55126 <span style="color: #BB0000;">NA</span>         JUCO          <span style="text-decoration: underline;">2</span>016       4 Malcolm Prid… Nassa… Ohio State  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 55127 4057659    JUCO          <span style="text-decoration: underline;">2</span>016       5 Mark Thompson Dodge… Florida     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 55128 4038530    JUCO          <span style="text-decoration: underline;">2</span>016       6 Taj Williams  Iowa … TCU         </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 55129 556465     JUCO          <span style="text-decoration: underline;">2</span>016       7 Jerod Evans   Trini… Virginia Te…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 55130 <span style="color: #BB0000;">NA</span>         JUCO          <span style="text-decoration: underline;">2</span>016       8 Tyree Horton  Highl… TCU         </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 55131 <span style="color: #BB0000;">NA</span>         JUCO          <span style="text-decoration: underline;">2</span>016       9 Ryan Parker   Tyler… TCU         </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> 55132 545367     JUCO          <span style="text-decoration: underline;">2</span>016      10 Derrick Will… Trini… Texas Tech  </span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 466 more rows</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 11 more variables: position &lt;chr&gt;, height &lt;dbl&gt;, weight &lt;int&gt;, stars &lt;int&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   rating &lt;dbl&gt;, city &lt;chr&gt;, state_province &lt;chr&gt;, country &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   hometown_info_latitude &lt;chr&gt;, hometown_info_longitude &lt;chr&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;, and abbreviated variable names</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   ¹​recruit_type, ²​committed_to, ³​position</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;</span></span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2020</span>, recruit_type <span class="op">=</span> <span class="st">"HighSchool"</span>, position <span class="op">=</span> <span class="st">"OT"</span>, state <span class="op">=</span> <span class="st">"FL"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:36 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 26 × 19</span></span></span>
-<span><span class="co">##    id    athlete_id recruit_…¹  year ranking name  school commi…² posit…³ height</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 61676 4429039    HighSchool  <span style="text-decoration: underline;">2</span>020     110 Marc… St. T… LSU     OT          77</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 61695 4429010    HighSchool  <span style="text-decoration: underline;">2</span>020     128 Jale… Oakle… Miami   OT          78</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 61724 <span style="color: #BB0000;">NA</span>         HighSchool  <span style="text-decoration: underline;">2</span>020     157 Issi… Norla… Florida OT          76</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 61838 <span style="color: #BB0000;">NA</span>         HighSchool  <span style="text-decoration: underline;">2</span>020     271 Josh… Suwan… Florida OT          78</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 61885 4433873    HighSchool  <span style="text-decoration: underline;">2</span>020     318 Conn… Jesuit Stanfo… OT          79</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 62056 4593066    HighSchool  <span style="text-decoration: underline;">2</span>020     491 Cayd… Fort … North … OT          78</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 62104 4565556    HighSchool  <span style="text-decoration: underline;">2</span>020     538 Mich… Lenna… Georgi… OT          77</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 62223 4431266    HighSchool  <span style="text-decoration: underline;">2</span>020     658 Gera… Cardi… Florida OT          77</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 62662 4568715    HighSchool  <span style="text-decoration: underline;">2</span>020    <span style="text-decoration: underline;">1</span>097 Lloy… Killi… Florid… OT          79</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> 62718 4429232    HighSchool  <span style="text-decoration: underline;">2</span>020    <span style="text-decoration: underline;">1</span>154 Brad… Dunca… Vander… OT          78</span></span>
-<span><span class="co">## <span style="color: #949494;"># … with 16 more rows, 9 more variables: weight &lt;int&gt;, stars &lt;int&gt;,</span></span></span>
+<span><span class="co">##    id    athlete_id recruit_type  year ranking name          school committed_to</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> 61676 4429039    HighSchool    <span style="text-decoration: underline;">2</span>020     110 Marcus Dumer… St. T… LSU         </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> 61695 4429010    HighSchool    <span style="text-decoration: underline;">2</span>020     128 Jalen Rivers  Oakle… Miami       </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> 61724 <span style="color: #BB0000;">NA</span>         HighSchool    <span style="text-decoration: underline;">2</span>020     157 Issiah Walke… Norla… Florida     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> 61838 <span style="color: #BB0000;">NA</span>         HighSchool    <span style="text-decoration: underline;">2</span>020     271 Joshua Braun  Suwan… Florida     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> 61885 4433873    HighSchool    <span style="text-decoration: underline;">2</span>020     318 Connor McLau… Jesuit Stanford    </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> 62056 4593066    HighSchool    <span style="text-decoration: underline;">2</span>020     491 Cayden Baker  Fort … North Carol…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> 62104 4565556    HighSchool    <span style="text-decoration: underline;">2</span>020     538 Michael Rank… Lenna… Georgia Tech</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> 62223 4431266    HighSchool    <span style="text-decoration: underline;">2</span>020     658 Gerald Mincey Cardi… Florida     </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> 62662 4568715    HighSchool    <span style="text-decoration: underline;">2</span>020    <span style="text-decoration: underline;">1</span>097 Lloyd Willis  Killi… Florida Sta…</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> 62718 4429232    HighSchool    <span style="text-decoration: underline;">2</span>020    <span style="text-decoration: underline;">1</span>154 Bradley Ashm… Dunca… Vanderbilt  </span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 16 more rows</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># ℹ 11 more variables: position &lt;chr&gt;, height &lt;int&gt;, weight &lt;int&gt;, stars &lt;int&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   rating &lt;dbl&gt;, city &lt;chr&gt;, state_province &lt;chr&gt;, country &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   hometown_info_latitude &lt;chr&gt;, hometown_info_longitude &lt;chr&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;, and abbreviated variable names</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   ¹​recruit_type, ²​committed_to, ³​position</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="cfb-recruiting-information-position-groups-">
@@ -317,7 +317,7 @@ available for team, recruit type, state and position.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_position.html">cfbd_recruiting_position</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting position group info from CollegeFootballData.com ─────────────────</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:36 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 9 × 7</span></span></span>
 <span><span class="co">##   team  conference position_group avg_rating total_rating commits avg_stars</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -333,7 +333,7 @@ available for team, recruit type, state and position.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_position.html">cfbd_recruiting_position</a></span><span class="op">(</span><span class="fl">2016</span>, <span class="fl">2020</span>, team <span class="op">=</span> <span class="st">"Virginia"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting position group info from CollegeFootballData.com ─────────────────</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:36 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 9 × 7</span></span></span>
 <span><span class="co">##   team     conference position_group avg_rating total_rating commits avg_stars</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -349,7 +349,7 @@ available for team, recruit type, state and position.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_position.html">cfbd_recruiting_position</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2020</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting position group info from CollegeFootballData.com ─────────────────</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:36 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 126 × 7</span></span></span>
 <span><span class="co">##    team     conference position_group avg_rating total_rating commits avg_stars</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -363,7 +363,7 @@ available for team, recruit type, state and position.</p>
 <span><span class="co">## <span style="color: #BCBCBC;"> 8</span> Alabama  SEC        Special Teams       0.886         8.86      10      3.5 </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span> Arkansas SEC        Defensive Back      0.863        22.4       26      3.23</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span> Arkansas SEC        Defensive Line      0.879        22.8       26      3.31</span></span>
-<span><span class="co">## <span style="color: #949494;"># … with 116 more rows</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #949494;"># ℹ 116 more rows</span></span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="cfb-recruiting-information-team-rankings-">
@@ -371,32 +371,32 @@ available for team, recruit type, state and position.</p>
 </h3>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:37 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">##    year  rank team  points</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>018     3 Texas 300.06</span></span></code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2016</span>, team <span class="op">=</span> <span class="st">"Virginia"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:37 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">##    year  rank team     points</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>016    63 Virginia 164.95</span></span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2016</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:37 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:28 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">##    year  rank team      points</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>016    18 Texas A&amp;M 238.94</span></span></code></pre>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2011</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.3</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-03-23 02:34:37 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.4</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2023-04-04 05:36:29 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 137 × 4</span></span></span>
 <span><span class="co">##     year  rank team          points</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
@@ -410,7 +410,7 @@ available for team, recruit type, state and position.</p>
 <span><span class="co">## <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">2</span>011     8 LSU           272.65</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>011     9 Notre Dame    271.38</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>011    10 Clemson       269.69</span></span>
-<span><span class="co">## <span style="color: #949494;"># … with 127 more rows</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #949494;"># ℹ 127 more rows</span></span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
