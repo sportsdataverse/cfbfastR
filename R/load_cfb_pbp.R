@@ -7,8 +7,9 @@
 #' the season data into a database (used by [`update_cfb_db()`][update_cfb_db])
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
 #' @param tablename The name of the play by play data table within the database
+#' @return Returns a tibble with play-by-play data
 #' @export
-load_cfb_pbp <- function(seasons = most_recent_cfb_season(),...,
+load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
                          dbConnection = NULL, tablename = NULL) {
   dots <- rlang::dots_list(...)
 
@@ -16,7 +17,7 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(),...,
 
   if (!is.null(dbConnection) && !is.null(tablename)) in_db <- TRUE else in_db <- FALSE
 
-  if(isTRUE(seasons)) seasons <- 2014:most_recent_cfb_season()
+  if (isTRUE(seasons)) seasons <- 2014:most_recent_cfb_season()
 
   stopifnot(is.numeric(seasons),
             seasons >= 2014,
@@ -47,7 +48,7 @@ load_games <- function(){
   con <- url(.url)
   dat <- utils::read.csv(con)
   # close(con)
-  return (dat)
+  return(dat)
 }
 
 #' @title
@@ -141,7 +142,7 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
   missing <- get_missing_cfb_games(completed_games, connection, tblname)
 
   # rebuild db always because below code block is commented out
-  if(length(missing) > 0) {
+  if (length(missing) > 0) {
     seasons_to_rebuild <- completed_games %>%
       dplyr::filter(.data$game_id %in% missing) %>%
       dplyr::pull(.data$season) %>%
@@ -185,7 +186,7 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
     seasons <- valid_seasons %>% dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
   } else if (is.numeric(rebuild) & all(rebuild %in% valid_seasons$season)) {
-    if (show_message){cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
+    if (show_message) {cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
     DBI::dbExecute(db_conn, glue::glue_sql("DELETE FROM {`tblname`} WHERE season IN ({vals*})", vals = rebuild, .con = db_conn))
     seasons <- valid_seasons %>% dplyr::filter(.data$season %in% rebuild) %>% dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of the {cli::qty(length(rebuild))}season{?s} {rebuild}...")
