@@ -11,6 +11,7 @@ test_that("ESPN CFB Scoreboard", {
     "game_id",
     "game_uid",
     "game_date",
+    "game_date_time",
     "attendance",
     "home_team_name",
     "home_team_logo",
@@ -38,6 +39,7 @@ test_that("ESPN CFB Scoreboard", {
 
   x <- espn_cfb_scoreboard() %>%
     dplyr::select(
+      -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),
@@ -45,8 +47,9 @@ test_that("ESPN CFB Scoreboard", {
       -dplyr::any_of(c("notes"))
     )
 
-  y <- espn_cfb_scoreboard(date=20210101) %>%
+  y <- espn_cfb_scoreboard(date = 20210101) %>%
     dplyr::select(
+      -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),
       -dplyr::any_of(dplyr::starts_with("passing")),
       -dplyr::any_of(dplyr::starts_with("rushing")),
