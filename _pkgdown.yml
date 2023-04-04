@@ -6,6 +6,9 @@ template:
   bootstrap: 5
   bootswatch: flatly
   ganalytics: G-SE5ZJL93W6
+  includes:
+    in_header: |
+      <script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script>
   bslib:
     primary: "#222222"
     secondary: "#B7B9BB"
