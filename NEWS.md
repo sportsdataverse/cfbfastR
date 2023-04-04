@@ -1,3 +1,8 @@
+# **cfbfastR v1.9.4**
+* Improve date parsing for [```espn_cfb_scoreboard()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html) and [```espn_cfb_schedule()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_schedule.html) functions while adding `lubridate` dependency
+* Made a minor tweak to the returns of the [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html) function
+
+
 # **cfbfastR v1.9.3**
 
 * Add division parameter to the following functions: 
