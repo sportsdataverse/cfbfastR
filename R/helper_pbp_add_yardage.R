@@ -99,7 +99,7 @@ add_yardage <- function(play_df) {
         yds_int_return = dplyr::case_when(
           .data$pass == 1 & .data$int_td == 1 & stringr::str_detect(.data$play_text, regex("Yd Interception Return", ignore_case = TRUE)) ~
           as.numeric(stringr::str_extract(
-            stringi::stri_extract_first_regex(.data$play_text, regex("(.+)Yd Interception Return"), ignore_case = TRUE), "\\d+"
+            stringi::stri_extract_first_regex(.data$play_text, regex("(.+)Yd Interception Return", ignore_case = TRUE)), "\\d+"
           )),
           .data$pass == 1 & .data$int == 1 & stringr::str_detect(.data$play_text, regex("for no gain", ignore_case = TRUE)) ~ 0,
           .data$pass == 1 & .data$int == 1 & stringr::str_detect(.data$play_text, regex("for a loss of", ignore_case = TRUE)) ~
