@@ -1,3 +1,7 @@
+# **cfbfastR v1.9.5**
+* fixed breaking bug related to `stringi` v1.8 update in [```cfbd_play_pbp_data()```](https://cfbfastr.sportsdataverse.org/reference/cfbd_pbp_data.html) EPA and WPA processing
+* Minor documentation and test updates
+
 # **cfbfastR v1.9.4**
 * Improve date parsing for [```espn_cfb_scoreboard()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html) and [```espn_cfb_schedule()```](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_schedule.html) functions while adding `lubridate` dependency
 * Made a minor tweak to the returns of the [```espn_ratings_fpi()```](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html) function

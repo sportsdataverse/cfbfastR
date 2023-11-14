@@ -318,7 +318,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
-#' @return [cfbd_stats_season_advanced()] - A data frame with 81 variables:
+#' @return [cfbd_stats_season_advanced()] - A data frame with 82 variables:
 #' \describe{
 #'   \item{`season`: integer.}{Season of the statistics.}
 #'   \item{`team`: character.}{Team name.}

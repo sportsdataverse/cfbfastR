@@ -32,6 +32,7 @@ cols <- c(
   "def_rushing_plays_rate", "def_rushing_plays_ppa", "def_rushing_plays_total_ppa",
   "def_rushing_plays_success_rate", "def_rushing_plays_explosiveness",
   "def_passing_plays_rate", "def_passing_plays_ppa",
+  "def_passing_plays_total_ppa",
   "def_passing_plays_success_rate", "def_passing_plays_explosiveness"
 )
 

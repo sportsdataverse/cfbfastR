@@ -560,7 +560,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
 #' @title
 #' **Get college football mapping for play stats types**
-#' @return [cfbd_play_stats_types()] - A data frame with 22 rows and 2 variables:
+#' @return [cfbd_play_stats_types()] - A data frame with 25 rows and 2 variables:
 #' \describe{
 #'   \item{`play_stat_type_id`: integer}{Referencing play stat type ID.}
 #'   \item{`name`: character}{Type of play stats.}

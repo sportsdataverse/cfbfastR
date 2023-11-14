@@ -13,6 +13,7 @@ test_that("ESPN CFB Schedule", {
     "game_date",
     "game_date_time",
     "attendance",
+    "play_by_play_available",
     "home_team_name",
     "home_team_logo",
     "home_team_abb",

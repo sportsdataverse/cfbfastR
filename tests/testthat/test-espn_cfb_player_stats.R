@@ -334,7 +334,12 @@ test_that("ESPN CFB Player Stats", {
     "is_active",
     "is_all_star",
     "logo_href",
-    "logo_dark_href"
+    "logo_dark_href",
+    "birth_country_abbreviation",
+    "birth_country_alternate_id",
+    "flag_alt",
+    "flag_href",
+    "flag_x_country_flag"
   )
 
   x <- espn_cfb_player_stats(athlete_id = 530308, year = 2013)

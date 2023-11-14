@@ -18,6 +18,7 @@ NULL
 #'   \item{`game_uid`: character.}{}
 #'   \item{`game_date`: character.}{Game date.}
 #'   \item{`attendance`: integer.}{Reported attendance at the game.}
+#'   \item{`play_by_play_available`: logical}{}
 #'   \item{`home_team_name`: character.}{Home team mascot name (Sun Devils).}
 #'   \item{`home_team_logo`: character.}{Home team logo url.}
 #'   \item{`home_team_abb`: character.}{Home team abbreviation (ASU).}

@@ -1178,9 +1178,10 @@ cfbd_game_player_stats <- function(year,
 #' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @return [cfbd_game_records()] - A data frame with 21 variables:
+#' @return [cfbd_game_records()] - A data frame with 22 variables:
 #' \describe{
 #'   \item{`year`: integer.}{Season of the games.}
+#'   \item{`team_id`: integer.} {Referencing team id.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`division`: character.}{Division in the conference of the team.}
@@ -1270,6 +1271,7 @@ cfbd_game_records <- function(year,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
+          "team_id" = "teamId",
           "expected_wins" = "expectedWins",
           "total_games" = "total.games",
           "total_wins" = "total.wins",
