@@ -136,10 +136,15 @@ cfbd_betting_lines <- function(game_id = NULL,
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+        jsonlite::parse_json(j) %>% 
+        tibble::tibble() %>% 
+        tidyr::unnest_wider(1) %>% 
+        str() %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest("lines")
+
+      
 
       if (!is.null(line_provider)) {
         if (is.list(df) & length(df) == 0) {
