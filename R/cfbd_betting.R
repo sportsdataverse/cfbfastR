@@ -136,7 +136,7 @@ cfbd_betting_lines <- function(game_id = NULL,
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::parse_json(j) %>% 
+        jsonlite::parse_json() %>% 
         tibble::tibble() %>% 
         tidyr::unnest_wider(1) %>% 
         str() %>%
