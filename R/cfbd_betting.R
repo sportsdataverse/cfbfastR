@@ -46,6 +46,7 @@
 #' @importFrom purrr map_if
 #' @importFrom dplyr filter as_tibble rename
 #' @importFrom tidyr unnest
+#' @importFrom stringr str_replace_all
 #' @export
 #' @examples
 #' \donttest{
@@ -135,14 +136,18 @@ cfbd_betting_lines <- function(game_id = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::parse_json() %>% 
-        tibble::tibble() %>% 
-        tidyr::unnest_wider(1) %>% 
-        str() %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        tidyr::unnest("lines")
+          httr::content(as = "text", encoding = "UTF-8") %>%
+          stringr::str_replace_all("NaN", 'null') %>%
+          jsonlite::fromJSON(flatten = TRUE) %>%
+          purrr::map_if(is.data.frame, list) %>%
+          dplyr::as_tibble() %>%
+          tidyr::unnest("lines") %>%
+          dplyr::mutate(
+              overUnder = dplyr::case_when(
+                  overUnder == "null" ~ NA_character_,
+                  .default = overUnder
+              )
+          )
 
       
 
