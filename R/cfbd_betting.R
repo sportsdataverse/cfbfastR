@@ -144,16 +144,16 @@ cfbd_betting_lines <- function(game_id = NULL,
         tidyr::unnest("lines") %>%
         dplyr::mutate(
             overUnder = dplyr::case_when(
-                overUnder == "null" ~ NA_character_,
-                .default = overUnder
+                .data$overUnder == "null" ~ NA_character_,
+                .default = .data$overUnder
             ),
             spread = dplyr::case_when(
-                spread == "null" ~ NA_character_,
-                .default = spread
+                .data$spread == "null" ~ NA_character_,
+                .default = .data$spread
             ),
             formattedSpread = dplyr::case_when(
-                is.na(spread) ~ NA_character_,
-                .default = formattedSpread
+                is.na(.data$spread) ~ NA_character_,
+                .default = .data$formattedSpread
             )
         )
 
