@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Visualizing Team Talent from Player Recruiting Rankings">
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -291,30 +291,30 @@ recruits (<code>recruit_type = "JUCO"</code>).</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 21.277 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 21.017 sec elapsed</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">all.recruits</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Rows: 1,170</span></span>
 <span><span class="co">## Columns: 19</span></span>
-<span><span class="co">## $ id                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "46895", "46912", "47082", "47339", "47469", "…</span></span>
-<span><span class="co">## $ athlete_id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4426379", "4569371", "4426415", "4428155", "4…</span></span>
+<span><span class="co">## $ id                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "61974", "61995", "62388", "62483", "62487", "…</span></span>
+<span><span class="co">## $ athlete_id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4429116", "4696690", "4696693", "4429530", "4…</span></span>
 <span><span class="co">## $ recruit_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HighSchool", "HighSchool", "HighSchool", "Hig…</span></span>
-<span><span class="co">## $ year                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019…</span></span>
-<span><span class="co">## $ ranking                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 99, 116, 286, 543, 673, 880, 908, 1129, 1253, …</span></span>
-<span><span class="co">## $ name                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Marquez Beason", "Isaiah Williams", "Shammond…</span></span>
-<span><span class="co">## $ school                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Duncanville", "Trinity Catholic", "Trinity Ca…</span></span>
+<span><span class="co">## $ year                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020…</span></span>
+<span><span class="co">## $ ranking                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 408, 430, 823, 918, 922, 1059, 1350, 1383, 165…</span></span>
+<span><span class="co">## $ name                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "James Frenchie", "Reggie Love", "Tre'von Rigg…</span></span>
+<span><span class="co">## $ school                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Trinity Catholic", "Trinity Catholic", "Lakew…</span></span>
 <span><span class="co">## $ committed_to            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Illinois", "Illinois", "Illinois", "Illinois"…</span></span>
-<span><span class="co">## $ position                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ATH", "ATH", "ILB", "SDE", "SDE", "WDE", "APB…</span></span>
-<span><span class="co">## $ height                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 70.0, 69.5, 74.0, 79.0, 77.0, 76.0, 67.0, 76.0…</span></span>
-<span><span class="co">## $ weight                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 177, 170, 195, 250, 270, 200, 160, 200, 160, 2…</span></span>
-<span><span class="co">## $ stars                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…</span></span>
-<span><span class="co">## $ rating                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.9564, 0.9479, 0.9027, 0.8784, 0.8701, 0.8599…</span></span>
-<span><span class="co">## $ city                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Duncanville", "Saint Louis", "Saint Louis", "…</span></span>
-<span><span class="co">## $ state_province          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TX", "MO", "MO", "MO", "IL", "FL", "TX", "TX"…</span></span>
+<span><span class="co">## $ position                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WR", "RB", "DT", "SDE", "DUAL", "SDE", "OT", …</span></span>
+<span><span class="co">## $ height                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 69.0, 70.0, 73.5, 77.0, 76.0, 75.0, 78.0, 77.0…</span></span>
+<span><span class="co">## $ weight                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 175, 195, 265, 245, 194, 255, 290, 295, 261, 3…</span></span>
+<span><span class="co">## $ stars                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…</span></span>
+<span><span class="co">## $ rating                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.8864, 0.8843, 0.8613, 0.8567, 0.8566, 0.8519…</span></span>
+<span><span class="co">## $ city                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Saint Louis", "Saint Louis", "Saint Petersbur…</span></span>
+<span><span class="co">## $ state_province          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MO", "MO", "FL", "FL", "FL", "FL", "NC", "MO"…</span></span>
 <span><span class="co">## $ country                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "USA", "USA", "USA", "USA", "USA", "USA…</span></span>
-<span><span class="co">## $ hometown_info_latitude  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "32.6518004", "38.6264178", "38.6264178", "38.…</span></span>
-<span><span class="co">## $ hometown_info_longitude <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-96.9083366", "-90.1998378", "-90.1998378", "…</span></span>
-<span><span class="co">## $ hometown_info_fips_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "48113", "29510", "29510", "29510", "17163", "…</span></span></code></pre>
+<span><span class="co">## $ hometown_info_latitude  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "38.6264178", "38.6264178", "27.7703796", "28.…</span></span>
+<span><span class="co">## $ hometown_info_longitude <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-90.1998378", "-90.1998378", "-82.6695085", "…</span></span>
+<span><span class="co">## $ hometown_info_fips_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "29510", "29510", "12103", "12009", "12103", "…</span></span></code></pre>
 <p>The next step is cleaning the data. The
 <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player()</a></code> function gives us 14 pieces of
 data for each player. Our graph is going to focus on just the rating and
