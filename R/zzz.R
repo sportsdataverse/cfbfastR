@@ -37,4 +37,3 @@ load_wp_model <- function(){
   )
   return (wp_model)
 }
-
