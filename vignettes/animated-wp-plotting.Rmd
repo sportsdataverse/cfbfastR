@@ -102,7 +102,7 @@ Now that our data matches ```nflfastR```, we can start to copy Lee Sharpe's code
 ```{r base_wp_data, message=FALSE, warning=FALSE}
 base_wp_data <- game_pbp %>% 
   filter(!is.na(wp)) %>% 
-  mutate(s = game_seconds_remaining,
+  mutate(s = game_seconds_remaining, result = game$result,
          wp = ifelse(posteam == away_team, wp, 1 - wp))
 
 ```

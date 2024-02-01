@@ -12,7 +12,8 @@
 \alias{add_yardage}
 \alias{clean_pbp_dat}
 \alias{penalty_detection}
-\title{\strong{Series of functions to help clean the play-by-play data for analysis}}
+\title{\strong{Series of functions to help clean the play-by-play data for analysis}
+\item{\code{rusher_player_name}}{.}
 \usage{
 add_play_counts(play_df)
 

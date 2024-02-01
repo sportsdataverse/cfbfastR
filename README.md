@@ -32,7 +32,10 @@ You can install the CRAN version of
 [**`cfbfastR`**](https://CRAN.R-project.org/package=cfbfastR) with:
 
 ``` r
-install.packages("cfbfastR")
+if (!requireNamespace('remotes', quietly = TRUE)){
+  install.packages('remotes')
+}
+remotes::install_github('sportsdataverse/cfbfastR')
 ```
 
 You can install the released version of
