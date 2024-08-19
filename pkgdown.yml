@@ -1,5 +1,5 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   animated-wp-plotting: animated-wp-plotting.html
@@ -17,8 +17,7 @@ articles:
   map-tutorial: map-tutorial.html
   nth-rated-recruit: nth-rated-recruit.html
   rolling-epa-graph: rolling-epa-graph.html
-last_built: 2024-02-01T16:00Z
+last_built: 2024-08-19T11:14Z
 urls:
   reference: https://cfbfastR.sportsdataverse.org/reference
   article: https://cfbfastR.sportsdataverse.org/articles
-

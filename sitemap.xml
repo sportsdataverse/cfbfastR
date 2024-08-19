@@ -1,309 +1,105 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/404.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/animated-wp-plotting.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_games.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/intro.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/map-tutorial.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_calendar.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_picks.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_positions.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_teams.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_games.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_games.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_games.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_predicted.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_teams.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp_pregame.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_player_returning.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_players.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_teams.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/cfbfastR-package.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/create_epa.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/create_wpa.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/csv_from_url.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/data.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/rds_from_url.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html</loc>
-  </url>
-  <url>
-    <loc>https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://cfbfastR.sportsdataverse.org/404.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/LICENSE-text.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/LICENSE.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/animated-wp-plotting.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/index.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/intro.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/map-tutorial.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/authors.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/index.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/news/index.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_calendar.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_picks.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_positions.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_teams.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_predicted.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_teams.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp_pregame.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_player_returning.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_players.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_teams.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbfastR-package.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/create_epa.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/create_wpa.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/csv_from_url.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/data.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_metrics.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/index.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/rds_from_url.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.html</loc></url>
 </urlset>
+
