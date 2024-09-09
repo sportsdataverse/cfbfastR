@@ -30,7 +30,7 @@ test_that("base case 2023 pbp are already properly handled", {
   )
 
   completions = p %>%
-    dplyr::filter(game_id == 401525494 & play_type == "Pass Reception" & pos_team == "NC State") %>%
+    dplyr::filter(game_id == 401525494 & play_type == "Pass Reception" & pos_team == "Georgia Tech") %>%
     dplyr::mutate(
       same_same = (yards_gained == yds_receiving)
     ) %>%
