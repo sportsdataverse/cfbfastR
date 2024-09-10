@@ -86,10 +86,14 @@ add_yardage <- function(play_df) {
           stringi::stri_extract_first_regex(.data$play_text, "(?<= for a loss of)[^,]+"), "\\d+"
         )),
         .data$pass == 1 &
-          stringr::str_detect(.data$play_text, regex("pass complete to", ignore_case = TRUE)) ~
+          stringr::str_detect(.data$play_text, regex("pass complete to", ignore_case = TRUE)) &
+          stringr::str_detect(.data$play_text, regex(" for \\d+ y\\w*ds?", ignore_case = TRUE)) ~
         as.numeric(stringr::str_extract(
           stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
         )),
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("pass complete to", ignore_case = TRUE)) ~
+          yards_gained, # 2024 has games that don't have yards in the PBP text but do have them in the yards_gained field.
         TRUE ~ NA_real_
       )
     )
