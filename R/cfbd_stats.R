@@ -238,15 +238,16 @@ cfbd_stats_game_advanced <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/stats/game/advanced?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&opponent=", opponent,
-    "&excludeGarbageTime=", excl_garbage_time,
-    "&seasonType=", season_type
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "opponent" = opponent,
+    "excludeGarbageTime" = excl_garbage_time,
+    "seasonType" = season_type
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -452,14 +453,15 @@ cfbd_stats_season_advanced <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/stats/season/advanced?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&excludeGarbageTime=", excl_garbage_time,
-    "&startWeek=", start_week,
-    "&endWeek=", end_week
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "excludeGarbageTime" = excl_garbage_time,
+    "startWeek" = start_week,
+    "endWeek" = end_week
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -921,15 +923,16 @@ cfbd_stats_season_team <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/stats/season?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&seasonType=", season_type,
-    "&startWeek=", start_week,
-    "&endWeek=", end_week,
-    "&team=", team,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "seasonType" = season_type,
+    "startWeek" = start_week,
+    "endWeek" = end_week,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
