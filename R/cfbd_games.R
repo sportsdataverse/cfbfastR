@@ -191,18 +191,19 @@ cfbd_game_info <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/games?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&home=", home_team,
-    "&away=", away_team,
-    "&conference=", conference,
-    "&division=", division,
-    "&id=", game_id
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "home" = home_team,
+    "away" = away_team,
+    "conference" = conference,
+    "division" = division,
+    "id" = game_id
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -327,14 +328,15 @@ cfbd_game_weather <- function(year,
   }
   base_url <- "https://api.collegefootballdata.com/games/weather?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -407,10 +409,11 @@ cfbd_calendar <- function(year) {
 
   base_url <- "https://api.collegefootballdata.com/calendar?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year
+  query_params <- list(
+    "year" = year
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -530,16 +533,17 @@ cfbd_game_media <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/games/media?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&conference=", conference,
-    "&mediaType=", media_type,
-    "&classification=", division
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "conference" = conference,
+    "mediaType" = media_type,
+    "classification" = division
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -699,10 +703,11 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 
   base_url <- "https://api.collegefootballdata.com/game/box/advanced?"
 
-  full_url <- paste0(
-    base_url,
-    "gameId=", game_id
+  query_params <- list(
+    "id" = game_id
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -957,16 +962,17 @@ cfbd_game_player_stats <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/games/players?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&conference=", conference,
-    "&category=", category,
-    "&gameId=", game_id
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "conference" = conference,
+    "category" = category,
+    "gameId" = game_id
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -1126,7 +1132,6 @@ cfbd_game_player_stats <- function(year,
           "athlete_id" = "id",
           "athlete_name" = "name",
           "team_points" = "points",
-          "team" = "school",
           "value" = "stat"
         ) %>%
         dplyr::select(-dplyr::any_of(c("category", "stat_category"))) %>%
@@ -1243,12 +1248,13 @@ cfbd_game_records <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/records?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -1322,7 +1328,7 @@ cfbd_game_records <- function(year,
 #' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
 #' \describe{
 #'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`school`: character.}{Team name.}
+#'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`home_away`: character.}{Home/Away Flag.}
 #'   \item{`opponent`: character.}{Opponent team name.}
@@ -1469,16 +1475,17 @@ cfbd_game_team_stats <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/games/teams?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&conference=", conference,
-    "&classification=", division,
-    "&gameId=", game_id
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "conference" = conference,
+    "classification" = division,
+    "gameId" = game_id
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -1498,7 +1505,7 @@ cfbd_game_team_stats <- function(year,
 
 
       cols <- c(
-        "id", "school", "conference", "home_away",
+        "id", "team", "conference", "home_away",
         "points", "rushing_t_ds", "punt_return_yards", "punt_return_t_ds",
         "punt_returns", "passing_t_ds", "kicking_points",
         "interception_yards", "interception_t_ds", "passes_intercepted",
@@ -1560,11 +1567,11 @@ cfbd_game_team_stats <- function(year,
                            suffix = c("", "_allowed")
           ) %>%
           dplyr::rename(
-            "opponent" = "school_allowed",
+            "opponent" = "team_allowed",
             "opponent_conference" = "conference_allowed")
 
         cols1 <- c(
-          "game_id", "school", "conference", "home_away","opponent","opponent_conference",
+          "game_id", "team", "conference", "home_away","opponent","opponent_conference",
           "points", "total_yards", "net_passing_yards",
           "completion_attempts", "passing_tds", "yards_per_pass",
           "passes_intercepted", "interception_yards", "interception_tds",
@@ -1593,7 +1600,7 @@ cfbd_game_team_stats <- function(year,
           team <- URLdecode(team)
 
           df <- df %>%
-            dplyr::filter(.data$school == team) %>%
+            dplyr::filter(.data$team == team) %>%
             dplyr::select(dplyr::all_of(cols1))
 
 
@@ -1616,7 +1623,7 @@ cfbd_game_team_stats <- function(year,
         }
       } else {
         cols2 <- c(
-          "game_id", "school", "conference", "home_away",
+          "game_id", "team", "conference", "home_away",
           "points", "total_yards", "net_passing_yards",
           "completion_attempts", "passing_tds", "yards_per_pass",
           "passes_intercepted", "interception_yards", "interception_tds",
@@ -1633,7 +1640,7 @@ cfbd_game_team_stats <- function(year,
           team <- URLdecode(team <- team)
 
           df <- df %>%
-            dplyr::filter(.data$school == team) %>%
+            dplyr::filter(.data$team == team) %>%
             dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
