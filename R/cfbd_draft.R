@@ -251,14 +251,16 @@ cfbd_draft_picks <- function(year = NULL,
   base_url <- "https://api.collegefootballdata.com/draft/picks?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&nflTeam=", nfl_team,
-    "&college=", college,
-    "&conference=", conference,
-    "&position=", position
+  query_params <- list(
+    "year" = year,
+    "nflTeam" = nfl_team,
+    "college" = college,
+    "conference" = conference,
+    "position" = position
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
+
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
