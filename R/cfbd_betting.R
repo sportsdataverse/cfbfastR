@@ -61,6 +61,9 @@ cfbd_betting_lines <- function(game_id = NULL,
                                away_team = NULL,
                                conference = NULL,
                                line_provider=NULL) {
+  if (is.null(game_id) && is.null(year)){
+    cli::cli_abort( "Must provide either game_id or year" )
+  }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
     cli::cli_abort( "Enter valid game_id (numeric value)")
@@ -106,17 +109,21 @@ cfbd_betting_lines <- function(game_id = NULL,
   # cfbfastR::cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
   base_url <- "https://api.collegefootballdata.com/lines?"
 
-  full_url <- paste0(
-    base_url,
-    "gameId=", game_id,
-    "&year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&home=", home_team,
-    "&away=", away_team,
-    "&conference=", conference
+
+
+  query_params <- list(
+    "gameId" = game_id,
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "home" = home_team,
+    "away" = away_team,
+    "conference" = conference,
+    "provider" = line_provider
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -144,11 +151,11 @@ cfbd_betting_lines <- function(game_id = NULL,
         tidyr::unnest("lines") %>%
         dplyr::mutate(
             overUnder = dplyr::case_when(
-                .data$overUnder == "null" ~ NA_character_,
+                .data$overUnder == "null" ~ NA_real_,
                 .default = .data$overUnder
             ),
             spread = dplyr::case_when(
-                .data$spread == "null" ~ NA_character_,
+                .data$spread == "null" ~ NA_real_,
                 .default = .data$spread
             ),
             formattedSpread = dplyr::case_when(
@@ -157,7 +164,7 @@ cfbd_betting_lines <- function(game_id = NULL,
             )
         )
 
-      
+
 
       if (!is.null(line_provider)) {
         if (is.list(df) & length(df) == 0) {
