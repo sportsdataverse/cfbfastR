@@ -172,19 +172,20 @@ cfbd_plays <- function(year = 2020,
 
 
   base_url <- "https://api.collegefootballdata.com/plays?"
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&offense=", offense,
-    "&defense=", defense,
-    "&offenseConference=", offense_conference,
-    "&defenseConference=", defense_conference,
-    "&seasonType=", season_type,
-    "&playType=", play_type,
-    "&classification=", division
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "offense" = offense,
+    "defense" = defense,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "seasonType" = season_type,
+    "playType" = play_type,
+    "classification" = division
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -206,7 +207,8 @@ cfbd_plays <- function(year = 2020,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
-        dplyr::rename("play_id" = "id")
+        dplyr::rename("play_id" = "id") %>%
+        janitor::clean_names()
 
 
       df <- df %>%
@@ -346,18 +348,19 @@ cfbd_play_stats_player <- function(year = NULL,
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
 
-  base_url <- "https://api.collegefootballdata.com/play/stats?"
+  base_url <- "https://api.collegefootballdata.com/plays/stats?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&gameId=", game_id,
-    "&athleteID=", athlete_id,
-    "&statTypeId=", stat_type_id,
-    "&seasonType=", season_type
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "gameId" = game_id,
+    "athleteID" = athlete_id,
+    "statTypeId" = stat_type_id,
+    "seasonType" = season_type
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -575,7 +578,7 @@ cfbd_play_stats_player <- function(year = NULL,
 #'   try(cfbd_play_stats_types())
 #' }
 cfbd_play_stats_types <- function() {
-  full_url <- "https://api.collegefootballdata.com/play/stat/types"
+  full_url <- "https://api.collegefootballdata.com/plays/stats/types"
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -632,7 +635,7 @@ cfbd_play_stats_types <- function() {
 #'   try(cfbd_play_types())
 #' }
 cfbd_play_types <- function() {
-  full_url <- "https://api.collegefootballdata.com/play/types"
+  full_url <- "https://api.collegefootballdata.com/plays/types"
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
