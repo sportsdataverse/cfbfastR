@@ -80,15 +80,16 @@ cfbd_coaches <- function(first = NULL,
   base_url <- "https://api.collegefootballdata.com/coaches?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "first=", first,
-    "&last=", last,
-    "&team=", team,
-    "&year=", year,
-    "&minYear=", min_year,
-    "&maxYear=", max_year
+  query_params <- list(
+    "first" = first,
+    "last" = last,
+    "team" = team,
+    "year" = year,
+    "minYear" = min_year,
+    "maxYear" = max_year
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
