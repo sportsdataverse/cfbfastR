@@ -427,14 +427,15 @@ cfbd_pbp_data <- function(year,
 
   ## Inputs
   ## Year, Week, Team
-  full_url <- paste0(
-    play_base_url,
-    "seasonType=", season_type,
-    "&year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&playType=", pt_id
+  query_params <- list(
+    "seasonType" = season_type,
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "playType" = pt_id
   )
+
+  full_url <- httr::modify_url(play_base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -474,7 +475,7 @@ cfbd_pbp_data <- function(year,
           dplyr::select("game_id", "spread", "formatted_spread", "over_under")
 
         raw_play_df <- raw_play_df %>%
-          dplyr::left_join(game_spread, by = c("game_id"))
+          dplyr::left_join(game_spread, by = c("gameId" = "game_id"))
       },
       error = function(e) {
       },
@@ -490,6 +491,7 @@ cfbd_pbp_data <- function(year,
   colnames(clean_drive_df) <- paste0("drive_", colnames(clean_drive_df))
 
   play_df <- raw_play_df %>%
+    janitor::clean_names() %>%
     dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
     dplyr::left_join(clean_drive_df,
       by = c(

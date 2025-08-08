@@ -179,7 +179,8 @@ cfbd_drives <- function(year,
           "time_seconds_end" = "endTime.seconds"
         ) %>%
         dplyr::mutate(time_minutes_elapsed = NA,
-                      time_seconds_elapsed = NA)
+                      time_seconds_elapsed = NA) %>%
+        janitor::clean_names()
 
       # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.
       # Minutes and seconds from these games are also suspect
