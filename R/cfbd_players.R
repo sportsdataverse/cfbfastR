@@ -102,13 +102,14 @@ cfbd_player_info <- function(search_term,
   base_url <- "https://api.collegefootballdata.com/player/search?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "searchTerm=", search_term,
-    "&position=", position,
-    "&team=", team,
-    "&year=", year
+  query_params <- list(
+    "searchTerm" = search_term,
+    "position" = position,
+    "team" = team,
+    "year" = year
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -152,7 +153,7 @@ cfbd_player_info <- function(search_term,
 
 #' @title
 #' **Get player returning production**
-#' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* required, default most recent season): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -188,7 +189,7 @@ cfbd_player_info <- function(search_term,
 #'    try(cfbd_player_returning(year = 2019, team = "Florida State"))
 #' }
 #'
-cfbd_player_returning <- function(year = 2019,
+cfbd_player_returning <- function(year = most_recent_cfb_season(),
                                   team = NULL,
                                   conference = NULL) {
 
@@ -213,12 +214,13 @@ cfbd_player_returning <- function(year = 2019,
   base_url <- "https://api.collegefootballdata.com/player/returning?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -268,7 +270,7 @@ cfbd_player_returning <- function(year = 2019,
 
 #' @title
 #' **Get player usage metrics**
-#' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* required, default most recent season): Year, 4 digit format (*YYYY*).
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -312,7 +314,7 @@ cfbd_player_returning <- function(year = 2019,
 #'   try(cfbd_player_usage(year = 2019, position = "WR", team = "Florida State"))
 #' }
 #'
-cfbd_player_usage <- function(year = 2019,
+cfbd_player_usage <- function(year = most_recent_cfb_season(),
                               team = NULL,
                               conference = NULL,
                               position = NULL,
@@ -358,15 +360,16 @@ cfbd_player_usage <- function(year = 2019,
   base_url <- "https://api.collegefootballdata.com/player/usage?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference=", conference,
-    "&position=", position,
-    "&athleteID=", athlete_id,
-    "&excludeGarbageTime=", excl_garbage_time
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "position" = position,
+    "athleteID" = athlete_id,
+    "excludeGarbageTime" = excl_garbage_time
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
