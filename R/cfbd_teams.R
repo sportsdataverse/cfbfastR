@@ -243,7 +243,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #'
 cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
-  #to-do: add handling for startYear and endYear populating with args
   if(!is.null(min_year)&& !is.numeric(min_year) && nchar(min_year) != 4){
     cli::cli_abort("Enter valid min_year as a number (YYYY)")
   }
