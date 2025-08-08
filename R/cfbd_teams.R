@@ -374,7 +374,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
   }
 
   if (!is.null(team1)) {
-    team <- handle_accents(team)
+    team1 <- handle_accents(team1)
   }
   if (!is.null(team2)) {
     team2 <- handle_accents(team2)
