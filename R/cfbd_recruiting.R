@@ -120,6 +120,10 @@ cfbd_recruiting_player <- function(year = NULL,
     "PRO", "DUAL", "RB", "FB", "TE", "OT", "OG", "OC", "WR",
     "CB", "S", "OLB", "ILB", "WDE", "SDE", "DT", "K", "P"
   )
+
+  if(is.null(year) && is.null(team)){
+    cli::cli_abort( "Must provide either team or year" )
+  }
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -148,14 +152,15 @@ cfbd_recruiting_player <- function(year = NULL,
   base_url <- "https://api.collegefootballdata.com/recruiting/players?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&classification=", recruit_type,
-    "&position=", position,
-    "&state=", state
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "classification" = recruit_type,
+    "position" = position,
+    "state" = state
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -254,17 +259,14 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
   base_url <- "https://api.collegefootballdata.com/recruiting/groups?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "startYear=",
-    start_year,
-    "&endYear=",
-    end_year,
-    "&team=",
-    team,
-    "&conference=",
-    conference
+  query_params <- list(
+    "startYear" = start_year,
+    "endYear" = end_year,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -339,6 +341,9 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 cfbd_recruiting_team <- function(year = NULL,
                                  team = NULL) {
 
+  if(is.null(year) && is.null(team)){
+    cli::cli_abort( "Must provide either team or year" )
+  }
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -355,11 +360,12 @@ cfbd_recruiting_team <- function(year = NULL,
   base_url <- "https://api.collegefootballdata.com/recruiting/teams?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team
+  query_params <- list(
+    "year" = year,
+    "team" = team
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -434,10 +440,11 @@ cfbd_recruiting_transfer_portal <- function(year) {
   base_url <- "https://api.collegefootballdata.com/player/portal?"
 
   # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year
+  query_params <- list(
+    "year" = year
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
