@@ -135,22 +135,7 @@ cfbd_betting_lines <- function(game_id = NULL,
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        tidyr::unnest("lines") %>%
-        dplyr::mutate(
-            overUnder = dplyr::case_when(
-                .data$overUnder == "null" ~ NA_real_,
-                .default = .data$overUnder
-            ),
-            spread = dplyr::case_when(
-                .data$spread == "null" ~ NA_real_,
-                .default = .data$spread
-            ),
-            formattedSpread = dplyr::case_when(
-                is.na(.data$spread) ~ NA_character_,
-                .default = .data$formattedSpread
-            )
-        )
-
+        tidyr::unnest("lines")
 
 
       if (!is.null(line_provider)) {
