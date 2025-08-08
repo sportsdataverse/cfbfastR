@@ -119,14 +119,15 @@ cfbd_metrics_ppa_games <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/ppa/games?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&conference=", conference,
-    "&excludeGarbageTime=", excl_garbage_time
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "conference" = conference,
+    "excludeGarbageTime" = excl_garbage_time
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -266,16 +267,17 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
   base_url <- "https://api.collegefootballdata.com/ppa/players/games?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&position=", position,
-    "&playerId=", athlete_id,
-    "&threshold=", threshold,
-    "&excludeGarbageTime=", excl_garbage_time
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "position" = position,
+    "playerId" = athlete_id,
+    "threshold" = threshold,
+    "excludeGarbageTime" = excl_garbage_time
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -338,7 +340,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'   \item{`position`: character.}{Athlete Position.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Team conference.}
-#'   \item{`countable_plays`: integer.}{Number of plays which can be counted.}
+#'   \item{`countable_plays`: integer.}{DEPRECATED Number of plays which can be counted.}
 #'   \item{`avg_PPA_all`: double.}{Average overall predicted points added (PPA).}
 #'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
 #'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
@@ -425,16 +427,17 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
   base_url <- "https://api.collegefootballdata.com/ppa/players/season?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference", conference,
-    "&position=", position,
-    "&playerId=", athlete_id,
-    "&threshold=", threshold,
-    "&excludeGarbageTime=", excl_garbage_time
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conferenc" = conference,
+    "position" = position,
+    "playerId" = athlete_id,
+    "threshold" = threshold,
+    "excludeGarbageTime" = excl_garbage_time
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -463,7 +466,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
       df <- df %>%
         dplyr::rename("athlete_id" = "id") %>%
-        dplyr::arrange(-.data$countable_plays)
+        mutate(countable_plays = NA_integer_)
 
       df <- df %>%
         make_cfbfastR_data("Player season PPA data from CollegeFootballData.com",Sys.time())
@@ -517,11 +520,12 @@ cfbd_metrics_ppa_predicted <- function(down,
   }
   base_url <- "https://api.collegefootballdata.com/ppa/predicted?"
 
-  full_url <- paste0(
-    base_url,
-    "down=", down,
-    "&distance=", distance
+  query_params <- list(
+    "down" = down,
+    "distance" = distance
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -639,13 +643,14 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 
   base_url <- "https://api.collegefootballdata.com/ppa/teams?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference=", conference,
-    "&excludeGarbageTime=", excl_garbage_time
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "excludeGarbageTime" = excl_garbage_time
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -745,13 +750,14 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
   }
   base_url <- "https://api.collegefootballdata.com/metrics/wp/pregame?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&seasonType=", season_type
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "seasonType" = season_type
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -779,6 +785,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
+        dplyr::rename(home_win_prob = home_win_probability) %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(all_of(cols))
 
@@ -847,10 +854,11 @@ cfbd_metrics_wp <- function(game_id) {
 
   base_url <- "https://api.collegefootballdata.com/metrics/wp?"
 
-  full_url <- paste0(
-    base_url,
-    "gameId=", game_id
+  query_params <- list(
+    "gameId" = game_id
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -879,6 +887,7 @@ cfbd_metrics_wp <- function(game_id) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
+        dplyr::rename(home_win_prob = home_win_probability) %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(all_of(cols))
 
