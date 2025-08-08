@@ -104,12 +104,13 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 
   base_url <- "https://api.collegefootballdata.com/rankings?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&seasonType=", season_type
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -213,6 +214,9 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #'
 cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 
+  if(is.null(year) && is.null(team)){
+    cli::cli_abort( "Must provide either team or year" )
+  }
   # Check if year is numeric
   if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -226,12 +230,14 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
     }
   }
 
-  base_url <- "https://api.collegefootballdata.com/ratings/sp"
-  full_url <- paste0(
-    base_url,
-    "?year=", year,
-    "&team=", team
+  base_url <- "https://api.collegefootballdata.com/ratings/sp?"
+
+  query_params <- list(
+    "year" = year,
+    "team" = team
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -357,11 +363,12 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
   }
   base_url <- "https://api.collegefootballdata.com/ratings/sp/conferences?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -457,6 +464,9 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #'
 cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 
+  if(is.null(year) && is.null(team)){
+    cli::cli_abort( "Must provide either team or year" )
+  }
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
@@ -477,12 +487,13 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 
   base_url <- "https://api.collegefootballdata.com/ratings/srs?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -584,13 +595,14 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
 
   base_url <- "https://api.collegefootballdata.com/ratings/elo?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&conference=", conference
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "conference" = conference
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
