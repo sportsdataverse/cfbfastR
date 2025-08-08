@@ -73,7 +73,6 @@ NULL
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -100,17 +99,7 @@ cfbd_metrics_ppa_games <- function(year,
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
   if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
     # Check if excl_garbage_time is TRUE, if not FALSE
@@ -202,7 +191,6 @@ cfbd_metrics_ppa_games <- function(year,
 #' @keywords Players Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -241,12 +229,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(position) && !(position %in% pos_groups)) {
     ## check if position in position group set
@@ -361,7 +344,6 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -395,17 +377,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   if (!is.null(position) && !(position %in% pos_groups)) {
@@ -430,7 +402,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
   query_params <- list(
     "year" = year,
     "team" = team,
-    "conferenc" = conference,
+    "conference" = conference,
     "position" = position,
     "playerId" = athlete_id,
     "threshold" = threshold,
@@ -600,7 +572,6 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -624,17 +595,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference names, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
   if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
     # Check if excl_garbage_time is TRUE, if not FALSE
@@ -711,7 +672,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -736,12 +697,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
 
   if (!(season_type %in% c("postseason", "regular"))) {
@@ -828,7 +784,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue

@@ -39,7 +39,6 @@
 #'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -81,25 +80,13 @@ cfbd_betting_lines <- function(game_id = NULL,
     cli::cli_abort("Enter valid season_type: regular or postseason")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(home_team)) {
-    # Encode home_team parameter for URL, if not NULL
-    home_team <- utils::URLencode(home_team, reserved = TRUE)
+    home_team <- handle_accents(home_team)
   }
   if (!is.null(away_team)) {
-    # Encode away_team parameter for URL, if not NULL
-    away_team <- utils::URLencode(away_team, reserved = TRUE)
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    away_team <- handle_accents(away_team)
   }
   if (!is.null(line_provider) &&  is.character(line_provider) &&
       !(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"))) {

@@ -53,7 +53,6 @@
 #' @keywords Drives
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -90,49 +89,14 @@ cfbd_drives <- function(year,
     cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(offense_team)) {
-    if (offense_team == "San Jose State") {
-      offense_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      offense_team <- utils::URLencode(offense_team, reserved = TRUE)
-    }
+    offense_team <- handle_accents(offense_team)
   }
   if (!is.null(defense_team)) {
-    if (defense_team == "San Jose State") {
-      defense_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      defense_team <- utils::URLencode(defense_team, reserved = TRUE)
-    }
+    defense_team <- handle_accents(defense_team)
   }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(offense_conference)) {
-    # # Check offense_conference parameter in conference abbreviations, if not NULL
-    # Encode offense_conference parameter for URL, if not NULL
-    offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
-  }
-  if (!is.null(defense_conference)) {
-    # # Check defense_conference parameter in conference abbreviations, if not NULL
-    # Encode defense_conference parameter for URL, if not NULL
-    defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
-  }
-  if (!is.null(division)) {
-    # # Check division parameter
-    division <- utils::URLencode(division, reserved = TRUE)
-  }
-
 
   base_url <- "https://api.collegefootballdata.com/drives?"
 

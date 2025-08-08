@@ -54,7 +54,6 @@ NULL
 #' @keywords Players
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -72,9 +71,6 @@ cfbd_player_info <- function(search_term,
                              team = NULL,
                              year = NULL) {
 
-  # Encode search_term parameter for URL
-  search_term <- utils::URLencode(search_term, reserved = TRUE)
-
   # Position Group vector to check input arguments against
   pos_groups <- c(
     "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",
@@ -87,12 +83,7 @@ cfbd_player_info <- function(search_term,
     cli::cli_abort("Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
 
   # Check if year is numeric
@@ -179,7 +170,6 @@ cfbd_player_info <- function(search_term,
 #' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -198,17 +188,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/player/returning?"
@@ -303,7 +283,6 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 #' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom purrr map_if
@@ -332,17 +311,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
   if (!is.null(position)&&!(position %in% pos_groups)) {
     ## check if position in position group set

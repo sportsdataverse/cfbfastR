@@ -95,7 +95,6 @@ NULL
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -129,12 +128,7 @@ cfbd_recruiting_player <- function(year = NULL,
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!(recruit_type %in% c("HighSchool","PrepSchool", "JUCO"))) {
     # Check if recruit_type is appropriate, if not HighSchool
@@ -220,7 +214,6 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -243,17 +236,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
     cli::cli_abort("Enter valid end_year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/recruiting/groups?"
@@ -323,7 +306,6 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
@@ -349,12 +331,7 @@ cfbd_recruiting_team <- function(year = NULL,
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/recruiting/teams?"
@@ -420,7 +397,6 @@ cfbd_recruiting_team <- function(year = NULL,
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue

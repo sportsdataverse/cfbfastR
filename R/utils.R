@@ -215,3 +215,7 @@ rbindlist_with_attrs <- function(dflist){
   attr(out,"cfbfastR_type") <- cfbfastR_type
   out
 }
+
+handle_accents <- function(var){
+  ifelse(var == "San Jose State", "San José State", var)
+}

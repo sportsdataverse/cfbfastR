@@ -45,7 +45,6 @@ NULL
 #' @keywords NFL Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -114,7 +113,6 @@ cfbd_draft_teams <- function() {
 #' @keywords NFL Positions
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -208,7 +206,6 @@ cfbd_draft_positions <- function() {
 #' @keywords NFL Draft Picks
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -229,23 +226,8 @@ cfbd_draft_picks <- function(year = NULL,
     # Check if year is numeric, if not NULL
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
-  if (!is.null(nfl_team)) {
-    # Encode team parameter for URL if not NULL
-    nfl_team <- utils::URLencode(nfl_team, reserved = TRUE)
-  }
   if (!is.null(college)) {
-    if (college == "San Jose State") {
-      college <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      college <- utils::URLencode(college, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(position)) {
-    position <- utils::URLencode(position, reserved = TRUE)
+    college <- handle_accents(college)
   }
 
   base_url <- "https://api.collegefootballdata.com/draft/picks?"

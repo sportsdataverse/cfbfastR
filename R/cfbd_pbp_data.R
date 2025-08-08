@@ -371,7 +371,6 @@
 #' @importFrom glue glue
 #' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup setdiff
 #' @importFrom jsonlite fromJSON
-#' @importFrom utils URLencode
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
 #' @export
@@ -399,12 +398,7 @@ cfbd_pbp_data <- function(year,
     cli::cli_abort("Enter valid season_type: regular, postseason, or both")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
 
   if (!is.null(play_type)) {

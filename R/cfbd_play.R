@@ -102,7 +102,6 @@ NULL
 #' }
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
@@ -130,44 +129,17 @@ cfbd_plays <- function(year = 2020,
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(offense)) {
-    if (offense == "San Jose State") {
-      offense <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode offense parameter for URL if not NULL
-      offense <- utils::URLencode(offense, reserved = TRUE)
-    }
+    offense <- handle_accents(offense)
   }
   if (!is.null(defense)) {
-    if (defense == "San Jose State") {
-      defense <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode defense parameter for URL if not NULL
-      defense <- utils::URLencode(defense, reserved = TRUE)
-    }
-  }
-  if (!is.null(offense_conference)) {
-    # Encode offense_conference parameter for URL if not NULL
-    offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
-  }
-  if (!is.null(defense_conference)) {
-    # Encode defense_conference parameter for URL if not NULL
-    defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
+    defense <- handle_accents(defense)
   }
   if (!(season_type %in% c("postseason", "regular", "both"))) {
     # Check if season_type is appropriate, if not NULL
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
-  }
-  if (!is.null(division)) {
-    # # Check division parameter
-    division <- utils::URLencode(division, reserved = TRUE)
   }
 
 
@@ -296,7 +268,6 @@ cfbd_plays <- function(year = 2020,
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -323,12 +294,7 @@ cfbd_play_stats_player <- function(year = NULL,
     cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
@@ -626,7 +592,6 @@ cfbd_play_stats_types <- function() {
 #' }
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export

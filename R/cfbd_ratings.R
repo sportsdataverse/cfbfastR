@@ -198,7 +198,6 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -222,12 +221,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/ratings/sp?"
@@ -336,7 +330,6 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -355,11 +348,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
   # Check if year is numeric
   if(!is.numeric(year) && nchar(year) != 4){
     cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
   }
   base_url <- "https://api.collegefootballdata.com/ratings/sp/conferences?"
 
@@ -452,7 +440,6 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
-#' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @export
 #' @examples
@@ -472,17 +459,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
     cli::cli_abort("Enter valid year as a number (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/ratings/srs?"
@@ -559,7 +536,6 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
-#' @importFrom utils URLencode
 #' @importFrom glue glue
 #' @export
 #' @examples
@@ -580,17 +556,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
     cli::cli_abort("Enter valid week as a number")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/ratings/elo?"

@@ -97,7 +97,6 @@ NULL
 #' @keywords Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom dplyr rename
 #' @export
@@ -112,8 +111,6 @@ NULL
 cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recent_cfb_season()) {
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
 
     base_url <- "https://api.collegefootballdata.com/teams?"
 
@@ -228,7 +225,6 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #' @keywords Team Matchup Records
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
@@ -251,20 +247,10 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
   }
 
   if (!is.null(team1)) {
-    if (team1 == "San Jose State") {
-      team1 <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team1 parameter for URL if not NULL
-      team1 <- utils::URLencode(team1, reserved = TRUE)
-    }
+    team1 <- handle_accents(team1)
   }
-  if (!is.null(team1)) {
-    if (team2 == "San Jose State") {
-      team2 <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team2 parameter for URL if not NULL
-      team2 <- utils::URLencode(team2, reserved = TRUE)
-    }
+  if (!is.null(team2)) {
+    team2 <- handle_accents(team2)
   }
 
   base_url <- "https://api.collegefootballdata.com/teams/matchup?"
@@ -363,7 +349,6 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @keywords Team Matchup
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -389,20 +374,10 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
   }
 
   if (!is.null(team1)) {
-    if (team1 == "San Jose State") {
-      team1 <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team1 parameter for URL if not NULL
-      team1 <- utils::URLencode(team1, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
-  if (!is.null(team1)) {
-    if (team2 == "San Jose State") {
-      team2 <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team2 parameter for URL if not NULL
-      team2 <- utils::URLencode(team2, reserved = TRUE)
-    }
+  if (!is.null(team2)) {
+    team2 <- handle_accents(team2)
   }
 
   base_url <- "https://api.collegefootballdata.com/teams/matchup?"
@@ -491,7 +466,6 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @importFrom dplyr rename mutate
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
@@ -509,12 +483,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 
 
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team1 parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   base_url <- "https://api.collegefootballdata.com/roster?"
 
@@ -582,7 +551,6 @@ cfbd_team_roster <- function(year, team = NULL) {
 #' @keywords Team talent
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export

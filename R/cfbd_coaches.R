@@ -31,7 +31,6 @@
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -48,21 +47,8 @@ cfbd_coaches <- function(first = NULL,
                          year = NULL,
                          min_year = NULL,
                          max_year = NULL) {
-  if (!is.null(first)) {
-    # Encode first parameter for URL if not NULL
-    first <- utils::URLencode(first, reserved = TRUE)
-  }
-  if (!is.null(last)) {
-    # Encode last parameter for URL if not NULL
-    last <- utils::URLencode(last, reserved = TRUE)
-  }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
     # Check if year is numeric, if not NULL

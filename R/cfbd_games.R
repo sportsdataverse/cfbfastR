@@ -117,7 +117,6 @@ NULL
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -152,37 +151,13 @@ cfbd_game_info <- function(year,
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
   if (!is.null(home_team)) {
-    if (home_team == "San Jose State") {
-      home_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode home_team parameter for URL if not NULL
-      home_team <- utils::URLencode(home_team, reserved = TRUE)
-    }
+    home_team <- handle_accents(home_team)
   }
   if (!is.null(away_team)) {
-    if (away_team == "San Jose State") {
-      away_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      away_team <- utils::URLencode(away_team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(division)) {
-    # # Check division parameter
-    division <- utils::URLencode(division, reserved = TRUE)
+    away_team <- handle_accents(away_team)
   }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
@@ -290,7 +265,6 @@ cfbd_game_info <- function(year,
 #' @keywords Game Weather
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -314,18 +288,9 @@ cfbd_game_weather <- function(year,
     cli::cli_abort("Enter valid season_type: regular or postseason")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
+    team <- handle_accents(team)
   }
-  if (!is.null(conference)) {
-    # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
+
   base_url <- "https://api.collegefootballdata.com/games/weather?"
 
   query_params <- list(
@@ -391,7 +356,6 @@ cfbd_game_weather <- function(year,
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @export
@@ -482,7 +446,6 @@ cfbd_calendar <- function(year) {
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -515,20 +478,7 @@ cfbd_game_media <- function(year,
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(division)) {
-    # # Check division parameter
-    division <- utils::URLencode(division, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/games/media?"
@@ -681,7 +631,7 @@ cfbd_game_media <- function(year,
 #' @importFrom tibble enframe
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom stringr str_detect
@@ -889,7 +839,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -935,17 +885,7 @@ cfbd_game_player_stats <- function(year,
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
   if (!is.null(category)) {
     if(!(category %in% stat_categories)){
@@ -953,7 +893,6 @@ cfbd_game_player_stats <- function(year,
       cli::cli_abort("Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns")
     }
     # Encode conference parameter for URL, if not NULL
-    category <- utils::URLencode(category, reserved = TRUE)
   }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
@@ -1211,7 +1150,6 @@ cfbd_game_player_stats <- function(year,
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -1233,17 +1171,7 @@ cfbd_game_records <- function(year,
     cli::cli_abort("Enter valid year (Integer): 4 digits (YYYY)")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # Check conference parameter in conference abbreviations, if not NULL
-    # # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
+    team <- handle_accents(team)
   }
 
   base_url <- "https://api.collegefootballdata.com/records?"
@@ -1410,7 +1338,7 @@ cfbd_game_records <- function(year,
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -1447,21 +1375,7 @@ cfbd_game_team_stats <- function(year,
     cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
   }
   if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(division)) {
-    # # Check division parameter
-    division <- utils::URLencode(division, reserved = TRUE)
+    team <- handle_accents(team)
   }
   if (!is.null(game_id) && !is.numeric(game_id)) {
     # Check if game_id is numeric, if not NULL
