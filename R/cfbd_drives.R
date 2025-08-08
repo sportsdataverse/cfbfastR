@@ -47,8 +47,8 @@
 #'   \item{`time_seconds_start`:integer.}{Seconds at drive start.}
 #'   \item{`time_minutes_end`:integer.}{Minutes at drive end.}
 #'   \item{`time_seconds_end`:integer.}{Seconds at drive end.}
-#'   \item{`time_minutes_elapsed`:double.}{Minutes elapsed during drive.}
-#'   \item{`time_seconds_elapsed`:integer.}{Seconds elapsed during drive.}
+#'   \item{`time_minutes_elapsed`:double.}{DEPRECATED Minutes elapsed during drive.}
+#'   \item{`time_seconds_elapsed`:integer.}{DEPRECATED Seconds elapsed during drive.}
 #' }
 #' @keywords Drives
 #' @importFrom jsonlite fromJSON
@@ -136,19 +136,20 @@ cfbd_drives <- function(year,
 
   base_url <- "https://api.collegefootballdata.com/drives?"
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&seasonType=", season_type,
-    "&week=", week,
-    "&team=", team,
-    "&offense=", offense_team,
-    "&defense=", defense_team,
-    "&conference=", conference,
-    "&offenseConference=", offense_conference,
-    "&defenseConference=", defense_conference,
-    "&classification=", division
+  query_params <- list(
+    "year" = year,
+    "seasonType" = season_type,
+    "week" = week,
+    "team" = team,
+    "offense" = offense_team,
+    "defense" = defense_team,
+    "conference" = conference,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "classification" = division
   )
+
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   # Check for CFBD API key
   if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
@@ -172,17 +173,13 @@ cfbd_drives <- function(year,
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "drive_id" = "id",
-          "time_minutes_start" = "start_time.minutes",
-          "time_seconds_start" = "start_time.seconds",
-          "time_minutes_end" = "end_time.minutes",
-          "time_seconds_end" = "end_time.seconds",
-          "time_minutes_elapsed" = "elapsed.minutes",
-          "time_seconds_elapsed" = "elapsed.seconds"
+          "time_minutes_start" = "startTime.minutes",
+          "time_seconds_start" = "startTime.seconds",
+          "time_minutes_end" = "endTime.minutes",
+          "time_seconds_end" = "endTime.seconds"
         ) %>%
-        dplyr::mutate(
-          time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
-          time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-        )
+        dplyr::mutate(time_minutes_elapsed = NA,
+                      time_seconds_elapsed = NA)
 
       # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.
       # Minutes and seconds from these games are also suspect
