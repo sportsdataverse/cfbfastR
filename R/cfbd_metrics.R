@@ -369,7 +369,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
       df <- df %>%
         dplyr::rename("athlete_id" = "id") %>%
-        mutate(countable_plays = NA_integer_)
+        dplyr::mutate(countable_plays = NA_integer_)
 
       df <- df %>%
         make_cfbfastR_data("Player season PPA data from CollegeFootballData.com",Sys.time())
