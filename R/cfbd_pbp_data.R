@@ -384,30 +384,25 @@ cfbd_pbp_data <- function(year,
                           ...) {
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
-  # Check if year is numeric, if not NULL
-  if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
-    # Check if year is numeric, if not NULL
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) & !(is.numeric(week) & nchar(week) <= 2)) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (season_type != "regular" & season_type != "postseason" & season_type != "both") {
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
+
+  # Validation Lists ----
+  allowable_play_types <- na.omit(
+    c(cfbfastR::cfbd_play_type_df$text,
+      cfbfastR::cfbd_play_type_df$abbreviation)
+  )
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+
 
   if (!is.null(play_type)) {
     text <- play_type %in% cfbfastR::cfbd_play_type_df$text
     abbr <- play_type %in% cfbfastR::cfbd_play_type_df$abbreviation
+    validate_list(play_type, allowable_play_types)
 
-    if ((text | abbr) == FALSE) {
-      cli::cli_abort("Incorrect play type selected, please look at the available options in the Play Type DF.")
-    }
     if (text) {
       pt_id <- cfbfastR::cfbd_play_type_df$id[which(cfbfastR::cfbd_play_type_df$text == play_type)]
     } else {
@@ -417,10 +412,11 @@ cfbd_pbp_data <- function(year,
     pt_id <- NULL
   }
 
-  play_base_url <- "https://api.collegefootballdata.com/plays?"
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
-  ## Inputs
-  ## Year, Week, Team
+  # Query API ----
+  play_base_url <- "https://api.collegefootballdata.com/plays?"
   query_params <- list(
     "seasonType" = season_type,
     "year" = year,
@@ -428,20 +424,12 @@ cfbd_pbp_data <- function(year,
     "team" = team,
     "playType" = pt_id
   )
-
   full_url <- httr::modify_url(play_base_url, query=query_params)
 
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
   # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
+  res <- get_req(full_url)
+  check_status(res)
 
-  # # Check the result
-  # check_status(res)
   raw_play_df <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
     jsonlite::fromJSON()

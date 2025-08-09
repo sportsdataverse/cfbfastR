@@ -33,18 +33,15 @@
 #' @export
 
 cfbd_venues <- function() {
+
+  # Validation ----
+  validate_api_key()
+
+  # Query API ----
   full_url <- "https://api.collegefootballdata.com/venues"
 
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
   # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
+  res <- get_req(full_url)
   check_status(res)
 
   # Get the content and return it as data.frame

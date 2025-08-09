@@ -137,35 +137,21 @@ cfbd_game_info <- function(year,
                            division = 'fbs',
                            game_id = NULL,
                            quarter_scores = FALSE) {
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
 
-  if (!(season_type %in% c("postseason", "both","regular"))) {
-    # Check if season_type is appropriate, if not NULL
-    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
-  if (!is.null(home_team)) {
-    home_team <- handle_accents(home_team)
-  }
-  if (!is.null(away_team)) {
-    away_team <- handle_accents(away_team)
-  }
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort("Enter valid game_id (numeric value)")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+  validate_id(game_id)
 
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  home_team <- handle_accents(home_team)
+  away_team <- handle_accents(away_team)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/games?"
-
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -177,29 +163,21 @@ cfbd_game_info <- function(year,
     "division" = division,
     "id" = game_id
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON()
+        jsonlite::fromJSON() %>%
+        janitor::clean_names()
 
       if (!quarter_scores) {
         df <- dplyr::select(df, -"home_line_scores", -"away_line_scores") %>%
@@ -275,24 +253,18 @@ cfbd_game_weather <- function(year,
                               season_type = "regular",
                               team = NULL,
                               conference = NULL) {
-  if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
-    # Check if year is numeric, if not NULL
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !(is.numeric(week) && nchar(week) <= 2)) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (season_type != "regular" && season_type != "postseason") {
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular or postseason")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
 
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/games/weather?"
-
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -300,23 +272,14 @@ cfbd_game_weather <- function(year,
     "team" = team,
     "conference" = conference
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -366,34 +329,23 @@ cfbd_game_weather <- function(year,
 
 cfbd_calendar <- function(year) {
 
-  # Check if year is numeric
-  if (!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
 
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/calendar?"
-
   query_params <- list(
     "year" = year
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -464,25 +416,17 @@ cfbd_game_media <- function(year,
                             media_type = NULL,
                             division = 'fbs') {
 
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
 
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!(season_type %in% c("postseason", "both","regular"))) {
-    # Check if season_type is appropriate, if not NULL
-    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/games/media?"
-
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -492,12 +436,7 @@ cfbd_game_media <- function(year,
     "mediaType" = media_type,
     "classification" = division
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
 
   cols <- c(
     "game_id", "season", "week", "season_type", "start_time",
@@ -510,12 +449,7 @@ cfbd_game_media <- function(year,
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -646,33 +580,24 @@ cfbd_game_media <- function(year,
 #'
 
 cfbd_game_box_advanced <- function(game_id, long = FALSE) {
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort("Enter valid game_id (numeric value)")
-  }
 
+  # Validation ----
+  validate_api_key()
+  validate_id(game_id)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/game/box/advanced?"
-
   query_params <- list(
     "id" = game_id
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
@@ -871,36 +796,19 @@ cfbd_game_player_stats <- function(year,
 
   args <- args[lengths(args) != 0]
 
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+  validate_id(game_id)
+  validate_list(category, stat_categories)
 
-  if (!(season_type %in% c("postseason", "both","regular"))) {
-    # Check if season_type is appropriate, if not NULL
-    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
-  if (!is.null(category)) {
-    if(!(category %in% stat_categories)){
-      # Check category parameter in category if not NULL
-      cli::cli_abort("Incorrect category, potential misspelling.\nOffense: passing, receiving, rushing\nDefense: defensive, fumbles, interceptions\nSpecial Teams: punting, puntReturns, kicking, kickReturns")
-    }
-    # Encode conference parameter for URL, if not NULL
-  }
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort("Enter valid game_id (numeric value)")
-  }
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/games/players?"
-
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -910,11 +818,7 @@ cfbd_game_player_stats <- function(year,
     "category" = category,
     "gameId" = game_id
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   cols <- c(
     "game_id", "team", "conference", "home_away", "team_points",
@@ -1041,10 +945,8 @@ cfbd_game_player_stats <- function(year,
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
+      res <- get_req(full_url)
+      check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
@@ -1165,39 +1067,28 @@ cfbd_game_records <- function(year,
                               team = NULL,
                               conference = NULL) {
 
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
 
-  ## check if year is numeric
-  if (!is.numeric(year) && !nchar(year) == 4){
-    cli::cli_abort("Enter valid year (Integer): 4 digits (YYYY)")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/records?"
-
   query_params <- list(
     "year" = year,
     "team" = team,
     "conference" = conference
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -1362,33 +1253,19 @@ cfbd_game_team_stats <- function(year,
                                  division = 'fbs',
                                  rows_per_team = 1) {
 
-  # Check if year is numeric
-  if (!is.numeric(year) && !nchar(year) == 4){
-    cli::cli_abort("Enter valid year (Integer): 4-digit (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && !nchar(week) <= 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!(season_type %in% c("postseason", "both","regular"))) {
-    # Check if season_type is appropriate, if not NULL
-    cli::cli_abort("Enter valid season_type (String): regular, postseason, or both")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+  validate_id(game_id)
+  validate_list(rows_per_team, c(1,2))
 
-    cli::cli_abort("Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function")
-  }
-  if (rows_per_team != 1 && rows_per_team != 2) {
-    # Check if rows_per_team is 2, if not 1
-    cli::cli_abort("Enter valid rows_per_team value (Integer): 1 or 2")
-  }
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/games/teams?"
-
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -1398,25 +1275,15 @@ cfbd_game_team_stats <- function(year,
     "classification" = division,
     "gameId" = game_id
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
-
 
       cols <- c(
         "id", "team", "conference", "home_away",

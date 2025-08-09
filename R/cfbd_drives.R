@@ -75,31 +75,19 @@ cfbd_drives <- function(year,
                         defense_conference = NULL,
                         division = 'fbs') {
 
-  # Check if year is numeric
-  if(!is.numeric(year) && !nchar(year) == 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
 
-  if (!(season_type %in% c("regular","postseason","both"))){
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
-  }
-  if (!is.null(week)&& !nchar(week) <= 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
-  if (!is.null(offense_team)) {
-    offense_team <- handle_accents(offense_team)
-  }
-  if (!is.null(defense_team)) {
-    defense_team <- handle_accents(defense_team)
-  }
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  offense_team <- handle_accents(offense_team)
+  defense_team <- handle_accents(defense_team)
 
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/drives?"
-
   query_params <- list(
     "year" = year,
     "seasonType" = season_type,
@@ -112,23 +100,14 @@ cfbd_drives <- function(year,
     "defenseConference" = defense_conference,
     "classification" = division
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame

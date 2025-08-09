@@ -114,38 +114,25 @@ cfbd_recruiting_player <- function(year = NULL,
                                    state = NULL,
                                    position = NULL) {
 
-  # Position Group vector to check arguments against
+  # Validation Lists ----
   pos_groups <- c(
     "PRO", "DUAL", "RB", "FB", "TE", "OT", "OG", "OC", "WR",
     "CB", "S", "OLB", "ILB", "WDE", "SDE", "DT", "K", "P"
   )
 
-  if(is.null(year) && is.null(team)){
-    cli::cli_abort( "Must provide either team or year" )
-  }
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
-  if (!(recruit_type %in% c("HighSchool","PrepSchool", "JUCO"))) {
-    # Check if recruit_type is appropriate, if not HighSchool
-    cli::cli_abort("Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO")
-  }
-  if (!is.null(state) && nchar(state) != 2) {
-    ## check if state is length 2
-    cli::cli_abort("Enter valid 2-letter State abbreviation")
-  }
-  if (!is.null(position) && !(position %in% pos_groups)) {
-    ## check if position in position group set
-    cli::cli_abort("Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_reqs(year, team)
+  validate_year(year)
+  validate_list(recruit_type, c("HighSchool","PrepSchool", "JUCO"))
+  validate_list(state, state.abb)
+  validate_list(position, pos_groups)
 
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/recruiting/players?"
-
-  # Create full url using base and input arguments
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -153,23 +140,14 @@ cfbd_recruiting_player <- function(year = NULL,
     "position" = position,
     "state" = state
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -229,42 +207,31 @@ cfbd_recruiting_player <- function(year = NULL,
 #'
 cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
                                      team = NULL, conference = NULL) {
-  if(!is.null(start_year)&& !is.numeric(start_year) && nchar(start_year) != 4){
-    cli::cli_abort("Enter valid start_year as a number (YYYY)")
-  }
-  if(!is.null(end_year)&& !is.numeric(end_year) && nchar(end_year) != 4){
-    cli::cli_abort("Enter valid end_year as a number (YYYY)")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
 
+  # Validation ----
+  validate_api_key()
+  validate_year(start_year)
+  validate_year(end_year)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/recruiting/groups?"
-
-  # Create full url using base and input arguments
   query_params <- list(
     "startYear" = start_year,
     "endYear" = end_year,
     "team" = team,
     "conference" = conference
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -323,42 +290,30 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 cfbd_recruiting_team <- function(year = NULL,
                                  team = NULL) {
 
-  if(is.null(year) && is.null(team)){
-    cli::cli_abort( "Must provide either team or year" )
-  }
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
+  # Validation ----
+  validate_api_key()
+  validate_reqs(year, team)
+  validate_year(year)
 
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/recruiting/teams?"
-
-  # Create full url using base and input arguments
   query_params <- list(
     "year" = year,
     "team" = team
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
-  # Create the GET request and set response as res
-  res <- httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
-
-  # Check the result
-  check_status(res)
 
   df <- data.frame()
   tryCatch(
     expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
@@ -409,33 +364,23 @@ cfbd_recruiting_team <- function(year = NULL,
 #' }
 cfbd_recruiting_transfer_portal <- function(year) {
 
-  # Check if year is numeric
-  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  base_url <- "https://api.collegefootballdata.com/player/portal?"
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
 
-  # Create full url using base and input arguments
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/player/portal?"
   query_params <- list(
     "year" = year
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
