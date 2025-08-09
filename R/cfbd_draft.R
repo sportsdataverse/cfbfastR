@@ -45,7 +45,6 @@ NULL
 #' @keywords NFL Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -57,26 +56,18 @@ NULL
 #'
 cfbd_draft_teams <- function() {
 
-  base_url <- "https://api.collegefootballdata.com/draft/teams"
+  # Validation ----
+  validate_api_key()
 
-  # Create full url using base and input arguments
-  full_url <- base_url
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
+  # Query API ----
+  full_url <- "https://api.collegefootballdata.com/draft/teams"
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -114,7 +105,6 @@ cfbd_draft_teams <- function() {
 #' @keywords NFL Positions
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -126,25 +116,18 @@ cfbd_draft_teams <- function() {
 #'
 cfbd_draft_positions <- function() {
 
-  base_url <- "https://api.collegefootballdata.com/draft/positions"
+  # Validation ----
+  validate_api_key()
 
-  # Create full url using base and input arguments
-  full_url <- base_url
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  # Query API ----
+  full_url <- "https://api.collegefootballdata.com/draft/positions"
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -208,7 +191,6 @@ cfbd_draft_positions <- function() {
 #' @keywords NFL Draft Picks
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -225,55 +207,31 @@ cfbd_draft_picks <- function(year = NULL,
                              college = NULL,
                              conference = NULL,
                              position = NULL) {
-  if (!is.null(year) & !(is.numeric(year) & nchar(year) == 4)) {
-    # Check if year is numeric, if not NULL
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(nfl_team)) {
-    # Encode team parameter for URL if not NULL
-    nfl_team <- utils::URLencode(nfl_team, reserved = TRUE)
-  }
-  if (!is.null(college)) {
-    if (college == "San Jose State") {
-      college <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      college <- utils::URLencode(college, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(position)) {
-    position <- utils::URLencode(position, reserved = TRUE)
-  }
 
-  base_url <- "https://api.collegefootballdata.com/draft/picks?"
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
 
-  # Create full url using base and input arguments
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&nflTeam=", nfl_team,
-    "&college=", college,
-    "&conference=", conference,
-    "&position=", position
+  # Team Name Handling ----
+  college <- handle_accents(college)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/draft/picks"
+  query_params <- list(
+    "year" = year,
+    "nflTeam" = nfl_team,
+    "college" = college,
+    "conference" = conference,
+    "position" = position
   )
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame

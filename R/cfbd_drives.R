@@ -47,13 +47,12 @@
 #'   \item{`time_seconds_start`:integer.}{Seconds at drive start.}
 #'   \item{`time_minutes_end`:integer.}{Minutes at drive end.}
 #'   \item{`time_seconds_end`:integer.}{Seconds at drive end.}
-#'   \item{`time_minutes_elapsed`:double.}{Minutes elapsed during drive.}
-#'   \item{`time_seconds_elapsed`:integer.}{Seconds elapsed during drive.}
+#'   \item{`time_minutes_elapsed`:double.}{DEPRECATED Minutes elapsed during drive.}
+#'   \item{`time_seconds_elapsed`:integer.}{DEPRECATED Seconds elapsed during drive.}
 #' }
 #' @keywords Drives
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -76,94 +75,39 @@ cfbd_drives <- function(year,
                         defense_conference = NULL,
                         division = 'fbs') {
 
-  # Check if year is numeric
-  if(!is.numeric(year) && !nchar(year) == 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
 
-  if (!(season_type %in% c("regular","postseason","both"))){
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular, postseason, or both")
-  }
-  if (!is.null(week)&& !nchar(week) <= 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(offense_team)) {
-    if (offense_team == "San Jose State") {
-      offense_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      offense_team <- utils::URLencode(offense_team, reserved = TRUE)
-    }
-  }
-  if (!is.null(defense_team)) {
-    if (defense_team == "San Jose State") {
-      defense_team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      defense_team <- utils::URLencode(defense_team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(offense_conference)) {
-    # # Check offense_conference parameter in conference abbreviations, if not NULL
-    # Encode offense_conference parameter for URL, if not NULL
-    offense_conference <- utils::URLencode(offense_conference, reserved = TRUE)
-  }
-  if (!is.null(defense_conference)) {
-    # # Check defense_conference parameter in conference abbreviations, if not NULL
-    # Encode defense_conference parameter for URL, if not NULL
-    defense_conference <- utils::URLencode(defense_conference, reserved = TRUE)
-  }
-  if (!is.null(division)) {
-    # # Check division parameter
-    division <- utils::URLencode(division, reserved = TRUE)
-  }
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  offense_team <- handle_accents(offense_team)
+  defense_team <- handle_accents(defense_team)
 
-
-  base_url <- "https://api.collegefootballdata.com/drives?"
-
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&seasonType=", season_type,
-    "&week=", week,
-    "&team=", team,
-    "&offense=", offense_team,
-    "&defense=", defense_team,
-    "&conference=", conference,
-    "&offenseConference=", offense_conference,
-    "&defenseConference=", defense_conference,
-    "&classification=", division
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/drives"
+  query_params <- list(
+    "year" = year,
+    "seasonType" = season_type,
+    "week" = week,
+    "team" = team,
+    "offense" = offense_team,
+    "defense" = defense_team,
+    "conference" = conference,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "classification" = division
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -172,17 +116,14 @@ cfbd_drives <- function(year,
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "drive_id" = "id",
-          "time_minutes_start" = "start_time.minutes",
-          "time_seconds_start" = "start_time.seconds",
-          "time_minutes_end" = "end_time.minutes",
-          "time_seconds_end" = "end_time.seconds",
-          "time_minutes_elapsed" = "elapsed.minutes",
-          "time_seconds_elapsed" = "elapsed.seconds"
+          "time_minutes_start" = "startTime.minutes",
+          "time_seconds_start" = "startTime.seconds",
+          "time_minutes_end" = "endTime.minutes",
+          "time_seconds_end" = "endTime.seconds"
         ) %>%
-        dplyr::mutate(
-          time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
-          time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-        )
+        dplyr::mutate(time_minutes_elapsed = NA,
+                      time_seconds_elapsed = NA) %>%
+        janitor::clean_names()
 
       # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.
       # Minutes and seconds from these games are also suspect

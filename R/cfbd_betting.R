@@ -1,9 +1,9 @@
 
 #' @title **CFBD Betting Lines Endpoint Overview**
 #' @description **Get betting lines information for games**
-#' @param game_id (*Integer* optional): Game ID filter for querying a single game \cr
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game. Required if year not provided \cr
 #' Can be found using the [cfbd_game_info()] function
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format(*YYYY*). Required if game_id not provided
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular or postseason
 #' @param team (*String* optional): D-I Team
@@ -39,7 +39,6 @@
 #'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -61,77 +60,49 @@ cfbd_betting_lines <- function(game_id = NULL,
                                away_team = NULL,
                                conference = NULL,
                                line_provider=NULL) {
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort( "Enter valid game_id (numeric value)")
-  }
-  if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
-    # Check if year is numeric, if not NULL
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !(is.numeric(week) && nchar(week) <= 2)) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (season_type != "regular" && season_type != "postseason") {
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular or postseason")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(home_team)) {
-    # Encode home_team parameter for URL, if not NULL
-    home_team <- utils::URLencode(home_team, reserved = TRUE)
-  }
-  if (!is.null(away_team)) {
-    # Encode away_team parameter for URL, if not NULL
-    away_team <- utils::URLencode(away_team, reserved = TRUE)
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (!is.null(line_provider) &&  is.character(line_provider) &&
-      !(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"))) {
-    # Check line_provider parameter is a valid entry
-    cli::cli_abort("Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
-  }
-  # cfbfastR::cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
-  base_url <- "https://api.collegefootballdata.com/lines?"
 
-  full_url <- paste0(
-    base_url,
-    "gameId=", game_id,
-    "&year=", year,
-    "&week=", week,
-    "&seasonType=", season_type,
-    "&team=", team,
-    "&home=", home_team,
-    "&away=", away_team,
-    "&conference=", conference
+  # Validation Lists ----
+  providers <- c(
+    'teamrankings', 'numberfire', 'consensus', 'Caesars', 'Bovada',
+    'SugarHouse', 'William Hill (New Jersey)', 'Caesars (Pennsylvania)',
+    'Caesars Sportsbook (Colorado)', 'ESPN Bet', 'DraftKings'
   )
 
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  # Validation ----
+  validate_api_key()
+  validate_reqs(game_id, year)
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+  validate_id(game_id)
+  validate_list(line_provider, providers)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  home_team <- handle_accents(home_team)
+  away_team <- handle_accents(away_team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/lines"
+  query_params <- list(
+    "gameId" = game_id,
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "team" = team,
+    "home" = home_team,
+    "away" = away_team,
+    "conference" = conference,
+    "provider" = line_provider
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -141,23 +112,8 @@ cfbd_betting_lines <- function(game_id = NULL,
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
-        tidyr::unnest("lines") %>%
-        dplyr::mutate(
-            overUnder = dplyr::case_when(
-                .data$overUnder == "null" ~ NA_character_,
-                .default = .data$overUnder
-            ),
-            spread = dplyr::case_when(
-                .data$spread == "null" ~ NA_character_,
-                .default = .data$spread
-            ),
-            formattedSpread = dplyr::case_when(
-                is.na(.data$spread) ~ NA_character_,
-                .default = .data$formattedSpread
-            )
-        )
+        tidyr::unnest("lines")
 
-      
 
       if (!is.null(line_provider)) {
         if (is.list(df) & length(df) == 0) {

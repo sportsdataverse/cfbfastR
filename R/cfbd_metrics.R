@@ -73,7 +73,6 @@ NULL
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -89,59 +88,33 @@ cfbd_metrics_ppa_games <- function(year,
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
-  args <- list(year = year)
 
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
-    # Check if excl_garbage_time is TRUE, if not FALSE
-    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_list(excl_garbage_time, c(T,F))
 
-  base_url <- "https://api.collegefootballdata.com/ppa/games?"
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&conference=", conference,
-    "&excludeGarbageTime=", excl_garbage_time
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ppa/games"
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "conference" = conference,
+    "excludeGarbageTime" = excl_garbage_time
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
@@ -173,9 +146,9 @@ cfbd_metrics_ppa_games <- function(year,
 
 #' @title
 #' **Get player game averages for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (*String* optional): D-I Team. Required if year not provided.
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
+#' @param team (*String* optional): D-I Team. Required if week not provided.
 #' @param position (*string* optional): Position abbreviation of the player you are searching for.
 #' Position Group  - options include:
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
@@ -201,7 +174,6 @@ cfbd_metrics_ppa_games <- function(year,
 #' @keywords Players Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -220,77 +192,46 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
                                            threshold = NULL,
                                            excl_garbage_time = FALSE) {
 
-  # Position Group vector to check input arguments against
+  # Validation Lists ----
   pos_groups <- c(
     "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",
     "DB", "CB", "S", "LB", "DE", "NT", "DL", "DT",
     "K", "P", "PK", "LS"
   )
 
-  # Check if both year and team is null
-  if(is.null(year) & is.null(team)){
-    cli::cli_abort("Either year or team must be specified")
-  }
-  # Check if year is numeric
-  if(!is.null(year) && !is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(position) && !(position %in% pos_groups)) {
-    ## check if position in position group set
-    cli::cli_abort("Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK")
-  }
-  if (!is.null(athlete_id) && !is.numeric(athlete_id)) {
-    # Check if athlete_id is numeric, if not NULL
-    cli::cli_abort("Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function")
-  }
-  if (!is.null(threshold) && !is.numeric(threshold)) {
-    # Check if threshold is numeric, if not NULL
-    cli::cli_abort("Enter valid threshold value (Integer)")
-  }
-  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
-    # Check if excl_garbage_time is TRUE, if not FALSE
-    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
-  }
 
-  base_url <- "https://api.collegefootballdata.com/ppa/players/games?"
+  # Validation ----
+  validate_api_key()
+  validate_reqs(week, team)
+  validate_year(year)
+  validate_week(week)
+  validate_list(position, pos_groups)
+  validate_id(athlete_id)
+  validate_id(threshold)
+  validate_list(excl_garbage_time, c(T,F))
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&position=", position,
-    "&playerId=", athlete_id,
-    "&threshold=", threshold,
-    "&excludeGarbageTime=", excl_garbage_time
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ppa/players/games"
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "position" = position,
+    "playerId" = athlete_id,
+    "threshold" = threshold,
+    "excludeGarbageTime" = excl_garbage_time
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
@@ -315,8 +256,8 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 #' @title
 #' **Get player season averages for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if athlete_id not provided
+#' @param team (*String* optional): D-I Team.
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
@@ -325,7 +266,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
 #'  * Special Teams: K, P, LS, PK
-#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete. Required if year not provided
 #' Can be found using the [cfbd_player_info()] function.
 #' @param threshold (*Integer* optional): Minimum threshold of plays.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
@@ -338,7 +279,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'   \item{`position`: character.}{Athlete Position.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Team conference.}
-#'   \item{`countable_plays`: integer.}{Number of plays which can be counted.}
+#'   \item{`countable_plays`: integer.}{DEPRECATED Number of plays which can be counted.}
 #'   \item{`avg_PPA_all`: double.}{Average overall predicted points added (PPA).}
 #'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
 #'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
@@ -359,7 +300,6 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -378,78 +318,44 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
                                             threshold = NULL,
                                             excl_garbage_time = FALSE) {
 
-  # Position Group vector to check input arguments against
+  # Validation Lists ----
   pos_groups <- c(
     "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",
     "DB", "CB", "S", "LB", "DE", "NT", "DL", "DT",
     "K", "P", "PK", "LS"
   )
-  # Check if both year and team is null
-  if(is.null(year) & is.null(team)){
-    cli::cli_abort("Either year or team must be specified")
-  }
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference abbreviations, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
 
-  if (!is.null(position) && !(position %in% pos_groups)) {
-    ## check if position in position group set
-    cli::cli_abort("Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK")
-  }
-  if (!is.null(athlete_id) && !is.numeric(athlete_id)) {
-    # Check if athlete_id is numeric, if not NULL
-    cli::cli_abort("Enter valid athlete_id value (Integer)\nCan be found using the `cfbd_player_info()` function")
-  }
-  if (!is.null(threshold) && !is.numeric(threshold)) {
-    # Check if threshold is numeric, if not NULL
-    cli::cli_abort("Enter valid threshold value (Integer)")
-  }
-  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
-    # Check if excl_garbage_time is TRUE, if not FALSE
-    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
-  }
+  # Validation ----
+  validate_api_key()
+  validate_reqs(year, athlete_id)
+  validate_year(year)
+  validate_list(position, pos_groups)
+  validate_id(athlete_id)
+  validate_id(threshold)
+  validate_list(excl_garbage_time, c(T,F))
 
-  base_url <- "https://api.collegefootballdata.com/ppa/players/season?"
+  # Team Name Handling ----
+  team <- handle_accents(team)
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference", conference,
-    "&position=", position,
-    "&playerId=", athlete_id,
-    "&threshold=", threshold,
-    "&excludeGarbageTime=", excl_garbage_time
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ppa/players/season"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "position" = position,
+    "playerId" = athlete_id,
+    "threshold" = threshold,
+    "excludeGarbageTime" = excl_garbage_time
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
@@ -463,7 +369,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
       df <- df %>%
         dplyr::rename("athlete_id" = "id") %>%
-        dplyr::arrange(-.data$countable_plays)
+        dplyr::mutate(countable_plays = NA_integer_)
 
       df <- df %>%
         make_cfbfastR_data("Player season PPA data from CollegeFootballData.com",Sys.time())
@@ -507,37 +413,26 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
 cfbd_metrics_ppa_predicted <- function(down,
                                        distance) {
-  # Check if down is numeric
-  if(!is.numeric(down) && !(down <= 4)){
-    cli::cli_abort("Enter valid down (Integer): values from 1-4")
-  }
-  # Check if distance is numeric
-  if(!is.numeric(distance) && !(distance <= 99)){
-    cli::cli_abort("Enter valid distance (Integer): values from 1-99")
-  }
-  base_url <- "https://api.collegefootballdata.com/ppa/predicted?"
 
-  full_url <- paste0(
-    base_url,
-    "down=", down,
-    "&distance=", distance
+  # Validation ----
+  validate_api_key()
+  validate_range(down, 1, 4)
+  validate_range(distance, 1, 99)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ppa/predicted"
+  query_params <- list(
+    "down" = down,
+    "distance" = distance
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
-
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
@@ -562,8 +457,8 @@ cfbd_metrics_ppa_predicted <- function(down,
 
 #' @title
 #' **Get team averages for predicted points added (PPA)**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference name - select a valid FBS conference
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
@@ -596,7 +491,6 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -611,56 +505,32 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
-  # Check if both year and team is null
-  if(is.null(year) & is.null(team)){
-    cli::cli_abort("Either year or team must be specified")
-  }
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
-  if (!is.null(conference)) {
-    # # Check conference parameter in conference names, if not NULL
-    # Encode conference parameter for URL, if not NULL
-    conference <- utils::URLencode(conference, reserved = TRUE)
-  }
-  if (excl_garbage_time != FALSE && excl_garbage_time!=TRUE) {
-    # Check if excl_garbage_time is TRUE, if not FALSE
-    cli::cli_abort("Enter valid excl_garbage_time value (Logical) - TRUE or FALSE")
-  }
 
-  base_url <- "https://api.collegefootballdata.com/ppa/teams?"
+  # Validation ----
+  validate_api_key()
+  validate_reqs(year, team)
+  validate_year(year)
+  validate_list(excl_garbage_time, c(T,F))
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&team=", team,
-    "&conference=", conference,
-    "&excludeGarbageTime=", excl_garbage_time
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ppa/teams"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "excludeGarbageTime" = excl_garbage_time
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
@@ -706,7 +576,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -722,39 +592,25 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
                                     week = NULL,
                                     team = NULL,
                                     season_type = "regular") {
-  # Check if year is numeric
-  if(!is.numeric(year) && nchar(year) != 4){
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (!is.null(team)) {
-    if (team == "San Jose State") {
-      team <- utils::URLencode(paste0("San Jos", "\u00e9", " State"), reserved = TRUE)
-    } else {
-      # Encode team parameter for URL if not NULL
-      team <- utils::URLencode(team, reserved = TRUE)
-    }
-  }
 
-  if (!(season_type %in% c("postseason", "regular"))) {
-    # Check if season_type is appropriate, if not NULL
-    cli::cli_abort("Enter valid season_type (String): regular or postseason")
-  }
-  base_url <- "https://api.collegefootballdata.com/metrics/wp/pregame?"
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
 
-  full_url <- paste0(
-    base_url,
-    "year=", year,
-    "&week=", week,
-    "&team=", team,
-    "&seasonType=", season_type
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/metrics/wp/pregame"
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "team" = team,
+    "seasonType" = season_type
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   cols <- c(
     "season", "season_type", "week", "game_id",
@@ -766,12 +622,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -779,6 +630,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
+        dplyr::rename(home_win_prob = home_win_probability) %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(all_of(cols))
 
@@ -821,7 +673,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
-#' @importFrom utils URLencode URLdecode
+#' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -835,25 +687,16 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 
 cfbd_metrics_wp <- function(game_id) {
 
+  # Validation ----
+  validate_api_key()
+  validate_id(game_id)
 
-
-  # Check if game_id is numeric, if not NULL
-
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort("Enter valid game_id (numeric value)")
-  }
-
-
-  base_url <- "https://api.collegefootballdata.com/metrics/wp?"
-
-  full_url <- paste0(
-    base_url,
-    "gameId=", game_id
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/metrics/wp"
+  query_params <- list(
+    "gameId" = game_id
   )
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+  full_url <- httr::modify_url(base_url, query=query_params)
 
   cols <- c(
     "play_id", "play_text", "home_id", "home", "away_id", "away",
@@ -866,12 +709,7 @@ cfbd_metrics_wp <- function(game_id) {
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
@@ -879,6 +717,7 @@ cfbd_metrics_wp <- function(game_id) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
+        dplyr::rename(home_win_prob = home_win_probability) %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(all_of(cols))
 
