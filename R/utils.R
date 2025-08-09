@@ -216,6 +216,99 @@ rbindlist_with_attrs <- function(dflist){
   out
 }
 
-handle_accents <- function(var){
-  ifelse(var == "San Jose State", "San José State", var)
+# Request Functions ----
+get_req <- function(full_url){
+  httr::RETRY(
+    "GET", full_url,
+    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
+  )
+}
+
+# Edge Case Handling ----
+handle_accents <- function(var = NULL){
+  if(!is.null(var)){
+    var <- ifelse(var == "San Jose State", "San José State", var)
+  }
+  var
+}
+
+# CFBD API Key Validation ----
+validate_api_key <- function(){
+  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
+}
+
+# Argument Validations ----
+validate_year <- function(year = NULL){
+  if(!is.null(year)){
+    checks <- c(
+      num_check = is.numeric(year),
+      len_check = nchar(year) == 4
+    )
+    if(!all(checks)){
+      cli::cli_abort(glue::glue("Enter valid {deparse(substitute(year))} as a number (YYYY)"))
+    }
+  }
+}
+
+validate_week <- function(week = NULL){
+  if(!is.null(week)){
+    checks <- c(
+      num_check = is.numeric(week),
+      range_check = between(as.numeric(week), 1, 15)
+    )
+    if(!all(checks)){
+      cli::cli_abort(glue::glue("Enter valid {deparse(substitute(week))} 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"))
+    }
+  }
+}
+
+validate_range <- function(var, min = NULL, max = NULL){
+  if(!is.null(var)){
+    checks <- c(
+      lower_check <- is.null(min) || (var >= min),
+      upper_check <- is.null(max) || (var <= max)
+    )
+    if(!all(checks)){
+      cli::cli_abort(glue::glue("{deparse(substitute(var))} out of bounds: ({ifelse(is.null(min),'',min)}, {ifelse(is.null(max),'',max)})"))
+    }
+  }
+}
+
+validate_list <- function(var = NULL, allowable = NULL){
+  if(!is.null(var)){
+    list_check <- var %in% allowable
+    if(!list_check){
+      cli::cli_abort(
+        glue::glue("Enter valid {deparse(substitute(var))} ({typeof(allowable)}): ({paste0(allowable, collapse = ', ')})")
+      )
+    }
+  }
+}
+
+validate_season_type <- function(season_type = NULL, allow_both = TRUE){
+  allowable <- c('postseason', 'regular')
+  if(allow_both) allowable <- c(allowable, 'both')
+  if(is.null(season_type)) cli::cli_abort("Missing required field: season_type")
+  validate_list(season_type, allowable)
+}
+
+validate_id <- function(id = NULL){
+  if(!is.null(id)){
+    checks <- c(
+      num_check <- !is.numeric(id)
+    )
+    if(!all(checks)){
+      cli::cli_abort(glue::glue("Enter valid {deparse(substitute(id))} (numeric value)"))
+    }
+  }
+}
+
+validate_reqs <- function(...){
+  labs = vars(...)
+  vars = list(...)
+  null_check <- any(map_lgl(vars, ~!is.null(.x)))
+  if(!null_check){
+    cli::cli_abort(paste0("At least one of these arguments must not be NULL: ",
+                          paste0(map_vec(labs, as_label), collapse = ', ')))
+  }
 }
