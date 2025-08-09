@@ -60,44 +60,23 @@ cfbd_betting_lines <- function(game_id = NULL,
                                away_team = NULL,
                                conference = NULL,
                                line_provider=NULL) {
-  if (is.null(game_id) && is.null(year)){
-    cli::cli_abort( "Must provide either game_id or year" )
-  }
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort( "Enter valid game_id (numeric value)")
-  }
-  if (!is.null(year) && !(is.numeric(year) && nchar(year) == 4)) {
-    # Check if year is numeric, if not NULL
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !(is.numeric(week) && nchar(week) <= 2)) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
-  if (season_type != "regular" && season_type != "postseason") {
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular or postseason")
-  }
-  if (!is.null(team)) {
-    team <- handle_accents(team)
-  }
-  if (!is.null(home_team)) {
-    home_team <- handle_accents(home_team)
-  }
-  if (!is.null(away_team)) {
-    away_team <- handle_accents(away_team)
-  }
-  if (!is.null(line_provider) &&  is.character(line_provider) &&
-      !(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"))) {
-    # Check line_provider parameter is a valid entry
-    cli::cli_abort("Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
-  }
-  # cfbfastR::cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
+
+  # Validation ----
+  validate_api_key()
+  validate_reqs(game_id, year)
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+  validate_game_id(game_id)
+  validate_list(line_provider, c("Caesars", "consensus", "numberfire", "teamrankings"))
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  home_team <- handle_accents(home_team)
+  away_team <- handle_accents(away_team)
+
+  # Query API ----
   base_url <- "https://api.collegefootballdata.com/lines?"
-
-
-
   query_params <- list(
     "gameId" = game_id,
     "year" = year,
@@ -109,23 +88,14 @@ cfbd_betting_lines <- function(game_id = NULL,
     "conference" = conference,
     "provider" = line_provider
   )
-
   full_url <- httr::modify_url(base_url, query=query_params)
-
-  # Check for CFBD API key
-  if (!has_cfbd_key()) stop("CollegeFootballData.com now requires an API key.", "\n       See ?register_cfbd for details.", call. = FALSE)
 
   df <- data.frame()
   tryCatch(
     expr = {
 
       # Create the GET request and set response as res
-      res <- httr::RETRY(
-        "GET", full_url,
-        httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-      )
-
-      # Check the result
+      res <- get_req(full_url)
       check_status(res)
 
       # Get the content and return it as data.frame
