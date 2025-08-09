@@ -254,7 +254,7 @@ validate_week <- function(week = NULL){
   if(!is.null(week)){
     checks <- c(
       num_check = is.numeric(week),
-      range_check = between(as.numeric(week), 1, 15)
+      range_check = dplyr::between(as.numeric(week), 1, 15)
     )
     if(!all(checks)){
       cli::cli_abort(glue::glue("Enter valid {deparse(substitute(week))} 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)"))

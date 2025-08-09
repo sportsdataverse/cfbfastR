@@ -137,6 +137,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 
   }
 
+  df <- data.frame()
   tryCatch(
     expr = {
 
@@ -151,8 +152,8 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       locs <- df$location
       locs <- locs %>%
         jsonlite::flatten() %>%
-        rename(venue_id = "id")
-      df <- df %>% select(-"location")
+        dplyr::rename(venue_id = "id")
+      df <- df %>% dplyr::select(-"location")
       # suppressWarnings(
       #   logos_list <- df %>%
       #     dplyr::group_by(.data$id) %>%
