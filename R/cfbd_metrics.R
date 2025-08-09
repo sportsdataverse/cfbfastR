@@ -146,9 +146,9 @@ cfbd_metrics_ppa_games <- function(year,
 
 #' @title
 #' **Get player game averages for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (*String* optional): D-I Team. Required if year not provided.
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if week not provided.
 #' @param position (*string* optional): Position abbreviation of the player you are searching for.
 #' Position Group  - options include:
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
@@ -202,7 +202,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
-  validate_reqs(year, team)
+  validate_reqs(week, team)
   validate_year(year)
   validate_week(week)
   validate_list(position, pos_groups)
@@ -256,8 +256,8 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 #' @title
 #' **Get player season averages for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if athlete_id not provided
+#' @param team (*String* optional): D-I Team.
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
@@ -266,7 +266,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
 #'  * Special Teams: K, P, LS, PK
-#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete. Required if year not provided
 #' Can be found using the [cfbd_player_info()] function.
 #' @param threshold (*Integer* optional): Minimum threshold of plays.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
@@ -327,7 +327,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
-  validate_reqs(year, team)
+  validate_reqs(year, athlete_id)
   validate_year(year)
   validate_list(position, pos_groups)
   validate_id(athlete_id)
@@ -457,8 +457,8 @@ cfbd_metrics_ppa_predicted <- function(down,
 
 #' @title
 #' **Get team averages for predicted points added (PPA)**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference name - select a valid FBS conference
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
@@ -689,7 +689,7 @@ cfbd_metrics_wp <- function(game_id) {
 
   # Validation ----
   validate_api_key()
-  validate_game_id(game_id)
+  validate_id(game_id)
 
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/metrics/wp?"
