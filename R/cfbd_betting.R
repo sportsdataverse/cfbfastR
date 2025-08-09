@@ -61,14 +61,21 @@ cfbd_betting_lines <- function(game_id = NULL,
                                conference = NULL,
                                line_provider=NULL) {
 
+  # Validation Lists ----
+  providers <- c(
+    'teamrankings', 'numberfire', 'consensus', 'Caesars', 'Bovada',
+    'SugarHouse', 'William Hill (New Jersey)', 'Caesars (Pennsylvania)',
+    'Caesars Sportsbook (Colorado)', 'ESPN Bet', 'DraftKings'
+  )
+
   # Validation ----
   validate_api_key()
   validate_reqs(game_id, year)
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
-  validate_game_id(game_id)
-  validate_list(line_provider, c("Caesars", "consensus", "numberfire", "teamrankings"))
+  validate_id(game_id)
+  validate_list(line_provider, providers)
 
   # Team Name Handling ----
   team <- handle_accents(team)
