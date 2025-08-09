@@ -133,7 +133,7 @@ cfbd_recruiting_player <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/recruiting/players?"
+  base_url <- "https://api.collegefootballdata.com/recruiting/players"
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -218,7 +218,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/recruiting/groups?"
+  base_url <- "https://api.collegefootballdata.com/recruiting/groups"
   query_params <- list(
     "startYear" = start_year,
     "endYear" = end_year,
@@ -301,7 +301,7 @@ cfbd_recruiting_team <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/recruiting/teams?"
+  base_url <- "https://api.collegefootballdata.com/recruiting/teams"
   query_params <- list(
     "year" = year,
     "team" = team
@@ -371,7 +371,7 @@ cfbd_recruiting_transfer_portal <- function(year) {
   validate_year(year)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/player/portal?"
+  base_url <- "https://api.collegefootballdata.com/player/portal"
   query_params <- list(
     "year" = year
   )

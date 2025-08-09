@@ -99,7 +99,7 @@ cfbd_metrics_ppa_games <- function(year,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ppa/games?"
+  base_url <- "https://api.collegefootballdata.com/ppa/games"
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -214,7 +214,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ppa/players/games?"
+  base_url <- "https://api.collegefootballdata.com/ppa/players/games"
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -338,7 +338,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ppa/players/season?"
+  base_url <- "https://api.collegefootballdata.com/ppa/players/season"
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -420,7 +420,7 @@ cfbd_metrics_ppa_predicted <- function(down,
   validate_range(distance, 1, 99)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ppa/predicted?"
+  base_url <- "https://api.collegefootballdata.com/ppa/predicted"
   query_params <- list(
     "down" = down,
     "distance" = distance
@@ -516,7 +516,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ppa/teams?"
+  base_url <- "https://api.collegefootballdata.com/ppa/teams"
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -603,7 +603,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/metrics/wp/pregame?"
+  base_url <- "https://api.collegefootballdata.com/metrics/wp/pregame"
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -692,7 +692,7 @@ cfbd_metrics_wp <- function(game_id) {
   validate_id(game_id)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/metrics/wp?"
+  base_url <- "https://api.collegefootballdata.com/metrics/wp"
   query_params <- list(
     "gameId" = game_id
   )

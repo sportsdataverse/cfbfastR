@@ -58,7 +58,7 @@ cfbd_coaches <- function(first = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/coaches?"
+  base_url <- "https://api.collegefootballdata.com/coaches"
   query_params <- list(
     "first" = first,
     "last" = last,

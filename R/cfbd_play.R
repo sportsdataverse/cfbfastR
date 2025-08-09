@@ -133,7 +133,7 @@ cfbd_plays <- function(year = 2020,
   defense <- handle_accents(defense)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/plays?"
+  base_url <- "https://api.collegefootballdata.com/plays"
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -279,7 +279,7 @@ cfbd_play_stats_player <- function(year = NULL,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/plays/stats?"
+  base_url <- "https://api.collegefootballdata.com/plays/stats"
   query_params <- list(
     "year" = year,
     "week" = week,

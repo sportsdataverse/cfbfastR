@@ -83,7 +83,7 @@ cfbd_betting_lines <- function(game_id = NULL,
   away_team <- handle_accents(away_team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/lines?"
+  base_url <- "https://api.collegefootballdata.com/lines"
   query_params <- list(
     "gameId" = game_id,
     "year" = year,

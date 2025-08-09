@@ -87,7 +87,7 @@ cfbd_player_info <- function(search_term,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/player/search?"
+  base_url <- "https://api.collegefootballdata.com/player/search"
   query_params <- list(
     "searchTerm" = search_term,
     "position" = position,
@@ -178,7 +178,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/player/returning?"
+  base_url <- "https://api.collegefootballdata.com/player/returning"
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -294,7 +294,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/player/usage?"
+  base_url <- "https://api.collegefootballdata.com/player/usage"
   query_params <- list(
     "year" = year,
     "team" = team,

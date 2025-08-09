@@ -97,7 +97,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
   validate_season_type(season_type, allow_both = F)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/rankings?"
+  base_url <- "https://api.collegefootballdata.com/rankings"
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -206,7 +206,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ratings/sp?"
+  base_url <- "https://api.collegefootballdata.com/ratings/sp"
   query_params <- list(
     "year" = year,
     "team" = team
@@ -323,7 +323,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
   validate_year(year)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ratings/sp/conferences?"
+  base_url <- "https://api.collegefootballdata.com/ratings/sp/conferences"
   query_params <- list(
     "year" = year,
     "conference" = conference
@@ -425,7 +425,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ratings/srs?"
+  base_url <- "https://api.collegefootballdata.com/ratings/srs"
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -510,7 +510,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/ratings/elo?"
+  base_url <- "https://api.collegefootballdata.com/ratings/elo"
   query_params <- list(
     "year" = year,
     "week" = week,

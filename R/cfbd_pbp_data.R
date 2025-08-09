@@ -416,7 +416,7 @@ cfbd_pbp_data <- function(year,
   team <- handle_accents(team)
 
   # Query API ----
-  play_base_url <- "https://api.collegefootballdata.com/plays?"
+  play_base_url <- "https://api.collegefootballdata.com/plays"
   query_params <- list(
     "seasonType" = season_type,
     "year" = year,

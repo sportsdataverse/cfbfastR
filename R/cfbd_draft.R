@@ -216,7 +216,7 @@ cfbd_draft_picks <- function(year = NULL,
   college <- handle_accents(college)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/draft/picks?"
+  base_url <- "https://api.collegefootballdata.com/draft/picks"
   query_params <- list(
     "year" = year,
     "nflTeam" = nfl_team,

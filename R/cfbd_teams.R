@@ -120,7 +120,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
   if (!is.null(conference)) {
     # # Check conference parameter in conference abbreviations, if not NULL
 
-    base_url <- "https://api.collegefootballdata.com/teams?"
+    base_url <- "https://api.collegefootballdata.com/teams"
     query_params <- list(
       "conference" = conference,
       "year" = year
@@ -237,7 +237,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
   team2 <- handle_accents(team2)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/teams/matchup?"
+  base_url <- "https://api.collegefootballdata.com/teams/matchup"
   query_params <- list(
     "team1" = team1,
     "team2" = team2,
@@ -351,7 +351,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
   team2 <- handle_accents(team2)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/teams/matchup?"
+  base_url <- "https://api.collegefootballdata.com/teams/matchup"
   query_params <- list(
     "team1" = team1,
     "team2" = team2,
@@ -445,7 +445,7 @@ cfbd_team_roster <- function(year, team = NULL) {
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/roster?"
+  base_url <- "https://api.collegefootballdata.com/roster"
   query_params <- list(
     "year" = year,
     "team" = team
@@ -517,7 +517,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
   validate_year(year)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/talent?"
+  base_url <- "https://api.collegefootballdata.com/talent"
   query_params <- list(
     "year" = year
   )

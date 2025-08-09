@@ -211,7 +211,7 @@ cfbd_stats_game_advanced <- function(year,
   opponent <- handle_accents(opponent)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/stats/game/advanced?"
+  base_url <- "https://api.collegefootballdata.com/stats/game/advanced"
   query_params <- list(
     "year" = year,
     "week" = week,
@@ -398,7 +398,7 @@ cfbd_stats_season_advanced <- function(year,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/stats/season/advanced?"
+  base_url <- "https://api.collegefootballdata.com/stats/season/advanced"
   query_params <- list(
     "year" = year,
     "team" = team,
@@ -585,7 +585,7 @@ cfbd_stats_season_player <- function(year,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/stats/player/season?"
+  base_url <- "https://api.collegefootballdata.com/stats/player/season"
   query_params = list(
     "year" = year,
     "team" = team,
@@ -789,7 +789,7 @@ cfbd_stats_season_team <- function(year,
   team <- handle_accents(team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/stats/season?"
+  base_url <- "https://api.collegefootballdata.com/stats/season"
   query_params <- list(
     "year" = year,
     "seasonType" = season_type,

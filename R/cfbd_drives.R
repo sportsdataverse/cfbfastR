@@ -87,7 +87,7 @@ cfbd_drives <- function(year,
   defense_team <- handle_accents(defense_team)
 
   # Query API ----
-  base_url <- "https://api.collegefootballdata.com/drives?"
+  base_url <- "https://api.collegefootballdata.com/drives"
   query_params <- list(
     "year" = year,
     "seasonType" = season_type,

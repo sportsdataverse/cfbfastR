@@ -19,7 +19,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 
-  play_base_url <- "http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?"
+  play_base_url <- "http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
 
   ## Inputs
   ## game_id
