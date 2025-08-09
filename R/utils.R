@@ -295,7 +295,7 @@ validate_season_type <- function(season_type = NULL, allow_both = TRUE){
 validate_id <- function(id = NULL){
   if(!is.null(id)){
     checks <- c(
-      num_check <- !is.numeric(id)
+      num_check <- is.numeric(id)
     )
     if(!all(checks)){
       cli::cli_abort(glue::glue("Enter valid {deparse(substitute(id))} (numeric value)"))
