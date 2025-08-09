@@ -15,7 +15,8 @@ Authors@R: c(
     person("Keegan", "Abdoo", , "kabdoo@draft.ly", role = "ctb"),
     person("Matt", "Spencer", , "maatspencer@gmail.com", role = "ctb"),
     person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = "ctb"),
-    person("John", "Edwards", , "edwards1860@gmail.com", role = "ctb")
+    person("John", "Edwards", , "edwards1860@gmail.com", role = "ctb"),
+    person("Brad", "Hill", , "bradhill119@gmail.com", role = "ctb")
   )
 Description: A utility to quickly obtain clean and tidy college football
     data. Serves as a wrapper around the
