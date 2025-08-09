@@ -510,6 +510,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 
   # Validation ----
+  validate_api_key()
   validate_year(year)
 
   # Query API ----
