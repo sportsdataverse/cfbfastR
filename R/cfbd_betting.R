@@ -1,9 +1,9 @@
 
 #' @title **CFBD Betting Lines Endpoint Overview**
 #' @description **Get betting lines information for games**
-#' @param game_id (*Integer* optional): Game ID filter for querying a single game \cr
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game. Required if year not provided \cr
 #' Can be found using the [cfbd_game_info()] function
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format(*YYYY*). Required if game_id not provided
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular or postseason
 #' @param team (*String* optional): D-I Team

@@ -145,8 +145,8 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if year not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
 #' \describe{
@@ -386,8 +386,8 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference abbreviation - SRS information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC

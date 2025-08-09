@@ -60,8 +60,8 @@
 NULL
 #' @title
 #' **Get player recruiting rankings**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000, Maximum: 2020 currently
-#' @param team (*String* optional): D-I Team
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000. Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param recruit_type (*String* optional): default API return is 'HighSchool', other options include 'JUCO'
 #' or 'PrepSchool'  - For position group information
 #' @param state (*String* optional): Two letter State abbreviation
@@ -124,6 +124,7 @@ cfbd_recruiting_player <- function(year = NULL,
   validate_api_key()
   validate_reqs(year, team)
   validate_year(year)
+  validate_range(year, 2000)
   validate_list(recruit_type, c("HighSchool","PrepSchool", "JUCO"))
   validate_list(state, state.abb)
   validate_list(position, pos_groups)
@@ -260,8 +261,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
 #' @title
 #' **Get college football recruiting team rankings information.**
-#' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
-#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*) - Minimum: 2000. Required if team not provided.
+#' @param team (*String* optional): Team - Select a valid team, D1 football. Required if year not provided.
 #'
 #' @return [cfbd_recruiting_team()] - A data frame with 4 variables:
 #' \describe{
@@ -294,6 +295,7 @@ cfbd_recruiting_team <- function(year = NULL,
   validate_api_key()
   validate_reqs(year, team)
   validate_year(year)
+  validate_range(year, 2000)
 
   # Team Name Handling ----
   team <- handle_accents(team)
