@@ -256,6 +256,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON()
+      if (purrr::is_empty(df$games)) stop(call. = F)
       min_season <- min(df$games$season)
       max_season <- max(df$games$season)
       df[['games']] <- NULL
@@ -370,7 +371,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         purrr::pluck("games")
-      if (nrow(df) == 0) {
+      if (is.null(df) || nrow(df) == 0) {
         warning("The data pulled from the API was empty.")
         return(NULL)
       }
