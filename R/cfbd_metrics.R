@@ -42,7 +42,7 @@
 #' ### **Get FG expected points from CFBD API.**
 #' ```r
 #' cfbd_metrics_fg_ep()
-#' ````
+#' ```
 NULL
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
@@ -152,7 +152,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' @title
 #' **Get player game averages for predicted points added (PPA)**
 #' @description
-#' At least one of \code{week} or \code{team} must be supplied; when both are supplied, both are utilized 
+#' At least one of \code{week} or \code{team} must be supplied; when both are supplied, both are utilized
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
 #' @param team (*String* optional): D-I Team. Required if week not provided.
