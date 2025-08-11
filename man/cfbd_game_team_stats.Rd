@@ -39,7 +39,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}} - A data frame with 78 variables:
 \describe{
 \item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{school}: character.}{Team name.}
+\item{\code{team}: character.}{Team name.}
 \item{\code{conference}: character.}{Conference of the team.}
 \item{\code{home_away}: character.}{Home/Away Flag.}
 \item{\code{opponent}: character.}{Opponent team name.}

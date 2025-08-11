@@ -24,7 +24,7 @@ cfbd_stats_season_advanced(
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 }
 \value{
-\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 81 variables:
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 82 variables:
 \describe{
 \item{\code{season}: integer.}{Season of the statistics.}
 \item{\code{team}: character.}{Team name.}

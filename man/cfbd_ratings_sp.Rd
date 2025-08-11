@@ -7,9 +7,9 @@
 cfbd_ratings_sp(year = NULL, team = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if year not provided}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 }
 \value{
 \code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:

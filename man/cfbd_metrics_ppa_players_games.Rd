@@ -15,11 +15,11 @@ cfbd_metrics_ppa_players_games(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}).}
 
-\item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
+\item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.}
 
-\item{team}{(\emph{String} optional): D-I Team. Required if year not provided.}
+\item{team}{(\emph{String} optional): D-I Team. Required if week not provided.}
 
 \item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.
 Position Group  - options include:

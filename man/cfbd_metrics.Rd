@@ -12,6 +12,7 @@
 \item{\code{cfbd_metrics_ppa_teams()}:}{ Get team averages for predicted points added (PPA).}
 \item{\code{cfbd_metrics_wp_pregame()}:}{ Get pre-game win probability data from CFBD API.}
 \item{\code{cfbd_metrics_wp()}:}{ Get win probability chart data from CFBD API.}
+\item{\code{cfbd_metrics_fg_ep()}:}{ Get FG expected points from CFBD API. }
 }
 }
 \details{
@@ -49,6 +50,12 @@
 \subsection{\strong{Calculate predicted points using down and distance}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_metrics_ppa_predicted(down = 1, distance = 10)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get FG expected points from CFBD API.}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_metrics_fg_ep()
 }\if{html}{\out{</div>}}
 }
 }

@@ -41,6 +41,7 @@ shared variables
 \item{\code{game_uid}: character.}{}
 \item{\code{game_date}: character.}{Game date.}
 \item{\code{attendance}: integer.}{Reported attendance at the game.}
+\item{\code{play_by_play_available}: logical}{}
 \item{\code{home_team_name}: character.}{Home team mascot name (Sun Devils).}
 \item{\code{home_team_logo}: character.}{Home team logo url.}
 \item{\code{home_team_abb}: character.}{Home team abbreviation (ASU).}

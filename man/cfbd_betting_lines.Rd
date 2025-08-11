@@ -17,10 +17,10 @@ cfbd_betting_lines(
 )
 }
 \arguments{
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game \cr
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game. Required if year not provided \cr
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
-\item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format(\emph{YYYY}). Required if game_id not provided}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 

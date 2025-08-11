@@ -37,8 +37,13 @@ Returns a tibble with the following columns:\tabular{ll}{
    birth_place_city \tab character \cr
    birth_place_state \tab character \cr
    birth_place_country \tab character \cr
+   birth_country_alternate_id \tab character \cr
+   birth_country_abbreviation \tab character \cr
    slug \tab character \cr
    jersey \tab character \cr
+   flag_href \tab character \cr
+   flag_alt \tab character \cr
+   flag_x_country_flag \tab character \cr
    position_id \tab character \cr
    position_name \tab character \cr
    position_display_name \tab character \cr

@@ -16,9 +16,10 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 21 variables:
+\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 22 variables:
 \describe{
 \item{\code{year}: integer.}{Season of the games.}
+\item{\code{team_id}: integer.} {Referencing team id.}
 \item{\code{team}: character.}{Team name.}
 \item{\code{conference}: character.}{Conference of the team.}
 \item{\code{division}: character.}{Division in the conference of the team.}
