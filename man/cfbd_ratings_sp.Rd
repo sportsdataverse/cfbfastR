@@ -46,7 +46,7 @@ cfbd_ratings_sp(year = NULL, team = NULL)
 }
 }
 \description{
-At least one of \strong{year} or \strong{team} must be specified for the function to run
+At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{

@@ -53,7 +53,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 }
 }
 \description{
-\strong{Team info lookup}
+At least one of \code{year} or \code{conference} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{

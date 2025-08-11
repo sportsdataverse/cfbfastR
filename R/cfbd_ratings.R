@@ -143,7 +143,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @title
 #' **Get SP historical rating data**
 #' @description
-#' At least one of **year** or **team** must be specified for the function to run
+#' At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 #'
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if year not provided
 #' @param team (*String* optional): D-I Team. Required if year not provided
@@ -384,8 +384,8 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @title
 #' **Get SRS historical rating data**
 #' @description
-#' At least one of **year** or **team** must be specified for the function to run
-#'
+#' At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
+#' 
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference abbreviation - SRS information by conference

@@ -67,7 +67,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 }
 }
 \description{
-\strong{Get player season averages for predicted points added (PPA)}
+At least one of \code{year} or \code{athlete_id} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{

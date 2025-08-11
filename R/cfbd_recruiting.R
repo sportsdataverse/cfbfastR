@@ -60,6 +60,8 @@
 NULL
 #' @title
 #' **Get player recruiting rankings**
+#' @description
+#' At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000. Required if team not provided
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param recruit_type (*String* optional): default API return is 'HighSchool', other options include 'JUCO'
@@ -261,6 +263,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
 #' @title
 #' **Get college football recruiting team rankings information.**
+#' @description
+#' At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 #' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*) - Minimum: 2000. Required if team not provided.
 #' @param team (*String* optional): Team - Select a valid team, D1 football. Required if year not provided.
 #'

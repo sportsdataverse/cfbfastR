@@ -11,7 +11,7 @@ cfbd_metrics_fg_ep()
 \describe{
 \item{\code{yards_to_goal}: integer.}{Yards to the goal line (0-100).}
 \item{\code{distance}: integer.}{Distance to goal posts from kicking location (17 yds further than yards to goal).}
-\item{\code{expected_points}: integer.}{Expected points given yards to goal / distance.}
+\item{\code{expected_points}: double.}{Expected points given yards to goal / distance.}
 }
 }
 \description{

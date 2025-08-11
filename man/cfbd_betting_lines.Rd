@@ -65,6 +65,7 @@ Betting information for games with the following columns:
 }
 \description{
 \strong{Get betting lines information for games}
+At least one of \code{game_id} or \code{year} must be supplied; when both are supplied, \code{game_id} takes precedence.
 }
 \examples{
 \donttest{

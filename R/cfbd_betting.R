@@ -1,6 +1,8 @@
 
 #' @title **CFBD Betting Lines Endpoint Overview**
-#' @description **Get betting lines information for games**
+#' @description
+#' **Get betting lines information for games**
+#' At least one of \code{game_id} or \code{year} must be supplied; when both are supplied, \code{game_id} takes precedence.
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game. Required if year not provided \cr
 #' Can be found using the [cfbd_game_info()] function
 #' @param year (*Integer* optional): Year, 4 digit format(*YYYY*). Required if game_id not provided

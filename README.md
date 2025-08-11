@@ -159,7 +159,7 @@ stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR.svg?color=ee
 
 - [Brad Hill](https://bsky.app/profile/bradisblogging.com)</br>
   <a href="https://bsky.app/profile/bradisblogging.com" target="blank"><img
-  src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40bradisblogging&logo=bluesky&logoColor=white&style=for-the-badge" alt="@bradisblogging" /></a>
+  src="https://img.shields.io/twitter/follow/bradisbrad?color=blue&label=%40bradisblogging&logo=bluesky&logoColor=white&style=for-the-badge" alt="@bradisblogging" /></a>
   <a href="https://github.com/bradisbrad" target="blank"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge" alt="@bradisbrad" /></a>
 
 # **Authors Emeritus - `cfbscrapR`\[archived\]**

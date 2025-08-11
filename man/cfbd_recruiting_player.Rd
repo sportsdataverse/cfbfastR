@@ -54,7 +54,7 @@ or 'PrepSchool'  - For position group information}
 }
 }
 \description{
-\strong{Get player recruiting rankings}
+At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{

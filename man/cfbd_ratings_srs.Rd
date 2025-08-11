@@ -27,7 +27,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 }
 \description{
-At least one of \strong{year} or \strong{team} must be specified for the function to run
+At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{

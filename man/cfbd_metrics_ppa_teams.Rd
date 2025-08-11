@@ -49,7 +49,7 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 }
 }
 \description{
-\strong{Get team averages for predicted points added (PPA)}
+At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{

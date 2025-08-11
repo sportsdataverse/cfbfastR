@@ -21,7 +21,7 @@ cfbd_recruiting_team(year = NULL, team = NULL)
 }
 }
 \description{
-\strong{Get college football recruiting team rankings information.}
+At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 }
 \examples{
 \donttest{
