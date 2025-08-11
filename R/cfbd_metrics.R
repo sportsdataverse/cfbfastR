@@ -10,6 +10,7 @@
 #' \item{`cfbd_metrics_ppa_teams()`:}{ Get team averages for predicted points added (PPA).}
 #' \item{`cfbd_metrics_wp_pregame()`:}{ Get pre-game win probability data from CFBD API.}
 #' \item{`cfbd_metrics_wp()`:}{ Get win probability chart data from CFBD API.}
+#' \item{`cfbd_metrics_fg_ep()`:}{ Get FG expected points from CFBD API. }
 #' }
 #'
 #' @details
@@ -38,6 +39,10 @@
 #' ```r
 #' cfbd_metrics_ppa_predicted(down = 1, distance = 10)
 #' ```
+#' ### **Get FG expected points from CFBD API.**
+#' ```r
+#' cfbd_metrics_fg_ep()
+#' ````
 NULL
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
@@ -726,6 +731,64 @@ cfbd_metrics_wp <- function(game_id) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics win probability data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get FG expected points from CFBD API**
+#' @return [cfbd_metrics_fg_ep()] - A data frame with 3 variables:
+#' \describe{
+#'   \item{`yards_to_goal`: integer.}{Yards to the goal line (0-100).}
+#'   \item{`distance`: integer.}{Distance to goal posts from kicking location (17 yds further than yards to goal).}
+#'   \item{`expected_points`: integer.}{Expected points given yards to goal / distance.}
+#' }
+#' @keywords FG expected points
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY modify_url
+#' @importFrom utils URLdecode
+#' @importFrom cli cli_abort
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
+#' @import dplyr
+#' @import tidyr
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_metrics_fg_ep())
+#' }
+cfbd_metrics_fg_ep <- function(){
+
+  # Validation ----
+  validate_api_key()
+
+  # Query API ----
+  ## Build URL ----
+  base_url <- 'https://api.collegefootballdata.com'
+  ep <- c('metrics', 'fg', 'ep')
+  full_url <- httr::modify_url(base_url, path = ep)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      ## Create GET request ----
+      res <- get_req(full_url)
+      check_status(res)
+
+      ## Get Content ----
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON() %>%
+        janitor::clean_names()
+
+      df <- df %>%
+        make_cfbfastR_data("FG expected points data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics FG expected points data available!"))
     },
     finally = {
     }
