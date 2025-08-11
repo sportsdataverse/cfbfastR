@@ -774,8 +774,8 @@ cfbd_metrics_fg_ep <- function(){
   # Query API ----
   ## Build URL ----
   base_url <- 'https://api.collegefootballdata.com'
-  ep <- c('metrics', 'fg', 'ep')
-  full_url <- httr::modify_url(base_url, path = ep)
+  endpoint_path <- "metrics/fg/ep"
+  full_url <- httr::modify_url(base_url, path = endpoint_path)
 
   df <- data.frame()
   tryCatch(
