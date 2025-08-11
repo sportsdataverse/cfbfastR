@@ -216,7 +216,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
-#' @importFrom purrr enframe
+#' @importFrom tibble enframe
 #' @export
 #' @examples
 #' \donttest{
