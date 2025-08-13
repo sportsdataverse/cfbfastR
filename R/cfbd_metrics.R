@@ -146,6 +146,8 @@ cfbd_metrics_ppa_games <- function(year,
 
 #' @title
 #' **Get player game averages for predicted points added (PPA)**
+#' @description
+#' At least one of \code{week} or \code{team} must be supplied; when both are supplied, both are utilized 
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
 #' @param team (*String* optional): D-I Team. Required if week not provided.
@@ -256,6 +258,8 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 #' @title
 #' **Get player season averages for predicted points added (PPA)**
+#' @description
+#' At least one of \code{year} or \code{athlete_id} must be supplied; when both are supplied, both are utilized
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if athlete_id not provided
 #' @param team (*String* optional): D-I Team.
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
@@ -457,6 +461,8 @@ cfbd_metrics_ppa_predicted <- function(down,
 
 #' @title
 #' **Get team averages for predicted points added (PPA)**
+#' @description
+#' At least one of \code{year} or \code{team} must be supplied; when both are supplied, both are utilized
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference name - select a valid FBS conference
