@@ -708,7 +708,7 @@ cfbd_pbp_data <- function(year,
     )
 
     play_df <- play_df %>%
-      select(
+      dplyr::select(
         dplyr::all_of(play_columns),
         dplyr::all_of(model_columns),
         dplyr::all_of(series_columns),
