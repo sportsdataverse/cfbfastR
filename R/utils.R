@@ -227,7 +227,7 @@ get_req <- function(full_url){
 # Edge Case Handling ----
 handle_accents <- function(var = NULL){
   if(!is.null(var)){
-    var <- ifelse(var == "San Jose State", "San José State", var)
+    var <- ifelse(var == "San Jose State", "San Jos\u00e9 State", var)
   }
   var
 }
