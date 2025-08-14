@@ -59,6 +59,8 @@
 NULL
 #' @title
 #' **Team info lookup**
+#' @description
+#' At least one of \code{year} or \code{conference} must be supplied; when both are supplied, both are utilized
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
@@ -216,7 +218,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
-#' @importFrom purrr enframe
+#' @importFrom tibble enframe
 #' @export
 #' @examples
 #' \donttest{
