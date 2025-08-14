@@ -6,7 +6,7 @@ cols <- c(
 
 test_that("CFB Recruiting Position Groups", {
   skip_on_cran()
-  x <- cfbd_recruiting_position(2018, team = "Texas")
+  x <- cfbd_recruiting_position(2018, team = "Arkansas")
 
   y <- cfbd_recruiting_position(2016, 2020, team = "Virginia")
 
