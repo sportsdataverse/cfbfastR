@@ -476,7 +476,7 @@ cfbd_team_roster <- function(year, team = NULL) {
         dplyr::mutate(
           headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
         as.data.frame()
-      df$recruit_ids <- lapply(df$recruitIds, function(y){
+      df$recruitIds <- lapply(df$recruitIds, function(y){
         if(length(y) == 0) as.integer(0) else y
       })
 
