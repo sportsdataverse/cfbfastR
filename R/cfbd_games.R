@@ -188,15 +188,15 @@ cfbd_game_info <- function(year,
 
         colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
         df <- df %>%
-          dplyr::rename(
-            "game_id" = "id",
-            "home_division" = "home_classification",
-            "home_post_win_prob" = "home_postgame_win_probability",
-            "away_division" = "away_classification",
-            "away_post_win_prob" = "away_postgame_win_probability"
-          )
+          dplyr::rename("game_id" = "id")
       }
       df <- df %>%
+        dplyr::rename(
+          "home_division" = "home_classification",
+          "home_post_win_prob" = "home_postgame_win_probability",
+          "away_division" = "away_classification",
+          "away_post_win_prob" = "away_postgame_win_probability"
+        ) %>% 
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
