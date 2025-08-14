@@ -16,7 +16,8 @@
 #'   \item{`state`:character.}{Venue state.}
 #'   \item{`zip`:character.}{Venue zip.}
 #'   \item{`country_code`:character.}{Venue country code.}
-#'   \item{`location`:list.}{Venue location.}
+#'   \item{`latitude`:double.}{Venue latitude.}
+#'   \item{`longitude`: double.}{Venue longitude.}
 #'   \item{`elevation`:character.}{Venue elevation.}
 #'   \item{`year_constructed`:integer.}{Year in which the venue was constructed.}
 #'   \item{`dome`:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
@@ -48,7 +49,11 @@ cfbd_venues <- function() {
   df <- res %>%
     httr::content(as = "text", encoding = "UTF-8") %>%
     jsonlite::fromJSON() %>%
-    dplyr::rename("venue_id" = "id") %>%
+    dplyr::rename(
+      "venue_id" = "id",
+      "year_constructed" = contructionYear,
+      "country_code" = countryCode
+    ) %>%
     as.data.frame()
 
 
