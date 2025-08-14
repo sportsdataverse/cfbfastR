@@ -77,6 +77,7 @@ NULL
 #'   \item{`alt_name3`: character.}{Team alternate name 3 (as it appears in `play_text`).}
 #'   \item{`conference`: character.}{Conference of team.}
 #'   \item{`division`: character.}{Division of team within the conference.}
+#'   \item{`classification`: character.}{Conference classification (fbs,fcs,ii,iii)}
 #'   \item{`color`: character.}{Team color (primary).}
 #'   \item{`alt_color`: character.}{Team color (alternate).}
 #'   \item{`logos`: character.}{Team logos.}
@@ -178,7 +179,11 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       df <- dplyr::bind_cols(df, locs) %>%
         dplyr::rename(
           team_id = "id",
-          venue_name = "name") %>%
+          venue_name = "name",
+          alt_color = alternateColor,
+          year_constructed = constructionYear
+        ) %>%
+        janitor::clean_names() %>% 
         as.data.frame()
 
 
