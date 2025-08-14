@@ -94,6 +94,7 @@ NULL
 #'   \item{`venue`: character.}{Venue name.}
 #'   \item{`home_id`: integer.}{Home team referencing id.}
 #'   \item{`home_team`: character.}{Home team name.}
+#'   \item{`home_classification``: character.}{Home Conference classification (fbs,fcs,ii,iii)}
 #'   \item{`home_conference`: character.}{Home team conference.}
 #'   \item{`home_division`: character.}{Home team division.}
 #'   \item{`home_points`: integer.}{Home team points.}
@@ -102,6 +103,7 @@ NULL
 #'   \item{`home_postgame_elo`: character.}{Home team post-game ELO rating.}
 #'   \item{`away_id`: integer.}{Away team referencing id.}
 #'   \item{`away_team`: character.}{Away team name.}
+#'   \item{`away_classification`: character.}{Away Conference classification (fbs,fcs,ii,iii)}
 #'   \item{`away_conference`: character.}{Away team conference.}
 #'   \item{`away_division`: character.}{Away team division.}
 #'   \item{`away_points`: integer.}{Away team points.}
@@ -1481,6 +1483,7 @@ cfbd_game_team_stats <- function(year,
 
 
       df <- df %>%
+        dplyr::rename("school" = "team") %>% 
         make_cfbfastR_data("Team stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
