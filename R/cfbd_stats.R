@@ -116,6 +116,7 @@ cfbd_stats_categories <- function() {
 #' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
 #' \describe{
 #'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`season`: integer.}{Season of the game.}
 #'   \item{`week`: integer.}{Game week of the season.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`opponent`: character.}{Opponent team name.}
@@ -478,10 +479,12 @@ cfbd_stats_season_advanced <- function(year,
 #'
 #' @return [cfbd_stats_season_player()] - A data frame with 59 variables:
 #' \describe{
+#'   \item{`year`: integer.}{Season of the player stats.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`athlete_id`: character.}{Athlete referencing id.}
 #'   \item{`player`: character.}{Player name.}
+#'   \item{`position`: character.}{Player position.}
 #'   \item{`category`: character.}{Statistic category.}
 #'   \item{`passing_completions`: double.}{Passing completions.}
 #'   \item{`passing_att`: double.}{Passing attempts.}
@@ -680,7 +683,10 @@ cfbd_stats_season_player <- function(year,
 
       df <- df  %>%
         dplyr::select(-dplyr::any_of(c("category"))) %>%
-        dplyr::select("year", tidyr::everything()) %>%
+        dplyr::select(
+          "year", team, conference, athlete_id, player, position,
+          tidyr::everything(), -season
+        ) %>%
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
