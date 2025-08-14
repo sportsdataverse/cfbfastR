@@ -172,6 +172,9 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
         dplyr::rename(
           "logo" = "logos_1",
           "logo_2" = "logos_2")
+      df <- df %>% 
+        dplyr::rename("alt_name" = "alternateNames") %>% 
+        tidyr::unnest_wider("alt_name", names_sep = "")
       df <- dplyr::bind_cols(df, locs) %>%
         dplyr::rename(
           team_id = "id",
@@ -216,7 +219,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
-#' @importFrom purrr enframe
+#' @importFrom tibble enframe
 #' @export
 #' @examples
 #' \donttest{
