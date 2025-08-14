@@ -19,8 +19,8 @@ test_that("CFB Betting Lines", {
   cols <- c(
     "game_id", "season", "season_type", "week",
     "start_date",
-    "home_team", "home_conference", "home_score",
-    "away_team", "away_conference", "away_score",
+    "home_team", "home_conference", "home_classification", "home_score",
+    "away_team", "away_conference", "away_classification", "away_score",
     "provider", "spread", "formatted_spread",
     "spread_open", "over_under", "over_under_open",
     "home_moneyline", "away_moneyline"
