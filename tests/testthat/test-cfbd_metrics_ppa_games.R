@@ -1,7 +1,7 @@
 
 
 cols <- c(
-  "game_id", "season", "week", "seasonType", "conference", "team",
+  "game_id", "season", "week", "season_type", "conference", "team",
   "opponent", "off_overall", "off_passing", "off_rushing", "off_first_down",
   "off_second_down", "off_third_down", "def_overall", "def_passing",
   "def_rushing", "def_first_down", "def_second_down", "def_third_down"
