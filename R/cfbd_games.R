@@ -14,7 +14,6 @@
 #'   \item{`cfbd_game_media()`:}{ Get game media information (TV, radio, etc).}
 #' }
 #' @details
-#'
 #' ### **Get game advanced box score information.**
 #' ```r
 #' cfbd_game_box_advanced(game_id = 401114233)
@@ -45,7 +44,6 @@
 #'
 #' # 7 OTs LSU @ TAMU
 #' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-#' ```
 #' ```
 #' ### **Get weather from games.**
 #' ```r
@@ -352,7 +350,14 @@ cfbd_calendar <- function(year) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        janitor::clean_names()
+        janitor::clean_names() %>% 
+        dplyr::select(
+          season,
+          week,
+          season_type,
+          first_game_start = start_date,
+          last_game_start = end_date
+        )
 
 
       df <- df %>%
