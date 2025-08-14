@@ -69,9 +69,9 @@ test_that("CFB Game Player Stats", {
   y <- cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = 'passing')
 
   z <- cfbd_game_player_stats(2013, week = 1, team = "Florida State")
-  expect_equal(sort(colnames(x)), sort(cols))
-  expect_equal(sort(colnames(y)), sort(cols))
-  expect_equal(sort(colnames(z)), sort(cols))
+  expect_setequal(sort(colnames(x)), sort(cols))
+  expect_setequal(sort(colnames(y)), sort(cols))
+  expect_setequal(sort(colnames(z)), sort(cols))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")

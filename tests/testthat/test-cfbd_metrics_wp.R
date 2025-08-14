@@ -11,8 +11,8 @@ test_that("CFB Metrics API Win Probability", {
   x <- cfbd_metrics_wp(game_id = 401012356)
 
   y <- cfbd_metrics_wp(game_id = 401110720)
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

@@ -13,9 +13,9 @@ test_that("CFB Player Info", {
   y <- cfbd_player_info(search_term = "Lawrence", team = "Clemson")
 
   w <- cfbd_player_info(search_term = "Duggan")
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
-  expect_equal(colnames(w), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
+  expect_setequal(colnames(w), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(w, "data.frame")

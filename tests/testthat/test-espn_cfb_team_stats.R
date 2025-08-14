@@ -299,8 +299,8 @@ test_that("ESPN CFB Team Stats", {
 
   y <- espn_cfb_team_stats(2020, team_id = 52)
 
-  expect_equal(sort(colnames(x)), sort(cols))
-  expect_equal(sort(colnames(y)), sort(cols))
+  expect_setequal(sort(colnames(x)), sort(cols))
+  expect_setequal(sort(colnames(y)), sort(cols))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

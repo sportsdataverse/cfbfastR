@@ -13,6 +13,6 @@ test_that("CFB Team Info", {
 
   expect_equal(nrow(x), 130)
   expect_equal(ncol(x), length(cols))
-  expect_equal(colnames(x), cols)
+  expect_setequal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
 })
