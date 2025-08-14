@@ -1124,7 +1124,19 @@ cfbd_game_records <- function(year,
           "away_games" = "awayGames.games",
           "away_wins" = "awayGames.wins",
           "away_losses" = "awayGames.losses",
-          "away_ties" = "awayGames.ties"
+          "away_ties" = "awayGames.ties",
+          "neutral_games" = "neutralSiteGames.games",
+          "neutral_wins" = "neutralSiteGames.wins",
+          "neutral_losses" = "neutralSiteGames.losses",
+          "neutral_ties" = "neutralSiteGames.ties",,
+          "regular_season_games" = "regularSeason.games",
+          "regular_season_wins" = "regularSeason.wins",
+          "regular_season_losses" = "regularSeason.losses",
+          "regular_season_ties" = "regularSeason.ties",
+          "postseason_games" = "postseason.games",
+          "postseason_wins" = "postseason.wins",
+          "postseason_losses" = "postseason.losses",
+          "postseason_ties" = "postseason.ties"
         )
 
       df <- df %>%
