@@ -271,7 +271,7 @@ cfbd_play_stats_player <- function(year = NULL,
   validate_year(year)
   validate_week(week)
   validate_id(game_id)
-  validate_id(athlete)
+  validate_id(athlete_id)
   validate_id(stat_type_id)
   validate_season_type(season_type)
 
