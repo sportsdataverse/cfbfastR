@@ -98,6 +98,7 @@ NULL
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
+#' @importFrom datasets state.abb
 #' @export
 #' @examples
 #' \donttest{
