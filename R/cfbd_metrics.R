@@ -54,6 +54,7 @@ NULL
 #'   \item{`game_id`: integer.}{Referencing game id.}
 #'   \item{`season`: integer.}{Season of the game.}
 #'   \item{`week`: integer.}{Game week of the season.}
+#'   \item{`season_type`: character.}{{Season Type (regular, postseason, etc.}}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`opponent`: character.}{Team Opponent.}
@@ -126,7 +127,10 @@ cfbd_metrics_ppa_games <- function(year,
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
       df <- df %>%
-        dplyr::rename("game_id" = "gameId") %>%
+        dplyr::rename(
+          "game_id" = "gameId",
+          "season_type" = "seasonType"
+        ) %>%
         as.data.frame()
 
       df <- df %>%
