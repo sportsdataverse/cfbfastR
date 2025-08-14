@@ -1,5 +1,5 @@
 cols <- c(
-  "year", "team", "conference", "athlete_id", "player",
+  "year", "team", "conference", "athlete_id", "player", "position",
   "passing_completions", "passing_att", "passing_pct", "passing_yds",
   "passing_td", "passing_int", "passing_ypa",
   "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long",

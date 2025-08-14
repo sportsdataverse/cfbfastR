@@ -1,6 +1,6 @@
 
 cols <- c(
-  "game_id", "week", "team", "opponent", "off_plays", "off_drives",
+  "game_id", "season", "week", "team", "opponent", "off_plays", "off_drives",
   "off_ppa", "off_total_ppa", "off_success_rate", "off_explosiveness",
   "off_power_success", "off_stuff_rate", "off_line_yds", "off_line_yds_total",
   "off_second_lvl_yds", "off_second_lvl_yds_total", "off_open_field_yds",
