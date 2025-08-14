@@ -263,7 +263,7 @@ validate_week <- function(week = NULL){
 }
 
 validate_range <- function(var, min = NULL, max = NULL){
-  if(!is.null(var)){
+  if(!is.null(var) && length(var) != 0){
     checks <- c(
       lower_check <- is.null(min) || (var >= min),
       upper_check <- is.null(max) || (var <= max)
