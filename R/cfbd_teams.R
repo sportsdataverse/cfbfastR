@@ -481,6 +481,7 @@ cfbd_team_roster <- function(year, team = NULL) {
       })
 
       df <- df %>%
+        janitor::clean_names() %>% 
         make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -544,7 +545,8 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
-        dplyr::mutate(talent = as.numeric(.data$talent))
+        dplyr::mutate(talent = as.numeric(.data$talent)) %>% 
+        dplyr::rename(school = team)
 
 
       df <- df %>%
