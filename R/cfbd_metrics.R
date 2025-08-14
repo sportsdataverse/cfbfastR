@@ -167,6 +167,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' \describe{
 #'   \item{`season`: integer.}{Season of the game.}
 #'   \item{`week`: integer.}{Game week of the season.}
+#'   \item{`athlete_id`}: character.}{Athlete referencing id.}
 #'   \item{`name`: character.}{Athlete name.}
 #'   \item{`position`: character.}{Athlete position.}
 #'   \item{`team`: character.}{Team name.}
@@ -241,7 +242,11 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
       # Get the content, flatten and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE)
+        jsonlite::fromJSON(flatten = TRUE) %>% 
+        dplyr::rename(
+          "season_type" = "seasonType",
+          "athlete_id" = "id"
+        )
       colnames(df) <- gsub("averagePPA.", "avg_PPA_", colnames(df))
 
       df <- df %>%
