@@ -54,5 +54,7 @@ jobs:
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         with:
           upload-snapshots: true
