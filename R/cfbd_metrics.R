@@ -54,7 +54,7 @@ NULL
 #'   \item{`game_id`: integer.}{Referencing game id.}
 #'   \item{`season`: integer.}{Season of the game.}
 #'   \item{`week`: integer.}{Game week of the season.}
-#'   \item{`season_type`: character.}{{Season Type (regular, postseason, etc.}}
+#'   \item{`season_type`: character.}{Season Type (regular, postseason, etc.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`opponent`: character.}{Team Opponent.}
