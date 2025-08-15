@@ -81,7 +81,7 @@
 #'   \item{`log_ydstogo`: double.}{.}
 #'   \item{`ExpScoreDiff`: double.}{.}
 #'   \item{`ExpScoreDiff_Time_Ratio`: double.}{.}
-#'   \item{`half__minutes`: double.}{.}
+#'   \item{`half_clock_minutes`: double.}{.}
 #'   \item{`TimeSecsRem`: double.}{.}
 #'   \item{`adj_TimeSecsRem`: double.}{.}
 #'   \item{`Goal_To_Go`: logical.}{.}
