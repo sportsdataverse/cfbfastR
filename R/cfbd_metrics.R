@@ -167,7 +167,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' \describe{
 #'   \item{`season`: integer.}{Season of the game.}
 #'   \item{`week`: integer.}{Game week of the season.}
-#'   \item{`athlete_id`}: character.}{Athlete referencing id.}
+#'   \item{`athlete_id`: character.}{Athlete referencing id.}
 #'   \item{`name`: character.}{Athlete name.}
 #'   \item{`position`: character.}{Athlete position.}
 #'   \item{`team`: character.}{Team name.}
