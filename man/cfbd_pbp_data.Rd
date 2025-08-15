@@ -102,7 +102,7 @@ A data frame with 351 variables:
 \item{\code{log_ydstogo}: double.}{.}
 \item{\code{ExpScoreDiff}: double.}{.}
 \item{\code{ExpScoreDiff_Time_Ratio}: double.}{.}
-\item{\code{half__minutes}: double.}{.}
+\item{\code{half_clock_minutes}: double.}{.}
 \item{\code{TimeSecsRem}: double.}{.}
 \item{\code{adj_TimeSecsRem}: double.}{.}
 \item{\code{Goal_To_Go}: logical.}{.}
