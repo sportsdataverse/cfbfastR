@@ -97,8 +97,8 @@ NULL
 #'   \item{`play_type`: character.}{Categorical label of the type of the play.}
 #'   \item{`play_text`: character.}{A text description of the play.}
 #'   \item{`ppa`: character.}{Predicted Points Added (calculated by CFBD).}
-#'   \item{`clock.minutes`: integer.}{Minutes left on the clock.}
-#'   \item{`clock.seconds`: integer.}{Seconds left on the clock.}
+#'   \item{`clock_minutes`: integer.}{Minutes left on the clock.}
+#'   \item{`clock_seconds`: integer.}{Seconds left on the clock.}
 #' }
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

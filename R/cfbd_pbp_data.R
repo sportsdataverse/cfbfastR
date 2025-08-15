@@ -474,7 +474,10 @@ cfbd_pbp_data <- function(year,
   colnames(clean_drive_df) <- paste0("drive_", colnames(clean_drive_df))
 
   play_df <- raw_play_df %>%
-    janitor::clean_names() %>%
+    janitor::clean_names() %>% 
+    dplyr::rename(
+      yard_line = yardline
+    ) %>% 
     dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
     dplyr::left_join(clean_drive_df,
       by = c(
