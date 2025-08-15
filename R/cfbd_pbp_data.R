@@ -1037,16 +1037,16 @@ add_play_counts <- function(play_df) {
       )
       # TO-DO: define a fix for end of period plays on possession changing plays
     ) %>%
-    tidyr::fill(.data$receives_2H_kickoff) %>%
+    tidyr::fill(receives_2H_kickoff) %>%
     dplyr::mutate(
       offense_receives_2H_kickoff = dplyr::case_when(
-        .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
-        .data$offense_play == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
+        .data$offense_play == .data$home & receives_2H_kickoff == 1 ~ 1,
+        .data$offense_play == .data$away & receives_2H_kickoff == 0 ~ 1,
         TRUE ~ 0
       ),
       pos_team_receives_2H_kickoff = dplyr::case_when(
-        .data$pos_team == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
-        .data$pos_team == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
+        .data$pos_team == .data$home & receives_2H_kickoff == 1 ~ 1,
+        .data$pos_team == .data$away & receives_2H_kickoff == 0 ~ 1,
         TRUE ~ 0
       )
     ) %>%
@@ -1830,7 +1830,7 @@ prep_epa_df_after <- function(dat) {
       new_TimeSecsRem = ifelse(!is.na(.data$lead_TimeSecsRem), .data$lead_TimeSecsRem, 0),
       new_Goal_To_Go = ifelse(.data$new_yardline <= .data$new_distance, TRUE, FALSE),
       # new under two minute warnings
-      new_Under_two = .data$new_TimeSecsRem <= 120,
+      new_Under_two = new_TimeSecsRem <= 120,
       #----- Series/down-set variable creation --------
       # TODO - Add these variables to the documentation and select outputs
       row = 1:dplyr::n(),
@@ -1874,7 +1874,7 @@ prep_epa_df_after <- function(dat) {
       )
   )
   dat <- dat %>%
-    dplyr::mutate_at(vars(.data$new_TimeSecsRem), ~ replace_na(., 0)) %>%
+    dplyr::mutate_at(vars(new_TimeSecsRem), ~ replace_na(., 0)) %>%
     dplyr::group_by(.data$game_id, .data$half, .data$drive_id) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(

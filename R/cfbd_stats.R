@@ -671,13 +671,14 @@ cfbd_stats_season_player <- function(year,
 
       # Check if Category is Null
       if (is.null(category)) {
+        suppressWarnings(
         df <- df %>%
           dplyr::select(-dplyr::any_of(c("category"))) %>%
           dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
           dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
           dplyr::arrange(.data$year, .data$athlete_id) %>%
           dplyr::ungroup() %>%
-          dplyr::mutate_all(function(x) replace(x, is.nan(x), NA))
+          dplyr::mutate_all(function(x) replace(x, is.nan(x), NA)))
       }
 
 
