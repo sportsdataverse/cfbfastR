@@ -17,7 +17,8 @@ A data frame with 337 rows and 13 variables:
 \item{\code{state}:character.}{Venue state.}
 \item{\code{zip}:character.}{Venue zip.}
 \item{\code{country_code}:character.}{Venue country code.}
-\item{\code{location}:list.}{Venue location.}
+\item{\code{latitude}:double.}{Venue latitude.}
+\item{\code{longitude}: double.}{Venue longitude.}
 \item{\code{elevation}:character.}{Venue elevation.}
 \item{\code{year_constructed}:integer.}{Year in which the venue was constructed.}
 \item{\code{dome}:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}

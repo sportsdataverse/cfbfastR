@@ -56,10 +56,11 @@ cfbd_game_info(2018, week = 7, conference = "Ind")
 # 7 OTs LSU @ TAMU
 cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
 }\if{html}{\out{</div>}}
+}
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{### **Get weather from games.**
-```r
-cfbd_game_weather(2018, week = 1)
+\subsection{\strong{Get weather from games.}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_game_weather(2018, week = 1)
 
 cfbd_game_info(2018, week = 7, conference = "Ind")
 }\if{html}{\out{</div>}}

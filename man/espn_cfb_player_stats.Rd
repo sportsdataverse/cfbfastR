@@ -37,8 +37,13 @@ Returns a tibble with the following columns:\tabular{ll}{
    birth_place_city \tab character \cr
    birth_place_state \tab character \cr
    birth_place_country \tab character \cr
+   birth_country_alternate_id \tab character \cr
+   birth_country_abbreviation \tab character \cr
    slug \tab character \cr
    jersey \tab character \cr
+   flag_href \tab character \cr
+   flag_alt \tab character \cr
+   flag_x_country_flag \tab character \cr
    position_id \tab character \cr
    position_name \tab character \cr
    position_display_name \tab character \cr
@@ -162,6 +167,7 @@ Returns a tibble with the following columns:\tabular{ll}{
    scoring_defensive_points \tab numeric \cr
    scoring_field_goals \tab numeric \cr
    scoring_kick_extra_points \tab numeric \cr
+   scoring_kick_extra_points_made \tab numeric \cr
    scoring_misc_points \tab numeric \cr
    scoring_passing_touchdowns \tab numeric \cr
    scoring_receiving_touchdowns \tab numeric \cr
@@ -194,6 +200,8 @@ Returns a tibble with the following columns:\tabular{ll}{
    defensive_kicks_blocked \tab logical \cr
    defensive_long_interception \tab logical \cr
    defensive_misc_touchdowns \tab logical \cr
+   defensive_missed_field_goal_return_td \tab numeric \cr
+   defensive_blocked_punt_ez_rec_td \tab numeric \cr
    defensive_passes_batted_down \tab logical \cr
    defensive_passes_defended \tab logical \cr
    defensive_two_pt_returns \tab logical \cr

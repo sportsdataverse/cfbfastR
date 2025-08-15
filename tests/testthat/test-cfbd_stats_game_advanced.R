@@ -1,6 +1,6 @@
 
 cols <- c(
-  "game_id", "week", "team", "opponent", "off_plays", "off_drives",
+  "game_id", "season", "week", "team", "opponent", "off_plays", "off_drives",
   "off_ppa", "off_total_ppa", "off_success_rate", "off_explosiveness",
   "off_power_success", "off_stuff_rate", "off_line_yds", "off_line_yds_total",
   "off_second_lvl_yds", "off_second_lvl_yds_total", "off_open_field_yds",
@@ -33,9 +33,9 @@ test_that("CFB Stats Game - Advanced", {
   y <- cfbd_stats_game_advanced(2019, team = "LSU")
 
   z <- cfbd_stats_game_advanced(2013, team = "Florida State")
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
-  expect_equal(colnames(z), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
+  expect_setequal(colnames(z), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")

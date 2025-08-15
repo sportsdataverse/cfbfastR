@@ -23,9 +23,11 @@
 #'   \item{start_date:character.}{Start Date}
 #'   \item{home_team:character.}{Home D-I Team.}
 #'   \item{home_conference:character.}{Home D-I Conference.}
+#'   \item{home_classification:character.}{Home Conference classification (fbs,fcs,ii,iii)}
 #'   \item{home_score:integer.}{Home Score.}
 #'   \item{away_team:character.}{Away D-I Team.}
 #'   \item{away_conference:character.}{Away D-I Conference.}
+#'   \item{away_classification:character.}{Away Conference classification (fbs,fcs,ii,iii)}
 #'   \item{away_score:integer.}{Away Score.}
 #'   \item{provider:character.}{Line provider.}
 #'   \item{spread:character.}{Spread for the game.}

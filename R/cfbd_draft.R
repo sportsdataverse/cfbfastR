@@ -169,6 +169,7 @@ cfbd_draft_positions <- function() {
 #'   \item{`college_id`: integer}{College team referencing id.}
 #'   \item{`college_team`: character}{College team name.}
 #'   \item{`college_conference`: character}{Conference of college team.}
+#'   \item{`nfl_team_id`: integer.}{NFL team ID.}
 #'   \item{`nfl_team`: character}{NFL team name of drafted player.}
 #'   \item{`year`: integer.}{NFL draft class year.}
 #'   \item{`overall`: integer.}{Overall draft pick number.}

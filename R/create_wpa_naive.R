@@ -99,8 +99,8 @@ create_wpa_naive <- function(df, wp_model) {
       tidyr::fill("receives_2H_kickoff") %>%
       dplyr::mutate(
         offense_receives_2H_kickoff = case_when(
-          .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
-          .data$offense_play == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
+          .data$offense_play == .data$home & receives_2H_kickoff == 1 ~ 1,
+          .data$offense_play == .data$away & receives_2H_kickoff == 0 ~ 1,
           TRUE ~ 0
         ),
         EPA = .data$ep_after - .data$ep_before,

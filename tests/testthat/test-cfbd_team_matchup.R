@@ -7,8 +7,8 @@
 #           'venue', 'home_team','home_score','away_team','away_score','winner')
 #
 # test_that("CFB Team Matchup", {
-#   expect_equal(colnames(x), cols)
-#   expect_equal(colnames(y), cols)
+#   expect_setequal(colnames(x), cols)
+#   expect_setequal(colnames(y), cols)
 #   expect_s3_class(x, "data.frame")
 #   expect_s3_class(y, "data.frame")
 # })

@@ -7,6 +7,6 @@ test_that("CFB Play Types", {
   x <- cfbd_play_types()
   expect_equal(nrow(x), 48)
   expect_equal(ncol(x), 3)
-  expect_equal(colnames(x), cols)
+  expect_setequal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
 })

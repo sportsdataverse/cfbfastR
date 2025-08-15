@@ -13,12 +13,13 @@ cfbd_team_info(
 \arguments{
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+Required if year not provided}
 
 \item{only_fbs}{(\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.
 If year is left blank while only_fbs is TRUE, then will return values for most current year}
 
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year. Required if conference not provided}
 }
 \value{
 \code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 12 variables:
@@ -32,6 +33,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{\code{alt_name3}: character.}{Team alternate name 3 (as it appears in \code{play_text}).}
 \item{\code{conference}: character.}{Conference of team.}
 \item{\code{division}: character.}{Division of team within the conference.}
+\item{\code{classification}: character.}{Conference classification (fbs,fcs,ii,iii)}
 \item{\code{color}: character.}{Team color (primary).}
 \item{\code{alt_color}: character.}{Team color (alternate).}
 \item{\code{logos}: character.}{Team logos.}

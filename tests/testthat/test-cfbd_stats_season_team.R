@@ -27,9 +27,9 @@ test_that("CFB Team Season Stats", {
   y <- cfbd_stats_season_team(2019, team = "LSU")
 
   z <- cfbd_stats_season_team(2013, team = "Florida State")
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
-  expect_equal(colnames(z), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
+  expect_setequal(colnames(z), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")

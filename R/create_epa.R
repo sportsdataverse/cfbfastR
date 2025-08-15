@@ -4,9 +4,9 @@
 #' **Create EPA**
 #' @description Adds Expected Points calculations to Play-by-Play data.frame
 #'
-#' @param clean_pbp_dat (*data.frame* required): Clean PBP as input from [cfbd_pbp_data()]
-#' @param ep_model (*model* default ```cfbfastR```'s `ep_model`): Expected Points (EP) Model
-#' @param fg_model (*model* default ```cfbfastR```'s `fg_model`): Field Goal (FG) Model
+#' @param play_df (*data.frame* required): Clean PBP as input from [cfbd_pbp_data()]
+#' @param ep_model (*model* default `cfbfastR`'s `ep_model`): Expected Points (EP) Model
+#' @param fg_model (*model* default `cfbfastR`'s `fg_model`): Field Goal (FG) Model
 #' @details Code Description
 #' \describe{
 #'   \item{1. `pred_df`:}{Use select before play model variables -> Make predictions.}
@@ -403,8 +403,8 @@ create_epa <- function(play_df,
       "game_play_number",
       "pos_team",
       "def_pos_team",
-      "clock.minutes",
-      "clock.seconds",
+      "clock_minutes",
+      "clock_seconds",
       "half",
       "period",
       "TimeSecsRem",
@@ -471,10 +471,10 @@ create_epa <- function(play_df,
 }
 
 #' @rdname create_epa
-#' @param df (__data.frame__ required): Clean Play-By-Play data.frame as can be pulled from [clean_pbp_dat()]
+#' @param dat (__data.frame__ required): Clean Play-By-Play data.frame as can be pulled from [clean_pbp_dat()]
 #' @param current_probs (__data.frame__ required): Expected Points (EP) model raw probability outputs from initial prediction
-#' @param ep_model (__model__, default ```cfbfastR```'s `ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
-#' @param fg_mod (__model__, default ```cfbfastR```'s `fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
+#' @param ep_model (__model__, default `cfbfastR`'s `ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
+#' @param fg_mod (__model__, default `cfbfastR`'s `fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #'
 #' @keywords internal
 #' @importFrom mgcv predict.bam

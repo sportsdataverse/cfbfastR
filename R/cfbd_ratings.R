@@ -145,7 +145,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if year not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:

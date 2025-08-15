@@ -4,10 +4,14 @@
 \alias{cfbd_player_returning}
 \title{\strong{Get player returning production}}
 \usage{
-cfbd_player_returning(year = 2019, team = NULL, conference = NULL)
+cfbd_player_returning(
+  year = most_recent_cfb_season(),
+  team = NULL,
+  conference = NULL
+)
 }
 \arguments{
-\item{year}{(\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required, default most recent season): Year, 4 digit format (\emph{YYYY}).}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 

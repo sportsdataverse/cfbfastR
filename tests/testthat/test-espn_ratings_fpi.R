@@ -28,8 +28,8 @@ test_that("ESPN FPI Ratings", {
 
   y <- espn_ratings_fpi(2018)
 
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

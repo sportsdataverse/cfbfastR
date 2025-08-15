@@ -13,9 +13,9 @@ cfbd_recruiting_player(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) - Minimum: 2000, Maximum: 2020 currently}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) - Minimum: 2000. Required if team not provided}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 
 \item{recruit_type}{(\emph{String} optional): default API return is 'HighSchool', other options include 'JUCO'
 or 'PrepSchool'  - For position group information}

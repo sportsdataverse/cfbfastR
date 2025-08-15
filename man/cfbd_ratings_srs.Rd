@@ -7,9 +7,9 @@
 cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC

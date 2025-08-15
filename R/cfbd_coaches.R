@@ -84,7 +84,8 @@ cfbd_coaches <- function(first = NULL,
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest("seasons") %>%
-        dplyr::arrange(.data$year)
+        dplyr::arrange(.data$year) %>% 
+        janitor::clean_names()
 
       df <- df %>%
         make_cfbfastR_data("Coaches data from CollegeFootballData.com",Sys.time())

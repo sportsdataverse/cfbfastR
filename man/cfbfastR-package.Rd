@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbfastR-package.R, R/utils.R
 \docType{package}
 \name{cfbfastR-package}
-\alias{cfbfastR}
 \alias{cfbfastR-package}
 \title{cfbfastR: Access College Football Play by Play Data}
 \description{
@@ -53,6 +52,7 @@ Other contributors:
   \item Matt Spencer \email{maatspencer@gmail.com} [contributor]
   \item Sebastian Carl \email{mrcaseb@gmail.com} [contributor]
   \item John Edwards \email{edwards1860@gmail.com} [contributor]
+  \item Brad Hill \email{bradhill119@gmail.com} [contributor]
 }
 
 }

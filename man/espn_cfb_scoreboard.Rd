@@ -41,6 +41,7 @@ shared variables
 \item{\code{game_uid}: character.}{}
 \item{\code{game_date}: character.}{Game date.}
 \item{\code{attendance}: integer.}{Reported attendance at the game.}
+\item{\code{play_by_play_available}: logical}{}
 \item{\code{home_team_name}: character.}{Home team mascot name (Sun Devils).}
 \item{\code{home_team_logo}: character.}{Home team logo url.}
 \item{\code{home_team_abb}: character.}{Home team abbreviation (ASU).}
@@ -89,6 +90,45 @@ Unique variables when there are completed games
 \item{\code{receiving_leader_headshot}: character.}{Headshot url of game's receiving leader}
 \item{\code{receiving_leader_team_id}: character.}{Team ID of game's receiving leader}
 \item{\code{receiving_leader_pos}: character.}{Position of game's receiving leader}
+}
+
+\code{\link[=espn_cfb_schedule]{espn_cfb_schedule()}} - A data frame with 8 variables:
+\describe{
+\item{\code{matchup}: character.}{.}
+\item{\code{matchup_short}: character.}{.}
+\item{\code{season}: integer.}{.}
+\item{\code{type}: character.}{.}
+\item{\code{slug}: character.}{.}
+\item{\code{game_id}: character.}{.}
+\item{\code{game_uid}: character.}{.}
+\item{\code{game_date}: Date.}{.}
+\item{\code{attendance}: integer.}{.}
+\item{\code{date_valid}: logical.}{.}
+\item{\code{play_by_play_available}: logical.}{.}
+\item{\code{home_team_name}: character.}{.}
+\item{\code{home_team_logo}: character.}{.}
+\item{\code{home_team_abb}: character.}{.}
+\item{\code{home_team_id}: character.}{.}
+\item{\code{home_team_location}: character.}{.}
+\item{\code{home_team_full}: character.}{.}
+\item{\code{home_team_color}: character.}{.}
+\item{\code{home_score}: integer.}{.}
+\item{\code{home_win}: integer.}{.}
+\item{\code{home_record}: character.}{.}
+\item{\code{away_team_name}: character.}{.}
+\item{\code{away_team_logo}: character.}{.}
+\item{\code{away_team_abb}: character.}{.}
+\item{\code{away_team_id}: character.}{.}
+\item{\code{away_team_location}: character.}{.}
+\item{\code{away_team_full}: character.}{.}
+\item{\code{away_team_color}: character.}{.}
+\item{\code{away_score}: integer.}{.}
+\item{\code{away_win}: integer.}{.}
+\item{\code{away_record}: character.}{.}
+\item{\code{status_name}: character.}{.}
+\item{\code{start_date}: character.}{.}
+\item{\code{highlights}: logical.}{.}
+\item{\code{game_date_time}: datetime.}{.}
 }
 }
 \description{

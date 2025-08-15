@@ -72,8 +72,8 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 \item{\code{play_type}: character.}{Categorical label of the type of the play.}
 \item{\code{play_text}: character.}{A text description of the play.}
 \item{\code{ppa}: character.}{Predicted Points Added (calculated by CFBD).}
-\item{\code{clock.minutes}: integer.}{Minutes left on the clock.}
-\item{\code{clock.seconds}: integer.}{Seconds left on the clock.}
+\item{\code{clock_minutes}: integer.}{Minutes left on the clock.}
+\item{\code{clock_seconds}: integer.}{Seconds left on the clock.}
 }
 }
 \description{

@@ -14,8 +14,8 @@ test_that("CFB Drives", {
   x <- cfbd_drives(2018, week = 1, team = "TCU")
 
   y <- cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

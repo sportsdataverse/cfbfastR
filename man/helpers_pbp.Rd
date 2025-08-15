@@ -43,7 +43,7 @@ penalty_detection(raw_df)
 The original \code{play_df} with the following columns appended/redefined:
 \describe{
 \item{\code{game_play_number}.}{.}
-\item{\code{half_clock.minutes}.}{.}
+\item{\code{half_clock_minutes}.}{.}
 \item{\code{TimeSecsRem}.}{.}
 \item{\code{Under_two}.}{.}
 \item{\code{half}.}{.}
@@ -295,8 +295,8 @@ Requires the following columns to be present
 \describe{
 \item{\code{game_id}}{.}
 \item{\code{id_play}}{.}
-\item{\code{clock.minutes}}{.}
-\item{\code{clock.seconds}}{.}
+\item{\code{clock_minutes}}{.}
+\item{\code{clock_seconds}}{.}
 \item{\code{half}}{.}
 \item{\code{period}}{.}
 \item{\code{offense_play}}{.}
@@ -332,7 +332,7 @@ Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column. Requires
 }
 
 Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:
-\itemize{
+\describe{
 \item{\code{rush}}{.}
 \item{\code{pass}}{.}
 \item{\code{play_text}}{.}
@@ -386,7 +386,7 @@ Requires the following columns to be present
 }
 
 Runs penalty detection on the play text and play types. Requires the following columns be present:
-\itemize{
+\describe{
 \item{\code{game_id}}{Referencing game id.}
 \item{\code{period}}{Game period (quarter).}
 \item{\code{down}}{Down of the play.}

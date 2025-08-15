@@ -227,7 +227,7 @@ get_req <- function(full_url){
 # Edge Case Handling ----
 handle_accents <- function(var = NULL){
   if(!is.null(var)){
-    var <- ifelse(var == "San Jose State", "San José State", var)
+    var <- ifelse(var == "San Jose State", "San Jos\u00e9 State", var)
   }
   var
 }
@@ -263,7 +263,7 @@ validate_week <- function(week = NULL){
 }
 
 validate_range <- function(var, min = NULL, max = NULL){
-  if(!is.null(var)){
+  if(!is.null(var) && length(var) != 0){
     checks <- c(
       lower_check <- is.null(min) || (var >= min),
       upper_check <- is.null(max) || (var <= max)

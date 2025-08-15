@@ -5,7 +5,7 @@
 \title{\strong{Get player usage metrics}}
 \usage{
 cfbd_player_usage(
-  year = 2019,
+  year = most_recent_cfb_season(),
   team = NULL,
   conference = NULL,
   position = NULL,
@@ -14,7 +14,7 @@ cfbd_player_usage(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required, default most recent season): Year, 4 digit format (\emph{YYYY}).}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 

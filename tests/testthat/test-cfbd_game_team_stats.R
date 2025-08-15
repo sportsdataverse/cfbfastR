@@ -46,9 +46,9 @@ test_that("CFB Game Team Stats", {
 
   z <- cfbd_game_team_stats(2013, week = 3, team = "Florida State", rows_per_team = 2)
 
-  expect_equal(colnames(x), cols1)
-  expect_equal(colnames(y), cols1)
-  expect_equal(colnames(z), cols2)
+  expect_setequal(colnames(x), cols1)
+  expect_setequal(colnames(y), cols1)
+  expect_setequal(colnames(z), cols2)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")

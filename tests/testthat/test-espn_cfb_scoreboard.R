@@ -35,7 +35,9 @@ test_that("ESPN CFB Scoreboard", {
     "away_win",
     "away_record",
     "status_name",
-    "start_date"
+    "start_date",
+    "date_valid",
+    "highlights"
   )
 
   x <- espn_cfb_scoreboard() %>%
@@ -58,8 +60,8 @@ test_that("ESPN CFB Scoreboard", {
       -dplyr::any_of(c("notes"))
     )
 
-  expect_equal(sort(colnames(x)), sort(cols))
-  expect_equal(sort(colnames(y)), sort(cols))
+  expect_setequal(sort(colnames(x)), sort(cols))
+  expect_setequal(sort(colnames(y)), sort(cols))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })
