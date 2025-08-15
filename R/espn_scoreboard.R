@@ -467,7 +467,8 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
           schedule_out %>% 
           dplyr::mutate(highlights = NA)
       }
-      schedule_out %>%
+      schedule_out <- 
+        schedule_out %>%
         make_cfbfastR_data("Schedule Data from ESPN",Sys.time())
     },
     error = function(e) {
