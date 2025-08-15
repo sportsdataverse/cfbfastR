@@ -67,7 +67,7 @@ load_games <- function(){
 #' by play data table either for the whole cfbfastR era (with `force_rebuild = TRUE`)
 #' or just for specified seasons (e.g. `force_rebuild = c(2019, 2020)`).
 #' Please note the following behavior:
-#' \itemize{
+#' \describe{
 #'  \item{`force_rebuild = TRUE`}{: The data table with the name `tblname`
 #'   will be removed completely and rebuilt from scratch. This is helpful when
 #'   new columns are added during the Off-Season.}

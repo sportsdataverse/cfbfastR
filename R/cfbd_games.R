@@ -1038,9 +1038,9 @@ cfbd_game_player_stats <- function(year,
 #' @return [cfbd_game_records()] - A data frame with 22 variables:
 #' \describe{
 #'   \item{`year`: integer.}{Season of the games.}
-#'   \item{`team_id`: integer.} {Referencing team id.}
+#'   \item{`team_id`: integer.}{Referencing team id.}
 #'   \item{`team`: character.}{Team name.}
-#'   \item(`classification`: character){Conference classification (fbs,fcs,ii,iii)}
+#'   \item{`classification`: character}{Conference classification (fbs,fcs,ii,iii)}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`division`: character.}{Division in the conference of the team.}
 #'   \item{`expected_wins`: numeric}{Expected number of wins based on post-game win probability.}
