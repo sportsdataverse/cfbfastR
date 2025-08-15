@@ -30,6 +30,7 @@ cfbd_stats_game_advanced(
 \code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}} - A data frame with 60 variables:
 \describe{
 \item{\code{game_id}: integer.}{Referencing game id.}
+\item{\code{season}: integer.}{Season of the game.}
 \item{\code{week}: integer.}{Game week of the season.}
 \item{\code{team}: character.}{Team name.}
 \item{\code{opponent}: character.}{Opponent team name.}

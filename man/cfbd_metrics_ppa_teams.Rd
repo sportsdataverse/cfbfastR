@@ -12,9 +12,9 @@ cfbd_metrics_ppa_teams(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 
 \item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference
 Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12

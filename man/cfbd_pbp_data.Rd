@@ -42,8 +42,8 @@ A data frame with 351 variables:
 \item{\code{def_pos_team}: character.}{.}
 \item{\code{half}: integer.}{.}
 \item{\code{period}: integer.}{.}
-\item{\code{clock.minutes}: integer.}{.}
-\item{\code{clock.seconds}: integer.}{.}
+\item{\code{clock_minutes}: integer.}{.}
+\item{\code{clock_seconds}: integer.}{.}
 \item{\code{play_type}: character.}{.}
 \item{\code{play_text}: character.}{.}
 \item{\code{down}: double.}{.}
@@ -102,7 +102,7 @@ A data frame with 351 variables:
 \item{\code{log_ydstogo}: double.}{.}
 \item{\code{ExpScoreDiff}: double.}{.}
 \item{\code{ExpScoreDiff_Time_Ratio}: double.}{.}
-\item{\code{half_clock.minutes}: double.}{.}
+\item{\code{half__minutes}: double.}{.}
 \item{\code{TimeSecsRem}: double.}{.}
 \item{\code{adj_TimeSecsRem}: double.}{.}
 \item{\code{Goal_To_Go}: logical.}{.}
