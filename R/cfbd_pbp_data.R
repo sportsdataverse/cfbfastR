@@ -1191,7 +1191,7 @@ add_play_counts <- function(play_df) {
 #' @importFrom rlang .data
 #' @importFrom dplyr group_by arrange mutate ungroup case_when select lead lag
 #' @importFrom stringr str_detect
-#' @importFrom tidyr fill
+#' @importFrom tidyr fill replace_na
 #' @export
 
 clean_drive_dat <- function(play_df) {
@@ -1874,7 +1874,7 @@ prep_epa_df_after <- function(dat) {
       )
   )
   dat <- dat %>%
-    dplyr::mutate_at(vars(new_TimeSecsRem), ~ replace_na(., 0)) %>%
+    dplyr::mutate_at(vars(new_TimeSecsRem), ~ tidyr::replace_na(., 0)) %>%
     dplyr::group_by(.data$game_id, .data$half, .data$drive_id) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(
