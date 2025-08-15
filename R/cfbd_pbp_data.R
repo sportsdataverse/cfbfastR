@@ -21,8 +21,8 @@
 #'   \item{`def_pos_team`: character.}{.}
 #'   \item{`half`: integer.}{.}
 #'   \item{`period`: integer.}{.}
-#'   \item{`clock.minutes`: integer.}{.}
-#'   \item{`clock.seconds`: integer.}{.}
+#'   \item{`clock_minutes`: integer.}{.}
+#'   \item{`clock_seconds`: integer.}{.}
 #'   \item{`play_type`: character.}{.}
 #'   \item{`play_text`: character.}{.}
 #'   \item{`down`: double.}{.}
@@ -81,7 +81,7 @@
 #'   \item{`log_ydstogo`: double.}{.}
 #'   \item{`ExpScoreDiff`: double.}{.}
 #'   \item{`ExpScoreDiff_Time_Ratio`: double.}{.}
-#'   \item{`half_clock.minutes`: double.}{.}
+#'   \item{`half__minutes`: double.}{.}
 #'   \item{`TimeSecsRem`: double.}{.}
 #'   \item{`adj_TimeSecsRem`: double.}{.}
 #'   \item{`Goal_To_Go`: logical.}{.}
@@ -397,19 +397,20 @@ cfbd_pbp_data <- function(year,
   validate_week(week)
   validate_season_type(season_type)
 
-
+  pt_abb_exists <- TRUE
   if (!is.null(play_type)) {
     text <- play_type %in% cfbfastR::cfbd_play_type_df$text
     abbr <- play_type %in% cfbfastR::cfbd_play_type_df$abbreviation
     validate_list(play_type, allowable_play_types)
 
     if (text) {
-      pt_id <- cfbfastR::cfbd_play_type_df$id[which(cfbfastR::cfbd_play_type_df$text == play_type)]
+      pt_abb <- cfbfastR::cfbd_play_type_df$abbreviation[which(cfbfastR::cfbd_play_type_df$text == play_type)]
+      pt_abb_exists <- !is.null(pt_abb)
     } else {
-      pt_id <- cfbfastR::cfbd_play_type_df$id[which(cfbfastR::cfbd_play_type_df$abbreviation == play_type)]
+      pt_abb <- play_type
     }
   } else {
-    pt_id <- NULL
+    pt_abb <- NULL
   }
 
   # Team Name Handling ----
@@ -422,7 +423,7 @@ cfbd_pbp_data <- function(year,
     "year" = year,
     "week" = week,
     "team" = team,
-    "playType" = pt_id
+    "playType" = pt_abb
   )
   full_url <- httr::modify_url(play_base_url, query=query_params)
 
@@ -508,6 +509,11 @@ cfbd_pbp_data <- function(year,
       season = year,
       wk = week
     )
+  
+  if (!pt_abb_exists){
+    play_df <- play_df %>% 
+      dplyr::filter(tolower(play_type) == tolower(!!play_type))
+  }
 
   if (epa_wpa) {
     if (year <= 2005) {
@@ -576,7 +582,7 @@ cfbd_pbp_data <- function(year,
     play_columns <- c(
       "season", "wk", "id_play", "game_id", "game_play_number", "half_play_number", "drive_play_number",
       "pos_team", "def_pos_team", "pos_team_score", "def_pos_team_score",
-      "half", "period", "clock.minutes", "clock.seconds",
+      "half", "period", "clock_minutes", "clock_seconds",
       "play_type", "play_text",
       "down", "distance", "yards_to_goal", "yards_gained"
     )
@@ -607,7 +613,7 @@ cfbd_pbp_data <- function(year,
     team_columns <- c(
       "change_of_pos_team", "downs_turnover", "turnover",
       "pos_score_diff_start", "pos_score_pts", "log_ydstogo",
-      "ExpScoreDiff", "ExpScoreDiff_Time_Ratio", "half_clock.minutes",
+      "ExpScoreDiff", "ExpScoreDiff_Time_Ratio", "half_clock_minutes",
       "TimeSecsRem", "adj_TimeSecsRem", "Goal_To_Go", "Under_two",
       "home", "away", "home_wp_before", "away_wp_before", "home_wp_after", "away_wp_after",
       "end_of_half", "pos_team_receives_2H_kickoff",
@@ -708,7 +714,7 @@ cfbd_pbp_data <- function(year,
     )
 
     play_df <- play_df %>%
-      select(
+      dplyr::select(
         dplyr::all_of(play_columns),
         dplyr::all_of(model_columns),
         dplyr::all_of(series_columns),
@@ -758,8 +764,8 @@ NULL
 #' \describe{
 #' \item{`game_id`}{.}
 #' \item{`id_play`}{.}
-#' \item{`clock.minutes`}{.}
-#' \item{`clock.seconds`}{.}
+#' \item{`clock_minutes`}{.}
+#' \item{`clock_seconds`}{.}
 #' \item{`half`}{.}
 #' \item{`period`}{.}
 #' \item{`offense_play`}{.}
@@ -776,7 +782,7 @@ NULL
 #' @return The original `play_df` with the following columns appended/redefined:
 #' \describe{
 #' \item{`game_play_number`.}{.}
-#' \item{`half_clock.minutes`.}{.}
+#' \item{`half_clock_minutes`.}{.}
 #' \item{`TimeSecsRem`.}{.}
 #' \item{`Under_two`.}{.}
 #' \item{`half`.}{.}
@@ -953,7 +959,8 @@ add_play_counts <- function(play_df) {
     "Pass Interception Return Touchdown"
   )
 
-  play_df <- play_df %>%
+  play_df <- 
+    play_df %>%
     dplyr::group_by(.data$game_id) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(
@@ -973,9 +980,9 @@ add_play_counts <- function(play_df) {
       event = ifelse(!(.data$play_type %in% c("End Period", "End of Half", "End of Game")), 1, 0),
       game_event_number = cumsum(.data$event),
       game_row_number = 1:dplyr::n(),
-      half_clock.minutes = ifelse(.data$period %in% c(1, 3), 15 +
-        .data$clock.minutes, .data$clock.minutes),
-      TimeSecsRem = .data$half_clock.minutes * 60 + .data$clock.seconds,
+      half_clock_minutes = ifelse(.data$period %in% c(1, 3), 15 +
+        .data$clock_minutes, .data$clock_minutes),
+      TimeSecsRem = .data$half_clock_minutes * 60 + .data$clock_seconds,
       Under_two = .data$TimeSecsRem <= 120,
       Under_three = .data$TimeSecsRem <= 180,
       half = ifelse(.data$period <= 2, 1, 2),
