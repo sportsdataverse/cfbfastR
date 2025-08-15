@@ -358,7 +358,7 @@
 #'
 espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total=FALSE){
   validate_season_type(season_type, allow_both = F)
-  
+
   s_type <- ifelse(season_type == "postseason", 3, 2)
 
   base_url <- "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/"
@@ -786,7 +786,8 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       team_df <- team_df %>%
         dplyr::rename(
           "logo_href" = "logos_href",
-          "logo_dark_href" = "logos_href_1")
+          "logo_dark_href" = "logos_href_1") %>% 
+        dplyr::select(-tidyr::starts_with("logos"))
 
       athlete_df[["links"]] <- NULL
       athlete_df[["injuries"]] <- NULL
