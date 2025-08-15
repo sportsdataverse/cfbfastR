@@ -347,7 +347,7 @@ test_that("ESPN CFB Player Stats", {
   y <- espn_cfb_player_stats(athlete_id = 4360799, year = 2022)
 
   expect_true(all(colnames(x) %in% cols))
-  expect_setequal(sort(colnames(y)), sort(cols))
+  expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

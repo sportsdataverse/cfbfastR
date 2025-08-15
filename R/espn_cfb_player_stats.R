@@ -357,10 +357,8 @@
 #' }
 #'
 espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total=FALSE){
-  if (!(tolower(season_type) %in% c("regular","postseason"))) {
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular or postseason")
-  }
+  validate_season_type(season_type, allow_both = F)
+  
   s_type <- ifelse(season_type == "postseason", 3, 2)
 
   base_url <- "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/"
