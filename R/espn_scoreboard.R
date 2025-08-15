@@ -217,6 +217,9 @@ espn_cfb_scoreboard <- function(date = NULL) {
           janitor::clean_names()
       }
       schedule_out %>%
+        dplyr::mutate(
+          highlights = ifelse('highlights' %in% names(.), highlights, NA)
+        ) %>% 
         make_cfbfastR_data("Live Scoreboard Data from ESPN",Sys.time())
     },
     error = function(e) {
@@ -234,6 +237,45 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #' @param season_type (string): "regular", "postseason", "off-season", or "both".
 #' @param limit (int): number of records to return, default: 500.
+#' 
+#' @return [espn_cfb_schedule()] - A data frame with 8 variables:
+#' \describe{
+#'   \item{`matchup`: character.}{.}
+#'   \item{`matchup_short`: character.}{.}
+#'   \item{`season`: integer.}{.}
+#'   \item{`type`: character.}{.}
+#'   \item{`slug`: character.}{.}
+#'   \item{`game_id`: character.}{.}
+#'   \item{`game_uid`: character.}{.}
+#'   \item{`game_date`: Date.}{.}
+#'   \item{`attendance`: integer.}{.}
+#'   \item{`date_valid`: logical.}{.}
+#'   \item{`play_by_play_available`: logical.}{.}
+#'   \item{`home_team_name`: character.}{.}
+#'   \item{`home_team_logo`: character.}{.}
+#'   \item{`home_team_abb`: character.}{.}
+#'   \item{`home_team_id`: character.}{.}
+#'   \item{`home_team_location`: character.}{.}
+#'   \item{`home_team_full`: character.}{.}
+#'   \item{`home_team_color`: character.}{.}
+#'   \item{`home_score`: integer.}{.}
+#'   \item{`home_win`: integer.}{.}
+#'   \item{`home_record`: character.}{.}
+#'   \item{`away_team_name`: character.}{.}
+#'   \item{`away_team_logo`: character.}{.}
+#'   \item{`away_team_abb`: character.}{.}
+#'   \item{`away_team_id`: character.}{.}
+#'   \item{`away_team_location`: character.}{.}
+#'   \item{`away_team_full`: character.}{.}
+#'   \item{`away_team_color`: character.}{.}
+#'   \item{`away_score`: integer.}{.}
+#'   \item{`away_win`: integer.}{.}
+#'   \item{`away_record`: character.}{.}
+#'   \item{`status_name`: character.}{.}
+#'   \item{`start_date`: character.}{.}
+#'   \item{`highlights`: logical.}{.}
+#'   \item{`game_date_time`: datetime.}{.}
+#' }
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -251,13 +293,8 @@ espn_cfb_scoreboard <- function(date = NULL) {
 
 espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NULL, limit=500){
 
-  if (!is.null(year) && !is.numeric(year) && nchar(year) != 4) {
-    cli::cli_abort("Enter valid year as a number (YYYY)")
-  }
-  if (!is.null(week) && !is.numeric(week) && nchar(week) > 2) {
-    # Check if week is numeric, if not NULL
-    cli::cli_abort("Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)")
-  }
+  validate_year(year)
+  validate_week(week)
 
   if (is.null(week)) {
     week = ''
@@ -424,6 +461,9 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
           janitor::clean_names()
       }
       schedule_out <- schedule_out %>%
+        dplyr::mutate(
+          highlights = ifelse('highlights' %in% names(.), highlights, NA)
+        ) %>% 
         make_cfbfastR_data("Schedule Data from ESPN",Sys.time())
     },
     error = function(e) {

@@ -35,7 +35,9 @@ test_that("ESPN CFB Scoreboard", {
     "away_win",
     "away_record",
     "status_name",
-    "start_date"
+    "start_date",
+    "date_valid",
+    "highlights"
   )
 
   x <- espn_cfb_scoreboard() %>%

@@ -13,6 +13,7 @@ test_that("ESPN CFB Schedule", {
     "game_date",
     "game_date_time",
     "attendance",
+    "date_valid",
     "play_by_play_available",
     "home_team_name",
     "home_team_logo",
@@ -35,7 +36,8 @@ test_that("ESPN CFB Schedule", {
     "away_win",
     "away_record",
     "status_name",
-    "start_date"
+    "start_date",
+    "highlights"
   )
 
   x <- espn_cfb_schedule() %>%
