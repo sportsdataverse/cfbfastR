@@ -216,10 +216,12 @@ espn_cfb_scoreboard <- function(date = NULL) {
           dplyr::select(!where(is.list)) %>%
           janitor::clean_names()
       }
+      if (!"highlights" %in% names(schedule_out)) {
+        schedule_out <- 
+          schedule_out %>% 
+          dplyr::mutate(highlights = NA)
+      }
       schedule_out %>%
-        dplyr::mutate(
-          highlights = ifelse('highlights' %in% names(.), highlights, NA)
-        ) %>% 
         make_cfbfastR_data("Live Scoreboard Data from ESPN",Sys.time())
     },
     error = function(e) {
