@@ -50,7 +50,7 @@ interp_TimeSecsRem <- function(pbp) {
   temp$TimeSecsRem[ind-1] <- 0
   pbp<- pbp %>% 
     mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) %>% 
-    mutate(clock.minutes = floor(TimeSecsRem/60),clock.seconds = TimeSecsRem %% 60)
+    mutate(clock_minutes = floor(TimeSecsRem/60),clock_seconds = TimeSecsRem %% 60)
   return(pbp)
 }
 game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>% 
@@ -89,11 +89,11 @@ game_pbp <- game_pbp %>%
          posteam_score = pos_team_score, defteam_score = def_pos_team_score) %>%
   mutate(game_seconds_remaining = ifelse(half == 1, TimeSecsRem + 1800, TimeSecsRem),
          result = game$result,
-         minlabel = ifelse(clock.minutes >= 15,
-                           ifelse(clock.minutes == 15 & clock.seconds == 0, 15, clock.minutes - 15),
-                           clock.minutes),
+         minlabel = ifelse(clock_minutes >= 15,
+                           ifelse(clock_minutes == 15 & clock_seconds == 0, 15, clock_minutes - 15),
+                           clock_minutes),
          minlabel = ifelse(minlabel < 10, paste0("0", minlabel), minlabel),
-         seclabel = ifelse(clock.seconds < 10, paste0("0", clock.seconds), clock.seconds),
+         seclabel = ifelse(clock_seconds < 10, paste0("0", clock_seconds), clock_seconds),
          time = paste0(minlabel, ":", seclabel)) 
 ```
 
