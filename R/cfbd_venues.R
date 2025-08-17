@@ -51,8 +51,8 @@ cfbd_venues <- function() {
     jsonlite::fromJSON() %>%
     dplyr::rename(
       "venue_id" = "id",
-      "year_constructed" = constructionYear,
-      "country_code" = countryCode
+      "year_constructed" = "constructionYear",
+      "country_code" = "countryCode"
     ) %>%
     as.data.frame()
 

@@ -154,7 +154,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       locs <- df$location
       locs <- locs %>%
         jsonlite::flatten() %>%
-        dplyr::rename(venue_id = "id")
+        dplyr::rename("venue_id" = "id")
       df <- df %>% dplyr::select(-"location")
       # suppressWarnings(
       #   logos_list <- df %>%
@@ -173,17 +173,17 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
         dplyr::rename(
           "logo" = "logos_1",
           "logo_2" = "logos_2")
-      df <- df %>% 
-        dplyr::rename("alt_name" = "alternateNames") %>% 
+      df <- df %>%
+        dplyr::rename("alt_name" = "alternateNames") %>%
         tidyr::unnest_wider("alt_name", names_sep = "")
       df <- dplyr::bind_cols(df, locs) %>%
         dplyr::rename(
-          team_id = "id",
-          venue_name = "name",
-          alt_color = alternateColor,
-          year_constructed = constructionYear
+          "team_id" = "id",
+          "venue_name" = "name",
+          "alt_color" = "alternateColor",
+          "year_constructed" = "constructionYear"
         ) %>%
-        janitor::clean_names() %>% 
+        janitor::clean_names() %>%
         as.data.frame()
 
 
@@ -273,8 +273,8 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       df <- df %>%
         tibble::as_tibble() %>%
         dplyr::mutate(
-          startYear = ifelse(!is.null(min_year), startYear, min_season),
-          endYear = ifelse(!is.null(max_year), endYear, max_season)
+          startYear = ifelse(!is.null(min_year), .data$startYear, min_season),
+          endYear = ifelse(!is.null(max_year), .data$endYear, max_season)
         ) %>%
         dplyr::rename(
           "start_year" = "startYear",
@@ -481,7 +481,7 @@ cfbd_team_roster <- function(year, team = NULL) {
       })
 
       df <- df %>%
-        janitor::clean_names() %>% 
+        janitor::clean_names() %>%
         make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -545,8 +545,8 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
-        dplyr::mutate(talent = as.numeric(.data$talent)) %>% 
-        dplyr::rename(school = team)
+        dplyr::mutate(talent = as.numeric(.data$talent)) %>%
+        dplyr::rename("school" = "team")
 
 
       df <- df %>%

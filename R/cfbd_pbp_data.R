@@ -474,10 +474,10 @@ cfbd_pbp_data <- function(year,
   colnames(clean_drive_df) <- paste0("drive_", colnames(clean_drive_df))
 
   play_df <- raw_play_df %>%
-    janitor::clean_names() %>% 
+    janitor::clean_names() %>%
     dplyr::rename(
-      yard_line = yardline
-    ) %>% 
+      "yard_line" = "yardline"
+    ) %>%
     dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
     dplyr::left_join(clean_drive_df,
       by = c(
@@ -512,9 +512,9 @@ cfbd_pbp_data <- function(year,
       season = year,
       wk = week
     )
-  
+
   if (!pt_abb_exists){
-    play_df <- play_df %>% 
+    play_df <- play_df %>%
       dplyr::filter(tolower(play_type) == tolower(!!play_type))
   }
 
@@ -962,7 +962,7 @@ add_play_counts <- function(play_df) {
     "Pass Interception Return Touchdown"
   )
 
-  play_df <- 
+  play_df <-
     play_df %>%
     dplyr::group_by(.data$game_id) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
@@ -1037,7 +1037,7 @@ add_play_counts <- function(play_df) {
       )
       # TO-DO: define a fix for end of period plays on possession changing plays
     ) %>%
-    tidyr::fill(receives_2H_kickoff) %>%
+    tidyr::fill("receives_2H_kickoff") %>%
     dplyr::mutate(
       offense_receives_2H_kickoff = dplyr::case_when(
         .data$offense_play == .data$home & receives_2H_kickoff == 1 ~ 1,
@@ -1830,7 +1830,7 @@ prep_epa_df_after <- function(dat) {
       new_TimeSecsRem = ifelse(!is.na(.data$lead_TimeSecsRem), .data$lead_TimeSecsRem, 0),
       new_Goal_To_Go = ifelse(.data$new_yardline <= .data$new_distance, TRUE, FALSE),
       # new under two minute warnings
-      new_Under_two = new_TimeSecsRem <= 120,
+      new_Under_two = .data$new_TimeSecsRem <= 120,
       #----- Series/down-set variable creation --------
       # TODO - Add these variables to the documentation and select outputs
       row = 1:dplyr::n(),
@@ -1874,7 +1874,7 @@ prep_epa_df_after <- function(dat) {
       )
   )
   dat <- dat %>%
-    dplyr::mutate_at(vars(new_TimeSecsRem), ~ tidyr::replace_na(., 0)) %>%
+    dplyr::mutate_at(c("new_TimeSecsRem"), ~ tidyr::replace_na(., 0)) %>%
     dplyr::group_by(.data$game_id, .data$half, .data$drive_id) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(

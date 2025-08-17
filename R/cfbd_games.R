@@ -196,7 +196,7 @@ cfbd_game_info <- function(year,
           "home_post_win_prob" = "home_postgame_win_probability",
           "away_division" = "away_classification",
           "away_post_win_prob" = "away_postgame_win_probability"
-        ) %>% 
+        ) %>%
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -356,13 +356,13 @@ cfbd_calendar <- function(year) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        janitor::clean_names() %>% 
+        janitor::clean_names() %>%
         dplyr::select(
-          season,
-          week,
-          season_type,
-          first_game_start = start_date,
-          last_game_start = end_date
+          "season",
+          "week",
+          "season_type",
+          "first_game_start" = "start_date",
+          "last_game_start" = "end_date"
         )
 
 
@@ -1481,7 +1481,7 @@ cfbd_game_team_stats <- function(year,
 
 
       df <- df %>%
-        dplyr::rename("school" = "team") %>% 
+        dplyr::rename("school" = "team") %>%
         make_cfbfastR_data("Team stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

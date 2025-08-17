@@ -242,7 +242,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
       # Get the content, flatten and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>% 
+        jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "season_type" = "seasonType",
           "athlete_id" = "id"
@@ -639,7 +639,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
-        dplyr::rename(home_win_prob = home_win_probability) %>%
+        dplyr::rename("home_win_prob" = "home_win_probability") %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(all_of(cols))
 
@@ -726,7 +726,7 @@ cfbd_metrics_wp <- function(game_id) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
-        dplyr::rename(home_win_prob = home_win_probability) %>%
+        dplyr::rename("home_win_prob" = "home_win_probability") %>%
         dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
         dplyr::select(all_of(cols))
 

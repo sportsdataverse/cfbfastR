@@ -685,8 +685,8 @@ cfbd_stats_season_player <- function(year,
       df <- df  %>%
         dplyr::select(-dplyr::any_of(c("category"))) %>%
         dplyr::select(
-          "year", team, conference, athlete_id, player, position,
-          tidyr::everything(), -season
+          "year", "team", "conference", "athlete_id", "player", "position",
+          tidyr::everything(), -"season"
         ) %>%
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
