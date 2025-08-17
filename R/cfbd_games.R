@@ -1060,18 +1060,7 @@ cfbd_game_player_stats <- function(year,
 #'   \item{`away_wins`: integer.}{Total away wins.}
 #'   \item{`away_losses`: integer.}{Total away losses.}
 #'   \item{`away_ties`: integer.}{Total away ties.}
-#'   \item{`neutral_games`: integer.}{Total neutral site games.}
-#'   \item{`neutral_wins`: integer.}{Total neutral site wins.}
-#'   \item{`neutral_losses`: integer.}{Total neutral site losses.}
-#'   \item{`neutral_ties`: integer.}{Total neutral site ties.}
-#'   \item{`regular_season_games`: integer.}{Total regular season games.}
-#'   \item{`regular_season_wins`: integer.}{Total regular season wins.}
-#'   \item{`regular_season_losses`: integer.}{Total regular season losses.}
-#'   \item{`regular_season_ties`: integer.}{Total regular season ties.}
-#'   \item{`postseason_games`: integer.}{Total postseason games.}
-#'   \item{`postseason_wins`: integer.}{Total postseason wins.}
-#'   \item{`postseason_losses`: integer.}{Total postseason losses.}
-#'   \item{`postseason_ties`: integer.}{Total postseason ties.}
+#' @return [cfbd_game_records()] - A data frame with 35 variables:
 #' }
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
@@ -1141,7 +1130,7 @@ cfbd_game_records <- function(year,
           "neutral_games" = "neutralSiteGames.games",
           "neutral_wins" = "neutralSiteGames.wins",
           "neutral_losses" = "neutralSiteGames.losses",
-          "neutral_ties" = "neutralSiteGames.ties",,
+          "neutral_ties" = "neutralSiteGames.ties",
           "regular_season_games" = "regularSeason.games",
           "regular_season_wins" = "regularSeason.wins",
           "regular_season_losses" = "regularSeason.losses",
