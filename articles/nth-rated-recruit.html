@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Visualizing Team Talent from Player Recruiting Rankings • cfbfastR</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Visualizing Team Talent from Player Recruiting Rankings">
 <meta name="description" content="A quick way to visually approximate how much talent each school recruited using &lt;code&gt;cfbfastR&lt;/code&gt; and &lt;code&gt;ggplot2&lt;/code&gt;.">
@@ -44,7 +43,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" title="cfbfastR"><span class="fa fas fa-home"></span> </a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-funcs" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-code"></span> Funcs</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-funcs">
@@ -158,8 +157,8 @@
 <li class="nav-item"><a class="external-link nav-link" href="http://gameonpaper.com/cfb"><span class="fa fas fa-football-ball"></span>  GP</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="http://twitter.com/cfbfastR"><span class="fa fab fa-twitter fa-lg"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/cfbfastR/"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="http://twitter.com/cfbfastR"><span class="fa fab fa-twitter fa-lg"></span> </a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/cfbfastR/"><span class="fa fab fa-github fa-lg"></span> </a></li>
       </ul>
 </div>
 
@@ -204,7 +203,7 @@ us to make a simple, functional graph of our results.</p>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span>,<span class="va">cfbfastR</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span>, <span class="va">cfbfastR</span><span class="op">)</span></span></code></pre></div>
 <p>To create the plot I’m going to use two functions from
 <code>cfbfastR</code>. The first is the <code>cfbd_team_info</code>
 function. I’m going to pass <code>"B1G"</code> to the function for the
@@ -233,7 +232,7 @@ recruits (<code>recruit_type = "JUCO"</code>).</p>
 <span>  .y <span class="op">=</span> <span class="va">team_year_df</span><span class="op">$</span><span class="va">school</span>,</span>
 <span>  <span class="kw">function</span><span class="op">(</span><span class="va">.x</span>,<span class="va">.y</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span></span>
-<span>      year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>,</span>
+<span>      year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>,</span>
 <span>      team <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span>,</span>
 <span>      recruit_type <span class="op">=</span> <span class="st">"HighSchool"</span></span>
 <span>    <span class="op">)</span></span>
@@ -241,30 +240,30 @@ recruits (<code>recruit_type = "JUCO"</code>).</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 29.82 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 10.716 sec elapsed</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">all.recruits</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 1,469</span></span>
+<pre><code><span><span class="co">## Rows: 1,051</span></span>
 <span><span class="co">## Columns: 19</span></span>
-<span><span class="co">## $ id                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "71931", "72462", "72473", "72499", "72508", "…</span></span>
-<span><span class="co">## $ athlete_id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4432788", "4606658", "4683468", "4709386", "4…</span></span>
-<span><span class="co">## $ recruit_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HighSchool", "HighSchool", "HighSchool", "Hig…</span></span>
-<span><span class="co">## $ year                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021…</span></span>
-<span><span class="co">## $ ranking                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 485, 1004, 1013, 1039, 1049, 1215, 1234, 1258,…</span></span>
-<span><span class="co">## $ name                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Brody Wisecarver", "Samari Collier", "Daniel …</span></span>
-<span><span class="co">## $ school                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "DeSmet", "DeSoto", "Winter Park", "Loyola Aca…</span></span>
-<span><span class="co">## $ committed_to            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Illinois", "Illinois", "Illinois", "Illinois"…</span></span>
-<span><span class="co">## $ position                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "OG", "DUAL", "CB", "OC", "WR", "SDE", "S", "C…</span></span>
-<span><span class="co">## $ height                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 76, 75, 71, 74, 75, 75, 74, 74, 72, 73, 75, 70…</span></span>
-<span><span class="co">## $ weight                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 317, 220, 155, 275, 187, 260, 178, 190, 175, 2…</span></span>
-<span><span class="co">## $ stars                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…</span></span>
-<span><span class="co">## $ rating                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.8784, 0.8530, 0.8526, 0.8519, 0.8519, 0.8464…</span></span>
-<span><span class="co">## $ city                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Saint Louis", "DeSoto", "Winter Park", "Wilme…</span></span>
-<span><span class="co">## $ state_province          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "MO", "TX", "FL", "IL", "FL", "GA", "FL", "GA"…</span></span>
-<span><span class="co">## $ country                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA", "USA", "USA", "USA", "USA", "USA", "USA…</span></span>
-<span><span class="co">## $ hometown_info_latitude  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "38.6264178", "32.6061241", "26.13784445", "42…</span></span>
-<span><span class="co">## $ hometown_info_longitude <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-90.1998378", "-96.865612653687", "-81.753998…</span></span>
-<span><span class="co">## $ hometown_info_fips_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "29510", "48113", "12021", "17031", "12031", "…</span></span></code></pre>
+<span><span class="co">## $ id                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "114420"<span style="color: #949494;">, </span>"114678"<span style="color: #949494;">, </span>"114756"<span style="color: #949494;">, </span>"114760"<span style="color: #949494;">, </span>"11477…</span></span>
+<span><span class="co">## $ athlete_id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4714773"<span style="color: #949494;">, </span>"4826636"<span style="color: #949494;">, </span>"4869962"<span style="color: #949494;">, </span>"4790965"<span style="color: #949494;">, </span>"4…</span></span>
+<span><span class="co">## $ recruit_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HighSchool"<span style="color: #949494;">, </span>"HighSchool"<span style="color: #949494;">, </span>"HighSchool"<span style="color: #949494;">, </span>"Hig…</span></span>
+<span><span class="co">## $ year                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2022<span style="color: #949494;">, </span>2022<span style="color: #949494;">, </span>2022<span style="color: #949494;">, </span>2022<span style="color: #949494;">, </span>2022<span style="color: #949494;">, </span>2022<span style="color: #949494;">, </span>2022<span style="color: #949494;">, </span>2022…</span></span>
+<span><span class="co">## $ ranking                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 888<span style="color: #949494;">, </span>1161<span style="color: #949494;">, </span>1231<span style="color: #949494;">, </span>1231<span style="color: #949494;">, </span>1254<span style="color: #949494;">, </span>1254<span style="color: #949494;">, </span>1357<span style="color: #949494;">, </span>1357<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">## $ name                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Joey Okla"<span style="color: #949494;">, </span>"Owen Anderson"<span style="color: #949494;">, </span>"Ashton Hollins"…</span></span>
+<span><span class="co">## $ school                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Arrowhead"<span style="color: #949494;">, </span>"Hun School"<span style="color: #949494;">, </span>"George County"<span style="color: #949494;">, </span>"T…</span></span>
+<span><span class="co">## $ committed_to            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Illinois"<span style="color: #949494;">, </span>"Illinois"<span style="color: #949494;">, </span>"Illinois"<span style="color: #949494;">, </span>"Illinois"…</span></span>
+<span><span class="co">## $ position                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "IOL"<span style="color: #949494;">, </span>"TE"<span style="color: #949494;">, </span>"ATH"<span style="color: #949494;">, </span>"QB"<span style="color: #949494;">, </span>"WR"<span style="color: #949494;">, </span>"EDGE"<span style="color: #949494;">, </span>"CB"<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">## $ height                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 75.0<span style="color: #949494;">, </span>76.0<span style="color: #949494;">, </span>76.0<span style="color: #949494;">, </span>74.0<span style="color: #949494;">, </span>77.0<span style="color: #949494;">, </span>75.0<span style="color: #949494;">, </span>72.0<span style="color: #949494;">, </span>78.0…</span></span>
+<span><span class="co">## $ weight                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 285<span style="color: #949494;">, </span>235<span style="color: #949494;">, </span>170<span style="color: #949494;">, </span>190<span style="color: #949494;">, </span>180<span style="color: #949494;">, </span>246<span style="color: #949494;">, </span>180<span style="color: #949494;">, </span>250<span style="color: #949494;">, </span>180<span style="color: #949494;">, </span>2…</span></span>
+<span><span class="co">## $ stars                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>4…</span></span>
+<span><span class="co">## $ rating                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.8648<span style="color: #949494;">, </span>0.8533<span style="color: #949494;">, </span>0.8511<span style="color: #949494;">, </span>0.8511<span style="color: #949494;">, </span>0.8500<span style="color: #949494;">, </span>0.8500…</span></span>
+<span><span class="co">## $ city                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Hartland"<span style="color: #949494;">, </span>"Skillman"<span style="color: #949494;">, </span>"Lucedale"<span style="color: #949494;">, </span>"Sicklervi…</span></span>
+<span><span class="co">## $ state_province          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WI"<span style="color: #949494;">, </span>"NJ"<span style="color: #949494;">, </span>"MS"<span style="color: #949494;">, </span>"NJ"<span style="color: #949494;">, </span>"GA"<span style="color: #949494;">, </span>"FL"<span style="color: #949494;">, </span>"FL"<span style="color: #949494;">, </span>"IL"…</span></span>
+<span><span class="co">## $ country                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "USA"<span style="color: #949494;">, </span>"USA"<span style="color: #949494;">, </span>"USA"<span style="color: #949494;">, </span>"USA"<span style="color: #949494;">, </span>"USA"<span style="color: #949494;">, </span>"USA"<span style="color: #949494;">, </span>"USA…</span></span>
+<span><span class="co">## $ hometown_info_latitude  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 43.10501<span style="color: #949494;">, </span>40.42011<span style="color: #949494;">, </span>30.92519<span style="color: #949494;">, </span>39.71734<span style="color: #949494;">, </span>31.149…</span></span>
+<span><span class="co">## $ hometown_info_longitude <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -88.34204<span style="color: #949494;">, </span>-74.71460<span style="color: #949494;">, </span>-88.59002<span style="color: #949494;">, </span>-74.96933<span style="color: #949494;">, </span>-8…</span></span>
+<span><span class="co">## $ hometown_info_fips_code <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "55133"<span style="color: #949494;">, </span>"34035"<span style="color: #949494;">, </span>"28039"<span style="color: #949494;">, </span>"34007"<span style="color: #949494;">, </span>"13127"<span style="color: #949494;">, </span>"…</span></span></code></pre>
 <p>The next step is cleaning the data. The
 <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player()</a></code> function gives us 14 pieces of
 data for each player. Our graph is going to focus on just the rating and
@@ -338,7 +337,7 @@ good feel for the talent level at a program in a quick glance.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

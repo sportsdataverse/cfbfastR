@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Intro to Visualizing Recruiting Geography • cfbfastR</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Intro to Visualizing Recruiting Geography">
 <meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true">
@@ -42,7 +41,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" title="cfbfastR"><span class="fa fas fa-home"></span> </a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-funcs" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-code"></span> Funcs</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-funcs">
@@ -156,8 +155,8 @@
 <li class="nav-item"><a class="external-link nav-link" href="http://gameonpaper.com/cfb"><span class="fa fas fa-football-ball"></span>  GP</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="http://twitter.com/cfbfastR"><span class="fa fab fa-twitter fa-lg"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/cfbfastR/"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="http://twitter.com/cfbfastR"><span class="fa fab fa-twitter fa-lg"></span> </a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/cfbfastR/"><span class="fa fab fa-github fa-lg"></span> </a></li>
       </ul>
 </div>
 
@@ -223,27 +222,27 @@ this, <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_p
 rated player in a class! Let’s see what sort of data we get from it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## cfbfstR_ [2,737 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span></span>
-<span><span class="co">##  $ id                     : chr [1:2737] "71458" "71459" "71460" "71461" ...</span></span>
-<span><span class="co">##  $ athlete_id             : chr [1:2737] "4431274" "4431437" NA "4431590" ...</span></span>
-<span><span class="co">##  $ recruit_type           : chr [1:2737] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span></span>
-<span><span class="co">##  $ year                   : int [1:2737] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span></span>
-<span><span class="co">##  $ ranking                : int [1:2737] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
-<span><span class="co">##  $ name                   : chr [1:2737] "Korey Foreman" "JC Latham" "J.T. Tuimoloau" "Jack Sawyer" ...</span></span>
-<span><span class="co">##  $ school                 : chr [1:2737] "Centennial" "IMG Academy" "Eastside Catholic" "Pickerington North" ...</span></span>
-<span><span class="co">##  $ committed_to           : chr [1:2737] "USC" "Alabama" NA "Ohio State" ...</span></span>
-<span><span class="co">##  $ position               : chr [1:2737] "SDE" "OT" "SDE" "SDE" ...</span></span>
-<span><span class="co">##  $ height                 : int [1:2737] 76 78 76 77 78 73 79 76 73 76 ...</span></span>
-<span><span class="co">##  $ weight                 : int [1:2737] 265 305 277 248 283 210 315 245 190 265 ...</span></span>
-<span><span class="co">##  $ stars                  : int [1:2737] 5 5 5 5 5 5 5 5 5 5 ...</span></span>
-<span><span class="co">##  $ rating                 : num [1:2737] 0.999 0.999 0.999 0.998 0.998 ...</span></span>
-<span><span class="co">##  $ city                   : chr [1:2737] "Corona" "Bradenton" "Sammamish" "Pickerington" ...</span></span>
-<span><span class="co">##  $ state_province         : chr [1:2737] "CA" "FL" "WA" "OH" ...</span></span>
-<span><span class="co">##  $ country                : chr [1:2737] "USA" "USA" "USA" "USA" ...</span></span>
-<span><span class="co">##  $ hometown_info_latitude : chr [1:2737] "33.8752945" "27.4989278" "47.6088445" "39.896277299999994" ...</span></span>
-<span><span class="co">##  $ hometown_info_longitude: chr [1:2737] "-117.5664449" "-82.5748194" "-122.0423067" "-82.77319049748806" ...</span></span>
-<span><span class="co">##  $ hometown_info_fips_code: chr [1:2737] "06065" "12081" "53033" "39045" ...</span></span>
-<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2024-09-10 01:28:15"</span></span>
+<pre><code><span><span class="co">## cfbfstR_ [2,666 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span></span>
+<span><span class="co">##  $ id                     : chr [1:2666] "115742" "115743" "115744" "115745" ...</span></span>
+<span><span class="co">##  $ athlete_id             : chr [1:2666] NA "4431274" NA "4566154" ...</span></span>
+<span><span class="co">##  $ recruit_type           : chr [1:2666] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span></span>
+<span><span class="co">##  $ year                   : int [1:2666] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span></span>
+<span><span class="co">##  $ ranking                : int [1:2666] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span><span class="co">##  $ name                   : chr [1:2666] "Quinn Ewers" "Korey Foreman" "JC Latham" "J.T. Tuimoloau" ...</span></span>
+<span><span class="co">##  $ school                 : chr [1:2666] "Southlake Carroll" "Centennial" "IMG Academy" "Eastside Catholic" ...</span></span>
+<span><span class="co">##  $ committed_to           : chr [1:2666] "Ohio State" "USC" "Alabama" "Ohio State" ...</span></span>
+<span><span class="co">##  $ position               : chr [1:2666] "QB" "DL" "OT" "DL" ...</span></span>
+<span><span class="co">##  $ height                 : num [1:2666] 75 76 78 76.5 77 ...</span></span>
+<span><span class="co">##  $ weight                 : int [1:2666] 206 265 305 277 248 283 210 315 245 190 ...</span></span>
+<span><span class="co">##  $ stars                  : int [1:2666] 5 5 5 5 5 5 5 5 5 5 ...</span></span>
+<span><span class="co">##  $ rating                 : num [1:2666] 1 0.999 0.999 0.999 0.998 ...</span></span>
+<span><span class="co">##  $ city                   : chr [1:2666] "Southlake" "Corona" "Oak Creek" "Sammamish" ...</span></span>
+<span><span class="co">##  $ state_province         : chr [1:2666] "TX" "CA" "WI" "WA" ...</span></span>
+<span><span class="co">##  $ country                : chr [1:2666] "USA" "USA" "USA" "USA" ...</span></span>
+<span><span class="co">##  $ hometown_info_latitude : num [1:2666] 32.9 33.9 42.9 47.6 39.9 ...</span></span>
+<span><span class="co">##  $ hometown_info_longitude: num [1:2666] -97.1 -117.6 -87.9 -122 -82.8 ...</span></span>
+<span><span class="co">##  $ hometown_info_fips_code: chr [1:2666] "48439" "06065" "55079" "53033" ...</span></span>
+<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2025-08-18 01:39:15"</span></span>
 <span><span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can
 merge on other <code>cfbfastR</code> datasets, basic information on each
@@ -441,10 +440,10 @@ be as obvious. So if it’s not clear, let’s take a quick peek at the
 data:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">clean_rec_classes</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 61</span></span>
+<pre><code><span><span class="co">## Rows: 70</span></span>
 <span><span class="co">## Columns: 2</span></span>
-<span><span class="co">## $ state_province <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "", "AB", "AK", "AL", "AR", "AS", "AZ", "BC", "CA", "CO…</span></span>
-<span><span class="co">## $ count          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 11, 3, 5, 739, 174, 9, 385, 11, 2048, 156, 88, 101, 16,…</span></span></code></pre>
+<span><span class="co">## $ state_province <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AB"<span style="color: #949494;">, </span>"AK"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AR"<span style="color: #949494;">, </span>"AS"<span style="color: #949494;">, </span>"AUST"<span style="color: #949494;">, </span>"AZ"<span style="color: #949494;">, </span>"BC"<span style="color: #949494;">, </span>"BELG…</span></span>
+<span><span class="co">## $ count          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3<span style="color: #949494;">, </span>5<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>168<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>40<span style="color: #949494;">, </span>377<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>2002<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>152<span style="color: #949494;">, </span>87<span style="color: #949494;">, </span>94…</span></span></code></pre>
 <p>So now we have the recruit count for every state from 2017-2021! You
 may be confused by the <code>""</code> and <code>"AB"</code> groups, but
 those refer to non-US provinces, which will end up being dropped.</p>
@@ -476,16 +475,16 @@ up with a dataset that has everything associated with each group.</p>
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">map_counts</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Rows: 82,708</span></span>
 <span><span class="co">## Columns: 10</span></span>
-<span><span class="co">## $ long       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -88.47323, -88.46888, -88.46866, -88.45504, -88.45496, -88.…</span></span>
-<span><span class="co">## $ lat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 31.89386, 31.93026, 31.93317, 32.03972, 32.04058, 32.05305,…</span></span>
-<span><span class="co">## $ order      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, …</span></span>
-<span><span class="co">## $ hole       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FAL…</span></span>
-<span><span class="co">## $ piece      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></span>
-<span><span class="co">## $ group      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 01.1, 01.1, 01.1, 01.1, 01.1, 01.1, 01.1, 01.1, 01.1, 01.1,…</span></span>
-<span><span class="co">## $ state_fips <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "01", "01", "01", "01", "01", "01", "01", "01", "01", "01",…</span></span>
-<span><span class="co">## $ state_abbv <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL",…</span></span>
-<span><span class="co">## $ state_name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alabama", "Alabama", "Alabama", "Alabama", "Alabama", "Ala…</span></span>
-<span><span class="co">## $ count      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 739, 739, 739, 739, 739, 739, 739, 739, 739, 739, 739, 739,…</span></span></code></pre>
+<span><span class="co">## $ long       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -88.47323<span style="color: #949494;">, </span>-88.46888<span style="color: #949494;">, </span>-88.46866<span style="color: #949494;">, </span>-88.45504<span style="color: #949494;">, </span>-88.45496<span style="color: #949494;">, </span>-88.…</span></span>
+<span><span class="co">## $ lat        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 31.89386<span style="color: #949494;">, </span>31.93026<span style="color: #949494;">, </span>31.93317<span style="color: #949494;">, </span>32.03972<span style="color: #949494;">, </span>32.04058<span style="color: #949494;">, </span>32.05305<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">## $ order      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>5<span style="color: #949494;">, </span>6<span style="color: #949494;">, </span>7<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>9<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>11<span style="color: #949494;">, </span>12<span style="color: #949494;">, </span>13<span style="color: #949494;">, </span>14<span style="color: #949494;">, </span>15<span style="color: #949494;">, </span>16<span style="color: #949494;">, </span>17<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">## $ hole       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FALSE<span style="color: #949494;">, </span>FAL…</span></span>
+<span><span class="co">## $ piece      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">## $ group      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">, </span>01.1<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">## $ state_fips <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">## $ state_abbv <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">,</span>…</span></span>
+<span><span class="co">## $ state_name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Ala…</span></span>
+<span><span class="co">## $ count      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">,</span>…</span></span></code></pre>
 <p>Awesome! We now have the counts and data we use to to make the map,
 so let’s make the plot now!</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -559,7 +558,7 @@ to manage recruiting data feel free to reach out to me on <a href="https://twitt
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
