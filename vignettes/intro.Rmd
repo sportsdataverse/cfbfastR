@@ -51,7 +51,7 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(tidyverse, cfbfastR, zoo, ggimage, gt)
+pacman::p_load(tidyverse, zoo, ggimage, gt, cfbfastR)
 ```
 
 ### **The Data**

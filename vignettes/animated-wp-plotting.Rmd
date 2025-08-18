@@ -398,7 +398,7 @@ draw_frame <- function(n_sec)
 
 Let's test our function to make sure the plot looks like how we want it by running our function with 6 minutes left in the game. 
 
-```{r draw_test, message=FALSE, warning=FALSE}
+```{r draw_test, message=FALSE, warning=FALSE, fig.alt="Win Probability Chart"}
 draw_frame(360)
 ```
 

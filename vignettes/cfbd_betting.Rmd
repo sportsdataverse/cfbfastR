@@ -22,8 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(dplyr,tidyr, gt)
-pacman::p_load_current_gh("sportsdataverse/cfbfastR")
+pacman::p_load(dplyr,tidyr, gt, cfbfastR)
+# pacman::p_load_current_gh("sportsdataverse/cfbfastR")
 ```
 
 ### **Get Betting information from games**

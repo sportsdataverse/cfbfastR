@@ -21,7 +21,7 @@ Let's start off with loading all the packages we'll need:
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(dplyr, ggplot2, ggrepel, cfbfastR)
+pacman::p_load(dplyr, ggplot2, ggrepel)
 pacman::p_load_current_gh("UrbanInstitute/urbnmapr")
 library(dplyr) #This is to manipulate data
 library(ggplot2) #This is the primary plotting package

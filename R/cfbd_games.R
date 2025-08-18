@@ -1035,7 +1035,7 @@ cfbd_game_player_stats <- function(year,
 #' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @return [cfbd_game_records()] - A data frame with 22 variables:
+#' @return [cfbd_game_records()] - A data frame with 35 variables:
 #' \describe{
 #'   \item{`year`: integer.}{Season of the games.}
 #'   \item{`team_id`: integer.}{Referencing team id.}
@@ -1060,7 +1060,18 @@ cfbd_game_player_stats <- function(year,
 #'   \item{`away_wins`: integer.}{Total away wins.}
 #'   \item{`away_losses`: integer.}{Total away losses.}
 #'   \item{`away_ties`: integer.}{Total away ties.}
-#' @return [cfbd_game_records()] - A data frame with 35 variables:
+#'   \item{`neutral_games`: integer.}{Total neutral site games.}
+#'   \item{`neutral_wins`: integer.}{Total neutral site wins.}
+#'   \item{`neutral_losses`: integer.}{Total neutral site losses.}
+#'   \item{`neutral_ties`: integer.}{Total neutral site ties.}
+#'   \item{`regular_season_games`: integer.}{Total regular season games.}
+#'   \item{`regular_season_wins`: integer.}{Total regular season wins.}
+#'   \item{`regular_season_losses`: integer.}{Total regular season losses.}
+#'   \item{`regular_season_ties`: integer.}{Total regular season ties.}
+#'   \item{`postseason_games`: integer.}{Total postseason games.}
+#'   \item{`postseason_wins`: integer.}{Total postseason wins.}
+#'   \item{`postseason_losses`: integer.}{Total postseason losses.}
+#'   \item{`postseason_ties`: integer.}{Total postseason ties.}
 #' }
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON

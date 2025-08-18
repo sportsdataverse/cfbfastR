@@ -1040,13 +1040,13 @@ add_play_counts <- function(play_df) {
     tidyr::fill("receives_2H_kickoff") %>%
     dplyr::mutate(
       offense_receives_2H_kickoff = dplyr::case_when(
-        .data$offense_play == .data$home & receives_2H_kickoff == 1 ~ 1,
-        .data$offense_play == .data$away & receives_2H_kickoff == 0 ~ 1,
+        .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
+        .data$offense_play == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
         TRUE ~ 0
       ),
       pos_team_receives_2H_kickoff = dplyr::case_when(
-        .data$pos_team == .data$home & receives_2H_kickoff == 1 ~ 1,
-        .data$pos_team == .data$away & receives_2H_kickoff == 0 ~ 1,
+        .data$pos_team == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
+        .data$pos_team == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
         TRUE ~ 0
       )
     ) %>%

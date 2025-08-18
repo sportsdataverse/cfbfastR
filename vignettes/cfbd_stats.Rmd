@@ -22,8 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(dplyr,tidyr, gt)
-pacman::p_load_current_gh("sportsdataverse/cfbfastR")
+pacman::p_load(dplyr,tidyr, gt, cfbfastR)
+# pacman::p_load_current_gh("sportsdataverse/cfbfastR")
 ```
 
 ## Settling **2019 LSU** and **2013 Florida State** offense debates
@@ -32,11 +32,11 @@ pacman::p_load_current_gh("sportsdataverse/cfbfastR")
  
 ```{r team_season_stats}
 team_season_stats <- dplyr::bind_rows(
-   cfbd_stats_season_team(2019, team = "LSU"),
-   cfbd_stats_season_team(2013, team = "Florida State")
+   cfbd_stats_season_team(year=2019, team = "LSU"),
+   cfbd_stats_season_team(year=2013, team = "Florida State")
 )
 logos <- read.csv("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv")
-logos<- logos %>% dplyr::select(-.data$conference)
+logos<- logos %>% dplyr::select(-"conference")
 df_team_season <- team_season_stats %>% 
    dplyr::left_join(logos, by=c("team"="school"))
 ```
@@ -98,28 +98,28 @@ passing_df %>% gt() %>%
              passing_int = "INTs",
              passing_ypa = "YPA") %>%
   data_color(
-    columns = vars(passing_yds),
+    columns = c("passing_yds"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-6000,6000)
     )
   ) %>% 
   data_color(
-    columns = vars(passing_td),
+    columns = c("passing_td"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-60,60)
     )
   ) %>% 
   data_color(
-    columns = vars(passing_td),
+    columns = c("passing_td"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-60,60)
     )
   ) %>% 
   text_transform(
-    locations = cells_body(vars(logo)),
+    locations = cells_body(c("logo")),
     fn = function(logo){
       web_image(url= logo)
   }) %>% 
