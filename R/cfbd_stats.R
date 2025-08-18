@@ -485,7 +485,6 @@ cfbd_stats_season_advanced <- function(year,
 #'   \item{`athlete_id`: character.}{Athlete referencing id.}
 #'   \item{`player`: character.}{Player name.}
 #'   \item{`position`: character.}{Player position.}
-#'   \item{`category`: character.}{Statistic category.}
 #'   \item{`passing_completions`: double.}{Passing completions.}
 #'   \item{`passing_att`: double.}{Passing attempts.}
 #'   \item{`passing_pct`: double.}{Passing completion percentage.}

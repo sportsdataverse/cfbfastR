@@ -43,7 +43,6 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 \item{\code{athlete_id}: character.}{Athlete referencing id.}
 \item{\code{player}: character.}{Player name.}
 \item{\code{position}: character.}{Player position.}
-\item{\code{category}: character.}{Statistic category.}
 \item{\code{passing_completions}: double.}{Passing completions.}
 \item{\code{passing_att}: double.}{Passing attempts.}
 \item{\code{passing_pct}: double.}{Passing completion percentage.}
