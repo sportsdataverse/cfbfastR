@@ -15,9 +15,9 @@ cfbd_metrics_ppa_players_season(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if athlete_id not provided}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team.}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - S&P+ information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -31,7 +31,7 @@ Position Group  - options include:
 \item Special Teams: K, P, LS, PK
 }}
 
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
+\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete. Required if year not provided
 Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
@@ -47,7 +47,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{\code{position}: character.}{Athlete Position.}
 \item{\code{team}: character.}{Team name.}
 \item{\code{conference}: character.}{Team conference.}
-\item{\code{countable_plays}: integer.}{Number of plays which can be counted.}
+\item{\code{countable_plays}: integer.}{DEPRECATED Number of plays which can be counted.}
 \item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
 \item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
 \item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}

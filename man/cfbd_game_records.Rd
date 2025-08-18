@@ -16,10 +16,12 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 21 variables:
+\code{\link[=cfbd_game_records]{cfbd_game_records()}} - A data frame with 35 variables:
 \describe{
 \item{\code{year}: integer.}{Season of the games.}
+\item{\code{team_id}: integer.}{Referencing team id.}
 \item{\code{team}: character.}{Team name.}
+\item{\code{classification}: character}{Conference classification (fbs,fcs,ii,iii)}
 \item{\code{conference}: character.}{Conference of the team.}
 \item{\code{division}: character.}{Division in the conference of the team.}
 \item{\code{expected_wins}: numeric}{Expected number of wins based on post-game win probability.}
@@ -39,6 +41,18 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{\code{away_wins}: integer.}{Total away wins.}
 \item{\code{away_losses}: integer.}{Total away losses.}
 \item{\code{away_ties}: integer.}{Total away ties.}
+\item{\code{neutral_games}: integer.}{Total neutral site games.}
+\item{\code{neutral_wins}: integer.}{Total neutral site wins.}
+\item{\code{neutral_losses}: integer.}{Total neutral site losses.}
+\item{\code{neutral_ties}: integer.}{Total neutral site ties.}
+\item{\code{regular_season_games}: integer.}{Total regular season games.}
+\item{\code{regular_season_wins}: integer.}{Total regular season wins.}
+\item{\code{regular_season_losses}: integer.}{Total regular season losses.}
+\item{\code{regular_season_ties}: integer.}{Total regular season ties.}
+\item{\code{postseason_games}: integer.}{Total postseason games.}
+\item{\code{postseason_wins}: integer.}{Total postseason wins.}
+\item{\code{postseason_losses}: integer.}{Total postseason losses.}
+\item{\code{postseason_ties}: integer.}{Total postseason ties.}
 }
 }
 \description{

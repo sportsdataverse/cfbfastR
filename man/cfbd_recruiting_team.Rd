@@ -7,9 +7,9 @@
 cfbd_recruiting_team(year = NULL, team = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
+\item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}) - Minimum: 2000. Required if team not provided.}
 
-\item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
+\item{team}{(\emph{String} optional): Team - Select a valid team, D1 football. Required if year not provided.}
 }
 \value{
 \code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}} - A data frame with 4 variables:

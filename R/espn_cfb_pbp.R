@@ -126,8 +126,8 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
           ) %>%
           dplyr::mutate(
             game_id = game_id,
-            clock.minutes = as.numeric(stringr::str_extract(.data$plays_clock_display_value,".*(?=:)")),
-            clock.seconds = as.numeric(stringr::str_extract(.data$plays_clock_display_value,"(?<=:).*")),
+            clock_minutes = as.numeric(stringr::str_extract(.data$plays_clock_display_value,".*(?=:)")),
+            clock_seconds = as.numeric(stringr::str_extract(.data$plays_clock_display_value,"(?<=:).*")),
             offense_play = dplyr::case_when(.data$plays_start_team_id == .data$home_team_id ~ .data$home,
                                      TRUE ~ .data$away),
             defense_play = dplyr::case_when(.data$plays_start_team_id == .data$home_team_id ~ .data$home,

@@ -31,6 +31,7 @@ cfbd_draft_picks(
 \item{\code{college_id}: integer}{College team referencing id.}
 \item{\code{college_team}: character}{College team name.}
 \item{\code{college_conference}: character}{Conference of college team.}
+\item{\code{nfl_team_id}: integer.}{NFL team ID.}
 \item{\code{nfl_team}: character}{NFL team name of drafted player.}
 \item{\code{year}: integer.}{NFL draft class year.}
 \item{\code{overall}: integer.}{Overall draft pick number.}

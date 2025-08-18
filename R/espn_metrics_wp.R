@@ -12,7 +12,7 @@ NULL
 #' \describe{
 #'   \item{`game_id`: character.}{Referencing game ID (should be same as `game_id` from other functions).}
 #'   \item{`play_id`: character.}{Referencing play ID.}
-#'   \item{`seconds_left`: integer.}{Seconds left in the game.}
+#'   \item{`seconds_left`: integer.}{DEPRECATED. Seconds left in the game.}
 #'   \item{`home_win_percentage`: double.}{The probability of the home team winning the game.}
 #'   \item{`away_win_percentage`: double.}{The probability of the away team winning the game (calculated as 1 - `home_win_percentage` - `tie_percentage`).}
 #'   \item{`tie_percentage`: double.}{The probability of the game ending the final period in a tie.}
@@ -28,15 +28,12 @@ NULL
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_metrics_wp(game_id = 401012356))
+#'   try(espn_metrics_wp(game_id = 401628369))
 #' }
 #'
 espn_metrics_wp <- function(game_id) {
 
-  if (!is.null(game_id) && !is.numeric(game_id)) {
-    # Check if game_id is numeric, if not NULL
-    cli::cli_abort("Enter valid game_id value (Integer)\nCan be found using the `cfbd_game_info()` function")
-  }
+  validate_id(game_id)
 
   espn_game_id <- game_id
 
@@ -44,14 +41,20 @@ espn_metrics_wp <- function(game_id) {
 
   tryCatch(
     expr = {
-      espn_wp <-
+      espn_data <- 
         httr::GET(url = glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+        jsonlite::fromJSON(flatten = TRUE)
+      
+      # to-do: Grab play data and back into seconds left
+
+      espn_wp <-
+        espn_data %>% 
         purrr::pluck("winprobability") %>%
         janitor::clean_names() %>%
         dplyr::mutate(
-          espn_game_id = stringr::str_sub(.data$play_id, end = stringr::str_length(espn_game_id))
+          espn_game_id = stringr::str_sub(.data$play_id, end = stringr::str_length(espn_game_id)),
+          seconds_left = NA
         ) %>%
         dplyr::rename(
           "home_win_percentage" = "home_win_percentage",

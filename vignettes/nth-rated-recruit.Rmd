@@ -24,7 +24,7 @@ We start by loading the packages we need. The ```cfbfastR``` package will provid
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(dplyr, ggplot2,cfbfastR)
+pacman::p_load(dplyr, ggplot2, cfbfastR)
 ```
 
 To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```).
@@ -43,7 +43,7 @@ all.recruits <- purrr::map2_dfr(
   .y = team_year_df$school,
   function(.x,.y){
     cfbfastR::cfbd_recruiting_player(
-      year = as.character(.x),
+      year = as.integer(.x),
       team = as.character(.y),
       recruit_type = "HighSchool"
     )

@@ -4,7 +4,7 @@
 \alias{cfbd_team_talent}
 \title{\strong{Get composite team talent rankings for all teams in a given year}}
 \usage{
-cfbd_team_talent(year = NULL)
+cfbd_team_talent(year = most_recent_cfb_season())
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}

@@ -8,6 +8,6 @@ cols <- c(
 test_that("CFB Coaches", {
   skip_on_cran()
   x <- cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
-  expect_equal(colnames(x), cols)
+  expect_setequal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
 })

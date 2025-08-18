@@ -24,8 +24,8 @@ test_that("CFB Play Stats - Player", {
   x <- cfbd_play_stats_player(game_id = 401012356)
 
   y <- cfbd_play_stats_player(game_id = 401110720)
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

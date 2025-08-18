@@ -7,7 +7,7 @@
 cfbd_play_stats_types()
 }
 \value{
-\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} - A data frame with 22 rows and 2 variables:
+\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} - A data frame with 25 rows and 2 variables:
 \describe{
 \item{\code{play_stat_type_id}: integer}{Referencing play stat type ID.}
 \item{\code{name}: character}{Type of play stats.}

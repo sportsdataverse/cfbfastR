@@ -116,6 +116,7 @@ cfbd_stats_categories <- function() {
 #' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
 #' \describe{
 #'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`season`: integer.}{Season of the game.}
 #'   \item{`week`: integer.}{Game week of the season.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`opponent`: character.}{Opponent team name.}
@@ -478,11 +479,12 @@ cfbd_stats_season_advanced <- function(year,
 #'
 #' @return [cfbd_stats_season_player()] - A data frame with 59 variables:
 #' \describe{
+#'   \item{`year`: integer.}{Season of the player stats.}
 #'   \item{`team`: character.}{Team name.}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`athlete_id`: character.}{Athlete referencing id.}
 #'   \item{`player`: character.}{Player name.}
-#'   \item{`category`: character.}{Statistic category.}
+#'   \item{`position`: character.}{Player position.}
 #'   \item{`passing_completions`: double.}{Passing completions.}
 #'   \item{`passing_att`: double.}{Passing attempts.}
 #'   \item{`passing_pct`: double.}{Passing completion percentage.}
@@ -668,19 +670,24 @@ cfbd_stats_season_player <- function(year,
 
       # Check if Category is Null
       if (is.null(category)) {
+        suppressWarnings(
         df <- df %>%
           dplyr::select(-dplyr::any_of(c("category"))) %>%
           dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
           dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
           dplyr::arrange(.data$year, .data$athlete_id) %>%
           dplyr::ungroup() %>%
-          dplyr::mutate_all(function(x) replace(x, is.nan(x), NA))
+          dplyr::mutate_all(function(x) replace(x, is.nan(x), NA)))
       }
 
 
       df <- df  %>%
         dplyr::select(-dplyr::any_of(c("category"))) %>%
-        dplyr::select("year", tidyr::everything()) %>%
+        dplyr::select(
+          "year", "team", "conference", "athlete_id", "player", "position",
+          dplyr::everything(),
+          -dplyr::any_of("season")
+        ) %>%
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

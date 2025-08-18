@@ -41,7 +41,8 @@ cfbd_conferences <- function() {
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON()
+        jsonlite::fromJSON() %>% 
+        janitor::clean_names()
 
       # Rename id as conference_id, short_name as long_name
       df <- df %>%

@@ -126,7 +126,7 @@ cfbd_recruiting_player <- function(year = NULL,
   validate_year(year)
   validate_range(year, 2000)
   validate_list(recruit_type, c("HighSchool","PrepSchool", "JUCO"))
-  validate_list(state, state.abb)
+  validate_list(state, datasets::state.abb)
   validate_list(position, pos_groups)
 
   # Team Name Handling ----

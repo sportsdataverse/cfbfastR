@@ -164,6 +164,7 @@
 #'   |scoring_defensive_points                        |numeric   |
 #'   |scoring_field_goals                             |numeric   |
 #'   |scoring_kick_extra_points                       |numeric   |
+#'   |scoring_kick_extra_points_made                  |numeric   |
 #'   |scoring_misc_points                             |numeric   |
 #'   |scoring_passing_touchdowns                      |numeric   |
 #'   |scoring_receiving_touchdowns                    |numeric   |
@@ -196,6 +197,8 @@
 #'   |defensive_kicks_blocked                         |logical   |
 #'   |defensive_long_interception                     |logical   |
 #'   |defensive_misc_touchdowns                       |logical   |
+#'   |defensive_missed_field_goal_return_td           |numeric   |
+#'   |defensive_blocked_punt_ez_rec_td                |numeric   |
 #'   |defensive_passes_batted_down                    |logical   |
 #'   |defensive_passes_defended                       |logical   |
 #'   |defensive_two_pt_returns                        |logical   |
@@ -357,10 +360,8 @@
 #' }
 #'
 espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total=FALSE){
-  if (!(tolower(season_type) %in% c("regular","postseason"))) {
-    # Check if season_type is appropriate, if not regular
-    cli::cli_abort("Enter valid season_type: regular or postseason")
-  }
+  validate_season_type(season_type, allow_both = F)
+
   s_type <- ifelse(season_type == "postseason", 3, 2)
 
   base_url <- "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/"
@@ -788,7 +789,8 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       team_df <- team_df %>%
         dplyr::rename(
           "logo_href" = "logos_href",
-          "logo_dark_href" = "logos_href_1")
+          "logo_dark_href" = "logos_href_1") %>% 
+        dplyr::select(-tidyr::starts_with("logos"))
 
       athlete_df[["links"]] <- NULL
       athlete_df[["injuries"]] <- NULL

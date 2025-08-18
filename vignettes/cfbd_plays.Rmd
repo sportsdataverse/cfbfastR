@@ -22,8 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
-pacman::p_load(dplyr,tidyr)
-pacman::p_load_current_gh("sportsdataverse/cfbfastR")
+pacman::p_load(dplyr,tidyr, cfbfastR)
+#pacman::p_load_current_gh("sportsdataverse/cfbfastR")
 ```
 
 ### **Pull first 3 weeks of 2020 season using `cfbd_plays()`**

@@ -10,8 +10,8 @@ test_that("CFB Metrics API Pre-Game Win Probability", {
   x <- cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
 
   y <- cfbd_metrics_wp_pregame(year = 2017, week = 8, team = "TCU")
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

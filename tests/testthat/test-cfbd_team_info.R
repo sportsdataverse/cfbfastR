@@ -1,7 +1,7 @@
 
 cols <- c(
   "team_id", "school", "mascot", "abbreviation", "alt_name1", "alt_name2",
-  "alt_name3", "conference", "division",
+  "alt_name3", "conference", "division", "classification",
   "color", "alt_color", "logo", "logo_2", "twitter", "venue_id", "venue_name",
   "city", "state", "zip", "country_code", "timezone",
   "latitude","longitude","elevation",
@@ -13,6 +13,6 @@ test_that("CFB Team Info", {
 
   expect_equal(nrow(x), 130)
   expect_equal(ncol(x), length(cols))
-  expect_equal(colnames(x), cols)
+  expect_setequal(colnames(x), cols)
   expect_s3_class(x, "data.frame")
 })

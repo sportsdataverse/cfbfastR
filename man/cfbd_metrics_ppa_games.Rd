@@ -31,6 +31,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{\code{game_id}: integer.}{Referencing game id.}
 \item{\code{season}: integer.}{Season of the game.}
 \item{\code{week}: integer.}{Game week of the season.}
+\item{\code{season_type}: character.}{Season Type (regular, postseason, etc.}
 \item{\code{conference}: character.}{Conference of the team.}
 \item{\code{team}: character.}{Team name.}
 \item{\code{opponent}: character.}{Team Opponent.}

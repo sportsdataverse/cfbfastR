@@ -94,7 +94,8 @@ navbar:
     home:
       title: cfbfastR
       description: An R package to quickly obtain clean and tidy College Football play-by-play data
-      icon: fa-home
+      icon: "fas fa-home"
+      text: ""
       href: index.html
       links:
       - text: cfbfastR beginner's guide
@@ -291,9 +292,11 @@ navbar:
       href: http://gameonpaper.com/cfb
     twitter:
       icon: "fab fa-twitter fa-lg"
+      text: ""
       href: http://twitter.com/cfbfastR
     github:
       icon: "fab fa-github fa-lg"
+      text: ""
       href: https://github.com/sportsdataverse/cfbfastR/
 
 reference:

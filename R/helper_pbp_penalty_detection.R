@@ -2,7 +2,7 @@
 #'
 #' @param raw_df (*data.frame* required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
 #' @details Runs penalty detection on the play text and play types. Requires the following columns be present:
-#' \itemize{
+#' \describe{
 #' \item{`game_id`}{Referencing game id.}
 #' \item{`period`}{Game period (quarter).}
 #' \item{`down`}{Down of the play.}

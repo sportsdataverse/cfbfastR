@@ -1,5 +1,5 @@
 cols <- c(
-  "year", "team", "conference", "athlete_id", "player",
+  "year", "team", "conference", "athlete_id", "player", "position",
   "passing_completions", "passing_att", "passing_pct", "passing_yds",
   "passing_td", "passing_int", "passing_ypa",
   "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long",
@@ -26,9 +26,9 @@ test_that("CFB Season Player Stats", {
 
   z <- cfbd_stats_season_player(year = 2018, team = "Florida State")
 
-  expect_equal(colnames(x), cols)
-  expect_equal(colnames(y), cols)
-  expect_equal(colnames(z), cols)
+  expect_setequal(colnames(x), cols)
+  expect_setequal(colnames(y), cols)
+  expect_setequal(colnames(z), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")

@@ -77,6 +77,7 @@ NULL
 #'   \item{`alt_name3`: character.}{Team alternate name 3 (as it appears in `play_text`).}
 #'   \item{`conference`: character.}{Conference of team.}
 #'   \item{`division`: character.}{Division of team within the conference.}
+#'   \item{`classification`: character.}{Conference classification (fbs,fcs,ii,iii)}
 #'   \item{`color`: character.}{Team color (primary).}
 #'   \item{`alt_color`: character.}{Team color (alternate).}
 #'   \item{`logos`: character.}{Team logos.}
@@ -153,7 +154,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       locs <- df$location
       locs <- locs %>%
         jsonlite::flatten() %>%
-        dplyr::rename(venue_id = "id")
+        dplyr::rename("venue_id" = "id")
       df <- df %>% dplyr::select(-"location")
       # suppressWarnings(
       #   logos_list <- df %>%
@@ -172,10 +173,17 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
         dplyr::rename(
           "logo" = "logos_1",
           "logo_2" = "logos_2")
+      df <- df %>%
+        dplyr::rename("alt_name" = "alternateNames") %>%
+        tidyr::unnest_wider("alt_name", names_sep = "")
       df <- dplyr::bind_cols(df, locs) %>%
         dplyr::rename(
-          team_id = "id",
-          venue_name = "name") %>%
+          "team_id" = "id",
+          "venue_name" = "name",
+          "alt_color" = "alternateColor",
+          "year_constructed" = "constructionYear"
+        ) %>%
+        janitor::clean_names() %>%
         as.data.frame()
 
 
@@ -216,7 +224,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
-#' @importFrom purrr enframe
+#' @importFrom tibble enframe
 #' @export
 #' @examples
 #' \donttest{
@@ -265,8 +273,8 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       df <- df %>%
         tibble::as_tibble() %>%
         dplyr::mutate(
-          startYear = ifelse(!is.null(min_year), startYear, min_season),
-          endYear = ifelse(!is.null(max_year), endYear, max_season)
+          startYear = ifelse(!is.null(min_year), .data$startYear, min_season),
+          endYear = ifelse(!is.null(max_year), .data$endYear, max_season)
         ) %>%
         dplyr::rename(
           "start_year" = "startYear",
@@ -468,11 +476,12 @@ cfbd_team_roster <- function(year, team = NULL) {
         dplyr::mutate(
           headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
         as.data.frame()
-      df$recruit_ids <- lapply(df$recruitIds, function(y){
+      df$recruitIds <- lapply(df$recruitIds, function(y){
         if(length(y) == 0) as.integer(0) else y
       })
 
       df <- df %>%
+        janitor::clean_names() %>%
         make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -536,7 +545,8 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
-        dplyr::mutate(talent = as.numeric(.data$talent))
+        dplyr::mutate(talent = as.numeric(.data$talent)) %>%
+        dplyr::rename("school" = "team")
 
 
       df <- df %>%

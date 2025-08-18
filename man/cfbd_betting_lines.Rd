@@ -17,10 +17,10 @@ cfbd_betting_lines(
 )
 }
 \arguments{
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game \cr
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game. Required if year not provided \cr
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
-\item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format(\emph{YYYY}). Required if game_id not provided}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
@@ -49,9 +49,11 @@ Betting information for games with the following columns:
 \item{start_date:character.}{Start Date}
 \item{home_team:character.}{Home D-I Team.}
 \item{home_conference:character.}{Home D-I Conference.}
+\item{home_classification:character.}{Home Conference classification (fbs,fcs,ii,iii)}
 \item{home_score:integer.}{Home Score.}
 \item{away_team:character.}{Away D-I Team.}
 \item{away_conference:character.}{Away D-I Conference.}
+\item{away_classification:character.}{Away Conference classification (fbs,fcs,ii,iii)}
 \item{away_score:integer.}{Away Score.}
 \item{provider:character.}{Line provider.}
 \item{spread:character.}{Spread for the game.}

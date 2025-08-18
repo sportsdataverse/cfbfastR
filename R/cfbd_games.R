@@ -14,7 +14,6 @@
 #'   \item{`cfbd_game_media()`:}{ Get game media information (TV, radio, etc).}
 #' }
 #' @details
-#'
 #' ### **Get game advanced box score information.**
 #' ```r
 #' cfbd_game_box_advanced(game_id = 401114233)
@@ -45,7 +44,6 @@
 #'
 #' # 7 OTs LSU @ TAMU
 #' cfbd_game_info(2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
-#' ```
 #' ```
 #' ### **Get weather from games.**
 #' ```r
@@ -193,6 +191,12 @@ cfbd_game_info <- function(year,
           dplyr::rename("game_id" = "id")
       }
       df <- df %>%
+        dplyr::rename(
+          "home_division" = "home_classification",
+          "home_post_win_prob" = "home_postgame_win_probability",
+          "away_division" = "away_classification",
+          "away_post_win_prob" = "away_postgame_win_probability"
+        ) %>%
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -352,7 +356,14 @@ cfbd_calendar <- function(year) {
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
-        janitor::clean_names()
+        janitor::clean_names() %>%
+        dplyr::select(
+          "season",
+          "week",
+          "season_type",
+          "first_game_start" = "start_date",
+          "last_game_start" = "end_date"
+        )
 
 
       df <- df %>%
@@ -1024,11 +1035,12 @@ cfbd_game_player_stats <- function(year,
 #' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @return [cfbd_game_records()] - A data frame with 22 variables:
+#' @return [cfbd_game_records()] - A data frame with 35 variables:
 #' \describe{
 #'   \item{`year`: integer.}{Season of the games.}
-#'   \item{`team_id`: integer.} {Referencing team id.}
+#'   \item{`team_id`: integer.}{Referencing team id.}
 #'   \item{`team`: character.}{Team name.}
+#'   \item{`classification`: character}{Conference classification (fbs,fcs,ii,iii)}
 #'   \item{`conference`: character.}{Conference of the team.}
 #'   \item{`division`: character.}{Division in the conference of the team.}
 #'   \item{`expected_wins`: numeric}{Expected number of wins based on post-game win probability.}
@@ -1048,6 +1060,18 @@ cfbd_game_player_stats <- function(year,
 #'   \item{`away_wins`: integer.}{Total away wins.}
 #'   \item{`away_losses`: integer.}{Total away losses.}
 #'   \item{`away_ties`: integer.}{Total away ties.}
+#'   \item{`neutral_games`: integer.}{Total neutral site games.}
+#'   \item{`neutral_wins`: integer.}{Total neutral site wins.}
+#'   \item{`neutral_losses`: integer.}{Total neutral site losses.}
+#'   \item{`neutral_ties`: integer.}{Total neutral site ties.}
+#'   \item{`regular_season_games`: integer.}{Total regular season games.}
+#'   \item{`regular_season_wins`: integer.}{Total regular season wins.}
+#'   \item{`regular_season_losses`: integer.}{Total regular season losses.}
+#'   \item{`regular_season_ties`: integer.}{Total regular season ties.}
+#'   \item{`postseason_games`: integer.}{Total postseason games.}
+#'   \item{`postseason_wins`: integer.}{Total postseason wins.}
+#'   \item{`postseason_losses`: integer.}{Total postseason losses.}
+#'   \item{`postseason_ties`: integer.}{Total postseason ties.}
 #' }
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
@@ -1113,7 +1137,19 @@ cfbd_game_records <- function(year,
           "away_games" = "awayGames.games",
           "away_wins" = "awayGames.wins",
           "away_losses" = "awayGames.losses",
-          "away_ties" = "awayGames.ties"
+          "away_ties" = "awayGames.ties",
+          "neutral_games" = "neutralSiteGames.games",
+          "neutral_wins" = "neutralSiteGames.wins",
+          "neutral_losses" = "neutralSiteGames.losses",
+          "neutral_ties" = "neutralSiteGames.ties",
+          "regular_season_games" = "regularSeason.games",
+          "regular_season_wins" = "regularSeason.wins",
+          "regular_season_losses" = "regularSeason.losses",
+          "regular_season_ties" = "regularSeason.ties",
+          "postseason_games" = "postseason.games",
+          "postseason_wins" = "postseason.wins",
+          "postseason_losses" = "postseason.losses",
+          "postseason_ties" = "postseason.ties"
         )
 
       df <- df %>%
@@ -1445,6 +1481,7 @@ cfbd_game_team_stats <- function(year,
 
 
       df <- df %>%
+        dplyr::rename("school" = "team") %>%
         make_cfbfastR_data("Team stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
