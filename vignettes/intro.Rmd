@@ -1,7 +1,7 @@
 ---
 title: "Introduction to cfbfastR"
 description: "Getting started with using <code>cfbfastR</code> and college football analytics."
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
@@ -58,8 +58,8 @@ pacman::p_load(tidyverse, zoo, ggimage, gt, cfbfastR)
 
 There are generally speaking **three** college football data sources accessed from this package:
 
--   [`cfbfastR-data` repo](https://github.com/sportsdataverse/cfbfastR-data) [![Twitter Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=twitter&style=for-the-badge)](https://twitter.com/cfbfastR)
--   [College Football Data API](https://collegefootballdata.com) [![Twitter Follow](https://img.shields.io/twitter/follow/cfb_data?color=blue&label=%40cfb_data&logo=twitter&style=for-the-badge)](https://twitter.com/cfb_data)
+-   [`cfbfastR-data` repo](https://github.com/sportsdataverse/cfbfastR-data) [![Twitter Follow](https://img.shields.io/twitter/follow/cfbfastR?color=blue&label=%40cfbfastR&logo=X&style=for-the-badge)](https://twitter.com/cfbfastR)
+-   [College Football Data API](https://collegefootballdata.com) [![Twitter Follow](https://img.shields.io/twitter/follow/cfb_data?color=blue&label=%40cfb_data&logo=X&style=for-the-badge)](https://twitter.com/cfb_data)
 -   [ESPN](https://espn.com)
 
 #### **Function names indicate the data source**

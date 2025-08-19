@@ -1,7 +1,7 @@
 ---
 title: "CFB Data Games Examples"
 description: "Provides access to <strong>game-level</strong> team (<code>cfbd_game_team_stats()</code>) and player (<code>cfbd_game_player_stats()</code>) standard <strong>box scores</strong>, as well as team-level advanced box scores (<code>cfbd_game_box_advanced()</code>). Also useful for looking up game information (<code>cfbd_game_info()</code>), broadcast details (<code>cfbd_game_media()</code>), and team records/results information (<code>cfbd_game_records()</code>)."
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
