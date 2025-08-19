@@ -137,6 +137,10 @@ Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
     <a href="https://twitter.com/John_B_Edwards" target="blank"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=twitter&style=for-the-badge" alt="@John_B_Edwards" /></a>
     <a href="https://github.com/john-b-edwards" target="blank"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge" alt="@john-b-edwards" /></a>
 
+-   [Brad Hill](https://twitter.com/bradisblogging)</br> 
+    <a href="https://twitter.com/bradisblogging" target="blank"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=twitter&style=for-the-badge" alt="@bradisblogging" /></a>
+    <a href="https://github.com/bradisbrad" target="blank"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge" alt="@bradisbrad" /></a>
+
 # **Authors Emeritus - `cfbscrapR`[archived]**
 
 -   [Meyappan Subbiah](https://twitter.com/msubbaiah1)      
