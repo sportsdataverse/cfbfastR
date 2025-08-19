@@ -5,6 +5,7 @@
 \title{\strong{CFBD Metrics Endpoint Overview}}
 \description{
 \describe{
+\item{\code{cfbd_metrics_fg_ep()}:}{ Get field goal expected points values.}
 \item{\code{cfbd_metrics_ppa_games()}:}{ Get team game averages for predicted points added (PPA).}
 \item{\code{cfbd_metrics_ppa_players_games()}:}{ Get player game averages for predicted points added (PPA).}
 \item{\code{cfbd_metrics_ppa_players_season()}:}{ Get player season averages for predicted points added (PPA).}
@@ -15,6 +16,12 @@
 }
 }
 \details{
+\subsection{\strong{Get expected points for field goals by yards to goal and distance}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_fg_ep()
+}\if{html}{\out{</div>}}
+}
+
 \subsection{\strong{Get team game averages for predicted points added (PPA)}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_ppa_games(year = 2019, team = "TCU")
