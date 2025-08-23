@@ -1,7 +1,7 @@
 ---
 title: "Visualizing Team Talent from Player Recruiting Rankings"
 description: "A quick way to visually approximate how much talent each school recruited using <code>cfbfastR</code> and <code>ggplot2</code>."
-author: "Eric Hess - Arbitrary Analytics <br><a href='https://twitter.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=X&amp;style=for-the-badge' alt='@arbitanalytics'/></a> <a href='https://github.com/ehess' target='blank'><img src='https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@ehess'/></a>"
+author: "Eric Hess - Arbitrary Analytics <br><a href='https://twitter.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a> <a href='https://github.com/ehess' target='blank'><img src='https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@ehess'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
