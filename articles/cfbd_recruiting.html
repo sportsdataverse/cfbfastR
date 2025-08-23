@@ -173,7 +173,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>CFB Data Recruiting Examples</h1>
                         <h4 data-toc-skip class="author">Saiem Gilani
-<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge" alt="@saiemgilani"></a>
 <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </h4>
             
@@ -204,7 +204,7 @@ available for team, recruit type, state and position.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:55 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:46 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 28 × 19</span></span></span>
 <span><span class="co">##    id     athlete_id recruit_type  year ranking name         school committed_to</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
@@ -225,8 +225,8 @@ available for team, recruit type, state and position.</p>
 <span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;</span></span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2016</span>, recruit_type <span class="op">=</span> <span class="st">"JUCO"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:46 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 470 × 19</span></span></span>
 <span><span class="co">##    id     athlete_id recruit_type  year ranking name         school committed_to</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
@@ -245,10 +245,10 @@ available for team, recruit type, state and position.</p>
 <span><span class="co">## <span style="color: #949494;">#   rating &lt;dbl&gt;, city &lt;chr&gt;, state_province &lt;chr&gt;, country &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   hometown_info_latitude &lt;dbl&gt;, hometown_info_longitude &lt;dbl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   hometown_info_fips_code &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span><span class="fl">2020</span>, recruit_type <span class="op">=</span> <span class="st">"HighSchool"</span>, position <span class="op">=</span> <span class="st">"OT"</span>, state <span class="op">=</span> <span class="st">"FL"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:47 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 25 × 19</span></span></span>
 <span><span class="co">##    id     athlete_id recruit_type  year ranking name         school committed_to</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
@@ -274,12 +274,12 @@ available for team, recruit type, state and position.</p>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_position.html">cfbd_recruiting_position</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 2025-08-18 01:36:56.362395: Invalid arguments or no position group recruiting data available!</span></span></code></pre>
+<pre><code><span><span class="co">## 2025-08-23 21:23:47.709069: Invalid arguments or no position group recruiting data available!</span></span></code></pre>
 <pre><code><span><span class="co">## data frame with 0 columns and 0 rows</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_position.html">cfbd_recruiting_position</a></span><span class="op">(</span><span class="fl">2016</span>, <span class="fl">2020</span>, team <span class="op">=</span> <span class="st">"Virginia"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting position group info from CollegeFootballData.com ─────────────────</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:47 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 16 × 7</span></span></span>
 <span><span class="co">##    team     conference position_group avg_rating total_rating commits avg_stars </span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -301,8 +301,8 @@ available for team, recruit type, state and position.</p>
 <span><span class="co">## <span style="color: #BCBCBC;">16</span> Virginia ACC        All Positions       0.839         7.55 9       2.8888888…</span></span></code></pre>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_position.html">cfbd_recruiting_position</a></span><span class="op">(</span><span class="fl">2015</span>, <span class="fl">2020</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Recruiting position group info from CollegeFootballData.com ─────────────────</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Recruiting position group info from CollegeFootballData.com ─────────────────</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:48 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 224 × 7</span></span></span>
 <span><span class="co">##    team     conference position_group avg_rating total_rating commits avg_stars </span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -322,34 +322,34 @@ available for team, recruit type, state and position.</p>
 <h3 id="cfb-recruiting-information-team-rankings-">
 <strong>CFB Recruiting Information Team Rankings.</strong><a class="anchor" aria-label="anchor" href="#cfb-recruiting-information-team-rankings-"></a>
 </h3>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:48 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">##    year team   rank points</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>018 Texas     3   300.</span></span></code></pre>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2016</span>, team <span class="op">=</span> <span class="st">"Virginia"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:48 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">##    year team      rank points</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>016 Virginia    63   165.</span></span></code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2016</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:48 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
 <span><span class="co">##    year team       rank points</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>016 Texas A&amp;M    18   239.</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_recruiting_team.html">cfbd_recruiting_team</a></span><span class="op">(</span><span class="fl">2011</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Recruiting team rankings from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 1.9.5</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-18 01:36:56 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:23:48 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 137 × 4</span></span></span>
 <span><span class="co">##     year team           rank points</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
