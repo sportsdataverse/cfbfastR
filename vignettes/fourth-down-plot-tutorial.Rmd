@@ -1,7 +1,7 @@
 ---
 title: "Creating Fourth Down Tendency Plots Using cfbfastR"
 description: "A rundown of the Big XII returning coaches fourth down tendencies"
-author: "Michael Egle <br><a href='https://twitter.com/deceptivespeed_' target='blank'><img src='https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=twitter&style=for-the-badge' alt='@deceptivespeed_' /></a> <a href='https://github.com/michaelegle' target='blank'><img src='https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge' alt='@michaelegle' /></a>"
+author: "Michael Egle <br><a href='https://twitter.com/deceptivespeed_' target='blank'><img src='https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=X&style=for-the-badge' alt='@deceptivespeed_' /></a> <a href='https://github.com/michaelegle' target='blank'><img src='https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge' alt='@michaelegle' /></a>"
 date: "9/5/2020"
 opengraph:
   image: 

@@ -1,7 +1,7 @@
 ---
 title: "CFB Data Stats Examples"
 description: "Settling <strong>2019 LSU</strong> and <strong>2013 Florida State</strong> offense debates using Team and Player Stats from the CFBD API"
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"

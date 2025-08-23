@@ -1,6 +1,6 @@
 ---
 title: "Intro to Visualizing Recruiting Geography"
-author: "Conor R. McQuiston <br><a href='https://twitter.com/ConorMcQ5' target='blank'><img src='https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=twitter&style=for-the-badge' alt='@ConorMcQ5' /></a> <a href='https://github.com/mcqconor' target='blank'><img src='https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge' alt='@mcqconor' /></a>"
+author: "Conor R. McQuiston <br><a href='https://twitter.com/ConorMcQ5' target='blank'><img src='https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=X&style=for-the-badge' alt='@ConorMcQ5' /></a> <a href='https://github.com/mcqconor' target='blank'><img src='https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge' alt='@mcqconor' /></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"

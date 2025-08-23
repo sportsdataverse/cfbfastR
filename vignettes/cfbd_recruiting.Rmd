@@ -1,7 +1,7 @@
 ---
 title: "CFB Data Recruiting Examples"
 description: "Accessing 247Sports composite recruiting data through the CFBD API using <code>cfbd_recruiting_player()</code> for Player Rankings, <code>cfbd_recruiting_team()</code> for Team Rankings and <code>cfbd_recruiting_position()</code> for Position Group metrics"
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"

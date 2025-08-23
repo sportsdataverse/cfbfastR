@@ -1,7 +1,7 @@
 ---
 title: "Making Animated Win Probability Charts with cfbfastR"
 description: "Step-by-step walk-through of the process of adapting <a href='https://twitter.com/LeeSharpeNFL' target='blank'>Lee Sharpe's</a> win probability charts to college football using data from <a href='https://www.collegefootballdata.com' target='blank'>CollegeFootballData.com</a> collected using the <code>cfbfastR</code> package for R."
-author: "Jared Lee <br><a href='https://twitter.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=twitter&style=for-the-badge' alt='@JaredDLee' /></a> <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge' alt='@Kazink36' /></a>"
+author: "Jared Lee <br><a href='https://twitter.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=X&style=for-the-badge' alt='@JaredDLee' /></a> <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge' alt='@Kazink36' /></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
