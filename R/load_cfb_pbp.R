@@ -35,7 +35,10 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
     out <- NULL
   } else {
     class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
-
+    if (is.null(attr(out,"cfbfastR_timestamp"))) {
+      out <- out %>%
+        make_cfbfastR_data("PBP from data repo and CollegeFootballData.com",Sys.time())
+    }
   }
   out
   return(out)

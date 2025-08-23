@@ -14,6 +14,7 @@ A tibble of team-level image URLs and hex color codes.
 }
 \description{
 Loads team information including colors and logos - useful for plots!
+This function wraps the \code{cfbd_team_info()} function sourced from the College Football Data API.
 }
 \examples{
 \donttest{

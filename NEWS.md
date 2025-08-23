@@ -1,3 +1,53 @@
+# **cfbfastR v2.0.0**
+* Updated all `cfbd_*()` functions to use the new College Football Data API v2. This affects the f
+- Added [```cfbd_metrics_fg_ep()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.html) function to access the new field goal expected points added metric from the API.
+- Updated [```cfbd_betting_lines()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.html) function
+- Updated [```cfbd_coaches()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.html) function
+- Updated [```cfbd_conferences()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.html) function
+- Updated [```cfbd_drives()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.html) function
+- Updated [```cfbd_calendar()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_calendar.html) function
+- Updated [```cfbd_game_box_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.html) function
+- Updated [```cfbd_game_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.html) function
+- Updated [```cfbd_game_media()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.html) function
+- Updated [```cfbd_game_player_stats()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.html) function
+- Updated [```cfbd_game_records()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.html) function
+- Updated [```cfbd_game_team_stats()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html) function
+- Updated [```cfbd_metrics_ppa_games()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_games.html) function
+- Updated [```cfbd_metrics_ppa_players_games()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_games.html) function
+- Updated [```cfbd_metrics_ppa_players_season()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html) function
+- Updated [```cfbd_metrics_ppa_predicted()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_predicted.html) function
+- Updated [```cfbd_metrics_ppa_teams()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_teams.html) function
+- Updated [```cfbd_metrics_wp()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp.html) function
+- Updated [```cfbd_metrics_wp_pregame()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp_pregame.html) function
+- Updated [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) function
+- Updated [```cfbd_play_stats_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.html) function
+- Updated [```cfbd_play_stats_types()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.html) function
+- Updated [```cfbd_play_types()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.html) function
+- Updated [```cfbd_plays()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.html) function
+- Updated [```cfbd_player_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.html) function
+- Updated [```cfbd_player_returning()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_returning.html) function
+- Updated [```cfbd_player_usage()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html) function
+- Updated [```cfbd_rankings()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.html) function
+- Updated [```cfbd_ratings_sp()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.html) function
+- Updated [```cfbd_ratings_sp_conference()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.html) function
+- Updated [```cfbd_ratings_srs()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.html) function
+- Updated [```cfbd_recruiting_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.html) function
+- Updated [```cfbd_recruiting_position()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.html) function
+- Updated [```cfbd_recruiting_team()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.html) function
+- Updated [```cfbd_stats_categories()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.html) function
+- Updated [```cfbd_stats_game_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html) function
+- Updated [```cfbd_stats_season_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.html) function
+- Updated [```cfbd_stats_season_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html) function
+- Updated [```cfbd_stats_season_team()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.html) function
+- Updated [```cfbd_team_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html) function
+- Updated [```cfbd_team_matchup()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.html) function
+- Updated [```cfbd_team_matchup_records()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.html) function
+- Updated [```cfbd_team_roster()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.html) function
+- Updated [```cfbd_team_talent()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html) function
+- Updated [```cfbd_venues()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.html) function
+
+
+
 # **cfbfastR v1.9.5**
 * fixed breaking bug related to `stringi` v1.8 update in [```cfbd_play_pbp_data()```](https://cfbfastr.sportsdataverse.org/reference/cfbd_pbp_data.html) EPA and WPA processing
 * Minor documentation and test updates

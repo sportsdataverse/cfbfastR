@@ -14,11 +14,12 @@ this year's data if it is September or later. If set to \code{TRUE}, will return
 A tibble of season-level roster data.
 }
 \description{
-Load College Football Rosters
+Loads team rosters for specified seasons.
+This function wraps the \code{cfbd_team_roster()} function sourced from the College Football Data API.
 }
 \examples{
 \donttest{
-  try(load_cfb_rosters(2020))
+  try(load_cfb_rosters(2024))
 }
 
 }

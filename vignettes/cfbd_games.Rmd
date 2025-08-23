@@ -1,9 +1,9 @@
 ---
 title: "CFB Data Games Examples"
 description: "Provides access to <strong>game-level</strong> team (<code>cfbd_game_team_stats()</code>) and player (<code>cfbd_game_player_stats()</code>) standard <strong>box scores</strong>, as well as team-level advanced box scores (<code>cfbd_game_box_advanced()</code>). Also useful for looking up game information (<code>cfbd_game_info()</code>), broadcast details (<code>cfbd_game_media()</code>), and team records/results information (<code>cfbd_game_records()</code>)."
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
-  image: 
+  image:
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     creator: "@saiemgilani"
@@ -29,65 +29,65 @@ pacman::p_load(dplyr,tidyr, gt, cfbfastR)
 ### **Get game information**
 
 ```{r, load_cfbd_games_ex, eval = FALSE}
- 
+
 df_2018_wk_1 <- cfbfastR::cfbd_game_info(year=2018, week = 1)
- 
+
 df_2018_wk_7_ind <- cfbfastR::cfbd_game_info(year=2018, week = 7, conference = "Ind")
- 
+
 line_scores <- cfbfastR::cfbd_game_info(year=2018, week = 13, team = "Texas A&M", quarter_scores = TRUE)
- 
+
 ```
 
 ### **Get calendar weeks and dates**
 
 ```{r, cfbd_calendar_ex, eval = FALSE}
- 
+
 cfbfastR::cfbd_calendar(2019)
-   
+
 ```
 
 ### **Find game broadcast and media information**
 
 ```{r, cfbd_game_media_ex, eval = FALSE}
- 
+
 cfbfastR::cfbd_game_media(2019, week = 4, conference = "ACC")
-   
+
 ```
 
 ### **Get CFBD Advanced Game Box Scores (by `game_id`)**
 
 ```{r, cfbd_game_box_adv_ex, eval = FALSE}
- 
+
 cfbfastR::cfbd_game_box_advanced(game_id = 401114233)
-   
+
 ```
 
 ### **Get CFBD Game Team Box Scores**
 
 ```{r, game_team_stats_ex}
- 
+
 cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
-   
+
 cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
-   
+
 ```
 
 ### **Get CFBD Game Player Box Scores**
 
 ```{r, game_player_stats_ex, eval = FALSE}
- 
+
 cfbfastR::cfbd_game_player_stats(2018, week = 15, conference = "Ind")
 
 cfbfastR::cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing")
-   
+
 ```
 
 ### **Get CFBD Team Game Records**
 
 ```{r, game_records_ex, eval = FALSE}
- 
+
 cfbfastR::cfbd_game_records(2018, team = "Notre Dame")
-   
+
 cfbfastR::cfbd_game_records(2013, team = "Florida State")
-   
+
 ```

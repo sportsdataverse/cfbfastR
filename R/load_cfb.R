@@ -1,6 +1,7 @@
 #' Load CFB Game/Schedule Data from data repo
 #'
-#' This returns game/schedule information
+#' @description This function returns game/schedule information for the specified season(s).
+#' This function wraps the `cfbd_game_info()` function sourced from the College Football Data API.
 #'
 #' @param seasons a numeric vector of seasons to return, default `TRUE` returns all available data.
 #'
@@ -11,7 +12,7 @@
 #'
 #' @examples
 #' \donttest{
-#'   try(load_cfb_schedules(2020))
+#'   try(load_cfb_schedules(2024))
 #' }
 #'
 #' @export
@@ -26,19 +27,14 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
   p <- NULL
   if (is_installed("progressr")) p <- progressr::progressor(along = seasons)
 
-  urls <- paste0("https://github.com/sportsdataverse/cfbfastR-data/raw/main/schedules/rds/cfb_schedules_",
-                 seasons, ".rds")
+  out <- purrr::map_dfr(seasons, progressively(cfbd_game_info, p = p))
 
-  # out <- purrr::map_dfr(urls, progressively(rds_from_url, p = p))
-
-  out <- lapply(urls, progressively(rds_from_url, p))
-  out <- rbindlist_with_attrs(out)
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
-  attr(out,"cfbfastR_type") <- "Games and schedules from data repository"
+  attr(out,"cfbfastR_type") <- "Games and schedules from CollegeFootballData.com"
   # change this later when data in repo has attributes
   if (is.null(attr(out,"cfbfastR_timestamp"))) {
     out <- out %>%
-      make_cfbfastR_data("Games and schedules from data repository",Sys.time())
+      make_cfbfastR_data("Games and schedules from CollegeFootballData.com",Sys.time())
   }
   out
 }
@@ -46,12 +42,15 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
 
 #' Load College Football Rosters
 #'
+#' @description Loads team rosters for specified seasons.
+#' This function wraps the `cfbd_team_roster()` function sourced from the College Football Data API.
+#'
 #' @param seasons a numeric vector of seasons to return, defaults to returning
 #' this year's data if it is September or later. If set to `TRUE`, will return all available data.
 #'
 #' @examples
 #' \donttest{
-#'   try(load_cfb_rosters(2020))
+#'   try(load_cfb_rosters(2024))
 #' }
 #'
 #' @return A tibble of season-level roster data.
@@ -71,18 +70,15 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
   p <- NULL
   if (is_installed("progressr")) p <- progressr::progressor(along = seasons)
 
-  urls <- paste0("https://github.com/sportsdataverse/cfbfastR-data/raw/main/rosters/rds/cfb_rosters_",
-                 seasons, ".rds")
+  out <- purrr::map_dfr(seasons, progressively(cfbd_team_roster, p = p))
 
-  # out <- purrr::map_dfr(urls, progressively(rds_from_url, p = p))
-
-  out <- lapply(urls, progressively(rds_from_url, p))
-  out <- rbindlist_with_attrs(out)
+  # out <- lapply(urls, progressively(rds_from_url, p))
+  # out <- rbindlist_with_attrs(out)
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
   # change this later when data in repo has attributes
   if (is.null(attr(out,"cfbfastR_timestamp"))) {
     out <- out %>%
-      make_cfbfastR_data("Roster data from data repository",Sys.time())
+      make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
   }
   out
 }
@@ -90,6 +86,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 #' Load CFB team info from the data repo
 #'
 #' @description Loads team information including colors and logos - useful for plots!
+#' This function wraps the `cfbd_team_info()` function sourced from the College Football Data API.
 #'
 #' @param fbs_only if TRUE, returns only FBS teams, otherwise returns all teams in the dataset
 #'
@@ -105,11 +102,13 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 #'
 #' @export
 load_cfb_teams <- function(fbs_only = TRUE){
+  stopifnot(is.logical(fbs_only),
+            length(fbs_only) == 1,
+            !is.na(fbs_only))
 
-  out <- rds_from_url("https://github.com/sportsdataverse/cfbfastR-data/raw/main/team_info/rds/cfb_team_info_2020.rds")
-  if (isTRUE(fbs_only)) out <- dplyr::filter(out,!is.na(.data$conference))
+  out <- cfbd_team_info(only_fbs=fbs_only)
 
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
-  attr(out,"cfbfastR_type") <- "Team information"
+  attr(out,"cfbfastR_type") <- "Team information from CollegeFootballData.com"
   out
 }

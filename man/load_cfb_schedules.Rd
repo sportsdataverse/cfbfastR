@@ -13,11 +13,12 @@ load_cfb_schedules(seasons = most_recent_cfb_season())
 A tibble of game information for past and/or future games.
 }
 \description{
-This returns game/schedule information
+This function returns game/schedule information for the specified season(s).
+This function wraps the \code{cfbd_game_info()} function sourced from the College Football Data API.
 }
 \examples{
 \donttest{
-  try(load_cfb_schedules(2020))
+  try(load_cfb_schedules(2024))
 }
 
 }
