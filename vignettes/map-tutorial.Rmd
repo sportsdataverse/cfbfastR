@@ -82,7 +82,7 @@ Before we look at the code there's a couple `ggplot2` basics I would like to cov
 3. We map variables from a given data frame to geoms using the `aes` function. 
 4. The world isn't flat, but plotting maps in R defaults to a flat projection (Mercator) which can cause some pretty massive distortion. We can fix this by changing to another projection which better maintains an area's proportions (an Albers projection in this case)
 
-```{r gg_continental}
+```{r gg_continental, fig.alt= "A map of the continental United States with points representing the locations of 5 star recruits from the class of 2021."}
 
 cont_48 <- states %>% 
   dplyr::filter(!state_name %in% c("Alaska", "Hawaii")) #This means "Filter for states whose names aren't in the group of 'Hawaii' and 'Alaska'"
@@ -98,7 +98,7 @@ Great! We have successfully made a map where we can see where every single 5 sta
 
 To avoid that, we'll bring in the `ggrepel` library, which is on CRAN, which makes sure text doesn't overlap on `ggplot2` plots. Uncomment the first line if you don't have this package already installed. 
 
-```{r ggplot_ggrepel, warning = FALSE}
+```{r ggplot_ggrepel, warning = FALSE, fig.alt = "A map of the continental United States with points representing the locations of 5 star recruits from the class of 2021. Each point is labeled with the recruit's name."}
 #install.packages('ggrepel')
 library(ggrepel)
 
@@ -176,7 +176,8 @@ dplyr::glimpse(map_counts)
 
 Awesome! We now have the counts and data we use to to make the map, so let's make the plot now!
 
-```{r map_counts_plot}
+```{r map_counts_plot, fig.alt = "A choropleth map of the continental United States with states filled in with colors representing the number of FBS recruits from that state from 2017-2021."}
+
 ggplot(data = map_counts)+
   geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = count), color = 'white')+
   coord_map(projection = 'albers', lat0 = 39, lat1 = 45)
@@ -186,7 +187,7 @@ Tah-dah! We now can see that Texas, Florida, and California produce far and away
 
 What I'll do now is go ahead and make a more fancy looking graph. I won't explain what every individual piece uses beyond some comments, but I hope you can use it for some sort of template if you want to make anything yourself. This chart will show where all of the Pennsylvania, New Jersey, and New York prospects from 2017-2021 are from along with how many prospects overall came from each state using a unique color scale.
 
-```{r tristate_recs}
+```{r tristate_recs, fig.alt="Where are Recruits in the Tri-State Area from?"}
 
 tri_state_recs <- recruiting_classes %>% 
   dplyr::select(year, name, position, state_province, hometown_info_latitude, hometown_info_longitude) %>% 

@@ -81,7 +81,7 @@ down4 <- pbp %>%
 ```
 
 And now we've got all the info we need to make the graph! The code below is listed for current Big 12 head coaches, but you can alter it to show whichever coaches you want.
-```{r fourth_down_plot}
+```{r fourth_down_plot, fig.alt="Big 12 Coaches's Fourth Down Tendencies | CFP Era"}
 down4 %>%
   dplyr::filter(!is.na(play)) %>%
   dplyr::filter(coach %in% c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",

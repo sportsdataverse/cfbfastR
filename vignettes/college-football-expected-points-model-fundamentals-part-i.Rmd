@@ -40,7 +40,7 @@ This model generates probabilities for the possible types of next scoring events
 
 For each play, the multinomial logistic regression model calculates what the probability (\emph{p}) of each of those scoring outcomes is and the expected points can be calculated by multiplying each of the scoring event probabilities by their associated point values and summing the products, like so:
 
-<a href="https://imgur.com/sJTs6j6"><img src="https://i.imgur.com/sJTs6j6.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/sJTs6j6"><img src="https://i.imgur.com/sJTs6j6.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 ## Predictive variables
 The model is fit using the following variables and interactions:
@@ -86,7 +86,7 @@ Punts are not treated separately, since their primary effect lies mostly in the 
 ## Field Position and Expected Points
 The model was trained on non-overtime data from 2014-2019 using leave-one-season-out cross-validation. This means the model holds one season for test data validation and uses the remaining seasons as the training set, then uses the trained model to make predictions on the season held out. This process is then iterated for each season in the data.
 
-<a href="https://imgur.com/g5rSRUX"><img src="https://i.imgur.com/g5rSRUXl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/g5rSRUX"><img src="https://i.imgur.com/g5rSRUXl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 This is the plot of expected points in relation to field position alone, grouped in 10 yard bins and labeled on the plot with the mean expected points for the bin. The point at the bottom left is roughly the expected points from having the ball at the offense’s own 1-yard line, -1.28 expected points. The observed mean expected value for receiving the ball from the offense’s own 21-30-yard line (or 70 to 79 yards from opponent’s end-zone) is 0.29 expected points.
 
@@ -97,7 +97,7 @@ The observed average expected points in the red-zone are 4.05 in the 10-19-yard 
 ## Field Position and Expected Points by Down
 Recall that down and down interactions were three of the predictors in the model, so here is the field position view of expected points separated by down. The plot below demonstrates that your expected points are higher (on average) on 1st down than 2nd, and 2nd down than 3rd, etc at every point on the field, except possibly near the offense’s own goal line where there is risk of giving up a safety.
 
-<a href="https://imgur.com/S7etCxQ"><img src="https://i.imgur.com/S7etCxQl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/S7etCxQ"><img src="https://i.imgur.com/S7etCxQl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 This graph should be somewhat intuitive, but to understand what the relative expected points difference for each down at the same field position, we are interested in the vertical distance between each of the lines.
 
