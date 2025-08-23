@@ -1,9 +1,9 @@
 ---
 title: "CFB Data Stats Examples"
 description: "Settling <strong>2019 LSU</strong> and <strong>2013 Florida State</strong> offense debates using Team and Player Stats from the CFBD API"
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
-  image: 
+  image:
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     creator: "@saiemgilani"
@@ -29,7 +29,7 @@ pacman::p_load(dplyr,tidyr, gt, cfbfastR)
 ## Settling **2019 LSU** and **2013 Florida State** offense debates
 
 ### **Get Season Statistics by Team**
- 
+
 ```{r team_season_stats}
 team_season_stats <- dplyr::bind_rows(
    cfbd_stats_season_team(year=2019, team = "LSU"),
@@ -37,7 +37,7 @@ team_season_stats <- dplyr::bind_rows(
 )
 logos <- read.csv("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv")
 logos<- logos %>% dplyr::select(-"conference")
-df_team_season <- team_season_stats %>% 
+df_team_season <- team_season_stats %>%
    dplyr::left_join(logos, by=c("team"="school"))
 ```
 
@@ -47,51 +47,51 @@ colnames(df_team_season_long) <- df_team_season$team
 ```
 
 ### **Get Season Advanced Statistics by Team**
- 
+
 ```{r team_season_adv}
 df_team_season_adv <- dplyr::bind_rows(
    cfbd_stats_season_advanced(2019, team = "LSU"),
    cfbd_stats_season_advanced(2013, team = "Florida State")
 )
-df_team_season_adv <- df_team_season_adv %>% 
+df_team_season_adv <- df_team_season_adv %>%
    dplyr::left_join(logos, by=c("team"="school"))
 
 ```
- 
+
 ### **Get Game Advanced Stats**
- 
+
 ```{r team_game_adv}
 df_team_game_adv <- dplyr::bind_rows(
    cfbd_stats_game_advanced(2019, team = "LSU"),
    cfbd_stats_game_advanced(2013, team = "Florida State")
 )
-df_team_game_adv <- df_team_game_adv %>% 
-   dplyr::left_join(logos, by=c("team"="school")) 
+df_team_game_adv <- df_team_game_adv %>%
+   dplyr::left_join(logos, by=c("team"="school"))
 ```
- 
+
 ### **Get Season Statistics by Player**
- 
-```{r passing_stats_table_ex}   
+
+```{r passing_stats_table_ex}
 source("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R")
 passing_df <- dplyr::bind_rows(
-   cfbd_stats_season_player(2019, team = "LSU", category = "passing"), 
-   cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) %>% 
+   cfbd_stats_season_player(2019, team = "LSU", category = "passing"),
+   cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) %>%
    dplyr::left_join(logos, by=c("team"="school")) %>%
-   dplyr::group_by(team) %>% 
-   dplyr::select(logo, 
+   dplyr::group_by(team) %>%
+   dplyr::select(logo,
                  player,
                  passing_completions,
                  passing_att,
                  passing_yds,
                  passing_td,
                  passing_int,
-                 passing_ypa) %>% 
+                 passing_ypa) %>%
    arrange( desc(passing_yds), team)
-passing_df %>% gt() %>% 
+passing_df %>% gt() %>%
   tab_header(title = "Passing Summary") %>%
   cols_label(logo="",
-             player = "Player", 
-             passing_completions = "C", 
+             player = "Player",
+             passing_completions = "C",
              passing_att = "Att",
              passing_yds = "Yds",
              passing_td = "TDs",
@@ -103,36 +103,35 @@ passing_df %>% gt() %>%
       palette = "RdBu",
       domain = c(-6000,6000)
     )
-  ) %>% 
+  ) %>%
   data_color(
     columns = c("passing_td"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-60,60)
     )
-  ) %>% 
+  ) %>%
   data_color(
     columns = c("passing_td"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-60,60)
     )
-  ) %>% 
+  ) %>%
   text_transform(
     locations = cells_body(c("logo")),
     fn = function(logo){
       web_image(url= logo)
-  }) %>% 
-  tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v1.1.0")) %>% 
+  }) %>%
+  tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v1.1.0")) %>%
   gt_theme_538(table.width = px(550))
 
 ```
 
 ### **College Football Mapping for Stats Categories**
- 
+
 ```{r}
- 
+
 cfbd_stats_categories()
-   
+
 ```
- 

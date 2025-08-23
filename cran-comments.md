@@ -1,10 +1,11 @@
 ## Release summary
 
-This is a minor release that 
-* Adds the division parameter to functions: `cfbd_game_info()`, `cfbd_plays()`, 
-`cfbd_drives()`, `cfbd_game_media()`, `cfbd_game_team_stats()`
-* Makes tidyselect updates to various tidyr and dplyr functions under the hood
-* Adds lubridate dependency
+This is a major release that updates the `cfbd_*()` functions to use the new College Football Data API v2. 
+The following function was added:
+* `cfbd_metrics_fg_ep()`
+
+There are minor changes to the existing `cfbd_*()` functions under the hood. See NEWS.md for more details.
+
 
 ## R CMD check results
 

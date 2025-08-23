@@ -1,9 +1,9 @@
 ---
 title: "Making Animated Win Probability Charts with cfbfastR"
 description: "Step-by-step walk-through of the process of adapting <a href='https://twitter.com/LeeSharpeNFL' target='blank'>Lee Sharpe's</a> win probability charts to college football using data from <a href='https://www.collegefootballdata.com' target='blank'>CollegeFootballData.com</a> collected using the <code>cfbfastR</code> package for R."
-author: "Jared Lee <br><a href='https://twitter.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=X&style=for-the-badge' alt='@JaredDLee' /></a> <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge' alt='@Kazink36' /></a>"
+author: "Jared Lee <br><a href='https://twitter.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge' alt='@JaredDLee' /></a> <a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge' alt='@Kazink36' /></a>"
 opengraph:
-  image: 
+  image:
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
   twitter:
     site: "@cfbfastR"
@@ -22,7 +22,7 @@ This document will walk you step-by-step through the process of adapting [Sharpe
 
 ## Load and Install Packages
 
-We're going to need several packages to generate the winning percentage plot: ```tidyverse``` for easy data wrangling, string manipulation, and plotting, ```glue``` to easily make the labels, ```ggimage``` to put the logos on the plot, and ```animation``` to actually build the GIF. 
+We're going to need several packages to generate the winning percentage plot: ```tidyverse``` for easy data wrangling, string manipulation, and plotting, ```glue``` to easily make the labels, ```ggimage``` to put the logos on the plot, and ```animation``` to actually build the GIF.
 
 ```{r packages, message=FALSE, warning=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
@@ -41,22 +41,22 @@ week <- 1
 year <- 2019
 
 interp_TimeSecsRem <- function(pbp) {
-  temp <- pbp %>% 
+  temp <- pbp %>%
     mutate(TimeSecsRem = ifelse(TimeSecsRem == lag(TimeSecsRem), NA, TimeSecsRem)) %>%
     select(TimeSecsRem)
   ind <- which(temp$TimeSecsRem == 1800)
   temp$TimeSecsRem[1] <- 1800
   temp$TimeSecsRem[nrow(temp)] <- 0
   temp$TimeSecsRem[ind-1] <- 0
-  pbp<- pbp %>% 
-    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) %>% 
+  pbp<- pbp %>%
+    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) %>%
     mutate(clock_minutes = floor(TimeSecsRem/60),clock_seconds = TimeSecsRem %% 60)
   return(pbp)
 }
-game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>% 
+game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>%
   filter(down > 0) %>%
-  interp_TimeSecsRem() 
-  
+  interp_TimeSecsRem()
+
 game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week)
 ```
 
@@ -66,12 +66,12 @@ We'll also use the ```cfbd_team_info()``` function to pull the color and logo in
 team_info <- cfbfastR::cfbd_team_info()
 team_logos <- team_info %>%
   select(school, color, alt_color, logo, alt_name2)
-game <- game %>% 
-  left_join(team_logos, by = c("away_team" = "school"),) %>% 
-  rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2) 
+game <- game %>%
+  left_join(team_logos, by = c("away_team" = "school"),) %>%
+  rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2)
 
-game <- game %>% 
-  left_join(team_logos, by = c("home_team" = "school")) %>% 
+game <- game %>%
+  left_join(team_logos, by = c("home_team" = "school")) %>%
   rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) %>%
   mutate(result = home_points - away_points) %>%
   rename(home_score = home_points, away_score = away_points)
@@ -80,7 +80,7 @@ game <- game %>%
 To build the labels, we're going to use a custom function to pull the player names out of the play text. [Saiem Gilani](https://twitter.com/SaiemGilani) wrote the bulk of the regular expressions here to get the names. EDIT: The improved version of this is now included in the ```cfbd_pbp_data()``` function by default.
 
 
-Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbfastR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbfastR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation. 
+Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbfastR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbfastR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation.
 
 ```{r rename, message=FALSE, warning=FALSE}
 game_pbp <- game_pbp %>%
@@ -94,14 +94,14 @@ game_pbp <- game_pbp %>%
                            clock_minutes),
          minlabel = ifelse(minlabel < 10, paste0("0", minlabel), minlabel),
          seclabel = ifelse(clock_seconds < 10, paste0("0", clock_seconds), clock_seconds),
-         time = paste0(minlabel, ":", seclabel)) 
+         time = paste0(minlabel, ":", seclabel))
 ```
 
 Now that our data matches ```nflfastR```, we can start to copy Lee Sharpe's code and the bulk of the remaining code is his with a few minor adjustments to the plot, the overtime logic, and the labels. First we filter out plays that don't have a win percentage and fix the win probability so that it is always the probability of the away team winning.
 
 ```{r base_wp_data, message=FALSE, warning=FALSE}
-base_wp_data <- game_pbp %>% 
-  filter(!is.na(wp)) %>% 
+base_wp_data <- game_pbp %>%
+  filter(!is.na(wp)) %>%
   mutate(s = game_seconds_remaining,
          wp = ifelse(posteam == away_team, wp, 1 - wp))
 
@@ -133,12 +133,12 @@ Now we create the labels. This generates labels for any play that had a change i
 ```{r wp_data, message=FALSE, warning=FALSE}
 abs_wpa <- 0.07
 
-wp_data <- base_wp_data %>% 
+wp_data <- base_wp_data %>%
   mutate(
     helped=ifelse(wpa > 0, posteam, defteam),
-    text = 
+    text =
       case_when(
-       abs(wpa) > abs_wpa & play_type == "Kickoff" & 
+       abs(wpa) > abs_wpa & play_type == "Kickoff" &
          !is.na(kickoff_returner_player_name) ~ glue("{kickoff_returner_player_name} KR"),
        abs(wpa) > abs_wpa & play_type == "Rush" ~ glue("{rusher_player_name} Rush"),
        abs(wpa) > abs_wpa & play_type == "Pass Reception" ~ glue("{receiver_player_name} Catch"),
@@ -161,7 +161,7 @@ wp_data <- base_wp_data %>%
        abs(wpa) > abs_wpa & play_type == "Kickoff Return (Offense)" ~ glue("{kickoff_returner_player_name} KR"),
        abs(wpa) > abs_wpa & play_type == "Blocked Punt" ~ glue("{defteam} PUNT BLK"),
        abs(wpa) > abs_wpa & play_type == "Interception Return Touchdown" ~ glue("{interception_player_name} DEF TD"),
-       abs(wpa) > abs_wpa & play_type == "Kickoff Return Touchdown" & 
+       abs(wpa) > abs_wpa & play_type == "Kickoff Return Touchdown" &
          !is.na(kickoff_returner_player_name) ~ glue("{kickoff_returner_player_name} KR TD"),
        abs(wpa) > abs_wpa & play_type == "Punt Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
        abs(wpa) > abs_wpa & play_type == "Fumble Recovery (Opponent) Touchdown" ~ glue("{defteam} FUMBLE TD"),
@@ -179,11 +179,11 @@ wp_data <- base_wp_data %>%
        TRUE ~ ""),
     text = ifelse(text == "","", glue("{text}\n{helped} +{abs(round(100*wpa))}%")),
     away_score = ifelse(posteam == away_team, posteam_score, defteam_score),
-    home_score = ifelse(posteam == away_team, defteam_score, posteam_score)) %>% 
+    home_score = ifelse(posteam == away_team, defteam_score, posteam_score)) %>%
   select(play_id, qtr, time, s, wp, wpa, posteam, away_score, home_score, text)
 ```
 
-This is where the real magic happens. Sharpe's code will iterate over the labels and try to determine valid locations for each one. 
+This is where the real magic happens. Sharpe's code will iterate over the labels and try to determine valid locations for each one.
 
 ```{r labels, message=FALSE, warning=FALSE}
 
@@ -218,14 +218,14 @@ for (r in which(wp_data$text != ""))
   for (i in 1:length(y_spots))
   {
     valid <- TRUE
-    if (nrow(wp_data %>% 
+    if (nrow(wp_data %>%
              filter(y_spots[i] - 0.1 < wp & wp < y_spots[i] + 0.1 &
                     wp_data$s[r] - 300 < s & s < wp_data$s[r] + 300)) > 0)
     {
       # too close to the WP line
       valid <- FALSE
     }
-    if (nrow(wp_data %>% 
+    if (nrow(wp_data %>%
              filter(y_spots[i] - 0.1 < y_text & y_text < y_spots[i] + 0.1 &
                     wp_data$s[r] - 600 < x_text & x_text < wp_data$s[r] + 600)) > 0)
     {
@@ -235,7 +235,7 @@ for (r in which(wp_data$text != ""))
     if (valid)
     {
       # we found a spot for it, store and break loop
-      wp_data$x_text[r] <- wp_data$s[r] 
+      wp_data$x_text[r] <- wp_data$s[r]
       wp_data$y_text[r] <- y_spots[i]
       break
     }
@@ -255,14 +255,14 @@ for (r in which(wp_data$text != ""))
     for (i in 1:length(x_spots))
     {
       valid <- TRUE
-      if (nrow(wp_data %>% 
+      if (nrow(wp_data %>%
                filter(wp_data$wp[r] - 0.1 < wp & wp < wp_data$wp[r] + 0.1 &
                       x_spots[i] - 300 < s & s < x_spots[i] + 300)) > 0)
       {
         # too close to the WP line
         valid <- FALSE
       }
-      if (nrow(wp_data %>% 
+      if (nrow(wp_data %>%
                filter(wp_data$wp[r] - 0.1 < y_text & y_text < wp_data$wp[r] + 0.1 &
                       x_spots[i] - 600 < x_text & x_text < x_spots[i] + 600)) > 0)
       {
@@ -303,8 +303,8 @@ last_row <- data.frame(play_id = 999999, qtr = max(wp_data$qtr), s = x_max - 1,
                        stringsAsFactors = FALSE)
 wp_data <- wp_data %>%
   filter(posteam != "",
-         wpa != 0) %>% 
-  bind_rows(first_row) %>% 
+         wpa != 0) %>%
+  bind_rows(first_row) %>%
   bind_rows(last_row) %>%
   arrange(play_id)
 ```
@@ -316,19 +316,19 @@ Now we're ready for plotting. The ```draw_frame()``` function will draw our win 
 ```{r draw_frame, message=FALSE, warning=FALSE}
 draw_frame <- function(n_sec)
 {
-  
+
   # frame data
-  frm_data <- wp_data %>% 
+  frm_data <- wp_data %>%
     filter(s >= n_sec)
-  
+
   # output quarter changes
   if (nrow(frm_data %>% filter(qtr == max(qtr))) == 1)
   {
     print(glue("Plotting pbp in quarter {max(frm_data$qtr)}"))
   }
-  
+
   # plot
-  frm_plot <- frm_data %>% 
+  frm_plot <- frm_data %>%
     ggplot(aes(x = s, y = wp)) +
     theme_minimal() +
     geom_vline(xintercept = c(3600, x_max), color = "#5555AA") +
@@ -355,11 +355,11 @@ draw_frame <- function(n_sec)
     labs(title = glue("Win Probability Chart: {game$season} Week {game$wk} {game$away_team} @ {game$home_team}"),
          caption = "Data from cfbfastR, Visualization by @LeeSharpeNFL, Adapted for CFB by @JaredDLee") +
     theme(legend.position = "none")
-  
-  # score display 
+
+  # score display
   away_score <- max(frm_data$away_score)
   home_score <- max(frm_data$home_score)
-  
+
   # clock display
   qtr <- case_when(
     max(frm_data$qtr) == 1 ~ "1st",
@@ -373,15 +373,15 @@ draw_frame <- function(n_sec)
   clock <- ifelse(substr(clock, 1, 1) == "0", substr(clock, 2, 100), clock)
   clock <- paste0(qtr, "\n", clock)
   clock <- ifelse(grepl("FINAL", tail(frm_data$time, 1)), tail(frm_data$time, 1), clock)
-  
+
   # add score and clock to plot
-  frm_plot <- frm_plot + 
+  frm_plot <- frm_plot +
     annotate("text", x = -1*x_score, y = 0.71, label = away_score, color = game$away_color, size = 8) +
     annotate("text", x = -1*x_score, y = 0.29, label = home_score, color = game$home_color, size = 8) +
     annotate("text", x = -1*x_score, y = 0.50, label = clock, color = "#000000", size = 6)
-  
+
   # label key moments
-  frm_labels <- frm_data %>% 
+  frm_labels <- frm_data %>%
     filter(text != "")
   frm_plot <- frm_plot +
     geom_point(frm_labels, mapping = aes(x = s, y = wp),
@@ -390,13 +390,13 @@ draw_frame <- function(n_sec)
                  linetype = "dashed", color = "#000000", na.rm=TRUE) +
     geom_label(frm_labels, mapping = aes(x = x_text, y = y_text, label = text),
                size = 3, color = "#000000", na.rm = TRUE, alpha = 0.8)
-  
+
   # plot the frame
   plot(frm_plot, width = 12.5, height = 6.47, dpi = 500)
 }
 ```
 
-Let's test our function to make sure the plot looks like how we want it by running our function with 6 minutes left in the game. 
+Let's test our function to make sure the plot looks like how we want it by running our function with 6 minutes left in the game.
 
 ```{r draw_test, message=FALSE, warning=FALSE, fig.alt="Win Probability Chart"}
 draw_frame(360)
@@ -408,7 +408,7 @@ Looks great, so next we create the ```draw_game()``` function which will draw ev
 draw_game <- function()
 {
   lapply(wp_data$s, function(n_sec)
-  { 
+  {
     draw_frame(n_sec)
   })
   print("Plotting frames for pause")
@@ -420,7 +420,7 @@ draw_game <- function()
 
 ## Animating
 
-Finally, we run our ```draw_game()``` function inside of ```saveGIF()```. 
+Finally, we run our ```draw_game()``` function inside of ```saveGIF()```.
 
 ```{r saveGIF, message=FALSE, warning=FALSE}
   # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
