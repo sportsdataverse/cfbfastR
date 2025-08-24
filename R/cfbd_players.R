@@ -303,7 +303,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     "team" = team,
     "conference" = conference,
     "position" = position,
-    "athleteID" = athlete_id,
+    "playerId" = athlete_id,
     "excludeGarbageTime" = excl_garbage_time
   )
   full_url <- httr::modify_url(base_url, query=query_params)
