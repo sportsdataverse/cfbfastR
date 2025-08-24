@@ -17,7 +17,7 @@ cfbd_ratings_elo(
 
 \item{week}{(\emph{Integer} optional): Maximum Week of ratings.}
 
-\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 

@@ -366,10 +366,9 @@
 #' @keywords Play-by-Play
 #' @import stringr
 #' @importFrom rlang .data
-#' @importFrom tidyr everything
 #' @importFrom purrr map_dfr
 #' @importFrom glue glue
-#' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup setdiff
+#' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup setdiff everything
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
@@ -733,7 +732,7 @@ cfbd_pbp_data <- function(year,
         dplyr::all_of(wpa_extra_columns),
         dplyr::all_of(lag_series_columns),
         dplyr::all_of(lag_lead_columns),
-        tidyr::everything()
+        dplyr::everything()
       )
   }
 

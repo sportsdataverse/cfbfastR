@@ -18,7 +18,7 @@ cfbd_metrics_ppa_games(
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
-\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 

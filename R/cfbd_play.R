@@ -840,7 +840,7 @@ cfbd_live_plays <- function(game_id) {
           "rush_pash",
           "down_type",
           "play_text"
-        )), tidyr::everything())
+        )), dplyr::everything())
 
       df <- df_plays %>%
         dplyr::bind_cols(game_df)
@@ -852,7 +852,7 @@ cfbd_live_plays <- function(game_id) {
           "away_team_id",
           "away_team",
           "play_id"
-        )), tidyr::everything())
+        )), dplyr::everything())
 
       df <- df %>%
         make_cfbfastR_data("Live play-by-play data from CollegeFootballData.com",Sys.time())

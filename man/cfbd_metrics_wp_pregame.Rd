@@ -8,7 +8,7 @@ cfbd_metrics_wp_pregame(
   year = NULL,
   week = NULL,
   team = NULL,
-  season_type = "regular"
+  season_type = "both"
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ cfbd_metrics_wp_pregame(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
 \code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:

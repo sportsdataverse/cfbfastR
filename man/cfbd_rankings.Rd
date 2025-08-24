@@ -11,7 +11,7 @@ cfbd_rankings(year, week = NULL, season_type = "both")
 
 \item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
-\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
 \code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:

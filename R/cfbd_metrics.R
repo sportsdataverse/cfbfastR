@@ -499,7 +499,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 #' **Get team game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -613,7 +613,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' **Get player game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
-#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team. Required if week not provided.
 #' @param position (*string* optional): Position abbreviation of the player you are searching for.
 #' Position Group  - options include:
@@ -1037,7 +1037,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
-#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
 #' \describe{
@@ -1070,7 +1070,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 cfbd_metrics_wp_pregame <- function(year = NULL,
                                     week = NULL,
                                     team = NULL,
-                                    season_type = "regular") {
+                                    season_type = "both") {
 
   # Validation ----
   validate_api_key()

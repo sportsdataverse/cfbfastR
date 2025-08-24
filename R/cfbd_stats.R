@@ -550,8 +550,8 @@ cfbd_stats_season_advanced <- function(year,
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
-#' @importFrom dplyr mutate mutate_at rename select
-#' @importFrom tidyr pivot_wider everything
+#' @importFrom dplyr mutate mutate_at rename select everything
+#' @importFrom tidyr pivot_wider
 #' @family CFBD Stats
 #' @export
 #'
@@ -667,7 +667,7 @@ cfbd_stats_season_player <- function(year,
       df[cols[!(cols %in% colnames(df))]] <- NA
       suppressWarnings(
       df <- df %>%
-        dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
+        dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
         as.data.frame() %>%
         dplyr::mutate(year = year))

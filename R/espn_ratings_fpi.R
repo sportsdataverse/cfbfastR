@@ -27,8 +27,8 @@
 #' }
 #' @keywords Ratings FPI
 #' @importFrom stringr str_remove
-#' @importFrom tidyr unnest_wider everything
-#' @importFrom dplyr as_tibble between select mutate mutate_at row_number
+#' @importFrom tidyr unnest_wider
+#' @importFrom dplyr as_tibble between select mutate mutate_at row_number everything
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils data
 #' @importFrom utils URLencode
@@ -117,7 +117,7 @@ espn_ratings_fpi <- function(year = 2019) {
           year = year,
           t = ifelse(is.na(t), 0, t)) %>%
         dplyr::mutate_at(vars("win_out_pct":"win_conference_pct"), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
-        dplyr::select("year", tidyr::everything()) %>%
+        dplyr::select("year", dplyr::everything()) %>%
         dplyr::select(-"row_n") %>%
         dplyr::mutate(dplyr::across(dplyr::any_of(c(
           "year",

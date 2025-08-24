@@ -416,8 +416,8 @@ cfbd_calendar <- function(year) {
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
-#' @importFrom dplyr rename select
-#' @importFrom tidyr everything pivot_wider
+#' @importFrom dplyr rename select all_of everything
+#' @importFrom tidyr pivot_wider
 #' @family CFBD Games
 #' @export
 #' @examples
@@ -484,7 +484,7 @@ cfbd_game_media <- function(year,
       df <- df[!duplicated(df), ]
 
       df <- df %>%
-        dplyr::select(dplyr::all_of(cols), tidyr::everything())
+        dplyr::select(dplyr::all_of(cols), dplyr::everything())
 
 
       df <- df %>%
@@ -676,7 +676,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
           dplyr::select(-"name") %>%
           dplyr::mutate_all(as.numeric) %>%
           dplyr::bind_cols(team)  %>%
-          dplyr::select("team", tidyr::everything())
+          dplyr::select("team", dplyr::everything())
         df <- df %>%
           dplyr::rename(
             "rushing_line_yds_avg" = "rushing_line_yd_avg",
@@ -1003,7 +1003,7 @@ cfbd_game_player_stats <- function(year,
 
       suppressWarnings(
         df <- df %>%
-          dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
+          dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
           tidyr::separate("passing_c_att",into = c("passing_completions","passing_attempts"), sep = "/") %>%
           tidyr::separate("kicking_xp",into = c("kicking_xpm","kicking_xpa"), sep = "/") %>%
           tidyr::separate("kicking_fg",into = c("kicking_fgm","kicking_fga"), sep = "/") %>%
@@ -1015,7 +1015,7 @@ cfbd_game_player_stats <- function(year,
 
 
       df <- df %>%
-        dplyr::select(dplyr::any_of(cols), tidyr::everything()) %>%
+        dplyr::select(dplyr::any_of(cols), dplyr::everything()) %>%
         make_cfbfastR_data("Game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
