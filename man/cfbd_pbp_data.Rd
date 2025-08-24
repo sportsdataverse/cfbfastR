@@ -30,363 +30,385 @@ cfbd_pbp_data(
 \item{...}{Additional arguments passed to an underlying function.}
 }
 \value{
-A data frame with 351 variables:
-\describe{
-\item{\code{season}: double.}{.}
-\item{\code{wk}: double.}{.}
-\item{\code{id_play}: character.}{.}
-\item{\code{game_id}: integer.}{.}
-\item{\code{game_play_number}: double.}{.}
-\item{\code{half_play_number}: double.}{.}
-\item{\code{pos_team}: character.}{.}
-\item{\code{def_pos_team}: character.}{.}
-\item{\code{half}: integer.}{.}
-\item{\code{period}: integer.}{.}
-\item{\code{clock_minutes}: integer.}{.}
-\item{\code{clock_seconds}: integer.}{.}
-\item{\code{play_type}: character.}{.}
-\item{\code{play_text}: character.}{.}
-\item{\code{down}: double.}{.}
-\item{\code{distance}: double.}{.}
-\item{\code{yards_to_goal}: double.}{.}
-\item{\code{yards_gained}: double.}{.}
-\item{\code{penalty_1st_conv}: logical.}{.}
-\item{\code{new_series}: double.}{.}
-\item{\code{change_of_pos_team}: double.}{.}
-\item{\code{lag_change_of_pos_team}: double.}{.}
-\item{\code{orig_play_type}: character.}{.}
-\item{\code{lead_play_type}: character.}{.}
-\item{\code{lag_play_type}: character.}{.}
-\item{\code{lag_play_type2}: character.}{.}
-\item{\code{lag_play_type3}: character.}{.}
-\item{\code{row}: integer.}{.}
-\item{\code{drive_play_number}: double.}{.}
-\item{\code{drive_event_number}: double.}{.}
-\item{\code{lag_play_text}: character.}{.}
-\item{\code{lag_play_text2}: character.}{.}
-\item{\code{lead_play_text}: character.}{.}
-\item{\code{firstD_by_kickoff}: double.}{.}
-\item{\code{firstD_by_poss}: double.}{.}
-\item{\code{firstD_by_penalty}: double.}{.}
-\item{\code{firstD_by_yards}: double.}{.}
-\item{\code{lag_first_by_penalty}: double.}{.}
-\item{\code{lag_first_by_penalty2}: double.}{.}
-\item{\code{lag_first_by_yards}: double.}{.}
-\item{\code{lag_first_by_yards2}: double.}{.}
-\item{\code{first_by_penalty}: double.}{.}
-\item{\code{first_by_yards}: double.}{.}
-\item{\code{play_after_turnover}: double.}{.}
-\item{\code{lag_change_of_poss}: double.}{.}
-\item{\code{lag_kickoff_play}: double.}{.}
-\item{\code{lag_punt}: double.}{.}
-\item{\code{lag_scoring_play}: double.}{.}
-\item{\code{lag_turnover_vec}: double.}{.}
-\item{\code{lag_downs_turnover}: double.}{.}
-\item{\code{lag_defense_score_play}: double.}{.}
-\item{\code{EPA}: double.}{.}
-\item{\code{ep_before}: double.}{.}
-\item{\code{ep_after}: double.}{.}
-\item{\code{wpa}: double.}{.}
-\item{\code{wp_before}: double.}{.}
-\item{\code{wp_after}: double.}{.}
-\item{\code{def_wp_before}: double.}{.}
-\item{\code{def_wp_after}: double.}{.}
-\item{\code{penalty_detail}: character.}{.}
-\item{\code{yds_penalty}: double.}{.}
-\item{\code{downs_turnover}: double.}{.}
-\item{\code{turnover}: double.}{.}
-\item{\code{pos_score_diff_start}: double.}{.}
-\item{\code{pos_score_pts}: double.}{.}
-\item{\code{pos_team_score}: integer.}{.}
-\item{\code{def_pos_team_score}: integer.}{.}
-\item{\code{log_ydstogo}: double.}{.}
-\item{\code{ExpScoreDiff}: double.}{.}
-\item{\code{ExpScoreDiff_Time_Ratio}: double.}{.}
-\item{\code{half_clock_minutes}: double.}{.}
-\item{\code{TimeSecsRem}: double.}{.}
-\item{\code{adj_TimeSecsRem}: double.}{.}
-\item{\code{Goal_To_Go}: logical.}{.}
-\item{\code{Under_two}: logical.}{.}
-\item{\code{home}: character.}{.}
-\item{\code{away}: character.}{.}
-\item{\code{home_wp_before}: double.}{.}
-\item{\code{away_wp_before}: double.}{.}
-\item{\code{home_wp_after}: double.}{.}
-\item{\code{away_wp_after}: double.}{.}
-\item{\code{end_of_half}: double.}{.}
-\item{\code{pos_team_receives_2H_kickoff}: double.}{.}
-\item{\code{lead_pos_team}: character.}{.}
-\item{\code{lag_pos_team}: character.}{.}
-\item{\code{Under_three}: logical.}{.}
-\item{\code{down_end}: integer.}{.}
-\item{\code{distance_end}: double.}{.}
-\item{\code{log_ydstogo_end}: double.}{.}
-\item{\code{yards_to_goal_end}: double.}{.}
-\item{\code{TimeSecsRem_end}: double.}{.}
-\item{\code{Goal_To_Go_end}: logical.}{.}
-\item{\code{Under_two_end}: logical.}{.}
-\item{\code{def_EPA}: double.}{.}
-\item{\code{offense_score_play}: double.}{.}
-\item{\code{defense_score_play}: double.}{.}
-\item{\code{ppa}: character.}{.}
-\item{\code{yard_line}: integer.}{.}
-\item{\code{scoring}: logical.}{.}
-\item{\code{pos_team_timeouts_rem_before}: double.}{.}
-\item{\code{def_pos_team_timeouts_rem_before}: double.}{.}
-\item{\code{pos_team_timeouts}: integer.}{.}
-\item{\code{def_pos_team_timeouts}: integer.}{.}
-\item{\code{pos_score_diff}: integer.}{.}
-\item{\code{pos_score_diff_start_end}: double.}{.}
-\item{\code{offense_play}: character.}{.}
-\item{\code{defense_play}: character.}{.}
-\item{\code{offense_receives_2H_kickoff}: double.}{.}
-\item{\code{change_of_poss}: double.}{.}
-\item{\code{score_pts}: double.}{.}
-\item{\code{score_diff_start}: double.}{.}
-\item{\code{score_diff}: integer.}{.}
-\item{\code{offense_score}: integer.}{.}
-\item{\code{defense_score}: integer.}{.}
-\item{\code{offense_conference}: character.}{.}
-\item{\code{defense_conference}: character.}{.}
-\item{\code{off_timeout_called}: double.}{.}
-\item{\code{def_timeout_called}: double.}{.}
-\item{\code{offense_timeouts}: integer.}{.}
-\item{\code{defense_timeouts}: integer.}{.}
-\item{\code{off_timeouts_rem_before}: double.}{.}
-\item{\code{def_timeouts_rem_before}: double.}{.}
-\item{\code{rusher_player_name}: character.}{.}
-\item{\code{yds_rushed}: double.}{.}
-\item{\code{passer_player_name}: character.}{.}
-\item{\code{receiver_player_name}: character.}{.}
-\item{\code{yds_receiving}: double.}{.}
-\item{\code{yds_sacked}: double.}{.}
-\item{\code{sack_players}: character.}{.}
-\item{\code{sack_player_name}: character.}{.}
-\item{\code{sack_player_name2}: character.}{.}
-\item{\code{pass_breakup_player_name}: character.}{.}
-\item{\code{interception_player_name}: character.}{.}
-\item{\code{yds_int_return}: double.}{.}
-\item{\code{fumble_player_name}: character.}{.}
-\item{\code{fumble_forced_player_name}: character.}{.}
-\item{\code{fumble_recovered_player_name}: character.}{.}
-\item{\code{yds_fumble_return}: double.}{.}
-\item{\code{punter_player_name}: character.}{.}
-\item{\code{yds_punted}: double.}{.}
-\item{\code{punt_returner_player_name}: character.}{.}
-\item{\code{yds_punt_return}: double.}{.}
-\item{\code{yds_punt_gained}: double.}{.}
-\item{\code{punt_block_player_name}: character.}{.}
-\item{\code{punt_block_return_player_name}: character.}{.}
-\item{\code{fg_kicker_player_name}: character.}{.}
-\item{\code{yds_fg}: double.}{.}
-\item{\code{fg_block_player_name}: character.}{.}
-\item{\code{fg_return_player_name}: character.}{.}
-\item{\code{kickoff_player_name}: character.}{.}
-\item{\code{yds_kickoff}: double.}{.}
-\item{\code{kickoff_returner_player_name}: character.}{.}
-\item{\code{yds_kickoff_return}: double.}{.}
-\item{\code{new_id}: double.}{.}
-\item{\code{orig_drive_number}: integer.}{.}
-\item{\code{drive_number}: integer.}{.}
-\item{\code{drive_result_detailed}: character.}{.}
-\item{\code{new_drive_pts}: double.}{.}
-\item{\code{drive_id}: double.}{.}
-\item{\code{drive_result}: character.}{.}
-\item{\code{drive_start_yards_to_goal}: double.}{.}
-\item{\code{drive_end_yards_to_goal}: integer.}{.}
-\item{\code{drive_yards}: integer.}{.}
-\item{\code{drive_scoring}: double.}{.}
-\item{\code{drive_pts}: double.}{.}
-\item{\code{drive_start_period}: integer.}{.}
-\item{\code{drive_end_period}: integer.}{.}
-\item{\code{drive_time_minutes_start}: integer.}{.}
-\item{\code{drive_time_seconds_start}: integer.}{.}
-\item{\code{drive_time_minutes_end}: integer.}{.}
-\item{\code{drive_time_seconds_end}: integer.}{.}
-\item{\code{drive_time_minutes_elapsed}: integer.}{.}
-\item{\code{drive_time_seconds_elapsed}: integer.}{.}
-\item{\code{drive_numbers}: double.}{.}
-\item{\code{number_of_drives}: double.}{.}
-\item{\code{pts_scored}: double.}{.}
-\item{\code{drive_result_detailed_flag}: character.}{.}
-\item{\code{drive_result2}: character.}{.}
-\item{\code{drive_num}: double.}{.}
-\item{\code{lag_drive_result_detailed}: character.}{.}
-\item{\code{lead_drive_result_detailed}: character.}{.}
-\item{\code{lag_new_drive_pts}: double.}{.}
-\item{\code{id_drive}: character.}{.}
-\item{\code{rush}: double.}{.}
-\item{\code{rush_td}: double.}{.}
-\item{\code{pass}: double.}{.}
-\item{\code{pass_td}: double.}{.}
-\item{\code{completion}: double.}{.}
-\item{\code{pass_attempt}: double.}{.}
-\item{\code{target}: double.}{.}
-\item{\code{sack_vec}: double.}{.}
-\item{\code{sack}: double.}{.}
-\item{\code{int}: double.}{.}
-\item{\code{int_td}: double.}{.}
-\item{\code{turnover_vec}: double.}{.}
-\item{\code{turnover_vec_lag}: double.}{.}
-\item{\code{turnover_indicator}: double.}{.}
-\item{\code{kickoff_play}: double.}{.}
-\item{\code{receives_2H_kickoff}: double.}{.}
-\item{\code{missing_yard_flag}: logical.}{.}
-\item{\code{scoring_play}: double.}{.}
-\item{\code{td_play}: double.}{.}
-\item{\code{touchdown}: double.}{.}
-\item{\code{safety}: double.}{.}
-\item{\code{fumble_vec}: double.}{.}
-\item{\code{kickoff_tb}: double.}{.}
-\item{\code{kickoff_onside}: double.}{.}
-\item{\code{kickoff_oob}: double.}{.}
-\item{\code{kickoff_fair_catch}: double.}{.}
-\item{\code{kickoff_downed}: double.}{.}
-\item{\code{kickoff_safety}: double.}{.}
-\item{\code{kick_play}: double.}{.}
-\item{\code{punt}: double.}{.}
-\item{\code{punt_play}: double.}{.}
-\item{\code{punt_tb}: double.}{.}
-\item{\code{punt_oob}: double.}{.}
-\item{\code{punt_fair_catch}: double.}{.}
-\item{\code{punt_downed}: double.}{.}
-\item{\code{punt_safety}: double.}{.}
-\item{\code{punt_blocked}: double.}{.}
-\item{\code{penalty_safety}: double.}{.}
-\item{\code{fg_inds}: double.}{.}
-\item{\code{fg_made}: logical.}{.}
-\item{\code{fg_make_prob}: double.}{.}
-\item{\code{home_EPA}: double.}{.}
-\item{\code{away_EPA}: double.}{.}
-\item{\code{home_EPA_rush}: double.}{.}
-\item{\code{away_EPA_rush}: double.}{.}
-\item{\code{home_EPA_pass}: double.}{.}
-\item{\code{away_EPA_pass}: double.}{.}
-\item{\code{total_home_EPA}: double.}{.}
-\item{\code{total_away_EPA}: double.}{.}
-\item{\code{total_home_EPA_rush}: double.}{.}
-\item{\code{total_away_EPA_rush}: double.}{.}
-\item{\code{total_home_EPA_pass}: double.}{.}
-\item{\code{total_away_EPA_pass}: double.}{.}
-\item{\code{net_home_EPA}: double.}{.}
-\item{\code{net_away_EPA}: double.}{.}
-\item{\code{net_home_EPA_rush}: double.}{.}
-\item{\code{net_away_EPA_rush}: double.}{.}
-\item{\code{net_home_EPA_pass}: double.}{.}
-\item{\code{net_away_EPA_pass}: double.}{.}
-\item{\code{success}: double.}{.}
-\item{\code{epa_success}: double.}{.}
-\item{\code{rz_play}: double.}{.}
-\item{\code{scoring_opp}: double.}{.}
-\item{\code{middle_8}: logical.}{.}
-\item{\code{stuffed_run}: double.}{.}
-\item{\code{spread}: double.}{.}
-\item{\code{formatted_spread}: character.}{.}
-\item{\code{No_Score_before}: double.}{.}
-\item{\code{FG_before}: double.}{.}
-\item{\code{Opp_FG_before}: double.}{.}
-\item{\code{Opp_Safety_before}: double.}{.}
-\item{\code{Opp_TD_before}: double.}{.}
-\item{\code{Safety_before}: double.}{.}
-\item{\code{TD_before}: double.}{.}
-\item{\code{No_Score_after}: double.}{.}
-\item{\code{FG_after}: double.}{.}
-\item{\code{Opp_FG_after}: double.}{.}
-\item{\code{Opp_Safety_after}: double.}{.}
-\item{\code{Opp_TD_after}: double.}{.}
-\item{\code{Safety_after}: double.}{.}
-\item{\code{TD_after}: double.}{.}
-\item{\code{penalty_flag}: logical.}{.}
-\item{\code{penalty_declined}: logical.}{.}
-\item{\code{penalty_no_play}: logical.}{.}
-\item{\code{penalty_offset}: logical.}{.}
-\item{\code{penalty_text}: logical.}{.}
-\item{\code{penalty_play_text}: character.}{.}
-\item{\code{lead_wp_before2}: double.}{.}
-\item{\code{wpa_half_end}: double.}{.}
-\item{\code{wpa_base}: double.}{.}
-\item{\code{wpa_base_nxt}: double.}{.}
-\item{\code{wpa_change}: double.}{.}
-\item{\code{wpa_change_nxt}: double.}{.}
-\item{\code{wpa_base_ind}: double.}{.}
-\item{\code{wpa_base_nxt_ind}: double.}{.}
-\item{\code{wpa_change_ind}: double.}{.}
-\item{\code{wpa_change_nxt_ind}: double.}{.}
-\item{\code{lead_wp_before}: double.}{.}
-\item{\code{lead_pos_team2}: character.}{.}
-\item{\code{lag_change_of_pos_team2}: double.}{.}
-\item{\code{lag_punt2}: double.}{.}
-\item{\code{lag_score_diff}: double.}{.}
-\item{\code{lag_offense_play}: character.}{.}
-\item{\code{lead_offense_play}: character.}{.}
-\item{\code{lead_offense_play2}: character.}{.}
-\item{\code{lag_pos_score_diff}: double.}{.}
-\item{\code{lag_off_timeouts}: double.}{.}
-\item{\code{lag_def_timeouts}: double.}{.}
-\item{\code{lag_TimeSecsRem2}: double.}{.}
-\item{\code{lag_TimeSecsRem}: double.}{.}
-\item{\code{lead_TimeSecsRem}: double.}{.}
-\item{\code{lead_TimeSecsRem2}: double.}{.}
-\item{\code{lag_yards_to_goal2}: integer.}{.}
-\item{\code{lag_yards_to_goal}: integer.}{.}
-\item{\code{lead_yards_to_goal}: double.}{.}
-\item{\code{lead_yards_to_goal2}: integer.}{.}
-\item{\code{lag_down2}: double.}{.}
-\item{\code{lag_down}: double.}{.}
-\item{\code{lead_down}: double.}{.}
-\item{\code{lead_down2}: double.}{.}
-\item{\code{lead_distance}: double.}{.}
-\item{\code{lead_distance2}: integer.}{.}
-\item{\code{lead_play_type2}: character.}{.}
-\item{\code{lead_play_type3}: character.}{.}
-\item{\code{lag_ep_before3}: double.}{.}
-\item{\code{lag_ep_before2}: double.}{.}
-\item{\code{lag_ep_before}: double.}{.}
-\item{\code{lead_ep_before}: double.}{.}
-\item{\code{lead_ep_before2}: double.}{.}
-\item{\code{lag_ep_after}: double.}{.}
-\item{\code{lag_ep_after2}: double.}{.}
-\item{\code{lag_ep_after3}: double.}{.}
-\item{\code{lead_ep_after}: double.}{.}
-\item{\code{lead_ep_after2}: double.}{.}
-\item{\code{play_number}: integer.}{.}
-\item{\code{over_under}: double.}{.}
-\item{\code{event}: double.}{.}
-\item{\code{game_event_number}: double.}{.}
-\item{\code{game_row_number}: integer.}{.}
-\item{\code{half_event}: double.}{.}
-\item{\code{half_event_number}: double.}{.}
-\item{\code{half_row_number}: integer.}{.}
-\item{\code{lag_distance3}: integer.}{.}
-\item{\code{lag_distance2}: integer.}{.}
-\item{\code{lag_distance}: integer.}{.}
-\item{\code{lag_yards_gained3}: integer.}{.}
-\item{\code{lag_yards_gained2}: integer.}{.}
-\item{\code{lag_yards_gained}: integer.}{.}
-\item{\code{lead_yards_gained}: integer.}{.}
-\item{\code{lead_yards_gained2}: integer.}{.}
-\item{\code{lag_play_text3}: character.}{.}
-\item{\code{lead_play_text2}: character.}{.}
-\item{\code{lead_play_text3}: character.}{.}
-\item{\code{lag_change_of_poss2}: double.}{.}
-\item{\code{lag_change_of_poss3}: double.}{.}
-\item{\code{lag_change_of_pos_team3}: double.}{.}
-\item{\code{lag_kickoff_play2}: double.}{.}
-\item{\code{lag_kickoff_play3}: double.}{.}
-\item{\code{lag_punt3}: double.}{.}
-\item{\code{lag_scoring_play2}: double.}{.}
-\item{\code{lag_scoring_play3}: double.}{.}
-\item{\code{lag_turnover_vec2}: double.}{.}
-\item{\code{lag_turnover_vec3}: double.}{.}
-\item{\code{lag_downs_turnover2}: double.}{.}
-\item{\code{lag_downs_turnover3}: double.}{.}
-\item{\code{drive_event}: double.}{.}
-\item{\code{lag_first_by_penalty3}: double.}{.}
-\item{\code{lag_first_by_yards3}: double.}{.}
+A data frame with 368 variables:\tabular{ll}{
+   col_name \tab types \cr
+   season \tab numeric \cr
+   wk \tab numeric \cr
+   id_play \tab character \cr
+   game_id \tab integer \cr
+   game_play_number \tab numeric \cr
+   half_play_number \tab numeric \cr
+   drive_play_number \tab numeric \cr
+   pos_team \tab character \cr
+   def_pos_team \tab character \cr
+   pos_team_score \tab integer \cr
+   def_pos_team_score \tab integer \cr
+   half \tab factor \cr
+   period \tab integer \cr
+   clock_minutes \tab integer \cr
+   clock_seconds \tab integer \cr
+   play_type \tab character \cr
+   play_text \tab character \cr
+   down \tab numeric \cr
+   distance \tab numeric \cr
+   yards_to_goal \tab numeric \cr
+   yards_gained \tab numeric \cr
+   EPA \tab numeric \cr
+   ep_before \tab numeric \cr
+   ep_after \tab numeric \cr
+   wpa \tab numeric \cr
+   wp_before \tab numeric \cr
+   wp_after \tab numeric \cr
+   def_wp_before \tab numeric \cr
+   def_wp_after \tab numeric \cr
+   penalty_detail \tab character \cr
+   yds_penalty \tab numeric \cr
+   penalty_1st_conv \tab logical \cr
+   new_series \tab numeric \cr
+   firstD_by_kickoff \tab numeric \cr
+   firstD_by_poss \tab numeric \cr
+   firstD_by_penalty \tab numeric \cr
+   firstD_by_yards \tab numeric \cr
+   def_EPA \tab numeric \cr
+   home_EPA \tab numeric \cr
+   away_EPA \tab numeric \cr
+   home_EPA_rush \tab numeric \cr
+   away_EPA_rush \tab numeric \cr
+   home_EPA_pass \tab numeric \cr
+   away_EPA_pass \tab numeric \cr
+   total_home_EPA \tab numeric \cr
+   total_away_EPA \tab numeric \cr
+   total_home_EPA_rush \tab numeric \cr
+   total_away_EPA_rush \tab numeric \cr
+   total_home_EPA_pass \tab numeric \cr
+   total_away_EPA_pass \tab numeric \cr
+   net_home_EPA \tab numeric \cr
+   net_away_EPA \tab numeric \cr
+   net_home_EPA_rush \tab numeric \cr
+   net_away_EPA_rush \tab numeric \cr
+   net_home_EPA_pass \tab numeric \cr
+   net_away_EPA_pass \tab numeric \cr
+   success \tab numeric \cr
+   epa_success \tab numeric \cr
+   rz_play \tab numeric \cr
+   scoring_opp \tab numeric \cr
+   middle_8 \tab logical \cr
+   stuffed_run \tab numeric \cr
+   change_of_pos_team \tab numeric \cr
+   downs_turnover \tab numeric \cr
+   turnover \tab numeric \cr
+   pos_score_diff_start \tab numeric \cr
+   pos_score_pts \tab numeric \cr
+   log_ydstogo \tab numeric \cr
+   ExpScoreDiff \tab numeric \cr
+   ExpScoreDiff_Time_Ratio \tab numeric \cr
+   half_clock_minutes \tab numeric \cr
+   TimeSecsRem \tab numeric \cr
+   adj_TimeSecsRem \tab numeric \cr
+   Goal_To_Go \tab logical \cr
+   Under_two \tab logical \cr
+   home \tab character \cr
+   away \tab character \cr
+   home_wp_before \tab numeric \cr
+   away_wp_before \tab numeric \cr
+   home_wp_after \tab numeric \cr
+   away_wp_after \tab numeric \cr
+   end_of_half \tab numeric \cr
+   pos_team_receives_2H_kickoff \tab numeric \cr
+   lead_pos_team \tab character \cr
+   lead_play_type \tab character \cr
+   lag_pos_team \tab character \cr
+   lag_play_type \tab character \cr
+   orig_play_type \tab character \cr
+   Under_three \tab logical \cr
+   down_end \tab factor \cr
+   distance_end \tab numeric \cr
+   log_ydstogo_end \tab numeric \cr
+   yards_to_goal_end \tab numeric \cr
+   TimeSecsRem_end \tab numeric \cr
+   Goal_To_Go_end \tab logical \cr
+   Under_two_end \tab logical \cr
+   offense_score_play \tab numeric \cr
+   defense_score_play \tab numeric \cr
+   ppa \tab numeric \cr
+   yard_line \tab integer \cr
+   scoring \tab logical \cr
+   pos_team_timeouts_rem_before \tab numeric \cr
+   def_pos_team_timeouts_rem_before \tab numeric \cr
+   pos_team_timeouts \tab integer \cr
+   def_pos_team_timeouts \tab integer \cr
+   pos_score_diff \tab integer \cr
+   pos_score_diff_start_end \tab numeric \cr
+   offense_play \tab character \cr
+   defense_play \tab character \cr
+   offense_receives_2H_kickoff \tab numeric \cr
+   change_of_poss \tab numeric \cr
+   score_pts \tab numeric \cr
+   score_diff_start \tab numeric \cr
+   score_diff \tab integer \cr
+   offense_score \tab integer \cr
+   defense_score \tab integer \cr
+   offense_conference \tab character \cr
+   defense_conference \tab character \cr
+   off_timeout_called \tab numeric \cr
+   def_timeout_called \tab numeric \cr
+   offense_timeouts \tab integer \cr
+   defense_timeouts \tab integer \cr
+   off_timeouts_rem_before \tab numeric \cr
+   def_timeouts_rem_before \tab numeric \cr
+   rusher_player_name \tab character \cr
+   yds_rushed \tab numeric \cr
+   passer_player_name \tab character \cr
+   receiver_player_name \tab character \cr
+   yds_receiving \tab numeric \cr
+   yds_sacked \tab numeric \cr
+   sack_players \tab character \cr
+   sack_player_name \tab character \cr
+   sack_player_name2 \tab character \cr
+   pass_breakup_player_name \tab character \cr
+   interception_player_name \tab character \cr
+   yds_int_return \tab numeric \cr
+   fumble_player_name \tab character \cr
+   fumble_forced_player_name \tab character \cr
+   fumble_recovered_player_name \tab character \cr
+   yds_fumble_return \tab numeric \cr
+   punter_player_name \tab character \cr
+   yds_punted \tab numeric \cr
+   punt_returner_player_name \tab character \cr
+   yds_punt_return \tab numeric \cr
+   yds_punt_gained \tab numeric \cr
+   punt_block_player_name \tab character \cr
+   punt_block_return_player_name \tab character \cr
+   fg_kicker_player_name \tab character \cr
+   yds_fg \tab numeric \cr
+   fg_block_player_name \tab character \cr
+   fg_return_player_name \tab character \cr
+   kickoff_player_name \tab character \cr
+   yds_kickoff \tab numeric \cr
+   kickoff_returner_player_name \tab character \cr
+   yds_kickoff_return \tab numeric \cr
+   new_id \tab numeric \cr
+   orig_drive_number \tab integer \cr
+   drive_number \tab integer \cr
+   drive_result_detailed \tab character \cr
+   new_drive_pts \tab numeric \cr
+   drive_id \tab numeric \cr
+   drive_result \tab character \cr
+   drive_start_yards_to_goal \tab numeric \cr
+   drive_end_yards_to_goal \tab integer \cr
+   drive_yards \tab integer \cr
+   drive_scoring \tab numeric \cr
+   drive_pts \tab numeric \cr
+   drive_start_period \tab integer \cr
+   drive_end_period \tab integer \cr
+   drive_time_minutes_start \tab integer \cr
+   drive_time_seconds_start \tab integer \cr
+   drive_time_minutes_end \tab integer \cr
+   drive_time_seconds_end \tab integer \cr
+   drive_time_minutes_elapsed \tab logical \cr
+   drive_time_seconds_elapsed \tab logical \cr
+   drive_numbers \tab numeric \cr
+   number_of_drives \tab numeric \cr
+   pts_scored \tab numeric \cr
+   drive_result_detailed_flag \tab character \cr
+   drive_result2 \tab character \cr
+   drive_num \tab numeric \cr
+   lag_drive_result_detailed \tab character \cr
+   lead_drive_result_detailed \tab character \cr
+   lag_new_drive_pts \tab numeric \cr
+   id_drive \tab character \cr
+   rush \tab numeric \cr
+   rush_td \tab numeric \cr
+   pass \tab numeric \cr
+   pass_td \tab numeric \cr
+   completion \tab numeric \cr
+   pass_attempt \tab numeric \cr
+   target \tab numeric \cr
+   sack_vec \tab numeric \cr
+   sack \tab numeric \cr
+   int \tab numeric \cr
+   int_td \tab numeric \cr
+   turnover_vec \tab numeric \cr
+   turnover_vec_lag \tab numeric \cr
+   turnover_indicator \tab numeric \cr
+   kickoff_play \tab numeric \cr
+   receives_2H_kickoff \tab numeric \cr
+   missing_yard_flag \tab logical \cr
+   scoring_play \tab numeric \cr
+   td_play \tab numeric \cr
+   touchdown \tab numeric \cr
+   safety \tab numeric \cr
+   fumble_vec \tab numeric \cr
+   kickoff_tb \tab numeric \cr
+   kickoff_onside \tab numeric \cr
+   kickoff_oob \tab numeric \cr
+   kickoff_fair_catch \tab numeric \cr
+   kickoff_downed \tab numeric \cr
+   kickoff_safety \tab numeric \cr
+   kick_play \tab numeric \cr
+   punt \tab numeric \cr
+   punt_play \tab numeric \cr
+   punt_tb \tab numeric \cr
+   punt_oob \tab numeric \cr
+   punt_fair_catch \tab numeric \cr
+   punt_downed \tab numeric \cr
+   punt_safety \tab numeric \cr
+   punt_blocked \tab numeric \cr
+   penalty_safety \tab numeric \cr
+   fg_inds \tab numeric \cr
+   fg_made \tab logical \cr
+   fg_make_prob \tab numeric \cr
+   No_Score_before \tab numeric \cr
+   FG_before \tab numeric \cr
+   Opp_FG_before \tab numeric \cr
+   Opp_Safety_before \tab numeric \cr
+   Opp_TD_before \tab numeric \cr
+   Safety_before \tab numeric \cr
+   TD_before \tab numeric \cr
+   No_Score_after \tab numeric \cr
+   FG_after \tab numeric \cr
+   Opp_FG_after \tab numeric \cr
+   Opp_Safety_after \tab numeric \cr
+   Opp_TD_after \tab numeric \cr
+   Safety_after \tab numeric \cr
+   TD_after \tab numeric \cr
+   penalty_flag \tab logical \cr
+   penalty_declined \tab logical \cr
+   penalty_no_play \tab logical \cr
+   penalty_offset \tab logical \cr
+   penalty_text \tab logical \cr
+   penalty_play_text \tab character \cr
+   lead_wp_before2 \tab numeric \cr
+   wpa_half_end \tab numeric \cr
+   wpa_base \tab numeric \cr
+   wpa_base_nxt \tab numeric \cr
+   wpa_change \tab numeric \cr
+   wpa_change_nxt \tab numeric \cr
+   wpa_base_ind \tab numeric \cr
+   wpa_base_nxt_ind \tab numeric \cr
+   wpa_change_ind \tab numeric \cr
+   wpa_change_nxt_ind \tab numeric \cr
+   lead_wp_before \tab numeric \cr
+   lead_pos_team2 \tab character \cr
+   row \tab integer \cr
+   drive_event_number \tab numeric \cr
+   lag_play_type2 \tab character \cr
+   lag_play_type3 \tab character \cr
+   lag_play_text \tab character \cr
+   lag_play_text2 \tab character \cr
+   lead_play_text \tab character \cr
+   lag_first_by_penalty \tab numeric \cr
+   lag_first_by_penalty2 \tab numeric \cr
+   lag_first_by_yards \tab numeric \cr
+   lag_first_by_yards2 \tab numeric \cr
+   first_by_penalty \tab numeric \cr
+   first_by_yards \tab numeric \cr
+   play_after_turnover \tab numeric \cr
+   lag_change_of_poss \tab numeric \cr
+   lag_change_of_pos_team \tab numeric \cr
+   lag_change_of_pos_team2 \tab numeric \cr
+   lag_kickoff_play \tab numeric \cr
+   lag_punt \tab numeric \cr
+   lag_punt2 \tab numeric \cr
+   lag_scoring_play \tab numeric \cr
+   lag_turnover_vec \tab numeric \cr
+   lag_downs_turnover \tab numeric \cr
+   lag_defense_score_play \tab numeric \cr
+   lag_score_diff \tab numeric \cr
+   lag_offense_play \tab character \cr
+   lead_offense_play \tab character \cr
+   lead_offense_play2 \tab character \cr
+   lag_pos_score_diff \tab numeric \cr
+   lag_off_timeouts \tab numeric \cr
+   lag_def_timeouts \tab numeric \cr
+   lag_TimeSecsRem2 \tab numeric \cr
+   lag_TimeSecsRem \tab numeric \cr
+   lead_TimeSecsRem \tab numeric \cr
+   lead_TimeSecsRem2 \tab numeric \cr
+   lag_yards_to_goal2 \tab integer \cr
+   lag_yards_to_goal \tab integer \cr
+   lead_yards_to_goal \tab numeric \cr
+   lead_yards_to_goal2 \tab integer \cr
+   lag_down2 \tab integer \cr
+   lag_down \tab integer \cr
+   lead_down \tab numeric \cr
+   lead_down2 \tab numeric \cr
+   lead_distance \tab numeric \cr
+   lead_distance2 \tab integer \cr
+   lead_play_type2 \tab character \cr
+   lead_play_type3 \tab character \cr
+   lag_ep_before3 \tab numeric \cr
+   lag_ep_before2 \tab numeric \cr
+   lag_ep_before \tab numeric \cr
+   lead_ep_before \tab numeric \cr
+   lead_ep_before2 \tab numeric \cr
+   lag_ep_after \tab numeric \cr
+   lag_ep_after2 \tab numeric \cr
+   lag_ep_after3 \tab numeric \cr
+   lead_ep_after \tab numeric \cr
+   lead_ep_after2 \tab numeric \cr
+   play_number \tab integer \cr
+   wallclock \tab character \cr
+   provider \tab character \cr
+   spread \tab numeric \cr
+   formatted_spread \tab character \cr
+   over_under \tab numeric \cr
+   drive_is_home_offense \tab logical \cr
+   drive_start_offense_score \tab integer \cr
+   drive_start_defense_score \tab integer \cr
+   drive_end_offense_score \tab integer \cr
+   drive_end_defense_score \tab integer \cr
+   play \tab numeric \cr
+   event \tab numeric \cr
+   game_event_number \tab numeric \cr
+   game_row_number \tab integer \cr
+   half_play \tab numeric \cr
+   half_event \tab numeric \cr
+   half_event_number \tab numeric \cr
+   half_row_number \tab integer \cr
+   lag_distance3 \tab integer \cr
+   lag_distance2 \tab integer \cr
+   lag_distance \tab integer \cr
+   lag_yards_gained3 \tab integer \cr
+   lag_yards_gained2 \tab integer \cr
+   lag_yards_gained \tab integer \cr
+   lead_yards_gained \tab integer \cr
+   lead_yards_gained2 \tab integer \cr
+   lag_play_text3 \tab character \cr
+   lead_play_text2 \tab character \cr
+   lead_play_text3 \tab character \cr
+   pos_unit \tab character \cr
+   def_pos_unit \tab character \cr
+   lag_change_of_poss2 \tab numeric \cr
+   lag_change_of_poss3 \tab numeric \cr
+   lag_change_of_pos_team3 \tab numeric \cr
+   lag_kickoff_play2 \tab numeric \cr
+   lag_kickoff_play3 \tab numeric \cr
+   lag_punt3 \tab numeric \cr
+   lag_scoring_play2 \tab numeric \cr
+   lag_scoring_play3 \tab numeric \cr
+   lag_turnover_vec2 \tab numeric \cr
+   lag_turnover_vec3 \tab numeric \cr
+   lag_downs_turnover2 \tab numeric \cr
+   lag_downs_turnover3 \tab numeric \cr
+   drive_play \tab numeric \cr
+   drive_event \tab numeric \cr
+   punt_return_player \tab numeric \cr
+   kickoff_return_player \tab numeric \cr
+   rush_player_name \tab numeric \cr
+   punt_return_player_name \tab numeric \cr
+   kickoff_return_player_name \tab numeric \cr
+   lag_first_by_penalty3 \tab numeric \cr
+   lag_first_by_yards3 \tab numeric \cr
 }
 }
 \description{
 Extract college football (D-I) play by play Data - for plays
+}
+\details{
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Get play by play data for 2018 regular season week 1
+cfbd_pbp_data(year = 2018, week = 1, season_type = 'regular', epa_wpa = TRUE)
+}\if{html}{\out{</div>}}
 }
 \seealso{
 Other CFBD PBP: 
