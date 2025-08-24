@@ -10,6 +10,7 @@ The following functions were added:
 * `cfbd_ratings_fpi()`
 * `cfbd_live_scoreboard()`
 * `cfbd_live_plays()`
+* `cfbd_api_key_info()`
 
 There are minor changes to the existing `cfbd_*()` functions under the hood. See NEWS.md for more details.
 
