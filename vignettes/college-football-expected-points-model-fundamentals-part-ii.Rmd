@@ -97,7 +97,7 @@ Suppose we have a binary output variable Y, let's say Y is a variable that gives
 
 Now we are attempting to calculate the probability of the next scoring event directly, an essential component of an expected points model. Once we have a model capable of calculating the expectation of the scoring event, e.g. the probability of the next score being an offense touchdown, then we simply have to multiply the probability by the point value of the score to get the expected points.
 
-<a href="https://imgur.com/xw3BvAd"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon" title="Figure: @ChrisAlbon"/></a>
+<a href="https://imgur.com/xw3BvAd"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon" alt="Illustration comparing linear vs logistic regression decision boundaries"/></a>
 
 **Figure 7**: Logistic vs. Linear Regression \| [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
