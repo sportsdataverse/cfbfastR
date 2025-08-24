@@ -31,7 +31,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
    year \tab integer \cr
    team \tab character \cr
    conference \tab character \cr
-   elo \tab integer \cr
+   elo \tab numeric \cr
 }
 }
 \description{

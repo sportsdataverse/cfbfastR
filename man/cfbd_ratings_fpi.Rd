@@ -26,7 +26,7 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
    resume_ranks_fpi \tab integer \cr
    resume_ranks_average_win_probability \tab integer \cr
    resume_ranks_strength_of_schedule \tab integer \cr
-   resume_ranks_remaining_strength_of_schedule \tab logical \cr
+   resume_ranks_remaining_strength_of_schedule \tab integer \cr
    resume_ranks_game_control \tab integer \cr
    efficiencies_overall \tab numeric \cr
    efficiencies_offense \tab numeric \cr

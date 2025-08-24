@@ -271,7 +271,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
         make_cfbfastR_data("SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e){
-      message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no SP+ ratings data available!"))
     },
     finally = {
     }
@@ -388,7 +388,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
         make_cfbfastR_data("Conference SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level SP+ ratings data available!"))
     },
     finally = {
     }
@@ -502,7 +502,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'  |year       |integer   |
 #'  |team       |character |
 #'  |conference |character |
-#'  |elo        |integer   |
+#'  |elo        |numeric   |
 #'
 #' @keywords elo
 #' @importFrom jsonlite fromJSON
@@ -551,11 +551,14 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON()
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        as.data.frame() %>%
+        janitor::clean_names() %>%
+        dplyr::mutate(elo = as.numeric(.data$elo))
 
 
       df <- df %>%
-        make_cfbfastR_data("ELO ratings from CollegeFootballData.com",Sys.time())
+        make_cfbfastR_data("Elo ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
@@ -590,7 +593,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
 #'  |resume_ranks_fpi                            |integer   |
 #'  |resume_ranks_average_win_probability        |integer   |
 #'  |resume_ranks_strength_of_schedule           |integer   |
-#'  |resume_ranks_remaining_strength_of_schedule |logical   |
+#'  |resume_ranks_remaining_strength_of_schedule |integer   |
 #'  |resume_ranks_game_control                   |integer   |
 #'  |efficiencies_overall                        |numeric   |
 #'  |efficiencies_offense                        |numeric   |
