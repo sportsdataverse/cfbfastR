@@ -98,7 +98,7 @@ NULL
 #'   try(cfbd_rankings(year = 2013, season_type = "postseason"))
 #' }
 #'
-cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
+cfbd_rankings <- function(year, week = NULL, season_type = "both") {
 
   # Validation ----
   validate_api_key()
@@ -514,7 +514,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #' }
 #'
-cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = NULL, team = NULL, conference = NULL) {
+cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = 'both', team = NULL, conference = NULL) {
 
   # Validation ----
   validate_api_key()

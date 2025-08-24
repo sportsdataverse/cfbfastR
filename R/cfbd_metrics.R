@@ -544,7 +544,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 
 cfbd_metrics_ppa_games <- function(year,
                                    week = NULL,
-                                   season_type = NULL,
+                                   season_type = "both",
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
@@ -654,7 +654,7 @@ cfbd_metrics_ppa_games <- function(year,
 
 cfbd_metrics_ppa_players_games <- function(year = NULL,
                                            week = NULL,
-                                           season_type = NULL,
+                                           season_type = "both",
                                            team = NULL,
                                            position = NULL,
                                            athlete_id = NULL,

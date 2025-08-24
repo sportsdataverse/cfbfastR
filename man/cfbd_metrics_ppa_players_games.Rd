@@ -7,7 +7,7 @@
 cfbd_metrics_ppa_players_games(
   year = NULL,
   week = NULL,
-  season_type = NULL,
+  season_type = "both",
   team = NULL,
   position = NULL,
   athlete_id = NULL,

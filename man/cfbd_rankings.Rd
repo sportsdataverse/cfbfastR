@@ -4,7 +4,7 @@
 \alias{cfbd_rankings}
 \title{\strong{Get historical Coaches and AP poll data}}
 \usage{
-cfbd_rankings(year, week = NULL, season_type = "regular")
+cfbd_rankings(year, week = NULL, season_type = "both")
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}

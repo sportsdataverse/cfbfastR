@@ -7,7 +7,7 @@
 cfbd_metrics_ppa_games(
   year,
   week = NULL,
-  season_type = NULL,
+  season_type = "both",
   team = NULL,
   conference = NULL,
   excl_garbage_time = FALSE

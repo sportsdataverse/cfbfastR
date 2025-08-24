@@ -7,7 +7,7 @@
 cfbd_ratings_elo(
   year = NULL,
   week = NULL,
-  season_type = NULL,
+  season_type = "both",
   team = NULL,
   conference = NULL
 )
