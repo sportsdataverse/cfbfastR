@@ -125,7 +125,7 @@ You might be asking "Yeah, that's great, but you're still only predicting the pr
 
 A multinomial logistic regression model uses the independent (predictor) variables and target variable data from the training set to build relationships between the independent variables and each of the classes of the target variable.
 
-<a href="https://imgur.com/c18pbOL"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon" title="Figure: @ChrisAlbon"/></a>
+<a href="https://imgur.com/c18pbOL"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon" alt="Diagram of multinomial logistic regression and class probabilities"/></a>
 
 **Figure 11**: Multinomial Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
