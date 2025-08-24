@@ -621,7 +621,7 @@ cfbd_play_types <- function() {
 #'   |ppa                              |numeric   |
 #'   |garbage_time                     |logical   |
 #'   |success                          |logical   |
-#'   |rush_pash                        |character |
+#'   |rush_pass                        |character |
 #'   |down_type                        |character |
 #'   |play_text                        |character |
 #'   |drive_id                         |character |
@@ -837,7 +837,7 @@ cfbd_live_plays <- function(game_id) {
           "ppa",
           "garbage_time",
           "success",
-          "rush_pash",
+          "rush_pass",
           "down_type",
           "play_text"
         )), dplyr::everything())

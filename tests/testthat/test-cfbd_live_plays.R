@@ -23,7 +23,7 @@ cols <- c(
   "ppa",
   "garbage_time",
   "success",
-  "rush_pash",
+  "rush_pass",
   "down_type",
   "play_text",
   "drive_id",

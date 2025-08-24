@@ -35,7 +35,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
    ppa \tab numeric \cr
    garbage_time \tab logical \cr
    success \tab logical \cr
-   rush_pash \tab character \cr
+   rush_pass \tab character \cr
    down_type \tab character \cr
    play_text \tab character \cr
    drive_id \tab character \cr

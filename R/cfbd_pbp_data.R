@@ -391,6 +391,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
+#' @importFrom stats setNames
 #' @family CFBD PBP
 #' @details
 #' ```r
