@@ -8,6 +8,7 @@
 #'   \item{`cfbd_game_player_stats()`:}{ Get results information from games.}
 #'   \item{`cfbd_game_team_stats()`:}{ Get team statistics by game.}
 #'   \item{`cfbd_game_info()`:}{ Get results information from games.}
+#'   \item{`cfbd_live_scoreboard()`:}{ Get live scoreboard information.}
 #'   \item{`cfbd_game_weather()`:}{ Get weather from games.}
 #'   \item{`cfbd_game_records()`:}{ Get team records by year.}
 #'   \item{`cfbd_calendar()`:}{ Get calendar of weeks by season.}
@@ -119,6 +120,7 @@ NULL
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -251,6 +253,7 @@ cfbd_game_info <- function(year,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Games
 #' @export
 cfbd_game_weather <- function(year,
                               week = NULL,
@@ -325,6 +328,7 @@ cfbd_game_weather <- function(year,
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -414,6 +418,7 @@ cfbd_calendar <- function(year) {
 #' @importFrom glue glue
 #' @importFrom dplyr rename select
 #' @importFrom tidyr everything pivot_wider
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -583,6 +588,7 @@ cfbd_game_media <- function(year,
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -782,6 +788,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -1079,6 +1086,7 @@ cfbd_game_player_stats <- function(year,
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -1272,6 +1280,7 @@ cfbd_game_records <- function(year,
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD Games
 #' @export
 #' @examples
 #' \donttest{
@@ -1492,3 +1501,126 @@ cfbd_game_team_stats <- function(year,
   )
   return(df)
 }
+
+
+#' @title
+#' **Get live game scoreboard information from games.**
+#'
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
+#'
+#' @return [cfbd_live_scoreboard()] - A data frame with 41 variables:
+#'  |col_name                 |types     |
+#'  |:------------------------|:---------|
+#'  |game_id                  |integer   |
+#'  |start_date               |character |
+#'  |start_time_tbd           |logical   |
+#'  |tv                       |character |
+#'  |neutral_site             |logical   |
+#'  |conference_game          |logical   |
+#'  |status                   |character |
+#'  |period                   |integer   |
+#'  |clock                    |character |
+#'  |situation                |character |
+#'  |possession               |character |
+#'  |last_play                |character |
+#'  |venue_name               |character |
+#'  |venue_city               |character |
+#'  |venue_state              |character |
+#'  |home_team_id             |integer   |
+#'  |home_team_name           |character |
+#'  |home_team_conference     |character |
+#'  |home_team_classification |character |
+#'  |home_team_points         |integer   |
+#'  |home_team_line_scores_Q1 |integer   |
+#'  |home_team_line_scores_Q2 |integer   |
+#'  |home_team_line_scores_Q3 |integer   |
+#'  |home_team_line_scores_Q4 |integer   |
+#'  |away_team_id             |integer   |
+#'  |away_team_name           |character |
+#'  |away_team_conference     |character |
+#'  |away_team_classification |character |
+#'  |away_team_points         |integer   |
+#'  |away_team_line_scores_Q1 |integer   |
+#'  |away_team_line_scores_Q2 |integer   |
+#'  |away_team_line_scores_Q3 |integer   |
+#'  |away_team_line_scores_Q4 |integer   |
+#'  |weather_temperature      |numeric   |
+#'  |weather_description      |character |
+#'  |weather_wind_speed       |numeric   |
+#'  |weather_wind_direction   |integer   |
+#'  |betting_spread           |numeric   |
+#'  |betting_over_under       |numeric   |
+#'  |betting_home_moneyline   |integer   |
+#'  |betting_away_moneyline   |integer   |
+#'
+#' @keywords Game Scoreboard
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Games
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_live_scoreboard(division='fbs', conference = "B12"))
+#' }
+
+cfbd_live_scoreboard <- function(division = 'fbs',
+                                 conference = NULL) {
+
+  # Validation ----
+  validate_api_key()
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/scoreboard?"
+  query_params <- list(
+    "conference" = conference,
+    "division" = division
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON() %>%
+        janitor::clean_names()
+
+      df <- df %>%
+        dplyr::rename("game_id" = "id") %>%
+        tidyr::unnest_wider("venue", names_sep = "_") %>%
+        tidyr::unnest_wider("home_team", names_sep = "_") %>%
+        tidyr::unnest_wider("away_team", names_sep = "_") %>%
+        tidyr::unnest_wider("weather", names_sep = "_") %>%
+        tidyr::unnest_wider("betting", names_sep = "_") %>%
+        janitor::clean_names()
+
+      df <- df %>%
+        tidyr::unnest("home_team_line_scores") %>%
+        tidyr::unnest("away_team_line_scores") %>%
+        tidyr::unnest_wider("home_team_line_scores", names_sep="_Q") %>%
+        tidyr::unnest_wider("away_team_line_scores", names_sep="_Q") %>%
+        make_cfbfastR_data("Live Scoreboard information from CollegeFootballData.com",Sys.time())
+
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
