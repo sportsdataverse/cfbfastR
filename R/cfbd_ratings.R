@@ -7,6 +7,8 @@
 #' \item{`cfbd_ratings_sp()`:}{ Get SP historical rating data.}
 #' \item{`cfbd_ratings_sp_conference()`:}{ Get SP conference-level historical rating data.}
 #' \item{`cfbd_ratings_srs()`:}{ Get SRS historical rating data.}
+#' \item{`cfbd_ratings_elo()`:}{ Get Elo historical rating data.}
+#' \item{`cfbd_ratings_fpi()`:}{ Get FPI historical rating data.}
 #' }
 #'
 #' ### **Get historical Coaches and AP poll data**
@@ -50,6 +52,13 @@
 #' cfbd_ratings_elo(year = 2019, team = "Texas")
 #'
 #' cfbd_ratings_elo(year = 2018, conference = "SEC")
+#' ```
+#' ### **Get FPI historical rating data**
+#' Acquire the ESPN FPI ratings data by **team**, **year**, and **conference**
+#' ```r
+#' cfbd_ratings_fpi(year = 2019, team = "Texas")
+#'
+#' cfbd_ratings_fpi(year = 2018, conference = "SEC")
 #' ```
 NULL
 #' @title
@@ -302,7 +311,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
 #'   \item{`special_teams_rating`: double.}{Special teams rating for the conference.}
 #' }
-#' @keywords SP+
+#' @keywords SP+ Conference
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
@@ -543,6 +552,88 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+
+#' @title
+#' **Get Football Power Index (FPI) historical rating data**
+#' @description
+#' Acquire the ESPN calculated FPI ratings data by team, year, and conference
+#'
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
+#' @param conference (*String* optional): Conference name - select a valid FBS conference
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
+#'
+#' @return [cfbd_ratings_fpi()] - A data frame with 6 variables:
+#' \describe{
+#'   \item{`year`: integer.}{Season of the SRS rating.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`division`: logical.}{Division in the conference for the team.}
+#'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
+#'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
+#' }
+#' @keywords Ratings FPI
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_ratings_fpi(year = 2019, team = "Texas"))
+#'
+#'   try(cfbd_ratings_fpi(year = 2018, conference = "SEC"))
+#' }
+#'
+cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_reqs(year, team)
+  validate_year(year)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ratings/fpi"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten=TRUE) %>%
+        as.data.frame() %>%
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("ESPN FPI ratings from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI rating system data available!"))
     },
     finally = {
     }

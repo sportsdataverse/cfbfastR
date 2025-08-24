@@ -42,6 +42,7 @@ Acquire the CFBD calculated elo ratings data by team, year, week, and conference
 \seealso{
 Other CFBD Ratings and Rankings: 
 \code{\link{cfbd_rankings}()},
+\code{\link{cfbd_ratings_fpi}()},
 \code{\link{cfbd_ratings_sp}()},
 \code{\link{cfbd_ratings_sp_conference}()},
 \code{\link{cfbd_ratings_srs}()}
