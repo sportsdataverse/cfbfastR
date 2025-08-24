@@ -236,7 +236,8 @@ cfbd_stats_game_advanced <- function(year,
       # Get the content, flatten and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE)
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        as.data.frame()
 
       # Column renaming for the 76 returned columns
       colnames(df) <- gsub("offense.", "off_", colnames(df))
@@ -424,6 +425,7 @@ cfbd_stats_season_advanced <- function(year,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
+
       colnames(df) <- gsub("offense.", "off_", colnames(df))
       colnames(df) <- gsub("defense.", "def_", colnames(df))
       colnames(df) <- gsub("Rate", "_rate", colnames(df))
