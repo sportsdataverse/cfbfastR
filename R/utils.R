@@ -45,10 +45,10 @@ csv_from_url <- function(...){
 }
 
 
-#' @title
-#' **Load .rds file from a remote connection**
+#' Load .rds file from a remote connection
+#'
 #' @param url a character url
-#' @keywords Internal
+#'
 #' @return a dataframe as created by [`readRDS()`]
 #' @importFrom data.table data.table setDT
 rds_from_url <- function(url) {
@@ -57,7 +57,7 @@ rds_from_url <- function(url) {
   load <- try(readRDS(con), silent = TRUE)
 
   if (inherits(load, "try-error")) {
-    warning(paste0("Failed to readRDS from <", url, ">"), call. = FALSE)
+    cli::cli_warn("Failed to readRDS from {.url {url}}")
     return(data.table::data.table())
   }
 
