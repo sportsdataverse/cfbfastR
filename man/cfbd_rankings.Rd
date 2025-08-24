@@ -14,17 +14,17 @@ cfbd_rankings(year, week = NULL, season_type = "both")
 \item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
-\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Rankings season.}
-\item{\code{season_type}: character.}{Season type of rankings.}
-\item{\code{week}: integer.}{Week of rankings.}
-\item{\code{poll}: character.}{Name of the poll.}
-\item{\code{rank}: integer.}{Rank in the poll.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{first_place_votes}: integer.}{Number of first place votes.}
-\item{\code{points}: integer.}{Total poll points.}
+\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:\tabular{ll}{
+   col_name \tab types \cr
+   season \tab integer \cr
+   season_type \tab character \cr
+   week \tab integer \cr
+   poll \tab character \cr
+   rank \tab integer \cr
+   school \tab character \cr
+   conference \tab character \cr
+   first_place_votes \tab integer \cr
+   points \tab integer \cr
 }
 }
 \description{

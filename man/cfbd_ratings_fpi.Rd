@@ -16,14 +16,22 @@ Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
 Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
 }
 \value{
-\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}} - A data frame with 6 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the SRS rating.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{division}: logical.}{Division in the conference for the team.}
-\item{\code{rating}: double.}{Simple Rating System (SRS) rating.}
-\item{\code{ranking}: integer.}{Simple Rating System ranking within the group returned.}
+\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}} - A data frame with 14 variables:\tabular{ll}{
+   col_name \tab types \cr
+   year \tab integer \cr
+   team \tab character \cr
+   conference \tab character \cr
+   fpi \tab numeric \cr
+   resume_ranks_strength_of_record \tab integer \cr
+   resume_ranks_fpi \tab integer \cr
+   resume_ranks_average_win_probability \tab integer \cr
+   resume_ranks_strength_of_schedule \tab integer \cr
+   resume_ranks_remaining_strength_of_schedule \tab logical \cr
+   resume_ranks_game_control \tab integer \cr
+   efficiencies_overall \tab numeric \cr
+   efficiencies_offense \tab numeric \cr
+   efficiencies_defense \tab numeric \cr
+   efficiencies_special_teams \tab numeric \cr
 }
 }
 \description{
