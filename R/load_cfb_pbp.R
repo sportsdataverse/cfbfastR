@@ -10,8 +10,8 @@
 #' @return Returns a tibble with play-by-play data
 #'
 #' @seealso Issues with this data should be filed here: <https://github.com/sportsdataverse/cfbfastR-data>
-#' @seealso CFB Play-by-Play Data releases can be found here: <https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp>
 #' @seealso [update_cfb_db()]
+#' @source CFB Play-by-Play Data releases can be found here: <https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp>
 #' @family loaders
 #' @export
 load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,

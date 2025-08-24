@@ -3,6 +3,9 @@
 \name{load_cfb_pbp}
 \alias{load_cfb_pbp}
 \title{\strong{Load cleaned play-by-play from the data repo}}
+\source{
+CFB Play-by-Play Data releases can be found here: \url{https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp}
+}
 \usage{
 load_cfb_pbp(
   seasons = most_recent_cfb_season(),
@@ -30,8 +33,6 @@ or writes it into a db using some forwarded arguments in the dots
 }
 \seealso{
 Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
-
-CFB Play-by-Play Data releases can be found here: \url{https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp}
 
 \code{\link[=update_cfb_db]{update_cfb_db()}}
 
