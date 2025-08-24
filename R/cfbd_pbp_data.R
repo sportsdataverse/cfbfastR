@@ -497,7 +497,8 @@ cfbd_pbp_data <- function(year,
           dplyr::group_by(.data$game_id) %>%
           dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) %>%
           dplyr::ungroup() %>%
-          dplyr::select(-".prov_rank")
+          dplyr::ungroup() %>%
+          dplyr::select(-dplyr::all_of(".prov_rank"))
 
         # join to plays dataframe
         raw_play_df <- raw_play_df %>%
