@@ -1,8 +1,15 @@
 ## Release summary
 
 This is a major release that updates the `cfbd_*()` functions to use the new College Football Data API v2. 
-The following function was added:
+The following functions were added:
 * `cfbd_metrics_fg_ep()`
+* `cfbd_metrics_wepa_team_season()`
+* `cfbd_metrics_wepa_players_passing()`
+* `cfbd_metrics_wepa_players_rushing()`
+* `cfbd_metrics_wepa_players_kicking()`
+* `cfbd_ratings_fpi()`
+* `cfbd_live_scoreboard()`
+* `cfbd_live_plays()`
 
 There are minor changes to the existing `cfbd_*()` functions under the hood. See NEWS.md for more details.
 
