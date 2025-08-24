@@ -286,7 +286,7 @@ validate_list <- function(var = NULL, allowable = NULL){
 }
 
 validate_season_type <- function(season_type = NULL, allow_both = TRUE){
-  allowable <- c('postseason', 'regular')
+  allowable <- c('postseason', 'regular', 'both', 'allstar', 'spring_regular', 'spring_postseason')
   if(allow_both) allowable <- c(allowable, 'both')
   if(is.null(season_type)) cli::cli_abort("Missing required field: season_type")
   validate_list(season_type, allowable)

@@ -2,7 +2,7 @@
 #' **Get college football play by play data with cfbfastR expected points/win probability added**
 #' @description
 #' Extract college football (D-I) play by play Data - for plays
-#' @param season_type Select Season Type (regular, postseason, both)
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)

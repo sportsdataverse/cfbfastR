@@ -56,7 +56,7 @@
 NULL
 #' @title
 #' **Get college football play-by-play data.**
-#' @param season_type Select Season Type (regular, postseason, both)
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
@@ -189,7 +189,7 @@ cfbd_plays <- function(year = 2020,
 #' Can be found using the [cfbd_player_info()] function.
 #' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
-#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
 #' \describe{
 #'   \item{`play_id`: character.}{Referencing play id.}

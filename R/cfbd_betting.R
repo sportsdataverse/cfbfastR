@@ -5,7 +5,7 @@
 #' Can be found using the [cfbd_game_info()] function
 #' @param year (*Integer* optional): Year, 4 digit format(*YYYY*). Required if game_id not provided
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param home_team (*String* optional): Home D-I Team
 #' @param away_team (*String* optional): Away D-I Team

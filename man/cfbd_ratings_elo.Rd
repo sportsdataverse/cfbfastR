@@ -4,12 +4,20 @@
 \alias{cfbd_ratings_elo}
 \title{\strong{Get Elo historical rating data}}
 \usage{
-cfbd_ratings_elo(year = NULL, week = NULL, team = NULL, conference = NULL)
+cfbd_ratings_elo(
+  year = NULL,
+  week = NULL,
+  season_type = NULL,
+  team = NULL,
+  conference = NULL
+)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
 
 \item{week}{(\emph{Integer} optional): Maximum Week of ratings.}
+
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 

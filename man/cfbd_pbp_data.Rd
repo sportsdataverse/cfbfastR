@@ -17,7 +17,7 @@ cfbd_pbp_data(
 \arguments{
 \item{year}{Select year, (example: 2018)}
 
-\item{season_type}{Select Season Type (regular, postseason, both)}
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{week}{Select week, this is optional (also numeric)}
 

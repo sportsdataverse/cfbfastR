@@ -499,6 +499,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 #' **Get team game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -543,6 +544,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 
 cfbd_metrics_ppa_games <- function(year,
                                    week = NULL,
+                                   season_type = NULL,
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
@@ -551,6 +553,7 @@ cfbd_metrics_ppa_games <- function(year,
   validate_api_key()
   validate_year(year)
   validate_week(week)
+  validate_season_type(season_type)
   validate_list(excl_garbage_time, c(T,F))
 
   # Team Name Handling ----
@@ -561,6 +564,7 @@ cfbd_metrics_ppa_games <- function(year,
   query_params <- list(
     "year" = year,
     "week" = week,
+    "seasonType" = season_type,
     "team" = team,
     "conference" = conference,
     "excludeGarbageTime" = excl_garbage_time
@@ -609,6 +613,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' **Get player game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team. Required if week not provided.
 #' @param position (*string* optional): Position abbreviation of the player you are searching for.
 #' Position Group  - options include:
@@ -649,6 +654,7 @@ cfbd_metrics_ppa_games <- function(year,
 
 cfbd_metrics_ppa_players_games <- function(year = NULL,
                                            week = NULL,
+                                           season_type = NULL,
                                            team = NULL,
                                            position = NULL,
                                            athlete_id = NULL,
@@ -668,6 +674,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
   validate_reqs(week, team)
   validate_year(year)
   validate_week(week)
+  validate_season_type(season_type)
   validate_list(position, pos_groups)
   validate_id(athlete_id)
   validate_id(threshold)
@@ -681,6 +688,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
   query_params <- list(
     "year" = year,
     "week" = week,
+    "seasonType" = season_type,
     "team" = team,
     "position" = position,
     "playerId" = athlete_id,
@@ -1029,7 +1037,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
-#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
 #' \describe{

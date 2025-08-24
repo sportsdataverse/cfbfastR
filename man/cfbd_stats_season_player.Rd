@@ -17,7 +17,7 @@ cfbd_stats_season_player(
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
-\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 

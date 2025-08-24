@@ -19,7 +19,7 @@ cfbd_game_player_stats(
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
+\item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 

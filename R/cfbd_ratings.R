@@ -65,7 +65,7 @@ NULL
 #' **Get historical Coaches and AP poll data**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (*String* default regular): Season type - regular or postseason
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
 #' \describe{
@@ -104,7 +104,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
   validate_api_key()
   validate_year(year)
   validate_week(week)
-  validate_season_type(season_type, allow_both = F)
+  validate_season_type(season_type, allow_both = TRUE)
 
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/rankings"
@@ -485,6 +485,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Maximum Week of ratings.
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - SRS information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -513,12 +514,13 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #' }
 #'
-cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference = NULL) {
+cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = NULL, team = NULL, conference = NULL) {
 
   # Validation ----
   validate_api_key()
   validate_year(year)
   validate_week(week)
+  validate_season_type(season_type)
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -528,6 +530,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
   query_params <- list(
     "year" = year,
     "week" = week,
+    "seasonType" = season_type,
     "team" = team,
     "conference" = conference
   )

@@ -7,6 +7,7 @@
 cfbd_metrics_ppa_players_games(
   year = NULL,
   week = NULL,
+  season_type = NULL,
   team = NULL,
   position = NULL,
   athlete_id = NULL,
@@ -18,6 +19,8 @@ cfbd_metrics_ppa_players_games(
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}).}
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.}
+
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team. Required if week not provided.}
 
