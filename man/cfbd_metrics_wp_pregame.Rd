@@ -50,6 +50,10 @@ Other CFBD Metrics:
 \code{\link{cfbd_metrics_ppa_players_season}()},
 \code{\link{cfbd_metrics_ppa_predicted}()},
 \code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wepa_players_kicking}()},
+\code{\link{cfbd_metrics_wepa_players_passing}()},
+\code{\link{cfbd_metrics_wepa_players_rushing}()},
+\code{\link{cfbd_metrics_wepa_team_season}()},
 \code{\link{cfbd_metrics_wp}()}
 }
 \concept{CFBD Metrics}

@@ -6,6 +6,10 @@
 \description{
 \describe{
 \item{\code{cfbd_metrics_fg_ep()}:}{ Get field goal expected points values.}
+\item{\code{cfbd_metrics_wepa_team_season()}:}{ Get opponent-adjusted team season statistics for predicted points added (PPA).}
+\item{\code{cfbd_metrics_wepa_players_passing()}:}{ Get opponent-adjusted player passing statistics for predicted points added (PPA).}
+\item{\code{cfbd_metrics_wepa_players_rushing()}:}{ Get opponent-adjusted player rushing statistics for predicted points added (PPA).}
+\item{\code{cfbd_metrics_wepa_players_kicking()}:}{ Get Points Added Above Replacement (PAAR) ratings for kickers.}
 \item{\code{cfbd_metrics_ppa_games()}:}{ Get team game averages for predicted points added (PPA).}
 \item{\code{cfbd_metrics_ppa_players_games()}:}{ Get player game averages for predicted points added (PPA).}
 \item{\code{cfbd_metrics_ppa_players_season()}:}{ Get player season averages for predicted points added (PPA).}
@@ -19,6 +23,30 @@
 \subsection{\strong{Get expected points for field goals by yards to goal and distance}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{  cfbd_metrics_fg_ep()
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get opponent-adjusted team season statistics for predicted points added (PPA)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_metrics_wepa_team_season(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get opponent-adjusted player passing statistics for predicted points added (PPA)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_metrics_wepa_players_passing(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get opponent-adjusted player rushing statistics for predicted points added (PPA)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_metrics_wepa_players_rushing(year = 2019, team = "TCU")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get Points Added Above Replacement (PAAR) ratings for kickers}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_metrics_wepa_players_kicking(year = 2019, team = "TCU")
 }\if{html}{\out{</div>}}
 }
 
