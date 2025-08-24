@@ -57,4 +57,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 
 }
+\seealso{
+Other CFBD Ratings and Rankings: 
+\code{\link{cfbd_rankings}()},
+\code{\link{cfbd_ratings_elo}()},
+\code{\link{cfbd_ratings_sp}()},
+\code{\link{cfbd_ratings_srs}()}
+}
+\concept{CFBD Ratings and Rankings}
 \keyword{SP+}

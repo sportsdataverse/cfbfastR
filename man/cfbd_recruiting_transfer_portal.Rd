@@ -32,4 +32,11 @@ cfbd_recruiting_transfer_portal(year)
   try(cfbd_recruiting_transfer_portal(year = 2021))
 }
 }
+\seealso{
+Other CFBD Recruiting: 
+\code{\link{cfbd_recruiting_player}()},
+\code{\link{cfbd_recruiting_position}()},
+\code{\link{cfbd_recruiting_team}()}
+}
+\concept{CFBD Recruiting}
 \keyword{Recruiting}

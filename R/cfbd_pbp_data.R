@@ -373,6 +373,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
+#' @family CFBD PBP
 #' @export
 
 cfbd_pbp_data <- function(year,

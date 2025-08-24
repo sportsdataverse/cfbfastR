@@ -40,5 +40,13 @@ cfbd_rankings(year, week = NULL, season_type = "regular")
 }
 
 }
+\seealso{
+Other CFBD Ratings and Rankings: 
+\code{\link{cfbd_ratings_elo}()},
+\code{\link{cfbd_ratings_sp}()},
+\code{\link{cfbd_ratings_sp_conference}()},
+\code{\link{cfbd_ratings_srs}()}
+}
+\concept{CFBD Ratings and Rankings}
 \keyword{CFB}
 \keyword{Rankings}

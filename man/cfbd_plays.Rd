@@ -84,3 +84,12 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
   try(cfbd_plays(year = 2021, week = 1))
 }
 }
+\seealso{
+Other CFBD PBP: 
+\code{\link{cfbd_live_plays}()},
+\code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_play_stats_player}()},
+\code{\link{cfbd_play_stats_types}()},
+\code{\link{cfbd_play_types}()}
+}
+\concept{CFBD PBP}

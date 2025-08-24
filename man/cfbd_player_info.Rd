@@ -49,4 +49,10 @@ If left NULL, API default will only provide results for most recent year of fina
   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
 }
 }
+\seealso{
+Other CFBD Players: 
+\code{\link{cfbd_player_returning}()},
+\code{\link{cfbd_player_usage}()}
+}
+\concept{CFBD Players}
 \keyword{Players}

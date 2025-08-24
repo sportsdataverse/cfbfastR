@@ -48,6 +48,7 @@ NULL
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
+#' @family CFBD Draft
 #' @export
 #' @examples
 #' \donttest{
@@ -108,6 +109,7 @@ cfbd_draft_teams <- function() {
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
+#' @family CFBD Draft
 #' @export
 #' @examples
 #' \donttest{
@@ -195,6 +197,7 @@ cfbd_draft_positions <- function() {
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
+#' @family CFBD Draft
 #' @export
 #' @examples
 #' \donttest{

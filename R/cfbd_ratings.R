@@ -78,6 +78,7 @@ NULL
 #' @importFrom tidyr unnest
 #' @importFrom purrr map_if
 #' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -186,6 +187,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -306,6 +308,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -406,6 +409,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -491,6 +495,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{

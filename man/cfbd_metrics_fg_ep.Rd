@@ -22,6 +22,17 @@ cfbd_metrics_fg_ep()
   try(cfbd_metrics_fg_ep())
 }
 }
+\seealso{
+Other CFBD Metrics: 
+\code{\link{cfbd_metrics_ppa_games}()},
+\code{\link{cfbd_metrics_ppa_players_games}()},
+\code{\link{cfbd_metrics_ppa_players_season}()},
+\code{\link{cfbd_metrics_ppa_predicted}()},
+\code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wp}()},
+\code{\link{cfbd_metrics_wp_pregame}()}
+}
+\concept{CFBD Metrics}
 \keyword{FG}
 \keyword{expected}
 \keyword{points}

@@ -57,5 +57,17 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
   try(cfbd_game_media(2019, week = 4, conference = "ACC"))
 }
 }
+\seealso{
+Other CFBD Games: 
+\code{\link{cfbd_calendar}()},
+\code{\link{cfbd_game_box_advanced}()},
+\code{\link{cfbd_game_info}()},
+\code{\link{cfbd_game_player_stats}()},
+\code{\link{cfbd_game_records}()},
+\code{\link{cfbd_game_team_stats}()},
+\code{\link{cfbd_game_weather}()},
+\code{\link{cfbd_live_scoreboard}()}
+}
+\concept{CFBD Games}
 \keyword{Game}
 \keyword{Info}

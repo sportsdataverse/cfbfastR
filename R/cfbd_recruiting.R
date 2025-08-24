@@ -98,6 +98,7 @@ NULL
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
+#' @family CFBD Recruiting
 #' @export
 #' @examples
 #' \donttest{
@@ -196,6 +197,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Recruiting
 #' @export
 #' @examples
 #' \donttest{
@@ -276,6 +278,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Recruiting
 #' @export
 #' @examples
 #' \donttest{
@@ -359,6 +362,7 @@ cfbd_recruiting_team <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Recruiting
 #' @export
 #' @examples
 #' \donttest{

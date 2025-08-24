@@ -42,6 +42,17 @@ cfbd_metrics_wp_pregame(
   try(cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M"))
 }
 }
+\seealso{
+Other CFBD Metrics: 
+\code{\link{cfbd_metrics_fg_ep}()},
+\code{\link{cfbd_metrics_ppa_games}()},
+\code{\link{cfbd_metrics_ppa_players_games}()},
+\code{\link{cfbd_metrics_ppa_players_season}()},
+\code{\link{cfbd_metrics_ppa_predicted}()},
+\code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wp}()}
+}
+\concept{CFBD Metrics}
 \keyword{Data}
 \keyword{Pre-game}
 \keyword{Probability}

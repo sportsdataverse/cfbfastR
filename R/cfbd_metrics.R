@@ -61,6 +61,7 @@ NULL
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -142,6 +143,7 @@ cfbd_metrics_fg_ep <- function(){
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -247,6 +249,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -377,6 +380,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -476,6 +480,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -568,6 +573,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -655,6 +661,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -752,6 +759,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{

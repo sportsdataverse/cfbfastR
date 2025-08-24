@@ -66,6 +66,7 @@ NULL
 #' @importFrom httr GET
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Stats
 #' @export
 #'
 cfbd_stats_categories <- function() {
@@ -183,6 +184,7 @@ cfbd_stats_categories <- function() {
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Stats
 #' @export
 #' @examples
 #' \donttest{
@@ -375,6 +377,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Stats
 #' @export
 #' @examples
 #' \donttest{
@@ -549,6 +552,7 @@ cfbd_stats_season_advanced <- function(year,
 #' @importFrom glue glue
 #' @importFrom dplyr mutate mutate_at rename select
 #' @importFrom tidyr pivot_wider everything
+#' @family CFBD Stats
 #' @export
 #'
 #' @examples
@@ -767,6 +771,7 @@ cfbd_stats_season_player <- function(year,
 #' @importFrom glue glue
 #' @importFrom dplyr select mutate rename
 #' @importFrom tidyr pivot_wider
+#' @family CFBD Stats
 #' @export
 #'
 #' @examples

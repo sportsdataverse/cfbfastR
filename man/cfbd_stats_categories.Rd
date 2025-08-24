@@ -20,5 +20,13 @@ This function identifies all Stats Categories identified in the regular stats en
    try(cfbd_stats_categories())
 }
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_player}()},
+\code{\link{cfbd_stats_season_team}()}
+}
+\concept{CFBD Stats}
 \keyword{Categories}
 \keyword{Stats}

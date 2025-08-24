@@ -111,6 +111,14 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
 }
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_team}()}
+}
+\concept{CFBD Stats}
 \keyword{Player}
 \keyword{Season}
 \keyword{Stats}

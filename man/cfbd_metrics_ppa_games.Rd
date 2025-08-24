@@ -57,6 +57,17 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 }
 }
+\seealso{
+Other CFBD Metrics: 
+\code{\link{cfbd_metrics_fg_ep}()},
+\code{\link{cfbd_metrics_ppa_players_games}()},
+\code{\link{cfbd_metrics_ppa_players_season}()},
+\code{\link{cfbd_metrics_ppa_predicted}()},
+\code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wp}()},
+\code{\link{cfbd_metrics_wp_pregame}()}
+}
+\concept{CFBD Metrics}
 \keyword{Points}
 \keyword{Predicted}
 \keyword{Teams}

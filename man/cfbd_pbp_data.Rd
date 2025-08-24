@@ -388,4 +388,13 @@ A data frame with 351 variables:
 \description{
 Extract college football (D-I) play by play Data - for plays
 }
+\seealso{
+Other CFBD PBP: 
+\code{\link{cfbd_live_plays}()},
+\code{\link{cfbd_play_stats_player}()},
+\code{\link{cfbd_play_stats_types}()},
+\code{\link{cfbd_play_types}()},
+\code{\link{cfbd_plays}()}
+}
+\concept{CFBD PBP}
 \keyword{Play-by-Play}

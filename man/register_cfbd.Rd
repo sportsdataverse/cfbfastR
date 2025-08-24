@@ -4,11 +4,21 @@
 \alias{register_cfbd}
 \alias{cfbd_key}
 \alias{has_cfbd_key}
+\alias{cfbd_api_key_info}
 \title{\strong{CFBD API Key Registration}}
 \usage{
 cfbd_key()
 
 has_cfbd_key()
+
+cfbd_api_key_info()
+}
+\value{
+Returns a data frame with 2 variables:\tabular{ll}{
+   col_name \tab types \cr
+   patron_level \tab integer \cr
+   remaining_calls \tab integer \cr
+}
 }
 \description{
 Save your API Key as a system environment variable \code{CFBD_API_KEY}
@@ -37,4 +47,6 @@ using a command like the following.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 }\if{html}{\out{</div>}}
+
+Get information about your API key, including your Patreon level and usage limits.
 }

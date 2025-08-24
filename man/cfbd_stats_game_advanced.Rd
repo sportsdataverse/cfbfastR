@@ -105,6 +105,14 @@ cfbd_stats_game_advanced(
 }
 
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_player}()},
+\code{\link{cfbd_stats_season_team}()}
+}
+\concept{CFBD Stats}
 \keyword{Advanced}
 \keyword{Game}
 \keyword{Stats}

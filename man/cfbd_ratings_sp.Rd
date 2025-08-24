@@ -58,4 +58,12 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 }
 
 }
+\seealso{
+Other CFBD Ratings and Rankings: 
+\code{\link{cfbd_rankings}()},
+\code{\link{cfbd_ratings_elo}()},
+\code{\link{cfbd_ratings_sp_conference}()},
+\code{\link{cfbd_ratings_srs}()}
+}
+\concept{CFBD Ratings and Rankings}
 \keyword{SP+}

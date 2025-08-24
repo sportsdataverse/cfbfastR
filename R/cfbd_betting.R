@@ -48,6 +48,7 @@
 #' @importFrom dplyr filter as_tibble rename
 #' @importFrom tidyr unnest
 #' @importFrom stringr str_replace_all
+#' @family CFBD Betting Functions
 #' @export
 #' @examples
 #' \donttest{

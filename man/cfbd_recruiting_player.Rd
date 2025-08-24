@@ -66,4 +66,11 @@ or 'PrepSchool'  - For position group information}
 }
 
 }
+\seealso{
+Other CFBD Recruiting: 
+\code{\link{cfbd_recruiting_position}()},
+\code{\link{cfbd_recruiting_team}()},
+\code{\link{cfbd_recruiting_transfer_portal}()}
+}
+\concept{CFBD Recruiting}
 \keyword{Recruiting}

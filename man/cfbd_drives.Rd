@@ -87,4 +87,5 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 }
 }
+\concept{CFBD Drives}
 \keyword{Drives}

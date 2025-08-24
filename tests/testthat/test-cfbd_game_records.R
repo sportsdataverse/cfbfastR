@@ -7,7 +7,7 @@ cols <- c(
   "conference_games", "conference_wins", "conference_losses", "conference_ties",
   "home_games", "home_wins", "home_losses", "home_ties",
   "away_games", "away_wins", "away_losses", "away_ties",
-  "neutral_games", "neutral_wins", "neutral_losses", "neutral_ties", 
+  "neutral_games", "neutral_wins", "neutral_losses", "neutral_ties",
   "regular_season_games", "regular_season_wins", "regular_season_losses", "regular_season_ties",
   "postseason_games", "postseason_wins", "postseason_losses", "postseason_ties"
 )

@@ -65,4 +65,12 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
   try(cfbd_team_info(year = 2019))
 }
 }
+\seealso{
+Other CFBD Teams: 
+\code{\link{cfbd_team_matchup}()},
+\code{\link{cfbd_team_matchup_records}()},
+\code{\link{cfbd_team_roster}()},
+\code{\link{cfbd_team_talent}()}
+}
+\concept{CFBD Teams}
 \keyword{Teams}

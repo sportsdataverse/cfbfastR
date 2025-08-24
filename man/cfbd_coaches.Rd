@@ -54,4 +54,5 @@ A coach search function which provides coaching records and school history for a
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 }
 }
+\concept{CFBD Coaches Functions}
 \keyword{Coaches}

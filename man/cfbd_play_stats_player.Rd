@@ -99,5 +99,14 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
   try(cfbd_play_stats_player(game_id = 401110722))
 }
 }
+\seealso{
+Other CFBD PBP: 
+\code{\link{cfbd_live_plays}()},
+\code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_play_stats_types}()},
+\code{\link{cfbd_play_types}()},
+\code{\link{cfbd_plays}()}
+}
+\concept{CFBD PBP}
 \keyword{PBP}
 \keyword{Player}

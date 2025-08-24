@@ -91,6 +91,14 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
    try(cfbd_stats_season_team(2013, team = "Florida State"))
 }
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_player}()}
+}
+\concept{CFBD Stats}
 \keyword{Season}
 \keyword{Stats}
 \keyword{Team}
