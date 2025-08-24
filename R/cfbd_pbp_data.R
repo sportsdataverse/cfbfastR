@@ -469,36 +469,44 @@ cfbd_pbp_data <- function(year,
   if (year >= 2013) {
     tryCatch(
       expr = {
+        # define providers in explicit priority order
         providers_list <- c(
-          'teamrankings', 'numberfire', 'consensus', 'Caesars', 'Bovada',
-          'SugarHouse', 'William Hill (New Jersey)', 'Caesars (Pennsylvania)',
-          'Caesars Sportsbook (Colorado)', 'ESPN Bet', 'DraftKings'
+          'consensus', 'DraftKings', 'ESPN Bet', 'Caesars', 'Caesars Sportsbook (Colorado)',
+          'Caesars (Pennsylvania)', 'Bovada', 'SugarHouse', 'William Hill (New Jersey)',
+          'teamrankings', 'numberfire'
         )
-        game_spread <- cfbd_betting_lines(year = year, week = week, season_type = season_type, team = team)
-
+        game_spread <- cfbd_betting_lines(
+          year = year,
+          week = week,
+          season_type = season_type,
+          team = team
+        )
         game_spread <- game_spread %>%
           dplyr::filter(.data$provider %in% providers_list) %>%
           dplyr::mutate(
             spread = as.numeric(.data$spread),
             over_under = as.numeric(.data$over_under)
           ) %>%
-          dplyr::select("game_id", "provider", "spread", "formatted_spread", "over_under")
+          dplyr::select(
+            "game_id", "provider", "spread", "formatted_spread", "over_under"
+          )
+        # deterministically choose a single provider per game by defined priority
+        provider_priority <- setNames(seq_along(providers_list), providers_list)
+        game_spread <- game_spread %>%
+          dplyr::mutate(.prov_rank = provider_priority[.data$provider]) %>%
+          dplyr::group_by(.data$game_id) %>%
+          dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) %>%
+          dplyr::ungroup() %>%
+          dplyr::select(-".prov_rank")
 
-        suppressWarnings(
-          game_spread <- game_spread %>%
-            dplyr::group_by(.data$game_id) %>%
-            dplyr::arrange(.data$provider) %>%
-            dplyr::filter(.data$provider == min(.data$provider)) %>%
-            dplyr::ungroup()
-        )
-
+        # join to plays dataframe
         raw_play_df <- raw_play_df %>%
           dplyr::left_join(game_spread, by = c("gameId" = "game_id"), suffix = c("_x",""))
 
         if (all(is.na(raw_play_df$spread))) {
-          raw_play_df$spread <- NULL
-          raw_play_df$formatted_spread <- NULL
-          raw_play_df$over_under <- NULL
+          raw_play_df$spread <- NA_real_
+          raw_play_df$formatted_spread <- NA_character_
+          raw_play_df$over_under <- NA_real_
         }
       },
       error = function(e) {
