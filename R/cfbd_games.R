@@ -1176,13 +1176,14 @@ cfbd_game_records <- function(year,
 
 #' @title
 #' **Get team statistics by game**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*). Required year filter (along with one of `week`, `team`, or `conference`), unless `game_id` is specified
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if `team` and `conference` not specified.
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, both, allstar, spring_regular, spring_postseason
-#' @param team (*String* optional): D-I Team
+#' @param team (*String* optional): D-I Team. Required if `week` and `conference` not specified.
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' Required if `week` and `team` not specified.
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
