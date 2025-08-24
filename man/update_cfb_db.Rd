@@ -58,3 +58,11 @@ the arguments \code{dbdir} and \code{dbname} are dropped in case a \code{db_conn
 is provided but the argument \code{tblname} will still be used to write the
 data table into the database.
 }
+\seealso{
+Other loaders: 
+\code{\link{load_cfb_pbp}()},
+\code{\link{load_cfb_rosters}()},
+\code{\link{load_cfb_schedules}()},
+\code{\link{load_cfb_teams}()}
+}
+\concept{loaders}
