@@ -3,6 +3,7 @@
 This is a major release that:
 
 * Addresses the noted documentation issues which caused the previous release to be archived by CRAN.
+* Addresses the error from the previous CRAN submission today though does not change official version number.
 * Updates the `cfbd_*()` functions to use the new College Football Data API v2. 
 
 The following functions were added:
