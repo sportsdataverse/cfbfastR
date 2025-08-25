@@ -16,6 +16,10 @@
 #' @export
 load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
                          dbConnection = NULL, tablename = NULL) {
+
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
+  on.exit(options(old))
+
   dots <- rlang::dots_list(...)
 
   loader <- rds_from_url
