@@ -18,7 +18,7 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
                          dbConnection = NULL, tablename = NULL) {
 
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
-  on.exit(options(old))
+  on.exit(options(old), add = TRUE)
 
   dots <- rlang::dots_list(...)
 
@@ -49,7 +49,6 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
         make_cfbfastR_data("PBP from data repo and CollegeFootballData.com",Sys.time())
     }
   }
-  out
   return(out)
 }
 
