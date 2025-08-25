@@ -794,6 +794,7 @@ cfbd_stats_season_team <- function(year,
                                    end_week = NULL) {
 
   # Validation ----
+  validate_api_key()
   validate_year(year)
   validate_season_type(season_type)
   validate_week(start_week)

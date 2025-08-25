@@ -786,7 +786,7 @@ cfbd_pbp_data <- function(year,
         dplyr::all_of(lag_series_columns),
         dplyr::all_of(lag_lead_columns),
         dplyr::everything()) %>%
-      dplyr::select(-dplyr::all_of(drop_player_name_columns))
+      dplyr::select(-dplyr::any_of(drop_player_name_columns))
   }
 
   play_df <- play_df %>%
