@@ -112,7 +112,7 @@ cfbd_stats_categories <- function() {
 #' @param team (*String* optional): D-I Team
 #' @param opponent (*String* optional): Opponent D-I Team
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
 #' \describe{
@@ -200,7 +200,7 @@ cfbd_stats_game_advanced <- function(year,
                                      team = NULL,
                                      opponent = NULL,
                                      excl_garbage_time = FALSE,
-                                     season_type = "regular") {
+                                     season_type = "both") {
 
   # Validation ----
   validate_api_key()
@@ -470,7 +470,7 @@ cfbd_stats_season_advanced <- function(year,
 #' @title
 #' **Get season statistics by player**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -567,7 +567,7 @@ cfbd_stats_season_advanced <- function(year,
 #' }
 
 cfbd_stats_season_player <- function(year,
-                                     season_type = "regular",
+                                     season_type = "both",
                                      team = NULL,
                                      conference = NULL,
                                      start_week = NULL,
@@ -708,7 +708,7 @@ cfbd_stats_season_player <- function(year,
 #' @title
 #' **Get season statistics by team**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param season_type (*String* default: both): Select Season Type - regular, postseason, or both
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -786,7 +786,7 @@ cfbd_stats_season_player <- function(year,
 #' }
 
 cfbd_stats_season_team <- function(year,
-                                   season_type = "regular",
+                                   season_type = "both",
                                    team = NULL,
                                    conference = NULL,
                                    start_week = NULL,
