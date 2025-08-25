@@ -789,7 +789,7 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       team_df <- team_df %>%
         dplyr::rename(
           "logo_href" = "logos_href",
-          "logo_dark_href" = "logos_href_1") %>% 
+          "logo_dark_href" = "logos_href_1") %>%
         dplyr::select(-tidyr::starts_with("logos"))
 
       athlete_df[["links"]] <- NULL

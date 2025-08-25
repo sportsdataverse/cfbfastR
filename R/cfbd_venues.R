@@ -27,6 +27,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom dplyr rename
+#' @family CFBD Venues
 #' @examples
 #' \donttest{
 #'   try(cfbd_venues())

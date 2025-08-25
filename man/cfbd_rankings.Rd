@@ -4,27 +4,27 @@
 \alias{cfbd_rankings}
 \title{\strong{Get historical Coaches and AP poll data}}
 \usage{
-cfbd_rankings(year, week = NULL, season_type = "regular")
+cfbd_rankings(year, week = NULL, season_type = "both")
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
 \item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
-\item{season_type}{(\emph{String} default regular): Season type - regular or postseason}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
-\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Rankings season.}
-\item{\code{season_type}: character.}{Season type of rankings.}
-\item{\code{week}: integer.}{Week of rankings.}
-\item{\code{poll}: character.}{Name of the poll.}
-\item{\code{rank}: integer.}{Rank in the poll.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{first_place_votes}: integer.}{Number of first place votes.}
-\item{\code{points}: integer.}{Total poll points.}
+\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:\tabular{ll}{
+   col_name \tab types \cr
+   season \tab integer \cr
+   season_type \tab character \cr
+   week \tab integer \cr
+   poll \tab character \cr
+   rank \tab integer \cr
+   school \tab character \cr
+   conference \tab character \cr
+   first_place_votes \tab integer \cr
+   points \tab integer \cr
 }
 }
 \description{
@@ -40,5 +40,14 @@ cfbd_rankings(year, week = NULL, season_type = "regular")
 }
 
 }
+\seealso{
+Other CFBD Ratings and Rankings: 
+\code{\link{cfbd_ratings_elo}()},
+\code{\link{cfbd_ratings_fpi}()},
+\code{\link{cfbd_ratings_sp}()},
+\code{\link{cfbd_ratings_sp_conference}()},
+\code{\link{cfbd_ratings_srs}()}
+}
+\concept{CFBD Ratings and Rankings}
 \keyword{CFB}
 \keyword{Rankings}

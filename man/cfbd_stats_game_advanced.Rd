@@ -24,7 +24,7 @@ cfbd_stats_game_advanced(
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 
-\item{season_type}{(\emph{String} default both): Select Season Type: regular, postseason, or both.}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
 \code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}} - A data frame with 60 variables:
@@ -105,6 +105,14 @@ cfbd_stats_game_advanced(
 }
 
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_player}()},
+\code{\link{cfbd_stats_season_team}()}
+}
+\concept{CFBD Stats}
 \keyword{Advanced}
 \keyword{Game}
 \keyword{Stats}

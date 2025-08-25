@@ -9,7 +9,7 @@
 #'
 #' @seealso [cfbd_game_info()]
 #' @seealso Issues with this data should be filed here: <https://github.com/sportsdataverse/cfbfastR-data>
-#'
+#' @family loaders
 #' @examples
 #' \donttest{
 #'   try(load_cfb_schedules(2024))
@@ -57,7 +57,7 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
 #'
 #' @seealso [cfbd_team_roster()]
 #' @seealso Issues with this data should be filed here: <https://github.com/sportsdataverse/cfbfastR-data>
-#'
+#' @family loaders
 #' @export
 load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 
@@ -99,6 +99,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
 #'
 #' @seealso [cfbd_team_info()]
 #' @seealso Issues with this data should be filed here: <https://github.com/sportsdataverse/cfbfastR-data>
+#' @family loaders
 #'
 #' @export
 load_cfb_teams <- function(fbs_only = TRUE){

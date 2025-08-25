@@ -71,7 +71,7 @@ df_team_game_adv <- df_team_game_adv %>%
 
 ### **Get Season Statistics by Player**
 
-```{r passing_stats_table_ex}
+```{r passing_stats_table_ex, fig.alt="A table showing passing statistics for LSU in 2019 and Florida State in 2013"}
 source("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R")
 passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2019, team = "LSU", category = "passing"),

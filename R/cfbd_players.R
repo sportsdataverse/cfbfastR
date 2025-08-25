@@ -59,6 +59,7 @@ NULL
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Players
 #' @export
 #' @examples
 #' \donttest{
@@ -160,6 +161,7 @@ cfbd_player_info <- function(search_term,
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Players
 #' @export
 #' @examples
 #' \donttest{
@@ -263,6 +265,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 #' @importFrom glue glue
 #' @importFrom purrr map_if
 #' @importFrom dplyr as_tibble rename
+#' @family CFBD Players
 #' @export
 #' @examples
 #' \donttest{
@@ -300,7 +303,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     "team" = team,
     "conference" = conference,
     "position" = position,
-    "athleteID" = athlete_id,
+    "playerId" = athlete_id,
     "excludeGarbageTime" = excl_garbage_time
   )
   full_url <- httr::modify_url(base_url, query=query_params)

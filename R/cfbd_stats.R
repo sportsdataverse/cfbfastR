@@ -66,6 +66,7 @@ NULL
 #' @importFrom httr GET
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Stats
 #' @export
 #'
 cfbd_stats_categories <- function() {
@@ -111,7 +112,7 @@ cfbd_stats_categories <- function() {
 #' @param team (*String* optional): D-I Team
 #' @param opponent (*String* optional): Opponent D-I Team
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param season_type (*String* default both): Select Season Type: regular, postseason, or both.
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
 #' \describe{
@@ -183,6 +184,7 @@ cfbd_stats_categories <- function() {
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Stats
 #' @export
 #' @examples
 #' \donttest{
@@ -234,7 +236,8 @@ cfbd_stats_game_advanced <- function(year,
       # Get the content, flatten and return result as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE)
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        as.data.frame()
 
       # Column renaming for the 76 returned columns
       colnames(df) <- gsub("offense.", "off_", colnames(df))
@@ -375,6 +378,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Stats
 #' @export
 #' @examples
 #' \donttest{
@@ -421,6 +425,7 @@ cfbd_stats_season_advanced <- function(year,
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
+
       colnames(df) <- gsub("offense.", "off_", colnames(df))
       colnames(df) <- gsub("defense.", "def_", colnames(df))
       colnames(df) <- gsub("Rate", "_rate", colnames(df))
@@ -465,7 +470,7 @@ cfbd_stats_season_advanced <- function(year,
 #' @title
 #' **Get season statistics by player**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -547,8 +552,9 @@ cfbd_stats_season_advanced <- function(year,
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
-#' @importFrom dplyr mutate mutate_at rename select
-#' @importFrom tidyr pivot_wider everything
+#' @importFrom dplyr mutate mutate_at rename select everything
+#' @importFrom tidyr pivot_wider
+#' @family CFBD Stats
 #' @export
 #'
 #' @examples
@@ -558,10 +564,11 @@ cfbd_stats_season_advanced <- function(year,
 #'    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 #'
 #'    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
+#'
 #' }
 
 cfbd_stats_season_player <- function(year,
-                                     season_type = "regular",
+                                     season_type = "both",
                                      team = NULL,
                                      conference = NULL,
                                      start_week = NULL,
@@ -600,7 +607,7 @@ cfbd_stats_season_player <- function(year,
   full_url <- httr::modify_url(base_url, query=query_params)
 
   cols <- c(
-    "team", "conference", "athlete_id", "player", "category",
+    "team", "conference", "athlete_id", "player", "position", "category",
     "passing_completions", "passing_att", "passing_pct", "passing_yds",
     "passing_td", "passing_int", "passing_ypa",
     "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long",
@@ -663,7 +670,7 @@ cfbd_stats_season_player <- function(year,
       df[cols[!(cols %in% colnames(df))]] <- NA
       suppressWarnings(
       df <- df %>%
-        dplyr::select(dplyr::all_of(cols), tidyr::everything()) %>%
+        dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
         dplyr::mutate_at(numeric_cols, as.numeric) %>%
         as.data.frame() %>%
         dplyr::mutate(year = year))
@@ -673,7 +680,7 @@ cfbd_stats_season_player <- function(year,
         suppressWarnings(
         df <- df %>%
           dplyr::select(-dplyr::any_of(c("category"))) %>%
-          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
+          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$position, .data$year) %>%
           dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
           dplyr::arrange(.data$year, .data$athlete_id) %>%
           dplyr::ungroup() %>%
@@ -702,7 +709,7 @@ cfbd_stats_season_player <- function(year,
 #' @title
 #' **Get season statistics by team**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param season_type (*String* default: both): Select Season Type - regular, postseason, or both
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -767,6 +774,7 @@ cfbd_stats_season_player <- function(year,
 #' @importFrom glue glue
 #' @importFrom dplyr select mutate rename
 #' @importFrom tidyr pivot_wider
+#' @family CFBD Stats
 #' @export
 #'
 #' @examples
@@ -779,13 +787,14 @@ cfbd_stats_season_player <- function(year,
 #' }
 
 cfbd_stats_season_team <- function(year,
-                                   season_type = "regular",
+                                   season_type = "both",
                                    team = NULL,
                                    conference = NULL,
                                    start_week = NULL,
                                    end_week = NULL) {
 
   # Validation ----
+  validate_api_key()
   validate_year(year)
   validate_season_type(season_type)
   validate_week(start_week)

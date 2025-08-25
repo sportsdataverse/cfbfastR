@@ -62,6 +62,12 @@ cfbd_draft_picks(
   try(cfbd_draft_picks(year = 2016, position = "PK"))
 }
 }
+\seealso{
+Other CFBD Draft: 
+\code{\link{cfbd_draft_positions}()},
+\code{\link{cfbd_draft_teams}()}
+}
+\concept{CFBD Draft}
 \keyword{Draft}
 \keyword{NFL}
 \keyword{Picks}

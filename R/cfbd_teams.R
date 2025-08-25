@@ -65,7 +65,7 @@ NULL
 #' Required if year not provided
 #' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year. Required if conference not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year. Required if conference not provided and the `year` parameter is only supported if `only_fbs` is TRUE.
 #' @return [cfbd_team_info()] - A data frame with 12 variables:
 #' \describe{
 #'   \item{`team_id`: integer.}{Referencing team id.}
@@ -101,6 +101,7 @@ NULL
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom dplyr rename
+#' @family CFBD Teams
 #' @export
 #' @examples
 #' \donttest{
@@ -225,6 +226,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
 #' @importFrom tibble enframe
+#' @family CFBD Teams
 #' @export
 #' @examples
 #' \donttest{
@@ -335,6 +337,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
+#' @family CFBD Teams
 #' @export
 #' @examples
 #' \donttest{
@@ -437,6 +440,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Teams
 #' @export
 #' @examples
 #' \donttest{
@@ -511,6 +515,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Teams
 #' @export
 #' @examples
 #' \donttest{

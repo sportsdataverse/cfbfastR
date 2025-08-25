@@ -1,7 +1,7 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part III"
 description: "A brief history of expected points models. Learn about Virgil Carter's 1970 paper and the origins of the nflscrapR expected points model (which the cfbscrapR package used). The cfbfastR package includes support for this model as well."
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=X&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
@@ -35,7 +35,7 @@ For the study, Carter and his wife Judy coded 8,373 plays with 53 variables — 
 
 >... the field was divided into ten strips, namely, 99 to 01 yards to go, 90 to 81 yards to go, 80 to 71 yards to go, etc. These data are identified by their midpoints in Table I. The smallest number of data points in any set was 57 (this set centered on 95 yards to go), and the largest was 601 (this set centered on 75 yards to go)., This condensation led to a system of ten equations in  10 unknowns. 
 
-<a href="https://imgur.com/3X3s1dM"><img src="https://i.imgur.com/3X3s1dMl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/3X3s1dM"><img src="https://i.imgur.com/3X3s1dMl.png" title="Figure: @SaiemGilani"  alt="Figure: @SaiemGilani"/></a>
 
 **Figure 1**: Expected Point Values of Possession table | Virgil Carter, “Operations Research on Football”, 1971
 
@@ -45,7 +45,7 @@ This smaller dataset is used as the basis for the model described in the paper a
 
 For complete clarity, the study averaged the value of the next scores for each of the 10 strips listed to give the data in the table. 
 
-<a href="https://imgur.com/MdzOd7s"><img src="https://i.imgur.com/MdzOd7sl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/MdzOd7s"><img src="https://i.imgur.com/MdzOd7sl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 **Figure 2**: Virgil Carter’s Expected Points study, 1971
 
@@ -55,7 +55,7 @@ In other words, starting from your own 0 (or 100 yards-to-goal) is worth -2 expe
 
 The figure below is a visual comparison of the two models.
 
-<a href="https://imgur.com/Ccqk9lr"><img src="https://i.imgur.com/Ccqk9lrl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/Ccqk9lr"><img src="https://i.imgur.com/Ccqk9lrl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 **Figure 3**: Expected Points Value Comparison: Virgil Carter study vs. Hidden Game of Football EP model
 
@@ -88,7 +88,7 @@ In 2017, Ron Yurko, Sam Ventura, and Max Horowitz from Carnegie Mellon Universit
 
 (That is a seminal work in football analytics and if you were to only click one link to read more on, that is the paper you should look at.)
 
-<a href="https://imgur.com/cejyymh"><img src="https://i.imgur.com/cejyymhl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/cejyymh"><img src="https://i.imgur.com/cejyymhl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 **Figure 4**: Modeling Expected Points using situational factors to predict the probability of each Next Score type
 
@@ -98,7 +98,7 @@ Time to talk about the cfbfastR model, finally!
 
 Recall the following figure from part 2.
 
-<a href="https://imgur.com/bGug8hp"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani" /></a>
+<a href="https://imgur.com/bGug8hp"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
 
 **Figure 5**: Multinomial Logistic Regression Football Expected Points Model
 

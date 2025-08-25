@@ -329,6 +329,7 @@ reference:
       - '`cfbd_games`'
       - starts_with("cfbd_game")
       - '`cfbd_calendar`'
+      - '`cfbd_live_scoreboard`'
   - subtitle: Drives Data
     desc: Functions exported by cfbfastR sourced from drives endpoint of the CollegeFootballData API
     contents:
@@ -338,6 +339,7 @@ reference:
     contents:
       - '`cfbd_play`'
       - '`cfbd_plays`'
+      - '`cfbd_live_plays`'
       - starts_with("cfbd_play_stat")
       - starts_with("cfbd_play_types")
   - subtitle: Teams Data

@@ -41,15 +41,15 @@ espn_metrics_wp <- function(game_id) {
 
   tryCatch(
     expr = {
-      espn_data <- 
+      espn_data <-
         httr::GET(url = glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
-      
+
       # to-do: Grab play data and back into seconds left
 
       espn_wp <-
-        espn_data %>% 
+        espn_data %>%
         purrr::pluck("winprobability") %>%
         janitor::clean_names() %>%
         dplyr::mutate(

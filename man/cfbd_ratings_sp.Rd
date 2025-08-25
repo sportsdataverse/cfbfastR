@@ -12,37 +12,37 @@ cfbd_ratings_sp(year = NULL, team = NULL)
 \item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 }
 \value{
-\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the ratings.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{rating}: double.}{SP+ rating.}
-\item{\code{ranking}: integer.}{Ranking in the SP+ ratings.}
-\item{\code{second_order_wins}: logical.}{Total second-order wins - Not available for recent seasons.}
-\item{\code{sos}: logical.}{Strength of schedule - Not available for recent seasons.}
-\item{\code{offense_ranking}: integer.}{Overall offense ranking.}
-\item{\code{offense_rating}: double.}{Overall offense rating.}
-\item{\code{offense_success}: logical.}{Offense success rating - Not available for recent seasons.}
-\item{\code{offense_explosiveness}: logical.}{Offense explosiveness rating - Not available for recent seasons.}
-\item{\code{offense_rushing}: logical.}{Offense rushing rating - Not available for recent seasons.}
-\item{\code{offense_passing}: logical.}{Offense passing rating - Not available for recent seasons.}
-\item{\code{offense_standard_downs}: logical.}{Offense standard downs rating - Not available for recent seasons.}
-\item{\code{offense_passing_downs}: logical.}{Offensive passing downs rating - Not available for recent seasons.}
-\item{\code{offense_run_rate}: logical.}{Offense rushing rate - Not available for recent seasons.}
-\item{\code{offense_pace}: logical.}{Offense pace factor - Not available for recent seasons.}
-\item{\code{defense_ranking}: integer.}{Overall defense ranking.}
-\item{\code{defense_rating}: double.}{Overall defense rating.}
-\item{\code{defense_success}: logical.}{Defense success rating - Not available for recent seasons.}
-\item{\code{defense_explosiveness}: logical.}{Defense explosiveness rating - Not available for recent seasons.}
-\item{\code{defense_rushing}: logical.}{Defense rushing rating - Not available for recent seasons.}
-\item{\code{defense_passing}: logical.}{Defense passing rating - Not available for recent seasons.}
-\item{\code{defense_standard_downs}: logical.}{Defense standard downs rating - Not available for recent seasons.}
-\item{\code{defense_passing_downs}: logical.}{Defensive passing downs rating - Not available for recent seasons.}
-\item{\code{defense_havoc_total}: logical.}{Total defensive havoc rate - Not available for recent seasons.}
-\item{\code{defense_havoc_front_seven}: logical.}{Defense havoc rate from front 7 players - Not available for recent seasons.}
-\item{\code{defense_havoc_db}: logical.}{Defense havoc rate from defensive backs - Not available for recent seasons.}
-\item{\code{special_teams_rating}: double.}{Special teams rating.}
+\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:\tabular{ll}{
+   col_name \tab types \cr
+   year \tab integer \cr
+   team \tab character \cr
+   conference \tab character \cr
+   rating \tab numeric \cr
+   ranking \tab integer \cr
+   second_order_wins \tab numeric \cr
+   sos \tab numeric \cr
+   offense_ranking \tab integer \cr
+   offense_rating \tab numeric \cr
+   offense_success \tab numeric \cr
+   offense_explosiveness \tab numeric \cr
+   offense_rushing \tab numeric \cr
+   offense_passing \tab numeric \cr
+   offense_standard_downs \tab numeric \cr
+   offense_passing_downs \tab numeric \cr
+   offense_run_rate \tab numeric \cr
+   offense_pace \tab numeric \cr
+   defense_ranking \tab integer \cr
+   defense_rating \tab numeric \cr
+   defense_success \tab numeric \cr
+   defense_explosiveness \tab numeric \cr
+   defense_rushing \tab numeric \cr
+   defense_passing \tab numeric \cr
+   defense_standard_downs \tab numeric \cr
+   defense_passing_downs \tab numeric \cr
+   defense_havoc_total \tab numeric \cr
+   defense_havoc_front_seven \tab numeric \cr
+   defense_havoc_db \tab numeric \cr
+   special_teams_rating \tab numeric \cr
 }
 }
 \description{
@@ -58,4 +58,13 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 }
 
 }
+\seealso{
+Other CFBD Ratings and Rankings: 
+\code{\link{cfbd_rankings}()},
+\code{\link{cfbd_ratings_elo}()},
+\code{\link{cfbd_ratings_fpi}()},
+\code{\link{cfbd_ratings_sp_conference}()},
+\code{\link{cfbd_ratings_srs}()}
+}
+\concept{CFBD Ratings and Rankings}
 \keyword{SP+}

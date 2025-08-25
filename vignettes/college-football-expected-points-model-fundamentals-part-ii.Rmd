@@ -37,7 +37,7 @@ Regression is a set of techniques for estimating relationships between multiple 
 
 ## Linear Regression
 
-<a href="https://imgur.com/MegfSse"><img src="https://i.imgur.com/MegfSsel.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/MegfSse"><img src="https://i.imgur.com/MegfSsel.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 2**: Linear Regression Model
 
@@ -58,13 +58,13 @@ While pretending I was unaware of the continuous dependent variable assumption o
 
 Adjusted R-squared is a measure of the percentage of the dependent variable variation explained by the independent variables, in this case 51.43%. Below is the model summary of this fitting with no intercept.
 
-<a href="https://imgur.com/HjH1CFw"><img src="https://i.imgur.com/HjH1CFwl.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/HjH1CFw"><img src="https://i.imgur.com/HjH1CFwl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 3**: Linear Regression model summary \| Expected Drive-Points model using Down, Distance, and Field Position as factors
 
 Additionally, the linear model indicates that all three factors are significant at a p=0.001 level, which is at least some evidence that our variables have a relationship with drive points. Here is a plot of the linear regression model fitting.
 
-<a href="https://imgur.com/AZVRKf3"><img src="https://i.imgur.com/AZVRKf3l.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/AZVRKf3"><img src="https://i.imgur.com/AZVRKf3l.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 4**: Linear Regression model plots \| Expected Drive-Points model using Down, Distance, and Field Position as factors
 
@@ -76,11 +76,11 @@ Upon viewing these plots, I quickly realized that several assumptions of linear 
 
 Suppose we have a binary output variable Y, let's say Y is a variable that gives a response of 1 if the next score in the half is a TD for the offense and a 0 otherwise. If we wanted to predict the probability that the next score in the half is a TD for the offense, one of the prime candidate models would be logistic regression.
 
-<a href="https://imgur.com/ZePALn7"><img src="https://i.imgur.com/ZePALn7l.png" title="Figure: @ChrisAlbon"/></a>
+<a href="https://imgur.com/ZePALn7"><img src="https://i.imgur.com/ZePALn7l.png" title="Figure: @ChrisAlbon" alt="Figure: @ChrisAlbon"/></a>
 
 **Figure 5**: Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
-<a href="https://imgur.com/PJXbgfq"><img src="https://i.imgur.com/PJXbgfql.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/PJXbgfq"><img src="https://i.imgur.com/PJXbgfql.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 6**: Logistic Regression Model
 
@@ -97,25 +97,25 @@ Suppose we have a binary output variable Y, let's say Y is a variable that gives
 
 Now we are attempting to calculate the probability of the next scoring event directly, an essential component of an expected points model. Once we have a model capable of calculating the expectation of the scoring event, e.g. the probability of the next score being an offense touchdown, then we simply have to multiply the probability by the point value of the score to get the expected points.
 
-<a href="https://imgur.com/xw3BvAd"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon"/></a>
+<a href="https://imgur.com/xw3BvAd"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon" alt="Illustration comparing linear vs logistic regression decision boundaries"/></a>
 
 **Figure 7**: Logistic vs. Linear Regression \| [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
 With that background, we can build our model equation with whatever independent variables we choose to include in the model as shown in Figure 8.
 
-<a href="https://imgur.com/vVaOIZx"><img src="https://i.imgur.com/vVaOIZxl.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/vVaOIZx"><img src="https://i.imgur.com/vVaOIZxl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 8**: Offense Touchdown Logit Regression
 
 Below is a model fit to the next score offense touchdown variable using the independent variables yards-to-goal, down, distance, and the interaction between down and distance.
 
-<a href="https://imgur.com/gRTGzMT"><img src="https://i.imgur.com/gRTGzMTl.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/gRTGzMT"><img src="https://i.imgur.com/gRTGzMTl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 9**: Offense Touchdown Logistic Regression model summary
 
 Once again we see that all variables in the model are fit are significant at the p \< 0.001 level. In figure 10 below, we can see the probability of the next score in half being a touchdown in relation to field position (yards-to-goal) as the offense progresses down the field.
 
-<a href="https://imgur.com/VVsQ8lm"><img src="https://i.imgur.com/VVsQ8lml.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/VVsQ8lm"><img src="https://i.imgur.com/VVsQ8lml.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 10**: Field Position and Offense TD probability - Logistic Regression
 
@@ -125,19 +125,19 @@ You might be asking "Yeah, that's great, but you're still only predicting the pr
 
 A multinomial logistic regression model uses the independent (predictor) variables and target variable data from the training set to build relationships between the independent variables and each of the classes of the target variable.
 
-<a href="https://imgur.com/c18pbOL"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon"/></a>
+<a href="https://imgur.com/c18pbOL"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon" alt="Diagram of multinomial logistic regression and class probabilities"/></a>
 
 **Figure 11**: Multinomial Logistic Regression [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 
 The primary difference between logistic and multinomial logistic regression is the use of the softmax function which re-weights the probabilities generated from each of the individual models so that in total they add to one as seen in Figure 12 below.
 
-<a href="https://imgur.com/EyxYqaM"><img src="https://i.imgur.com/EyxYqaMm.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/EyxYqaM"><img src="https://i.imgur.com/EyxYqaMm.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 12**: Softmax function
 
 More specifically, a multinomial logistic regression model is an extension of the binomial logistic regression model because it is a series of logistic regression models estimated simultaneously with the same reference outcome.
 
-<a href="https://imgur.com/bGug8hp"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani"/></a>
+<a href="https://imgur.com/bGug8hp"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"/></a>
 
 **Figure 13**: Multinomial Logistic Regression Football Expected Points Model
 

@@ -9,6 +9,8 @@
 \item{\code{cfbd_ratings_sp()}:}{ Get SP historical rating data.}
 \item{\code{cfbd_ratings_sp_conference()}:}{ Get SP conference-level historical rating data.}
 \item{\code{cfbd_ratings_srs()}:}{ Get SRS historical rating data.}
+\item{\code{cfbd_ratings_elo()}:}{ Get Elo historical rating data.}
+\item{\code{cfbd_ratings_fpi()}:}{ Get FPI historical rating data.}
 }
 \subsection{\strong{Get historical Coaches and AP poll data}}{
 
@@ -59,6 +61,16 @@ Acquire the CFBD calculated elo ratings data by \strong{team}, \strong{year}, \s
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_elo(year = 2019, team = "Texas")
 
 cfbd_ratings_elo(year = 2018, conference = "SEC")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get FPI historical rating data}}{
+
+Acquire the ESPN FPI ratings data by \strong{team}, \strong{year}, and \strong{conference}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_fpi(year = 2019, team = "Texas")
+
+cfbd_ratings_fpi(year = 2018, conference = "SEC")
 }\if{html}{\out{</div>}}
 }
 }

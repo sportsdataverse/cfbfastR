@@ -28,5 +28,13 @@ Extracts team talent composite as sourced from 247 rankings
 }
 
 }
+\seealso{
+Other CFBD Teams: 
+\code{\link{cfbd_team_info}()},
+\code{\link{cfbd_team_matchup}()},
+\code{\link{cfbd_team_matchup_records}()},
+\code{\link{cfbd_team_roster}()}
+}
+\concept{CFBD Teams}
 \keyword{Team}
 \keyword{talent}

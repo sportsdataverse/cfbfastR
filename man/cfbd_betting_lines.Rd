@@ -24,7 +24,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
+\item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 
@@ -73,3 +73,4 @@ Betting information for games with the following columns:
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
 }
 }
+\concept{CFBD Betting Functions}

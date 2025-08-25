@@ -38,6 +38,14 @@ cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 }
 
 }
+\seealso{
+Other CFBD Teams: 
+\code{\link{cfbd_team_info}()},
+\code{\link{cfbd_team_matchup}()},
+\code{\link{cfbd_team_roster}()},
+\code{\link{cfbd_team_talent}()}
+}
+\concept{CFBD Teams}
 \keyword{Matchup}
 \keyword{Records}
 \keyword{Team}

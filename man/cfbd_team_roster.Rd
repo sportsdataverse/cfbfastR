@@ -41,5 +41,13 @@ Get a teams full roster by year. If team is not selected, API returns rosters fo
 }
 
 }
+\seealso{
+Other CFBD Teams: 
+\code{\link{cfbd_team_info}()},
+\code{\link{cfbd_team_matchup}()},
+\code{\link{cfbd_team_matchup_records}()},
+\code{\link{cfbd_team_talent}()}
+}
+\concept{CFBD Teams}
 \keyword{Roster}
 \keyword{Team}

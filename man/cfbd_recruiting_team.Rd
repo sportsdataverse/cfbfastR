@@ -35,4 +35,11 @@ cfbd_recruiting_team(year = NULL, team = NULL)
 }
 
 }
+\seealso{
+Other CFBD Recruiting: 
+\code{\link{cfbd_recruiting_player}()},
+\code{\link{cfbd_recruiting_position}()},
+\code{\link{cfbd_recruiting_transfer_portal}()}
+}
+\concept{CFBD Recruiting}
 \keyword{Recruiting}

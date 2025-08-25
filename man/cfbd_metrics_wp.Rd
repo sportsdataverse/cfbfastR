@@ -39,6 +39,21 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
   try(cfbd_metrics_wp(game_id = 401012356))
 }
 }
+\seealso{
+Other CFBD Metrics: 
+\code{\link{cfbd_metrics_fg_ep}()},
+\code{\link{cfbd_metrics_ppa_games}()},
+\code{\link{cfbd_metrics_ppa_players_games}()},
+\code{\link{cfbd_metrics_ppa_players_season}()},
+\code{\link{cfbd_metrics_ppa_predicted}()},
+\code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wepa_players_kicking}()},
+\code{\link{cfbd_metrics_wepa_players_passing}()},
+\code{\link{cfbd_metrics_wepa_players_rushing}()},
+\code{\link{cfbd_metrics_wepa_team_season}()},
+\code{\link{cfbd_metrics_wp_pregame}()}
+}
+\concept{CFBD Metrics}
 \keyword{Chart}
 \keyword{Data}
 \keyword{Probability}

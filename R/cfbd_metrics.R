@@ -4,6 +4,10 @@
 #' @description
 #' \describe{
 #' \item{`cfbd_metrics_fg_ep()`:}{ Get field goal expected points values.}
+#' \item{`cfbd_metrics_wepa_team_season()`:}{ Get opponent-adjusted team season statistics for predicted points added (PPA).}
+#' \item{`cfbd_metrics_wepa_players_passing()`:}{ Get opponent-adjusted player passing statistics for predicted points added (PPA).}
+#' \item{`cfbd_metrics_wepa_players_rushing()`:}{ Get opponent-adjusted player rushing statistics for predicted points added (PPA).}
+#' \item{`cfbd_metrics_wepa_players_kicking()`:}{ Get Points Added Above Replacement (PAAR) ratings for kickers.}
 #' \item{`cfbd_metrics_ppa_games()`:}{ Get team game averages for predicted points added (PPA).}
 #' \item{`cfbd_metrics_ppa_players_games()`:}{ Get player game averages for predicted points added (PPA).}
 #' \item{`cfbd_metrics_ppa_players_season()`:}{ Get player season averages for predicted points added (PPA).}
@@ -17,6 +21,22 @@
 #' ### **Get expected points for field goals by yards to goal and distance**
 #' ```r
 #'   cfbd_metrics_fg_ep()
+#' ```
+#' ### **Get opponent-adjusted team season statistics for predicted points added (PPA)**
+#' ```r
+#'  cfbd_metrics_wepa_team_season(year = 2019, team = "TCU")
+#' ```
+#' ### **Get opponent-adjusted player passing statistics for predicted points added (PPA)**
+#' ```r
+#' cfbd_metrics_wepa_players_passing(year = 2019, team = "TCU")
+#' ```
+#' ### **Get opponent-adjusted player rushing statistics for predicted points added (PPA)**
+#' ```r
+#' cfbd_metrics_wepa_players_rushing(year = 2019, team = "TCU")
+#' ```
+#' ### **Get Points Added Above Replacement (PAAR) ratings for kickers**
+#' ```r
+#' cfbd_metrics_wepa_players_kicking(year = 2019, team = "TCU")
 #' ```
 #' ### **Get team game averages for predicted points added (PPA)**
 #' ```r
@@ -61,6 +81,7 @@ NULL
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -102,11 +123,383 @@ cfbd_metrics_fg_ep <- function(){
   return(df)
 }
 
+#' @title
+#' **Get opponent-adjusted team season statistics for predicted points added (PPA)**
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#'
+#' @return [cfbd_metrics_wepa_team_season()] - A data frame with 26 variables:
+#'
+#'   |col_name                            |types     |
+#'   |:-----------------------------------|:---------|
+#'   |year                                |integer   |
+#'   |team_id                             |integer   |
+#'   |team                                |character |
+#'   |conference                          |character |
+#'   |explosiveness                       |numeric   |
+#'   |explosiveness_allowed               |numeric   |
+#'   |epa_total                           |numeric   |
+#'   |epa_passing                         |numeric   |
+#'   |epa_rushing                         |numeric   |
+#'   |epa_allowed_total                   |numeric   |
+#'   |epa_allowed_passing                 |numeric   |
+#'   |epa_allowed_rushing                 |numeric   |
+#'   |success_rate_total                  |numeric   |
+#'   |success_rate_standard_downs         |numeric   |
+#'   |success_rate_passing_downs          |numeric   |
+#'   |success_rate_allowed_total          |numeric   |
+#'   |success_rate_allowed_standard_downs |numeric   |
+#'   |success_rate_allowed_passing_downs  |numeric   |
+#'   |rushing_line_yards                  |numeric   |
+#'   |rushing_second_level_yards          |numeric   |
+#'   |rushing_open_field_yards            |numeric   |
+#'   |rushing_highlight_yards             |numeric   |
+#'   |rushing_allowed_line_yards          |numeric   |
+#'   |rushing_allowed_second_level_yards  |numeric   |
+#'   |rushing_allowed_open_field_yards    |numeric   |
+#'   |rushing_allowed_highlight_yards     |numeric   |
+#'
+#' @keywords Opponent Adjusted Team Predicted Points
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Metrics
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_metrics_wepa_team_season(year = 2019, team = "TCU"))
+#' }
+
+cfbd_metrics_wepa_team_season <- function(year = NULL,
+                                   team = NULL,
+                                   conference = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/wepa/team/season"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content, flatten and return result as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("Opponent-adjusted team season PPA data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no opponent-adjusted team season PPA data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get opponent-adjusted player passing statistics for predicted points added (PPA)**
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.
+#' Position Group  - options include:
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
+#'  * Special Teams: K, P, LS, PK
+#'
+#' @return [cfbd_metrics_wepa_players_passing()] - A data frame with 8 variables:
+#'
+#'  |col_name     |types     |
+#'  |:------------|:---------|
+#'  |year         |integer   |
+#'  |athlete_id   |character |
+#'  |athlete_name |character |
+#'  |position     |character |
+#'  |team         |character |
+#'  |conference   |character |
+#'  |wepa         |numeric   |
+#'  |plays        |integer   |
+#'
+#' @keywords Opponent Adjusted Players Passing Predicted Points
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Metrics
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_metrics_wepa_players_passing(year = 2019, team = "TCU"))
+#' }
+
+cfbd_metrics_wepa_players_passing <- function(year = NULL,
+                                              team = NULL,
+                                              conference = NULL,
+                                              position = NULL) {
+
+  # Validation Lists ----
+  pos_groups <- c(
+    "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",
+    "DB", "CB", "S", "LB", "DE", "NT", "DL", "DT",
+    "K", "P", "PK", "LS"
+  )
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_list(position, pos_groups)
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/wepa/players/passing"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "position" = position
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content, flatten and return result as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("Opponent-adjusted players passing PPA data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no opponent-adjusted players passing PPA data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get opponent-adjusted player rushing statistics for predicted points added (PPA)**
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.
+#' Position Group  - options include:
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
+#'  * Special Teams: K, P, LS, PK
+#'
+#' @return [cfbd_metrics_wepa_players_rushing()] - A data frame with 8 variables:
+#'
+#'  |col_name     |types     |
+#'  |:------------|:---------|
+#'  |year         |integer   |
+#'  |athlete_id   |character |
+#'  |athlete_name |character |
+#'  |position     |character |
+#'  |team         |character |
+#'  |conference   |character |
+#'  |wepa         |numeric   |
+#'  |plays        |integer   |
+#'
+#' @keywords Opponent Adjusted Players Rushing Predicted Points
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Metrics
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_metrics_wepa_players_rushing(year = 2019, team = "TCU"))
+#' }
+
+cfbd_metrics_wepa_players_rushing <- function(year = NULL,
+                                              team = NULL,
+                                              conference = NULL,
+                                              position = NULL) {
+
+  # Validation Lists ----
+  pos_groups <- c(
+    "QB", "RB", "FB", "TE", "WR", "OL", "OT", "G", "OC",
+    "DB", "CB", "S", "LB", "DE", "NT", "DL", "DT",
+    "K", "P", "PK", "LS"
+  )
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_list(position, pos_groups)
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/wepa/players/rushing"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "position" = position
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content, flatten and return result as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("Opponent-adjusted players rushing PPA data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no opponent-adjusted players rushing PPA data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get Points Added Above Replacement (PAAR) ratings for kickers**
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#'
+#' @return [cfbd_metrics_wepa_players_kicking()] - A data frame with 7 variables:
+#'
+#'  |col_name     |types     |
+#'  |:------------|:---------|
+#'  |year         |integer   |
+#'  |athlete_id   |character |
+#'  |athlete_name |character |
+#'  |team         |character |
+#'  |conference   |character |
+#'  |paar         |numeric   |
+#'  |attempts     |integer   |
+#'
+#' @keywords Points Added Above Replacement (PAAR) ratings for kickers
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Metrics
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_metrics_wepa_players_kicking(year = 2019, team = "TCU"))
+#' }
+
+cfbd_metrics_wepa_players_kicking <- function(year = NULL,
+                                              team = NULL,
+                                              conference = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/wepa/players/kicking"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content, flatten and return result as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("Points Added Above Replacement (PAAR) ratings for kicking data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no Points Added Above Replacement (PAAR) ratings for kicking data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
 
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -142,6 +535,7 @@ cfbd_metrics_fg_ep <- function(){
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -150,6 +544,7 @@ cfbd_metrics_fg_ep <- function(){
 
 cfbd_metrics_ppa_games <- function(year,
                                    week = NULL,
+                                   season_type = "both",
                                    team = NULL,
                                    conference = NULL,
                                    excl_garbage_time = FALSE) {
@@ -158,6 +553,7 @@ cfbd_metrics_ppa_games <- function(year,
   validate_api_key()
   validate_year(year)
   validate_week(week)
+  validate_season_type(season_type)
   validate_list(excl_garbage_time, c(T,F))
 
   # Team Name Handling ----
@@ -168,6 +564,7 @@ cfbd_metrics_ppa_games <- function(year,
   query_params <- list(
     "year" = year,
     "week" = week,
+    "seasonType" = season_type,
     "team" = team,
     "conference" = conference,
     "excludeGarbageTime" = excl_garbage_time
@@ -216,6 +613,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' **Get player game averages for predicted points added (PPA)**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team. Required if week not provided.
 #' @param position (*string* optional): Position abbreviation of the player you are searching for.
 #' Position Group  - options include:
@@ -247,6 +645,7 @@ cfbd_metrics_ppa_games <- function(year,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -255,6 +654,7 @@ cfbd_metrics_ppa_games <- function(year,
 
 cfbd_metrics_ppa_players_games <- function(year = NULL,
                                            week = NULL,
+                                           season_type = "both",
                                            team = NULL,
                                            position = NULL,
                                            athlete_id = NULL,
@@ -274,6 +674,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
   validate_reqs(week, team)
   validate_year(year)
   validate_week(week)
+  validate_season_type(season_type)
   validate_list(position, pos_groups)
   validate_id(athlete_id)
   validate_id(threshold)
@@ -287,6 +688,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
   query_params <- list(
     "year" = year,
     "week" = week,
+    "seasonType" = season_type,
     "team" = team,
     "position" = position,
     "playerId" = athlete_id,
@@ -377,6 +779,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -476,6 +879,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -568,6 +972,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -632,7 +1037,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
-#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
 #' \describe{
@@ -655,6 +1060,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{
@@ -664,7 +1070,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 cfbd_metrics_wp_pregame <- function(year = NULL,
                                     week = NULL,
                                     team = NULL,
-                                    season_type = "regular") {
+                                    season_type = "both") {
 
   # Validation ----
   validate_api_key()
@@ -752,6 +1158,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Metrics
 #' @export
 #' @examples
 #' \donttest{

@@ -7,6 +7,7 @@
 cfbd_metrics_ppa_games(
   year,
   week = NULL,
+  season_type = "both",
   team = NULL,
   conference = NULL,
   excl_garbage_time = FALSE
@@ -16,6 +17,8 @@ cfbd_metrics_ppa_games(
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
+
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 
@@ -57,6 +60,21 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 }
 }
+\seealso{
+Other CFBD Metrics: 
+\code{\link{cfbd_metrics_fg_ep}()},
+\code{\link{cfbd_metrics_ppa_players_games}()},
+\code{\link{cfbd_metrics_ppa_players_season}()},
+\code{\link{cfbd_metrics_ppa_predicted}()},
+\code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wepa_players_kicking}()},
+\code{\link{cfbd_metrics_wepa_players_passing}()},
+\code{\link{cfbd_metrics_wepa_players_rushing}()},
+\code{\link{cfbd_metrics_wepa_team_season}()},
+\code{\link{cfbd_metrics_wp}()},
+\code{\link{cfbd_metrics_wp_pregame}()}
+}
+\concept{CFBD Metrics}
 \keyword{Points}
 \keyword{Predicted}
 \keyword{Teams}

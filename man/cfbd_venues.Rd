@@ -40,4 +40,5 @@ CFB Venue Information
   try(cfbd_venues())
 }
 }
+\concept{CFBD Venues}
 \keyword{Venues}

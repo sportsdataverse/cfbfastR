@@ -26,4 +26,11 @@ This function wraps the \code{cfbd_team_info()} function sourced from the Colleg
 \code{\link[=cfbd_team_info]{cfbd_team_info()}}
 
 Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
+
+Other loaders: 
+\code{\link{load_cfb_pbp}()},
+\code{\link{load_cfb_rosters}()},
+\code{\link{load_cfb_schedules}()},
+\code{\link{update_cfb_db}()}
 }
+\concept{loaders}

@@ -7,6 +7,8 @@
 #' \item{`cfbd_ratings_sp()`:}{ Get SP historical rating data.}
 #' \item{`cfbd_ratings_sp_conference()`:}{ Get SP conference-level historical rating data.}
 #' \item{`cfbd_ratings_srs()`:}{ Get SRS historical rating data.}
+#' \item{`cfbd_ratings_elo()`:}{ Get Elo historical rating data.}
+#' \item{`cfbd_ratings_fpi()`:}{ Get FPI historical rating data.}
 #' }
 #'
 #' ### **Get historical Coaches and AP poll data**
@@ -51,25 +53,34 @@
 #'
 #' cfbd_ratings_elo(year = 2018, conference = "SEC")
 #' ```
+#' ### **Get FPI historical rating data**
+#' Acquire the ESPN FPI ratings data by **team**, **year**, and **conference**
+#' ```r
+#' cfbd_ratings_fpi(year = 2019, team = "Texas")
+#'
+#' cfbd_ratings_fpi(year = 2018, conference = "SEC")
+#' ```
 NULL
 #' @title
 #' **Get historical Coaches and AP poll data**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (*String* default regular): Season type - regular or postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
-#' \describe{
-#'   \item{`season`: integer.}{Rankings season.}
-#'   \item{`season_type`: character.}{Season type of rankings.}
-#'   \item{`week`: integer.}{Week of rankings.}
-#'   \item{`poll`: character.}{Name of the poll.}
-#'   \item{`rank`: integer.}{Rank in the poll.}
-#'   \item{`school`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`first_place_votes`: integer.}{Number of first place votes.}
-#'   \item{`points`: integer.}{Total poll points.}
-#' }
+#'
+#'  |col_name          |types     |
+#'  |:-----------------|:---------|
+#'  |season            |integer   |
+#'  |season_type       |character |
+#'  |week              |integer   |
+#'  |poll              |character |
+#'  |rank              |integer   |
+#'  |school            |character |
+#'  |conference        |character |
+#'  |first_place_votes |integer   |
+#'  |points            |integer   |
+#'
 #' @keywords CFB Rankings
 #' @importFrom cli cli_abort
 #' @importFrom jsonlite fromJSON
@@ -78,6 +89,7 @@ NULL
 #' @importFrom tidyr unnest
 #' @importFrom purrr map_if
 #' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -88,13 +100,13 @@ NULL
 #'   try(cfbd_rankings(year = 2013, season_type = "postseason"))
 #' }
 #'
-cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
+cfbd_rankings <- function(year, week = NULL, season_type = "both") {
 
   # Validation ----
   validate_api_key()
   validate_year(year)
   validate_week(week)
-  validate_season_type(season_type, allow_both = F)
+  validate_season_type(season_type, allow_both = TRUE)
 
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/rankings"
@@ -149,43 +161,46 @@ cfbd_rankings <- function(year, week = NULL, season_type = "regular") {
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the ratings.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`rating`: double.}{SP+ rating.}
-#'   \item{`ranking`: integer.}{Ranking in the SP+ ratings.}
-#'   \item{`second_order_wins`: logical.}{Total second-order wins - Not available for recent seasons.}
-#'   \item{`sos`: logical.}{Strength of schedule - Not available for recent seasons.}
-#'   \item{`offense_ranking`: integer.}{Overall offense ranking.}
-#'   \item{`offense_rating`: double.}{Overall offense rating.}
-#'   \item{`offense_success`: logical.}{Offense success rating - Not available for recent seasons.}
-#'   \item{`offense_explosiveness`: logical.}{Offense explosiveness rating - Not available for recent seasons.}
-#'   \item{`offense_rushing`: logical.}{Offense rushing rating - Not available for recent seasons.}
-#'   \item{`offense_passing`: logical.}{Offense passing rating - Not available for recent seasons.}
-#'   \item{`offense_standard_downs`: logical.}{Offense standard downs rating - Not available for recent seasons.}
-#'   \item{`offense_passing_downs`: logical.}{Offensive passing downs rating - Not available for recent seasons.}
-#'   \item{`offense_run_rate`: logical.}{Offense rushing rate - Not available for recent seasons.}
-#'   \item{`offense_pace`: logical.}{Offense pace factor - Not available for recent seasons.}
-#'   \item{`defense_ranking`: integer.}{Overall defense ranking.}
-#'   \item{`defense_rating`: double.}{Overall defense rating.}
-#'   \item{`defense_success`: logical.}{Defense success rating - Not available for recent seasons.}
-#'   \item{`defense_explosiveness`: logical.}{Defense explosiveness rating - Not available for recent seasons.}
-#'   \item{`defense_rushing`: logical.}{Defense rushing rating - Not available for recent seasons.}
-#'   \item{`defense_passing`: logical.}{Defense passing rating - Not available for recent seasons.}
-#'   \item{`defense_standard_downs`: logical.}{Defense standard downs rating - Not available for recent seasons.}
-#'   \item{`defense_passing_downs`: logical.}{Defensive passing downs rating - Not available for recent seasons.}
-#'   \item{`defense_havoc_total`: logical.}{Total defensive havoc rate - Not available for recent seasons.}
-#'   \item{`defense_havoc_front_seven`: logical.}{Defense havoc rate from front 7 players - Not available for recent seasons.}
-#'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs - Not available for recent seasons.}
-#'   \item{`special_teams_rating`: double.}{Special teams rating.}
-#' }
+#'
+#'  |col_name                  |types     |
+#'  |:-------------------------|:---------|
+#'  |year                      |integer   |
+#'  |team                      |character |
+#'  |conference                |character |
+#'  |rating                    |numeric   |
+#'  |ranking                   |integer   |
+#'  |second_order_wins         |numeric   |
+#'  |sos                       |numeric   |
+#'  |offense_ranking           |integer   |
+#'  |offense_rating            |numeric   |
+#'  |offense_success           |numeric   |
+#'  |offense_explosiveness     |numeric   |
+#'  |offense_rushing           |numeric   |
+#'  |offense_passing           |numeric   |
+#'  |offense_standard_downs    |numeric   |
+#'  |offense_passing_downs     |numeric   |
+#'  |offense_run_rate          |numeric   |
+#'  |offense_pace              |numeric   |
+#'  |defense_ranking           |integer   |
+#'  |defense_rating            |numeric   |
+#'  |defense_success           |numeric   |
+#'  |defense_explosiveness     |numeric   |
+#'  |defense_rushing           |numeric   |
+#'  |defense_passing           |numeric   |
+#'  |defense_standard_downs    |numeric   |
+#'  |defense_passing_downs     |numeric   |
+#'  |defense_havoc_total       |numeric   |
+#'  |defense_havoc_front_seven |numeric   |
+#'  |defense_havoc_db          |numeric   |
+#'  |special_teams_rating      |numeric   |
+#'
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -256,7 +271,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
         make_cfbfastR_data("SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e){
-      message(glue::glue("{Sys.time()}: Invalid arguments or no S&P+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no SP+ ratings data available!"))
     },
     finally = {
     }
@@ -300,12 +315,13 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
 #'   \item{`special_teams_rating`: double.}{Special teams rating for the conference.}
 #' }
-#' @keywords SP+
+#' @keywords SP+ Conference
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -372,7 +388,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
         make_cfbfastR_data("Conference SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level S&P+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level SP+ ratings data available!"))
     },
     finally = {
     }
@@ -406,6 +422,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -472,25 +489,27 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
 #' @param week (*Integer* optional): Maximum Week of ratings.
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
-#' @param conference (*String* optional): Conference abbreviation - SRS information by conference
+#' @param conference (*String* optional): Conference abbreviation - Elo information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
-#' @return [cfbd_ratings_elo()] - A data frame with 6 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the SRS rating.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`division`: logical.}{Division in the conference for the team.}
-#'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
-#'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
-#' }
+#' @return [cfbd_ratings_elo()] - A data frame with 4 variables:
+#'
+#'  |col_name   |types     |
+#'  |:----------|:---------|
+#'  |year       |integer   |
+#'  |team       |character |
+#'  |conference |character |
+#'  |elo        |numeric   |
+#'
 #' @keywords elo
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
 #' @export
 #' @examples
 #' \donttest{
@@ -499,12 +518,13 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #' }
 #'
-cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference = NULL) {
+cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", team = NULL, conference = NULL) {
 
   # Validation ----
   validate_api_key()
   validate_year(year)
   validate_week(week)
+  validate_season_type(season_type)
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -514,6 +534,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
   query_params <- list(
     "year" = year,
     "week" = week,
+    "seasonType" = season_type,
     "team" = team,
     "conference" = conference
   )
@@ -530,14 +551,109 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, team = NULL, conference =
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON()
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        as.data.frame() %>%
+        janitor::clean_names() %>%
+        dplyr::mutate(elo = as.numeric(.data$elo))
 
 
       df <- df %>%
-        make_cfbfastR_data("ELO ratings from CollegeFootballData.com",Sys.time())
+        make_cfbfastR_data("Elo ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+
+#' @title
+#' **Get Football Power Index (FPI) historical rating data**
+#' @description
+#' Acquire the ESPN calculated FPI ratings data by team, year, and conference
+#'
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param team (*String* optional): D-I Team. Required if year not provided
+#' @param conference (*String* optional): Conference name - select a valid FBS conference
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
+#'
+#' @return [cfbd_ratings_fpi()] - A data frame with 14 variables:
+#'
+#'  |col_name                                    |types     |
+#'  |:-------------------------------------------|:---------|
+#'  |year                                        |integer   |
+#'  |team                                        |character |
+#'  |conference                                  |character |
+#'  |fpi                                         |numeric   |
+#'  |resume_ranks_strength_of_record             |integer   |
+#'  |resume_ranks_fpi                            |integer   |
+#'  |resume_ranks_average_win_probability        |integer   |
+#'  |resume_ranks_strength_of_schedule           |integer   |
+#'  |resume_ranks_remaining_strength_of_schedule |integer   |
+#'  |resume_ranks_game_control                   |integer   |
+#'  |efficiencies_overall                        |numeric   |
+#'  |efficiencies_offense                        |numeric   |
+#'  |efficiencies_defense                        |numeric   |
+#'  |efficiencies_special_teams                  |numeric   |
+#'
+#' @keywords Ratings FPI
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET RETRY
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @family CFBD Ratings and Rankings
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_ratings_fpi(year = 2019, team = "Texas"))
+#'
+#'   try(cfbd_ratings_fpi(year = 2018, conference = "SEC"))
+#' }
+#'
+cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_reqs(year, team)
+  validate_year(year)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ratings/fpi"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten=TRUE) %>%
+        as.data.frame() %>%
+        janitor::clean_names()
+
+
+      df <- df %>%
+        make_cfbfastR_data("ESPN FPI ratings from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI rating system data available!"))
     },
     finally = {
     }

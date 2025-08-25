@@ -22,5 +22,11 @@ cfbd_draft_positions()
 }
 
 }
+\seealso{
+Other CFBD Draft: 
+\code{\link{cfbd_draft_picks}()},
+\code{\link{cfbd_draft_teams}()}
+}
+\concept{CFBD Draft}
 \keyword{NFL}
 \keyword{Positions}

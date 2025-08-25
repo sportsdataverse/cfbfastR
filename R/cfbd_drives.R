@@ -4,7 +4,7 @@
 #' @description
 #' **Get college football game drives**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
-#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
 #' @param offense_team (*String* optional): Offense D-I Team
@@ -57,6 +57,7 @@
 #' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
+#' @family CFBD Drives
 #' @export
 #' @examples
 #' \donttest{

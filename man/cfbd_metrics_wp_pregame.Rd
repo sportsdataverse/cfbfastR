@@ -8,7 +8,7 @@ cfbd_metrics_wp_pregame(
   year = NULL,
   week = NULL,
   team = NULL,
-  season_type = "regular"
+  season_type = "both"
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ cfbd_metrics_wp_pregame(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
 \code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
@@ -42,6 +42,21 @@ cfbd_metrics_wp_pregame(
   try(cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M"))
 }
 }
+\seealso{
+Other CFBD Metrics: 
+\code{\link{cfbd_metrics_fg_ep}()},
+\code{\link{cfbd_metrics_ppa_games}()},
+\code{\link{cfbd_metrics_ppa_players_games}()},
+\code{\link{cfbd_metrics_ppa_players_season}()},
+\code{\link{cfbd_metrics_ppa_predicted}()},
+\code{\link{cfbd_metrics_ppa_teams}()},
+\code{\link{cfbd_metrics_wepa_players_kicking}()},
+\code{\link{cfbd_metrics_wepa_players_passing}()},
+\code{\link{cfbd_metrics_wepa_players_rushing}()},
+\code{\link{cfbd_metrics_wepa_team_season}()},
+\code{\link{cfbd_metrics_wp}()}
+}
+\concept{CFBD Metrics}
 \keyword{Data}
 \keyword{Pre-game}
 \keyword{Probability}

@@ -6,7 +6,7 @@
 \usage{
 cfbd_stats_season_player(
   year,
-  season_type = "regular",
+  season_type = "both",
   team = NULL,
   conference = NULL,
   start_week = NULL,
@@ -17,7 +17,7 @@ cfbd_stats_season_player(
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
-\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 
@@ -109,8 +109,17 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 
    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
+
 }
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_team}()}
+}
+\concept{CFBD Stats}
 \keyword{Player}
 \keyword{Season}
 \keyword{Stats}

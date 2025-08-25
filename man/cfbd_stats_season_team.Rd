@@ -6,7 +6,7 @@
 \usage{
 cfbd_stats_season_team(
   year,
-  season_type = "regular",
+  season_type = "both",
   team = NULL,
   conference = NULL,
   start_week = NULL,
@@ -16,7 +16,7 @@ cfbd_stats_season_team(
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
-\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
+\item{season_type}{(\emph{String} default: both): Select Season Type - regular, postseason, or both}
 
 \item{team}{(\emph{String} optional): D-I Team}
 
@@ -91,6 +91,14 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
    try(cfbd_stats_season_team(2013, team = "Florida State"))
 }
 }
+\seealso{
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_player}()}
+}
+\concept{CFBD Stats}
 \keyword{Season}
 \keyword{Stats}
 \keyword{Team}

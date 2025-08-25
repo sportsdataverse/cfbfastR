@@ -21,7 +21,7 @@ cfbd_plays(
 \arguments{
 \item{year}{Select year, (example: 2018)}
 
-\item{season_type}{Select Season Type (regular, postseason, both)}
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{week}{Select week, this is optional (also numeric)}
 
@@ -84,3 +84,12 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
   try(cfbd_plays(year = 2021, week = 1))
 }
 }
+\seealso{
+Other CFBD PBP: 
+\code{\link{cfbd_live_plays}()},
+\code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_play_stats_player}()},
+\code{\link{cfbd_play_stats_types}()},
+\code{\link{cfbd_play_types}()}
+}
+\concept{CFBD PBP}

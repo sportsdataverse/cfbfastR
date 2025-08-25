@@ -45,10 +45,10 @@ csv_from_url <- function(...){
 }
 
 
-#' @title
-#' **Load .rds file from a remote connection**
+#' Load .rds file from a remote connection
+#'
 #' @param url a character url
-#' @keywords Internal
+#'
 #' @return a dataframe as created by [`readRDS()`]
 #' @importFrom data.table data.table setDT
 rds_from_url <- function(url) {
@@ -57,7 +57,7 @@ rds_from_url <- function(url) {
   load <- try(readRDS(con), silent = TRUE)
 
   if (inherits(load, "try-error")) {
-    warning(paste0("Failed to readRDS from <", url, ">"), call. = FALSE)
+    cli::cli_warn("Failed to readRDS from {.url {url}}")
     return(data.table::data.table())
   }
 
@@ -286,7 +286,7 @@ validate_list <- function(var = NULL, allowable = NULL){
 }
 
 validate_season_type <- function(season_type = NULL, allow_both = TRUE){
-  allowable <- c('postseason', 'regular')
+  allowable <- c('postseason', 'regular', 'both', 'allstar', 'spring_regular', 'spring_postseason')
   if(allow_both) allowable <- c(allowable, 'both')
   if(is.null(season_type)) cli::cli_abort("Missing required field: season_type")
   validate_list(season_type, allowable)

@@ -27,4 +27,11 @@ This function wraps the \code{cfbd_team_roster()} function sourced from the Coll
 \code{\link[=cfbd_team_roster]{cfbd_team_roster()}}
 
 Issues with this data should be filed here: \url{https://github.com/sportsdataverse/cfbfastR-data}
+
+Other loaders: 
+\code{\link{load_cfb_pbp}()},
+\code{\link{load_cfb_schedules}()},
+\code{\link{load_cfb_teams}()},
+\code{\link{update_cfb_db}()}
 }
+\concept{loaders}

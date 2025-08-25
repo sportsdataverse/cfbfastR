@@ -2,377 +2,397 @@
 #' **Get college football play by play data with cfbfastR expected points/win probability added**
 #' @description
 #' Extract college football (D-I) play by play Data - for plays
-#' @param season_type Select Season Type (regular, postseason, both)
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
 #' @param epa_wpa Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables
 #' @param ... Additional arguments passed to an underlying function.
-#' @return A data frame with 351 variables:
-#' \describe{
-#'   \item{`season`: double.}{.}
-#'   \item{`wk`: double.}{.}
-#'   \item{`id_play`: character.}{.}
-#'   \item{`game_id`: integer.}{.}
-#'   \item{`game_play_number`: double.}{.}
-#'   \item{`half_play_number`: double.}{.}
-#'   \item{`pos_team`: character.}{.}
-#'   \item{`def_pos_team`: character.}{.}
-#'   \item{`half`: integer.}{.}
-#'   \item{`period`: integer.}{.}
-#'   \item{`clock_minutes`: integer.}{.}
-#'   \item{`clock_seconds`: integer.}{.}
-#'   \item{`play_type`: character.}{.}
-#'   \item{`play_text`: character.}{.}
-#'   \item{`down`: double.}{.}
-#'   \item{`distance`: double.}{.}
-#'   \item{`yards_to_goal`: double.}{.}
-#'   \item{`yards_gained`: double.}{.}
-#'   \item{`penalty_1st_conv`: logical.}{.}
-#'   \item{`new_series`: double.}{.}
-#'   \item{`change_of_pos_team`: double.}{.}
-#'   \item{`lag_change_of_pos_team`: double.}{.}
-#'   \item{`orig_play_type`: character.}{.}
-#'   \item{`lead_play_type`: character.}{.}
-#'   \item{`lag_play_type`: character.}{.}
-#'   \item{`lag_play_type2`: character.}{.}
-#'   \item{`lag_play_type3`: character.}{.}
-#'   \item{`row`: integer.}{.}
-#'   \item{`drive_play_number`: double.}{.}
-#'   \item{`drive_event_number`: double.}{.}
-#'   \item{`lag_play_text`: character.}{.}
-#'   \item{`lag_play_text2`: character.}{.}
-#'   \item{`lead_play_text`: character.}{.}
-#'   \item{`firstD_by_kickoff`: double.}{.}
-#'   \item{`firstD_by_poss`: double.}{.}
-#'   \item{`firstD_by_penalty`: double.}{.}
-#'   \item{`firstD_by_yards`: double.}{.}
-#'   \item{`lag_first_by_penalty`: double.}{.}
-#'   \item{`lag_first_by_penalty2`: double.}{.}
-#'   \item{`lag_first_by_yards`: double.}{.}
-#'   \item{`lag_first_by_yards2`: double.}{.}
-#'   \item{`first_by_penalty`: double.}{.}
-#'   \item{`first_by_yards`: double.}{.}
-#'   \item{`play_after_turnover`: double.}{.}
-#'   \item{`lag_change_of_poss`: double.}{.}
-#'   \item{`lag_kickoff_play`: double.}{.}
-#'   \item{`lag_punt`: double.}{.}
-#'   \item{`lag_scoring_play`: double.}{.}
-#'   \item{`lag_turnover_vec`: double.}{.}
-#'   \item{`lag_downs_turnover`: double.}{.}
-#'   \item{`lag_defense_score_play`: double.}{.}
-#'   \item{`EPA`: double.}{.}
-#'   \item{`ep_before`: double.}{.}
-#'   \item{`ep_after`: double.}{.}
-#'   \item{`wpa`: double.}{.}
-#'   \item{`wp_before`: double.}{.}
-#'   \item{`wp_after`: double.}{.}
-#'   \item{`def_wp_before`: double.}{.}
-#'   \item{`def_wp_after`: double.}{.}
-#'   \item{`penalty_detail`: character.}{.}
-#'   \item{`yds_penalty`: double.}{.}
-#'   \item{`downs_turnover`: double.}{.}
-#'   \item{`turnover`: double.}{.}
-#'   \item{`pos_score_diff_start`: double.}{.}
-#'   \item{`pos_score_pts`: double.}{.}
-#'   \item{`pos_team_score`: integer.}{.}
-#'   \item{`def_pos_team_score`: integer.}{.}
-#'   \item{`log_ydstogo`: double.}{.}
-#'   \item{`ExpScoreDiff`: double.}{.}
-#'   \item{`ExpScoreDiff_Time_Ratio`: double.}{.}
-#'   \item{`half_clock_minutes`: double.}{.}
-#'   \item{`TimeSecsRem`: double.}{.}
-#'   \item{`adj_TimeSecsRem`: double.}{.}
-#'   \item{`Goal_To_Go`: logical.}{.}
-#'   \item{`Under_two`: logical.}{.}
-#'   \item{`home`: character.}{.}
-#'   \item{`away`: character.}{.}
-#'   \item{`home_wp_before`: double.}{.}
-#'   \item{`away_wp_before`: double.}{.}
-#'   \item{`home_wp_after`: double.}{.}
-#'   \item{`away_wp_after`: double.}{.}
-#'   \item{`end_of_half`: double.}{.}
-#'   \item{`pos_team_receives_2H_kickoff`: double.}{.}
-#'   \item{`lead_pos_team`: character.}{.}
-#'   \item{`lag_pos_team`: character.}{.}
-#'   \item{`Under_three`: logical.}{.}
-#'   \item{`down_end`: integer.}{.}
-#'   \item{`distance_end`: double.}{.}
-#'   \item{`log_ydstogo_end`: double.}{.}
-#'   \item{`yards_to_goal_end`: double.}{.}
-#'   \item{`TimeSecsRem_end`: double.}{.}
-#'   \item{`Goal_To_Go_end`: logical.}{.}
-#'   \item{`Under_two_end`: logical.}{.}
-#'   \item{`def_EPA`: double.}{.}
-#'   \item{`offense_score_play`: double.}{.}
-#'   \item{`defense_score_play`: double.}{.}
-#'   \item{`ppa`: character.}{.}
-#'   \item{`yard_line`: integer.}{.}
-#'   \item{`scoring`: logical.}{.}
-#'   \item{`pos_team_timeouts_rem_before`: double.}{.}
-#'   \item{`def_pos_team_timeouts_rem_before`: double.}{.}
-#'   \item{`pos_team_timeouts`: integer.}{.}
-#'   \item{`def_pos_team_timeouts`: integer.}{.}
-#'   \item{`pos_score_diff`: integer.}{.}
-#'   \item{`pos_score_diff_start_end`: double.}{.}
-#'   \item{`offense_play`: character.}{.}
-#'   \item{`defense_play`: character.}{.}
-#'   \item{`offense_receives_2H_kickoff`: double.}{.}
-#'   \item{`change_of_poss`: double.}{.}
-#'   \item{`score_pts`: double.}{.}
-#'   \item{`score_diff_start`: double.}{.}
-#'   \item{`score_diff`: integer.}{.}
-#'   \item{`offense_score`: integer.}{.}
-#'   \item{`defense_score`: integer.}{.}
-#'   \item{`offense_conference`: character.}{.}
-#'   \item{`defense_conference`: character.}{.}
-#'   \item{`off_timeout_called`: double.}{.}
-#'   \item{`def_timeout_called`: double.}{.}
-#'   \item{`offense_timeouts`: integer.}{.}
-#'   \item{`defense_timeouts`: integer.}{.}
-#'   \item{`off_timeouts_rem_before`: double.}{.}
-#'   \item{`def_timeouts_rem_before`: double.}{.}
-#'   \item{`rusher_player_name`: character.}{.}
-#'   \item{`yds_rushed`: double.}{.}
-#'   \item{`passer_player_name`: character.}{.}
-#'   \item{`receiver_player_name`: character.}{.}
-#'   \item{`yds_receiving`: double.}{.}
-#'   \item{`yds_sacked`: double.}{.}
-#'   \item{`sack_players`: character.}{.}
-#'   \item{`sack_player_name`: character.}{.}
-#'   \item{`sack_player_name2`: character.}{.}
-#'   \item{`pass_breakup_player_name`: character.}{.}
-#'   \item{`interception_player_name`: character.}{.}
-#'   \item{`yds_int_return`: double.}{.}
-#'   \item{`fumble_player_name`: character.}{.}
-#'   \item{`fumble_forced_player_name`: character.}{.}
-#'   \item{`fumble_recovered_player_name`: character.}{.}
-#'   \item{`yds_fumble_return`: double.}{.}
-#'   \item{`punter_player_name`: character.}{.}
-#'   \item{`yds_punted`: double.}{.}
-#'   \item{`punt_returner_player_name`: character.}{.}
-#'   \item{`yds_punt_return`: double.}{.}
-#'   \item{`yds_punt_gained`: double.}{.}
-#'   \item{`punt_block_player_name`: character.}{.}
-#'   \item{`punt_block_return_player_name`: character.}{.}
-#'   \item{`fg_kicker_player_name`: character.}{.}
-#'   \item{`yds_fg`: double.}{.}
-#'   \item{`fg_block_player_name`: character.}{.}
-#'   \item{`fg_return_player_name`: character.}{.}
-#'   \item{`kickoff_player_name`: character.}{.}
-#'   \item{`yds_kickoff`: double.}{.}
-#'   \item{`kickoff_returner_player_name`: character.}{.}
-#'   \item{`yds_kickoff_return`: double.}{.}
-#'   \item{`new_id`: double.}{.}
-#'   \item{`orig_drive_number`: integer.}{.}
-#'   \item{`drive_number`: integer.}{.}
-#'   \item{`drive_result_detailed`: character.}{.}
-#'   \item{`new_drive_pts`: double.}{.}
-#'   \item{`drive_id`: double.}{.}
-#'   \item{`drive_result`: character.}{.}
-#'   \item{`drive_start_yards_to_goal`: double.}{.}
-#'   \item{`drive_end_yards_to_goal`: integer.}{.}
-#'   \item{`drive_yards`: integer.}{.}
-#'   \item{`drive_scoring`: double.}{.}
-#'   \item{`drive_pts`: double.}{.}
-#'   \item{`drive_start_period`: integer.}{.}
-#'   \item{`drive_end_period`: integer.}{.}
-#'   \item{`drive_time_minutes_start`: integer.}{.}
-#'   \item{`drive_time_seconds_start`: integer.}{.}
-#'   \item{`drive_time_minutes_end`: integer.}{.}
-#'   \item{`drive_time_seconds_end`: integer.}{.}
-#'   \item{`drive_time_minutes_elapsed`: integer.}{.}
-#'   \item{`drive_time_seconds_elapsed`: integer.}{.}
-#'   \item{`drive_numbers`: double.}{.}
-#'   \item{`number_of_drives`: double.}{.}
-#'   \item{`pts_scored`: double.}{.}
-#'   \item{`drive_result_detailed_flag`: character.}{.}
-#'   \item{`drive_result2`: character.}{.}
-#'   \item{`drive_num`: double.}{.}
-#'   \item{`lag_drive_result_detailed`: character.}{.}
-#'   \item{`lead_drive_result_detailed`: character.}{.}
-#'   \item{`lag_new_drive_pts`: double.}{.}
-#'   \item{`id_drive`: character.}{.}
-#'   \item{`rush`: double.}{.}
-#'   \item{`rush_td`: double.}{.}
-#'   \item{`pass`: double.}{.}
-#'   \item{`pass_td`: double.}{.}
-#'   \item{`completion`: double.}{.}
-#'   \item{`pass_attempt`: double.}{.}
-#'   \item{`target`: double.}{.}
-#'   \item{`sack_vec`: double.}{.}
-#'   \item{`sack`: double.}{.}
-#'   \item{`int`: double.}{.}
-#'   \item{`int_td`: double.}{.}
-#'   \item{`turnover_vec`: double.}{.}
-#'   \item{`turnover_vec_lag`: double.}{.}
-#'   \item{`turnover_indicator`: double.}{.}
-#'   \item{`kickoff_play`: double.}{.}
-#'   \item{`receives_2H_kickoff`: double.}{.}
-#'   \item{`missing_yard_flag`: logical.}{.}
-#'   \item{`scoring_play`: double.}{.}
-#'   \item{`td_play`: double.}{.}
-#'   \item{`touchdown`: double.}{.}
-#'   \item{`safety`: double.}{.}
-#'   \item{`fumble_vec`: double.}{.}
-#'   \item{`kickoff_tb`: double.}{.}
-#'   \item{`kickoff_onside`: double.}{.}
-#'   \item{`kickoff_oob`: double.}{.}
-#'   \item{`kickoff_fair_catch`: double.}{.}
-#'   \item{`kickoff_downed`: double.}{.}
-#'   \item{`kickoff_safety`: double.}{.}
-#'   \item{`kick_play`: double.}{.}
-#'   \item{`punt`: double.}{.}
-#'   \item{`punt_play`: double.}{.}
-#'   \item{`punt_tb`: double.}{.}
-#'   \item{`punt_oob`: double.}{.}
-#'   \item{`punt_fair_catch`: double.}{.}
-#'   \item{`punt_downed`: double.}{.}
-#'   \item{`punt_safety`: double.}{.}
-#'   \item{`punt_blocked`: double.}{.}
-#'   \item{`penalty_safety`: double.}{.}
-#'   \item{`fg_inds`: double.}{.}
-#'   \item{`fg_made`: logical.}{.}
-#'   \item{`fg_make_prob`: double.}{.}
-#'   \item{`home_EPA`: double.}{.}
-#'   \item{`away_EPA`: double.}{.}
-#'   \item{`home_EPA_rush`: double.}{.}
-#'   \item{`away_EPA_rush`: double.}{.}
-#'   \item{`home_EPA_pass`: double.}{.}
-#'   \item{`away_EPA_pass`: double.}{.}
-#'   \item{`total_home_EPA`: double.}{.}
-#'   \item{`total_away_EPA`: double.}{.}
-#'   \item{`total_home_EPA_rush`: double.}{.}
-#'   \item{`total_away_EPA_rush`: double.}{.}
-#'   \item{`total_home_EPA_pass`: double.}{.}
-#'   \item{`total_away_EPA_pass`: double.}{.}
-#'   \item{`net_home_EPA`: double.}{.}
-#'   \item{`net_away_EPA`: double.}{.}
-#'   \item{`net_home_EPA_rush`: double.}{.}
-#'   \item{`net_away_EPA_rush`: double.}{.}
-#'   \item{`net_home_EPA_pass`: double.}{.}
-#'   \item{`net_away_EPA_pass`: double.}{.}
-#'   \item{`success`: double.}{.}
-#'   \item{`epa_success`: double.}{.}
-#'   \item{`rz_play`: double.}{.}
-#'   \item{`scoring_opp`: double.}{.}
-#'   \item{`middle_8`: logical.}{.}
-#'   \item{`stuffed_run`: double.}{.}
-#'   \item{`spread`: double.}{.}
-#'   \item{`formatted_spread`: character.}{.}
-#'   \item{`No_Score_before`: double.}{.}
-#'   \item{`FG_before`: double.}{.}
-#'   \item{`Opp_FG_before`: double.}{.}
-#'   \item{`Opp_Safety_before`: double.}{.}
-#'   \item{`Opp_TD_before`: double.}{.}
-#'   \item{`Safety_before`: double.}{.}
-#'   \item{`TD_before`: double.}{.}
-#'   \item{`No_Score_after`: double.}{.}
-#'   \item{`FG_after`: double.}{.}
-#'   \item{`Opp_FG_after`: double.}{.}
-#'   \item{`Opp_Safety_after`: double.}{.}
-#'   \item{`Opp_TD_after`: double.}{.}
-#'   \item{`Safety_after`: double.}{.}
-#'   \item{`TD_after`: double.}{.}
-#'   \item{`penalty_flag`: logical.}{.}
-#'   \item{`penalty_declined`: logical.}{.}
-#'   \item{`penalty_no_play`: logical.}{.}
-#'   \item{`penalty_offset`: logical.}{.}
-#'   \item{`penalty_text`: logical.}{.}
-#'   \item{`penalty_play_text`: character.}{.}
-#'   \item{`lead_wp_before2`: double.}{.}
-#'   \item{`wpa_half_end`: double.}{.}
-#'   \item{`wpa_base`: double.}{.}
-#'   \item{`wpa_base_nxt`: double.}{.}
-#'   \item{`wpa_change`: double.}{.}
-#'   \item{`wpa_change_nxt`: double.}{.}
-#'   \item{`wpa_base_ind`: double.}{.}
-#'   \item{`wpa_base_nxt_ind`: double.}{.}
-#'   \item{`wpa_change_ind`: double.}{.}
-#'   \item{`wpa_change_nxt_ind`: double.}{.}
-#'   \item{`lead_wp_before`: double.}{.}
-#'   \item{`lead_pos_team2`: character.}{.}
-#'   \item{`lag_change_of_pos_team2`: double.}{.}
-#'   \item{`lag_punt2`: double.}{.}
-#'   \item{`lag_score_diff`: double.}{.}
-#'   \item{`lag_offense_play`: character.}{.}
-#'   \item{`lead_offense_play`: character.}{.}
-#'   \item{`lead_offense_play2`: character.}{.}
-#'   \item{`lag_pos_score_diff`: double.}{.}
-#'   \item{`lag_off_timeouts`: double.}{.}
-#'   \item{`lag_def_timeouts`: double.}{.}
-#'   \item{`lag_TimeSecsRem2`: double.}{.}
-#'   \item{`lag_TimeSecsRem`: double.}{.}
-#'   \item{`lead_TimeSecsRem`: double.}{.}
-#'   \item{`lead_TimeSecsRem2`: double.}{.}
-#'   \item{`lag_yards_to_goal2`: integer.}{.}
-#'   \item{`lag_yards_to_goal`: integer.}{.}
-#'   \item{`lead_yards_to_goal`: double.}{.}
-#'   \item{`lead_yards_to_goal2`: integer.}{.}
-#'   \item{`lag_down2`: double.}{.}
-#'   \item{`lag_down`: double.}{.}
-#'   \item{`lead_down`: double.}{.}
-#'   \item{`lead_down2`: double.}{.}
-#'   \item{`lead_distance`: double.}{.}
-#'   \item{`lead_distance2`: integer.}{.}
-#'   \item{`lead_play_type2`: character.}{.}
-#'   \item{`lead_play_type3`: character.}{.}
-#'   \item{`lag_ep_before3`: double.}{.}
-#'   \item{`lag_ep_before2`: double.}{.}
-#'   \item{`lag_ep_before`: double.}{.}
-#'   \item{`lead_ep_before`: double.}{.}
-#'   \item{`lead_ep_before2`: double.}{.}
-#'   \item{`lag_ep_after`: double.}{.}
-#'   \item{`lag_ep_after2`: double.}{.}
-#'   \item{`lag_ep_after3`: double.}{.}
-#'   \item{`lead_ep_after`: double.}{.}
-#'   \item{`lead_ep_after2`: double.}{.}
-#'   \item{`play_number`: integer.}{.}
-#'   \item{`over_under`: double.}{.}
-#'   \item{`event`: double.}{.}
-#'   \item{`game_event_number`: double.}{.}
-#'   \item{`game_row_number`: integer.}{.}
-#'   \item{`half_event`: double.}{.}
-#'   \item{`half_event_number`: double.}{.}
-#'   \item{`half_row_number`: integer.}{.}
-#'   \item{`lag_distance3`: integer.}{.}
-#'   \item{`lag_distance2`: integer.}{.}
-#'   \item{`lag_distance`: integer.}{.}
-#'   \item{`lag_yards_gained3`: integer.}{.}
-#'   \item{`lag_yards_gained2`: integer.}{.}
-#'   \item{`lag_yards_gained`: integer.}{.}
-#'   \item{`lead_yards_gained`: integer.}{.}
-#'   \item{`lead_yards_gained2`: integer.}{.}
-#'   \item{`lag_play_text3`: character.}{.}
-#'   \item{`lead_play_text2`: character.}{.}
-#'   \item{`lead_play_text3`: character.}{.}
-#'   \item{`lag_change_of_poss2`: double.}{.}
-#'   \item{`lag_change_of_poss3`: double.}{.}
-#'   \item{`lag_change_of_pos_team3`: double.}{.}
-#'   \item{`lag_kickoff_play2`: double.}{.}
-#'   \item{`lag_kickoff_play3`: double.}{.}
-#'   \item{`lag_punt3`: double.}{.}
-#'   \item{`lag_scoring_play2`: double.}{.}
-#'   \item{`lag_scoring_play3`: double.}{.}
-#'   \item{`lag_turnover_vec2`: double.}{.}
-#'   \item{`lag_turnover_vec3`: double.}{.}
-#'   \item{`lag_downs_turnover2`: double.}{.}
-#'   \item{`lag_downs_turnover3`: double.}{.}
-#'   \item{`drive_event`: double.}{.}
-#'   \item{`lag_first_by_penalty3`: double.}{.}
-#'   \item{`lag_first_by_yards3`: double.}{.}
-#' }
+#' @return A data frame with 368 variables:
+#'
+#'   |col_name                         |types     |
+#'   |:--------------------------------|:---------|
+#'   |season                           |numeric   |
+#'   |wk                               |numeric   |
+#'   |id_play                          |character |
+#'   |game_id                          |integer   |
+#'   |game_play_number                 |numeric   |
+#'   |half_play_number                 |numeric   |
+#'   |drive_play_number                |numeric   |
+#'   |pos_team                         |character |
+#'   |def_pos_team                     |character |
+#'   |pos_team_score                   |integer   |
+#'   |def_pos_team_score               |integer   |
+#'   |half                             |factor    |
+#'   |period                           |integer   |
+#'   |clock_minutes                    |integer   |
+#'   |clock_seconds                    |integer   |
+#'   |play_type                        |character |
+#'   |play_text                        |character |
+#'   |down                             |numeric   |
+#'   |distance                         |numeric   |
+#'   |yards_to_goal                    |numeric   |
+#'   |yards_gained                     |numeric   |
+#'   |EPA                              |numeric   |
+#'   |ep_before                        |numeric   |
+#'   |ep_after                         |numeric   |
+#'   |wpa                              |numeric   |
+#'   |wp_before                        |numeric   |
+#'   |wp_after                         |numeric   |
+#'   |def_wp_before                    |numeric   |
+#'   |def_wp_after                     |numeric   |
+#'   |penalty_detail                   |character |
+#'   |yds_penalty                      |numeric   |
+#'   |penalty_1st_conv                 |logical   |
+#'   |new_series                       |numeric   |
+#'   |firstD_by_kickoff                |numeric   |
+#'   |firstD_by_poss                   |numeric   |
+#'   |firstD_by_penalty                |numeric   |
+#'   |firstD_by_yards                  |numeric   |
+#'   |def_EPA                          |numeric   |
+#'   |home_EPA                         |numeric   |
+#'   |away_EPA                         |numeric   |
+#'   |home_EPA_rush                    |numeric   |
+#'   |away_EPA_rush                    |numeric   |
+#'   |home_EPA_pass                    |numeric   |
+#'   |away_EPA_pass                    |numeric   |
+#'   |total_home_EPA                   |numeric   |
+#'   |total_away_EPA                   |numeric   |
+#'   |total_home_EPA_rush              |numeric   |
+#'   |total_away_EPA_rush              |numeric   |
+#'   |total_home_EPA_pass              |numeric   |
+#'   |total_away_EPA_pass              |numeric   |
+#'   |net_home_EPA                     |numeric   |
+#'   |net_away_EPA                     |numeric   |
+#'   |net_home_EPA_rush                |numeric   |
+#'   |net_away_EPA_rush                |numeric   |
+#'   |net_home_EPA_pass                |numeric   |
+#'   |net_away_EPA_pass                |numeric   |
+#'   |success                          |numeric   |
+#'   |epa_success                      |numeric   |
+#'   |rz_play                          |numeric   |
+#'   |scoring_opp                      |numeric   |
+#'   |middle_8                         |logical   |
+#'   |stuffed_run                      |numeric   |
+#'   |change_of_pos_team               |numeric   |
+#'   |downs_turnover                   |numeric   |
+#'   |turnover                         |numeric   |
+#'   |pos_score_diff_start             |numeric   |
+#'   |pos_score_pts                    |numeric   |
+#'   |log_ydstogo                      |numeric   |
+#'   |ExpScoreDiff                     |numeric   |
+#'   |ExpScoreDiff_Time_Ratio          |numeric   |
+#'   |half_clock_minutes               |numeric   |
+#'   |TimeSecsRem                      |numeric   |
+#'   |adj_TimeSecsRem                  |numeric   |
+#'   |Goal_To_Go                       |logical   |
+#'   |Under_two                        |logical   |
+#'   |home                             |character |
+#'   |away                             |character |
+#'   |home_wp_before                   |numeric   |
+#'   |away_wp_before                   |numeric   |
+#'   |home_wp_after                    |numeric   |
+#'   |away_wp_after                    |numeric   |
+#'   |end_of_half                      |numeric   |
+#'   |pos_team_receives_2H_kickoff     |numeric   |
+#'   |lead_pos_team                    |character |
+#'   |lead_play_type                   |character |
+#'   |lag_pos_team                     |character |
+#'   |lag_play_type                    |character |
+#'   |orig_play_type                   |character |
+#'   |Under_three                      |logical   |
+#'   |down_end                         |factor    |
+#'   |distance_end                     |numeric   |
+#'   |log_ydstogo_end                  |numeric   |
+#'   |yards_to_goal_end                |numeric   |
+#'   |TimeSecsRem_end                  |numeric   |
+#'   |Goal_To_Go_end                   |logical   |
+#'   |Under_two_end                    |logical   |
+#'   |offense_score_play               |numeric   |
+#'   |defense_score_play               |numeric   |
+#'   |ppa                              |numeric   |
+#'   |yard_line                        |integer   |
+#'   |scoring                          |logical   |
+#'   |pos_team_timeouts_rem_before     |numeric   |
+#'   |def_pos_team_timeouts_rem_before |numeric   |
+#'   |pos_team_timeouts                |integer   |
+#'   |def_pos_team_timeouts            |integer   |
+#'   |pos_score_diff                   |integer   |
+#'   |pos_score_diff_start_end         |numeric   |
+#'   |offense_play                     |character |
+#'   |defense_play                     |character |
+#'   |offense_receives_2H_kickoff      |numeric   |
+#'   |change_of_poss                   |numeric   |
+#'   |score_pts                        |numeric   |
+#'   |score_diff_start                 |numeric   |
+#'   |score_diff                       |integer   |
+#'   |offense_score                    |integer   |
+#'   |defense_score                    |integer   |
+#'   |offense_conference               |character |
+#'   |defense_conference               |character |
+#'   |off_timeout_called               |numeric   |
+#'   |def_timeout_called               |numeric   |
+#'   |offense_timeouts                 |integer   |
+#'   |defense_timeouts                 |integer   |
+#'   |off_timeouts_rem_before          |numeric   |
+#'   |def_timeouts_rem_before          |numeric   |
+#'   |rusher_player_name               |character |
+#'   |yds_rushed                       |numeric   |
+#'   |passer_player_name               |character |
+#'   |receiver_player_name             |character |
+#'   |yds_receiving                    |numeric   |
+#'   |yds_sacked                       |numeric   |
+#'   |sack_players                     |character |
+#'   |sack_player_name                 |character |
+#'   |sack_player_name2                |character |
+#'   |pass_breakup_player_name         |character |
+#'   |interception_player_name         |character |
+#'   |yds_int_return                   |numeric   |
+#'   |fumble_player_name               |character |
+#'   |fumble_forced_player_name        |character |
+#'   |fumble_recovered_player_name     |character |
+#'   |yds_fumble_return                |numeric   |
+#'   |punter_player_name               |character |
+#'   |yds_punted                       |numeric   |
+#'   |punt_returner_player_name        |character |
+#'   |yds_punt_return                  |numeric   |
+#'   |yds_punt_gained                  |numeric   |
+#'   |punt_block_player_name           |character |
+#'   |punt_block_return_player_name    |character |
+#'   |fg_kicker_player_name            |character |
+#'   |yds_fg                           |numeric   |
+#'   |fg_block_player_name             |character |
+#'   |fg_return_player_name            |character |
+#'   |kickoff_player_name              |character |
+#'   |yds_kickoff                      |numeric   |
+#'   |kickoff_returner_player_name     |character |
+#'   |yds_kickoff_return               |numeric   |
+#'   |new_id                           |numeric   |
+#'   |orig_drive_number                |integer   |
+#'   |drive_number                     |integer   |
+#'   |drive_result_detailed            |character |
+#'   |new_drive_pts                    |numeric   |
+#'   |drive_id                         |numeric   |
+#'   |drive_result                     |character |
+#'   |drive_start_yards_to_goal        |numeric   |
+#'   |drive_end_yards_to_goal          |integer   |
+#'   |drive_yards                      |integer   |
+#'   |drive_scoring                    |numeric   |
+#'   |drive_pts                        |numeric   |
+#'   |drive_start_period               |integer   |
+#'   |drive_end_period                 |integer   |
+#'   |drive_time_minutes_start         |integer   |
+#'   |drive_time_seconds_start         |integer   |
+#'   |drive_time_minutes_end           |integer   |
+#'   |drive_time_seconds_end           |integer   |
+#'   |drive_time_minutes_elapsed       |logical   |
+#'   |drive_time_seconds_elapsed       |logical   |
+#'   |drive_numbers                    |numeric   |
+#'   |number_of_drives                 |numeric   |
+#'   |pts_scored                       |numeric   |
+#'   |drive_result_detailed_flag       |character |
+#'   |drive_result2                    |character |
+#'   |drive_num                        |numeric   |
+#'   |lag_drive_result_detailed        |character |
+#'   |lead_drive_result_detailed       |character |
+#'   |lag_new_drive_pts                |numeric   |
+#'   |id_drive                         |character |
+#'   |rush                             |numeric   |
+#'   |rush_td                          |numeric   |
+#'   |pass                             |numeric   |
+#'   |pass_td                          |numeric   |
+#'   |completion                       |numeric   |
+#'   |pass_attempt                     |numeric   |
+#'   |target                           |numeric   |
+#'   |sack_vec                         |numeric   |
+#'   |sack                             |numeric   |
+#'   |int                              |numeric   |
+#'   |int_td                           |numeric   |
+#'   |turnover_vec                     |numeric   |
+#'   |turnover_vec_lag                 |numeric   |
+#'   |turnover_indicator               |numeric   |
+#'   |kickoff_play                     |numeric   |
+#'   |receives_2H_kickoff              |numeric   |
+#'   |missing_yard_flag                |logical   |
+#'   |scoring_play                     |numeric   |
+#'   |td_play                          |numeric   |
+#'   |touchdown                        |numeric   |
+#'   |safety                           |numeric   |
+#'   |fumble_vec                       |numeric   |
+#'   |kickoff_tb                       |numeric   |
+#'   |kickoff_onside                   |numeric   |
+#'   |kickoff_oob                      |numeric   |
+#'   |kickoff_fair_catch               |numeric   |
+#'   |kickoff_downed                   |numeric   |
+#'   |kickoff_safety                   |numeric   |
+#'   |kick_play                        |numeric   |
+#'   |punt                             |numeric   |
+#'   |punt_play                        |numeric   |
+#'   |punt_tb                          |numeric   |
+#'   |punt_oob                         |numeric   |
+#'   |punt_fair_catch                  |numeric   |
+#'   |punt_downed                      |numeric   |
+#'   |punt_safety                      |numeric   |
+#'   |punt_blocked                     |numeric   |
+#'   |penalty_safety                   |numeric   |
+#'   |fg_inds                          |numeric   |
+#'   |fg_made                          |logical   |
+#'   |fg_make_prob                     |numeric   |
+#'   |No_Score_before                  |numeric   |
+#'   |FG_before                        |numeric   |
+#'   |Opp_FG_before                    |numeric   |
+#'   |Opp_Safety_before                |numeric   |
+#'   |Opp_TD_before                    |numeric   |
+#'   |Safety_before                    |numeric   |
+#'   |TD_before                        |numeric   |
+#'   |No_Score_after                   |numeric   |
+#'   |FG_after                         |numeric   |
+#'   |Opp_FG_after                     |numeric   |
+#'   |Opp_Safety_after                 |numeric   |
+#'   |Opp_TD_after                     |numeric   |
+#'   |Safety_after                     |numeric   |
+#'   |TD_after                         |numeric   |
+#'   |penalty_flag                     |logical   |
+#'   |penalty_declined                 |logical   |
+#'   |penalty_no_play                  |logical   |
+#'   |penalty_offset                   |logical   |
+#'   |penalty_text                     |logical   |
+#'   |penalty_play_text                |character |
+#'   |lead_wp_before2                  |numeric   |
+#'   |wpa_half_end                     |numeric   |
+#'   |wpa_base                         |numeric   |
+#'   |wpa_base_nxt                     |numeric   |
+#'   |wpa_change                       |numeric   |
+#'   |wpa_change_nxt                   |numeric   |
+#'   |wpa_base_ind                     |numeric   |
+#'   |wpa_base_nxt_ind                 |numeric   |
+#'   |wpa_change_ind                   |numeric   |
+#'   |wpa_change_nxt_ind               |numeric   |
+#'   |lead_wp_before                   |numeric   |
+#'   |lead_pos_team2                   |character |
+#'   |row                              |integer   |
+#'   |drive_event_number               |numeric   |
+#'   |lag_play_type2                   |character |
+#'   |lag_play_type3                   |character |
+#'   |lag_play_text                    |character |
+#'   |lag_play_text2                   |character |
+#'   |lead_play_text                   |character |
+#'   |lag_first_by_penalty             |numeric   |
+#'   |lag_first_by_penalty2            |numeric   |
+#'   |lag_first_by_yards               |numeric   |
+#'   |lag_first_by_yards2              |numeric   |
+#'   |first_by_penalty                 |numeric   |
+#'   |first_by_yards                   |numeric   |
+#'   |play_after_turnover              |numeric   |
+#'   |lag_change_of_poss               |numeric   |
+#'   |lag_change_of_pos_team           |numeric   |
+#'   |lag_change_of_pos_team2          |numeric   |
+#'   |lag_kickoff_play                 |numeric   |
+#'   |lag_punt                         |numeric   |
+#'   |lag_punt2                        |numeric   |
+#'   |lag_scoring_play                 |numeric   |
+#'   |lag_turnover_vec                 |numeric   |
+#'   |lag_downs_turnover               |numeric   |
+#'   |lag_defense_score_play           |numeric   |
+#'   |lag_score_diff                   |numeric   |
+#'   |lag_offense_play                 |character |
+#'   |lead_offense_play                |character |
+#'   |lead_offense_play2               |character |
+#'   |lag_pos_score_diff               |numeric   |
+#'   |lag_off_timeouts                 |numeric   |
+#'   |lag_def_timeouts                 |numeric   |
+#'   |lag_TimeSecsRem2                 |numeric   |
+#'   |lag_TimeSecsRem                  |numeric   |
+#'   |lead_TimeSecsRem                 |numeric   |
+#'   |lead_TimeSecsRem2                |numeric   |
+#'   |lag_yards_to_goal2               |integer   |
+#'   |lag_yards_to_goal                |integer   |
+#'   |lead_yards_to_goal               |numeric   |
+#'   |lead_yards_to_goal2              |integer   |
+#'   |lag_down2                        |integer   |
+#'   |lag_down                         |integer   |
+#'   |lead_down                        |numeric   |
+#'   |lead_down2                       |numeric   |
+#'   |lead_distance                    |numeric   |
+#'   |lead_distance2                   |integer   |
+#'   |lead_play_type2                  |character |
+#'   |lead_play_type3                  |character |
+#'   |lag_ep_before3                   |numeric   |
+#'   |lag_ep_before2                   |numeric   |
+#'   |lag_ep_before                    |numeric   |
+#'   |lead_ep_before                   |numeric   |
+#'   |lead_ep_before2                  |numeric   |
+#'   |lag_ep_after                     |numeric   |
+#'   |lag_ep_after2                    |numeric   |
+#'   |lag_ep_after3                    |numeric   |
+#'   |lead_ep_after                    |numeric   |
+#'   |lead_ep_after2                   |numeric   |
+#'   |play_number                      |integer   |
+#'   |wallclock                        |character |
+#'   |provider                         |character |
+#'   |spread                           |numeric   |
+#'   |formatted_spread                 |character |
+#'   |over_under                       |numeric   |
+#'   |drive_is_home_offense            |logical   |
+#'   |drive_start_offense_score        |integer   |
+#'   |drive_start_defense_score        |integer   |
+#'   |drive_end_offense_score          |integer   |
+#'   |drive_end_defense_score          |integer   |
+#'   |play                             |numeric   |
+#'   |event                            |numeric   |
+#'   |game_event_number                |numeric   |
+#'   |game_row_number                  |integer   |
+#'   |half_play                        |numeric   |
+#'   |half_event                       |numeric   |
+#'   |half_event_number                |numeric   |
+#'   |half_row_number                  |integer   |
+#'   |lag_distance3                    |integer   |
+#'   |lag_distance2                    |integer   |
+#'   |lag_distance                     |integer   |
+#'   |lag_yards_gained3                |integer   |
+#'   |lag_yards_gained2                |integer   |
+#'   |lag_yards_gained                 |integer   |
+#'   |lead_yards_gained                |integer   |
+#'   |lead_yards_gained2               |integer   |
+#'   |lag_play_text3                   |character |
+#'   |lead_play_text2                  |character |
+#'   |lead_play_text3                  |character |
+#'   |pos_unit                         |character |
+#'   |def_pos_unit                     |character |
+#'   |lag_change_of_poss2              |numeric   |
+#'   |lag_change_of_poss3              |numeric   |
+#'   |lag_change_of_pos_team3          |numeric   |
+#'   |lag_kickoff_play2                |numeric   |
+#'   |lag_kickoff_play3                |numeric   |
+#'   |lag_punt3                        |numeric   |
+#'   |lag_scoring_play2                |numeric   |
+#'   |lag_scoring_play3                |numeric   |
+#'   |lag_turnover_vec2                |numeric   |
+#'   |lag_turnover_vec3                |numeric   |
+#'   |lag_downs_turnover2              |numeric   |
+#'   |lag_downs_turnover3              |numeric   |
+#'   |drive_play                       |numeric   |
+#'   |drive_event                      |numeric   |
+#'   |lag_first_by_penalty3            |numeric   |
+#'   |lag_first_by_yards3              |numeric   |
+#'
 #' @keywords Play-by-Play
 #' @import stringr
 #' @importFrom rlang .data
-#' @importFrom tidyr everything
 #' @importFrom purrr map_dfr
 #' @importFrom glue glue
-#' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup setdiff
+#' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup setdiff everything
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
+#' @importFrom stats setNames
+#' @family CFBD PBP
+#' @details
+#' ```r
+#'  # Get play by play data for 2018 regular season week 1
+#'  cfbd_pbp_data(year = 2024, week = 1, season_type = 'regular', epa_wpa = TRUE)
+#' ```
 #' @export
 
 cfbd_pbp_data <- function(year,
@@ -441,24 +461,49 @@ cfbd_pbp_data <- function(year,
               for this one week or team.")
     return(NULL)
   }
-  raw_play_df$spread <- NA_real_
-  raw_play_df$formatted_spread <- NA_character_
-  raw_play_df$over_under <- NA_real_
+
   if (year >= 2013) {
     tryCatch(
       expr = {
-        game_spread <- cfbd_betting_lines(year = year, week = week, season_type = season_type, team = team)
-
+        # define providers in explicit priority order
+        providers_list <- c(
+          'consensus', 'DraftKings', 'ESPN Bet', 'Caesars', 'Caesars Sportsbook (Colorado)',
+          'Caesars (Pennsylvania)', 'Bovada', 'SugarHouse', 'William Hill (New Jersey)',
+          'teamrankings', 'numberfire'
+        )
+        game_spread <- cfbd_betting_lines(
+          year = year,
+          week = week,
+          season_type = season_type,
+          team = team
+        )
         game_spread <- game_spread %>%
-          dplyr::filter(.data$provider == "consensus") %>%
+          dplyr::filter(.data$provider %in% providers_list) %>%
           dplyr::mutate(
             spread = as.numeric(.data$spread),
             over_under = as.numeric(.data$over_under)
           ) %>%
-          dplyr::select("game_id", "spread", "formatted_spread", "over_under")
+          dplyr::select(
+            "game_id", "provider", "spread", "formatted_spread", "over_under"
+          )
+        # deterministically choose a single provider per game by defined priority
+        provider_priority <- setNames(seq_along(providers_list), providers_list)
+        game_spread <- game_spread %>%
+          dplyr::mutate(.prov_rank = provider_priority[.data$provider]) %>%
+          dplyr::group_by(.data$game_id) %>%
+          dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) %>%
+          dplyr::ungroup() %>%
+          dplyr::select(-dplyr::all_of(".prov_rank"))
 
+        # join to plays dataframe
         raw_play_df <- raw_play_df %>%
-          dplyr::left_join(game_spread, by = c("gameId" = "game_id"))
+          dplyr::left_join(game_spread, by = c("gameId" = "game_id"), suffix = c("_x",""))
+
+        if (all(is.na(raw_play_df$spread))) {
+          raw_play_df$spread <- NA_real_
+          raw_play_df$formatted_spread <- NA_character_
+          raw_play_df$over_under <- NA_real_
+        }
       },
       error = function(e) {
       },
@@ -492,9 +537,9 @@ cfbd_pbp_data <- function(year,
     "drive_plays", "drive_start_yardline", "drive_end_yardline",
     "drive_offense", "drive_offense_conference",
     "drive_defense", "drive_defense_conference",
-    "drive_start_time.hours", "drive_start_time.minutes", "drive_start_time.seconds",
-    "drive_end_time.hours", "drive_end_time.minutes", "drive_end_time.seconds",
-    "drive_elapsed.hours", "drive_elapsed.minutes", "drive_elapsed.seconds"
+    "drive_start_time_hours", "drive_start_time_minutes", "drive_start_time_seconds",
+    "drive_end_time_hours", "drive_end_time_minutes", "drive_end_time_seconds",
+    "drive_elapsed_hours", "drive_elapsed_minutes", "drive_elapsed_seconds"
   )
 
 
@@ -650,6 +695,13 @@ cfbd_pbp_data <- function(year,
       "fg_kicker_player_name", "yds_fg", "fg_block_player_name", "fg_return_player_name",
       "kickoff_player_name", "yds_kickoff", "kickoff_returner_player_name", "yds_kickoff_return", "new_id"
     )
+    drop_player_name_columns <- c(
+      "punt_return_player",
+      "kickoff_return_player",
+      "rush_player_name",
+      "punt_return_player_name",
+      "kickoff_return_player_name"
+    )
     drive_columns <- c(
       "orig_drive_number", "drive_number",
       "drive_result_detailed", "new_drive_pts", "drive_id", "drive_result",
@@ -732,8 +784,8 @@ cfbd_pbp_data <- function(year,
         dplyr::all_of(wpa_extra_columns),
         dplyr::all_of(lag_series_columns),
         dplyr::all_of(lag_lead_columns),
-        tidyr::everything()
-      )
+        dplyr::everything()) %>%
+      dplyr::select(-dplyr::any_of(drop_player_name_columns))
   }
 
   play_df <- play_df %>%

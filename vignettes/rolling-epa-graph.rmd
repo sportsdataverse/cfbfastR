@@ -71,7 +71,7 @@ head(off_epa)
 
 Ok, now let's start to visualize the data beyond the top few schools.  Let's graph all the teams that have a positive EPA on the year.  
 
-```{r graph_top_offenses, fig.height=8, fig.width=6, fig.align="center"}
+```{r graph_top_offenses, fig.height=8, fig.width=6, fig.align="center", fig.alt="Offensive EPA Per Play | Positive EPA Teams"}
 off_epa %>%
   filter(off_epa > 0) %>%
   ggplot(aes(x = reorder(TeamRank, off_epa), y=off_epa)) +
@@ -175,7 +175,7 @@ signature = "@cfbNate"
 The beginning of the line graph will depend on the ```ma_plays``` variable that you defined earlier.  Dashed lines indicating the EPA/play of the 25th percentile, median, 75th percentile, and top and bottom teams in the country are drawn on the graph to show context for how the team of interest compares to the rest of the country.  
 
 
-```{r graph_the_graph, fig.width=7, fig.height=6, fig.align="center", warning=FALSE}
+```{r graph_the_graph, fig.width=7, fig.height=6, fig.align="center", fig.alt="Offensive EPA Rolling Average", warning=FALSE}
 graph_team_off = ggplot() +
   geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, fill = team, ymin = -.5, ymax = .9), color = "gray90") +
   geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, ymin = .8, ymax = 1), color = "gray90", fill = "white") +

@@ -19,7 +19,7 @@ cfbd_game_player_stats(
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
+\item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{team}{(\emph{String} optional): D-I Team}
 
@@ -110,5 +110,17 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
 }
 }
+\seealso{
+Other CFBD Games: 
+\code{\link{cfbd_calendar}()},
+\code{\link{cfbd_game_box_advanced}()},
+\code{\link{cfbd_game_info}()},
+\code{\link{cfbd_game_media}()},
+\code{\link{cfbd_game_records}()},
+\code{\link{cfbd_game_team_stats}()},
+\code{\link{cfbd_game_weather}()},
+\code{\link{cfbd_live_scoreboard}()}
+}
+\concept{CFBD Games}
 \keyword{Game}
 \keyword{Info}

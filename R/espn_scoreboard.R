@@ -217,8 +217,8 @@ espn_cfb_scoreboard <- function(date = NULL) {
           janitor::clean_names()
       }
       if (!"highlights" %in% names(schedule_out)) {
-        schedule_out <- 
-          schedule_out %>% 
+        schedule_out <-
+          schedule_out %>%
           dplyr::mutate(highlights = NA)
       }
       schedule_out %>%
@@ -239,7 +239,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #' @param season_type (string): "regular", "postseason", "off-season", or "both".
 #' @param limit (int): number of records to return, default: 500.
-#' 
+#'
 #' @return [espn_cfb_schedule()] - A data frame with 8 variables:
 #' \describe{
 #'   \item{`matchup`: character.}{.}
@@ -463,11 +463,11 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
           janitor::clean_names()
       }
       if (!"highlights" %in% names(schedule_out)) {
-        schedule_out <- 
-          schedule_out %>% 
+        schedule_out <-
+          schedule_out %>%
           dplyr::mutate(highlights = NA)
       }
-      schedule_out <- 
+      schedule_out <-
         schedule_out %>%
         make_cfbfastR_data("Schedule Data from ESPN",Sys.time())
     },

@@ -30,7 +30,7 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type
 Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} function}
 
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, or both}
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
 \code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}} - A data frame with 54 variables:
@@ -99,5 +99,14 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
   try(cfbd_play_stats_player(game_id = 401110722))
 }
 }
+\seealso{
+Other CFBD PBP: 
+\code{\link{cfbd_live_plays}()},
+\code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_play_stats_types}()},
+\code{\link{cfbd_play_types}()},
+\code{\link{cfbd_plays}()}
+}
+\concept{CFBD PBP}
 \keyword{PBP}
 \keyword{Player}

@@ -56,7 +56,7 @@
 NULL
 #' @title
 #' **Get college football play-by-play data.**
-#' @param season_type Select Season Type (regular, postseason, both)
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
@@ -104,6 +104,7 @@ NULL
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD PBP
 #' @export
 #' @examples
 #' \dontrun{
@@ -188,7 +189,7 @@ cfbd_plays <- function(year = 2020,
 #' Can be found using the [cfbd_player_info()] function.
 #' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
-#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
 #' \describe{
 #'   \item{`play_id`: character.}{Referencing play id.}
@@ -253,6 +254,7 @@ cfbd_plays <- function(year = 2020,
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD PBP
 #' @export
 #' @examples
 #' \donttest{
@@ -493,6 +495,7 @@ cfbd_play_stats_player <- function(year = NULL,
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom glue glue
+#' @family CFBD PBP
 #' @export
 #' @examples
 #' \donttest{
@@ -546,6 +549,7 @@ cfbd_play_stats_types <- function() {
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
+#' @family CFBD PBP
 #' @export
 #' @examples
 #' \donttest{
@@ -579,6 +583,282 @@ cfbd_play_types <- function() {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+
+#' @title
+#' **Get live college football play-by-play data.**
+#' @param game_id (*Integer* Required): Game ID filter for querying a single game
+#' Can be found using the [cfbd_game_info()] function
+#' @return [cfbd_live_plays()] - A data frame with 94 columns:
+#'
+#'   |col_name                         |types     |
+#'   |:--------------------------------|:---------|
+#'   |game_id                          |integer   |
+#'   |home_team_id                     |integer   |
+#'   |home_team                        |character |
+#'   |away_team_id                     |integer   |
+#'   |away_team                        |character |
+#'   |play_id                          |character |
+#'   |home_score                       |integer   |
+#'   |away_score                       |integer   |
+#'   |period                           |integer   |
+#'   |clock                            |character |
+#'   |wall_clock                       |character |
+#'   |offense_team_id                  |integer   |
+#'   |offense_team                     |character |
+#'   |down                             |integer   |
+#'   |distance                         |integer   |
+#'   |yards_to_goal                    |integer   |
+#'   |yards_gained                     |integer   |
+#'   |play_type_id                     |integer   |
+#'   |play_type                        |character |
+#'   |ppa                              |numeric   |
+#'   |garbage_time                     |logical   |
+#'   |success                          |logical   |
+#'   |rush_pass                        |character |
+#'   |down_type                        |character |
+#'   |play_text                        |character |
+#'   |drive_id                         |character |
+#'   |drive_offense_id                 |integer   |
+#'   |drive_offense_team               |character |
+#'   |drive_defense_id                 |integer   |
+#'   |drive_defense_team               |character |
+#'   |drive_play_count                 |integer   |
+#'   |drive_yards_gained               |integer   |
+#'   |drive_start_period               |integer   |
+#'   |drive_start_clock                |character |
+#'   |drive_start_yards_to_goal        |integer   |
+#'   |drive_end_period                 |integer   |
+#'   |drive_end_clock                  |character |
+#'   |drive_end_yards_to_goal          |integer   |
+#'   |drive_duration                   |character |
+#'   |drive_scoring_opportunity        |logical   |
+#'   |drive_result                     |character |
+#'   |drive_points_gained              |integer   |
+#'   |current_clock                    |character |
+#'   |current_possession               |character |
+#'   |home_line_scores_q1              |integer   |
+#'   |home_line_scores_q2              |integer   |
+#'   |home_line_scores_q3              |integer   |
+#'   |home_line_scores_q4              |integer   |
+#'   |home_points                      |integer   |
+#'   |home_drives                      |integer   |
+#'   |home_scoring_opportunities       |integer   |
+#'   |home_points_per_opportunity      |numeric   |
+#'   |home_plays                       |integer   |
+#'   |home_line_yards                  |numeric   |
+#'   |home_line_yards_per_rush         |numeric   |
+#'   |home_second_level_yards          |integer   |
+#'   |home_second_level_yards_per_rush |numeric   |
+#'   |home_open_field_yards            |integer   |
+#'   |home_open_field_yards_per_rush   |numeric   |
+#'   |home_ppa_per_play                |numeric   |
+#'   |home_total_ppa                   |numeric   |
+#'   |home_passing_ppa                 |numeric   |
+#'   |home_ppa_per_pass                |numeric   |
+#'   |home_rushing_ppa                 |numeric   |
+#'   |home_ppa_per_rush                |numeric   |
+#'   |home_success_rate                |numeric   |
+#'   |home_standard_down_success_rate  |numeric   |
+#'   |home_passing_down_success_rate   |numeric   |
+#'   |home_explosiveness               |numeric   |
+#'   |away_line_scores_q1              |integer   |
+#'   |away_line_scores_q2              |integer   |
+#'   |away_line_scores_q3              |integer   |
+#'   |away_line_scores_q4              |integer   |
+#'   |away_points                      |integer   |
+#'   |away_drives                      |integer   |
+#'   |away_scoring_opportunities       |integer   |
+#'   |away_points_per_opportunity      |numeric   |
+#'   |away_plays                       |integer   |
+#'   |away_line_yards                  |numeric   |
+#'   |away_line_yards_per_rush         |numeric   |
+#'   |away_second_level_yards          |integer   |
+#'   |away_second_level_yards_per_rush |numeric   |
+#'   |away_open_field_yards            |integer   |
+#'   |away_open_field_yards_per_rush   |numeric   |
+#'   |away_ppa_per_play                |numeric   |
+#'   |away_total_ppa                   |numeric   |
+#'   |away_passing_ppa                 |numeric   |
+#'   |away_ppa_per_pass                |numeric   |
+#'   |away_rushing_ppa                 |numeric   |
+#'   |away_ppa_per_rush                |numeric   |
+#'   |away_success_rate                |numeric   |
+#'   |away_standard_down_success_rate  |numeric   |
+#'   |away_passing_down_success_rate   |numeric   |
+#'   |away_explosiveness               |numeric   |
+#'
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom cli cli_abort
+#' @importFrom glue glue
+#' @family CFBD PBP
+#' @export
+#' @examples
+#' \dontrun{
+#'   try(cfbd_live_plays(game_id=401520182))
+#' }
+cfbd_live_plays <- function(game_id) {
+
+  # Validation ----
+  validate_api_key()
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/live/plays"
+  query_params <- list(
+    "gameId" = game_id
+  )
+  full_url <- httr::modify_url(base_url, query=query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE) %>%
+        tibble::tibble(data = .data$.)
+
+      game_id <- df %>%
+        purrr::pluck("data", "id")
+      current_period <- df %>%
+        purrr::pluck("data", "period")
+      current_clock <- df %>%
+        purrr::pluck("data", "clock")
+      current_possession <- df %>%
+        purrr::pluck("data", "possession")
+      current_down <- df %>%
+        purrr::pluck("data", "down")
+      current_distance <- df %>%
+        purrr::pluck("data", "distance")
+      current_yards_to_goal <- df %>%
+        purrr::pluck("data", "yardsToGoal")
+
+      game_status_df <- tibble::tibble(
+        game_id = game_id,
+        current_period = current_period,
+        current_clock = current_clock,
+        current_possession = current_possession,
+        current_down = current_down,
+        current_distance = current_distance,
+        current_yards_to_goal = current_yards_to_goal
+      )
+
+      df_teams <- df$data %>%
+        purrr::pluck("teams") %>%
+        tibble::tibble(teams = .data$.) %>%
+        dplyr::select("teams") %>%
+        tidyr::unnest_wider("teams") %>%
+        tidyr::unnest_wider("lineScores", names_sep = "_Q") %>%
+        janitor::clean_names() %>%
+        dplyr::rename(dplyr::any_of(c(
+          "ppa_per_play" = "epa_per_play",
+          "total_ppa" = "total_epa",
+          "passing_ppa" = "passing_epa",
+          "ppa_per_pass" = "epa_per_pass",
+          "rushing_ppa" = "rushing_epa",
+          "ppa_per_rush" = "epa_per_rush"
+        )))
+
+      home_team_df <- df_teams %>% dplyr::filter(.data$home_away =="home")
+      home_team_df <- home_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
+      colnames(home_team_df) <- paste0("home_", colnames(home_team_df))
+      away_team_df <- df_teams %>% dplyr::filter(.data$home_away =="away")
+      away_team_df <- away_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
+      colnames(away_team_df) <- paste0("away_", colnames(away_team_df))
+
+      teams_df <- dplyr::bind_cols(home_team_df, away_team_df)
+      game_df <- dplyr::bind_cols(game_status_df, teams_df)
+
+      df_drives <- df$data %>%
+        purrr::pluck("drives") %>%
+        tibble::tibble(drives = .data$.) %>%
+        dplyr::select("drives") %>%
+        tidyr::unnest_wider("drives") %>%
+        janitor::clean_names() %>%
+        dplyr::rename(dplyr::any_of(c(
+          "drive_id" = "id",
+          "drive_offense_id" = "offense_id",
+          "drive_offense_team" = "offense",
+          "drive_defense_id" = "defense_id",
+          "drive_defense_team" = "defense",
+          "drive_play_count" = "play_count",
+          "drive_yards_gained" = "yards",
+          "drive_start_period" = "start_period",
+          "drive_start_clock" = "start_clock",
+          "drive_start_yards_to_goal" = "start_yards_to_goal",
+          "drive_end_period" = "end_period",
+          "drive_end_clock" = "end_clock",
+          "drive_end_yards_to_goal" = "end_yards_to_goal",
+          "drive_duration" = "duration",
+          "drive_scoring_opportunity" = "scoring_opportunity",
+          "drive_result" = "result",
+          "drive_points_gained" = "points_gained"
+        )))
+
+      df_plays <- df_drives %>%
+        tidyr::unnest_longer("plays") %>%
+        tidyr::unnest_wider("plays") %>%
+        janitor::clean_names() %>%
+        dplyr::rename(dplyr::any_of(c(
+          "play_id" = "id",
+          "offense_team_id" = "team_id",
+          "offense_team" = "team",
+          "ppa" = "epa"
+        )))
+
+      df_plays <- df_plays %>%
+        dplyr::select(dplyr::any_of(c(
+          "play_id",
+          "home_score",
+          "away_score",
+          "period",
+          "clock",
+          "wall_clock",
+          "offense_team_id",
+          "offense_team",
+          "down",
+          "distance",
+          "yards_to_goal",
+          "yards_gained",
+          "play_type_id",
+          "play_type",
+          "ppa",
+          "garbage_time",
+          "success",
+          "rush_pass",
+          "down_type",
+          "play_text"
+        )), dplyr::everything())
+
+      df <- df_plays %>%
+        dplyr::bind_cols(game_df)
+      df <- df %>%
+        dplyr::select(dplyr::any_of(c(
+          "game_id",
+          "home_team_id",
+          "home_team",
+          "away_team_id",
+          "away_team",
+          "play_id"
+        )), dplyr::everything())
+
+      df <- df %>%
+        make_cfbfastR_data("Live play-by-play data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
     },
     finally = {
     }

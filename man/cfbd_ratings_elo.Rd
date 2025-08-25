@@ -4,28 +4,34 @@
 \alias{cfbd_ratings_elo}
 \title{\strong{Get Elo historical rating data}}
 \usage{
-cfbd_ratings_elo(year = NULL, week = NULL, team = NULL, conference = NULL)
+cfbd_ratings_elo(
+  year = NULL,
+  week = NULL,
+  season_type = "both",
+  team = NULL,
+  conference = NULL
+)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
 
 \item{week}{(\emph{Integer} optional): Maximum Week of ratings.}
 
+\item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
+
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference
+\item{conference}{(\emph{String} optional): Conference abbreviation - Elo information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}} - A data frame with 6 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the SRS rating.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{division}: logical.}{Division in the conference for the team.}
-\item{\code{rating}: double.}{Simple Rating System (SRS) rating.}
-\item{\code{ranking}: integer.}{Simple Rating System ranking within the group returned.}
+\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}} - A data frame with 4 variables:\tabular{ll}{
+   col_name \tab types \cr
+   year \tab integer \cr
+   team \tab character \cr
+   conference \tab character \cr
+   elo \tab numeric \cr
 }
 }
 \description{
@@ -39,4 +45,13 @@ Acquire the CFBD calculated elo ratings data by team, year, week, and conference
 }
 
 }
+\seealso{
+Other CFBD Ratings and Rankings: 
+\code{\link{cfbd_rankings}()},
+\code{\link{cfbd_ratings_fpi}()},
+\code{\link{cfbd_ratings_sp}()},
+\code{\link{cfbd_ratings_sp_conference}()},
+\code{\link{cfbd_ratings_srs}()}
+}
+\concept{CFBD Ratings and Rankings}
 \keyword{elo}

@@ -16,17 +16,18 @@ cfbd_game_team_stats(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}). Required year filter (along with one of \code{week}, \code{team}, or \code{conference}), unless \code{game_id} is specified}
 
-\item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
+\item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if \code{team} and \code{conference} not specified.}
 
-\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
+\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
-\item{team}{(\emph{String} optional): D-I Team}
+\item{team}{(\emph{String} optional): D-I Team. Required if \code{week} and \code{conference} not specified.}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+Required if \code{week} and \code{team} not specified.}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
@@ -128,6 +129,18 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 }
 }
+\seealso{
+Other CFBD Games: 
+\code{\link{cfbd_calendar}()},
+\code{\link{cfbd_game_box_advanced}()},
+\code{\link{cfbd_game_info}()},
+\code{\link{cfbd_game_media}()},
+\code{\link{cfbd_game_player_stats}()},
+\code{\link{cfbd_game_records}()},
+\code{\link{cfbd_game_weather}()},
+\code{\link{cfbd_live_scoreboard}()}
+}
+\concept{CFBD Games}
 \keyword{Game}
 \keyword{Stats}
 \keyword{Team}

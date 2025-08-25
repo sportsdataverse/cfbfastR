@@ -25,4 +25,5 @@ Pulls all college football conferences and returns as data frame
   try(cfbd_conferences())
 }
 }
+\concept{CFBD Conference Functions}
 \keyword{Conferences}

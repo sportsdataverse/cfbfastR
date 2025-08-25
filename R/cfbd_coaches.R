@@ -36,6 +36,7 @@
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
+#' @family CFBD Coaches Functions
 #' @export
 #' @examples
 #' \donttest{
@@ -84,7 +85,7 @@ cfbd_coaches <- function(first = NULL,
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
         tidyr::unnest("seasons") %>%
-        dplyr::arrange(.data$year) %>% 
+        dplyr::arrange(.data$year) %>%
         janitor::clean_names()
 
       df <- df %>%

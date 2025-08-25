@@ -8,9 +8,18 @@
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
 #' @param tablename The name of the play by play data table within the database
 #' @return Returns a tibble with play-by-play data
+#'
+#' @seealso Issues with this data should be filed here: <https://github.com/sportsdataverse/cfbfastR-data>
+#' @seealso [update_cfb_db()]
+#' @source CFB Play-by-Play Data releases can be found here: <https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp>
+#' @family loaders
 #' @export
 load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
                          dbConnection = NULL, tablename = NULL) {
+
+  old <- options(list(stringsAsFactors = FALSE, scipen = 999))
+  on.exit(options(old), add = TRUE)
+
   dots <- rlang::dots_list(...)
 
   loader <- rds_from_url
@@ -23,7 +32,7 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
             seasons >= 2014,
             seasons <= most_recent_cfb_season())
 
-  urls <- paste0("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/data/rds/pbp_players_pos_",seasons,".rds")
+  urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfbfastR_cfb_pbp/play_by_play_", seasons, ".rds")
 
   p <- NULL
   if (is_installed("progressr")) p <- progressr::progressor(along = seasons)
@@ -40,7 +49,6 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
         make_cfbfastR_data("PBP from data repo and CollegeFootballData.com",Sys.time())
     }
   }
-  out
   return(out)
 }
 
@@ -94,6 +102,7 @@ load_games <- function(){
 #' of or the complete play by play data table within the database (please see details for further information)
 #' @param db_connection A `DBIConnection` object, as returned by
 #' [DBI::dbConnect()] (please see details for further information)
+#' @family loaders
 #' @export
 update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = "."),
                           dbname = "cfb_pbp_db",

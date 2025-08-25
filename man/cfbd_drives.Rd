@@ -20,7 +20,7 @@ cfbd_drives(
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
-\item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, or both}
+\item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
@@ -87,4 +87,5 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 }
 }
+\concept{CFBD Drives}
 \keyword{Drives}
