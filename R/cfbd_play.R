@@ -304,7 +304,8 @@ cfbd_play_stats_player <- function(year = NULL,
       # Get the content and return it as data.frame
       df <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON()
+        jsonlite::fromJSON() %>%
+        as.data.frame()
 
       cols <- c(
         "game_id", "season", "week", "opponent", "team_score", "opponent_score",

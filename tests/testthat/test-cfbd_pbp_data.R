@@ -1,4 +1,5 @@
 test_that("2024 pbp handles completions properly", {
+  skip_on_cran()
   # skip("working post-fix") # should fail without it
   p = cfbd_pbp_data(
     year = 2024,
