@@ -200,7 +200,7 @@ cfbd_stats_game_advanced <- function(year,
                                      team = NULL,
                                      opponent = NULL,
                                      excl_garbage_time = FALSE,
-                                     season_type = "both") {
+                                     season_type = "regular") {
 
   # Validation ----
   validate_api_key()

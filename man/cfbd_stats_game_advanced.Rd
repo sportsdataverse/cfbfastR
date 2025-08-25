@@ -10,7 +10,7 @@ cfbd_stats_game_advanced(
   team = NULL,
   opponent = NULL,
   excl_garbage_time = FALSE,
-  season_type = "both"
+  season_type = "regular"
 )
 }
 \arguments{
