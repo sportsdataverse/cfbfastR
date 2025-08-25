@@ -391,7 +391,7 @@
 #' @details
 #' ```r
 #'  # Get play by play data for 2018 regular season week 1
-#'  cfbd_pbp_data(year = 2024, week = 1, season_type = 'both', epa_wpa = TRUE)
+#'  cfbd_pbp_data(year = 2024, week = 1, season_type = 'regular', epa_wpa = TRUE)
 #' ```
 #' @export
 
@@ -492,7 +492,6 @@ cfbd_pbp_data <- function(year,
           dplyr::mutate(.prov_rank = provider_priority[.data$provider]) %>%
           dplyr::group_by(.data$game_id) %>%
           dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) %>%
-          dplyr::ungroup() %>%
           dplyr::ungroup() %>%
           dplyr::select(-dplyr::all_of(".prov_rank"))
 
