@@ -564,6 +564,7 @@ cfbd_stats_season_advanced <- function(year,
 #'    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 #'
 #'    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
+#'
 #' }
 
 cfbd_stats_season_player <- function(year,
@@ -606,7 +607,7 @@ cfbd_stats_season_player <- function(year,
   full_url <- httr::modify_url(base_url, query=query_params)
 
   cols <- c(
-    "team", "conference", "athlete_id", "player", "category",
+    "team", "conference", "athlete_id", "player", "position", "category",
     "passing_completions", "passing_att", "passing_pct", "passing_yds",
     "passing_td", "passing_int", "passing_ypa",
     "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long",
@@ -679,7 +680,7 @@ cfbd_stats_season_player <- function(year,
         suppressWarnings(
         df <- df %>%
           dplyr::select(-dplyr::any_of(c("category"))) %>%
-          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$year) %>%
+          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$position, .data$year) %>%
           dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
           dplyr::arrange(.data$year, .data$athlete_id) %>%
           dplyr::ungroup() %>%

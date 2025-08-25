@@ -109,6 +109,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 
    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
+
 }
 }
 \seealso{
