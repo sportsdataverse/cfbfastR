@@ -374,11 +374,6 @@
 #'   |lag_downs_turnover3              |numeric   |
 #'   |drive_play                       |numeric   |
 #'   |drive_event                      |numeric   |
-#'   |punt_return_player               |numeric   |
-#'   |kickoff_return_player            |numeric   |
-#'   |rush_player_name                 |numeric   |
-#'   |punt_return_player_name          |numeric   |
-#'   |kickoff_return_player_name       |numeric   |
 #'   |lag_first_by_penalty3            |numeric   |
 #'   |lag_first_by_yards3              |numeric   |
 #'
@@ -395,8 +390,8 @@
 #' @family CFBD PBP
 #' @details
 #' ```r
-#' # Get play by play data for 2018 regular season week 1
-#' cfbd_pbp_data(year = 2018, week = 1, season_type = 'regular', epa_wpa = TRUE)
+#'  # Get play by play data for 2018 regular season week 1
+#'  cfbd_pbp_data(year = 2024, week = 1, season_type = 'both', epa_wpa = TRUE)
 #' ```
 #' @export
 
@@ -543,9 +538,9 @@ cfbd_pbp_data <- function(year,
     "drive_plays", "drive_start_yardline", "drive_end_yardline",
     "drive_offense", "drive_offense_conference",
     "drive_defense", "drive_defense_conference",
-    "drive_start_time.hours", "drive_start_time.minutes", "drive_start_time.seconds",
-    "drive_end_time.hours", "drive_end_time.minutes", "drive_end_time.seconds",
-    "drive_elapsed.hours", "drive_elapsed.minutes", "drive_elapsed.seconds"
+    "drive_start_time_hours", "drive_start_time_minutes", "drive_start_time_seconds",
+    "drive_end_time_hours", "drive_end_time_minutes", "drive_end_time_seconds",
+    "drive_elapsed_hours", "drive_elapsed_minutes", "drive_elapsed_seconds"
   )
 
 
@@ -701,6 +696,13 @@ cfbd_pbp_data <- function(year,
       "fg_kicker_player_name", "yds_fg", "fg_block_player_name", "fg_return_player_name",
       "kickoff_player_name", "yds_kickoff", "kickoff_returner_player_name", "yds_kickoff_return", "new_id"
     )
+    drop_player_name_columns <- c(
+      "punt_return_player",
+      "kickoff_return_player",
+      "rush_player_name",
+      "punt_return_player_name",
+      "kickoff_return_player_name"
+    )
     drive_columns <- c(
       "orig_drive_number", "drive_number",
       "drive_result_detailed", "new_drive_pts", "drive_id", "drive_result",
@@ -783,8 +785,8 @@ cfbd_pbp_data <- function(year,
         dplyr::all_of(wpa_extra_columns),
         dplyr::all_of(lag_series_columns),
         dplyr::all_of(lag_lead_columns),
-        dplyr::everything()
-      )
+        dplyr::everything()) %>%
+      dplyr::select(-dplyr::all_of(drop_player_name_columns))
   }
 
   play_df <- play_df %>%

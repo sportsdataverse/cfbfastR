@@ -393,11 +393,6 @@ A data frame with 368 variables:\tabular{ll}{
    lag_downs_turnover3 \tab numeric \cr
    drive_play \tab numeric \cr
    drive_event \tab numeric \cr
-   punt_return_player \tab numeric \cr
-   kickoff_return_player \tab numeric \cr
-   rush_player_name \tab numeric \cr
-   punt_return_player_name \tab numeric \cr
-   kickoff_return_player_name \tab numeric \cr
    lag_first_by_penalty3 \tab numeric \cr
    lag_first_by_yards3 \tab numeric \cr
 }
@@ -406,8 +401,8 @@ A data frame with 368 variables:\tabular{ll}{
 Extract college football (D-I) play by play Data - for plays
 }
 \details{
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Get play by play data for 2018 regular season week 1
-cfbd_pbp_data(year = 2018, week = 1, season_type = 'regular', epa_wpa = TRUE)
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{ # Get play by play data for 2018 regular season week 1
+ cfbd_pbp_data(year = 2024, week = 1, season_type = 'both', epa_wpa = TRUE)
 }\if{html}{\out{</div>}}
 }
 \seealso{

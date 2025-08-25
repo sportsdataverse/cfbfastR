@@ -65,6 +65,7 @@
   - Ensuring [```cfbd_stats_game_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html) returns an empty data frame when there are no results
   - Documentation [```cfbd_game_team_stats()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html) updated to reflect all parameter requirement scenarios.
   - Fixed `athlete_id` parameter [```cfbd_player_usage()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html) so that it works as users would expect. There was an API query-parameter mismatch
+  - Fixed returned `position` to correct value (instead of NA) from [```cfbd_stats_season_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html)
   - Added more thorough `season_type` parameter documentation across many functions
   
 
