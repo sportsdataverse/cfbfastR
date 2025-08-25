@@ -21,6 +21,7 @@ test_that("2024 pbp handles completions properly", {
 })
 
 test_that("base case 2023 pbp are already properly handled", {
+  skip_on_cran()
   p = cfbd_pbp_data(
     year = 2023,
     season_type = "regular",
