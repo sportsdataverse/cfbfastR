@@ -60,11 +60,11 @@
 
 * All `load_cfb_*()` functions now use [```sportsdataverse-data``` releases](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp) or the [CollegeFootballData.com API](https://api.collegefootballdata.com/) as their underlying data source to remain in compliance with CFBD API terms and conditions.
 
-* Fixed the following functions and/or documenation:
+* Fixed the following functions and/or documentation:
   - Documentation [```cfbd_team_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html) addressing #97
   - Ensuring [```cfbd_stats_game_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html) returns an empty data frame when there are no results
   - Documentation [```cfbd_game_team_stats()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html) updated to reflect all parameter requirement scenarios.
-  - Fixed `athlete_id` parameter [```cfbd_player_usage()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html) so that it works as users would expect. There was a API query parameter mismatch
+  - Fixed `athlete_id` parameter [```cfbd_player_usage()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html) so that it works as users would expect. There was an API query-parameter mismatch
   - Added more thorough `season_type` parameter documentation across many functions
   
 
