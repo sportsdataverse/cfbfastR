@@ -38,6 +38,8 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_games.html</loc></url>
@@ -45,6 +47,10 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_predicted.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_teams.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_kicking.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_passing.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_rushing.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_team_season.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp_pregame.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html</loc></url>
@@ -60,6 +66,7 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_fpi.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.html</loc></url>

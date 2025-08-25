@@ -156,102 +156,23 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_ratings_sp()</code> - A data frame with 26 variables:</p><dl><dt><code>year</code>: integer.</dt>
-<dd><p>Season of the ratings.</p></dd>
-
-<dt><code>team</code>: character.</dt>
-<dd><p>Team name.</p></dd>
-
-<dt><code>conference</code>: character.</dt>
-<dd><p>Conference of the team.</p></dd>
-
-<dt><code>rating</code>: double.</dt>
-<dd><p>SP+ rating.</p></dd>
-
-<dt><code>ranking</code>: integer.</dt>
-<dd><p>Ranking in the SP+ ratings.</p></dd>
-
-<dt><code>second_order_wins</code>: logical.</dt>
-<dd><p>Total second-order wins - Not available for recent seasons.</p></dd>
-
-<dt><code>sos</code>: logical.</dt>
-<dd><p>Strength of schedule - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_ranking</code>: integer.</dt>
-<dd><p>Overall offense ranking.</p></dd>
-
-<dt><code>offense_rating</code>: double.</dt>
-<dd><p>Overall offense rating.</p></dd>
-
-<dt><code>offense_success</code>: logical.</dt>
-<dd><p>Offense success rating - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_explosiveness</code>: logical.</dt>
-<dd><p>Offense explosiveness rating - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_rushing</code>: logical.</dt>
-<dd><p>Offense rushing rating - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_passing</code>: logical.</dt>
-<dd><p>Offense passing rating - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_standard_downs</code>: logical.</dt>
-<dd><p>Offense standard downs rating - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_passing_downs</code>: logical.</dt>
-<dd><p>Offensive passing downs rating - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_run_rate</code>: logical.</dt>
-<dd><p>Offense rushing rate - Not available for recent seasons.</p></dd>
-
-<dt><code>offense_pace</code>: logical.</dt>
-<dd><p>Offense pace factor - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_ranking</code>: integer.</dt>
-<dd><p>Overall defense ranking.</p></dd>
-
-<dt><code>defense_rating</code>: double.</dt>
-<dd><p>Overall defense rating.</p></dd>
-
-<dt><code>defense_success</code>: logical.</dt>
-<dd><p>Defense success rating - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_explosiveness</code>: logical.</dt>
-<dd><p>Defense explosiveness rating - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_rushing</code>: logical.</dt>
-<dd><p>Defense rushing rating - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_passing</code>: logical.</dt>
-<dd><p>Defense passing rating - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_standard_downs</code>: logical.</dt>
-<dd><p>Defense standard downs rating - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_passing_downs</code>: logical.</dt>
-<dd><p>Defensive passing downs rating - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_havoc_total</code>: logical.</dt>
-<dd><p>Total defensive havoc rate - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_havoc_front_seven</code>: logical.</dt>
-<dd><p>Defense havoc rate from front 7 players - Not available for recent seasons.</p></dd>
-
-<dt><code>defense_havoc_db</code>: logical.</dt>
-<dd><p>Defense havoc rate from defensive backs - Not available for recent seasons.</p></dd>
-
-<dt><code>special_teams_rating</code>: double.</dt>
-<dd><p>Special teams rating.</p></dd>
-
-
-</dl></div>
+    <p><code>cfbd_ratings_sp()</code> - A data frame with 26 variables:</p><table class="table table"><tr><td>col_name</td><td>types</td></tr><tr><td>year</td><td>integer</td></tr><tr><td>team</td><td>character</td></tr><tr><td>conference</td><td>character</td></tr><tr><td>rating</td><td>numeric</td></tr><tr><td>ranking</td><td>integer</td></tr><tr><td>second_order_wins</td><td>numeric</td></tr><tr><td>sos</td><td>numeric</td></tr><tr><td>offense_ranking</td><td>integer</td></tr><tr><td>offense_rating</td><td>numeric</td></tr><tr><td>offense_success</td><td>numeric</td></tr><tr><td>offense_explosiveness</td><td>numeric</td></tr><tr><td>offense_rushing</td><td>numeric</td></tr><tr><td>offense_passing</td><td>numeric</td></tr><tr><td>offense_standard_downs</td><td>numeric</td></tr><tr><td>offense_passing_downs</td><td>numeric</td></tr><tr><td>offense_run_rate</td><td>numeric</td></tr><tr><td>offense_pace</td><td>numeric</td></tr><tr><td>defense_ranking</td><td>integer</td></tr><tr><td>defense_rating</td><td>numeric</td></tr><tr><td>defense_success</td><td>numeric</td></tr><tr><td>defense_explosiveness</td><td>numeric</td></tr><tr><td>defense_rushing</td><td>numeric</td></tr><tr><td>defense_passing</td><td>numeric</td></tr><tr><td>defense_standard_downs</td><td>numeric</td></tr><tr><td>defense_passing_downs</td><td>numeric</td></tr><tr><td>defense_havoc_total</td><td>numeric</td></tr><tr><td>defense_havoc_front_seven</td><td>numeric</td></tr><tr><td>defense_havoc_db</td><td>numeric</td></tr><tr><td>special_teams_rating</td><td>numeric</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CFBD Ratings and Rankings:
+<code><a href="cfbd_rankings.html">cfbd_rankings</a>()</code>,
+<code><a href="cfbd_ratings_elo.html">cfbd_ratings_elo</a>()</code>,
+<code><a href="cfbd_ratings_fpi.html">cfbd_ratings_fpi</a>()</code>,
+<code><a href="cfbd_ratings_sp_conference.html">cfbd_ratings_sp_conference</a>()</code>,
+<code><a href="cfbd_ratings_srs.html">cfbd_ratings_srs</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_ratings_sp</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── SP+ data from CollegeFootballData.com ───────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:48 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:14 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 131 × 29</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year team  conference rating ranking second_order_wins   sos offense_ranking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -275,7 +196,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_ratings_sp</span><span class="op">(</span>team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── SP+ data from CollegeFootballData.com ───────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:48 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:14 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 112 × 29</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year team  conference rating ranking second_order_wins   sos offense_ranking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -299,7 +220,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_ratings_sp</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── SP+ data from CollegeFootballData.com ───────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:48 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:14 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 29</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    year team   conference rating ranking second_order_wins sos   offense_ranking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>

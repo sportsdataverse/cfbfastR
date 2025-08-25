@@ -237,13 +237,20 @@ or 'PrepSchool'  - For position group information</p></dd>
 
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CFBD Recruiting:
+<code><a href="cfbd_recruiting_position.html">cfbd_recruiting_position</a>()</code>,
+<code><a href="cfbd_recruiting_team.html">cfbd_recruiting_team</a>()</code>,
+<code><a href="cfbd_recruiting_transfer_portal.html">cfbd_recruiting_transfer_portal</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_recruiting_player</span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:51 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:16 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28 × 19</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id     athlete_id recruit_type  year ranking name         school committed_to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -265,7 +272,7 @@ or 'PrepSchool'  - For position group information</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_recruiting_player</span><span class="op">(</span><span class="fl">2016</span>, recruit_type <span class="op">=</span> <span class="st">"JUCO"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:51 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:16 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 470 × 19</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id     athlete_id recruit_type  year ranking name         school committed_to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -287,7 +294,7 @@ or 'PrepSchool'  - For position group information</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_recruiting_player</span><span class="op">(</span><span class="fl">2020</span>, recruit_type <span class="op">=</span> <span class="st">"HighSchool"</span>, position <span class="op">=</span> <span class="st">"OT"</span>, state <span class="op">=</span> <span class="st">"FL"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player recruiting info from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:51 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:16 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 25 × 19</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id     athlete_id recruit_type  year ranking name         school committed_to</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>

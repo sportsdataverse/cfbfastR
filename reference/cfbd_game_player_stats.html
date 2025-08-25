@@ -163,7 +163,7 @@
 
 
 <dt id="arg-season-type">season_type<a class="anchor" aria-label="anchor" href="#arg-season-type"></a></dt>
-<dd><p>(<em>String</em> default regular): Select Season Type: regular or postseason</p></dd>
+<dd><p>(<em>String</em> default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason</p></dd>
 
 
 <dt id="arg-team">team<a class="anchor" aria-label="anchor" href="#arg-team"></a></dt>
@@ -191,13 +191,25 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><code>cfbd_game_player_stats()</code> - A data frame with 32 variables:</p><table class="table table"><tr><td>col_name</td><td>types</td></tr><tr><td>game_id</td><td>integer</td></tr><tr><td>team</td><td>character</td></tr><tr><td>conference</td><td>character</td></tr><tr><td>home_away</td><td>character</td></tr><tr><td>team_points</td><td>integer</td></tr><tr><td>athlete_id</td><td>integer</td></tr><tr><td>athlete_name</td><td>character</td></tr><tr><td>defensive_td</td><td>numeric</td></tr><tr><td>defensive_qb_hur</td><td>numeric</td></tr><tr><td>defensive_pd</td><td>numeric</td></tr><tr><td>defensive_tfl</td><td>numeric</td></tr><tr><td>defensive_sacks</td><td>numeric</td></tr><tr><td>defensive_solo</td><td>numeric</td></tr><tr><td>defensive_tot</td><td>numeric</td></tr><tr><td>fumbles_rec</td><td>numeric</td></tr><tr><td>fumbles_lost</td><td>numeric</td></tr><tr><td>fumbles_fum</td><td>numeric</td></tr><tr><td>punting_long</td><td>numeric</td></tr><tr><td>punting_in_20</td><td>numeric</td></tr><tr><td>punting_tb</td><td>numeric</td></tr><tr><td>punting_avg</td><td>numeric</td></tr><tr><td>punting_yds</td><td>numeric</td></tr><tr><td>punting_no</td><td>numeric</td></tr><tr><td>kicking_pts</td><td>numeric</td></tr><tr><td>kicking_long</td><td>numeric</td></tr><tr><td>kicking_pct</td><td>numeric</td></tr><tr><td>punt_returns_td</td><td>numeric</td></tr><tr><td>punt_returns_long</td><td>numeric</td></tr><tr><td>punt_returns_avg</td><td>numeric</td></tr><tr><td>punt_returns_yds</td><td>numeric</td></tr><tr><td>punt_returns_no</td><td>numeric</td></tr><tr><td>kick_returns_td</td><td>numeric</td></tr><tr><td>kick_returns_long</td><td>numeric</td></tr><tr><td>kick_returns_avg</td><td>numeric</td></tr><tr><td>kick_returns_yds</td><td>numeric</td></tr><tr><td>kick_returns_no</td><td>numeric</td></tr><tr><td>interceptions_td</td><td>numeric</td></tr><tr><td>interceptions_yds</td><td>numeric</td></tr><tr><td>interceptions_int</td><td>numeric</td></tr><tr><td>receiving_long</td><td>numeric</td></tr><tr><td>receiving_td</td><td>numeric</td></tr><tr><td>receiving_avg</td><td>numeric</td></tr><tr><td>receiving_yds</td><td>numeric</td></tr><tr><td>receiving_rec</td><td>numeric</td></tr><tr><td>rushing_long</td><td>numeric</td></tr><tr><td>rushing_td</td><td>numeric</td></tr><tr><td>rushing_avg</td><td>numeric</td></tr><tr><td>rushing_yds</td><td>numeric</td></tr><tr><td>rushing_car</td><td>numeric</td></tr><tr><td>passing_int</td><td>numeric</td></tr><tr><td>passing_td</td><td>numeric</td></tr><tr><td>passing_avg</td><td>numeric</td></tr><tr><td>passing_yds</td><td>numeric</td></tr><tr><td>passing_completions</td><td>numeric</td></tr><tr><td>passing_attempts</td><td>numeric</td></tr><tr><td>passing_qbr</td><td>numeric</td></tr><tr><td>kicking_xpm</td><td>numeric</td></tr><tr><td>kicking_xpa</td><td>numeric</td></tr><tr><td>kicking_fgm</td><td>numeric</td></tr><tr><td>kicking_fga</td><td>numeric</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CFBD Games:
+<code><a href="cfbd_calendar.html">cfbd_calendar</a>()</code>,
+<code><a href="cfbd_game_box_advanced.html">cfbd_game_box_advanced</a>()</code>,
+<code><a href="cfbd_game_info.html">cfbd_game_info</a>()</code>,
+<code><a href="cfbd_game_media.html">cfbd_game_media</a>()</code>,
+<code><a href="cfbd_game_records.html">cfbd_game_records</a>()</code>,
+<code><a href="cfbd_game_team_stats.html">cfbd_game_team_stats</a>()</code>,
+<code><a href="cfbd_game_weather.html">cfbd_game_weather</a>()</code>,
+<code><a href="cfbd_live_scoreboard.html">cfbd_live_scoreboard</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_player_stats</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span>, week <span class="op">=</span> <span class="fl">15</span>, team <span class="op">=</span> <span class="st">"Alabama"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:29 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:20:51 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id team     conference home_away team_points athlete_id athlete_name  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
@@ -221,7 +233,7 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_player_stats</span><span class="op">(</span><span class="fl">2013</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:29 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:20:51 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     game_id team        conference home_away team_points athlete_id athlete_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>

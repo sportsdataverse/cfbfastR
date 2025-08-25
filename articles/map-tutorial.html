@@ -242,7 +242,7 @@ rated player in a class! Let’s see what sort of data we get from it.</p>
 <span><span class="co">##  $ hometown_info_latitude : num [1:2666] 32.9 33.9 42.9 47.6 39.9 ...</span></span>
 <span><span class="co">##  $ hometown_info_longitude: num [1:2666] -97.1 -117.6 -87.9 -122 -82.8 ...</span></span>
 <span><span class="co">##  $ hometown_info_fips_code: chr [1:2666] "48439" "06065" "55079" "53033" ...</span></span>
-<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2025-08-23 21:52:11"</span></span>
+<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2025-08-25 10:24:47"</span></span>
 <span><span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can
 merge on other <code>cfbfastR</code> datasets, basic information on each
@@ -330,7 +330,7 @@ area’s proportions (an Albers projection in this case)</li>
 <span>  <span class="fu">geom_polygon</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cont_48</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'white'</span>, fill <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span><span class="op">+</span> <span class="co">#color controls the color of borders, fill controls the color of things inside the border</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">top_recs_co_2021</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu">coord_map</span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span> <span class="co">#This is the one that changes the projection</span></span></code></pre></div>
-<p><img src="map-tutorial_files/figure-html/gg_continental-1.png" width="700"></p>
+<p><img src="map-tutorial_files/figure-html/gg_continental-1.png" alt="A map of the continental United States with points representing the locations of 5 star recruits from the class of 2021." width="700"></p>
 <p>Great! We have successfully made a map where we can see where every
 single 5 star recruit in the Class of 2021 is from. We can see some
 overall trends, a lot in the southeast, a bunch collected in one spot in
@@ -353,7 +353,7 @@ this package already installed.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">top_recs_co_2021</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">top_recs_co_2021</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span>, label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span></code></pre></div>
-<p><img src="map-tutorial_files/figure-html/ggplot_ggrepel-1.png" width="700"></p>
+<p><img src="map-tutorial_files/figure-html/ggplot_ggrepel-1.png" alt="A map of the continental United States with points representing the locations of 5 star recruits from the class of 2021. Each point is labeled with the recruit's name." width="700"></p>
 <p>Now this plot is a little busy, and eagle eyed readers will notice
 that several names are missing from this plot. This is because there are
 more overlaps than <code>ggrepel</code>’s algorithm can handle. This can
@@ -491,7 +491,7 @@ so let’s make the plot now!</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_counts</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span>, fill <span class="op">=</span> <span class="va">count</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span></code></pre></div>
-<p><img src="map-tutorial_files/figure-html/map_counts_plot-1.png" width="700"></p>
+<p><img src="map-tutorial_files/figure-html/map_counts_plot-1.png" alt="A choropleth map of the continental United States with states filled in with colors representing the number of FBS recruits from that state from 2017-2021." width="700"></p>
 <p>Tah-dah! We now can see that Texas, Florida, and California produce
 far and away the most recruits, Georgia is pretty good, and generally
 the southeast is ahead. That’s really all you need to make a couple
@@ -543,7 +543,7 @@ scale.</p>
 <span>    legend.position <span class="op">=</span> <span class="st">'bottom'</span> <span class="co">#This moves the legend to the bottom of the graph</span></span>
 <span>  <span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span></code></pre></div>
-<p><img src="map-tutorial_files/figure-html/tristate_recs-1.png" width="700"></p>
+<p><img src="map-tutorial_files/figure-html/tristate_recs-1.png" alt="Where are Recruits in the Tri-State Area from?" width="700"></p>
 <p>Hope you found this tutorial useful! If you have any questions on how
 to manage recruiting data feel free to reach out to me on <a href="https://twitter.com/ConorMcQ5" class="external-link">Twitter</a>!</p>
 </div>

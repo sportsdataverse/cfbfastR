@@ -139,7 +139,13 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cfbd_ratings_elo</span><span class="op">(</span>year <span class="op">=</span> <span class="cn">NULL</span>, week <span class="op">=</span> <span class="cn">NULL</span>, team <span class="op">=</span> <span class="cn">NULL</span>, conference <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cfbd_ratings_elo</span><span class="op">(</span></span>
+<span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  week <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  season_type <span class="op">=</span> <span class="st">"both"</span>,</span>
+<span>  team <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  conference <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -154,56 +160,50 @@
 <dd><p>(<em>Integer</em> optional): Maximum Week of ratings.</p></dd>
 
 
+<dt id="arg-season-type">season_type<a class="anchor" aria-label="anchor" href="#arg-season-type"></a></dt>
+<dd><p>(<em>String</em> default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason</p></dd>
+
+
 <dt id="arg-team">team<a class="anchor" aria-label="anchor" href="#arg-team"></a></dt>
 <dd><p>(<em>String</em> optional): D-I Team</p></dd>
 
 
 <dt id="arg-conference">conference<a class="anchor" aria-label="anchor" href="#arg-conference"></a></dt>
-<dd><p>(<em>String</em> optional): Conference abbreviation - SRS information by conference
+<dd><p>(<em>String</em> optional): Conference abbreviation - Elo information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_ratings_elo()</code> - A data frame with 6 variables:</p><dl><dt><code>year</code>: integer.</dt>
-<dd><p>Season of the SRS rating.</p></dd>
-
-<dt><code>team</code>: character.</dt>
-<dd><p>Team name.</p></dd>
-
-<dt><code>conference</code>: character.</dt>
-<dd><p>Conference of the team.</p></dd>
-
-<dt><code>division</code>: logical.</dt>
-<dd><p>Division in the conference for the team.</p></dd>
-
-<dt><code>rating</code>: double.</dt>
-<dd><p>Simple Rating System (SRS) rating.</p></dd>
-
-<dt><code>ranking</code>: integer.</dt>
-<dd><p>Simple Rating System ranking within the group returned.</p></dd>
-
-
-</dl></div>
+    <p><code>cfbd_ratings_elo()</code> - A data frame with 4 variables:</p><table class="table table"><tr><td>col_name</td><td>types</td></tr><tr><td>year</td><td>integer</td></tr><tr><td>team</td><td>character</td></tr><tr><td>conference</td><td>character</td></tr><tr><td>elo</td><td>numeric</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CFBD Ratings and Rankings:
+<code><a href="cfbd_rankings.html">cfbd_rankings</a>()</code>,
+<code><a href="cfbd_ratings_fpi.html">cfbd_ratings_fpi</a>()</code>,
+<code><a href="cfbd_ratings_sp.html">cfbd_ratings_sp</a>()</code>,
+<code><a href="cfbd_ratings_sp_conference.html">cfbd_ratings_sp_conference</a>()</code>,
+<code><a href="cfbd_ratings_srs.html">cfbd_ratings_srs</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_ratings_elo</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── ELO ratings from CollegeFootballData.com ────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:47 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Elo ratings from CollegeFootballData.com ────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:12 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    year team  conference   elo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>019 Texas Big 12      <span style="text-decoration: underline;">1</span>866</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_ratings_elo</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── ELO ratings from CollegeFootballData.com ────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:47 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Elo ratings from CollegeFootballData.com ────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:12 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     year team              conference   elo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">2</span>018 Alabama           SEC         <span style="text-decoration: underline;">2</span>257</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">2</span>018 Arkansas          SEC         <span style="text-decoration: underline;">1</span>285</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">2</span>018 Auburn            SEC         <span style="text-decoration: underline;">1</span>958</span>

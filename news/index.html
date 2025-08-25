@@ -134,9 +134,21 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="cfbfastr-v200"><strong>cfbfastR v2.0.0</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-v200"></a></h2>
-<ul><li>Updated all <code>cfbd_*()</code> functions to use the new College Football Data API v2. This affects the f</li>
-<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.html"><code>cfbd_metrics_fg_ep()</code></a> function to access the new field goal expected points added metric from the API.</li>
-<li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.html"><code>cfbd_betting_lines()</code></a> function</li>
+<ul><li>
+<p>Added all new <code>cfbd_*()</code> functions accommodated by the new College Football Data API v2. This includes the following functions:</p>
+<ul><li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.html"><code>cfbd_metrics_fg_ep()</code></a> function to access the new field goal expected points added metric from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_team_season.html"><code>cfbd_metrics_wepa_team_season()</code></a> function to access the new opponent adjusted team season predicted points added metric from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_passing.html"><code>cfbd_metrics_wepa_players_passing()</code></a> function to access the new opponent adjusted players passing predicted points added metric from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_rushing.html"><code>cfbd_metrics_wepa_players_rushing()</code></a> function to access the new opponent adjusted players rushing predicted points added metric from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_kicking.html"><code>cfbd_metrics_wepa_players_kicking()</code></a> function to access the new Points Added Above Replacement (PAAR) ratings for kickers from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_fpi.html"><code>cfbd_ratings_fpi()</code></a> function to access the new FPI ratings from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.html"><code>cfbd_live_scoreboard()</code></a> function to access live scoreboard data from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.html"><code>cfbd_live_plays()</code></a> function to access live play-by-play data from the API.</li>
+<li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html"><code>cfbd_api_key_info()</code></a> function to get information about your API key, including your Patreon level and usage limits.</li>
+</ul></li>
+<li>
+<p>Minor changes to the existing <code>cfbd_*()</code> functions under the hood to accommodate the new API v2 structure. Please see below for a list of all updated functions:</p>
+<ul><li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.html"><code>cfbd_betting_lines()</code></a> function</li>
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.html"><code>cfbd_coaches()</code></a> function</li>
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.html"><code>cfbd_conferences()</code></a> function</li>
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.html"><code>cfbd_drives()</code></a> function</li>
@@ -180,6 +192,18 @@
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.html"><code>cfbd_team_roster()</code></a> function</li>
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html"><code>cfbd_team_talent()</code></a> function</li>
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.html"><code>cfbd_venues()</code></a> function</li>
+</ul></li>
+<li><p>All <code>load_cfb_*()</code> functions now use <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp" class="external-link"><code>sportsdataverse-data</code> releases</a> or the <a href="https://api.collegefootballdata.com/" class="external-link">CollegeFootballData.com API</a> as their underlying data source to remain in compliance with CFBD API terms and conditions.</p></li>
+<li>
+<p>Fixed the following functions and/or documentation:</p>
+<ul><li>Documentation <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html"><code>cfbd_team_info()</code></a> addressing <a href="https://github.com/sportsdataverse/cfbfastR/issues/97" class="external-link">#97</a></li>
+<li>Ensuring <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html"><code>cfbd_stats_game_advanced()</code></a> returns an empty data frame when there are no results</li>
+<li>Documentation <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html"><code>cfbd_game_team_stats()</code></a> updated to reflect all parameter requirement scenarios.</li>
+<li>Fixed <code>athlete_id</code> parameter <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.html"><code>cfbd_player_usage()</code></a> so that it works as users would expect. There was an API query-parameter mismatch</li>
+<li>Fixed returned <code>position</code> to correct value (instead of NA) from <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html"><code>cfbd_stats_season_player()</code></a>
+</li>
+<li>Added more thorough <code>season_type</code> parameter documentation across many functions</li>
+</ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.9.5" id="cfbfastr-v195"><strong>cfbfastR v1.9.5</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-v195"></a></h2>

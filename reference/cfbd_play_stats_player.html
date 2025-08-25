@@ -182,7 +182,7 @@ Can be found using the <code><a href="cfbd_play_stats_types.html">cfbd_play_stat
 
 
 <dt id="arg-season-type">season_type<a class="anchor" aria-label="anchor" href="#arg-season-type"></a></dt>
-<dd><p>(<em>String</em> default regular): Select Season Type: regular, postseason, or both</p></dd>
+<dd><p>(<em>String</em> default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -351,13 +351,22 @@ Can be found using the <code><a href="cfbd_play_stats_types.html">cfbd_play_stat
 
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CFBD PBP:
+<code><a href="cfbd_live_plays.html">cfbd_live_plays</a>()</code>,
+<code><a href="cfbd_pbp_data.html">cfbd_pbp_data</a>()</code>,
+<code><a href="cfbd_play_stats_types.html">cfbd_play_stats_types</a>()</code>,
+<code><a href="cfbd_play_types.html">cfbd_play_types</a>()</code>,
+<code><a href="cfbd_plays.html">cfbd_plays</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_play_stats_player</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401110722</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Play-level player data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:42 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:07 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 144 × 54</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    play_id      game_id season  week opponent team_score opponent_score drive_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>

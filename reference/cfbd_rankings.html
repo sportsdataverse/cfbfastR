@@ -139,7 +139,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cfbd_rankings</span><span class="op">(</span><span class="va">year</span>, week <span class="op">=</span> <span class="cn">NULL</span>, season_type <span class="op">=</span> <span class="st">"regular"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cfbd_rankings</span><span class="op">(</span><span class="va">year</span>, week <span class="op">=</span> <span class="cn">NULL</span>, season_type <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -155,47 +155,28 @@
 
 
 <dt id="arg-season-type">season_type<a class="anchor" aria-label="anchor" href="#arg-season-type"></a></dt>
-<dd><p>(<em>String</em> default regular): Season type - regular or postseason</p></dd>
+<dd><p>(<em>String</em> default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_rankings()</code> - A data frame with 9 variables:</p><dl><dt><code>season</code>: integer.</dt>
-<dd><p>Rankings season.</p></dd>
-
-<dt><code>season_type</code>: character.</dt>
-<dd><p>Season type of rankings.</p></dd>
-
-<dt><code>week</code>: integer.</dt>
-<dd><p>Week of rankings.</p></dd>
-
-<dt><code>poll</code>: character.</dt>
-<dd><p>Name of the poll.</p></dd>
-
-<dt><code>rank</code>: integer.</dt>
-<dd><p>Rank in the poll.</p></dd>
-
-<dt><code>school</code>: character.</dt>
-<dd><p>Team name.</p></dd>
-
-<dt><code>conference</code>: character.</dt>
-<dd><p>Conference of the team.</p></dd>
-
-<dt><code>first_place_votes</code>: integer.</dt>
-<dd><p>Number of first place votes.</p></dd>
-
-<dt><code>points</code>: integer.</dt>
-<dd><p>Total poll points.</p></dd>
-
-
-</dl></div>
+    <p><code>cfbd_rankings()</code> - A data frame with 9 variables:</p><table class="table table"><tr><td>col_name</td><td>types</td></tr><tr><td>season</td><td>integer</td></tr><tr><td>season_type</td><td>character</td></tr><tr><td>week</td><td>integer</td></tr><tr><td>poll</td><td>character</td></tr><tr><td>rank</td><td>integer</td></tr><tr><td>school</td><td>character</td></tr><tr><td>conference</td><td>character</td></tr><tr><td>first_place_votes</td><td>integer</td></tr><tr><td>points</td><td>integer</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p>Other CFBD Ratings and Rankings:
+<code><a href="cfbd_ratings_elo.html">cfbd_ratings_elo</a>()</code>,
+<code><a href="cfbd_ratings_fpi.html">cfbd_ratings_fpi</a>()</code>,
+<code><a href="cfbd_ratings_sp.html">cfbd_ratings_sp</a>()</code>,
+<code><a href="cfbd_ratings_sp_conference.html">cfbd_ratings_sp_conference</a>()</code>,
+<code><a href="cfbd_ratings_srs.html">cfbd_ratings_srs</a>()</code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_rankings</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, week <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Rankings data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:46 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:11 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type  week poll       rank school  conference first_place_votes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -214,7 +195,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_rankings</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Rankings data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:46 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:11 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 75 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type  week poll       rank school  conference first_place_votes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -233,7 +214,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_rankings</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2013</span>, season_type <span class="op">=</span> <span class="st">"postseason"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Rankings data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-23 21:47:46 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-25 10:21:11 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 75 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season season_type  week poll        rank school conference first_place_votes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
