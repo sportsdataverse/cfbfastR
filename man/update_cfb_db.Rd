@@ -26,6 +26,9 @@ of or the complete play by play data table within the database (please see detai
 \item{db_connection}{A \code{DBIConnection} object, as returned by
 \code{\link[DBI:dbConnect]{DBI::dbConnect()}} (please see details for further information)}
 }
+\value{
+Invisibly returns \code{NULL}. The function is called for its side effects.
+}
 \description{
 \code{update_cfb_db()} updates or creates a database with \code{cfbfastR}
 play by play data of all completed games since 2014.

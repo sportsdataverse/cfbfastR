@@ -80,7 +80,7 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 \strong{Get college football play-by-play data.}
 }
 \examples{
-\dontrun{
+\donttest{
   try(cfbd_plays(year = 2021, week = 1))
 }
 }

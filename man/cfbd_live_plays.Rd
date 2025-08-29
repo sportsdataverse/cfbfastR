@@ -113,7 +113,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \strong{Get live college football play-by-play data.}
 }
 \examples{
-\dontrun{
+\donttest{
   try(cfbd_live_plays(game_id=401520182))
 }
 }

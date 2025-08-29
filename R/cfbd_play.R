@@ -107,7 +107,7 @@ NULL
 #' @family CFBD PBP
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   try(cfbd_plays(year = 2021, week = 1))
 #' }
 cfbd_plays <- function(year = 2020,
@@ -702,7 +702,7 @@ cfbd_play_types <- function() {
 #' @family CFBD PBP
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   try(cfbd_live_plays(game_id=401520182))
 #' }
 cfbd_live_plays <- function(game_id) {

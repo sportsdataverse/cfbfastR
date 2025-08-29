@@ -102,6 +102,7 @@ load_games <- function(){
 #' of or the complete play by play data table within the database (please see details for further information)
 #' @param db_connection A `DBIConnection` object, as returned by
 #' [DBI::dbConnect()] (please see details for further information)
+#' @return Invisibly returns `NULL`. The function is called for its side effects.
 #' @family loaders
 #' @export
 update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = "."),
