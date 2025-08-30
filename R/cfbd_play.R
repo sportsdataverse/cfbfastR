@@ -169,7 +169,7 @@ cfbd_plays <- function(year = 2020,
         make_cfbfastR_data("Play-by-play data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
     },
     finally = {
     }
@@ -246,6 +246,18 @@ cfbd_plays <- function(year = 2020,
 #'   \item{`pass_breakup_player_id`: logical.}{Pass breakup player reference id.}
 #'   \item{`pass_breakup_player`: logical.}{Pass breakup player name.}
 #'   \item{`pass_breakup_stat`: logical.}{Pass breakup (PBU) stat.}
+#'   \item{`field_goal_attempt_player_id`: character.}{Field goal attempting player reference id.}
+#'   \item{`field_goal_attempt_player`: character.}{Field goal attempting player name.}
+#'   \item{`field_goal_attempt_stat`: integer.}{Field goal attempt stat.}
+#'   \item{`field_goal_made_player_id`: character.}{Field goal making player reference id.}
+#'   \item{`field_goal_made_player`: character.}{Field goal making player name.}
+#'   \item{`field_goal_made_stat`: integer.}{Field goal made stat.}
+#'   \item{`field_goal_missed_player_id`: character.}{Field goal missing player reference id.}
+#'   \item{`field_goal_missed_player`: character.}{Field goal missing player name.}
+#'   \item{`field_goal_missed_stat`: integer.}{Field goal missed stat.}
+#'   \item{`field_goal_blocked_player_id`: character.}{Field goal blocked player reference id.}
+#'   \item{`field_goal_blocked_player`: character.}{Field goal blocked player name.}
+#'   \item{`field_goal_blocked_stat`: integer.}{Field goal blocked stat.}
 #' }
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
@@ -259,6 +271,7 @@ cfbd_plays <- function(year = 2020,
 #' @examples
 #' \donttest{
 #'   try(cfbd_play_stats_player(game_id = 401110722))
+#'   try(cfbd_play_stats_player(year = 2023, week = 1))
 #' }
 cfbd_play_stats_player <- function(year = NULL,
                                    week = NULL,
@@ -287,7 +300,7 @@ cfbd_play_stats_player <- function(year = NULL,
     "week" = week,
     "team" = team,
     "gameId" = game_id,
-    "athleteID" = athlete_id,
+    "athleteId" = athlete_id,
     "statTypeId" = stat_type_id,
     "seasonType" = season_type
   )
@@ -314,6 +327,7 @@ cfbd_play_stats_player <- function(year = NULL,
         "reception", "completion", "rush", "interception", "interception_thrown",
         "touchdown", "incompletion", "target", "fumble_recovered", "fumble_forced",
         "fumble", "sack", "sack_taken", "pass_breakup",
+        "field_goal_attempt", "field_goal_made", "field_goal_missed", "fg_attempt_blocked",
         "reception_player_id", "reception_player", "reception_yds",
         "completion_player_id", "completion_player", "completion_yds",
         "rush_player_id", "rush_player", "rush_yds",
@@ -327,10 +341,15 @@ cfbd_play_stats_player <- function(year = NULL,
         "fumble_player_id", "fumble_player", "fumble_stat",
         "sack_player_id", "sack_player", "sack_stat",
         "sack_taken_player_id", "sack_taken_player", "sack_taken_stat",
-        "pass_breakup_player_id", "pass_breakup_player", "pass_breakup_stat"
+        "pass_breakup_player_id", "pass_breakup_player", "pass_breakup_stat",
+        "field_goal_attempt_player_id", "field_goal_attempt_player", "field_goal_attempt_stat",
+        "field_goal_made_player_id", "field_goal_made_player", "field_goal_made_stat",
+        "field_goal_missed_player_id", "field_goal_missed_player", "field_goal_missed_stat",
+        "field_goal_blocked_player_id", "field_goal_blocked_player", "field_goal_blocked_stat"
+
       )
 
-      df_cols <- data.frame(matrix(NA, nrow = 0, ncol = 70))
+      df_cols <- data.frame(matrix(NA, nrow = 0, ncol = 86))
 
       names(df_cols) <- cols
 
@@ -355,19 +374,23 @@ cfbd_play_stats_player <- function(year = NULL,
           "stat" = "stat"
         )
 
-      colnames(df) <- sub(" ", "_", tolower(colnames(df)))
+      colnames(df) <- gsub(" ", "_", tolower(colnames(df)))
 
       clean_df <- df %>%
+        tidyr::unnest_wider("clock", names_sep = "_") %>%
         tidyr::pivot_wider(
           names_from = "stat_type",
           values_from = "athlete_name"
         )
 
-      colnames(clean_df) <- sub(" ", "_", tolower(colnames(clean_df)))
+      colnames(clean_df) <- gsub(" ", "_", tolower(colnames(clean_df)))
 
       clean_df[cols[!(cols %in% colnames(clean_df))]] <- NA
 
       clean_df <- clean_df %>%
+        dplyr::rename(dplyr::any_of(c(
+          "field_goal_blocked" = "fg_attempt_blocked"
+        ))) %>%
         dplyr::mutate(
           reception_player = ifelse(!is.na(.data$reception), .data$reception, NA),
           completion_player = ifelse(!is.na(.data$completion), .data$completion, NA),
@@ -410,18 +433,35 @@ cfbd_play_stats_player <- function(year = NULL,
           fumble_player_id = ifelse(!is.na(.data$fumble), .data$athlete_id, NA),
           sack_player_id = ifelse(!is.na(.data$sack), .data$athlete_id, NA),
           sack_taken_player_id = ifelse(!is.na(.data$sack_taken), .data$athlete_id, NA),
-          pass_breakup_player_id = ifelse(!is.na(.data$pass_breakup), .data$athlete_id, NA)
+          pass_breakup_player_id = ifelse(!is.na(.data$pass_breakup), .data$athlete_id, NA),
+          field_goal_attempt_player_id = ifelse(!is.na(.data$field_goal_attempt), .data$athlete_id, NA),
+          field_goal_attempt_player = ifelse(!is.na(.data$field_goal_attempt), .data$field_goal_attempt, NA),
+          field_goal_attempt_stat = ifelse(!is.na(.data$field_goal_attempt), .data$stat, NA),
+          field_goal_made_player_id = ifelse(!is.na(.data$field_goal_made), .data$athlete_id, NA),
+          field_goal_made_player = ifelse(!is.na(.data$field_goal_made), .data$field_goal_made, NA),
+          field_goal_made_stat = ifelse(!is.na(.data$field_goal_made), .data$stat, NA),
+          field_goal_blocked_player_id = ifelse(!is.na(.data$field_goal_blocked), .data$athlete_id, NA),
+          field_goal_blocked_player = ifelse(!is.na(.data$field_goal_blocked), .data$field_goal_blocked, NA),
+          field_goal_blocked_stat = ifelse(!is.na(.data$field_goal_blocked), .data$stat, NA),
+          field_goal_missed_player_id = ifelse(!is.na(.data$field_goal_missed), .data$athlete_id, NA),
+          field_goal_missed_player = ifelse(!is.na(.data$field_goal_missed), .data$field_goal_missed, NA),
+          field_goal_missed_stat = ifelse(!is.na(.data$field_goal_missed), .data$stat, NA)
+
         ) %>%
-        dplyr::select(
+        dplyr::select(dplyr::any_of(c(
           "game_id",
           "season",
           "week",
+          "team",
+          "conference",
           "opponent",
           "team_score",
           "opponent_score",
           "drive_id",
           "play_id",
           "period",
+          "clock_minutes",
+          "clock_seconds",
           "yards_to_goal",
           "down",
           "distance",
@@ -466,8 +506,20 @@ cfbd_play_stats_player <- function(year = NULL,
           "sack_taken_stat",
           "pass_breakup_player_id",
           "pass_breakup_player",
-          "pass_breakup_stat"
-        ) %>%
+          "pass_breakup_stat",
+          "field_goal_attempt_player_id",
+          "field_goal_attempt_player",
+          "field_goal_attempt_stat",
+          "field_goal_made_player_id",
+          "field_goal_made_player",
+          "field_goal_made_stat",
+          "field_goal_missed_player_id",
+          "field_goal_missed_player",
+          "field_goal_missed_stat",
+          "field_goal_blocked_player_id",
+          "field_goal_blocked_player",
+          "field_goal_blocked_stat"
+        ))) %>%
         dplyr::group_by(.data$play_id) %>%
         dplyr::summarise_all(coalesce_by_column) %>%
         dplyr::ungroup()

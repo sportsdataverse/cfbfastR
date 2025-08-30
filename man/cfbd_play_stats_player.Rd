@@ -89,6 +89,18 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 \item{\code{pass_breakup_player_id}: logical.}{Pass breakup player reference id.}
 \item{\code{pass_breakup_player}: logical.}{Pass breakup player name.}
 \item{\code{pass_breakup_stat}: logical.}{Pass breakup (PBU) stat.}
+\item{\code{field_goal_attempt_player_id}: character.}{Field goal attempting player reference id.}
+\item{\code{field_goal_attempt_player}: character.}{Field goal attempting player name.}
+\item{\code{field_goal_attempt_stat}: integer.}{Field goal attempt stat.}
+\item{\code{field_goal_made_player_id}: character.}{Field goal making player reference id.}
+\item{\code{field_goal_made_player}: character.}{Field goal making player name.}
+\item{\code{field_goal_made_stat}: integer.}{Field goal made stat.}
+\item{\code{field_goal_missed_player_id}: character.}{Field goal missing player reference id.}
+\item{\code{field_goal_missed_player}: character.}{Field goal missing player name.}
+\item{\code{field_goal_missed_stat}: integer.}{Field goal missed stat.}
+\item{\code{field_goal_blocked_player_id}: character.}{Field goal blocked player reference id.}
+\item{\code{field_goal_blocked_player}: character.}{Field goal blocked player name.}
+\item{\code{field_goal_blocked_stat}: integer.}{Field goal blocked stat.}
 }
 }
 \description{
@@ -97,6 +109,7 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 \examples{
 \donttest{
   try(cfbd_play_stats_player(game_id = 401110722))
+  try(cfbd_play_stats_player(year = 2023, week = 1))
 }
 }
 \seealso{
