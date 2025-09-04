@@ -19,7 +19,7 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
-#' @return [cfbd_drives()] - A data frame with 23 variables as follows:
+#' @return [cfbd_drives()] - A data frame with variables as follows:
 #' \describe{
 #'   \item{`offense`:character.}{Drive offense.}
 #'   \item{`offense_conference`:character.}{Drive offense's conference.}
