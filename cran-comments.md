@@ -7,7 +7,7 @@ This is a major release that:
 * Addresses the missing documentation for the `update_cfb_pbp()` function noted in the previous CRAN response.
 * Addresses minor functionality issues in `cfbd_play_stats_player()` function.
 * Updates the `cfbd_*()` functions to use the new College Football Data API v2. 
-* Please ignore submission with SHA: SHA: b11b098637f48f9a1cf5717d0355eeea643d3477
+* Addresses the most recent CRAN comments from the previous submission.
 
 The following functions were added:
   * `cfbd_metrics_fg_ep()`

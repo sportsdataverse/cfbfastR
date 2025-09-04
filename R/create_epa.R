@@ -16,6 +16,7 @@
 #'   \item{5. `kickoffs`:}{Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.}
 #'   \item{6. `wpa_prep`:}{Prep variables for WPA.}
 #' }
+#' @return play_df with  EPA variables added
 #' @keywords internal
 #' @importFrom stats na.omit
 #' @importFrom stats predict
@@ -476,6 +477,7 @@ create_epa <- function(play_df,
 #' @param ep_model (__model__, default `cfbfastR`'s `ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #' @param fg_mod (__model__, default `cfbfastR`'s `fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #'
+#' @return Updated expected points probabilities with FG make/miss weighted adjustment
 #' @keywords internal
 #' @importFrom mgcv predict.bam
 #' @importFrom stringr str_detect

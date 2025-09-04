@@ -22,6 +22,11 @@ epa_fg_probs(dat, current_probs, ep_model, fg_mod)
 
 \item{fg_mod}{(\strong{model}, default \code{cfbfastR}'s \code{fg_model}): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 }
+\value{
+play_df with  EPA variables added
+
+Updated expected points probabilities with FG make/miss weighted adjustment
+}
 \description{
 Adds Expected Points calculations to Play-by-Play data.frame
 }
