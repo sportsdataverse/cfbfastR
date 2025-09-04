@@ -1017,7 +1017,8 @@ add_play_counts <- function(play_df) {
     dplyr::group_by(.data$game_id) %>%
     dplyr::summarise(
       off_timeouts_na = all(is.na(.data$offense_timeouts)),
-      def_timeouts_na = all(is.na(.data$defense_timeouts))
+      def_timeouts_na = all(is.na(.data$defense_timeouts)),
+      .groups = "drop"
     )
   if (play_df_timeout_check$off_timeouts_na | play_df_timeout_check$def_timeouts_na) {
     play_df <- play_df %>%
