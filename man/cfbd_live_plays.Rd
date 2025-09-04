@@ -65,6 +65,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
    home_drives \tab integer \cr
    home_scoring_opportunities \tab integer \cr
    home_points_per_opportunity \tab numeric \cr
+   home_average_start_yard_line \tab numeric \cr
    home_plays \tab integer \cr
    home_line_yards \tab numeric \cr
    home_line_yards_per_rush \tab numeric \cr
@@ -82,6 +83,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
    home_standard_down_success_rate \tab numeric \cr
    home_passing_down_success_rate \tab numeric \cr
    home_explosiveness \tab numeric \cr
+   home_deserve_to_win \tab numeric \cr
    away_line_scores_q1 \tab integer \cr
    away_line_scores_q2 \tab integer \cr
    away_line_scores_q3 \tab integer \cr
@@ -90,6 +92,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
    away_drives \tab integer \cr
    away_scoring_opportunities \tab integer \cr
    away_points_per_opportunity \tab numeric \cr
+   away_average_start_yard_line \tab numeric \cr
    away_plays \tab integer \cr
    away_line_yards \tab numeric \cr
    away_line_yards_per_rush \tab numeric \cr
@@ -107,6 +110,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
    away_standard_down_success_rate \tab numeric \cr
    away_passing_down_success_rate \tab numeric \cr
    away_explosiveness \tab numeric \cr
+   away_deserve_to_win \tab numeric \cr
 }
 }
 \description{

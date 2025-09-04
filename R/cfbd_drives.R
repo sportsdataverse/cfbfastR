@@ -47,8 +47,8 @@
 #'   \item{`time_seconds_start`:integer.}{Seconds at drive start.}
 #'   \item{`time_minutes_end`:integer.}{Minutes at drive end.}
 #'   \item{`time_seconds_end`:integer.}{Seconds at drive end.}
-#'   \item{`time_minutes_elapsed`:double.}{DEPRECATED Minutes elapsed during drive.}
-#'   \item{`time_seconds_elapsed`:integer.}{DEPRECATED Seconds elapsed during drive.}
+#'   \item{`time_minutes_elapsed`:double.}{Minutes elapsed during drive.}
+#'   \item{`time_seconds_elapsed`:integer.}{Seconds elapsed during drive.}
 #' }
 #' @keywords Drives
 #' @importFrom jsonlite fromJSON
@@ -61,7 +61,7 @@
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_drives(2018, week = 1, team = "TCU"))
+#'   try(cfbd_drives(year=2018, week = 1, team = "TCU"))
 #'
 #'   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 #' }
@@ -120,10 +120,10 @@ cfbd_drives <- function(year,
           "time_minutes_start" = "startTime.minutes",
           "time_seconds_start" = "startTime.seconds",
           "time_minutes_end" = "endTime.minutes",
-          "time_seconds_end" = "endTime.seconds"
+          "time_seconds_end" = "endTime.seconds",
+          "time_minutes_elapsed" = "elapsed.minutes",
+          "time_seconds_elapsed" = "elapsed.seconds"
         ) %>%
-        dplyr::mutate(time_minutes_elapsed = NA,
-                      time_seconds_elapsed = NA) %>%
         janitor::clean_names()
 
       # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.

@@ -73,8 +73,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{\code{time_seconds_start}:integer.}{Seconds at drive start.}
 \item{\code{time_minutes_end}:integer.}{Minutes at drive end.}
 \item{\code{time_seconds_end}:integer.}{Seconds at drive end.}
-\item{\code{time_minutes_elapsed}:double.}{DEPRECATED Minutes elapsed during drive.}
-\item{\code{time_seconds_elapsed}:integer.}{DEPRECATED Seconds elapsed during drive.}
+\item{\code{time_minutes_elapsed}:double.}{Minutes elapsed during drive.}
+\item{\code{time_seconds_elapsed}:integer.}{Seconds elapsed during drive.}
 }
 }
 \description{
@@ -82,7 +82,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \examples{
 \donttest{
-  try(cfbd_drives(2018, week = 1, team = "TCU"))
+  try(cfbd_drives(year=2018, week = 1, team = "TCU"))
 
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 }
