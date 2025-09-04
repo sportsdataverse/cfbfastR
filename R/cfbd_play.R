@@ -147,7 +147,7 @@ cfbd_plays <- function(year = 2020,
     "playType" = play_type,
     "classification" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr::modify_url(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -304,7 +304,7 @@ cfbd_play_stats_player <- function(year = NULL,
     "statTypeId" = stat_type_id,
     "seasonType" = season_type
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr::modify_url(base_url, query = query_params)
 
   clean_df <- data.frame()
   tryCatch(
@@ -378,7 +378,7 @@ cfbd_play_stats_player <- function(year = NULL,
       colnames(df) <- gsub(" ", "_", tolower(colnames(df)))
 
       clean_df <- df %>%
-        dplyr::distinct_all() %>%
+        dplyr::distinct() %>%
         tidyr::unnest_wider("clock", names_sep = "_") %>%
         tidyr::pivot_wider(
           names_from = "stat_type",
@@ -389,7 +389,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
       clean_df[cols[!(cols %in% colnames(clean_df))]] <- NA
 
-      clean_df[clean_df=="NULL"] <- NA
+      clean_df[clean_df == "NULL"] <- NA
 
       clean_df <- clean_df %>%
         dplyr::rename(dplyr::any_of(c(
@@ -861,7 +861,7 @@ cfbd_live_plays <- function(game_id) {
   query_params <- list(
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr::modify_url(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -918,10 +918,10 @@ cfbd_live_plays <- function(game_id) {
           "ppa_per_rush" = "epa_per_rush"
         )))
 
-      home_team_df <- df_teams %>% dplyr::filter(.data$home_away =="home")
+      home_team_df <- df_teams %>% dplyr::filter(.data$home_away == "home")
       home_team_df <- home_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
       colnames(home_team_df) <- paste0("home_", colnames(home_team_df))
-      away_team_df <- df_teams %>% dplyr::filter(.data$home_away =="away")
+      away_team_df <- df_teams %>% dplyr::filter(.data$home_away == "away")
       away_team_df <- away_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
       colnames(away_team_df) <- paste0("away_", colnames(away_team_df))
 
