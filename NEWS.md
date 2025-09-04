@@ -68,6 +68,7 @@
   - Fixed `athlete_id` parameter for [```cfbd_play_stats_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.html) function and added more thorough documentation.
   - Fixed returned `position` to correct value (instead of NA) from [```cfbd_stats_season_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html)
   - Added more thorough `season_type` parameter documentation across many functions
+  - Changed behavior of [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) to substitute 3 timeouts per half when the data is missing from the API.
   
 
 # **cfbfastR v1.9.5**

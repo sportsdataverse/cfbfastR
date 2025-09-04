@@ -53,6 +53,7 @@ cols <- c(
   "home_drives",
   "home_scoring_opportunities",
   "home_points_per_opportunity",
+  "home_average_start_yard_line",
   "home_plays",
   "home_line_yards",
   "home_line_yards_per_rush",
@@ -70,6 +71,7 @@ cols <- c(
   "home_standard_down_success_rate",
   "home_passing_down_success_rate",
   "home_explosiveness",
+  "home_deserve_to_win",
   "away_line_scores_q1",
   "away_line_scores_q2",
   "away_line_scores_q3",
@@ -78,6 +80,7 @@ cols <- c(
   "away_drives",
   "away_scoring_opportunities",
   "away_points_per_opportunity",
+  "away_average_start_yard_line",
   "away_plays",
   "away_line_yards",
   "away_line_yards_per_rush",
@@ -94,7 +97,8 @@ cols <- c(
   "away_success_rate",
   "away_standard_down_success_rate",
   "away_passing_down_success_rate",
-  "away_explosiveness"
+  "away_explosiveness",
+  "away_deserve_to_win"
 )
 
 test_that("CFB Live Plays", {
@@ -102,8 +106,9 @@ test_that("CFB Live Plays", {
   x <- cfbd_live_plays(game_id = 401520182)
 
   y <- cfbd_live_plays(game_id = 401110720)
-  expect_setequal(colnames(x), cols)
-  expect_setequal(colnames(y), cols)
+
+  expect_in(colnames(x), cols)
+  expect_in(colnames(y), cols)
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

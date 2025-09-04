@@ -147,7 +147,7 @@ cfbd_plays <- function(year = 2020,
     "playType" = play_type,
     "classification" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr::modify_url(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -270,8 +270,8 @@ cfbd_plays <- function(year = 2020,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_play_stats_player(game_id = 401110722))
-#'   try(cfbd_play_stats_player(year = 2023, week = 1))
+#'   try(cfbd_play_stats_player(game_id = 401628414))
+#'   try(cfbd_play_stats_player(year = 2025, week = 1))
 #' }
 cfbd_play_stats_player <- function(year = NULL,
                                    week = NULL,
@@ -304,7 +304,7 @@ cfbd_play_stats_player <- function(year = NULL,
     "statTypeId" = stat_type_id,
     "seasonType" = season_type
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr::modify_url(base_url, query = query_params)
 
   clean_df <- data.frame()
   tryCatch(
@@ -321,8 +321,9 @@ cfbd_play_stats_player <- function(year = NULL,
         as.data.frame()
 
       cols <- c(
-        "game_id", "season", "week", "opponent", "team_score", "opponent_score",
-        "drive_id", "play_id", "period", "yards_to_goal", "down", "distance",
+        "game_id", "season", "week", "team",
+        "conference", "opponent", "team_score", "opponent_score",
+        "drive_id", "play_id", "period", "clock_minutes","clock_seconds", "yards_to_goal", "down", "distance",
         "athlete_id", "stat",
         "reception", "completion", "rush", "interception", "interception_thrown",
         "touchdown", "incompletion", "target", "fumble_recovered", "fumble_forced",
@@ -349,7 +350,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
       )
 
-      df_cols <- data.frame(matrix(NA, nrow = 0, ncol = 86))
+      df_cols <- data.frame(matrix(NA, nrow = 0, ncol = 90))
 
       names(df_cols) <- cols
 
@@ -377,6 +378,7 @@ cfbd_play_stats_player <- function(year = NULL,
       colnames(df) <- gsub(" ", "_", tolower(colnames(df)))
 
       clean_df <- df %>%
+        dplyr::distinct() %>%
         tidyr::unnest_wider("clock", names_sep = "_") %>%
         tidyr::pivot_wider(
           names_from = "stat_type",
@@ -386,6 +388,8 @@ cfbd_play_stats_player <- function(year = NULL,
       colnames(clean_df) <- gsub(" ", "_", tolower(colnames(clean_df)))
 
       clean_df[cols[!(cols %in% colnames(clean_df))]] <- NA
+
+      clean_df[clean_df == "NULL"] <- NA
 
       clean_df <- clean_df %>%
         dplyr::rename(dplyr::any_of(c(
@@ -519,10 +523,96 @@ cfbd_play_stats_player <- function(year = NULL,
           "field_goal_blocked_player_id",
           "field_goal_blocked_player",
           "field_goal_blocked_stat"
-        ))) %>%
+        )))
+
+      clean_sack_df <- clean_df %>%
+        dplyr::group_by(.data$play_id) %>%
+        dplyr::summarize(
+          sack_player = paste(unique(na.omit(.data$sack_player)), collapse = ", "),
+          sack_player_id = paste(unique(na.omit(.data$sack_player_id)), collapse = ", "),
+          .groups = "drop"
+        )
+
+
+      clean_df <- clean_df %>%
+        dplyr::select(-"sack_player", -"sack_player_id") %>%
+        dplyr::left_join(clean_sack_df, by = "play_id") %>%
         dplyr::group_by(.data$play_id) %>%
         dplyr::summarise_all(coalesce_by_column) %>%
-        dplyr::ungroup()
+        dplyr::ungroup() %>%
+        dplyr::select(dplyr::any_of(c(
+          "game_id",
+          "season",
+          "week",
+          "team",
+          "conference",
+          "opponent",
+          "team_score",
+          "opponent_score",
+          "drive_id",
+          "play_id",
+          "period",
+          "clock_minutes",
+          "clock_seconds",
+          "yards_to_goal",
+          "down",
+          "distance",
+          "reception_player_id",
+          "reception_player",
+          "reception_yds",
+          "completion_player_id",
+          "completion_player",
+          "completion_yds",
+          "rush_player_id",
+          "rush_player",
+          "rush_yds",
+          "interception_player_id",
+          "interception_player",
+          "interception_stat",
+          "interception_thrown_player_id",
+          "interception_thrown_player",
+          "interception_thrown_stat",
+          "touchdown_player_id",
+          "touchdown_player",
+          "touchdown_stat",
+          "incompletion_player_id",
+          "incompletion_player",
+          "incompletion_stat",
+          "target_player_id",
+          "target_player",
+          "target_stat",
+          "fumble_recovered_player_id",
+          "fumble_recovered_player",
+          "fumble_recovered_stat",
+          "fumble_forced_player_id",
+          "fumble_forced_player",
+          "fumble_forced_stat",
+          "fumble_player_id",
+          "fumble_player",
+          "fumble_stat",
+          "sack_player_id",
+          "sack_player",
+          "sack_stat",
+          "sack_taken_player_id",
+          "sack_taken_player",
+          "sack_taken_stat",
+          "pass_breakup_player_id",
+          "pass_breakup_player",
+          "pass_breakup_stat",
+          "field_goal_attempt_player_id",
+          "field_goal_attempt_player",
+          "field_goal_attempt_stat",
+          "field_goal_made_player_id",
+          "field_goal_made_player",
+          "field_goal_made_stat",
+          "field_goal_missed_player_id",
+          "field_goal_missed_player",
+          "field_goal_missed_stat",
+          "field_goal_blocked_player_id",
+          "field_goal_blocked_player",
+          "field_goal_blocked_stat"
+        )))
+
 
 
       clean_df <- clean_df %>%
@@ -650,102 +740,106 @@ cfbd_play_types <- function() {
 #' Can be found using the [cfbd_game_info()] function
 #' @return [cfbd_live_plays()] - A data frame with 94 columns:
 #'
-#'   |col_name                         |types     |
-#'   |:--------------------------------|:---------|
-#'   |game_id                          |integer   |
-#'   |home_team_id                     |integer   |
-#'   |home_team                        |character |
-#'   |away_team_id                     |integer   |
-#'   |away_team                        |character |
-#'   |play_id                          |character |
-#'   |home_score                       |integer   |
-#'   |away_score                       |integer   |
-#'   |period                           |integer   |
-#'   |clock                            |character |
-#'   |wall_clock                       |character |
-#'   |offense_team_id                  |integer   |
-#'   |offense_team                     |character |
-#'   |down                             |integer   |
-#'   |distance                         |integer   |
-#'   |yards_to_goal                    |integer   |
-#'   |yards_gained                     |integer   |
-#'   |play_type_id                     |integer   |
-#'   |play_type                        |character |
-#'   |ppa                              |numeric   |
-#'   |garbage_time                     |logical   |
-#'   |success                          |logical   |
-#'   |rush_pass                        |character |
-#'   |down_type                        |character |
-#'   |play_text                        |character |
-#'   |drive_id                         |character |
-#'   |drive_offense_id                 |integer   |
-#'   |drive_offense_team               |character |
-#'   |drive_defense_id                 |integer   |
-#'   |drive_defense_team               |character |
-#'   |drive_play_count                 |integer   |
-#'   |drive_yards_gained               |integer   |
-#'   |drive_start_period               |integer   |
-#'   |drive_start_clock                |character |
-#'   |drive_start_yards_to_goal        |integer   |
-#'   |drive_end_period                 |integer   |
-#'   |drive_end_clock                  |character |
-#'   |drive_end_yards_to_goal          |integer   |
-#'   |drive_duration                   |character |
-#'   |drive_scoring_opportunity        |logical   |
-#'   |drive_result                     |character |
-#'   |drive_points_gained              |integer   |
-#'   |current_clock                    |character |
-#'   |current_possession               |character |
-#'   |home_line_scores_q1              |integer   |
-#'   |home_line_scores_q2              |integer   |
-#'   |home_line_scores_q3              |integer   |
-#'   |home_line_scores_q4              |integer   |
-#'   |home_points                      |integer   |
-#'   |home_drives                      |integer   |
-#'   |home_scoring_opportunities       |integer   |
-#'   |home_points_per_opportunity      |numeric   |
-#'   |home_plays                       |integer   |
-#'   |home_line_yards                  |numeric   |
-#'   |home_line_yards_per_rush         |numeric   |
-#'   |home_second_level_yards          |integer   |
-#'   |home_second_level_yards_per_rush |numeric   |
-#'   |home_open_field_yards            |integer   |
-#'   |home_open_field_yards_per_rush   |numeric   |
-#'   |home_ppa_per_play                |numeric   |
-#'   |home_total_ppa                   |numeric   |
-#'   |home_passing_ppa                 |numeric   |
-#'   |home_ppa_per_pass                |numeric   |
-#'   |home_rushing_ppa                 |numeric   |
-#'   |home_ppa_per_rush                |numeric   |
-#'   |home_success_rate                |numeric   |
-#'   |home_standard_down_success_rate  |numeric   |
-#'   |home_passing_down_success_rate   |numeric   |
-#'   |home_explosiveness               |numeric   |
-#'   |away_line_scores_q1              |integer   |
-#'   |away_line_scores_q2              |integer   |
-#'   |away_line_scores_q3              |integer   |
-#'   |away_line_scores_q4              |integer   |
-#'   |away_points                      |integer   |
-#'   |away_drives                      |integer   |
-#'   |away_scoring_opportunities       |integer   |
-#'   |away_points_per_opportunity      |numeric   |
-#'   |away_plays                       |integer   |
-#'   |away_line_yards                  |numeric   |
-#'   |away_line_yards_per_rush         |numeric   |
-#'   |away_second_level_yards          |integer   |
-#'   |away_second_level_yards_per_rush |numeric   |
-#'   |away_open_field_yards            |integer   |
-#'   |away_open_field_yards_per_rush   |numeric   |
-#'   |away_ppa_per_play                |numeric   |
-#'   |away_total_ppa                   |numeric   |
-#'   |away_passing_ppa                 |numeric   |
-#'   |away_ppa_per_pass                |numeric   |
-#'   |away_rushing_ppa                 |numeric   |
-#'   |away_ppa_per_rush                |numeric   |
-#'   |away_success_rate                |numeric   |
-#'   |away_standard_down_success_rate  |numeric   |
-#'   |away_passing_down_success_rate   |numeric   |
-#'   |away_explosiveness               |numeric   |
+#'  |col_name                         |types     |
+#'  |:--------------------------------|:---------|
+#'  |game_id                          |integer   |
+#'  |home_team_id                     |integer   |
+#'  |home_team                        |character |
+#'  |away_team_id                     |integer   |
+#'  |away_team                        |character |
+#'  |play_id                          |character |
+#'  |home_score                       |integer   |
+#'  |away_score                       |integer   |
+#'  |period                           |integer   |
+#'  |clock                            |character |
+#'  |wall_clock                       |character |
+#'  |offense_team_id                  |integer   |
+#'  |offense_team                     |character |
+#'  |down                             |integer   |
+#'  |distance                         |integer   |
+#'  |yards_to_goal                    |integer   |
+#'  |yards_gained                     |integer   |
+#'  |play_type_id                     |integer   |
+#'  |play_type                        |character |
+#'  |ppa                              |numeric   |
+#'  |garbage_time                     |logical   |
+#'  |success                          |logical   |
+#'  |rush_pass                        |character |
+#'  |down_type                        |character |
+#'  |play_text                        |character |
+#'  |drive_id                         |character |
+#'  |drive_offense_id                 |integer   |
+#'  |drive_offense_team               |character |
+#'  |drive_defense_id                 |integer   |
+#'  |drive_defense_team               |character |
+#'  |drive_play_count                 |integer   |
+#'  |drive_yards_gained               |integer   |
+#'  |drive_start_period               |integer   |
+#'  |drive_start_clock                |character |
+#'  |drive_start_yards_to_goal        |integer   |
+#'  |drive_end_period                 |integer   |
+#'  |drive_end_clock                  |character |
+#'  |drive_end_yards_to_goal          |integer   |
+#'  |drive_duration                   |character |
+#'  |drive_scoring_opportunity        |logical   |
+#'  |drive_result                     |character |
+#'  |drive_points_gained              |integer   |
+#'  |current_clock                    |character |
+#'  |current_possession               |character |
+#'  |home_line_scores_q1              |integer   |
+#'  |home_line_scores_q2              |integer   |
+#'  |home_line_scores_q3              |integer   |
+#'  |home_line_scores_q4              |integer   |
+#'  |home_points                      |integer   |
+#'  |home_drives                      |integer   |
+#'  |home_scoring_opportunities       |integer   |
+#'  |home_points_per_opportunity      |numeric   |
+#'  |home_average_start_yard_line     |numeric   |
+#'  |home_plays                       |integer   |
+#'  |home_line_yards                  |numeric   |
+#'  |home_line_yards_per_rush         |numeric   |
+#'  |home_second_level_yards          |integer   |
+#'  |home_second_level_yards_per_rush |numeric   |
+#'  |home_open_field_yards            |integer   |
+#'  |home_open_field_yards_per_rush   |numeric   |
+#'  |home_ppa_per_play                |numeric   |
+#'  |home_total_ppa                   |numeric   |
+#'  |home_passing_ppa                 |numeric   |
+#'  |home_ppa_per_pass                |numeric   |
+#'  |home_rushing_ppa                 |numeric   |
+#'  |home_ppa_per_rush                |numeric   |
+#'  |home_success_rate                |numeric   |
+#'  |home_standard_down_success_rate  |numeric   |
+#'  |home_passing_down_success_rate   |numeric   |
+#'  |home_explosiveness               |numeric   |
+#'  |home_deserve_to_win              |numeric   |
+#'  |away_line_scores_q1              |integer   |
+#'  |away_line_scores_q2              |integer   |
+#'  |away_line_scores_q3              |integer   |
+#'  |away_line_scores_q4              |integer   |
+#'  |away_points                      |integer   |
+#'  |away_drives                      |integer   |
+#'  |away_scoring_opportunities       |integer   |
+#'  |away_points_per_opportunity      |numeric   |
+#'  |away_average_start_yard_line     |numeric   |
+#'  |away_plays                       |integer   |
+#'  |away_line_yards                  |numeric   |
+#'  |away_line_yards_per_rush         |numeric   |
+#'  |away_second_level_yards          |integer   |
+#'  |away_second_level_yards_per_rush |numeric   |
+#'  |away_open_field_yards            |integer   |
+#'  |away_open_field_yards_per_rush   |numeric   |
+#'  |away_ppa_per_play                |numeric   |
+#'  |away_total_ppa                   |numeric   |
+#'  |away_passing_ppa                 |numeric   |
+#'  |away_ppa_per_pass                |numeric   |
+#'  |away_rushing_ppa                 |numeric   |
+#'  |away_ppa_per_rush                |numeric   |
+#'  |away_success_rate                |numeric   |
+#'  |away_standard_down_success_rate  |numeric   |
+#'  |away_passing_down_success_rate   |numeric   |
+#'  |away_explosiveness               |numeric   |
+#'  |away_deserve_to_win              |numeric   |
 #'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -767,7 +861,7 @@ cfbd_live_plays <- function(game_id) {
   query_params <- list(
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr::modify_url(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -824,10 +918,10 @@ cfbd_live_plays <- function(game_id) {
           "ppa_per_rush" = "epa_per_rush"
         )))
 
-      home_team_df <- df_teams %>% dplyr::filter(.data$home_away =="home")
+      home_team_df <- df_teams %>% dplyr::filter(.data$home_away == "home")
       home_team_df <- home_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
       colnames(home_team_df) <- paste0("home_", colnames(home_team_df))
-      away_team_df <- df_teams %>% dplyr::filter(.data$home_away =="away")
+      away_team_df <- df_teams %>% dplyr::filter(.data$home_away == "away")
       away_team_df <- away_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
       colnames(away_team_df) <- paste0("away_", colnames(away_team_df))
 

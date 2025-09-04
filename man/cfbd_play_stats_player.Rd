@@ -108,8 +108,8 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 }
 \examples{
 \donttest{
-  try(cfbd_play_stats_player(game_id = 401110722))
-  try(cfbd_play_stats_player(year = 2023, week = 1))
+  try(cfbd_play_stats_player(game_id = 401628414))
+  try(cfbd_play_stats_player(year = 2025, week = 1))
 }
 }
 \seealso{
