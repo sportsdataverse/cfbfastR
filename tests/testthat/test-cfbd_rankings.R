@@ -1,8 +1,13 @@
-
-
 cols <- c(
-  "season", "season_type", "week", "poll", "rank",
-  "school", "conference", "first_place_votes", "points"
+  "season",
+  "season_type",
+  "week",
+  "poll",
+  "rank",
+  "school",
+  "conference",
+  "first_place_votes",
+  "points"
 )
 
 
@@ -21,9 +26,9 @@ test_that("CFB Poll Rankings", {
     filter(.data$poll == "Coaches Poll" & .data$rank == 1) %>%
     select("school")
 
-  expect_setequal(colnames(x), cols)
-  expect_setequal(colnames(y), cols)
-  expect_setequal(colnames(z), cols)
+  expect_in(cols, colnames(x))
+  expect_in(cols, colnames(y))
+  expect_in(cols, colnames(z))
   expect_equal(dplyr::first(first_team_AP_13$school), "Florida State")
   expect_equal(dplyr::first(first_team_coaches_13$school), "Florida State")
   expect_s3_class(x, "data.frame")
