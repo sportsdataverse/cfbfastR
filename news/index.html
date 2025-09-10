@@ -133,7 +133,16 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.0.0" id="cfbfastr-v200"><strong>cfbfastR v2.0.0</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-v200"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.0.0" id="cfbfastr-v200"><strong>cfbfastR v2.0.0</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-v200"></a></h2><p class="text-muted">CRAN release: 2025-09-09</p>
+<div class="section level4">
+<h4 id="breaking-changes-to-loading-functions-2-0-0">Breaking Changes to Loading Functions<a class="anchor" aria-label="anchor" href="#breaking-changes-to-loading-functions-2-0-0"></a></h4>
+<ul><li>All <code>load_cfb_*()</code> functions now use <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp" class="external-link"><code>sportsdataverse-data</code> releases</a> or the <a href="https://api.collegefootballdata.com/" class="external-link">CollegeFootballData.com API</a> as their underlying data source to remain in compliance with CFBD API terms and conditions (See <strong>Note</strong> below).</li>
+<li>Updated <code><a href="../reference/load_cfb_pbp.html">load_cfb_pbp()</a></code> dataset to include various team- and game-level ID’s and flags that were not being included, like <code>home_team_id</code>, <code>away_team_id</code>, <code>season_type</code>, <code>venue_id</code>, some <code>drive_*</code> columns, a half-dozen player stat columns, etc. Essentially, all the leg-work users have undoubtedly had to do while using these datasets is mostly just included now. <strong>The downside:</strong> this means end users need to check their pipelines which build off these datasets to ensure behavior is as expected and all your joins are doing what is intended.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="now-upgraded-to-the-cfbd-v2-api-2-0-0">Now upgraded to the CFBD v2 API<a class="anchor" aria-label="anchor" href="#now-upgraded-to-the-cfbd-v2-api-2-0-0"></a></h4>
+<p><em>Special thanks are in order for our newest contributor, Brad Hill (<a href="https://github.com/bradisbrad" class="external-link">@bradisbrad</a>) for providing most of the v2 upgrade via his first PR to <a href="https://cfbfastr.sportsdataverse.org/" class="external-link">cfbfastR</a>!! 🙌🏽 👑 🥇 Your contributions are most appreciated by the community.</em></p>
+<p><strong>Note: The <a href="https://collegefootballdata.com/api-tiers" class="external-link">free-tier API key</a> for the CFBD v2 API has a strict 1k calls/month limit, so plan your workflows accordingly! If you receive errors mentioning <code>r Request failed [429]</code>, you have most likely run out of API calls for the month in your membership tier.</strong></p>
 <ul><li>
 <p>Added all new <code>cfbd_*()</code> functions accommodated by the new College Football Data API v2. This includes the following functions:</p>
 <ul><li>Added <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.html"><code>cfbd_metrics_fg_ep()</code></a> function to access the new field goal expected points added metric from the API.</li>
@@ -193,7 +202,6 @@
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html"><code>cfbd_team_talent()</code></a> function</li>
 <li>Updated <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.html"><code>cfbd_venues()</code></a> function</li>
 </ul></li>
-<li><p>All <code>load_cfb_*()</code> functions now use <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp" class="external-link"><code>sportsdataverse-data</code> releases</a> or the <a href="https://api.collegefootballdata.com/" class="external-link">CollegeFootballData.com API</a> as their underlying data source to remain in compliance with CFBD API terms and conditions.</p></li>
 <li>
 <p>Fixed the following functions and/or documentation:</p>
 <ul><li>Documentation <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html"><code>cfbd_team_info()</code></a> addressing <a href="https://github.com/sportsdataverse/cfbfastR/issues/97" class="external-link">#97</a></li>
@@ -204,8 +212,10 @@
 <li>Fixed returned <code>position</code> to correct value (instead of NA) from <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html"><code>cfbd_stats_season_player()</code></a>
 </li>
 <li>Added more thorough <code>season_type</code> parameter documentation across many functions</li>
+<li>Changed behavior of <a href="https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html"><code>cfbd_pbp_data()</code></a> to substitute 3 timeouts per half when the data is missing from the API.</li>
 </ul></li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.9.5" id="cfbfastr-v195"><strong>cfbfastR v1.9.5</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-v195"></a></h2>
 <ul><li>fixed breaking bug related to <code>stringi</code> v1.8 update in <a href="https://cfbfastr.sportsdataverse.org/reference/cfbd_pbp_data.html" class="external-link"><code>cfbd_play_pbp_data()</code></a> EPA and WPA processing</li>
@@ -399,9 +409,9 @@
 <li>
 <a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_games.html"><code>cfbd_games</code></a>,</li>
 <li>
-<a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html"><code>cfbd_plays</code></a>,<br></li>
+<a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html"><code>cfbd_plays</code></a>,</li>
 <li>
-<a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html"><code>cfbd_recruiting</code></a>,<br></li>
+<a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html"><code>cfbd_recruiting</code></a>,</li>
 <li>
 <a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html"><code>cfbd_stats</code></a>,</li>
 <li><a href="https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html"><code>cfbd_teams</code></a></li>

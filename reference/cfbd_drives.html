@@ -205,7 +205,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>cfbd_drives()</code> - A data frame with 23 variables as follows:</p><dl><dt><code>offense</code>:character.</dt>
+    <p><code>cfbd_drives()</code> - A data frame with variables as follows:</p><dl><dt><code>offense</code>:character.</dt>
 <dd><p>Drive offense.</p></dd>
 
 <dt><code>offense_conference</code>:character.</dt>
@@ -284,10 +284,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <dd><p>Seconds at drive end.</p></dd>
 
 <dt><code>time_minutes_elapsed</code>:double.</dt>
-<dd><p>DEPRECATED Minutes elapsed during drive.</p></dd>
+<dd><p>Minutes elapsed during drive.</p></dd>
 
 <dt><code>time_seconds_elapsed</code>:integer.</dt>
-<dd><p>DEPRECATED Seconds elapsed during drive.</p></dd>
+<dd><p>Seconds elapsed during drive.</p></dd>
 
 
 </dl></div>
@@ -295,9 +295,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_drives</span><span class="op">(</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_drives</span><span class="op">(</span>year<span class="op">=</span><span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Drives data from CollegeFootballData.com ────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-30 00:55:08 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-09-10 03:03:31 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 25 × 28</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    drive_id      game_id offense  offense_conference defense  defense_conference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
@@ -321,7 +321,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_drives</span><span class="op">(</span><span class="fl">2018</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, defense_conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Drives data from CollegeFootballData.com ────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-30 00:55:08 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-09-10 03:03:31 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 259 × 28</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    drive_id      game_id offense   offense_conference defense defense_conference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>

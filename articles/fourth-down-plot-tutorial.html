@@ -213,7 +213,7 @@ between 45-90 seconds to run.</p>
 <span>  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 28.896 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 32.567 sec elapsed</span></span></code></pre>
 <p>Next, we’ll need to get the coaching information, so we’ll use the
 <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -240,7 +240,7 @@ functions</p>
 <code class="sourceCode R"><span><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">coaches</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"offense_play"</span> <span class="op">=</span> <span class="st">"school"</span>, <span class="st">"year"</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in dplyr::inner_join(., coaches, by = c(offense_play = "school", : Detected an unexpected many-to-many relationship between `x` and `y`.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Row 160192 of `x` matches multiple rows in `y`.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Row 160134 of `x` matches multiple rows in `y`.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Row 101 of `y` matches multiple rows in `x`.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> If a many-to-many relationship is expected, set `relationship =</span></span>
 <span><span class="co">##   "many-to-many"` to silence this warning.</span></span></code></pre>

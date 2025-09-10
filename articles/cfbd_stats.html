@@ -293,12 +293,17 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <span>      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,<span class="fl">60</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="co"># add alt-text to the logos in the table</span></span>
+<span>  <span class="co"># this is important for accessibility and for people using screen readers</span></span>
+<span>  </span>
 <span>  <span class="fu">text_transform</span><span class="op">(</span></span>
 <span>    locations <span class="op">=</span> <span class="fu">cells_body</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"logo"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    fn <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">logo</span><span class="op">)</span><span class="op">{</span></span>
-<span>      <span class="fu">web_image</span><span class="op">(</span>url<span class="op">=</span> <span class="va">logo</span><span class="op">)</span></span>
+<span>      </span>
+<span>     <span class="fu">web_image</span><span class="op">(</span>url<span class="op">=</span> <span class="va">logo</span>, height <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span></span>
 <span>  <span class="op">}</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">tab_source_note</span><span class="op">(</span>source_note <span class="op">=</span> <span class="fu">md</span><span class="op">(</span><span class="st">"**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v1.1.0"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">tab_source_note</span><span class="op">(</span>source_note <span class="op">=</span> <span class="fu">md</span><span class="op">(</span><span class="st">"**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">gt_theme_538</span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning: Since gt v0.9.0, the `colors` argument has been deprecated.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">•</span> Please use the `fn` argument instead.</span></span>
@@ -828,7 +833,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 </tr>
 </tbody>
 <tfoot class="gt_sourcenotes"><tr>
-<td class="gt_sourcenote" colspan="8"><span class="gt_from_md"><strong>Table:</strong> @SaiemGilani | <strong>Data:</strong> @CFB_Data with @cfbfastR v1.1.0</span></td>
+<td class="gt_sourcenote" colspan="8"><span class="gt_from_md"><strong>Table:</strong> @SaiemGilani | <strong>Data:</strong> @CFB_Data with @cfbfastR v2.0.0</span></td>
     </tr></tfoot>
 </table>
 </div>
@@ -840,7 +845,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Stat categories for CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-08-30 00:58:04 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-09-10 03:06:20 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 38 × 1</span></span></span>
 <span><span class="co">##    category          </span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>
