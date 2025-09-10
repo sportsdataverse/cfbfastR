@@ -29,7 +29,7 @@ We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com
 
 # Regression Methods
 
-<a href="https://imgur.com/rOjdyUC"><img src="https://i.imgur.com/rOjdyUCl.png" title="Figure: @ChrisAlbon"/></a>
+<a href="https://imgur.com/rOjdyUC"><img src="https://i.imgur.com/rOjdyUCl.png" title="Figure: @ChrisAlbon"  alt="Figure: @ChrisAlbon"/></a>
 
 **Figure 1**: Regression \| [Chris Albon](https://machinelearningflashcards.com/) (\@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
 

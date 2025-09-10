@@ -37,13 +37,17 @@ pbp <- cfbfastR::load_cfb_pbp(yr)
 We can use the ```cfbd_team_info()``` function to pull information about each FBS school including their logo, color, and abbreviation.  We're going to take a subset of the cfb_team_info data and clean it up for use in our graphs later on.
 
 ```{r cfbd_teams_info}
-team_info = cfbfastR::cfbd_team_info(year = yr, only_fbs = FALSE)
+team_info <- cfbfastR::cfbd_team_info(year = yr, only_fbs = FALSE)
 
-team_colors_logos = team_info %>% 
+team_colors_logos <- team_info %>% 
   select(school, abbreviation, color, logo, alt_color) %>%
   group_by(school) %>%
   slice(1) %>% 
-  ungroup()
+  ungroup() %>% 
+  dplyr::mutate(
+    color = ifelse(.data$color == "#null", "#808080", .data$color),
+    alt_color = ifelse(.data$alt_color == "#null", "#808080", .data$alt_color)
+  )
 ```
 
 ## Basic overview of all FBS Offenses
@@ -51,7 +55,7 @@ team_colors_logos = team_info %>%
 Let's create a basic overview of offensive EPA per play.  We'll start by creating a dataframe listing all 130 FBS teams from best to worst based on their average EPA per play across all games played.  
 
 ```{r off_epa_all_team, message=FALSE, warning=FALSE}
-off_epa = pbp %>%
+off_epa <- pbp %>%
   filter(rush == 1 | pass == 1) %>% 
   group_by(offense_play, offense_conference) %>%
   summarize(off_epa = mean(EPA, na.rm = TRUE)) %>%
@@ -89,19 +93,19 @@ off_epa %>%
 So far, so good, but we came here to build a moving average chart!  Let's proceed by defining the team of interest and the moving average window by editing the cell block below.  I like to use 100 plays when looking at a full season to smooth out as much of the variability as possible, but for a mid-season view 50 plays or even 25 plays might be more appropriate.  Play around!
 
 ```{r define_team_ma}
-team = "Oklahoma"
-ma_plays = 100
+team <- "Oklahoma"
+ma_plays <- 100
 ```
 
 Now that we have defined our team of interest, we can prepare the data for this specific team.  We're going to create a dataframe called ```team_off``` that is subsetted from our full season play by play data.  This new dataframe will be specific to our team of interest and it will add fields for the moving average and the play count.
 
 ```{r define_team_off}
-team_off = pbp %>%
-  filter(offense_play == team) %>%
+team_off <- pbp %>%
+  filter(offense_play == {{team}}) %>%
   filter(rush == 1 | pass == 1) %>%
   filter(!is.na(EPA)) %>%
   mutate(cu_epa=cummean(EPA),  #this field is not used in this vignette but it could be substituted later to graph the cumulative EPA
-         ma_epa=rollapply(EPA,ma_plays,mean,align='right',fill=NA),
+         ma_epa = rollapply(EPA,ma_plays,mean,align='right',fill=NA),
          play_count = row_number(),
          week_team = paste0("WK", ifelse(week > 9, week, paste0(0,week)), " ", defense_play))
 
@@ -110,14 +114,14 @@ team_off = pbp %>%
 We're going to graph different background tiles for each opponent so we need to define where one opponent stops and another one begins.  
 
 ```{r define_background_tile_info}
-team_off_play_start = team_off %>%
+team_off_play_start <- team_off %>%
   group_by(week_team) %>%
   slice(1) %>%
   select(defense_play, week_team, play_count) %>%
   rename(play_start = play_count,
          team = defense_play)
 
-team_off_play_stop = team_off %>%
+team_off_play_stop <- team_off %>%
   group_by(week_team) %>%
   filter(row_number() == n()) %>%
   select(week_team, play_count) %>%
@@ -127,7 +131,7 @@ team_off_play_stop = team_off %>%
 We're going to add the opponent's logo in the middle of each background tile, so we need to define the midpoint of each background tile as well.
 
 ```{r define_midpoint}
-team_off_start_stop = team_off_play_start %>%
+team_off_start_stop <- team_off_play_start %>%
   left_join(team_off_play_stop, by = "week_team") %>%
   mutate(midpoint = (play_start + play_stop)/2)
 ```
@@ -135,13 +139,13 @@ team_off_start_stop = team_off_play_start %>%
 We need to make a simple vector that says how many total plays are in our ```team_off``` dataframe.
 
 ```{r play_count_vector}
-play_count = max(team_off$play_count)
+play_count <- max(team_off$play_count)
 ```
 
 Next we are going to update our background tile dataframe to include the color info that we pulled earlier.  FCS color data is not available, so we will default those to gray.  
 
 ```{r start_stop_add_colors}
-team_off_start_stop = team_off_start_stop %>% 
+team_off_start_stop <- team_off_start_stop %>% 
   left_join(team_colors_logos, by = c("team" = "school")) %>% 
   mutate(color = replace_na(color,"gray")) %>%
   select(team, week_team, play_start, play_stop, midpoint, color)
@@ -157,16 +161,16 @@ names(team_colors) <- as.character(team_off_start_stop$team)
 Now we need to pull in an alternate source of team logos that includes FCS schools.  Then we'll join that new table of logos with our background tile dataframe.
 
 ```{r pull_logos, message=FALSE}
-all_logos = read_csv("https://raw.githubusercontent.com/natemanzo/cfb_data/master/_team_logos.csv")
+all_logos <- read_csv("https://raw.githubusercontent.com/natemanzo/cfb_data/master/_team_logos.csv")
 
-team_off_start_stop = team_off_start_stop %>% 
+team_off_start_stop <- team_off_start_stop %>%
   left_join(all_logos, by = c("team" = "school"))
 ```
 
 Almost done!  The last thing we need is your signature to go in the caption of the graph.  You can use your twitter handle or your real name here.
 
 ```{r define_signature}
-signature = "@cfbNate"
+signature <- "@cfbNate"
 ```
 
 ## IT'S GRAPHIN' TIME\*
@@ -177,7 +181,7 @@ The beginning of the line graph will depend on the ```ma_plays``` variable that 
 
 ```{r graph_the_graph, fig.width=7, fig.height=6, fig.align="center", fig.alt="Offensive EPA Rolling Average", warning=FALSE}
 graph_team_off = ggplot() +
-  geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, fill = team, ymin = -.5, ymax = .9), color = "gray90") +
+  geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, fill = team, ymin = -.7, ymax = .9), color = "gray90") +
   geom_rect(data = team_off_start_stop, aes(xmin = play_start, xmax = play_stop, ymin = .8, ymax = 1), color = "gray90", fill = "white") +
   scale_fill_manual(values = team_colors) +
   geom_hline(yintercept = quantile(off_epa$off_epa), linetype = 2, color = "gray20", alpha = .8) +

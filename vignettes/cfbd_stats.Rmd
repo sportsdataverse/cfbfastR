@@ -71,7 +71,7 @@ df_team_game_adv <- df_team_game_adv %>%
 
 ### **Get Season Statistics by Player**
 
-```{r passing_stats_table_ex, fig.alt="A table showing passing statistics for LSU in 2019 and Florida State in 2013"}
+```{r passing_stats_table_ex, fig.alt="A table showing passing statistics for LSU in 2019 and Florida State in 2013" }
 source("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R")
 passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2019, team = "LSU", category = "passing"),
@@ -118,12 +118,17 @@ passing_df %>% gt() %>%
       domain = c(-60,60)
     )
   ) %>%
+  # add alt-text to the logos in the table
+  # this is important for accessibility and for people using screen readers
+  
   text_transform(
     locations = cells_body(c("logo")),
     fn = function(logo){
-      web_image(url= logo)
+      
+     web_image(url= logo, height = 30)
+
   }) %>%
-  tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v1.1.0")) %>%
+  tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0")) %>%
   gt_theme_538(table.width = px(550))
 
 ```
