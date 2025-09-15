@@ -1,4 +1,15 @@
 # **cfbfastR v2.0.0**
+### Breaking Changes to Loading Functions
+
+* All `load_cfb_*()` functions now use [```sportsdataverse-data``` releases](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp) or the [CollegeFootballData.com API](https://api.collegefootballdata.com/) as their underlying data source to remain in compliance with CFBD API terms and conditions (See **Note** below).
+* Updated `load_cfb_pbp()` dataset to include various team- and game-level ID's and flags that were not being included, like `home_team_id`, `away_team_id`, `season_type`, `venue_id`, some `drive_*` columns, a half-dozen player stat columns, etc. Essentially, all the leg-work users have undoubtedly had to do while using these datasets is mostly just included now. **The downside:** this means end users need to check their pipelines which build off these datasets to ensure behavior is as expected and all your joins are doing what is intended.
+
+### Now upgraded to the CFBD v2 API
+
+_Special thanks are in order for our newest contributor, Brad Hill (@bradisbrad) for providing most of the v2 upgrade via his first PR to [cfbfastR](https://cfbfastr.sportsdataverse.org/)!! 🙌🏽 👑 🥇 Your contributions are most appreciated by the community._
+
+**Note: The [free-tier API key](https://collegefootballdata.com/api-tiers) for the CFBD v2 API has a strict 1k calls/month limit, so plan your workflows accordingly! If you receive errors mentioning ```r Request failed [429]```, you have most likely run out of API calls for the month in your membership tier.**
+
 * Added all new `cfbd_*()` functions accommodated by the new College Football Data API v2. This includes the following functions:
 
   - Added [```cfbd_metrics_fg_ep()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.html) function to access the new field goal expected points added metric from the API.
@@ -58,8 +69,6 @@
   - Updated [```cfbd_team_talent()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html) function
   - Updated [```cfbd_venues()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.html) function
 
-* All `load_cfb_*()` functions now use [```sportsdataverse-data``` releases](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfbfastR_cfb_pbp) or the [CollegeFootballData.com API](https://api.collegefootballdata.com/) as their underlying data source to remain in compliance with CFBD API terms and conditions.
-
 * Fixed the following functions and/or documentation:
   - Documentation [```cfbd_team_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.html) addressing #97
   - Ensuring [```cfbd_stats_game_advanced()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html) returns an empty data frame when there are no results
@@ -69,7 +78,6 @@
   - Fixed returned `position` to correct value (instead of NA) from [```cfbd_stats_season_player()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.html)
   - Added more thorough `season_type` parameter documentation across many functions
   - Changed behavior of [```cfbd_pbp_data()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html) to substitute 3 timeouts per half when the data is missing from the API.
-  
 
 # **cfbfastR v1.9.5**
 * fixed breaking bug related to `stringi` v1.8 update in [```cfbd_play_pbp_data()```](https://cfbfastr.sportsdataverse.org/reference/cfbd_pbp_data.html) EPA and WPA processing
@@ -82,7 +90,7 @@
 
 # **cfbfastR v1.9.3**
 
-* Add division parameter to the following functions: 
+* Add division parameter to the following functions:
   - [```cfbd_game_info()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.html)
   - [```cfbd_plays()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.html)
   - [```cfbd_drives()```](https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.html)
@@ -147,8 +155,8 @@
 
 # **cfbfastR v1.6.4**
 
-* Changed options to revert to old options on exit of function. 
-* Removed check_github functions. 
+* Changed options to revert to old options on exit of function.
+* Removed check_github functions.
 
 # **cfbfastR v1.6.3**
 
@@ -224,14 +232,14 @@
 
 #### **Add significant documentation to the package**
 
-* Added mini-vignettes pertaining to CFB Data functionality:   
+* Added mini-vignettes pertaining to CFB Data functionality:
   - [```cfbd_betting```](https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.html),
   - [```cfbd_games```](https://cfbfastR.sportsdataverse.org/articles/cfbd_games.html),
-  - [```cfbd_plays```](https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html),    
-  - [```cfbd_recruiting```](https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html),    
-  - [```cfbd_stats```](https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html), 
+  - [```cfbd_plays```](https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.html),
+  - [```cfbd_recruiting```](https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.html),
+  - [```cfbd_stats```](https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.html),
   - [```cfbd_teams```](https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.html)
-  
+
 * [Introductory vignette stub](https://cfbfastR.sportsdataverse.org/articles/intro.html) added
 
 #### **ESPN/CFBD metrics function variable return standardization**
@@ -244,11 +252,11 @@
 
 #### **Add loading from Data Repository functionality**
 
-* Added [```load_cfb_pbp()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.html) functions. Pretty much cherry-picking the `nflfastR` methodology of loading data from the [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data) repository. 
+* Added [```load_cfb_pbp()```](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.html) and [```update_cfb_db()```](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.html) functions. Pretty much cherry-picking the `nflfastR` methodology of loading data from the [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data) repository.
 
 #### **Add support for parallel processing and progress updates**
 
-* Added [```furrr```](https://furrr.futureverse.org/index.html), [```future```](https://future.futureverse.org/), and [```progressr```](https://progressr.futureverse.org/) dependencies to the package to allow for parallel processing of the play-by-play data with progress updates if desired. 
+* Added [```furrr```](https://furrr.futureverse.org/index.html), [```future```](https://future.futureverse.org/), and [```progressr```](https://progressr.futureverse.org/) dependencies to the package to allow for parallel processing of the play-by-play data with progress updates if desired.
 
 # **cfbfastR v1.0.0**
 
@@ -264,7 +272,7 @@
 
 The [CollegeFootballData API](https://collegefootballdata.com/) now requires an API key, here's a quick run-down:
 
-* To get an API key, follow the directions here: [College Football Data Key Registration.](https://collegefootballdata.com/key) 
+* To get an API key, follow the directions here: [College Football Data Key Registration.](https://collegefootballdata.com/key)
 
 * Using the key: You can save the key for consistent usage by adding `CFBD_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html), a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations)
 ```r
@@ -278,4 +286,4 @@ Save the script and restart your RStudio session, by clicking `Session` (in betw
 Sys.setenv(CFBD_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
-* Added [API Key methods](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html). If you forget to set your environment variable, functions will give you a warning and ask for one. 
+* Added [API Key methods](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html). If you forget to set your environment variable, functions will give you a warning and ask for one.
