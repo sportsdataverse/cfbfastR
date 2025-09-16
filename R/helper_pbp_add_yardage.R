@@ -86,11 +86,23 @@ add_yardage <- function(play_df) {
           stringi::stri_extract_first_regex(.data$play_text, "(?<= for a loss of)[^,]+"), "\\d+"
         )),
         .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("pass to", ignore_case = TRUE)) &
+          stringr::str_detect(.data$play_text, regex("for a loss of", ignore_case = TRUE)) ~
+          -1 * as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for a loss of)[^,]+"), "\\d+"
+          )),
+        .data$pass == 1 &
           stringr::str_detect(.data$play_text, regex("pass complete to", ignore_case = TRUE)) &
           stringr::str_detect(.data$play_text, regex(" for \\d+ y\\w*ds?", ignore_case = TRUE)) ~
         as.numeric(stringr::str_extract(
           stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
         )),
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("pass to", ignore_case = TRUE)) &
+          stringr::str_detect(.data$play_text, regex(" for \\d+ y\\w*ds?", ignore_case = TRUE)) ~
+          as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
+          )),
         .data$pass == 1 &
           stringr::str_detect(.data$play_text, regex("Yd pass", ignore_case = TRUE)) ~
           as.numeric(stringr::str_extract(
@@ -99,6 +111,32 @@ add_yardage <- function(play_df) {
         .data$pass == 1 &
           stringr::str_detect(.data$play_text, regex("pass complete to", ignore_case = TRUE)) ~
           yards_gained, # 2024 has games that don't have yards in the PBP text but do have them in the yards_gained field.
+
+        # 2025 has some plays list "PASSER pass" at the very end of the play_text
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("pass \\(\\w", ignore_case = TRUE)) &
+          stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) ~ as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
+          )),
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("pass$", ignore_case = TRUE)) &
+          stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) ~ as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
+          )),
+        # 2025 has some plays that have yards in the PBP but no listed passer. the format is the same though
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) ~ as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
+          )),
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) &
+          stringr::str_detect(.data$play_text, regex("for a loss of", ignore_case = TRUE)) ~
+          -1 * as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for a loss of)[^,]+"), "\\d+"
+          )),
+        .data$pass == 1 &
+          stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) &
+          stringr::str_detect(.data$play_text, regex("for no gain", ignore_case = TRUE)) ~ 0,
         TRUE ~ NA_real_
       )
     )
