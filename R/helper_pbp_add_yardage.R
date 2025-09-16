@@ -132,7 +132,7 @@ add_yardage <- function(play_df) {
           stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) &
           stringr::str_detect(.data$play_text, regex("for a loss of", ignore_case = TRUE)) ~
           -1 * as.numeric(stringr::str_extract(
-            stringi::stri_extract_first_regex(.data$play_text, "(?<= for)[^,]+"), "\\d+"
+            stringi::stri_extract_first_regex(.data$play_text, "(?<= for a loss of)[^,]+"), "\\d+"
           )),
         .data$pass == 1 &
           stringr::str_detect(.data$play_text, regex("^to ", ignore_case = FALSE)) &
