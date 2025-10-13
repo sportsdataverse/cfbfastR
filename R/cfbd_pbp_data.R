@@ -586,8 +586,15 @@ cfbd_pbp_data <- function(year,
     play_df <- purrr::map_dfr(
       g_ids,
       function(x){
-        play_df <- play_df %>%
-          dplyr::filter(.data$game_id == x) %>%
+        # Note: this should be changed to a complete data validation test in the future
+        # filter out games with less than 10 plays to avoid issues with EPA/WPA models
+        game_plays <- play_df %>%
+          dplyr::filter(.data$game_id == x)
+        if (nrow(game_plays) < 20) {
+          cli::cli_alert_danger(glue::glue("Skipping game_id {x} with only {nrow(game_plays)} plays"))
+          return(NULL)
+        }
+        game_plays <- game_plays %>%
           penalty_detection() %>%
           add_play_counts() %>%
           clean_pbp_dat() %>%
@@ -599,7 +606,7 @@ cfbd_pbp_data <- function(year,
           # create_wpa_betting() %>%
           create_wpa_naive(wp_model = wp_model)
         p(sprintf("x=%s", as.integer(x)))
-        return(play_df)
+        return(game_plays)
       }, ...)
     # } else{
     #   play_df <- purrr::map_dfr(
