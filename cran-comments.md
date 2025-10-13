@@ -1,30 +1,10 @@
 ## Release summary
 
-This is a major release that:
+This is a minor release that:
 
-* Addresses the noted documentation issues which caused the previous release to be archived by CRAN.
-* Addresses the error from the previous CRAN submission today though does not change official version number.
-* Addresses the missing documentation for the `update_cfb_pbp()` function noted in the previous CRAN response.
-* Addresses minor functionality issues in `cfbd_play_stats_player()` function.
-* Updates the `cfbd_*()` functions to use the new College Football Data API v2. 
-* Addresses the most recent CRAN comments from the previous submission.
+* Fixes a bug in `cfbd_pbp_data()` where play-by-play data for some games were not as expected.
+* Improves `add_yardage()` where plays with missing yardage values were not being handled correctly.
 
-The following functions were added:
-  * `cfbd_metrics_fg_ep()`
-  * `cfbd_metrics_wepa_team_season()`
-  * `cfbd_metrics_wepa_players_passing()`
-  * `cfbd_metrics_wepa_players_rushing()`
-  * `cfbd_metrics_wepa_players_kicking()`
-  * `cfbd_ratings_fpi()`
-  * `cfbd_live_scoreboard()`
-  * `cfbd_live_plays()`
-  * `cfbd_api_key_info()`
-
-There are minor changes to the existing `cfbd_*()` functions under the hood. See `NEWS.md` for more details.
-
-While I believe I updated all twitter links in the `README.md` to non-redirecting links, they do give status 403
-when you try to access them without authentication. If this behavior is too problematic and against policy, please let me know and I will
-make the changes to the `README.md`.
 
 ## R CMD check results
 

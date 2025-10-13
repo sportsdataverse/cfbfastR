@@ -1,3 +1,9 @@
+# **cfbfastR v2.1.0**
+
+* Fixes a bug in `cfbd_pbp_data()` where play-by-play data for some games were not as expected.
+* Improves `add_yardage()` where plays with missing yardage values were not being handled correctly.
+
+
 # **cfbfastR v2.0.0**
 ### Breaking Changes to Loading Functions
 

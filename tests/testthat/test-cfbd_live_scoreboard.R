@@ -51,8 +51,8 @@ test_that("CFB Live Scoreboard", {
   x <- cfbd_live_scoreboard(division='fbs', conference = "B12")
 
   y <- cfbd_live_scoreboard(division='fbs')
-  expect_in(colnames(x), cols)
-  expect_in(colnames(y), cols)
+  expect_in(cols, colnames(x))
+  expect_in(cols, colnames(y))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })
