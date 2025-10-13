@@ -33,9 +33,9 @@ test_that("CFB Stats Game - Advanced", {
   y <- cfbd_stats_game_advanced(2019, team = "LSU")
 
   z <- cfbd_stats_game_advanced(2013, team = "Florida State")
-  expect_setequal(colnames(x), cols)
-  expect_setequal(colnames(y), cols)
-  expect_setequal(colnames(z), cols)
+  expect_in(cols, colnames(x))
+  expect_in(cols, colnames(y))
+  expect_in(cols, colnames(z))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")

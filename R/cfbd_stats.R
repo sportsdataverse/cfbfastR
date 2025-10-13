@@ -266,6 +266,8 @@ cfbd_stats_game_advanced <- function(year,
       colnames(df) <- gsub("_Start", "_start", colnames(df))
       colnames(df) <- gsub(".db", "_db", colnames(df))
       colnames(df) <- gsub("Id", "_id", colnames(df))
+      colnames(df) <- gsub("seasonType", "season_type", colnames(df))
+
 
 
       df <- df %>%

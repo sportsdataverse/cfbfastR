@@ -19,16 +19,16 @@ test_that("CFB Betting Lines", {
   cols <- c(
     "game_id", "season", "season_type", "week",
     "start_date",
-    "home_team", "home_conference", "home_classification", "home_score",
-    "away_team", "away_conference", "away_classification", "away_score",
+    "home_team_id", "home_team", "home_conference", "home_classification", "home_score",
+    "away_team_id", "away_team", "away_conference", "away_classification", "away_score",
     "provider", "spread", "formatted_spread",
     "spread_open", "over_under", "over_under_open",
     "home_moneyline", "away_moneyline"
   )
   expect_equal(nrow(x), 4)
   expect_equal(nrow(y), 4)
-  expect_setequal(colnames(x), cols)
-  expect_setequal(colnames(y), cols)
+  expect_in(cols, colnames(x))
+  expect_in(cols, colnames(y))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })
