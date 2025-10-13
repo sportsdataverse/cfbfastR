@@ -11,7 +11,7 @@ ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdatav
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -466,22 +466,22 @@ shared variables</p><dl><dt><code>matchup</code>: character.</dt>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ──────────────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-09-10 03:05:04 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 70 × 60</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ──────────────────────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-13 15:48:36 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 60 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup          matchup_short season type  slug  game_id game_uid game_date </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> NC State Wolfpa… NCSU @ WAKE     <span style="text-decoration: underline;">2</span>025 regu… regu… 401754… s:20~l:… 2025-09-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Indiana State S… INST @ IU       <span style="text-decoration: underline;">2</span>025 regu… regu… 401752… s:20~l:… 2025-09-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Colgate Raiders… COLG @ SYR      <span style="text-decoration: underline;">2</span>025 regu… regu… 401754… s:20~l:… 2025-09-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Colorado Buffal… COLO @ HOU      <span style="text-decoration: underline;">2</span>025 regu… regu… 401756… s:20~l:… 2025-09-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Kansas State Wi… KSU @ ARIZ      <span style="text-decoration: underline;">2</span>025 regu… regu… 401756… s:20~l:… 2025-09-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> New Mexico Lobo… UNM @ UCLA      <span style="text-decoration: underline;">2</span>025 regu… regu… 401752… s:20~l:… 2025-09-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Oregon Ducks at… ORE @ NU        <span style="text-decoration: underline;">2</span>025 regu… regu… 401752… s:20~l:… 2025-09-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Clemson Tigers … CLEM @ GT       <span style="text-decoration: underline;">2</span>025 regu… regu… 401754… s:20~l:… 2025-09-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Oklahoma Sooner… OU @ TEM        <span style="text-decoration: underline;">2</span>025 regu… regu… 401752… s:20~l:… 2025-09-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Wisconsin Badge… WIS @ ALA       <span style="text-decoration: underline;">2</span>025 regu… regu… 401752… s:20~l:… 2025-09-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 60 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> New Mexico Stat… NMSU @ LIB      <span style="text-decoration: underline;">2</span>025 regu… regu… 401757… s:20~l:… 2025-10-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Arkansas State … ARST @ USA      <span style="text-decoration: underline;">2</span>025 regu… regu… 401761… s:20~l:… 2025-10-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Florida Interna… FIU @ WKU       <span style="text-decoration: underline;">2</span>025 regu… regu… 401757… s:20~l:… 2025-10-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Delaware Blue H… DEL @ JVST      <span style="text-decoration: underline;">2</span>025 regu… regu… 401757… s:20~l:… 2025-10-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> UTEP Miners at … UTEP @ SHSU     <span style="text-decoration: underline;">2</span>025 regu… regu… 401757… s:20~l:… 2025-10-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Tulsa Golden Hu… TLSA @ ECU      <span style="text-decoration: underline;">2</span>025 regu… regu… 401762… s:20~l:… 2025-10-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Louisville Card… LOU @ MIA       <span style="text-decoration: underline;">2</span>025 regu… regu… 401754… s:20~l:… 2025-10-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Nebraska Cornhu… NEB @ MINN      <span style="text-decoration: underline;">2</span>025 regu… regu… 401752… s:20~l:… 2025-10-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> San José State … SJSU @ USU      <span style="text-decoration: underline;">2</span>025 regu… regu… 401760… s:20~l:… 2025-10-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> North Carolina … UNC @ CAL       <span style="text-decoration: underline;">2</span>025 regu… regu… 401754… s:20~l:… 2025-10-17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 50 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 52 more variables: attendance &lt;int&gt;, date_valid &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   play_by_play_available &lt;lgl&gt;, home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team_abb &lt;chr&gt;, home_team_id &lt;chr&gt;, home_team_location &lt;chr&gt;,</span></span>
@@ -492,8 +492,8 @@ shared variables</p><dl><dt><code>matchup</code>: character.</dt>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_schedule</span><span class="op">(</span><span class="fl">2021</span>, week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ─────────────────────────────────── <span style="font-style: italic;">cfbfastR 2.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-09-10 03:05:05 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ─────────────────────────────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-13 15:48:36 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup          matchup_short season type  slug  game_id game_uid game_date </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
