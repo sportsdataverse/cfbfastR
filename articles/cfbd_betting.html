@@ -192,23 +192,17 @@
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span>, <span class="va">cfbfastR</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Installing package into '/home/runner/work/_temp/Library'</span></span>
-<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
-<pre><code><span><span class="co">## also installing the dependencies 'V8', 'reactR', 'bigD', 'bitops', 'juicyjuice', 'reactable'</span></span></code></pre>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## gt installed</span></span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># pacman::p_load_current_gh("sportsdataverse/cfbfastR")</span></span></code></pre></div>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span>, <span class="va">cfbfastR</span><span class="op">)</span></span>
+<span><span class="co"># pacman::p_load_current_gh("sportsdataverse/cfbfastR")</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-betting-information-from-games">
 <strong>Get Betting information from games</strong><a class="anchor" aria-label="anchor" href="#get-betting-information-from-games"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_betting_lines.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">12</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-13 15:49:33 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-14 15:17:42 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 23</span></span></span>
 <span><span class="co">##     game_id season season_type  week start_date           home_team_id home_team</span></span>
 <span><span class="co">##       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
@@ -222,11 +216,11 @@
 <span><span class="co">## <span style="color: #949494;">#   provider &lt;chr&gt;, spread &lt;dbl&gt;, formatted_spread &lt;chr&gt;, spread_open &lt;lgl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   over_under &lt;dbl&gt;, over_under_open &lt;lgl&gt;, home_moneyline &lt;lgl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   away_moneyline &lt;lgl&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 7 OTs LSU at TAMU</span></span>
 <span><span class="fu"><a href="../reference/cfbd_betting_lines.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">13</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-13 15:49:33 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-14 15:17:43 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 23</span></span></span>
 <span><span class="co">##     game_id season season_type  week start_date           home_team_id home_team</span></span>
 <span><span class="co">##       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
