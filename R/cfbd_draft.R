@@ -223,8 +223,8 @@ cfbd_draft_picks <- function(year = NULL,
   base_url <- "https://api.collegefootballdata.com/draft/picks"
   query_params <- list(
     "year" = year,
-    "nflTeam" = nfl_team,
-    "college" = college,
+    "team" = nfl_team,
+    "school" = college,
     "conference" = conference,
     "position" = position
   )
