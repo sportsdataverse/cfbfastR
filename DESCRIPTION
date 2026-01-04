@@ -58,6 +58,7 @@ Suggests:
     DBI,
     ggplot2,
     ggrepel,
+    patrick,
     qs (>= 0.25.1),
     rmarkdown,
     RSQLite,
