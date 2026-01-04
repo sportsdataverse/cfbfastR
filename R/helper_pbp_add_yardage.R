@@ -52,6 +52,11 @@ add_yardage <- function(play_df) {
   play_df$yds_sacked <- NA_real_
   play_df$yds_penalty <- NA_real_
 
+  if (!("cleaned_text" %in% colnames(play_df))) {
+    play_df <- play_df %>%
+      clean_play_text()
+  }
+
   play_df <- play_df %>%
     dplyr::mutate(
       yds_rushed = dplyr::case_when(
