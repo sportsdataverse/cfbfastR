@@ -55,28 +55,54 @@ add_yardage <- function(play_df) {
   play_df <- play_df %>%
     dplyr::mutate(
       yds_rushed = dplyr::case_when(
-        .data$rush == 1 & stringr::str_detect(.data$cleaned_text, regex("run|rush for no gain", ignore_case = TRUE)) ~ 0,
+        .data$rush == 1 & stringr::str_detect(.data$cleaned_text, regex("run for no gain", ignore_case = TRUE)) ~ 0,
         .data$rush == 1 &
-          stringr::str_detect(.data$cleaned_text, regex("run|rush for a loss of", ignore_case = TRUE)) ~
+          stringr::str_detect(.data$cleaned_text, regex("run for a loss of", ignore_case = TRUE)) ~
         -1 * as.numeric(stringr::str_extract(
-          stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= run|rush for a loss of)[^,]+"), "\\d+"
+          stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= run for a loss of)[^,]+"), "\\d+"
         )),
         .data$rush == 1 &
-          stringr::str_detect(.data$cleaned_text, regex("run|rush for \\d+ y.*ds? loss", ignore_case = TRUE)) ~
+          stringr::str_detect(.data$cleaned_text, regex("run for \\d+ y.*ds? loss", ignore_case = TRUE)) ~
           -1 * as.numeric(stringr::str_extract(
-            stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= run|rush for)[^,]+"), "\\d+"
+            stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= run for)[^,]+"), "\\d+"
           )),
         .data$rush == 1 &
-          stringr::str_detect(.data$cleaned_text, regex("run|rush for", ignore_case = TRUE)) ~
+          stringr::str_detect(.data$cleaned_text, regex("run for", ignore_case = TRUE)) ~
         as.numeric(stringr::str_extract(
-          stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= run|rush for)[^,]+"), "\\d+"
+          stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= run for)[^,]+"), "\\d+"
         )),
         .data$rush == 1 &
-          stringr::str_detect(.data$cleaned_text, regex("yd run|rush", ignore_case = TRUE)) ~
+          stringr::str_detect(.data$cleaned_text, regex("yd run", ignore_case = TRUE)) ~
         as.numeric(
           stringr::str_remove(
-            stringr::str_extract(.data$cleaned_text, regex("\\d{0,2} Yd Run|Rush", ignore_case = TRUE)),
-            regex("yd run|rush", ignore_case = TRUE)
+            stringr::str_extract(.data$cleaned_text, regex("\\d{0,2} yd run", ignore_case = TRUE)),
+            regex("yd run", ignore_case = TRUE)
+          )
+        ),
+
+        # same regexes with rush instead
+        .data$rush == 1 & stringr::str_detect(.data$cleaned_text, regex("rush for no gain", ignore_case = TRUE)) ~ 0,
+        .data$rush == 1 &
+          stringr::str_detect(.data$cleaned_text, regex("rush for a loss of", ignore_case = TRUE)) ~
+        -1 * as.numeric(stringr::str_extract(
+          stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= rush for a loss of)[^,]+"), "\\d+"
+        )),
+        .data$rush == 1 &
+          stringr::str_detect(.data$cleaned_text, regex("rush for \\d+ y.*ds? loss", ignore_case = TRUE)) ~
+          -1 * as.numeric(stringr::str_extract(
+            stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= rush for)[^,]+"), "\\d+"
+          )),
+        .data$rush == 1 &
+          stringr::str_detect(.data$cleaned_text, regex("rush for", ignore_case = TRUE)) ~
+        as.numeric(stringr::str_extract(
+          stringi::stri_extract_first_regex(.data$cleaned_text, "(?<= rush for)[^,]+"), "\\d+"
+        )),
+        .data$rush == 1 &
+          stringr::str_detect(.data$cleaned_text, regex("yd rush", ignore_case = TRUE)) ~
+        as.numeric(
+          stringr::str_remove(
+            stringr::str_extract(.data$cleaned_text, regex("\\d{0,2} yd rush", ignore_case = TRUE)),
+            regex("yd rush", ignore_case = TRUE)
           )
         ),
         TRUE ~ NA_real_
