@@ -57,7 +57,7 @@ game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TR
   filter(down > 0) %>%
   interp_TimeSecsRem()
 
-game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week)
+game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week, season_type = "regular")
 ```
 
 We'll also use the ```cfbd_team_info()``` function to pull the color and logo information and add it to the game info. We'll also add in a `result` column that is the score difference between the home and the away teams that we'll use later.
