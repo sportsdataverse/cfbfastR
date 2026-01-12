@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 2.1.0
+Version: 2.2.0
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut")),
     person("Akshay", "Easwaran", , "akeaswaran@me.com", role = "aut"),

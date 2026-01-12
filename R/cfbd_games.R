@@ -67,7 +67,7 @@ NULL
 #' **Get results information from games.**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param home_team (*String* optional): Home D-I Team
 #' @param away_team (*String* optional): Away D-I Team
@@ -129,7 +129,7 @@ NULL
 
 cfbd_game_info <- function(year,
                            week = NULL,
-                           season_type = "regular",
+                           season_type = "both",
                            team = NULL,
                            home_team = NULL,
                            away_team = NULL,

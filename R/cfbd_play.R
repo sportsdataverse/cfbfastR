@@ -189,7 +189,7 @@ cfbd_plays <- function(year = 2020,
 #' Can be found using the [cfbd_player_info()] function.
 #' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
-#' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
 #' \describe{
 #'   \item{`play_id`: character.}{Referencing play id.}
@@ -279,7 +279,7 @@ cfbd_play_stats_player <- function(year = NULL,
                                    game_id = NULL,
                                    athlete_id = NULL,
                                    stat_type_id = NULL,
-                                   season_type = "regular") {
+                                   season_type = "both") {
 
   # Validation ----
   validate_api_key()
