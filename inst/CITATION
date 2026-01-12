@@ -1,0 +1,23 @@
+year <- sprintf("%s", sub("-.*", "", meta$Date))
+note <- sprintf("R package version %s", meta$Version)
+
+citHeader("To cite the cfbfastR R package in publications, use:")
+
+citEntry(entry = "Article",
+         author = personList(
+         as.person("Saiem Gilani"),
+         as.person("Akshay Easwaran"),
+         as.person("Jared Lee"),
+         as.person("Eric Hess")),
+         title = "cfbfastR: Access College Football Play by Play Data",
+         url = c("https://cfbfastR.sportsdataverse.org/"),
+         DOI = c("10.32614/CRAN.package.cfbfastR"),
+         journal = "CRAN: Contributed Packages",
+         publisher = "The R Foundation",
+         year = 2021,
+         note = note,
+         textVersion = paste(
+    "Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2021). cfbfastR: Access College Football Play by Play Data.",
+    "Retrieved from https://cfbfastR.sportsdataverse.org/", "doi: 10.32614/CRAN.package.cfbfastR",  sep=" "
+  )
+)

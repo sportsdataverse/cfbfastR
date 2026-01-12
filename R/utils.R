@@ -111,9 +111,6 @@ is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 #' @usage lhs \%>\% rhs
 NULL
 
-#' @keywords internal
-"_PACKAGE"
-
 #' @importFrom Rcpp getRcppVersion
 #' @importFrom RcppParallel defaultNumThreads
 NULL
