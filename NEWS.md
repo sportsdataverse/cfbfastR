@@ -1,3 +1,8 @@
+# **cfbfastR v2.2.0**
+
+* Fixes a bug in `validate_week()` utility function where some inputs were not being handled correctly (i.e. week 16). Fixes trickle down to `cfbd_pbp_data()` and other functions.
+* Default value for `season_type` parameter in `cfbd_game_info()` and `cfbd_play_stats_player()` function changed from "regular" to "both" to align with other functions in the package.
+
 # **cfbfastR v2.1.0**
 
 * Fixes a bug in `cfbd_pbp_data()` where play-by-play data for some games were not as expected.

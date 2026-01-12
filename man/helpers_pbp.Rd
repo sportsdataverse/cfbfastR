@@ -8,6 +8,7 @@
 \alias{clean_drive_dat}
 \alias{prep_epa_df_after}
 \alias{clean_drive_info}
+\alias{clean_play_text}
 \alias{add_player_cols}
 \alias{add_yardage}
 \alias{clean_pbp_dat}
@@ -21,6 +22,8 @@ clean_drive_dat(play_df)
 prep_epa_df_after(dat)
 
 clean_drive_info(drive_df)
+
+clean_play_text(play_df)
 
 add_player_cols(pbp)
 
@@ -173,6 +176,11 @@ The original \code{drive_df} with the following columns appended to it:
 \item{\code{drive_id}: Returned as \code{drive_id} from original variable \code{drive_id}}{.}
 \item{\code{pts_drive}: End result of the drive}{.}
 \item{\code{scoring}: Logical flag for if drive was a scoring drive updated}{.}
+}
+
+The original \code{play_df} with the following columns appended to it:
+\describe{
+\item{\code{cleaned_text}: \code{play_text} with miscellanous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.}{.}
 }
 
 The original \code{pbp} with the following columns appended to it:
@@ -329,6 +337,11 @@ Cleans CFB (D-I) Drive-By-Drive Data to create \code{pts_drive} column. Requires
 \item{\code{drive_result}: End result of the drive}{.}
 \item{\code{scoring}: Logical flag for if drive was a scoring drive}{.}
 \item{\code{game_id}: Unique game identifier}{.}
+}
+
+Cleans CFB play-by-play text to be compliant with existing play-by-play parsing. Generally not recommended for standalone use. This method exists due to ESPN PBP changes midway through the 2025 season.
+\describe{
+\item{\code{play_text}: Returned as \code{play_text}}{.}
 }
 
 Cleans CFB (D-I) player Data to create player name columns. Requires the following columns be present:

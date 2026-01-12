@@ -595,6 +595,7 @@ cfbd_pbp_data <- function(year,
           return(NULL)
         }
         game_plays <- game_plays %>%
+          clean_play_text() %>%
           penalty_detection() %>%
           add_play_counts() %>%
           clean_pbp_dat() %>%
@@ -800,8 +801,6 @@ cfbd_pbp_data <- function(year,
 
   return(play_df)
 }
-
-
 
 #' **Series of functions to help clean the play-by-play data for analysis**
 #' @name helpers_pbp
@@ -2145,4 +2144,36 @@ clean_drive_info <- function(drive_df) {
     dplyr::arrange(.data$game_id, .data$drive_id)
 
   return(clean_drive)
+}
+
+
+#' @rdname helpers_pbp
+#'
+#' @param play_df (*data.frame* required) Plays dataframe pulled from API via the `cfbd_play()` or within the `cfbd_pbp_data()` function.
+#' @details Cleans CFB play-by-play text to be compliant with existing play-by-play parsing. Generally not recommended for standalone use. This method exists due to ESPN PBP changes midway through the 2025 season.
+#' \describe{
+#' \item{`play_text`: Returned as `play_text`}{.}
+#' }
+#' @return The original `play_df` with the following columns appended to it:
+#' \describe{
+#' \item{`cleaned_text`: `play_text` with miscellanous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.}{.}
+#' }
+#' @keywords internal
+#' @importFrom rlang .data
+#' @importFrom stringr str_replace
+#' @importFrom dplyr mutate
+#' @export
+#'
+
+clean_play_text <- function(play_df) {
+  play_df <- play_df %>%
+    dplyr::mutate(
+      cleaned_text = stringr::str_replace(.data$play_text, "^\\(\\d{1,2}:\\d{2}\\)\\s+", ""),
+      cleaned_text = stringr::str_replace(.data$cleaned_text, "\\s(short|deep)\\s", " "),
+      cleaned_text = stringr::str_replace(.data$cleaned_text, "\\s(left|middle|right)\\s", " "),
+      cleaned_text = stringr::str_replace(.data$cleaned_text, "\\s*No Huddle-Shotgun\\s+", ""),
+      cleaned_text = stringr::str_replace(.data$cleaned_text, "No Huddle-?", ""),
+      cleaned_text = stringr::str_replace(.data$cleaned_text, "\\s*Shotgun\\s+", ""),
+      cleaned_text = stringr::str_replace(.data$cleaned_text, "\\s+", " "),
+    )
 }
