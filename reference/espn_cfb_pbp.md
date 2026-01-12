@@ -34,7 +34,7 @@ Saiem Gilani
    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #> Request failed [404]. Retrying in 1 seconds...
 #> Request failed [404]. Retrying in 3.1 seconds...
-#> 2026-01-12 06:34:13.135902: Invalid arguments or no play-by-play data for 401282614 available!
+#> 2026-01-12 12:21:49.073116: Invalid arguments or no play-by-play data for 401282614 available!
 #> Error in espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE) : 
 #>   object 'plays_df' not found
  # }

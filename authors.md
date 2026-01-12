@@ -3,7 +3,7 @@
 ## Authors
 
 - **[Saiem Gilani](https://twitter.com/saiemgilani)**. Maintainer,
-  author.
+  author. [](https://orcid.org/0000-0002-7194-9067)
 
 - **[Akshay Easwaran](https://twitter.com/akeaswaran)**. Author.
 
@@ -36,16 +36,20 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/sportsdataverse/cfbfastR/blob/main/DESCRIPTION)
+[`inst/CITATION`](https://github.com/sportsdataverse/cfbfastR/blob/main/inst/CITATION)
 
-Gilani S, Easwaran A, Lee J, Hess E (2026). *cfbfastR: Access College
-Football Play by Play Data*. R package version 2.2.0,
-<https://cfbfastR.sportsdataverse.org/>.
+Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2021).
+cfbfastR: Access College Football Play by Play Data. Retrieved from
+https://cfbfastR.sportsdataverse.org/ doi:
+10.32614/CRAN.package.cfbfastR
 
-    @Manual{,
-      title = {cfbfastR: Access College Football Play by Play Data},
+    @Article{,
       author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
-      year = {2026},
-      note = {R package version 2.2.0},
+      title = {cfbfastR: Access College Football Play by Play Data},
       url = {https://cfbfastR.sportsdataverse.org/},
+      doi = {10.32614/CRAN.package.cfbfastR},
+      journal = {CRAN: Contributed Packages},
+      publisher = {The R Foundation},
+      year = {2021},
+      note = {R package version 2.2.0},
     }

@@ -106,7 +106,7 @@ Other CFBD Players:
 # \donttest{
    try(cfbd_player_returning(year = 2019, team = "Florida State"))
 #> ── Returning production data from CollegeFootballData.com ──── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:33:35 UTC
+#> ℹ Data updated: 2026-01-12 12:21:14 UTC
 #> # A tibble: 1 × 15
 #>   season team         conference total_ppa total_passing_ppa total_receiving_ppa
 #>    <int> <chr>        <chr>          <dbl>             <dbl>               <dbl>

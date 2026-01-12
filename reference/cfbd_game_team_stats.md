@@ -399,7 +399,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:32:57 UTC
+#> ℹ Data updated: 2026-01-12 12:20:37 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
@@ -407,12 +407,12 @@ Other CFBD Games:
 #>  2 401403923 Ole Miss   SEC        away      LSU      SEC                     20
 #>  3 401403939 Arkansas   SEC        home      LSU      SEC                     10
 #>  4 401403939 LSU        SEC        away      Arkansas SEC                     13
-#>  5 401403873 Southern   SWAC       away      LSU      SEC                     17
-#>  6 401403873 LSU        SEC        home      Southern SWAC                    65
-#>  7 401403963 Texas A&M  SEC        home      LSU      SEC                     38
-#>  8 401403963 LSU        SEC        away      Texas A… SEC                     23
-#>  9 401403885 LSU        SEC        home      Mississ… SEC                     31
-#> 10 401403885 Mississip… SEC        away      LSU      SEC                     16
+#>  5 401403963 Texas A&M  SEC        home      LSU      SEC                     38
+#>  6 401403963 LSU        SEC        away      Texas A… SEC                     23
+#>  7 401403885 LSU        SEC        home      Mississ… SEC                     31
+#>  8 401403885 Mississip… SEC        away      LSU      SEC                     16
+#>  9 401403867 Florida S… ACC        home      LSU      SEC                     24
+#> 10 401403867 LSU        SEC        away      Florida… ACC                     23
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -423,20 +423,20 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:32:58 UTC
+#> ℹ Data updated: 2026-01-12 12:20:37 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
 #>  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
 #>  2 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
-#>  3 332990052 Florida S… ACC        home      NC State ACC                     49
-#>  4 332990052 NC State   ACC        away      Florida… ACC                     17
-#>  5 333060052 Florida S… ACC        home      Miami    ACC                     41
-#>  6 333060052 Miami      ACC        away      Florida… ACC                     14
-#>  7 333200052 Florida S… ACC        home      Syracuse ACC                     59
-#>  8 333200052 Syracuse   ACC        away      Florida… ACC                      3
-#>  9 333340057 Florida    SEC        home      Florida… ACC                      7
-#> 10 333340057 Florida S… ACC        away      Florida  SEC                     37
+#>  3 332450221 Pittsburgh ACC        home      Florida… ACC                     13
+#>  4 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
+#>  5 332990052 Florida S… ACC        home      NC State ACC                     49
+#>  6 332990052 NC State   ACC        away      Florida… ACC                     17
+#>  7 333060052 Florida S… ACC        home      Miami    ACC                     41
+#>  8 333060052 Miami      ACC        away      Florida… ACC                     14
+#>  9 333130154 Florida S… ACC        away      Wake Fo… ACC                     59
+#> 10 333130154 Wake Fore… ACC        home      Florida… ACC                      3
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

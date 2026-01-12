@@ -61,7 +61,7 @@ espn_cfb_calendar(year = NULL, groups = NULL)
 # \donttest{
   try(espn_cfb_calendar(2021))
 #> ── Calendar Data from ESPN ─────────────────────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:34:08 UTC
+#> ℹ Data updated: 2026-01-12 12:21:44 UTC
 #> # A tibble: 17 × 8
 #>    season season_type    label  alternate_label detail week  start_date end_date
 #>    <chr>  <chr>          <chr>  <chr>           <chr>  <chr> <chr>      <chr>   

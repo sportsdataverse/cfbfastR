@@ -166,10 +166,13 @@ package in publications, use:
 BibTex Citation
 
 ``` bibtex
-@misc{gilani_et_al_2021_cfbfastr,
+@article{gilani_et_al_2021_cfbfastr,
   author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
-  title = {cfbfastR: The SportsDataverse's R Package for College Football Data.},
+  title = {cfbfastR: Access College Football Play by Play Data},
   url = {https://cfbfastR.sportsdataverse.org/},
+  doi = {10.32614/CRAN.package.cfbfastR},
+  journal = {CRAN: Contributed Packages},
+  publisher = {The R Foundation},
   year = {2021}
 }
 ```

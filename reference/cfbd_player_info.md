@@ -100,7 +100,7 @@ Other CFBD Players:
 # \donttest{
   try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
 #> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:33:35 UTC
+#> ℹ Data updated: 2026-01-12 12:21:14 UTC
 #> # A tibble: 1 × 12
 #>   athlete_id team       name  first_name last_name weight height jersey position
 #>   <chr>      <chr>      <chr> <chr>      <chr>      <int>  <int>  <int> <chr>   
@@ -110,7 +110,7 @@ Other CFBD Players:
 
   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
 #> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:33:35 UTC
+#> ℹ Data updated: 2026-01-12 12:21:14 UTC
 #> # A tibble: 2 × 12
 #>   athlete_id team    name     first_name last_name weight height jersey position
 #>   <chr>      <chr>   <chr>    <chr>      <chr>      <int>  <int>  <int> <chr>   

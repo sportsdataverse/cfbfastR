@@ -381,7 +381,7 @@ Saiem Gilani
 # \donttest{
   try(espn_cfb_player_stats(athlete_id = 530308, year = 2013))
 #> ── CFB Player Season stats from ESPN.com ───────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:34:14 UTC
+#> ℹ Data updated: 2026-01-12 12:21:50 UTC
 #> # A tibble: 1 × 335
 #>   athlete_id athlete_uid    athlete_guid athlete_type sdr   first_name last_name
 #>   <chr>      <chr>          <chr>        <chr>        <chr> <chr>      <chr>    
@@ -395,7 +395,7 @@ Saiem Gilani
 #> #   flag_x_country_flag <chr>, position_id <chr>, position_name <chr>, …
   try(espn_cfb_player_stats(athlete_id = 4360799, year = 2022))
 #> ── CFB Player Season stats from ESPN.com ───────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:34:14 UTC
+#> ℹ Data updated: 2026-01-12 12:21:50 UTC
 #> # A tibble: 1 × 340
 #>   athlete_id athlete_uid    athlete_guid athlete_type sdr   first_name last_name
 #>   <chr>      <chr>          <chr>        <chr>        <chr> <chr>      <chr>    

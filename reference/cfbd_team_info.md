@@ -162,7 +162,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_info(conference = "SEC"))
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:34:00 UTC
+#> ℹ Data updated: 2026-01-12 12:21:36 UTC
 #> # A tibble: 16 × 29
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
@@ -190,7 +190,7 @@ Other CFBD Teams:
 
   try(cfbd_team_info(conference = "Ind"))
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:34:01 UTC
+#> ℹ Data updated: 2026-01-12 12:21:37 UTC
 #> # A tibble: 2 × 29
 #>   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>     <int> <chr>     <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
@@ -204,7 +204,7 @@ Other CFBD Teams:
 
   try(cfbd_team_info(year = 2019))
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 06:34:01 UTC
+#> ℹ Data updated: 2026-01-12 12:21:37 UTC
 #> # A tibble: 130 × 29
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     

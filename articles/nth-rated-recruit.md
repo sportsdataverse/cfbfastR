@@ -61,7 +61,7 @@ all.recruits <- purrr::map2_dfr(
 tictoc::toc()
 ```
 
-    ## 8.262 sec elapsed
+    ## 9.232 sec elapsed
 
 ``` r
 dplyr::glimpse(all.recruits)
