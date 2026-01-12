@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,7 +146,7 @@
 <span>  game_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  athlete_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  stat_type_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  season_type <span class="op">=</span> <span class="st">"regular"</span></span>
+<span>  season_type <span class="op">=</span> <span class="st">"both"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -182,7 +182,7 @@ Can be found using the <code><a href="cfbd_play_stats_types.html">cfbd_play_stat
 
 
 <dt id="arg-season-type">season_type<a class="anchor" aria-label="anchor" href="#arg-season-type"></a></dt>
-<dd><p>(<em>String</em> default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason</p></dd>
+<dd><p>(<em>String</em> default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -390,19 +390,19 @@ Can be found using the <code><a href="cfbd_play_stats_types.html">cfbd_play_stat
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other CFBD PBP:
-<code><a href="cfbd_live_plays.html">cfbd_live_plays</a>()</code>,
-<code><a href="cfbd_pbp_data.html">cfbd_pbp_data</a>()</code>,
-<code><a href="cfbd_play_stats_types.html">cfbd_play_stats_types</a>()</code>,
-<code><a href="cfbd_play_types.html">cfbd_play_types</a>()</code>,
-<code><a href="cfbd_plays.html">cfbd_plays</a>()</code></p></div>
+<code><a href="cfbd_live_plays.html">cfbd_live_plays()</a></code>,
+<code><a href="cfbd_pbp_data.html">cfbd_pbp_data()</a></code>,
+<code><a href="cfbd_play_stats_types.html">cfbd_play_stats_types()</a></code>,
+<code><a href="cfbd_play_types.html">cfbd_play_types()</a></code>,
+<code><a href="cfbd_plays.html">cfbd_plays()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_play_stats_player</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628414</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Play-level player data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-14 15:15:48 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Play-level player data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.2.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-01-12 06:33:14 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 132 × 70</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id season  week team     conference opponent team_score opponent_score</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -424,8 +424,8 @@ Can be found using the <code><a href="cfbd_play_stats_types.html">cfbd_play_stat
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   completion_yds &lt;int&gt;, rush_player_id &lt;chr&gt;, rush_player &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   rush_yds &lt;int&gt;, interception_player_id &lt;chr&gt;, interception_player &lt;chr&gt;, …</span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_play_stats_player</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Play-level player data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-14 15:16:09 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Play-level player data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.2.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-01-12 06:33:33 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,306 × 70</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id season  week team    conference opponent  team_score opponent_score</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -458,7 +458,7 @@ Can be found using the <code><a href="cfbd_play_stats_types.html">cfbd_play_stat
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

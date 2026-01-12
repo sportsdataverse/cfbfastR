@@ -1,0 +1,844 @@
+# 
+
+# **cfbfastR**
+
+The goal of [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) is
+to provide the community with an R package for working with CFB data. It
+is an R API wrapper around <https://collegefootballdata.com/>. Beyond
+data aggregation and tidying ease, one of the multitude of services that
+[**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) provides is for
+benchmarking open-source expected points and win probability metrics.
+
+## **Installation**
+
+You can install the CRAN version of
+[**`cfbfastR`**](https://CRAN.R-project.org/package=cfbfastR) with:
+
+``` r
+install.packages("cfbfastR")
+```
+
+You can install the released version of
+[**`cfbfastR`**](https://github.com/sportsdataverse/cfbfastR/) from
+[GitHub](https://github.com/sportsdataverse/cfbfastR) with:
+
+``` r
+# You can install using the pacman package using the following code:
+if (!requireNamespace('remotes', quietly = TRUE)){
+  install.packages('remotes', repos = "https://cloud.r-project.org")
+}
+remotes::install_github("sportsdataverse/cfbfastR")
+```
+
+## **Breaking Changes**
+
+[**Full News on
+Releases**](https://cfbfastR.sportsdataverse.org/news/index.html)
+
+#### **College Football Data API Keys**
+
+The [CollegeFootballData API](https://collegefootballdata.com/) now
+requires an API key, here’s a quick run-down:
+
+- To get an API key, follow the directions here: [College Football Data
+  Key Registration.](https://collegefootballdata.com/key)
+
+- Using the key: You can save the key for consistent usage by adding
+  `CFBD_API_KEY=YOUR-API-KEY-HERE` to your .Renviron file (easily
+  accessed via
+  [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
+  Run
+  [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
+  a new script will pop open named `.Renviron`, **THEN** paste the
+  following in the new script that pops up (with**out** quotations)
+
+``` r
+CFBD_API_KEY = YOUR-API-KEY-HERE
+```
+
+Save the script and restart your RStudio session, by clicking `Session`
+(in between `Plots` and `Build`) and click `Restart R` (there also
+exists the shortcut `Ctrl + Shift + F10` to restart your session). If
+set correctly, from then on you should be able to use any of the `cfbd_`
+functions without any other changes.
+
+- For less consistent usage: At the beginning of every session or within
+  an R environment, save your API key as the environment variable
+  `CFBD_API_KEY` (with quotations) using a command like the following.
+
+``` r
+Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
+```
+
+## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
+
+[![X (formerly Twitter)
+Follow](https://img.shields.io/twitter/follow/cfbfastR?style=for-the-badge&logo=x&label=%40cfbfastR&color=eee&link=https%3A%2F%2Fx.com%2FcfbfastR)](https://x.com/cfbfastR)
+[![Twitter
+Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
+
+[![GitHub
+stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20cfbfastR&maxAge=2592000)](https://github.com/sportsdataverse/cfbfastR/stargazers/)
+
+## **Our Authors**
+
+- [Saiem Gilani](https://x.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge)](https://x.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
+
+- [Akshay Easwaran](https://x.com/akeaswaran)
+  [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
+  [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
+
+- [Jared Lee](https://x.com/JaredDLee)
+  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+  [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
+
+- [Eric Hess](https://x.com/arbitanalytics)
+  [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
+  [![@ehess](https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge)](https://github.com/ehess)
+
+# **Our Contributors (they’re awesome)**
+
+- [Nate Manzo](https://x.com/cfbnate)
+  [![@cfbnate](https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge)](https://x.com/cfbnate)
+  [![@natemanzo](https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge)](https://github.com/natemanzo)
+
+- [Michael Egle](https://x.com/deceptivespeed_)
+  [![@deceptivespeed\_](https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=x&style=for-the-badge)](https://x.com/deceptivespeed_)
+  [![@michaelegle](https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge)](https://github.com/michaelegle)
+
+- [Jason DeLoach](https://x.com/CFBNumbers)
+  [![@CFBNumbers](https://img.shields.io/twitter/follow/CFBNumbers?color=blue&label=%40CFBNumbers&logo=x&style=for-the-badge)](https://x.com/CFBNumbers)
+  [![@CFBNumbers](https://img.shields.io/github/followers/CFBNumbers?color=eee&logo=Github&style=for-the-badge)](https://github.com/CFBNumbers)
+
+- [Tej Seth](https://x.com/tejfbanalytics)
+  [![@Tejseth41](https://img.shields.io/twitter/follow/Tejseth41?color=blue&label=%40Tejseth41&logo=x&style=for-the-badge)](https://x.com/tejfbanalytics)
+  [![@tejseth](https://img.shields.io/github/followers/tejseth?color=eee&logo=Github&style=for-the-badge)](https://github.com/tejseth)
+
+- [Conor McQuiston](https://x.com/ConorMcQ5)
+  [![@ConorMcQ5](https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge)](https://x.com/ConorMcQ5)
+  [![@mcqconor](https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge)](https://github.com/mcqconor)
+
+- [Tan Ho](https://x.com/_TanHo)
+  [![@\_TanHo](https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=x&style=for-the-badge)](https://x.com/_TanHo)
+  [![@tanho63](https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge)](https://github.com/tanho63)
+
+- [Keegan Abdoo](https://x.com/KeeganAbdoo)
+  [![@KeeganAbdoo](https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=x&style=for-the-badge)](https://x.com/KeeganAbdoo)
+  [![@keegan-abdoo](https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge)](https://github.com/keegan-abdoo)
+
+- [Matt Spencer](https://x.com/Maatspencer)
+  [![@Maatspencer](https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=x&style=for-the-badge)](https://x.com/Maatspencer)
+  [![@Maatspencer](https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge)](https://github.com/Maatspencer)
+
+- [Sebastian Carl](https://x.com/mrcaseb)
+  [![@mrcaseb](https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=x&style=for-the-badge)](https://x.com/mrcaseb)
+  [![@mrcaseb](https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge)](https://github.com/mrcaseb)
+
+- [John Edwards](https://x.com/John_B_Edwards)
+  [![@John_B_Edwards](https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=x&style=for-the-badge)](https://x.com/John_B_Edwards)
+  [![@john-b-edwards](https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge)](https://github.com/john-b-edwards)
+
+- [Brad Hill](https://x.com/bradisblogging)
+  [![@bradisblogging](https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=X&style=for-the-badge)](https://x.com/bradisblogging)
+  [![@bradisbrad](https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge)](https://github.com/bradisbrad)
+
+# **Authors Emeritus - `cfbscrapR`\[archived\]**
+
+- [Meyappan Subbiah](https://x.com/msubbaiah1)
+  [![@msubbaiah1](https://img.shields.io/twitter/follow/msubbaiah1?color=blue&label=%40msubbaiah1&logo=x&style=for-the-badge)](https://x.com/msubbaiah1)
+  [![@meysubb](https://img.shields.io/github/followers/meysubb?color=eee&logo=Github&style=for-the-badge)](https://github.com/meysubb)
+
+- [Parker Fleming](https://x.com/statsowar)
+  [![@statsowar](https://img.shields.io/twitter/follow/statsowar?color=blue&label=%40statsowar&logo=x&style=for-the-badge)](https://x.com/statsowar)
+  [![@spfleming](https://img.shields.io/github/followers/spfleming?color=eee&logo=Github&style=for-the-badge)](https://github.com/spfleming)
+
+# **Special Thanks**
+
+- [Nick Tice](https://github.com/NickTice)
+
+## **Citations**
+
+To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R
+package in publications, use:
+
+BibTex Citation
+
+``` bibtex
+@misc{gilani_et_al_2021_cfbfastr,
+  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
+  title = {cfbfastR: The SportsDataverse's R Package for College Football Data.},
+  url = {https://cfbfastR.sportsdataverse.org/},
+  year = {2021}
+}
+```
+
+# Package index
+
+## cfbfastR Data
+
+### Full Seasons PBP Data
+
+Functions exported by cfbfastR which load full seasons of cfbfastR data
+
+- [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
+  :
+
+  **Load cleaned play-by-play from the data repo**
+
+- [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md)
+  : Load College Football Rosters
+
+- [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md)
+  : Load CFB Game/Schedule Data from data repo
+
+- [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
+  : Load CFB team info from the data repo
+
+### Update or Create Database
+
+Functions exported by cfbfastR which update and create a database of
+cfbfastR play-by-play data
+
+- [`update_cfb_db()`](https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.md)
+  :
+
+  **Update or create a cfbfastR play-by-play database**
+
+### Play-by-Play Data
+
+Functions exported by cfbfastR which return Expected Points and Win
+Probability model outputs.
+
+- [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)
+  :
+
+  **Get college football play by play data with cfbfastR expected
+  points/win probability added**
+
+## College Football Data API and ESPN Functions
+
+### College Football Data API Key
+
+Functions for using your API key.
+
+- [`cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  [`cfbd_api_key_info()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
+  :
+
+  **CFBD API Key Registration**
+
+### Games Data
+
+Functions exported by cfbfastR sourced from games endpoint of the
+CollegeFootballData API
+
+- [`cfbd_games`](https://cfbfastR.sportsdataverse.org/reference/cfbd_games.md)
+  :
+
+  **CFBD Games Endpoint Overview**
+
+- [`cfbd_game_box_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.md)
+  :
+
+  **Get game advanced box score information.**
+
+- [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md)
+  :
+
+  **Get results information from games.**
+
+- [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md)
+  :
+
+  **Get game media information (TV, radio, etc).**
+
+- [`cfbd_game_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.md)
+  :
+
+  **Get player statistics by game**
+
+- [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md)
+  :
+
+  **Get team records by year**
+
+- [`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md)
+  :
+
+  **Get team statistics by game**
+
+- [`cfbd_game_weather()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.md)
+  :
+
+  **Get weather from games.**
+
+- [`cfbd_calendar()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_calendar.md)
+  :
+
+  **Get calendar of weeks by season.**
+
+- [`cfbd_live_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.md)
+  :
+
+  **Get live game scoreboard information from games.**
+
+### Drives Data
+
+Functions exported by cfbfastR sourced from drives endpoint of the
+CollegeFootballData API
+
+- [`cfbd_drives()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.md)
+  :
+
+  **CFBD Drives Endpoint**
+
+### Plays Data
+
+Functions exported by cfbfastR sourced from plays endpoint of the
+CollegeFootballData API
+
+- [`cfbd_play`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play.md)
+  :
+
+  **CFBD Plays Endpoint Overview**
+
+- [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)
+  :
+
+  **Get college football play-by-play data.**
+
+- [`cfbd_live_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.md)
+  :
+
+  **Get live college football play-by-play data.**
+
+- [`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md)
+  :
+
+  **Gets player info associated by play**
+
+- [`cfbd_play_stats_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.md)
+  :
+
+  **Get college football mapping for play stats types**
+
+- [`cfbd_play_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.md)
+  :
+
+  **Get college football mapping for play types**
+
+### Teams Data
+
+Functions exported by cfbfastR sourced from the teams endpoint of the
+CollegeFootballData API
+
+- [`cfbd_teams`](https://cfbfastR.sportsdataverse.org/reference/cfbd_teams.md)
+  :
+
+  **CFBD Teams Endpoint Overview**
+
+- [`cfbd_team_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.md)
+  :
+
+  **Team info lookup**
+
+- [`cfbd_team_matchup()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.md)
+  :
+
+  **Get matchup history between two teams.**
+
+- [`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md)
+  :
+
+  **Get matchup history records between two teams.**
+
+- [`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md)
+  :
+
+  **Get team rosters**
+
+- [`cfbd_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.md)
+  :
+
+  **Get composite team talent rankings for all teams in a given year**
+
+### Players Data
+
+Functions exported by cfbfastR sourced from the players endpoint of the
+CollegeFootballData API
+
+- [`cfbd_players`](https://cfbfastR.sportsdataverse.org/reference/cfbd_players.md)
+  [`cfbd_player`](https://cfbfastR.sportsdataverse.org/reference/cfbd_players.md)
+  :
+
+  **CFBD Players Endpoint Overview**
+
+- [`cfbd_player_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.md)
+  :
+
+  **Player information lookup**
+
+- [`cfbd_player_returning()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_returning.md)
+  :
+
+  **Get player returning production**
+
+- [`cfbd_player_usage()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.md)
+  :
+
+  **Get player usage metrics**
+
+### Stats Data
+
+Functions exported by cfbfastR sourced from the conferences endpoint of
+the CollegeFootballData API
+
+- [`cfbd_stats`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats.md)
+  :
+
+  **CFBD Stats Endpoint Overview**
+
+- [`cfbd_stats_categories()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.md)
+  :
+
+  **Get stats categories**
+
+- [`cfbd_stats_game_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.md)
+  :
+
+  **Get game advanced stats**
+
+- [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md)
+  :
+
+  **Get season advanced statistics by team**
+
+- [`cfbd_stats_season_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.md)
+  :
+
+  **Get season statistics by player**
+
+- [`cfbd_stats_season_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.md)
+  :
+
+  **Get season statistics by team**
+
+### Rankings and Ratings Data
+
+Functions exported by cfbfastR sourced from the rankings and ratings
+endpoints of the CollegeFootballData API and ESPN
+
+- [`cfbd_ratings`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings.md)
+  :
+
+  **CFBD Ratings and Rankings Endpoints Overview**
+
+- [`cfbd_ratings_elo()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.md)
+  :
+
+  **Get Elo historical rating data**
+
+- [`cfbd_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_fpi.md)
+  :
+
+  **Get Football Power Index (FPI) historical rating data**
+
+- [`cfbd_ratings_sp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.md)
+  :
+
+  **Get SP historical rating data**
+
+- [`cfbd_ratings_sp_conference()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.md)
+  :
+
+  **Get conference level SP historical rating data**
+
+- [`cfbd_ratings_srs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.md)
+  :
+
+  **Get SRS historical rating data**
+
+- [`cfbd_rankings()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.md)
+  :
+
+  **Get historical Coaches and AP poll data**
+
+- [`espn_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.md)
+  :
+
+  **ESPN FPI Ratings**
+
+### NFL Draft Data
+
+Functions exported by cfbfastR sourced from the draft endpoints of the
+CollegeFootballData API
+
+- [`cfbd_draft`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.md)
+  [`draft`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.md)
+  [`nfl`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.md)
+  [`nfl_draft`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.md)
+  [`nfl_teams`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft.md)
+  :
+
+  **CFBD NFL Draft Endpoint Overview**
+
+- [`cfbd_draft_picks()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_picks.md)
+  :
+
+  **Get list of NFL draft picks**
+
+- [`cfbd_draft_positions()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_positions.md)
+  :
+
+  **Get list of NFL positions**
+
+- [`cfbd_draft_teams()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_draft_teams.md)
+  :
+
+  **Get list of NFL teams**
+
+### Betting Data
+
+Functions exported by cfbfastR sourced from lines endpoint of the
+CollegeFootballData API
+
+- [`cfbd_betting_lines()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.md)
+  :
+
+  **CFBD Betting Lines Endpoint Overview**
+
+### Metrics Data
+
+Functions exported by cfbfastR sourced from the Predicted Points Added
+(PPA) endpoints of the CollegeFootballData API and ESPN
+
+- [`cfbd_metrics`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics.md)
+  :
+
+  **CFBD Metrics Endpoint Overview**
+
+- [`cfbd_metrics_fg_ep()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.md)
+  :
+
+  **Get FG expected points from CFBD API**
+
+- [`cfbd_metrics_ppa_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_games.md)
+  :
+
+  **Get team game averages for predicted points added (PPA)**
+
+- [`cfbd_metrics_ppa_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_games.md)
+  :
+
+  **Get player game averages for predicted points added (PPA)**
+
+- [`cfbd_metrics_ppa_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_players_season.md)
+  :
+
+  **Get player season averages for predicted points added (PPA)**
+
+- [`cfbd_metrics_ppa_predicted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_predicted.md)
+  :
+
+  **Calculate predicted points using down and distance**
+
+- [`cfbd_metrics_ppa_teams()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_ppa_teams.md)
+  :
+
+  **Get team averages for predicted points added (PPA)**
+
+- [`cfbd_metrics_wepa_players_kicking()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_kicking.md)
+  :
+
+  **Get Points Added Above Replacement (PAAR) ratings for kickers**
+
+- [`cfbd_metrics_wepa_players_passing()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_passing.md)
+  :
+
+  **Get opponent-adjusted player passing statistics for predicted points
+  added (PPA)**
+
+- [`cfbd_metrics_wepa_players_rushing()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_players_rushing.md)
+  :
+
+  **Get opponent-adjusted player rushing statistics for predicted points
+  added (PPA)**
+
+- [`cfbd_metrics_wepa_team_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_team_season.md)
+  :
+
+  **Get opponent-adjusted team season statistics for predicted points
+  added (PPA)**
+
+- [`cfbd_metrics_wp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp.md)
+  :
+
+  **Get win probability chart data from API**
+
+- [`cfbd_metrics_wp_pregame()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp_pregame.md)
+  :
+
+  **Get pre-game win probability data from API**
+
+### Recruiting Data
+
+Functions exported by cfbfastR sourced from the rankings and ratings
+endpoints of the CollegeFootballData API
+
+- [`cfbd_recruiting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting.md)
+  [`recruiting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting.md)
+  :
+
+  **CFB Recruiting Endpoint Overview**
+
+- [`cfbd_recruiting_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.md)
+  :
+
+  **Get player recruiting rankings**
+
+- [`cfbd_recruiting_position()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.md)
+  :
+
+  **Get college football position group recruiting information.**
+
+- [`cfbd_recruiting_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.md)
+  :
+
+  **Get college football recruiting team rankings information.**
+
+- [`cfbd_recruiting_transfer_portal()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.md)
+  :
+
+  **Get Transfer Portal Data**
+
+### Schools Data
+
+Functions exported by cfbfastR sourced from venues, conferences, and
+coaches endpoints of the CollegeFootballData API
+
+- [`cfbd_venues()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.md)
+  :
+
+  **CFBD Venues Endpoint Overview**
+
+- [`cfbd_conferences()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.md)
+  :
+
+  **CFBD Conferences Endpoint Overview**
+
+- [`cfbd_coaches()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.md)
+  :
+
+  **CFBD Coaches Endpoint Overview**
+
+## ESPN Data
+
+### Functions with ESPN connections
+
+Functions exported by cfbfastR which allow access to ESPN data
+
+- [`espn_cfb_calendar()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.md)
+  : ESPN Calendar
+
+- [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  : Get ESPN college football PBP data
+
+- [`espn_cfb_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.md)
+  :
+
+  **Get ESPN college football player stats data**
+
+- [`espn_cfb_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.md)
+  [`espn_cfb_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.md)
+  :
+
+  **ESPN Scoreboard**
+
+- [`espn_cfb_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.md)
+  :
+
+  **Get ESPN college football team stats data**
+
+- [`espn_metrics_wp()`](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.md)
+  :
+
+  **ESPN Metrics**
+
+- [`espn_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.md)
+  :
+
+  **ESPN FPI Ratings**
+
+## Helper Functions and Data
+
+### Included data
+
+Data included within the package
+
+- [`cfbd_play_type_df`](https://cfbfastR.sportsdataverse.org/reference/data.md)
+  [`cfbd_conf_types_df`](https://cfbfastR.sportsdataverse.org/reference/data.md)
+  :
+
+  **Data in the package for reference**
+
+### Model functions and PBP helpers
+
+Model functions and play-by-play helpers
+
+- [`create_epa()`](https://cfbfastR.sportsdataverse.org/reference/create_epa.md)
+  [`epa_fg_probs()`](https://cfbfastR.sportsdataverse.org/reference/create_epa.md)
+  :
+
+  **Create EPA**
+
+- [`create_wpa_naive()`](https://cfbfastR.sportsdataverse.org/reference/create_wpa.md)
+  [`wpa_calcs_naive()`](https://cfbfastR.sportsdataverse.org/reference/create_wpa.md)
+  :
+
+  **Create WPA**
+
+- [`add_play_counts()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`clean_drive_dat()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`prep_epa_df_after()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`clean_drive_info()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`clean_play_text()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`add_player_cols()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`add_yardage()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`clean_pbp_dat()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  [`penalty_detection()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
+  :
+
+  **Series of functions to help clean the play-by-play data for
+  analysis**
+
+### cfbfastR Helper Functions
+
+Internal functions used by cfbfastR
+
+- [`csv_from_url()`](https://cfbfastR.sportsdataverse.org/reference/csv_from_url.md)
+  :
+
+  **Load .csv / .csv.gz file from a remote connection**
+
+- [`rds_from_url()`](https://cfbfastR.sportsdataverse.org/reference/rds_from_url.md)
+  : Load .rds file from a remote connection
+
+# Articles
+
+### Introductory
+
+- [Introduction to
+  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/intro.md):
+
+  Getting started with using `cfbfastR` and college football analytics.
+
+- [Making Animated Win Probability Charts with
+  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/animated-wp-plotting.md):
+
+  Step-by-step walk-through of the process of adapting [Lee
+  Sharpe’s](https://twitter.com/LeeSharpeNFL) win probability charts to
+  college football using data from
+  [CollegeFootballData.com](https://www.collegefootballdata.com)
+  collected using the `cfbfastR` package for R.
+
+- [Creating Fourth Down Tendency Plots Using
+  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.md):
+
+  A rundown of the Big XII returning coaches fourth down tendencies
+
+- [Rolling EPA
+  Graph](https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.md):
+
+  **IT’S GRAPHIN’ TIME**  
+  ^*To be said in an extremely Power Rangers voice*^**
+
+- [Visualizing Team Talent from Player Recruiting
+  Rankings](https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.md):
+
+  A quick way to visually approximate how much talent each school
+  recruited using `cfbfastR` and `ggplot2`.
+
+- [Intro to Visualizing Recruiting
+  Geography](https://cfbfastR.sportsdataverse.org/articles/map-tutorial.md):
+
+### Expected Points Model Fundamentals
+
+- [College Football Expected Points Model Fundamentals - Part
+  I](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.md):
+
+  Expected points model definition - a model explainer
+
+- [College Football Expected Points Model Fundamentals - Part
+  II](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.md):
+
+  Motivating the regression - I do bad regression to show that a
+  multinomial logistic regression model is necessary
+
+- [College Football Expected Points Model Fundamentals - Part
+  III](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md):
+
+  A brief history of expected points models. Learn about Virgil Carter’s
+  1970 paper and the origins of the nflscrapR expected points model
+  (which the cfbscrapR package used). The cfbfastR package includes
+  support for this model as well.
+
+### CFBD Tutorials
+
+- [CFB Data Betting Lines
+  Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.md):
+
+  Get betting lines information for games using
+  [`cfbd_betting_lines()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.md)
+
+- [CFB Data Games
+  Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_games.md):
+
+  Provides access to **game-level** team
+  ([`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md))
+  and player
+  ([`cfbd_game_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.md))
+  standard **box scores**, as well as team-level advanced box scores
+  ([`cfbd_game_box_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.md)).
+  Also useful for looking up game information
+  ([`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md)),
+  broadcast details
+  ([`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md)),
+  and team records/results information
+  ([`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md)).
+
+- [CFB Data Plays
+  Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_plays.md):
+
+  Using the CFB Data Plays Endpoint to pull down the 2020 season by week
+  using
+  [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)
+
+- [CFB Data Recruiting
+  Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_recruiting.md):
+
+  Accessing 247Sports composite recruiting data through the CFBD API
+  using
+  [`cfbd_recruiting_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.md)
+  for Player Rankings,
+  [`cfbd_recruiting_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.md)
+  for Team Rankings and
+  [`cfbd_recruiting_position()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.md)
+  for Position Group metrics
+
+- [CFB Data Stats
+  Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_stats.md):
+
+  Settling **2019 LSU** and **2013 Florida State** offense debates using
+  Team and Player Stats from the CFBD API
+
+- [CFB Data Teams
+  Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_teams.md):
+
+  Get team rosters (`cfbd_team_rosters()`), talent
+  ([`cfbd_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.md))
+  and team matchup history (`cfbd_team_matchup_history()`) and records
+  ([`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md))
+  from the CFBD API

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -432,22 +432,22 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other CFBD Games:
-<code><a href="cfbd_calendar.html">cfbd_calendar</a>()</code>,
-<code><a href="cfbd_game_box_advanced.html">cfbd_game_box_advanced</a>()</code>,
-<code><a href="cfbd_game_info.html">cfbd_game_info</a>()</code>,
-<code><a href="cfbd_game_media.html">cfbd_game_media</a>()</code>,
-<code><a href="cfbd_game_player_stats.html">cfbd_game_player_stats</a>()</code>,
-<code><a href="cfbd_game_records.html">cfbd_game_records</a>()</code>,
-<code><a href="cfbd_game_weather.html">cfbd_game_weather</a>()</code>,
-<code><a href="cfbd_live_scoreboard.html">cfbd_live_scoreboard</a>()</code></p></div>
+<code><a href="cfbd_calendar.html">cfbd_calendar()</a></code>,
+<code><a href="cfbd_game_box_advanced.html">cfbd_game_box_advanced()</a></code>,
+<code><a href="cfbd_game_info.html">cfbd_game_info()</a></code>,
+<code><a href="cfbd_game_media.html">cfbd_game_media()</a></code>,
+<code><a href="cfbd_game_player_stats.html">cfbd_game_player_stats()</a></code>,
+<code><a href="cfbd_game_records.html">cfbd_game_records()</a></code>,
+<code><a href="cfbd_game_weather.html">cfbd_game_weather()</a></code>,
+<code><a href="cfbd_live_scoreboard.html">cfbd_live_scoreboard()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_team_stats</span><span class="op">(</span><span class="fl">2022</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team stats data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-14 15:15:29 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team stats data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 2.2.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-01-12 06:32:57 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 26 × 78</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id school     conference home_away opponent opponent_conference points</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -455,12 +455,12 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401<span style="text-decoration: underline;">403</span>923 Ole Miss   SEC        away      LSU      SEC                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401<span style="text-decoration: underline;">403</span>939 Arkansas   SEC        home      LSU      SEC                     10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401<span style="text-decoration: underline;">403</span>939 LSU        SEC        away      Arkansas SEC                     13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401<span style="text-decoration: underline;">403</span>963 Texas A&amp;M  SEC        home      LSU      SEC                     38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401<span style="text-decoration: underline;">403</span>963 LSU        SEC        away      Texas A… SEC                     23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401<span style="text-decoration: underline;">403</span>867 Florida S… ACC        home      LSU      SEC                     24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401<span style="text-decoration: underline;">403</span>867 LSU        SEC        away      Florida… ACC                     23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401<span style="text-decoration: underline;">403</span>934 Alabama    SEC        away      LSU      SEC                     31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401<span style="text-decoration: underline;">403</span>934 LSU        SEC        home      Alabama  SEC                     32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401<span style="text-decoration: underline;">403</span>873 Southern   SWAC       away      LSU      SEC                     17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401<span style="text-decoration: underline;">403</span>873 LSU        SEC        home      Southern SWAC                    65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401<span style="text-decoration: underline;">403</span>963 Texas A&amp;M  SEC        home      LSU      SEC                     38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401<span style="text-decoration: underline;">403</span>963 LSU        SEC        away      Texas A… SEC                     23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401<span style="text-decoration: underline;">403</span>885 LSU        SEC        home      Mississ… SEC                     31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401<span style="text-decoration: underline;">403</span>885 Mississip… SEC        away      LSU      SEC                     16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 71 more variables: total_yards &lt;chr&gt;, net_passing_yards &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;, yards_per_pass &lt;chr&gt;,</span></span>
@@ -470,21 +470,21 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fourth_down_eff &lt;chr&gt;, punt_returns &lt;chr&gt;, punt_return_yards &lt;chr&gt;, …</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_team_stats</span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team stats data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 2.1.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2025-10-14 15:15:30 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team stats data from CollegeFootballData.com ────────────── <span style="font-style: italic;">cfbfastR 2.2.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-01-12 06:32:58 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 26 × 78</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id school     conference home_away opponent opponent_conference points</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 332<span style="text-decoration: underline;">640</span>052 Florida S… ACC        home      Bethune… MEAC                    54</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 332<span style="text-decoration: underline;">640</span>052 Bethune-C… MEAC       away      Florida… ACC                      6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 332<span style="text-decoration: underline;">450</span>221 Pittsburgh ACC        home      Florida… ACC                     13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 332<span style="text-decoration: underline;">450</span>221 Florida S… ACC        away      Pittsbu… ACC                     41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 332<span style="text-decoration: underline;">570</span>052 Florida S… ACC        home      Nevada   Mountain West           62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 332<span style="text-decoration: underline;">570</span>052 Nevada     Mountain … away      Florida… ACC                      7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 332<span style="text-decoration: underline;">710</span>103 Boston Co… ACC        home      Florida… ACC                     34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 332<span style="text-decoration: underline;">710</span>103 Florida S… ACC        away      Boston … ACC                     48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 332<span style="text-decoration: underline;">780</span>052 Florida S… ACC        home      Maryland ACC                     63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 332<span style="text-decoration: underline;">780</span>052 Maryland   ACC        away      Florida… ACC                      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 332<span style="text-decoration: underline;">990</span>052 Florida S… ACC        home      NC State ACC                     49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 332<span style="text-decoration: underline;">990</span>052 NC State   ACC        away      Florida… ACC                     17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 333<span style="text-decoration: underline;">060</span>052 Florida S… ACC        home      Miami    ACC                     41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 333<span style="text-decoration: underline;">060</span>052 Miami      ACC        away      Florida… ACC                     14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 333<span style="text-decoration: underline;">200</span>052 Florida S… ACC        home      Syracuse ACC                     59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 333<span style="text-decoration: underline;">200</span>052 Syracuse   ACC        away      Florida… ACC                      3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 333<span style="text-decoration: underline;">340</span>057 Florida    SEC        home      Florida… ACC                      7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 333<span style="text-decoration: underline;">340</span>057 Florida S… ACC        away      Florida  SEC                     37</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 71 more variables: total_yards &lt;chr&gt;, net_passing_yards &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   completion_attempts &lt;chr&gt;, passing_tds &lt;chr&gt;, yards_per_pass &lt;chr&gt;,</span></span>
@@ -504,7 +504,7 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
