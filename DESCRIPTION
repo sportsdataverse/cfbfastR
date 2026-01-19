@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 2.2.0
+Version: 2.2.1
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-7194-9067")),
@@ -60,7 +60,6 @@ Suggests:
     ggplot2,
     ggrepel,
     patrick,
-    qs (>= 0.25.1),
     rmarkdown,
     RSQLite,
     stats,
