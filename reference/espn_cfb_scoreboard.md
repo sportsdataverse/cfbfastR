@@ -420,21 +420,21 @@ Unique variables when there are completed games
 ``` r
 # \donttest{
   try(espn_cfb_scoreboard())
-#> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:21:51 UTC
+#> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:23:17 UTC
 #> # A tibble: 47 × 59
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Army Black Knig… ARMY VS NAVY    2025 post… post… 401762… s:20~l:… 2025-12-13
-#>  2 Boise State Bro… BOIS VS WASH    2025 post… post… 401778… s:20~l:… 2025-12-13
-#>  3 Troy Trojans at… TROY VS JVST    2025 post… post… 401778… s:20~l:… 2025-12-16
-#>  4 Old Dominion Mo… ODU VS USF      2025 post… post… 401778… s:20~l:… 2025-12-17
-#>  5 Louisiana Ragin… UL VS DEL       2025 post… post… 401778… s:20~l:… 2025-12-17
-#>  6 Missouri State … MOST VS ARST    2025 post… post… 401838… s:20~l:… 2025-12-18
-#>  7 Alabama Crimson… ALA @ OU        2025 post… post… 401779… s:20~l:… 2025-12-19
-#>  8 Kennesaw State … KENN VS WMU     2025 post… post… 401778… s:20~l:… 2025-12-19
-#>  9 Memphis Tigers … MEM VS NCSU     2025 post… post… 401778… s:20~l:… 2025-12-19
-#> 10 James Madison D… JMU @ ORE       2025 post… post… 401779… s:20~l:… 2025-12-20
+#>  1 Miami Hurricane… MIA VS IU       2025 post… post… 401769… s:20~l:… 2026-01-19
+#>  2 Army Black Knig… ARMY VS NAVY    2025 post… post… 401762… s:20~l:… 2025-12-13
+#>  3 Boise State Bro… BOIS VS WASH    2025 post… post… 401778… s:20~l:… 2025-12-13
+#>  4 Troy Trojans at… TROY VS JVST    2025 post… post… 401778… s:20~l:… 2025-12-16
+#>  5 Old Dominion Mo… ODU VS USF      2025 post… post… 401778… s:20~l:… 2025-12-17
+#>  6 Louisiana Ragin… UL VS DEL       2025 post… post… 401778… s:20~l:… 2025-12-17
+#>  7 Missouri State … MOST VS ARST    2025 post… post… 401838… s:20~l:… 2025-12-18
+#>  8 Alabama Crimson… ALA @ OU        2025 post… post… 401779… s:20~l:… 2025-12-19
+#>  9 Kennesaw State … KENN VS WMU     2025 post… post… 401778… s:20~l:… 2025-12-19
+#> 10 Memphis Tigers … MEM VS NCSU     2025 post… post… 401778… s:20~l:… 2025-12-19
 #> # ℹ 37 more rows
 #> # ℹ 51 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
@@ -446,8 +446,8 @@ Unique variables when there are completed games
 
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
-#> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:21:52 UTC
+#> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:23:18 UTC
 #> # A tibble: 54 × 60
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    

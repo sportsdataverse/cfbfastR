@@ -141,8 +141,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama"))
-#> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:20:35 UTC
+#> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:21:52 UTC
 #> # A tibble: 48 × 60
 #>      game_id team     conference home_away team_points athlete_id athlete_name  
 #>        <int> <chr>    <chr>      <chr>           <int>      <int> <chr>         
@@ -165,8 +165,8 @@ Other CFBD Games:
 #> #   punting_yds <dbl>, punting_no <dbl>, kicking_pts <dbl>, …
 
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
-#> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:20:35 UTC
+#> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:21:52 UTC
 #> # A tibble: 3 × 60
 #>     game_id team        conference home_away team_points athlete_id athlete_name
 #>       <int> <chr>       <chr>      <chr>           <int>      <int> <chr>       

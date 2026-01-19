@@ -155,8 +155,8 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_picks(year = 2020))
-#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:20:29 UTC
+#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:21:48 UTC
 #> # A tibble: 255 × 24
 #>    college_athlete_id nfl_athlete_id college_id college_team college_conference
 #>                 <int>          <int>      <int> <chr>        <chr>             
@@ -179,8 +179,8 @@ Other CFBD Draft:
 #> #   hometown_info_country <chr>, hometown_info_latitude <chr>, …
 
   try(cfbd_draft_picks(year = 2016, position = "PK"))
-#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:20:29 UTC
+#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:21:48 UTC
 #> # A tibble: 1 × 24
 #>   college_athlete_id nfl_athlete_id college_id college_team  college_conference
 #>                <int>          <int>      <int> <chr>         <chr>             

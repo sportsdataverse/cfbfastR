@@ -81,7 +81,7 @@ accessed from this package:
 However, there is only one data *provider* involved for most game data,
 ESPN’s data provider.
 
-As of `cfbfastR` version 2.2.0, the package exports 87 functions. The
+As of `cfbfastR` version 2.2.1, the package exports 87 functions. The
 bulk (~60) of the functions within the package serve as the unofficial R
 API client for the [College Football Data
 API](https://collegefootballdata.com).
@@ -156,7 +156,7 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 69.429 sec elapsed
+    ## 66.278 sec elapsed
 
 In the selected seasons, there are 12859 games for which the data
 repository has play by play data. In the present term, the data

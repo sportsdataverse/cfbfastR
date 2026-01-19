@@ -40,8 +40,8 @@ Other loaders:
 ``` r
 # \donttest{
   try(load_cfb_schedules(2024))
-#> ── Games and schedules from CollegeFootballData.com ────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:22:01 UTC
+#> ── Games and schedules from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:23:27 UTC
 #> # A tibble: 3,801 × 31
 #>      game_id season  week season_type start_date        start_time_tbd completed
 #>        <int>  <int> <int> <chr>       <chr>             <lgl>          <lgl>    
@@ -54,7 +54,7 @@ Other loaders:
 #>  7 401643696   2024     1 regular     2024-08-25T00:00… FALSE          TRUE     
 #>  8 401643858   2024     1 regular     2024-08-25T03:59… FALSE          TRUE     
 #>  9 401675545   2024     1 regular     2024-08-29T04:00… TRUE           TRUE     
-#> 10 401628580   2024     1 regular     2024-08-29T22:00… FALSE          TRUE     
+#> 10 401628458   2024     1 regular     2024-08-29T22:00… FALSE          TRUE     
 #> # ℹ 3,791 more rows
 #> # ℹ 24 more variables: neutral_site <lgl>, conference_game <lgl>,
 #> #   attendance <int>, venue_id <int>, venue <chr>, home_id <int>,

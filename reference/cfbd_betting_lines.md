@@ -162,8 +162,8 @@ Betting information for games with the following columns:
 ``` r
 # \donttest{
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
-#> ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:20:27 UTC
+#> ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:21:45 UTC
 #> # A tibble: 4 × 23
 #>     game_id season season_type  week start_date           home_team_id home_team
 #>       <int>  <int> <chr>       <int> <chr>                       <int> <chr>    

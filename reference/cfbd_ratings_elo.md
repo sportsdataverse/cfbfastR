@@ -67,16 +67,16 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_elo(year = 2019, team = "Texas"))
-#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:21:19 UTC
+#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:22:39 UTC
 #> # A tibble: 1 × 4
 #>    year team  conference   elo
 #>   <int> <chr> <chr>      <dbl>
 #> 1  2019 Texas Big 12      1866
 
   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
-#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:21:20 UTC
+#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:22:40 UTC
 #> # A tibble: 14 × 4
 #>     year team              conference   elo
 #>    <int> <chr>             <chr>      <dbl>

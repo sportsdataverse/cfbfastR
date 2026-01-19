@@ -81,7 +81,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_position(2018, team = "Texas"))
 #> ── Recruiting position group info from CollegeFootballData.com ─────────────────
-#> ℹ Data updated: 2026-01-12 12:21:25 UTC
+#> ℹ Data updated: 2026-01-19 16:22:45 UTC
 #> # A tibble: 16 × 7
 #>    team  conference position_group avg_rating total_rating commits avg_stars    
 #>    <chr> <chr>      <chr>               <dbl>        <dbl> <chr>   <chr>        
@@ -104,7 +104,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_position(2016, 2020, team = "Virginia"))
 #> ── Recruiting position group info from CollegeFootballData.com ─────────────────
-#> ℹ Data updated: 2026-01-12 12:21:25 UTC
+#> ℹ Data updated: 2026-01-19 16:22:45 UTC
 #> # A tibble: 16 × 7
 #>    team     conference position_group avg_rating total_rating commits avg_stars 
 #>    <chr>    <chr>      <chr>               <dbl>        <dbl> <chr>   <chr>     
@@ -127,7 +127,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_position(2015, 2020, conference = "SEC"))
 #> ── Recruiting position group info from CollegeFootballData.com ─────────────────
-#> ℹ Data updated: 2026-01-12 12:21:25 UTC
+#> ℹ Data updated: 2026-01-19 16:22:45 UTC
 #> # A tibble: 224 × 7
 #>    team     conference position_group avg_rating total_rating commits avg_stars 
 #>    <chr>    <chr>      <chr>               <dbl>        <dbl> <chr>   <chr>     

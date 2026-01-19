@@ -16,9 +16,9 @@ pacman::p_load(dplyr,tidyr, gt, cfbfastR)
 cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 ```
 
-    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.0 ──
+    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
 
-    ## ℹ Data updated: 2026-01-12 12:22:53 UTC
+    ## ℹ Data updated: 2026-01-19 16:24:14 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -39,8 +39,8 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 ```
 
-    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.0 ──
-    ## ℹ Data updated: 2026-01-12 12:22:53 UTC
+    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
+    ## ℹ Data updated: 2026-01-19 16:24:14 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

@@ -39,8 +39,8 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_teams())
-#> ── NFL teams data from CollegeFootballData.com ─────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:20:31 UTC
+#> ── NFL teams data from CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:21:49 UTC
 #> # A tibble: 32 × 4
 #>    nfl_location nfl_nickname nfl_display_name     nfl_logo                      
 #>    <chr>        <chr>        <chr>                <chr>                         

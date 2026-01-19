@@ -30,8 +30,8 @@ Other CFBD Stats:
 ``` r
 # \donttest{
    try(cfbd_stats_categories())
-#> ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.2.0 ──
-#> ℹ Data updated: 2026-01-12 12:21:27 UTC
+#> ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
+#> ℹ Data updated: 2026-01-19 16:22:48 UTC
 #> # A tibble: 38 × 1
 #>    category          
 #>    <chr>             
