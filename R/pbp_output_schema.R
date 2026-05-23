@@ -159,20 +159,156 @@
   "kickoff_return_player_name"
 )
 
-#' Apply the canonical PBP output column ordering
+#' Lag/lead intermediates produced for the pipeline's internal use
+#'
+#' Drive-boundary detection, turnover detection, EP/WP series shifts. Not
+#' needed for descriptive analysis -- useful only when doing sequential
+#' modeling that wants pre-computed shifts. Dropped in both `"default"` and
+#' `"lean"` output tiers; kept in `"full"`.
+#'
+#' @keywords internal
+#' @noRd
+.pbp_drop_lag_lead <- c(
+  # play-type / play-text shifts
+  "lag_play_type", "lag_play_type2", "lag_play_type3",
+  "lead_play_type", "lead_play_type2", "lead_play_type3",
+  "lag_play_text", "lag_play_text2", "lag_play_text3",
+  "lead_play_text", "lead_play_text2", "lead_play_text3",
+  # down/distance/yardline shifts
+  "lag_down", "lag_down2", "lead_down", "lead_down2",
+  "lag_distance", "lag_distance2", "lag_distance3",
+  "lead_distance", "lead_distance2",
+  "lag_yards_to_goal", "lag_yards_to_goal2",
+  "lead_yards_to_goal", "lead_yards_to_goal2",
+  "lag_yards_gained", "lag_yards_gained2", "lag_yards_gained3",
+  "lead_yards_gained", "lead_yards_gained2",
+  # time shifts
+  "lag_TimeSecsRem", "lag_TimeSecsRem2",
+  "lead_TimeSecsRem", "lead_TimeSecsRem2",
+  # team / possession shifts
+  "lag_pos_team", "lead_pos_team",
+  "lag_offense_play", "lead_offense_play", "lead_offense_play2",
+  # timeout shifts
+  "lag_off_timeouts", "lag_def_timeouts",
+  # change-of-possession shifts (3 horizons each)
+  "lag_change_of_poss", "lag_change_of_poss2", "lag_change_of_poss3",
+  "lag_change_of_pos_team", "lag_change_of_pos_team2", "lag_change_of_pos_team3",
+  # event-flag shifts (3 horizons each)
+  "lag_kickoff_play", "lag_kickoff_play2", "lag_kickoff_play3",
+  "lag_punt", "lag_punt2", "lag_punt3",
+  "lag_scoring_play", "lag_scoring_play2", "lag_scoring_play3",
+  "lag_turnover_vec", "lag_turnover_vec2", "lag_turnover_vec3",
+  "lag_downs_turnover", "lag_downs_turnover2", "lag_downs_turnover3",
+  "lag_first_by_penalty", "lag_first_by_penalty2", "lag_first_by_penalty3",
+  "lag_first_by_yards", "lag_first_by_yards2", "lag_first_by_yards3",
+  # EP/WP shifts
+  "lag_ep_before", "lag_ep_before2", "lag_ep_before3",
+  "lead_ep_before", "lead_ep_before2",
+  "lag_ep_after", "lag_ep_after2", "lag_ep_after3",
+  "lead_ep_after", "lead_ep_after2",
+  # one-off lags
+  "lag_defense_score_play", "lag_score_diff", "lag_pos_score_diff",
+  "turnover_vec_lag"
+)
+
+#' Redundant alternates -- each has a canonical column downstream should prefer
+#'
+#' `orig_play_type` is intentionally **kept** even though it duplicates
+#' `play_type` on most rows -- it preserves the original label when
+#' `clean_pbp_dat()` rewrites `play_type` mid-pipeline (e.g. for fumble
+#' recoveries that get reclassified). Useful for auditing the reclassification.
+#'
+#' Dropped in both `"default"` and `"lean"` output tiers; kept in `"full"`.
+#'
+#' @keywords internal
+#' @noRd
+.pbp_drop_redundant <- c(
+  "sack_vec",            # use `sack`
+  "turnover_indicator",  # use `turnover_vec`
+  "kick_play",           # = kickoff_play | punt
+  "missing_yard_flag"    # internal debug flag
+)
+
+#' Drive-result aliases and per-drive intermediates
+#'
+#' `drive_result_detailed` is the canonical drive-result label. `pts_scored`
+#' is intentionally **kept** because it carries per-play scoring points
+#' (e.g. -7, -2, +3, +7) which is distinct from `drive_pts` (per-drive).
+#'
+#' Dropped in both `"default"` and `"lean"` output tiers; kept in `"full"`.
+#'
+#' @keywords internal
+#' @noRd
+.pbp_drop_drive_aliases <- c(
+  "drive_result_detailed_flag",   # raw form before backfill (redundant)
+  "drive_result2",                # UPPERCASE shorthand of drive_result_detailed
+  "lag_drive_result_detailed",
+  "lead_drive_result_detailed",
+  "lag_new_drive_pts"
+)
+
+#' WPA computation scratchpad written by `.pbp_wpa_calcs_naive()`
+#'
+#' Internal accounting for the two WPA branches (base / change) and their
+#' indicators. Useful when debugging WHY a given `wpa` value came out the
+#' way it did; not needed by the modeled `wpa` / `wp_before` / `wp_after`
+#' consumers. Dropped only in `"lean"`; kept in `"default"` and `"full"`.
+#'
+#' @keywords internal
+#' @noRd
+.pbp_drop_wpa_scratch <- c(
+  "wpa_base", "wpa_base_nxt",
+  "wpa_base_ind", "wpa_base_nxt_ind",
+  "wpa_change", "wpa_change_nxt",
+  "wpa_change_ind", "wpa_change_nxt_ind",
+  "wpa_half_end",
+  "lead_wp_before", "lead_wp_before2",
+  "lead_pos_team2"
+)
+
+#' Apply the canonical PBP output column ordering and tiered drops
+#'
+#' Drops player-name aliases (always), and applies tier-specific drops:
+#'   * `"default"` -- drops lag/lead intermediates, redundant alternates, and
+#'     drive-result aliases. Keeps `orig_play_type`, `pts_scored`, the
+#'     `*_end` post-play state family, and the WPA computation scratchpad.
+#'     A meaningful slim-down (~75 columns lighter than `"full"`) with no
+#'     loss of information that isn't trivially rebuildable.
+#'   * `"lean"` -- everything `"default"` drops, plus the WPA scratchpad.
+#'     For dashboards / leaderboards / game logs.
+#'   * `"full"` -- legacy behavior: no drops beyond the player-name aliases.
+#'     For sequential modeling that consumes pre-computed lag/lead shifts
+#'     or the per-branch WPA decomposition.
 #'
 #' Known columns appear in `.pbp_output_order` order; unknown columns are
-#' kept and trailed (drift-safe). Documented player-name aliases are dropped.
-#' Does not error on missing columns.
+#' kept and trailed (drift-safe). Does not error on missing columns.
 #'
 #' @param df A data frame.
-#' @return `df` with columns reordered and player-name aliases dropped.
+#' @param output One of `"default"` (recommended), `"lean"`, or `"full"`.
+#' @return `df` with columns dropped per `output` and reordered to the
+#'   canonical schema.
 #' @keywords internal
 #' @noRd
 #' @importFrom magrittr %>%
-.pbp_apply_output_schema <- function(df) {
+.pbp_apply_output_schema <- function(df, output = c("default", "lean", "full")) {
+  output <- match.arg(output)
+
   df <- df %>% dplyr::select(-dplyr::any_of(.pbp_drop_player_aliases))
-  known <- intersect(.pbp_output_order, colnames(df))
+
+  if (output != "full") {
+    df <- df %>%
+      dplyr::select(-dplyr::any_of(c(
+        .pbp_drop_lag_lead,
+        .pbp_drop_redundant,
+        .pbp_drop_drive_aliases
+      )))
+  }
+
+  if (output == "lean") {
+    df <- df %>% dplyr::select(-dplyr::any_of(.pbp_drop_wpa_scratch))
+  }
+
+  known   <- intersect(.pbp_output_order, colnames(df))
   unknown <- setdiff(colnames(df), known)
   df[, c(known, unknown), drop = FALSE]
 }

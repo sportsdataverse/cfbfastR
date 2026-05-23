@@ -6192,6 +6192,21 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #' @param epa_wpa (*Logical*): when `TRUE`, run the full EPA/WPA modeling
 #' pipeline and return the modeled frame; when `FALSE` (default) return the
 #' assembled core-v2 play-by-play frame.
+#' @param output (*Character*): controls the modeled-output column set when
+#' `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. One of:
+#' \itemize{
+#'   \item `"default"` (recommended) -- drops pipeline lag/lead intermediates,
+#'     redundant alternates (`sack_vec`, `turnover_indicator`, `kick_play`,
+#'     `missing_yard_flag`), and drive-result aliases (`drive_result2`,
+#'     `drive_result_detailed_flag`, `lag_drive_result_detailed`,
+#'     `lead_drive_result_detailed`, `lag_new_drive_pts`). Keeps
+#'     `orig_play_type` and `pts_scored` (they carry useful per-play
+#'     information distinct from the canonical columns) and the per-branch
+#'     WPA scratchpad. ~75 columns lighter than `"full"`.
+#'   \item `"lean"` -- everything `"default"` drops, plus the WPA
+#'     computation scratchpad. For dashboards / game logs.
+#'   \item `"full"` -- legacy behavior, drops only the player-name aliases.
+#' }
 #' @return A data frame with one row per play. When `epa_wpa = FALSE`, the
 #' assembled core-v2 play-by-play frame:
 #'
@@ -6228,7 +6243,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #' \donttest{
 #'   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #' }
-espn_cfb_pbp_v2 <- function(game_id, epa_wpa = FALSE) {
+espn_cfb_pbp_v2 <- function(game_id,
+                            epa_wpa = FALSE,
+                            output  = c("default", "lean", "full")) {
+  output <- match.arg(output)
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 
@@ -6340,6 +6358,7 @@ espn_cfb_pbp_v2 <- function(game_id, epa_wpa = FALSE) {
       plays_df <- context_df %>%
         dplyr::mutate(play_id = as.character(.data$play_id)) %>%
         dplyr::left_join(epa_join, by = c("play_id" = "id_play")) %>%
+        .pbp_apply_output_schema(output = output) %>%
         make_cfbfastR_data(
           "Play-by-play data from ESPN (core-v2)", Sys.time()
         )

@@ -18,9 +18,30 @@
 #' @param epa_wpa (*Logical*): When `TRUE`, run the EPA/WPA pipeline and
 #'   return the modeled frame; when `FALSE` (default) return the raw plays +
 #'   drives + betting join.
+#' @param output (*Character*): controls the modeled-output column set when
+#'   `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. One of:
+#'   \itemize{
+#'     \item `"default"` (recommended) -- drops pipeline lag/lead
+#'       intermediates, redundant alternates (`sack_vec`, `turnover_indicator`,
+#'       `kick_play`, `missing_yard_flag`), and drive-result aliases
+#'       (`drive_result2`, `drive_result_detailed_flag`,
+#'       `lag_drive_result_detailed`, `lead_drive_result_detailed`,
+#'       `lag_new_drive_pts`). Keeps `orig_play_type` and `pts_scored` (they
+#'       carry useful per-play information distinct from the canonical
+#'       columns) and the per-branch WPA scratchpad (`wpa_base`/`wpa_change`
+#'       etc.). ~75 columns lighter than `"full"` with no loss of information
+#'       that isn't trivially rebuildable.
+#'     \item `"lean"` -- everything `"default"` drops, plus the WPA
+#'       computation scratchpad. For dashboards / leaderboards / game logs.
+#'     \item `"full"` -- legacy behavior, drops only the player-name
+#'       aliases. For sequential modeling that consumes pre-computed lag/lead
+#'       shifts or the per-branch WPA decomposition.
+#'   }
 #' @return A `cfbfastR_data` tibble. The `epa_wpa = TRUE` output matches the
-#'   legacy [cfbd_pbp_data()] pipeline-canonical column set; documented
-#'   bug-fix sites are listed in the package vignette.
+#'   legacy [cfbd_pbp_data()] pipeline-canonical column set on every column
+#'   it carries; the `output` argument controls which intermediate columns
+#'   are retained. Documented bug-fix sites are listed in the package
+#'   vignette.
 #' @keywords CFB PBP
 #' @family CFBD PBP
 #' @importFrom rlang .data
@@ -44,7 +65,9 @@ cfbd_pbp_data_v2 <- function(year,
                              week        = 1,
                              team        = NULL,
                              play_type   = NULL,
-                             epa_wpa     = FALSE) {
+                             epa_wpa     = FALSE,
+                             output      = c("default", "lean", "full")) {
+  output <- match.arg(output)
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 
@@ -217,7 +240,7 @@ cfbd_pbp_data_v2 <- function(year,
       clean_text = TRUE,
       min_plays  = 20L
     ) %>%
-      .pbp_apply_output_schema()
+      .pbp_apply_output_schema(output = output)
   }
 
   play_df %>%

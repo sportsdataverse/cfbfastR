@@ -10,7 +10,8 @@ cfbd_pbp_data_v2(
   week = 1,
   team = NULL,
   play_type = NULL,
-  epa_wpa = FALSE
+  epa_wpa = FALSE,
+  output = c("default", "lean", "full")
 )
 }
 \arguments{
@@ -30,11 +31,33 @@ cfbd_pbp_data_v2(
 \item{epa_wpa}{(\emph{Logical}): When \code{TRUE}, run the EPA/WPA pipeline and
 return the modeled frame; when \code{FALSE} (default) return the raw plays +
 drives + betting join.}
+
+\item{output}{(\emph{Character}): controls the modeled-output column set when
+\code{epa_wpa = TRUE}. Ignored when \code{epa_wpa = FALSE}. One of:
+\itemize{
+\item \code{"default"} (recommended) -- drops pipeline lag/lead
+intermediates, redundant alternates (\code{sack_vec}, \code{turnover_indicator},
+\code{kick_play}, \code{missing_yard_flag}), and drive-result aliases
+(\code{drive_result2}, \code{drive_result_detailed_flag},
+\code{lag_drive_result_detailed}, \code{lead_drive_result_detailed},
+\code{lag_new_drive_pts}). Keeps \code{orig_play_type} and \code{pts_scored} (they
+carry useful per-play information distinct from the canonical
+columns) and the per-branch WPA scratchpad (\code{wpa_base}/\code{wpa_change}
+etc.). ~75 columns lighter than \code{"full"} with no loss of information
+that isn't trivially rebuildable.
+\item \code{"lean"} -- everything \code{"default"} drops, plus the WPA
+computation scratchpad. For dashboards / leaderboards / game logs.
+\item \code{"full"} -- legacy behavior, drops only the player-name
+aliases. For sequential modeling that consumes pre-computed lag/lead
+shifts or the per-branch WPA decomposition.
+}}
 }
 \value{
 A \code{cfbfastR_data} tibble. The \code{epa_wpa = TRUE} output matches the
-legacy \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}} pipeline-canonical column set; documented
-bug-fix sites are listed in the package vignette.
+legacy \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}} pipeline-canonical column set on every column
+it carries; the \code{output} argument controls which intermediate columns
+are retained. Documented bug-fix sites are listed in the package
+vignette.
 }
 \description{
 Returns CFBD play-by-play data with optional Expected Points
