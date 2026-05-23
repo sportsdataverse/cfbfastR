@@ -318,6 +318,7 @@ reference:
     desc: Functions exported by cfbfastR which return Expected Points and Win Probability model outputs.
     contents:
       - '`cfbd_pbp_data`'
+      - '`cfbd_pbp_data_v2`'
   - title: College Football Data API and ESPN Functions
   - subtitle: College Football Data API Key
     desc: Functions for using your API key.

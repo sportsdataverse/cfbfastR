@@ -6277,7 +6277,8 @@ espn_cfb_pbp_v2 <- function(game_id, epa_wpa = FALSE) {
           away_team_abbreviation    = meta$away_team_abbreviation,
           away_team_color           = meta$away_team_color,
           away_team_alternate_color = meta$away_team_alternate_color,
-          away_team_rank            = meta$away_team_rank
+          away_team_rank            = meta$away_team_rank,
+          id_play                   = as.character(.data$play_id)
         )
 
       if (!isTRUE(epa_wpa)) {
