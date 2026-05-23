@@ -57,8 +57,26 @@
     "fg_make_prob" = paste(
       "create_epa double-predict.bam removal --",
       "identical numeric result, paranoid allow-list entry"
+    ),
+    "id_play" = paste(
+      "clean_pbp_dat quoted-literal fix:",
+      "v2 preserves character id_play (lossless);",
+      "legacy coerces to numeric via unquoted ifelse",
+      "literals and loses precision past 2^53."
     )
   )
+}
+
+# Coerce id_play to a precision-safe character form for ordering. Required
+# because legacy stores it as numeric (with precision loss past 2^53) and v2
+# preserves it as character; a direct order() across the two types would
+# compare apples to oranges and yield different orderings.
+.eq_id_play_key <- function(x) {
+  if (is.character(x)) {
+    x
+  } else {
+    trimws(format(x, scientific = FALSE, trim = TRUE))
+  }
 }
 
 .eq_compare <- function(legacy, v2, sample_label) {
@@ -81,9 +99,12 @@
                info = paste0(sample_label, ": row count"))
 
   # Each canonical column must match value-for-value after a sort by id.
-  # We sort by id_play to make ordering robust to dplyr group-by changes.
-  ord_l <- order(legacy$id_play, legacy$game_id)
-  ord_v <- order(v2$id_play, v2$game_id)
+  # We sort by a precision-safe character form of id_play (see
+  # `.eq_id_play_key`) to make ordering robust both to dplyr group-by changes
+  # AND to the legacy-vs-v2 id_play type divergence (legacy numeric/lossy,
+  # v2 character/lossless).
+  ord_l <- order(.eq_id_play_key(legacy$id_play), legacy$game_id)
+  ord_v <- order(.eq_id_play_key(v2$id_play),     v2$game_id)
   for (col in cols_to_check) {
     expect_equal(
       v2[[col]][ord_v],

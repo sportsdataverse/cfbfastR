@@ -279,8 +279,16 @@
       play_type = ifelse(.data$kickoff_safety == 1, "Kickoff (Safety)", .data$play_type),
       play_type = ifelse(.data$punt_safety == 1, paste0(.data$play_type, " (Safety)"), .data$play_type),
       play_type = ifelse(.data$penalty_safety == 1, paste0(.data$play_type, " (Safety)"), .data$play_type),
-      id_play = ifelse(.data$id_play == 400852742102997104 & .data$play_type == "Kickoff", 400852742102997106, .data$id_play),
-      id_play = ifelse(.data$id_play == 400852742102997106 & .data$play_type == "Defensive 2pt Conversion", 400852742102997104, .data$id_play),
+      # NB: literals are quoted to preserve character type. The legacy used
+      # unquoted numeric literals here, which forced an `ifelse` type coercion
+      # of `id_play` from character to numeric on the ESPN path. Numeric
+      # `id_play` values (~4e17 for core-v2 play ids) exceed double precision
+      # (2^53), so a downstream `as.character(id_play)` produced scientific
+      # notation and broke the play-id join in `espn_cfb_pbp_v2()`. Keeping
+      # the literals as character preserves the join semantics and is safe
+      # for the CFBD path (its `id_play` is already character).
+      id_play = ifelse(.data$id_play == "400852742102997104" & .data$play_type == "Kickoff", "400852742102997106", .data$id_play),
+      id_play = ifelse(.data$id_play == "400852742102997106" & .data$play_type == "Defensive 2pt Conversion", "400852742102997104", .data$id_play),
       #--- Sacks ----
       sack = ifelse((.data$play_type %in% c("Sack") |
         (.data$play_type %in% c(

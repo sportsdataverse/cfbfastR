@@ -45,6 +45,7 @@ This release adds a 65-function ESPN college-football API layer, expanding `cfbf
 ### Bug fixes
 
 * `espn_cfb_pbp()` now builds its request URL with the `?event=` query separator (previously concatenated as `summaryevent=`, which returned HTTP 404 for every game) and initializes its return frame before the `tryCatch` so an upstream failure no longer throws `object 'plays_df' not found`.
+* `cfbd_pbp_data_v2()` and `espn_cfb_pbp_v2()` preserve character `id_play` precision through the EPA/WPA pipeline. The legacy shared helper used unquoted numeric literals in two `ifelse` calls (a historical `id_play` swap for one game), which silently coerced character `id_play` to numeric and then lost precision past 2^53 — breaking the play-id join-back in `espn_cfb_pbp_v2()`. The modular `.pbp_clean_pbp_dat()` quotes those literals so `id_play` stays character; the legacy `clean_pbp_dat()` is unchanged.
 
 # **cfbfastR v2.2.0**
 
