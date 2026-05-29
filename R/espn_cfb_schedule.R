@@ -1,3 +1,6 @@
+# espn_cfb_schedule.R -- ESPN college football schedule + scoreboard wrappers
+# Consolidated family file. Each function keeps its own roxygen block.
+
 #' **ESPN Scoreboard**
 #' @name espn_cfb_scoreboard
 NULL
