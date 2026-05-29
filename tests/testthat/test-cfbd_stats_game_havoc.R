@@ -16,17 +16,17 @@ test_that("CFB Stats Game - Havoc", {
   skip_if(!has_cfbd_key(), "CFBD API key not available for testing")
 
   x <- cfbd_stats_game_havoc(year = 2024, team = "Georgia")
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   y <- cfbd_stats_game_havoc(year = 2023, team = "Georgia")
-
-  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) {
-    skip("No CFBD game havoc data returned at test time")
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
   }
 
   expect_in(cols, colnames(x))
   expect_s3_class(x, "data.frame")
 
-  if (!is.null(y) && is.data.frame(y) && nrow(y) > 0) {
-    expect_in(cols, colnames(y))
-    expect_s3_class(y, "data.frame")
-  }
+  expect_in(cols, colnames(y))
+  expect_s3_class(y, "data.frame")
 })
