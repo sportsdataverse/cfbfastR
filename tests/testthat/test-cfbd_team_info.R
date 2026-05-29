@@ -10,6 +10,9 @@ cols <- c(
 test_that("CFB Team Info", {
   skip_on_cran()
   x <- cfbd_team_info(year = 2019)
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   expect_equal(nrow(x), 130)
   expect_equal(ncol(x), length(cols))

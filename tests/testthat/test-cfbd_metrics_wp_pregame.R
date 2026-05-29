@@ -8,8 +8,14 @@ test_that("CFB Metrics API Pre-Game Win Probability", {
   skip_on_cran()
 
   x <- cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M")
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_metrics_wp_pregame(year = 2017, week = 8, team = "TCU")
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_setequal(colnames(x), cols)
   expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")

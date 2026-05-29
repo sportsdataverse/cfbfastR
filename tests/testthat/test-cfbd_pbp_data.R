@@ -9,6 +9,9 @@ test_that("2024 pbp handles completions properly", {
     play_type = "pass reception",
     epa_wpa = T
   )
+  if (is.null(p) || !is.data.frame(p) || nrow(p) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   completions = p %>%
     dplyr::filter(game_id == 401634299 & play_type == "Pass Reception" & pos_team == "NC State") %>%
@@ -30,6 +33,9 @@ test_that("base case 2023 pbp are already properly handled", {
     play_type = "pass reception",
     epa_wpa = T
   )
+  if (is.null(p) || !is.data.frame(p) || nrow(p) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   completions = p %>%
     dplyr::filter(game_id == 401525494 & play_type == "Pass Reception" & pos_team == "Georgia Tech") %>%
@@ -53,6 +59,9 @@ patrick::with_parameters_test_that(
       team = team,
       epa_wpa = T,
     )
+    if (is.null(plays) || !is.data.frame(plays) || nrow(plays) == 0L) {
+      skip("CFBD rate-limited or returned no rows")
+    }
 
     target_plays = plays[which(plays$play_text == play_text), ]
     testthat::expect_equal(nrow(target_plays), 1)

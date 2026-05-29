@@ -23,10 +23,19 @@ cols <- c(
 test_that("CFB Team Season Stats", {
   skip_on_cran()
   x <- cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8)
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_stats_season_team(2019, team = "LSU")
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   z <- cfbd_stats_season_team(2013, team = "Florida State")
+  if (is.null(z) || !is.data.frame(z) || nrow(z) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_setequal(colnames(x), cols)
   expect_setequal(colnames(y), cols)
   expect_setequal(colnames(z), cols)

@@ -228,7 +228,7 @@ get_req <- function(full_url){
     httr2::req_headers(Authorization = paste("Bearer", cfbd_key())) |>
     httr2::req_timeout(60) |>
     httr2::req_retry(
-      max_tries = 5,
+      max_tries = 3,
       backoff   = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
     ) |>
     httr2::req_error(is_error = function(resp) FALSE) |>

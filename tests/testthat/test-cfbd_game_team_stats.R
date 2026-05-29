@@ -41,10 +41,19 @@ cols2 <- c("game_id", "school",  "conference", "home_away",
 test_that("CFB Game Team Stats", {
   skip_on_cran()
   x <- cfbd_game_team_stats(year = 2018, week = 9, team = 'Notre Dame')
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_game_team_stats(2013, week = 1, team = "Florida State")
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   z <- cfbd_game_team_stats(2013, week = 3, team = "Florida State", rows_per_team = 2)
+  if (is.null(z) || !is.data.frame(z) || nrow(z) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   expect_setequal(colnames(x), cols1)
   expect_setequal(colnames(y), cols1)

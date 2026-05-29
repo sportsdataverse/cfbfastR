@@ -8,6 +8,9 @@ test_that("CFB Betting Lines", {
     week = 12,
     team = "Florida State"
   )
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_betting_lines(
     year = 2018,
@@ -15,6 +18,9 @@ test_that("CFB Betting Lines", {
     team = "Texas A&M",
     conference = "SEC"
   )
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   cols <- c(
     "game_id", "season", "season_type", "week",

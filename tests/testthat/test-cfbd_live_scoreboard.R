@@ -48,8 +48,14 @@ cols <- c(
 test_that("CFB Live Scoreboard", {
   skip_on_cran()
   x <- cfbd_live_scoreboard(division='fbs', conference = "B12")
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_live_scoreboard(division='fbs')
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_in(cols, colnames(x))
   expect_in(cols, colnames(y))
   expect_s3_class(x, "data.frame")

@@ -65,10 +65,19 @@ test_that("CFB Game Player Stats", {
     "kicking_fga")
 
   x <- cfbd_game_player_stats(2018, week = 15, conference = 'Ind')
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = 'passing')
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   z <- cfbd_game_player_stats(2013, week = 1, team = "Florida State")
+  if (is.null(z) || !is.data.frame(z) || nrow(z) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_setequal(sort(colnames(x)), sort(cols))
   expect_setequal(sort(colnames(y)), sort(cols))
   expect_setequal(sort(colnames(z)), sort(cols))

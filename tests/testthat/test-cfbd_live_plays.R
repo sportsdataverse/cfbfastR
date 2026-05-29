@@ -104,8 +104,14 @@ cols <- c(
 test_that("CFB Live Plays", {
   skip_on_cran()
   x <- cfbd_live_plays(game_id = 401520182)
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_live_plays(game_id = 401110720)
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   expect_in(colnames(x), cols)
   expect_in(colnames(y), cols)
