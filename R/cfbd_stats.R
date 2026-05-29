@@ -89,7 +89,7 @@ cfbd_stats_categories <- function() {
 
       # Get the content and return it as list
       list <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON()
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
         dplyr::rename("category" = "V1")
@@ -99,7 +99,7 @@ cfbd_stats_categories <- function() {
         make_cfbfastR_data("Stat categories for CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -239,7 +239,7 @@ cfbd_stats_game_advanced <- function(year,
 
       # Get the content, flatten and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame()
 
@@ -278,7 +278,7 @@ cfbd_stats_game_advanced <- function(year,
         make_cfbfastR_data("Advanced game stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -431,7 +431,7 @@ cfbd_stats_season_advanced <- function(year,
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
 
       colnames(df) <- gsub("offense.", "off_", colnames(df))
@@ -466,7 +466,7 @@ cfbd_stats_season_advanced <- function(year,
         make_cfbfastR_data("Advanced season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -665,7 +665,7 @@ cfbd_stats_season_player <- function(year,
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::mutate(
           statType = paste0(.data$category, "_", .data$statType)
@@ -708,7 +708,7 @@ cfbd_stats_season_player <- function(year,
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -848,7 +848,7 @@ cfbd_stats_season_team <- function(year,
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON()
 
       # Pivot category columns to get stats for each team game on one row
@@ -946,7 +946,7 @@ cfbd_stats_season_team <- function(year,
 
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
+        message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1054,7 +1054,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
 
       # Get the content, flatten and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame()
 
@@ -1068,7 +1068,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
         make_cfbfastR_data("Game havoc stats from CollegeFootballData.com", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game havoc stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game havoc stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }

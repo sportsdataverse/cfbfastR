@@ -474,7 +474,7 @@ cfbd_pbp_data <- function(year,
   check_status(res)
 
   raw_play_df <- res %>%
-    httr2::resp_body_string() %>%
+    httr2::resp_body_string(encoding = "UTF-8") %>%
     jsonlite::fromJSON()
   raw_play_df <- do.call(data.frame, raw_play_df)
 

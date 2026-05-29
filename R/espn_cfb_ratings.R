@@ -77,7 +77,7 @@ espn_cfb_futures <- function(year = NULL) {
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -90,7 +90,7 @@ espn_cfb_futures <- function(year = NULL) {
         httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -260,7 +260,7 @@ espn_cfb_powerindex <- function(year = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -444,7 +444,7 @@ espn_cfb_qbr <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -602,7 +602,7 @@ espn_ratings_fpi <- function(year = 2019) {
       check_status(res)
 
       resp <- res %>%
-        httr2::resp_body_string()
+        httr2::resp_body_string(encoding = "UTF-8")
       raw_json_fpi <- jsonlite::fromJSON(resp)
 
       ## get team fpi stats
@@ -708,7 +708,7 @@ espn_metrics_wp <- function(game_id) {
       espn_data <-
         httr2::request(glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) %>%
         httr2::req_perform() %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
 
       # to-do: Grab play data and back into seconds left

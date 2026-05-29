@@ -109,7 +109,7 @@ cfbd_player_info <- function(search_term,
       # Get the content and return it as data.frame
 
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         janitor::clean_names() %>%
         dplyr::rename(
@@ -122,7 +122,7 @@ cfbd_player_info <- function(search_term,
         make_cfbfastR_data("Player information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -201,7 +201,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
           "total_ppa" = "totalPPA",
@@ -222,7 +222,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
         make_cfbfastR_data("Returning production data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -324,7 +324,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
@@ -345,7 +345,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
         make_cfbfastR_data("Player usage data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available! {conditionMessage(e)}"))
     },
     finally = {
     }

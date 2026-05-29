@@ -1207,7 +1207,7 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -1532,7 +1532,7 @@ espn_cfb_game_drive_plays <- function(game_id = NULL, drive_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1883,7 +1883,7 @@ espn_cfb_game_drives <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -2309,7 +2309,7 @@ espn_cfb_game_leaders <- function(game_id = NULL, team_detail = TRUE) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       categories <- raw[["categories"]]
@@ -2486,7 +2486,7 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -2876,7 +2876,7 @@ espn_cfb_game_pbp <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -3246,7 +3246,7 @@ espn_cfb_game_play <- function(game_id = NULL, play_id = NULL,
       check_status(res)
 
       it <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.null(it) || is.null(it[["id"]])) {
@@ -3454,7 +3454,7 @@ espn_cfb_game_player_statistics <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -3745,7 +3745,7 @@ espn_cfb_game_player_box <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -4020,7 +4020,7 @@ espn_cfb_game_powerindex <- function(game_id = NULL, team_detail = TRUE) {
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -4211,7 +4211,7 @@ espn_cfb_game_predictor <- function(game_id = NULL, team_detail = TRUE) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       matchup_name       <- as.character(raw[["name"]] %||% NA)
@@ -4397,7 +4397,7 @@ espn_cfb_game_probabilities <- function(game_id = NULL, team_detail = TRUE) {
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -4583,7 +4583,7 @@ espn_cfb_game_situation <- function(game_id = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.null(raw) || length(raw) == 0) {
@@ -4703,7 +4703,7 @@ espn_cfb_game_status <- function(game_id = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.null(raw) || length(raw) == 0) {
@@ -4846,7 +4846,7 @@ espn_cfb_game_team_leaders <- function(game_id = NULL, team_detail = TRUE) {
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -5059,7 +5059,7 @@ espn_cfb_game_team_linescores <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -5254,7 +5254,7 @@ espn_cfb_game_team_records <- function(game_id = NULL, detail = FALSE,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -5485,7 +5485,7 @@ espn_cfb_game_team_roster <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -5713,7 +5713,7 @@ espn_cfb_game_team_statistics <- function(game_id = NULL,
       httr2::req_perform()
     check_status(res)
     res %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -5971,7 +5971,7 @@ espn_cfb_game_teams <- function(game_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -6108,7 +6108,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
       check_status(res)
 
       resp <- res %>%
-        httr2::resp_body_string()
+        httr2::resp_body_string(encoding = "UTF-8")
 
       raw_df <- jsonlite::fromJSON(resp)
       playByPlaySource = raw_df[["header"]][["competitions"]][["playByPlaySource"]]
@@ -6314,7 +6314,7 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
         httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       # season / season_type / week parsed from the week $ref path, which

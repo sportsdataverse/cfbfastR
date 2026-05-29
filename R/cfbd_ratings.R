@@ -124,7 +124,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both") {
       check_status(res)
 
       polls <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
@@ -143,7 +143,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both") {
         make_cfbfastR_data("Rankings data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -237,7 +237,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "second_order_wins" = "secondOrderWins",
@@ -270,7 +270,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
         make_cfbfastR_data("SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e){
-      message(glue::glue("{Sys.time()}: Invalid arguments or no SP+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no SP+ ratings data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -357,7 +357,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame() %>%
         dplyr::rename(
@@ -389,7 +389,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
         make_cfbfastR_data("Conference SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level SP+ ratings data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no conference-level SP+ ratings data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -463,7 +463,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
         dplyr::mutate(
@@ -476,7 +476,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
         make_cfbfastR_data("SRS data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no simple rating system (SRS) data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -553,7 +553,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame() %>%
         janitor::clean_names() %>%
@@ -564,7 +564,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
         make_cfbfastR_data("Elo ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no elo rating system data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -646,7 +646,7 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame() %>%
         janitor::clean_names()
@@ -656,7 +656,7 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
         make_cfbfastR_data("ESPN FPI ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI rating system data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI rating system data available! {conditionMessage(e)}"))
     },
     finally = {
     }

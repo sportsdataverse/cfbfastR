@@ -246,7 +246,7 @@ espn_cfb_team <- function(team_id = NULL,
       check_status(res)
 
       tm <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.null(tm) || is.null(tm[["id"]])) {
@@ -416,7 +416,7 @@ espn_cfb_team_ats <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -584,7 +584,7 @@ espn_cfb_team_awards <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -604,7 +604,7 @@ espn_cfb_team_awards <- function(team_id = NULL,
           httr2::req_perform()
         if (httr2::resp_status(aw_res) != 200) next
         aw <- aw_res %>%
-          httr2::resp_body_string() %>%
+          httr2::resp_body_string(encoding = "UTF-8") %>%
           jsonlite::fromJSON(simplifyVector = FALSE)
 
         award_id   <- as.character(aw[["id"]] %||% NA)
@@ -790,7 +790,7 @@ espn_cfb_team_coaches <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -810,7 +810,7 @@ espn_cfb_team_coaches <- function(team_id = NULL,
           httr2::req_perform()
         if (httr2::resp_status(co_res) != 200) next
         co <- co_res %>%
-          httr2::resp_body_string() %>%
+          httr2::resp_body_string(encoding = "UTF-8") %>%
           jsonlite::fromJSON(simplifyVector = FALSE)
 
         birth <- co[["birthPlace"]] %||% list()
@@ -962,7 +962,7 @@ espn_cfb_team_events <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -1125,7 +1125,7 @@ espn_cfb_team_leaders <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       categories <- raw[["categories"]]
@@ -1302,7 +1302,7 @@ espn_cfb_team_powerindex <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       team_ref <- raw[["team"]][["$ref"]] %||% NA_character_
@@ -1480,7 +1480,7 @@ espn_cfb_team_ranks <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -1500,7 +1500,7 @@ espn_cfb_team_ranks <- function(team_id = NULL,
           httr2::req_perform()
         if (httr2::resp_status(rk_res) != 200) next
         rk <- rk_res %>%
-          httr2::resp_body_string() %>%
+          httr2::resp_body_string(encoding = "UTF-8") %>%
           jsonlite::fromJSON(simplifyVector = FALSE)
 
         rk_block <- rk[["rank"]] %||% list()
@@ -1672,7 +1672,7 @@ espn_cfb_team_record <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -1870,7 +1870,7 @@ espn_cfb_team_roster <- function(team_id = NULL,
        httr2::req_headers(!!!headers) |>
        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
        httr2::req_perform()) %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1884,7 +1884,7 @@ espn_cfb_team_roster <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -2109,7 +2109,7 @@ espn_cfb_team_schedule <- function(team_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       events <- raw[["events"]]
@@ -2567,7 +2567,7 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string()  %>%
+        httr2::resp_body_string(encoding = "UTF-8")  %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       team_url <- df[["team"]][["$ref"]]
@@ -2581,7 +2581,7 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
       check_status(team_res)
 
       team_df <- team_res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       team_df[["links"]] <- NULL
@@ -2653,7 +2653,7 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         purrr::pluck("splits") %>%
         purrr::pluck("categories") %>%
@@ -2766,7 +2766,7 @@ espn_cfb_teams <- function() {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       teams <- raw[["sports"]][[1]][["leagues"]][[1]][["teams"]]

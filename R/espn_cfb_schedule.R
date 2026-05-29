@@ -106,7 +106,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       raw_sched <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
 
@@ -353,7 +353,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
         httr2::req_perform()
 
       raw_sched <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
 
@@ -550,7 +550,7 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
       check_status(res)
 
       raw_cal <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       calendar_out <- raw_cal[["leagues"]] %>%

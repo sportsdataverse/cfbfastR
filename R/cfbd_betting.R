@@ -136,7 +136,7 @@ cfbd_betting_lines <- function(game_id = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         stringr::str_replace_all("NaN", 'null') %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
@@ -170,7 +170,7 @@ cfbd_betting_lines <- function(game_id = NULL,
         make_cfbfastR_data("Betting lines data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },
@@ -255,7 +255,7 @@ cfbd_betting_ats <- function(year = NULL,
 
       # Get the content -- /teams/ats returns a flat array, no nesting
       parsed <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE)
 
       if (is.data.frame(parsed) && nrow(parsed) > 0) {
@@ -268,7 +268,7 @@ cfbd_betting_ats <- function(year = NULL,
         make_cfbfastR_data("Against-the-spread records from CollegeFootballData.com", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no ATS data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ATS data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },

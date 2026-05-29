@@ -101,7 +101,7 @@ cfbd_coaches <- function(first = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
@@ -113,7 +113,7 @@ cfbd_coaches <- function(first = NULL,
         make_cfbfastR_data("Coaches data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))
+        message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available! {conditionMessage(e)}"))
 
     },
     warning = function(w) {

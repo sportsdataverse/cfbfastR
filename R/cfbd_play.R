@@ -163,7 +163,7 @@ cfbd_plays <- function(year = 2020,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename("play_id" = "id") %>%
         janitor::clean_names()
@@ -173,7 +173,7 @@ cfbd_plays <- function(year = 2020,
         make_cfbfastR_data("Play-by-play data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -324,7 +324,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame()
 
@@ -627,7 +627,7 @@ cfbd_play_stats_player <- function(year = NULL,
         make_cfbfastR_data("Play-level player data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play-level player stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -672,7 +672,7 @@ cfbd_play_stats_types <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename("play_stat_type_id" = "id")
 
@@ -682,7 +682,7 @@ cfbd_play_stats_types <- function() {
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -728,7 +728,7 @@ cfbd_play_types <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename("play_type_id" = "id")
 
@@ -737,7 +737,7 @@ cfbd_play_types <- function() {
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -887,7 +887,7 @@ cfbd_live_plays <- function(game_id) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE) %>%
         tibble::tibble(data = .data$.)
 
@@ -1019,7 +1019,7 @@ cfbd_live_plays <- function(game_id) {
         make_cfbfastR_data("Live play-by-play data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no plays data available! {conditionMessage(e)}"))
     },
     finally = {
     }

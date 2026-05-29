@@ -170,7 +170,7 @@ NULL
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.list(raw) && !is.null(raw[["id"]])) {
@@ -434,7 +434,7 @@ espn_cfb_player <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.null(raw) || is.null(raw[["id"]])) {
@@ -668,7 +668,7 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["events"]][["items"]]
@@ -880,7 +880,7 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       events <- raw[["events"]]
@@ -1074,7 +1074,7 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       stats_block <- raw[["statistics"]]
@@ -1228,7 +1228,7 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       entries <- raw[["entries"]]
@@ -1408,7 +1408,7 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       split_categories <- raw[["splitCategories"]]
@@ -1587,7 +1587,7 @@ espn_cfb_player_statistics <- function(athlete_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       categories <- raw[["splits"]][["categories"]]
@@ -2362,7 +2362,7 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       check_status(athlete_res)
 
       athlete_df <- athlete_res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       team_url <- athlete_df[["team"]][["$ref"]]
@@ -2376,7 +2376,7 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       check_status(team_res)
 
       team_df <- team_res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       team_df[["links"]] <- NULL
@@ -2468,7 +2468,7 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         purrr::pluck("splits") %>%
         purrr::pluck("categories") %>%
@@ -2617,7 +2617,7 @@ espn_cfb_players <- function(year = NULL,
         check_status(res)
 
         raw <- res %>%
-          httr2::resp_body_string() %>%
+          httr2::resp_body_string(encoding = "UTF-8") %>%
           jsonlite::fromJSON(simplifyVector = FALSE)
 
         items <- raw[["items"]]
@@ -2793,7 +2793,7 @@ espn_cfb_recruits <- function(year = NULL,
       httr2::req_headers(!!!headers) |>
       httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -2812,7 +2812,7 @@ espn_cfb_recruits <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L

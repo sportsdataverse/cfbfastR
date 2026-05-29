@@ -153,7 +153,7 @@ cfbd_recruiting_player <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>%
         as.data.frame()
@@ -163,7 +163,7 @@ cfbd_recruiting_player <- function(year = NULL,
         make_cfbfastR_data("Player recruiting info from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -240,7 +240,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
           "position_group" = "positionGroup",
@@ -254,7 +254,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
         make_cfbfastR_data("Recruiting position group info from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -324,7 +324,7 @@ cfbd_recruiting_team <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame()
 
@@ -333,7 +333,7 @@ cfbd_recruiting_team <- function(year = NULL,
         make_cfbfastR_data("Recruiting team rankings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no team recruiting data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -396,7 +396,7 @@ cfbd_recruiting_transfer_portal <- function(year) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         janitor::clean_names() %>%
         dplyr::mutate(
@@ -408,7 +408,7 @@ cfbd_recruiting_transfer_portal <- function(year) {
         make_cfbfastR_data("Transfer portal data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no transfer portal data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no transfer portal data available! {conditionMessage(e)}"))
     },
     finally = {
     }

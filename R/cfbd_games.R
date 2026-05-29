@@ -207,7 +207,7 @@ cfbd_game_info <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 
@@ -234,7 +234,7 @@ cfbd_game_info <- function(year,
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -328,7 +328,7 @@ cfbd_game_weather <- function(year,
       # this year/week yet -- common during the in-season window before
       # CFBD backfills, see GH #116) from a parse/HTTP error.
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON()
 
       if (length(raw) == 0L || (is.data.frame(raw) && nrow(raw) == 0L)) {
@@ -409,7 +409,7 @@ cfbd_calendar <- function(year) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         dplyr::select(
@@ -425,7 +425,7 @@ cfbd_calendar <- function(year) {
         make_cfbfastR_data("Calendar data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -523,7 +523,7 @@ cfbd_game_media <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         tidyr::pivot_wider(
           names_from = "mediaType",
@@ -544,7 +544,7 @@ cfbd_game_media <- function(year,
         make_cfbfastR_data("Game media data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -674,7 +674,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         purrr::map_if(is.data.frame, list)
@@ -1023,7 +1023,7 @@ cfbd_game_player_stats <- function(year,
 
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
@@ -1074,7 +1074,7 @@ cfbd_game_player_stats <- function(year,
         make_cfbfastR_data("Game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1182,7 +1182,7 @@ cfbd_game_records <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "team_id" = "teamId",
@@ -1221,7 +1221,7 @@ cfbd_game_records <- function(year,
         make_cfbfastR_data("Game records data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1406,7 +1406,7 @@ cfbd_game_team_stats <- function(year,
       )
       # Get the content, unnest, and return result as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble()
@@ -1547,7 +1547,7 @@ cfbd_game_team_stats <- function(year,
         make_cfbfastR_data("Team stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no team stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no team stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1648,7 +1648,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 
@@ -1670,7 +1670,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available! {conditionMessage(e)}"))
     },
     finally = {
     }

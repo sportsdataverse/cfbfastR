@@ -222,7 +222,7 @@
         httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       # --- season / season_type / week from week.$ref ---------------------

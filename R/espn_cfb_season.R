@@ -143,7 +143,7 @@ espn_cfb_groups <- function(year = NULL,
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -163,7 +163,7 @@ espn_cfb_groups <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -294,7 +294,7 @@ espn_cfb_rankings <- function(year = NULL) {
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -313,7 +313,7 @@ espn_cfb_rankings <- function(year = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -431,7 +431,7 @@ espn_cfb_season_info <- function(year = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       ref_of <- function(k) {
@@ -539,7 +539,7 @@ espn_cfb_season_types <- function(year = NULL) {
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -558,7 +558,7 @@ espn_cfb_season_types <- function(year = NULL) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -664,7 +664,7 @@ espn_cfb_season_weeks <- function(year = NULL,
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -684,7 +684,7 @@ espn_cfb_season_weeks <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -775,7 +775,7 @@ espn_cfb_seasons <- function() {
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -793,7 +793,7 @@ espn_cfb_seasons <- function() {
         httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -945,7 +945,7 @@ espn_cfb_standings <- function(year = NULL,
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -965,7 +965,7 @@ espn_cfb_standings <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -1156,7 +1156,7 @@ espn_cfb_week_rankings <- function(year = NULL,
       httr2::req_headers(!!!headers) %>%
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1236,7 +1236,7 @@ espn_cfb_week_rankings <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()

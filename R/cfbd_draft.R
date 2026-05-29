@@ -74,7 +74,7 @@ cfbd_draft_teams <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>%
         as.data.frame() %>%
@@ -88,7 +88,7 @@ cfbd_draft_teams <- function() {
         make_cfbfastR_data("NFL teams data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL teams data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },
@@ -137,7 +137,7 @@ cfbd_draft_positions <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>%
         as.data.frame() %>%
@@ -150,7 +150,7 @@ cfbd_draft_positions <- function() {
         make_cfbfastR_data("NFL positions data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL positions data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL positions data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },
@@ -245,7 +245,7 @@ cfbd_draft_picks <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names()
 
@@ -253,7 +253,7 @@ cfbd_draft_picks <- function(year = NULL,
         make_cfbfastR_data("NFL draft data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL draft data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no NFL draft data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },

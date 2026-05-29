@@ -152,7 +152,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON()
       locs <- df$location
       locs <- locs %>%
@@ -195,7 +195,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
         make_cfbfastR_data("Team information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -270,7 +270,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON()
       if (purrr::is_empty(df$games)) stop(call. = F)
       min_season <- min(df$games$season)
@@ -304,7 +304,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
         make_cfbfastR_data("Team matchup record from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },
@@ -387,7 +387,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         purrr::pluck("games")
       if (is.null(df) || nrow(df) == 0) {
@@ -403,7 +403,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
         make_cfbfastR_data("Team matchup history from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -482,7 +482,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         dplyr::rename("athlete_id" = "id") %>%
         dplyr::mutate(
@@ -497,7 +497,7 @@ cfbd_team_roster <- function(year, team = NULL) {
         make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -557,7 +557,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
         dplyr::mutate(talent = as.numeric(.data$talent)) %>%
@@ -568,7 +568,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
         make_cfbfastR_data("247sports team talent ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available! {conditionMessage(e)}"))
     },
     finally = {
     }

@@ -60,7 +60,7 @@ cfbd_conferences <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 
@@ -75,7 +75,7 @@ cfbd_conferences <- function() {
         make_cfbfastR_data("Conference data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no Conference data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no Conference data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },

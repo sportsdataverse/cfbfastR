@@ -225,7 +225,7 @@ espn_cfb_award <- function(award_id = NULL,
       check_status(res)
 
       a <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       award_id_v  <- as.character(a[["id"]] %||% award_id)
@@ -398,7 +398,7 @@ espn_cfb_awards <- function(year = NULL,
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -418,7 +418,7 @@ espn_cfb_awards <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -610,7 +610,7 @@ espn_cfb_coach <- function(coach_id = NULL,
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -634,7 +634,7 @@ espn_cfb_coach <- function(coach_id = NULL,
       check_status(res)
 
       sc <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       team_ref <- if (is.list(sc[["team"]])) {
@@ -781,7 +781,7 @@ espn_cfb_coach_record <- function(coach_id = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       stats <- raw[["stats"]] %||% list()
@@ -916,7 +916,7 @@ espn_cfb_coaches <- function(year = NULL,
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -936,7 +936,7 @@ espn_cfb_coaches <- function(year = NULL,
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -1107,7 +1107,7 @@ espn_cfb_franchise <- function(franchise_id = NULL,
       check_status(res)
 
       f <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       venue <- f[["venue"]]
@@ -1217,7 +1217,7 @@ espn_cfb_franchises <- function() {
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1237,7 +1237,7 @@ espn_cfb_franchises <- function() {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -1357,7 +1357,7 @@ espn_cfb_position <- function(position_id = NULL) {
       check_status(res)
 
       p <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       parent <- p[["parent"]]
@@ -1448,7 +1448,7 @@ espn_cfb_positions <- function() {
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1468,7 +1468,7 @@ espn_cfb_positions <- function() {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -1594,7 +1594,7 @@ espn_cfb_venue <- function(venue_id = NULL) {
       check_status(res)
 
       v <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       addr <- v[["address"]]
@@ -1685,7 +1685,7 @@ espn_cfb_venues <- function(max_results = 200) {
       httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform() %>%
-      httr2::resp_body_string() %>%
+      httr2::resp_body_string(encoding = "UTF-8") %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1708,7 +1708,7 @@ espn_cfb_venues <- function(max_results = 200) {
       check_status(res)
 
       raw <- res %>%
-        httr2::resp_body_string() %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
