@@ -195,7 +195,7 @@ cfbd_metrics_wepa_team_season <- function(year = NULL,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -291,7 +291,7 @@ cfbd_metrics_wepa_players_passing <- function(year = NULL,
     "conference" = conference,
     "position" = position
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -387,7 +387,7 @@ cfbd_metrics_wepa_players_rushing <- function(year = NULL,
     "conference" = conference,
     "position" = position
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -467,7 +467,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -572,7 +572,7 @@ cfbd_metrics_ppa_games <- function(year,
     "conference" = conference,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -700,7 +700,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
     "threshold" = threshold,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -831,7 +831,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
     "threshold" = threshold,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -911,7 +911,7 @@ cfbd_metrics_ppa_predicted <- function(down,
     "down" = down,
     "distance" = distance
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1012,7 +1012,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
     "conference" = conference,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1102,7 +1102,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
     "team" = team,
     "seasonType" = season_type
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   cols <- c(
     "season", "season_type", "week", "game_id",
@@ -1191,7 +1191,7 @@ cfbd_metrics_wp <- function(game_id) {
   query_params <- list(
     "gameId" = game_id
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   cols <- c(
     "play_id", "play_text", "home_id", "home", "away_id", "away",

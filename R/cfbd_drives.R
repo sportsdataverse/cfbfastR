@@ -123,7 +123,7 @@ cfbd_drives <- function(year,
     "classification" = division
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params)
+    httr2::req_url_query(!!!.compact(query_params))
   full_url <- full_url$url
 
   df <- data.frame()

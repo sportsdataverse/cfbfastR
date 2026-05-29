@@ -123,7 +123,7 @@ cfbd_betting_lines <- function(game_id = NULL,
     "provider" = line_provider
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params) %>%
+    httr2::req_url_query(!!!.compact(query_params)) %>%
     `[[`("url")
 
   df <- data.frame()
@@ -242,7 +242,7 @@ cfbd_betting_ats <- function(year = NULL,
     "conference" = conference
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params) %>%
+    httr2::req_url_query(!!!.compact(query_params)) %>%
     `[[`("url")
 
   df <- data.frame()

@@ -114,7 +114,7 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both") {
     "week" = week,
     "seasonType" = season_type
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   polls <- data.frame()
   tryCatch(
@@ -225,7 +225,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
     "year" = year,
     "team" = team
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -345,7 +345,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
     "year" = year,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -451,7 +451,7 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -541,7 +541,7 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -634,7 +634,7 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(

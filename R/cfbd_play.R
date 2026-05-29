@@ -150,7 +150,7 @@ cfbd_plays <- function(year = 2020,
     "classification" = division
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params) %>%
+    httr2::req_url_query(!!!.compact(query_params)) %>%
     purrr::pluck("url")
 
   df <- data.frame()
@@ -311,7 +311,7 @@ cfbd_play_stats_player <- function(year = NULL,
     "seasonType" = season_type
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params) %>%
+    httr2::req_url_query(!!!.compact(query_params)) %>%
     purrr::pluck("url")
 
   clean_df <- data.frame()
@@ -874,7 +874,7 @@ cfbd_live_plays <- function(game_id) {
     "gameId" = game_id
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params) %>%
+    httr2::req_url_query(!!!.compact(query_params)) %>%
     purrr::pluck("url")
 
   df <- data.frame()

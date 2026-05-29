@@ -97,7 +97,7 @@ cfbd_api_key_info <- function(){
   base_url <- "https://api.collegefootballdata.com/info?"
   query_params <- list()
 
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(

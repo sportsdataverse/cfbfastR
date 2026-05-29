@@ -141,7 +141,7 @@ cfbd_recruiting_player <- function(year = NULL,
     "position" = position,
     "state" = state
   )
-  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!.compact(query_params))$url
 
   df <- data.frame()
   tryCatch(
@@ -228,7 +228,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!.compact(query_params))$url
 
   df <- data.frame()
   tryCatch(
@@ -312,7 +312,7 @@ cfbd_recruiting_team <- function(year = NULL,
     "year" = year,
     "team" = team
   )
-  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!.compact(query_params))$url
 
   df <- data.frame()
   tryCatch(
@@ -384,7 +384,7 @@ cfbd_recruiting_transfer_portal <- function(year) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!.compact(query_params))$url
 
   df <- data.frame()
   tryCatch(

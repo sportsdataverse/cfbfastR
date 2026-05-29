@@ -154,7 +154,7 @@ cfbd_pbp_data_v2 <- function(year,
     "playType"   = pt_abb
   )
   full_url <- httr2::req_url_query(
-    httr2::request(play_base_url), !!!query_params
+    httr2::request(play_base_url), !!!.compact(query_params)
   )$url
   res <- get_req(full_url)
   check_status(res)

@@ -467,7 +467,7 @@ cfbd_pbp_data <- function(year,
     "team" = team,
     "playType" = pt_abb
   )
-  full_url <- httr2::url_modify(play_base_url, query = query_params)
+  full_url <- httr2::url_modify(play_base_url, query = .compact(query_params))
 
   # Create the GET request and set response as res
   res <- get_req(full_url)

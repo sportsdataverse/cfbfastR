@@ -129,7 +129,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       "conference" = conference,
       "year" = year
     )
-    full_url <- httr2::url_modify(base_url, query = query_params)
+    full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   } else {
 
@@ -138,7 +138,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
     query_params <- list(
       "year" = year
     )
-    full_url <- httr2::url_modify(base_url, query = query_params)
+    full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   }
 
@@ -258,7 +258,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
     "minYear" = min_year,
     "maxYear" = max_year
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -375,7 +375,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
     "minYear" = min_year,
     "maxYear" = max_year
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -470,7 +470,7 @@ cfbd_team_roster <- function(year, team = NULL) {
     "year" = year,
     "team" = team
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -545,7 +545,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(

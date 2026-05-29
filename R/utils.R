@@ -221,6 +221,21 @@ get_req <- function(full_url){
     httr2::req_perform()
 }
 
+#' Drop NULL entries from a list (internal)
+#'
+#' Used to compact query-parameter lists before passing them to
+#' httr2::url_modify / req_url_query, both of which error on NULL
+#' values (unlike httr::modify_url which silently dropped them).
+#'
+#' @param x A list.
+#' @return `x` with NULL entries removed; the names of the
+#'   remaining entries are preserved.
+#' @keywords internal
+#' @noRd
+.compact <- function(x) {
+  x[!vapply(x, is.null, logical(1))]
+}
+
 # Edge Case Handling ----
 handle_accents <- function(var = NULL){
   if(!is.null(var)){

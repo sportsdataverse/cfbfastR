@@ -233,7 +233,7 @@ cfbd_draft_picks <- function(year = NULL,
     "conference" = conference,
     "position" = position
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(

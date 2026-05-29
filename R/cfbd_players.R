@@ -97,7 +97,7 @@ cfbd_player_info <- function(search_term,
     "team" = team,
     "year" = year
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -190,7 +190,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -312,7 +312,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     "playerId" = athlete_id,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(

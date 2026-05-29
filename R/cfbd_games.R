@@ -195,7 +195,7 @@ cfbd_game_info <- function(year,
     "division" = division,
     "id" = game_id
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -313,7 +313,7 @@ cfbd_game_weather <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -397,7 +397,7 @@ cfbd_calendar <- function(year) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -505,7 +505,7 @@ cfbd_game_media <- function(year,
     "mediaType" = media_type,
     "classification" = division
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   cols <- c(
     "game_id", "season", "week", "season_type", "start_time",
@@ -662,7 +662,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
   query_params <- list(
     "id" = game_id
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -891,7 +891,7 @@ cfbd_game_player_stats <- function(year,
     "category" = category,
     "gameId" = game_id
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   cols <- c(
     "game_id", "team", "conference", "home_away", "team_points",
@@ -1170,7 +1170,7 @@ cfbd_game_records <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1379,7 +1379,7 @@ cfbd_game_team_stats <- function(year,
     "classification" = division,
     "gameId" = game_id
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1636,7 +1636,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
     "conference" = conference,
     "division" = division
   )
-  full_url <- httr2::url_modify_query(base_url, !!!query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(

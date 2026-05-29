@@ -88,7 +88,7 @@ cfbd_coaches <- function(first = NULL,
     "maxYear" = max_year
   )
   full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!query_params) %>%
+    httr2::req_url_query(!!!.compact(query_params)) %>%
     `[[`("url")
 
   df <- data.frame()

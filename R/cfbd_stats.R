@@ -227,7 +227,7 @@ cfbd_stats_game_advanced <- function(year,
     "excludeGarbageTime" = excl_garbage_time,
     "seasonType" = season_type
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -419,7 +419,7 @@ cfbd_stats_season_advanced <- function(year,
     "startWeek" = start_week,
     "endWeek" = end_week
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -614,7 +614,7 @@ cfbd_stats_season_player <- function(year,
     "seasonType" = season_type,
     "category" = category
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   cols <- c(
     "team", "conference", "athlete_id", "player", "position", "category",
@@ -826,7 +826,7 @@ cfbd_stats_season_team <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   # Expected column names for full season data
   expected_colnames <- c(
@@ -1042,7 +1042,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
     "opponent" = opponent,
     "seasonType" = season_type
   )
-  full_url <- httr2::url_modify(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
