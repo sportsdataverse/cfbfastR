@@ -96,40 +96,6 @@ For less consistent usage, save your API key as the environment variable `CFBD_A
 Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
 
-### **Using cfbfastR behind a proxy**
-
-If you're working from a network that routes outbound HTTP through a corporate proxy, you don't need to thread a `proxy = ...` argument through every `cfbd_*()` call. `cfbfastR`'s internal HTTP helper (`get_req()`) resolves a proxy in this order:
-
-1. An explicit `proxy` argument passed to the wrapper (highest precedence).
-2. `getOption("cfbfastR.proxy")` -- a session-level fallback.
-3. The standard `http_proxy` / `https_proxy` / `no_proxy` environment variables, which libcurl reads automatically.
-
-The recommended pattern is to set the option once at the top of your script and let every subsequent call pick it up:
-
-```{r, eval = FALSE}
-options(cfbfastR.proxy = "http://proxy.host.example:8080")
-```
-
-For an authenticated proxy, pass a named list with `url` / `port` / `username` / `password` / `auth` -- the list is spread directly into `httr2::req_proxy()`:
-
-```{r, eval = FALSE}
-options(cfbfastR.proxy = list(
-  url      = "http://proxy.host.example",
-  port     = 8080,
-  username = "me",
-  password = "pw",
-  auth     = "basic"
-))
-```
-
-If you prefer the environment-variable path -- handy in CI containers and Docker images where the proxy is already exported -- nothing extra is needed in R, but you can also set them from the session:
-
-```{r, eval = FALSE}
-Sys.setenv(https_proxy = "http://proxy.host.example:8080")
-```
-
-The ESPN wrappers (`espn_cfb_*()`, `espn_metrics_*()`, `espn_ratings_*()`) also flow through `httr2` and honour the same env-var-based proxy handling, so a single `options()` or env-var setup covers the whole package.
-
 # Let's get some play by play data
 
 If you have ever worked with the now archived [**`cfbscrapR`**](https://github.com/saiemgilani/cfbscrapR) package, most of the functions in **`cfbfastR`** should be fairly familiar with some slight changes.
