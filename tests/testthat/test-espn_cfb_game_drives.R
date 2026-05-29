@@ -104,7 +104,10 @@ test_that("ESPN CFB Game Drives - plays = expand", {
   expect_s3_class(de, "data.frame")
   # Drive-level columns are prefixed `drive_`.
   expect_true(any(grepl("^drive_", colnames(de))))
-  expect_in(c("drive_id", "drive_result", "drive_yards"), colnames(de))
+  # The unnest flattens nested `drive.X` JSON into `drive_X` columns,
+  # so the actual identifiers are the doubled-prefix forms.
+  expect_in(c("drive_drive_id", "drive_description", "drive_team_id"),
+            colnames(de))
   # Play-level columns from the espn_cfb_game_pbp schema are present.
   expect_in(c("game_id", "play_id", "type_text", "start_down"),
             colnames(de))

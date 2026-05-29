@@ -120,12 +120,23 @@ test_that("ESPN CFB Game Plays - team_participants", {
   )
 
   # team_participants = "wide" emits type-keyed {type}_team_* columns.
+  # Note: ESPN supplies `_team_id` and `_team_ref` for ALL participant
+  # types it emits (start, end, offense, defense, etc.), but `_team_order`
+  # only for the offense/defense pair. We assert the participant pair we
+  # control (offense + defense) carries a complete id / order / ref
+  # trio; other participant prefixes carry id + ref only.
   x <- espn_cfb_game_pbp(game_id = 401628339, team_participants = "wide")
-  tid_cols   <- grep("_team_id$", colnames(x), value = TRUE)
+  tid_cols    <- grep("_team_id$",    colnames(x), value = TRUE)
   torder_cols <- grep("_team_order$", colnames(x), value = TRUE)
-  tref_cols  <- grep("_team_ref$", colnames(x), value = TRUE)
+  tref_cols   <- grep("_team_ref$",   colnames(x), value = TRUE)
   expect_gt(length(tid_cols), 0)
-  expect_equal(length(tid_cols), length(torder_cols))
+  # offense + defense participants must have the full id/order/ref trio.
+  for (side in c("offense", "defense")) {
+    expect_true(paste0(side, "_team_id")    %in% tid_cols)
+    expect_true(paste0(side, "_team_order") %in% torder_cols)
+    expect_true(paste0(side, "_team_ref")   %in% tref_cols)
+  }
+  # id / ref counts match (every team participant carries both).
   expect_equal(length(tid_cols), length(tref_cols))
   expect_true(any(c("offense_team_id", "defense_team_id") %in%
                     colnames(x)))
