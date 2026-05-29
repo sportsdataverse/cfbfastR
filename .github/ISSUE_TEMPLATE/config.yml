@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: cfbfastR documentation
+    url: https://cfbfastr.sportsdataverse.org/
+    about: Browse the pkgdown reference, articles, and changelog before filing an issue.
+  - name: SportsDataverse Discord
+    url: https://discord.com/invite/s8c7p3HrWj
+    about: Chat with the SportsDataverse community for usage help, ideas, and quick questions.
+  - name: GitHub Discussions
+    url: https://github.com/sportsdataverse/cfbfastR/discussions
+    about: Ask questions, share usage tips, and discuss ideas with the cfbfastR community.
+  - name: SportsDataverse home
+    url: https://sportsdataverse.org/
+    about: Explore the broader SportsDataverse ecosystem of sports data packages.
