@@ -37,3 +37,9 @@ cfb_pbp_db
 ^\.positai$
 ^\.claude$
 ^\.remember$
+^CLAUDE\.md$
+^CONTRIBUTING\.md$
+^\.vscode$
+^tools$
+^\.pytest_cache$
+^\.lintr$
