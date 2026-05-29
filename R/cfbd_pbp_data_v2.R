@@ -57,8 +57,7 @@
 #' @export
 #' @examples
 #' \donttest{
-#'   try(cfbd_pbp_data_v2(year = 2024, week = 1, season_type = "regular",
-#'                        epa_wpa = TRUE))
+#'   x<-try(cfbd_pbp_data_v2(year = 2024, week = 1, season_type = "regular", epa_wpa = TRUE, output = "default"))
 #' }
 cfbd_pbp_data_v2 <- function(year,
                              season_type = "regular",
