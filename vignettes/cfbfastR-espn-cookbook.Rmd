@@ -401,24 +401,51 @@ It returns invisibly and is a safe no-op when caching is `"off"`.
 
 ## A note on proxies
 
-If you're running these recipes from a network that routes outbound HTTP through a
-corporate proxy, `cfbfastR` resolves a proxy at the HTTP layer in three tiers:
-explicit `proxy` argument first, then `getOption("cfbfastR.proxy")`, then the
-standard `http_proxy` / `https_proxy` environment variables. The intro vignette
-(`vignette("intro", package = "cfbfastR")`) has the full reference.
+If you're working from a network that routes outbound HTTP through a corporate
+proxy, you don't need to thread a `proxy = ...` argument through every
+`cfbd_*()` call. `cfbfastR`'s internal HTTP helper (`get_req()`) resolves a
+proxy in this order:
 
-The ESPN wrappers don't expose a per-call `proxy =` argument, but they go through
-the same `httr2` stack, so the option (or the env vars) covers them too:
+1. An explicit `proxy` argument passed to the wrapper (highest precedence).
+2. `getOption("cfbfastR.proxy")` -- a session-level fallback.
+3. The standard `http_proxy` / `https_proxy` / `no_proxy` environment variables, which libcurl reads automatically.
 
-```{r espn-proxy, eval=FALSE}
+The recommended pattern is to set the option once at the top of your script and
+let every subsequent call pick it up:
+
+```{r proxy-option, eval=FALSE}
 options(cfbfastR.proxy = "http://proxy.host.example:8080")
 
-# Every espn_cfb_*() call now routes through the proxy.
+# Every cfbd_*() and espn_cfb_*() call now routes through the proxy.
 teams <- espn_cfb_teams()
+plays <- cfbd_pbp_data(year = 2024, week = 1, team = "Georgia")
 ```
 
 For an authenticated proxy, pass a named list with `url` / `port` / `username` /
-`password` / `auth` -- the list is spread directly into `httr2::req_proxy()`.
+`password` / `auth` -- the list is spread directly into `httr2::req_proxy()`:
+
+```{r proxy-auth, eval=FALSE}
+options(cfbfastR.proxy = list(
+  url      = "http://proxy.host.example",
+  port     = 8080,
+  username = "me",
+  password = "pw",
+  auth     = "basic"
+))
+```
+
+If you prefer the environment-variable path -- handy in CI containers and Docker
+images where the proxy is already exported -- nothing extra is needed in R, but
+you can also set them from the session:
+
+```{r proxy-env, eval=FALSE}
+Sys.setenv(https_proxy = "http://proxy.host.example:8080")
+```
+
+The ESPN wrappers (`espn_cfb_*()`, `espn_metrics_*()`, `espn_ratings_*()`) don't
+expose a per-call `proxy =` argument, but they go through the same `httr2`
+stack and honour the same env-var-based proxy handling, so a single `options()`
+or env-var setup covers the whole package.
 
 ---
 
