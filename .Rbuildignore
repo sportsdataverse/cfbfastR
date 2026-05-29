@@ -36,3 +36,4 @@ cfb_pbp_db
 ^CRAN-SUBMISSION$
 ^\.positai$
 ^\.claude$
+^\.remember$
