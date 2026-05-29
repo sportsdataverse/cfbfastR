@@ -63,6 +63,36 @@
 #'
 NULL
 
+# Internal: resolve a conference abbreviation (e.g. "SEC") to its full
+# `cfbd_conferences()` name (e.g. "SEC" -> "SEC", "P12" -> "Pac-12"). Used
+# by the per-conference filter sites in `cfbd_game_team_stats()` and
+# similar wrappers. Returns a length-1 character; errors loudly via cli
+# when the abbreviation matches zero rows or more than one row in the
+# conferences table (the prior code passed the multi-element vector
+# straight to `dplyr::filter()`, producing the "longer object length is
+# not a multiple of shorter object length" recycling warning and an
+# incomplete filtered frame -- see GH #119).
+#' @noRd
+#' @keywords internal
+.lookup_conference_name <- function(conference) {
+  confs <- cfbd_conferences()
+  match_rows <- confs[confs$abbreviation == conference, , drop = FALSE]
+  if (nrow(match_rows) == 0L) {
+    cli::cli_abort(c(
+      "Unknown conference abbreviation {.val {conference}}.",
+      i = "See {.fn cfbd_conferences} for the list of valid abbreviations."
+    ))
+  }
+  if (nrow(match_rows) > 1L) {
+    cli::cli_warn(c(
+      "Multiple conferences match abbreviation {.val {conference}}.",
+      i = "Using the first match: {.val {match_rows$name[1L]}}.",
+      i = "Other matches: {.val {match_rows$name[-1L]}}."
+    ))
+  }
+  match_rows$name[1L]
+}
+
 #' @title
 #' **Get results information from games.**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
@@ -1432,14 +1462,11 @@ cfbd_game_team_stats <- function(year,
 
 
         } else if (!is.null(conference)) {
-          confs <- cfbd_conferences()
-
           conference <- URLdecode(conference)
-
-          conf_name <- confs[confs$abbreviation == conference, ]$name
+          conf_name <- .lookup_conference_name(conference)
 
           df <- df %>%
-            dplyr::filter(conference == conf_name) %>%
+            dplyr::filter(.data$conference == conf_name) %>%
             dplyr::select(dplyr::all_of(cols1))
 
 
@@ -1464,21 +1491,18 @@ cfbd_game_team_stats <- function(year,
           "total_penalties_yards", "possession_time"
         )
         if (!is.null(team)) {
-          team <- URLdecode(team <- team)
+          team <- URLdecode(team)
 
           df <- df %>%
             dplyr::filter(.data$team == team) %>%
             dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
-          confs <- cfbd_conferences()
-
           conference <- URLdecode(conference)
-
-          conf_name <- confs[confs$abbreviation == conference, ]$name
+          conf_name <- .lookup_conference_name(conference)
 
           df <- df %>%
-            dplyr::filter(conference == conf_name) %>%
+            dplyr::filter(.data$conference == conf_name) %>%
             dplyr::select(dplyr::all_of(cols2))
 
 
