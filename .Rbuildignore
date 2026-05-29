@@ -34,3 +34,5 @@ cfb_pbp_db
 ^\.pre-commit-config\.yaml$
 ^man_backup$
 ^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$

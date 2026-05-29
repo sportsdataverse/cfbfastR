@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 2.2.1
+Version: 2.3.0
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-7194-9067")),
@@ -33,7 +33,8 @@ URL: https://cfbfastR.sportsdataverse.org/,
 BugReports: https://github.com/sportsdataverse/cfbfastR/issues
 Depends: 
     R (>= 4.1.0)
-Imports: 
+Imports:
+    cachem,
     cli (>= 3.0.0),
     data.table (>= 1.15.0),
     dplyr (>= 1.0.0),
@@ -43,6 +44,7 @@ Imports:
     jsonlite,
     lubridate,
     magrittr,
+    memoise,
     mgcv (>= 1.8-33),
     nnet,
     progressr (>= 0.6.0),
@@ -70,5 +72,5 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Config/testthat/edition: 3
