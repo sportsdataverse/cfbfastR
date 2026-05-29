@@ -319,21 +319,36 @@ cfbd_game_weather <- function(year,
       res <- get_req(full_url)
       check_status(res)
 
-      # Get the content and return it as data.frame
-      df <- res %>%
+      # Get the content as parsed JSON first so we can distinguish an
+      # empty-array response (upstream has not collected weather for
+      # this year/week yet -- common during the in-season window before
+      # CFBD backfills, see GH #116) from a parse/HTTP error.
+      raw <- res %>%
         httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        janitor::clean_names()
+        jsonlite::fromJSON()
 
-      df <- df %>%
-        dplyr::rename("game_id" = "id")
-
-
-      df <- df %>%
-        make_cfbfastR_data("Game weather data from CollegeFootballData.com",Sys.time())
+      if (length(raw) == 0L || (is.data.frame(raw) && nrow(raw) == 0L)) {
+        cli::cli_alert_info(c(
+          "CFBD returned no weather rows for the requested filters.",
+          "i" = "CFBD backfills weather mid-week during the season; ",
+          "i" = "try again later, or pass a prior `year` to confirm the call shape."
+        ))
+        df <- data.frame()
+      } else {
+        df <- raw %>%
+          janitor::clean_names() %>%
+          dplyr::rename("game_id" = "id") %>%
+          make_cfbfastR_data(
+            "Game weather data from CollegeFootballData.com",
+            Sys.time()
+          )
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no game weather data available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: Failed to fetch game weather data.",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     },
     finally = {
     }
