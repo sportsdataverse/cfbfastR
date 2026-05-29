@@ -73,4 +73,8 @@ Betting information for games with the following columns:
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
 }
 }
+\seealso{
+Other CFBD Betting Functions: 
+\code{\link{cfbd_betting_ats}()}
+}
 \concept{CFBD Betting Functions}

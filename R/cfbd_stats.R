@@ -943,3 +943,123 @@ cfbd_stats_season_team <- function(year,
   )
   return(df)
 }
+
+#' @title
+#' **Get game havoc statistics**
+#' @description
+#' Get havoc-rate statistics aggregated by game. Havoc measures defensive
+#' disruption -- the share of plays that end in a tackle for loss, a forced
+#' fumble, a pass defensed, or an interception -- split into front-seven and
+#' defensive-back contributions. Each row carries both the team's own
+#' defensive havoc (`def_*`) and the havoc the team's offense allowed
+#' (`off_*`) in that game.
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required
+#' if `team` is not specified.
+#' @param team (*String* optional): D-I Team. Required if `year` is not
+#' specified.
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for
+#' seasons pre-playoff (i.e. 2013 or earlier).
+#' @param opponent (*String* optional): Opponent D-I Team.
+#' @param season_type (*String* optional): Season type - regular,
+#' postseason, both, allstar, spring_regular, spring_postseason.
+#'
+#' @return [cfbd_stats_game_havoc()] - A data frame with 22 variables:
+#' \describe{
+#'   \item{`game_id`: integer.}{Referencing game id.}
+#'   \item{`season`: integer.}{Season of the game.}
+#'   \item{`season_type`: character.}{Season type of the game.}
+#'   \item{`week`: integer.}{Game week of the season.}
+#'   \item{`team`: character.}{Team name.}
+#'   \item{`conference`: character.}{Conference of the team.}
+#'   \item{`opponent`: character.}{Opponent team name.}
+#'   \item{`opponent_conference`: character.}{Conference of the opponent.}
+#'   \item{`off_total_plays`: integer.}{Offense plays in the game.}
+#'   \item{`off_total_havoc_events`: integer.}{Total havoc events allowed by the offense.}
+#'   \item{`off_front_seven_havoc_events`: integer.}{Front-seven havoc events allowed by the offense.}
+#'   \item{`off_db_havoc_events`: integer.}{Defensive-back havoc events allowed by the offense.}
+#'   \item{`off_havoc_rate`: double.}{Total havoc rate allowed by the offense.}
+#'   \item{`off_front_seven_havoc_rate`: double.}{Front-seven havoc rate allowed by the offense.}
+#'   \item{`off_db_havoc_rate`: double.}{Defensive-back havoc rate allowed by the offense.}
+#'   \item{`def_total_plays`: integer.}{Defense plays in the game.}
+#'   \item{`def_total_havoc_events`: integer.}{Total havoc events created by the defense.}
+#'   \item{`def_front_seven_havoc_events`: integer.}{Front-seven havoc events created by the defense.}
+#'   \item{`def_db_havoc_events`: integer.}{Defensive-back havoc events created by the defense.}
+#'   \item{`def_havoc_rate`: double.}{Total havoc rate created by the defense.}
+#'   \item{`def_front_seven_havoc_rate`: double.}{Front-seven havoc rate created by the defense.}
+#'   \item{`def_db_havoc_rate`: double.}{Defensive-back havoc rate created by the defense.}
+#' }
+#' @keywords Game Havoc Stats
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLdecode
+#' @importFrom cli cli_abort
+#' @importFrom janitor clean_names
+#' @importFrom dplyr as_tibble
+#' @importFrom glue glue
+#' @family CFBD Stats
+#' @export
+#' @examples
+#' \donttest{
+#'    try(cfbd_stats_game_havoc(year = 2023, team = "Georgia"))
+#'
+#'    try(cfbd_stats_game_havoc(2022, week = 1))
+#' }
+#'
+cfbd_stats_game_havoc <- function(year = NULL,
+                                  team = NULL,
+                                  week = NULL,
+                                  opponent = NULL,
+                                  season_type = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  if (!is.null(season_type)) validate_season_type(season_type)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  opponent <- handle_accents(opponent)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/stats/game/havoc"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "week" = week,
+    "opponent" = opponent,
+    "seasonType" = season_type
+  )
+  full_url <- httr::modify_url(base_url, query = query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content, flatten and return result as data.frame
+      df <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE) %>%
+        as.data.frame()
+
+      # Column renaming for the nested offense./defense. blocks
+      colnames(df) <- gsub("offense.", "off_", colnames(df))
+      colnames(df) <- gsub("defense.", "def_", colnames(df))
+
+      df <- df %>%
+        janitor::clean_names() %>%
+        dplyr::as_tibble() %>%
+        make_cfbfastR_data("Game havoc stats from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game havoc stats data available!"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}

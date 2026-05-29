@@ -116,6 +116,7 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 Other CFBD PBP: 
 \code{\link{cfbd_live_plays}()},
 \code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_pbp_data_v2}()},
 \code{\link{cfbd_play_stats_types}()},
 \code{\link{cfbd_play_types}()},
 \code{\link{cfbd_plays}()}

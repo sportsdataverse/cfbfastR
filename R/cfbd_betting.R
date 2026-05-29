@@ -153,3 +153,99 @@ cfbd_betting_lines <- function(game_id = NULL,
   )
   return(df)
 }
+
+
+#' @title **CFBD Against-the-Spread (ATS) Records**
+#' @description **Get against-the-spread (ATS) summary records by team**
+#'
+#' Retrieves a season-level against-the-spread summary for each team:
+#' how often the team covered, failed to cover, or pushed relative to
+#' the closing spread, plus the average margin by which it beat the
+#' spread. Complements [cfbd_betting_lines()], which returns the
+#' per-game lines themselves.
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference \cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr
+#' @return Against-the-spread records with the following columns:
+#'
+#' \describe{
+#'   \item{year:integer.}{Season.}
+#'   \item{team_id:integer.}{Unique team identifier - team_id.}
+#'   \item{team:character.}{Team name.}
+#'   \item{conference:character.}{Conference.}
+#'   \item{games:integer.}{Number of games included in the ATS summary.}
+#'   \item{ats_wins:integer.}{Games the team covered the spread.}
+#'   \item{ats_losses:integer.}{Games the team failed to cover the spread.}
+#'   \item{ats_pushes:integer.}{Games that pushed against the spread.}
+#'   \item{avg_cover_margin:numeric.}{Average margin by which the team beat the spread.}
+#' }
+#'
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom cli cli_abort
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
+#' @importFrom dplyr as_tibble
+#' @family CFBD Betting Functions
+#' @export
+#' @examples
+#' \donttest{
+#'    try(cfbd_betting_ats(year = 2023, team = "Michigan"))
+#' }
+cfbd_betting_ats <- function(year = NULL,
+                             team = NULL,
+                             conference = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  if (is.null(year)) {
+    cli::cli_abort("{.arg year} is required for the against-the-spread endpoint.")
+  }
+  validate_year(year)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/teams/ats"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
+  )
+  full_url <- httr::modify_url(base_url, query = query_params)
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content -- /teams/ats returns a flat array, no nesting
+      parsed <- res %>%
+        httr::content(as = "text", encoding = "UTF-8") %>%
+        jsonlite::fromJSON(flatten = TRUE)
+
+      if (is.data.frame(parsed) && nrow(parsed) > 0) {
+        df <- parsed %>%
+          janitor::clean_names() %>%
+          dplyr::as_tibble()
+      }
+
+      df <- df %>%
+        make_cfbfastR_data("Against-the-spread records from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ATS data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
+  return(df)
+}

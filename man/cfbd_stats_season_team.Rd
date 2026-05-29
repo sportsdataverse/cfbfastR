@@ -95,6 +95,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 Other CFBD Stats: 
 \code{\link{cfbd_stats_categories}()},
 \code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_game_havoc}()},
 \code{\link{cfbd_stats_season_advanced}()},
 \code{\link{cfbd_stats_season_player}()}
 }

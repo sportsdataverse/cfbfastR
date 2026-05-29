@@ -124,6 +124,7 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \seealso{
 Other CFBD PBP: 
 \code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_pbp_data_v2}()},
 \code{\link{cfbd_play_stats_player}()},
 \code{\link{cfbd_play_stats_types}()},
 \code{\link{cfbd_play_types}()},
