@@ -349,8 +349,11 @@ test_that("ESPN CFB Player Stats", {
 
   y <- espn_cfb_player_stats(athlete_id = 4360799, year = 2022)
 
-  expect_true(all(colnames(x) %in% cols))
-  expect_setequal(colnames(y), cols)
+  # Subset direction: hard-coded `cols` is the contract we expect to
+  # appear in the response; ESPN often appends fields over time, so
+  # strict set equality breaks the moment that happens.
+  expect_in(cols, colnames(x))
+  expect_in(cols, colnames(y))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

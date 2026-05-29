@@ -17,8 +17,11 @@ test_that("ESPN CFB Calendar", {
 
   y <- espn_cfb_calendar(year = 2020)
 
-  expect_setequal(sort(colnames(x)), sort(cols))
-  expect_setequal(sort(colnames(y)), sort(cols))
+  # Subset direction: hard-coded `cols` is the contract we expect to
+  # appear in the response. ESPN adds fields over time, so strict
+  # set equality breaks on every upstream addition.
+  expect_in(sort(cols), sort(colnames(x)))
+  expect_in(sort(cols), sort(colnames(y)))
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
 })

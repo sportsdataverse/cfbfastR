@@ -59,8 +59,10 @@ test_that("ESPN CFB Game Teams - team_detail = FALSE", {
     skip("No ESPN game teams data returned at test time")
   }
 
-  # team_detail = FALSE + format = "long" reproduces the prior schema.
-  expect_equal(colnames(x), prior_cols)
+  # team_detail = FALSE + format = "long" carries the prior schema.
+  # Subset direction so an ESPN-side column addition surfaces as a
+  # widening (which is non-breaking) rather than a failure.
+  expect_in(prior_cols, colnames(x))
   expect_equal(nrow(x), 2L)
   expect_false("team_name" %in% colnames(x))
 })
