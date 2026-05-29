@@ -399,6 +399,29 @@ It returns invisibly and is a safe no-op when caching is `"off"`.
 
 ---
 
+## A note on proxies
+
+If you're running these recipes from a network that routes outbound HTTP through a
+corporate proxy, `cfbfastR` resolves a proxy at the HTTP layer in three tiers:
+explicit `proxy` argument first, then `getOption("cfbfastR.proxy")`, then the
+standard `http_proxy` / `https_proxy` environment variables. The intro vignette
+(`vignette("intro", package = "cfbfastR")`) has the full reference.
+
+The ESPN wrappers don't expose a per-call `proxy =` argument, but they go through
+the same `httr2` stack, so the option (or the env vars) covers them too:
+
+```{r espn-proxy, eval=FALSE}
+options(cfbfastR.proxy = "http://proxy.host.example:8080")
+
+# Every espn_cfb_*() call now routes through the proxy.
+teams <- espn_cfb_teams()
+```
+
+For an authenticated proxy, pass a named list with `url` / `port` / `username` /
+`password` / `auth` -- the list is spread directly into `httr2::req_proxy()`.
+
+---
+
 ## Where to go next
 
 We covered seven recipes and touched maybe fifteen functions -- but the

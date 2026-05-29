@@ -87,6 +87,26 @@ functions without any other changes.
 Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
 
+## **Proxy support**
+
+If you run `cfbfastR` from behind a corporate proxy, set it once per
+session and every `cfbd_*()` / `espn_cfb_*()` call routes through it:
+
+``` r
+options(cfbfastR.proxy = "http://proxy.host.example:8080")
+# or, for an authenticated proxy:
+options(cfbfastR.proxy = list(
+  url = "http://proxy.host.example", port = 8080,
+  username = "me", password = "pw", auth = "basic"
+))
+```
+
+The resolution order is: explicit `proxy =` argument ->
+`getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars.
+See the [intro
+vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) and
+`CLAUDE.md` for full detail.
+
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
 
 [![X (formerly Twitter)

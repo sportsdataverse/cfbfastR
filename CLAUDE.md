@@ -291,6 +291,23 @@ The consequence is that adding a new query arg to a catalog wrapper's signature 
 - **CFBD** -- base URL `https://api.collegefootballdata.com/`. Auth is a bearer token in the `Authorization: Bearer ...` header, read from `Sys.getenv("CFBD_API_KEY")`. Use `register_cfbd()` to set it interactively.
 - **ESPN catalog** -- two base hosts: `site.api.espn.com` (rich JSON for scoreboards, teams, athletes) and `sports.core.api.espn.com` (the `$ref`-heavy "core" API). No auth required.
 
+### Proxy support
+
+`get_req()` (in `R/utils.R`) resolves an outbound proxy in three tiers:
+
+1. **Explicit `proxy =` argument** (caller-supplied; highest precedence).
+2. **`getOption("cfbfastR.proxy")`** -- session-level fallback. Set once with `options(cfbfastR.proxy = ...)` and every call that flows through `get_req()` picks it up.
+3. **`http_proxy` / `https_proxy` / `no_proxy` environment variables** -- libcurl reads these automatically when no explicit proxy is supplied.
+
+The proxy value (whether passed via argument or option) accepts either form:
+
+- A URL string -- `"http://host:port"`, forwarded to `httr2::req_proxy(url = ...)`.
+- A named list -- `list(url = "...", port = 8080, username = "...", password = "...", auth = "basic")`, spread as keyword args into `httr2::req_proxy()` for authenticated proxies.
+
+**Per-call override** works only for wrappers that thread `...` down to `get_req()` -- typically the `cfbd_*()` family. Wrappers that call `get_req()` without a `proxy` argument (most of the ESPN catalog) rely on the option / env-var path. When adding a new wrapper, prefer threading `proxy = NULL` (or `...`) through to `get_req()` so callers can override per-call without resetting their session option.
+
+The ESPN catalog wrappers all use `httr2` under the hood, so the env-var path Just Works for them even without an explicit `proxy` argument.
+
 ## WP/EPA Pipeline
 
 The play-by-play / EPA / WPA stack lives in `R/pbp_*.R`. As of 2.3.0 there are two side-by-side surfaces:

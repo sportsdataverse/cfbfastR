@@ -50,6 +50,7 @@ This release adds a 65-function ESPN college-football API layer, expanding `cfbf
 ### Internal changes
 
 - **httr -> httr2 migration.** cfbfastR's HTTP layer now uses the modern `httr2` package (>= 1.0.0) instead of the legacy `httr`. End users running existing wrapper calls (`cfbd_*`, `espn_cfb_*`) should see no behavioural change -- the migration is internal. Custom code that calls `get_req()` or `check_status()` directly must update from `httr::content(res, as = "text")` to `httr2::resp_body_string(res)` and from `httr::status_code(res)` to `httr2::resp_status(res)`.
+- **Proxy support.** `get_req()` now resolves a proxy in the order: explicit `proxy` argument -> `getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars. The proxy value accepts either a URL string or a named list with `url` / `port` / `username` / `password` / `auth` for authenticated proxies.
 
 # **cfbfastR v2.2.0**
 

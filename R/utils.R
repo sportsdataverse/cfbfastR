@@ -222,11 +222,39 @@ rbindlist_with_attrs <- function(dflist){
 
 # Request Functions ----
 #' @keywords Internal
-#' @importFrom httr2 request req_headers req_timeout req_retry req_error req_perform
-get_req <- function(full_url){
-  httr2::request(full_url) |>
+#' @importFrom httr2 request req_headers req_timeout req_retry req_error req_perform req_proxy
+get_req <- function(full_url, proxy = NULL) {
+  req <- httr2::request(full_url) |>
     httr2::req_headers(Authorization = paste("Bearer", cfbd_key())) |>
-    httr2::req_timeout(60) |>
+    httr2::req_timeout(60)
+
+  # Optional proxy support. Resolution order:
+  #   1. `proxy` argument (caller-supplied, highest precedence).
+  #   2. `getOption("cfbfastR.proxy")` (session-level fallback -- set once
+  #      with `options(cfbfastR.proxy = ...)` and every cfbd_*() call picks
+  #      it up; useful when a user can't thread a proxy arg through every
+  #      call site).
+  #   3. `http_proxy` / `https_proxy` / `no_proxy` env vars (libcurl reads
+  #      these automatically when no explicit proxy is supplied -- no code
+  #      path here).
+  #
+  # The `proxy` argument accepts:
+  #   - a single URL string -- e.g. "http://host:port", passed to
+  #     `httr2::req_proxy(url = ...)`.
+  #   - a named list -- spread as keyword args into `httr2::req_proxy()`
+  #     for full control (`url`, `port`, `username`, `password`, `auth`).
+  if (is.null(proxy)) {
+    proxy <- getOption("cfbfastR.proxy", default = NULL)
+  }
+  if (!is.null(proxy)) {
+    req <- if (is.list(proxy)) {
+      do.call(httr2::req_proxy, c(list(req = req), proxy))
+    } else {
+      httr2::req_proxy(req, url = proxy)
+    }
+  }
+
+  req |>
     httr2::req_retry(
       max_tries = 3,
       backoff   = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
