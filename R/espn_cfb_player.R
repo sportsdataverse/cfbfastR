@@ -430,7 +430,7 @@ espn_cfb_player <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -627,7 +627,7 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -855,7 +855,7 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1016,7 +1016,7 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1184,7 +1184,7 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1350,7 +1350,7 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1518,7 +1518,7 @@ espn_cfb_player_statistics <- function(athlete_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -2369,7 +2369,7 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -2543,7 +2543,7 @@ espn_cfb_players <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -2803,5 +2803,5 @@ espn_cfb_recruits <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }

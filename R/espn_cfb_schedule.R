@@ -480,7 +480,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
     finally = {
     }
   )
-  return(schedule_out)
+  return(.attach_query_meta_auto(schedule_out))
 }
 
 #' ESPN Calendar
@@ -575,5 +575,5 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
     finally = {
     }
   )
-  return(calendar_out)
+  return(.attach_query_meta_auto(calendar_out))
 }

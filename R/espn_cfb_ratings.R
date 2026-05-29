@@ -173,7 +173,7 @@ espn_cfb_futures <- function(year = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -299,7 +299,7 @@ espn_cfb_powerindex <- function(year = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -503,7 +503,7 @@ espn_cfb_qbr <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -645,7 +645,7 @@ espn_ratings_fpi <- function(year = 2019) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -734,5 +734,5 @@ espn_metrics_wp <- function(game_id) {
     finally = {
     }
   )
-  return(espn_wp)
+  return(.attach_query_meta_auto(espn_wp))
 }

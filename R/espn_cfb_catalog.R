@@ -185,7 +185,7 @@ espn_cfb_award <- function(award_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -384,7 +384,7 @@ espn_cfb_awards <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -548,7 +548,7 @@ espn_cfb_coach <- function(coach_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -686,7 +686,7 @@ espn_cfb_coach_record <- function(coach_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -853,7 +853,7 @@ espn_cfb_coaches <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1007,7 +1007,7 @@ espn_cfb_franchise <- function(franchise_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1118,7 +1118,7 @@ espn_cfb_franchises <- function() {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1222,7 +1222,7 @@ espn_cfb_position <- function(position_id = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1345,7 +1345,7 @@ espn_cfb_positions <- function() {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1444,7 +1444,7 @@ espn_cfb_venue <- function(venue_id = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1572,5 +1572,5 @@ espn_cfb_venues <- function(max_results = 200) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }

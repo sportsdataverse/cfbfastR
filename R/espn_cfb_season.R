@@ -153,7 +153,7 @@ espn_cfb_groups <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -267,7 +267,7 @@ espn_cfb_rankings <- function(year = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -384,7 +384,7 @@ espn_cfb_season_info <- function(year = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -507,7 +507,7 @@ espn_cfb_season_types <- function(year = NULL) {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -623,7 +623,7 @@ espn_cfb_season_weeks <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -734,7 +734,7 @@ espn_cfb_seasons <- function() {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -938,7 +938,7 @@ espn_cfb_standings <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1159,5 +1159,5 @@ espn_cfb_week_rankings <- function(year = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }

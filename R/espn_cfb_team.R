@@ -173,7 +173,7 @@ espn_cfb_team <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -330,7 +330,7 @@ espn_cfb_team_ats <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -540,7 +540,7 @@ espn_cfb_team_awards <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -707,7 +707,7 @@ espn_cfb_team_coaches <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -860,7 +860,7 @@ espn_cfb_team_events <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1033,7 +1033,7 @@ espn_cfb_team_leaders <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1195,7 +1195,7 @@ espn_cfb_team_powerindex <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1395,7 +1395,7 @@ espn_cfb_team_ranks <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1559,7 +1559,7 @@ espn_cfb_team_record <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -1804,7 +1804,7 @@ espn_cfb_team_roster <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -2043,7 +2043,7 @@ espn_cfb_team_schedule <- function(team_id = NULL,
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -2499,7 +2499,7 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
 
 
@@ -2627,5 +2627,5 @@ espn_cfb_teams <- function() {
     finally = {
     }
   )
-  return(df)
+  return(.attach_query_meta_auto(df))
 }
