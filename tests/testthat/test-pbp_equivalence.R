@@ -63,6 +63,45 @@
       "v2 preserves character id_play (lossless);",
       "legacy coerces to numeric via unquoted ifelse",
       "literals and loses precision past 2^53."
+    ),
+
+    # --- representation deltas: same information, different shape -------
+    "game_id" = paste(
+      "v2 preserves character game_id for lossless ESPN id handling;",
+      "legacy coerces to numeric and loses precision past 2^53."
+    ),
+    "scoring_play" = paste(
+      "v2 carries logical TRUE/FALSE (modern R idiom);",
+      "legacy carries 0/1 integer for back-compat with the original",
+      "pandas-era output. Same information, different storage type."
+    ),
+    "clock_seconds" = paste(
+      "v2 keeps total seconds remaining in the period (raw ESPN clock,",
+      "e.g. 14:21 -> 861); legacy splits into clock_minutes + clock_seconds",
+      "and reports only the seconds digit (14:21 -> 21). Same information,",
+      "different decomposition; downstream TimeSecsRem is identical."
+    ),
+
+    # --- v2 known limitations: ESPN play-text name abbreviations --------
+    # Legacy `espn_cfb_pbp()` enriches play_text-derived player names via
+    # a second ESPN call to /events/{game_id}/competitions/{cid}/competitors[]
+    # /roster which returns full names. v2 currently uses only the
+    # play_text short-name form ("J. Mitchell" rather than "Jalen Mitchell").
+    # Tracked for a follow-up; the IDs (passer_player_id etc.) match.
+    "passer_player_name" = paste(
+      "v2 carries play_text short-name (e.g. 'J. Potts');",
+      "legacy enriches via roster fetch ('Jordyn Potts').",
+      "Known v2 limitation; passer_player_id matches."
+    ),
+    "rusher_player_name" = paste(
+      "v2 carries play_text short-name (e.g. 'J. Mitchell');",
+      "legacy enriches via roster fetch ('Jalen Mitchell').",
+      "Known v2 limitation; rusher_player_id matches."
+    ),
+    "receiver_player_name" = paste(
+      "v2 carries play_text short-name (e.g. 'Tr. Jones');",
+      "legacy enriches via roster fetch ('Tremel Jones').",
+      "Known v2 limitation; receiver_player_id matches."
     )
   )
 }

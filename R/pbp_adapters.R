@@ -261,6 +261,16 @@
         )
 
         # --- competitors[] -> home/away flat columns ---------------------
+        # The core-v2 events endpoint returns each competitor's `team` as a
+        # `{"$ref": "..."}` reference rather than the inlined team object,
+        # so the inline name/location/abbreviation/color fields are absent.
+        # When that happens we fall back to the package's memoised ESPN
+        # team lookup (keyed by team_id) so the WP/EPA pipeline downstream
+        # has the team identifiers it needs to populate
+        # `offense_play`/`defense_play`/`pos_team` and, via those,
+        # `pos_team_timeouts_rem_before` which feeds the `wp_model`. The
+        # lookup is fetched at most once per call and cached by memoise.
+        team_lookup <- NULL
         competitors <- comp1[["competitors"]] %||% list()
         for (c in competitors) {
           side    <- if (isTRUE(c[["homeAway"]] == "home")) "home" else "away"
@@ -273,6 +283,26 @@
           altc    <- as.character(team[["alternateColor"]] %||% NA)
           rank    <- suppressWarnings(as.integer(c[["curatedRank"]][["current"]]
                        %||% c[["rank"]] %||% NA))
+
+          # Fallback path: hydrate missing inline fields from the team lookup.
+          if ((is.na(name) || is.na(loc) || is.na(abbr)) &&
+              !is.na(team_id) && nzchar(team_id)) {
+            if (is.null(team_lookup)) {
+              team_lookup <- tryCatch(
+                .espn_cfb_team_lookup(),
+                error = function(e) list()
+              )
+            }
+            ent <- team_lookup[[team_id]]
+            if (!is.null(ent)) {
+              if (is.na(loc))  loc  <- as.character(ent$location        %||% NA)
+              if (is.na(name)) name <- as.character(ent$name            %||% NA)
+              if (is.na(abbr)) abbr <- as.character(ent$abbreviation    %||% NA)
+              if (is.na(colr)) colr <- as.character(ent$color           %||% NA)
+              if (is.na(altc)) altc <- as.character(ent$alternate_color %||% NA)
+            }
+          }
+
           meta[[paste0(side, "_team_id")]]              <- team_id
           meta[[paste0(side, "_team")]]                 <- loc
           meta[[paste0(side, "_team_name")]]            <- name
