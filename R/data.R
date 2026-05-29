@@ -5,11 +5,11 @@ NULL
 #' @rdname data
 #' @keywords data
 #' @format A data frame with 45 rows and 3 variables:
-#' \describe{
-#'   \item{id}{Referencing play id}
-#'   \item{text}{play type description}
-#'   \item{abbreviation}{play type abbreviation used for function call}
-#' }
+#'
+#' * `id`: Referencing play id
+#' * `text`: play type description
+#' * `abbreviation`: play type abbreviation used for function call
+#'
 "cfbd_play_type_df"
 
 
@@ -17,10 +17,10 @@ NULL
 #' @rdname data
 #' @keywords data
 #' @format A data frame with 11 rows and 4 variables:
-#' \describe{
-#'   \item{id}{Referencing conference id}
-#'   \item{name}{Conference name}
-#'   \item{short_name}{Short name for Conference}
-#'   \item{abbreviation}{Conference abbreviation}
-#' }
+#'
+#' * `id`: Referencing conference id
+#' * `name`: Conference name
+#' * `short_name`: Short name for Conference
+#' * `abbreviation`: Conference abbreviation
+#'
 "cfbd_conf_types_df"
