@@ -28,7 +28,6 @@ long-running session, or when debugging.
 \strong{Clear the cfbfastR ESPN catalog cache}
 
 Caching is configured at package load via two \code{options()}:
-
 \itemize{
 \item \code{cfbfastR.cache} -- cache backend. One of \code{"memory"} (default;
 in-memory \code{cachem::cache_mem()}, cleared when the session ends),

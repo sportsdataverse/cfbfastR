@@ -2,6 +2,106 @@
 # Consolidated family file. Each function keeps its own
 # roxygen block; edit the block above the function you want.
 
+#' @name espn_cfb_player
+#' @aliases espn_cfb_player player athletes recruits
+#' @title
+#' **ESPN College Football Player Endpoint Overview**
+#' @description
+#'
+#' * `espn_cfb_player()`: Get the full ESPN record for a single college
+#'   football player in a given season -- bio, measurements, position, team,
+#'   status, and `$ref` URLs to nested resources.
+#' * `espn_cfb_players()`: Get a paginated index of ESPN college football
+#'   players for a season (id + `$ref` rows; dereference with
+#'   `espn_cfb_player()`).
+#' * `espn_cfb_player_eventlog()`: Get the per-game event log for a single
+#'   college football player in a season -- one row per game, with `$ref`
+#'   URLs to each game's event, competition, and per-game statistics.
+#' * `espn_cfb_player_gamelog()`: Get a single college football player's
+#'   game-by-game statistical log for a season -- stat line joined to
+#'   opponent, score, and result metadata.
+#' * `espn_cfb_player_overview()`: Get the season-by-season statistics
+#'   overview ESPN shows on a college football player's page -- one row per
+#'   season, with the headline stat line for each.
+#' * `espn_cfb_player_seasons()`: Get the list of seasons a single college
+#'   football player has a statistical record for on ESPN, with `$ref` URLs
+#'   to each season's statistics.
+#' * `espn_cfb_player_splits()`: Get a single college football player's
+#'   statistical splits for a season -- stat lines broken out by month,
+#'   quarter, down, field position, and more.
+#' * `espn_cfb_player_statistics()`: Get a single college football player's
+#'   full season statistics from ESPN -- every published stat across every
+#'   category, in long format (one row per stat).
+#' * `espn_cfb_player_stats()`: Get ESPN college football player season
+#'   stats (legacy wide-format wrapper covering all categories and athlete /
+#'   team detail columns).
+#' * `espn_cfb_recruits()`: Get the ESPN recruiting-class catalog for a
+#'   college football signing class -- one row per recruit, with identity,
+#'   position, measurements, grade, rankings, and committed school.
+#'
+#' @details
+#' ## **ESPN College Football Player Detail**
+#'
+#' ```r
+#' espn_cfb_player(athlete_id = 102597, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Players Index**
+#'
+#' ```r
+#' espn_cfb_players(year = 2024, page = 1, max_pages = 1)
+#' ```
+#'
+#' ## **ESPN College Football Player Event Log**
+#'
+#' ```r
+#' espn_cfb_player_eventlog(athlete_id = 102597, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Player Game Log**
+#'
+#' ```r
+#' espn_cfb_player_gamelog(athlete_id = 102597, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Player Statistics Overview**
+#'
+#' ```r
+#' espn_cfb_player_overview(athlete_id = 102597, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Player Seasons**
+#'
+#' ```r
+#' espn_cfb_player_seasons(athlete_id = 102597)
+#' ```
+#'
+#' ## **ESPN College Football Player Statistical Splits**
+#'
+#' ```r
+#' espn_cfb_player_splits(athlete_id = 102597, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Player Season Statistics (Long Format)**
+#'
+#' ```r
+#' espn_cfb_player_statistics(athlete_id = 102597, year = 2024)
+#' ```
+#'
+#' ## **Get ESPN college football player stats data**
+#'
+#' ```r
+#' espn_cfb_player_stats(athlete_id = 530308, year = 2013)
+#' ```
+#'
+#' ## **ESPN College Football Recruits**
+#'
+#' ```r
+#' espn_cfb_recruits(year = 2024, max_results = 25)
+#' ```
+#'
+NULL
+
 #' Fetch ESPN CFB athlete-name detail for a single athlete
 #'
 #' Internal helper. Dereferences one athlete's ESPN core-v2 record and

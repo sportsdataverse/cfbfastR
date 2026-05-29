@@ -2,7 +2,11 @@
 % Please edit documentation in R/espn_cfb_team.R
 \name{espn_cfb_team}
 \alias{espn_cfb_team}
-\title{\strong{ESPN College Football Team Detail (Season-Scoped)}}
+\alias{team}
+\alias{teams}
+\alias{team_roster}
+\alias{team_schedule}
+\title{\strong{ESPN College Football Team Endpoint Overview}}
 \usage{
 espn_cfb_team(team_id = NULL, year = NULL, team_detail = TRUE)
 }
@@ -54,11 +58,132 @@ A one-row data frame:\tabular{lll}{
 }
 }
 \description{
+\itemize{
+\item \code{espn_cfb_team()}: Get ESPN's detailed record for a single college
+football team in a given season -- identifiers, branding, conference
+grouping, and home venue.
+\item \code{espn_cfb_teams()}: Get the full ESPN directory of college football
+teams -- one row per team with identifiers, branding, conference
+grouping, and logo URLs.
+\item \code{espn_cfb_team_ats()}: Get a college football team's
+against-the-spread (ATS) records for a season -- the 6-7 betting
+split rows ESPN tracks (overall, as favorite, as underdog, home,
+away, ...).
+\item \code{espn_cfb_team_awards()}: Get the awards won by a college football
+team's players in a season -- one row per (award x winning athlete).
+\item \code{espn_cfb_team_coaches()}: Get the coaches associated with a college
+football team for a season -- one row per coach, with name, birth
+detail, and experience.
+\item \code{espn_cfb_team_events()}: Get a college football team's full season
+event log -- every game (regular season and postseason) ESPN lists
+for the team-season.
+\item \code{espn_cfb_team_leaders()}: Get a college football team's season
+statistical leaders -- the top athletes in each ESPN leader category
+(passing, rushing, receiving, tackles, ...).
+\item \code{espn_cfb_team_powerindex()}: Get ESPN's College Football Power
+Index (FPI) detail for a single team-season -- the full set of
+predictive metrics and efficiency components ESPN attaches to one
+team.
+\item \code{espn_cfb_team_ranks()}: Get a college football team's poll-rank
+history for a season -- one row per poll (AP, Coaches, CFP
+Committee, ...) the team appeared in.
+\item \code{espn_cfb_team_record()}: Get a college football team's season
+records -- overall, home, away, and conference splits -- with the
+full set of summary stats ESPN attaches to each.
+\item \code{espn_cfb_team_roster()}: Get the season roster for a single college
+football team -- one row per athlete with biographical detail,
+position, jersey number, and class/experience.
+\item \code{espn_cfb_team_schedule()}: Get a single college football team's
+full-season schedule -- one row per game with opponent, venue,
+broadcast, score, and result.
+\item \code{espn_cfb_team_stats()}: Get ESPN college football team season
+statistics -- a wide tibble of team identifiers and per-category
+statistical totals.
+}
+
 Get ESPN's detailed record for a single college football team
 in a given season -- identifiers, branding, conference grouping, and home
 venue.
 }
 \details{
+\subsection{\strong{ESPN College Football Team Detail (Season-Scoped)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Teams Index}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_teams()
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Against-the-Spread Records}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_ats(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Awards}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_awards(team_id = 61, year = 2023)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Coaches}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_coaches(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Season Event Log}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_events(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Statistical Leaders}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_leaders(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Single-Team Power Index (Long Format)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_powerindex(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Poll Rank History}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_ranks(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Record (Long Format)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_record(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Roster (Season-Scoped)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_roster(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Team Schedule}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_schedule(team_id = 61, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get ESPN college football team stats data}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_team_stats(team_id = 52, year = 2020)
+}\if{html}{\out{</div>}}
+}
+
 Wraps the ESPN core-v2 team-in-season endpoint
 \code{sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/teams/{team_id}}.
 Unlike the site-v2 team payload, the core-v2 resource is season-scoped, so

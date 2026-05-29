@@ -513,27 +513,27 @@ espn_cfb_qbr <- function(year = NULL,
 #' @details Adapted from sabinanalytic's fork of the cfbfastR repo
 #' @param year Year
 #' @return A data frame with 20 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the Football Power Index (FPI) Rating.}
-#'   \item{`team_id`: integer.}{Unique ESPN team ID - `team_id`.}
-#'   \item{`team_name`: character.}{Team Name.}
-#'   \item{`team_abbreviation`: character.}{Team abbreviation.}
-#'   \item{`fpi`: character.}{Football Power Index (FPI) Rating.}
-#'   \item{`fpi_rk`: character.}{Football Power Index (FPI) Rank.}
-#'   \item{`trend`: character.}{Football Power Index (FPI) ranking trend.}
-#'   \item{`projected_wins`: character.}{Projected Win total for the season.}
-#'   \item{`projected_losses`: character.}{Projected Loss total for the season.}
-#'   \item{`win_out_pct`: double.}{Probability the team wins out.}
-#'   \item{`win_6_pct`: double.}{Probability the team wins at least six games.}
-#'   \item{`win_division_pct`: double.}{Probability the team wins at their division.}
-#'   \item{`playoff_pct`: double.}{Probability the team reaches the playoff.}
-#'   \item{`nc_game_pct`: double.}{Probability the team reaches the national championship game.}
-#'   \item{`nc_win_pct`: double.}{Probability the team wins the national championship game.}
-#'   \item{`win_conference_pct`: double.}{Probability the team wins their conference game.}
-#'   \item{`w`: integer.}{Wins on the season.}
-#'   \item{`l`: integer.}{Losses on the season.}
-#'   \item{`t`: character.}{Ties on the season.}
-#' }
+#'
+#' * `year`: integer. Season of the Football Power Index (FPI) Rating.
+#' * `team_id`: integer. Unique ESPN team ID - `team_id`.
+#' * `team_name`: character. Team Name.
+#' * `team_abbreviation`: character. Team abbreviation.
+#' * `fpi`: character. Football Power Index (FPI) Rating.
+#' * `fpi_rk`: character. Football Power Index (FPI) Rank.
+#' * `trend`: character. Football Power Index (FPI) ranking trend.
+#' * `projected_wins`: character. Projected Win total for the season.
+#' * `projected_losses`: character. Projected Loss total for the season.
+#' * `win_out_pct`: double. Probability the team wins out.
+#' * `win_6_pct`: double. Probability the team wins at least six games.
+#' * `win_division_pct`: double. Probability the team wins at their division.
+#' * `playoff_pct`: double. Probability the team reaches the playoff.
+#' * `nc_game_pct`: double. Probability the team reaches the national championship game.
+#' * `nc_win_pct`: double. Probability the team wins the national championship game.
+#' * `win_conference_pct`: double. Probability the team wins their conference game.
+#' * `w`: integer. Wins on the season.
+#' * `l`: integer. Losses on the season.
+#' * `t`: character. Ties on the season.
+#'
 #' @keywords Ratings FPI
 #' @importFrom stringr str_remove
 #' @importFrom tidyr unnest_wider
@@ -660,14 +660,14 @@ NULL
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @return [espn_metrics_wp()] - A data frame with 5 variables:
-#' \describe{
-#'   \item{`game_id`: character.}{Referencing game ID (should be same as `game_id` from other functions).}
-#'   \item{`play_id`: character.}{Referencing play ID.}
-#'   \item{`seconds_left`: integer.}{DEPRECATED. Seconds left in the game.}
-#'   \item{`home_win_percentage`: double.}{The probability of the home team winning the game.}
-#'   \item{`away_win_percentage`: double.}{The probability of the away team winning the game (calculated as 1 - `home_win_percentage` - `tie_percentage`).}
-#'   \item{`tie_percentage`: double.}{The probability of the game ending the final period in a tie.}
-#' }
+#'
+#' * `game_id`: character. Referencing game ID (should be same as `game_id` from other functions).
+#' * `play_id`: character. Referencing play ID.
+#' * `seconds_left`: integer. DEPRECATED. Seconds left in the game.
+#' * `home_win_percentage`: double. The probability of the home team winning the game.
+#' * `away_win_percentage`: double. The probability of the away team winning the game (calculated as 1 - `home_win_percentage` - `tie_percentage`).
+#' * `tie_percentage`: double. The probability of the game ending the final period in a tie.
+#'
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

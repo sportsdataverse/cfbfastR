@@ -2,7 +2,8 @@
 % Please edit documentation in R/cfbd_drives.R
 \name{cfbd_drives}
 \alias{cfbd_drives}
-\title{\strong{CFBD Drives Endpoint}}
+\alias{drives}
+\title{\strong{CFBD Drives Endpoint Overview}}
 \usage{
 cfbd_drives(
   year,
@@ -78,7 +79,20 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 }
 \description{
+\itemize{
+\item \code{cfbd_drives()}: Get college football game drives.
+}
+
 \strong{Get college football game drives}
+}
+\details{
+\subsection{\strong{Get college football game drives}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_drives(year = 2018, week = 1, team = "TCU")
+
+cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{

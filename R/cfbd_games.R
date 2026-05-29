@@ -3,17 +3,17 @@
 #' @title
 #' **CFBD Games Endpoint Overview**
 #' @description Get results, statistics and information for games
-#' \describe{
-#'   \item{`cfbd_game_box_advanced()`:}{ Get game advanced box score information.}
-#'   \item{`cfbd_game_player_stats()`:}{ Get results information from games.}
-#'   \item{`cfbd_game_team_stats()`:}{ Get team statistics by game.}
-#'   \item{`cfbd_game_info()`:}{ Get results information from games.}
-#'   \item{`cfbd_live_scoreboard()`:}{ Get live scoreboard information.}
-#'   \item{`cfbd_game_weather()`:}{ Get weather from games.}
-#'   \item{`cfbd_game_records()`:}{ Get team records by year.}
-#'   \item{`cfbd_calendar()`:}{ Get calendar of weeks by season.}
-#'   \item{`cfbd_game_media()`:}{ Get game media information (TV, radio, etc).}
-#' }
+#'
+#' * `cfbd_game_box_advanced()`: Get game advanced box score information.
+#' * `cfbd_game_player_stats()`: Get results information from games.
+#' * `cfbd_game_team_stats()`: Get team statistics by game.
+#' * `cfbd_game_info()`: Get results information from games.
+#' * `cfbd_live_scoreboard()`: Get live scoreboard information.
+#' * `cfbd_game_weather()`: Get weather from games.
+#' * `cfbd_game_records()`: Get team records by year.
+#' * `cfbd_calendar()`: Get calendar of weeks by season.
+#' * `cfbd_game_media()`: Get game media information (TV, radio, etc).
+#'
 #' @details
 #' ### **Get game advanced box score information.**
 #' ```r
@@ -144,6 +144,7 @@ NULL
 #'   |excitement_index   |character |Game excitement index.                                                     |
 #'   |highlights         |character |Game highlight urls.                                                       |
 #'   |notes              |character |Game notes.                                                                |
+#'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -278,6 +279,7 @@ cfbd_game_info <- function(year,
 #'   |pressure               |integer   |Barometric pressure, in millibars.                                   |
 #'   |weather_condition_code |integer   |Weather condition code from the upstream weather provider.           |
 #'   |weather_condition      |character |Free-text weather condition (e.g. "Clear", "Light rain").            |
+#'
 #' @keywords Game Weather
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -370,6 +372,7 @@ cfbd_game_weather <- function(year,
 #'   |season_type      |character |Season type of calendar week.                     |
 #'   |first_game_start |character |First game start time of the calendar week.      |
 #'   |last_game_start  |character |Last game start time of the calendar week.       |
+#'
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
@@ -459,6 +462,7 @@ cfbd_calendar <- function(year) {
 #'   |tv                |list      |TV broadcast networks.                                            |
 #'   |radio             |logical   |Radio broadcast networks.                                         |
 #'   |web               |list      |Web viewing platforms carrying the game.                          |
+#'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -627,6 +631,7 @@ cfbd_game_media <- function(year,
 #'   |scoring_opps_pts_per_opp              |numeric   |Points per scoring opportunity drives.                                            |
 #'   |field_pos_avg_start                   |numeric   |Average starting field position.                                                  |
 #'   |field_pos_avg_starting_predicted_pts  |numeric   |Average starting predicted points (PP) for the average starting field position.   |
+#'
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
 #' @importFrom jsonlite fromJSON
@@ -1131,6 +1136,7 @@ cfbd_game_player_stats <- function(year,
 #'   |postseason_wins       |integer   |Total postseason wins.                                               |
 #'   |postseason_losses     |integer   |Total postseason losses.                                             |
 #'   |postseason_ties       |integer   |Total postseason ties.                                               |
+#'
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1559,6 +1565,7 @@ cfbd_game_team_stats <- function(year,
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #'
 #' @return [cfbd_live_scoreboard()] - A data frame with 41 variables:
+#'
 #'  |col_name                 |types     |description                                                                        |
 #'  |:------------------------|:---------|:----------------------------------------------------------------------------------|
 #'  |game_id                  |integer   |CFBD-internal game id; join key to other CFBD endpoints.                           |

@@ -5,16 +5,16 @@
 \title{\strong{CFBD Games Endpoint Overview}}
 \description{
 Get results, statistics and information for games
-\describe{
-\item{\code{cfbd_game_box_advanced()}:}{ Get game advanced box score information.}
-\item{\code{cfbd_game_player_stats()}:}{ Get results information from games.}
-\item{\code{cfbd_game_team_stats()}:}{ Get team statistics by game.}
-\item{\code{cfbd_game_info()}:}{ Get results information from games.}
-\item{\code{cfbd_live_scoreboard()}:}{ Get live scoreboard information.}
-\item{\code{cfbd_game_weather()}:}{ Get weather from games.}
-\item{\code{cfbd_game_records()}:}{ Get team records by year.}
-\item{\code{cfbd_calendar()}:}{ Get calendar of weeks by season.}
-\item{\code{cfbd_game_media()}:}{ Get game media information (TV, radio, etc).}
+\itemize{
+\item \code{cfbd_game_box_advanced()}: Get game advanced box score information.
+\item \code{cfbd_game_player_stats()}: Get results information from games.
+\item \code{cfbd_game_team_stats()}: Get team statistics by game.
+\item \code{cfbd_game_info()}: Get results information from games.
+\item \code{cfbd_live_scoreboard()}: Get live scoreboard information.
+\item \code{cfbd_game_weather()}: Get weather from games.
+\item \code{cfbd_game_records()}: Get team records by year.
+\item \code{cfbd_calendar()}: Get calendar of weeks by season.
+\item \code{cfbd_game_media()}: Get game media information (TV, radio, etc).
 }
 }
 \details{

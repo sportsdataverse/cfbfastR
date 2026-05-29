@@ -3,11 +3,10 @@
 #' @title
 #' **CFBD NFL Draft Endpoint Overview**
 #' @description
-#' \describe{
-#'   \item{`cfbd_draft_teams()`:}{ Get list of NFL teams.}
-#'   \item{`cfbd_draft_positions()`:}{ Get list of NFL positions for mapping to college positions.}
-#'   \item{`cfbd_draft_picks()`:}{ Get list of NFL Draft picks.}
-#' }
+#'
+#' * `cfbd_draft_teams()`: Get list of NFL teams.
+#' * `cfbd_draft_positions()`: Get list of NFL positions for mapping to college positions.
+#' * `cfbd_draft_picks()`: Get list of NFL Draft picks.
 #'
 #' @details
 #' ## **Get list of NFL teams**
@@ -43,6 +42,7 @@ NULL
 #'    |nfl_nickname     |character |NFL team nickname (mascot).                          |
 #'    |nfl_display_name |character |NFL team display name (usually more neat/complete).  |
 #'    |nfl_logo         |character |URL for NFL team logo.                               |
+#'
 #' @keywords NFL Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -105,6 +105,7 @@ cfbd_draft_teams <- function() {
 #'    |:---------------------|:---------|:------------------------------------|
 #'    |position_name         |character |NFL Position group name.             |
 #'    |position_abbreviation |character |NFL position group abbreviation.     |
+#'
 #' @keywords NFL Positions
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -194,6 +195,7 @@ cfbd_draft_positions <- function() {
 #'    |hometown_info_latitude       |character |Hometown latitude of the NFL draftee.                             |
 #'    |hometown_info_longitude      |character |Hometown longitude of the NFL draftee.                            |
 #'    |hometown_info_county_fips    |character |Hometown FIPS code of the NFL draftee.                            |
+#'
 #' @keywords NFL Draft Picks
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

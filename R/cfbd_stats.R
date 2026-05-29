@@ -2,13 +2,13 @@
 #' @title
 #' **CFBD Stats Endpoint Overview**
 #' @description
-#' \describe{
-#' \item{```cfbd_stats_categories()```:}{ Get college football mapping for stats categories.}
-#' \item{```cfbd_stats_season_team()```:}{ Get season statistics by team.}
-#' \item{```cfbd_stats_season_advanced()```:}{ Get season advanced statistics by team.}
-#' \item{```cfbd_stats_game_advanced()```:}{ Get game advanced stats.}
-#' \item{```cfbd_stats_season_player()```:}{ Get season statistics by player.}
-#' }
+#'
+#' * `cfbd_stats_categories()`: Get college football mapping for stats categories.
+#' * `cfbd_stats_season_team()`: Get season statistics by team.
+#' * `cfbd_stats_season_advanced()`: Get season advanced statistics by team.
+#' * `cfbd_stats_game_advanced()`: Get game advanced stats.
+#' * `cfbd_stats_season_player()`: Get season statistics by player.
+#'
 #' @details
 #' ### **Get game advanced stats**
 #' ```r
@@ -62,6 +62,7 @@ NULL
 #'    |col_name |types     |description                                                       |
 #'    |:--------|:---------|:-----------------------------------------------------------------|
 #'    |category |character |CFBD stats category name (e.g. passing, rushing, defensive).      |
+#'
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -180,6 +181,7 @@ cfbd_stats_categories <- function() {
 #'    |def_passing_plays_total_ppa       |double    |Defense passing plays total predicted points added (PPA).        |
 #'    |def_passing_plays_success_rate    |double    |Defense passing plays success rate.                              |
 #'    |def_passing_plays_explosiveness   |double    |Defense passing plays explosiveness rate.                        |
+#'
 #' @keywords Game Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -377,6 +379,7 @@ cfbd_stats_game_advanced <- function(year,
 #'    |def_passing_plays_total_ppa         |double    |Defense passing plays total predicted points added (PPA).         |
 #'    |def_passing_plays_success_rate      |double    |Defense passing plays success rate.                               |
 #'    |def_passing_plays_explosiveness     |double    |Defense passing plays explosiveness rate.                         |
+#'
 #' @keywords Team Season Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -551,6 +554,7 @@ cfbd_stats_season_advanced <- function(year,
 #'    |punt_returns_avg     |double    |Punt Returns - punt return average yards per return.   |
 #'    |punt_returns_td      |double    |Punt Returns - punt return touchdowns.                 |
 #'    |punt_returns_long    |double    |Punt Returns - longest punt return yardage.            |
+#'
 #' @keywords Player Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -773,6 +777,7 @@ cfbd_stats_season_player <- function(year,
 #'    |passes_intercepted      |integer   |Passes intercepted.                              |
 #'    |passes_intercepted_yds  |integer   |Pass interception return yards.                  |
 #'    |passes_intercepted_TDs  |integer   |Pass interception return touchdowns.             |
+#'
 #' @keywords Team Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -994,6 +999,7 @@ cfbd_stats_season_team <- function(year,
 #'    |def_havoc_rate                |double    |Total havoc rate created by the defense.               |
 #'    |def_front_seven_havoc_rate    |double    |Front-seven havoc rate created by the defense.         |
 #'    |def_db_havoc_rate             |double    |Defensive-back havoc rate created by the defense.      |
+#'
 #' @keywords Game Havoc Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

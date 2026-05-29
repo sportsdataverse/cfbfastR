@@ -1,3 +1,20 @@
+#' @name cfbd_coaches
+#' @aliases cfbd_coaches coaches
+#' @title
+#' **CFBD Coaches Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_coaches()`: A coach search function which provides coaching records and school history for a given coach.
+#'
+#' @details
+#' ## **Coach information search**
+#'
+#' ```r
+#' cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+#' ```
+#'
+NULL
+
 #' @title
 #' **CFBD Coaches Endpoint Overview**
 #' @description
@@ -29,6 +46,7 @@
 #'    |sp_overall      |character |Bill Connelly's SP+ overall rating for team.                      |
 #'    |sp_offense      |character |Bill Connelly's SP+ offense rating for team.                      |
 #'    |sp_defense      |character |Bill Connelly's SP+ defense rating for team.                      |
+#'
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

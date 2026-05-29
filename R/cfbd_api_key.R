@@ -1,3 +1,41 @@
+#' @name cfbd_api_key
+#' @aliases cfbd_api_key api_key cfbd_key has_cfbd_key register_cfbd
+#' @title
+#' **CFBD API Key Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_api_key_info()`: Get information about your API key, including your Patreon level and usage limits.
+#' * `register_cfbd()`: Save your API Key as a system environment variable `CFBD_API_KEY`.
+#' * `cfbd_key()`: Retrieve the CFBD API key from the `CFBD_API_KEY` environment variable.
+#' * `has_cfbd_key()`: Check whether a CFBD API key is registered in the current session.
+#'
+#' @details
+#' ## **Get information about your CFBD API key**
+#'
+#' ```r
+#' cfbd_api_key_info()
+#' ```
+#'
+#' ## **Register / save your CFBD API key**
+#'
+#' ```r
+#' Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
+#' ```
+#'
+#' ## **Retrieve the CFBD API key**
+#'
+#' ```r
+#' cfbd_key()
+#' ```
+#'
+#' ## **Check whether a CFBD API key is registered**
+#'
+#' ```r
+#' has_cfbd_key()
+#' ```
+#'
+NULL
+
 #' @title
 #' **CFBD API Key Registration**
 #' @description Save your API Key as a system environment variable `CFBD_API_KEY`

@@ -4,19 +4,19 @@
 \alias{cfbd_metrics}
 \title{\strong{CFBD Metrics Endpoint Overview}}
 \description{
-\describe{
-\item{\code{cfbd_metrics_fg_ep()}:}{ Get field goal expected points values.}
-\item{\code{cfbd_metrics_wepa_team_season()}:}{ Get opponent-adjusted team season statistics for predicted points added (PPA).}
-\item{\code{cfbd_metrics_wepa_players_passing()}:}{ Get opponent-adjusted player passing statistics for predicted points added (PPA).}
-\item{\code{cfbd_metrics_wepa_players_rushing()}:}{ Get opponent-adjusted player rushing statistics for predicted points added (PPA).}
-\item{\code{cfbd_metrics_wepa_players_kicking()}:}{ Get Points Added Above Replacement (PAAR) ratings for kickers.}
-\item{\code{cfbd_metrics_ppa_games()}:}{ Get team game averages for predicted points added (PPA).}
-\item{\code{cfbd_metrics_ppa_players_games()}:}{ Get player game averages for predicted points added (PPA).}
-\item{\code{cfbd_metrics_ppa_players_season()}:}{ Get player season averages for predicted points added (PPA).}
-\item{\code{cfbd_metrics_ppa_predicted()}:}{ Calculate predicted points using Down and Distance.}
-\item{\code{cfbd_metrics_ppa_teams()}:}{ Get team averages for predicted points added (PPA).}
-\item{\code{cfbd_metrics_wp_pregame()}:}{ Get pre-game win probability data from CFBD API.}
-\item{\code{cfbd_metrics_wp()}:}{ Get win probability chart data from CFBD API.}
+\itemize{
+\item \code{cfbd_metrics_fg_ep()}: Get field goal expected points values.
+\item \code{cfbd_metrics_wepa_team_season()}: Get opponent-adjusted team season statistics for predicted points added (PPA).
+\item \code{cfbd_metrics_wepa_players_passing()}: Get opponent-adjusted player passing statistics for predicted points added (PPA).
+\item \code{cfbd_metrics_wepa_players_rushing()}: Get opponent-adjusted player rushing statistics for predicted points added (PPA).
+\item \code{cfbd_metrics_wepa_players_kicking()}: Get Points Added Above Replacement (PAAR) ratings for kickers.
+\item \code{cfbd_metrics_ppa_games()}: Get team game averages for predicted points added (PPA).
+\item \code{cfbd_metrics_ppa_players_games()}: Get player game averages for predicted points added (PPA).
+\item \code{cfbd_metrics_ppa_players_season()}: Get player season averages for predicted points added (PPA).
+\item \code{cfbd_metrics_ppa_predicted()}: Calculate predicted points using Down and Distance.
+\item \code{cfbd_metrics_ppa_teams()}: Get team averages for predicted points added (PPA).
+\item \code{cfbd_metrics_wp_pregame()}: Get pre-game win probability data from CFBD API.
+\item \code{cfbd_metrics_wp()}: Get win probability chart data from CFBD API.
 }
 }
 \details{

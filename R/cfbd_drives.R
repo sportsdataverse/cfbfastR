@@ -1,4 +1,23 @@
 
+#' @name cfbd_drives
+#' @aliases cfbd_drives drives
+#' @title
+#' **CFBD Drives Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_drives()`: Get college football game drives.
+#'
+#' @details
+#' ## **Get college football game drives**
+#'
+#' ```r
+#' cfbd_drives(year = 2018, week = 1, team = "TCU")
+#'
+#' cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
+#' ```
+#'
+NULL
+
 #' @title
 #' **CFBD Drives Endpoint**
 #' @description

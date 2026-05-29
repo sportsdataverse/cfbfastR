@@ -2,6 +2,134 @@
 # Consolidated family file. Each function keeps its own
 # roxygen block; edit the block above the function you want.
 
+#' @name espn_cfb_team
+#' @aliases espn_cfb_team team teams team_roster team_schedule
+#' @title
+#' **ESPN College Football Team Endpoint Overview**
+#' @description
+#'
+#' * `espn_cfb_team()`: Get ESPN's detailed record for a single college
+#'   football team in a given season -- identifiers, branding, conference
+#'   grouping, and home venue.
+#' * `espn_cfb_teams()`: Get the full ESPN directory of college football
+#'   teams -- one row per team with identifiers, branding, conference
+#'   grouping, and logo URLs.
+#' * `espn_cfb_team_ats()`: Get a college football team's
+#'   against-the-spread (ATS) records for a season -- the 6-7 betting
+#'   split rows ESPN tracks (overall, as favorite, as underdog, home,
+#'   away, ...).
+#' * `espn_cfb_team_awards()`: Get the awards won by a college football
+#'   team's players in a season -- one row per (award x winning athlete).
+#' * `espn_cfb_team_coaches()`: Get the coaches associated with a college
+#'   football team for a season -- one row per coach, with name, birth
+#'   detail, and experience.
+#' * `espn_cfb_team_events()`: Get a college football team's full season
+#'   event log -- every game (regular season and postseason) ESPN lists
+#'   for the team-season.
+#' * `espn_cfb_team_leaders()`: Get a college football team's season
+#'   statistical leaders -- the top athletes in each ESPN leader category
+#'   (passing, rushing, receiving, tackles, ...).
+#' * `espn_cfb_team_powerindex()`: Get ESPN's College Football Power
+#'   Index (FPI) detail for a single team-season -- the full set of
+#'   predictive metrics and efficiency components ESPN attaches to one
+#'   team.
+#' * `espn_cfb_team_ranks()`: Get a college football team's poll-rank
+#'   history for a season -- one row per poll (AP, Coaches, CFP
+#'   Committee, ...) the team appeared in.
+#' * `espn_cfb_team_record()`: Get a college football team's season
+#'   records -- overall, home, away, and conference splits -- with the
+#'   full set of summary stats ESPN attaches to each.
+#' * `espn_cfb_team_roster()`: Get the season roster for a single college
+#'   football team -- one row per athlete with biographical detail,
+#'   position, jersey number, and class/experience.
+#' * `espn_cfb_team_schedule()`: Get a single college football team's
+#'   full-season schedule -- one row per game with opponent, venue,
+#'   broadcast, score, and result.
+#' * `espn_cfb_team_stats()`: Get ESPN college football team season
+#'   statistics -- a wide tibble of team identifiers and per-category
+#'   statistical totals.
+#'
+#' @details
+#' ## **ESPN College Football Team Detail (Season-Scoped)**
+#'
+#' ```r
+#' espn_cfb_team(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Teams Index**
+#'
+#' ```r
+#' espn_cfb_teams()
+#' ```
+#'
+#' ## **ESPN College Football Team Against-the-Spread Records**
+#'
+#' ```r
+#' espn_cfb_team_ats(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Awards**
+#'
+#' ```r
+#' espn_cfb_team_awards(team_id = 61, year = 2023)
+#' ```
+#'
+#' ## **ESPN College Football Team Coaches**
+#'
+#' ```r
+#' espn_cfb_team_coaches(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Season Event Log**
+#'
+#' ```r
+#' espn_cfb_team_events(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Statistical Leaders**
+#'
+#' ```r
+#' espn_cfb_team_leaders(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Single-Team Power Index (Long Format)**
+#'
+#' ```r
+#' espn_cfb_team_powerindex(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Poll Rank History**
+#'
+#' ```r
+#' espn_cfb_team_ranks(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Record (Long Format)**
+#'
+#' ```r
+#' espn_cfb_team_record(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Roster (Season-Scoped)**
+#'
+#' ```r
+#' espn_cfb_team_roster(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **ESPN College Football Team Schedule**
+#'
+#' ```r
+#' espn_cfb_team_schedule(team_id = 61, year = 2024)
+#' ```
+#'
+#' ## **Get ESPN college football team stats data**
+#'
+#' ```r
+#' espn_cfb_team_stats(team_id = 52, year = 2020)
+#' ```
+#'
+NULL
+
 #' @title
 #' **ESPN College Football Team Detail (Season-Scoped)**
 #' @description Get ESPN's detailed record for a single college football team

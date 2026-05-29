@@ -2,7 +2,10 @@
 % Please edit documentation in R/espn_cfb_player.R
 \name{espn_cfb_player}
 \alias{espn_cfb_player}
-\title{\strong{ESPN College Football Player Detail}}
+\alias{player}
+\alias{athletes}
+\alias{recruits}
+\title{\strong{ESPN College Football Player Endpoint Overview}}
 \usage{
 espn_cfb_player(
   athlete_id = NULL,
@@ -79,12 +82,105 @@ A one-row data frame describing the player:\tabular{lll}{
 }
 }
 \description{
+\itemize{
+\item \code{espn_cfb_player()}: Get the full ESPN record for a single college
+football player in a given season -- bio, measurements, position, team,
+status, and \verb{$ref} URLs to nested resources.
+\item \code{espn_cfb_players()}: Get a paginated index of ESPN college football
+players for a season (id + \verb{$ref} rows; dereference with
+\code{espn_cfb_player()}).
+\item \code{espn_cfb_player_eventlog()}: Get the per-game event log for a single
+college football player in a season -- one row per game, with \verb{$ref}
+URLs to each game's event, competition, and per-game statistics.
+\item \code{espn_cfb_player_gamelog()}: Get a single college football player's
+game-by-game statistical log for a season -- stat line joined to
+opponent, score, and result metadata.
+\item \code{espn_cfb_player_overview()}: Get the season-by-season statistics
+overview ESPN shows on a college football player's page -- one row per
+season, with the headline stat line for each.
+\item \code{espn_cfb_player_seasons()}: Get the list of seasons a single college
+football player has a statistical record for on ESPN, with \verb{$ref} URLs
+to each season's statistics.
+\item \code{espn_cfb_player_splits()}: Get a single college football player's
+statistical splits for a season -- stat lines broken out by month,
+quarter, down, field position, and more.
+\item \code{espn_cfb_player_statistics()}: Get a single college football player's
+full season statistics from ESPN -- every published stat across every
+category, in long format (one row per stat).
+\item \code{espn_cfb_player_stats()}: Get ESPN college football player season
+stats (legacy wide-format wrapper covering all categories and athlete /
+team detail columns).
+\item \code{espn_cfb_recruits()}: Get the ESPN recruiting-class catalog for a
+college football signing class -- one row per recruit, with identity,
+position, measurements, grade, rankings, and committed school.
+}
+
 Get the full ESPN record for a single college football
 player in a given season -- biographical fields, physical measurements,
 position, team, status, and the \verb{$ref} URLs to the player's nested
 resources (statistics, event log, college).
 }
 \details{
+\subsection{\strong{ESPN College Football Player Detail}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player(athlete_id = 102597, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Players Index}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_players(year = 2024, page = 1, max_pages = 1)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Player Event Log}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_eventlog(athlete_id = 102597, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Player Game Log}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_gamelog(athlete_id = 102597, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Player Statistics Overview}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_overview(athlete_id = 102597, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Player Seasons}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_seasons(athlete_id = 102597)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Player Statistical Splits}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_splits(athlete_id = 102597, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Player Season Statistics (Long Format)}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_statistics(athlete_id = 102597, year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get ESPN college football player stats data}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_stats(athlete_id = 530308, year = 2013)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{ESPN College Football Recruits}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_recruits(year = 2024, max_results = 25)
+}\if{html}{\out{</div>}}
+}
+
 Wraps the ESPN core-v2 endpoint
 \code{sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/athletes/{athlete_id}}.
 The season-scoped path is used so the returned \code{team_id} reflects the

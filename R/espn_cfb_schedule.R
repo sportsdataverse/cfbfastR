@@ -11,66 +11,66 @@ NULL
 #'
 #' @return [espn_cfb_scoreboard()] & [espn_cfb_schedule()] - A data frame with 33 or 54 variables depending on if there are completed games:
 #'  shared variables
-#' \describe{
-#'   \item{`matchup`: character.}{Long matchup description with full team names (Utah Utes at UCLA Bruins).}
-#'   \item{`matchup_short`: character.}{Short matchup description with team abbreviations (UTAH @ UCLA).}
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`type`: character.}{Season type of the game in CFBD format.}
-#'   \item{`slug`: character.}{Season type of the game in ESPN format.}
-#'   \item{`game_id`: character.}{Referencing game ID.}
-#'   \item{`game_uid`: character.}{}
-#'   \item{`game_date`: character.}{Game date.}
-#'   \item{`attendance`: integer.}{Reported attendance at the game.}
-#'   \item{`play_by_play_available`: logical}{}
-#'   \item{`home_team_name`: character.}{Home team mascot name (Sun Devils).}
-#'   \item{`home_team_logo`: character.}{Home team logo url.}
-#'   \item{`home_team_abb`: character.}{Home team abbreviation (ASU).}
-#'   \item{`home_team_id`: character.}{Home team ID.}
-#'   \item{`home_team_location`: character.}{Home team name (Arizona State).}
-#'   \item{`home_team_full`: character.}{Home team full name (Arizona State Sun Devils).}
-#'   \item{`home_team_color`: character.}{Home team color.}
-#'   \item{`home_score`: integer.}{Home team points.}
-#'   \item{`home_win`: integer.}{1 if home team won, 0 if home team lost, NA if game is unfinished}
-#'   \item{`home_record`: character}{Home team record.}
-#'   \item{`away_team_name`: character.}{Away team mascot name (Sun Devils).}
-#'   \item{`away_team_logo`: character.}{Away team logo url.}
-#'   \item{`away_team_abb`: character.}{Away team abbreviation (ASU).}
-#'   \item{`away_team_id`: character.}{Away team ID.}
-#'   \item{`away_team_location`: character.}{Away team name (Arizona State).}
-#'   \item{`away_team_full`: character.}{Away team full name (Arizona State Sun Devils).}
-#'   \item{`away_team_color`: character.}{Away team color.}
-#'   \item{`away_score`: integer.}{Away team points.}
-#'   \item{`away_win`: integer.}{1 if away team won, 0 if home team lost, NA if game is unfinished}
-#'   \item{`away_record`: character}{Away team record.}
-#'   \item{`status_name`: character.}{Status of the game}
-#'   \item{`start_date`: character.}{Game date.}
-#' }
+#'
+#' * `matchup`: character.: Long matchup description with full team names (Utah Utes at UCLA Bruins).
+#' * `matchup_short`: character.: Short matchup description with team abbreviations (UTAH @ UCLA).
+#' * `season`: integer.: Season of the game.
+#' * `type`: character.: Season type of the game in CFBD format.
+#' * `slug`: character.: Season type of the game in ESPN format.
+#' * `game_id`: character.: Referencing game ID.
+#' * `game_uid`: character.:
+#' * `game_date`: character.: Game date.
+#' * `attendance`: integer.: Reported attendance at the game.
+#' * `play_by_play_available`: logical:
+#' * `home_team_name`: character.: Home team mascot name (Sun Devils).
+#' * `home_team_logo`: character.: Home team logo url.
+#' * `home_team_abb`: character.: Home team abbreviation (ASU).
+#' * `home_team_id`: character.: Home team ID.
+#' * `home_team_location`: character.: Home team name (Arizona State).
+#' * `home_team_full`: character.: Home team full name (Arizona State Sun Devils).
+#' * `home_team_color`: character.: Home team color.
+#' * `home_score`: integer.: Home team points.
+#' * `home_win`: integer.: 1 if home team won, 0 if home team lost, NA if game is unfinished
+#' * `home_record`: character: Home team record.
+#' * `away_team_name`: character.: Away team mascot name (Sun Devils).
+#' * `away_team_logo`: character.: Away team logo url.
+#' * `away_team_abb`: character.: Away team abbreviation (ASU).
+#' * `away_team_id`: character.: Away team ID.
+#' * `away_team_location`: character.: Away team name (Arizona State).
+#' * `away_team_full`: character.: Away team full name (Arizona State Sun Devils).
+#' * `away_team_color`: character.: Away team color.
+#' * `away_score`: integer.: Away team points.
+#' * `away_win`: integer.: 1 if away team won, 0 if home team lost, NA if game is unfinished
+#' * `away_record`: character: Away team record.
+#' * `status_name`: character.: Status of the game
+#' * `start_date`: character.: Game date.
+#'
 #' Unique variables when there are completed games
-#' \describe{
-#'   \item{`broadcast_market`: character.}{Broadcast market (typically "national" or NA)}
-#'   \item{`broadcast_name`: character.}{Broadcast channel i.e. ESPN, ABC, FOX}
-#'   \item{`passing_leader_yards`: numeric.}{Passing yards of game's passing leader}
-#'   \item{`passing_leader_stat`: character.}{Stat line of game's passing leader}
-#'   \item{`passing_leader_name`: character.}{Name of game's passing leader}
-#'   \item{`passing_leader_shortname`: character.}{First initial and last name of game's passing leader}
-#'   \item{`passing_leader_headshot`: character.}{Headshot url of game's passing leader}
-#'   \item{`passing_leader_team_id`: character.}{Team ID of game's passing leader}
-#'   \item{`passing_leader_pos`: character.}{Position of game's passing leader}
-#'   \item{`rushing_leader_yards`: numeric.}{Passing yards of game's rushing leader}
-#'   \item{`rushing_leader_stat`: character.}{Stat line of game's rushing leader}
-#'   \item{`rushing_leader_name`: character.}{Name of game's rushing leader}
-#'   \item{`rushing_leader_shortname`: character.}{First initial and last name of game's rushing leader}
-#'   \item{`rushing_leader_headshot`: character.}{Headshot url of game's rushing leader}
-#'   \item{`rushing_leader_team_id`: character.}{Team ID of game's rushing leader}
-#'   \item{`rushing_leader_pos`: character.}{Position of game's rushing leader}
-#'   \item{`receiving_leader_yards`: numeric.}{Passing yards of game's receiving leader}
-#'   \item{`receiving_leader_stat`: character.}{Stat line of game's receiving leader}
-#'   \item{`receiving_leader_name`: character.}{Name of game's receiving leader}
-#'   \item{`receiving_leader_shortname`: character.}{First initial and last name of game's receiving leader}
-#'   \item{`receiving_leader_headshot`: character.}{Headshot url of game's receiving leader}
-#'   \item{`receiving_leader_team_id`: character.}{Team ID of game's receiving leader}
-#'   \item{`receiving_leader_pos`: character.}{Position of game's receiving leader}
-#' }
+#'
+#' * `broadcast_market`: character.: Broadcast market (typically "national" or NA)
+#' * `broadcast_name`: character.: Broadcast channel i.e. ESPN, ABC, FOX
+#' * `passing_leader_yards`: numeric.: Passing yards of game's passing leader
+#' * `passing_leader_stat`: character.: Stat line of game's passing leader
+#' * `passing_leader_name`: character.: Name of game's passing leader
+#' * `passing_leader_shortname`: character.: First initial and last name of game's passing leader
+#' * `passing_leader_headshot`: character.: Headshot url of game's passing leader
+#' * `passing_leader_team_id`: character.: Team ID of game's passing leader
+#' * `passing_leader_pos`: character.: Position of game's passing leader
+#' * `rushing_leader_yards`: numeric.: Passing yards of game's rushing leader
+#' * `rushing_leader_stat`: character.: Stat line of game's rushing leader
+#' * `rushing_leader_name`: character.: Name of game's rushing leader
+#' * `rushing_leader_shortname`: character.: First initial and last name of game's rushing leader
+#' * `rushing_leader_headshot`: character.: Headshot url of game's rushing leader
+#' * `rushing_leader_team_id`: character.: Team ID of game's rushing leader
+#' * `rushing_leader_pos`: character.: Position of game's rushing leader
+#' * `receiving_leader_yards`: numeric.: Passing yards of game's receiving leader
+#' * `receiving_leader_stat`: character.: Stat line of game's receiving leader
+#' * `receiving_leader_name`: character.: Name of game's receiving leader
+#' * `receiving_leader_shortname`: character.: First initial and last name of game's receiving leader
+#' * `receiving_leader_headshot`: character.: Headshot url of game's receiving leader
+#' * `receiving_leader_team_id`: character.: Team ID of game's receiving leader
+#' * `receiving_leader_pos`: character.: Position of game's receiving leader
+#'
 #' @keywords Scoreboard Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -244,43 +244,43 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #' @param limit (int): number of records to return, default: 500.
 #'
 #' @return [espn_cfb_schedule()] - A data frame with 8 variables:
-#' \describe{
-#'   \item{`matchup`: character.}{.}
-#'   \item{`matchup_short`: character.}{.}
-#'   \item{`season`: integer.}{.}
-#'   \item{`type`: character.}{.}
-#'   \item{`slug`: character.}{.}
-#'   \item{`game_id`: character.}{.}
-#'   \item{`game_uid`: character.}{.}
-#'   \item{`game_date`: Date.}{.}
-#'   \item{`attendance`: integer.}{.}
-#'   \item{`date_valid`: logical.}{.}
-#'   \item{`play_by_play_available`: logical.}{.}
-#'   \item{`home_team_name`: character.}{.}
-#'   \item{`home_team_logo`: character.}{.}
-#'   \item{`home_team_abb`: character.}{.}
-#'   \item{`home_team_id`: character.}{.}
-#'   \item{`home_team_location`: character.}{.}
-#'   \item{`home_team_full`: character.}{.}
-#'   \item{`home_team_color`: character.}{.}
-#'   \item{`home_score`: integer.}{.}
-#'   \item{`home_win`: integer.}{.}
-#'   \item{`home_record`: character.}{.}
-#'   \item{`away_team_name`: character.}{.}
-#'   \item{`away_team_logo`: character.}{.}
-#'   \item{`away_team_abb`: character.}{.}
-#'   \item{`away_team_id`: character.}{.}
-#'   \item{`away_team_location`: character.}{.}
-#'   \item{`away_team_full`: character.}{.}
-#'   \item{`away_team_color`: character.}{.}
-#'   \item{`away_score`: integer.}{.}
-#'   \item{`away_win`: integer.}{.}
-#'   \item{`away_record`: character.}{.}
-#'   \item{`status_name`: character.}{.}
-#'   \item{`start_date`: character.}{.}
-#'   \item{`highlights`: logical.}{.}
-#'   \item{`game_date_time`: datetime.}{.}
-#' }
+#'
+#' * `matchup`: character.: .
+#' * `matchup_short`: character.: .
+#' * `season`: integer.: .
+#' * `type`: character.: .
+#' * `slug`: character.: .
+#' * `game_id`: character.: .
+#' * `game_uid`: character.: .
+#' * `game_date`: Date.: .
+#' * `attendance`: integer.: .
+#' * `date_valid`: logical.: .
+#' * `play_by_play_available`: logical.: .
+#' * `home_team_name`: character.: .
+#' * `home_team_logo`: character.: .
+#' * `home_team_abb`: character.: .
+#' * `home_team_id`: character.: .
+#' * `home_team_location`: character.: .
+#' * `home_team_full`: character.: .
+#' * `home_team_color`: character.: .
+#' * `home_score`: integer.: .
+#' * `home_win`: integer.: .
+#' * `home_record`: character.: .
+#' * `away_team_name`: character.: .
+#' * `away_team_logo`: character.: .
+#' * `away_team_abb`: character.: .
+#' * `away_team_id`: character.: .
+#' * `away_team_location`: character.: .
+#' * `away_team_full`: character.: .
+#' * `away_team_color`: character.: .
+#' * `away_score`: integer.: .
+#' * `away_win`: integer.: .
+#' * `away_record`: character.: .
+#' * `status_name`: character.: .
+#' * `start_date`: character.: .
+#' * `highlights`: logical.: .
+#' * `game_date_time`: datetime.: .
+#'
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -491,16 +491,16 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #'
 #' @return [espn_cfb_calendar()] - A data frame with 8 variables:
-#' \describe{
-#'   \item{`season`: character.}{.}
-#'   \item{`season_type`: character.}{.}
-#'   \item{`label`: character.}{.}
-#'   \item{`alternate_label`: character.}{.}
-#'   \item{`detail`: character.}{.}
-#'   \item{`week`: character.}{.}
-#'   \item{`start_date`: character.}{.}
-#'   \item{`end_date`: character.}{.}
-#' }
+#'
+#' * `season`: character.: .
+#' * `season_type`: character.: .
+#' * `label`: character.: .
+#' * `alternate_label`: character.: .
+#' * `detail`: character.: .
+#' * `week`: character.: .
+#' * `start_date`: character.: .
+#' * `end_date`: character.: .
+#'
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

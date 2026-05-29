@@ -5,10 +5,10 @@
 \alias{cfbd_player}
 \title{\strong{CFBD Players Endpoint Overview}}
 \description{
-\describe{
-\item{\code{cfbd_player_info()}:}{ Player information search.}
-\item{\code{cfbd_player_returning()}:}{ Player returning production.}
-\item{\code{cfbd_player_usage()}:}{ Player usage.}
+\itemize{
+\item \code{cfbd_player_info()}: Player information search.
+\item \code{cfbd_player_returning()}: Player returning production.
+\item \code{cfbd_player_usage()}: Player usage.
 }
 }
 \details{

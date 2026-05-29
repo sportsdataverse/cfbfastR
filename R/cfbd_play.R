@@ -2,12 +2,12 @@
 #' @title
 #' **CFBD Plays Endpoint Overview**
 #' @description College football plays data
-#' \describe{
-#' \item{`cfbd_plays()`:}{ CFBD's college football play-by-play.}
-#' \item{`cfbd_play_stats_player()`:}{ Gets player info associated by play.}
-#' \item{`cfbd_play_stats_types()`:}{ Gets CFBD play stat types.}
-#' \item{`cfbd_play_types()`:}{ Gets CFBD play types.}
-#' }
+#'
+#' * `cfbd_plays()`: CFBD's college football play-by-play.
+#' * `cfbd_play_stats_player()`: Gets player info associated by play.
+#' * `cfbd_play_stats_types()`: Gets CFBD play stat types.
+#' * `cfbd_play_types()`: Gets CFBD play types.
+#'
 #' @details
 #' ### **Pull first 3 weeks of 2020 season using `cfbd_plays()`**
 #' ```r
@@ -101,6 +101,7 @@ NULL
 #'    |ppa                |character |Predicted Points Added (CFBD's CFB-EPA analogue) for the play.                             |
 #'    |clock_minutes      |integer   |Minutes remaining on the game clock at the start of the play.                              |
 #'    |clock_seconds      |integer   |Seconds remaining on the game clock at the start of the play.                              |
+#'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
@@ -261,6 +262,7 @@ cfbd_plays <- function(year = 2020,
 #'    |field_goal_blocked_player_id  |character |CFBD athlete_id of the defender credited with blocking the field goal.                     |
 #'    |field_goal_blocked_player     |character |Name of the defender credited with blocking the field goal.                                |
 #'    |field_goal_blocked_stat       |integer   |Blocked-field-goal distance in yards reported by CFBD.                                     |
+#'
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -637,6 +639,7 @@ cfbd_play_stats_player <- function(year = NULL,
 #'    |:-----------------|:---------|:------------------------------------------------------------------------------------|
 #'    |play_stat_type_id |integer   |CFBD play stat type identifier (used as a filter in [cfbd_play_stats_player()]).     |
 #'    |name              |character |Human-readable name of the play stat type (e.g. "Reception", "Sack", "Touchdown").   |
+#'
 #' @keywords Plays
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -692,6 +695,7 @@ cfbd_play_stats_types <- function() {
 #'    |play_type_id |integer   |CFBD play type identifier (matches `play_type` IDs in [cfbd_plays()]).               |
 #'    |text         |character |Human-readable play type description (e.g. "Rush", "Pass Reception", "Field Goal").  |
 #'    |abbreviation |character |Short play type abbreviation used as the `play_type` filter argument in API calls.   |
+#'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom cli cli_abort

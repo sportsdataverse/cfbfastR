@@ -164,6 +164,7 @@ Plays with none carry \code{character(0)}.
 \item \verb{\{type\}_player_names} -- a \strong{list-column}: the parallel
 vector of roster-joined names.
 }
+
 Participant \code{stats[]} are not carried in wide mode -- use \code{"long"} for
 the per-participant stat lines.
 

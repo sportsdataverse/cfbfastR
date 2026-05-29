@@ -1,3 +1,24 @@
+#' @name cfbd_pbp
+#' @aliases cfbd_pbp pbp play_by_play
+#' @title
+#' **CFBD Play-by-Play Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_pbp_data()`: Get college football play by play data with cfbfastR expected points/win probability added.
+#'
+#' @details
+#' The modular successor `cfbd_pbp_data_v2()` ships in a sibling file and
+#' references the same CFBD upstream.
+#'
+#' ## **Get college football play by play data with cfbfastR expected points/win probability added**
+#'
+#' ```r
+#'  # Get play by play data for 2025 regular season week 1
+#'  cfbd_pbp_data(year = 2025, week = 1, season_type = 'regular', epa_wpa = TRUE)
+#' ```
+#'
+NULL
+
 #' @title
 #' **Get college football play by play data with cfbfastR expected points/win probability added**
 #' @description
@@ -810,94 +831,94 @@ NULL
 #' **Series of functions to help clean the play-by-play data for analysis**
 #' @rdname helpers_pbp
 #' @description
-#' \describe{
-#' \item{`add_play_counts()`: function}{Adds play counts to Play-by-Play data pulled from the API's raw game data.}
-#' \item{`add_yardage()`: function}{Add yardage extracted from play text.}
-#' \item{`add_player_cols()`:  function}{Add player columns extracted from play text.}
-#' \item{`clean_drive_dat()`: function}{Create new Drive results and id data.}
-#' \item{`clean_pbp_dat()`: function}{Clean Play-by-Play data.}
-#' \item{`penalty_detection()`: function}{Adds penalty columns to Play-by-Play data pulled from the API.}
-#' \item{`prep_epa_df_after()`: function}{Creates the post-play inputs for the Expected Points model to predict on for each game.}
-#' \item{`clean_drive_info()`: function}{Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column.}
-#' }
+#'
+#' * `add_play_counts()`: function: Adds play counts to Play-by-Play data pulled from the API's raw game data.
+#' * `add_yardage()`: function: Add yardage extracted from play text.
+#' * `add_player_cols()`:  function: Add player columns extracted from play text.
+#' * `clean_drive_dat()`: function: Create new Drive results and id data.
+#' * `clean_pbp_dat()`: function: Clean Play-by-Play data.
+#' * `penalty_detection()`: function: Adds penalty columns to Play-by-Play data pulled from the API.
+#' * `prep_epa_df_after()`: function: Creates the post-play inputs for the Expected Points model to predict on for each game.
+#' * `clean_drive_info()`: function: Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column.
+#'
 #' @param play_df (*data.frame* required): Adds play counts to Play-by-Play dataframe, as pulled from `cfbd_pbp_data()`
 #' @details Requires the following columns to be present
-#' \describe{
-#' \item{`game_id`}{.}
-#' \item{`id_play`}{.}
-#' \item{`clock_minutes`}{.}
-#' \item{`clock_seconds`}{.}
-#' \item{`half`}{.}
-#' \item{`period`}{.}
-#' \item{`offense_play`}{.}
-#' \item{`defense_play`}{.}
-#' \item{`home`}{.}
-#' \item{`away`}{.}
-#' \item{`offense_score`}{.}
-#' \item{`defense_score`}{.}
-#' \item{`offense_timeouts`}{.}
-#' \item{`defense_timeouts`}{.}
-#' \item{`play_text`}{.}
-#' \item{`play_type`}{.}
-#' }
+#'
+#' * `game_id`: .
+#' * `id_play`: .
+#' * `clock_minutes`: .
+#' * `clock_seconds`: .
+#' * `half`: .
+#' * `period`: .
+#' * `offense_play`: .
+#' * `defense_play`: .
+#' * `home`: .
+#' * `away`: .
+#' * `offense_score`: .
+#' * `defense_score`: .
+#' * `offense_timeouts`: .
+#' * `defense_timeouts`: .
+#' * `play_text`: .
+#' * `play_type`: .
+#'
 #' @return The original `play_df` with the following columns appended/redefined:
-#' \describe{
-#' \item{`game_play_number`.}{.}
-#' \item{`half_clock_minutes`.}{.}
-#' \item{`TimeSecsRem`.}{.}
-#' \item{`Under_two`.}{.}
-#' \item{`half`.}{.}
-#' \item{`kickoff_play`.}{.}
-#' \item{`pos_team`.}{.}
-#' \item{`def_pos_team`.}{.}
-#' \item{`receives_2H_kickoff`.}{.}
-#' \item{`pos_score_diff`.}{.}
-#' \item{`lag_pos_score_diff`.}{.}
-#' \item{`lag_pos_team`.}{.}
-#' \item{`lead_pos_team`.}{.}
-#' \item{`lead_pos_team2`.}{.}
-#' \item{`pos_score_pts`.}{.}
-#' \item{`pos_score_diff_start`.}{.}
-#' \item{`score_diff`.}{.}
-#' \item{`lag_score_diff`.}{.}
-#' \item{`lag_offense_play`.}{.}
-#' \item{`lead_offense_play`.}{.}
-#' \item{`lead_offense_play2`.}{.}
-#' \item{`score_pts`.}{.}
-#' \item{`score_diff_start`.}{.}
-#' \item{`offense_receives_2H_kickoff`.}{.}
-#' \item{`half_play_number`.}{.}
-#' \item{`lag_off_timeouts`.}{.}
-#' \item{`lag_def_timeouts`.}{.}
-#' \item{`off_timeouts_rem_before`.}{.}
-#' \item{`def_timeouts_rem_before`.}{.}
-#' \item{`off_timeout_called`.}{.}
-#' \item{`def_timeout_called`.}{.}
-#' \item{`lead_TimeSecsRem`.}{.}
-#' \item{`lead_TimeSecsRem2`.}{.}
-#' \item{`lead_yards_to_goal`.}{.}
-#' \item{`lead_yards_to_goal2`.}{.}
-#' \item{`lead_down`.}{.}
-#' \item{`lead_down2`.}{.}
-#' \item{`lag_distance3`.}{.}
-#' \item{`lag_distance2`.}{.}
-#' \item{`lag_distance`.}{.}
-#' \item{`lead_distance`.}{.}
-#' \item{`lead_distance2`.}{.}
-#' \item{`end_of_half`.}{.}
-#' \item{`lag_play_type3`.}{.}
-#' \item{`lag_play_type2`.}{.}
-#' \item{`lag_play_type`.}{.}
-#' \item{`lead_play_type`.}{.}
-#' \item{`lead_play_type2`.}{.}
-#' \item{`lead_play_type3`.}{.}
-#' \item{`change_of_poss`.}{.}
-#' \item{`change_of_pos_team`.}{.}
-#' \item{`pos_team_timeouts`.}{.}
-#' \item{`def_pos_team_timeouts`.}{.}
-#' \item{`pos_team_timeouts_rem_before`.}{.}
-#' \item{`def_pos_team_timeouts_rem_before`.}{.}
-#' }
+#'
+#' * `game_play_number`: .
+#' * `half_clock_minutes`: .
+#' * `TimeSecsRem`: .
+#' * `Under_two`: .
+#' * `half`: .
+#' * `kickoff_play`: .
+#' * `pos_team`: .
+#' * `def_pos_team`: .
+#' * `receives_2H_kickoff`: .
+#' * `pos_score_diff`: .
+#' * `lag_pos_score_diff`: .
+#' * `lag_pos_team`: .
+#' * `lead_pos_team`: .
+#' * `lead_pos_team2`: .
+#' * `pos_score_pts`: .
+#' * `pos_score_diff_start`: .
+#' * `score_diff`: .
+#' * `lag_score_diff`: .
+#' * `lag_offense_play`: .
+#' * `lead_offense_play`: .
+#' * `lead_offense_play2`: .
+#' * `score_pts`: .
+#' * `score_diff_start`: .
+#' * `offense_receives_2H_kickoff`: .
+#' * `half_play_number`: .
+#' * `lag_off_timeouts`: .
+#' * `lag_def_timeouts`: .
+#' * `off_timeouts_rem_before`: .
+#' * `def_timeouts_rem_before`: .
+#' * `off_timeout_called`: .
+#' * `def_timeout_called`: .
+#' * `lead_TimeSecsRem`: .
+#' * `lead_TimeSecsRem2`: .
+#' * `lead_yards_to_goal`: .
+#' * `lead_yards_to_goal2`: .
+#' * `lead_down`: .
+#' * `lead_down2`: .
+#' * `lag_distance3`: .
+#' * `lag_distance2`: .
+#' * `lag_distance`: .
+#' * `lead_distance`: .
+#' * `lead_distance2`: .
+#' * `end_of_half`: .
+#' * `lag_play_type3`: .
+#' * `lag_play_type2`: .
+#' * `lag_play_type`: .
+#' * `lead_play_type`: .
+#' * `lead_play_type2`: .
+#' * `lead_play_type3`: .
+#' * `change_of_poss`: .
+#' * `change_of_pos_team`: .
+#' * `pos_team_timeouts`: .
+#' * `def_pos_team_timeouts`: .
+#' * `pos_team_timeouts_rem_before`: .
+#' * `def_pos_team_timeouts_rem_before`: .
+#'
 #' @keywords internal
 #' @importFrom rlang .data
 #' @importFrom dplyr group_by mutate ungroup lead lag arrange n case_when
@@ -1226,38 +1247,38 @@ add_play_counts <- function(play_df) {
 #'
 #' @param play_df (*data.frame* required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfbd_pbp_data()`
 #' @return The original `play_df` with the following columns appended/redefined:
-#' \describe{
-#' \item{`lag_change_of_poss`.}{.}
-#' \item{`lag_punt`.}{.}
-#' \item{`lag_scoring_play`.}{.}
-#' \item{`lag_turnover_vec`.}{.}
-#' \item{`lag_downs_turnover`.}{.}
-#' \item{`lead_play_type`.}{.}
-#' \item{`lead_play_type2`.}{.}
-#' \item{`lead_play_type3`.}{.}
-#' \item{`drive_numbers`.}{.}
-#' \item{`number_of_drives`.}{.}
-#' \item{`pts_scored`.}{.}
-#' \item{`drive_result_detailed`.}{.}
-#' \item{`drive_result_detailed_flag`.}{.}
-#' \item{`drive_result2`.}{.}
-#' \item{`lag_new_drive_pts`.}{.}
-#' \item{`lag_drive_result_detailed`.}{.}
-#' \item{`lead_drive_result_detailed`.}{.}
-#' \item{`new_drive_pts`.}{.}
-#' \item{`drive_scoring`.}{.}
-#' \item{`drive_play`.}{.}
-#' \item{`drive_play_number`.}{.}
-#' \item{`drive_event`.}{.}
-#' \item{`drive_event_number`.}{.}
-#' \item{`new_id`.}{.}
-#' \item{`log_ydstogo`.}{.}
-#' \item{`down`.}{.}
-#' \item{`distance`.}{.}
-#' \item{`yards_to_goal`.}{.}
-#' \item{`yards_gained`.}{.}
-#' \item{`Goal_To_Go`.}{.}
-#' }
+#'
+#' * `lag_change_of_poss`: .
+#' * `lag_punt`: .
+#' * `lag_scoring_play`: .
+#' * `lag_turnover_vec`: .
+#' * `lag_downs_turnover`: .
+#' * `lead_play_type`: .
+#' * `lead_play_type2`: .
+#' * `lead_play_type3`: .
+#' * `drive_numbers`: .
+#' * `number_of_drives`: .
+#' * `pts_scored`: .
+#' * `drive_result_detailed`: .
+#' * `drive_result_detailed_flag`: .
+#' * `drive_result2`: .
+#' * `lag_new_drive_pts`: .
+#' * `lag_drive_result_detailed`: .
+#' * `lead_drive_result_detailed`: .
+#' * `new_drive_pts`: .
+#' * `drive_scoring`: .
+#' * `drive_play`: .
+#' * `drive_play_number`: .
+#' * `drive_event`: .
+#' * `drive_event_number`: .
+#' * `new_id`: .
+#' * `log_ydstogo`: .
+#' * `down`: .
+#' * `distance`: .
+#' * `yards_to_goal`: .
+#' * `yards_gained`: .
+#' * `Goal_To_Go`: .
+#'
 #' @keywords internal
 #' @importFrom rlang .data
 #' @importFrom dplyr group_by arrange mutate ungroup case_when select lead lag
@@ -1588,50 +1609,50 @@ clean_drive_dat <- function(play_df) {
 #'
 #' @param dat (*Data.Frame* required) Clean Play-by-Play DataFrame pulled from `cfbd_pbp_dat()`
 #' @details Prep for EPA calculations at the end of the play. Requires the following columns be present:
-#' \describe{
-#' \item{`game_id`.}{.}
-#' \item{`id_play`.}{.}
-#' \item{`drive_id`.}{.}
-#' \item{`down`.}{.}
-#' \item{`distance`.}{.}
-#' \item{`period`.}{.}
-#' \item{`yards_to_goal`.}{.}
-#' \item{`play_type`.}{.}
-#' }
+#'
+#' * `game_id`: .
+#' * `id_play`: .
+#' * `drive_id`: .
+#' * `down`: .
+#' * `distance`: .
+#' * `period`: .
+#' * `yards_to_goal`: .
+#' * `play_type`: .
+#'
 #' @return `dat` with the following columns appended/modified:
-#' \describe{
-#'  \item{`turnover_indicator`.}{.}
-#'  \item{`down`.}{.}
-#'  \item{`new_id`.}{.}
-#'  \item{`new_down`.}{.}
-#'  \item{`distance`.}{.}
-#'  \item{`yards_to_goal`.}{.}
-#'  \item{`yards_gained`.}{.}
-#'  \item{`turnover`.}{.}
-#'  \item{`drive_start_yards_to_goal`.}{.}
-#'  \item{`end_of_half`.}{.}
-#'  \item{`new_yardline`.}{.}
-#'  \item{`new_distance`.}{.}
-#'  \item{`new_log_ydstogo`.}{.}
-#'  \item{`new_Goal_To_Go`.}{.}
-#'  \item{`new_TimeSecsRem`.}{.}
-#'  \item{`new_Under_two`.}{.}
-#'  \item{`first_by_penalty`.}{.}
-#'  \item{`lag_first_by_penalty`.}{.}
-#'  \item{`lag_first_by_penalty2`.}{.}
-#'  \item{`first_by_yards`.}{.}
-#'  \item{`lag_first_by_yards`.}{.}
-#'  \item{`lag_first_by_yards2`.}{.}
-#'  \item{`row`.}{.}
-#'  \item{`new_series`.}{.}
-#'  \item{`firstD_by_kickoff`.}{.}
-#'  \item{`firstD_by_poss`.}{.}
-#'  \item{`firstD_by_yards`.}{.}
-#'  \item{`firstD_by_penalty`.}{.}
-#'  \item{`yds_punted`.}{.}
-#'  \item{`yds_punt_gained`.}{.}
-#'  \item{`missing_yard_flag`.}{.}
-#' }
+#'
+#'  * `turnover_indicator`: .
+#'  * `down`: .
+#'  * `new_id`: .
+#'  * `new_down`: .
+#'  * `distance`: .
+#'  * `yards_to_goal`: .
+#'  * `yards_gained`: .
+#'  * `turnover`: .
+#'  * `drive_start_yards_to_goal`: .
+#'  * `end_of_half`: .
+#'  * `new_yardline`: .
+#'  * `new_distance`: .
+#'  * `new_log_ydstogo`: .
+#'  * `new_Goal_To_Go`: .
+#'  * `new_TimeSecsRem`: .
+#'  * `new_Under_two`: .
+#'  * `first_by_penalty`: .
+#'  * `lag_first_by_penalty`: .
+#'  * `lag_first_by_penalty2`: .
+#'  * `first_by_yards`: .
+#'  * `lag_first_by_yards`: .
+#'  * `lag_first_by_yards2`: .
+#'  * `row`: .
+#'  * `new_series`: .
+#'  * `firstD_by_kickoff`: .
+#'  * `firstD_by_poss`: .
+#'  * `firstD_by_yards`: .
+#'  * `firstD_by_penalty`: .
+#'  * `yds_punted`: .
+#'  * `yds_punt_gained`: .
+#'  * `missing_yard_flag`: .
+#'
 #' @keywords internal
 #' @importFrom rlang .data
 #' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n lag lead if_else
@@ -2079,18 +2100,18 @@ prep_epa_df_after <- function(dat) {
 #'
 #' @param drive_df (*data.frame* required) Drive dataframe pulled from API via the `cfbd_drives()` function
 #' @details Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
-#' \describe{
-#' \item{`drive_id`: Returned as `drive_id`}{.}
-#' \item{`drive_result`: End result of the drive}{.}
-#' \item{`scoring`: Logical flag for if drive was a scoring drive}{.}
-#' \item{`game_id`: Unique game identifier}{.}
-#' }
+#'
+#' * `drive_id`: Returned as `drive_id`: .
+#' * `drive_result`: End result of the drive: .
+#' * `scoring`: Logical flag for if drive was a scoring drive: .
+#' * `game_id`: Unique game identifier: .
+#'
 #' @return The original `drive_df` with the following columns appended to it:
-#' \describe{
-#' \item{`drive_id`: Returned as `drive_id` from original variable `drive_id`}{.}
-#' \item{`pts_drive`: End result of the drive}{.}
-#' \item{`scoring`: Logical flag for if drive was a scoring drive updated}{.}
-#' }
+#'
+#' * `drive_id`: Returned as `drive_id` from original variable `drive_id`: .
+#' * `pts_drive`: End result of the drive: .
+#' * `scoring`: Logical flag for if drive was a scoring drive updated: .
+#'
 #' @keywords internal
 #' @importFrom rlang .data
 #' @importFrom stringr str_detect
@@ -2151,13 +2172,13 @@ clean_drive_info <- function(drive_df) {
 #'
 #' @param play_df (*data.frame* required) Plays dataframe pulled from API via the `cfbd_play()` or within the `cfbd_pbp_data()` function.
 #' @details Cleans CFB play-by-play text to be compliant with existing play-by-play parsing. Generally not recommended for standalone use. This method exists due to ESPN PBP changes midway through the 2025 season.
-#' \describe{
-#' \item{`play_text`: Returned as `play_text`}{.}
-#' }
+#'
+#' * `play_text`: Returned as `play_text`: .
+#'
 #' @return The original `play_df` with the following columns appended to it:
-#' \describe{
-#' \item{`cleaned_text`: `play_text` with miscellanous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.}{.}
-#' }
+#'
+#' * `cleaned_text`: `play_text` with miscellanous items removed: pass depth/location, clock timestamps, No Huddle/Shotgun status, etc.: .
+#'
 #' @keywords internal
 #' @importFrom rlang .data
 #' @importFrom stringr str_replace

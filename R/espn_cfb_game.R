@@ -1,3 +1,180 @@
+#' @name espn_cfb_game
+#' @aliases espn_cfb_game game pbp drives plays teams leaders
+#' @title
+#' **ESPN College Football Game Endpoint Overview**
+#' @description
+#'
+#' * `espn_cfb_pbp()`: Get ESPN college football PBP data (legacy site-v2).
+#' * `espn_cfb_pbp_v2()`: Get ESPN College Football Play-by-Play (core-v2) -- core-v2-sourced successor to `espn_cfb_pbp()` with optional EPA/WPA modeling.
+#' * `espn_cfb_unnest_plays()`: Turn an `espn_cfb_game_drives()` result with a `plays` list-column into a flat one-row-per-play table.
+#' * `espn_cfb_game_broadcasts()`: Get the broadcast / streaming outlets carrying a single college football game.
+#' * `espn_cfb_game_drive_plays()`: Get the play-by-play for a single drive of a college football game -- one row per play, scoped to one drive.
+#' * `espn_cfb_game_drives()`: Get the per-game drive log for a single college football game -- one row per drive.
+#' * `espn_cfb_game_leaders()`: Get the per-game statistical leaders for a single college football game -- one row per leader within each statistical category.
+#' * `espn_cfb_game_odds()`: Get the sportsbook betting lines (spread, over/under, moneyline) for a single college football game -- one row per provider.
+#' * `espn_cfb_game_pbp()`: Get the full core-v2 play-by-play feed for a single college football game -- one row per play.
+#' * `espn_cfb_game_play()`: Get the full detail object for a single play of a college football game.
+#' * `espn_cfb_game_player_box()`: Get the full per-player box score for both teams in a single college football game, in long format.
+#' * `espn_cfb_game_player_statistics()`: Get one athlete's box-score line for a single college football game -- one row per stat, in long format.
+#' * `espn_cfb_game_powerindex()`: Get ESPN's Football Power Index (FPI) matchup projections for both teams in a single college football game.
+#' * `espn_cfb_game_predictor()`: Get ESPN's pre-game matchup predictor (FPI game projection) for a single college football game.
+#' * `espn_cfb_game_probabilities()`: Get ESPN's play-by-play win-probability series for a single college football game.
+#' * `espn_cfb_game_situation()`: Get the current (or final) game situation for a single college football game -- down, distance, yard line, red-zone flag, timeouts.
+#' * `espn_cfb_game_status()`: Get the competition status for a single college football game -- clock, period, and the status type/state.
+#' * `espn_cfb_game_team_leaders()`: Get each team's statistical leaders (passing, rushing, receiving, ...) for a single college football game.
+#' * `espn_cfb_game_team_linescores()`: Get the quarter-by-quarter linescores for both teams in a single college football game.
+#' * `espn_cfb_game_team_records()`: Get each team's win-loss records (overall, home, road, conference) as they stood at the time of a single college football game.
+#' * `espn_cfb_game_team_roster()`: Get the game-day roster for both teams in a single college football game.
+#' * `espn_cfb_game_team_statistics()`: Get the full team box-score statistics for both teams in a single college football game, in long format.
+#' * `espn_cfb_game_teams()`: Get the two teams (home and away) for a single college football game.
+#'
+#' @details
+#' ## **Get ESPN college football PBP data (legacy)**
+#'
+#' ```r
+#' espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE)
+#' ```
+#'
+#' ## **Get ESPN College Football Play-by-Play (core-v2)**
+#'
+#' ```r
+#' espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE)
+#' ```
+#'
+#' ## **Unnest ESPN CFB drive plays into a flat play-by-play table**
+#'
+#' ```r
+#' espn_cfb_unnest_plays(espn_cfb_game_drives(401628339, plays = "list"))
+#' ```
+#'
+#' ## **ESPN College Football Game Broadcasts**
+#'
+#' ```r
+#' espn_cfb_game_broadcasts(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Drive Plays**
+#'
+#' ```r
+#' espn_cfb_game_drive_plays(game_id = 401628339, drive_id = 4016283391)
+#' ```
+#'
+#' ## **ESPN College Football Game Drives**
+#'
+#' ```r
+#' espn_cfb_game_drives(game_id = 401628339)
+#' espn_cfb_game_drives(game_id = 401628339, plays = "expand")
+#' ```
+#'
+#' ## **ESPN College Football Game Leaders**
+#'
+#' ```r
+#' espn_cfb_game_leaders(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Odds**
+#'
+#' ```r
+#' espn_cfb_game_odds(game_id = 401628339)
+#' espn_cfb_game_odds(game_id = 401628339, line_history = TRUE)
+#' ```
+#'
+#' ## **ESPN College Football Game Plays (Core-v2 Play-by-Play)**
+#'
+#' ```r
+#' espn_cfb_game_pbp(game_id = 401628339)
+#' espn_cfb_game_pbp(game_id = 401628339, participants = "wide")
+#' ```
+#'
+#' ## **ESPN College Football Game Play (Single Play Detail)**
+#'
+#' ```r
+#' espn_cfb_game_play(game_id = 401628339, play_id = "401628339101927401")
+#' ```
+#'
+#' ## **ESPN College Football Game Player Box Score**
+#'
+#' ```r
+#' espn_cfb_game_player_box(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Player Statistics (Single Athlete)**
+#'
+#' ```r
+#' espn_cfb_game_player_statistics(game_id = 401628339, athlete_id = 4429105)
+#' ```
+#'
+#' ## **ESPN College Football Game Power Index (Matchup FPI)**
+#'
+#' ```r
+#' espn_cfb_game_powerindex(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Predictor (BPI Matchup Predictor)**
+#'
+#' ```r
+#' espn_cfb_game_predictor(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Win Probabilities**
+#'
+#' ```r
+#' espn_cfb_game_probabilities(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Situation**
+#'
+#' ```r
+#' espn_cfb_game_situation(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Status**
+#'
+#' ```r
+#' espn_cfb_game_status(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Team Leaders**
+#'
+#' ```r
+#' espn_cfb_game_team_leaders(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Team Linescores**
+#'
+#' ```r
+#' espn_cfb_game_team_linescores(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Team Records**
+#'
+#' ```r
+#' espn_cfb_game_team_records(game_id = 401628339)
+#' espn_cfb_game_team_records(game_id = 401628339, detail = TRUE)
+#' ```
+#'
+#' ## **ESPN College Football Game Team Roster**
+#'
+#' ```r
+#' espn_cfb_game_team_roster(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Team Statistics**
+#'
+#' ```r
+#' espn_cfb_game_team_statistics(game_id = 401628339)
+#' ```
+#'
+#' ## **ESPN College Football Game Teams**
+#'
+#' ```r
+#' espn_cfb_game_teams(game_id = 401628339)
+#' espn_cfb_game_teams(game_id = 401628339, format = "wide")
+#' ```
+#'
+NULL
+
+
 # espn_cfb_game.R -- ESPN college football game (event) detail wrappers
 # Consolidated family file. Each function keeps its own
 # roxygen block; edit the block above the function you want.
@@ -177,15 +354,14 @@
 #' @details
 #' Caching is configured at package load via two `options()`:
 #'
-#' \itemize{
-#'   \item `cfbfastR.cache` -- cache backend. One of `"memory"` (default;
-#'     in-memory `cachem::cache_mem()`, cleared when the session ends),
-#'     `"filesystem"` (persistent on-disk `cachem::cache_disk()` under
-#'     [tools::R_user_dir()]), or `"off"` (no memoisation -- every catalog
-#'     fetch hits ESPN).
-#'   \item `cfbfastR.cache_duration` -- cache time-to-live in seconds.
-#'     Defaults to `86400` (24 hours).
-#' }
+#' * `cfbfastR.cache` -- cache backend. One of `"memory"` (default;
+#'   in-memory `cachem::cache_mem()`, cleared when the session ends),
+#'   `"filesystem"` (persistent on-disk `cachem::cache_disk()` under
+#'   [tools::R_user_dir()]), or `"off"` (no memoisation -- every catalog
+#'   fetch hits ESPN).
+#' * `cfbfastR.cache_duration` -- cache time-to-live in seconds.
+#'   Defaults to `86400` (24 hours).
+#'
 #'
 #' Set these with [options()] *before* the package is loaded, e.g.
 #' `options(cfbfastR.cache = "filesystem")`. When `cfbfastR.cache` is
@@ -1105,13 +1281,13 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
 #' @param participants (*Character*): controls whether each play's nested
 #' `participants[]` array (the athletes credited on the play) is attached.
 #' One of:
-#'   \itemize{
-#'     \item `"none"` (default) -- the play frame is returned unchanged; no
-#'       extra HTTP call is made.
-#'     \item `"wide"` -- one row per play, with type-keyed
-#'       `{type}_player_*` columns appended (see *Details*).
-#'     \item `"long"` -- one row per play x participant (see *Details*).
-#'   }
+#'
+#'   * `"none"` (default) -- the play frame is returned unchanged; no
+#'     extra HTTP call is made.
+#'   * `"wide"` -- one row per play, with type-keyed
+#'     `{type}_player_*` columns appended (see *Details*).
+#'   * `"long"` -- one row per play x participant (see *Details*).
+#'
 #' @param participants_list (*Logical*): when `TRUE`, append a single
 #' list-column named `participants` holding each play's full participant
 #' detail -- including the per-participant `stats[]` that `"wide"` mode
@@ -1120,11 +1296,11 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
 #' @param team_participants (*Character*): controls whether each play's
 #' nested `teamParticipants[]` array (the team(s) credited on the play) is
 #' attached as type-keyed columns. One of:
-#'   \itemize{
-#'     \item `"none"` (default) -- no team-participant columns are added.
-#'     \item `"wide"` -- one row per play, with type-keyed `{type}_team_*`
-#'       columns appended (see *Details*).
-#'   }
+#'
+#'   * `"none"` (default) -- no team-participant columns are added.
+#'   * `"wide"` -- one row per play, with type-keyed `{type}_team_*`
+#'     columns appended (see *Details*).
+#'
 #' @param team_participants_list (*Logical*): when `TRUE`, append a single
 #' list-column named `team_participants` holding each play's full
 #' `teamParticipants[]` detail as a nested tibble. Defaults to `FALSE`.
@@ -1212,22 +1388,22 @@ espn_cfb_game_broadcasts <- function(game_id = NULL) {
 #' `tackler`, `sacked_by`, `pass_defender`, `kicker`, `returner`). ESPN's
 #' camelCase types are snake-cased (`sackedBy` -> `sacked_by`). For each
 #' type the appended columns are:
-#'   \itemize{
-#'     \item `{type}_player_id` -- scalar character, the **first**
-#'       occurrence of that type on the play (`NA` if none).
-#'     \item `{type}_player_name` -- scalar character, that athlete's
-#'       roster-joined name (`NA` if none or unmatched).
-#'     \item `{type}_player_position` -- scalar character, the first
-#'       athlete's position abbreviation (joined from the ESPN position
-#'       catalog; `NA` if unmatched).
-#'     \item `{type}_player_position_name` -- scalar character, the first
-#'       athlete's position name.
-#'     \item `{type}_player_ids` -- a **list-column**: a character vector
-#'       of **every** athlete id of that type on the play, in ESPN order.
-#'       Plays with none carry `character(0)`.
-#'     \item `{type}_player_names` -- a **list-column**: the parallel
-#'       vector of roster-joined names.
-#'   }
+#'
+#'   * `{type}_player_id` -- scalar character, the **first**
+#'     occurrence of that type on the play (`NA` if none).
+#'   * `{type}_player_name` -- scalar character, that athlete's
+#'     roster-joined name (`NA` if none or unmatched).
+#'   * `{type}_player_position` -- scalar character, the first
+#'     athlete's position abbreviation (joined from the ESPN position
+#'     catalog; `NA` if unmatched).
+#'   * `{type}_player_position_name` -- scalar character, the first
+#'     athlete's position name.
+#'   * `{type}_player_ids` -- a **list-column**: a character vector
+#'     of **every** athlete id of that type on the play, in ESPN order.
+#'     Plays with none carry `character(0)`.
+#'   * `{type}_player_names` -- a **list-column**: the parallel
+#'     vector of roster-joined names.
+#'
 #' Participant `stats[]` are not carried in wide mode -- use `"long"` for
 #' the per-participant stat lines.
 #'
@@ -1535,22 +1711,22 @@ espn_cfb_game_drive_plays <- function(game_id = NULL, drive_id = NULL,
 #' a flattened subset.
 #'
 #' The `plays` argument controls whether each drive's plays are embedded:
-#'   \itemize{
-#'     \item `"none"` (default) -- the drives output is returned unchanged,
-#'       one row per drive, with no embedded plays.
-#'     \item `"list"` -- a `plays` **list-column** is appended; each cell is
-#'       that drive's plays as a tibble in the **full**
-#'       [espn_cfb_game_pbp()] schema (~54 base columns plus any optional
-#'       participant columns). A drive with no matched plays gets an empty
-#'       0-row tibble, never `NULL`.
-#'     \item `"expand"` -- the **flat one-row-per-play** table is returned:
-#'       every play in the full [espn_cfb_game_pbp()] schema, with that
-#'       play's drive-level columns carried alongside, prefixed `drive_`
-#'       (e.g. `drive_id`, `drive_result`, `drive_yards`,
-#'       `drive_start_yard_line`) to avoid collision with the play's own
-#'       columns. This is the [espn_cfb_game_pbp()] expanded form enriched
-#'       with drive context.
-#'   }
+#'
+#'   * `"none"` (default) -- the drives output is returned unchanged,
+#'     one row per drive, with no embedded plays.
+#'   * `"list"` -- a `plays` **list-column** is appended; each cell is
+#'     that drive's plays as a tibble in the **full**
+#'     [espn_cfb_game_pbp()] schema (~54 base columns plus any optional
+#'     participant columns). A drive with no matched plays gets an empty
+#'     0-row tibble, never `NULL`.
+#'   * `"expand"` -- the **flat one-row-per-play** table is returned:
+#'     every play in the full [espn_cfb_game_pbp()] schema, with that
+#'     play's drive-level columns carried alongside, prefixed `drive_`
+#'     (e.g. `drive_id`, `drive_result`, `drive_yards`,
+#'     `drive_start_yard_line`) to avoid collision with the play's own
+#'     columns. This is the [espn_cfb_game_pbp()] expanded form enriched
+#'     with drive context.
+#'
 #'
 #' The `participants`, `participants_list`, `team_participants`,
 #' `team_participants_list`, and `position_detail` arguments shape the
@@ -2210,13 +2386,13 @@ espn_cfb_game_leaders <- function(game_id = NULL, team_detail = TRUE) {
 #' line snapshots are expanded instead (see *Details*).
 #' @param game_id (*Integer* required): ESPN game identifier.
 #' @param line_history (*Logical*): controls the output shape. One of:
-#'   \itemize{
-#'     \item `FALSE` (default) -- the summary output, one row per odds
-#'       provider, with the columns shown in the *Value* table below.
-#'     \item `TRUE` -- a long frame capturing the `open` / `close` /
-#'       `current` line snapshots, one row per
-#'       (provider x snapshot x market) (see *Details*).
-#'   }
+#'
+#'   * `FALSE` (default) -- the summary output, one row per odds
+#'     provider, with the columns shown in the *Value* table below.
+#'   * `TRUE` -- a long frame capturing the `open` / `close` /
+#'     `current` line snapshots, one row per
+#'     (provider x snapshot x market) (see *Details*).
+#'
 #' @return A data frame with one row per odds provider (when
 #' `line_history = FALSE`):
 #'
@@ -2450,13 +2626,13 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 #' @param participants (*Character*): controls whether each play's nested
 #' `participants[]` array (the athletes credited on the play) is attached.
 #' One of:
-#'   \itemize{
-#'     \item `"none"` (default) -- the play frame is returned unchanged; no
-#'       extra HTTP call is made.
-#'     \item `"wide"` -- one row per play, with type-keyed
-#'       `{type}_player_*` columns appended (see *Details*).
-#'     \item `"long"` -- one row per play x participant (see *Details*).
-#'   }
+#'
+#'   * `"none"` (default) -- the play frame is returned unchanged; no
+#'     extra HTTP call is made.
+#'   * `"wide"` -- one row per play, with type-keyed
+#'     `{type}_player_*` columns appended (see *Details*).
+#'   * `"long"` -- one row per play x participant (see *Details*).
+#'
 #' @param participants_list (*Logical*): when `TRUE`, append a single
 #' list-column named `participants` holding each play's full participant
 #' detail -- including the per-participant `stats[]` that `"wide"` mode
@@ -2465,11 +2641,11 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 #' @param team_participants (*Character*): controls whether each play's
 #' nested `teamParticipants[]` array (the team(s) credited on the play) is
 #' attached as type-keyed columns. One of:
-#'   \itemize{
-#'     \item `"none"` (default) -- no team-participant columns are added.
-#'     \item `"wide"` -- one row per play, with type-keyed `{type}_team_*`
-#'       columns appended (see *Details*).
-#'   }
+#'
+#'   * `"none"` (default) -- no team-participant columns are added.
+#'   * `"wide"` -- one row per play, with type-keyed `{type}_team_*`
+#'     columns appended (see *Details*).
+#'
 #' @param team_participants_list (*Logical*): when `TRUE`, append a single
 #' list-column named `team_participants` holding each play's full
 #' `teamParticipants[]` detail as a nested tibble. Defaults to `FALSE`.
@@ -2556,22 +2732,22 @@ espn_cfb_game_odds <- function(game_id = NULL, line_history = FALSE) {
 #' `tackler`, `sacked_by`, `pass_defender`, `kicker`, `returner`). ESPN's
 #' camelCase types are snake-cased (`sackedBy` -> `sacked_by`). For each
 #' type the appended columns are:
-#'   \itemize{
-#'     \item `{type}_player_id` -- scalar character, the **first**
-#'       occurrence of that type on the play (`NA` if none).
-#'     \item `{type}_player_name` -- scalar character, that athlete's
-#'       roster-joined name (`NA` if none or unmatched).
-#'     \item `{type}_player_position` -- scalar character, the first
-#'       athlete's position abbreviation (joined from the ESPN position
-#'       catalog; `NA` if unmatched).
-#'     \item `{type}_player_position_name` -- scalar character, the first
-#'       athlete's position name.
-#'     \item `{type}_player_ids` -- a **list-column**: a character vector
-#'       of **every** athlete id of that type on the play, in ESPN order.
-#'       Plays with none carry `character(0)`.
-#'     \item `{type}_player_names` -- a **list-column**: the parallel
-#'       vector of roster-joined names.
-#'   }
+#'
+#'   * `{type}_player_id` -- scalar character, the **first**
+#'     occurrence of that type on the play (`NA` if none).
+#'   * `{type}_player_name` -- scalar character, that athlete's
+#'     roster-joined name (`NA` if none or unmatched).
+#'   * `{type}_player_position` -- scalar character, the first
+#'     athlete's position abbreviation (joined from the ESPN position
+#'     catalog; `NA` if unmatched).
+#'   * `{type}_player_position_name` -- scalar character, the first
+#'     athlete's position name.
+#'   * `{type}_player_ids` -- a **list-column**: a character vector
+#'     of **every** athlete id of that type on the play, in ESPN order.
+#'     Plays with none carry `character(0)`.
+#'   * `{type}_player_names` -- a **list-column**: the parallel
+#'     vector of roster-joined names.
+#'
 #' Participant `stats[]` are not carried in wide mode -- use `"long"` for
 #' the per-participant stat lines.
 #'
@@ -2804,14 +2980,14 @@ espn_cfb_game_pbp <- function(game_id = NULL,
 #' @param participants (*Character*): controls whether the play's nested
 #' `participants[]` array (the athletes credited on the play) is attached.
 #' One of:
-#'   \itemize{
-#'     \item `"none"` (default) -- the single-row play frame is returned
-#'       unchanged; no extra HTTP call is made.
-#'     \item `"wide"` -- the single row gains type-keyed `{type}_player_*`
-#'       columns (see *Details*).
-#'     \item `"long"` -- the frame is expanded to one row per participant
-#'       (see *Details*).
-#'   }
+#'
+#'   * `"none"` (default) -- the single-row play frame is returned
+#'     unchanged; no extra HTTP call is made.
+#'   * `"wide"` -- the single row gains type-keyed `{type}_player_*`
+#'     columns (see *Details*).
+#'   * `"long"` -- the frame is expanded to one row per participant
+#'     (see *Details*).
+#'
 #' @param participants_list (*Logical*): when `TRUE`, append a single
 #' list-column named `participants` holding the play's full participant
 #' detail -- including the per-participant `stats[]` that `"wide"` mode
@@ -2820,11 +2996,11 @@ espn_cfb_game_pbp <- function(game_id = NULL,
 #' @param team_participants (*Character*): controls whether the play's
 #' nested `teamParticipants[]` array (the team(s) credited on the play) is
 #' attached as type-keyed columns. One of:
-#'   \itemize{
-#'     \item `"none"` (default) -- no team-participant columns are added.
-#'     \item `"wide"` -- the single row gains type-keyed `{type}_team_*`
-#'       columns (see *Details*).
-#'   }
+#'
+#'   * `"none"` (default) -- no team-participant columns are added.
+#'   * `"wide"` -- the single row gains type-keyed `{type}_team_*`
+#'     columns (see *Details*).
+#'
 #' @param team_participants_list (*Logical*): when `TRUE`, append a single
 #' list-column named `team_participants` holding the play's full
 #' `teamParticipants[]` detail as a nested tibble. Defaults to `FALSE`.
@@ -4933,13 +5109,13 @@ espn_cfb_game_team_linescores <- function(game_id = NULL,
 #' to.
 #' @param game_id (*Integer* required): ESPN game identifier.
 #' @param detail (*Logical*): controls the output shape. One of:
-#'   \itemize{
-#'     \item `FALSE` (default) -- the summary output, one row per
-#'       (team x record type), with the columns shown in the *Value*
-#'       table below.
-#'     \item `TRUE` -- a long frame, one row per (team x record x stat)
-#'       expanding each record's nested `stats[]` array (see *Details*).
-#'   }
+#'
+#'   * `FALSE` (default) -- the summary output, one row per
+#'     (team x record type), with the columns shown in the *Value*
+#'     table below.
+#'   * `TRUE` -- a long frame, one row per (team x record x stat)
+#'     expanding each record's nested `stats[]` array (see *Details*).
+#'
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog ([espn_cfb_teams()]) once and join friendly team fields
 #' next to the `team_id` column -- `team_name`, `team_abbreviation`,
@@ -5605,16 +5781,16 @@ espn_cfb_game_team_statistics <- function(game_id = NULL,
 #' style rank ESPN attaches to the team at game time.
 #'
 #' The `format` argument controls the output shape:
-#'   \itemize{
-#'     \item `"long"` (default) -- one row per competitor (two rows per
-#'       game), with the `home_away` column, as shown in the *Value* table.
-#'     \item `"wide"` -- **one row per game**: every per-competitor column
-#'       is pivoted to a `home_*` / `away_*` column keyed off the
-#'       `home_away` value (e.g. `home_team_id`, `home_winner`,
-#'       `home_curated_rank`, `away_team_id`, `away_winner`, ...).
-#'       `game_id` stays a single key column, so a `"wide"` result is
-#'       directly joinable onto any one-row-per-game table.
-#'   }
+#'
+#'   * `"long"` (default) -- one row per competitor (two rows per
+#'     game), with the `home_away` column, as shown in the *Value* table.
+#'   * `"wide"` -- **one row per game**: every per-competitor column
+#'     is pivoted to a `home_*` / `away_*` column keyed off the
+#'     `home_away` value (e.g. `home_team_id`, `home_winner`,
+#'     `home_curated_rank`, `away_team_id`, `away_winner`, ...).
+#'     `game_id` stays a single key column, so a `"wide"` result is
+#'     directly joinable onto any one-row-per-game table.
+#'
 #'
 #' When `team_detail = TRUE` (the default) the ESPN team catalog
 #' ([espn_cfb_teams()]) is fetched once and friendly team fields are joined
@@ -6195,19 +6371,19 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #' @param output (*Character*): controls the modeled-output column set when
 #' `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. Defaults to `"default"`.
 #' Must be one of:
-#' \itemize{
-#'   \item `"default"` (recommended) -- drops pipeline lag/lead intermediates,
-#'     redundant alternates (`sack_vec`, `turnover_indicator`, `kick_play`,
-#'     `missing_yard_flag`), and drive-result aliases (`drive_result2`,
-#'     `drive_result_detailed_flag`, `lag_drive_result_detailed`,
-#'     `lead_drive_result_detailed`, `lag_new_drive_pts`). Keeps
-#'     `orig_play_type` and `pts_scored` (they carry useful per-play
-#'     information distinct from the canonical columns) and the per-branch
-#'     WPA scratchpad. ~75 columns lighter than `"full"`.
-#'   \item `"lean"` -- everything `"default"` drops, plus the WPA
-#'     computation scratchpad. For dashboards / game logs.
-#'   \item `"full"` -- legacy behavior, drops only the player-name aliases.
-#' }
+#'
+#' * `"default"` (recommended) -- drops pipeline lag/lead intermediates,
+#'   redundant alternates (`sack_vec`, `turnover_indicator`, `kick_play`,
+#'   `missing_yard_flag`), and drive-result aliases (`drive_result2`,
+#'   `drive_result_detailed_flag`, `lag_drive_result_detailed`,
+#'   `lead_drive_result_detailed`, `lag_new_drive_pts`). Keeps
+#'   `orig_play_type` and `pts_scored` (they carry useful per-play
+#'   information distinct from the canonical columns) and the per-branch
+#'   WPA scratchpad. ~75 columns lighter than `"full"`.
+#' * `"lean"` -- everything `"default"` drops, plus the WPA
+#'   computation scratchpad. For dashboards / game logs.
+#' * `"full"` -- legacy behavior, drops only the player-name aliases.
+#'
 #' @return A data frame with one row per play. When `epa_wpa = FALSE`, the
 #' assembled core-v2 play-by-play frame:
 #'

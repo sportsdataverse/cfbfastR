@@ -2,6 +2,8 @@
 % Please edit documentation in R/cfbd_venues.R
 \name{cfbd_venues}
 \alias{cfbd_venues}
+\alias{venues}
+\alias{stadiums}
 \title{\strong{CFBD Venues Endpoint Overview}}
 \usage{
 cfbd_venues()
@@ -26,10 +28,20 @@ A data frame with 337 rows and 14 variables:\tabular{lll}{
 }
 }
 \description{
+\itemize{
+\item \code{cfbd_venues()}: Pulls all college football venues and data on capacity, grass, city/state, location, elevation, dome, timezone and construction year.
+}
+
 Pulls all college football venues and data on capacity, grass, city/state, location,
 elevation, dome, timezone and construction year.
 }
 \details{
+\subsection{\strong{CFB Venue Information}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_venues()
+}\if{html}{\out{</div>}}
+}
+
 CFB Venue Information
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_venues()

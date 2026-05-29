@@ -1,3 +1,20 @@
+#' @name cfbd_venues
+#' @aliases cfbd_venues venues stadiums
+#' @title
+#' **CFBD Venues Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_venues()`: Pulls all college football venues and data on capacity, grass, city/state, location, elevation, dome, timezone and construction year.
+#'
+#' @details
+#' ## **CFB Venue Information**
+#'
+#' ```r
+#' cfbd_venues()
+#' ```
+#'
+NULL
+
 #' @title
 #' **CFBD Venues Endpoint Overview**
 #' @description Pulls all college football venues and data on capacity, grass, city/state, location,

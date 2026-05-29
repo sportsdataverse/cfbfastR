@@ -31,104 +31,105 @@ espn_cfb_schedule(
 \value{
 \code{\link[=espn_cfb_scoreboard]{espn_cfb_scoreboard()}} & \code{\link[=espn_cfb_schedule]{espn_cfb_schedule()}} - A data frame with 33 or 54 variables depending on if there are completed games:
 shared variables
-\describe{
-\item{\code{matchup}: character.}{Long matchup description with full team names (Utah Utes at UCLA Bruins).}
-\item{\code{matchup_short}: character.}{Short matchup description with team abbreviations (UTAH @ UCLA).}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{type}: character.}{Season type of the game in CFBD format.}
-\item{\code{slug}: character.}{Season type of the game in ESPN format.}
-\item{\code{game_id}: character.}{Referencing game ID.}
-\item{\code{game_uid}: character.}{}
-\item{\code{game_date}: character.}{Game date.}
-\item{\code{attendance}: integer.}{Reported attendance at the game.}
-\item{\code{play_by_play_available}: logical}{}
-\item{\code{home_team_name}: character.}{Home team mascot name (Sun Devils).}
-\item{\code{home_team_logo}: character.}{Home team logo url.}
-\item{\code{home_team_abb}: character.}{Home team abbreviation (ASU).}
-\item{\code{home_team_id}: character.}{Home team ID.}
-\item{\code{home_team_location}: character.}{Home team name (Arizona State).}
-\item{\code{home_team_full}: character.}{Home team full name (Arizona State Sun Devils).}
-\item{\code{home_team_color}: character.}{Home team color.}
-\item{\code{home_score}: integer.}{Home team points.}
-\item{\code{home_win}: integer.}{1 if home team won, 0 if home team lost, NA if game is unfinished}
-\item{\code{home_record}: character}{Home team record.}
-\item{\code{away_team_name}: character.}{Away team mascot name (Sun Devils).}
-\item{\code{away_team_logo}: character.}{Away team logo url.}
-\item{\code{away_team_abb}: character.}{Away team abbreviation (ASU).}
-\item{\code{away_team_id}: character.}{Away team ID.}
-\item{\code{away_team_location}: character.}{Away team name (Arizona State).}
-\item{\code{away_team_full}: character.}{Away team full name (Arizona State Sun Devils).}
-\item{\code{away_team_color}: character.}{Away team color.}
-\item{\code{away_score}: integer.}{Away team points.}
-\item{\code{away_win}: integer.}{1 if away team won, 0 if home team lost, NA if game is unfinished}
-\item{\code{away_record}: character}{Away team record.}
-\item{\code{status_name}: character.}{Status of the game}
-\item{\code{start_date}: character.}{Game date.}
+\itemize{
+\item \code{matchup}: character.: Long matchup description with full team names (Utah Utes at UCLA Bruins).
+\item \code{matchup_short}: character.: Short matchup description with team abbreviations (UTAH @ UCLA).
+\item \code{season}: integer.: Season of the game.
+\item \code{type}: character.: Season type of the game in CFBD format.
+\item \code{slug}: character.: Season type of the game in ESPN format.
+\item \code{game_id}: character.: Referencing game ID.
+\item \code{game_uid}: character.:
+\item \code{game_date}: character.: Game date.
+\item \code{attendance}: integer.: Reported attendance at the game.
+\item \code{play_by_play_available}: logical:
+\item \code{home_team_name}: character.: Home team mascot name (Sun Devils).
+\item \code{home_team_logo}: character.: Home team logo url.
+\item \code{home_team_abb}: character.: Home team abbreviation (ASU).
+\item \code{home_team_id}: character.: Home team ID.
+\item \code{home_team_location}: character.: Home team name (Arizona State).
+\item \code{home_team_full}: character.: Home team full name (Arizona State Sun Devils).
+\item \code{home_team_color}: character.: Home team color.
+\item \code{home_score}: integer.: Home team points.
+\item \code{home_win}: integer.: 1 if home team won, 0 if home team lost, NA if game is unfinished
+\item \code{home_record}: character: Home team record.
+\item \code{away_team_name}: character.: Away team mascot name (Sun Devils).
+\item \code{away_team_logo}: character.: Away team logo url.
+\item \code{away_team_abb}: character.: Away team abbreviation (ASU).
+\item \code{away_team_id}: character.: Away team ID.
+\item \code{away_team_location}: character.: Away team name (Arizona State).
+\item \code{away_team_full}: character.: Away team full name (Arizona State Sun Devils).
+\item \code{away_team_color}: character.: Away team color.
+\item \code{away_score}: integer.: Away team points.
+\item \code{away_win}: integer.: 1 if away team won, 0 if home team lost, NA if game is unfinished
+\item \code{away_record}: character: Away team record.
+\item \code{status_name}: character.: Status of the game
+\item \code{start_date}: character.: Game date.
 }
+
 Unique variables when there are completed games
-\describe{
-\item{\code{broadcast_market}: character.}{Broadcast market (typically "national" or NA)}
-\item{\code{broadcast_name}: character.}{Broadcast channel i.e. ESPN, ABC, FOX}
-\item{\code{passing_leader_yards}: numeric.}{Passing yards of game's passing leader}
-\item{\code{passing_leader_stat}: character.}{Stat line of game's passing leader}
-\item{\code{passing_leader_name}: character.}{Name of game's passing leader}
-\item{\code{passing_leader_shortname}: character.}{First initial and last name of game's passing leader}
-\item{\code{passing_leader_headshot}: character.}{Headshot url of game's passing leader}
-\item{\code{passing_leader_team_id}: character.}{Team ID of game's passing leader}
-\item{\code{passing_leader_pos}: character.}{Position of game's passing leader}
-\item{\code{rushing_leader_yards}: numeric.}{Passing yards of game's rushing leader}
-\item{\code{rushing_leader_stat}: character.}{Stat line of game's rushing leader}
-\item{\code{rushing_leader_name}: character.}{Name of game's rushing leader}
-\item{\code{rushing_leader_shortname}: character.}{First initial and last name of game's rushing leader}
-\item{\code{rushing_leader_headshot}: character.}{Headshot url of game's rushing leader}
-\item{\code{rushing_leader_team_id}: character.}{Team ID of game's rushing leader}
-\item{\code{rushing_leader_pos}: character.}{Position of game's rushing leader}
-\item{\code{receiving_leader_yards}: numeric.}{Passing yards of game's receiving leader}
-\item{\code{receiving_leader_stat}: character.}{Stat line of game's receiving leader}
-\item{\code{receiving_leader_name}: character.}{Name of game's receiving leader}
-\item{\code{receiving_leader_shortname}: character.}{First initial and last name of game's receiving leader}
-\item{\code{receiving_leader_headshot}: character.}{Headshot url of game's receiving leader}
-\item{\code{receiving_leader_team_id}: character.}{Team ID of game's receiving leader}
-\item{\code{receiving_leader_pos}: character.}{Position of game's receiving leader}
+\itemize{
+\item \code{broadcast_market}: character.: Broadcast market (typically "national" or NA)
+\item \code{broadcast_name}: character.: Broadcast channel i.e. ESPN, ABC, FOX
+\item \code{passing_leader_yards}: numeric.: Passing yards of game's passing leader
+\item \code{passing_leader_stat}: character.: Stat line of game's passing leader
+\item \code{passing_leader_name}: character.: Name of game's passing leader
+\item \code{passing_leader_shortname}: character.: First initial and last name of game's passing leader
+\item \code{passing_leader_headshot}: character.: Headshot url of game's passing leader
+\item \code{passing_leader_team_id}: character.: Team ID of game's passing leader
+\item \code{passing_leader_pos}: character.: Position of game's passing leader
+\item \code{rushing_leader_yards}: numeric.: Passing yards of game's rushing leader
+\item \code{rushing_leader_stat}: character.: Stat line of game's rushing leader
+\item \code{rushing_leader_name}: character.: Name of game's rushing leader
+\item \code{rushing_leader_shortname}: character.: First initial and last name of game's rushing leader
+\item \code{rushing_leader_headshot}: character.: Headshot url of game's rushing leader
+\item \code{rushing_leader_team_id}: character.: Team ID of game's rushing leader
+\item \code{rushing_leader_pos}: character.: Position of game's rushing leader
+\item \code{receiving_leader_yards}: numeric.: Passing yards of game's receiving leader
+\item \code{receiving_leader_stat}: character.: Stat line of game's receiving leader
+\item \code{receiving_leader_name}: character.: Name of game's receiving leader
+\item \code{receiving_leader_shortname}: character.: First initial and last name of game's receiving leader
+\item \code{receiving_leader_headshot}: character.: Headshot url of game's receiving leader
+\item \code{receiving_leader_team_id}: character.: Team ID of game's receiving leader
+\item \code{receiving_leader_pos}: character.: Position of game's receiving leader
 }
 
 \code{\link[=espn_cfb_schedule]{espn_cfb_schedule()}} - A data frame with 8 variables:
-\describe{
-\item{\code{matchup}: character.}{.}
-\item{\code{matchup_short}: character.}{.}
-\item{\code{season}: integer.}{.}
-\item{\code{type}: character.}{.}
-\item{\code{slug}: character.}{.}
-\item{\code{game_id}: character.}{.}
-\item{\code{game_uid}: character.}{.}
-\item{\code{game_date}: Date.}{.}
-\item{\code{attendance}: integer.}{.}
-\item{\code{date_valid}: logical.}{.}
-\item{\code{play_by_play_available}: logical.}{.}
-\item{\code{home_team_name}: character.}{.}
-\item{\code{home_team_logo}: character.}{.}
-\item{\code{home_team_abb}: character.}{.}
-\item{\code{home_team_id}: character.}{.}
-\item{\code{home_team_location}: character.}{.}
-\item{\code{home_team_full}: character.}{.}
-\item{\code{home_team_color}: character.}{.}
-\item{\code{home_score}: integer.}{.}
-\item{\code{home_win}: integer.}{.}
-\item{\code{home_record}: character.}{.}
-\item{\code{away_team_name}: character.}{.}
-\item{\code{away_team_logo}: character.}{.}
-\item{\code{away_team_abb}: character.}{.}
-\item{\code{away_team_id}: character.}{.}
-\item{\code{away_team_location}: character.}{.}
-\item{\code{away_team_full}: character.}{.}
-\item{\code{away_team_color}: character.}{.}
-\item{\code{away_score}: integer.}{.}
-\item{\code{away_win}: integer.}{.}
-\item{\code{away_record}: character.}{.}
-\item{\code{status_name}: character.}{.}
-\item{\code{start_date}: character.}{.}
-\item{\code{highlights}: logical.}{.}
-\item{\code{game_date_time}: datetime.}{.}
+\itemize{
+\item \code{matchup}: character.: .
+\item \code{matchup_short}: character.: .
+\item \code{season}: integer.: .
+\item \code{type}: character.: .
+\item \code{slug}: character.: .
+\item \code{game_id}: character.: .
+\item \code{game_uid}: character.: .
+\item \code{game_date}: Date.: .
+\item \code{attendance}: integer.: .
+\item \code{date_valid}: logical.: .
+\item \code{play_by_play_available}: logical.: .
+\item \code{home_team_name}: character.: .
+\item \code{home_team_logo}: character.: .
+\item \code{home_team_abb}: character.: .
+\item \code{home_team_id}: character.: .
+\item \code{home_team_location}: character.: .
+\item \code{home_team_full}: character.: .
+\item \code{home_team_color}: character.: .
+\item \code{home_score}: integer.: .
+\item \code{home_win}: integer.: .
+\item \code{home_record}: character.: .
+\item \code{away_team_name}: character.: .
+\item \code{away_team_logo}: character.: .
+\item \code{away_team_abb}: character.: .
+\item \code{away_team_id}: character.: .
+\item \code{away_team_location}: character.: .
+\item \code{away_team_full}: character.: .
+\item \code{away_team_color}: character.: .
+\item \code{away_score}: integer.: .
+\item \code{away_win}: integer.: .
+\item \code{away_record}: character.: .
+\item \code{status_name}: character.: .
+\item \code{start_date}: character.: .
+\item \code{highlights}: logical.: .
+\item \code{game_date_time}: datetime.: .
 }
 }
 \description{

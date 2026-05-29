@@ -2,14 +2,13 @@
 #' @title
 #' **CFBD Ratings and Rankings Endpoints Overview**
 #' @description
-#' \describe{
-#' \item{`cfbd_rankings()`:}{ Gets Historical CFB poll rankings at a specific week.}
-#' \item{`cfbd_ratings_sp()`:}{ Get SP historical rating data.}
-#' \item{`cfbd_ratings_sp_conference()`:}{ Get SP conference-level historical rating data.}
-#' \item{`cfbd_ratings_srs()`:}{ Get SRS historical rating data.}
-#' \item{`cfbd_ratings_elo()`:}{ Get Elo historical rating data.}
-#' \item{`cfbd_ratings_fpi()`:}{ Get FPI historical rating data.}
-#' }
+#'
+#' * `cfbd_rankings()`: Gets Historical CFB poll rankings at a specific week.
+#' * `cfbd_ratings_sp()`: Get SP historical rating data.
+#' * `cfbd_ratings_sp_conference()`: Get SP conference-level historical rating data.
+#' * `cfbd_ratings_srs()`: Get SRS historical rating data.
+#' * `cfbd_ratings_elo()`: Get Elo historical rating data.
+#' * `cfbd_ratings_fpi()`: Get FPI historical rating data.
 #'
 #' ### **Get historical Coaches and AP poll data**
 #' ```r
@@ -316,6 +315,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #'  |defense_havoc_front_seven |logical   |Defense havoc rate from front 7 players for the conference - Not available for recent seasons. |
 #'  |defense_havoc_db          |logical   |Defense havoc rate from defensive backs for the conference - Not available for recent seasons. |
 #'  |special_teams_rating      |numeric   |Special teams rating for the conference.                                                 |
+#'
 #' @keywords SP+ Conference
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -419,6 +419,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #'  |division   |character |Division in the conference for the team.                    |
 #'  |rating     |numeric   |Simple Rating System (SRS) rating.                           |
 #'  |ranking    |integer   |Simple Rating System ranking within the group returned.      |
+#'
 #' @keywords SRS
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

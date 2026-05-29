@@ -1,5 +1,22 @@
+#' @name cfbd_conferences
+#' @aliases cfbd_conferences conferences
 #' @title
 #' **CFBD Conferences Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_conferences()`: Get college football conference information.
+#'
+#' @details
+#' ## **Get college football conference information**
+#'
+#' ```r
+#' cfbd_conferences()
+#' ```
+#'
+NULL
+
+#' @title
+#' **Get college football conference information**
 #' @description
 #' **Get college football conference information**
 #' Pulls all college football conferences and returns as data frame
@@ -13,6 +30,7 @@
 #'    |long_name      |character |Long name for Conference.                                           |
 #'    |abbreviation   |character |Conference abbreviation.                                            |
 #'    |classification |character |Conference classification (fbs, fcs, ii, iii).                      |
+#'
 #' @keywords Conferences
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

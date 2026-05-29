@@ -2,6 +2,76 @@
 # Consolidated family file. Each function keeps its own
 # roxygen block; edit the block above the function you want.
 
+#' @name espn_cfb_season
+#' @aliases espn_cfb_season season seasons standings rankings
+#' @title
+#' **ESPN College Football Season Endpoint Overview**
+#' @description
+#'
+#' * `espn_cfb_groups()`: Get the full ESPN group hierarchy for a college football season -- division roll-ups and conferences flattened into one catalog table.
+#' * `espn_cfb_rankings()`: Get the index of poll / ranking sources ESPN publishes for a college football season.
+#' * `espn_cfb_season_info()`: Get the ESPN core-v2 detail record for a single college football season.
+#' * `espn_cfb_season_types()`: Get the set of season types (preseason, regular season, postseason, off-season) ESPN tracks for a college football season.
+#' * `espn_cfb_season_weeks()`: Get the calendar of weeks ESPN tracks for a college football season type.
+#' * `espn_cfb_seasons()`: Get the index of every college football season ESPN tracks in its core-v2 API.
+#' * `espn_cfb_standings()`: Get ESPN's standings for a college football group -- full record splits and standings statistics for every team.
+#' * `espn_cfb_week_rankings()`: Get the ranked teams from every poll ESPN published in a single week of a college football season.
+#'
+#' @details
+#' ## **Get ESPN College Football Groups & Conferences**
+#'
+#' ```r
+#' espn_cfb_groups(year = 2024)
+#' ```
+#'
+#' ## **Get ESPN College Football Ranking Sources**
+#'
+#' ```r
+#' espn_cfb_rankings(year = 2024)
+#' ```
+#'
+#' ## **Get ESPN College Football Season Detail**
+#'
+#' ```r
+#' espn_cfb_season_info(year = 2024)
+#' ```
+#'
+#' ## **Get ESPN College Football Season Types**
+#'
+#' ```r
+#' espn_cfb_season_types(year = 2024)
+#' ```
+#'
+#' ## **Get ESPN College Football Season Weeks**
+#'
+#' ```r
+#' espn_cfb_season_weeks(year = 2024)
+#' ```
+#'
+#' ## **Get ESPN College Football Seasons Index**
+#'
+#' ```r
+#' espn_cfb_seasons()
+#' ```
+#'
+#' ## **Get ESPN College Football Standings (Long Format)**
+#'
+#' ```r
+#' espn_cfb_standings(year = 2024)
+#'
+#' espn_cfb_standings(year = 2024, team_detail = FALSE)
+#' ```
+#'
+#' ## **Get ESPN College Football Weekly Rankings**
+#'
+#' ```r
+#' espn_cfb_week_rankings(year = 2024, week = 8)
+#'
+#' espn_cfb_week_rankings(year = 2024, week = 8, team_detail = FALSE)
+#' ```
+#'
+NULL
+
 #' @title
 #' **ESPN College Football Groups & Conferences**
 #' @description Get the full ESPN group hierarchy for a college football

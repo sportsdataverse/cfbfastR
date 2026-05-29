@@ -4,13 +4,10 @@
 #' @title
 #' **CFB Recruiting Endpoint Overview**
 #' @description
-#' \describe{
-#'   \item{`cfbd_recruiting_player()`:}{ Get college football player recruiting information for a single year with filters available for team, recruit type, state and position.}
 #'
-#'   \item{`cfbd_recruiting_position()`:}{ Get college football position group recruiting information .}
-#'
-#'   \item{`cfbd_recruiting_team()`:}{ Get college football recruiting team rankings information.}
-#' }
+#' * `cfbd_recruiting_player()`: Get college football player recruiting information for a single year with filters available for team, recruit type, state and position.
+#' * `cfbd_recruiting_position()`: Get college football position group recruiting information .
+#' * `cfbd_recruiting_team()`: Get college football recruiting team rankings information.
 #'
 #' ## **Get player recruiting rankings**
 #'
@@ -93,6 +90,7 @@ NULL
 #'    |hometown_info_latitude  |character |Latitude of the recruit's hometown.                                      |
 #'    |hometown_info_longitude |character |Longitude of the recruit's hometown.                                     |
 #'    |hometown_info_fips_code |character |FIPS code of the recruit's hometown.                                     |
+#'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -193,6 +191,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #'    |total_rating   |numeric   |Sum of the 247Sports composite ratings of recruits in the group.     |
 #'    |commits        |integer   |Number of commits in the position group.                             |
 #'    |avg_stars      |numeric   |Average star rating of recruits in the position group.               |
+#'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -276,6 +275,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'    |rank     |integer   |National team recruiting rank for the class.               |
 #'    |team     |character |Recruiting team (school) name.                             |
 #'    |points   |character |Team talent points totaled across the recruiting class.    |
+#'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -358,6 +358,7 @@ cfbd_recruiting_team <- function(year = NULL,
 #'    |rating        |character |Player's 247Sports transfer rating.                                  |
 #'    |stars         |integer   |Player's 247Sports star rating (2-5).                                |
 #'    |eligibilty    |character |Player's eligibility status at time of transfer.                     |
+#'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

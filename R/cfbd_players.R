@@ -3,11 +3,11 @@
 #' @title
 #' **CFBD Players Endpoint Overview**
 #' @description
-#' \describe{
-#' \item{`cfbd_player_info()`:}{ Player information search.}
-#' \item{`cfbd_player_returning()`:}{ Player returning production.}
-#' \item{`cfbd_player_usage()`:}{ Player usage.}
-#' }
+#'
+#' * `cfbd_player_info()`: Player information search.
+#' * `cfbd_player_returning()`: Player returning production.
+#' * `cfbd_player_usage()`: Player usage.
+#'
 #' @details
 #' ### **Player information lookup**
 #' ```r
@@ -52,6 +52,7 @@ NULL
 #'    |home_town            |character |Player home town.                                      |
 #'    |team_color           |character |Player team primary color (hex code).                  |
 #'    |team_color_secondary |character |Player team secondary color (hex code).                |
+#'
 #' @keywords Players
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -157,6 +158,7 @@ cfbd_player_info <- function(search_term,
 #'    |passing_usage         |numeric   |Share of prior year's passing usage returning.                         |
 #'    |receiving_usage       |numeric   |Share of prior year's receiving usage returning.                       |
 #'    |rushing_usage         |numeric   |Share of prior year's rushing usage returning.                         |
+#'
 #' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -261,6 +263,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 #'    |usg_3rd_down       |numeric   |Player share of team usage on third downs.             |
 #'    |usg_standard_downs |numeric   |Player share of team usage on standard downs.          |
 #'    |usg_passing_downs  |numeric   |Player share of team usage on passing downs.           |
+#'
 #' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

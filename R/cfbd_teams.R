@@ -2,13 +2,13 @@
 #' @title
 #' **CFBD Teams Endpoint Overview**
 #' @description
-#' \describe{
-#' \item{`cfbd_team_info()`:}{ Team Info Lookup.}
-#' \item{`cfbd_team_roster()`:}{ Get a team's full roster by year.}
-#' \item{`cfbd_team_talent()`:}{ Get composite team talent rankings for all teams in a given year.}
-#' \item{`cfbd_team_matchup_records()`:}{ Get matchup history records between two teams.}
-#' \item{`cfbd_team_matchup()`:}{ Get matchup history between two teams.}
-#' }
+#'
+#' * `cfbd_team_info()`: Team Info Lookup.
+#' * `cfbd_team_roster()`: Get a team's full roster by year.
+#' * `cfbd_team_talent()`: Get composite team talent rankings for all teams in a given year.
+#' * `cfbd_team_matchup_records()`: Get matchup history records between two teams.
+#' * `cfbd_team_matchup()`: Get matchup history between two teams.
+#'
 #' ## **Team info lookup**
 #'
 #' Lists all teams in conference or all D-I teams if conference is left NULL
@@ -97,6 +97,7 @@ NULL
 #'    |year_constructed |integer   |Year the venue was constructed.                                              |
 #'    |grass            |logical   |TRUE/FALSE response on whether the field is grass or not.                    |
 #'    |dome             |logical   |TRUE/FALSE flag for if the venue is a domed stadium.                         |
+#'
 #' @keywords Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -221,6 +222,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #'    |team2      |character |Second team selected in query.           |
 #'    |team2_wins |integer   |Second team wins in series against team1.|
 #'    |ties       |integer   |Number of ties in the series.            |
+#'
 #' @keywords Team Matchup Records
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -334,6 +336,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #'    |away_team    |character |Away team of the game.                               |
 #'    |away_score   |integer   |Away score in the game.                              |
 #'    |winner       |character |Winner of the matchup.                               |
+#'
 #' @keywords Team Matchup
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -438,6 +441,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'    |home_longitude   |numeric   |Hometown longitude.               |
 #'    |home_county_fips |integer   |Hometown FIPS code.               |
 #'    |headshot_url     |character |Player ESPN headshot url.         |
+#'
 #' @keywords Team Roster
 #' @importFrom dplyr rename mutate
 #' @importFrom jsonlite fromJSON
@@ -515,6 +519,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 #'    |year     |integer   |Season for the talent rating.                              |
 #'    |school   |character |Team name.                                                 |
 #'    |talent   |numeric   |Overall roster talent points (as determined by 247Sports). |
+#'
 #' @keywords Team talent
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

@@ -2,6 +2,7 @@
 % Please edit documentation in R/cfbd_coaches.R
 \name{cfbd_coaches}
 \alias{cfbd_coaches}
+\alias{coaches}
 \title{\strong{CFBD Coaches Endpoint Overview}}
 \usage{
 cfbd_coaches(
@@ -47,8 +48,19 @@ Returns a tibble with 15 variables:\tabular{lll}{
 }
 }
 \description{
+\itemize{
+\item \code{cfbd_coaches()}: A coach search function which provides coaching records and school history for a given coach.
+}
+
 \strong{Coach information search}
 A coach search function which provides coaching records and school history for a given coach
+}
+\details{
+\subsection{\strong{Coach information search}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{

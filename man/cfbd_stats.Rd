@@ -4,12 +4,12 @@
 \alias{cfbd_stats}
 \title{\strong{CFBD Stats Endpoint Overview}}
 \description{
-\describe{
-\item{\code{cfbd_stats_categories()}:}{ Get college football mapping for stats categories.}
-\item{\code{cfbd_stats_season_team()}:}{ Get season statistics by team.}
-\item{\code{cfbd_stats_season_advanced()}:}{ Get season advanced statistics by team.}
-\item{\code{cfbd_stats_game_advanced()}:}{ Get game advanced stats.}
-\item{\code{cfbd_stats_season_player()}:}{ Get season statistics by player.}
+\itemize{
+\item \code{cfbd_stats_categories()}: Get college football mapping for stats categories.
+\item \code{cfbd_stats_season_team()}: Get season statistics by team.
+\item \code{cfbd_stats_season_advanced()}: Get season advanced statistics by team.
+\item \code{cfbd_stats_game_advanced()}: Get game advanced stats.
+\item \code{cfbd_stats_season_player()}: Get season statistics by player.
 }
 }
 \details{

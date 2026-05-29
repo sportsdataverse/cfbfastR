@@ -1,3 +1,40 @@
+#' @name cfbd_pbp_v2
+#' @aliases cfbd_pbp_v2 pbp_v2 modular_epa modular_wpa
+#' @title
+#' **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
+#' @description
+#'
+#' * `cfbd_pbp_data_v2()`: Get college football play-by-play data — modular
+#'   EPA/WPA pipeline (v2). Thin orchestrator over the shared EPA/WPA engine
+#'   `.run_epa_wpa()`, the canonical play-type taxonomy `.pbp_play_types()`,
+#'   and the canonical output schema `.pbp_output_order`. Runs side-by-side
+#'   with the legacy [cfbd_pbp_data()] entry point until the equivalence
+#'   harness proves the new path matches.
+#'
+#' @details
+#' The v2 entry point is a thin wrapper around `.run_epa_wpa()` -- the
+#' shared engine that powers both the modular (v2) and legacy paths. The
+#' `output = "default" / "lean" / "full"` tier argument selects which
+#' intermediate columns survive the final select: `"default"` drops
+#' pipeline lag/lead intermediates and redundant alternates, `"lean"`
+#' additionally drops the per-branch WPA scratchpad, and `"full"` is the
+#' legacy column set (drops only player-name aliases). The
+#' equivalence-harness allow-list is intentionally permissive about
+#' lag/lead intermediates and per-branch WPA scratchpad columns because
+#' those are mechanically rebuildable from the surviving canonical
+#' columns; the harness only enforces equality on user-facing values.
+#'
+#' ## **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+#'
+#' ```r
+#' cfbd_pbp_data_v2(
+#'   year = 2024, week = 1, season_type = "regular",
+#'   epa_wpa = TRUE, output = "default"
+#' )
+#' ```
+#'
+NULL
+
 #' @title
 #' **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
 #' @description Returns CFBD play-by-play data with optional Expected Points
@@ -21,23 +58,22 @@
 #' @param output (*Character*): controls the modeled-output column set when
 #'   `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. Defaults to
 #'   `"default"`. Must be one of:
-#'   \itemize{
-#'     \item `"default"` (recommended) -- drops pipeline lag/lead
-#'       intermediates, redundant alternates (`sack_vec`, `turnover_indicator`,
-#'       `kick_play`, `missing_yard_flag`), and drive-result aliases
-#'       (`drive_result2`, `drive_result_detailed_flag`,
-#'       `lag_drive_result_detailed`, `lead_drive_result_detailed`,
-#'       `lag_new_drive_pts`). Keeps `orig_play_type` and `pts_scored` (they
-#'       carry useful per-play information distinct from the canonical
-#'       columns) and the per-branch WPA scratchpad (`wpa_base`/`wpa_change`
-#'       etc.). ~75 columns lighter than `"full"` with no loss of information
-#'       that isn't trivially rebuildable.
-#'     \item `"lean"` -- everything `"default"` drops, plus the WPA
-#'       computation scratchpad. For dashboards / leaderboards / game logs.
-#'     \item `"full"` -- legacy behavior, drops only the player-name
-#'       aliases. For sequential modeling that consumes pre-computed lag/lead
-#'       shifts or the per-branch WPA decomposition.
-#'   }
+#'
+#'   * `"default"` (recommended) -- drops pipeline lag/lead
+#'     intermediates, redundant alternates (`sack_vec`, `turnover_indicator`,
+#'     `kick_play`, `missing_yard_flag`), and drive-result aliases
+#'     (`drive_result2`, `drive_result_detailed_flag`,
+#'     `lag_drive_result_detailed`, `lead_drive_result_detailed`,
+#'     `lag_new_drive_pts`). Keeps `orig_play_type` and `pts_scored` (they
+#'     carry useful per-play information distinct from the canonical
+#'     columns) and the per-branch WPA scratchpad (`wpa_base`/`wpa_change`
+#'     etc.). ~75 columns lighter than `"full"` with no loss of information
+#'     that isn't trivially rebuildable.
+#'   * `"lean"` -- everything `"default"` drops, plus the WPA
+#'     computation scratchpad. For dashboards / leaderboards / game logs.
+#'   * `"full"` -- legacy behavior, drops only the player-name
+#'     aliases. For sequential modeling that consumes pre-computed lag/lead
+#'     shifts or the per-branch WPA decomposition.
 #' @return A `cfbfastR_data` tibble. The `epa_wpa = TRUE` output matches the
 #'   legacy [cfbd_pbp_data()] pipeline-canonical column set on every column
 #'   it carries; the `output` argument controls which intermediate columns

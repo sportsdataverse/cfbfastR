@@ -1,4 +1,28 @@
 
+#' @name cfbd_betting
+#' @aliases cfbd_betting betting lines spreads
+#' @title
+#' **CFBD Betting Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_betting_lines()`: Get betting lines information for games.
+#' * `cfbd_betting_ats()`: Get against-the-spread (ATS) summary records by team.
+#'
+#' @details
+#' ## **Get betting lines information for games**
+#'
+#' ```r
+#' cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
+#' ```
+#'
+#' ## **Get against-the-spread (ATS) summary records by team**
+#'
+#' ```r
+#' cfbd_betting_ats(year = 2023, team = "Michigan")
+#' ```
+#'
+NULL
+
 #' @title **CFBD Betting Lines Endpoint Overview**
 #' @description **Get betting lines information for games**
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game. Required if year not provided \cr

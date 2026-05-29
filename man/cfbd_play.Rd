@@ -5,11 +5,11 @@
 \title{\strong{CFBD Plays Endpoint Overview}}
 \description{
 College football plays data
-\describe{
-\item{\code{cfbd_plays()}:}{ CFBD's college football play-by-play.}
-\item{\code{cfbd_play_stats_player()}:}{ Gets player info associated by play.}
-\item{\code{cfbd_play_stats_types()}:}{ Gets CFBD play stat types.}
-\item{\code{cfbd_play_types()}:}{ Gets CFBD play types.}
+\itemize{
+\item \code{cfbd_plays()}: CFBD's college football play-by-play.
+\item \code{cfbd_play_stats_player()}: Gets player info associated by play.
+\item \code{cfbd_play_stats_types()}: Gets CFBD play stat types.
+\item \code{cfbd_play_types()}: Gets CFBD play types.
 }
 }
 \details{

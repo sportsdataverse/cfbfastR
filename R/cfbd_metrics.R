@@ -2,20 +2,19 @@
 #' @title
 #' **CFBD Metrics Endpoint Overview**
 #' @description
-#' \describe{
-#' \item{`cfbd_metrics_fg_ep()`:}{ Get field goal expected points values.}
-#' \item{`cfbd_metrics_wepa_team_season()`:}{ Get opponent-adjusted team season statistics for predicted points added (PPA).}
-#' \item{`cfbd_metrics_wepa_players_passing()`:}{ Get opponent-adjusted player passing statistics for predicted points added (PPA).}
-#' \item{`cfbd_metrics_wepa_players_rushing()`:}{ Get opponent-adjusted player rushing statistics for predicted points added (PPA).}
-#' \item{`cfbd_metrics_wepa_players_kicking()`:}{ Get Points Added Above Replacement (PAAR) ratings for kickers.}
-#' \item{`cfbd_metrics_ppa_games()`:}{ Get team game averages for predicted points added (PPA).}
-#' \item{`cfbd_metrics_ppa_players_games()`:}{ Get player game averages for predicted points added (PPA).}
-#' \item{`cfbd_metrics_ppa_players_season()`:}{ Get player season averages for predicted points added (PPA).}
-#' \item{`cfbd_metrics_ppa_predicted()`:}{ Calculate predicted points using Down and Distance.}
-#' \item{`cfbd_metrics_ppa_teams()`:}{ Get team averages for predicted points added (PPA).}
-#' \item{`cfbd_metrics_wp_pregame()`:}{ Get pre-game win probability data from CFBD API.}
-#' \item{`cfbd_metrics_wp()`:}{ Get win probability chart data from CFBD API.}
-#' }
+#'
+#' * `cfbd_metrics_fg_ep()`: Get field goal expected points values.
+#' * `cfbd_metrics_wepa_team_season()`: Get opponent-adjusted team season statistics for predicted points added (PPA).
+#' * `cfbd_metrics_wepa_players_passing()`: Get opponent-adjusted player passing statistics for predicted points added (PPA).
+#' * `cfbd_metrics_wepa_players_rushing()`: Get opponent-adjusted player rushing statistics for predicted points added (PPA).
+#' * `cfbd_metrics_wepa_players_kicking()`: Get Points Added Above Replacement (PAAR) ratings for kickers.
+#' * `cfbd_metrics_ppa_games()`: Get team game averages for predicted points added (PPA).
+#' * `cfbd_metrics_ppa_players_games()`: Get player game averages for predicted points added (PPA).
+#' * `cfbd_metrics_ppa_players_season()`: Get player season averages for predicted points added (PPA).
+#' * `cfbd_metrics_ppa_predicted()`: Calculate predicted points using Down and Distance.
+#' * `cfbd_metrics_ppa_teams()`: Get team averages for predicted points added (PPA).
+#' * `cfbd_metrics_wp_pregame()`: Get pre-game win probability data from CFBD API.
+#' * `cfbd_metrics_wp()`: Get win probability chart data from CFBD API.
 #'
 #' @details
 #' ### **Get expected points for field goals by yards to goal and distance**
@@ -73,6 +72,7 @@ NULL
 #'  |yards_to_goal   |integer   |Yards to the goal line (0-100).                                                   |
 #'  |distance        |integer   |Distance to goal posts from kicking location (17 yds further than yards to goal). |
 #'  |expected_points |numeric   |Expected points given yards to goal / distance.                                   |
+#'
 #' @keywords FG expected points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY modify_url
@@ -530,6 +530,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 #'  |def_first_down  |numeric   |Defense 1st down predicted points added (PPA).                                    |
 #'  |def_second_down |numeric   |Defense 2nd down predicted points added (PPA).                                    |
 #'  |def_third_down  |numeric   |Defense 3rd down predicted points added (PPA).                                    |
+#'
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -641,6 +642,7 @@ cfbd_metrics_ppa_games <- function(year,
 #'  |avg_PPA_all  |numeric   |Average overall predicted points added (PPA).                                     |
 #'  |avg_PPA_pass |numeric   |Average passing predicted points added (PPA).                                     |
 #'  |avg_PPA_rush |numeric   |Average rushing predicted points added (PPA).                                     |
+#'
 #' @keywords Players Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -776,6 +778,7 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #'  |total_PPA_third_down     |numeric   |Total 3rd down predicted points added (PPA).                                      |
 #'  |total_PPA_standard_downs |numeric   |Total standard down predicted points added (PPA).                                 |
 #'  |total_PPA_passing_downs  |numeric   |Total passing down predicted points added (PPA).                                  |
+#'
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -877,6 +880,7 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #'  |:----------------|:---------|:---------------------------------------------------------------------------------|
 #'  |yard_line        |integer   |Yards to goal.                                                                    |
 #'  |predicted_points |numeric   |Predicted points in that down-distance-yardline scenario.                         |
+#'
 #' @keywords Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -971,6 +975,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #'  |def_cumulative_total   |numeric   |Defense cumulative total predicted points added (PPA).                            |
 #'  |def_cumulative_passing |numeric   |Defense cumulative total passing predicted points added (PPA).                    |
 #'  |def_cumulative_rushing |numeric   |Defense cumulative total rushing predicted points added (PPA).                    |
+#'
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1058,6 +1063,7 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #'  |spread        |numeric   |Betting line provider spread.                                                     |
 #'  |home_win_prob |numeric   |Home win probability - pre-game prediction (0-1).                                 |
 #'  |away_win_prob |numeric   |Away win probability - pre-game prediction (0-1).                                 |
+#'
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1157,6 +1163,7 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #'  |away_win_prob |numeric   |Away team win probability (0-1).                                                  |
 #'  |play_number   |integer   |Game play number.                                                                 |
 #'  |yard_line     |integer   |Yard line of the play (0-100 yards).                                              |
+#'
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
