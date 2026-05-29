@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbd_pbp_data.R
 \name{cfbd_pbp}
 \alias{cfbd_pbp}
-\alias{pbp}
 \alias{play_by_play}
 \title{\strong{CFBD Play-by-Play Endpoint Overview}}
 \description{

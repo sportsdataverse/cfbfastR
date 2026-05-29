@@ -1,5 +1,5 @@
 #' @name cfbd_api_key
-#' @aliases cfbd_api_key api_key cfbd_key has_cfbd_key register_cfbd
+#' @aliases cfbd_api_key api_key
 #' @title
 #' **CFBD API Key Endpoint Overview**
 #' @description

@@ -3,7 +3,7 @@
 # roxygen block; edit the block above the function you want.
 
 #' @name espn_cfb_team
-#' @aliases espn_cfb_team team teams team_roster team_schedule
+#' @aliases espn_cfb_team team team_roster team_schedule
 #' @title
 #' **ESPN College Football Team Endpoint Overview**
 #' @description

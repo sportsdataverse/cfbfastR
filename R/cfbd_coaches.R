@@ -1,5 +1,5 @@
 #' @name cfbd_coaches
-#' @aliases cfbd_coaches coaches
+#' @aliases cfbd_coaches
 #' @title
 #' **CFBD Coaches Endpoint Overview**
 #' @description

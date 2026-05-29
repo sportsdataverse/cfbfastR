@@ -1,5 +1,5 @@
 #' @name cfbd_venues
-#' @aliases cfbd_venues venues stadiums
+#' @aliases cfbd_venues stadiums
 #' @title
 #' **CFBD Venues Endpoint Overview**
 #' @description

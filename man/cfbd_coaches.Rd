@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbd_coaches.R
 \name{cfbd_coaches}
 \alias{cfbd_coaches}
-\alias{coaches}
 \title{\strong{CFBD Coaches Endpoint Overview}}
 \usage{
 cfbd_coaches(

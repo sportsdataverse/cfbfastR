@@ -1,5 +1,5 @@
 #' @name cfbd_pbp
-#' @aliases cfbd_pbp pbp play_by_play
+#' @aliases cfbd_pbp play_by_play
 #' @title
 #' **CFBD Play-by-Play Endpoint Overview**
 #' @description

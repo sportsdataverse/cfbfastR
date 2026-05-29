@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbd_venues.R
 \name{cfbd_venues}
 \alias{cfbd_venues}
-\alias{venues}
 \alias{stadiums}
 \title{\strong{CFBD Venues Endpoint Overview}}
 \usage{

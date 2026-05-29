@@ -1,6 +1,6 @@
 
 #' @name cfbd_drives
-#' @aliases cfbd_drives drives
+#' @aliases cfbd_drives
 #' @title
 #' **CFBD Drives Endpoint Overview**
 #' @description

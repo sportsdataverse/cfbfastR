@@ -1,5 +1,5 @@
 #' @name espn_cfb_game
-#' @aliases espn_cfb_game game pbp drives plays teams leaders
+#' @aliases espn_cfb_game game plays leaders
 #' @title
 #' **ESPN College Football Game Endpoint Overview**
 #' @description

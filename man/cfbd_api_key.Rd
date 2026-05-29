@@ -3,9 +3,6 @@
 \name{cfbd_api_key}
 \alias{cfbd_api_key}
 \alias{api_key}
-\alias{cfbd_key}
-\alias{has_cfbd_key}
-\alias{register_cfbd}
 \title{\strong{CFBD API Key Endpoint Overview}}
 \description{
 \itemize{

@@ -3,7 +3,7 @@
 # roxygen block; edit the block above the function you want.
 
 #' @name espn_cfb_catalog
-#' @aliases espn_cfb_catalog catalog awards coaches franchises positions venues clear_cache
+#' @aliases espn_cfb_catalog catalog awards franchises positions clear_cache
 #' @title
 #' **ESPN College Football Catalog Endpoint Overview**
 #' @description

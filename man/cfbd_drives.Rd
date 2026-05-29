@@ -2,7 +2,6 @@
 % Please edit documentation in R/cfbd_drives.R
 \name{cfbd_drives}
 \alias{cfbd_drives}
-\alias{drives}
 \title{\strong{CFBD Drives Endpoint Overview}}
 \usage{
 cfbd_drives(

@@ -3,10 +3,7 @@
 \name{espn_cfb_game}
 \alias{espn_cfb_game}
 \alias{game}
-\alias{pbp}
-\alias{drives}
 \alias{plays}
-\alias{teams}
 \alias{leaders}
 \title{\strong{ESPN College Football Game Endpoint Overview}}
 \description{

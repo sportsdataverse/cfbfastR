@@ -4,10 +4,8 @@
 \alias{espn_cfb_catalog}
 \alias{catalog}
 \alias{awards}
-\alias{coaches}
 \alias{franchises}
 \alias{positions}
-\alias{venues}
 \alias{clear_cache}
 \title{\strong{ESPN College Football Catalog Endpoint Overview}}
 \description{

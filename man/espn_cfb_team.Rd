@@ -3,7 +3,6 @@
 \name{espn_cfb_team}
 \alias{espn_cfb_team}
 \alias{team}
-\alias{teams}
 \alias{team_roster}
 \alias{team_schedule}
 \title{\strong{ESPN College Football Team Endpoint Overview}}
