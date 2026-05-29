@@ -61,24 +61,33 @@ cfbd_venues <- function() {
   # Query API ----
   full_url <- "https://api.collegefootballdata.com/venues"
 
-  # Create the GET request and set response as res
-  res <- get_req(full_url)
-  check_status(res)
+  df <- data.frame()
+  tryCatch(
+    expr = {
 
-  # Get the content and return it as data.frame
-  df <- res %>%
-    httr2::resp_body_string(encoding = "UTF-8") %>%
-    jsonlite::fromJSON() %>%
-    dplyr::rename(
-      "venue_id" = "id",
-      "year_constructed" = "constructionYear",
-      "country_code" = "countryCode"
-    ) %>%
-    as.data.frame()
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
 
+      # Get the content and return it as data.frame
+      df <- res %>%
+        httr2::resp_body_string(encoding = "UTF-8") %>%
+        jsonlite::fromJSON() %>%
+        dplyr::rename(
+          "venue_id" = "id",
+          "year_constructed" = "constructionYear",
+          "country_code" = "countryCode"
+        ) %>%
+        as.data.frame()
 
-  df <- df %>%
-    make_cfbfastR_data("Venue data from CollegeFootballData.com",Sys.time())
-
+      df <- df %>%
+        make_cfbfastR_data("Venue data from CollegeFootballData.com",Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no venue data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
   return(df)
 }
