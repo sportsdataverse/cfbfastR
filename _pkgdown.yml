@@ -167,39 +167,38 @@ navbar:
       menu:
       - text: Vignettes
         href: articles/index.html
-      - text: Introductory
-      - text: CFB Analytics with cfbfastR
-        href: articles/intro.html
-      - text: Animated Win Probability Plots
+      - text: Making Animated Win Probability Charts with cfbfastR
         href: articles/animated-wp-plotting.html
-      - text: Fourth Down Tendency Plots
+      - text: CFB Data Betting Lines Examples
+        href: articles/cfbd_betting.html
+      - text: CFB Data Games Examples
+        href: articles/cfbd_games.html
+      - text: CFB Data Plays Examples
+        href: articles/cfbd_plays.html
+      - text: CFB Data Recruiting Examples
+        href: articles/cfbd_recruiting.html
+      - text: CFB Data Stats Examples
+        href: articles/cfbd_stats.html
+      - text: CFB Data Teams Examples
+        href: articles/cfbd_teams.html
+      - text: ESPN College Football Cookbook
+        href: articles/cfbfastR-espn-cookbook.html
+      - text: College Football Expected Points Model Fundamentals - Part I
+        href: articles/college-football-expected-points-model-fundamentals-part-i.html
+      - text: College Football Expected Points Model Fundamentals - Part II
+        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
+      - text: College Football Expected Points Model Fundamentals - Part III
+        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+      - text: Creating Fourth Down Tendency Plots Using cfbfastR
         href: articles/fourth-down-plot-tutorial.html
-      - text: Rolling EPA Graphs
-        href: articles/rolling-epa-graph.html
-      - text: Visualizing Team Talent with Player Recruit Rankings
-        href: articles/nth-rated-recruit.html
+      - text: Introduction to cfbfastR
+        href: articles/intro.html
       - text: Intro to Visualizing Recruiting Geography
         href: articles/map-tutorial.html
-      - text: Expected Points Model Fundamentals
-      - text: "Part 1 - Model Definition"
-        href: articles/college-football-expected-points-model-fundamentals-part-i.html
-      - text: "Part 2 - Regression Models"
-        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
-      - text: "Part 3 - History of Expected Points Models"
-        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
-      - text: CFBD Tutorials
-      - text: "CFBD Betting"
-        href: articles/cfbd_betting.html
-      - text: "CFBD Games"
-        href: articles/cfbd_games.html
-      - text: "CFBD Plays"
-        href: articles/cfbd_plays.html
-      - text: "CFBD Recruiting"
-        href: articles/cfbd_recruiting.html
-      - text: "CFBD Stats"
-        href: articles/cfbd_stats.html
-      - text: "CFBD Teams"
-        href: articles/cfbd_teams.html
+      - text: Visualizing Team Talent from Player Recruiting Rankings
+        href: articles/nth-rated-recruit.html
+      - text: Rolling EPA Graph
+        href: articles/rolling-epa-graph.html
     news:
       icon: "fas fa-newspaper"
       text: " News"
@@ -302,6 +301,22 @@ navbar:
       href: https://github.com/sportsdataverse/cfbfastR/
 
 reference:
+  - title: Function family overviews
+    desc: "One-page summaries of the cfbd_* and espn_cfb_* function families."
+    contents:
+      - '`cfbd_api_key`'
+      - '`cfbd_betting`'
+      - '`cfbd_coaches`'
+      - '`cfbd_conferences`'
+      - '`cfbd_drives`'
+      - '`cfbd_pbp`'
+      - '`cfbd_pbp_v2`'
+      - '`cfbd_venues`'
+      - '`espn_cfb_catalog`'
+      - '`espn_cfb_game`'
+      - '`espn_cfb_player`'
+      - '`espn_cfb_season`'
+      - '`espn_cfb_team`'
   - title: "cfbfastR Data"
   - subtitle: Full Season Loaders
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data
@@ -471,27 +486,22 @@ reference:
       - '`csv_from_url`'
       - '`rds_from_url`'
 articles:
-  - title: Introductory
-    navbar: Introductory
+  - title: "Cookbooks & Guides"
+    desc: "End-to-end recipes and reference guides."
     contents:
-      - intro
       - animated-wp-plotting
-      - fourth-down-plot-tutorial
-      - rolling-epa-graph
-      - nth-rated-recruit
-      - map-tutorial
-  - title: Expected Points Model Fundamentals
-    navbar: Expected Points Model Fundamentals
-    contents:
-      - college-football-expected-points-model-fundamentals-part-i
-      - college-football-expected-points-model-fundamentals-part-ii
-      - college-football-expected-points-model-fundamentals-part-iii
-  - title: CFBD Tutorials
-    navbar: CFBD Tutorials
-    contents:
       - cfbd_betting
       - cfbd_games
       - cfbd_plays
       - cfbd_recruiting
       - cfbd_stats
       - cfbd_teams
+      - cfbfastR-espn-cookbook
+      - college-football-expected-points-model-fundamentals-part-i
+      - college-football-expected-points-model-fundamentals-part-ii
+      - college-football-expected-points-model-fundamentals-part-iii
+      - fourth-down-plot-tutorial
+      - intro
+      - map-tutorial
+      - nth-rated-recruit
+      - rolling-epa-graph
