@@ -21,10 +21,12 @@ cols <- c(
   "home_team_conference",
   "home_team_classification",
   "home_team_points",
+  # Per-quarter line-score columns are dynamic: they only appear once
+  # the game reaches the corresponding quarter (Q1 is universal, but
+  # Q2-Q4 require live games to have progressed). Asserting on Q1 alone
+  # keeps the schema check meaningful without breaking during Q1
+  # in-progress games.
   "home_team_line_scores_Q1",
-  "home_team_line_scores_Q2",
-  "home_team_line_scores_Q3",
-  "home_team_line_scores_Q4",
   "home_team_win_probability",
   "away_team_id",
   "away_team_name",
@@ -32,9 +34,6 @@ cols <- c(
   "away_team_classification",
   "away_team_points",
   "away_team_line_scores_Q1",
-  "away_team_line_scores_Q2",
-  "away_team_line_scores_Q3",
-  "away_team_line_scores_Q4",
   "away_team_win_probability",
   "weather_temperature",
   "weather_description",
