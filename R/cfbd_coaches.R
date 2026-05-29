@@ -49,7 +49,7 @@ NULL
 #'
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -87,7 +87,9 @@ cfbd_coaches <- function(first = NULL,
     "minYear" = min_year,
     "maxYear" = max_year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params) %>%
+    `[[`("url")
 
   df <- data.frame()
   tryCatch(
@@ -99,7 +101,7 @@ cfbd_coaches <- function(first = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%

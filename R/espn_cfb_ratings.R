@@ -36,7 +36,7 @@
 #'    |athlete_ref    |character |`$ref` URL to the per-season athlete resource (may be `NA`). |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -73,18 +73,24 @@ espn_cfb_futures <- function(year = NULL) {
 
   # Fetch + parse one JSON resource with the shared ESPN headers.
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -208,7 +214,7 @@ espn_cfb_futures <- function(year = NULL) {
 #'    |description   |character |ESPN's description of the metric.                  |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -247,11 +253,14 @@ espn_cfb_powerindex <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -385,7 +394,7 @@ espn_cfb_powerindex <- function(year = NULL) {
 #'    |athlete_position_abbreviation|character |Player position abbreviation; `athlete_detail = TRUE` only. |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom janitor clean_names
@@ -428,11 +437,14 @@ espn_cfb_qbr <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -581,15 +593,16 @@ espn_ratings_fpi <- function(year = 2019) {
   tryCatch(
     expr = {
 
-      res <-
-        httr::RETRY("GET", url,
-                    httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
 
       # Check the result
       check_status(res)
 
       resp <- res %>%
-        httr::content(as = "text", encoding = "UTF-8")
+        httr2::resp_body_string()
       raw_json_fpi <- jsonlite::fromJSON(resp)
 
       ## get team fpi stats
@@ -670,7 +683,7 @@ NULL
 #'
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 request req_perform resp_body_string
 #' @importFrom utils URLencode URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -693,8 +706,9 @@ espn_metrics_wp <- function(game_id) {
   tryCatch(
     expr = {
       espn_data <-
-        httr::GET(url = glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::request(glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) %>%
+        httr2::req_perform() %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE)
 
       # to-do: Grab play data and back into seconds left

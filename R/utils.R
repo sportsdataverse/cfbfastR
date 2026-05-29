@@ -1,11 +1,11 @@
 .datatable.aware <- TRUE
 
 #' @keywords Internal
-#' @importFrom httr status_code
+#' @importFrom httr2 resp_status
 #'
 check_status <- function(res) {
 
-    x = status_code(res)
+    x = httr2::resp_status(res)
 
     if(x != 200) stop("The API returned an error", call. = FALSE)
 
@@ -211,11 +211,14 @@ rbindlist_with_attrs <- function(dflist){
 }
 
 # Request Functions ----
+#' @keywords Internal
+#' @importFrom httr2 request req_headers req_retry req_error req_perform
 get_req <- function(full_url){
-  httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
+  httr2::request(full_url) |>
+    httr2::req_headers(Authorization = paste("Bearer", cfbd_key())) |>
+    httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+    httr2::req_error(is_error = function(resp) FALSE) |>
+    httr2::req_perform()
 }
 
 # Edge Case Handling ----

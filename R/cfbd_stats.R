@@ -65,7 +65,7 @@ NULL
 #'
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @family CFBD Stats
@@ -89,7 +89,7 @@ cfbd_stats_categories <- function() {
 
       # Get the content and return it as list
       list <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON()
       df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
         dplyr::rename("category" = "V1")
@@ -184,7 +184,7 @@ cfbd_stats_categories <- function() {
 #'
 #' @keywords Game Advanced Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -227,7 +227,7 @@ cfbd_stats_game_advanced <- function(year,
     "excludeGarbageTime" = excl_garbage_time,
     "seasonType" = season_type
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -239,7 +239,7 @@ cfbd_stats_game_advanced <- function(year,
 
       # Get the content, flatten and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame()
 
@@ -382,7 +382,7 @@ cfbd_stats_game_advanced <- function(year,
 #'
 #' @keywords Team Season Advanced Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -419,7 +419,7 @@ cfbd_stats_season_advanced <- function(year,
     "startWeek" = start_week,
     "endWeek" = end_week
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -431,7 +431,7 @@ cfbd_stats_season_advanced <- function(year,
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE)
 
       colnames(df) <- gsub("offense.", "off_", colnames(df))
@@ -557,7 +557,7 @@ cfbd_stats_season_advanced <- function(year,
 #'
 #' @keywords Player Season Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -614,7 +614,7 @@ cfbd_stats_season_player <- function(year,
     "seasonType" = season_type,
     "category" = category
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   cols <- c(
     "team", "conference", "athlete_id", "player", "position", "category",
@@ -665,7 +665,7 @@ cfbd_stats_season_player <- function(year,
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         dplyr::mutate(
           statType = paste0(.data$category, "_", .data$statType)
@@ -780,7 +780,7 @@ cfbd_stats_season_player <- function(year,
 #'
 #' @keywords Team Season Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -826,7 +826,7 @@ cfbd_stats_season_team <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   # Expected column names for full season data
   expected_colnames <- c(
@@ -848,7 +848,7 @@ cfbd_stats_season_team <- function(year,
 
       # Get the content and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON()
 
       # Pivot category columns to get stats for each team game on one row
@@ -1002,7 +1002,7 @@ cfbd_stats_season_team <- function(year,
 #'
 #' @keywords Game Havoc Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -1042,7 +1042,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
     "opponent" = opponent,
     "seasonType" = season_type
   )
-  full_url <- httr::modify_url(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -1054,7 +1054,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
 
       # Get the content, flatten and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         as.data.frame()
 

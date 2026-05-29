@@ -107,7 +107,7 @@ NULL
 #'    |teams_ref       |character |`$ref` URL to the group teams index.              |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -139,8 +139,11 @@ espn_cfb_groups <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -153,11 +156,14 @@ espn_cfb_groups <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -253,7 +259,7 @@ espn_cfb_groups <- function(year = NULL,
 #'    |ranking_ref |character |`$ref` URL to the ranking source resource.           |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -284,8 +290,11 @@ espn_cfb_rankings <- function(year = NULL) {
   )
 
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -297,11 +306,14 @@ espn_cfb_rankings <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -374,7 +386,7 @@ espn_cfb_rankings <- function(year = NULL) {
 #'    |leaders_ref       |character |`$ref` URL to the season leaders resource.        |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble
 #' @importFrom glue glue
@@ -412,11 +424,14 @@ espn_cfb_season_info <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       ref_of <- function(k) {
@@ -489,7 +504,7 @@ espn_cfb_season_info <- function(year = NULL) {
 #'    |type_ref      |character |`$ref` URL to the season type resource.              |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -520,8 +535,11 @@ espn_cfb_season_types <- function(year = NULL) {
   )
 
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -533,11 +551,14 @@ espn_cfb_season_types <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -607,7 +628,7 @@ espn_cfb_season_types <- function(year = NULL) {
 #'    |week_ref    |character |`$ref` URL to the week resource.                  |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -639,8 +660,11 @@ espn_cfb_season_weeks <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -653,11 +677,14 @@ espn_cfb_season_weeks <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -719,7 +746,7 @@ espn_cfb_season_weeks <- function(year = NULL,
 #'    |season_ref   |character |`$ref` URL to the season resource.              |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
 #' @importFrom rlang "%||%"
@@ -744,8 +771,11 @@ espn_cfb_seasons <- function() {
 
   # Fetch + parse one JSON resource with the shared ESPN headers.
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -757,10 +787,13 @@ espn_cfb_seasons <- function() {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", base_url, httr::add_headers(.headers = headers))
+      res <- httr2::request(base_url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -873,7 +906,7 @@ espn_cfb_seasons <- function() {
 #'    |team_ref               |character |`$ref` URL to the per-season team resource.          |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -908,8 +941,11 @@ espn_cfb_standings <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -922,11 +958,14 @@ espn_cfb_standings <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -1075,7 +1114,7 @@ espn_cfb_standings <- function(year = NULL,
 #'    |team_ref               |character |`$ref` URL to the per-season team resource.       |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr as_tibble bind_rows
 #' @importFrom glue glue
@@ -1113,8 +1152,11 @@ espn_cfb_week_rankings <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr::RETRY("GET", u, httr::add_headers(.headers = headers)) %>%
-      httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::request(u) %>%
+      httr2::req_headers(!!!headers) %>%
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      httr2::req_perform() %>%
+      httr2::resp_body_string() %>%
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1187,11 +1229,14 @@ espn_cfb_week_rankings <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) %>%
+        httr2::req_headers(!!!headers) %>%
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+        httr2::req_perform()
       check_status(res)
 
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()

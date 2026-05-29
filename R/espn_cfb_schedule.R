@@ -73,7 +73,7 @@ NULL
 #'
 #' @keywords Scoreboard Data
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 request req_retry req_perform resp_body_string
 #' @importFrom utils URLencode URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -102,9 +102,11 @@ espn_cfb_scoreboard <- function(date = NULL) {
   tryCatch(
     expr = {
 
-      res <- httr::RETRY("GET", url)
+      res <- httr2::request(url) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_perform()
       raw_sched <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
 
@@ -283,7 +285,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #'
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 request req_retry req_perform resp_body_string
 #' @importFrom utils URLencode URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -346,10 +348,12 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
   tryCatch(
     expr = {
 
-      res <- httr::RETRY("GET", url)
+      res <- httr2::request(url) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_perform()
 
       raw_sched <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
 
@@ -503,7 +507,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 #'
 #' @keywords Schedule Data
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 request req_retry req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom tidyr unnest unnest_wider
@@ -538,13 +542,15 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
   tryCatch(
     expr = {
 
-      res <- httr::RETRY("GET", url)
+      res <- httr2::request(url) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_perform()
 
       # Check the result
       check_status(res)
 
       raw_cal <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       calendar_out <- raw_cal[["leagues"]] %>%

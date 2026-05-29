@@ -103,7 +103,7 @@ NULL
 #'    |clock_seconds      |integer   |Seconds remaining on the game clock at the start of the play.                              |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD PBP
@@ -149,7 +149,9 @@ cfbd_plays <- function(year = 2020,
     "playType" = play_type,
     "classification" = division
   )
-  full_url <- httr::modify_url(base_url, query = query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params) %>%
+    purrr::pluck("url")
 
   df <- data.frame()
   tryCatch(
@@ -161,7 +163,7 @@ cfbd_plays <- function(year = 2020,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename("play_id" = "id") %>%
         janitor::clean_names()
@@ -265,7 +267,7 @@ cfbd_plays <- function(year = 2020,
 #'
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -308,7 +310,9 @@ cfbd_play_stats_player <- function(year = NULL,
     "statTypeId" = stat_type_id,
     "seasonType" = season_type
   )
-  full_url <- httr::modify_url(base_url, query = query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params) %>%
+    purrr::pluck("url")
 
   clean_df <- data.frame()
   tryCatch(
@@ -320,7 +324,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         as.data.frame()
 
@@ -642,7 +646,7 @@ cfbd_play_stats_player <- function(year = NULL,
 #'
 #' @keywords Plays
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom glue glue
 #' @family CFBD PBP
 #' @export
@@ -668,7 +672,7 @@ cfbd_play_stats_types <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         dplyr::rename("play_stat_type_id" = "id")
 
@@ -697,7 +701,7 @@ cfbd_play_stats_types <- function() {
 #'    |abbreviation |character |Short play type abbreviation used as the `play_type` filter argument in API calls.   |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD PBP
@@ -724,7 +728,7 @@ cfbd_play_types <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         dplyr::rename("play_type_id" = "id")
 
@@ -850,7 +854,7 @@ cfbd_play_types <- function() {
 #'  |away_deserve_to_win              |numeric   |Away team "deserve-to-win" probability metric (0-1).                                   |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD PBP
@@ -869,7 +873,9 @@ cfbd_live_plays <- function(game_id) {
   query_params <- list(
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query = query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params) %>%
+    purrr::pluck("url")
 
   df <- data.frame()
   tryCatch(
@@ -881,7 +887,7 @@ cfbd_live_plays <- function(game_id) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE) %>%
         tibble::tibble(data = .data$.)
 

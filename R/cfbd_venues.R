@@ -44,7 +44,7 @@ NULL
 #'
 #' @keywords Venues
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom dplyr rename
 #' @family CFBD Venues
 #' @examples
@@ -67,7 +67,7 @@ cfbd_venues <- function() {
 
   # Get the content and return it as data.frame
   df <- res %>%
-    httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::resp_body_string() %>%
     jsonlite::fromJSON() %>%
     dplyr::rename(
       "venue_id" = "id",

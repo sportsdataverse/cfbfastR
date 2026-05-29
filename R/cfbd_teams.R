@@ -100,7 +100,7 @@ NULL
 #'
 #' @keywords Teams
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom dplyr rename
 #' @family CFBD Teams
@@ -129,7 +129,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       "conference" = conference,
       "year" = year
     )
-    full_url <- httr::modify_url(base_url, query=query_params)
+    full_url <- httr2::url_modify(base_url, query = query_params)
 
   } else {
 
@@ -138,7 +138,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
     query_params <- list(
       "year" = year
     )
-    full_url <- httr::modify_url(base_url, query=query_params)
+    full_url <- httr2::url_modify(base_url, query = query_params)
 
   }
 
@@ -152,7 +152,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON()
       locs <- df$location
       locs <- locs %>%
@@ -225,7 +225,7 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
 #'
 #' @keywords Team Matchup Records
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename mutate select
@@ -258,7 +258,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
     "minYear" = min_year,
     "maxYear" = max_year
   )
-  full_url <- httr::modify_url(base_url, query = query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -270,7 +270,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON()
       if (purrr::is_empty(df$games)) stop(call. = F)
       min_season <- min(df$games$season)
@@ -339,7 +339,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
 #'
 #' @keywords Team Matchup
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -375,7 +375,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
     "minYear" = min_year,
     "maxYear" = max_year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -387,7 +387,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         purrr::pluck("games")
       if (is.null(df) || nrow(df) == 0) {
@@ -445,7 +445,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @keywords Team Roster
 #' @importFrom dplyr rename mutate
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD Teams
@@ -470,7 +470,7 @@ cfbd_team_roster <- function(year, team = NULL) {
     "year" = year,
     "team" = team
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -482,7 +482,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         dplyr::rename("athlete_id" = "id") %>%
         dplyr::mutate(
@@ -522,7 +522,7 @@ cfbd_team_roster <- function(year, team = NULL) {
 #'
 #' @keywords Team talent
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD Teams
@@ -545,7 +545,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -557,7 +557,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         as.data.frame() %>%
         dplyr::mutate(talent = as.numeric(.data$talent)) %>%

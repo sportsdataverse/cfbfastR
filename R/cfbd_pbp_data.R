@@ -404,6 +404,7 @@ NULL
 #' @importFrom purrr map_dfr
 #' @importFrom glue glue
 #' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup setdiff everything
+#' @importFrom httr2 resp_body_string url_modify
 #' @importFrom jsonlite fromJSON
 #' @importFrom utils globalVariables
 #' @importFrom cli cli_abort
@@ -466,14 +467,14 @@ cfbd_pbp_data <- function(year,
     "team" = team,
     "playType" = pt_abb
   )
-  full_url <- httr::modify_url(play_base_url, query=query_params)
+  full_url <- httr2::url_modify(play_base_url, query = query_params)
 
   # Create the GET request and set response as res
   res <- get_req(full_url)
   check_status(res)
 
   raw_play_df <- res %>%
-    httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::resp_body_string() %>%
     jsonlite::fromJSON()
   raw_play_df <- do.call(data.frame, raw_play_df)
 

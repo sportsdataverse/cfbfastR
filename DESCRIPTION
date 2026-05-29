@@ -39,7 +39,7 @@ Imports:
     data.table (>= 1.15.0),
     dplyr (>= 1.0.0),
     glue (>= 1.4.0),
-    httr,
+    httr2 (>= 1.0.0),
     janitor,
     jsonlite,
     lubridate,

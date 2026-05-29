@@ -45,7 +45,7 @@ NULL
 #'
 #' @keywords NFL Teams
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -74,7 +74,7 @@ cfbd_draft_teams <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>%
         as.data.frame() %>%
@@ -108,7 +108,7 @@ cfbd_draft_teams <- function() {
 #'
 #' @keywords NFL Positions
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -137,7 +137,7 @@ cfbd_draft_positions <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>%
         as.data.frame() %>%
@@ -198,7 +198,7 @@ cfbd_draft_positions <- function() {
 #'
 #' @keywords NFL Draft Picks
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -233,7 +233,7 @@ cfbd_draft_picks <- function(year = NULL,
     "conference" = conference,
     "position" = position
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = query_params)
 
   df <- data.frame()
   tryCatch(
@@ -245,7 +245,7 @@ cfbd_draft_picks <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names()
 

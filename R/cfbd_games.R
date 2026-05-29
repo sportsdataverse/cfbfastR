@@ -147,7 +147,7 @@ NULL
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -195,7 +195,7 @@ cfbd_game_info <- function(year,
     "division" = division,
     "id" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -207,7 +207,7 @@ cfbd_game_info <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 
@@ -282,7 +282,7 @@ cfbd_game_info <- function(year,
 #'
 #' @keywords Game Weather
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -313,7 +313,7 @@ cfbd_game_weather <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -328,7 +328,7 @@ cfbd_game_weather <- function(year,
       # this year/week yet -- common during the in-season window before
       # CFBD backfills, see GH #116) from a parse/HTTP error.
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON()
 
       if (length(raw) == 0L || (is.data.frame(raw) && nrow(raw) == 0L)) {
@@ -376,7 +376,7 @@ cfbd_game_weather <- function(year,
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD Games
@@ -397,7 +397,7 @@ cfbd_calendar <- function(year) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -409,7 +409,7 @@ cfbd_calendar <- function(year) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names() %>%
         dplyr::select(
@@ -465,7 +465,7 @@ cfbd_calendar <- function(year) {
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -505,7 +505,7 @@ cfbd_game_media <- function(year,
     "mediaType" = media_type,
     "classification" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   cols <- c(
     "game_id", "season", "week", "season_type", "start_time",
@@ -523,7 +523,7 @@ cfbd_game_media <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         tidyr::pivot_wider(
           names_from = "mediaType",
@@ -635,7 +635,7 @@ cfbd_game_media <- function(year,
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -662,7 +662,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
   query_params <- list(
     "id" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -674,7 +674,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         purrr::map_if(is.data.frame, list)
@@ -835,7 +835,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -891,7 +891,7 @@ cfbd_game_player_stats <- function(year,
     "category" = category,
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   cols <- c(
     "game_id", "team", "conference", "home_away", "team_points",
@@ -1023,7 +1023,7 @@ cfbd_game_player_stats <- function(year,
 
       # Get the content, tidyr::unnest, and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%
@@ -1139,7 +1139,7 @@ cfbd_game_player_stats <- function(year,
 #'
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -1170,7 +1170,7 @@ cfbd_game_records <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -1182,7 +1182,7 @@ cfbd_game_records <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "team_id" = "teamId",
@@ -1331,7 +1331,7 @@ cfbd_game_records <- function(year,
 #'
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -1379,7 +1379,7 @@ cfbd_game_team_stats <- function(year,
     "classification" = division,
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -1406,7 +1406,7 @@ cfbd_game_team_stats <- function(year,
       )
       # Get the content, unnest, and return result as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble()
@@ -1612,7 +1612,7 @@ cfbd_game_team_stats <- function(year,
 #'
 #' @keywords Game Scoreboard
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -1636,7 +1636,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
     "conference" = conference,
     "division" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -1648,7 +1648,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 

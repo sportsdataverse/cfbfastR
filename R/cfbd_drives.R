@@ -73,7 +73,7 @@ NULL
 #'
 #' @keywords Drives
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -122,7 +122,9 @@ cfbd_drives <- function(year,
     "defenseConference" = defense_conference,
     "classification" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params)
+  full_url <- full_url$url
 
   df <- data.frame()
   tryCatch(
@@ -134,7 +136,7 @@ cfbd_drives <- function(year,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         dplyr::rename(
           "drive_id" = "id",

@@ -15,6 +15,9 @@ This is a minor release that:
   every call to return an error.
 * Adds optional session caching of ESPN reference catalogs (`cachem` /
   `memoise`), controllable via the `cfbfastR.cache` option.
+* Migrates the package's internal HTTP layer from `httr` to
+  `httr2` (>= 1.0.0); no user-visible behaviour change for existing
+  wrapper calls.
 
 ## R CMD check results
 

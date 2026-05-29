@@ -33,7 +33,7 @@ NULL
 #'
 #' @keywords Conferences
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @import dplyr
 #' @import tidyr
 #' @family CFBD Conference Functions
@@ -60,7 +60,7 @@ cfbd_conferences <- function() {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 

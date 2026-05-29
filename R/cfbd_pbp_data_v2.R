@@ -86,7 +86,7 @@ NULL
 #'   slice_min any_of all_of setdiff
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr modify_url content
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_alert_warning
 #' @importFrom glue glue
 #' @importFrom stats setNames
@@ -153,12 +153,14 @@ cfbd_pbp_data_v2 <- function(year,
     "team"       = team,
     "playType"   = pt_abb
   )
-  full_url <- httr::modify_url(play_base_url, query = query_params)
+  full_url <- httr2::req_url_query(
+    httr2::request(play_base_url), !!!query_params
+  )$url
   res <- get_req(full_url)
   check_status(res)
 
   raw_play_df <- res %>%
-    httr::content(as = "text", encoding = "UTF-8") %>%
+    httr2::resp_body_string() %>%
     jsonlite::fromJSON()
   raw_play_df <- do.call(data.frame, raw_play_df)
   if (nrow(raw_play_df) == 0) {

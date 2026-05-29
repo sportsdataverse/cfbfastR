@@ -97,7 +97,7 @@ cfbd_api_key_info <- function(){
   base_url <- "https://api.collegefootballdata.com/info?"
   query_params <- list()
 
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -109,7 +109,7 @@ cfbd_api_key_info <- function(){
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         janitor::clean_names()
 

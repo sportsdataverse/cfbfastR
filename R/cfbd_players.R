@@ -55,7 +55,7 @@ NULL
 #'
 #' @keywords Players
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -97,7 +97,7 @@ cfbd_player_info <- function(search_term,
     "team" = team,
     "year" = year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -109,7 +109,7 @@ cfbd_player_info <- function(search_term,
       # Get the content and return it as data.frame
 
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         janitor::clean_names() %>%
         dplyr::rename(
@@ -161,7 +161,7 @@ cfbd_player_info <- function(search_term,
 #'
 #' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -190,7 +190,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -201,7 +201,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
           "total_ppa" = "totalPPA",
@@ -266,7 +266,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 #'
 #' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom purrr map_if
@@ -312,7 +312,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     "playerId" = athlete_id,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!query_params)
 
   df <- data.frame()
   tryCatch(
@@ -324,7 +324,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
         dplyr::as_tibble() %>%

@@ -166,7 +166,7 @@
 #'   and returns the partially populated list.
 #' @keywords internal
 #' @noRd
-#' @importFrom httr RETRY add_headers content
+#' @importFrom httr2 request req_headers req_retry req_error req_perform resp_body_string
 #' @importFrom jsonlite fromJSON
 #' @importFrom rlang "%||%"
 #' @importFrom glue glue
@@ -215,10 +215,14 @@
         "https://sports.core.api.espn.com/v2/sports/football/leagues/",
         "college-football/events/{game_id}?lang=en&region=us"
       )
-      res <- httr::RETRY("GET", url, httr::add_headers(.headers = headers))
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
+        httr2::req_perform()
       check_status(res)
       raw <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       # --- season / season_type / week from week.$ref ---------------------

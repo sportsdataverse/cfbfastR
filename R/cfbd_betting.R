@@ -64,7 +64,7 @@ NULL
 #'    |away_moneyline      |character |Away team moneyline odds.                                                  |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -122,7 +122,9 @@ cfbd_betting_lines <- function(game_id = NULL,
     "conference" = conference,
     "provider" = line_provider
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params) %>%
+    `[[`("url")
 
   df <- data.frame()
   tryCatch(
@@ -134,7 +136,7 @@ cfbd_betting_lines <- function(game_id = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         stringr::str_replace_all("NaN", 'null') %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         purrr::map_if(is.data.frame, list) %>%
@@ -207,7 +209,7 @@ cfbd_betting_lines <- function(game_id = NULL,
 #'    |avg_cover_margin |numeric   |Average margin by which the team beat the spread.            |
 #'
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -239,7 +241,9 @@ cfbd_betting_ats <- function(year = NULL,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query = query_params)
+  full_url <- httr2::request(base_url) %>%
+    httr2::req_url_query(!!!query_params) %>%
+    `[[`("url")
 
   df <- data.frame()
   tryCatch(
@@ -251,7 +255,7 @@ cfbd_betting_ats <- function(year = NULL,
 
       # Get the content -- /teams/ats returns a flat array, no nesting
       parsed <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE)
 
       if (is.data.frame(parsed) && nrow(parsed) > 0) {

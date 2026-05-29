@@ -93,7 +93,7 @@ NULL
 #'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom janitor clean_names
@@ -141,7 +141,7 @@ cfbd_recruiting_player <- function(year = NULL,
     "position" = position,
     "state" = state
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
 
   df <- data.frame()
   tryCatch(
@@ -153,7 +153,7 @@ cfbd_recruiting_player <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten=TRUE) %>%
         janitor::clean_names() %>%
         as.data.frame()
@@ -194,7 +194,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -228,7 +228,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
 
   df <- data.frame()
   tryCatch(
@@ -240,7 +240,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         dplyr::rename(
           "position_group" = "positionGroup",
@@ -278,7 +278,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD Recruiting
@@ -312,7 +312,7 @@ cfbd_recruiting_team <- function(year = NULL,
     "year" = year,
     "team" = team
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
 
   df <- data.frame()
   tryCatch(
@@ -324,7 +324,7 @@ cfbd_recruiting_team <- function(year = NULL,
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON() %>%
         as.data.frame()
 
@@ -361,7 +361,7 @@ cfbd_recruiting_team <- function(year = NULL,
 #'
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 request req_url_query req_perform resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -384,7 +384,7 @@ cfbd_recruiting_transfer_portal <- function(year) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::req_url_query(httr2::request(base_url), !!!query_params)$url
 
   df <- data.frame()
   tryCatch(
@@ -396,7 +396,7 @@ cfbd_recruiting_transfer_portal <- function(year) {
 
       # Get the content and return it as data.frame
       df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+        httr2::resp_body_string() %>%
         jsonlite::fromJSON(flatten = TRUE) %>%
         janitor::clean_names() %>%
         dplyr::mutate(

@@ -47,6 +47,10 @@ This release adds a 65-function ESPN college-football API layer, expanding `cfbf
 * `espn_cfb_pbp()` now builds its request URL with the `?event=` query separator (previously concatenated as `summaryevent=`, which returned HTTP 404 for every game) and initializes its return frame before the `tryCatch` so an upstream failure no longer throws `object 'plays_df' not found`.
 * `cfbd_pbp_data_v2()` and `espn_cfb_pbp_v2()` preserve character `id_play` precision through the EPA/WPA pipeline. The legacy shared helper used unquoted numeric literals in two `ifelse` calls (a historical `id_play` swap for one game), which silently coerced character `id_play` to numeric and then lost precision past 2^53 — breaking the play-id join-back in `espn_cfb_pbp_v2()`. The modular `.pbp_clean_pbp_dat()` quotes those literals so `id_play` stays character; the legacy `clean_pbp_dat()` is unchanged.
 
+### Internal changes
+
+- **httr -> httr2 migration.** cfbfastR's HTTP layer now uses the modern `httr2` package (>= 1.0.0) instead of the legacy `httr`. End users running existing wrapper calls (`cfbd_*`, `espn_cfb_*`) should see no behavioural change -- the migration is internal. Custom code that calls `get_req()` or `check_status()` directly must update from `httr::content(res, as = "text")` to `httr2::resp_body_string(res)` and from `httr::status_code(res)` to `httr2::resp_status(res)`.
+
 # **cfbfastR v2.2.0**
 
 * Fixes a bug in `validate_week()` utility function where some inputs were not being handled correctly (i.e. week 16). Fixes trickle down to `cfbd_pbp_data()` and other functions.
