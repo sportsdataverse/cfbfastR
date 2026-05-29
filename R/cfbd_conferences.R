@@ -5,13 +5,14 @@
 #' Pulls all college football conferences and returns as data frame
 #'
 #' @return [cfbd_conferences()] - A data frame with 94 rows and 5 variables:
-#' \describe{
-#'   \item{`conference_id`:}{Referencing conference id.}
-#'   \item{`name`:}{Conference name.}
-#'   \item{`long_name`:}{Long name for Conference.}
-#'   \item{`abbreviation`:}{Conference abbreviation.}
-#'   \item{`classification`:}{Conference classification (fbs,fcs,ii,iii)}
-#' }
+#'
+#'    |col_name       |types     |description                                                         |
+#'    |:--------------|:---------|:-------------------------------------------------------------------|
+#'    |conference_id  |integer   |Referencing conference id.                                          |
+#'    |name           |character |Conference name.                                                    |
+#'    |long_name      |character |Long name for Conference.                                           |
+#'    |abbreviation   |character |Conference abbreviation.                                            |
+#'    |classification |character |Conference classification (fbs, fcs, ii, iii).                      |
 #' @keywords Conferences
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

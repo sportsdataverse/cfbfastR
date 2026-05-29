@@ -23,15 +23,15 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - A data frame with 7 variables:
-\describe{
-\item{\code{team}: character.}{Recruiting team.}
-\item{\code{conference}: character.}{Recruiting team conference.}
-\item{\code{position_group}: character.}{Position group of the recruits.}
-\item{\code{avg_rating}: double.}{Average rating of the recruits in the position group.}
-\item{\code{total_rating}: double.}{Sum of the ratings of the recruits in the position group.}
-\item{\code{commits}: integer.}{Number of commits in the position group.}
-\item{\code{avg_stars}: double.}{Average stars of the recruits in the position group.}
+\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - A data frame with 7 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   team \tab character \tab Recruiting team (school) name. \cr
+   conference \tab character \tab Conference affiliation of the recruiting team. \cr
+   position_group \tab character \tab Position group of the recruits (e.g. Offensive Line, Defensive Back). \cr
+   avg_rating \tab numeric \tab Average 247Sports composite rating of recruits in the position group. \cr
+   total_rating \tab numeric \tab Sum of the 247Sports composite ratings of recruits in the group. \cr
+   commits \tab integer \tab Number of commits in the position group. \cr
+   avg_stars \tab numeric \tab Average star rating of recruits in the position group. \cr
 }
 }
 \description{

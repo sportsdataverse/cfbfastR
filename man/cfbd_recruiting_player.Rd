@@ -30,27 +30,27 @@ or 'PrepSchool'  - For position group information}
 }}
 }
 \value{
-\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 14 variables:
-\describe{
-\item{\code{id}: integer.}{Referencing id - 247Sports.}
-\item{\code{athlete_id}}{Athlete referencing id.}
-\item{\code{recruit_type}: character.}{High School, Prep School, or Junior College.}
-\item{\code{year}: integer.}{Recruit class year.}
-\item{\code{ranking}: integer.}{Recruit Ranking.}
-\item{\code{name}: character.}{Recruit Name.}
-\item{\code{school}: character.}{School recruit attended.}
-\item{\code{committed_to}: character.}{School the recruit is committed to.}
-\item{\code{position}: character.}{Recruit position.}
-\item{\code{height}: double.}{Recruit height.}
-\item{\code{weight}: integer.}{Recruit weight.}
-\item{\code{stars}: integer.}{Recruit stars.}
-\item{\code{rating}: double.}{247 composite rating.}
-\item{\code{city}: character.}{Hometown of the recruit.}
-\item{\code{state_province}: character.}{Hometown state of the recruit.}
-\item{\code{country}: character.}{Hometown country of the recruit.}
-\item{\code{hometown_info_latitude}: character.}{Hometown latitude.}
-\item{\code{hometown_info_longitude}: character.}{Hometown longitude.}
-\item{\code{hometown_info_fips_code}: character.}{Hometown FIPS code.}
+\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 19 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   id \tab integer \tab 247Sports referencing id for the recruit. \cr
+   athlete_id \tab integer \tab CFBD athlete referencing id linking to player tables. \cr
+   recruit_type \tab character \tab Recruit class: High School, Prep School, or Junior College. \cr
+   year \tab integer \tab Recruiting class year (four-digit season). \cr
+   ranking \tab integer \tab Recruit national ranking within the class. \cr
+   name \tab character \tab Recruit full name. \cr
+   school \tab character \tab High school, prep school, or JUCO program the recruit attended. \cr
+   committed_to \tab character \tab College program the recruit is committed to. \cr
+   position \tab character \tab Recruit position abbreviation (e.g. QB, WR, OT). \cr
+   height \tab numeric \tab Recruit height in inches. \cr
+   weight \tab integer \tab Recruit weight in pounds. \cr
+   stars \tab integer \tab Recruit star rating on the 247Sports scale (2-5). \cr
+   rating \tab numeric \tab 247Sports composite rating for the recruit. \cr
+   city \tab character \tab Hometown city of the recruit. \cr
+   state_province \tab character \tab Hometown state or province of the recruit. \cr
+   country \tab character \tab Hometown country of the recruit. \cr
+   hometown_info_latitude \tab character \tab Latitude of the recruit's hometown. \cr
+   hometown_info_longitude \tab character \tab Longitude of the recruit's hometown. \cr
+   hometown_info_fips_code \tab character \tab FIPS code of the recruit's hometown. \cr
 }
 }
 \description{

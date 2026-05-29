@@ -7,10 +7,10 @@
 cfbd_draft_positions()
 }
 \value{
-\code{\link[=cfbd_draft_positions]{cfbd_draft_positions()}} - A data frame with 2 variables:
-\describe{
-\item{\code{position_name}: character.}{NFL Position group name.}
-\item{\code{position_abbreviation}: integer}{NFL position group abbreviation.}
+\code{\link[=cfbd_draft_positions]{cfbd_draft_positions()}} - A data frame with 2 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   position_name \tab character \tab NFL Position group name. \cr
+   position_abbreviation \tab character \tab NFL position group abbreviation. \cr
 }
 }
 \description{

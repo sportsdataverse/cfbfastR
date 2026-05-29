@@ -10,24 +10,25 @@
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
 #' @param min_year (*Integer* optional): Minimum Year filter (inclusive), 4 digit format (*YYYY*).
 #' @param max_year (*Integer* optional): Maximum Year filter (inclusive), 4 digit format (*YYYY*)
-#' @return
-#' \describe{
-#'   \item{first_name:character.}{First name of coach.}
-#'   \item{last_name:character.}{Last name of coach.}
-#'   \item{hire_date:character.}{Hire date of coach.}
-#'   \item{school:character.}{School of coach.}
-#'   \item{year:integer.}{Season of record.}
-#'   \item{games:integer.}{Games as coach.}
-#'   \item{wins:integer.}{Wins for the season.}
-#'   \item{losses:integer.}{ Losses for the season.}
-#'   \item{ties:integer.}{Ties for the season.}
-#'   \item{preseason_rank:integer.}{Preseason rank for the school of coach.}
-#'   \item{postseason_rank:integer.}{Postseason rank for the school of coach.}
-#'   \item{srs:character.}{Simple Rating System adjustment for team.}
-#'   \item{sp_overall:character.}{Bill Connelly's SP+ overall for team.}
-#'   \item{sp_offense:character.}{Bill Connelly's SP+ offense for team.}
-#'   \item{sp_defense:character.}{Bill Connelly's SP+ defense for team.}
-#' }
+#' @return Returns a tibble with 15 variables:
+#'
+#'    |col_name        |types     |description                                                       |
+#'    |:---------------|:---------|:-----------------------------------------------------------------|
+#'    |first_name      |character |First name of coach.                                              |
+#'    |last_name       |character |Last name of coach.                                               |
+#'    |hire_date       |character |Hire date of coach (ISO date string from CFBD).                   |
+#'    |school          |character |School of coach for the listed season.                            |
+#'    |year            |integer   |Four-digit season year of record.                                 |
+#'    |games           |integer   |Games coached during the season.                                  |
+#'    |wins            |integer   |Wins for the season.                                              |
+#'    |losses          |integer   |Losses for the season.                                            |
+#'    |ties            |integer   |Ties for the season.                                              |
+#'    |preseason_rank  |integer   |Preseason AP rank for the school of coach (NA if unranked).       |
+#'    |postseason_rank |integer   |Postseason AP rank for the school of coach (NA if unranked).      |
+#'    |srs             |character |Simple Rating System adjustment for team.                         |
+#'    |sp_overall      |character |Bill Connelly's SP+ overall rating for team.                      |
+#'    |sp_offense      |character |Bill Connelly's SP+ offense rating for team.                      |
+#'    |sp_defense      |character |Bill Connelly's SP+ defense rating for team.                      |
 #' @keywords Coaches
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

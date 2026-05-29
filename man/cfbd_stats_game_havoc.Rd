@@ -28,30 +28,30 @@ seasons pre-playoff (i.e. 2013 or earlier).}
 postseason, both, allstar, spring_regular, spring_postseason.}
 }
 \value{
-\code{\link[=cfbd_stats_game_havoc]{cfbd_stats_game_havoc()}} - A data frame with 22 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{opponent}: character.}{Opponent team name.}
-\item{\code{opponent_conference}: character.}{Conference of the opponent.}
-\item{\code{off_total_plays}: integer.}{Offense plays in the game.}
-\item{\code{off_total_havoc_events}: integer.}{Total havoc events allowed by the offense.}
-\item{\code{off_front_seven_havoc_events}: integer.}{Front-seven havoc events allowed by the offense.}
-\item{\code{off_db_havoc_events}: integer.}{Defensive-back havoc events allowed by the offense.}
-\item{\code{off_havoc_rate}: double.}{Total havoc rate allowed by the offense.}
-\item{\code{off_front_seven_havoc_rate}: double.}{Front-seven havoc rate allowed by the offense.}
-\item{\code{off_db_havoc_rate}: double.}{Defensive-back havoc rate allowed by the offense.}
-\item{\code{def_total_plays}: integer.}{Defense plays in the game.}
-\item{\code{def_total_havoc_events}: integer.}{Total havoc events created by the defense.}
-\item{\code{def_front_seven_havoc_events}: integer.}{Front-seven havoc events created by the defense.}
-\item{\code{def_db_havoc_events}: integer.}{Defensive-back havoc events created by the defense.}
-\item{\code{def_havoc_rate}: double.}{Total havoc rate created by the defense.}
-\item{\code{def_front_seven_havoc_rate}: double.}{Front-seven havoc rate created by the defense.}
-\item{\code{def_db_havoc_rate}: double.}{Defensive-back havoc rate created by the defense.}
+\code{\link[=cfbd_stats_game_havoc]{cfbd_stats_game_havoc()}} - A data frame with 22 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   season \tab integer \tab Season of the game. \cr
+   season_type \tab character \tab Season type of the game. \cr
+   week \tab integer \tab Game week of the season. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of the team. \cr
+   opponent \tab character \tab Opponent team name. \cr
+   opponent_conference \tab character \tab Conference of the opponent. \cr
+   off_total_plays \tab integer \tab Offense plays in the game. \cr
+   off_total_havoc_events \tab integer \tab Total havoc events allowed by the offense. \cr
+   off_front_seven_havoc_events \tab integer \tab Front-seven havoc events allowed by the offense. \cr
+   off_db_havoc_events \tab integer \tab Defensive-back havoc events allowed by the offense. \cr
+   off_havoc_rate \tab double \tab Total havoc rate allowed by the offense. \cr
+   off_front_seven_havoc_rate \tab double \tab Front-seven havoc rate allowed by the offense. \cr
+   off_db_havoc_rate \tab double \tab Defensive-back havoc rate allowed by the offense. \cr
+   def_total_plays \tab integer \tab Defense plays in the game. \cr
+   def_total_havoc_events \tab integer \tab Total havoc events created by the defense. \cr
+   def_front_seven_havoc_events \tab integer \tab Front-seven havoc events created by the defense. \cr
+   def_db_havoc_events \tab integer \tab Defensive-back havoc events created by the defense. \cr
+   def_havoc_rate \tab double \tab Total havoc rate created by the defense. \cr
+   def_front_seven_havoc_rate \tab double \tab Front-seven havoc rate created by the defense. \cr
+   def_db_havoc_rate \tab double \tab Defensive-back havoc rate created by the defense. \cr
 }
 }
 \description{

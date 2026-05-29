@@ -16,15 +16,15 @@ cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 \item{max_year}{(\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})}
 }
 \value{
-\code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}} - A data frame with 7 variables:
-\describe{
-\item{\code{start_year}: character.}{Span starting year.}
-\item{\code{end_year}: character.}{Span ending year.}
-\item{\code{team1}: character.}{First team selected in query.}
-\item{\code{team1_wins}: character.}{First team wins in series against \code{team2}.}
-\item{\code{team2}: character.}{Second team selected in query.}
-\item{\code{team2_wins}: character.}{Second team wins in series against \code{team1}.}
-\item{\code{ties}: character.}{Number of ties in the series.}
+\code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}} - A data frame with 7 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   start_year \tab integer \tab Span starting year. \cr
+   end_year \tab integer \tab Span ending year. \cr
+   team1 \tab character \tab First team selected in query. \cr
+   team1_wins \tab integer \tab First team wins in series against team2. \cr
+   team2 \tab character \tab Second team selected in query. \cr
+   team2_wins \tab integer \tab Second team wins in series against team1. \cr
+   ties \tab integer \tab Number of ties in the series. \cr
 }
 }
 \description{

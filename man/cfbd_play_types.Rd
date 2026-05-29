@@ -7,11 +7,11 @@
 cfbd_play_types()
 }
 \value{
-\code{\link[=cfbd_play_types]{cfbd_play_types()}} - A data frame with 48 rows and 3 variables:
-\describe{
-\item{\code{play_type_id}: integer}{Referencing play type id.}
-\item{\code{text}: character}{play type description.}
-\item{\code{abbreviation}: character}{play type abbreviation used for function call}
+\code{\link[=cfbd_play_types]{cfbd_play_types()}} - A data frame with 48 rows and 3 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   play_type_id \tab integer \tab CFBD play type identifier (matches \code{play_type} IDs in \code{\link[=cfbd_plays]{cfbd_plays()}}). \cr
+   text \tab character \tab Human-readable play type description (e.g. "Rush", "Pass Reception", "Field Goal"). \cr
+   abbreviation \tab character \tab Short play type abbreviation used as the \code{play_type} filter argument in API calls. \cr
 }
 }
 \description{

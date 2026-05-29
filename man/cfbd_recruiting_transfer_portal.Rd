@@ -10,18 +10,18 @@ cfbd_recruiting_transfer_portal(year)
 \item{year}{(\emph{Integer} required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (\emph{YYYY}).}
 }
 \value{
-\code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}} - A data frame with 11 variables:
-\describe{
-\item{\code{season}:integer}{Season of transfer.}
-\item{\code{first_name}:character.}{Player's first name.}
-\item{\code{last_name}:character.}{Player's last name.}
-\item{\code{position}:character.}{Player position.}
-\item{\code{origin}:character.}{original team.}
-\item{\code{destination}:character.}{new team.}
-\item{\code{transfer_date}:character.}{Date of transfer.}
-\item{\code{rating}:character.}{Player's 247 transfer rating.}
-\item{\code{stars}:integer}{Player's star rating.}
-\item{\code{eligibilty}:character.}{Player's eligibilty status.}
+\code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}} - A data frame with 10 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Season of the transfer (four-digit year). \cr
+   first_name \tab character \tab Player's first name. \cr
+   last_name \tab character \tab Player's last name. \cr
+   position \tab character \tab Player position abbreviation (e.g. QB, WR, OT). \cr
+   origin \tab character \tab Original (transferring-from) team. \cr
+   destination \tab character \tab New (transferring-to) team. \cr
+   transfer_date \tab character \tab Date the transfer was reported (parsed downstream to POSIXct). \cr
+   rating \tab character \tab Player's 247Sports transfer rating. \cr
+   stars \tab integer \tab Player's 247Sports star rating (2-5). \cr
+   eligibilty \tab character \tab Player's eligibility status at time of transfer. \cr
 }
 }
 \description{

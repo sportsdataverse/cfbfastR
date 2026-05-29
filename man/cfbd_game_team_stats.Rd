@@ -37,86 +37,86 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
 }
 \value{
-\code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}} - A data frame with 78 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{home_away}: character.}{Home/Away Flag.}
-\item{\code{opponent}: character.}{Opponent team name.}
-\item{\code{opponent_conference}: character.}{Conference of the opponent team.}
-\item{\code{points}: integer.}{Team points.}
-\item{\code{total_yards}: character.}{Team total yards.}
-\item{\code{net_passing_yards}: character.}{Team net passing yards.}
-\item{\code{completion_attempts}:character.}{Team completion attempts.}
-\item{\code{passing_tds}: character.}{Team passing touchdowns.}
-\item{\code{yards_per_pass}: character.}{Team game yards per pass.}
-\item{\code{passes_intercepted}: character.}{Team passes intercepted.}
-\item{\code{interception_yards}: character.}{Interception yards.}
-\item{\code{interception_tds}: character.}{Interceptions returned for a touchdown.}
-\item{\code{rushing_attempts}: character.}{Team rushing attempts. see also: ESTABLISH IT.}
-\item{\code{rushing_yards}: character.}{Team rushing yards.}
-\item{\code{rush_tds}: character.}{Team rushing touchdowns.}
-\item{\code{yards_per_rush_attempt}: character.}{Team yards per rush attempt.}
-\item{\code{first_downs}: character.}{First downs earned by the team.}
-\item{\code{third_down_eff}: character.}{Third down efficiency.}
-\item{\code{fourth_down_eff}: character.}{Fourth down efficiency.}
-\item{\code{punt_returns}: character.}{Team punt returns.}
-\item{\code{punt_return_yards}: character.}{Team punt return yards.}
-\item{\code{punt_return_tds}: character.}{Team punt return touchdowns.}
-\item{\code{kick_return_yards}: character.}{Team kick return yards.}
-\item{\code{kick_return_tds}: character.}{Team kick return touchdowns.}
-\item{\code{kick_returns}: character.}{Team kick returns.}
-\item{\code{kicking_points}: character.}{Team points from kicking the ball.}
-\item{\code{fumbles_recovered}: character.}{Team fumbles recovered.}
-\item{\code{fumbles_lost}: character.}{Team fumbles lost.}
-\item{\code{total_fumbles}: character.}{Team total fumbles.}
-\item{\code{tackles}: character.}{Team tackles.}
-\item{\code{tackles_for_loss}: character.}{Team tackles for a loss.}
-\item{\code{sacks}: character.}{Team sacks.}
-\item{\code{qb_hurries}: character.}{Team QB hurries.}
-\item{\code{interceptions}: character.}{Team interceptions.}
-\item{\code{passes_deflected}: character.}{Team passes deflected.}
-\item{\code{turnovers}: character.}{Team turnovers.}
-\item{\code{defensive_tds}: character.}{Team defensive touchdowns.}
-\item{\code{total_penalties_yards}: character.}{Team total penalty yards.}
-\item{\code{possession_time}: character.}{Team time of possession.}
-\item{\code{points_allowed}: integer.}{Points for the opponent.}
-\item{\code{total_yards_allowed}: character.}{Opponent total yards.}
-\item{\code{net_passing_yards_allowed}: character.}{Opponent net passing yards.}
-\item{\code{completion_attempts_allowed}: character.}{Oppponent completion attempts.}
-\item{\code{passing_tds_allowed}: character.}{Opponent passing TDs.}
-\item{\code{yards_per_pass_allowed}: character.}{Opponent yards per pass allowed.}
-\item{\code{passes_intercepted_allowed}: character.}{Opponent passes intercepted.}
-\item{\code{interception_yards_allowed}: character.}{Opponent interception yards.}
-\item{\code{interception_tds_allowed}: character.}{Opponent interception TDs.}
-\item{\code{rushing_attempts_allowed}: character.}{Opponent rushing attempts.}
-\item{\code{rushing_yards_allowed}: character.}{Opponent rushing yards.}
-\item{\code{rush_tds_allowed}: character.}{Opponent rushing touchdowns.}
-\item{\code{yards_per_rush_attempt_allowed}: character.}{Opponent rushing yards per attempt.}
-\item{\code{first_downs_allowed}: character.}{Opponent first downs.}
-\item{\code{third_down_eff_allowed}: character.}{Opponent third down efficiency.}
-\item{\code{fourth_down_eff_allowed}: character.}{Opponent fourth down efficiency.}
-\item{\code{punt_returns_allowed}: character.}{Opponent punt returns.}
-\item{\code{punt_return_yards_allowed}: character.}{Opponent punt return yards.}
-\item{\code{punt_return_tds_allowed}: character.}{Opponent punt return touchdowns.}
-\item{\code{kick_return_yards_allowed}: character.}{Opponent kick return yards.}
-\item{\code{kick_return_tds_allowed}: character.}{Opponent kick return touchdowns.}
-\item{\code{kick_returns_allowed}: character.}{Opponent kick returns.}
-\item{\code{kicking_points_allowed}: character.}{Opponent points from kicking.}
-\item{\code{fumbles_recovered_allowed}: character.}{Opponent fumbles recovered.}
-\item{\code{fumbles_lost_allowed}: character.}{Opponent fumbles lost.}
-\item{\code{total_fumbles_allowed}:character.}{Opponent total number of fumbles.}
-\item{\code{tackles_allowed}:character.}{Opponent tackles.}
-\item{\code{tackles_for_loss_allowed}: character.}{Opponent tackles for loss.}
-\item{\code{sacks_allowed}: character.}{Opponent sacks.}
-\item{\code{qb_hurries_allowed}: character.}{Opponent quarterback hurries.}
-\item{\code{interceptions_allowed}: character.}{Opponent interceptions.}
-\item{\code{passes_deflected_allowed}: character.}{Opponent passes deflected.}
-\item{\code{turnovers_allowed}: character.}{Opponent turnovers.}
-\item{\code{defensive_tds_allowed}: character.}{Opponent defensive touchdowns.}
-\item{\code{total_penalties_yards_allowed}: character.}{Opponent total penalty yards.}
-\item{\code{possession_time_allowed}: character.}{Opponent time of possession.}
+\code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}} - A data frame with 78 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of the team. \cr
+   home_away \tab character \tab Home/Away Flag. \cr
+   opponent \tab character \tab Opponent team name. \cr
+   opponent_conference \tab character \tab Conference of the opponent team. \cr
+   points \tab integer \tab Team points. \cr
+   total_yards \tab character \tab Team total yards. \cr
+   net_passing_yards \tab character \tab Team net passing yards. \cr
+   completion_attempts \tab character \tab Team completion attempts. \cr
+   passing_tds \tab character \tab Team passing touchdowns. \cr
+   yards_per_pass \tab character \tab Team game yards per pass. \cr
+   passes_intercepted \tab character \tab Team passes intercepted. \cr
+   interception_yards \tab character \tab Interception yards. \cr
+   interception_tds \tab character \tab Interceptions returned for a touchdown. \cr
+   rushing_attempts \tab character \tab Team rushing attempts. \cr
+   rushing_yards \tab character \tab Team rushing yards. \cr
+   rush_tds \tab character \tab Team rushing touchdowns. \cr
+   yards_per_rush_attempt \tab character \tab Team yards per rush attempt. \cr
+   first_downs \tab character \tab First downs earned by the team. \cr
+   third_down_eff \tab character \tab Third down efficiency. \cr
+   fourth_down_eff \tab character \tab Fourth down efficiency. \cr
+   punt_returns \tab character \tab Team punt returns. \cr
+   punt_return_yards \tab character \tab Team punt return yards. \cr
+   punt_return_tds \tab character \tab Team punt return touchdowns. \cr
+   kick_return_yards \tab character \tab Team kick return yards. \cr
+   kick_return_tds \tab character \tab Team kick return touchdowns. \cr
+   kick_returns \tab character \tab Team kick returns. \cr
+   kicking_points \tab character \tab Team points from kicking the ball. \cr
+   fumbles_recovered \tab character \tab Team fumbles recovered. \cr
+   fumbles_lost \tab character \tab Team fumbles lost. \cr
+   total_fumbles \tab character \tab Team total fumbles. \cr
+   tackles \tab character \tab Team tackles. \cr
+   tackles_for_loss \tab character \tab Team tackles for a loss. \cr
+   sacks \tab character \tab Team sacks. \cr
+   qb_hurries \tab character \tab Team QB hurries. \cr
+   interceptions \tab character \tab Team interceptions. \cr
+   passes_deflected \tab character \tab Team passes deflected. \cr
+   turnovers \tab character \tab Team turnovers. \cr
+   defensive_tds \tab character \tab Team defensive touchdowns. \cr
+   total_penalties_yards \tab character \tab Team total penalty yards. \cr
+   possession_time \tab character \tab Team time of possession. \cr
+   points_allowed \tab integer \tab Points for the opponent. \cr
+   total_yards_allowed \tab character \tab Opponent total yards. \cr
+   net_passing_yards_allowed \tab character \tab Opponent net passing yards. \cr
+   completion_attempts_allowed \tab character \tab Opponent completion attempts. \cr
+   passing_tds_allowed \tab character \tab Opponent passing TDs. \cr
+   yards_per_pass_allowed \tab character \tab Opponent yards per pass allowed. \cr
+   passes_intercepted_allowed \tab character \tab Opponent passes intercepted. \cr
+   interception_yards_allowed \tab character \tab Opponent interception yards. \cr
+   interception_tds_allowed \tab character \tab Opponent interception TDs. \cr
+   rushing_attempts_allowed \tab character \tab Opponent rushing attempts. \cr
+   rushing_yards_allowed \tab character \tab Opponent rushing yards. \cr
+   rush_tds_allowed \tab character \tab Opponent rushing touchdowns. \cr
+   yards_per_rush_attempt_allowed \tab character \tab Opponent rushing yards per attempt. \cr
+   first_downs_allowed \tab character \tab Opponent first downs. \cr
+   third_down_eff_allowed \tab character \tab Opponent third down efficiency. \cr
+   fourth_down_eff_allowed \tab character \tab Opponent fourth down efficiency. \cr
+   punt_returns_allowed \tab character \tab Opponent punt returns. \cr
+   punt_return_yards_allowed \tab character \tab Opponent punt return yards. \cr
+   punt_return_tds_allowed \tab character \tab Opponent punt return touchdowns. \cr
+   kick_return_yards_allowed \tab character \tab Opponent kick return yards. \cr
+   kick_return_tds_allowed \tab character \tab Opponent kick return touchdowns. \cr
+   kick_returns_allowed \tab character \tab Opponent kick returns. \cr
+   kicking_points_allowed \tab character \tab Opponent points from kicking. \cr
+   fumbles_recovered_allowed \tab character \tab Opponent fumbles recovered. \cr
+   fumbles_lost_allowed \tab character \tab Opponent fumbles lost. \cr
+   total_fumbles_allowed \tab character \tab Opponent total number of fumbles. \cr
+   tackles_allowed \tab character \tab Opponent tackles. \cr
+   tackles_for_loss_allowed \tab character \tab Opponent tackles for loss. \cr
+   sacks_allowed \tab character \tab Opponent sacks. \cr
+   qb_hurries_allowed \tab character \tab Opponent quarterback hurries. \cr
+   interceptions_allowed \tab character \tab Opponent interceptions. \cr
+   passes_deflected_allowed \tab character \tab Opponent passes deflected. \cr
+   turnovers_allowed \tab character \tab Opponent turnovers. \cr
+   defensive_tds_allowed \tab character \tab Opponent defensive touchdowns. \cr
+   total_penalties_yards_allowed \tab character \tab Opponent total penalty yards. \cr
+   possession_time_allowed \tab character \tab Opponent time of possession. \cr
 }
 }
 \description{

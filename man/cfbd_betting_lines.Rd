@@ -39,30 +39,29 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC 
 \item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
 }
 \value{
-Betting information for games with the following columns:
-
-\describe{
-\item{game_id:integer.}{Unique game identifier - game_id.}
-\item{season:integer.}{Season parameter.}
-\item{season_type:character.)}{Season Type (regular, postseason, both}
-\item{week:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
-\item{start_date:character.}{Start Date}
-\item{home_team:character.}{Home D-I Team.}
-\item{home_conference:character.}{Home D-I Conference.}
-\item{home_classification:character.}{Home Conference classification (fbs,fcs,ii,iii)}
-\item{home_score:integer.}{Home Score.}
-\item{away_team:character.}{Away D-I Team.}
-\item{away_conference:character.}{Away D-I Conference.}
-\item{away_classification:character.}{Away Conference classification (fbs,fcs,ii,iii)}
-\item{away_score:integer.}{Away Score.}
-\item{provider:character.}{Line provider.}
-\item{spread:character.}{Spread for the game.}
-\item{formatted_spread:character.}{Formatted spread for the game.}
-\item{spread_open:character.}{Opening spread for the game.}
-\item{over_under:character.}{Over/Under for the game.}
-\item{over_under_open:character.}{Opening over/under for the game.}
-\item{home_moneyline:character.}{Home team moneyline.}
-\item{away_moneyline:character.}{Away team moneyline.}
+Betting information for games with the following 21 columns:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Unique CFBD game identifier. \cr
+   season \tab integer \tab Four-digit season year (e.g. 2024). \cr
+   season_type \tab character \tab Season type (regular, postseason, both). \cr
+   week \tab integer \tab Week of the season; 1-15, or 1-14 for seasons pre-playoff (2013 earlier). \cr
+   start_date \tab character \tab Kickoff timestamp in ISO 8601 format. \cr
+   home_team \tab character \tab Home D-I team name. \cr
+   home_conference \tab character \tab Home team D-I conference. \cr
+   home_classification \tab character \tab Home team conference classification (fbs, fcs, ii, iii). \cr
+   home_score \tab integer \tab Final score of the home team. \cr
+   away_team \tab character \tab Away D-I team name. \cr
+   away_conference \tab character \tab Away team D-I conference. \cr
+   away_classification \tab character \tab Away team conference classification (fbs, fcs, ii, iii). \cr
+   away_score \tab integer \tab Final score of the away team. \cr
+   provider \tab character \tab Sportsbook / line provider name. \cr
+   spread \tab character \tab Closing point spread for the game. \cr
+   formatted_spread \tab character \tab Human-readable formatted spread (e.g. "Florida State -7.5"). \cr
+   spread_open \tab character \tab Opening point spread for the game. \cr
+   over_under \tab character \tab Closing over/under (total) for the game. \cr
+   over_under_open \tab character \tab Opening over/under (total) for the game. \cr
+   home_moneyline \tab character \tab Home team moneyline odds. \cr
+   away_moneyline \tab character \tab Away team moneyline odds. \cr
 }
 }
 \description{

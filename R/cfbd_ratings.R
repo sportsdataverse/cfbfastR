@@ -69,17 +69,17 @@ NULL
 #'
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
 #'
-#'  |col_name          |types     |
-#'  |:-----------------|:---------|
-#'  |season            |integer   |
-#'  |season_type       |character |
-#'  |week              |integer   |
-#'  |poll              |character |
-#'  |rank              |integer   |
-#'  |school            |character |
-#'  |conference        |character |
-#'  |first_place_votes |integer   |
-#'  |points            |integer   |
+#'  |col_name          |types     |description                                                                            |
+#'  |:-----------------|:---------|:--------------------------------------------------------------------------------------|
+#'  |season            |integer   |Four-digit year of the season (e.g. 2019).                                             |
+#'  |season_type       |character |CFBD season type: "regular", "postseason", "both", or "allstar".                       |
+#'  |week              |integer   |Week number within the season (1-15 regular, 1 for postseason).                        |
+#'  |poll              |character |Poll name (e.g. "AP Top 25", "Coaches Poll", "Playoff Committee Rankings").            |
+#'  |rank              |integer   |Position of the school within the poll for the given week (1 = top-ranked).            |
+#'  |school            |character |Full school/team name as reported by the poll (e.g. "Georgia").                        |
+#'  |conference        |character |Conference affiliation of the ranked school (e.g. "SEC", "ACC").                       |
+#'  |first_place_votes |integer   |Number of first-place votes the school received in this poll week.                     |
+#'  |points            |integer   |Total points accumulated by the school in the poll's weighted voting.                  |
 #'
 #' @keywords CFB Rankings
 #' @importFrom cli cli_abort
@@ -162,37 +162,37 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both") {
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
 #'
-#'  |col_name                  |types     |
-#'  |:-------------------------|:---------|
-#'  |year                      |integer   |
-#'  |team                      |character |
-#'  |conference                |character |
-#'  |rating                    |numeric   |
-#'  |ranking                   |integer   |
-#'  |second_order_wins         |numeric   |
-#'  |sos                       |numeric   |
-#'  |offense_ranking           |integer   |
-#'  |offense_rating            |numeric   |
-#'  |offense_success           |numeric   |
-#'  |offense_explosiveness     |numeric   |
-#'  |offense_rushing           |numeric   |
-#'  |offense_passing           |numeric   |
-#'  |offense_standard_downs    |numeric   |
-#'  |offense_passing_downs     |numeric   |
-#'  |offense_run_rate          |numeric   |
-#'  |offense_pace              |numeric   |
-#'  |defense_ranking           |integer   |
-#'  |defense_rating            |numeric   |
-#'  |defense_success           |numeric   |
-#'  |defense_explosiveness     |numeric   |
-#'  |defense_rushing           |numeric   |
-#'  |defense_passing           |numeric   |
-#'  |defense_standard_downs    |numeric   |
-#'  |defense_passing_downs     |numeric   |
-#'  |defense_havoc_total       |numeric   |
-#'  |defense_havoc_front_seven |numeric   |
-#'  |defense_havoc_db          |numeric   |
-#'  |special_teams_rating      |numeric   |
+#'  |col_name                  |types     |description                                                                              |
+#'  |:-------------------------|:---------|:----------------------------------------------------------------------------------------|
+#'  |year                      |integer   |Four-digit season year (e.g. 2018).                                                      |
+#'  |team                      |character |Full team name (e.g. "Texas A&M").                                                       |
+#'  |conference                |character |Conference affiliation for the team in the given season.                                 |
+#'  |rating                    |numeric   |Overall SP+ rating (Bill Connelly methodology, in points per game).                      |
+#'  |ranking                   |integer   |National rank of the team's overall SP+ rating (1 = best).                               |
+#'  |second_order_wins         |numeric   |Estimated wins based on opponent-adjusted efficiency rather than actual results.         |
+#'  |sos                       |numeric   |Strength of schedule rating (SP+ scale).                                                 |
+#'  |offense_ranking           |integer   |National rank of the team's offensive SP+ rating (1 = best).                             |
+#'  |offense_rating            |numeric   |Offensive SP+ rating (points per drive adjusted for opponent).                           |
+#'  |offense_success           |numeric   |Offensive success rate component of SP+ (probability 0-1).                               |
+#'  |offense_explosiveness     |numeric   |Offensive explosiveness component of SP+ (EqPts/play on successful plays).               |
+#'  |offense_rushing           |numeric   |Offensive rushing efficiency component of SP+.                                           |
+#'  |offense_passing           |numeric   |Offensive passing efficiency component of SP+.                                           |
+#'  |offense_standard_downs    |numeric   |Offensive SP+ on standard downs (1st, 2nd & <= 7, 3rd/4th & <= 4).                       |
+#'  |offense_passing_downs     |numeric   |Offensive SP+ on passing downs (2nd & >= 8, 3rd/4th & >= 5).                             |
+#'  |offense_run_rate          |numeric   |Share of offensive snaps that are designed runs (0-1).                                   |
+#'  |offense_pace              |numeric   |Average seconds per play for the offense.                                                |
+#'  |defense_ranking           |integer   |National rank of the team's defensive SP+ rating (1 = best).                             |
+#'  |defense_rating            |numeric   |Defensive SP+ rating (points per drive allowed, opponent-adjusted).                      |
+#'  |defense_success           |numeric   |Defensive success rate component of SP+ (probability 0-1).                               |
+#'  |defense_explosiveness     |numeric   |Defensive explosiveness component of SP+ (EqPts/play allowed on successes).              |
+#'  |defense_rushing           |numeric   |Defensive rushing efficiency component of SP+.                                           |
+#'  |defense_passing           |numeric   |Defensive passing efficiency component of SP+.                                           |
+#'  |defense_standard_downs    |numeric   |Defensive SP+ on standard downs.                                                         |
+#'  |defense_passing_downs     |numeric   |Defensive SP+ on passing downs.                                                          |
+#'  |defense_havoc_total       |numeric   |Total havoc rate (TFLs + PBUs + forced fumbles divided by plays).                        |
+#'  |defense_havoc_front_seven |numeric   |Havoc rate contributed by the defensive front seven.                                     |
+#'  |defense_havoc_db          |numeric   |Havoc rate contributed by defensive backs.                                               |
+#'  |special_teams_rating      |numeric   |Special teams SP+ rating (points per game).                                              |
 #'
 #' @keywords SP+
 #' @importFrom jsonlite fromJSON
@@ -287,34 +287,35 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_ratings_sp_conference()] - A data frame with 25 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the conference rating.}
-#'   \item{`conference`: character.}{Conference name.}
-#'   \item{`rating`: double.}{Conference SP+ rating.}
-#'   \item{`second_order_wins`: logical.}{Second-order wins for the conference - Not available for recent seasons.}
-#'   \item{`sos`: logical.}{Strength of schedule for the conference  - Not available for recent seasons..}
-#'   \item{`offense_rating`: double.}{Overall offense rating for the conference.}
-#'   \item{`offense_success`: logical.}{Offense success rating for the conference - Not available for recent seasons.}
-#'   \item{`offense_explosiveness`: logical.}{Offense explosiveness rating for the conference - Not available for recent seasons.}
-#'   \item{`offense_rushing`: logical.}{Offense rushing rating for the conference - Not available for recent seasons.}
-#'   \item{`offense_passing`: logical.}{Offense passing rating for the conference - Not available for recent seasons.}
-#'   \item{`offense_standard_downs`: logical.}{Offense standard downs rating for the conference - Not available for recent seasons.}
-#'   \item{`offense_passing_downs`: logical.}{Offensive passing downs rating for the conference - Not available for recent seasons.}
-#'   \item{`offense_run_rate`: logical.}{Offense rushing rate for the conference - Not available for recent seasons.}
-#'   \item{`offense_pace`: logical.}{Offense pace factor for the conference - Not available for recent seasons.}
-#'   \item{`defense_ranking`: integer.}{Overall defense ranking for the conference.}
-#'   \item{`defense_rating`: double.}{Overall defense rating for the conference.}
-#'   \item{`defense_success`: logical.}{Defense success rating for the conference - Not available for recent seasons.}
-#'   \item{`defense_explosiveness`: logical.}{Defense explosiveness rating for the conference - Not available for recent seasons.}
-#'   \item{`defense_rushing`: logical.}{Defense rushing rating for the conference - Not available for recent seasons.}
-#'   \item{`defense_passing`: logical.}{Defense passing rating for the conference - Not available for recent seasons.}
-#'   \item{`defense_standard_downs`: logical.}{Defense standard downs rating for the conference - Not available for recent seasons.}
-#'   \item{`defense_passing_downs`: logical.}{Defensive passing downs rating for the conference - Not available for recent seasons.}
-#'   \item{`defense_havoc_total`: logical.}{Total defensive havoc rate for the conference - Not available for recent seasons.}
-#'   \item{`defense_havoc_front_seven`: logical.}{Defense havoc rate from front 7 players for the conference - Not available for recent seasons.}
-#'   \item{`defense_havoc_db`: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
-#'   \item{`special_teams_rating`: double.}{Special teams rating for the conference.}
-#' }
+#'
+#'  |col_name                  |types     |description                                                                              |
+#'  |:-------------------------|:---------|:----------------------------------------------------------------------------------------|
+#'  |year                      |integer   |Season of the conference rating.                                                         |
+#'  |conference                |character |Conference name.                                                                         |
+#'  |rating                    |numeric   |Conference SP+ rating.                                                                   |
+#'  |second_order_wins         |logical   |Second-order wins for the conference - Not available for recent seasons.                 |
+#'  |sos                       |logical   |Strength of schedule for the conference - Not available for recent seasons.              |
+#'  |offense_rating            |numeric   |Overall offense rating for the conference.                                               |
+#'  |offense_success           |logical   |Offense success rating for the conference - Not available for recent seasons.            |
+#'  |offense_explosiveness     |logical   |Offense explosiveness rating for the conference - Not available for recent seasons.      |
+#'  |offense_rushing           |logical   |Offense rushing rating for the conference - Not available for recent seasons.            |
+#'  |offense_passing           |logical   |Offense passing rating for the conference - Not available for recent seasons.            |
+#'  |offense_standard_downs    |logical   |Offense standard downs rating for the conference - Not available for recent seasons.     |
+#'  |offense_passing_downs     |logical   |Offensive passing downs rating for the conference - Not available for recent seasons.    |
+#'  |offense_run_rate          |logical   |Offense rushing rate for the conference - Not available for recent seasons.              |
+#'  |offense_pace              |logical   |Offense pace factor for the conference - Not available for recent seasons.               |
+#'  |defense_ranking           |integer   |Overall defense ranking for the conference.                                              |
+#'  |defense_rating            |numeric   |Overall defense rating for the conference.                                               |
+#'  |defense_success           |logical   |Defense success rating for the conference - Not available for recent seasons.            |
+#'  |defense_explosiveness     |logical   |Defense explosiveness rating for the conference - Not available for recent seasons.      |
+#'  |defense_rushing           |logical   |Defense rushing rating for the conference - Not available for recent seasons.            |
+#'  |defense_passing           |logical   |Defense passing rating for the conference - Not available for recent seasons.            |
+#'  |defense_standard_downs    |logical   |Defense standard downs rating for the conference - Not available for recent seasons.     |
+#'  |defense_passing_downs     |logical   |Defensive passing downs rating for the conference - Not available for recent seasons.    |
+#'  |defense_havoc_total       |logical   |Total defensive havoc rate for the conference - Not available for recent seasons.        |
+#'  |defense_havoc_front_seven |logical   |Defense havoc rate from front 7 players for the conference - Not available for recent seasons. |
+#'  |defense_havoc_db          |logical   |Defense havoc rate from defensive backs for the conference - Not available for recent seasons. |
+#'  |special_teams_rating      |numeric   |Special teams rating for the conference.                                                 |
 #' @keywords SP+ Conference
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -409,14 +410,15 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_ratings_srs()] - A data frame with 6 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the SRS rating.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`division`: logical.}{Division in the conference for the team.}
-#'   \item{`rating`: double.}{Simple Rating System (SRS) rating.}
-#'   \item{`ranking`: integer.}{Simple Rating System ranking within the group returned.}
-#' }
+#'
+#'  |col_name   |types     |description                                                  |
+#'  |:----------|:---------|:------------------------------------------------------------|
+#'  |year       |integer   |Season of the SRS rating.                                    |
+#'  |team       |character |Team name.                                                   |
+#'  |conference |character |Conference of the team.                                      |
+#'  |division   |character |Division in the conference for the team.                    |
+#'  |rating     |numeric   |Simple Rating System (SRS) rating.                           |
+#'  |ranking    |integer   |Simple Rating System ranking within the group returned.      |
 #' @keywords SRS
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -497,12 +499,12 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'
 #' @return [cfbd_ratings_elo()] - A data frame with 4 variables:
 #'
-#'  |col_name   |types     |
-#'  |:----------|:---------|
-#'  |year       |integer   |
-#'  |team       |character |
-#'  |conference |character |
-#'  |elo        |numeric   |
+#'  |col_name   |types     |description                                                                       |
+#'  |:----------|:---------|:---------------------------------------------------------------------------------|
+#'  |year       |integer   |Four-digit season year (e.g. 2019).                                               |
+#'  |team       |character |Full team name (e.g. "Texas").                                                    |
+#'  |conference |character |Conference affiliation for the team in the given season.                          |
+#'  |elo        |numeric   |CFBD-calculated Elo rating for the team as of the requested week.                 |
 #'
 #' @keywords elo
 #' @importFrom jsonlite fromJSON
@@ -583,22 +585,22 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
 #'
 #' @return [cfbd_ratings_fpi()] - A data frame with 14 variables:
 #'
-#'  |col_name                                    |types     |
-#'  |:-------------------------------------------|:---------|
-#'  |year                                        |integer   |
-#'  |team                                        |character |
-#'  |conference                                  |character |
-#'  |fpi                                         |numeric   |
-#'  |resume_ranks_strength_of_record             |integer   |
-#'  |resume_ranks_fpi                            |integer   |
-#'  |resume_ranks_average_win_probability        |integer   |
-#'  |resume_ranks_strength_of_schedule           |integer   |
-#'  |resume_ranks_remaining_strength_of_schedule |integer   |
-#'  |resume_ranks_game_control                   |integer   |
-#'  |efficiencies_overall                        |numeric   |
-#'  |efficiencies_offense                        |numeric   |
-#'  |efficiencies_defense                        |numeric   |
-#'  |efficiencies_special_teams                  |numeric   |
+#'  |col_name                                    |types     |description                                                                                |
+#'  |:-------------------------------------------|:---------|:------------------------------------------------------------------------------------------|
+#'  |year                                        |integer   |Four-digit season year (e.g. 2019).                                                        |
+#'  |team                                        |character |Full team name (e.g. "Texas").                                                             |
+#'  |conference                                  |character |Conference affiliation for the team in the given season.                                   |
+#'  |fpi                                         |numeric   |ESPN Football Power Index rating (projected scoring margin vs. average team).              |
+#'  |resume_ranks_strength_of_record             |integer   |National rank of the team's strength of record (1 = best).                                 |
+#'  |resume_ranks_fpi                            |integer   |National rank of the team's FPI rating (1 = best).                                         |
+#'  |resume_ranks_average_win_probability        |integer   |National rank of the team's average single-game win probability (1 = best).                |
+#'  |resume_ranks_strength_of_schedule           |integer   |National rank of the team's schedule strength to date (1 = toughest).                      |
+#'  |resume_ranks_remaining_strength_of_schedule |integer   |National rank of the team's remaining schedule strength (1 = toughest).                    |
+#'  |resume_ranks_game_control                   |integer   |National rank of the team's average in-game win probability (1 = best).                    |
+#'  |efficiencies_overall                        |numeric   |Overall FPI efficiency rating (combined offense, defense, and special teams).              |
+#'  |efficiencies_offense                        |numeric   |FPI offensive efficiency rating.                                                           |
+#'  |efficiencies_defense                        |numeric   |FPI defensive efficiency rating.                                                           |
+#'  |efficiencies_special_teams                  |numeric   |FPI special teams efficiency rating.                                                       |
 #'
 #' @keywords Ratings FPI
 #' @importFrom jsonlite fromJSON

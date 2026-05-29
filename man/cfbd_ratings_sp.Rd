@@ -12,37 +12,37 @@ cfbd_ratings_sp(year = NULL, team = NULL)
 \item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 }
 \value{
-\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:\tabular{ll}{
-   col_name \tab types \cr
-   year \tab integer \cr
-   team \tab character \cr
-   conference \tab character \cr
-   rating \tab numeric \cr
-   ranking \tab integer \cr
-   second_order_wins \tab numeric \cr
-   sos \tab numeric \cr
-   offense_ranking \tab integer \cr
-   offense_rating \tab numeric \cr
-   offense_success \tab numeric \cr
-   offense_explosiveness \tab numeric \cr
-   offense_rushing \tab numeric \cr
-   offense_passing \tab numeric \cr
-   offense_standard_downs \tab numeric \cr
-   offense_passing_downs \tab numeric \cr
-   offense_run_rate \tab numeric \cr
-   offense_pace \tab numeric \cr
-   defense_ranking \tab integer \cr
-   defense_rating \tab numeric \cr
-   defense_success \tab numeric \cr
-   defense_explosiveness \tab numeric \cr
-   defense_rushing \tab numeric \cr
-   defense_passing \tab numeric \cr
-   defense_standard_downs \tab numeric \cr
-   defense_passing_downs \tab numeric \cr
-   defense_havoc_total \tab numeric \cr
-   defense_havoc_front_seven \tab numeric \cr
-   defense_havoc_db \tab numeric \cr
-   special_teams_rating \tab numeric \cr
+\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}} - A data frame with 26 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year (e.g. 2018). \cr
+   team \tab character \tab Full team name (e.g. "Texas A&M"). \cr
+   conference \tab character \tab Conference affiliation for the team in the given season. \cr
+   rating \tab numeric \tab Overall SP+ rating (Bill Connelly methodology, in points per game). \cr
+   ranking \tab integer \tab National rank of the team's overall SP+ rating (1 = best). \cr
+   second_order_wins \tab numeric \tab Estimated wins based on opponent-adjusted efficiency rather than actual results. \cr
+   sos \tab numeric \tab Strength of schedule rating (SP+ scale). \cr
+   offense_ranking \tab integer \tab National rank of the team's offensive SP+ rating (1 = best). \cr
+   offense_rating \tab numeric \tab Offensive SP+ rating (points per drive adjusted for opponent). \cr
+   offense_success \tab numeric \tab Offensive success rate component of SP+ (probability 0-1). \cr
+   offense_explosiveness \tab numeric \tab Offensive explosiveness component of SP+ (EqPts/play on successful plays). \cr
+   offense_rushing \tab numeric \tab Offensive rushing efficiency component of SP+. \cr
+   offense_passing \tab numeric \tab Offensive passing efficiency component of SP+. \cr
+   offense_standard_downs \tab numeric \tab Offensive SP+ on standard downs (1st, 2nd & <= 7, 3rd/4th & <= 4). \cr
+   offense_passing_downs \tab numeric \tab Offensive SP+ on passing downs (2nd & >= 8, 3rd/4th & >= 5). \cr
+   offense_run_rate \tab numeric \tab Share of offensive snaps that are designed runs (0-1). \cr
+   offense_pace \tab numeric \tab Average seconds per play for the offense. \cr
+   defense_ranking \tab integer \tab National rank of the team's defensive SP+ rating (1 = best). \cr
+   defense_rating \tab numeric \tab Defensive SP+ rating (points per drive allowed, opponent-adjusted). \cr
+   defense_success \tab numeric \tab Defensive success rate component of SP+ (probability 0-1). \cr
+   defense_explosiveness \tab numeric \tab Defensive explosiveness component of SP+ (EqPts/play allowed on successes). \cr
+   defense_rushing \tab numeric \tab Defensive rushing efficiency component of SP+. \cr
+   defense_passing \tab numeric \tab Defensive passing efficiency component of SP+. \cr
+   defense_standard_downs \tab numeric \tab Defensive SP+ on standard downs. \cr
+   defense_passing_downs \tab numeric \tab Defensive SP+ on passing downs. \cr
+   defense_havoc_total \tab numeric \tab Total havoc rate (TFLs + PBUs + forced fumbles divided by plays). \cr
+   defense_havoc_front_seven \tab numeric \tab Havoc rate contributed by the defensive front seven. \cr
+   defense_havoc_db \tab numeric \tab Havoc rate contributed by defensive backs. \cr
+   special_teams_rating \tab numeric \tab Special teams SP+ rating (points per game). \cr
 }
 }
 \description{

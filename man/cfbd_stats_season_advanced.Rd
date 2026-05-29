@@ -24,89 +24,89 @@ cfbd_stats_season_advanced(
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 }
 \value{
-\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 82 variables:
-\describe{
-\item{\code{season}: integer.}{Season of the statistics.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{off_plays}: integer.}{Offense plays in the game.}
-\item{\code{off_drives}: integer.}{Offense drives in the game.}
-\item{\code{off_ppa}: double.}{Offense predicted points added (PPA).}
-\item{\code{off_total_ppa}: double.}{Offense total predicted points added (PPA).}
-\item{\code{off_success_rate}: double.}{Offense success rate.}
-\item{\code{off_explosiveness}: double.}{Offense explosiveness rate.}
-\item{\code{off_power_success}: double.}{Offense power success rate.}
-\item{\code{off_stuff_rate}: double.}{Offense rushing stuff rate.}
-\item{\code{off_line_yds}: double.}{Offensive line yards.}
-\item{\code{off_line_yds_total}: integer.}{Offensive line yards total.}
-\item{\code{off_second_lvl_yds}: double.}{Offense second-level yards.}
-\item{\code{off_second_lvl_yds_total}: integer.}{Offense second-level yards total.}
-\item{\code{off_open_field_yds}: integer.}{Offense open field yards.}
-\item{\code{off_open_field_yds_total}: integer.}{Offense open field yards total.}
-\item{\code{off_total_opportunities}: integer.}{Offense opportunities.}
-\item{\code{off_pts_per_opp}: double.}{Offense points per scoring opportunity.}
-\item{\code{off_field_pos_avg_start}: double.}{Offense starting average field position.}
-\item{\code{off_field_pos_avg_predicted_points}: double.}{Offense starting average field position predicted points (PP).}
-\item{\code{off_havoc_total}: double.}{Offense havoc rate total.}
-\item{\code{off_havoc_front_seven}: double.}{Offense front-7 havoc rate.}
-\item{\code{off_havoc_db}: double.}{Offense defensive back havoc rate.}
-\item{\code{off_standard_downs_rate}: double.}{Offense standard downs rate.}
-\item{\code{off_standard_downs_ppa}: double.}{Offense standard downs predicted points added (PPA).}
-\item{\code{off_standard_downs_success_rate}: double.}{Offense standard downs success rate.}
-\item{\code{off_standard_downs_explosiveness}: double.}{Offense standard downs explosiveness rate.}
-\item{\code{off_passing_downs_rate}: double.}{Offense passing downs rate.}
-\item{\code{off_passing_downs_ppa}: double.}{Offense passing downs predicted points added (PPA).}
-\item{\code{off_passing_downs_success_rate}: double.}{Offense passing downs success rate.}
-\item{\code{off_passing_downs_explosiveness}: double.}{Offense passing downs explosiveness rate.}
-\item{\code{off_rushing_plays_rate}: double.}{Offense rushing plays rate.}
-\item{\code{off_rushing_plays_ppa}: double.}{Offense rushing plays predicted points added (PPA).}
-\item{\code{off_rushing_plays_total_ppa}: double.}{Offense rushing plays total predicted points added (PPA).}
-\item{\code{off_rushing_plays_success_rate}: double.}{Offense rushing plays success rate.}
-\item{\code{off_rushing_plays_explosiveness}: double.}{Offense rushing plays explosiveness rate.}
-\item{\code{off_passing_plays_rate}: double.}{Offense passing plays rate.}
-\item{\code{off_passing_plays_ppa}: double.}{Offense passing plays predicted points added (PPA).}
-\item{\code{off_passing_plays_total_ppa}: double.}{Offense passing plays total predicted points added (PPA).}
-\item{\code{off_passing_plays_success_rate}: double.}{Offense passing plays success rate.}
-\item{\code{off_passing_plays_explosiveness}: double.}{Offense passing plays explosiveness rate.}
-\item{\code{def_plays}: integer.}{Defense plays in the game.}
-\item{\code{def_drives}: integer.}{Defense drives in the game.}
-\item{\code{def_ppa}: double.}{Defense predicted points added (PPA).}
-\item{\code{def_total_ppa}: double.}{Defense total predicted points added (PPA).}
-\item{\code{def_success_rate}: double.}{Defense success rate.}
-\item{\code{def_explosiveness}: double.}{Defense explosiveness rate.}
-\item{\code{def_power_success}: double.}{Defense power success rate.}
-\item{\code{def_stuff_rate}: double.}{Defense rushing stuff rate.}
-\item{\code{def_line_yds}: double.}{Defense Offensive line yards allowed.}
-\item{\code{def_line_yds_total}: integer.}{Defense Offensive line yards total allowed.}
-\item{\code{def_second_lvl_yds}: double.}{Defense second-level yards.}
-\item{\code{def_second_lvl_yds_total}: integer.}{Defense second-level yards total.}
-\item{\code{def_open_field_yds}: integer.}{Defense open field yards.}
-\item{\code{def_open_field_yds_total}: integer.}{Defense open field yards total.}
-\item{\code{def_total_opportunities}: integer.}{Defense opportunities.}
-\item{\code{def_pts_per_opp}: double.}{Defense points per scoring opportunity.}
-\item{\code{def_field_pos_avg_start}: double.}{Defense starting average field position.}
-\item{\code{def_field_pos_avg_predicted_points}: double.}{Defense starting average field position predicted points (PP).}
-\item{\code{def_havoc_total}: double.}{Defense havoc rate total.}
-\item{\code{def_havoc_front_seven}: double.}{Defense front-7 havoc rate.}
-\item{\code{def_havoc_db}: double.}{Defense defensive back havoc rate.}
-\item{\code{def_standard_downs_rate}: double.}{Defense standard downs rate.}
-\item{\code{def_standard_downs_ppa}: double.}{Defense standard downs predicted points added (PPA).}
-\item{\code{def_standard_downs_success_rate}: double.}{Defense standard downs success rate.}
-\item{\code{def_standard_downs_explosiveness}: double.}{Defense standard downs explosiveness rate.}
-\item{\code{def_passing_downs_rate}: double.}{Defense passing downs rate.}
-\item{\code{def_passing_downs_ppa}: double.}{Defense passing downs predicted points added (PPA).}
-\item{\code{def_passing_downs_success_rate}: double.}{Defense passing downs success rate.}
-\item{\code{def_passing_downs_explosiveness}: double.}{Defense passing downs explosiveness rate.}
-\item{\code{def_rushing_plays_rate}: double.}{Defense rushing plays rate.}
-\item{\code{def_rushing_plays_ppa}: double.}{Defense rushing plays predicted points added (PPA).}
-\item{\code{def_rushing_plays_total_ppa}: double.}{Defense rushing plays total predicted points added (PPA).}
-\item{\code{def_rushing_plays_success_rate}: double.}{Defense rushing plays success rate.}
-\item{\code{def_rushing_plays_explosiveness}: double.}{Defense rushing plays explosiveness rate.}
-\item{\code{def_passing_plays_rate}: double.}{Defense passing plays rate.}
-\item{\code{def_passing_plays_ppa}: double.}{Defense passing plays predicted points added (PPA).}
-\item{\code{def_passing_plays_total_ppa}: double.}{Defense passing plays total predicted points added (PPA).}
-\item{\code{def_passing_plays_success_rate}: double.}{Defense passing plays success rate.}
-\item{\code{def_passing_plays_explosiveness}: double.}{Defense passing plays explosiveness rate.}
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 82 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Season of the statistics. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of the team. \cr
+   off_plays \tab integer \tab Offense plays in the game. \cr
+   off_drives \tab integer \tab Offense drives in the game. \cr
+   off_ppa \tab double \tab Offense predicted points added (PPA). \cr
+   off_total_ppa \tab double \tab Offense total predicted points added (PPA). \cr
+   off_success_rate \tab double \tab Offense success rate. \cr
+   off_explosiveness \tab double \tab Offense explosiveness rate. \cr
+   off_power_success \tab double \tab Offense power success rate. \cr
+   off_stuff_rate \tab double \tab Offense rushing stuff rate. \cr
+   off_line_yds \tab double \tab Offensive line yards. \cr
+   off_line_yds_total \tab integer \tab Offensive line yards total. \cr
+   off_second_lvl_yds \tab double \tab Offense second-level yards. \cr
+   off_second_lvl_yds_total \tab integer \tab Offense second-level yards total. \cr
+   off_open_field_yds \tab integer \tab Offense open field yards. \cr
+   off_open_field_yds_total \tab integer \tab Offense open field yards total. \cr
+   off_total_opportunities \tab integer \tab Offense opportunities. \cr
+   off_pts_per_opp \tab double \tab Offense points per scoring opportunity. \cr
+   off_field_pos_avg_start \tab double \tab Offense starting average field position. \cr
+   off_field_pos_avg_predicted_points \tab double \tab Offense starting average field position predicted points (PP). \cr
+   off_havoc_total \tab double \tab Offense havoc rate total. \cr
+   off_havoc_front_seven \tab double \tab Offense front-7 havoc rate. \cr
+   off_havoc_db \tab double \tab Offense defensive back havoc rate. \cr
+   off_standard_downs_rate \tab double \tab Offense standard downs rate. \cr
+   off_standard_downs_ppa \tab double \tab Offense standard downs predicted points added (PPA). \cr
+   off_standard_downs_success_rate \tab double \tab Offense standard downs success rate. \cr
+   off_standard_downs_explosiveness \tab double \tab Offense standard downs explosiveness rate. \cr
+   off_passing_downs_rate \tab double \tab Offense passing downs rate. \cr
+   off_passing_downs_ppa \tab double \tab Offense passing downs predicted points added (PPA). \cr
+   off_passing_downs_success_rate \tab double \tab Offense passing downs success rate. \cr
+   off_passing_downs_explosiveness \tab double \tab Offense passing downs explosiveness rate. \cr
+   off_rushing_plays_rate \tab double \tab Offense rushing plays rate. \cr
+   off_rushing_plays_ppa \tab double \tab Offense rushing plays predicted points added (PPA). \cr
+   off_rushing_plays_total_ppa \tab double \tab Offense rushing plays total predicted points added (PPA). \cr
+   off_rushing_plays_success_rate \tab double \tab Offense rushing plays success rate. \cr
+   off_rushing_plays_explosiveness \tab double \tab Offense rushing plays explosiveness rate. \cr
+   off_passing_plays_rate \tab double \tab Offense passing plays rate. \cr
+   off_passing_plays_ppa \tab double \tab Offense passing plays predicted points added (PPA). \cr
+   off_passing_plays_total_ppa \tab double \tab Offense passing plays total predicted points added (PPA). \cr
+   off_passing_plays_success_rate \tab double \tab Offense passing plays success rate. \cr
+   off_passing_plays_explosiveness \tab double \tab Offense passing plays explosiveness rate. \cr
+   def_plays \tab integer \tab Defense plays in the game. \cr
+   def_drives \tab integer \tab Defense drives in the game. \cr
+   def_ppa \tab double \tab Defense predicted points added (PPA). \cr
+   def_total_ppa \tab double \tab Defense total predicted points added (PPA). \cr
+   def_success_rate \tab double \tab Defense success rate. \cr
+   def_explosiveness \tab double \tab Defense explosiveness rate. \cr
+   def_power_success \tab double \tab Defense power success rate. \cr
+   def_stuff_rate \tab double \tab Defense rushing stuff rate. \cr
+   def_line_yds \tab double \tab Defense Offensive line yards allowed. \cr
+   def_line_yds_total \tab integer \tab Defense Offensive line yards total allowed. \cr
+   def_second_lvl_yds \tab double \tab Defense second-level yards. \cr
+   def_second_lvl_yds_total \tab integer \tab Defense second-level yards total. \cr
+   def_open_field_yds \tab integer \tab Defense open field yards. \cr
+   def_open_field_yds_total \tab integer \tab Defense open field yards total. \cr
+   def_total_opportunities \tab integer \tab Defense opportunities. \cr
+   def_pts_per_opp \tab double \tab Defense points per scoring opportunity. \cr
+   def_field_pos_avg_start \tab double \tab Defense starting average field position. \cr
+   def_field_pos_avg_predicted_points \tab double \tab Defense starting average field position predicted points (PP). \cr
+   def_havoc_total \tab double \tab Defense havoc rate total. \cr
+   def_havoc_front_seven \tab double \tab Defense front-7 havoc rate. \cr
+   def_havoc_db \tab double \tab Defense defensive back havoc rate. \cr
+   def_standard_downs_rate \tab double \tab Defense standard downs rate. \cr
+   def_standard_downs_ppa \tab double \tab Defense standard downs predicted points added (PPA). \cr
+   def_standard_downs_success_rate \tab double \tab Defense standard downs success rate. \cr
+   def_standard_downs_explosiveness \tab double \tab Defense standard downs explosiveness rate. \cr
+   def_passing_downs_rate \tab double \tab Defense passing downs rate. \cr
+   def_passing_downs_ppa \tab double \tab Defense passing downs predicted points added (PPA). \cr
+   def_passing_downs_success_rate \tab double \tab Defense passing downs success rate. \cr
+   def_passing_downs_explosiveness \tab double \tab Defense passing downs explosiveness rate. \cr
+   def_rushing_plays_rate \tab double \tab Defense rushing plays rate. \cr
+   def_rushing_plays_ppa \tab double \tab Defense rushing plays predicted points added (PPA). \cr
+   def_rushing_plays_total_ppa \tab double \tab Defense rushing plays total predicted points added (PPA). \cr
+   def_rushing_plays_success_rate \tab double \tab Defense rushing plays success rate. \cr
+   def_rushing_plays_explosiveness \tab double \tab Defense rushing plays explosiveness rate. \cr
+   def_passing_plays_rate \tab double \tab Defense passing plays rate. \cr
+   def_passing_plays_ppa \tab double \tab Defense passing plays predicted points added (PPA). \cr
+   def_passing_plays_total_ppa \tab double \tab Defense passing plays total predicted points added (PPA). \cr
+   def_passing_plays_success_rate \tab double \tab Defense passing plays success rate. \cr
+   def_passing_plays_explosiveness \tab double \tab Defense passing plays explosiveness rate. \cr
 }
 }
 \description{

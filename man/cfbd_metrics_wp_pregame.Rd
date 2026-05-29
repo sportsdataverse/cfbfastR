@@ -21,17 +21,17 @@ cfbd_metrics_wp_pregame(
 \item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
-\code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Season of game.}
-\item{\code{season_type}: character.}{Season type of game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{home_team}: character.}{Home team name.}
-\item{\code{away_team}: character.}{Away team name.}
-\item{\code{spread}: integer.}{Betting line provider spread.}
-\item{\code{home_win_prob}: double.}{Home win probability - pre-game prediction.}
-\item{\code{away_win_prob}: double.}{Away win probability - pre-game prediction.}
+\code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}} - A data frame with 9 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Season of the game. \cr
+   season_type \tab character \tab Season type of the game (regular, postseason, etc.). \cr
+   week \tab integer \tab Game week of the season. \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   home_team \tab character \tab Home team name. \cr
+   away_team \tab character \tab Away team name. \cr
+   spread \tab numeric \tab Betting line provider spread. \cr
+   home_win_prob \tab numeric \tab Home win probability - pre-game prediction (0-1). \cr
+   away_win_prob \tab numeric \tab Away win probability - pre-game prediction (0-1). \cr
 }
 }
 \description{

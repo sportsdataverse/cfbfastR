@@ -36,22 +36,22 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 }
 \value{
-\code{\link[=cfbd_player_usage]{cfbd_player_usage()}} - A data frame with 14 variables:
-\describe{
-\item{\code{season}: integer.}{Player usage season.}
-\item{\code{athlete_id}: character.}{Referencing athlete id.}
-\item{\code{name}: character.}{Athlete name.}
-\item{\code{position}: character.}{Athlete position.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of team.}
-\item{\code{usg_overall}: double.}{Player usage of overall offense.}
-\item{\code{usg_pass}: double.}{Player passing usage percentage.}
-\item{\code{usg_rush}: double.}{Player rushing usage percentage.}
-\item{\code{usg_1st_down}: double.}{Player first down usage percentage.}
-\item{\code{usg_2nd_down}: double.}{Player second down usage percentage.}
-\item{\code{usg_3rd_down}: double.}{Player third down usage percentage.}
-\item{\code{usg_standard_downs}: double.}{Player standard down usage percentage.}
-\item{\code{usg_passing_downs}: double.}{Player passing down usage percentage.}
+\code{\link[=cfbd_player_usage]{cfbd_player_usage()}} - A data frame with 14 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Four-digit season year for player usage. \cr
+   athlete_id \tab character \tab Unique CFBD athlete identifier. \cr
+   name \tab character \tab Athlete full name. \cr
+   position \tab character \tab Athlete position abbreviation (e.g. QB, RB, WR). \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of team. \cr
+   usg_overall \tab numeric \tab Player share of overall offensive usage. \cr
+   usg_pass \tab numeric \tab Player share of team passing usage. \cr
+   usg_rush \tab numeric \tab Player share of team rushing usage. \cr
+   usg_1st_down \tab numeric \tab Player share of team usage on first downs. \cr
+   usg_2nd_down \tab numeric \tab Player share of team usage on second downs. \cr
+   usg_3rd_down \tab numeric \tab Player share of team usage on third downs. \cr
+   usg_standard_downs \tab numeric \tab Player share of team usage on standard downs. \cr
+   usg_passing_downs \tab numeric \tab Player share of team usage on passing downs. \cr
 }
 }
 \description{

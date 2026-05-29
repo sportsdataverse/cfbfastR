@@ -7,9 +7,9 @@
 cfbd_stats_categories()
 }
 \value{
-\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}} A data frame with 38 values:
-\describe{
-\item{name}{Statistics Categories}
+\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}} A data frame with 1 variable:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   category \tab character \tab CFBD stats category name (e.g. passing, rushing, defensive). \cr
 }
 }
 \description{

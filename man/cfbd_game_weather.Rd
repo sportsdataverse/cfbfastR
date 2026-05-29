@@ -26,31 +26,31 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{start_date}: character.}{Game date.}
-\item{\code{start_time_tbd}: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
-\item{\code{game_indoors}: logical.}{TRUE/FALSE flag for if the game is indoors}
-\item{\code{home_team}: character.}{Home team name.}
-\item{\code{home_conference}: character.}{Home team conference.}
-\item{\code{away_team}: character.}{Away team name.}
-\item{\code{away_conference}: character.}{Away team conference.}
-\item{\code{venue_id}: integer.}{Referencing venue id.}
-\item{\code{venue}: character.}{Venue name.}
-\item{\code{temperature}: integer.}{Temperature.}
-\item{\code{dew_point}: integer.}{Dew Point.}
-\item{\code{humidity}: integer.}{Humidity.}
-\item{\code{precipitation}: integer.}{Precipitation.}
-\item{\code{snowfall}: integer.}{Snowfall.}
-\item{\code{wind_direction}: integer.}{Wind direction.}
-\item{\code{wind_speed}: integer.}{Wind Speed.}
-\item{\code{pressure}: integer.}{Pressure.}
-\item{\code{weather_condition_code}: integer.}{Weather condition code.}
-\item{\code{weather_condition}: character.}{Weather condition.}
+\code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   season \tab integer \tab Season of the game. \cr
+   week \tab integer \tab Game week. \cr
+   season_type \tab character \tab Season type of the game. \cr
+   start_date \tab character \tab Game date. \cr
+   start_time_tbd \tab logical \tab TRUE/FALSE flag for if the game's start time is to be determined. \cr
+   game_indoors \tab logical \tab TRUE/FALSE flag for if the game is indoors. \cr
+   home_team \tab character \tab Home team name. \cr
+   home_conference \tab character \tab Home team conference. \cr
+   away_team \tab character \tab Away team name. \cr
+   away_conference \tab character \tab Away team conference. \cr
+   venue_id \tab integer \tab Referencing venue id. \cr
+   venue \tab character \tab Venue name. \cr
+   temperature \tab integer \tab Game-time temperature, in degrees Fahrenheit. \cr
+   dew_point \tab integer \tab Dew point at kickoff, in degrees Fahrenheit. \cr
+   humidity \tab integer \tab Relative humidity at kickoff, as a percentage (0-100). \cr
+   precipitation \tab integer \tab Precipitation total at kickoff, in inches. \cr
+   snowfall \tab integer \tab Snowfall total at kickoff, in inches. \cr
+   wind_direction \tab integer \tab Wind direction, in degrees (0-360, 0 = north). \cr
+   wind_speed \tab integer \tab Wind speed, in miles per hour. \cr
+   pressure \tab integer \tab Barometric pressure, in millibars. \cr
+   weather_condition_code \tab integer \tab Weather condition code from the upstream weather provider. \cr
+   weather_condition \tab character \tab Free-text weather condition (e.g. "Clear", "Light rain"). \cr
 }
 }
 \description{

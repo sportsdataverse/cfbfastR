@@ -7,22 +7,22 @@
 cfbd_venues()
 }
 \value{
-A data frame with 337 rows and 13 variables:
-\describe{
-\item{\code{venue_id}:integer.}{Referencing venue ID.}
-\item{\code{name}:character.}{Venue name.}
-\item{\code{capacity}:integer.}{Stadium capacity.}
-\item{\code{grass}:logical.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
-\item{\code{city}:character.}{Venue city.}
-\item{\code{state}:character.}{Venue state.}
-\item{\code{zip}:character.}{Venue zip.}
-\item{\code{country_code}:character.}{Venue country code.}
-\item{\code{latitude}:double.}{Venue latitude.}
-\item{\code{longitude}: double.}{Venue longitude.}
-\item{\code{elevation}:character.}{Venue elevation.}
-\item{\code{year_constructed}:integer.}{Year in which the venue was constructed.}
-\item{\code{dome}:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
-\item{\code{timezone}:character.}{Time zone in which the venue resides (i.e. Eastern Time -> "America/New York").}
+A data frame with 337 rows and 14 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   venue_id \tab integer \tab Referencing venue ID. \cr
+   name \tab character \tab Venue name. \cr
+   capacity \tab integer \tab Stadium capacity. \cr
+   grass \tab logical \tab TRUE/FALSE response on whether the field is grass or not. \cr
+   city \tab character \tab Venue city. \cr
+   state \tab character \tab Venue state. \cr
+   zip \tab character \tab Venue zip code. \cr
+   country_code \tab character \tab Venue country code. \cr
+   latitude \tab numeric \tab Venue latitude in decimal degrees. \cr
+   longitude \tab numeric \tab Venue longitude in decimal degrees. \cr
+   elevation \tab character \tab Venue elevation above sea level. \cr
+   year_constructed \tab integer \tab Year in which the venue was constructed. \cr
+   dome \tab logical \tab TRUE/FALSE response to whether the venue has a dome or not. \cr
+   timezone \tab character \tab Time zone in which the venue resides (i.e. Eastern Time -> "America/New_York"). \cr
 }
 }
 \description{

@@ -20,23 +20,23 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_player_returning]{cfbd_player_returning()}} - A data frame with 15 variables:
-\describe{
-\item{\code{season}:integer.}{Returning player season.}
-\item{\code{team}:character.}{Team name.}
-\item{\code{conference}:character.}{Conference of team.}
-\item{\code{total_ppa}:double.}{Total predicted points added returning.}
-\item{\code{total_passing_ppa}:double.}{Total passing predicted points added returning.}
-\item{\code{total_receiving_ppa}:double.}{Total receiving predicted points added returning.}
-\item{\code{total_rushing_ppa}:double.}{Total rushing predicted points added returning.}
-\item{\code{percent_ppa}:double.}{Percentage of prior year's predicted points added returning.}
-\item{\code{percent_passing_ppa}:double.}{Percentage of prior year's passing predicted points added returning.}
-\item{\code{percent_receiving_ppa}:double.}{Percentage of prior year's receiving predicted points added returning.}
-\item{\code{percent_rushing_ppa}:double.}{Percentage of prior year's rushing predicted points added returning.}
-\item{\code{usage}:double.}{.}
-\item{\code{passing_usage}:double.}{.}
-\item{\code{receiving_usage}:double.}{.}
-\item{\code{rushing_usage}:double.}{.}
+\code{\link[=cfbd_player_returning]{cfbd_player_returning()}} - A data frame with 15 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Four-digit season year for returning production. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of team. \cr
+   total_ppa \tab numeric \tab Total predicted points added (PPA) returning. \cr
+   total_passing_ppa \tab numeric \tab Total passing predicted points added returning. \cr
+   total_receiving_ppa \tab numeric \tab Total receiving predicted points added returning. \cr
+   total_rushing_ppa \tab numeric \tab Total rushing predicted points added returning. \cr
+   percent_ppa \tab numeric \tab Percentage of prior year's predicted points added returning. \cr
+   percent_passing_ppa \tab numeric \tab Percentage of prior year's passing predicted points added returning. \cr
+   percent_receiving_ppa \tab numeric \tab Percentage of prior year's receiving predicted points added returning. \cr
+   percent_rushing_ppa \tab numeric \tab Percentage of prior year's rushing predicted points added returning. \cr
+   usage \tab numeric \tab Share of prior year's overall offensive usage returning. \cr
+   passing_usage \tab numeric \tab Share of prior year's passing usage returning. \cr
+   receiving_usage \tab numeric \tab Share of prior year's receiving usage returning. \cr
+   rushing_usage \tab numeric \tab Share of prior year's rushing usage returning. \cr
 }
 }
 \description{

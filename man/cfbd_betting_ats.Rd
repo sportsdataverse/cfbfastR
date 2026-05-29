@@ -16,18 +16,17 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr}
 }
 \value{
-Against-the-spread records with the following columns:
-
-\describe{
-\item{year:integer.}{Season.}
-\item{team_id:integer.}{Unique team identifier - team_id.}
-\item{team:character.}{Team name.}
-\item{conference:character.}{Conference.}
-\item{games:integer.}{Number of games included in the ATS summary.}
-\item{ats_wins:integer.}{Games the team covered the spread.}
-\item{ats_losses:integer.}{Games the team failed to cover the spread.}
-\item{ats_pushes:integer.}{Games that pushed against the spread.}
-\item{avg_cover_margin:numeric.}{Average margin by which the team beat the spread.}
+Against-the-spread records with the following 9 columns:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year. \cr
+   team_id \tab integer \tab Unique CFBD team identifier. \cr
+   team \tab character \tab D-I team name. \cr
+   conference \tab character \tab Team conference name. \cr
+   games \tab integer \tab Number of games included in the ATS summary. \cr
+   ats_wins \tab integer \tab Games the team covered the spread. \cr
+   ats_losses \tab integer \tab Games the team failed to cover the spread. \cr
+   ats_pushes \tab integer \tab Games that pushed against the spread. \cr
+   avg_cover_margin \tab numeric \tab Average margin by which the team beat the spread. \cr
 }
 }
 \description{

@@ -14,49 +14,49 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_live_scoreboard]{cfbd_live_scoreboard()}} - A data frame with 41 variables:\tabular{ll}{
-   col_name \tab types \cr
-   game_id \tab integer \cr
-   start_date \tab character \cr
-   start_time_tbd \tab logical \cr
-   tv \tab character \cr
-   neutral_site \tab logical \cr
-   conference_game \tab logical \cr
-   status \tab character \cr
-   period \tab integer \cr
-   clock \tab character \cr
-   situation \tab character \cr
-   possession \tab character \cr
-   last_play \tab character \cr
-   venue_name \tab character \cr
-   venue_city \tab character \cr
-   venue_state \tab character \cr
-   home_team_id \tab integer \cr
-   home_team_name \tab character \cr
-   home_team_conference \tab character \cr
-   home_team_classification \tab character \cr
-   home_team_points \tab integer \cr
-   home_team_line_scores_Q1 \tab integer \cr
-   home_team_line_scores_Q2 \tab integer \cr
-   home_team_line_scores_Q3 \tab integer \cr
-   home_team_line_scores_Q4 \tab integer \cr
-   away_team_id \tab integer \cr
-   away_team_name \tab character \cr
-   away_team_conference \tab character \cr
-   away_team_classification \tab character \cr
-   away_team_points \tab integer \cr
-   away_team_line_scores_Q1 \tab integer \cr
-   away_team_line_scores_Q2 \tab integer \cr
-   away_team_line_scores_Q3 \tab integer \cr
-   away_team_line_scores_Q4 \tab integer \cr
-   weather_temperature \tab numeric \cr
-   weather_description \tab character \cr
-   weather_wind_speed \tab numeric \cr
-   weather_wind_direction \tab integer \cr
-   betting_spread \tab numeric \cr
-   betting_over_under \tab numeric \cr
-   betting_home_moneyline \tab integer \cr
-   betting_away_moneyline \tab integer \cr
+\code{\link[=cfbd_live_scoreboard]{cfbd_live_scoreboard()}} - A data frame with 41 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab CFBD-internal game id; join key to other CFBD endpoints. \cr
+   start_date \tab character \tab Scheduled kickoff timestamp (ISO 8601, UTC). \cr
+   start_time_tbd \tab logical \tab TRUE if the scheduled kickoff time is still to be determined. \cr
+   tv \tab character \tab Television network broadcasting the game (e.g. "ESPN", "ABC"). \cr
+   neutral_site \tab logical \tab TRUE if the game is being played at a neutral site. \cr
+   conference_game \tab logical \tab TRUE if both teams are in the same conference. \cr
+   status \tab character \tab Game status (e.g. "scheduled", "in_progress", "completed"). \cr
+   period \tab integer \tab Current period/quarter number (1-4, 5+ for overtime). \cr
+   clock \tab character \tab Game clock display as "MM:SS" remaining in the current period. \cr
+   situation \tab character \tab Free-text down-and-distance / field-position summary for the current play. \cr
+   possession \tab character \tab Abbreviation of the team currently in possession. \cr
+   last_play \tab character \tab Free-text description of the most recent play. \cr
+   venue_name \tab character \tab Stadium / venue name. \cr
+   venue_city \tab character \tab City where the venue is located. \cr
+   venue_state \tab character \tab State (or province/country) where the venue is located. \cr
+   home_team_id \tab integer \tab CFBD-internal team id for the home team. \cr
+   home_team_name \tab character \tab Full home team name (e.g. "Georgia"). \cr
+   home_team_conference \tab character \tab Conference name of the home team. \cr
+   home_team_classification \tab character \tab Division classification of the home team (fbs/fcs/ii/iii). \cr
+   home_team_points \tab integer \tab Current total points scored by the home team. \cr
+   home_team_line_scores_Q1 \tab integer \tab Home team points scored in the first quarter. \cr
+   home_team_line_scores_Q2 \tab integer \tab Home team points scored in the second quarter. \cr
+   home_team_line_scores_Q3 \tab integer \tab Home team points scored in the third quarter. \cr
+   home_team_line_scores_Q4 \tab integer \tab Home team points scored in the fourth quarter. \cr
+   away_team_id \tab integer \tab CFBD-internal team id for the away team. \cr
+   away_team_name \tab character \tab Full away team name (e.g. "Auburn"). \cr
+   away_team_conference \tab character \tab Conference name of the away team. \cr
+   away_team_classification \tab character \tab Division classification of the away team (fbs/fcs/ii/iii). \cr
+   away_team_points \tab integer \tab Current total points scored by the away team. \cr
+   away_team_line_scores_Q1 \tab integer \tab Away team points scored in the first quarter. \cr
+   away_team_line_scores_Q2 \tab integer \tab Away team points scored in the second quarter. \cr
+   away_team_line_scores_Q3 \tab integer \tab Away team points scored in the third quarter. \cr
+   away_team_line_scores_Q4 \tab integer \tab Away team points scored in the fourth quarter. \cr
+   weather_temperature \tab numeric \tab Temperature at kickoff, in degrees Fahrenheit. \cr
+   weather_description \tab character \tab Free-text weather description (e.g. "Clear", "Light rain"). \cr
+   weather_wind_speed \tab numeric \tab Wind speed, in miles per hour. \cr
+   weather_wind_direction \tab integer \tab Wind direction, in degrees (0-360, 0 = north). \cr
+   betting_spread \tab numeric \tab Pre-game point spread relative to the home team (negative = home favored). \cr
+   betting_over_under \tab numeric \tab Pre-game over/under (total) line in points. \cr
+   betting_home_moneyline \tab integer \tab American-odds moneyline for the home team. \cr
+   betting_away_moneyline \tab integer \tab American-odds moneyline for the away team. \cr
 }
 }
 \description{

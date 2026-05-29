@@ -36,12 +36,13 @@ NULL
 #' @title
 #' **Get list of NFL teams**
 #' @return [cfbd_draft_teams()] - A data frame with 4 variables:
-#' \describe{
-#'   \item{`nfl_location`: character.}{NFL team location (city).}
-#'   \item{`nfl_nickname`: integer}{NFL team nickname (mascot).}
-#'   \item{`nfl_display_name`: integer}{NFL team display name (usually more neat/complete).}
-#'   \item{`nfl_logo`: character}{URL for NFL team logo.}
-#'  }
+#'
+#'    |col_name         |types     |description                                          |
+#'    |:----------------|:---------|:----------------------------------------------------|
+#'    |nfl_location     |character |NFL team location (city).                            |
+#'    |nfl_nickname     |character |NFL team nickname (mascot).                          |
+#'    |nfl_display_name |character |NFL team display name (usually more neat/complete).  |
+#'    |nfl_logo         |character |URL for NFL team logo.                               |
 #' @keywords NFL Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -99,10 +100,11 @@ cfbd_draft_teams <- function() {
 #' @title
 #' **Get list of NFL positions**
 #' @return [cfbd_draft_positions()] - A data frame with 2 variables:
-#' \describe{
-#'   \item{`position_name`: character.}{NFL Position group name.}
-#'   \item{`position_abbreviation`: integer}{NFL position group abbreviation.}
-#'  }
+#'
+#'    |col_name              |types     |description                          |
+#'    |:---------------------|:---------|:------------------------------------|
+#'    |position_name         |character |NFL Position group name.             |
+#'    |position_abbreviation |character |NFL position group abbreviation.     |
 #' @keywords NFL Positions
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -164,33 +166,34 @@ cfbd_draft_positions <- function() {
 #' @param college (*String*): NFL draftee college team, see [cfbd_team_info()] for valid selections.
 #' @param conference (*String*): NFL draftee college team conference, see [cfbd_conferences()] for valid selections.
 #' @param position (*String*): NFL position abbreviation, see [cfbd_draft_positions()] for valid selections.
-#' @return [cfbd_draft_picks()] - A data frame with 23 variables:
-#' \describe{
-#'   \item{`college_athlete_id`: integer.}{College athlete referencing id.}
-#'   \item{`nfl_athlete_id`: integer}{NFL athlete referencing id.}
-#'   \item{`college_id`: integer}{College team referencing id.}
-#'   \item{`college_team`: character}{College team name.}
-#'   \item{`college_conference`: character}{Conference of college team.}
-#'   \item{`nfl_team_id`: integer.}{NFL team ID.}
-#'   \item{`nfl_team`: character}{NFL team name of drafted player.}
-#'   \item{`year`: integer.}{NFL draft class year.}
-#'   \item{`overall`: integer.}{Overall draft pick number.}
-#'   \item{`round`: integer.}{Round of NFL draft the draftee was picked in.}
-#'   \item{`pick`: integer.}{Pick number of the NFL draftee within the round they were picked in.}
-#'   \item{`name`: character.}{NFL draftee name.}
-#'   \item{`position`: character.}{NFL draftee position.}
-#'   \item{`height`: double.}{NFL draftee height.}
-#'   \item{`weight`: integer.}{NFL draftee weight.}
-#'   \item{`pre_draft_ranking`: integer}{Pre-draft ranking (ESPN).}
-#'   \item{`pre_draft_position_ranking`: integer.}{Pre-draft position ranking (ESPN).}
-#'   \item{`pre_draft_grade`: double.}{Pre-draft scouts grade (ESPN).}
-#'   \item{`hometown_info_city`: character.}{Hometown of the NFL draftee.}
-#'   \item{`hometown_info_state_province`: character.}{Hometown state of the NFL draftee.}
-#'   \item{`hometown_info_country`: character.}{Hometown country of the NFL draftee.}
-#'   \item{`hometown_info_latitude`: character.}{Hometown latitude of the NFL draftee.}
-#'   \item{`hometown_info_longitude`: character.}{Hometown longitude of the NFL draftee.}
-#'   \item{`hometown_info_county_fips`: character.}{Hometown FIPS code of the NFL draftee.}
-#' }
+#' @return [cfbd_draft_picks()] - A data frame with 24 variables:
+#'
+#'    |col_name                     |types     |description                                                       |
+#'    |:----------------------------|:---------|:-----------------------------------------------------------------|
+#'    |college_athlete_id           |integer   |College athlete referencing id.                                   |
+#'    |nfl_athlete_id               |integer   |NFL athlete referencing id.                                       |
+#'    |college_id                   |integer   |College team referencing id.                                      |
+#'    |college_team                 |character |College team name.                                                |
+#'    |college_conference           |character |Conference of college team.                                       |
+#'    |nfl_team_id                  |integer   |NFL team ID.                                                      |
+#'    |nfl_team                     |character |NFL team name of drafted player.                                  |
+#'    |year                         |integer   |NFL draft class year.                                             |
+#'    |overall                      |integer   |Overall draft pick number.                                        |
+#'    |round                        |integer   |Round of NFL draft the draftee was picked in.                     |
+#'    |pick                         |integer   |Pick number of the NFL draftee within the round they were picked in.|
+#'    |name                         |character |NFL draftee name.                                                 |
+#'    |position                     |character |NFL draftee position.                                             |
+#'    |height                       |numeric   |NFL draftee height.                                               |
+#'    |weight                       |integer   |NFL draftee weight.                                               |
+#'    |pre_draft_ranking            |integer   |Pre-draft ranking (ESPN).                                         |
+#'    |pre_draft_position_ranking   |integer   |Pre-draft position ranking (ESPN).                                |
+#'    |pre_draft_grade              |numeric   |Pre-draft scouts grade (ESPN).                                    |
+#'    |hometown_info_city           |character |Hometown of the NFL draftee.                                      |
+#'    |hometown_info_state_province |character |Hometown state of the NFL draftee.                                |
+#'    |hometown_info_country        |character |Hometown country of the NFL draftee.                              |
+#'    |hometown_info_latitude       |character |Hometown latitude of the NFL draftee.                             |
+#'    |hometown_info_longitude      |character |Hometown longitude of the NFL draftee.                            |
+#'    |hometown_info_county_fips    |character |Hometown FIPS code of the NFL draftee.                            |
 #' @keywords NFL Draft Picks
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

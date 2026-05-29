@@ -70,36 +70,37 @@ NULL
 #'  PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
-#' @return [cfbd_plays()] - A data frame with 29 columns:
-#' \describe{
-#'   \item{`play_id`: character.}{Referencing play id.}
-#'   \item{`offense`: character.}{Offense on the field.}
-#'   \item{`offense_conference`: character.}{Conference of the offense on the field.}
-#'   \item{`defense`: character.}{Defense on the field.}
-#'   \item{`defense_conference`: character.}{Conference of the defense on the field.}
-#'   \item{`home`: character.}{Home team.}
-#'   \item{`away`: character.}{Away team.}
-#'   \item{`offense_score`: integer.}{Offense's post-play score.}
-#'   \item{`defense_score`: integer.}{Defense's post-play score.}
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`drive_id`: character.}{Referencing drive id.}
-#'   \item{`drive_number`: integer.}{Drive number in the game.}
-#'   \item{`play_number`: integer.}{Play number in the game.}
-#'   \item{`period`: integer.}{Game period (quarter).}
-#'   \item{`offense_timeouts`: integer.}{Timeouts for the offense at the end of the play.}
-#'   \item{`defense_timeouts`: integer.}{Timeouts for the defense at the end of the play.}
-#'   \item{`yard_line`: integer.}{Yard line (~0-50) of the play.}
-#'   \item{`yards_to_goal`: integer.}{Yards to the goal line (~0-100).}
-#'   \item{`down`: integer.}{Down of the play.}
-#'   \item{`distance`: integer.}{Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.}
-#'   \item{`scoring`: logical.}{Scoring play flag.}
-#'   \item{`yards_gained`: integer.}{Yards net gained by the offense on the play.}
-#'   \item{`play_type`: character.}{Categorical label of the type of the play.}
-#'   \item{`play_text`: character.}{A text description of the play.}
-#'   \item{`ppa`: character.}{Predicted Points Added (calculated by CFBD).}
-#'   \item{`clock_minutes`: integer.}{Minutes left on the clock.}
-#'   \item{`clock_seconds`: integer.}{Seconds left on the clock.}
-#' }
+#' @return [cfbd_plays()] - A data frame with 27 columns:
+#'
+#'    |col_name           |types     |description                                                                                |
+#'    |:------------------|:---------|:------------------------------------------------------------------------------------------|
+#'    |play_id            |character |CFBD play identifier (unique within a game when combined with game_id).                    |
+#'    |offense            |character |Full name of the offense (team in possession) on the play.                                 |
+#'    |offense_conference |character |Conference name of the offense (e.g. "SEC", "ACC").                                        |
+#'    |defense            |character |Full name of the defense on the play.                                                      |
+#'    |defense_conference |character |Conference name of the defense (e.g. "SEC", "ACC").                                        |
+#'    |home               |character |Full home team name for the game.                                                          |
+#'    |away               |character |Full away team name for the game.                                                          |
+#'    |offense_score      |integer   |Offense's score after the play (points).                                                   |
+#'    |defense_score      |integer   |Defense's score after the play (points).                                                   |
+#'    |game_id            |integer   |CFBD game identifier the play belongs to.                                                  |
+#'    |drive_id           |character |CFBD drive identifier the play belongs to.                                                 |
+#'    |drive_number       |integer   |Sequential drive number within the game (1-indexed).                                       |
+#'    |play_number        |integer   |Sequential play number within the game (1-indexed).                                        |
+#'    |period             |integer   |Game period / quarter (1-4 regulation, 5+ overtime).                                       |
+#'    |offense_timeouts   |integer   |Timeouts remaining for the offense at the end of the play.                                 |
+#'    |defense_timeouts   |integer   |Timeouts remaining for the defense at the end of the play.                                 |
+#'    |yard_line          |integer   |Field-position yard line at the start of the play (0-50 scale from the offense's side).    |
+#'    |yards_to_goal      |integer   |Distance in yards from the offense's spot to the opponent's goal line (0-100).             |
+#'    |down               |integer   |Down of the play (1-4).                                                                    |
+#'    |distance           |integer   |Yards to gain for a first down (or to the goal line in goal-to-go situations).             |
+#'    |scoring            |logical   |TRUE when the play results in a score (TD, FG, safety, two-point conversion).              |
+#'    |yards_gained       |integer   |Net yards gained by the offense on the play.                                               |
+#'    |play_type          |character |CFBD categorical label for the play type (see [cfbd_play_types()]).                        |
+#'    |play_text          |character |Free-form text description of the play from the CFBD feed.                                 |
+#'    |ppa                |character |Predicted Points Added (CFBD's CFB-EPA analogue) for the play.                             |
+#'    |clock_minutes      |integer   |Minutes remaining on the game clock at the start of the play.                              |
+#'    |clock_seconds      |integer   |Seconds remaining on the game clock at the start of the play.                              |
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
@@ -190,75 +191,76 @@ cfbd_plays <- function(year = 2020,
 #' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
-#' @return [cfbd_play_stats_player()] - A data frame with 54 variables:
-#' \describe{
-#'   \item{`play_id`: character.}{Referencing play id.}
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`season`: integer.}{Season of the play.}
-#'   \item{`week`: integer.}{Week of the play.}
-#'   \item{`opponent`: character.}{Opponent of the offense on the play.}
-#'   \item{`team_score`: integer.}{Offense team score.}
-#'   \item{`opponent_score`: integer.}{Defense team score.}
-#'   \item{`drive_id`: character.}{Referencing drive id.}
-#'   \item{`period`: integer.}{Game period (quarter) of the play.}
-#'   \item{`yards_to_goal`: integer.}{Yards to the goal line (~0-100).}
-#'   \item{`down`: integer.}{Down of the play.}
-#'   \item{`distance`: integer.}{Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.}
-#'   \item{`reception_player_id`: character.}{Pass receiver player reference id.}
-#'   \item{`reception_player`: character.}{Pass receiver player name.}
-#'   \item{`reception_yds`: integer.}{Reception yards.}
-#'   \item{`completion_player_id`: character.}{Passing player reference id.}
-#'   \item{`completion_player`: character.}{Passing player name.}
-#'   \item{`completion_yds`: integer.}{Passing yards.}
-#'   \item{`rush_player_id`: character.}{Rushing player reference id.}
-#'   \item{`rush_player`: character.}{Rushing player name.}
-#'   \item{`rush_yds`: integer.}{Rushing yards.}
-#'   \item{`interception_player_id`: character.}{Intercepting player reference id.}
-#'   \item{`interception_player`: character.}{Intercepting player name.}
-#'   \item{`interception_stat`: integer.}{Intercepting stat.}
-#'   \item{`interception_thrown_player_id`: character.}{Interception passing player reference id.}
-#'   \item{`interception_thrown_player`: character.}{Interception passing player name.}
-#'   \item{`interception_thrown_stat`: integer.}{Interception thrown stat.}
-#'   \item{`touchdown_player_id`: character.}{Touchdown scoring player reference id.}
-#'   \item{`touchdown_player`: character.}{Touchdown scoring player name.}
-#'   \item{`touchdown_stat`: integer.}{Touchdown scoring stat.}
-#'   \item{`incompletion_player_id`: character.}{Incomplete receiver player reference id.}
-#'   \item{`incompletion_player`: character.}{Incomplete receiver player name.}
-#'   \item{`incompletion_stat`: integer.}{Incomplete stat.}
-#'   \item{`target_player_id`: character.}{Targeted receiver player reference id.}
-#'   \item{`target_player`: character.}{Targeted receiver player name.}
-#'   \item{`target_stat`: integer.}{Target stat.}
-#'   \item{`fumble_recovered_player_id`: logical.}{Fumble recovering player reference id.}
-#'   \item{`fumble_recovered_player`: logical.}{Fumble recovering player name.}
-#'   \item{`fumble_recovered_stat`: logical.}{Fumble recovered stat.}
-#'   \item{`fumble_forced_player_id`: logical.}{Fumble forcing player reference id.}
-#'   \item{`fumble_forced_player`: logical.}{Fumble forcing player name.}
-#'   \item{`fumble_forced_stat`: logical.}{Fumble forced stat.}
-#'   \item{`fumble_player_id`: logical.}{Fumbling player reference id.}
-#'   \item{`fumble_player`: logical.}{Fumbling player name.}
-#'   \item{`fumble_stat`: logical.}{Fumble stat.}
-#'   \item{`sack_player_id`: character.}{Sacking player(s) reference id.}
-#'   \item{`sack_player`: character.}{Sacking player(s) name.}
-#'   \item{`sack_stat`: integer.}{Sack stat.}
-#'   \item{`sack_taken_player_id`: character.}{Sack taking player reference id.}
-#'   \item{`sack_taken_player`: character.}{Sack taking player name.}
-#'   \item{`sack_taken_stat`: integer.}{Sack taken stat.}
-#'   \item{`pass_breakup_player_id`: logical.}{Pass breakup player reference id.}
-#'   \item{`pass_breakup_player`: logical.}{Pass breakup player name.}
-#'   \item{`pass_breakup_stat`: logical.}{Pass breakup (PBU) stat.}
-#'   \item{`field_goal_attempt_player_id`: character.}{Field goal attempting player reference id.}
-#'   \item{`field_goal_attempt_player`: character.}{Field goal attempting player name.}
-#'   \item{`field_goal_attempt_stat`: integer.}{Field goal attempt stat.}
-#'   \item{`field_goal_made_player_id`: character.}{Field goal making player reference id.}
-#'   \item{`field_goal_made_player`: character.}{Field goal making player name.}
-#'   \item{`field_goal_made_stat`: integer.}{Field goal made stat.}
-#'   \item{`field_goal_missed_player_id`: character.}{Field goal missing player reference id.}
-#'   \item{`field_goal_missed_player`: character.}{Field goal missing player name.}
-#'   \item{`field_goal_missed_stat`: integer.}{Field goal missed stat.}
-#'   \item{`field_goal_blocked_player_id`: character.}{Field goal blocked player reference id.}
-#'   \item{`field_goal_blocked_player`: character.}{Field goal blocked player name.}
-#'   \item{`field_goal_blocked_stat`: integer.}{Field goal blocked stat.}
-#' }
+#' @return [cfbd_play_stats_player()] - A data frame with 66 variables:
+#'
+#'    |col_name                      |types     |description                                                                                |
+#'    |:-----------------------------|:---------|:------------------------------------------------------------------------------------------|
+#'    |play_id                       |character |CFBD play identifier the stat is attributed to.                                            |
+#'    |game_id                       |integer   |CFBD game identifier the play belongs to.                                                  |
+#'    |season                        |integer   |Four-digit season year (e.g. 2024).                                                        |
+#'    |week                          |integer   |Season week number (1-15 regular season; 1 = postseason/bowl week).                        |
+#'    |opponent                      |character |Full name of the opponent on the play.                                                     |
+#'    |team_score                    |integer   |Offense team score at the time of the play.                                                |
+#'    |opponent_score                |integer   |Defense / opponent team score at the time of the play.                                     |
+#'    |drive_id                      |character |CFBD drive identifier the play belongs to.                                                 |
+#'    |period                        |integer   |Game period / quarter of the play (1-4 regulation, 5+ overtime).                           |
+#'    |yards_to_goal                 |integer   |Distance in yards from the offense's spot to the opponent's goal line (0-100).             |
+#'    |down                          |integer   |Down of the play (1-4).                                                                    |
+#'    |distance                      |integer   |Yards to gain for a first down (or to the goal line in goal-to-go situations).             |
+#'    |reception_player_id           |character |CFBD athlete_id of the receiver credited with a reception.                                 |
+#'    |reception_player              |character |Name of the receiver credited with a reception.                                            |
+#'    |reception_yds                 |integer   |Reception yards gained on the play.                                                        |
+#'    |completion_player_id          |character |CFBD athlete_id of the passer credited with a completion.                                  |
+#'    |completion_player             |character |Name of the passer credited with a completion.                                             |
+#'    |completion_yds                |integer   |Passing yards gained on the completion.                                                    |
+#'    |rush_player_id                |character |CFBD athlete_id of the player credited with a rush attempt.                                |
+#'    |rush_player                   |character |Name of the player credited with a rush attempt.                                           |
+#'    |rush_yds                      |integer   |Rushing yards gained on the play.                                                          |
+#'    |interception_player_id        |character |CFBD athlete_id of the defender credited with an interception.                             |
+#'    |interception_player           |character |Name of the defender credited with an interception.                                        |
+#'    |interception_stat             |integer   |Interception stat value reported by CFBD (typically 1 per INT).                            |
+#'    |interception_thrown_player_id |character |CFBD athlete_id of the passer charged with the interception.                               |
+#'    |interception_thrown_player    |character |Name of the passer charged with the interception.                                          |
+#'    |interception_thrown_stat      |integer   |Interception-thrown stat value reported by CFBD (typically 1 per INT thrown).              |
+#'    |touchdown_player_id           |character |CFBD athlete_id of the player credited with the touchdown.                                 |
+#'    |touchdown_player              |character |Name of the player credited with the touchdown.                                            |
+#'    |touchdown_stat                |integer   |Touchdown stat value reported by CFBD (typically 1 per TD scored).                         |
+#'    |incompletion_player_id        |character |CFBD athlete_id of the targeted receiver on an incompletion.                               |
+#'    |incompletion_player           |character |Name of the targeted receiver on an incompletion.                                          |
+#'    |incompletion_stat             |integer   |Incompletion stat value reported by CFBD (typically 1 per incompletion).                   |
+#'    |target_player_id              |character |CFBD athlete_id of the targeted receiver on a pass.                                        |
+#'    |target_player                 |character |Name of the targeted receiver on a pass.                                                   |
+#'    |target_stat                   |integer   |Target stat value reported by CFBD (typically 1 per target).                               |
+#'    |fumble_recovered_player_id    |logical   |CFBD athlete_id of the player recovering the fumble.                                       |
+#'    |fumble_recovered_player       |logical   |Name of the player recovering the fumble.                                                  |
+#'    |fumble_recovered_stat         |logical   |Fumble-recovered stat value reported by CFBD (typically 1 per recovery).                   |
+#'    |fumble_forced_player_id       |logical   |CFBD athlete_id of the defender credited with forcing the fumble.                          |
+#'    |fumble_forced_player          |logical   |Name of the defender credited with forcing the fumble.                                     |
+#'    |fumble_forced_stat            |logical   |Fumble-forced stat value reported by CFBD (typically 1 per forced fumble).                 |
+#'    |fumble_player_id              |logical   |CFBD athlete_id of the player who fumbled.                                                 |
+#'    |fumble_player                 |logical   |Name of the player who fumbled.                                                            |
+#'    |fumble_stat                   |logical   |Fumble stat value reported by CFBD (typically 1 per fumble).                               |
+#'    |sack_player_id                |character |Comma-separated CFBD athlete_id(s) of the sacking defender(s).                             |
+#'    |sack_player                   |character |Comma-separated name(s) of the sacking defender(s).                                        |
+#'    |sack_stat                     |integer   |Sack stat value reported by CFBD (sack credit can be split between defenders).             |
+#'    |sack_taken_player_id          |character |CFBD athlete_id of the QB charged with taking the sack.                                    |
+#'    |sack_taken_player             |character |Name of the QB charged with taking the sack.                                               |
+#'    |sack_taken_stat               |integer   |Sack-taken stat value reported by CFBD (typically 1 per sack taken).                       |
+#'    |pass_breakup_player_id        |logical   |CFBD athlete_id of the defender credited with the pass breakup (PBU).                      |
+#'    |pass_breakup_player           |logical   |Name of the defender credited with the pass breakup (PBU).                                 |
+#'    |pass_breakup_stat             |logical   |Pass breakup (PBU) stat value reported by CFBD (typically 1 per PBU).                      |
+#'    |field_goal_attempt_player_id  |character |CFBD athlete_id of the kicker attempting the field goal.                                   |
+#'    |field_goal_attempt_player     |character |Name of the kicker attempting the field goal.                                              |
+#'    |field_goal_attempt_stat       |integer   |Field goal attempt distance in yards reported by CFBD.                                     |
+#'    |field_goal_made_player_id     |character |CFBD athlete_id of the kicker on a made field goal.                                        |
+#'    |field_goal_made_player        |character |Name of the kicker on a made field goal.                                                   |
+#'    |field_goal_made_stat          |integer   |Made-field-goal distance in yards reported by CFBD.                                        |
+#'    |field_goal_missed_player_id   |character |CFBD athlete_id of the kicker on a missed field goal.                                      |
+#'    |field_goal_missed_player      |character |Name of the kicker on a missed field goal.                                                 |
+#'    |field_goal_missed_stat        |integer   |Missed-field-goal distance in yards reported by CFBD.                                      |
+#'    |field_goal_blocked_player_id  |character |CFBD athlete_id of the defender credited with blocking the field goal.                     |
+#'    |field_goal_blocked_player     |character |Name of the defender credited with blocking the field goal.                                |
+#'    |field_goal_blocked_stat       |integer   |Blocked-field-goal distance in yards reported by CFBD.                                     |
 #' @keywords Player PBP
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -630,10 +632,11 @@ cfbd_play_stats_player <- function(year = NULL,
 #' @title
 #' **Get college football mapping for play stats types**
 #' @return [cfbd_play_stats_types()] - A data frame with 25 rows and 2 variables:
-#' \describe{
-#'   \item{`play_stat_type_id`: integer}{Referencing play stat type ID.}
-#'   \item{`name`: character}{Type of play stats.}
-#' }
+#'
+#'    |col_name          |types     |description                                                                          |
+#'    |:-----------------|:---------|:------------------------------------------------------------------------------------|
+#'    |play_stat_type_id |integer   |CFBD play stat type identifier (used as a filter in [cfbd_play_stats_player()]).     |
+#'    |name              |character |Human-readable name of the play stat type (e.g. "Reception", "Sack", "Touchdown").   |
 #' @keywords Plays
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -683,11 +686,12 @@ cfbd_play_stats_types <- function() {
 #' @title
 #' **Get college football mapping for play types**
 #' @return [cfbd_play_types()] - A data frame with 48 rows and 3 variables:
-#' \describe{
-#'   \item{`play_type_id`: integer}{Referencing play type id.}
-#'   \item{`text`: character}{play type description.}
-#'   \item{`abbreviation`: character}{play type abbreviation used for function call}
-#' }
+#'
+#'    |col_name     |types     |description                                                                          |
+#'    |:------------|:---------|:------------------------------------------------------------------------------------|
+#'    |play_type_id |integer   |CFBD play type identifier (matches `play_type` IDs in [cfbd_plays()]).               |
+#'    |text         |character |Human-readable play type description (e.g. "Rush", "Pass Reception", "Field Goal").  |
+#'    |abbreviation |character |Short play type abbreviation used as the `play_type` filter argument in API calls.   |
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom cli cli_abort
@@ -740,106 +744,106 @@ cfbd_play_types <- function() {
 #' Can be found using the [cfbd_game_info()] function
 #' @return [cfbd_live_plays()] - A data frame with 94 columns:
 #'
-#'  |col_name                         |types     |
-#'  |:--------------------------------|:---------|
-#'  |game_id                          |integer   |
-#'  |home_team_id                     |integer   |
-#'  |home_team                        |character |
-#'  |away_team_id                     |integer   |
-#'  |away_team                        |character |
-#'  |play_id                          |character |
-#'  |home_score                       |integer   |
-#'  |away_score                       |integer   |
-#'  |period                           |integer   |
-#'  |clock                            |character |
-#'  |wall_clock                       |character |
-#'  |offense_team_id                  |integer   |
-#'  |offense_team                     |character |
-#'  |down                             |integer   |
-#'  |distance                         |integer   |
-#'  |yards_to_goal                    |integer   |
-#'  |yards_gained                     |integer   |
-#'  |play_type_id                     |integer   |
-#'  |play_type                        |character |
-#'  |ppa                              |numeric   |
-#'  |garbage_time                     |logical   |
-#'  |success                          |logical   |
-#'  |rush_pass                        |character |
-#'  |down_type                        |character |
-#'  |play_text                        |character |
-#'  |drive_id                         |character |
-#'  |drive_offense_id                 |integer   |
-#'  |drive_offense_team               |character |
-#'  |drive_defense_id                 |integer   |
-#'  |drive_defense_team               |character |
-#'  |drive_play_count                 |integer   |
-#'  |drive_yards_gained               |integer   |
-#'  |drive_start_period               |integer   |
-#'  |drive_start_clock                |character |
-#'  |drive_start_yards_to_goal        |integer   |
-#'  |drive_end_period                 |integer   |
-#'  |drive_end_clock                  |character |
-#'  |drive_end_yards_to_goal          |integer   |
-#'  |drive_duration                   |character |
-#'  |drive_scoring_opportunity        |logical   |
-#'  |drive_result                     |character |
-#'  |drive_points_gained              |integer   |
-#'  |current_clock                    |character |
-#'  |current_possession               |character |
-#'  |home_line_scores_q1              |integer   |
-#'  |home_line_scores_q2              |integer   |
-#'  |home_line_scores_q3              |integer   |
-#'  |home_line_scores_q4              |integer   |
-#'  |home_points                      |integer   |
-#'  |home_drives                      |integer   |
-#'  |home_scoring_opportunities       |integer   |
-#'  |home_points_per_opportunity      |numeric   |
-#'  |home_average_start_yard_line     |numeric   |
-#'  |home_plays                       |integer   |
-#'  |home_line_yards                  |numeric   |
-#'  |home_line_yards_per_rush         |numeric   |
-#'  |home_second_level_yards          |integer   |
-#'  |home_second_level_yards_per_rush |numeric   |
-#'  |home_open_field_yards            |integer   |
-#'  |home_open_field_yards_per_rush   |numeric   |
-#'  |home_ppa_per_play                |numeric   |
-#'  |home_total_ppa                   |numeric   |
-#'  |home_passing_ppa                 |numeric   |
-#'  |home_ppa_per_pass                |numeric   |
-#'  |home_rushing_ppa                 |numeric   |
-#'  |home_ppa_per_rush                |numeric   |
-#'  |home_success_rate                |numeric   |
-#'  |home_standard_down_success_rate  |numeric   |
-#'  |home_passing_down_success_rate   |numeric   |
-#'  |home_explosiveness               |numeric   |
-#'  |home_deserve_to_win              |numeric   |
-#'  |away_line_scores_q1              |integer   |
-#'  |away_line_scores_q2              |integer   |
-#'  |away_line_scores_q3              |integer   |
-#'  |away_line_scores_q4              |integer   |
-#'  |away_points                      |integer   |
-#'  |away_drives                      |integer   |
-#'  |away_scoring_opportunities       |integer   |
-#'  |away_points_per_opportunity      |numeric   |
-#'  |away_average_start_yard_line     |numeric   |
-#'  |away_plays                       |integer   |
-#'  |away_line_yards                  |numeric   |
-#'  |away_line_yards_per_rush         |numeric   |
-#'  |away_second_level_yards          |integer   |
-#'  |away_second_level_yards_per_rush |numeric   |
-#'  |away_open_field_yards            |integer   |
-#'  |away_open_field_yards_per_rush   |numeric   |
-#'  |away_ppa_per_play                |numeric   |
-#'  |away_total_ppa                   |numeric   |
-#'  |away_passing_ppa                 |numeric   |
-#'  |away_ppa_per_pass                |numeric   |
-#'  |away_rushing_ppa                 |numeric   |
-#'  |away_ppa_per_rush                |numeric   |
-#'  |away_success_rate                |numeric   |
-#'  |away_standard_down_success_rate  |numeric   |
-#'  |away_passing_down_success_rate   |numeric   |
-#'  |away_explosiveness               |numeric   |
-#'  |away_deserve_to_win              |numeric   |
+#'  |col_name                         |types     |description                                                                            |
+#'  |:--------------------------------|:---------|:--------------------------------------------------------------------------------------|
+#'  |game_id                          |integer   |CFBD game id for the live game.                                                        |
+#'  |home_team_id                     |integer   |CFBD team id of the home team.                                                         |
+#'  |home_team                        |character |Name of the home team.                                                                 |
+#'  |away_team_id                     |integer   |CFBD team id of the away team.                                                         |
+#'  |away_team                        |character |Name of the away team.                                                                 |
+#'  |play_id                          |character |Unique CFBD play id for this play.                                                     |
+#'  |home_score                       |integer   |Home team score at the conclusion of the play.                                         |
+#'  |away_score                       |integer   |Away team score at the conclusion of the play.                                         |
+#'  |period                           |integer   |Quarter (1-4, or overtime period) in which the play occurred.                          |
+#'  |clock                            |character |Game clock at the snap, formatted as "MM:SS".                                          |
+#'  |wall_clock                       |character |Real-world UTC timestamp when the play was recorded.                                   |
+#'  |offense_team_id                  |integer   |CFBD team id of the team on offense for this play.                                     |
+#'  |offense_team                     |character |Name of the team on offense for this play.                                             |
+#'  |down                             |integer   |Down (1-4) at the start of the play.                                                   |
+#'  |distance                         |integer   |Yards to gain for a first down at the snap.                                            |
+#'  |yards_to_goal                    |integer   |Yards from the offense to the opponent's end zone at the snap (0-100).                 |
+#'  |yards_gained                     |integer   |Net yards gained by the offense on the play.                                           |
+#'  |play_type_id                     |integer   |CFBD play_type identifier; see `cfbd_play_types()`.                                    |
+#'  |play_type                        |character |Play type label (e.g. "Rush", "Pass Reception", "Punt").                               |
+#'  |ppa                              |numeric   |Predicted Points Added (CFBD PPA/EPA) value for the play.                              |
+#'  |garbage_time                     |logical   |TRUE if the play occurred during garbage time.                                         |
+#'  |success                          |logical   |TRUE if the play met CFBD success-rate criteria.                                       |
+#'  |rush_pass                        |character |Classification of the play as "Rush" or "Pass".                                        |
+#'  |down_type                        |character |Down/distance classification (e.g. "standard" vs "passing" down).                      |
+#'  |play_text                        |character |Free-text narrative description of the play.                                           |
+#'  |drive_id                         |character |CFBD drive identifier for the drive containing this play.                              |
+#'  |drive_offense_id                 |integer   |CFBD team id of the offense on the drive.                                              |
+#'  |drive_offense_team               |character |Name of the offensive team on the drive.                                               |
+#'  |drive_defense_id                 |integer   |CFBD team id of the defense on the drive.                                              |
+#'  |drive_defense_team               |character |Name of the defensive team on the drive.                                               |
+#'  |drive_play_count                 |integer   |Number of plays in the drive.                                                          |
+#'  |drive_yards_gained               |integer   |Total net yards gained on the drive.                                                   |
+#'  |drive_start_period               |integer   |Quarter in which the drive started.                                                    |
+#'  |drive_start_clock                |character |Game clock ("MM:SS") when the drive started.                                           |
+#'  |drive_start_yards_to_goal        |integer   |Yards to opponent's end zone at drive start (0-100).                                   |
+#'  |drive_end_period                 |integer   |Quarter in which the drive ended.                                                      |
+#'  |drive_end_clock                  |character |Game clock ("MM:SS") when the drive ended.                                             |
+#'  |drive_end_yards_to_goal          |integer   |Yards to opponent's end zone at drive end (0-100).                                     |
+#'  |drive_duration                   |character |Drive duration measured in elapsed game clock.                                         |
+#'  |drive_scoring_opportunity        |logical   |TRUE if the drive reached scoring territory.                                           |
+#'  |drive_result                     |character |Outcome of the drive (e.g. "TD", "FG", "PUNT", "INT").                                 |
+#'  |drive_points_gained              |integer   |Points scored by the offense on the drive.                                             |
+#'  |current_clock                    |character |Current game clock at the time of the live API snapshot.                               |
+#'  |current_possession               |character |Team currently in possession at the snapshot time.                                     |
+#'  |home_line_scores_q1              |integer   |Home team points scored in the first quarter.                                          |
+#'  |home_line_scores_q2              |integer   |Home team points scored in the second quarter.                                         |
+#'  |home_line_scores_q3              |integer   |Home team points scored in the third quarter.                                          |
+#'  |home_line_scores_q4              |integer   |Home team points scored in the fourth quarter.                                         |
+#'  |home_points                      |integer   |Home team total points scored in the game so far.                                      |
+#'  |home_drives                      |integer   |Number of offensive drives by the home team.                                           |
+#'  |home_scoring_opportunities       |integer   |Number of home drives that reached scoring territory.                                  |
+#'  |home_points_per_opportunity      |numeric   |Home points scored per scoring opportunity.                                            |
+#'  |home_average_start_yard_line     |numeric   |Average starting field position (yards from own goal) for home drives.                 |
+#'  |home_plays                       |integer   |Total offensive plays run by the home team.                                            |
+#'  |home_line_yards                  |numeric   |Total offensive line yards credited to the home team's rushing attack.                 |
+#'  |home_line_yards_per_rush         |numeric   |Home offensive line yards per rush attempt.                                            |
+#'  |home_second_level_yards          |integer   |Home rushing yards gained at the second level (5-10 yards past the line).              |
+#'  |home_second_level_yards_per_rush |numeric   |Home second-level rushing yards per rush attempt.                                      |
+#'  |home_open_field_yards            |integer   |Home rushing yards gained in the open field (10+ yards past the line).                 |
+#'  |home_open_field_yards_per_rush   |numeric   |Home open-field rushing yards per rush attempt.                                        |
+#'  |home_ppa_per_play                |numeric   |Average PPA per play for the home team (CFBD renames `epa_per_play`).                  |
+#'  |home_total_ppa                   |numeric   |Cumulative PPA for the home team across all plays.                                     |
+#'  |home_passing_ppa                 |numeric   |Cumulative passing PPA for the home team.                                              |
+#'  |home_ppa_per_pass                |numeric   |Average PPA per pass attempt for the home team.                                        |
+#'  |home_rushing_ppa                 |numeric   |Cumulative rushing PPA for the home team.                                              |
+#'  |home_ppa_per_rush                |numeric   |Average PPA per rush attempt for the home team.                                        |
+#'  |home_success_rate                |numeric   |Home team overall success rate (0-1).                                                  |
+#'  |home_standard_down_success_rate  |numeric   |Home success rate on standard downs (0-1).                                             |
+#'  |home_passing_down_success_rate   |numeric   |Home success rate on passing downs (0-1).                                              |
+#'  |home_explosiveness               |numeric   |Home explosiveness metric (average PPA on successful plays).                           |
+#'  |home_deserve_to_win              |numeric   |Home team "deserve-to-win" probability metric (0-1).                                   |
+#'  |away_line_scores_q1              |integer   |Away team points scored in the first quarter.                                          |
+#'  |away_line_scores_q2              |integer   |Away team points scored in the second quarter.                                         |
+#'  |away_line_scores_q3              |integer   |Away team points scored in the third quarter.                                          |
+#'  |away_line_scores_q4              |integer   |Away team points scored in the fourth quarter.                                         |
+#'  |away_points                      |integer   |Away team total points scored in the game so far.                                      |
+#'  |away_drives                      |integer   |Number of offensive drives by the away team.                                           |
+#'  |away_scoring_opportunities       |integer   |Number of away drives that reached scoring territory.                                  |
+#'  |away_points_per_opportunity      |numeric   |Away points scored per scoring opportunity.                                            |
+#'  |away_average_start_yard_line     |numeric   |Average starting field position (yards from own goal) for away drives.                 |
+#'  |away_plays                       |integer   |Total offensive plays run by the away team.                                            |
+#'  |away_line_yards                  |numeric   |Total offensive line yards credited to the away team's rushing attack.                 |
+#'  |away_line_yards_per_rush         |numeric   |Away offensive line yards per rush attempt.                                            |
+#'  |away_second_level_yards          |integer   |Away rushing yards gained at the second level (5-10 yards past the line).              |
+#'  |away_second_level_yards_per_rush |numeric   |Away second-level rushing yards per rush attempt.                                      |
+#'  |away_open_field_yards            |integer   |Away rushing yards gained in the open field (10+ yards past the line).                 |
+#'  |away_open_field_yards_per_rush   |numeric   |Away open-field rushing yards per rush attempt.                                        |
+#'  |away_ppa_per_play                |numeric   |Average PPA per play for the away team (CFBD renames `epa_per_play`).                  |
+#'  |away_total_ppa                   |numeric   |Cumulative PPA for the away team across all plays.                                     |
+#'  |away_passing_ppa                 |numeric   |Cumulative passing PPA for the away team.                                              |
+#'  |away_ppa_per_pass                |numeric   |Average PPA per pass attempt for the away team.                                        |
+#'  |away_rushing_ppa                 |numeric   |Cumulative rushing PPA for the away team.                                              |
+#'  |away_ppa_per_rush                |numeric   |Average PPA per rush attempt for the away team.                                        |
+#'  |away_success_rate                |numeric   |Away team overall success rate (0-1).                                                  |
+#'  |away_standard_down_success_rate  |numeric   |Away success rate on standard downs (0-1).                                             |
+#'  |away_passing_down_success_rate   |numeric   |Away success rate on passing downs (0-1).                                              |
+#'  |away_explosiveness               |numeric   |Away explosiveness metric (average PPA on successful plays).                           |
+#'  |away_deserve_to_win              |numeric   |Away team "deserve-to-win" probability metric (0-1).                                   |
 #'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

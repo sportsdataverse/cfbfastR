@@ -14,10 +14,10 @@ has_cfbd_key()
 cfbd_api_key_info()
 }
 \value{
-Returns a data frame with 2 variables:\tabular{ll}{
-   col_name \tab types \cr
-   patron_level \tab integer \cr
-   remaining_calls \tab integer \cr
+Returns a data frame with 2 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   patron_level \tab integer \tab CFBD Patreon tier associated with the API key (0 = free tier, higher = paid tier). \cr
+   remaining_calls \tab integer \tab Number of API calls remaining in the current rate-limit window for this key. \cr
 }
 }
 \description{

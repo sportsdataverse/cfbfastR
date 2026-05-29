@@ -14,34 +14,34 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}} - A data frame with 25 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the conference rating.}
-\item{\code{conference}: character.}{Conference name.}
-\item{\code{rating}: double.}{Conference SP+ rating.}
-\item{\code{second_order_wins}: logical.}{Second-order wins for the conference - Not available for recent seasons.}
-\item{\code{sos}: logical.}{Strength of schedule for the conference  - Not available for recent seasons..}
-\item{\code{offense_rating}: double.}{Overall offense rating for the conference.}
-\item{\code{offense_success}: logical.}{Offense success rating for the conference - Not available for recent seasons.}
-\item{\code{offense_explosiveness}: logical.}{Offense explosiveness rating for the conference - Not available for recent seasons.}
-\item{\code{offense_rushing}: logical.}{Offense rushing rating for the conference - Not available for recent seasons.}
-\item{\code{offense_passing}: logical.}{Offense passing rating for the conference - Not available for recent seasons.}
-\item{\code{offense_standard_downs}: logical.}{Offense standard downs rating for the conference - Not available for recent seasons.}
-\item{\code{offense_passing_downs}: logical.}{Offensive passing downs rating for the conference - Not available for recent seasons.}
-\item{\code{offense_run_rate}: logical.}{Offense rushing rate for the conference - Not available for recent seasons.}
-\item{\code{offense_pace}: logical.}{Offense pace factor for the conference - Not available for recent seasons.}
-\item{\code{defense_ranking}: integer.}{Overall defense ranking for the conference.}
-\item{\code{defense_rating}: double.}{Overall defense rating for the conference.}
-\item{\code{defense_success}: logical.}{Defense success rating for the conference - Not available for recent seasons.}
-\item{\code{defense_explosiveness}: logical.}{Defense explosiveness rating for the conference - Not available for recent seasons.}
-\item{\code{defense_rushing}: logical.}{Defense rushing rating for the conference - Not available for recent seasons.}
-\item{\code{defense_passing}: logical.}{Defense passing rating for the conference - Not available for recent seasons.}
-\item{\code{defense_standard_downs}: logical.}{Defense standard downs rating for the conference - Not available for recent seasons.}
-\item{\code{defense_passing_downs}: logical.}{Defensive passing downs rating for the conference - Not available for recent seasons.}
-\item{\code{defense_havoc_total}: logical.}{Total defensive havoc rate for the conference - Not available for recent seasons.}
-\item{\code{defense_havoc_front_seven}: logical.}{Defense havoc rate from front 7 players for the conference - Not available for recent seasons.}
-\item{\code{defense_havoc_db}: logical.}{Defense havoc rate from defensive backs for the conference - Not available for recent seasons.}
-\item{\code{special_teams_rating}: double.}{Special teams rating for the conference.}
+\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}} - A data frame with 25 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Season of the conference rating. \cr
+   conference \tab character \tab Conference name. \cr
+   rating \tab numeric \tab Conference SP+ rating. \cr
+   second_order_wins \tab logical \tab Second-order wins for the conference - Not available for recent seasons. \cr
+   sos \tab logical \tab Strength of schedule for the conference - Not available for recent seasons. \cr
+   offense_rating \tab numeric \tab Overall offense rating for the conference. \cr
+   offense_success \tab logical \tab Offense success rating for the conference - Not available for recent seasons. \cr
+   offense_explosiveness \tab logical \tab Offense explosiveness rating for the conference - Not available for recent seasons. \cr
+   offense_rushing \tab logical \tab Offense rushing rating for the conference - Not available for recent seasons. \cr
+   offense_passing \tab logical \tab Offense passing rating for the conference - Not available for recent seasons. \cr
+   offense_standard_downs \tab logical \tab Offense standard downs rating for the conference - Not available for recent seasons. \cr
+   offense_passing_downs \tab logical \tab Offensive passing downs rating for the conference - Not available for recent seasons. \cr
+   offense_run_rate \tab logical \tab Offense rushing rate for the conference - Not available for recent seasons. \cr
+   offense_pace \tab logical \tab Offense pace factor for the conference - Not available for recent seasons. \cr
+   defense_ranking \tab integer \tab Overall defense ranking for the conference. \cr
+   defense_rating \tab numeric \tab Overall defense rating for the conference. \cr
+   defense_success \tab logical \tab Defense success rating for the conference - Not available for recent seasons. \cr
+   defense_explosiveness \tab logical \tab Defense explosiveness rating for the conference - Not available for recent seasons. \cr
+   defense_rushing \tab logical \tab Defense rushing rating for the conference - Not available for recent seasons. \cr
+   defense_passing \tab logical \tab Defense passing rating for the conference - Not available for recent seasons. \cr
+   defense_standard_downs \tab logical \tab Defense standard downs rating for the conference - Not available for recent seasons. \cr
+   defense_passing_downs \tab logical \tab Defensive passing downs rating for the conference - Not available for recent seasons. \cr
+   defense_havoc_total \tab logical \tab Total defensive havoc rate for the conference - Not available for recent seasons. \cr
+   defense_havoc_front_seven \tab logical \tab Defense havoc rate from front 7 players for the conference - Not available for recent seasons. \cr
+   defense_havoc_db \tab logical \tab Defense havoc rate from defensive backs for the conference - Not available for recent seasons. \cr
+   special_teams_rating \tab numeric \tab Special teams rating for the conference. \cr
 }
 }
 \description{

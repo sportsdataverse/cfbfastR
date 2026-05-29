@@ -67,11 +67,12 @@ NULL
 #' @title
 #' **Get FG expected points from CFBD API**
 #' @return [cfbd_metrics_fg_ep()] - A data frame with 3 variables:
-#' \describe{
-#'   \item{`yards_to_goal`: integer.}{Yards to the goal line (0-100).}
-#'   \item{`distance`: integer.}{Distance to goal posts from kicking location (17 yds further than yards to goal).}
-#'   \item{`expected_points`: double.}{Expected points given yards to goal / distance.}
-#' }
+#'
+#'  |col_name        |types     |description                                                                       |
+#'  |:---------------|:---------|:---------------------------------------------------------------------------------|
+#'  |yards_to_goal   |integer   |Yards to the goal line (0-100).                                                   |
+#'  |distance        |integer   |Distance to goal posts from kicking location (17 yds further than yards to goal). |
+#'  |expected_points |numeric   |Expected points given yards to goal / distance.                                   |
 #' @keywords FG expected points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY modify_url
@@ -133,34 +134,34 @@ cfbd_metrics_fg_ep <- function(){
 #'
 #' @return [cfbd_metrics_wepa_team_season()] - A data frame with 26 variables:
 #'
-#'   |col_name                            |types     |
-#'   |:-----------------------------------|:---------|
-#'   |year                                |integer   |
-#'   |team_id                             |integer   |
-#'   |team                                |character |
-#'   |conference                          |character |
-#'   |explosiveness                       |numeric   |
-#'   |explosiveness_allowed               |numeric   |
-#'   |epa_total                           |numeric   |
-#'   |epa_passing                         |numeric   |
-#'   |epa_rushing                         |numeric   |
-#'   |epa_allowed_total                   |numeric   |
-#'   |epa_allowed_passing                 |numeric   |
-#'   |epa_allowed_rushing                 |numeric   |
-#'   |success_rate_total                  |numeric   |
-#'   |success_rate_standard_downs         |numeric   |
-#'   |success_rate_passing_downs          |numeric   |
-#'   |success_rate_allowed_total          |numeric   |
-#'   |success_rate_allowed_standard_downs |numeric   |
-#'   |success_rate_allowed_passing_downs  |numeric   |
-#'   |rushing_line_yards                  |numeric   |
-#'   |rushing_second_level_yards          |numeric   |
-#'   |rushing_open_field_yards            |numeric   |
-#'   |rushing_highlight_yards             |numeric   |
-#'   |rushing_allowed_line_yards          |numeric   |
-#'   |rushing_allowed_second_level_yards  |numeric   |
-#'   |rushing_allowed_open_field_yards    |numeric   |
-#'   |rushing_allowed_highlight_yards     |numeric   |
+#'   |col_name                            |types     |description                                                                                          |
+#'   |:-----------------------------------|:---------|:----------------------------------------------------------------------------------------------------|
+#'   |year                                |integer   |Four-digit season year (e.g. 2019).                                                                  |
+#'   |team_id                             |integer   |CFBD internal team identifier.                                                                       |
+#'   |team                                |character |Full team name (e.g. "TCU").                                                                         |
+#'   |conference                          |character |Team conference name (e.g. "Big 12").                                                                |
+#'   |explosiveness                       |numeric   |Offensive opponent-adjusted explosiveness rate (higher = more big plays).                            |
+#'   |explosiveness_allowed               |numeric   |Defensive opponent-adjusted explosiveness rate allowed.                                              |
+#'   |epa_total                           |numeric   |Opponent-adjusted total offensive EPA per play (predicted points added).                             |
+#'   |epa_passing                         |numeric   |Opponent-adjusted offensive passing EPA per play.                                                    |
+#'   |epa_rushing                         |numeric   |Opponent-adjusted offensive rushing EPA per play.                                                    |
+#'   |epa_allowed_total                   |numeric   |Opponent-adjusted total defensive EPA per play allowed.                                              |
+#'   |epa_allowed_passing                 |numeric   |Opponent-adjusted defensive passing EPA per play allowed.                                            |
+#'   |epa_allowed_rushing                 |numeric   |Opponent-adjusted defensive rushing EPA per play allowed.                                            |
+#'   |success_rate_total                  |numeric   |Opponent-adjusted offensive success rate across all plays (proportion 0-1).                          |
+#'   |success_rate_standard_downs         |numeric   |Opponent-adjusted offensive success rate on standard downs (proportion 0-1).                         |
+#'   |success_rate_passing_downs          |numeric   |Opponent-adjusted offensive success rate on passing downs (proportion 0-1).                          |
+#'   |success_rate_allowed_total          |numeric   |Opponent-adjusted defensive success rate allowed across all plays (proportion 0-1).                  |
+#'   |success_rate_allowed_standard_downs |numeric   |Opponent-adjusted defensive success rate allowed on standard downs (proportion 0-1).                 |
+#'   |success_rate_allowed_passing_downs  |numeric   |Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1).                  |
+#'   |rushing_line_yards                  |numeric   |Opponent-adjusted offensive line yards per rush (Football Outsiders methodology).                    |
+#'   |rushing_second_level_yards          |numeric   |Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage).         |
+#'   |rushing_open_field_yards            |numeric   |Opponent-adjusted offensive open-field yards per rush (10+ yards past line of scrimmage).            |
+#'   |rushing_highlight_yards             |numeric   |Opponent-adjusted offensive highlight yards per opportunity rush.                                    |
+#'   |rushing_allowed_line_yards          |numeric   |Opponent-adjusted defensive line yards per rush allowed.                                             |
+#'   |rushing_allowed_second_level_yards  |numeric   |Opponent-adjusted defensive second-level yards per rush allowed.                                     |
+#'   |rushing_allowed_open_field_yards    |numeric   |Opponent-adjusted defensive open-field yards per rush allowed.                                       |
+#'   |rushing_allowed_highlight_yards     |numeric   |Opponent-adjusted defensive highlight yards per opportunity rush allowed.                            |
 #'
 #' @keywords Opponent Adjusted Team Predicted Points
 #' @importFrom jsonlite fromJSON
@@ -238,16 +239,16 @@ cfbd_metrics_wepa_team_season <- function(year = NULL,
 #'
 #' @return [cfbd_metrics_wepa_players_passing()] - A data frame with 8 variables:
 #'
-#'  |col_name     |types     |
-#'  |:------------|:---------|
-#'  |year         |integer   |
-#'  |athlete_id   |character |
-#'  |athlete_name |character |
-#'  |position     |character |
-#'  |team         |character |
-#'  |conference   |character |
-#'  |wepa         |numeric   |
-#'  |plays        |integer   |
+#'  |col_name     |types     |description                                                                       |
+#'  |:------------|:---------|:---------------------------------------------------------------------------------|
+#'  |year         |integer   |Four-digit season year (e.g. 2019).                                               |
+#'  |athlete_id   |character |CFBD athlete identifier (use with `cfbd_player_info()`).                          |
+#'  |athlete_name |character |Player full name.                                                                 |
+#'  |position     |character |Player position abbreviation (e.g. "QB", "RB").                                   |
+#'  |team         |character |Full team name (e.g. "TCU").                                                      |
+#'  |conference   |character |Team conference name (e.g. "Big 12").                                             |
+#'  |wepa         |numeric   |Opponent-adjusted weighted EPA (passing predicted points added).                  |
+#'  |plays        |integer   |Total qualifying passing plays included in the WEPA calculation.                  |
 #'
 #' @keywords Opponent Adjusted Players Passing Predicted Points
 #' @importFrom jsonlite fromJSON
@@ -334,16 +335,16 @@ cfbd_metrics_wepa_players_passing <- function(year = NULL,
 #'
 #' @return [cfbd_metrics_wepa_players_rushing()] - A data frame with 8 variables:
 #'
-#'  |col_name     |types     |
-#'  |:------------|:---------|
-#'  |year         |integer   |
-#'  |athlete_id   |character |
-#'  |athlete_name |character |
-#'  |position     |character |
-#'  |team         |character |
-#'  |conference   |character |
-#'  |wepa         |numeric   |
-#'  |plays        |integer   |
+#'  |col_name     |types     |description                                                                       |
+#'  |:------------|:---------|:---------------------------------------------------------------------------------|
+#'  |year         |integer   |Four-digit season year (e.g. 2019).                                               |
+#'  |athlete_id   |character |CFBD athlete identifier (use with `cfbd_player_info()`).                          |
+#'  |athlete_name |character |Player full name.                                                                 |
+#'  |position     |character |Player position abbreviation (e.g. "RB", "QB").                                   |
+#'  |team         |character |Full team name (e.g. "TCU").                                                      |
+#'  |conference   |character |Team conference name (e.g. "Big 12").                                             |
+#'  |wepa         |numeric   |Opponent-adjusted weighted EPA (rushing predicted points added).                  |
+#'  |plays        |integer   |Total qualifying rushing plays included in the WEPA calculation.                  |
 #'
 #' @keywords Opponent Adjusted Players Rushing Predicted Points
 #' @importFrom jsonlite fromJSON
@@ -425,15 +426,15 @@ cfbd_metrics_wepa_players_rushing <- function(year = NULL,
 #'
 #' @return [cfbd_metrics_wepa_players_kicking()] - A data frame with 7 variables:
 #'
-#'  |col_name     |types     |
-#'  |:------------|:---------|
-#'  |year         |integer   |
-#'  |athlete_id   |character |
-#'  |athlete_name |character |
-#'  |team         |character |
-#'  |conference   |character |
-#'  |paar         |numeric   |
-#'  |attempts     |integer   |
+#'  |col_name     |types     |description                                                                       |
+#'  |:------------|:---------|:---------------------------------------------------------------------------------|
+#'  |year         |integer   |Four-digit season year (e.g. 2019).                                               |
+#'  |athlete_id   |character |CFBD athlete identifier (use with `cfbd_player_info()`).                          |
+#'  |athlete_name |character |Kicker full name.                                                                 |
+#'  |team         |character |Full team name (e.g. "TCU").                                                      |
+#'  |conference   |character |Team conference name (e.g. "Big 12").                                             |
+#'  |paar         |numeric   |Points Added Above Replacement on field goal attempts (kicker value vs baseline). |
+#'  |attempts     |integer   |Total field goal attempts included in the PAAR calculation.                       |
 #'
 #' @keywords Points Added Above Replacement (PAAR) ratings for kickers
 #' @importFrom jsonlite fromJSON
@@ -506,28 +507,29 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return [cfbd_metrics_ppa_games()] - A data frame with 18 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`week`: integer.}{Game week of the season.}
-#'   \item{`season_type`: character.}{Season Type (regular, postseason, etc.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`opponent`: character.}{Team Opponent.}
-#'   \item{`off_overall`: character.}{Offense overall predicted points added (PPA).}
-#'   \item{`off_passing`: character.}{Offense passing predicted points added (PPA).}
-#'   \item{`off_rushing`: character.}{Offense rushing predicted points added (PPA).}
-#'   \item{`off_first_down`: character.}{Offense 1st down predicted points added (PPA).}
-#'   \item{`off_second_down`: character.}{Offense 2nd down predicted points added (PPA).}
-#'   \item{`off_third_down`: character.}{Offense 3rd down predicted points added (PPA).}
-#'   \item{`def_overall`: character.}{Defense overall predicted points added (PPA).}
-#'   \item{`def_passing`: character.}{Defense passing predicted points added (PPA).}
-#'   \item{`def_rushing`: character.}{Defense rushing predicted points added (PPA).}
-#'   \item{`def_first_down`: character.}{Defense 1st down predicted points added (PPA).}
-#'   \item{`def_second_down`: character.}{Defense 2nd down predicted points added (PPA).}
-#'   \item{`def_third_down`: character.}{Defense 3rd down predicted points added (PPA).}
-#' }
+#' @return [cfbd_metrics_ppa_games()] - A data frame with 19 variables:
+#'
+#'  |col_name        |types     |description                                                                       |
+#'  |:---------------|:---------|:---------------------------------------------------------------------------------|
+#'  |game_id         |integer   |Referencing game id.                                                              |
+#'  |season          |integer   |Season of the game.                                                               |
+#'  |week            |integer   |Game week of the season.                                                          |
+#'  |season_type     |character |Season type (regular, postseason, etc.).                                          |
+#'  |conference      |character |Conference of the team.                                                           |
+#'  |team            |character |Team name.                                                                        |
+#'  |opponent        |character |Team opponent name.                                                               |
+#'  |off_overall     |numeric   |Offense overall predicted points added (PPA).                                     |
+#'  |off_passing     |numeric   |Offense passing predicted points added (PPA).                                     |
+#'  |off_rushing     |numeric   |Offense rushing predicted points added (PPA).                                     |
+#'  |off_first_down  |numeric   |Offense 1st down predicted points added (PPA).                                    |
+#'  |off_second_down |numeric   |Offense 2nd down predicted points added (PPA).                                    |
+#'  |off_third_down  |numeric   |Offense 3rd down predicted points added (PPA).                                    |
+#'  |def_overall     |numeric   |Defense overall predicted points added (PPA).                                     |
+#'  |def_passing     |numeric   |Defense passing predicted points added (PPA).                                     |
+#'  |def_rushing     |numeric   |Defense rushing predicted points added (PPA).                                     |
+#'  |def_first_down  |numeric   |Defense 1st down predicted points added (PPA).                                    |
+#'  |def_second_down |numeric   |Defense 2nd down predicted points added (PPA).                                    |
+#'  |def_third_down  |numeric   |Defense 3rd down predicted points added (PPA).                                    |
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -625,19 +627,20 @@ cfbd_metrics_ppa_games <- function(year,
 #' @param threshold (*Integer* optional): Minimum threshold of plays.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
-#' @return [cfbd_metrics_ppa_players_games()] - A data frame with 9 variables:
-#' \describe{
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`week`: integer.}{Game week of the season.}
-#'   \item{`athlete_id`: character.}{Athlete referencing id.}
-#'   \item{`name`: character.}{Athlete name.}
-#'   \item{`position`: character.}{Athlete position.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`opponent`: character.}{Team Opponent name.}
-#'   \item{`avg_PPA_all`: double.}{Average overall predicted points added (PPA).}
-#'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
-#'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
-#' }
+#' @return [cfbd_metrics_ppa_players_games()] - A data frame with 10 variables:
+#'
+#'  |col_name     |types     |description                                                                       |
+#'  |:------------|:---------|:---------------------------------------------------------------------------------|
+#'  |season       |integer   |Season of the game.                                                               |
+#'  |week         |integer   |Game week of the season.                                                          |
+#'  |athlete_id   |character |Athlete referencing id.                                                           |
+#'  |name         |character |Athlete name.                                                                     |
+#'  |position     |character |Athlete position.                                                                 |
+#'  |team         |character |Team name.                                                                        |
+#'  |opponent     |character |Team opponent name.                                                               |
+#'  |avg_PPA_all  |numeric   |Average overall predicted points added (PPA).                                     |
+#'  |avg_PPA_pass |numeric   |Average passing predicted points added (PPA).                                     |
+#'  |avg_PPA_rush |numeric   |Average rushing predicted points added (PPA).                                     |
 #' @keywords Players Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -747,31 +750,32 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
 #' @return [cfbd_metrics_ppa_players_season()] - A data frame with 23 variables:
-#' \describe{
-#'   \item{`season`: integer.}{Season.}
-#'   \item{`athlete_id`: character.}{Athlete referencing id.}
-#'   \item{`name`: character.}{Athlete name.}
-#'   \item{`position`: character.}{Athlete Position.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Team conference.}
-#'   \item{`countable_plays`: integer.}{DEPRECATED Number of plays which can be counted.}
-#'   \item{`avg_PPA_all`: double.}{Average overall predicted points added (PPA).}
-#'   \item{`avg_PPA_pass`: double.}{Average passing predicted points added (PPA).}
-#'   \item{`avg_PPA_rush`: double.}{Average rushing predicted points added (PPA).}
-#'   \item{`avg_PPA_first_down`: double.}{Average 1st down predicted points added (PPA).}
-#'   \item{`avg_PPA_second_down`: double.}{Average 2nd down predicted points added (PPA).}
-#'   \item{`avg_PPA_third_down`: double.}{Average 3rd down predicted points added (PPA).}
-#'   \item{`avg_PPA_standard_downs`: double.}{Average standard down predicted points added (PPA).}
-#'   \item{`avg_PPA_passing_downs`: double.}{Average passing down predicted points added (PPA).}
-#'   \item{`total_PPA_all`: double.}{Total overall predicted points added (PPA).}
-#'   \item{`total_PPA_pass`: double.}{Total passing predicted points added (PPA).}
-#'   \item{`total_PPA_rush`: double.}{Total rushing predicted points added (PPA).}
-#'   \item{`total_PPA_first_down`: double.}{Total 1st down predicted points added (PPA).}
-#'   \item{`total_PPA_second_down`: double.}{Total 2nd down predicted points added (PPA).}
-#'   \item{`total_PPA_third_down`: double.}{Total 3rd down predicted points added (PPA).}
-#'   \item{`total_PPA_standard_downs`: double.}{Total standard down predicted points added (PPA).}
-#'   \item{`total_PPA_passing_downs`: double.}{Total passing down predicted points added (PPA).}
-#' }
+#'
+#'  |col_name                 |types     |description                                                                       |
+#'  |:------------------------|:---------|:---------------------------------------------------------------------------------|
+#'  |season                   |integer   |Four-digit season year.                                                           |
+#'  |athlete_id               |character |Athlete referencing id.                                                           |
+#'  |name                     |character |Athlete name.                                                                     |
+#'  |position                 |character |Athlete position abbreviation (e.g. "QB", "RB").                                  |
+#'  |team                     |character |Team name.                                                                        |
+#'  |conference               |character |Team conference name.                                                             |
+#'  |countable_plays          |integer   |DEPRECATED Number of plays which can be counted.                                  |
+#'  |avg_PPA_all              |numeric   |Average overall predicted points added (PPA).                                     |
+#'  |avg_PPA_pass             |numeric   |Average passing predicted points added (PPA).                                     |
+#'  |avg_PPA_rush             |numeric   |Average rushing predicted points added (PPA).                                     |
+#'  |avg_PPA_first_down       |numeric   |Average 1st down predicted points added (PPA).                                    |
+#'  |avg_PPA_second_down      |numeric   |Average 2nd down predicted points added (PPA).                                    |
+#'  |avg_PPA_third_down       |numeric   |Average 3rd down predicted points added (PPA).                                    |
+#'  |avg_PPA_standard_downs   |numeric   |Average standard down predicted points added (PPA).                               |
+#'  |avg_PPA_passing_downs    |numeric   |Average passing down predicted points added (PPA).                                |
+#'  |total_PPA_all            |numeric   |Total overall predicted points added (PPA).                                       |
+#'  |total_PPA_pass           |numeric   |Total passing predicted points added (PPA).                                       |
+#'  |total_PPA_rush           |numeric   |Total rushing predicted points added (PPA).                                       |
+#'  |total_PPA_first_down     |numeric   |Total 1st down predicted points added (PPA).                                      |
+#'  |total_PPA_second_down    |numeric   |Total 2nd down predicted points added (PPA).                                      |
+#'  |total_PPA_third_down     |numeric   |Total 3rd down predicted points added (PPA).                                      |
+#'  |total_PPA_standard_downs |numeric   |Total standard down predicted points added (PPA).                                 |
+#'  |total_PPA_passing_downs  |numeric   |Total passing down predicted points added (PPA).                                  |
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -868,10 +872,11 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
 #' @param distance (*Integer* required): Distance filter
 #'
 #' @return [cfbd_metrics_ppa_predicted()] - A data frame with 2 variables:
-#' \describe{
-#'   \item{`yard_line`: integer.}{Yards to goal}
-#'   \item{`predicted_points`: character.}{Predicted points at in that down-distance-yardline scenario}
-#' }
+#'
+#'  |col_name         |types     |description                                                                       |
+#'  |:----------------|:---------|:---------------------------------------------------------------------------------|
+#'  |yard_line        |integer   |Yards to goal.                                                                    |
+#'  |predicted_points |numeric   |Predicted points in that down-distance-yardline scenario.                         |
 #' @keywords Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -942,29 +947,30 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
 #' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
-#' \describe{
-#'   \item{`season`: integer.}{.}
-#'   \item{`conference`: character.}{.}
-#'   \item{`team`: character.}{.}
-#'   \item{`off_overall`: character.}{Offense overall predicted points added (PPA).}
-#'   \item{`off_passing`: character.}{Offense passing predicted points added (PPA).}
-#'   \item{`off_rushing`: character.}{Offense rushing predicted points added (PPA).}
-#'   \item{`off_first_down`: character.}{Offense 1st down predicted points added (PPA).}
-#'   \item{`off_second_down`: character.}{Offense 2nd down predicted points added (PPA).}
-#'   \item{`off_third_down`: character.}{Offense 3rd down predicted points added (PPA).}
-#'   \item{`off_cumulative_total`: character.}{Offense cumulative total predicted points added (PPA).}
-#'   \item{`off_cumulative_passing`: character.}{Offense cumulative total passing predicted points added (PPA).}
-#'   \item{`off_cumulative_rushing`: character.}{Offense cumulative total rushing predicted points added (PPA).}
-#'   \item{`def_overall`: character.}{Defense overall predicted points added (PPA).}
-#'   \item{`def_passing`: character.}{Defense passing predicted points added (PPA).}
-#'   \item{`def_rushing`: character.}{Defense rushing predicted points added (PPA).}
-#'   \item{`def_first_down`: character.}{Defense 1st down predicted points added (PPA).}
-#'   \item{`def_second_down`: character.}{Defense 2nd down predicted points added (PPA).}
-#'   \item{`def_third_down`: character.}{Defense 3rd down predicted points added (PPA).}
-#'   \item{`def_cumulative_total`: character.}{Defense cumulative total predicted points added (PPA).}
-#'   \item{`def_cumulative_passing`: character.}{Defense cumulative total passing predicted points added (PPA).}
-#'   \item{`def_cumulative_rushing`: character.}{Defense cumulative total rushing predicted points added (PPA).}
-#' }
+#'
+#'  |col_name               |types     |description                                                                       |
+#'  |:----------------------|:---------|:---------------------------------------------------------------------------------|
+#'  |season                 |integer   |Four-digit season year.                                                           |
+#'  |conference             |character |Team conference name.                                                             |
+#'  |team                   |character |Team name.                                                                        |
+#'  |off_overall            |numeric   |Offense overall predicted points added (PPA).                                     |
+#'  |off_passing            |numeric   |Offense passing predicted points added (PPA).                                     |
+#'  |off_rushing            |numeric   |Offense rushing predicted points added (PPA).                                     |
+#'  |off_first_down         |numeric   |Offense 1st down predicted points added (PPA).                                    |
+#'  |off_second_down        |numeric   |Offense 2nd down predicted points added (PPA).                                    |
+#'  |off_third_down         |numeric   |Offense 3rd down predicted points added (PPA).                                    |
+#'  |off_cumulative_total   |numeric   |Offense cumulative total predicted points added (PPA).                            |
+#'  |off_cumulative_passing |numeric   |Offense cumulative total passing predicted points added (PPA).                    |
+#'  |off_cumulative_rushing |numeric   |Offense cumulative total rushing predicted points added (PPA).                    |
+#'  |def_overall            |numeric   |Defense overall predicted points added (PPA).                                     |
+#'  |def_passing            |numeric   |Defense passing predicted points added (PPA).                                     |
+#'  |def_rushing            |numeric   |Defense rushing predicted points added (PPA).                                     |
+#'  |def_first_down         |numeric   |Defense 1st down predicted points added (PPA).                                    |
+#'  |def_second_down        |numeric   |Defense 2nd down predicted points added (PPA).                                    |
+#'  |def_third_down         |numeric   |Defense 3rd down predicted points added (PPA).                                    |
+#'  |def_cumulative_total   |numeric   |Defense cumulative total predicted points added (PPA).                            |
+#'  |def_cumulative_passing |numeric   |Defense cumulative total passing predicted points added (PPA).                    |
+#'  |def_cumulative_rushing |numeric   |Defense cumulative total rushing predicted points added (PPA).                    |
 #' @keywords Teams Predicted Points
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1040,17 +1046,18 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_metrics_wp_pregame()] - A data frame with 9 variables:
-#' \describe{
-#'   \item{`season`: integer.}{Season of game.}
-#'   \item{`season_type`: character.}{Season type of game.}
-#'   \item{`week`: integer.}{Game week of the season.}
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`home_team`: character.}{Home team name.}
-#'   \item{`away_team`: character.}{Away team name.}
-#'   \item{`spread`: integer.}{Betting line provider spread.}
-#'   \item{`home_win_prob`: double.}{Home win probability - pre-game prediction.}
-#'   \item{`away_win_prob`: double.}{Away win probability - pre-game prediction.}
-#' }
+#'
+#'  |col_name      |types     |description                                                                       |
+#'  |:-------------|:---------|:---------------------------------------------------------------------------------|
+#'  |season        |integer   |Season of the game.                                                               |
+#'  |season_type   |character |Season type of the game (regular, postseason, etc.).                              |
+#'  |week          |integer   |Game week of the season.                                                          |
+#'  |game_id       |integer   |Referencing game id.                                                              |
+#'  |home_team     |character |Home team name.                                                                   |
+#'  |away_team     |character |Away team name.                                                                   |
+#'  |spread        |numeric   |Betting line provider spread.                                                     |
+#'  |home_win_prob |numeric   |Home win probability - pre-game prediction (0-1).                                 |
+#'  |away_win_prob |numeric   |Away win probability - pre-game prediction (0-1).                                 |
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY
@@ -1131,24 +1138,25 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @return [cfbd_metrics_wp()] - A data frame with 16 variables:
-#' \describe{
-#'   \item{`play_id`: character.}{Play referencing id.}
-#'   \item{`play_text`: character.}{A text description of the play.}
-#'   \item{`home_id`: integer.}{Home team referencing id.}
-#'   \item{`home`: character.}{Home team name.}
-#'   \item{`away_id`: integer.}{Away team referencing id.}
-#'   \item{`away`: character.}{Away team name.}
-#'   \item{`spread`: character.}{Betting lines provider spread.}
-#'   \item{`home_ball`: logical.}{Home team has the ball.}
-#'   \item{`home_score`: integer.}{Home team score.}
-#'   \item{`away_score`: integer.}{Away team score.}
-#'   \item{`down`: integer.}{Down of the play.}
-#'   \item{`distance`: integer.}{Distance to the sticks (to 1st down marker of goal-line in goal-to-go situations).}
-#'   \item{`home_win_prob`: character.}{Home team win probability.}
-#'   \item{`away_win_prob`: double.}{Away team win probability.}
-#'   \item{`play_number`: integer.}{Game play number.}
-#'   \item{`yard_line`: integer.}{Yard line of the play (0-100 yards).}
-#' }
+#'
+#'  |col_name      |types     |description                                                                       |
+#'  |:-------------|:---------|:---------------------------------------------------------------------------------|
+#'  |play_id       |character |Play referencing id.                                                              |
+#'  |play_text     |character |A text description of the play.                                                   |
+#'  |home_id       |integer   |Home team referencing id.                                                         |
+#'  |home          |character |Home team name.                                                                   |
+#'  |away_id       |integer   |Away team referencing id.                                                         |
+#'  |away          |character |Away team name.                                                                   |
+#'  |spread        |numeric   |Betting lines provider spread.                                                    |
+#'  |home_ball     |logical   |Home team has the ball.                                                           |
+#'  |home_score    |integer   |Home team score.                                                                  |
+#'  |away_score    |integer   |Away team score.                                                                  |
+#'  |down          |integer   |Down of the play.                                                                 |
+#'  |distance      |integer   |Distance to the sticks (to 1st down marker or goal-line in goal-to-go situations).|
+#'  |home_win_prob |numeric   |Home team win probability (0-1).                                                  |
+#'  |away_win_prob |numeric   |Away team win probability (0-1).                                                  |
+#'  |play_number   |integer   |Game play number.                                                                 |
+#'  |yard_line     |integer   |Yard line of the play (0-100 yards).                                              |
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

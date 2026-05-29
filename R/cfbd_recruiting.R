@@ -70,28 +70,29 @@ NULL
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'
 #'  * Special Teams: 'K', 'P'
 #'
-#' @return [cfbd_recruiting_player()] - A data frame with 14 variables:
-#' \describe{
-#'   \item{`id`: integer.}{Referencing id - 247Sports.}
-#'   \item{`athlete_id`}{Athlete referencing id.}
-#'   \item{`recruit_type`: character.}{High School, Prep School, or Junior College.}
-#'   \item{`year`: integer.}{Recruit class year.}
-#'   \item{`ranking`: integer.}{Recruit Ranking.}
-#'   \item{`name`: character.}{Recruit Name.}
-#'   \item{`school`: character.}{School recruit attended.}
-#'   \item{`committed_to`: character.}{School the recruit is committed to.}
-#'   \item{`position`: character.}{Recruit position.}
-#'   \item{`height`: double.}{Recruit height.}
-#'   \item{`weight`: integer.}{Recruit weight.}
-#'   \item{`stars`: integer.}{Recruit stars.}
-#'   \item{`rating`: double.}{247 composite rating.}
-#'   \item{`city`: character.}{Hometown of the recruit.}
-#'   \item{`state_province`: character.}{Hometown state of the recruit.}
-#'   \item{`country`: character.}{Hometown country of the recruit.}
-#'   \item{`hometown_info_latitude`: character.}{Hometown latitude.}
-#'   \item{`hometown_info_longitude`: character.}{Hometown longitude.}
-#'   \item{`hometown_info_fips_code`: character.}{Hometown FIPS code.}
-#' }
+#' @return [cfbd_recruiting_player()] - A data frame with 19 variables:
+#'
+#'    |col_name                |types     |description                                                              |
+#'    |:-----------------------|:---------|:------------------------------------------------------------------------|
+#'    |id                      |integer   |247Sports referencing id for the recruit.                                |
+#'    |athlete_id              |integer   |CFBD athlete referencing id linking to player tables.                    |
+#'    |recruit_type            |character |Recruit class: High School, Prep School, or Junior College.              |
+#'    |year                    |integer   |Recruiting class year (four-digit season).                               |
+#'    |ranking                 |integer   |Recruit national ranking within the class.                               |
+#'    |name                    |character |Recruit full name.                                                       |
+#'    |school                  |character |High school, prep school, or JUCO program the recruit attended.          |
+#'    |committed_to            |character |College program the recruit is committed to.                             |
+#'    |position                |character |Recruit position abbreviation (e.g. QB, WR, OT).                         |
+#'    |height                  |numeric   |Recruit height in inches.                                                |
+#'    |weight                  |integer   |Recruit weight in pounds.                                                |
+#'    |stars                   |integer   |Recruit star rating on the 247Sports scale (2-5).                        |
+#'    |rating                  |numeric   |247Sports composite rating for the recruit.                              |
+#'    |city                    |character |Hometown city of the recruit.                                            |
+#'    |state_province          |character |Hometown state or province of the recruit.                               |
+#'    |country                 |character |Hometown country of the recruit.                                         |
+#'    |hometown_info_latitude  |character |Latitude of the recruit's hometown.                                      |
+#'    |hometown_info_longitude |character |Longitude of the recruit's hometown.                                     |
+#'    |hometown_info_fips_code |character |FIPS code of the recruit's hometown.                                     |
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -182,15 +183,16 @@ cfbd_recruiting_player <- function(year = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_recruiting_position()] - A data frame with 7 variables:
-#' \describe{
-#'   \item{`team`: character.}{Recruiting team.}
-#'   \item{`conference`: character.}{Recruiting team conference.}
-#'   \item{`position_group`: character.}{Position group of the recruits.}
-#'   \item{`avg_rating`: double.}{Average rating of the recruits in the position group.}
-#'   \item{`total_rating`: double.}{Sum of the ratings of the recruits in the position group.}
-#'   \item{`commits`: integer.}{Number of commits in the position group.}
-#'   \item{`avg_stars`: double.}{Average stars of the recruits in the position group.}
-#' }
+#'
+#'    |col_name       |types     |description                                                          |
+#'    |:--------------|:---------|:--------------------------------------------------------------------|
+#'    |team           |character |Recruiting team (school) name.                                       |
+#'    |conference     |character |Conference affiliation of the recruiting team.                       |
+#'    |position_group |character |Position group of the recruits (e.g. Offensive Line, Defensive Back).|
+#'    |avg_rating     |numeric   |Average 247Sports composite rating of recruits in the position group.|
+#'    |total_rating   |numeric   |Sum of the 247Sports composite ratings of recruits in the group.     |
+#'    |commits        |integer   |Number of commits in the position group.                             |
+#'    |avg_stars      |numeric   |Average star rating of recruits in the position group.               |
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -267,12 +269,13 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 #' @param team (*String* optional): Team - Select a valid team, D1 football. Required if year not provided.
 #'
 #' @return [cfbd_recruiting_team()] - A data frame with 4 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Recruiting class year.}
-#'   \item{`rank`: integer.}{Team Recruiting rank.}
-#'   \item{`team`: character.}{Recruiting Team.}
-#'   \item{`points`: character.}{Team talent points.}
-#' }
+#'
+#'    |col_name |types     |description                                                |
+#'    |:--------|:---------|:----------------------------------------------------------|
+#'    |year     |integer   |Recruiting class year (four-digit season).                 |
+#'    |rank     |integer   |National team recruiting rank for the class.               |
+#'    |team     |character |Recruiting team (school) name.                             |
+#'    |points   |character |Team talent points totaled across the recruiting class.    |
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -341,19 +344,20 @@ cfbd_recruiting_team <- function(year = NULL,
 #' @title
 #' **Get Transfer Portal Data**
 #' @param year (*Integer* required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (*YYYY*).
-#' @return [cfbd_recruiting_transfer_portal()] - A data frame with 11 variables:
-#' \describe{
-#'   \item{`season`:integer}{Season of transfer.}
-#'   \item{`first_name`:character.}{Player's first name.}
-#'   \item{`last_name`:character.}{Player's last name.}
-#'   \item{`position`:character.}{Player position.}
-#'   \item{`origin`:character.}{original team.}
-#'   \item{`destination`:character.}{new team.}
-#'   \item{`transfer_date`:character.}{Date of transfer.}
-#'   \item{`rating`:character.}{Player's 247 transfer rating.}
-#'   \item{`stars`:integer}{Player's star rating.}
-#'   \item{`eligibilty`:character.}{Player's eligibilty status.}
-#' }
+#' @return [cfbd_recruiting_transfer_portal()] - A data frame with 10 variables:
+#'
+#'    |col_name      |types     |description                                                          |
+#'    |:-------------|:---------|:--------------------------------------------------------------------|
+#'    |season        |integer   |Season of the transfer (four-digit year).                            |
+#'    |first_name    |character |Player's first name.                                                 |
+#'    |last_name     |character |Player's last name.                                                  |
+#'    |position      |character |Player position abbreviation (e.g. QB, WR, OT).                      |
+#'    |origin        |character |Original (transferring-from) team.                                   |
+#'    |destination   |character |New (transferring-to) team.                                          |
+#'    |transfer_date |character |Date the transfer was reported (parsed downstream to POSIXct).       |
+#'    |rating        |character |Player's 247Sports transfer rating.                                  |
+#'    |stars         |integer   |Player's 247Sports star rating (2-5).                                |
+#'    |eligibilty    |character |Player's eligibility status at time of transfer.                     |
 #' @keywords Recruiting
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET RETRY

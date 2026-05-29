@@ -10,11 +10,11 @@ cfbd_team_talent(year = most_recent_cfb_season())
 \item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
 }
 \value{
-\code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:
-\describe{
-\item{\code{year}: integer.}{Season for the talent rating.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{talent}: double.}{Overall roster talent points (as determined by 247Sports).}
+\code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Season for the talent rating. \cr
+   school \tab character \tab Team name. \cr
+   talent \tab numeric \tab Overall roster talent points (as determined by 247Sports). \cr
 }
 }
 \description{

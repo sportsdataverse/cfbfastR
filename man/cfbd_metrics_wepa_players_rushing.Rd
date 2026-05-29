@@ -29,16 +29,16 @@ Position Group  - options include:
 }}
 }
 \value{
-\code{\link[=cfbd_metrics_wepa_players_rushing]{cfbd_metrics_wepa_players_rushing()}} - A data frame with 8 variables:\tabular{ll}{
-   col_name \tab types \cr
-   year \tab integer \cr
-   athlete_id \tab character \cr
-   athlete_name \tab character \cr
-   position \tab character \cr
-   team \tab character \cr
-   conference \tab character \cr
-   wepa \tab numeric \cr
-   plays \tab integer \cr
+\code{\link[=cfbd_metrics_wepa_players_rushing]{cfbd_metrics_wepa_players_rushing()}} - A data frame with 8 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year (e.g. 2019). \cr
+   athlete_id \tab character \tab CFBD athlete identifier (use with \code{cfbd_player_info()}). \cr
+   athlete_name \tab character \tab Player full name. \cr
+   position \tab character \tab Player position abbreviation (e.g. "RB", "QB"). \cr
+   team \tab character \tab Full team name (e.g. "TCU"). \cr
+   conference \tab character \tab Team conference name (e.g. "Big 12"). \cr
+   wepa \tab numeric \tab Opponent-adjusted weighted EPA (rushing predicted points added). \cr
+   plays \tab integer \tab Total qualifying rushing plays included in the WEPA calculation. \cr
 }
 }
 \description{

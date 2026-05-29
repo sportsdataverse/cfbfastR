@@ -16,34 +16,34 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_metrics_wepa_team_season]{cfbd_metrics_wepa_team_season()}} - A data frame with 26 variables:\tabular{ll}{
-   col_name \tab types \cr
-   year \tab integer \cr
-   team_id \tab integer \cr
-   team \tab character \cr
-   conference \tab character \cr
-   explosiveness \tab numeric \cr
-   explosiveness_allowed \tab numeric \cr
-   epa_total \tab numeric \cr
-   epa_passing \tab numeric \cr
-   epa_rushing \tab numeric \cr
-   epa_allowed_total \tab numeric \cr
-   epa_allowed_passing \tab numeric \cr
-   epa_allowed_rushing \tab numeric \cr
-   success_rate_total \tab numeric \cr
-   success_rate_standard_downs \tab numeric \cr
-   success_rate_passing_downs \tab numeric \cr
-   success_rate_allowed_total \tab numeric \cr
-   success_rate_allowed_standard_downs \tab numeric \cr
-   success_rate_allowed_passing_downs \tab numeric \cr
-   rushing_line_yards \tab numeric \cr
-   rushing_second_level_yards \tab numeric \cr
-   rushing_open_field_yards \tab numeric \cr
-   rushing_highlight_yards \tab numeric \cr
-   rushing_allowed_line_yards \tab numeric \cr
-   rushing_allowed_second_level_yards \tab numeric \cr
-   rushing_allowed_open_field_yards \tab numeric \cr
-   rushing_allowed_highlight_yards \tab numeric \cr
+\code{\link[=cfbd_metrics_wepa_team_season]{cfbd_metrics_wepa_team_season()}} - A data frame with 26 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year (e.g. 2019). \cr
+   team_id \tab integer \tab CFBD internal team identifier. \cr
+   team \tab character \tab Full team name (e.g. "TCU"). \cr
+   conference \tab character \tab Team conference name (e.g. "Big 12"). \cr
+   explosiveness \tab numeric \tab Offensive opponent-adjusted explosiveness rate (higher = more big plays). \cr
+   explosiveness_allowed \tab numeric \tab Defensive opponent-adjusted explosiveness rate allowed. \cr
+   epa_total \tab numeric \tab Opponent-adjusted total offensive EPA per play (predicted points added). \cr
+   epa_passing \tab numeric \tab Opponent-adjusted offensive passing EPA per play. \cr
+   epa_rushing \tab numeric \tab Opponent-adjusted offensive rushing EPA per play. \cr
+   epa_allowed_total \tab numeric \tab Opponent-adjusted total defensive EPA per play allowed. \cr
+   epa_allowed_passing \tab numeric \tab Opponent-adjusted defensive passing EPA per play allowed. \cr
+   epa_allowed_rushing \tab numeric \tab Opponent-adjusted defensive rushing EPA per play allowed. \cr
+   success_rate_total \tab numeric \tab Opponent-adjusted offensive success rate across all plays (proportion 0-1). \cr
+   success_rate_standard_downs \tab numeric \tab Opponent-adjusted offensive success rate on standard downs (proportion 0-1). \cr
+   success_rate_passing_downs \tab numeric \tab Opponent-adjusted offensive success rate on passing downs (proportion 0-1). \cr
+   success_rate_allowed_total \tab numeric \tab Opponent-adjusted defensive success rate allowed across all plays (proportion 0-1). \cr
+   success_rate_allowed_standard_downs \tab numeric \tab Opponent-adjusted defensive success rate allowed on standard downs (proportion 0-1). \cr
+   success_rate_allowed_passing_downs \tab numeric \tab Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1). \cr
+   rushing_line_yards \tab numeric \tab Opponent-adjusted offensive line yards per rush (Football Outsiders methodology). \cr
+   rushing_second_level_yards \tab numeric \tab Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage). \cr
+   rushing_open_field_yards \tab numeric \tab Opponent-adjusted offensive open-field yards per rush (10+ yards past line of scrimmage). \cr
+   rushing_highlight_yards \tab numeric \tab Opponent-adjusted offensive highlight yards per opportunity rush. \cr
+   rushing_allowed_line_yards \tab numeric \tab Opponent-adjusted defensive line yards per rush allowed. \cr
+   rushing_allowed_second_level_yards \tab numeric \tab Opponent-adjusted defensive second-level yards per rush allowed. \cr
+   rushing_allowed_open_field_yards \tab numeric \tab Opponent-adjusted defensive open-field yards per rush allowed. \cr
+   rushing_allowed_highlight_yards \tab numeric \tab Opponent-adjusted defensive highlight yards per opportunity rush allowed. \cr
 }
 }
 \description{

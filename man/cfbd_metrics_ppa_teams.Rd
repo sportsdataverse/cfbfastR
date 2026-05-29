@@ -23,29 +23,29 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
 }
 \value{
-\code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:
-\describe{
-\item{\code{season}: integer.}{.}
-\item{\code{conference}: character.}{.}
-\item{\code{team}: character.}{.}
-\item{\code{off_overall}: character.}{Offense overall predicted points added (PPA).}
-\item{\code{off_passing}: character.}{Offense passing predicted points added (PPA).}
-\item{\code{off_rushing}: character.}{Offense rushing predicted points added (PPA).}
-\item{\code{off_first_down}: character.}{Offense 1st down predicted points added (PPA).}
-\item{\code{off_second_down}: character.}{Offense 2nd down predicted points added (PPA).}
-\item{\code{off_third_down}: character.}{Offense 3rd down predicted points added (PPA).}
-\item{\code{off_cumulative_total}: character.}{Offense cumulative total predicted points added (PPA).}
-\item{\code{off_cumulative_passing}: character.}{Offense cumulative total passing predicted points added (PPA).}
-\item{\code{off_cumulative_rushing}: character.}{Offense cumulative total rushing predicted points added (PPA).}
-\item{\code{def_overall}: character.}{Defense overall predicted points added (PPA).}
-\item{\code{def_passing}: character.}{Defense passing predicted points added (PPA).}
-\item{\code{def_rushing}: character.}{Defense rushing predicted points added (PPA).}
-\item{\code{def_first_down}: character.}{Defense 1st down predicted points added (PPA).}
-\item{\code{def_second_down}: character.}{Defense 2nd down predicted points added (PPA).}
-\item{\code{def_third_down}: character.}{Defense 3rd down predicted points added (PPA).}
-\item{\code{def_cumulative_total}: character.}{Defense cumulative total predicted points added (PPA).}
-\item{\code{def_cumulative_passing}: character.}{Defense cumulative total passing predicted points added (PPA).}
-\item{\code{def_cumulative_rushing}: character.}{Defense cumulative total rushing predicted points added (PPA).}
+\code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}} - A data frame with 21 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Four-digit season year. \cr
+   conference \tab character \tab Team conference name. \cr
+   team \tab character \tab Team name. \cr
+   off_overall \tab numeric \tab Offense overall predicted points added (PPA). \cr
+   off_passing \tab numeric \tab Offense passing predicted points added (PPA). \cr
+   off_rushing \tab numeric \tab Offense rushing predicted points added (PPA). \cr
+   off_first_down \tab numeric \tab Offense 1st down predicted points added (PPA). \cr
+   off_second_down \tab numeric \tab Offense 2nd down predicted points added (PPA). \cr
+   off_third_down \tab numeric \tab Offense 3rd down predicted points added (PPA). \cr
+   off_cumulative_total \tab numeric \tab Offense cumulative total predicted points added (PPA). \cr
+   off_cumulative_passing \tab numeric \tab Offense cumulative total passing predicted points added (PPA). \cr
+   off_cumulative_rushing \tab numeric \tab Offense cumulative total rushing predicted points added (PPA). \cr
+   def_overall \tab numeric \tab Defense overall predicted points added (PPA). \cr
+   def_passing \tab numeric \tab Defense passing predicted points added (PPA). \cr
+   def_rushing \tab numeric \tab Defense rushing predicted points added (PPA). \cr
+   def_first_down \tab numeric \tab Defense 1st down predicted points added (PPA). \cr
+   def_second_down \tab numeric \tab Defense 2nd down predicted points added (PPA). \cr
+   def_third_down \tab numeric \tab Defense 3rd down predicted points added (PPA). \cr
+   def_cumulative_total \tab numeric \tab Defense cumulative total predicted points added (PPA). \cr
+   def_cumulative_passing \tab numeric \tab Defense cumulative total passing predicted points added (PPA). \cr
+   def_cumulative_rushing \tab numeric \tab Defense cumulative total rushing predicted points added (PPA). \cr
 }
 }
 \description{

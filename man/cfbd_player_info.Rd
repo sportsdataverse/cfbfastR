@@ -23,20 +23,20 @@ Position Group  - options include:
 If left NULL, API default will only provide results for most recent year of final rosters: 2020}
 }
 \value{
-\code{\link[=cfbd_player_info]{cfbd_player_info()}} - A data frame with 12 variables:
-\describe{
-\item{\code{athlete_id}:character.}{Unique player identifier \code{athlete_id}.}
-\item{\code{team}:character.}{Team of the player.}
-\item{\code{name}:character.}{Player name.}
-\item{\code{first_name}:character.}{Player first name.}
-\item{\code{last_name}:character.}{Player last name.}
-\item{\code{weight}:integer.}{Player weight.}
-\item{\code{height}:integer.}{Player height.}
-\item{\code{jersey}:integer.}{Player jersey number.}
-\item{\code{position}:character.}{Player position.}
-\item{\code{home_town}:character.}{Player home town.}
-\item{\code{team_color}:character.}{Player team color.}
-\item{\code{team_color_secondary}:character.}{Player team secondary color.}
+\code{\link[=cfbd_player_info]{cfbd_player_info()}} - A data frame with 12 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   athlete_id \tab character \tab Unique CFBD player identifier. \cr
+   team \tab character \tab Team of the player. \cr
+   name \tab character \tab Player full name. \cr
+   first_name \tab character \tab Player first name. \cr
+   last_name \tab character \tab Player last name. \cr
+   weight \tab integer \tab Player weight in pounds. \cr
+   height \tab integer \tab Player height in inches. \cr
+   jersey \tab integer \tab Player jersey number. \cr
+   position \tab character \tab Player position abbreviation (e.g. QB, RB, WR). \cr
+   home_town \tab character \tab Player home town. \cr
+   team_color \tab character \tab Player team primary color (hex code). \cr
+   team_color_secondary \tab character \tab Player team secondary color (hex code). \cr
 }
 }
 \description{

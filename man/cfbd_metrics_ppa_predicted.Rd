@@ -12,10 +12,10 @@ cfbd_metrics_ppa_predicted(down, distance)
 \item{distance}{(\emph{Integer} required): Distance filter}
 }
 \value{
-\code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:
-\describe{
-\item{\code{yard_line}: integer.}{Yards to goal}
-\item{\code{predicted_points}: character.}{Predicted points at in that down-distance-yardline scenario}
+\code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}} - A data frame with 2 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   yard_line \tab integer \tab Yards to goal. \cr
+   predicted_points \tab numeric \tab Predicted points in that down-distance-yardline scenario. \cr
 }
 }
 \description{

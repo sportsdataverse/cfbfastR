@@ -13,31 +13,31 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr
 #' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
-#' @return Betting information for games with the following columns:
+#' @return Betting information for games with the following 21 columns:
 #'
-#' \describe{
-#'   \item{game_id:integer.}{Unique game identifier - game_id.}
-#'   \item{season:integer.}{Season parameter.}
-#'   \item{season_type:character.)}{Season Type (regular, postseason, both}
-#'   \item{week:integer.}{Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
-#'   \item{start_date:character.}{Start Date}
-#'   \item{home_team:character.}{Home D-I Team.}
-#'   \item{home_conference:character.}{Home D-I Conference.}
-#'   \item{home_classification:character.}{Home Conference classification (fbs,fcs,ii,iii)}
-#'   \item{home_score:integer.}{Home Score.}
-#'   \item{away_team:character.}{Away D-I Team.}
-#'   \item{away_conference:character.}{Away D-I Conference.}
-#'   \item{away_classification:character.}{Away Conference classification (fbs,fcs,ii,iii)}
-#'   \item{away_score:integer.}{Away Score.}
-#'   \item{provider:character.}{Line provider.}
-#'   \item{spread:character.}{Spread for the game.}
-#'   \item{formatted_spread:character.}{Formatted spread for the game.}
-#'   \item{spread_open:character.}{Opening spread for the game.}
-#'   \item{over_under:character.}{Over/Under for the game.}
-#'   \item{over_under_open:character.}{Opening over/under for the game.}
-#'   \item{home_moneyline:character.}{Home team moneyline.}
-#'   \item{away_moneyline:character.}{Away team moneyline.}
-#' }
+#'    |col_name            |types     |description                                                                |
+#'    |:-------------------|:---------|:--------------------------------------------------------------------------|
+#'    |game_id             |integer   |Unique CFBD game identifier.                                               |
+#'    |season              |integer   |Four-digit season year (e.g. 2024).                                        |
+#'    |season_type         |character |Season type (regular, postseason, both).                                   |
+#'    |week                |integer   |Week of the season; 1-15, or 1-14 for seasons pre-playoff (2013 earlier).  |
+#'    |start_date          |character |Kickoff timestamp in ISO 8601 format.                                      |
+#'    |home_team           |character |Home D-I team name.                                                        |
+#'    |home_conference     |character |Home team D-I conference.                                                  |
+#'    |home_classification |character |Home team conference classification (fbs, fcs, ii, iii).                   |
+#'    |home_score          |integer   |Final score of the home team.                                              |
+#'    |away_team           |character |Away D-I team name.                                                        |
+#'    |away_conference     |character |Away team D-I conference.                                                  |
+#'    |away_classification |character |Away team conference classification (fbs, fcs, ii, iii).                   |
+#'    |away_score          |integer   |Final score of the away team.                                              |
+#'    |provider            |character |Sportsbook / line provider name.                                           |
+#'    |spread              |character |Closing point spread for the game.                                         |
+#'    |formatted_spread    |character |Human-readable formatted spread (e.g. "Florida State -7.5").               |
+#'    |spread_open         |character |Opening point spread for the game.                                         |
+#'    |over_under          |character |Closing over/under (total) for the game.                                   |
+#'    |over_under_open     |character |Opening over/under (total) for the game.                                   |
+#'    |home_moneyline      |character |Home team moneyline odds.                                                  |
+#'    |away_moneyline      |character |Away team moneyline odds.                                                  |
 #'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
@@ -168,19 +168,19 @@ cfbd_betting_lines <- function(game_id = NULL,
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference \cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr
-#' @return Against-the-spread records with the following columns:
+#' @return Against-the-spread records with the following 9 columns:
 #'
-#' \describe{
-#'   \item{year:integer.}{Season.}
-#'   \item{team_id:integer.}{Unique team identifier - team_id.}
-#'   \item{team:character.}{Team name.}
-#'   \item{conference:character.}{Conference.}
-#'   \item{games:integer.}{Number of games included in the ATS summary.}
-#'   \item{ats_wins:integer.}{Games the team covered the spread.}
-#'   \item{ats_losses:integer.}{Games the team failed to cover the spread.}
-#'   \item{ats_pushes:integer.}{Games that pushed against the spread.}
-#'   \item{avg_cover_margin:numeric.}{Average margin by which the team beat the spread.}
-#' }
+#'    |col_name         |types     |description                                                  |
+#'    |:----------------|:---------|:------------------------------------------------------------|
+#'    |year             |integer   |Four-digit season year.                                      |
+#'    |team_id          |integer   |Unique CFBD team identifier.                                 |
+#'    |team             |character |D-I team name.                                               |
+#'    |conference       |character |Team conference name.                                        |
+#'    |games            |integer   |Number of games included in the ATS summary.                 |
+#'    |ats_wins         |integer   |Games the team covered the spread.                           |
+#'    |ats_losses       |integer   |Games the team failed to cover the spread.                   |
+#'    |ats_pushes       |integer   |Games that pushed against the spread.                        |
+#'    |avg_cover_margin |numeric   |Average margin by which the team beat the spread.            |
 #'
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

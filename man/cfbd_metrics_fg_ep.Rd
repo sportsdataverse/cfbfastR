@@ -7,11 +7,11 @@
 cfbd_metrics_fg_ep()
 }
 \value{
-\code{\link[=cfbd_metrics_fg_ep]{cfbd_metrics_fg_ep()}} - A data frame with 3 variables:
-\describe{
-\item{\code{yards_to_goal}: integer.}{Yards to the goal line (0-100).}
-\item{\code{distance}: integer.}{Distance to goal posts from kicking location (17 yds further than yards to goal).}
-\item{\code{expected_points}: double.}{Expected points given yards to goal / distance.}
+\code{\link[=cfbd_metrics_fg_ep]{cfbd_metrics_fg_ep()}} - A data frame with 3 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   yards_to_goal \tab integer \tab Yards to the goal line (0-100). \cr
+   distance \tab integer \tab Distance to goal posts from kicking location (17 yds further than yards to goal). \cr
+   expected_points \tab numeric \tab Expected points given yards to goal / distance. \cr
 }
 }
 \description{

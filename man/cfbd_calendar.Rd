@@ -10,13 +10,13 @@ cfbd_calendar(year)
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 }
 \value{
-\code{\link[=cfbd_calendar]{cfbd_calendar()}} - A data frame with 5 variables:
-\describe{
-\item{\code{season}: character.}{Calendar season.}
-\item{\code{week}: integer.}{Calendar game week.}
-\item{\code{season_type}: character}{Season type of calendar week.}
-\item{\code{first_game_start}: character.}{First game start time of the calendar week.}
-\item{\code{last_game_start}: character.}{Last game start time of the calendar week.}
+\code{\link[=cfbd_calendar]{cfbd_calendar()}} - A data frame with 5 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab character \tab Calendar season. \cr
+   week \tab integer \tab Calendar game week. \cr
+   season_type \tab character \tab Season type of calendar week. \cr
+   first_game_start \tab character \tab First game start time of the calendar week. \cr
+   last_game_start \tab character \tab Last game start time of the calendar week. \cr
 }
 }
 \description{

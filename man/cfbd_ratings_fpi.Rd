@@ -16,22 +16,22 @@ Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
 Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
 }
 \value{
-\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}} - A data frame with 14 variables:\tabular{ll}{
-   col_name \tab types \cr
-   year \tab integer \cr
-   team \tab character \cr
-   conference \tab character \cr
-   fpi \tab numeric \cr
-   resume_ranks_strength_of_record \tab integer \cr
-   resume_ranks_fpi \tab integer \cr
-   resume_ranks_average_win_probability \tab integer \cr
-   resume_ranks_strength_of_schedule \tab integer \cr
-   resume_ranks_remaining_strength_of_schedule \tab integer \cr
-   resume_ranks_game_control \tab integer \cr
-   efficiencies_overall \tab numeric \cr
-   efficiencies_offense \tab numeric \cr
-   efficiencies_defense \tab numeric \cr
-   efficiencies_special_teams \tab numeric \cr
+\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}} - A data frame with 14 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year (e.g. 2019). \cr
+   team \tab character \tab Full team name (e.g. "Texas"). \cr
+   conference \tab character \tab Conference affiliation for the team in the given season. \cr
+   fpi \tab numeric \tab ESPN Football Power Index rating (projected scoring margin vs. average team). \cr
+   resume_ranks_strength_of_record \tab integer \tab National rank of the team's strength of record (1 = best). \cr
+   resume_ranks_fpi \tab integer \tab National rank of the team's FPI rating (1 = best). \cr
+   resume_ranks_average_win_probability \tab integer \tab National rank of the team's average single-game win probability (1 = best). \cr
+   resume_ranks_strength_of_schedule \tab integer \tab National rank of the team's schedule strength to date (1 = toughest). \cr
+   resume_ranks_remaining_strength_of_schedule \tab integer \tab National rank of the team's remaining schedule strength (1 = toughest). \cr
+   resume_ranks_game_control \tab integer \tab National rank of the team's average in-game win probability (1 = best). \cr
+   efficiencies_overall \tab numeric \tab Overall FPI efficiency rating (combined offense, defense, and special teams). \cr
+   efficiencies_offense \tab numeric \tab FPI offensive efficiency rating. \cr
+   efficiencies_defense \tab numeric \tab FPI defensive efficiency rating. \cr
+   efficiencies_special_teams \tab numeric \tab FPI special teams efficiency rating. \cr
 }
 }
 \description{

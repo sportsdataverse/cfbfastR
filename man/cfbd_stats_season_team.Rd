@@ -29,54 +29,54 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 }
 \value{
-\code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}} - A data frame with 32 variables:
-\describe{
-\item{\code{season}: integer}{Season for stats.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of team.}
-\item{\code{games}: integer.}{Number of games.}
-\item{\code{time_of_poss_total}: integer.}{Time of possession total.}
-\item{\code{time_of_poss_pg}: double.}{Time of possession per game.}
-\item{\code{pass_comps}: integer.}{Total number of pass completions.}
-\item{\code{pass_atts}: integer.}{Total number of pass attempts.}
-\item{\code{completion_pct}: double.}{Passing completion percentage.}
-\item{\code{net_pass_yds}: integer.}{Net passing yards.}
-\item{\code{pass_ypa}: double.}{Passing yards per attempt.}
-\item{\code{pass_ypr}: double.}{Passing yards per reception.}
-\item{\code{pass_TDs}: integer.}{Passing touchdowns.}
-\item{\code{interceptions}: integer.}{Passing interceptions.}
-\item{\code{int_pct}: double.}{Interception percentage (of attempts).}
-\item{\code{rush_atts}: integer.}{Rushing attempts.}
-\item{\code{rush_yds}: integer.}{Rushing yards.}
-\item{\code{rush_TDs}: integer.}{Rushing touchdowns.}
-\item{\code{rush_ypc}: double.}{Rushing yards per carry.}
-\item{\code{total_yds}: integer.}{Rushing total yards.}
-\item{\code{fumbles_lost}: integer.}{Fumbles lost.}
-\item{\code{turnovers}: integer.}{Turnovers total.}
-\item{\code{turnovers_pg}: double.}{Turnovers per game.}
-\item{\code{first_downs}: integer.}{Number of first downs.}
-\item{\code{third_downs}: integer.}{Number of third downs.}
-\item{\code{third_down_convs}: integer.}{Number of third down conversions.}
-\item{\code{third_conv_rate}: double.}{Third down conversion rate.}
-\item{\code{fourth_down_convs}: integer.}{Fourth down conversions.}
-\item{\code{fourth_downs}: integer.}{Fourth downs.}
-\item{\code{fourth_conv_rate}: double.}{Fourth down conversion rate.}
-\item{\code{penalties}: integer.}{Total number of penalties.}
-\item{\code{penalty_yds}: integer.}{Penalty yards total.}
-\item{\code{penalties_pg}: double.}{Penalties per game.}
-\item{\code{penalty_yds_pg}: double.}{Penalty yardage per game.}
-\item{\code{yards_per_penalty}: double.}{Average yards per penalty.}
-\item{\code{kick_returns}: integer.}{Number of kick returns.}
-\item{\code{kick_return_yds}: integer.}{Total kick return yards.}
-\item{\code{kick_return_TDs}: integer.}{Total kick return touchdowns.}
-\item{\code{kick_return_avg}: double.}{Kick return yards average.}
-\item{\code{punt_returns}: integer.}{Number of punt returns.}
-\item{\code{punt_return_yds}: integer.}{Punt return total yards.}
-\item{\code{punt_return_TDs}: integer.}{Punt return total touchdowns.}
-\item{\code{punt_return_avg}: double.}{Punt return yards average.}
-\item{\code{passes_intercepted}: integer.}{Passes intercepted.}
-\item{\code{passes_intercepted_yds}: integer.}{Pass interception return yards.}
-\item{\code{passes_intercepted_TDs}: integer.}{Pass interception return touchdowns.}
+\code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}} - A data frame with 32 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Season for stats. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of team. \cr
+   games \tab integer \tab Number of games. \cr
+   time_of_poss_total \tab integer \tab Time of possession total. \cr
+   time_of_poss_pg \tab double \tab Time of possession per game. \cr
+   pass_comps \tab integer \tab Total number of pass completions. \cr
+   pass_atts \tab integer \tab Total number of pass attempts. \cr
+   completion_pct \tab double \tab Passing completion percentage. \cr
+   net_pass_yds \tab integer \tab Net passing yards. \cr
+   pass_ypa \tab double \tab Passing yards per attempt. \cr
+   pass_ypr \tab double \tab Passing yards per reception. \cr
+   pass_TDs \tab integer \tab Passing touchdowns. \cr
+   interceptions \tab integer \tab Passing interceptions. \cr
+   int_pct \tab double \tab Interception percentage (of attempts). \cr
+   rush_atts \tab integer \tab Rushing attempts. \cr
+   rush_yds \tab integer \tab Rushing yards. \cr
+   rush_TDs \tab integer \tab Rushing touchdowns. \cr
+   rush_ypc \tab double \tab Rushing yards per carry. \cr
+   total_yds \tab integer \tab Rushing total yards. \cr
+   fumbles_lost \tab integer \tab Fumbles lost. \cr
+   turnovers \tab integer \tab Turnovers total. \cr
+   turnovers_pg \tab double \tab Turnovers per game. \cr
+   first_downs \tab integer \tab Number of first downs. \cr
+   third_downs \tab integer \tab Number of third downs. \cr
+   third_down_convs \tab integer \tab Number of third down conversions. \cr
+   third_conv_rate \tab double \tab Third down conversion rate. \cr
+   fourth_down_convs \tab integer \tab Fourth down conversions. \cr
+   fourth_downs \tab integer \tab Fourth downs. \cr
+   fourth_conv_rate \tab double \tab Fourth down conversion rate. \cr
+   penalties \tab integer \tab Total number of penalties. \cr
+   penalty_yds \tab integer \tab Penalty yards total. \cr
+   penalties_pg \tab double \tab Penalties per game. \cr
+   penalty_yds_pg \tab double \tab Penalty yardage per game. \cr
+   yards_per_penalty \tab double \tab Average yards per penalty. \cr
+   kick_returns \tab integer \tab Number of kick returns. \cr
+   kick_return_yds \tab integer \tab Total kick return yards. \cr
+   kick_return_TDs \tab integer \tab Total kick return touchdowns. \cr
+   kick_return_avg \tab double \tab Kick return yards average. \cr
+   punt_returns \tab integer \tab Number of punt returns. \cr
+   punt_return_yds \tab integer \tab Punt return total yards. \cr
+   punt_return_TDs \tab integer \tab Punt return total touchdowns. \cr
+   punt_return_avg \tab double \tab Punt return yards average. \cr
+   passes_intercepted \tab integer \tab Passes intercepted. \cr
+   passes_intercepted_yds \tab integer \tab Pass interception return yards. \cr
+   passes_intercepted_TDs \tab integer \tab Pass interception return touchdowns. \cr
 }
 }
 \description{

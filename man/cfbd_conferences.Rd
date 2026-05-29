@@ -7,13 +7,13 @@
 cfbd_conferences()
 }
 \value{
-\code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 94 rows and 5 variables:
-\describe{
-\item{\code{conference_id}:}{Referencing conference id.}
-\item{\code{name}:}{Conference name.}
-\item{\code{long_name}:}{Long name for Conference.}
-\item{\code{abbreviation}:}{Conference abbreviation.}
-\item{\code{classification}:}{Conference classification (fbs,fcs,ii,iii)}
+\code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 94 rows and 5 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   conference_id \tab integer \tab Referencing conference id. \cr
+   name \tab character \tab Conference name. \cr
+   long_name \tab character \tab Long name for Conference. \cr
+   abbreviation \tab character \tab Conference abbreviation. \cr
+   classification \tab character \tab Conference classification (fbs, fcs, ii, iii). \cr
 }
 }
 \description{

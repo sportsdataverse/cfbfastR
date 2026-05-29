@@ -6,23 +6,25 @@
 #' ```r
 #'  cfbd_venues()
 #' ```
-#' @return A data frame with 337 rows and 13 variables:
-#' \describe{
-#'   \item{`venue_id`:integer.}{Referencing venue ID.}
-#'   \item{`name`:character.}{Venue name.}
-#'   \item{`capacity`:integer.}{Stadium capacity.}
-#'   \item{`grass`:logical.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
-#'   \item{`city`:character.}{Venue city.}
-#'   \item{`state`:character.}{Venue state.}
-#'   \item{`zip`:character.}{Venue zip.}
-#'   \item{`country_code`:character.}{Venue country code.}
-#'   \item{`latitude`:double.}{Venue latitude.}
-#'   \item{`longitude`: double.}{Venue longitude.}
-#'   \item{`elevation`:character.}{Venue elevation.}
-#'   \item{`year_constructed`:integer.}{Year in which the venue was constructed.}
-#'   \item{`dome`:logical.}{TRUE/FALSE response to whether the venue has a dome or not.}
-#'   \item{`timezone`:character.}{Time zone in which the venue resides (i.e. Eastern Time -> "America/New York").}
-#' }
+#' @return A data frame with 337 rows and 14 variables:
+#'
+#'    |col_name         |types     |description                                                                       |
+#'    |:----------------|:---------|:---------------------------------------------------------------------------------|
+#'    |venue_id         |integer   |Referencing venue ID.                                                             |
+#'    |name             |character |Venue name.                                                                       |
+#'    |capacity         |integer   |Stadium capacity.                                                                 |
+#'    |grass            |logical   |TRUE/FALSE response on whether the field is grass or not.                         |
+#'    |city             |character |Venue city.                                                                       |
+#'    |state            |character |Venue state.                                                                      |
+#'    |zip              |character |Venue zip code.                                                                   |
+#'    |country_code     |character |Venue country code.                                                               |
+#'    |latitude         |numeric   |Venue latitude in decimal degrees.                                                |
+#'    |longitude        |numeric   |Venue longitude in decimal degrees.                                               |
+#'    |elevation        |character |Venue elevation above sea level.                                                  |
+#'    |year_constructed |integer   |Year in which the venue was constructed.                                          |
+#'    |dome             |logical   |TRUE/FALSE response to whether the venue has a dome or not.                       |
+#'    |timezone         |character |Time zone in which the venue resides (i.e. Eastern Time -> "America/New_York").   |
+#'
 #' @keywords Venues
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

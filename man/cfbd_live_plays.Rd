@@ -11,106 +11,106 @@ cfbd_live_plays(game_id)
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
-\code{\link[=cfbd_live_plays]{cfbd_live_plays()}} - A data frame with 94 columns:\tabular{ll}{
-   col_name \tab types \cr
-   game_id \tab integer \cr
-   home_team_id \tab integer \cr
-   home_team \tab character \cr
-   away_team_id \tab integer \cr
-   away_team \tab character \cr
-   play_id \tab character \cr
-   home_score \tab integer \cr
-   away_score \tab integer \cr
-   period \tab integer \cr
-   clock \tab character \cr
-   wall_clock \tab character \cr
-   offense_team_id \tab integer \cr
-   offense_team \tab character \cr
-   down \tab integer \cr
-   distance \tab integer \cr
-   yards_to_goal \tab integer \cr
-   yards_gained \tab integer \cr
-   play_type_id \tab integer \cr
-   play_type \tab character \cr
-   ppa \tab numeric \cr
-   garbage_time \tab logical \cr
-   success \tab logical \cr
-   rush_pass \tab character \cr
-   down_type \tab character \cr
-   play_text \tab character \cr
-   drive_id \tab character \cr
-   drive_offense_id \tab integer \cr
-   drive_offense_team \tab character \cr
-   drive_defense_id \tab integer \cr
-   drive_defense_team \tab character \cr
-   drive_play_count \tab integer \cr
-   drive_yards_gained \tab integer \cr
-   drive_start_period \tab integer \cr
-   drive_start_clock \tab character \cr
-   drive_start_yards_to_goal \tab integer \cr
-   drive_end_period \tab integer \cr
-   drive_end_clock \tab character \cr
-   drive_end_yards_to_goal \tab integer \cr
-   drive_duration \tab character \cr
-   drive_scoring_opportunity \tab logical \cr
-   drive_result \tab character \cr
-   drive_points_gained \tab integer \cr
-   current_clock \tab character \cr
-   current_possession \tab character \cr
-   home_line_scores_q1 \tab integer \cr
-   home_line_scores_q2 \tab integer \cr
-   home_line_scores_q3 \tab integer \cr
-   home_line_scores_q4 \tab integer \cr
-   home_points \tab integer \cr
-   home_drives \tab integer \cr
-   home_scoring_opportunities \tab integer \cr
-   home_points_per_opportunity \tab numeric \cr
-   home_average_start_yard_line \tab numeric \cr
-   home_plays \tab integer \cr
-   home_line_yards \tab numeric \cr
-   home_line_yards_per_rush \tab numeric \cr
-   home_second_level_yards \tab integer \cr
-   home_second_level_yards_per_rush \tab numeric \cr
-   home_open_field_yards \tab integer \cr
-   home_open_field_yards_per_rush \tab numeric \cr
-   home_ppa_per_play \tab numeric \cr
-   home_total_ppa \tab numeric \cr
-   home_passing_ppa \tab numeric \cr
-   home_ppa_per_pass \tab numeric \cr
-   home_rushing_ppa \tab numeric \cr
-   home_ppa_per_rush \tab numeric \cr
-   home_success_rate \tab numeric \cr
-   home_standard_down_success_rate \tab numeric \cr
-   home_passing_down_success_rate \tab numeric \cr
-   home_explosiveness \tab numeric \cr
-   home_deserve_to_win \tab numeric \cr
-   away_line_scores_q1 \tab integer \cr
-   away_line_scores_q2 \tab integer \cr
-   away_line_scores_q3 \tab integer \cr
-   away_line_scores_q4 \tab integer \cr
-   away_points \tab integer \cr
-   away_drives \tab integer \cr
-   away_scoring_opportunities \tab integer \cr
-   away_points_per_opportunity \tab numeric \cr
-   away_average_start_yard_line \tab numeric \cr
-   away_plays \tab integer \cr
-   away_line_yards \tab numeric \cr
-   away_line_yards_per_rush \tab numeric \cr
-   away_second_level_yards \tab integer \cr
-   away_second_level_yards_per_rush \tab numeric \cr
-   away_open_field_yards \tab integer \cr
-   away_open_field_yards_per_rush \tab numeric \cr
-   away_ppa_per_play \tab numeric \cr
-   away_total_ppa \tab numeric \cr
-   away_passing_ppa \tab numeric \cr
-   away_ppa_per_pass \tab numeric \cr
-   away_rushing_ppa \tab numeric \cr
-   away_ppa_per_rush \tab numeric \cr
-   away_success_rate \tab numeric \cr
-   away_standard_down_success_rate \tab numeric \cr
-   away_passing_down_success_rate \tab numeric \cr
-   away_explosiveness \tab numeric \cr
-   away_deserve_to_win \tab numeric \cr
+\code{\link[=cfbd_live_plays]{cfbd_live_plays()}} - A data frame with 94 columns:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab CFBD game id for the live game. \cr
+   home_team_id \tab integer \tab CFBD team id of the home team. \cr
+   home_team \tab character \tab Name of the home team. \cr
+   away_team_id \tab integer \tab CFBD team id of the away team. \cr
+   away_team \tab character \tab Name of the away team. \cr
+   play_id \tab character \tab Unique CFBD play id for this play. \cr
+   home_score \tab integer \tab Home team score at the conclusion of the play. \cr
+   away_score \tab integer \tab Away team score at the conclusion of the play. \cr
+   period \tab integer \tab Quarter (1-4, or overtime period) in which the play occurred. \cr
+   clock \tab character \tab Game clock at the snap, formatted as "MM:SS". \cr
+   wall_clock \tab character \tab Real-world UTC timestamp when the play was recorded. \cr
+   offense_team_id \tab integer \tab CFBD team id of the team on offense for this play. \cr
+   offense_team \tab character \tab Name of the team on offense for this play. \cr
+   down \tab integer \tab Down (1-4) at the start of the play. \cr
+   distance \tab integer \tab Yards to gain for a first down at the snap. \cr
+   yards_to_goal \tab integer \tab Yards from the offense to the opponent's end zone at the snap (0-100). \cr
+   yards_gained \tab integer \tab Net yards gained by the offense on the play. \cr
+   play_type_id \tab integer \tab CFBD play_type identifier; see \code{cfbd_play_types()}. \cr
+   play_type \tab character \tab Play type label (e.g. "Rush", "Pass Reception", "Punt"). \cr
+   ppa \tab numeric \tab Predicted Points Added (CFBD PPA/EPA) value for the play. \cr
+   garbage_time \tab logical \tab TRUE if the play occurred during garbage time. \cr
+   success \tab logical \tab TRUE if the play met CFBD success-rate criteria. \cr
+   rush_pass \tab character \tab Classification of the play as "Rush" or "Pass". \cr
+   down_type \tab character \tab Down/distance classification (e.g. "standard" vs "passing" down). \cr
+   play_text \tab character \tab Free-text narrative description of the play. \cr
+   drive_id \tab character \tab CFBD drive identifier for the drive containing this play. \cr
+   drive_offense_id \tab integer \tab CFBD team id of the offense on the drive. \cr
+   drive_offense_team \tab character \tab Name of the offensive team on the drive. \cr
+   drive_defense_id \tab integer \tab CFBD team id of the defense on the drive. \cr
+   drive_defense_team \tab character \tab Name of the defensive team on the drive. \cr
+   drive_play_count \tab integer \tab Number of plays in the drive. \cr
+   drive_yards_gained \tab integer \tab Total net yards gained on the drive. \cr
+   drive_start_period \tab integer \tab Quarter in which the drive started. \cr
+   drive_start_clock \tab character \tab Game clock ("MM:SS") when the drive started. \cr
+   drive_start_yards_to_goal \tab integer \tab Yards to opponent's end zone at drive start (0-100). \cr
+   drive_end_period \tab integer \tab Quarter in which the drive ended. \cr
+   drive_end_clock \tab character \tab Game clock ("MM:SS") when the drive ended. \cr
+   drive_end_yards_to_goal \tab integer \tab Yards to opponent's end zone at drive end (0-100). \cr
+   drive_duration \tab character \tab Drive duration measured in elapsed game clock. \cr
+   drive_scoring_opportunity \tab logical \tab TRUE if the drive reached scoring territory. \cr
+   drive_result \tab character \tab Outcome of the drive (e.g. "TD", "FG", "PUNT", "INT"). \cr
+   drive_points_gained \tab integer \tab Points scored by the offense on the drive. \cr
+   current_clock \tab character \tab Current game clock at the time of the live API snapshot. \cr
+   current_possession \tab character \tab Team currently in possession at the snapshot time. \cr
+   home_line_scores_q1 \tab integer \tab Home team points scored in the first quarter. \cr
+   home_line_scores_q2 \tab integer \tab Home team points scored in the second quarter. \cr
+   home_line_scores_q3 \tab integer \tab Home team points scored in the third quarter. \cr
+   home_line_scores_q4 \tab integer \tab Home team points scored in the fourth quarter. \cr
+   home_points \tab integer \tab Home team total points scored in the game so far. \cr
+   home_drives \tab integer \tab Number of offensive drives by the home team. \cr
+   home_scoring_opportunities \tab integer \tab Number of home drives that reached scoring territory. \cr
+   home_points_per_opportunity \tab numeric \tab Home points scored per scoring opportunity. \cr
+   home_average_start_yard_line \tab numeric \tab Average starting field position (yards from own goal) for home drives. \cr
+   home_plays \tab integer \tab Total offensive plays run by the home team. \cr
+   home_line_yards \tab numeric \tab Total offensive line yards credited to the home team's rushing attack. \cr
+   home_line_yards_per_rush \tab numeric \tab Home offensive line yards per rush attempt. \cr
+   home_second_level_yards \tab integer \tab Home rushing yards gained at the second level (5-10 yards past the line). \cr
+   home_second_level_yards_per_rush \tab numeric \tab Home second-level rushing yards per rush attempt. \cr
+   home_open_field_yards \tab integer \tab Home rushing yards gained in the open field (10+ yards past the line). \cr
+   home_open_field_yards_per_rush \tab numeric \tab Home open-field rushing yards per rush attempt. \cr
+   home_ppa_per_play \tab numeric \tab Average PPA per play for the home team (CFBD renames \code{epa_per_play}). \cr
+   home_total_ppa \tab numeric \tab Cumulative PPA for the home team across all plays. \cr
+   home_passing_ppa \tab numeric \tab Cumulative passing PPA for the home team. \cr
+   home_ppa_per_pass \tab numeric \tab Average PPA per pass attempt for the home team. \cr
+   home_rushing_ppa \tab numeric \tab Cumulative rushing PPA for the home team. \cr
+   home_ppa_per_rush \tab numeric \tab Average PPA per rush attempt for the home team. \cr
+   home_success_rate \tab numeric \tab Home team overall success rate (0-1). \cr
+   home_standard_down_success_rate \tab numeric \tab Home success rate on standard downs (0-1). \cr
+   home_passing_down_success_rate \tab numeric \tab Home success rate on passing downs (0-1). \cr
+   home_explosiveness \tab numeric \tab Home explosiveness metric (average PPA on successful plays). \cr
+   home_deserve_to_win \tab numeric \tab Home team "deserve-to-win" probability metric (0-1). \cr
+   away_line_scores_q1 \tab integer \tab Away team points scored in the first quarter. \cr
+   away_line_scores_q2 \tab integer \tab Away team points scored in the second quarter. \cr
+   away_line_scores_q3 \tab integer \tab Away team points scored in the third quarter. \cr
+   away_line_scores_q4 \tab integer \tab Away team points scored in the fourth quarter. \cr
+   away_points \tab integer \tab Away team total points scored in the game so far. \cr
+   away_drives \tab integer \tab Number of offensive drives by the away team. \cr
+   away_scoring_opportunities \tab integer \tab Number of away drives that reached scoring territory. \cr
+   away_points_per_opportunity \tab numeric \tab Away points scored per scoring opportunity. \cr
+   away_average_start_yard_line \tab numeric \tab Average starting field position (yards from own goal) for away drives. \cr
+   away_plays \tab integer \tab Total offensive plays run by the away team. \cr
+   away_line_yards \tab numeric \tab Total offensive line yards credited to the away team's rushing attack. \cr
+   away_line_yards_per_rush \tab numeric \tab Away offensive line yards per rush attempt. \cr
+   away_second_level_yards \tab integer \tab Away rushing yards gained at the second level (5-10 yards past the line). \cr
+   away_second_level_yards_per_rush \tab numeric \tab Away second-level rushing yards per rush attempt. \cr
+   away_open_field_yards \tab integer \tab Away rushing yards gained in the open field (10+ yards past the line). \cr
+   away_open_field_yards_per_rush \tab numeric \tab Away open-field rushing yards per rush attempt. \cr
+   away_ppa_per_play \tab numeric \tab Average PPA per play for the away team (CFBD renames \code{epa_per_play}). \cr
+   away_total_ppa \tab numeric \tab Cumulative PPA for the away team across all plays. \cr
+   away_passing_ppa \tab numeric \tab Cumulative passing PPA for the away team. \cr
+   away_ppa_per_pass \tab numeric \tab Average PPA per pass attempt for the away team. \cr
+   away_rushing_ppa \tab numeric \tab Cumulative rushing PPA for the away team. \cr
+   away_ppa_per_rush \tab numeric \tab Average PPA per rush attempt for the away team. \cr
+   away_success_rate \tab numeric \tab Away team overall success rate (0-1). \cr
+   away_standard_down_success_rate \tab numeric \tab Away success rate on standard downs (0-1). \cr
+   away_passing_down_success_rate \tab numeric \tab Away success rate on passing downs (0-1). \cr
+   away_explosiveness \tab numeric \tab Away explosiveness metric (average PPA on successful plays). \cr
+   away_deserve_to_win \tab numeric \tab Away team "deserve-to-win" probability metric (0-1). \cr
 }
 }
 \description{

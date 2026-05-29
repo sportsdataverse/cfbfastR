@@ -26,12 +26,12 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}} - A data frame with 4 variables:\tabular{ll}{
-   col_name \tab types \cr
-   year \tab integer \cr
-   team \tab character \cr
-   conference \tab character \cr
-   elo \tab numeric \cr
+\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}} - A data frame with 4 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year (e.g. 2019). \cr
+   team \tab character \tab Full team name (e.g. "Texas"). \cr
+   conference \tab character \tab Conference affiliation for the team in the given season. \cr
+   elo \tab numeric \tab CFBD-calculated Elo rating for the team as of the requested week. \cr
 }
 }
 \description{
