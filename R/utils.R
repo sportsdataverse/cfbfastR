@@ -1,13 +1,23 @@
 .datatable.aware <- TRUE
 
 #' @keywords Internal
-#' @importFrom httr2 resp_status
+#' @importFrom httr2 resp_status resp_status_desc
 #'
 check_status <- function(res) {
 
-    x = httr2::resp_status(res)
+    x <- httr2::resp_status(res)
 
-    if(x != 200) stop("The API returned an error", call. = FALSE)
+    if (x != 200) {
+      desc <- tryCatch(
+        httr2::resp_status_desc(res),
+        error = function(e) ""
+      )
+      stop(
+        sprintf("The CFBD API returned HTTP %s%s", x,
+                if (nzchar(desc)) paste0(" (", desc, ")") else ""),
+        call. = FALSE
+      )
+    }
 
 }
 
@@ -212,11 +222,15 @@ rbindlist_with_attrs <- function(dflist){
 
 # Request Functions ----
 #' @keywords Internal
-#' @importFrom httr2 request req_headers req_retry req_error req_perform
+#' @importFrom httr2 request req_headers req_timeout req_retry req_error req_perform
 get_req <- function(full_url){
   httr2::request(full_url) |>
     httr2::req_headers(Authorization = paste("Bearer", cfbd_key())) |>
-    httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+    httr2::req_timeout(60) |>
+    httr2::req_retry(
+      max_tries = 5,
+      backoff   = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
+    ) |>
     httr2::req_error(is_error = function(resp) FALSE) |>
     httr2::req_perform()
 }
