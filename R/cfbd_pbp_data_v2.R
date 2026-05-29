@@ -19,7 +19,8 @@
 #'   return the modeled frame; when `FALSE` (default) return the raw plays +
 #'   drives + betting join.
 #' @param output (*Character*): controls the modeled-output column set when
-#'   `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. One of:
+#'   `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. Defaults to
+#'   `"default"`. Must be one of:
 #'   \itemize{
 #'     \item `"default"` (recommended) -- drops pipeline lag/lead
 #'       intermediates, redundant alternates (`sack_vec`, `turnover_indicator`,
@@ -65,8 +66,14 @@ cfbd_pbp_data_v2 <- function(year,
                              team        = NULL,
                              play_type   = NULL,
                              epa_wpa     = FALSE,
-                             output      = c("default", "lean", "full")) {
-  output <- match.arg(output)
+                             output      = "default") {
+  if (!is.character(output) || length(output) != 1L ||
+      !output %in% c("default", "lean", "full")) {
+    cli::cli_abort(c(
+      "{.arg output} must be one of {.val default}, {.val lean}, or {.val full}.",
+      x = "You supplied {.val {output}}."
+    ))
+  }
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 

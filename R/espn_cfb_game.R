@@ -6193,7 +6193,8 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #' pipeline and return the modeled frame; when `FALSE` (default) return the
 #' assembled core-v2 play-by-play frame.
 #' @param output (*Character*): controls the modeled-output column set when
-#' `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. One of:
+#' `epa_wpa = TRUE`. Ignored when `epa_wpa = FALSE`. Defaults to `"default"`.
+#' Must be one of:
 #' \itemize{
 #'   \item `"default"` (recommended) -- drops pipeline lag/lead intermediates,
 #'     redundant alternates (`sack_vec`, `turnover_indicator`, `kick_play`,
@@ -6245,8 +6246,14 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #' }
 espn_cfb_pbp_v2 <- function(game_id,
                             epa_wpa = FALSE,
-                            output  = c("default", "lean", "full")) {
-  output <- match.arg(output)
+                            output  = "default") {
+  if (!is.character(output) || length(output) != 1L ||
+      !output %in% c("default", "lean", "full")) {
+    cli::cli_abort(c(
+      "{.arg output} must be one of {.val default}, {.val lean}, or {.val full}.",
+      x = "You supplied {.val {output}}."
+    ))
+  }
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 

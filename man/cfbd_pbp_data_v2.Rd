@@ -11,7 +11,7 @@ cfbd_pbp_data_v2(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  output = c("default", "lean", "full")
+  output = "default"
 )
 }
 \arguments{
@@ -33,7 +33,8 @@ return the modeled frame; when \code{FALSE} (default) return the raw plays +
 drives + betting join.}
 
 \item{output}{(\emph{Character}): controls the modeled-output column set when
-\code{epa_wpa = TRUE}. Ignored when \code{epa_wpa = FALSE}. One of:
+\code{epa_wpa = TRUE}. Ignored when \code{epa_wpa = FALSE}. Defaults to
+\code{"default"}. Must be one of:
 \itemize{
 \item \code{"default"} (recommended) -- drops pipeline lag/lead
 intermediates, redundant alternates (\code{sack_vec}, \code{turnover_indicator},

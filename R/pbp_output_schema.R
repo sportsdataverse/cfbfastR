@@ -290,8 +290,14 @@
 #' @keywords internal
 #' @noRd
 #' @importFrom magrittr %>%
-.pbp_apply_output_schema <- function(df, output = c("default", "lean", "full")) {
-  output <- match.arg(output)
+.pbp_apply_output_schema <- function(df, output = "default") {
+  if (!is.character(output) || length(output) != 1L ||
+      !output %in% c("default", "lean", "full")) {
+    cli::cli_abort(c(
+      "{.arg output} must be one of {.val default}, {.val lean}, or {.val full}.",
+      x = "You supplied {.val {output}}."
+    ))
+  }
 
   df <- df %>% dplyr::select(-dplyr::any_of(.pbp_drop_player_aliases))
 
