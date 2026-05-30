@@ -33,6 +33,17 @@ This is the SDV-family-wide standard shared with wehoop and hoopR.
 
 **Bottom line:** cfbfastR is the most compliant of the three packages. All 70 ESPN wrappers return a single wide `cfbfastR_data` tibble. The few remaining gaps are identity-echo patches in projection/situation endpoints. The one nested-list-column pattern (`espn_cfb_game_drives(plays = "list")`) is an explicit user choice via parameter, not an oversight — keep but document.
 
+> **Implementation outcome (2026-05-30).** All 8 Tier B flags below turned out to
+> be **false positives** — every function already builds its identity columns
+> inline. Verified by opening each: `espn_cfb_game_play()` carries `play_id`
+> (from `it[["id"]]` in `.espn_cfb_play_row`) + `game_id` and defaults
+> `team_detail = TRUE` (attaching full team meta); `espn_cfb_game_situation()`
+> and `espn_cfb_game_status()` build `game_id` as their first column;
+> `espn_cfb_coach_record()` builds `coach_id` + `season` per row. No changes were
+> made to cfbfastR — the audit (reading excerpts) flagged "sparse"/"spot-check"
+> cases that, on inspection, were already self-describing. cfbfastR remains the
+> reference implementation for the other two packages.
+
 ---
 
 ## Tier A — Already compliant
