@@ -56,7 +56,6 @@
 #' @return Multi-game modeled frame, one bound row per surviving game.
 #' @keywords internal
 #' @noRd
-#' @importFrom progressr progressor
 #' @importFrom purrr map list_rbind
 #' @importFrom cli cli_alert_warning
 .run_epa_wpa_by_game <- function(df,
@@ -68,7 +67,11 @@
   g_ids <- sort(unique(df$game_id))
   if (length(g_ids) == 0L) return(df[0L, , drop = FALSE])
 
-  p <- progressr::progressor(along = g_ids)
+  p <- if (is_installed("progressr")) {
+    progressr::progressor(along = g_ids)
+  } else {
+    function(...) NULL
+  }
 
   out <- purrr::list_rbind(purrr::map(g_ids, function(gid) {
     game_plays <- df[df$game_id == gid, , drop = FALSE]

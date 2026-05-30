@@ -34,7 +34,6 @@ BugReports: https://github.com/sportsdataverse/cfbfastR/issues
 Depends: 
     R (>= 4.1.0)
 Imports:
-    cachem,
     cli (>= 3.0.0),
     data.table (>= 1.15.0),
     dplyr (>= 1.0.0),
@@ -42,12 +41,9 @@ Imports:
     httr2 (>= 1.0.0),
     janitor,
     jsonlite,
-    lubridate,
     magrittr,
-    memoise,
     mgcv (>= 1.8-33),
     nnet,
-    progressr (>= 0.6.0),
     purrr (>= 0.3.0),
     Rcpp (>= 1.0.7),
     RcppParallel (>= 5.1.4),
@@ -55,13 +51,16 @@ Imports:
     stringr (>= 1.4.0),
     tibble (>= 3.0),
     tidyr (>= 1.2.0)
-Suggests: 
+Suggests:
+    cachem,
     crayon (>= 1.3.4),
     curl,
     DBI,
     ggplot2,
     ggrepel,
+    memoise,
     patrick,
+    progressr (>= 0.6.0),
     rmarkdown,
     RSQLite,
     stats,
@@ -69,8 +68,8 @@ Suggests:
     testthat,
     usethis (>= 1.6.0),
     xgboost (>= 1.1)
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-Config/testthat/edition: 3

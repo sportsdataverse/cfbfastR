@@ -603,7 +603,11 @@ cfbd_pbp_data <- function(year,
       user_message(glue::glue("Start processing of {game_count} game..."),"todo")
     }
 
-    p <- progressr::progressor(along = g_ids)
+    p <- if (is_installed("progressr")) {
+      progressr::progressor(along = g_ids)
+    } else {
+      function(...) NULL
+    }
 
     play_df <- purrr::map_dfr(
       g_ids,

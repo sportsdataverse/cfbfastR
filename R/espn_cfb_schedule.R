@@ -135,8 +135,15 @@ espn_cfb_scoreboard <- function(date = NULL) {
 
       cfb_data <- cfb_data %>%
         dplyr::mutate(
-          game_date_time = lubridate::ymd_hm(substr(.data$game_date, 1, nchar(.data$game_date) - 1)) %>%
-            lubridate::with_tz(tzone = "America/New_York"),
+          game_date_time = {
+            gdt <- as.POSIXct(
+              substr(.data$game_date, 1, nchar(.data$game_date) - 1),
+              format = "%Y-%m-%dT%H:%M",
+              tz     = "UTC"
+            )
+            attr(gdt, "tzone") <- "America/New_York"
+            gdt
+          },
           game_date = as.Date(substr(.data$game_date_time, 1, 10)))
 
       cfb_data <- cfb_data %>%
@@ -290,7 +297,6 @@ espn_cfb_scoreboard <- function(date = NULL) {
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom stringr str_sub str_length
-#' @importFrom lubridate ymd_hm with_tz
 #' @import dplyr
 #' @export
 #' @examples
@@ -382,8 +388,15 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 
       cfb_data <- cfb_data %>%
         dplyr::mutate(
-          game_date_time = lubridate::ymd_hm(substr(.data$game_date, 1, nchar(.data$game_date) - 1)) %>%
-            lubridate::with_tz(tzone = "America/New_York"),
+          game_date_time = {
+            gdt <- as.POSIXct(
+              substr(.data$game_date, 1, nchar(.data$game_date) - 1),
+              format = "%Y-%m-%dT%H:%M",
+              tz     = "UTC"
+            )
+            attr(gdt, "tzone") <- "America/New_York"
+            gdt
+          },
           game_date = as.Date(substr(.data$game_date_time, 1, 10)))
 
       cfb_data <- cfb_data %>%

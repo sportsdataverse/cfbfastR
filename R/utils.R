@@ -173,7 +173,11 @@ time_to_seconds <- function(time){
 }
 # write season pbp to a connected db
 write_pbp <- function(seasons, dbConnection, tablename){
-  p <- progressr::progressor(along = seasons)
+  p <- if (is_installed("progressr")) {
+    progressr::progressor(along = seasons)
+  } else {
+    function(...) NULL
+  }
   purrr::walk(seasons, function(x, p){
     pbp <- load_cfb_pbp(x)
     DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)

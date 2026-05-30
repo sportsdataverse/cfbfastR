@@ -17,9 +17,11 @@
   #   * `cfbfastR.cache`          -- "memory" (default), "filesystem", or "off".
   #   * `cfbfastR.cache_duration` -- TTL in seconds (default 86400 = 24h).
   #
-  # When the mode is "off" the helpers are left un-memoised; otherwise each
-  # helper is wrapped with `memoise::memoise()` and reassigned into the
-  # package namespace. `espn_cfb_clear_cache()` calls `memoise::forget()`.
+  # When the mode is "off" -- or when either `memoise` or `cachem` is not
+  # installed (both are Suggests, not Imports) -- the helpers are left
+  # un-memoised; otherwise each helper is wrapped with `memoise::memoise()`
+  # and reassigned into the package namespace. `espn_cfb_clear_cache()`
+  # calls `memoise::forget()` only on memoised helpers.
   # ----------------------------------------------------------------------
   cache_mode <- getOption("cfbfastR.cache", default = "memory")
   if (!cache_mode %in% c("memory", "filesystem", "off")) {
@@ -34,7 +36,11 @@
 
   ttl <- getOption("cfbfastR.cache_duration", default = 86400)
 
-  if (cache_mode != "off") {
+  caching_available <-
+    requireNamespace("memoise", quietly = TRUE) &&
+    requireNamespace("cachem",  quietly = TRUE)
+
+  if (cache_mode != "off" && caching_available) {
     cache <- if (cache_mode == "filesystem") {
       cache_dir <- tools::R_user_dir("cfbfastR", which = "cache")
       dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)

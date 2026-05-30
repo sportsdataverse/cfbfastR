@@ -379,6 +379,10 @@ NULL
 #'   espn_cfb_clear_cache()
 #' }
 espn_cfb_clear_cache <- function() {
+  # No-op when memoise isn't installed (Suggests) -- nothing was memoised.
+  if (!requireNamespace("memoise", quietly = TRUE)) {
+    return(invisible(NULL))
+  }
   ns <- rlang::ns_env("cfbfastR")
   for (fn in c(".espn_cfb_team_lookup", ".espn_cfb_position_lookup")) {
     helper <- tryCatch(get(fn, envir = ns), error = function(e) NULL)
