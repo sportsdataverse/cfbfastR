@@ -33,7 +33,7 @@ load_cfb_schedules <- function(seasons = most_recent_cfb_season()){
   attr(out,"cfbfastR_type") <- "Games and schedules from CollegeFootballData.com"
   # change this later when data in repo has attributes
   if (is.null(attr(out,"cfbfastR_timestamp"))) {
-    out <- out %>%
+    out <- out |>
       make_cfbfastR_data("Games and schedules from CollegeFootballData.com",Sys.time())
   }
   out
@@ -77,7 +77,7 @@ load_cfb_rosters <- function(seasons = most_recent_cfb_season()){
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
   # change this later when data in repo has attributes
   if (is.null(attr(out,"cfbfastR_timestamp"))) {
-    out <- out %>%
+    out <- out |>
       make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
   }
   out

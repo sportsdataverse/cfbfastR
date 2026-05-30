@@ -17,9 +17,8 @@
 #' @importFrom purrr map list_rbind
 #' @importFrom stats predict
 #' @importFrom rlang .data
-#' @importFrom magrittr %>%
 .pbp_create_wpa_naive <- function(df, wp_model) {
-  df <- df %>%
+  df <- df |>
     dplyr::arrange(.data$game_id, .data$new_id)
   Off_Win_Prob <- as.vector(predict(wp_model, newdata = df, type = "response"))
   df$wp_before <- Off_Win_Prob
@@ -41,8 +40,8 @@
   df2 <- purrr::list_rbind(purrr::map(
     g_ids,
     function(x) {
-      df %>%
-        dplyr::filter(.data$game_id == x) %>%
+      df |>
+        dplyr::filter(.data$game_id == x) |>
         .pbp_wpa_calcs_naive()
     }
   ))
@@ -57,9 +56,8 @@
 #' @noRd
 #' @importFrom dplyr mutate lead if_else
 #' @importFrom rlang .data
-#' @importFrom magrittr %>%
 .pbp_wpa_calcs_naive <- function(df) {
-  df2 <- df %>%
+  df2 <- df |>
     dplyr::mutate(
       def_wp_before = 1 - .data$wp_before,
       home_wp_before = dplyr::if_else(.data$pos_team == .data$home,
@@ -70,7 +68,7 @@
         .data$wp_before,
         .data$def_wp_before
       )
-    ) %>%
+    ) |>
     dplyr::mutate(
       lead_wp_before = dplyr::lead(.data$wp_before, 1),
       lead_wp_before2 = dplyr::lead(.data$wp_before, 2),

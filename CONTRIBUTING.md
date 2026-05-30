@@ -52,7 +52,7 @@ This project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md
    - Build the request URL on top of `https://api.collegefootballdata.com/`.
    - Authenticate with the bearer token resolved via `cfbd_key()` (and surface `has_cfbd_key()`-style guidance in the error path if no key is configured).
    - Parse the response with `jsonlite::fromJSON()` -> `dplyr::as_tibble()` -> `janitor::clean_names()` -> `make_cfbfastR_data("<source description>", Sys.time())`.
-   - Use the native pipe `|>` for new code. `%>%` is permitted only inside legacy chains that pre-date the 2.3.0 refactor.
+   - Use the native pipe `|>` exclusively. `%>%` has been swept out of `R/`, `tests/`, and `vignettes/`, and `magrittr` is no longer in `Imports`. Two `|>` pitfalls: `|> `[[`("x")` errors under R 4.1 (use `|> purrr::pluck("x")`), and `|> tibble::tibble(col = .data$.)` is a magrittr quirk (use `tibble::tibble(col = <lhs>)` directly).
    - Use `%||%` (from rlang) for null-safe defaults on every extracted field.
 2. **Initialize the return variable before `tryCatch`**. Every wrapper that returns a value assigned inside `tryCatch` must initialize that variable (`df <- data.frame()`, `df_list <- list()`, `plays_df <- NULL`, etc.) **before** the `tryCatch` block. Otherwise an API error leaves the variable unbound and `return(<var>)` throws `object '<var>' not found` instead of the intended `cli::cli_alert_danger()` + empty fallback.
 3. **Add roxygen docs** with `@export`, `@family`, `@return` (including column markdown tables), and a runnable example.

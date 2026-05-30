@@ -11,7 +11,6 @@
 #' @importFrom rlang .data
 #' @importFrom stringr str_detect str_remove regex
 #' @importFrom dplyr mutate if_else case_when
-#' @importFrom magrittr %>%
 .pbp_clean_pbp_dat <- function(play_df) {
   tt                <- .pbp_play_types()
   scores_vec        <- tt$scores
@@ -24,7 +23,7 @@
   kickoff_vec       <- tt$kickoff
   int_vec           <- tt$int
 
-  play_df <- play_df %>%
+  play_df <- play_df |>
     dplyr::mutate(
       #-- Touchdowns----
       scoring_play = ifelse(.data$play_type %in% scores_vec, 1, 0),

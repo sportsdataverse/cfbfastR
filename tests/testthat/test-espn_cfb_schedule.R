@@ -40,7 +40,7 @@ test_that("ESPN CFB Schedule", {
     "highlights"
   )
 
-  x <- espn_cfb_schedule() %>%
+  x <- espn_cfb_schedule() |>
     dplyr::select(
       -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),
@@ -50,7 +50,7 @@ test_that("ESPN CFB Schedule", {
       -dplyr::any_of(c("notes"))
     )
 
-  y <- espn_cfb_schedule(2021, week = 8) %>%
+  y <- espn_cfb_schedule(2021, week = 8) |>
     dplyr::select(
       -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),

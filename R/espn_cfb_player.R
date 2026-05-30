@@ -169,8 +169,8 @@ NULL
         httr2::req_headers(!!!headers) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.list(raw) && !is.null(raw[["id"]])) {
@@ -433,8 +433,8 @@ espn_cfb_player <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       if (is.null(raw) || is.null(raw[["id"]])) {
@@ -508,7 +508,7 @@ espn_cfb_player <- function(athlete_id = NULL,
         eventlog_ref          = eventlog_ref,
         college_ref           = college_ref,
         stringsAsFactors      = FALSE
-      ) %>%
+      ) |>
         dplyr::as_tibble()
 
       # Join the ESPN position catalog onto position_id when requested --
@@ -525,7 +525,7 @@ espn_cfb_player <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -667,8 +667,8 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["events"]][["items"]]
@@ -712,7 +712,7 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column when requested.
@@ -725,7 +725,7 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player event log from ESPN", Sys.time())
     },
     error = function(e) {
@@ -879,8 +879,8 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       events <- raw[["events"]]
@@ -942,8 +942,8 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        janitor::clean_names() %>%
+      df <- dplyr::bind_rows(rows) |>
+        janitor::clean_names() |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column when requested.
@@ -956,7 +956,7 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player game log from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1073,8 +1073,8 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       stats_block <- raw[["statistics"]]
@@ -1111,8 +1111,8 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        janitor::clean_names() %>%
+      df <- dplyr::bind_rows(rows) |>
+        janitor::clean_names() |>
         dplyr::as_tibble()
 
       # Append the athlete name columns from one cheap athlete fetch.
@@ -1120,7 +1120,7 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player statistics overview from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1227,8 +1227,8 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       entries <- raw[["entries"]]
@@ -1281,7 +1281,7 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
         }
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Append the athlete name columns from one cheap athlete fetch. No
@@ -1291,7 +1291,7 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = NULL)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player seasons from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1407,8 +1407,8 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       split_categories <- raw[["splitCategories"]]
@@ -1451,8 +1451,8 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        janitor::clean_names() %>%
+      df <- dplyr::bind_rows(rows) |>
+        janitor::clean_names() |>
         dplyr::as_tibble()
 
       # Append the athlete name columns from one cheap athlete fetch.
@@ -1460,7 +1460,7 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player statistical splits from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1586,8 +1586,8 @@ espn_cfb_player_statistics <- function(athlete_id = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       categories <- raw[["splits"]][["categories"]]
@@ -1623,7 +1623,7 @@ espn_cfb_player_statistics <- function(athlete_id = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Append the athlete name columns from one cheap athlete fetch.
@@ -1631,7 +1631,7 @@ espn_cfb_player_statistics <- function(athlete_id = NULL,
         df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player season statistics from ESPN", Sys.time())
     },
     error = function(e) {
@@ -2361,8 +2361,8 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       # Check the result
       check_status(athlete_res)
 
-      athlete_df <- athlete_res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      athlete_df <- athlete_res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       team_url <- athlete_df[["team"]][["$ref"]]
@@ -2375,8 +2375,8 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       # Check the result
       check_status(team_res)
 
-      team_df <- team_res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      team_df <- team_res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
       team_df[["links"]] <- NULL
@@ -2401,9 +2401,9 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
       team_df[["events"]] <- NULL
 
 
-      team_df <- team_df %>%
-        purrr::map_if(is.list,as.data.frame) %>%
-        as.data.frame() %>%
+      team_df <- team_df |>
+        purrr::map_if(is.list,as.data.frame) |>
+        as.data.frame() |>
         dplyr::select(
           -dplyr::any_of(
             c("logos.width",
@@ -2435,30 +2435,30 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
               "logos.lastUpdated.3",
               "X.ref",
               "X.ref.1",
-              "X.ref.2"))) %>%
+              "X.ref.2"))) |>
         janitor::clean_names()
       colnames(team_df)[1:13] <- paste0("team_",colnames(team_df)[1:13])
 
-      team_df <- team_df %>%
+      team_df <- team_df |>
         dplyr::rename(
           "logo_href" = "logos_href",
-          "logo_dark_href" = "logos_href_1") %>%
+          "logo_dark_href" = "logos_href_1") |>
         dplyr::select(-tidyr::starts_with("logos"))
 
       athlete_df[["links"]] <- NULL
       athlete_df[["injuries"]] <- NULL
 
-      athlete_df <- athlete_df %>%
-        purrr::map_if(is.list, as.data.frame) %>%
-        tibble::tibble(data=.data$.)
+      athlete_df <- tibble::tibble(
+        data = purrr::map_if(athlete_df, is.list, as.data.frame)
+      )
 
-      athlete_df <- athlete_df$data %>%
-        as.data.frame() %>%
+      athlete_df <- athlete_df$data |>
+        as.data.frame() |>
         dplyr::select(-dplyr::any_of(c("X.ref","X.ref.1","X.ref.2","X.ref.3","X.ref.4","X.ref.5","X.ref.6","X.ref.7","X.ref.8",
                                        "position.X.ref","position.X.ref.1",
                                        "contract.x.ref","contract.x.ref.1","contract.x.ref.2",
-                                       "draft.x.ref","draft.x.ref.1"))) %>%
-        janitor::clean_names() %>%
+                                       "draft.x.ref","draft.x.ref.1"))) |>
+        janitor::clean_names() |>
         dplyr::rename(
           "athlete_id" = "id",
           "athlete_uid" = "uid",
@@ -2467,29 +2467,29 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
 
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        purrr::pluck("splits") %>%
-        purrr::pluck("categories") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        purrr::pluck("splits") |>
+        purrr::pluck("categories") |>
         tidyr::unnest("stats", names_sep="_")
-      df <- df %>%
+      df <- df |>
         dplyr::mutate(
-          stats_category_name = glue::glue("{.data$name}_{.data$stats_name}")) %>%
-        dplyr::select("stats_category_name", "stats_value") %>%
+          stats_category_name = glue::glue("{.data$name}_{.data$stats_name}")) |>
+        dplyr::select("stats_category_name", "stats_value") |>
         tidyr::pivot_wider(names_from = "stats_category_name",
                            values_from = "stats_value",
-                           values_fn = dplyr::first) %>%
+                           values_fn = dplyr::first) |>
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
       athlete_df[athlete_cols[!(athlete_cols %in% colnames(athlete_df))]] <- NA
 
-      df <- athlete_df %>%
-        dplyr::bind_cols(df) %>%
+      df <- athlete_df |>
+        dplyr::bind_cols(df) |>
         dplyr::bind_cols(team_df)
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("CFB Player Season stats from ESPN.com",Sys.time())
 
     },
@@ -2616,8 +2616,8 @@ espn_cfb_players <- function(year = NULL,
           httr2::req_perform()
         check_status(res)
 
-        raw <- res %>%
-          httr2::resp_body_string(encoding = "UTF-8") %>%
+        raw <- res |>
+          httr2::resp_body_string(encoding = "UTF-8") |>
           jsonlite::fromJSON(simplifyVector = FALSE)
 
         items <- raw[["items"]]
@@ -2656,7 +2656,7 @@ espn_cfb_players <- function(year = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Optional name resolution -- one HTTP call per athlete returned, so
@@ -2665,7 +2665,7 @@ espn_cfb_players <- function(year = NULL,
         df <- .espn_cfb_attach_athlete_detail_multi(df, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Players index from ESPN", Sys.time())
     },
     error = function(e) {
@@ -2792,8 +2792,8 @@ espn_cfb_recruits <- function(year = NULL,
     httr2::request(u) |>
       httr2::req_headers(!!!headers) |>
       httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -2811,8 +2811,8 @@ espn_cfb_recruits <- function(year = NULL,
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -2930,8 +2930,8 @@ espn_cfb_recruits <- function(year = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Recruiting class data from ESPN", Sys.time())
     },
     error = function(e) {

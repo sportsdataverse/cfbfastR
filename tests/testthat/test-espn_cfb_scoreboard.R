@@ -40,7 +40,7 @@ test_that("ESPN CFB Scoreboard", {
     "highlights"
   )
 
-  x <- espn_cfb_scoreboard() %>%
+  x <- espn_cfb_scoreboard() |>
     dplyr::select(
       -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),
@@ -50,7 +50,7 @@ test_that("ESPN CFB Scoreboard", {
       -dplyr::any_of(c("notes"))
     )
 
-  y <- espn_cfb_scoreboard(date = 20210101) %>%
+  y <- espn_cfb_scoreboard(date = 20210101) |>
     dplyr::select(
       -dplyr::any_of(dplyr::starts_with("geo_")),
       -dplyr::any_of(dplyr::starts_with("broadcast")),

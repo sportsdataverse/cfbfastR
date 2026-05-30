@@ -90,7 +90,6 @@ NULL
 #' @importFrom cli cli_alert_warning
 #' @importFrom glue glue
 #' @importFrom stats setNames
-#' @importFrom magrittr %>%
 #' @export
 #' @examples
 #' \donttest{
@@ -159,8 +158,8 @@ cfbd_pbp_data_v2 <- function(year,
   res <- get_req(full_url)
   check_status(res)
 
-  raw_play_df <- res %>%
-    httr2::resp_body_string(encoding = "UTF-8") %>%
+  raw_play_df <- res |>
+    httr2::resp_body_string(encoding = "UTF-8") |>
     jsonlite::fromJSON()
   raw_play_df <- do.call(data.frame, raw_play_df)
   if (nrow(raw_play_df) == 0) {
@@ -186,25 +185,25 @@ cfbd_pbp_data_v2 <- function(year,
           season_type = season_type,
           team        = team
         )
-        game_spread <- game_spread %>%
-          dplyr::filter(.data$provider %in% providers_list) %>%
+        game_spread <- game_spread |>
+          dplyr::filter(.data$provider %in% providers_list) |>
           dplyr::mutate(
             spread     = as.numeric(.data$spread),
             over_under = as.numeric(.data$over_under)
-          ) %>%
+          ) |>
           dplyr::select(
             "game_id", "provider", "spread", "formatted_spread", "over_under"
           )
         prov_priority <- stats::setNames(
           seq_along(providers_list), providers_list
         )
-        game_spread <- game_spread %>%
-          dplyr::mutate(.prov_rank = prov_priority[.data$provider]) %>%
-          dplyr::group_by(.data$game_id) %>%
-          dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) %>%
-          dplyr::ungroup() %>%
+        game_spread <- game_spread |>
+          dplyr::mutate(.prov_rank = prov_priority[.data$provider]) |>
+          dplyr::group_by(.data$game_id) |>
+          dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) |>
+          dplyr::ungroup() |>
           dplyr::select(-dplyr::all_of(".prov_rank"))
-        raw_play_df <- raw_play_df %>%
+        raw_play_df <- raw_play_df |>
           dplyr::left_join(
             game_spread, by = c("gameId" = "game_id"),
             suffix = c("_x", "")
@@ -231,10 +230,10 @@ cfbd_pbp_data_v2 <- function(year,
   colnames(clean_drive_df) <- paste0("drive_", colnames(clean_drive_df))
 
   # --- assemble: clean_names + drive join + col cleanups (legacy:521-559)
-  play_df <- raw_play_df %>%
-    janitor::clean_names() %>%
-    dplyr::rename("yard_line" = "yardline") %>%
-    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
+  play_df <- raw_play_df |>
+    janitor::clean_names() |>
+    dplyr::rename("yard_line" = "yardline") |>
+    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) |>
     dplyr::left_join(
       clean_drive_df,
       by = c("drive_id" = "drive_drive_id",
@@ -254,8 +253,8 @@ cfbd_pbp_data_v2 <- function(year,
     "drive_elapsed_hours", "drive_elapsed_minutes", "drive_elapsed_seconds"
   )
 
-  play_df <- play_df %>%
-    dplyr::select(-dplyr::any_of(rm_cols)) %>%
+  play_df <- play_df |>
+    dplyr::select(-dplyr::any_of(rm_cols)) |>
     dplyr::rename(
       "drive_pts"          = "drive_pts_drive",
       "drive_result"       = "drive_drive_result",
@@ -268,7 +267,7 @@ cfbd_pbp_data_v2 <- function(year,
   play_df <- .cfbd_to_epa_input(play_df, year = year, week = week)
 
   if (!pt_abb_exists) {
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::filter(tolower(.data$play_type) == tolower(!!play_type))
   }
 
@@ -286,11 +285,11 @@ cfbd_pbp_data_v2 <- function(year,
       wp_model   = wp_model,
       clean_text = TRUE,
       min_plays  = 20L
-    ) %>%
+    ) |>
       .pbp_apply_output_schema(output = output)
   }
 
-  play_df %>%
+  play_df |>
     make_cfbfastR_data(
       "Play-by-Play data from CollegeFootballData.com (v2)", Sys.time()
     )

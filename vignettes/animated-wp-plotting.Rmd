@@ -41,20 +41,20 @@ week <- 1
 year <- 2019
 
 interp_TimeSecsRem <- function(pbp) {
-  temp <- pbp %>%
-    mutate(TimeSecsRem = ifelse(TimeSecsRem == lag(TimeSecsRem), NA, TimeSecsRem)) %>%
+  temp <- pbp |>
+    mutate(TimeSecsRem = ifelse(TimeSecsRem == lag(TimeSecsRem), NA, TimeSecsRem)) |>
     select(TimeSecsRem)
   ind <- which(temp$TimeSecsRem == 1800)
   temp$TimeSecsRem[1] <- 1800
   temp$TimeSecsRem[nrow(temp)] <- 0
   temp$TimeSecsRem[ind-1] <- 0
-  pbp<- pbp %>%
-    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) %>%
+  pbp<- pbp |>
+    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) |>
     mutate(clock_minutes = floor(TimeSecsRem/60),clock_seconds = TimeSecsRem %% 60)
   return(pbp)
 }
-game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>%
-  filter(down > 0) %>%
+game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) |>
+  filter(down > 0) |>
   interp_TimeSecsRem()
 
 game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week, season_type = "regular")
@@ -64,16 +64,16 @@ We'll also use the ```cfbd_team_info()``` function to pull the color and logo in
 
 ```{r logos, message=FALSE, warning=FALSE}
 team_info <- cfbfastR::cfbd_team_info()
-team_logos <- team_info %>%
+team_logos <- team_info |>
   select(school, color, alt_color, logo, alt_name2)
-game <- game %>%
-  left_join(team_logos, by = c("away_team" = "school"),) %>%
+game <- game |>
+  left_join(team_logos, by = c("away_team" = "school"),) |>
   rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2)
 
-game <- game %>%
-  left_join(team_logos, by = c("home_team" = "school")) %>%
-  rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) %>%
-  mutate(result = home_points - away_points) %>%
+game <- game |>
+  left_join(team_logos, by = c("home_team" = "school")) |>
+  rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) |>
+  mutate(result = home_points - away_points) |>
   rename(home_score = home_points, away_score = away_points)
 ```
 
@@ -83,10 +83,10 @@ To build the labels, we're going to use a custom function to pull the player nam
 Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbfastR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbfastR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation.
 
 ```{r rename, message=FALSE, warning=FALSE}
-game_pbp <- game_pbp %>%
+game_pbp <- game_pbp |>
   rename(qtr = period, wp = wp_before, posteam = pos_team, defteam = def_pos_team,
          away_team = away, home_team = home, play_id = game_play_number,
-         posteam_score = pos_team_score, defteam_score = def_pos_team_score) %>%
+         posteam_score = pos_team_score, defteam_score = def_pos_team_score) |>
   mutate(game_seconds_remaining = ifelse(half == 1, TimeSecsRem + 1800, TimeSecsRem),
          result = game$result,
          minlabel = ifelse(clock_minutes >= 15,
@@ -100,8 +100,8 @@ game_pbp <- game_pbp %>%
 Now that our data matches ```nflfastR```, we can start to copy Lee Sharpe's code and the bulk of the remaining code is his with a few minor adjustments to the plot, the overtime logic, and the labels. First we filter out plays that don't have a win percentage and fix the win probability so that it is always the probability of the away team winning.
 
 ```{r base_wp_data, message=FALSE, warning=FALSE}
-base_wp_data <- game_pbp %>%
-  filter(!is.na(wp)) %>%
+base_wp_data <- game_pbp |>
+  filter(!is.na(wp)) |>
   mutate(s = game_seconds_remaining,
          wp = ifelse(posteam == away_team, wp, 1 - wp))
 
@@ -133,7 +133,7 @@ Now we create the labels. This generates labels for any play that had a change i
 ```{r wp_data, message=FALSE, warning=FALSE}
 abs_wpa <- 0.07
 
-wp_data <- base_wp_data %>%
+wp_data <- base_wp_data |>
   mutate(
     helped=ifelse(wpa > 0, posteam, defteam),
     text =
@@ -179,7 +179,7 @@ wp_data <- base_wp_data %>%
        TRUE ~ ""),
     text = ifelse(text == "","", glue("{text}\n{helped} +{abs(round(100*wpa))}%")),
     away_score = ifelse(posteam == away_team, posteam_score, defteam_score),
-    home_score = ifelse(posteam == away_team, defteam_score, posteam_score)) %>%
+    home_score = ifelse(posteam == away_team, defteam_score, posteam_score)) |>
   select(play_id, qtr, time, s, wp, wpa, posteam, away_score, home_score, text)
 ```
 
@@ -195,7 +195,7 @@ x_score <- 320 - x_max
 # determine the location of the label
 wp_data$x_text <- NA
 wp_data$y_text <- NA
-wp_data <- wp_data %>% arrange(desc(abs(wpa)))
+wp_data <- wp_data |> arrange(desc(abs(wpa)))
 
 seq_fix <- function(start, end, move)
 {
@@ -218,14 +218,14 @@ for (r in which(wp_data$text != ""))
   for (i in 1:length(y_spots))
   {
     valid <- TRUE
-    if (nrow(wp_data %>%
+    if (nrow(wp_data |>
              filter(y_spots[i] - 0.1 < wp & wp < y_spots[i] + 0.1 &
                     wp_data$s[r] - 300 < s & s < wp_data$s[r] + 300)) > 0)
     {
       # too close to the WP line
       valid <- FALSE
     }
-    if (nrow(wp_data %>%
+    if (nrow(wp_data |>
              filter(y_spots[i] - 0.1 < y_text & y_text < y_spots[i] + 0.1 &
                     wp_data$s[r] - 600 < x_text & x_text < wp_data$s[r] + 600)) > 0)
     {
@@ -255,14 +255,14 @@ for (r in which(wp_data$text != ""))
     for (i in 1:length(x_spots))
     {
       valid <- TRUE
-      if (nrow(wp_data %>%
+      if (nrow(wp_data |>
                filter(wp_data$wp[r] - 0.1 < wp & wp < wp_data$wp[r] + 0.1 &
                       x_spots[i] - 300 < s & s < x_spots[i] + 300)) > 0)
       {
         # too close to the WP line
         valid <- FALSE
       }
-      if (nrow(wp_data %>%
+      if (nrow(wp_data |>
                filter(wp_data$wp[r] - 0.1 < y_text & y_text < wp_data$wp[r] + 0.1 &
                       x_spots[i] - 600 < x_text & x_text < x_spots[i] + 600)) > 0)
       {
@@ -301,11 +301,11 @@ last_row <- data.frame(play_id = 999999, qtr = max(wp_data$qtr), s = x_max - 1,
                        wpa = NA, text = as.character(""), x_text = x_max, y_text = 0.5,
                        away_score = game$away_score, home_score = game$home_score,
                        stringsAsFactors = FALSE)
-wp_data <- wp_data %>%
+wp_data <- wp_data |>
   filter(posteam != "",
-         wpa != 0) %>%
-  bind_rows(first_row) %>%
-  bind_rows(last_row) %>%
+         wpa != 0) |>
+  bind_rows(first_row) |>
+  bind_rows(last_row) |>
   arrange(play_id)
 ```
 
@@ -318,17 +318,17 @@ draw_frame <- function(n_sec)
 {
 
   # frame data
-  frm_data <- wp_data %>%
+  frm_data <- wp_data |>
     filter(s >= n_sec)
 
   # output quarter changes
-  if (nrow(frm_data %>% filter(qtr == max(qtr))) == 1)
+  if (nrow(frm_data |> filter(qtr == max(qtr))) == 1)
   {
     print(glue("Plotting pbp in quarter {max(frm_data$qtr)}"))
   }
 
   # plot
-  frm_plot <- frm_data %>%
+  frm_plot <- frm_data |>
     ggplot(aes(x = s, y = wp)) +
     theme_minimal() +
     geom_vline(xintercept = c(3600, x_max), color = "#5555AA") +
@@ -381,7 +381,7 @@ draw_frame <- function(n_sec)
     annotate("text", x = -1*x_score, y = 0.50, label = clock, color = "#000000", size = 6)
 
   # label key moments
-  frm_labels <- frm_data %>%
+  frm_labels <- frm_data |>
     filter(text != "")
   frm_plot <- frm_plot +
     geom_point(frm_labels, mapping = aes(x = s, y = wp),

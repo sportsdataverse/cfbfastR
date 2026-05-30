@@ -206,31 +206,31 @@ cfbd_game_info <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
       if (!quarter_scores) {
-        df <- dplyr::select(df, -"home_line_scores", -"away_line_scores") %>%
-          dplyr::rename("game_id" = "id") %>%
+        df <- dplyr::select(df, -"home_line_scores", -"away_line_scores") |>
+          dplyr::rename("game_id" = "id") |>
           as.data.frame()
       } else {
-        df <- df %>%
-          tidyr::unnest_wider("home_line_scores", names_sep = "_Q") %>%
+        df <- df |>
+          tidyr::unnest_wider("home_line_scores", names_sep = "_Q") |>
           tidyr::unnest_wider("away_line_scores", names_sep = "_Q")
 
         colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
-        df <- df %>%
+        df <- df |>
           dplyr::rename("game_id" = "id")
       }
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "home_division" = "home_classification",
           "home_post_win_prob" = "home_postgame_win_probability",
           "away_division" = "away_classification",
           "away_post_win_prob" = "away_postgame_win_probability"
-        ) %>%
+        ) |>
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -327,8 +327,8 @@ cfbd_game_weather <- function(year,
       # empty-array response (upstream has not collected weather for
       # this year/week yet -- common during the in-season window before
       # CFBD backfills, see GH #116) from a parse/HTTP error.
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
 
       if (length(raw) == 0L || (is.data.frame(raw) && nrow(raw) == 0L)) {
@@ -339,9 +339,9 @@ cfbd_game_weather <- function(year,
         ))
         df <- data.frame()
       } else {
-        df <- raw %>%
-          janitor::clean_names() %>%
-          dplyr::rename("game_id" = "id") %>%
+        df <- raw |>
+          janitor::clean_names() |>
+          dplyr::rename("game_id" = "id") |>
           make_cfbfastR_data(
             "Game weather data from CollegeFootballData.com",
             Sys.time()
@@ -408,10 +408,10 @@ cfbd_calendar <- function(year) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        janitor::clean_names() |>
         dplyr::select(
           "season",
           "week",
@@ -421,7 +421,7 @@ cfbd_calendar <- function(year) {
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Calendar data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -522,25 +522,25 @@ cfbd_game_media <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         tidyr::pivot_wider(
           names_from = "mediaType",
           values_from = "outlet",
           values_fn = list
-        ) %>%
-        janitor::clean_names() %>%
+        ) |>
+        janitor::clean_names() |>
         dplyr::rename("game_id" = "id")
 
       df[cols[!(cols %in% colnames(df))]] <- NA
       df <- df[!duplicated(df), ]
 
-      df <- df %>%
+      df <- df |>
         dplyr::select(dplyr::all_of(cols), dplyr::everything())
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Game media data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -673,23 +673,23 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
         purrr::map_if(is.data.frame, list)
 
       df <- tibble::enframe(unlist(df$teams, use.names = TRUE))
       team1 <- seq(1, nrow(df) - 1, by = 2)
-      df1 <- df[team1, ] %>%
+      df1 <- df[team1, ] |>
         dplyr::rename(
           "stat" = "name",
           "team1" = "value"
         )
 
       team2 <- seq(2, nrow(df), by = 2)
-      df2 <- df[team2, ] %>%
-        dplyr::rename("team2" = "value") %>%
+      df2 <- df[team2, ] |>
+        dplyr::rename("team2" = "value") |>
         dplyr::select("team2")
 
       df <- data.frame(cbind(df1, df2))
@@ -719,26 +719,26 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       df$stat <- sub("cumulativePpa", "cumulative_ppa", df$stat)
 
       if (!long) {
-        team <- df %>%
-          dplyr::filter(.data$stat == "ppa_team") %>%
-          tidyr::pivot_longer(cols = c("team1", "team2")) %>%
+        team <- df |>
+          dplyr::filter(.data$stat == "ppa_team") |>
+          tidyr::pivot_longer(cols = c("team1", "team2")) |>
           dplyr::transmute(team = .data$value)
 
-        df <- df %>%
-          dplyr::filter(!stringr::str_detect(.data$stat, "team")) %>%
-          tidyr::pivot_longer(cols = c("team1", "team2")) %>%
-          tidyr::pivot_wider(names_from = "stat", values_from = "value") %>%
-          dplyr::select(-"name") %>%
-          dplyr::mutate_all(as.numeric) %>%
-          dplyr::bind_cols(team)  %>%
+        df <- df |>
+          dplyr::filter(!stringr::str_detect(.data$stat, "team")) |>
+          tidyr::pivot_longer(cols = c("team1", "team2")) |>
+          tidyr::pivot_wider(names_from = "stat", values_from = "value") |>
+          dplyr::select(-"name") |>
+          dplyr::mutate_all(as.numeric) |>
+          dplyr::bind_cols(team)  |>
           dplyr::select("team", dplyr::everything())
-        df <- df %>%
+        df <- df |>
           dplyr::rename(
             "rushing_line_yds_avg" = "rushing_line_yd_avg",
             "rushing_second_lvl_yds_avg" = "rushing_second_lvl_yd_avg",
             "rushing_open_field_yds_avg" = "rushing_open_field_yd_avg")
 
-        df <- df %>%
+        df <- df |>
           make_cfbfastR_data("Advanced box score data from CollegeFootballData.com",Sys.time())
 
       }
@@ -1022,55 +1022,55 @@ cfbd_game_player_stats <- function(year,
       check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        dplyr::rename("game_id" = "id") %>%
-        tidyr::unnest("teams") %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        tidyr::unnest("categories") %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        dplyr::rename("category" = "name") %>%
-        tidyr::unnest("types") %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        dplyr::rename("stat_category" = "name") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        dplyr::rename("game_id" = "id") |>
+        tidyr::unnest("teams") |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        tidyr::unnest("categories") |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        dplyr::rename("category" = "name") |>
+        tidyr::unnest("types") |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        dplyr::rename("stat_category" = "name") |>
         dplyr::mutate(
-          statType = paste0(.data$category, "_", .data$stat_category)) %>%
-        tidyr::unnest("athletes") %>%
+          statType = paste0(.data$category, "_", .data$stat_category)) |>
+        tidyr::unnest("athletes") |>
         dplyr::rename(
           "athlete_id" = "id",
           "athlete_name" = "name",
           "team_points" = "points",
           "value" = "stat"
-        ) %>%
-        dplyr::select(-dplyr::any_of(c("category", "stat_category"))) %>%
+        ) |>
+        dplyr::select(-dplyr::any_of(c("category", "stat_category"))) |>
         dplyr::group_by(.data$game_id, .data$team, .data$conference, .data$athlete_id, .data$athlete_name,
-                        .data$homeAway, .data$team_points) %>%
-        tidyr::pivot_wider(names_from = "statType", values_from = "value", values_fn = first) %>%
+                        .data$homeAway, .data$team_points) |>
+        tidyr::pivot_wider(names_from = "statType", values_from = "value", values_fn = first) |>
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
 
       suppressWarnings(
-        df <- df %>%
-          dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
-          tidyr::separate("passing_c_att",into = c("passing_completions","passing_attempts"), sep = "/") %>%
-          tidyr::separate("kicking_xp",into = c("kicking_xpm","kicking_xpa"), sep = "/") %>%
-          tidyr::separate("kicking_fg",into = c("kicking_fgm","kicking_fga"), sep = "/") %>%
-          dplyr::mutate_at(numeric_cols, as.numeric) %>%
-          dplyr::mutate(athlete_id = as.integer(.data$athlete_id)) %>%
+        df <- df |>
+          dplyr::select(dplyr::all_of(cols), dplyr::everything()) |>
+          tidyr::separate("passing_c_att",into = c("passing_completions","passing_attempts"), sep = "/") |>
+          tidyr::separate("kicking_xp",into = c("kicking_xpm","kicking_xpa"), sep = "/") |>
+          tidyr::separate("kicking_fg",into = c("kicking_fgm","kicking_fga"), sep = "/") |>
+          dplyr::mutate_at(numeric_cols, as.numeric) |>
+          dplyr::mutate(athlete_id = as.integer(.data$athlete_id)) |>
           as.data.frame()
       )
 
 
 
-      df <- df %>%
-        dplyr::select(dplyr::any_of(cols), dplyr::everything()) %>%
+      df <- df |>
+        dplyr::select(dplyr::any_of(cols), dplyr::everything()) |>
         make_cfbfastR_data("Game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1081,7 +1081,7 @@ cfbd_game_player_stats <- function(year,
   )
   # is_c_att_present <- any(grepl("C/ATT",colnames(df)))
   # if(is_c_att_present){
-  #   df <- df %>%
+  #   df <- df |>
   #    dplyr::mutate("C/ATT"="0/0")
   # }
   return(df)
@@ -1181,9 +1181,9 @@ cfbd_game_records <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         dplyr::rename(
           "team_id" = "teamId",
           "expected_wins" = "expectedWins",
@@ -1217,7 +1217,7 @@ cfbd_game_records <- function(year,
           "postseason_ties" = "postseason.ties"
         )
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Game records data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1405,10 +1405,10 @@ cfbd_game_team_stats <- function(year,
         "kick_returns"
       )
       # Get the content, unnest, and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
         dplyr::as_tibble()
 
       if (nrow(df) == 0) {
@@ -1416,9 +1416,9 @@ cfbd_game_team_stats <- function(year,
               for this one week or team.")
         return(NULL)
       }
-      df <- df %>%
-        tidyr::unnest("teams") %>%
-        tidyr::unnest("stats") %>%
+      df <- df |>
+        tidyr::unnest("teams") |>
+        tidyr::unnest("stats") |>
         # Occasionally CFBD will have duplicated stats that causes an error here
         #and the current long df is returned. Distinct removes duplicates.
         dplyr::distinct()
@@ -1428,10 +1428,10 @@ cfbd_game_team_stats <- function(year,
                                names_from = "category",
                                values_from = "stat"
       )
-      df <- df %>%
+      df <- df |>
         janitor::clean_names()
       df[cols[!(cols %in% colnames(df))]] <- NA
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "game_id" = "id",
           "rush_tds" = "rushing_t_ds",
@@ -1445,12 +1445,12 @@ cfbd_game_team_stats <- function(year,
       if (rows_per_team == 1) {
         # Join pivoted data with itself to get ultra-wide row
         # containing all game stats on one row for both teams
-        df <- df %>%
-          dplyr::mutate(opponent_home_away = ifelse(.data$home_away == "home","away","home")) %>%
+        df <- df |>
+          dplyr::mutate(opponent_home_away = ifelse(.data$home_away == "home","away","home")) |>
           dplyr::left_join(df,
                            by = c("game_id", "opponent_home_away" = "home_away"),
                            suffix = c("", "_allowed")
-          ) %>%
+          ) |>
           dplyr::rename(
             "opponent" = "team_allowed",
             "opponent_conference" = "conference_allowed")
@@ -1484,8 +1484,8 @@ cfbd_game_team_stats <- function(year,
         if (!is.null(team)) {
           team <- URLdecode(team)
 
-          df <- df %>%
-            dplyr::filter(.data$team == team) %>%
+          df <- df |>
+            dplyr::filter(.data$team == team) |>
             dplyr::select(dplyr::all_of(cols1))
 
 
@@ -1493,13 +1493,13 @@ cfbd_game_team_stats <- function(year,
           conference <- URLdecode(conference)
           conf_name <- .lookup_conference_name(conference)
 
-          df <- df %>%
-            dplyr::filter(.data$conference == conf_name) %>%
+          df <- df |>
+            dplyr::filter(.data$conference == conf_name) |>
             dplyr::select(dplyr::all_of(cols1))
 
 
         } else {
-          df <- df %>%
+          df <- df |>
             dplyr::select(dplyr::all_of(cols1))
 
         }
@@ -1521,29 +1521,29 @@ cfbd_game_team_stats <- function(year,
         if (!is.null(team)) {
           team <- URLdecode(team)
 
-          df <- df %>%
-            dplyr::filter(.data$team == team) %>%
+          df <- df |>
+            dplyr::filter(.data$team == team) |>
             dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
           conference <- URLdecode(conference)
           conf_name <- .lookup_conference_name(conference)
 
-          df <- df %>%
-            dplyr::filter(.data$conference == conf_name) %>%
+          df <- df |>
+            dplyr::filter(.data$conference == conf_name) |>
             dplyr::select(dplyr::all_of(cols2))
 
 
         } else {
-          df <- df %>%
+          df <- df |>
             dplyr::select(dplyr::all_of(cols2))
 
         }
       }
 
 
-      df <- df %>%
-        dplyr::rename("school" = "team") %>%
+      df <- df |>
+        dplyr::rename("school" = "team") |>
         make_cfbfastR_data("Team stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1647,25 +1647,25 @@ cfbd_live_scoreboard <- function(division = 'fbs',
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
-      df <- df %>%
-        dplyr::rename("game_id" = "id") %>%
-        tidyr::unnest_wider("venue", names_sep = "_") %>%
-        tidyr::unnest_wider("home_team", names_sep = "_") %>%
-        tidyr::unnest_wider("away_team", names_sep = "_") %>%
-        tidyr::unnest_wider("weather", names_sep = "_") %>%
-        tidyr::unnest_wider("betting", names_sep = "_") %>%
+      df <- df |>
+        dplyr::rename("game_id" = "id") |>
+        tidyr::unnest_wider("venue", names_sep = "_") |>
+        tidyr::unnest_wider("home_team", names_sep = "_") |>
+        tidyr::unnest_wider("away_team", names_sep = "_") |>
+        tidyr::unnest_wider("weather", names_sep = "_") |>
+        tidyr::unnest_wider("betting", names_sep = "_") |>
         janitor::clean_names()
 
-      df <- df %>%
-        tidyr::unnest("home_team_line_scores") %>%
-        tidyr::unnest("away_team_line_scores") %>%
-        tidyr::unnest_wider("home_team_line_scores", names_sep="_Q") %>%
-        tidyr::unnest_wider("away_team_line_scores", names_sep="_Q") %>%
+      df <- df |>
+        tidyr::unnest("home_team_line_scores") |>
+        tidyr::unnest("away_team_line_scores") |>
+        tidyr::unnest_wider("home_team_line_scores", names_sep="_Q") |>
+        tidyr::unnest_wider("away_team_line_scores", names_sep="_Q") |>
         make_cfbfastR_data("Live Scoreboard information from CollegeFootballData.com",Sys.time())
 
     },

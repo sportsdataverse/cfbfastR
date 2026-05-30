@@ -217,15 +217,15 @@ espn_cfb_award <- function(award_id = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      a <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      a <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       award_id_v  <- as.character(a[["id"]] %||% award_id)
@@ -289,7 +289,7 @@ espn_cfb_award <- function(award_id = NULL,
         }
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once.
@@ -297,7 +297,7 @@ espn_cfb_award <- function(award_id = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Award detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -393,12 +393,12 @@ espn_cfb_awards <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_error(is_error = function(resp) FALSE) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_error(is_error = function(resp) FALSE) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -410,15 +410,15 @@ espn_cfb_awards <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(base_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(base_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -496,7 +496,7 @@ espn_cfb_awards <- function(year = NULL,
         }
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once.
@@ -504,7 +504,7 @@ espn_cfb_awards <- function(year = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Awards data from ESPN", Sys.time())
     },
     error = function(e) {
@@ -605,12 +605,12 @@ espn_cfb_coach <- function(coach_id = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_error(is_error = function(resp) FALSE) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_error(is_error = function(resp) FALSE) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -626,15 +626,15 @@ espn_cfb_coach <- function(coach_id = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(season_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(season_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      sc <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      sc <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       team_ref <- if (is.list(sc[["team"]])) {
@@ -668,7 +668,7 @@ espn_cfb_coach <- function(coach_id = NULL,
         team_ref         = team_ref,
         person_ref       = person_ref,
         stringsAsFactors = FALSE
-      ) %>%
+      ) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once.
@@ -676,7 +676,7 @@ espn_cfb_coach <- function(coach_id = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Coach detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -773,15 +773,15 @@ espn_cfb_coach_record <- function(coach_id = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       stats <- raw[["stats"]] %||% list()
@@ -817,8 +817,8 @@ espn_cfb_coach_record <- function(coach_id = NULL,
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Coach season record from ESPN", Sys.time())
     },
     error = function(e) {
@@ -911,12 +911,12 @@ espn_cfb_coaches <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_error(is_error = function(resp) FALSE) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_error(is_error = function(resp) FALSE) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -928,15 +928,15 @@ espn_cfb_coaches <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(base_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(base_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -985,7 +985,7 @@ espn_cfb_coaches <- function(year = NULL,
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once.
@@ -993,7 +993,7 @@ espn_cfb_coaches <- function(year = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Coaches index from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1099,15 +1099,15 @@ espn_cfb_franchise <- function(franchise_id = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      f <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      f <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       venue <- f[["venue"]]
@@ -1143,7 +1143,7 @@ espn_cfb_franchise <- function(franchise_id = NULL,
         team_ref           = team_ref,
         franchise_ref      = as.character(f[["$ref"]] %||% NA),
         stringsAsFactors   = FALSE
-      ) %>%
+      ) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once.
@@ -1151,7 +1151,7 @@ espn_cfb_franchise <- function(franchise_id = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Franchise detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1212,12 +1212,12 @@ espn_cfb_franchises <- function() {
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_error(is_error = function(resp) FALSE) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_error(is_error = function(resp) FALSE) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1229,15 +1229,15 @@ espn_cfb_franchises <- function() {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(base_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(base_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -1269,8 +1269,8 @@ espn_cfb_franchises <- function() {
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Franchises index from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1349,15 +1349,15 @@ espn_cfb_position <- function(position_id = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      p <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      p <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       parent <- p[["parent"]]
@@ -1377,8 +1377,8 @@ espn_cfb_position <- function(position_id = NULL) {
         parent_id    = parent_id,
         position_ref = as.character(p[["$ref"]] %||% NA),
         stringsAsFactors = FALSE
-      ) %>%
-        dplyr::as_tibble() %>%
+      ) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Position detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1443,12 +1443,12 @@ espn_cfb_positions <- function() {
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_error(is_error = function(resp) FALSE) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_error(is_error = function(resp) FALSE) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1460,15 +1460,15 @@ espn_cfb_positions <- function() {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(base_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(base_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -1508,8 +1508,8 @@ espn_cfb_positions <- function() {
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Positions index from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1586,15 +1586,15 @@ espn_cfb_venue <- function(venue_id = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      v <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      v <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       addr <- v[["address"]]
@@ -1611,8 +1611,8 @@ espn_cfb_venue <- function(venue_id = NULL) {
         indoor    = isTRUE(v[["indoor"]]),
         venue_ref = as.character(v[["$ref"]] %||% NA),
         stringsAsFactors = FALSE
-      ) %>%
-        dplyr::as_tibble() %>%
+      ) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Venue detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1680,12 +1680,12 @@ espn_cfb_venues <- function(max_results = 200) {
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_error(is_error = function(resp) FALSE) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_error(is_error = function(resp) FALSE) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1700,15 +1700,15 @@ espn_cfb_venues <- function(max_results = 200) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(base_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-        httr2::req_error(is_error = function(resp) FALSE) %>%
+      res <- httr2::request(base_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -1747,8 +1747,8 @@ espn_cfb_venues <- function(max_results = 200) {
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Venues index from ESPN", Sys.time())
     },
     error = function(e) {

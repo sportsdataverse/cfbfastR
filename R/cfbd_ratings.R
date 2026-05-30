@@ -123,23 +123,23 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both") {
       res <- get_req(full_url)
       check_status(res)
 
-      polls <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        tidyr::unnest("polls") %>%
-        tidyr::unnest("ranks") %>%
-        dplyr::group_by(.data$week, .data$poll) %>%
-        dplyr::arrange(.data$rank, .by_group = TRUE) %>%
-        dplyr::ungroup() %>%
+      polls <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        tidyr::unnest("polls") |>
+        tidyr::unnest("ranks") |>
+        dplyr::group_by(.data$week, .data$poll) |>
+        dplyr::arrange(.data$rank, .by_group = TRUE) |>
+        dplyr::ungroup() |>
         dplyr::rename(
           "season_type" = "seasonType",
           "first_place_votes" = "firstPlaceVotes"
         )
 
 
-      polls <- polls %>%
+      polls <- polls |>
         make_cfbfastR_data("Rankings data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -236,9 +236,9 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         dplyr::rename(
           "second_order_wins" = "secondOrderWins",
           "offense_ranking" = "offense.ranking",
@@ -266,7 +266,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e){
@@ -356,10 +356,10 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        as.data.frame() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        as.data.frame() |>
         dplyr::rename(
           "second_order_wins" = "secondOrderWins",
           "offense_rating" = "offense.rating",
@@ -385,7 +385,7 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Conference SP+ data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -462,17 +462,17 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        as.data.frame() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        as.data.frame() |>
         dplyr::mutate(
           rating = as.numeric(.data$rating),
           ranking = as.integer(.data$ranking)
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("SRS data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -552,15 +552,15 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        as.data.frame() %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        as.data.frame() |>
+        janitor::clean_names() |>
         dplyr::mutate(elo = as.numeric(.data$elo))
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Elo ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -645,14 +645,14 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        as.data.frame() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        as.data.frame() |>
         janitor::clean_names()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("ESPN FPI ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

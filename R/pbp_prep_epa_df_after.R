@@ -15,7 +15,6 @@
 #' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n
 #'   lag lead if_else
 #' @importFrom tidyr replace_na
-#' @importFrom magrittr %>%
 .pbp_prep_epa_df_after <- function(dat) {
   tt                 <- .pbp_play_types()
   turnover_play_type <- tt$turnover_play_type
@@ -47,10 +46,10 @@
 
   dat$turnover[t_ind] <- 1
 
-  dat <- dat %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+  dat <- dat |>
+    dplyr::ungroup() |>
+    dplyr::group_by(.data$game_id, .data$half) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       turnover_indicator =
         ifelse(
@@ -225,7 +224,7 @@
       # end TODO
     )
   suppressWarnings(
-    dat <- dat %>%
+    dat <- dat |>
       dplyr::mutate(
         new_log_ydstogo = dplyr::if_else(.data$new_distance == 0 |
                                            is.nan(log(.data$new_distance)) |
@@ -234,10 +233,10 @@
         )
       )
   )
-  dat <- dat %>%
-    dplyr::mutate_at(c("new_TimeSecsRem"), ~ tidyr::replace_na(., 0)) %>%
-    dplyr::group_by(.data$game_id, .data$half, .data$drive_id) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+  dat <- dat |>
+    dplyr::mutate_at(c("new_TimeSecsRem"), ~ tidyr::replace_na(., 0)) |>
+    dplyr::group_by(.data$game_id, .data$half, .data$drive_id) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       # TODO - Add these variables to the documentation and select outputs
       firstD_by_kickoff = ifelse(.data$kickoff_play == 1 & .data$down == 1, 1, 0),
@@ -294,10 +293,10 @@
                                  (.data$lag_first_by_yards3 == 1 & .data$lag_change_of_pos_team3 != 1 &
                                     (.data$lag_play_type %in% c("Timeout", "End Period") & (.data$lag_play_type2 %in% c("Timeout", "End Period")))), 1, 0),
       new_id = .data$id_play
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(.data$new_id, .by_group = TRUE) %>%
-    # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) %>%
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::arrange(.data$new_id, .by_group = TRUE) |>
+    # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) |>
     dplyr::mutate(
       new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, 75, .data$new_yardline),
       new_yardline = ifelse(.data$end_of_half == 1, 100, .data$new_yardline),
@@ -327,7 +326,7 @@
 
   # missed field goal needs to be here
   # needs to go before the na check to set to 99
-  dat <- dat %>%
+  dat <- dat |>
     dplyr::mutate(
       new_yardline = dplyr::if_else(is.na(.data$new_yardline) &
                                       .data$play_type %in% c("Field Goal Missed", "Blocked Field Goal"),
@@ -357,8 +356,8 @@
   dat$missing_yard_flag <- FALSE
   dat$missing_yard_flag[missing_yd_line] <- TRUE
 
-  dat <- dat %>%
-    dplyr::arrange(.data$id_play) %>%
+  dat <- dat |>
+    dplyr::arrange(.data$id_play) |>
     dplyr::mutate(
       new_yardline = ifelse(.data$end_of_half == 1 & is.na(.data$new_yardline), 100, .data$new_yardline),
       new_id = gsub(pattern = unique(.data$game_id), "", x = .data$new_id),

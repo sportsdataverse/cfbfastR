@@ -13,14 +13,13 @@
 #' @importFrom dplyr group_by arrange mutate ungroup case_when select lead lag
 #' @importFrom stringr str_detect
 #' @importFrom tidyr fill replace_na
-#' @importFrom magrittr %>%
 .pbp_clean_drive_dat <- function(play_df) {
-  play_df <- play_df %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
+  play_df <- play_df |>
+    dplyr::group_by(.data$game_id, .data$half) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play,
                    .by_group = TRUE
-    ) %>%
+    ) |>
     dplyr::mutate(
       #---- Define Lag Pos Team/Kickoff Play/Punt/Scoring/Turnover/Downs Turnover----
       lag_change_of_poss = dplyr::lag(.data$change_of_poss, 1),
@@ -256,31 +255,31 @@
       ),
       new_drive_pts = ifelse(.data$new_drive_pts == 0, NA_integer_, .data$new_drive_pts),
       drive_scoring = ifelse(.data$new_drive_pts != 0, .data$scoring_play, NA_integer_)
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(.data$game_id) %>%
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::group_by(.data$game_id) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
                    .data$id_play,
                    .by_group = TRUE
-    ) %>%
-    dplyr::mutate(drive_num = cumsum(.data$drive_numbers)) %>%
-    dplyr::group_by(.data$game_id, .data$half, .data$drive_num) %>%
+    ) |>
+    dplyr::mutate(drive_num = cumsum(.data$drive_numbers)) |>
+    dplyr::group_by(.data$game_id, .data$half, .data$drive_num) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
                    .data$id_play,
                    .by_group = TRUE
-    ) %>%
-    tidyr::fill("drive_result_detailed", .direction = c("updown")) %>%
-    tidyr::fill("drive_result2", .direction = c("updown")) %>%
-    tidyr::fill("drive_scoring", .direction = c("updown")) %>%
-    tidyr::fill("new_drive_pts", .direction = c("updown")) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    tidyr::fill("drive_result_detailed", .direction = c("updown")) |>
+    tidyr::fill("drive_result2", .direction = c("updown")) |>
+    tidyr::fill("drive_scoring", .direction = c("updown")) |>
+    tidyr::fill("new_drive_pts", .direction = c("updown")) |>
+    dplyr::ungroup() |>
     dplyr::arrange(
       .data$game_id, .data$half, .data$period,
       -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
       .data$id_play
-    ) %>%
+    ) |>
     dplyr::mutate(
       lag_drive_result_detailed = dplyr::lag(.data$drive_result_detailed, 1),
       lead_drive_result_detailed = dplyr::lead(.data$drive_result_detailed, 1),
@@ -297,12 +296,12 @@
       lag_new_drive_pts = dplyr::lag(.data$new_drive_pts, 1),
       new_drive_pts = ifelse(is.na(.data$new_drive_pts), .data$lag_new_drive_pts, .data$new_drive_pts),
       id_drive = paste0(.data$game_id, .data$drive_num)
-    ) %>%
-    dplyr::group_by(.data$game_id, .data$id_drive) %>%
+    ) |>
+    dplyr::group_by(.data$game_id, .data$id_drive) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play,
                    .by_group = TRUE
-    ) %>%
+    ) |>
     dplyr::mutate(
       drive_play = ifelse(!(.data$play_type %in% c(
         "End Period", "End of Half", "End of Game",
@@ -311,11 +310,11 @@
       drive_play_number = cumsum(.data$drive_play),
       drive_event = ifelse(!(.data$play_type %in% c("End Period", "End of Half", "End of Game")), 1, 0),
       drive_event_number = cumsum(.data$drive_event)
-    ) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    dplyr::ungroup() |>
     dplyr::select(-"td_check")
   suppressWarnings(
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::mutate(
         new_id = gsub(pattern = .data$game_id, "", x = .data$id_play),
         new_id = as.numeric(.data$new_id),

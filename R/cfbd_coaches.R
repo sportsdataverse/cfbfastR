@@ -87,9 +87,9 @@ cfbd_coaches <- function(first = NULL,
     "minYear" = min_year,
     "maxYear" = max_year
   )
-  full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!.compact(query_params)) %>%
-    `[[`("url")
+  full_url <- httr2::request(base_url) |>
+    httr2::req_url_query(!!!.compact(query_params)) |>
+    purrr::pluck("url")
 
   df <- data.frame()
   tryCatch(
@@ -100,16 +100,16 @@ cfbd_coaches <- function(first = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        tidyr::unnest("seasons") %>%
-        dplyr::arrange(.data$year) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        tidyr::unnest("seasons") |>
+        dplyr::arrange(.data$year) |>
         janitor::clean_names()
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Coaches data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

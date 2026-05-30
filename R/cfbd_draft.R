@@ -73,18 +73,18 @@ cfbd_draft_teams <- function() {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten=TRUE) %>%
-        janitor::clean_names() %>%
-        as.data.frame() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten=TRUE) |>
+        janitor::clean_names() |>
+        as.data.frame() |>
         dplyr::rename(
           "nfl_location" = "location",
           "nfl_nickname" = "nickname",
           "nfl_display_name" = "display_name",
           "nfl_logo" = "logo"
         )
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("NFL teams data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -136,17 +136,17 @@ cfbd_draft_positions <- function() {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten=TRUE) %>%
-        janitor::clean_names() %>%
-        as.data.frame() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten=TRUE) |>
+        janitor::clean_names() |>
+        as.data.frame() |>
         dplyr::rename(
           "position_name" = "name",
           "position_abbreviation" = "abbreviation"
         )
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("NFL positions data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -244,12 +244,12 @@ cfbd_draft_picks <- function(year = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten=TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten=TRUE) |>
         janitor::clean_names()
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("NFL draft data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

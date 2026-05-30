@@ -139,11 +139,11 @@ espn_cfb_groups <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -156,14 +156,14 @@ espn_cfb_groups <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -217,8 +217,8 @@ espn_cfb_groups <- function(year = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Groups and conferences from ESPN", Sys.time())
     },
     error = function(e) {
@@ -290,11 +290,11 @@ espn_cfb_rankings <- function(year = NULL) {
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -306,14 +306,14 @@ espn_cfb_rankings <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -337,8 +337,8 @@ espn_cfb_rankings <- function(year = NULL) {
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Ranking sources from ESPN", Sys.time())
     },
     error = function(e) {
@@ -424,14 +424,14 @@ espn_cfb_season_info <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       ref_of <- function(k) {
@@ -457,8 +457,8 @@ espn_cfb_season_info <- function(year = NULL) {
         futures_ref      = ref_of("futures"),
         leaders_ref      = ref_of("leaders"),
         stringsAsFactors = FALSE
-      ) %>%
-        dplyr::as_tibble() %>%
+      ) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Season detail from ESPN", Sys.time())
     },
     error = function(e) {
@@ -535,11 +535,11 @@ espn_cfb_season_types <- function(year = NULL) {
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -551,14 +551,14 @@ espn_cfb_season_types <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -586,8 +586,8 @@ espn_cfb_season_types <- function(year = NULL) {
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Season types from ESPN", Sys.time())
     },
     error = function(e) {
@@ -660,11 +660,11 @@ espn_cfb_season_weeks <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -677,14 +677,14 @@ espn_cfb_season_weeks <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -708,8 +708,8 @@ espn_cfb_season_weeks <- function(year = NULL,
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Season weeks from ESPN", Sys.time())
     },
     error = function(e) {
@@ -771,11 +771,11 @@ espn_cfb_seasons <- function() {
 
   # Fetch + parse one JSON resource with the shared ESPN headers.
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -787,13 +787,13 @@ espn_cfb_seasons <- function() {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(base_url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(base_url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       page_count <- raw[["pageCount"]] %||% 1L
@@ -825,8 +825,8 @@ espn_cfb_seasons <- function() {
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Seasons index from ESPN", Sys.time())
     },
     error = function(e) {
@@ -941,11 +941,11 @@ espn_cfb_standings <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -958,14 +958,14 @@ espn_cfb_standings <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -1027,7 +1027,7 @@ espn_cfb_standings <- function(year = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once, before
@@ -1036,7 +1036,7 @@ espn_cfb_standings <- function(year = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Standings data from ESPN", Sys.time())
     },
     error = function(e) {
@@ -1152,11 +1152,11 @@ espn_cfb_week_rankings <- function(year = NULL,
   )
 
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
@@ -1229,14 +1229,14 @@ espn_cfb_week_rankings <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]] %||% list()
@@ -1254,7 +1254,7 @@ espn_cfb_week_rankings <- function(year = NULL,
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
+      df <- dplyr::bind_rows(rows) |>
         dplyr::as_tibble()
 
       # Join the ESPN team catalog onto the team_id column once, before
@@ -1263,7 +1263,7 @@ espn_cfb_week_rankings <- function(year = NULL,
         df <- .espn_cfb_attach_team_detail(df, .espn_cfb_team_lookup())
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Weekly rankings from ESPN", Sys.time())
     },
     error = function(e) {

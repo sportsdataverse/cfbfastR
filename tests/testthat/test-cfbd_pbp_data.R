@@ -16,11 +16,11 @@ test_that("2024 pbp handles completions properly", {
     skip("CFBD rate-limited or returned no rows")
   }
 
-  completions = p %>%
-    dplyr::filter(game_id == 401634299 & play_type == "Pass Reception" & pos_team == "NC State") %>%
+  completions = p |>
+    dplyr::filter(game_id == 401634299 & play_type == "Pass Reception" & pos_team == "NC State") |>
     dplyr::mutate(
       same_same = (yards_gained == yds_receiving)
-    ) %>%
+    ) |>
     dplyr::select(yards_gained, yds_receiving, same_same)
 
   testthat::expect_equal(sum(completions$same_same), nrow(completions))
@@ -43,11 +43,11 @@ test_that("base case 2023 pbp are already properly handled", {
     skip("CFBD rate-limited or returned no rows")
   }
 
-  completions = p %>%
-    dplyr::filter(game_id == 401525494 & play_type == "Pass Reception" & pos_team == "Georgia Tech") %>%
+  completions = p |>
+    dplyr::filter(game_id == 401525494 & play_type == "Pass Reception" & pos_team == "Georgia Tech") |>
     dplyr::mutate(
       same_same = (yards_gained == yds_receiving)
-    ) %>%
+    ) |>
     dplyr::select(yards_gained, yds_receiving, same_same)
 
   testthat::expect_equal(sum(completions$same_same), nrow(completions))

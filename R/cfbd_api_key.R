@@ -108,12 +108,12 @@ cfbd_api_key_info <- function(){
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("CFBD API key info data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

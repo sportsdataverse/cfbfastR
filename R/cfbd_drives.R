@@ -122,7 +122,7 @@ cfbd_drives <- function(year,
     "defenseConference" = defense_conference,
     "classification" = division
   )
-  full_url <- httr2::request(base_url) %>%
+  full_url <- httr2::request(base_url) |>
     httr2::req_url_query(!!!.compact(query_params))
   full_url <- full_url$url
 
@@ -135,9 +135,9 @@ cfbd_drives <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         dplyr::rename(
           "drive_id" = "id",
           "time_minutes_start" = "startTime.minutes",
@@ -146,21 +146,21 @@ cfbd_drives <- function(year,
           "time_seconds_end" = "endTime.seconds",
           "time_minutes_elapsed" = "elapsed.minutes",
           "time_seconds_elapsed" = "elapsed.seconds"
-        ) %>%
+        ) |>
         janitor::clean_names()
 
       # 2021 games with pbp data from another (non-ESPN) source include extra unclear columns for hours.
       # Minutes and seconds from these games are also suspect
       if ("start_time.hours" %in% names(df)) {
-        df <- df %>%
+        df <- df |>
           dplyr::select(-"start_time.hours")
       }
       if ("end_time.hours" %in% names(df)) {
-        df <- df %>%
+        df <- df |>
           dplyr::select(-"end_time.hours")
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Drives data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

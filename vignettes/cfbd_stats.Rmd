@@ -36,8 +36,8 @@ team_season_stats <- dplyr::bind_rows(
    cfbd_stats_season_team(year=2013, team = "Florida State")
 )
 logos <- read.csv("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/logos.csv")
-logos<- logos %>% dplyr::select(-"conference")
-df_team_season <- team_season_stats %>%
+logos<- logos |> dplyr::select(-"conference")
+df_team_season <- team_season_stats |>
    dplyr::left_join(logos, by=c("team"="school"))
 ```
 
@@ -53,7 +53,7 @@ df_team_season_adv <- dplyr::bind_rows(
    cfbd_stats_season_advanced(2019, team = "LSU"),
    cfbd_stats_season_advanced(2013, team = "Florida State")
 )
-df_team_season_adv <- df_team_season_adv %>%
+df_team_season_adv <- df_team_season_adv |>
    dplyr::left_join(logos, by=c("team"="school"))
 
 ```
@@ -65,7 +65,7 @@ df_team_game_adv <- dplyr::bind_rows(
    cfbd_stats_game_advanced(2019, team = "LSU"),
    cfbd_stats_game_advanced(2013, team = "Florida State")
 )
-df_team_game_adv <- df_team_game_adv %>%
+df_team_game_adv <- df_team_game_adv |>
    dplyr::left_join(logos, by=c("team"="school"))
 ```
 
@@ -75,9 +75,9 @@ df_team_game_adv <- df_team_game_adv %>%
 source("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R")
 passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2019, team = "LSU", category = "passing"),
-   cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) %>%
-   dplyr::left_join(logos, by=c("team"="school")) %>%
-   dplyr::group_by(team) %>%
+   cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) |>
+   dplyr::left_join(logos, by=c("team"="school")) |>
+   dplyr::group_by(team) |>
    dplyr::select(logo,
                  player,
                  passing_completions,
@@ -85,10 +85,10 @@ passing_df <- dplyr::bind_rows(
                  passing_yds,
                  passing_td,
                  passing_int,
-                 passing_ypa) %>%
+                 passing_ypa) |>
    arrange( desc(passing_yds), team)
-passing_df %>% gt() %>%
-  tab_header(title = "Passing Summary") %>%
+passing_df |> gt() |>
+  tab_header(title = "Passing Summary") |>
   cols_label(logo="",
              player = "Player",
              passing_completions = "C",
@@ -96,28 +96,28 @@ passing_df %>% gt() %>%
              passing_yds = "Yds",
              passing_td = "TDs",
              passing_int = "INTs",
-             passing_ypa = "YPA") %>%
+             passing_ypa = "YPA") |>
   data_color(
     columns = c("passing_yds"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-6000,6000)
     )
-  ) %>%
+  ) |>
   data_color(
     columns = c("passing_td"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-60,60)
     )
-  ) %>%
+  ) |>
   data_color(
     columns = c("passing_td"),
     colors = scales::col_numeric(
       palette = "RdBu",
       domain = c(-60,60)
     )
-  ) %>%
+  ) |>
   # add alt-text to the logos in the table
   # this is important for accessibility and for people using screen readers
   
@@ -127,8 +127,8 @@ passing_df %>% gt() %>%
       
      web_image(url= logo, height = 30)
 
-  }) %>%
-  tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0")) %>%
+  }) |>
+  tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0")) |>
   gt_theme_538(table.width = px(550))
 
 ```

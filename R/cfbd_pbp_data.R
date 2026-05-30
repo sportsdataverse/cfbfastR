@@ -473,8 +473,8 @@ cfbd_pbp_data <- function(year,
   res <- get_req(full_url)
   check_status(res)
 
-  raw_play_df <- res %>%
-    httr2::resp_body_string(encoding = "UTF-8") %>%
+  raw_play_df <- res |>
+    httr2::resp_body_string(encoding = "UTF-8") |>
     jsonlite::fromJSON()
   raw_play_df <- do.call(data.frame, raw_play_df)
 
@@ -499,26 +499,26 @@ cfbd_pbp_data <- function(year,
           season_type = season_type,
           team = team
         )
-        game_spread <- game_spread %>%
-          dplyr::filter(.data$provider %in% providers_list) %>%
+        game_spread <- game_spread |>
+          dplyr::filter(.data$provider %in% providers_list) |>
           dplyr::mutate(
             spread = as.numeric(.data$spread),
             over_under = as.numeric(.data$over_under)
-          ) %>%
+          ) |>
           dplyr::select(
             "game_id", "provider", "spread", "formatted_spread", "over_under"
           )
         # deterministically choose a single provider per game by defined priority
         provider_priority <- setNames(seq_along(providers_list), providers_list)
-        game_spread <- game_spread %>%
-          dplyr::mutate(.prov_rank = provider_priority[.data$provider]) %>%
-          dplyr::group_by(.data$game_id) %>%
-          dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) %>%
-          dplyr::ungroup() %>%
+        game_spread <- game_spread |>
+          dplyr::mutate(.prov_rank = provider_priority[.data$provider]) |>
+          dplyr::group_by(.data$game_id) |>
+          dplyr::slice_min(.data$.prov_rank, with_ties = FALSE) |>
+          dplyr::ungroup() |>
           dplyr::select(-dplyr::all_of(".prov_rank"))
 
         # join to plays dataframe
-        raw_play_df <- raw_play_df %>%
+        raw_play_df <- raw_play_df |>
           dplyr::left_join(game_spread, by = c("gameId" = "game_id"), suffix = c("_x",""))
 
         if (all(is.na(raw_play_df$spread))) {
@@ -540,12 +540,12 @@ cfbd_pbp_data <- function(year,
 
   colnames(clean_drive_df) <- paste0("drive_", colnames(clean_drive_df))
 
-  play_df <- raw_play_df %>%
-    janitor::clean_names() %>%
+  play_df <- raw_play_df |>
+    janitor::clean_names() |>
     dplyr::rename(
       "yard_line" = "yardline"
-    ) %>%
-    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
+    ) |>
+    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) |>
     dplyr::left_join(clean_drive_df,
                      by = c(
                        "drive_id" = "drive_drive_id",
@@ -565,8 +565,8 @@ cfbd_pbp_data <- function(year,
   )
 
 
-  play_df <- play_df %>%
-    dplyr::select(dplyr::setdiff(names(play_df), rm_cols)) %>%
+  play_df <- play_df |>
+    dplyr::select(dplyr::setdiff(names(play_df), rm_cols)) |>
     dplyr::rename(
       "drive_pts" = "drive_pts_drive",
       "drive_result" = "drive_drive_result",
@@ -574,14 +574,14 @@ cfbd_pbp_data <- function(year,
       "id_play" = "id",
       "offense_play" = "offense",
       "defense_play" = "defense"
-    ) %>%
+    ) |>
     dplyr::mutate(
       season = year,
       wk = week
     )
 
   if (!pt_abb_exists){
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::filter(tolower(play_type) == tolower(!!play_type))
   }
 
@@ -614,23 +614,23 @@ cfbd_pbp_data <- function(year,
       function(x){
         # Note: this should be changed to a complete data validation test in the future
         # filter out games with less than 10 plays to avoid issues with EPA/WPA models
-        game_plays <- play_df %>%
+        game_plays <- play_df |>
           dplyr::filter(.data$game_id == x)
         if (nrow(game_plays) < 20) {
           cli::cli_alert_danger(glue::glue("Skipping game_id {x} with only {nrow(game_plays)} plays"))
           return(NULL)
         }
-        game_plays <- game_plays %>%
-          clean_play_text() %>%
-          penalty_detection() %>%
-          add_play_counts() %>%
-          clean_pbp_dat() %>%
-          clean_drive_dat() %>%
-          add_yardage() %>%
-          add_player_cols() %>%
-          prep_epa_df_after() %>%
-          create_epa(ep_model = ep_model, fg_model = fg_model) %>%
-          # create_wpa_betting() %>%
+        game_plays <- game_plays |>
+          clean_play_text() |>
+          penalty_detection() |>
+          add_play_counts() |>
+          clean_pbp_dat() |>
+          clean_drive_dat() |>
+          add_yardage() |>
+          add_player_cols() |>
+          prep_epa_df_after() |>
+          create_epa(ep_model = ep_model, fg_model = fg_model) |>
+          # create_wpa_betting() |>
           create_wpa_naive(wp_model = wp_model)
         p(sprintf("x=%s", as.integer(x)))
         return(game_plays)
@@ -639,17 +639,17 @@ cfbd_pbp_data <- function(year,
     #   play_df <- purrr::map_dfr(
     #     g_ids,
     #     function(x) {
-    #       play_df <- play_df %>%
-    #         dplyr::filter(.data$game_id == x) %>%
-    #         penalty_detection() %>%
-    #         add_play_counts() %>%
-    #         clean_pbp_dat() %>%
-    #         clean_drive_dat() %>%
-    #         add_yardage() %>%
-    #         add_player_cols() %>%
-    #         prep_epa_df_after() %>%
-    #         create_epa() %>%
-    #         # create_wpa_betting() %>%
+    #       play_df <- play_df |>
+    #         dplyr::filter(.data$game_id == x) |>
+    #         penalty_detection() |>
+    #         add_play_counts() |>
+    #         clean_pbp_dat() |>
+    #         clean_drive_dat() |>
+    #         add_yardage() |>
+    #         add_player_cols() |>
+    #         prep_epa_df_after() |>
+    #         create_epa() |>
+    #         # create_wpa_betting() |>
     #         create_wpa_naive()
     #       p(sprintf("x=%s", as.integer(x)))
     #       return(play_df)
@@ -802,7 +802,7 @@ cfbd_pbp_data <- function(year,
       "lag_ep_after", "lag_ep_after2", "lag_ep_after3", "lead_ep_after", "lead_ep_after2"
     )
 
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::select(
         dplyr::all_of(play_columns),
         dplyr::all_of(model_columns),
@@ -818,11 +818,11 @@ cfbd_pbp_data <- function(year,
         dplyr::all_of(wpa_extra_columns),
         dplyr::all_of(lag_series_columns),
         dplyr::all_of(lag_lead_columns),
-        dplyr::everything()) %>%
+        dplyr::everything()) |>
       dplyr::select(-dplyr::any_of(drop_player_name_columns))
   }
 
-  play_df <- play_df %>%
+  play_df <- play_df |>
     make_cfbfastR_data("Play-by-Play data from CollegeFootballData.com",Sys.time())
 
   return(play_df)
@@ -1045,24 +1045,24 @@ add_play_counts <- function(play_df) {
     "Pass Interception Return",
     "Pass Interception Return Touchdown"
   )
-  play_df_timeout_check <- play_df %>%
-    dplyr::group_by(.data$game_id) %>%
+  play_df_timeout_check <- play_df |>
+    dplyr::group_by(.data$game_id) |>
     dplyr::summarise(
       off_timeouts_na = all(is.na(.data$offense_timeouts)),
       def_timeouts_na = all(is.na(.data$defense_timeouts)),
       .groups = "drop"
     )
   if (play_df_timeout_check$off_timeouts_na | play_df_timeout_check$def_timeouts_na) {
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::mutate(
         offense_timeouts = 3,
         defense_timeouts = 3
       )
   }
   play_df <-
-    play_df %>%
-    dplyr::group_by(.data$game_id) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+    play_df |>
+    dplyr::group_by(.data$game_id) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       play_type = ifelse(.data$play_type != "End of Half" & .data$play_text %in% c("End of 2nd Quarter"),
                          "End of Half", .data$play_type
@@ -1133,8 +1133,8 @@ add_play_counts <- function(play_df) {
                                     -1 * .data$lag_pos_score_diff
       )
       # TO-DO: define a fix for end of period plays on possession changing plays
-    ) %>%
-    tidyr::fill("receives_2H_kickoff") %>%
+    ) |>
+    tidyr::fill("receives_2H_kickoff") |>
     dplyr::mutate(
       offense_receives_2H_kickoff = dplyr::case_when(
         .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
@@ -1146,12 +1146,12 @@ add_play_counts <- function(play_df) {
         .data$pos_team == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
         TRUE ~ 0
       )
-    ) %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
+    ) |>
+    dplyr::group_by(.data$game_id, .data$half) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, .data$id_play,
                    .by_group = TRUE
-    ) %>%
+    ) |>
     dplyr::mutate(
       #---- Half Row/Event/Play Numbers -----
       half_play = ifelse(!(.data$play_type %in% c(
@@ -1236,8 +1236,8 @@ add_play_counts <- function(play_df) {
       pos_team_timeouts_rem_before = ifelse(.data$kickoff_play == 1, .data$def_timeouts_rem_before, .data$off_timeouts_rem_before),
       def_pos_team_timeouts_rem_before = ifelse(.data$kickoff_play == 1, .data$off_timeouts_rem_before, .data$def_timeouts_rem_before),
       pos_score_diff_start = ifelse(is.na(.data$pos_score_diff_start), .data$pos_score_diff, .data$pos_score_diff_start),
-    ) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    dplyr::ungroup() |>
     dplyr::arrange(
       .data$game_id, .data$half, .data$period,
       -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play
@@ -1292,12 +1292,12 @@ add_play_counts <- function(play_df) {
 #' @export
 
 clean_drive_dat <- function(play_df) {
-  play_df <- play_df %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
+  play_df <- play_df |>
+    dplyr::group_by(.data$game_id, .data$half) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play,
                    .by_group = TRUE
-    ) %>%
+    ) |>
     dplyr::mutate(
       #---- Define Lag Pos Team/Kickoff Play/Punt/Scoring/Turnover/Downs Turnover----
       lag_change_of_poss = dplyr::lag(.data$change_of_poss, 1),
@@ -1533,31 +1533,31 @@ clean_drive_dat <- function(play_df) {
       ),
       new_drive_pts = ifelse(.data$new_drive_pts == 0, NA_integer_, .data$new_drive_pts),
       drive_scoring = ifelse(.data$new_drive_pts != 0, .data$scoring_play, NA_integer_)
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(.data$game_id) %>%
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::group_by(.data$game_id) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
                    .data$id_play,
                    .by_group = TRUE
-    ) %>%
-    dplyr::mutate(drive_num = cumsum(.data$drive_numbers)) %>%
-    dplyr::group_by(.data$game_id, .data$half, .data$drive_num) %>%
+    ) |>
+    dplyr::mutate(drive_num = cumsum(.data$drive_numbers)) |>
+    dplyr::group_by(.data$game_id, .data$half, .data$drive_num) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
                    .data$id_play,
                    .by_group = TRUE
-    ) %>%
-    tidyr::fill("drive_result_detailed", .direction = c("updown")) %>%
-    tidyr::fill("drive_result2", .direction = c("updown")) %>%
-    tidyr::fill("drive_scoring", .direction = c("updown")) %>%
-    tidyr::fill("new_drive_pts", .direction = c("updown")) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    tidyr::fill("drive_result_detailed", .direction = c("updown")) |>
+    tidyr::fill("drive_result2", .direction = c("updown")) |>
+    tidyr::fill("drive_scoring", .direction = c("updown")) |>
+    tidyr::fill("new_drive_pts", .direction = c("updown")) |>
+    dplyr::ungroup() |>
     dplyr::arrange(
       .data$game_id, .data$half, .data$period,
       -.data$TimeSecsRem, -.data$lead_TimeSecsRem,
       .data$id_play
-    ) %>%
+    ) |>
     dplyr::mutate(
       lag_drive_result_detailed = dplyr::lag(.data$drive_result_detailed, 1),
       lead_drive_result_detailed = dplyr::lead(.data$drive_result_detailed, 1),
@@ -1574,12 +1574,12 @@ clean_drive_dat <- function(play_df) {
       lag_new_drive_pts = dplyr::lag(.data$new_drive_pts, 1),
       new_drive_pts = ifelse(is.na(.data$new_drive_pts), .data$lag_new_drive_pts, .data$new_drive_pts),
       id_drive = paste0(.data$game_id, .data$drive_num)
-    ) %>%
-    dplyr::group_by(.data$game_id, .data$id_drive) %>%
+    ) |>
+    dplyr::group_by(.data$game_id, .data$id_drive) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play,
                    .by_group = TRUE
-    ) %>%
+    ) |>
     dplyr::mutate(
       drive_play = ifelse(!(.data$play_type %in% c(
         "End Period", "End of Half", "End of Game",
@@ -1588,11 +1588,11 @@ clean_drive_dat <- function(play_df) {
       drive_play_number = cumsum(.data$drive_play),
       drive_event = ifelse(!(.data$play_type %in% c("End Period", "End of Half", "End of Game")), 1, 0),
       drive_event_number = cumsum(.data$drive_event)
-    ) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    dplyr::ungroup() |>
     dplyr::select(-"td_check")
   suppressWarnings(
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::mutate(
         new_id = gsub(pattern = .data$game_id, "", x = .data$id_play),
         new_id = as.numeric(.data$new_id),
@@ -1783,10 +1783,10 @@ prep_epa_df_after <- function(dat) {
 
   dat$turnover[t_ind] <- 1
 
-  dat <- dat %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+  dat <- dat |>
+    dplyr::ungroup() |>
+    dplyr::group_by(.data$game_id, .data$half) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       turnover_indicator =
         ifelse(
@@ -1961,7 +1961,7 @@ prep_epa_df_after <- function(dat) {
       # end TODO
     )
   suppressWarnings(
-    dat <- dat %>%
+    dat <- dat |>
       dplyr::mutate(
         new_log_ydstogo = dplyr::if_else(.data$new_distance == 0 |
                                            is.nan(log(.data$new_distance)) |
@@ -1970,10 +1970,10 @@ prep_epa_df_after <- function(dat) {
         )
       )
   )
-  dat <- dat %>%
-    dplyr::mutate_at(c("new_TimeSecsRem"), ~ tidyr::replace_na(., 0)) %>%
-    dplyr::group_by(.data$game_id, .data$half, .data$drive_id) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+  dat <- dat |>
+    dplyr::mutate_at(c("new_TimeSecsRem"), ~ tidyr::replace_na(., 0)) |>
+    dplyr::group_by(.data$game_id, .data$half, .data$drive_id) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       # TODO - Add these variables to the documentation and select outputs
       firstD_by_kickoff = ifelse(.data$kickoff_play == 1 & .data$down == 1, 1, 0),
@@ -2030,10 +2030,10 @@ prep_epa_df_after <- function(dat) {
                                  (.data$lag_first_by_yards3 == 1 & .data$lag_change_of_pos_team3 != 1 &
                                     (.data$lag_play_type %in% c("Timeout", "End Period") & (.data$lag_play_type2 %in% c("Timeout", "End Period")))), 1, 0),
       new_id = .data$id_play
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::arrange(.data$new_id, .by_group = TRUE) %>%
-    # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) %>%
+    ) |>
+    dplyr::ungroup() |>
+    dplyr::arrange(.data$new_id, .by_group = TRUE) |>
+    # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) |>
     dplyr::mutate(
       new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, 75, .data$new_yardline),
       new_yardline = ifelse(.data$end_of_half == 1, 100, .data$new_yardline),
@@ -2063,7 +2063,7 @@ prep_epa_df_after <- function(dat) {
 
   # missed field goal needs to be here
   # needs to go before the na check to set to 99
-  dat <- dat %>%
+  dat <- dat |>
     dplyr::mutate(
       new_yardline = dplyr::if_else(is.na(.data$new_yardline) &
                                       .data$play_type %in% c("Field Goal Missed", "Blocked Field Goal"),
@@ -2087,8 +2087,8 @@ prep_epa_df_after <- function(dat) {
   dat$missing_yard_flag <- FALSE
   dat$missing_yard_flag[missing_yd_line] <- TRUE
 
-  dat <- dat %>%
-    dplyr::arrange(.data$id_play) %>%
+  dat <- dat |>
+    dplyr::arrange(.data$id_play) |>
     dplyr::mutate(
       new_yardline = ifelse(.data$end_of_half == 1 & is.na(.data$new_yardline), 100, .data$new_yardline),
       new_id = gsub(pattern = unique(.data$game_id), "", x = .data$new_id),
@@ -2125,7 +2125,7 @@ prep_epa_df_after <- function(dat) {
 #'
 
 clean_drive_info <- function(drive_df) {
-  clean_drive <- drive_df %>%
+  clean_drive <- drive_df |>
     dplyr::mutate(
       drive_pts_rules = dplyr::case_when(
         .data$drive_result == "TD" ~ 7,
@@ -2164,9 +2164,9 @@ clean_drive_info <- function(drive_df) {
         # Default is to use calculated value.
         TRUE ~ .data$drive_pts_calculated),
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)
-    ) %>%
-    dplyr::select(-"drive_pts_rules",-"drive_pts_calculated") %>%
-    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
+    ) |>
+    dplyr::select(-"drive_pts_rules",-"drive_pts_calculated") |>
+    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) |>
     dplyr::arrange(.data$game_id, .data$drive_id)
 
   return(clean_drive)
@@ -2192,7 +2192,7 @@ clean_drive_info <- function(drive_df) {
 #'
 
 clean_play_text <- function(play_df) {
-  play_df <- play_df %>%
+  play_df <- play_df |>
     dplyr::mutate(
       cleaned_text = stringr::str_replace(.data$play_text, "^\\(\\d{1,2}:\\d{2}\\)\\s+", ""),
       cleaned_text = stringr::str_replace(.data$cleaned_text, "\\s(short|deep)\\s", " "),

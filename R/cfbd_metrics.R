@@ -107,12 +107,12 @@ cfbd_metrics_fg_ep <- function(){
       check_status(res)
 
       ## Get Content ----
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("FG expected points data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -206,13 +206,13 @@ cfbd_metrics_wepa_team_season <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         janitor::clean_names()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Opponent-adjusted team season PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -302,13 +302,13 @@ cfbd_metrics_wepa_players_passing <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         janitor::clean_names()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Opponent-adjusted players passing PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -398,13 +398,13 @@ cfbd_metrics_wepa_players_rushing <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         janitor::clean_names()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Opponent-adjusted players rushing PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -478,13 +478,13 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         janitor::clean_names()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Points Added Above Replacement (PAAR) ratings for kicking data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -583,21 +583,21 @@ cfbd_metrics_ppa_games <- function(year,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
       colnames(df) <- gsub("offense.", "off_", colnames(df))
       colnames(df) <- gsub("defense.", "def_", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "game_id" = "gameId",
           "season_type" = "seasonType"
-        ) %>%
+        ) |>
         as.data.frame()
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -711,16 +711,16 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         dplyr::rename(
           "season_type" = "seasonType",
           "athlete_id" = "id"
         )
       colnames(df) <- gsub("averagePPA.", "avg_PPA_", colnames(df))
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -842,19 +842,19 @@ cfbd_metrics_ppa_players_season <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
       colnames(df) <- gsub("averagePPA.", "avg_PPA_", colnames(df))
       colnames(df) <- gsub("totalPPA.", "total_PPA_", colnames(df))
       colnames(df) <- gsub("countablePlays", "countable_plays", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
-      df <- df %>%
-        dplyr::rename("athlete_id" = "id") %>%
+      df <- df |>
+        dplyr::rename("athlete_id" = "id") |>
         dplyr::mutate(countable_plays = NA_integer_)
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player season PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -922,13 +922,13 @@ cfbd_metrics_ppa_predicted <- function(down,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
       colnames(df) <- gsub("Line", "_line", colnames(df))
       colnames(df) <- gsub("Points", "_points", colnames(df))
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1023,15 +1023,15 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
       colnames(df) <- gsub("offense.", "off_", colnames(df))
       colnames(df) <- gsub("defense.", "def_", colnames(df))
       colnames(df) <- gsub("cumulative.", "cumulative_", colnames(df))
       colnames(df) <- gsub("Down", "_down", colnames(df))
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Team PPA data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1118,15 +1118,15 @@ cfbd_metrics_wp_pregame <- function(year = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        janitor::clean_names() %>%
-        dplyr::rename("home_win_prob" = "home_win_probability") %>%
-        dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        janitor::clean_names() |>
+        dplyr::rename("home_win_prob" = "home_win_probability") |>
+        dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) |>
         dplyr::select(all_of(cols))
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("pre-game WP data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -1208,15 +1208,15 @@ cfbd_metrics_wp <- function(game_id) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        janitor::clean_names() %>%
-        dplyr::rename("home_win_prob" = "home_win_probability") %>%
-        dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        janitor::clean_names() |>
+        dplyr::rename("home_win_prob" = "home_win_probability") |>
+        dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) |>
         dplyr::select(all_of(cols))
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("WP data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

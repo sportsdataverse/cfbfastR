@@ -21,7 +21,6 @@
 #' @return The modeled single-game frame.
 #' @keywords internal
 #' @noRd
-#' @importFrom magrittr %>%
 .run_epa_wpa <- function(df,
                          ep_model,
                          fg_model,
@@ -30,15 +29,15 @@
   if (isTRUE(clean_text)) {
     df <- clean_play_text(df)
   }
-  df %>%
-    penalty_detection() %>%
-    .pbp_add_play_counts() %>%
-    .pbp_clean_pbp_dat() %>%
-    .pbp_clean_drive_dat() %>%
-    add_yardage() %>%
-    add_player_cols() %>%
-    .pbp_prep_epa_df_after() %>%
-    .pbp_create_epa(ep_model = ep_model, fg_model = fg_model) %>%
+  df |>
+    penalty_detection() |>
+    .pbp_add_play_counts() |>
+    .pbp_clean_pbp_dat() |>
+    .pbp_clean_drive_dat() |>
+    add_yardage() |>
+    add_player_cols() |>
+    .pbp_prep_epa_df_after() |>
+    .pbp_create_epa(ep_model = ep_model, fg_model = fg_model) |>
     .pbp_create_wpa_naive(wp_model = wp_model)
 }
 

@@ -48,14 +48,14 @@ coaches <- purrr::map_dfr(seasons,function(x){cfbfastR::cfbd_coaches(year = x)})
 In order to get the school's conference information, we'll use the ```cfbd_team_info``` function and use ```dplyr```'s ```left_join``` function, joining on the `school` column in both tables:
 ```{r teams_info}
 team_info <- cfbfastR::cfbd_team_info()
-coaches <- coaches %>% 
+coaches <- coaches |> 
   dplyr::left_join(team_info, by="school")
 ```
 
 ```{r fourth_down_coaches2}
-coaches <- coaches %>%
-  dplyr::mutate(coach = paste(first_name, last_name, sep = " ")) %>%
-  dplyr::filter(games >= 6) %>%
+coaches <- coaches |>
+  dplyr::mutate(coach = paste(first_name, last_name, sep = " ")) |>
+  dplyr::filter(games >= 6) |>
   dplyr::select(coach, school, year, conference)
 ```
 
@@ -63,14 +63,14 @@ Since interim coaches are included in the coaches dataframe, we'll set the cutof
 
 We only have a couple more steps to make our graph. Next, we need to add our coaches to the ```pbp``` dataframe using join functions
 ```{r fourth_down_join}
-pbp <- pbp %>%
+pbp <- pbp |>
   dplyr::inner_join(coaches, by = c("offense_play" = "school", "year" = "year"))
 ```
 
 Now we can filter down to only fourth down plays, then we'll add columns to determine if the play was a punt, FGA, or the team went for it.
 ```{r fourth_down_mutate}
-down4 <- pbp %>%
-  dplyr::filter(down == 4) %>%
+down4 <- pbp |>
+  dplyr::filter(down == 4) |>
   dplyr::mutate(fga = ifelse(str_detect(play_type, "Field Goal"),
                              1, 0),
                 punt = ifelse(play_type == "Punt", 1, 0),
@@ -82,11 +82,11 @@ down4 <- pbp %>%
 
 And now we've got all the info we need to make the graph! The code below is listed for current Big 12 head coaches, but you can alter it to show whichever coaches you want.
 ```{r fourth_down_plot, fig.alt="Big 12 Coaches's Fourth Down Tendencies | CFP Era"}
-down4 %>%
-  dplyr::filter(!is.na(play)) %>%
+down4 |>
+  dplyr::filter(!is.na(play)) |>
   dplyr::filter(coach %in% c("Matt Campbell", "Steve Sarkisian", "Lincoln Riley", "Chris Klieman", "Matt Wells",
-                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")) %>%
-  dplyr::filter(distance <= 5, distance > 0) %>%
+                     "Neal Brown", "Les Miles", "Mike Gundy", "Gary Patterson", "Dave Aranda")) |>
+  dplyr::filter(distance <= 5, distance > 0) |>
   ggplot(aes(x = distance, y = 100 - yards_to_goal, color = play)) +
   geom_jitter() +
   facet_wrap(. ~ coach) +

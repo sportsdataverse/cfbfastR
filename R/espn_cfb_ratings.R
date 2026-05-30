@@ -73,24 +73,24 @@ espn_cfb_futures <- function(year = NULL) {
 
   # Fetch + parse one JSON resource with the shared ESPN headers.
   get_json <- function(u) {
-    httr2::request(u) %>%
-      httr2::req_headers(!!!headers) %>%
-      httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
-      httr2::req_perform() %>%
-      httr2::resp_body_string(encoding = "UTF-8") %>%
+    httr2::request(u) |>
+      httr2::req_headers(!!!headers) |>
+      httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+      httr2::req_perform() |>
+      httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
 
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -167,8 +167,8 @@ espn_cfb_futures <- function(year = NULL) {
         return(df)
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Betting futures data from ESPN", Sys.time())
     },
     error = function(e) {
@@ -253,14 +253,14 @@ espn_cfb_powerindex <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -296,8 +296,8 @@ espn_cfb_powerindex <- function(year = NULL) {
         }
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        dplyr::as_tibble() %>%
+      df <- dplyr::bind_rows(rows) |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Power Index data from ESPN", Sys.time())
     },
     error = function(e) {
@@ -437,14 +437,14 @@ espn_cfb_qbr <- function(year = NULL,
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
       check_status(res)
 
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       items <- raw[["items"]]
@@ -494,8 +494,8 @@ espn_cfb_qbr <- function(year = NULL,
         )
       }
 
-      df <- dplyr::bind_rows(rows) %>%
-        janitor::clean_names() %>%
+      df <- dplyr::bind_rows(rows) |>
+        janitor::clean_names() |>
         dplyr::as_tibble()
 
       # Optional name resolution -- one HTTP call per quarterback, so off
@@ -504,7 +504,7 @@ espn_cfb_qbr <- function(year = NULL,
         df <- .espn_cfb_attach_athlete_detail_multi(df, year = year)
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("QBR data from ESPN", Sys.time())
     },
     error = function(e) {
@@ -593,15 +593,15 @@ espn_ratings_fpi <- function(year = 2019) {
   tryCatch(
     expr = {
 
-      res <- httr2::request(url) %>%
-        httr2::req_headers(!!!headers) %>%
-        httr2::req_retry(max_tries = 3, backoff = ~ 2) %>%
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
 
       # Check the result
       check_status(res)
 
-      resp <- res %>%
+      resp <- res |>
         httr2::resp_body_string(encoding = "UTF-8")
       raw_json_fpi <- jsonlite::fromJSON(resp)
 
@@ -615,41 +615,41 @@ espn_ratings_fpi <- function(year = 2019) {
       # Let's make it quiet with purrr::quietly()
       quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
 
-      df <- purrr::pluck(raw_json_fpi, "teams", "team") %>%
-        dplyr::as_tibble() %>%
+      df <- purrr::pluck(raw_json_fpi, "teams", "team") |>
+        dplyr::as_tibble() |>
         dplyr::select(
           "id",
           "nickname",
           "abbreviation",
           "logos",
-          "links") %>%
-        dplyr::mutate(row_n = dplyr::row_number()) %>%
+          "links") |>
+        dplyr::mutate(row_n = dplyr::row_number()) |>
         dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data))
 
-      df <- df %>%
-        tidyr::unnest_wider("data", names_sep = "_") %>%
+      df <- df |>
+        tidyr::unnest_wider("data", names_sep = "_") |>
         purrr::set_names(nm = c(
           "team_id", "team_name", "team_abbreviation", "logos", "links", "row_n",
           "fpi", "fpi_rk", "trend", "projected_wins", "projected_losses", "win_out_pct",
           "win_6_pct", "win_division_pct", "playoff_pct", "nc_game_pct", "nc_win_pct",
           "win_conference_pct", "w", "l", "t"
-        )) %>%
-        dplyr::select(-c("logos", "links")) %>%
+        )) |>
+        dplyr::select(-c("logos", "links")) |>
         dplyr::mutate(
           year = year,
-          t = ifelse(is.na(t), 0, t)) %>%
-        dplyr::mutate_at(vars("win_out_pct":"win_conference_pct"), ~ as.double(stringr::str_remove(., "%")) / 100) %>%
-        dplyr::select("year", dplyr::everything()) %>%
-        dplyr::select(-"row_n") %>%
+          t = ifelse(is.na(t), 0, t)) |>
+        dplyr::mutate_at(vars("win_out_pct":"win_conference_pct"), ~ as.double(stringr::str_remove(., "%")) / 100) |>
+        dplyr::select("year", dplyr::everything()) |>
+        dplyr::select(-"row_n") |>
         dplyr::mutate(dplyr::across(dplyr::any_of(c(
           "year",
           "team_id",
           "w",
           "l"
-        )), ~as.integer(.x))) %>%
+        )), ~as.integer(.x))) |>
         as.data.frame()
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("FPI rating data from ESPN",Sys.time())
     },
     error = function(e) {
@@ -706,30 +706,30 @@ espn_metrics_wp <- function(game_id) {
   tryCatch(
     expr = {
       espn_data <-
-        httr2::request(glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) %>%
-        httr2::req_perform() %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+        httr2::request(glue::glue("http://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event={espn_game_id}")) |>
+        httr2::req_perform() |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
 
       # to-do: Grab play data and back into seconds left
 
       espn_wp <-
-        espn_data %>%
-        purrr::pluck("winprobability") %>%
-        janitor::clean_names() %>%
+        espn_data |>
+        purrr::pluck("winprobability") |>
+        janitor::clean_names() |>
         dplyr::mutate(
           espn_game_id = stringr::str_sub(.data$play_id, end = stringr::str_length(espn_game_id)),
           seconds_left = NA
-        ) %>%
+        ) |>
         dplyr::rename(
           "home_win_percentage" = "home_win_percentage",
           "seconds_left" = "seconds_left",
           "play_id" = "play_id",
           "game_id" = "espn_game_id"
-        ) %>%
+        ) |>
         dplyr::mutate(
           away_win_percentage = 1 - .data$home_win_percentage - .data$tie_percentage
-        ) %>%
+        ) |>
         dplyr::select(
           "game_id",
           "play_id",
@@ -739,7 +739,7 @@ espn_metrics_wp <- function(game_id) {
           "tie_percentage"
         )
 
-      espn_wp <- espn_wp %>%
+      espn_wp <- espn_wp |>
         make_cfbfastR_data("Win probability chart data from ESPN",Sys.time())
     },
     error = function(e) {

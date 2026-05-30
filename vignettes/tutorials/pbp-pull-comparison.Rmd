@@ -19,7 +19,7 @@ pacman::p_load_current_gh("hadley/emo")
 library(pkgapi)
 pkg <- pkgapi::map_package(path = "../")
 library(dplyr)
-exported <- pkg$defs %>% dplyr::filter(exported == TRUE)
+exported <- pkg$defs |> dplyr::filter(exported == TRUE)
 cfbd_funcs <- sum(stringr::str_detect(exported$file,"cfbd")) - sum(stringr::str_detect(exported$file,"cfbd_pbp_data"))
 pkg_name <- "sportsdataverse/cfbfastR"
 url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/main/DESCRIPTION")
@@ -52,7 +52,7 @@ for (i in 1:length(year_split)) {
   print(paste0("Working on ", year_split[[i]][1, 1]))
   
   progressr::with_progress({
-    year_split[[i]] <- year_split[[i]] %>%
+    year_split[[i]] <- year_split[[i]] |>
       dplyr::mutate(
         pbp = purrr::map2(
           .x = year,
@@ -68,7 +68,7 @@ for (i in 1:length(year_split)) {
 tictoc::toc()
 ## (~6-7 minutes)
 year_split <- lapply(year_split, function(x) {
-  x %>% tidyr::unnest(pbp, names_repair = "minimal")
+  x |> tidyr::unnest(pbp, names_repair = "minimal")
 })
 
 all_years <- dplyr::bind_rows(year_split)
@@ -87,7 +87,7 @@ year_split = split(weekly_year_df, weekly_year_df$year)
 tictoc::tic()
 for (i in 1:length(year_split)) {
   print(paste0("Working on ", year_split[[i]][1,1]))
-  year_split[[i]] = year_split[[i]] %>% 
+  year_split[[i]] = year_split[[i]] |> 
     dplyr::mutate(
       pbp = purrr::map2(
         .x = year,
@@ -101,7 +101,7 @@ for (i in 1:length(year_split)) {
 tictoc::toc()
 ## (~8-10 minutes)
 year_split19 = lapply(year_split, function(x) {
-  x %>% tidyr::unnest(pbp)
+  x |> tidyr::unnest(pbp)
 })
 
 pbp_2019 = bind_rows(year_split19)

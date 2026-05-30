@@ -150,7 +150,10 @@ The CFBD API requires a bearer token. Set the `CFBD_API_KEY` environment variabl
 
 ### Native pipe `|>`
 
-cfbfastR targets R `>= 4.1.0` and uses the native pipe `|>` everywhere. `%>%` is permitted **only** inside legacy chains that pre-date the modular refactor; new code must use `|>`.
+cfbfastR targets R `>= 4.1.0` and uses the native pipe `|>` exclusively. The legacy `%>%` has been swept out of `R/`, `tests/`, and `vignettes/`, and `magrittr` is no longer in `Imports`. New code must use `|>`. Two patterns that *don't* port cleanly to `|>`:
+
+- `|> `[[`("name")` -- native pipe rejects `[[` as RHS in R 4.1. Use `|> purrr::pluck("name")` (or assign the chain to a temp and subset).
+- `|> tibble::tibble(col = .data$.)` -- this magrittr quirk created a duplicate column. Use `tibble::tibble(col = <lhs>)` directly.
 
 ### Return-Value Initialization (CRITICAL)
 

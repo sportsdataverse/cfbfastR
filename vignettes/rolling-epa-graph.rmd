@@ -39,11 +39,11 @@ We can use the ```cfbd_team_info()``` function to pull information about each FB
 ```{r cfbd_teams_info}
 team_info <- cfbfastR::cfbd_team_info(year = yr, only_fbs = FALSE)
 
-team_colors_logos <- team_info %>% 
-  select(school, abbreviation, color, logo, alt_color) %>%
-  group_by(school) %>%
-  slice(1) %>% 
-  ungroup() %>% 
+team_colors_logos <- team_info |> 
+  select(school, abbreviation, color, logo, alt_color) |>
+  group_by(school) |>
+  slice(1) |> 
+  ungroup() |> 
   dplyr::mutate(
     color = ifelse(.data$color == "#null", "#808080", .data$color),
     alt_color = ifelse(.data$alt_color == "#null", "#808080", .data$alt_color)
@@ -55,15 +55,15 @@ team_colors_logos <- team_info %>%
 Let's create a basic overview of offensive EPA per play.  We'll start by creating a dataframe listing all 130 FBS teams from best to worst based on their average EPA per play across all games played.  
 
 ```{r off_epa_all_team, message=FALSE, warning=FALSE}
-off_epa <- pbp %>%
-  filter(rush == 1 | pass == 1) %>% 
-  group_by(offense_play, offense_conference) %>%
-  summarize(off_epa = mean(EPA, na.rm = TRUE)) %>%
-  arrange(desc(off_epa)) %>%
-  rename(Team = offense_play) %>%
-  filter(!is.na(offense_conference)) %>%
-  ungroup() %>%
-  mutate(Rank = row_number()) %>%
+off_epa <- pbp |>
+  filter(rush == 1 | pass == 1) |> 
+  group_by(offense_play, offense_conference) |>
+  summarize(off_epa = mean(EPA, na.rm = TRUE)) |>
+  arrange(desc(off_epa)) |>
+  rename(Team = offense_play) |>
+  filter(!is.na(offense_conference)) |>
+  ungroup() |>
+  mutate(Rank = row_number()) |>
   mutate(TeamRank = paste0(Team, " #", Rank))
 ```
 
@@ -76,8 +76,8 @@ head(off_epa)
 Ok, now let's start to visualize the data beyond the top few schools.  Let's graph all the teams that have a positive EPA on the year.  
 
 ```{r graph_top_offenses, fig.height=8, fig.width=6, fig.align="center", fig.alt="Offensive EPA Per Play | Positive EPA Teams"}
-off_epa %>%
-  filter(off_epa > 0) %>%
+off_epa |>
+  filter(off_epa > 0) |>
   ggplot(aes(x = reorder(TeamRank, off_epa), y=off_epa)) +
   geom_point(size = 3) +
   coord_flip() +
@@ -100,10 +100,10 @@ ma_plays <- 100
 Now that we have defined our team of interest, we can prepare the data for this specific team.  We're going to create a dataframe called ```team_off``` that is subsetted from our full season play by play data.  This new dataframe will be specific to our team of interest and it will add fields for the moving average and the play count.
 
 ```{r define_team_off}
-team_off <- pbp %>%
-  filter(offense_play == {{team}}) %>%
-  filter(rush == 1 | pass == 1) %>%
-  filter(!is.na(EPA)) %>%
+team_off <- pbp |>
+  filter(offense_play == {{team}}) |>
+  filter(rush == 1 | pass == 1) |>
+  filter(!is.na(EPA)) |>
   mutate(cu_epa=cummean(EPA),  #this field is not used in this vignette but it could be substituted later to graph the cumulative EPA
          ma_epa = rollapply(EPA,ma_plays,mean,align='right',fill=NA),
          play_count = row_number(),
@@ -114,25 +114,25 @@ team_off <- pbp %>%
 We're going to graph different background tiles for each opponent so we need to define where one opponent stops and another one begins.  
 
 ```{r define_background_tile_info}
-team_off_play_start <- team_off %>%
-  group_by(week_team) %>%
-  slice(1) %>%
-  select(defense_play, week_team, play_count) %>%
+team_off_play_start <- team_off |>
+  group_by(week_team) |>
+  slice(1) |>
+  select(defense_play, week_team, play_count) |>
   rename(play_start = play_count,
          team = defense_play)
 
-team_off_play_stop <- team_off %>%
-  group_by(week_team) %>%
-  filter(row_number() == n()) %>%
-  select(week_team, play_count) %>%
+team_off_play_stop <- team_off |>
+  group_by(week_team) |>
+  filter(row_number() == n()) |>
+  select(week_team, play_count) |>
   rename(play_stop = play_count)
 ```
 
 We're going to add the opponent's logo in the middle of each background tile, so we need to define the midpoint of each background tile as well.
 
 ```{r define_midpoint}
-team_off_start_stop <- team_off_play_start %>%
-  left_join(team_off_play_stop, by = "week_team") %>%
+team_off_start_stop <- team_off_play_start |>
+  left_join(team_off_play_stop, by = "week_team") |>
   mutate(midpoint = (play_start + play_stop)/2)
 ```
 
@@ -145,9 +145,9 @@ play_count <- max(team_off$play_count)
 Next we are going to update our background tile dataframe to include the color info that we pulled earlier.  FCS color data is not available, so we will default those to gray.  
 
 ```{r start_stop_add_colors}
-team_off_start_stop <- team_off_start_stop %>% 
-  left_join(team_colors_logos, by = c("team" = "school")) %>% 
-  mutate(color = replace_na(color,"gray")) %>%
+team_off_start_stop <- team_off_start_stop |> 
+  left_join(team_colors_logos, by = c("team" = "school")) |> 
+  mutate(color = replace_na(color,"gray")) |>
   select(team, week_team, play_start, play_stop, midpoint, color)
 ```
 
@@ -163,7 +163,7 @@ Now we need to pull in an alternate source of team logos that includes FCS schoo
 ```{r pull_logos, message=FALSE}
 all_logos <- read_csv("https://raw.githubusercontent.com/natemanzo/cfb_data/master/_team_logos.csv")
 
-team_off_start_stop <- team_off_start_stop %>%
+team_off_start_stop <- team_off_start_stop |>
   left_join(all_logos, by = c("team" = "school"))
 ```
 
@@ -187,11 +187,11 @@ graph_team_off = ggplot() +
   geom_hline(yintercept = quantile(off_epa$off_epa), linetype = 2, color = "gray20", alpha = .8) +
   geom_hline(yintercept = 0, linetype = 1, color = "gray20", alpha = .2) +
   geom_image(data=team_off_start_stop,aes(x=midpoint,y=.9,image=logo), asp = 16/9, size = .05) +
-  annotate(x = -2, y = quantile(off_epa$off_epa)[1], geom = "text", size = 3, hjust = "right", vjust = 0, label = off_epa %>% slice(n()) %>% pull(Team)) +
+  annotate(x = -2, y = quantile(off_epa$off_epa)[1], geom = "text", size = 3, hjust = "right", vjust = 0, label = off_epa |> slice(n()) |> pull(Team)) +
   annotate(x = -2, y = quantile(off_epa$off_epa)[2], geom = "text", size = 3, hjust = "right", vjust = 0, label = "25%ile") +
   annotate(x = -2, y = quantile(off_epa$off_epa)[3], geom = "text", size = 3, hjust = "right", vjust = 0, label = "Median") +
   annotate(x = -2, y = quantile(off_epa$off_epa)[4], geom = "text", size = 3, hjust = "right", vjust = 0, label = "75%ile") +
-  annotate(x = -2, y = quantile(off_epa$off_epa)[5], geom = "text", size = 3, hjust = "right", vjust = 0, label = off_epa %>% slice(1) %>% pull(Team)) +
+  annotate(x = -2, y = quantile(off_epa$off_epa)[5], geom = "text", size = 3, hjust = "right", vjust = 0, label = off_epa |> slice(1) |> pull(Team)) +
   geom_line(data = team_off, aes(x = play_count, y = ma_epa), color = "white", size = 2) +
   geom_line(data = team_off, aes(x = play_count, y = ma_epa), size = 1.25) +
   theme_minimal() + theme(panel.grid = element_blank()) + theme(legend.position = "none") +

@@ -151,18 +151,18 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
       locs <- df$location
-      locs <- locs %>%
-        jsonlite::flatten() %>%
+      locs <- locs |>
+        jsonlite::flatten() |>
         dplyr::rename("venue_id" = "id")
-      df <- df %>% dplyr::select(-"location")
+      df <- df |> dplyr::select(-"location")
       # suppressWarnings(
-      #   logos_list <- df %>%
-      #     dplyr::group_by(.data$id) %>%
-      #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') %>%
+      #   logos_list <- df |>
+      #     dplyr::group_by(.data$id) |>
+      #     tidyr::separate(.data$logos, c("logo_1","logo_2"), sep = ',') |>
       #     dplyr::mutate(
       #       logo_1 = stringr::str_remove(.data$logo_1, "c\\("),
       #       logo_1 = ifelse(.data$logo_1 == 'NULL', NA_character_, .data$logo_1),
@@ -171,27 +171,27 @@ cfbd_team_info <- function(conference = NULL, only_fbs = TRUE, year = most_recen
       #     )
       #
       # )
-      df <- df %>%
-        tidyr::unnest_wider("logos",names_sep = "_") %>%
+      df <- df |>
+        tidyr::unnest_wider("logos",names_sep = "_") |>
         dplyr::rename(
           "logo" = "logos_1",
           "logo_2" = "logos_2")
-      df <- df %>%
-        dplyr::rename("alt_name" = "alternateNames") %>%
+      df <- df |>
+        dplyr::rename("alt_name" = "alternateNames") |>
         tidyr::unnest_wider("alt_name", names_sep = "")
-      df <- dplyr::bind_cols(df, locs) %>%
+      df <- dplyr::bind_cols(df, locs) |>
         dplyr::rename(
           "team_id" = "id",
           "venue_name" = "name",
           "alt_color" = "alternateColor",
           "year_constructed" = "constructionYear"
-        ) %>%
-        janitor::clean_names() %>%
+        ) |>
+        janitor::clean_names() |>
         as.data.frame()
 
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Team information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -269,25 +269,25 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
       if (purrr::is_empty(df$games)) stop(call. = F)
       min_season <- min(df$games$season)
       max_season <- max(df$games$season)
       df[['games']] <- NULL
-      df <- df %>%
-        tibble::as_tibble() %>%
+      df <- df |>
+        tibble::as_tibble() |>
         dplyr::mutate(
           startYear = ifelse(!is.null(min_year), .data$startYear, min_season),
           endYear = ifelse(!is.null(max_year), .data$endYear, max_season)
-        ) %>%
+        ) |>
         dplyr::rename(
           "start_year" = "startYear",
           "end_year" = "endYear",
           "team1_wins" = "team1Wins",
           "team2_wins" = "team2Wins"
-        ) %>%
+        ) |>
         dplyr::select(
           "start_year",
           "end_year",
@@ -300,7 +300,7 @@ cfbd_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = 
       df <- as.data.frame(df)
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Team matchup record from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -386,20 +386,20 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         purrr::pluck("games")
       if (is.null(df) || nrow(df) == 0) {
         warning("The data pulled from the API was empty.")
         return(NULL)
       }
-      df <- df %>%
-        janitor::clean_names() %>%
+      df <- df |>
+        janitor::clean_names() |>
         as.data.frame()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Team matchup history from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -481,19 +481,19 @@ cfbd_team_roster <- function(year, team = NULL) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        dplyr::rename("athlete_id" = "id") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        dplyr::rename("athlete_id" = "id") |>
         dplyr::mutate(
-          headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) %>%
+          headshot_url = paste0("https://a.espncdn.com/i/headshots/college-football/players/full/",.data$athlete_id,".png")) |>
         as.data.frame()
       df$recruitIds <- lapply(df$recruitIds, function(y){
         if(length(y) == 0) as.integer(0) else y
       })
 
-      df <- df %>%
-        janitor::clean_names() %>%
+      df <- df |>
+        janitor::clean_names() |>
         make_cfbfastR_data("Team roster data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -556,15 +556,15 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        as.data.frame() %>%
-        dplyr::mutate(talent = as.numeric(.data$talent)) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        as.data.frame() |>
+        dplyr::mutate(talent = as.numeric(.data$talent)) |>
         dplyr::rename("school" = "team")
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("247sports team talent ratings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

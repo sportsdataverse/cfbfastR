@@ -114,10 +114,6 @@ utils::globalVariables(c("where"))
 is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 
 
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
 #' @importFrom Rcpp getRcppVersion
 #' @importFrom RcppParallel defaultNumThreads
 NULL
@@ -188,7 +184,7 @@ write_pbp <- function(seasons, dbConnection, tablename){
 # Functions for custom class
 # turn a data.frame into a tibble/cfbfastR_data
 make_cfbfastR_data <- function(df,type,timestamp){
-  out <- df %>%
+  out <- df |>
     tidyr::as_tibble()
 
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")

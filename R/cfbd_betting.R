@@ -122,9 +122,9 @@ cfbd_betting_lines <- function(game_id = NULL,
     "conference" = conference,
     "provider" = line_provider
   )
-  full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!.compact(query_params)) %>%
-    `[[`("url")
+  full_url <- httr2::request(base_url) |>
+    httr2::req_url_query(!!!.compact(query_params)) |>
+    purrr::pluck("url")
 
   df <- data.frame()
   tryCatch(
@@ -135,12 +135,12 @@ cfbd_betting_lines <- function(game_id = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        stringr::str_replace_all("NaN", 'null') %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        stringr::str_replace_all("NaN", 'null') |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
         tidyr::unnest("lines")
 
 
@@ -148,10 +148,10 @@ cfbd_betting_lines <- function(game_id = NULL,
         if (is.list(df) & length(df) == 0) {
           df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
         } else if (!is.null(df$provider)) {
-          df <- df %>%
-            dplyr::filter(.data$provider == line_provider) %>%
-            janitor::clean_names() %>%
-            dplyr::rename("game_id" = "id") %>%
+          df <- df |>
+            dplyr::filter(.data$provider == line_provider) |>
+            janitor::clean_names() |>
+            dplyr::rename("game_id" = "id") |>
             as.data.frame()
         } else {
           df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
@@ -160,13 +160,13 @@ cfbd_betting_lines <- function(game_id = NULL,
       if (is.list(df) & length(df) == 0) {
         df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
       } else {
-        df <- df %>%
-          janitor::clean_names() %>%
-          dplyr::rename("game_id" = "id") %>%
+        df <- df |>
+          janitor::clean_names() |>
+          dplyr::rename("game_id" = "id") |>
           as.data.frame()
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Betting lines data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -241,9 +241,9 @@ cfbd_betting_ats <- function(year = NULL,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!.compact(query_params)) %>%
-    `[[`("url")
+  full_url <- httr2::request(base_url) |>
+    httr2::req_url_query(!!!.compact(query_params)) |>
+    purrr::pluck("url")
 
   df <- data.frame()
   tryCatch(
@@ -254,17 +254,17 @@ cfbd_betting_ats <- function(year = NULL,
       check_status(res)
 
       # Get the content -- /teams/ats returns a flat array, no nesting
-      parsed <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      parsed <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
 
       if (is.data.frame(parsed) && nrow(parsed) > 0) {
-        df <- parsed %>%
-          janitor::clean_names() %>%
+        df <- parsed |>
+          janitor::clean_names() |>
           dplyr::as_tibble()
       }
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Against-the-spread records from CollegeFootballData.com", Sys.time())
     },
     error = function(e) {

@@ -12,7 +12,6 @@
 #' @importFrom rlang .data
 #' @importFrom dplyr group_by mutate ungroup lead lag arrange n case_when
 #' @importFrom tidyr fill
-#' @importFrom magrittr %>%
 .pbp_add_play_counts <- function(play_df) {
   tt                <- .pbp_play_types()
   penalty           <- tt$penalty
@@ -24,24 +23,24 @@
   punt_vec          <- tt$punt
   int_vec           <- tt$int
 
-  play_df_timeout_check <- play_df %>%
-    dplyr::group_by(.data$game_id) %>%
+  play_df_timeout_check <- play_df |>
+    dplyr::group_by(.data$game_id) |>
     dplyr::summarise(
       off_timeouts_na = all(is.na(.data$offense_timeouts)),
       def_timeouts_na = all(is.na(.data$defense_timeouts)),
       .groups = "drop"
     )
   if (play_df_timeout_check$off_timeouts_na | play_df_timeout_check$def_timeouts_na) {
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::mutate(
         offense_timeouts = 3,
         defense_timeouts = 3
       )
   }
   play_df <-
-    play_df %>%
-    dplyr::group_by(.data$game_id) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+    play_df |>
+    dplyr::group_by(.data$game_id) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       play_type = ifelse(.data$play_type != "End of Half" & .data$play_text %in% c("End of 2nd Quarter"),
                          "End of Half", .data$play_type
@@ -112,8 +111,8 @@
                                     -1 * .data$lag_pos_score_diff
       )
       # TO-DO: define a fix for end of period plays on possession changing plays
-    ) %>%
-    tidyr::fill("receives_2H_kickoff") %>%
+    ) |>
+    tidyr::fill("receives_2H_kickoff") |>
     dplyr::mutate(
       offense_receives_2H_kickoff = dplyr::case_when(
         .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
@@ -125,12 +124,12 @@
         .data$pos_team == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
         TRUE ~ 0
       )
-    ) %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
+    ) |>
+    dplyr::group_by(.data$game_id, .data$half) |>
     dplyr::arrange(.data$game_id, .data$half, .data$period,
                    -.data$TimeSecsRem, .data$id_play,
                    .by_group = TRUE
-    ) %>%
+    ) |>
     dplyr::mutate(
       #---- Half Row/Event/Play Numbers -----
       half_play = ifelse(!(.data$play_type %in% c(
@@ -215,8 +214,8 @@
       pos_team_timeouts_rem_before = ifelse(.data$kickoff_play == 1, .data$def_timeouts_rem_before, .data$off_timeouts_rem_before),
       def_pos_team_timeouts_rem_before = ifelse(.data$kickoff_play == 1, .data$off_timeouts_rem_before, .data$def_timeouts_rem_before),
       pos_score_diff_start = ifelse(is.na(.data$pos_score_diff_start), .data$pos_score_diff, .data$pos_score_diff_start),
-    ) %>%
-    dplyr::ungroup() %>%
+    ) |>
+    dplyr::ungroup() |>
     dplyr::arrange(
       .data$game_id, .data$half, .data$period,
       -.data$TimeSecsRem, -.data$lead_TimeSecsRem, .data$id_play

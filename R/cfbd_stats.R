@@ -88,14 +88,14 @@ cfbd_stats_categories <- function() {
       check_status(res)
 
       # Get the content and return it as list
-      list <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      list <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
-      df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
+      df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) |>
         dplyr::rename("category" = "V1")
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Stat categories for CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -238,9 +238,9 @@ cfbd_stats_game_advanced <- function(year,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         as.data.frame()
 
       # Column renaming for the 76 returned columns
@@ -274,7 +274,7 @@ cfbd_stats_game_advanced <- function(year,
 
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Advanced game stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -430,8 +430,8 @@ cfbd_stats_season_advanced <- function(year,
       check_status(res)
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
 
       colnames(df) <- gsub("offense.", "off_", colnames(df))
@@ -462,7 +462,7 @@ cfbd_stats_season_advanced <- function(year,
       colnames(df) <- gsub("Opportunies", "_opportunities", colnames(df))
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Advanced season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -664,47 +664,47 @@ cfbd_stats_season_player <- function(year,
       check_status(res)
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::mutate(
           statType = paste0(.data$category, "_", .data$statType)
-        ) %>%
+        ) |>
         tidyr::pivot_wider(
           names_from = "statType",
           values_from = "stat"
-        ) %>%
-        dplyr::rename("athlete_id" = "playerId") %>%
+        ) |>
+        dplyr::rename("athlete_id" = "playerId") |>
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
       suppressWarnings(
-      df <- df %>%
-        dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
-        dplyr::mutate_at(numeric_cols, as.numeric) %>%
-        as.data.frame() %>%
+      df <- df |>
+        dplyr::select(dplyr::all_of(cols), dplyr::everything()) |>
+        dplyr::mutate_at(numeric_cols, as.numeric) |>
+        as.data.frame() |>
         dplyr::mutate(year = year))
 
       # Check if Category is Null
       if (is.null(category)) {
         suppressWarnings(
-        df <- df %>%
-          dplyr::select(-dplyr::any_of(c("category"))) %>%
-          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$position, .data$year) %>%
-          dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
-          dplyr::arrange(.data$year, .data$athlete_id) %>%
-          dplyr::ungroup() %>%
+        df <- df |>
+          dplyr::select(-dplyr::any_of(c("category"))) |>
+          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$position, .data$year) |>
+          dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) |>
+          dplyr::arrange(.data$year, .data$athlete_id) |>
+          dplyr::ungroup() |>
           dplyr::mutate_all(function(x) replace(x, is.nan(x), NA)))
       }
 
 
-      df <- df  %>%
-        dplyr::select(-dplyr::any_of(c("category"))) %>%
+      df <- df  |>
+        dplyr::select(-dplyr::any_of(c("category"))) |>
         dplyr::select(
           "year", "team", "conference", "athlete_id", "player", "position",
           dplyr::everything(),
           -dplyr::any_of("season")
-        ) %>%
+        ) |>
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -847,8 +847,8 @@ cfbd_stats_season_team <- function(year,
       check_status(res)
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
 
       # Pivot category columns to get stats for each team game on one row
@@ -861,7 +861,7 @@ cfbd_stats_season_team <- function(year,
       missing <- setdiff(expected_colnames, colnames(df))
       df[missing] <- NA_real_
 
-      df <- df %>%
+      df <- df |>
         # dplyr::mutate(
         #   time_of_poss_pg = ifelse(is.na(.data$games), NA_real_, .data$possessionTime / .data$games),
         #   completion_pct = ifelse(is.na(.data$passAttempts), NA_real_, .data$passCompletions / .data$passAttempts),
@@ -877,7 +877,7 @@ cfbd_stats_season_team <- function(year,
         #   turnovers_pg = ifelse(is.na(.data$games), NA_real_, .data$turnovers / .data$games),
         #   kick_return_avg = ifelse(is.na(.data$kickReturns), NA_real_, .data$kickReturnYards / .data$kickReturns),
         #   punt_return_avg = ifelse(is.na(.data$puntReturns), NA_real_, .data$puntReturnYards / .data$puntReturns)
-        # ) %>%
+        # ) |>
         dplyr::select(
           "season",
           "team",
@@ -911,7 +911,7 @@ cfbd_stats_season_team <- function(year,
           "passesIntercepted",
           "interceptionYards",
           "interceptionTDs"
-        ) %>%
+        ) |>
         dplyr::rename(
           "time_of_poss_total" = "possessionTime",
           "pass_comps" = "passCompletions",
@@ -941,7 +941,7 @@ cfbd_stats_season_team <- function(year,
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Season stats from CollegeFootballData.com",Sys.time())
 
     },
@@ -1053,18 +1053,18 @@ cfbd_stats_game_havoc <- function(year = NULL,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         as.data.frame()
 
       # Column renaming for the nested offense./defense. blocks
       colnames(df) <- gsub("offense.", "off_", colnames(df))
       colnames(df) <- gsub("defense.", "def_", colnames(df))
 
-      df <- df %>%
-        janitor::clean_names() %>%
-        dplyr::as_tibble() %>%
+      df <- df |>
+        janitor::clean_names() |>
+        dplyr::as_tibble() |>
         make_cfbfastR_data("Game havoc stats from CollegeFootballData.com", Sys.time())
     },
     error = function(e) {

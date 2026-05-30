@@ -47,7 +47,7 @@ create_wpa_naive <- function(df, wp_model) {
     "pos_score_diff_start"
   )
   if (!all(col_nec %in% colnames(df))) {
-    df <- df %>%
+    df <- df |>
       dplyr::mutate(
         adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
         turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
@@ -95,8 +95,8 @@ create_wpa_naive <- function(df, wp_model) {
           .data$lag_pos_score_diff,
           -1 * .data$lag_pos_score_diff
         )
-      ) %>%
-      tidyr::fill("receives_2H_kickoff") %>%
+      ) |>
+      tidyr::fill("receives_2H_kickoff") |>
       dplyr::mutate(
         offense_receives_2H_kickoff = case_when(
           .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
@@ -113,7 +113,7 @@ create_wpa_naive <- function(df, wp_model) {
       )
   }
 
-  df <- df %>%
+  df <- df |>
     dplyr::arrange(.data$game_id, .data$new_id)
   Off_Win_Prob <- as.vector(predict(wp_model, newdata = df, type = "response"))
   df$wp_before <- Off_Win_Prob
@@ -135,8 +135,8 @@ create_wpa_naive <- function(df, wp_model) {
   df2 <- purrr::map_dfr(
     g_ids,
     function(x) {
-      df %>%
-        dplyr::filter(.data$game_id == x) %>%
+      df |>
+        dplyr::filter(.data$game_id == x) |>
         wpa_calcs_naive()
     }
   )
@@ -151,7 +151,7 @@ create_wpa_naive <- function(df, wp_model) {
 #' @export
 #'
 wpa_calcs_naive <- function(df) {
-  df2 <- df %>%
+  df2 <- df |>
     dplyr::mutate(
       def_wp_before = 1 - .data$wp_before,
       home_wp_before = dplyr::if_else(.data$pos_team == .data$home,
@@ -162,7 +162,7 @@ wpa_calcs_naive <- function(df) {
         .data$wp_before,
         .data$def_wp_before
       )
-    ) %>%
+    ) |>
     dplyr::mutate(
       lead_wp_before = dplyr::lead(.data$wp_before, 1),
       lead_wp_before2 = dplyr::lead(.data$wp_before, 2),

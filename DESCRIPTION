@@ -41,7 +41,6 @@ Imports:
     httr2 (>= 1.0.0),
     janitor,
     jsonlite,
-    magrittr,
     mgcv (>= 1.8-33),
     nnet,
     purrr (>= 0.3.0),

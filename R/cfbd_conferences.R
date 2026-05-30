@@ -59,19 +59,19 @@ cfbd_conferences <- function() {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
       # Rename id as conference_id, short_name as long_name
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "conference_id" = "id",
           "long_name" = "short_name"
         )
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Conference data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

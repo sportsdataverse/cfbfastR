@@ -73,7 +73,7 @@ The CFBD API requires a bearer token. Set the `CFBD_API_KEY` environment variabl
 ## Code Style
 
 - Follow tidyverse style: snake_case for variables/functions, 2-space indentation.
-- cfbfastR targets R `>= 4.1.0` and uses the **native pipe `|>` everywhere**. `%>%` is permitted only inside legacy chains that pre-date the modular refactor; new code must use `|>`.
+- cfbfastR targets R `>= 4.1.0` and uses the **native pipe `|>` exclusively**. `%>%` has been swept out of `R/`, `tests/`, and `vignettes/`, and `magrittr` is no longer in `Imports`. Two patterns that don't port cleanly to `|>`: `|> `[[`("name")` errors under R 4.1 (use `|> purrr::pluck("name")` instead), and `|> tibble::tibble(col = .data$.)` is a magrittr quirk that creates a duplicate column (use `tibble::tibble(col = <lhs>)` directly).
 - Use `%||%` (re-exported from rlang) for null-safe defaults: `value <- obj$field %||% NA_character_`. Do not redefine it locally; import via `@importFrom rlang %||%`.
 - All returned data frames must pass through `janitor::clean_names()` then `make_cfbfastR_data()`.
 - Internal/non-exported helpers are prefixed with `.` (e.g., `.run_epa_wpa()`, `.espn_pbp_game_meta()`, `.attach_query_meta_auto()`).

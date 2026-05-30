@@ -105,35 +105,34 @@ espn_cfb_scoreboard <- function(date = NULL) {
       res <- httr2::request(url) |>
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
-      raw_sched <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw_sched <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
 
-      cfb_data <- raw_sched[["events"]] %>%
-        tibble::tibble(data = .data$.) %>%
-        tidyr::unnest_wider("data") %>%
-        tidyr::unchop("competitions") %>%
+      cfb_data <- tibble::tibble(data = raw_sched[["events"]]) |>
+        tidyr::unnest_wider("data") |>
+        tidyr::unchop("competitions") |>
         dplyr::select(
           -"id",
           -"uid",
           -"date",
-          -"status") %>%
-        tidyr::unnest_wider("competitions") %>%
+          -"status") |>
+        tidyr::unnest_wider("competitions") |>
         dplyr::rename(
           "matchup" = "name",
           "matchup_short" = "shortName",
           "game_id" = "id",
           "game_uid" = "uid",
-          "game_date" = "date") %>%
+          "game_date" = "date") |>
         tidyr::hoist("status",
-                     status_name = list("type", "name")) %>%
-        dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) %>%
-        tidyr::unnest_wider("season") %>%
-        dplyr::rename("season" = "year") %>%
+                     status_name = list("type", "name")) |>
+        dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) |>
+        tidyr::unnest_wider("season") |>
+        dplyr::rename("season" = "year") |>
         dplyr::select(-dplyr::any_of("status"))
 
-      cfb_data <- cfb_data %>%
+      cfb_data <- cfb_data |>
         dplyr::mutate(
           game_date_time = {
             gdt <- as.POSIXct(
@@ -146,7 +145,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
           },
           game_date = as.Date(substr(.data$game_date_time, 1, 10)))
 
-      cfb_data <- cfb_data %>%
+      cfb_data <- cfb_data |>
         tidyr::hoist(
           "competitors",
           home_team_name = list(1, "team", "name"),
@@ -170,7 +169,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
           away_score = list(2, "score"),
           away_win = list(2, "winner"),
           away_record = list(2, "records", 1, "summary"),
-        ) %>%
+        ) |>
         dplyr::mutate(home_win = as.integer(.data$home_win),
                       away_win = as.integer(.data$away_win),
                       home_score = as.integer(.data$home_score),
@@ -181,7 +180,7 @@ espn_cfb_scoreboard <- function(date = NULL) {
                                        TRUE ~ as.character(type)))
 
       if ("leaders" %in% names(cfb_data)) {
-        schedule_out <- cfb_data %>%
+        schedule_out <- cfb_data |>
           tidyr::hoist(
             "leaders",
             # passing
@@ -211,29 +210,29 @@ espn_cfb_scoreboard <- function(date = NULL) {
           )
 
         if ("broadcasts" %in% names(schedule_out)) {
-          schedule_out <- schedule_out %>%
+          schedule_out <- schedule_out |>
             tidyr::hoist(
               "broadcasts",
               broadcast_market = list(1, "market"),
               broadcast_name = list(1, "names", 1)
-            ) %>%
-            dplyr::select(!where(is.list)) %>%
+            ) |>
+            dplyr::select(!where(is.list)) |>
             janitor::clean_names()
         } else {
-          schedule_out <- schedule_out %>%
+          schedule_out <- schedule_out |>
             janitor::clean_names()
         }
       } else {
-        schedule_out <- cfb_data %>%
-          dplyr::select(!where(is.list)) %>%
+        schedule_out <- cfb_data |>
+          dplyr::select(!where(is.list)) |>
           janitor::clean_names()
       }
       if (!"highlights" %in% names(schedule_out)) {
         schedule_out <-
-          schedule_out %>%
+          schedule_out |>
           dplyr::mutate(highlights = NA)
       }
-      schedule_out %>%
+      schedule_out |>
         make_cfbfastR_data("Live Scoreboard Data from ESPN",Sys.time())
     },
     error = function(e) {
@@ -358,35 +357,34 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
         httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
         httr2::req_perform()
 
-      raw_sched <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw_sched <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
 
-      cfb_data <- raw_sched[["events"]] %>%
-        tibble::tibble(data = .data$.) %>%
-        tidyr::unnest_wider("data") %>%
-        tidyr::unchop("competitions") %>%
+      cfb_data <- tibble::tibble(data = raw_sched[["events"]]) |>
+        tidyr::unnest_wider("data") |>
+        tidyr::unchop("competitions") |>
         dplyr::select(
           -"id",
           -"uid",
           -"date",
-          -"status") %>%
-        tidyr::unnest_wider("competitions") %>%
+          -"status") |>
+        tidyr::unnest_wider("competitions") |>
         dplyr::rename(
           "matchup" = "name",
           "matchup_short" = "shortName",
           "game_id" = "id",
           "game_uid" = "uid",
-          "game_date" = "date") %>%
+          "game_date" = "date") |>
         tidyr::hoist("status",
-                     status_name = list("type", "name")) %>%
-        dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) %>%
-        tidyr::unnest_wider("season") %>%
-        dplyr::rename("season" = "year") %>%
+                     status_name = list("type", "name")) |>
+        dplyr::select(!dplyr::any_of(c("timeValid", "neutralSite", "conferenceCompetition","recent", "venue", "type"))) |>
+        tidyr::unnest_wider("season") |>
+        dplyr::rename("season" = "year") |>
         dplyr::select(-dplyr::any_of("status"))
 
-      cfb_data <- cfb_data %>%
+      cfb_data <- cfb_data |>
         dplyr::mutate(
           game_date_time = {
             gdt <- as.POSIXct(
@@ -399,7 +397,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
           },
           game_date = as.Date(substr(.data$game_date_time, 1, 10)))
 
-      cfb_data <- cfb_data %>%
+      cfb_data <- cfb_data |>
         tidyr::hoist(
           "competitors",
           home_team_name = list(1, "team", "name"),
@@ -423,7 +421,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
           away_score = list(2, "score"),
           away_win = list(2, "winner"),
           away_record = list(2, "records", 1, "summary"),
-        ) %>%
+        ) |>
         dplyr::mutate(home_win = as.integer(.data$home_win),
                       away_win = as.integer(.data$away_win),
                       home_score = as.integer(.data$home_score),
@@ -435,7 +433,7 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 
 
       if("leaders" %in% names(cfb_data)){
-        schedule_out <- cfb_data %>%
+        schedule_out <- cfb_data |>
           tidyr::hoist(
             "leaders",
             # passing
@@ -465,30 +463,30 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
           )
 
         if("broadcasts" %in% names(schedule_out)) {
-          schedule_out <- schedule_out %>%
+          schedule_out <- schedule_out |>
             tidyr::hoist(
               "broadcasts",
               broadcast_market = list(1, "market"),
               broadcast_name = list(1, "names", 1)
-            ) %>%
-            dplyr::select(!where(is.list)) %>%
+            ) |>
+            dplyr::select(!where(is.list)) |>
             janitor::clean_names()
         } else {
-          schedule_out <- schedule_out %>%
+          schedule_out <- schedule_out |>
             janitor::clean_names()
         }
       } else {
-        schedule_out <- cfb_data %>%
-          dplyr::select(!where(is.list)) %>%
+        schedule_out <- cfb_data |>
+          dplyr::select(!where(is.list)) |>
           janitor::clean_names()
       }
       if (!"highlights" %in% names(schedule_out)) {
         schedule_out <-
-          schedule_out %>%
+          schedule_out |>
           dplyr::mutate(highlights = NA)
       }
       schedule_out <-
-        schedule_out %>%
+        schedule_out |>
         make_cfbfastR_data("Schedule Data from ESPN",Sys.time())
     },
     error = function(e) {
@@ -562,30 +560,29 @@ espn_cfb_calendar <- function(year=NULL, groups=NULL){
       # Check the result
       check_status(res)
 
-      raw_cal <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw_cal <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE)
 
-      calendar_out <- raw_cal[["leagues"]] %>%
-        tibble::tibble(data = .data$.) %>%
-        tidyr::unnest_wider("data") %>%
-        tidyr::unnest("calendar") %>%
-        tidyr::unnest_wider("calendar") %>%
-        tidyr::unnest("entries") %>%
+      calendar_out <- tibble::tibble(data = raw_cal[["leagues"]]) |>
+        tidyr::unnest_wider("data") |>
+        tidyr::unnest("calendar") |>
+        tidyr::unnest_wider("calendar") |>
+        tidyr::unnest("entries") |>
         dplyr::rename("season_type" = "label")
 
       calendar_out$season <- substr(calendar_out$calendarStartDate[1],1,4)
 
-      calendar_out <- calendar_out %>%
+      calendar_out <- calendar_out |>
         dplyr::select(
           "season",
           "season_type",
-          "entries") %>%
-        tidyr::unnest_wider("entries") %>%
-        janitor::clean_names() %>%
+          "entries") |>
+        tidyr::unnest_wider("entries") |>
+        janitor::clean_names() |>
         dplyr::rename("week" = "value")
 
-      calendar_out <- calendar_out %>%
+      calendar_out <- calendar_out |>
         make_cfbfastR_data("Calendar Data from ESPN",Sys.time())
     },
     error = function(e) {

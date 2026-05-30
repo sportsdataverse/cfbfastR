@@ -20,7 +20,7 @@
 #'    i <- 1
 #'
 #'    progressr::with_progress({
-#'       year_split[[i]] <- year_split[[i]] %>%
+#'       year_split[[i]] <- year_split[[i]] |>
 #'          dplyr::mutate(
 #'             pbp = purrr::map2(
 #'                 .x = year,
@@ -35,7 +35,7 @@
 #'
 #'  tictoc::toc()
 #'  year_split <- lapply(year_split, function(x) {
-#'      x %>% tidyr::unnest(pbp, names_repair = "minimal")
+#'      x |> tidyr::unnest(pbp, names_repair = "minimal")
 #'  })
 #'
 #'  all_years <- dplyr::bind_rows(year_split)
@@ -149,8 +149,8 @@ cfbd_plays <- function(year = 2020,
     "playType" = play_type,
     "classification" = division
   )
-  full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!.compact(query_params)) %>%
+  full_url <- httr2::request(base_url) |>
+    httr2::req_url_query(!!!.compact(query_params)) |>
     purrr::pluck("url")
 
   df <- data.frame()
@@ -162,14 +162,14 @@ cfbd_plays <- function(year = 2020,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        dplyr::rename("play_id" = "id") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        dplyr::rename("play_id" = "id") |>
         janitor::clean_names()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Play-by-play data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -310,8 +310,8 @@ cfbd_play_stats_player <- function(year = NULL,
     "statTypeId" = stat_type_id,
     "seasonType" = season_type
   )
-  full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!.compact(query_params)) %>%
+  full_url <- httr2::request(base_url) |>
+    httr2::req_url_query(!!!.compact(query_params)) |>
     purrr::pluck("url")
 
   clean_df <- data.frame()
@@ -323,9 +323,9 @@ cfbd_play_stats_player <- function(year = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         as.data.frame()
 
       cols <- c(
@@ -369,7 +369,7 @@ cfbd_play_stats_player <- function(year = NULL,
         return(dplyr::coalesce(!!!as.list(df)))
       }
 
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "game_id" = "gameId",
           "team_score" = "teamScore",
@@ -385,9 +385,9 @@ cfbd_play_stats_player <- function(year = NULL,
 
       colnames(df) <- gsub(" ", "_", tolower(colnames(df)))
 
-      clean_df <- df %>%
-        dplyr::distinct() %>%
-        tidyr::unnest_wider("clock", names_sep = "_") %>%
+      clean_df <- df |>
+        dplyr::distinct() |>
+        tidyr::unnest_wider("clock", names_sep = "_") |>
         tidyr::pivot_wider(
           names_from = "stat_type",
           values_from = "athlete_name"
@@ -399,10 +399,10 @@ cfbd_play_stats_player <- function(year = NULL,
 
       clean_df[clean_df == "NULL"] <- NA
 
-      clean_df <- clean_df %>%
+      clean_df <- clean_df |>
         dplyr::rename(dplyr::any_of(c(
           "field_goal_blocked" = "fg_attempt_blocked"
-        ))) %>%
+        ))) |>
         dplyr::mutate(
           reception_player = ifelse(!is.na(.data$reception), .data$reception, NA),
           completion_player = ifelse(!is.na(.data$completion), .data$completion, NA),
@@ -459,7 +459,7 @@ cfbd_play_stats_player <- function(year = NULL,
           field_goal_missed_player = ifelse(!is.na(.data$field_goal_missed), .data$field_goal_missed, NA),
           field_goal_missed_stat = ifelse(!is.na(.data$field_goal_missed), .data$stat, NA)
 
-        ) %>%
+        ) |>
         dplyr::select(dplyr::any_of(c(
           "game_id",
           "season",
@@ -533,8 +533,8 @@ cfbd_play_stats_player <- function(year = NULL,
           "field_goal_blocked_stat"
         )))
 
-      clean_sack_df <- clean_df %>%
-        dplyr::group_by(.data$play_id) %>%
+      clean_sack_df <- clean_df |>
+        dplyr::group_by(.data$play_id) |>
         dplyr::summarize(
           sack_player = paste(unique(na.omit(.data$sack_player)), collapse = ", "),
           sack_player_id = paste(unique(na.omit(.data$sack_player_id)), collapse = ", "),
@@ -542,12 +542,12 @@ cfbd_play_stats_player <- function(year = NULL,
         )
 
 
-      clean_df <- clean_df %>%
-        dplyr::select(-"sack_player", -"sack_player_id") %>%
-        dplyr::left_join(clean_sack_df, by = "play_id") %>%
-        dplyr::group_by(.data$play_id) %>%
-        dplyr::summarise_all(coalesce_by_column) %>%
-        dplyr::ungroup() %>%
+      clean_df <- clean_df |>
+        dplyr::select(-"sack_player", -"sack_player_id") |>
+        dplyr::left_join(clean_sack_df, by = "play_id") |>
+        dplyr::group_by(.data$play_id) |>
+        dplyr::summarise_all(coalesce_by_column) |>
+        dplyr::ungroup() |>
         dplyr::select(dplyr::any_of(c(
           "game_id",
           "season",
@@ -623,7 +623,7 @@ cfbd_play_stats_player <- function(year = NULL,
 
 
 
-      clean_df <- clean_df %>%
+      clean_df <- clean_df |>
         make_cfbfastR_data("Play-level player data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -671,13 +671,13 @@ cfbd_play_stats_types <- function() {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::rename("play_stat_type_id" = "id")
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Play stats type data from CollegeFootballData.com",Sys.time())
 
     },
@@ -727,12 +727,12 @@ cfbd_play_types <- function() {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::rename("play_type_id" = "id")
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Play types data from CollegeFootballData.com",Sys.time())
 
     },
@@ -873,8 +873,8 @@ cfbd_live_plays <- function(game_id) {
   query_params <- list(
     "gameId" = game_id
   )
-  full_url <- httr2::request(base_url) %>%
-    httr2::req_url_query(!!!.compact(query_params)) %>%
+  full_url <- httr2::request(base_url) |>
+    httr2::req_url_query(!!!.compact(query_params)) |>
     purrr::pluck("url")
 
   df <- data.frame()
@@ -886,24 +886,23 @@ cfbd_live_plays <- function(game_id) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE) %>%
-        tibble::tibble(data = .data$.)
+      df <- tibble::tibble(data = res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(simplifyDataFrame = FALSE, simplifyVector = FALSE, simplifyMatrix = FALSE))
 
-      game_id <- df %>%
+      game_id <- df |>
         purrr::pluck("data", "id")
-      current_period <- df %>%
+      current_period <- df |>
         purrr::pluck("data", "period")
-      current_clock <- df %>%
+      current_clock <- df |>
         purrr::pluck("data", "clock")
-      current_possession <- df %>%
+      current_possession <- df |>
         purrr::pluck("data", "possession")
-      current_down <- df %>%
+      current_down <- df |>
         purrr::pluck("data", "down")
-      current_distance <- df %>%
+      current_distance <- df |>
         purrr::pluck("data", "distance")
-      current_yards_to_goal <- df %>%
+      current_yards_to_goal <- df |>
         purrr::pluck("data", "yardsToGoal")
 
       game_status_df <- tibble::tibble(
@@ -916,13 +915,10 @@ cfbd_live_plays <- function(game_id) {
         current_yards_to_goal = current_yards_to_goal
       )
 
-      df_teams <- df$data %>%
-        purrr::pluck("teams") %>%
-        tibble::tibble(teams = .data$.) %>%
-        dplyr::select("teams") %>%
-        tidyr::unnest_wider("teams") %>%
-        tidyr::unnest_wider("lineScores", names_sep = "_Q") %>%
-        janitor::clean_names() %>%
+      df_teams <- tibble::tibble(teams = purrr::pluck(df$data, "teams")) |>
+        tidyr::unnest_wider("teams") |>
+        tidyr::unnest_wider("lineScores", names_sep = "_Q") |>
+        janitor::clean_names() |>
         dplyr::rename(dplyr::any_of(c(
           "ppa_per_play" = "epa_per_play",
           "total_ppa" = "total_epa",
@@ -932,22 +928,19 @@ cfbd_live_plays <- function(game_id) {
           "ppa_per_rush" = "epa_per_rush"
         )))
 
-      home_team_df <- df_teams %>% dplyr::filter(.data$home_away == "home")
-      home_team_df <- home_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
+      home_team_df <- df_teams |> dplyr::filter(.data$home_away == "home")
+      home_team_df <- home_team_df |> dplyr::select(-dplyr::any_of("home_away"))
       colnames(home_team_df) <- paste0("home_", colnames(home_team_df))
-      away_team_df <- df_teams %>% dplyr::filter(.data$home_away == "away")
-      away_team_df <- away_team_df %>% dplyr::select(-dplyr::any_of("home_away"))
+      away_team_df <- df_teams |> dplyr::filter(.data$home_away == "away")
+      away_team_df <- away_team_df |> dplyr::select(-dplyr::any_of("home_away"))
       colnames(away_team_df) <- paste0("away_", colnames(away_team_df))
 
       teams_df <- dplyr::bind_cols(home_team_df, away_team_df)
       game_df <- dplyr::bind_cols(game_status_df, teams_df)
 
-      df_drives <- df$data %>%
-        purrr::pluck("drives") %>%
-        tibble::tibble(drives = .data$.) %>%
-        dplyr::select("drives") %>%
-        tidyr::unnest_wider("drives") %>%
-        janitor::clean_names() %>%
+      df_drives <- tibble::tibble(drives = purrr::pluck(df$data, "drives")) |>
+        tidyr::unnest_wider("drives") |>
+        janitor::clean_names() |>
         dplyr::rename(dplyr::any_of(c(
           "drive_id" = "id",
           "drive_offense_id" = "offense_id",
@@ -968,10 +961,10 @@ cfbd_live_plays <- function(game_id) {
           "drive_points_gained" = "points_gained"
         )))
 
-      df_plays <- df_drives %>%
-        tidyr::unnest_longer("plays") %>%
-        tidyr::unnest_wider("plays") %>%
-        janitor::clean_names() %>%
+      df_plays <- df_drives |>
+        tidyr::unnest_longer("plays") |>
+        tidyr::unnest_wider("plays") |>
+        janitor::clean_names() |>
         dplyr::rename(dplyr::any_of(c(
           "play_id" = "id",
           "offense_team_id" = "team_id",
@@ -979,7 +972,7 @@ cfbd_live_plays <- function(game_id) {
           "ppa" = "epa"
         )))
 
-      df_plays <- df_plays %>%
+      df_plays <- df_plays |>
         dplyr::select(dplyr::any_of(c(
           "play_id",
           "home_score",
@@ -1003,9 +996,9 @@ cfbd_live_plays <- function(game_id) {
           "play_text"
         )), dplyr::everything())
 
-      df <- df_plays %>%
+      df <- df_plays |>
         dplyr::bind_cols(game_df)
-      df <- df %>%
+      df <- df |>
         dplyr::select(dplyr::any_of(c(
           "game_id",
           "home_team_id",
@@ -1015,7 +1008,7 @@ cfbd_live_plays <- function(game_id) {
           "play_id"
         )), dplyr::everything())
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Live play-by-play data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

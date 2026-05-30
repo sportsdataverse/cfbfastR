@@ -289,7 +289,6 @@
 #'   canonical schema.
 #' @keywords internal
 #' @noRd
-#' @importFrom magrittr %>%
 .pbp_apply_output_schema <- function(df, output = "default") {
   if (!is.character(output) || length(output) != 1L ||
       !output %in% c("default", "lean", "full")) {
@@ -299,10 +298,10 @@
     ))
   }
 
-  df <- df %>% dplyr::select(-dplyr::any_of(.pbp_drop_player_aliases))
+  df <- df |> dplyr::select(-dplyr::any_of(.pbp_drop_player_aliases))
 
   if (output != "full") {
-    df <- df %>%
+    df <- df |>
       dplyr::select(-dplyr::any_of(c(
         .pbp_drop_lag_lead,
         .pbp_drop_redundant,
@@ -311,7 +310,7 @@
   }
 
   if (output == "lean") {
-    df <- df %>% dplyr::select(-dplyr::any_of(.pbp_drop_wpa_scratch))
+    df <- df |> dplyr::select(-dplyr::any_of(.pbp_drop_wpa_scratch))
   }
 
   known   <- intersect(.pbp_output_order, colnames(df))

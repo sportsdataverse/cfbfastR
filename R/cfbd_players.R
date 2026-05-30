@@ -108,17 +108,17 @@ cfbd_player_info <- function(search_term,
       check_status(res)
       # Get the content and return it as data.frame
 
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names() |>
         dplyr::rename(
           "athlete_id" = "id",
           "home_town" = "hometown"
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -200,9 +200,9 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::rename(
           "total_ppa" = "totalPPA",
           "total_passing_ppa" = "totalPassingPPA",
@@ -218,7 +218,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Returning production data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -323,11 +323,11 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
         dplyr::rename(
           "athlete_id" = "id",
           "usg_overall" = "usage.overall",
@@ -341,7 +341,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player usage data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

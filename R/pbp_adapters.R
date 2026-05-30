@@ -17,9 +17,8 @@
 #' @noRd
 #' @importFrom rlang .data
 #' @importFrom dplyr mutate
-#' @importFrom magrittr %>%
 .cfbd_to_epa_input <- function(raw_play_df, year, week) {
-  raw_play_df %>%
+  raw_play_df |>
     dplyr::mutate(
       season = year,
       wk     = week
@@ -49,9 +48,8 @@
 #' @importFrom rlang .data
 #' @importFrom dplyr rename mutate group_by ungroup case_when
 #' @importFrom stringr str_extract str_remove regex
-#' @importFrom magrittr %>%
 .espn_to_epa_input <- function(df, game_id) {
-  df %>%
+  df |>
     dplyr::rename(
       "play_text"     = "plays_text",
       "play_type"     = "plays_type_text",
@@ -64,7 +62,7 @@
       "yards_to_goal" = "plays_start_yards_to_endzone",
       "yards_gained"  = "plays_stat_yardage",
       "yard_line"     = "plays_start_yard_line"
-    ) %>%
+    ) |>
     dplyr::mutate(
       game_id = game_id,
       clock_minutes = as.numeric(stringr::str_extract(
@@ -114,9 +112,9 @@
       # ppa is a CFBD-only column referenced inside the modeling pipeline;
       # placeholder so the chain's selects do not error.
       ppa = NA_real_
-    ) %>%
+    ) |>
     # Timeout handling -- count timeouts per half.
-    dplyr::group_by(.data$half) %>%
+    dplyr::group_by(.data$half) |>
     dplyr::mutate(
       timeout_team  = stringr::str_extract(
         .data$play_text, "(?<=Timeout ).{1,10}(?=,)"
@@ -137,7 +135,7 @@
         .data$offense_play == .data$home ~ .data$away_timeouts,
         TRUE                             ~ .data$home_timeouts
       )
-    ) %>%
+    ) |>
     dplyr::ungroup()
 }
 
@@ -221,8 +219,8 @@
         httr2::req_error(is_error = function(resp) FALSE) |>
         httr2::req_perform()
       check_status(res)
-      raw <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(simplifyVector = FALSE)
 
       # --- season / season_type / week from week.$ref ---------------------

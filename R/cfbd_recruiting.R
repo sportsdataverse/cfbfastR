@@ -152,14 +152,14 @@ cfbd_recruiting_player <- function(year = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten=TRUE) %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten=TRUE) |>
+        janitor::clean_names() |>
         as.data.frame()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player recruiting info from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -239,9 +239,9 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::rename(
           "position_group" = "positionGroup",
           "avg_rating" = "averageRating",
@@ -250,7 +250,7 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Recruiting position group info from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -323,13 +323,13 @@ cfbd_recruiting_team <- function(year = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         as.data.frame()
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Recruiting team rankings from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
@@ -395,16 +395,16 @@ cfbd_recruiting_transfer_portal <- function(year) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr2::resp_body_string(encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names() |>
         dplyr::mutate(
           transfer_date = as.POSIXct(.data$transfer_date)
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Transfer portal data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {

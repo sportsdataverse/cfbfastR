@@ -24,7 +24,7 @@ College football plays data
    i <- 1
 
    progressr::with_progress(\{
-      year_split[[i]] <- year_split[[i]] \%>\%
+      year_split[[i]] <- year_split[[i]] |>
          dplyr::mutate(
             pbp = purrr::map2(
                 .x = year,
@@ -39,7 +39,7 @@ College football plays data
 
  tictoc::toc()
  year_split <- lapply(year_split, function(x) \{
-     x \%>\% tidyr::unnest(pbp, names_repair = "minimal")
+     x |> tidyr::unnest(pbp, names_repair = "minimal")
  \})
 
  all_years <- dplyr::bind_rows(year_split)

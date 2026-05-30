@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(pkgapi)
 pkg <- pkgapi::map_package(path = "../")
 library(dplyr)
-exported <- pkg$defs %>% dplyr::filter(exported == TRUE)
+exported <- pkg$defs |> dplyr::filter(exported == TRUE)
 cfbd_funcs <- sum(stringr::str_detect(exported$file,"cfbd")) - sum(stringr::str_detect(exported$file,"cfbd_pbp_data"))
 pkg_name <- "sportsdataverse/cfbfastR"
 url <- paste0("https://raw.githubusercontent.com/", pkg_name, "/main/DESCRIPTION")

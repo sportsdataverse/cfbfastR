@@ -27,12 +27,12 @@ test_that("CFB Poll Rankings", {
   if (is.null(z) || !is.data.frame(z) || nrow(z) == 0L) {
     skip("CFBD rate-limited or returned no rows")
   }
-  first_team_AP_13 <- z %>%
-    filter(.data$poll == "AP Top 25" & .data$rank == 1) %>%
+  first_team_AP_13 <- z |>
+    filter(.data$poll == "AP Top 25" & .data$rank == 1) |>
     select("school")
 
-  first_team_coaches_13 <- z %>%
-    filter(.data$poll == "Coaches Poll" & .data$rank == 1) %>%
+  first_team_coaches_13 <- z |>
+    filter(.data$poll == "Coaches Poll" & .data$rank == 1) |>
     select("school")
 
   expect_in(cols, colnames(x))
