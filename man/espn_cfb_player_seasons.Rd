@@ -44,7 +44,7 @@ returns one \code{entry} per season the player accumulated statistics in,
 which is exactly the player's season list. Each entry carries the
 season \verb{$ref} and one or more statistics references (split by stat
 \code{type}, e.g. \code{total}). The statistics themselves are not
-auto-dereferenced; use \code{\link[=espn_cfb_player_statistics]{espn_cfb_player_statistics()}} for a resolved,
+auto-dereferenced; use \code{\link[=espn_cfb_player_career_stats]{espn_cfb_player_career_stats()}} for a resolved,
 long-format stat table for a given season.
 
 When \code{athlete_detail = TRUE} (the default) the requested athlete's ESPN
@@ -97,11 +97,12 @@ Other ESPN CFB Functions:
 \code{\link{espn_cfb_groups}()},
 \code{\link{espn_cfb_pbp_v2}()},
 \code{\link{espn_cfb_player}()},
+\code{\link{espn_cfb_player_career_stats}()},
 \code{\link{espn_cfb_player_eventlog}()},
 \code{\link{espn_cfb_player_gamelog}()},
 \code{\link{espn_cfb_player_overview}()},
 \code{\link{espn_cfb_player_splits}()},
-\code{\link{espn_cfb_player_statistics}()},
+\code{\link{espn_cfb_player_stats_v3}()},
 \code{\link{espn_cfb_players}()},
 \code{\link{espn_cfb_position}()},
 \code{\link{espn_cfb_positions}()},

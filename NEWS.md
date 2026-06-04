@@ -2,6 +2,8 @@
 
 This release adds a 65-function ESPN college-football API layer, expanding `cfbfastR`'s ESPN surface from 8 wrappers to 73. The new wrappers expose ESPN's core-v2 endpoints in ESPN's own ID space — complementary to the CollegeFootballData (`cfbd_*`) wrappers, and the natural join partners for `espn_cfb_pbp()` / `espn_cfb_scoreboard()`. Every wrapper was verified live against the 2023, 2024, and 2025 seasons.
 
+**Naming alignment with the sportsdataverse convention (this dev cycle, never on CRAN):** `espn_cfb_player_statistics()` is renamed to `espn_cfb_player_career_stats()` (the core-v2 `/athletes/{id}/statistics` career view, matching hoopR/wehoop/sportsdataverse-py). New `espn_cfb_player_stats_v3()` wraps the comprehensive web-common-v3 `/athletes/{id}/stats` payload (all categories, long format) — the `_v3` companion to `espn_cfb_player_stats()` (core-v2 season statistics).
+
 ### New ESPN wrappers — football-specific metrics
 
 * `espn_cfb_powerindex()` — ESPN's College Football Power Index (FPI): every predictive metric and efficiency component, in long format.

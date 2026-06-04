@@ -104,7 +104,7 @@ to each season's statistics.
 \item \code{espn_cfb_player_splits()}: Get a single college football player's
 statistical splits for a season -- stat lines broken out by month,
 quarter, down, field position, and more.
-\item \code{espn_cfb_player_statistics()}: Get a single college football player's
+\item \code{espn_cfb_player_career_stats()}: Get a single college football player's
 full season statistics from ESPN -- every published stat across every
 category, in long format (one row per stat).
 \item \code{espn_cfb_player_stats()}: Get ESPN college football player season
@@ -165,7 +165,7 @@ resources (statistics, event log, college).
 
 \subsection{\strong{ESPN College Football Player Season Statistics (Long Format)}}{
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_statistics(athlete_id = 102597, year = 2024)
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{espn_cfb_player_career_stats(athlete_id = 102597, year = 2024)
 }\if{html}{\out{</div>}}
 }
 
@@ -249,12 +249,13 @@ Other ESPN CFB Functions:
 \code{\link{espn_cfb_game_teams}()},
 \code{\link{espn_cfb_groups}()},
 \code{\link{espn_cfb_pbp_v2}()},
+\code{\link{espn_cfb_player_career_stats}()},
 \code{\link{espn_cfb_player_eventlog}()},
 \code{\link{espn_cfb_player_gamelog}()},
 \code{\link{espn_cfb_player_overview}()},
 \code{\link{espn_cfb_player_seasons}()},
 \code{\link{espn_cfb_player_splits}()},
-\code{\link{espn_cfb_player_statistics}()},
+\code{\link{espn_cfb_player_stats_v3}()},
 \code{\link{espn_cfb_players}()},
 \code{\link{espn_cfb_position}()},
 \code{\link{espn_cfb_positions}()},

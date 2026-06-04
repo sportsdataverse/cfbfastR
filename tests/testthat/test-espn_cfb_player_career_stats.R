@@ -16,9 +16,9 @@ test_that("ESPN CFB Player Season Statistics", {
     "athlete_jersey", "athlete_position", "athlete_position_abbreviation"
   )
 
-  x <- espn_cfb_player_statistics(athlete_id = 102597, year = 2024)
+  x <- espn_cfb_player_career_stats(athlete_id = 102597, year = 2024)
 
-  y <- espn_cfb_player_statistics(athlete_id = 102597, year = 2023)
+  y <- espn_cfb_player_career_stats(athlete_id = 102597, year = 2023)
 
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) {
     skip("No ESPN player statistics data returned at test time")
@@ -33,7 +33,7 @@ test_that("ESPN CFB Player Season Statistics", {
 
   # athlete_detail = FALSE -- the name columns and the fetch are skipped;
   # the base schema is unchanged.
-  z <- espn_cfb_player_statistics(athlete_id = 102597, year = 2024,
+  z <- espn_cfb_player_career_stats(athlete_id = 102597, year = 2024,
                                   athlete_detail = FALSE)
   if (is.data.frame(z) && nrow(z) > 0) {
     expect_in(cols, colnames(z))

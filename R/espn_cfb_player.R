@@ -29,7 +29,7 @@
 #' * `espn_cfb_player_splits()`: Get a single college football player's
 #'   statistical splits for a season -- stat lines broken out by month,
 #'   quarter, down, field position, and more.
-#' * `espn_cfb_player_statistics()`: Get a single college football player's
+#' * `espn_cfb_player_career_stats()`: Get a single college football player's
 #'   full season statistics from ESPN -- every published stat across every
 #'   category, in long format (one row per stat).
 #' * `espn_cfb_player_stats()`: Get ESPN college football player season
@@ -85,7 +85,7 @@
 #' ## **ESPN College Football Player Season Statistics (Long Format)**
 #'
 #' ```r
-#' espn_cfb_player_statistics(athlete_id = 102597, year = 2024)
+#' espn_cfb_player_career_stats(athlete_id = 102597, year = 2024)
 #' ```
 #'
 #' ## **Get ESPN college football player stats data**
@@ -1148,7 +1148,7 @@ espn_cfb_player_overview <- function(athlete_id = NULL,
 #' which is exactly the player's season list. Each entry carries the
 #' season `$ref` and one or more statistics references (split by stat
 #' `type`, e.g. `total`). The statistics themselves are not
-#' auto-dereferenced; use [espn_cfb_player_statistics()] for a resolved,
+#' auto-dereferenced; use [espn_cfb_player_career_stats()] for a resolved,
 #' long-format stat table for a given season.
 #'
 #' When `athlete_detail = TRUE` (the default) the requested athlete's ESPN
@@ -1476,6 +1476,149 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
 
 
 #' @title
+#' **ESPN College Football Player Stats (web v3, all categories)**
+#' @description Get a single college football player's web-common-v3 statistics
+#' from ESPN -- the comprehensive `/athletes/{id}/stats` payload (every category:
+#' passing, rushing, receiving, defensive, etc.) in long format (one row per stat).
+#' This is the richer "v3" companion to [espn_cfb_player_stats()] (core-v2 season
+#' statistics) and [espn_cfb_player_career_stats()].
+#' @param athlete_id (*Character/Integer* required): ESPN athlete id.
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param athlete_detail (*Logical*): when `TRUE` (default), append the
+#' `athlete_*` name columns via one extra athlete fetch.
+#' @return A data frame with one row per (category x team-season x stat):
+#'
+#'    |col_name          |types     |description                              |
+#'    |:-----------------|:---------|:----------------------------------------|
+#'    |athlete_id        |character |ESPN athlete id.                         |
+#'    |season            |integer   |Requested season (4-digit year).         |
+#'    |category          |character |Stat category key (e.g. `passing`).      |
+#'    |category_display  |character |Human-readable category name.            |
+#'    |team_id           |character |ESPN team id for the stat row.           |
+#'    |team_slug         |character |Team slug for the stat row.              |
+#'    |stat_season       |integer   |Season of the stat row (per ESPN).       |
+#'    |position          |character |Player position for the stat row.        |
+#'    |stat_name         |character |Stat key (from the category `names`).    |
+#'    |stat_label        |character |Stat short label (from `labels`).        |
+#'    |stat_display_name |character |Stat display name (from `displayNames`). |
+#'    |value             |character |Stat value (as published).               |
+#'
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 request req_headers req_retry req_perform resp_body_string
+#' @importFrom cli cli_abort
+#' @importFrom dplyr as_tibble bind_rows
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
+#' @importFrom rlang "%||%"
+#' @keywords ESPN CFB Player Stats
+#' @family ESPN CFB Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(espn_cfb_player_stats_v3(athlete_id = 4431611, year = 2023))
+#' }
+espn_cfb_player_stats_v3 <- function(athlete_id = NULL,
+                                     year = NULL,
+                                     athlete_detail = TRUE) {
+  if (is.null(athlete_id)) {
+    cli::cli_abort("{.arg athlete_id} is required for the ESPN player stats (v3) endpoint.")
+  }
+  if (is.null(year)) {
+    cli::cli_abort("{.arg year} is required for the ESPN player stats (v3) endpoint.")
+  }
+  validate_year(year)
+
+  url <- glue::glue(
+    "https://site.web.api.espn.com/apis/common/v3/sports/football/",
+    "college-football/athletes/{athlete_id}/stats?season={year}"
+  )
+
+  headers <- c(
+    `User-Agent` = paste0(
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ",
+      "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+    ),
+    `Accept` = "application/json, text/plain, */*",
+    `Origin` = "https://www.espn.com",
+    `Referer` = "https://www.espn.com/"
+  )
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- httr2::request(url) |>
+        httr2::req_headers(!!!headers) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_perform()
+      check_status(res)
+
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(simplifyVector = FALSE)
+
+      categories <- raw[["categories"]]
+      if (is.null(categories) || length(categories) == 0) {
+        return(df)
+      }
+
+      rows <- list()
+      for (cat in categories) {
+        cat_name    <- cat[["name"]] %||% NA_character_
+        cat_display <- cat[["displayName"]] %||% NA_character_
+        names_v     <- unlist(cat[["names"]] %||% list())
+        labels_v    <- unlist(cat[["labels"]] %||% list())
+        displays_v  <- unlist(cat[["displayNames"]] %||% list())
+        for (st in cat[["statistics"]] %||% list()) {
+          stat_vals <- unlist(st[["stats"]] %||% list())
+          n <- min(length(names_v), length(stat_vals))
+          for (i in seq_len(n)) {
+            rows[[length(rows) + 1L]] <- data.frame(
+              athlete_id        = as.character(athlete_id),
+              season            = suppressWarnings(as.integer(year)),
+              category          = cat_name,
+              category_display  = cat_display,
+              team_id           = as.character(st[["teamId"]] %||% NA_character_),
+              team_slug         = st[["teamSlug"]] %||% NA_character_,
+              stat_season       = suppressWarnings(as.integer(st[["season"]] %||% NA)),
+              position          = st[["position"]] %||% NA_character_,
+              stat_name         = names_v[i] %||% NA_character_,
+              stat_label        = if (i <= length(labels_v)) labels_v[i] else NA_character_,
+              stat_display_name = if (i <= length(displays_v)) displays_v[i] else NA_character_,
+              value             = as.character(stat_vals[i]),
+              stringsAsFactors  = FALSE
+            )
+          }
+        }
+      }
+
+      if (length(rows) == 0) {
+        return(df)
+      }
+
+      df <- dplyr::bind_rows(rows) |>
+        janitor::clean_names() |>
+        dplyr::as_tibble()
+
+      if (isTRUE(athlete_detail)) {
+        df <- .espn_cfb_attach_athlete_detail(df, athlete_id, year = year)
+      }
+
+      df <- df |>
+        make_cfbfastR_data("Player web-v3 statistics from ESPN", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN player stats (v3) data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
+  return(.attach_query_meta_auto(df))
+}
+
+
+#' @title
 #' **ESPN College Football Player Season Statistics (Long Format)**
 #' @description Get a single college football player's full season
 #' statistics from ESPN -- every published stat across every category, in
@@ -1543,11 +1686,11 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_player_statistics(athlete_id = 102597, year = 2024))
-#'   try(espn_cfb_player_statistics(athlete_id = 102597, year = 2024,
+#'   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024))
+#'   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024,
 #'                                  athlete_detail = FALSE))
 #' }
-espn_cfb_player_statistics <- function(athlete_id = NULL,
+espn_cfb_player_career_stats <- function(athlete_id = NULL,
                                        year = NULL,
                                        season_type = 2,
                                        athlete_detail = TRUE) {
