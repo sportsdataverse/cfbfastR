@@ -3,17 +3,17 @@
 #' @title
 #' **CFBD Games Endpoint Overview**
 #' @description Get results, statistics and information for games
-#' \describe{
-#'   \item{`cfbd_game_box_advanced()`:}{ Get game advanced box score information.}
-#'   \item{`cfbd_game_player_stats()`:}{ Get results information from games.}
-#'   \item{`cfbd_game_team_stats()`:}{ Get team statistics by game.}
-#'   \item{`cfbd_game_info()`:}{ Get results information from games.}
-#'   \item{`cfbd_live_scoreboard()`:}{ Get live scoreboard information.}
-#'   \item{`cfbd_game_weather()`:}{ Get weather from games.}
-#'   \item{`cfbd_game_records()`:}{ Get team records by year.}
-#'   \item{`cfbd_calendar()`:}{ Get calendar of weeks by season.}
-#'   \item{`cfbd_game_media()`:}{ Get game media information (TV, radio, etc).}
-#' }
+#'
+#' * `cfbd_game_box_advanced()`: Get game advanced box score information.
+#' * `cfbd_game_player_stats()`: Get results information from games.
+#' * `cfbd_game_team_stats()`: Get team statistics by game.
+#' * `cfbd_game_info()`: Get results information from games.
+#' * `cfbd_live_scoreboard()`: Get live scoreboard information.
+#' * `cfbd_game_weather()`: Get weather from games.
+#' * `cfbd_game_records()`: Get team records by year.
+#' * `cfbd_calendar()`: Get calendar of weeks by season.
+#' * `cfbd_game_media()`: Get game media information (TV, radio, etc).
+#'
 #' @details
 #' ### **Get game advanced box score information.**
 #' ```r
@@ -63,6 +63,36 @@
 #'
 NULL
 
+# Internal: resolve a conference abbreviation (e.g. "SEC") to its full
+# `cfbd_conferences()` name (e.g. "SEC" -> "SEC", "P12" -> "Pac-12"). Used
+# by the per-conference filter sites in `cfbd_game_team_stats()` and
+# similar wrappers. Returns a length-1 character; errors loudly via cli
+# when the abbreviation matches zero rows or more than one row in the
+# conferences table (the prior code passed the multi-element vector
+# straight to `dplyr::filter()`, producing the "longer object length is
+# not a multiple of shorter object length" recycling warning and an
+# incomplete filtered frame -- see GH #119).
+#' @noRd
+#' @keywords internal
+.lookup_conference_name <- function(conference) {
+  confs <- cfbd_conferences()
+  match_rows <- confs[confs$abbreviation == conference, , drop = FALSE]
+  if (nrow(match_rows) == 0L) {
+    cli::cli_abort(c(
+      "Unknown conference abbreviation {.val {conference}}.",
+      i = "See {.fn cfbd_conferences} for the list of valid abbreviations."
+    ))
+  }
+  if (nrow(match_rows) > 1L) {
+    cli::cli_warn(c(
+      "Multiple conferences match abbreviation {.val {conference}}.",
+      i = "Using the first match: {.val {match_rows$name[1L]}}.",
+      i = "Other matches: {.val {match_rows$name[-1L]}}."
+    ))
+  }
+  match_rows$name[1L]
+}
+
 #' @title
 #' **Get results information from games.**
 #' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
@@ -80,42 +110,44 @@ NULL
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #'
-#' @return [cfbd_game_info()] - A data frame with 22 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`week`: integer.}{Game week.}
-#'   \item{`season_type`: character.}{Season type of the game.}
-#'   \item{`start_date`: character.}{Game date.}
-#'   \item{`start_time_tbd`: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
-#'   \item{`neutral_site`: logical.}{TRUE/FALSE flag for the game taking place at a neutral site.}
-#'   \item{`conference_game`: logical.}{TRUE/FALSE flag for this game qualifying as a conference game.}
-#'   \item{`attendance`: integer.}{Reported attendance at the game.}
-#'   \item{`venue_id`: integer.}{Referencing venue id.}
-#'   \item{`venue`: character.}{Venue name.}
-#'   \item{`home_id`: integer.}{Home team referencing id.}
-#'   \item{`home_team`: character.}{Home team name.}
-#'   \item{`home_conference`: character.}{Home team conference.}
-#'   \item{`home_division`: character.}{Home team division.}
-#'   \item{`home_points`: integer.}{Home team points.}
-#'   \item{`home_post_win_prob`: character.}{Home team post-game win probability.}
-#'   \item{`home_pregame_elo`: character.}{Home team pre-game ELO rating.}
-#'   \item{`home_postgame_elo`: character.}{Home team post-game ELO rating.}
-#'   \item{`away_id`: integer.}{Away team referencing id.}
-#'   \item{`away_team`: character.}{Away team name.}
-#'   \item{`away_conference`: character.}{Away team conference.}
-#'   \item{`away_division`: character.}{Away team division.}
-#'   \item{`away_points`: integer.}{Away team points.}
-#'   \item{`away_post_win_prob`: character.}{Away team post-game win probability.}
-#'   \item{`away_pregame_elo`: character.}{Away team pre-game ELO rating.}
-#'   \item{`away_postgame_elo`: character.}{Away team post-game ELO rating.}
-#'   \item{`excitement_index`: character.}{Game excitement index.}
-#'   \item{`highlights`: character.}{Game highlight urls.}
-#'   \item{`notes`: character.}{Game notes.}
-#' }
+#' @return [cfbd_game_info()] - A data frame with 30 variables:
+#'
+#'   |col_name           |types     |description                                                                |
+#'   |:------------------|:---------|:--------------------------------------------------------------------------|
+#'   |game_id            |integer   |Referencing game id.                                                       |
+#'   |season             |integer   |Season of the game.                                                        |
+#'   |week               |integer   |Game week.                                                                 |
+#'   |season_type        |character |Season type of the game.                                                   |
+#'   |start_date         |character |Game date.                                                                 |
+#'   |start_time_tbd     |logical   |TRUE/FALSE flag for if the game's start time is to be determined.          |
+#'   |neutral_site       |logical   |TRUE/FALSE flag for the game taking place at a neutral site.               |
+#'   |conference_game    |logical   |TRUE/FALSE flag for this game qualifying as a conference game.             |
+#'   |attendance         |integer   |Reported attendance at the game.                                           |
+#'   |venue_id           |integer   |Referencing venue id.                                                      |
+#'   |venue              |character |Venue name.                                                                |
+#'   |home_id            |integer   |Home team referencing id.                                                  |
+#'   |home_team          |character |Home team name.                                                            |
+#'   |home_conference    |character |Home team conference.                                                      |
+#'   |home_division      |character |Home team division.                                                        |
+#'   |home_points        |integer   |Home team points.                                                          |
+#'   |home_post_win_prob |character |Home team post-game win probability.                                       |
+#'   |home_pregame_elo   |character |Home team pre-game ELO rating.                                             |
+#'   |home_postgame_elo  |character |Home team post-game ELO rating.                                            |
+#'   |away_id            |integer   |Away team referencing id.                                                  |
+#'   |away_team          |character |Away team name.                                                            |
+#'   |away_conference    |character |Away team conference.                                                      |
+#'   |away_division      |character |Away team division.                                                        |
+#'   |away_points        |integer   |Away team points.                                                          |
+#'   |away_post_win_prob |character |Away team post-game win probability.                                       |
+#'   |away_pregame_elo   |character |Away team pre-game ELO rating.                                             |
+#'   |away_postgame_elo  |character |Away team post-game ELO rating.                                            |
+#'   |excitement_index   |character |Game excitement index.                                                     |
+#'   |highlights         |character |Game highlight urls.                                                       |
+#'   |notes              |character |Game notes.                                                                |
+#'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -163,7 +195,7 @@ cfbd_game_info <- function(year,
     "division" = division,
     "id" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -174,35 +206,35 @@ cfbd_game_info <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
       if (!quarter_scores) {
-        df <- dplyr::select(df, -"home_line_scores", -"away_line_scores") %>%
-          dplyr::rename("game_id" = "id") %>%
+        df <- dplyr::select(df, -"home_line_scores", -"away_line_scores") |>
+          dplyr::rename("game_id" = "id") |>
           as.data.frame()
       } else {
-        df <- df %>%
-          tidyr::unnest_wider("home_line_scores", names_sep = "_Q") %>%
+        df <- df |>
+          tidyr::unnest_wider("home_line_scores", names_sep = "_Q") |>
           tidyr::unnest_wider("away_line_scores", names_sep = "_Q")
 
         colnames(df) <- gsub("_line_scores", "_scores", colnames(df))
-        df <- df %>%
+        df <- df |>
           dplyr::rename("game_id" = "id")
       }
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "home_division" = "home_classification",
           "home_post_win_prob" = "home_postgame_win_probability",
           "away_division" = "away_classification",
           "away_post_win_prob" = "away_postgame_win_probability"
-        ) %>%
+        ) |>
         make_cfbfastR_data("Game information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -221,34 +253,36 @@ cfbd_game_info <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @return [cfbd_game_weather()] - A data frame with 23 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`week`: integer.}{Game week.}
-#'   \item{`season_type`: character.}{Season type of the game.}
-#'   \item{`start_date`: character.}{Game date.}
-#'   \item{`start_time_tbd`: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
-#'   \item{`game_indoors`: logical.}{TRUE/FALSE flag for if the game is indoors}
-#'   \item{`home_team`: character.}{Home team name.}
-#'   \item{`home_conference`: character.}{Home team conference.}
-#'   \item{`away_team`: character.}{Away team name.}
-#'   \item{`away_conference`: character.}{Away team conference.}
-#'   \item{`venue_id`: integer.}{Referencing venue id.}
-#'   \item{`venue`: character.}{Venue name.}
-#'   \item{`temperature`: integer.}{Temperature.}
-#'   \item{`dew_point`: integer.}{Dew Point.}
-#'   \item{`humidity`: integer.}{Humidity.}
-#'   \item{`precipitation`: integer.}{Precipitation.}
-#'   \item{`snowfall`: integer.}{Snowfall.}
-#'   \item{`wind_direction`: integer.}{Wind direction.}
-#'   \item{`wind_speed`: integer.}{Wind Speed.}
-#'   \item{`pressure`: integer.}{Pressure.}
-#'   \item{`weather_condition_code`: integer.}{Weather condition code.}
-#'   \item{`weather_condition`: character.}{Weather condition.}
-#' }
+#'
+#'   |col_name               |types     |description                                                          |
+#'   |:----------------------|:---------|:--------------------------------------------------------------------|
+#'   |game_id                |integer   |Referencing game id.                                                 |
+#'   |season                 |integer   |Season of the game.                                                  |
+#'   |week                   |integer   |Game week.                                                           |
+#'   |season_type            |character |Season type of the game.                                             |
+#'   |start_date             |character |Game date.                                                           |
+#'   |start_time_tbd         |logical   |TRUE/FALSE flag for if the game's start time is to be determined.    |
+#'   |game_indoors           |logical   |TRUE/FALSE flag for if the game is indoors.                          |
+#'   |home_team              |character |Home team name.                                                      |
+#'   |home_conference        |character |Home team conference.                                                |
+#'   |away_team              |character |Away team name.                                                      |
+#'   |away_conference        |character |Away team conference.                                                |
+#'   |venue_id               |integer   |Referencing venue id.                                                |
+#'   |venue                  |character |Venue name.                                                          |
+#'   |temperature            |integer   |Game-time temperature, in degrees Fahrenheit.                        |
+#'   |dew_point              |integer   |Dew point at kickoff, in degrees Fahrenheit.                         |
+#'   |humidity               |integer   |Relative humidity at kickoff, as a percentage (0-100).               |
+#'   |precipitation          |integer   |Precipitation total at kickoff, in inches.                           |
+#'   |snowfall               |integer   |Snowfall total at kickoff, in inches.                                |
+#'   |wind_direction         |integer   |Wind direction, in degrees (0-360, 0 = north).                       |
+#'   |wind_speed             |integer   |Wind speed, in miles per hour.                                       |
+#'   |pressure               |integer   |Barometric pressure, in millibars.                                   |
+#'   |weather_condition_code |integer   |Weather condition code from the upstream weather provider.           |
+#'   |weather_condition      |character |Free-text weather condition (e.g. "Clear", "Light rain").            |
+#'
 #' @keywords Game Weather
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -279,7 +313,7 @@ cfbd_game_weather <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -289,21 +323,36 @@ cfbd_game_weather <- function(year,
       res <- get_req(full_url)
       check_status(res)
 
-      # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        janitor::clean_names()
+      # Get the content as parsed JSON first so we can distinguish an
+      # empty-array response (upstream has not collected weather for
+      # this year/week yet -- common during the in-season window before
+      # CFBD backfills, see GH #116) from a parse/HTTP error.
+      raw <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON()
 
-      df <- df %>%
-        dplyr::rename("game_id" = "id")
-
-
-      df <- df %>%
-        make_cfbfastR_data("Game weather data from CollegeFootballData.com",Sys.time())
+      if (length(raw) == 0L || (is.data.frame(raw) && nrow(raw) == 0L)) {
+        cli::cli_alert_info(c(
+          "CFBD returned no weather rows for the requested filters.",
+          "i" = "CFBD backfills weather mid-week during the season; ",
+          "i" = "try again later, or pass a prior `year` to confirm the call shape."
+        ))
+        df <- data.frame()
+      } else {
+        df <- raw |>
+          janitor::clean_names() |>
+          dplyr::rename("game_id" = "id") |>
+          make_cfbfastR_data(
+            "Game weather data from CollegeFootballData.com",
+            Sys.time()
+          )
+      }
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no game weather data available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: Failed to fetch game weather data.",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     },
     finally = {
     }
@@ -315,17 +364,19 @@ cfbd_game_weather <- function(year,
 #' **Get calendar of weeks by season.**
 #' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #' @return [cfbd_calendar()] - A data frame with 5 variables:
-#' \describe{
-#'   \item{`season`: character.}{Calendar season.}
-#'   \item{`week`: integer.}{Calendar game week.}
-#'   \item{`season_type`: character}{Season type of calendar week.}
-#'   \item{`first_game_start`: character.}{First game start time of the calendar week.}
-#'   \item{`last_game_start`: character.}{Last game start time of the calendar week.}
-#' }
+#'
+#'   |col_name         |types     |description                                       |
+#'   |:----------------|:---------|:-------------------------------------------------|
+#'   |season           |character |Calendar season.                                  |
+#'   |week             |integer   |Calendar game week.                               |
+#'   |season_type      |character |Season type of calendar week.                     |
+#'   |first_game_start |character |First game start time of the calendar week.      |
+#'   |last_game_start  |character |Last game start time of the calendar week.       |
+#'
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @family CFBD Games
@@ -346,7 +397,7 @@ cfbd_calendar <- function(year) {
   query_params <- list(
     "year" = year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -357,10 +408,10 @@ cfbd_calendar <- function(year) {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
+        janitor::clean_names() |>
         dplyr::select(
           "season",
           "week",
@@ -370,11 +421,11 @@ cfbd_calendar <- function(year) {
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Calendar data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no calendar data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -395,24 +446,26 @@ cfbd_calendar <- function(year) {
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #'
 #' @return [cfbd_game_media()] - A data frame with 13 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`week`: integer.}{Game week.}
-#'   \item{`season_type`: character.}{Season type of the game.}
-#'   \item{`start_time`: character.}{Game start time.}
-#'   \item{`is_start_time_tbd`: logical.}{TRUE/FALSE flag for if the start time is still to be determined.}
-#'   \item{`home_team`: character.}{Home team of the game.}
-#'   \item{`home_conference`: character.}{Conference of the home team.}
-#'   \item{`away_team`: character.}{Away team of the game.}
-#'   \item{`away_conference`: character.}{Conference of the away team.}
-#'   \item{`tv`: list.}{TV broadcast networks.}
-#'   \item{`radio`: logical.}{Radio broadcast networks.}
-#'   \item{`web`: list.}{Web viewing platforms carrying the game.}
-#' }
+#'
+#'   |col_name          |types     |description                                                       |
+#'   |:-----------------|:---------|:-----------------------------------------------------------------|
+#'   |game_id           |integer   |Referencing game id.                                              |
+#'   |season            |integer   |Season of the game.                                               |
+#'   |week              |integer   |Game week.                                                        |
+#'   |season_type       |character |Season type of the game.                                          |
+#'   |start_time        |character |Game start time.                                                  |
+#'   |is_start_time_tbd |logical   |TRUE/FALSE flag for if the start time is still to be determined.  |
+#'   |home_team         |character |Home team of the game.                                            |
+#'   |home_conference   |character |Conference of the home team.                                      |
+#'   |away_team         |character |Away team of the game.                                            |
+#'   |away_conference   |character |Conference of the away team.                                      |
+#'   |tv                |list      |TV broadcast networks.                                            |
+#'   |radio             |logical   |Radio broadcast networks.                                         |
+#'   |web               |list      |Web viewing platforms carrying the game.                          |
+#'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -452,7 +505,7 @@ cfbd_game_media <- function(year,
     "mediaType" = media_type,
     "classification" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   cols <- c(
     "game_id", "season", "week", "season_type", "start_time",
@@ -469,29 +522,29 @@ cfbd_game_media <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         tidyr::pivot_wider(
           names_from = "mediaType",
           values_from = "outlet",
           values_fn = list
-        ) %>%
-        janitor::clean_names() %>%
+        ) |>
+        janitor::clean_names() |>
         dplyr::rename("game_id" = "id")
 
       df[cols[!(cols %in% colnames(df))]] <- NA
       df <- df[!duplicated(df), ]
 
-      df <- df %>%
+      df <- df |>
         dplyr::select(dplyr::all_of(cols), dplyr::everything())
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Game media data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -506,81 +559,83 @@ cfbd_game_media <- function(year,
 #' Can be found using the [cfbd_game_info()] function
 #' @param long (*Logical* default `FALSE`): Return the data in a long format.
 #' @return [cfbd_game_box_advanced()] - A data frame with 2 rows and 69 variables:
-#' \describe{
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`plays`: double.}{Number of plays.}
-#'   \item{`ppa_overall_total`: double.}{Predicted points added (PPA) overall total.}
-#'   \item{`ppa_overall_quarter1`: double.}{Predicted points added (PPA) overall Q1.}
-#'   \item{`ppa_overall_quarter2`: double.}{Predicted points added (PPA) overall Q2.}
-#'   \item{`ppa_overall_quarter3`: double.}{Predicted points added (PPA) overall Q3.}
-#'   \item{`ppa_overall_quarter4`: double.}{Predicted points added (PPA) overall Q4.}
-#'   \item{`ppa_passing_total`: double.}{Passing predicted points added (PPA) total.}
-#'   \item{`ppa_passing_quarter1`: double.}{Passing predicted points added (PPA) Q1.}
-#'   \item{`ppa_passing_quarter2`: double.}{Passing predicted points added (PPA) Q2.}
-#'   \item{`ppa_passing_quarter3`: double.}{Passing predicted points added (PPA) Q3.}
-#'   \item{`ppa_passing_quarter4`: double.}{Passing predicted points added (PPA) Q4.}
-#'   \item{`ppa_rushing_total`: double.}{Rushing predicted points added (PPA) total.}
-#'   \item{`ppa_rushing_quarter1`: double.}{Rushing predicted points added (PPA) Q1.}
-#'   \item{`ppa_rushing_quarter2`: double.}{Rushing predicted points added (PPA) Q2.}
-#'   \item{`ppa_rushing_quarter3`: double.}{Rushing predicted points added (PPA) Q3.}
-#'   \item{`ppa_rushing_quarter4`: double.}{Rushing predicted points added (PPA) Q4.}
-#'   \item{`cumulative_ppa_plays`: double.}{Cumulative predicted points added (PPA) added total.}
-#'   \item{`cumulative_ppa_overall_total`: double.}{Cumulative predicted points added (PPA) total.}
-#'   \item{`cumulative_ppa_overall_quarter1`: double.}{Cumulative predicted points added (PPA) Q1.}
-#'   \item{`cumulative_ppa_overall_quarter2`: double.}{Cumulative predicted points added (PPA) Q2.}
-#'   \item{`cumulative_ppa_overall_quarter3`: double.}{Cumulative predicted points added (PPA) Q3.}
-#'   \item{`cumulative_ppa_overall_quarter4`: double.}{Cumulative predicted points added (PPA) Q4.}
-#'   \item{`cumulative_ppa_passing_total`: double.}{Cumulative passing predicted points added (PPA) total.}
-#'   \item{`cumulative_ppa_passing_quarter1`: double.}{Cumulative passing predicted points added (PPA) Q1.}
-#'   \item{`cumulative_ppa_passing_quarter2`: double.}{Cumulative passing predicted points added (PPA) Q2.}
-#'   \item{`cumulative_ppa_passing_quarter3`: double.}{Cumulative passing predicted points added (PPA) Q3.}
-#'   \item{`cumulative_ppa_passing_quarter4`: double.}{Cumulative passing predicted points added (PPA) Q4.}
-#'   \item{`cumulative_ppa_rushing_total`: double.}{Cumulative rushing predicted points added (PPA) total.}
-#'   \item{`cumulative_ppa_rushing_quarter1`: double.}{Cumulative rushing predicted points added (PPA) Q1.}
-#'   \item{`cumulative_ppa_rushing_quarter2`: double.}{Cumulative rushing predicted points added (PPA) Q2.}
-#'   \item{`cumulative_ppa_rushing_quarter3`: double.}{Cumulative rushing predicted points added (PPA) Q3.}
-#'   \item{`cumulative_ppa_rushing_quarter4`: double.}{Cumulative rushing predicted points added (PPA) Q4.}
-#'   \item{`success_rates_overall_total`: double.}{Success rates overall total.}
-#'   \item{`success_rates_overall_quarter1`: double.}{Success rates overall Q1.}
-#'   \item{`success_rates_overall_quarter2`: double.}{Success rates overall Q2.}
-#'   \item{`success_rates_overall_quarter3`: double.}{Success rates overall Q3.}
-#'   \item{`success_rates_overall_quarter4`: double.}{Success rates overall Q4.}
-#'   \item{`success_rates_standard_downs_total`: double.}{Success rates standard downs total.}
-#'   \item{`success_rates_standard_downs_quarter1`: double.}{Success rates standard downs Q1.}
-#'   \item{`success_rates_standard_downs_quarter2`: double.}{Success rates standard downs Q2.}
-#'   \item{`success_rates_standard_downs_quarter3`: double.}{Success rates standard downs Q3.}
-#'   \item{`success_rates_standard_downs_quarter4`: double.}{Success rates standard downs Q4.}
-#'   \item{`success_rates_passing_downs_total`: double.}{Success rates passing downs total.}
-#'   \item{`success_rates_passing_downs_quarter1`: double.}{Success rates passing downs Q1.}
-#'   \item{`success_rates_passing_downs_quarter2`: double.}{Success rates passing downs Q2.}
-#'   \item{`success_rates_passing_downs_quarter3`: double.}{Success rates passing downs Q3.}
-#'   \item{`success_rates_passing_downs_quarter4`: double.}{Success rates passing downs Q4.}
-#'   \item{`explosiveness_overall_total`: double.}{Explosiveness rates overall total.}
-#'   \item{`explosiveness_overall_quarter1`: double.}{Explosiveness rates overall Q1.}
-#'   \item{`explosiveness_overall_quarter2`: double.}{Explosiveness rates overall Q2.}
-#'   \item{`explosiveness_overall_quarter3`: double.}{Explosiveness rates overall Q3.}
-#'   \item{`explosiveness_overall_quarter4`: double.}{Explosiveness rates overall Q4.}
-#'   \item{`rushing_power_success`: double.}{Rushing power success rate.}
-#'   \item{`rushing_stuff_rate`: double.}{Rushing stuff rate.}
-#'   \item{`rushing_line_yds`: double.}{Rushing offensive line yards.}
-#'   \item{`rushing_line_yds_avg`: double.}{Rushing line yards average.}
-#'   \item{`rushing_second_lvl_yds`: double.}{Rushing second-level yards.}
-#'   \item{`rushing_second_lvl_yds_avg`: double.}{Average second level yards per rush.}
-#'   \item{`rushing_open_field_yds`: double.}{Rushing open field yards.}
-#'   \item{`rushing_open_field_yds_avg`: double.}{Average rushing open field yards average.}
-#'   \item{`havoc_total`: double.}{Total havoc rate.}
-#'   \item{`havoc_front_seven`: double.}{Front-7 players havoc rate.}
-#'   \item{`havoc_db`: double.}{Defensive back players havoc rate.}
-#'   \item{`scoring_opps_opportunities`: double.}{Number of scoring opportunities.}
-#'   \item{`scoring_opps_points`: double.}{Points on scoring opportunity drives.}
-#'   \item{`scoring_opps_pts_per_opp`: double.}{Points per scoring opportunity drives.}
-#'   \item{`field_pos_avg_start`: double.}{Average starting field position.}
-#'   \item{`field_pos_avg_starting_predicted_pts`: double.}{Average starting predicted points (PP) for the average starting field position.}
-#' }
+#'
+#'   |col_name                              |types     |description                                                                       |
+#'   |:-------------------------------------|:---------|:---------------------------------------------------------------------------------|
+#'   |team                                  |character |Team name.                                                                        |
+#'   |plays                                 |numeric   |Number of plays.                                                                  |
+#'   |ppa_overall_total                     |numeric   |Predicted points added (PPA) overall total.                                       |
+#'   |ppa_overall_quarter1                  |numeric   |Predicted points added (PPA) overall Q1.                                          |
+#'   |ppa_overall_quarter2                  |numeric   |Predicted points added (PPA) overall Q2.                                          |
+#'   |ppa_overall_quarter3                  |numeric   |Predicted points added (PPA) overall Q3.                                          |
+#'   |ppa_overall_quarter4                  |numeric   |Predicted points added (PPA) overall Q4.                                          |
+#'   |ppa_passing_total                     |numeric   |Passing predicted points added (PPA) total.                                       |
+#'   |ppa_passing_quarter1                  |numeric   |Passing predicted points added (PPA) Q1.                                          |
+#'   |ppa_passing_quarter2                  |numeric   |Passing predicted points added (PPA) Q2.                                          |
+#'   |ppa_passing_quarter3                  |numeric   |Passing predicted points added (PPA) Q3.                                          |
+#'   |ppa_passing_quarter4                  |numeric   |Passing predicted points added (PPA) Q4.                                          |
+#'   |ppa_rushing_total                     |numeric   |Rushing predicted points added (PPA) total.                                       |
+#'   |ppa_rushing_quarter1                  |numeric   |Rushing predicted points added (PPA) Q1.                                          |
+#'   |ppa_rushing_quarter2                  |numeric   |Rushing predicted points added (PPA) Q2.                                          |
+#'   |ppa_rushing_quarter3                  |numeric   |Rushing predicted points added (PPA) Q3.                                          |
+#'   |ppa_rushing_quarter4                  |numeric   |Rushing predicted points added (PPA) Q4.                                          |
+#'   |cumulative_ppa_plays                  |numeric   |Cumulative predicted points added (PPA) added total.                              |
+#'   |cumulative_ppa_overall_total          |numeric   |Cumulative predicted points added (PPA) total.                                    |
+#'   |cumulative_ppa_overall_quarter1       |numeric   |Cumulative predicted points added (PPA) Q1.                                       |
+#'   |cumulative_ppa_overall_quarter2       |numeric   |Cumulative predicted points added (PPA) Q2.                                       |
+#'   |cumulative_ppa_overall_quarter3       |numeric   |Cumulative predicted points added (PPA) Q3.                                       |
+#'   |cumulative_ppa_overall_quarter4       |numeric   |Cumulative predicted points added (PPA) Q4.                                       |
+#'   |cumulative_ppa_passing_total          |numeric   |Cumulative passing predicted points added (PPA) total.                            |
+#'   |cumulative_ppa_passing_quarter1       |numeric   |Cumulative passing predicted points added (PPA) Q1.                               |
+#'   |cumulative_ppa_passing_quarter2       |numeric   |Cumulative passing predicted points added (PPA) Q2.                               |
+#'   |cumulative_ppa_passing_quarter3       |numeric   |Cumulative passing predicted points added (PPA) Q3.                               |
+#'   |cumulative_ppa_passing_quarter4       |numeric   |Cumulative passing predicted points added (PPA) Q4.                               |
+#'   |cumulative_ppa_rushing_total          |numeric   |Cumulative rushing predicted points added (PPA) total.                            |
+#'   |cumulative_ppa_rushing_quarter1       |numeric   |Cumulative rushing predicted points added (PPA) Q1.                               |
+#'   |cumulative_ppa_rushing_quarter2       |numeric   |Cumulative rushing predicted points added (PPA) Q2.                               |
+#'   |cumulative_ppa_rushing_quarter3       |numeric   |Cumulative rushing predicted points added (PPA) Q3.                               |
+#'   |cumulative_ppa_rushing_quarter4       |numeric   |Cumulative rushing predicted points added (PPA) Q4.                               |
+#'   |success_rates_overall_total           |numeric   |Success rates overall total.                                                      |
+#'   |success_rates_overall_quarter1        |numeric   |Success rates overall Q1.                                                         |
+#'   |success_rates_overall_quarter2        |numeric   |Success rates overall Q2.                                                         |
+#'   |success_rates_overall_quarter3        |numeric   |Success rates overall Q3.                                                         |
+#'   |success_rates_overall_quarter4        |numeric   |Success rates overall Q4.                                                         |
+#'   |success_rates_standard_downs_total    |numeric   |Success rates standard downs total.                                               |
+#'   |success_rates_standard_downs_quarter1 |numeric   |Success rates standard downs Q1.                                                  |
+#'   |success_rates_standard_downs_quarter2 |numeric   |Success rates standard downs Q2.                                                  |
+#'   |success_rates_standard_downs_quarter3 |numeric   |Success rates standard downs Q3.                                                  |
+#'   |success_rates_standard_downs_quarter4 |numeric   |Success rates standard downs Q4.                                                  |
+#'   |success_rates_passing_downs_total     |numeric   |Success rates passing downs total.                                                |
+#'   |success_rates_passing_downs_quarter1  |numeric   |Success rates passing downs Q1.                                                   |
+#'   |success_rates_passing_downs_quarter2  |numeric   |Success rates passing downs Q2.                                                   |
+#'   |success_rates_passing_downs_quarter3  |numeric   |Success rates passing downs Q3.                                                   |
+#'   |success_rates_passing_downs_quarter4  |numeric   |Success rates passing downs Q4.                                                   |
+#'   |explosiveness_overall_total           |numeric   |Explosiveness rates overall total.                                                |
+#'   |explosiveness_overall_quarter1        |numeric   |Explosiveness rates overall Q1.                                                   |
+#'   |explosiveness_overall_quarter2        |numeric   |Explosiveness rates overall Q2.                                                   |
+#'   |explosiveness_overall_quarter3        |numeric   |Explosiveness rates overall Q3.                                                   |
+#'   |explosiveness_overall_quarter4        |numeric   |Explosiveness rates overall Q4.                                                   |
+#'   |rushing_power_success                 |numeric   |Rushing power success rate.                                                       |
+#'   |rushing_stuff_rate                    |numeric   |Rushing stuff rate.                                                               |
+#'   |rushing_line_yds                      |numeric   |Rushing offensive line yards.                                                     |
+#'   |rushing_line_yds_avg                  |numeric   |Rushing line yards average.                                                       |
+#'   |rushing_second_lvl_yds                |numeric   |Rushing second-level yards.                                                       |
+#'   |rushing_second_lvl_yds_avg            |numeric   |Average second level yards per rush.                                              |
+#'   |rushing_open_field_yds                |numeric   |Rushing open field yards.                                                         |
+#'   |rushing_open_field_yds_avg            |numeric   |Average rushing open field yards average.                                         |
+#'   |havoc_total                           |numeric   |Total havoc rate.                                                                 |
+#'   |havoc_front_seven                     |numeric   |Front-7 players havoc rate.                                                       |
+#'   |havoc_db                              |numeric   |Defensive back players havoc rate.                                                |
+#'   |scoring_opps_opportunities            |numeric   |Number of scoring opportunities.                                                  |
+#'   |scoring_opps_points                   |numeric   |Points on scoring opportunity drives.                                             |
+#'   |scoring_opps_pts_per_opp              |numeric   |Points per scoring opportunity drives.                                            |
+#'   |field_pos_avg_start                   |numeric   |Average starting field position.                                                  |
+#'   |field_pos_avg_starting_predicted_pts  |numeric   |Average starting predicted points (PP) for the average starting field position.   |
+#'
 #' @keywords Game Advanced Box Score
 #' @importFrom tibble enframe
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -607,7 +662,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
   query_params <- list(
     "id" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -618,23 +673,23 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
         purrr::map_if(is.data.frame, list)
 
       df <- tibble::enframe(unlist(df$teams, use.names = TRUE))
       team1 <- seq(1, nrow(df) - 1, by = 2)
-      df1 <- df[team1, ] %>%
+      df1 <- df[team1, ] |>
         dplyr::rename(
           "stat" = "name",
           "team1" = "value"
         )
 
       team2 <- seq(2, nrow(df), by = 2)
-      df2 <- df[team2, ] %>%
-        dplyr::rename("team2" = "value") %>%
+      df2 <- df[team2, ] |>
+        dplyr::rename("team2" = "value") |>
         dplyr::select("team2")
 
       df <- data.frame(cbind(df1, df2))
@@ -664,26 +719,26 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
       df$stat <- sub("cumulativePpa", "cumulative_ppa", df$stat)
 
       if (!long) {
-        team <- df %>%
-          dplyr::filter(.data$stat == "ppa_team") %>%
-          tidyr::pivot_longer(cols = c("team1", "team2")) %>%
+        team <- df |>
+          dplyr::filter(.data$stat == "ppa_team") |>
+          tidyr::pivot_longer(cols = c("team1", "team2")) |>
           dplyr::transmute(team = .data$value)
 
-        df <- df %>%
-          dplyr::filter(!stringr::str_detect(.data$stat, "team")) %>%
-          tidyr::pivot_longer(cols = c("team1", "team2")) %>%
-          tidyr::pivot_wider(names_from = "stat", values_from = "value") %>%
-          dplyr::select(-"name") %>%
-          dplyr::mutate_all(as.numeric) %>%
-          dplyr::bind_cols(team)  %>%
+        df <- df |>
+          dplyr::filter(!stringr::str_detect(.data$stat, "team")) |>
+          tidyr::pivot_longer(cols = c("team1", "team2")) |>
+          tidyr::pivot_wider(names_from = "stat", values_from = "value") |>
+          dplyr::select(-"name") |>
+          dplyr::mutate_all(as.numeric) |>
+          dplyr::bind_cols(team)  |>
           dplyr::select("team", dplyr::everything())
-        df <- df %>%
+        df <- df |>
           dplyr::rename(
             "rushing_line_yds_avg" = "rushing_line_yd_avg",
             "rushing_second_lvl_yds_avg" = "rushing_second_lvl_yd_avg",
             "rushing_open_field_yds_avg" = "rushing_open_field_yd_avg")
 
-        df <- df %>%
+        df <- df |>
           make_cfbfastR_data("Advanced box score data from CollegeFootballData.com",Sys.time())
 
       }
@@ -715,72 +770,72 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #'
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
 #'
-#'   |col_name            |types     |
-#'   |:-------------------|:---------|
-#'   |game_id             |integer   |
-#'   |team                |character |
-#'   |conference          |character |
-#'   |home_away           |character |
-#'   |team_points         |integer   |
-#'   |athlete_id          |integer   |
-#'   |athlete_name        |character |
-#'   |defensive_td        |numeric   |
-#'   |defensive_qb_hur    |numeric   |
-#'   |defensive_pd        |numeric   |
-#'   |defensive_tfl       |numeric   |
-#'   |defensive_sacks     |numeric   |
-#'   |defensive_solo      |numeric   |
-#'   |defensive_tot       |numeric   |
-#'   |fumbles_rec         |numeric   |
-#'   |fumbles_lost        |numeric   |
-#'   |fumbles_fum         |numeric   |
-#'   |punting_long        |numeric   |
-#'   |punting_in_20       |numeric   |
-#'   |punting_tb          |numeric   |
-#'   |punting_avg         |numeric   |
-#'   |punting_yds         |numeric   |
-#'   |punting_no          |numeric   |
-#'   |kicking_pts         |numeric   |
-#'   |kicking_long        |numeric   |
-#'   |kicking_pct         |numeric   |
-#'   |punt_returns_td     |numeric   |
-#'   |punt_returns_long   |numeric   |
-#'   |punt_returns_avg    |numeric   |
-#'   |punt_returns_yds    |numeric   |
-#'   |punt_returns_no     |numeric   |
-#'   |kick_returns_td     |numeric   |
-#'   |kick_returns_long   |numeric   |
-#'   |kick_returns_avg    |numeric   |
-#'   |kick_returns_yds    |numeric   |
-#'   |kick_returns_no     |numeric   |
-#'   |interceptions_td    |numeric   |
-#'   |interceptions_yds   |numeric   |
-#'   |interceptions_int   |numeric   |
-#'   |receiving_long      |numeric   |
-#'   |receiving_td        |numeric   |
-#'   |receiving_avg       |numeric   |
-#'   |receiving_yds       |numeric   |
-#'   |receiving_rec       |numeric   |
-#'   |rushing_long        |numeric   |
-#'   |rushing_td          |numeric   |
-#'   |rushing_avg         |numeric   |
-#'   |rushing_yds         |numeric   |
-#'   |rushing_car         |numeric   |
-#'   |passing_int         |numeric   |
-#'   |passing_td          |numeric   |
-#'   |passing_avg         |numeric   |
-#'   |passing_yds         |numeric   |
-#'   |passing_completions |numeric   |
-#'   |passing_attempts    |numeric   |
-#'   |passing_qbr         |numeric   |
-#'   |kicking_xpm         |numeric   |
-#'   |kicking_xpa         |numeric   |
-#'   |kicking_fgm         |numeric   |
-#'   |kicking_fga         |numeric   |
+#'   |col_name            |types     |description                                                                        |
+#'   |:-------------------|:---------|:----------------------------------------------------------------------------------|
+#'   |game_id             |integer   |CFBD-internal game id; join key to other CFBD endpoints.                           |
+#'   |team                |character |Full team name (e.g. "Alabama") for the player's team.                             |
+#'   |conference          |character |Conference name of the player's team (e.g. "SEC").                                 |
+#'   |home_away           |character |Whether the player's team played at home or away ("home"/"away").                  |
+#'   |team_points         |integer   |Total points scored by the player's team in this game.                             |
+#'   |athlete_id          |integer   |CFBD-internal athlete id for the player.                                           |
+#'   |athlete_name        |character |Player's display name as reported by CFBD.                                         |
+#'   |defensive_td        |numeric   |Defensive touchdowns scored by the player.                                         |
+#'   |defensive_qb_hur    |numeric   |Quarterback hurries credited to the player.                                        |
+#'   |defensive_pd        |numeric   |Passes defended (pass breakups) by the player.                                     |
+#'   |defensive_tfl       |numeric   |Tackles for loss credited to the player.                                           |
+#'   |defensive_sacks     |numeric   |Sacks credited to the player.                                                      |
+#'   |defensive_solo      |numeric   |Solo (unassisted) tackles by the player.                                           |
+#'   |defensive_tot       |numeric   |Total tackles (solo plus assisted) by the player.                                  |
+#'   |fumbles_rec         |numeric   |Fumbles recovered by the player.                                                   |
+#'   |fumbles_lost        |numeric   |Fumbles by the player that were lost to the opposing team.                         |
+#'   |fumbles_fum         |numeric   |Fumbles committed by the player.                                                   |
+#'   |punting_long        |numeric   |Longest punt by the player, in yards.                                              |
+#'   |punting_in_20       |numeric   |Punts downed inside the opponent 20-yard line.                                     |
+#'   |punting_tb          |numeric   |Punts resulting in a touchback.                                                    |
+#'   |punting_avg         |numeric   |Average yards per punt.                                                            |
+#'   |punting_yds         |numeric   |Total punting yards (gross).                                                       |
+#'   |punting_no          |numeric   |Number of punts attempted.                                                         |
+#'   |kicking_pts         |numeric   |Total points scored by the kicker (FGs + XPs).                                     |
+#'   |kicking_long        |numeric   |Longest made field goal, in yards.                                                 |
+#'   |kicking_pct         |numeric   |Field-goal percentage (made / attempted), 0-100.                                   |
+#'   |punt_returns_td     |numeric   |Touchdowns scored on punt returns.                                                 |
+#'   |punt_returns_long   |numeric   |Longest punt return, in yards.                                                     |
+#'   |punt_returns_avg    |numeric   |Average yards per punt return.                                                     |
+#'   |punt_returns_yds    |numeric   |Total punt-return yards.                                                           |
+#'   |punt_returns_no     |numeric   |Number of punt returns.                                                            |
+#'   |kick_returns_td     |numeric   |Touchdowns scored on kickoff returns.                                              |
+#'   |kick_returns_long   |numeric   |Longest kickoff return, in yards.                                                  |
+#'   |kick_returns_avg    |numeric   |Average yards per kickoff return.                                                  |
+#'   |kick_returns_yds    |numeric   |Total kickoff-return yards.                                                        |
+#'   |kick_returns_no     |numeric   |Number of kickoff returns.                                                         |
+#'   |interceptions_td    |numeric   |Touchdowns scored on interception returns (pick-sixes).                            |
+#'   |interceptions_yds   |numeric   |Interception-return yards.                                                         |
+#'   |interceptions_int   |numeric   |Number of interceptions made by the player.                                        |
+#'   |receiving_long      |numeric   |Longest reception by the player, in yards.                                         |
+#'   |receiving_td        |numeric   |Receiving touchdowns.                                                              |
+#'   |receiving_avg       |numeric   |Average yards per reception.                                                       |
+#'   |receiving_yds       |numeric   |Total receiving yards.                                                             |
+#'   |receiving_rec       |numeric   |Number of receptions (catches).                                                    |
+#'   |rushing_long        |numeric   |Longest rush by the player, in yards.                                              |
+#'   |rushing_td          |numeric   |Rushing touchdowns.                                                                |
+#'   |rushing_avg         |numeric   |Average yards per rushing attempt.                                                 |
+#'   |rushing_yds         |numeric   |Total rushing yards.                                                               |
+#'   |rushing_car         |numeric   |Rushing carries (attempts).                                                        |
+#'   |passing_int         |numeric   |Interceptions thrown by the passer.                                                |
+#'   |passing_td          |numeric   |Passing touchdowns thrown.                                                         |
+#'   |passing_avg         |numeric   |Yards per pass attempt.                                                            |
+#'   |passing_yds         |numeric   |Total passing yards.                                                               |
+#'   |passing_completions |numeric   |Pass completions (split from CFBD's `C/ATT` field).                                |
+#'   |passing_attempts    |numeric   |Pass attempts (split from CFBD's `C/ATT` field).                                   |
+#'   |passing_qbr         |numeric   |ESPN Quarterback Rating (QBR) for the player in this game.                         |
+#'   |kicking_xpm         |numeric   |Extra points made (split from CFBD's `XP` field).                                  |
+#'   |kicking_xpa         |numeric   |Extra points attempted (split from CFBD's `XP` field).                             |
+#'   |kicking_fgm         |numeric   |Field goals made (split from CFBD's `FG` field).                                   |
+#'   |kicking_fga         |numeric   |Field goals attempted (split from CFBD's `FG` field).                              |
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -836,7 +891,7 @@ cfbd_game_player_stats <- function(year,
     "category" = category,
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   cols <- c(
     "game_id", "team", "conference", "home_away", "team_points",
@@ -967,66 +1022,66 @@ cfbd_game_player_stats <- function(year,
       check_status(res)
 
       # Get the content, tidyr::unnest, and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        dplyr::rename("game_id" = "id") %>%
-        tidyr::unnest("teams") %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        tidyr::unnest("categories") %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        dplyr::rename("category" = "name") %>%
-        tidyr::unnest("types") %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
-        dplyr::rename("stat_category" = "name") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        dplyr::rename("game_id" = "id") |>
+        tidyr::unnest("teams") |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        tidyr::unnest("categories") |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        dplyr::rename("category" = "name") |>
+        tidyr::unnest("types") |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
+        dplyr::rename("stat_category" = "name") |>
         dplyr::mutate(
-          statType = paste0(.data$category, "_", .data$stat_category)) %>%
-        tidyr::unnest("athletes") %>%
+          statType = paste0(.data$category, "_", .data$stat_category)) |>
+        tidyr::unnest("athletes") |>
         dplyr::rename(
           "athlete_id" = "id",
           "athlete_name" = "name",
           "team_points" = "points",
           "value" = "stat"
-        ) %>%
-        dplyr::select(-dplyr::any_of(c("category", "stat_category"))) %>%
+        ) |>
+        dplyr::select(-dplyr::any_of(c("category", "stat_category"))) |>
         dplyr::group_by(.data$game_id, .data$team, .data$conference, .data$athlete_id, .data$athlete_name,
-                        .data$homeAway, .data$team_points) %>%
-        tidyr::pivot_wider(names_from = "statType", values_from = "value", values_fn = first) %>%
+                        .data$homeAway, .data$team_points) |>
+        tidyr::pivot_wider(names_from = "statType", values_from = "value", values_fn = first) |>
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
 
       suppressWarnings(
-        df <- df %>%
-          dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
-          tidyr::separate("passing_c_att",into = c("passing_completions","passing_attempts"), sep = "/") %>%
-          tidyr::separate("kicking_xp",into = c("kicking_xpm","kicking_xpa"), sep = "/") %>%
-          tidyr::separate("kicking_fg",into = c("kicking_fgm","kicking_fga"), sep = "/") %>%
-          dplyr::mutate_at(numeric_cols, as.numeric) %>%
-          dplyr::mutate(athlete_id = as.integer(.data$athlete_id)) %>%
+        df <- df |>
+          dplyr::select(dplyr::all_of(cols), dplyr::everything()) |>
+          tidyr::separate("passing_c_att",into = c("passing_completions","passing_attempts"), sep = "/") |>
+          tidyr::separate("kicking_xp",into = c("kicking_xpm","kicking_xpa"), sep = "/") |>
+          tidyr::separate("kicking_fg",into = c("kicking_fgm","kicking_fga"), sep = "/") |>
+          dplyr::mutate_at(numeric_cols, as.numeric) |>
+          dplyr::mutate(athlete_id = as.integer(.data$athlete_id)) |>
           as.data.frame()
       )
 
 
 
-      df <- df %>%
-        dplyr::select(dplyr::any_of(cols), dplyr::everything()) %>%
+      df <- df |>
+        dplyr::select(dplyr::any_of(cols), dplyr::everything()) |>
         make_cfbfastR_data("Game player stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game player stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
   )
   # is_c_att_present <- any(grepl("C/ATT",colnames(df)))
   # if(is_c_att_present){
-  #   df <- df %>%
+  #   df <- df |>
   #    dplyr::mutate("C/ATT"="0/0")
   # }
   return(df)
@@ -1043,46 +1098,48 @@ cfbd_game_player_stats <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return [cfbd_game_records()] - A data frame with 35 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the games.}
-#'   \item{`team_id`: integer.}{Referencing team id.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`classification`: character}{Conference classification (fbs,fcs,ii,iii)}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`division`: character.}{Division in the conference of the team.}
-#'   \item{`expected_wins`: numeric}{Expected number of wins based on post-game win probability.}
-#'   \item{`total_games`: integer.}{Total number of games played.}
-#'   \item{`total_wins`: integer.}{Total wins.}
-#'   \item{`total_losses`: integer.}{Total losses.}
-#'   \item{`total_ties`: integer.}{Total ties.}
-#'   \item{`conference_games`: integer.}{Number of conference games.}
-#'   \item{`conference_wins`: integer.}{Total conference wins.}
-#'   \item{`conference_losses`: integer.}{Total conference losses.}
-#'   \item{`conference_ties`: integer.}{Total conference ties.}
-#'   \item{`home_games`: integer.}{Total home games.}
-#'   \item{`home_wins`: integer.}{Total home wins.}
-#'   \item{`home_losses`: integer.}{Total home losses.}
-#'   \item{`home_ties`: integer.}{Total home ties.}
-#'   \item{`away_games`: integer.}{Total away games.}
-#'   \item{`away_wins`: integer.}{Total away wins.}
-#'   \item{`away_losses`: integer.}{Total away losses.}
-#'   \item{`away_ties`: integer.}{Total away ties.}
-#'   \item{`neutral_games`: integer.}{Total neutral site games.}
-#'   \item{`neutral_wins`: integer.}{Total neutral site wins.}
-#'   \item{`neutral_losses`: integer.}{Total neutral site losses.}
-#'   \item{`neutral_ties`: integer.}{Total neutral site ties.}
-#'   \item{`regular_season_games`: integer.}{Total regular season games.}
-#'   \item{`regular_season_wins`: integer.}{Total regular season wins.}
-#'   \item{`regular_season_losses`: integer.}{Total regular season losses.}
-#'   \item{`regular_season_ties`: integer.}{Total regular season ties.}
-#'   \item{`postseason_games`: integer.}{Total postseason games.}
-#'   \item{`postseason_wins`: integer.}{Total postseason wins.}
-#'   \item{`postseason_losses`: integer.}{Total postseason losses.}
-#'   \item{`postseason_ties`: integer.}{Total postseason ties.}
-#' }
+#'
+#'   |col_name              |types     |description                                                          |
+#'   |:---------------------|:---------|:--------------------------------------------------------------------|
+#'   |year                  |integer   |Season of the games.                                                 |
+#'   |team_id               |integer   |Referencing team id.                                                 |
+#'   |team                  |character |Team name.                                                           |
+#'   |classification        |character |Conference classification (fbs, fcs, ii, iii).                       |
+#'   |conference            |character |Conference of the team.                                              |
+#'   |division              |character |Division in the conference of the team.                              |
+#'   |expected_wins         |numeric   |Expected number of wins based on post-game win probability.          |
+#'   |total_games           |integer   |Total number of games played.                                        |
+#'   |total_wins            |integer   |Total wins.                                                          |
+#'   |total_losses          |integer   |Total losses.                                                        |
+#'   |total_ties            |integer   |Total ties.                                                          |
+#'   |conference_games      |integer   |Number of conference games.                                          |
+#'   |conference_wins       |integer   |Total conference wins.                                               |
+#'   |conference_losses     |integer   |Total conference losses.                                             |
+#'   |conference_ties       |integer   |Total conference ties.                                               |
+#'   |home_games            |integer   |Total home games.                                                    |
+#'   |home_wins             |integer   |Total home wins.                                                     |
+#'   |home_losses           |integer   |Total home losses.                                                   |
+#'   |home_ties             |integer   |Total home ties.                                                     |
+#'   |away_games            |integer   |Total away games.                                                    |
+#'   |away_wins             |integer   |Total away wins.                                                     |
+#'   |away_losses           |integer   |Total away losses.                                                   |
+#'   |away_ties             |integer   |Total away ties.                                                     |
+#'   |neutral_games         |integer   |Total neutral site games.                                            |
+#'   |neutral_wins          |integer   |Total neutral site wins.                                             |
+#'   |neutral_losses        |integer   |Total neutral site losses.                                           |
+#'   |neutral_ties          |integer   |Total neutral site ties.                                             |
+#'   |regular_season_games  |integer   |Total regular season games.                                          |
+#'   |regular_season_wins   |integer   |Total regular season wins.                                           |
+#'   |regular_season_losses |integer   |Total regular season losses.                                         |
+#'   |regular_season_ties   |integer   |Total regular season ties.                                           |
+#'   |postseason_games      |integer   |Total postseason games.                                              |
+#'   |postseason_wins       |integer   |Total postseason wins.                                               |
+#'   |postseason_losses     |integer   |Total postseason losses.                                             |
+#'   |postseason_ties       |integer   |Total postseason ties.                                               |
+#'
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @import dplyr
 #' @import tidyr
@@ -1113,7 +1170,7 @@ cfbd_game_records <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1124,9 +1181,9 @@ cfbd_game_records <- function(year,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         dplyr::rename(
           "team_id" = "teamId",
           "expected_wins" = "expectedWins",
@@ -1160,11 +1217,11 @@ cfbd_game_records <- function(year,
           "postseason_ties" = "postseason.ties"
         )
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Game records data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1190,90 +1247,91 @@ cfbd_game_records <- function(year,
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
 #' @return [cfbd_game_team_stats()] - A data frame with 78 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`home_away`: character.}{Home/Away Flag.}
-#'   \item{`opponent`: character.}{Opponent team name.}
-#'   \item{`opponent_conference`: character.}{Conference of the opponent team.}
-#'   \item{`points`: integer.}{Team points.}
-#'   \item{`total_yards`: character.}{Team total yards.}
-#'   \item{`net_passing_yards`: character.}{Team net passing yards.}
-#'   \item{`completion_attempts`:character.}{Team completion attempts.}
-#'   \item{`passing_tds`: character.}{Team passing touchdowns.}
-#'   \item{`yards_per_pass`: character.}{Team game yards per pass.}
-#'   \item{`passes_intercepted`: character.}{Team passes intercepted.}
-#'   \item{`interception_yards`: character.}{Interception yards.}
-#'   \item{`interception_tds`: character.}{Interceptions returned for a touchdown.}
-#'   \item{`rushing_attempts`: character.}{Team rushing attempts. see also: ESTABLISH IT.}
-#'   \item{`rushing_yards`: character.}{Team rushing yards.}
-#'   \item{`rush_tds`: character.}{Team rushing touchdowns.}
-#'   \item{`yards_per_rush_attempt`: character.}{Team yards per rush attempt.}
-#'   \item{`first_downs`: character.}{First downs earned by the team.}
-#'   \item{`third_down_eff`: character.}{Third down efficiency.}
-#'   \item{`fourth_down_eff`: character.}{Fourth down efficiency.}
-#'   \item{`punt_returns`: character.}{Team punt returns.}
-#'   \item{`punt_return_yards`: character.}{Team punt return yards.}
-#'   \item{`punt_return_tds`: character.}{Team punt return touchdowns.}
-#'   \item{`kick_return_yards`: character.}{Team kick return yards.}
-#'   \item{`kick_return_tds`: character.}{Team kick return touchdowns.}
-#'   \item{`kick_returns`: character.}{Team kick returns.}
-#'   \item{`kicking_points`: character.}{Team points from kicking the ball.}
-#'   \item{`fumbles_recovered`: character.}{Team fumbles recovered.}
-#'   \item{`fumbles_lost`: character.}{Team fumbles lost.}
-#'   \item{`total_fumbles`: character.}{Team total fumbles.}
-#'   \item{`tackles`: character.}{Team tackles.}
-#'   \item{`tackles_for_loss`: character.}{Team tackles for a loss.}
-#'   \item{`sacks`: character.}{Team sacks.}
-#'   \item{`qb_hurries`: character.}{Team QB hurries.}
-#'   \item{`interceptions`: character.}{Team interceptions.}
-#'   \item{`passes_deflected`: character.}{Team passes deflected.}
-#'   \item{`turnovers`: character.}{Team turnovers.}
-#'   \item{`defensive_tds`: character.}{Team defensive touchdowns.}
-#'   \item{`total_penalties_yards`: character.}{Team total penalty yards.}
-#'   \item{`possession_time`: character.}{Team time of possession.}
-#'   \item{`points_allowed`: integer.}{Points for the opponent.}
-#'   \item{`total_yards_allowed`: character.}{Opponent total yards.}
-#'   \item{`net_passing_yards_allowed`: character.}{Opponent net passing yards.}
-#'   \item{`completion_attempts_allowed`: character.}{Oppponent completion attempts.}
-#'   \item{`passing_tds_allowed`: character.}{Opponent passing TDs.}
-#'   \item{`yards_per_pass_allowed`: character.}{Opponent yards per pass allowed.}
-#'   \item{`passes_intercepted_allowed`: character.}{Opponent passes intercepted.}
-#'   \item{`interception_yards_allowed`: character.}{Opponent interception yards.}
-#'   \item{`interception_tds_allowed`: character.}{Opponent interception TDs.}
-#'   \item{`rushing_attempts_allowed`: character.}{Opponent rushing attempts.}
-#'   \item{`rushing_yards_allowed`: character.}{Opponent rushing yards.}
-#'   \item{`rush_tds_allowed`: character.}{Opponent rushing touchdowns.}
-#'   \item{`yards_per_rush_attempt_allowed`: character.}{Opponent rushing yards per attempt.}
-#'   \item{`first_downs_allowed`: character.}{Opponent first downs.}
-#'   \item{`third_down_eff_allowed`: character.}{Opponent third down efficiency.}
-#'   \item{`fourth_down_eff_allowed`: character.}{Opponent fourth down efficiency.}
-#'   \item{`punt_returns_allowed`: character.}{Opponent punt returns.}
-#'   \item{`punt_return_yards_allowed`: character.}{Opponent punt return yards.}
-#'   \item{`punt_return_tds_allowed`: character.}{Opponent punt return touchdowns.}
-#'   \item{`kick_return_yards_allowed`: character.}{Opponent kick return yards.}
-#'   \item{`kick_return_tds_allowed`: character.}{Opponent kick return touchdowns.}
-#'   \item{`kick_returns_allowed`: character.}{Opponent kick returns.}
-#'   \item{`kicking_points_allowed`: character.}{Opponent points from kicking.}
-#'   \item{`fumbles_recovered_allowed`: character.}{Opponent fumbles recovered.}
-#'   \item{`fumbles_lost_allowed`: character.}{Opponent fumbles lost.}
-#'   \item{`total_fumbles_allowed`:character.}{Opponent total number of fumbles.}
-#'   \item{`tackles_allowed`:character.}{Opponent tackles.}
-#'   \item{`tackles_for_loss_allowed`: character.}{Opponent tackles for loss.}
-#'   \item{`sacks_allowed`: character.}{Opponent sacks.}
-#'   \item{`qb_hurries_allowed`: character.}{Opponent quarterback hurries.}
-#'   \item{`interceptions_allowed`: character.}{Opponent interceptions.}
-#'   \item{`passes_deflected_allowed`: character.}{Opponent passes deflected.}
-#'   \item{`turnovers_allowed`: character.}{Opponent turnovers.}
-#'   \item{`defensive_tds_allowed`: character.}{Opponent defensive touchdowns.}
-#'   \item{`total_penalties_yards_allowed`: character.}{Opponent total penalty yards.}
-#'   \item{`possession_time_allowed`: character.}{Opponent time of possession.}
-#' }
+#'
+#'   |col_name                       |types     |description                                                |
+#'   |:------------------------------|:---------|:----------------------------------------------------------|
+#'   |game_id                        |integer   |Referencing game id.                                       |
+#'   |team                           |character |Team name.                                                 |
+#'   |conference                     |character |Conference of the team.                                    |
+#'   |home_away                      |character |Home/Away Flag.                                            |
+#'   |opponent                       |character |Opponent team name.                                        |
+#'   |opponent_conference            |character |Conference of the opponent team.                           |
+#'   |points                         |integer   |Team points.                                               |
+#'   |total_yards                    |character |Team total yards.                                          |
+#'   |net_passing_yards              |character |Team net passing yards.                                    |
+#'   |completion_attempts            |character |Team completion attempts.                                  |
+#'   |passing_tds                    |character |Team passing touchdowns.                                   |
+#'   |yards_per_pass                 |character |Team game yards per pass.                                  |
+#'   |passes_intercepted             |character |Team passes intercepted.                                   |
+#'   |interception_yards             |character |Interception yards.                                        |
+#'   |interception_tds               |character |Interceptions returned for a touchdown.                    |
+#'   |rushing_attempts               |character |Team rushing attempts.                                     |
+#'   |rushing_yards                  |character |Team rushing yards.                                        |
+#'   |rush_tds                       |character |Team rushing touchdowns.                                   |
+#'   |yards_per_rush_attempt         |character |Team yards per rush attempt.                               |
+#'   |first_downs                    |character |First downs earned by the team.                            |
+#'   |third_down_eff                 |character |Third down efficiency.                                     |
+#'   |fourth_down_eff                |character |Fourth down efficiency.                                    |
+#'   |punt_returns                   |character |Team punt returns.                                         |
+#'   |punt_return_yards              |character |Team punt return yards.                                    |
+#'   |punt_return_tds                |character |Team punt return touchdowns.                               |
+#'   |kick_return_yards              |character |Team kick return yards.                                    |
+#'   |kick_return_tds                |character |Team kick return touchdowns.                               |
+#'   |kick_returns                   |character |Team kick returns.                                         |
+#'   |kicking_points                 |character |Team points from kicking the ball.                         |
+#'   |fumbles_recovered              |character |Team fumbles recovered.                                    |
+#'   |fumbles_lost                   |character |Team fumbles lost.                                         |
+#'   |total_fumbles                  |character |Team total fumbles.                                        |
+#'   |tackles                        |character |Team tackles.                                              |
+#'   |tackles_for_loss               |character |Team tackles for a loss.                                   |
+#'   |sacks                          |character |Team sacks.                                                |
+#'   |qb_hurries                     |character |Team QB hurries.                                           |
+#'   |interceptions                  |character |Team interceptions.                                        |
+#'   |passes_deflected               |character |Team passes deflected.                                     |
+#'   |turnovers                      |character |Team turnovers.                                            |
+#'   |defensive_tds                  |character |Team defensive touchdowns.                                 |
+#'   |total_penalties_yards          |character |Team total penalty yards.                                  |
+#'   |possession_time                |character |Team time of possession.                                   |
+#'   |points_allowed                 |integer   |Points for the opponent.                                   |
+#'   |total_yards_allowed            |character |Opponent total yards.                                      |
+#'   |net_passing_yards_allowed      |character |Opponent net passing yards.                                |
+#'   |completion_attempts_allowed    |character |Opponent completion attempts.                              |
+#'   |passing_tds_allowed            |character |Opponent passing TDs.                                      |
+#'   |yards_per_pass_allowed         |character |Opponent yards per pass allowed.                           |
+#'   |passes_intercepted_allowed     |character |Opponent passes intercepted.                               |
+#'   |interception_yards_allowed     |character |Opponent interception yards.                               |
+#'   |interception_tds_allowed       |character |Opponent interception TDs.                                 |
+#'   |rushing_attempts_allowed       |character |Opponent rushing attempts.                                 |
+#'   |rushing_yards_allowed          |character |Opponent rushing yards.                                    |
+#'   |rush_tds_allowed               |character |Opponent rushing touchdowns.                               |
+#'   |yards_per_rush_attempt_allowed |character |Opponent rushing yards per attempt.                        |
+#'   |first_downs_allowed            |character |Opponent first downs.                                      |
+#'   |third_down_eff_allowed         |character |Opponent third down efficiency.                            |
+#'   |fourth_down_eff_allowed        |character |Opponent fourth down efficiency.                           |
+#'   |punt_returns_allowed           |character |Opponent punt returns.                                     |
+#'   |punt_return_yards_allowed      |character |Opponent punt return yards.                                |
+#'   |punt_return_tds_allowed        |character |Opponent punt return touchdowns.                           |
+#'   |kick_return_yards_allowed      |character |Opponent kick return yards.                                |
+#'   |kick_return_tds_allowed        |character |Opponent kick return touchdowns.                           |
+#'   |kick_returns_allowed           |character |Opponent kick returns.                                     |
+#'   |kicking_points_allowed         |character |Opponent points from kicking.                              |
+#'   |fumbles_recovered_allowed      |character |Opponent fumbles recovered.                                |
+#'   |fumbles_lost_allowed           |character |Opponent fumbles lost.                                     |
+#'   |total_fumbles_allowed          |character |Opponent total number of fumbles.                          |
+#'   |tackles_allowed                |character |Opponent tackles.                                          |
+#'   |tackles_for_loss_allowed       |character |Opponent tackles for loss.                                 |
+#'   |sacks_allowed                  |character |Opponent sacks.                                            |
+#'   |qb_hurries_allowed             |character |Opponent quarterback hurries.                              |
+#'   |interceptions_allowed          |character |Opponent interceptions.                                    |
+#'   |passes_deflected_allowed       |character |Opponent passes deflected.                                 |
+#'   |turnovers_allowed              |character |Opponent turnovers.                                        |
+#'   |defensive_tds_allowed          |character |Opponent defensive touchdowns.                             |
+#'   |total_penalties_yards_allowed  |character |Opponent total penalty yards.                              |
+#'   |possession_time_allowed        |character |Opponent time of possession.                               |
 #'
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -1321,7 +1379,7 @@ cfbd_game_team_stats <- function(year,
     "classification" = division,
     "gameId" = game_id
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1347,10 +1405,10 @@ cfbd_game_team_stats <- function(year,
         "kick_returns"
       )
       # Get the content, unnest, and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
         dplyr::as_tibble()
 
       if (nrow(df) == 0) {
@@ -1358,9 +1416,9 @@ cfbd_game_team_stats <- function(year,
               for this one week or team.")
         return(NULL)
       }
-      df <- df %>%
-        tidyr::unnest("teams") %>%
-        tidyr::unnest("stats") %>%
+      df <- df |>
+        tidyr::unnest("teams") |>
+        tidyr::unnest("stats") |>
         # Occasionally CFBD will have duplicated stats that causes an error here
         #and the current long df is returned. Distinct removes duplicates.
         dplyr::distinct()
@@ -1370,10 +1428,10 @@ cfbd_game_team_stats <- function(year,
                                names_from = "category",
                                values_from = "stat"
       )
-      df <- df %>%
+      df <- df |>
         janitor::clean_names()
       df[cols[!(cols %in% colnames(df))]] <- NA
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "game_id" = "id",
           "rush_tds" = "rushing_t_ds",
@@ -1387,12 +1445,12 @@ cfbd_game_team_stats <- function(year,
       if (rows_per_team == 1) {
         # Join pivoted data with itself to get ultra-wide row
         # containing all game stats on one row for both teams
-        df <- df %>%
-          dplyr::mutate(opponent_home_away = ifelse(.data$home_away == "home","away","home")) %>%
+        df <- df |>
+          dplyr::mutate(opponent_home_away = ifelse(.data$home_away == "home","away","home")) |>
           dplyr::left_join(df,
                            by = c("game_id", "opponent_home_away" = "home_away"),
                            suffix = c("", "_allowed")
-          ) %>%
+          ) |>
           dplyr::rename(
             "opponent" = "team_allowed",
             "opponent_conference" = "conference_allowed")
@@ -1426,25 +1484,22 @@ cfbd_game_team_stats <- function(year,
         if (!is.null(team)) {
           team <- URLdecode(team)
 
-          df <- df %>%
-            dplyr::filter(.data$team == team) %>%
+          df <- df |>
+            dplyr::filter(.data$team == team) |>
             dplyr::select(dplyr::all_of(cols1))
 
 
         } else if (!is.null(conference)) {
-          confs <- cfbd_conferences()
-
           conference <- URLdecode(conference)
+          conf_name <- .lookup_conference_name(conference)
 
-          conf_name <- confs[confs$abbreviation == conference, ]$name
-
-          df <- df %>%
-            dplyr::filter(conference == conf_name) %>%
+          df <- df |>
+            dplyr::filter(.data$conference == conf_name) |>
             dplyr::select(dplyr::all_of(cols1))
 
 
         } else {
-          df <- df %>%
+          df <- df |>
             dplyr::select(dplyr::all_of(cols1))
 
         }
@@ -1464,38 +1519,35 @@ cfbd_game_team_stats <- function(year,
           "total_penalties_yards", "possession_time"
         )
         if (!is.null(team)) {
-          team <- URLdecode(team <- team)
+          team <- URLdecode(team)
 
-          df <- df %>%
-            dplyr::filter(.data$team == team) %>%
+          df <- df |>
+            dplyr::filter(.data$team == team) |>
             dplyr::select(dplyr::all_of(cols2))
 
         } else if (!is.null(conference)) {
-          confs <- cfbd_conferences()
-
           conference <- URLdecode(conference)
+          conf_name <- .lookup_conference_name(conference)
 
-          conf_name <- confs[confs$abbreviation == conference, ]$name
-
-          df <- df %>%
-            dplyr::filter(conference == conf_name) %>%
+          df <- df |>
+            dplyr::filter(.data$conference == conf_name) |>
             dplyr::select(dplyr::all_of(cols2))
 
 
         } else {
-          df <- df %>%
+          df <- df |>
             dplyr::select(dplyr::all_of(cols2))
 
         }
       }
 
 
-      df <- df %>%
-        dplyr::rename("school" = "team") %>%
+      df <- df |>
+        dplyr::rename("school" = "team") |>
         make_cfbfastR_data("Team stats data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no team stats data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no team stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -1513,53 +1565,54 @@ cfbd_game_team_stats <- function(year,
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
 #'
 #' @return [cfbd_live_scoreboard()] - A data frame with 41 variables:
-#'  |col_name                 |types     |
-#'  |:------------------------|:---------|
-#'  |game_id                  |integer   |
-#'  |start_date               |character |
-#'  |start_time_tbd           |logical   |
-#'  |tv                       |character |
-#'  |neutral_site             |logical   |
-#'  |conference_game          |logical   |
-#'  |status                   |character |
-#'  |period                   |integer   |
-#'  |clock                    |character |
-#'  |situation                |character |
-#'  |possession               |character |
-#'  |last_play                |character |
-#'  |venue_name               |character |
-#'  |venue_city               |character |
-#'  |venue_state              |character |
-#'  |home_team_id             |integer   |
-#'  |home_team_name           |character |
-#'  |home_team_conference     |character |
-#'  |home_team_classification |character |
-#'  |home_team_points         |integer   |
-#'  |home_team_line_scores_Q1 |integer   |
-#'  |home_team_line_scores_Q2 |integer   |
-#'  |home_team_line_scores_Q3 |integer   |
-#'  |home_team_line_scores_Q4 |integer   |
-#'  |away_team_id             |integer   |
-#'  |away_team_name           |character |
-#'  |away_team_conference     |character |
-#'  |away_team_classification |character |
-#'  |away_team_points         |integer   |
-#'  |away_team_line_scores_Q1 |integer   |
-#'  |away_team_line_scores_Q2 |integer   |
-#'  |away_team_line_scores_Q3 |integer   |
-#'  |away_team_line_scores_Q4 |integer   |
-#'  |weather_temperature      |numeric   |
-#'  |weather_description      |character |
-#'  |weather_wind_speed       |numeric   |
-#'  |weather_wind_direction   |integer   |
-#'  |betting_spread           |numeric   |
-#'  |betting_over_under       |numeric   |
-#'  |betting_home_moneyline   |integer   |
-#'  |betting_away_moneyline   |integer   |
+#'
+#'  |col_name                 |types     |description                                                                        |
+#'  |:------------------------|:---------|:----------------------------------------------------------------------------------|
+#'  |game_id                  |integer   |CFBD-internal game id; join key to other CFBD endpoints.                           |
+#'  |start_date               |character |Scheduled kickoff timestamp (ISO 8601, UTC).                                       |
+#'  |start_time_tbd           |logical   |TRUE if the scheduled kickoff time is still to be determined.                      |
+#'  |tv                       |character |Television network broadcasting the game (e.g. "ESPN", "ABC").                     |
+#'  |neutral_site             |logical   |TRUE if the game is being played at a neutral site.                                |
+#'  |conference_game          |logical   |TRUE if both teams are in the same conference.                                     |
+#'  |status                   |character |Game status (e.g. "scheduled", "in_progress", "completed").                        |
+#'  |period                   |integer   |Current period/quarter number (1-4, 5+ for overtime).                              |
+#'  |clock                    |character |Game clock display as "MM:SS" remaining in the current period.                     |
+#'  |situation                |character |Free-text down-and-distance / field-position summary for the current play.         |
+#'  |possession               |character |Abbreviation of the team currently in possession.                                  |
+#'  |last_play                |character |Free-text description of the most recent play.                                     |
+#'  |venue_name               |character |Stadium / venue name.                                                              |
+#'  |venue_city               |character |City where the venue is located.                                                   |
+#'  |venue_state              |character |State (or province/country) where the venue is located.                            |
+#'  |home_team_id             |integer   |CFBD-internal team id for the home team.                                           |
+#'  |home_team_name           |character |Full home team name (e.g. "Georgia").                                              |
+#'  |home_team_conference     |character |Conference name of the home team.                                                  |
+#'  |home_team_classification |character |Division classification of the home team (fbs/fcs/ii/iii).                         |
+#'  |home_team_points         |integer   |Current total points scored by the home team.                                      |
+#'  |home_team_line_scores_Q1 |integer   |Home team points scored in the first quarter.                                      |
+#'  |home_team_line_scores_Q2 |integer   |Home team points scored in the second quarter.                                     |
+#'  |home_team_line_scores_Q3 |integer   |Home team points scored in the third quarter.                                      |
+#'  |home_team_line_scores_Q4 |integer   |Home team points scored in the fourth quarter.                                     |
+#'  |away_team_id             |integer   |CFBD-internal team id for the away team.                                           |
+#'  |away_team_name           |character |Full away team name (e.g. "Auburn").                                               |
+#'  |away_team_conference     |character |Conference name of the away team.                                                  |
+#'  |away_team_classification |character |Division classification of the away team (fbs/fcs/ii/iii).                         |
+#'  |away_team_points         |integer   |Current total points scored by the away team.                                      |
+#'  |away_team_line_scores_Q1 |integer   |Away team points scored in the first quarter.                                      |
+#'  |away_team_line_scores_Q2 |integer   |Away team points scored in the second quarter.                                     |
+#'  |away_team_line_scores_Q3 |integer   |Away team points scored in the third quarter.                                      |
+#'  |away_team_line_scores_Q4 |integer   |Away team points scored in the fourth quarter.                                     |
+#'  |weather_temperature      |numeric   |Temperature at kickoff, in degrees Fahrenheit.                                     |
+#'  |weather_description      |character |Free-text weather description (e.g. "Clear", "Light rain").                        |
+#'  |weather_wind_speed       |numeric   |Wind speed, in miles per hour.                                                     |
+#'  |weather_wind_direction   |integer   |Wind direction, in degrees (0-360, 0 = north).                                     |
+#'  |betting_spread           |numeric   |Pre-game point spread relative to the home team (negative = home favored).         |
+#'  |betting_over_under       |numeric   |Pre-game over/under (total) line in points.                                        |
+#'  |betting_home_moneyline   |integer   |American-odds moneyline for the home team.                                         |
+#'  |betting_away_moneyline   |integer   |American-odds moneyline for the away team.                                         |
 #'
 #' @keywords Game Scoreboard
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @import dplyr
@@ -1583,7 +1636,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
     "conference" = conference,
     "division" = division
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1594,30 +1647,30 @@ cfbd_live_scoreboard <- function(division = 'fbs',
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
-      df <- df %>%
-        dplyr::rename("game_id" = "id") %>%
-        tidyr::unnest_wider("venue", names_sep = "_") %>%
-        tidyr::unnest_wider("home_team", names_sep = "_") %>%
-        tidyr::unnest_wider("away_team", names_sep = "_") %>%
-        tidyr::unnest_wider("weather", names_sep = "_") %>%
-        tidyr::unnest_wider("betting", names_sep = "_") %>%
+      df <- df |>
+        dplyr::rename("game_id" = "id") |>
+        tidyr::unnest_wider("venue", names_sep = "_") |>
+        tidyr::unnest_wider("home_team", names_sep = "_") |>
+        tidyr::unnest_wider("away_team", names_sep = "_") |>
+        tidyr::unnest_wider("weather", names_sep = "_") |>
+        tidyr::unnest_wider("betting", names_sep = "_") |>
         janitor::clean_names()
 
-      df <- df %>%
-        tidyr::unnest("home_team_line_scores") %>%
-        tidyr::unnest("away_team_line_scores") %>%
-        tidyr::unnest_wider("home_team_line_scores", names_sep="_Q") %>%
-        tidyr::unnest_wider("away_team_line_scores", names_sep="_Q") %>%
+      df <- df |>
+        tidyr::unnest("home_team_line_scores") |>
+        tidyr::unnest("away_team_line_scores") |>
+        tidyr::unnest_wider("home_team_line_scores", names_sep="_Q") |>
+        tidyr::unnest_wider("away_team_line_scores", names_sep="_Q") |>
         make_cfbfastR_data("Live Scoreboard information from CollegeFootballData.com",Sys.time())
 
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available! {conditionMessage(e)}"))
     },
     finally = {
     }

@@ -2,23 +2,35 @@
 % Please edit documentation in R/cfbd_conferences.R
 \name{cfbd_conferences}
 \alias{cfbd_conferences}
+\alias{conferences}
 \title{\strong{CFBD Conferences Endpoint Overview}}
 \usage{
 cfbd_conferences()
 }
 \value{
-\code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 94 rows and 5 variables:
-\describe{
-\item{\code{conference_id}:}{Referencing conference id.}
-\item{\code{name}:}{Conference name.}
-\item{\code{long_name}:}{Long name for Conference.}
-\item{\code{abbreviation}:}{Conference abbreviation.}
-\item{\code{classification}:}{Conference classification (fbs,fcs,ii,iii)}
+\code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 94 rows and 5 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   conference_id \tab integer \tab Referencing conference id. \cr
+   name \tab character \tab Conference name. \cr
+   long_name \tab character \tab Long name for Conference. \cr
+   abbreviation \tab character \tab Conference abbreviation. \cr
+   classification \tab character \tab Conference classification (fbs, fcs, ii, iii). \cr
 }
 }
 \description{
+\itemize{
+\item \code{cfbd_conferences()}: Get college football conference information.
+}
+
 \strong{Get college football conference information}
 Pulls all college football conferences and returns as data frame
+}
+\details{
+\subsection{\strong{Get college football conference information}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conferences()
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{

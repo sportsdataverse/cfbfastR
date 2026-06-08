@@ -18,10 +18,19 @@ cols <- c(
 test_that("CFBD ESPN FPI ratings", {
   skip_on_cran()
   x <- cfbd_ratings_fpi(year = 2019, team = "Texas")
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_ratings_fpi(year = 2018, conference = "SEC")
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   z <- cfbd_ratings_fpi(year = 2013, conference = "ACC")
+  if (is.null(z) || !is.data.frame(z) || nrow(z) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   expect_setequal(colnames(x), cols)
   expect_setequal(colnames(y), cols)

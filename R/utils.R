@@ -1,13 +1,23 @@
 .datatable.aware <- TRUE
 
 #' @keywords Internal
-#' @importFrom httr status_code
+#' @importFrom httr2 resp_status resp_status_desc
 #'
 check_status <- function(res) {
 
-    x = status_code(res)
+    x <- httr2::resp_status(res)
 
-    if(x != 200) stop("The API returned an error", call. = FALSE)
+    if (x != 200) {
+      desc <- tryCatch(
+        httr2::resp_status_desc(res),
+        error = function(e) ""
+      )
+      stop(
+        sprintf("The CFBD API returned HTTP %s%s", x,
+                if (nzchar(desc)) paste0(" (", desc, ")") else ""),
+        call. = FALSE
+      )
+    }
 
 }
 
@@ -104,10 +114,6 @@ utils::globalVariables(c("where"))
 is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 
 
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
 #' @importFrom Rcpp getRcppVersion
 #' @importFrom RcppParallel defaultNumThreads
 NULL
@@ -163,7 +169,11 @@ time_to_seconds <- function(time){
 }
 # write season pbp to a connected db
 write_pbp <- function(seasons, dbConnection, tablename){
-  p <- progressr::progressor(along = seasons)
+  p <- if (is_installed("progressr")) {
+    progressr::progressor(along = seasons)
+  } else {
+    function(...) NULL
+  }
   purrr::walk(seasons, function(x, p){
     pbp <- load_cfb_pbp(x)
     DBI::dbWriteTable(dbConnection, tablename, pbp, append = TRUE)
@@ -174,7 +184,7 @@ write_pbp <- function(seasons, dbConnection, tablename){
 # Functions for custom class
 # turn a data.frame into a tibble/cfbfastR_data
 make_cfbfastR_data <- function(df,type,timestamp){
-  out <- df %>%
+  out <- df |>
     tidyr::as_tibble()
 
   class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
@@ -211,11 +221,61 @@ rbindlist_with_attrs <- function(dflist){
 }
 
 # Request Functions ----
-get_req <- function(full_url){
-  httr::RETRY(
-    "GET", full_url,
-    httr::add_headers(Authorization = paste("Bearer", cfbd_key()))
-  )
+#' @keywords Internal
+#' @importFrom httr2 request req_headers req_timeout req_retry req_error req_perform req_proxy
+get_req <- function(full_url, proxy = NULL) {
+  req <- httr2::request(full_url) |>
+    httr2::req_headers(Authorization = paste("Bearer", cfbd_key())) |>
+    httr2::req_timeout(60)
+
+  # Optional proxy support. Resolution order:
+  #   1. `proxy` argument (caller-supplied, highest precedence).
+  #   2. `getOption("cfbfastR.proxy")` (session-level fallback -- set once
+  #      with `options(cfbfastR.proxy = ...)` and every cfbd_*() call picks
+  #      it up; useful when a user can't thread a proxy arg through every
+  #      call site).
+  #   3. `http_proxy` / `https_proxy` / `no_proxy` env vars (libcurl reads
+  #      these automatically when no explicit proxy is supplied -- no code
+  #      path here).
+  #
+  # The `proxy` argument accepts:
+  #   - a single URL string -- e.g. "http://host:port", passed to
+  #     `httr2::req_proxy(url = ...)`.
+  #   - a named list -- spread as keyword args into `httr2::req_proxy()`
+  #     for full control (`url`, `port`, `username`, `password`, `auth`).
+  if (is.null(proxy)) {
+    proxy <- getOption("cfbfastR.proxy", default = NULL)
+  }
+  if (!is.null(proxy)) {
+    req <- if (is.list(proxy)) {
+      do.call(httr2::req_proxy, c(list(req = req), proxy))
+    } else {
+      httr2::req_proxy(req, url = proxy)
+    }
+  }
+
+  req |>
+    httr2::req_retry(
+      max_tries = 3,
+      backoff   = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
+    ) |>
+    httr2::req_error(is_error = function(resp) FALSE) |>
+    httr2::req_perform()
+}
+
+#' Drop NULL entries from a list (internal)
+#'
+#' Used to compact query-parameter lists before passing them to
+#' httr2::url_modify / req_url_query, both of which error on NULL
+#' values (unlike httr::modify_url which silently dropped them).
+#'
+#' @param x A list.
+#' @return `x` with NULL entries removed; the names of the
+#'   remaining entries are preserved.
+#' @keywords internal
+#' @noRd
+.compact <- function(x) {
+  x[!vapply(x, is.null, logical(1))]
 }
 
 # Edge Case Handling ----

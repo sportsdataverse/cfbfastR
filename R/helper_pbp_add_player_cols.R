@@ -79,7 +79,7 @@ add_player_cols <- function(pbp) {
 
   ## Extract player names
   # RB names
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       rush_player = ifelse(.data$rush == 1,
         stringr::str_extract(.data$play_text, "(.{0,25} )run |(.{0,25} )\\d{0,2} Yd Run"), NA_character_
@@ -87,7 +87,7 @@ add_player_cols <- function(pbp) {
       rush_player = stringr::str_remove(.data$rush_player, " run | \\d+ Yd Run")
     )
   # QB names
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       pass_player =
         ifelse(.data$pass == 1 & .data$play_type != "Passing Touchdown",
@@ -115,7 +115,7 @@ add_player_cols <- function(pbp) {
       pass_player = stringr::str_remove(.data$pass_player, " pass,to")
     )
   ## Receiver names
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       receiver_player = ifelse(.data$pass == 1 & !stringr::str_detect(.data$play_text, "sacked"),
         stringr::str_extract(.data$play_text, "to (.+)"), NA_character_
@@ -172,7 +172,7 @@ add_player_cols <- function(pbp) {
 
   ## Extract player names
   ## Sack player names
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       sack_players = ifelse(.data$pass == 1 & (.data$sack == 1 | .data$fumble_vec == 1),
         stringr::str_extract(.data$play_text, "sacked by(.+)"), NA_character_
@@ -185,7 +185,7 @@ add_player_cols <- function(pbp) {
       )
     )
   ## Interception player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       interception_player = ifelse(.data$pass == 1 & (.data$play_type == "Interception Return" |
         .data$play_type == "Interception Return Touchdown"),
@@ -205,7 +205,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Pass Breakup player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       pass_breakup_player = ifelse(.data$pass == 1,
         stringr::str_extract(.data$play_text, "broken up by (.+)"), NA_character_
@@ -221,7 +221,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Punter player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       punter_player = ifelse(stringr::str_detect(.data$play_type, "Punt"),
         stringr::str_extract(.data$play_text, ".{0,25} punt"), NA_character_
@@ -231,7 +231,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Punt Returner player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       punt_returner_player = ifelse(stringr::str_detect(.data$play_type, "Punt"),
         stringr::str_extract(.data$play_text, ", .{0,25} returns|fair catch by .{0,25}"), NA_character_
@@ -243,7 +243,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Punt Block player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       punt_block_player = ifelse(stringr::str_detect(.data$play_type, "Punt"),
         stringr::str_extract(.data$play_text, "punt blocked by .{0,25}| blocked by(.+)"), NA_character_
@@ -263,7 +263,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Punt Block return player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       punt_block_return_player = ifelse(stringr::str_detect(.data$play_type, "Punt") &
         stringr::str_detect(.data$play_text, "blocked") &
@@ -281,7 +281,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Kickoff Specialist player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       kickoff_player = ifelse(stringr::str_detect(.data$play_type, "Kickoff"),
         stringr::str_extract(.data$play_text, ".{0,25} kickoff|.{0,25} on-side"), NA_character_
@@ -290,7 +290,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Kickoff Returner player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       kickoff_returner_player = ifelse(stringr::str_detect(.data$play_type, "ickoff"),
         stringr::str_extract(.data$play_text, ", .{0,25} return|, .{0,25} fumble"), NA_character_
@@ -300,7 +300,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Field Goal Kicker player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       fg_kicker_player = ifelse(stringr::str_detect(.data$play_type, "Field Goal"),
         stringr::str_extract(.data$play_text, regex("(.{0,25} )\\d{0,2} yd field goal| (.{0,25} )\\d{0,2} yd fg", ignore_case = TRUE)),
@@ -311,7 +311,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## FG Block player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       fg_block_player = ifelse(stringr::str_detect(.data$play_type, "Field Goal"),
         stringr::str_extract(.data$play_text, "blocked by .{0,25}"), NA_character_
@@ -322,7 +322,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## FG Block Return player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       fg_return_player = ifelse(stringr::str_detect(.data$play_type, "Field Goal") &
         stringr::str_detect(.data$play_text, regex("blocked by|missed", ignore_case = TRUE)) &
@@ -340,7 +340,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Fumble player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       fumble_player = ifelse(stringr::str_detect(.data$play_text, "fumble"),
         stringr::str_extract(.data$play_text, regex("(.{0,25} )fumble", ignore_case = TRUE)), NA_character_
@@ -361,7 +361,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Fumble Forced player name
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       fumble_forced_player = ifelse(stringr::str_detect(.data$play_text, "fumble") &
         stringr::str_detect(.data$play_text, regex("forced by", ignore_case = TRUE)),
@@ -378,7 +378,7 @@ add_player_cols <- function(pbp) {
     )
 
   ## Fumble recovered player
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       fumble_recovered_player = ifelse(stringr::str_detect(.data$play_text, "fumble") &
         stringr::str_detect(.data$play_text, regex("recovered by", ignore_case = TRUE)),
@@ -405,7 +405,7 @@ add_player_cols <- function(pbp) {
       fumble_recovered_player = ifelse(.data$play_type == "Penalty", NA_character_, .data$fumble_recovered_player)
     )
 
-  pbp <- pbp %>%
+  pbp <- pbp |>
     dplyr::mutate(
       passer_player_name = stringr::str_trim(.data$pass_player),
       rusher_player_name = stringr::str_trim(.data$rush_player),
@@ -426,7 +426,7 @@ add_player_cols <- function(pbp) {
       fumble_player_name = stringr::str_trim(.data$fumble_player),
       fumble_forced_player_name = stringr::str_trim(.data$fumble_forced_player),
       fumble_recovered_player_name = stringr::str_trim(.data$fumble_recovered_player)
-    ) %>%
+    ) |>
     dplyr::select(
       -"rush_player",
       -"receiver_player",

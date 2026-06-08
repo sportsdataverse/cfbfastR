@@ -35,68 +35,68 @@ Defense: defensive, fumbles, interceptions
 Special Teams: punting, puntReturns, kicking, kickReturns}
 }
 \value{
-\code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}} - A data frame with 59 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the player stats.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{athlete_id}: character.}{Athlete referencing id.}
-\item{\code{player}: character.}{Player name.}
-\item{\code{position}: character.}{Player position.}
-\item{\code{passing_completions}: double.}{Passing completions.}
-\item{\code{passing_att}: double.}{Passing attempts.}
-\item{\code{passing_pct}: double.}{Passing completion percentage.}
-\item{\code{passing_yds}: double.}{Passing yardage.}
-\item{\code{passing_td}: double.}{Passing touchdowns.}
-\item{\code{passing_int}: double.}{Passing interceptions.}
-\item{\code{passing_ypa}: double.}{Passing yards per attempt.}
-\item{\code{rushing_car}: double.}{Rushing yards per carry.}
-\item{\code{rushing_yds}: double.}{Rushing yards total.}
-\item{\code{rushing_td}: double.}{Rushing touchdowns.}
-\item{\code{rushing_ypc}: double.}{Rushing yards per carry.}
-\item{\code{rushing_long}: double.}{Rushing longest yardage attempt.}
-\item{\code{receiving_rec}: double.}{Receiving - pass receptions.}
-\item{\code{receiving_yds}: double.}{Receiving - pass reception yards.}
-\item{\code{receiving_td}: double.}{Receiving - passing reception touchdowns.}
-\item{\code{receiving_ypr}: double.}{Receiving - passing yards per reception.}
-\item{\code{receiving_long}: double.}{Receiving - longest pass reception yardage.}
-\item{\code{fumbles_fum}: double.}{Fumbles.}
-\item{\code{fumbles_rec}: double.}{Fumbles recovered.}
-\item{\code{fumbles_lost}: double.}{Fumbles lost.}
-\item{\code{defensive_solo}: double.}{Defensive solo tackles.}
-\item{\code{defensive_tot}: double.}{Defensive total tackles.}
-\item{\code{defensive_tfl}: double.}{Defensive tackles for loss.}
-\item{\code{defensive_sacks}: double.}{Defensive sacks.}
-\item{\code{defensive_qb_hur}: double.}{Defensive quarterback hurries.}
-\item{\code{interceptions_int}: double.}{Interceptions total.}
-\item{\code{interceptions_yds}: double.}{Interception return yards.}
-\item{\code{interceptions_avg}: double.}{Interception return yards average.}
-\item{\code{interceptions_td}: double.}{Interception return touchdowns.}
-\item{\code{defensive_pd}: double.}{Defense - passes defensed.}
-\item{\code{defensive_td}: double.}{Defense - defensive touchdowns.}
-\item{\code{kicking_fgm}: double.}{Kicking - field goals made.}
-\item{\code{kicking_fga}: double.}{Kicking - field goals attempted.}
-\item{\code{kicking_pct}: double.}{Kicking - field goal percentage.}
-\item{\code{kicking_xpa}: double.}{Kicking - extra points attempted.}
-\item{\code{kicking_xpm}: double.}{Kicking - extra points made.}
-\item{\code{kicking_pts}: double.}{Kicking - total points.}
-\item{\code{kicking_long}: double.}{Kicking - longest successful field goal attempt.}
-\item{\code{kick_returns_no}: double.}{Kick Returns - number of kick returns.}
-\item{\code{kick_returns_yds}: double.}{Kick Returns - kick return yards.}
-\item{\code{kick_returns_avg}: double.}{Kick Returns - kick return average yards per return.}
-\item{\code{kick_returns_td}: double.}{Kick Returns - kick return touchdowns.}
-\item{\code{kick_returns_long}: double.}{Kick Returns - longest kick return yardage.}
-\item{\code{punting_no}: double.}{Punting - number of punts.}
-\item{\code{punting_yds}: double.}{Punting - punting yardage.}
-\item{\code{punting_ypp}: double.}{Punting - yards per punt.}
-\item{\code{punting_long}: double.}{Punting - longest punt yardage.}
-\item{\code{punting_in_20}: double.}{Punting - punt downed inside the 20 yard line.}
-\item{\code{punting_tb}: double.}{Punting - punt caused a touchback.}
-\item{\code{punt_returns_no}: double.}{Punt Returns - number of punt returns.}
-\item{\code{punt_returns_yds}: double.}{Punt Returns - punt return yardage total.}
-\item{\code{punt_returns_avg}: double.}{Punt Returns - punt return average yards per return.}
-\item{\code{punt_returns_td}: double.}{Punt Returns - punt return touchdowns.}
-\item{\code{punt_returns_long}: double.}{Punt Returns - longest punt return yardage.}
+\code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}} - A data frame with 59 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Season of the player stats. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of the team. \cr
+   athlete_id \tab character \tab Athlete referencing id. \cr
+   player \tab character \tab Player name. \cr
+   position \tab character \tab Player position. \cr
+   passing_completions \tab double \tab Passing completions. \cr
+   passing_att \tab double \tab Passing attempts. \cr
+   passing_pct \tab double \tab Passing completion percentage. \cr
+   passing_yds \tab double \tab Passing yardage. \cr
+   passing_td \tab double \tab Passing touchdowns. \cr
+   passing_int \tab double \tab Passing interceptions. \cr
+   passing_ypa \tab double \tab Passing yards per attempt. \cr
+   rushing_car \tab double \tab Rushing yards per carry. \cr
+   rushing_yds \tab double \tab Rushing yards total. \cr
+   rushing_td \tab double \tab Rushing touchdowns. \cr
+   rushing_ypc \tab double \tab Rushing yards per carry. \cr
+   rushing_long \tab double \tab Rushing longest yardage attempt. \cr
+   receiving_rec \tab double \tab Receiving - pass receptions. \cr
+   receiving_yds \tab double \tab Receiving - pass reception yards. \cr
+   receiving_td \tab double \tab Receiving - passing reception touchdowns. \cr
+   receiving_ypr \tab double \tab Receiving - passing yards per reception. \cr
+   receiving_long \tab double \tab Receiving - longest pass reception yardage. \cr
+   fumbles_fum \tab double \tab Fumbles. \cr
+   fumbles_rec \tab double \tab Fumbles recovered. \cr
+   fumbles_lost \tab double \tab Fumbles lost. \cr
+   defensive_solo \tab double \tab Defensive solo tackles. \cr
+   defensive_tot \tab double \tab Defensive total tackles. \cr
+   defensive_tfl \tab double \tab Defensive tackles for loss. \cr
+   defensive_sacks \tab double \tab Defensive sacks. \cr
+   defensive_qb_hur \tab double \tab Defensive quarterback hurries. \cr
+   interceptions_int \tab double \tab Interceptions total. \cr
+   interceptions_yds \tab double \tab Interception return yards. \cr
+   interceptions_avg \tab double \tab Interception return yards average. \cr
+   interceptions_td \tab double \tab Interception return touchdowns. \cr
+   defensive_pd \tab double \tab Defense - passes defensed. \cr
+   defensive_td \tab double \tab Defense - defensive touchdowns. \cr
+   kicking_fgm \tab double \tab Kicking - field goals made. \cr
+   kicking_fga \tab double \tab Kicking - field goals attempted. \cr
+   kicking_pct \tab double \tab Kicking - field goal percentage. \cr
+   kicking_xpa \tab double \tab Kicking - extra points attempted. \cr
+   kicking_xpm \tab double \tab Kicking - extra points made. \cr
+   kicking_pts \tab double \tab Kicking - total points. \cr
+   kicking_long \tab double \tab Kicking - longest successful field goal attempt. \cr
+   kick_returns_no \tab double \tab Kick Returns - number of kick returns. \cr
+   kick_returns_yds \tab double \tab Kick Returns - kick return yards. \cr
+   kick_returns_avg \tab double \tab Kick Returns - kick return average yards per return. \cr
+   kick_returns_td \tab double \tab Kick Returns - kick return touchdowns. \cr
+   kick_returns_long \tab double \tab Kick Returns - longest kick return yardage. \cr
+   punting_no \tab double \tab Punting - number of punts. \cr
+   punting_yds \tab double \tab Punting - punting yardage. \cr
+   punting_ypp \tab double \tab Punting - yards per punt. \cr
+   punting_long \tab double \tab Punting - longest punt yardage. \cr
+   punting_in_20 \tab double \tab Punting - punt downed inside the 20 yard line. \cr
+   punting_tb \tab double \tab Punting - punt caused a touchback. \cr
+   punt_returns_no \tab double \tab Punt Returns - number of punt returns. \cr
+   punt_returns_yds \tab double \tab Punt Returns - punt return yardage total. \cr
+   punt_returns_avg \tab double \tab Punt Returns - punt return average yards per return. \cr
+   punt_returns_td \tab double \tab Punt Returns - punt return touchdowns. \cr
+   punt_returns_long \tab double \tab Punt Returns - longest punt return yardage. \cr
 }
 }
 \description{
@@ -116,6 +116,7 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 Other CFBD Stats: 
 \code{\link{cfbd_stats_categories}()},
 \code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_game_havoc}()},
 \code{\link{cfbd_stats_season_advanced}()},
 \code{\link{cfbd_stats_season_team}()}
 }

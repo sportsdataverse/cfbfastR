@@ -45,7 +45,7 @@ load_cfb_pbp <- function(seasons = most_recent_cfb_season(), ...,
   } else {
     class(out) <- c("cfbfastR_data","tbl_df","tbl","data.table","data.frame")
     if (is.null(attr(out,"cfbfastR_timestamp"))) {
-      out <- out %>%
+      out <- out |>
         make_cfbfastR_data("PBP from data repo and CollegeFootballData.com",Sys.time())
     }
   }
@@ -145,10 +145,10 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
 
   # get completed games using Lee's file (thanks Lee!)
   user_message("Checking for missing completed games...", "todo")
-  completed_games <- load_games() %>%
+  completed_games <- load_games() |>
     # completed games since 2014, excluding the broken games
-    dplyr::filter(.data$season >= 2014) %>%
-    dplyr::arrange(.data$week) %>%
+    dplyr::filter(.data$season >= 2014) |>
+    dplyr::arrange(.data$week) |>
     dplyr::select("game_id", "season")
 
   # function below
@@ -156,9 +156,9 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
 
   # rebuild db always because below code block is commented out
   if (length(missing) > 0) {
-    seasons_to_rebuild <- completed_games %>%
-      dplyr::filter(.data$game_id %in% missing) %>%
-      dplyr::pull(.data$season) %>%
+    seasons_to_rebuild <- completed_games |>
+      dplyr::filter(.data$game_id %in% missing) |>
+      dplyr::pull(.data$season) |>
       unique()
     build_cfb_db(tblname, connection, show_message = FALSE, rebuild = seasons_to_rebuild)
     missing <- get_missing_cfb_games(completed_games, connection, tblname)
@@ -187,25 +187,25 @@ update_cfb_db <- function(dbdir = getOption("cfbfastR.dbdirectory", default = ".
 # this is a helper function to build cfbfastR database from Scratch
 build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, show_message = TRUE) {
 
-  valid_seasons <- load_games() %>%
-    dplyr::filter(.data$season >= 2014) %>%
-    dplyr::group_by(.data$season) %>%
-    dplyr::summarise() %>%
+  valid_seasons <- load_games() |>
+    dplyr::filter(.data$season >= 2014) |>
+    dplyr::group_by(.data$season) |>
+    dplyr::summarise() |>
     dplyr::ungroup()
 
   if (all(rebuild == TRUE)) {
     cli::cli_ul("{my_time()} | Purging the complete data table {.val {tblname}} in your connected database...")
     DBI::dbRemoveTable(db_conn, tblname)
-    seasons <- valid_seasons %>% dplyr::pull("season")
+    seasons <- valid_seasons |> dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of {length(seasons)} seasons between {min(seasons)} and {max(seasons)}...")
   } else if (is.numeric(rebuild) & all(rebuild %in% valid_seasons$season)) {
     if (show_message) {cli::cli_ul("{my_time()} | Purging {cli::qty(length(rebuild))}season{?s} {rebuild} from the data table {.val {tblname}} in your connected database...")}
     DBI::dbExecute(db_conn, glue::glue_sql("DELETE FROM {`tblname`} WHERE season IN ({vals*})", vals = rebuild, .con = db_conn))
-    seasons <- valid_seasons %>% dplyr::filter(.data$season %in% rebuild) %>% dplyr::pull("season")
+    seasons <- valid_seasons |> dplyr::filter(.data$season %in% rebuild) |> dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of the {cli::qty(length(rebuild))}season{?s} {rebuild}...")
   } else if (all(rebuild == "NEW")) {
     cli::cli_alert_info("{my_time()} | Can't find the data table {.val {tblname}} in your database. Will load the play by play data from scratch.")
-    seasons <- valid_seasons %>% dplyr::pull("season")
+    seasons <- valid_seasons |> dplyr::pull("season")
     cli::cli_ul("{my_time()} | Starting download of {length(seasons)} season{?s} between {min(seasons)} and {max(seasons)}...")
   } else {
     seasons <- NULL
@@ -221,10 +221,10 @@ build_cfb_db <- function(tblname = "cfbfastR_pbp", db_conn, rebuild = FALSE, sho
 # this is a helper function to check a list of completed games
 # against the games that exist in a database connection
 get_missing_cfb_games <- function(completed_games, dbConnection, tablename) {
-  db_ids <- dplyr::tbl(dbConnection, tablename) %>%
-    dplyr::select("game_id") %>%
-    dplyr::distinct() %>%
-    dplyr::collect() %>%
+  db_ids <- dplyr::tbl(dbConnection, tablename) |>
+    dplyr::select("game_id") |>
+    dplyr::distinct() |>
+    dplyr::collect() |>
     dplyr::pull("game_id")
 
   need_scrape <- completed_games$game_id[!completed_games$game_id %in% db_ids]

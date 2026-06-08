@@ -12,12 +12,12 @@ cfbd_recruiting_team(year = NULL, team = NULL)
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football. Required if year not provided.}
 }
 \value{
-\code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}} - A data frame with 4 variables:
-\describe{
-\item{\code{year}: integer.}{Recruiting class year.}
-\item{\code{rank}: integer.}{Team Recruiting rank.}
-\item{\code{team}: character.}{Recruiting Team.}
-\item{\code{points}: character.}{Team talent points.}
+\code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}} - A data frame with 4 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Recruiting class year (four-digit season). \cr
+   rank \tab integer \tab National team recruiting rank for the class. \cr
+   team \tab character \tab Recruiting team (school) name. \cr
+   points \tab character \tab Team talent points totaled across the recruiting class. \cr
 }
 }
 \description{

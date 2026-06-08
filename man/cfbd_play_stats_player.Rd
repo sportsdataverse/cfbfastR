@@ -33,74 +33,74 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 \item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
-\code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}} - A data frame with 54 variables:
-\describe{
-\item{\code{play_id}: character.}{Referencing play id.}
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the play.}
-\item{\code{week}: integer.}{Week of the play.}
-\item{\code{opponent}: character.}{Opponent of the offense on the play.}
-\item{\code{team_score}: integer.}{Offense team score.}
-\item{\code{opponent_score}: integer.}{Defense team score.}
-\item{\code{drive_id}: character.}{Referencing drive id.}
-\item{\code{period}: integer.}{Game period (quarter) of the play.}
-\item{\code{yards_to_goal}: integer.}{Yards to the goal line (~0-100).}
-\item{\code{down}: integer.}{Down of the play.}
-\item{\code{distance}: integer.}{Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.}
-\item{\code{reception_player_id}: character.}{Pass receiver player reference id.}
-\item{\code{reception_player}: character.}{Pass receiver player name.}
-\item{\code{reception_yds}: integer.}{Reception yards.}
-\item{\code{completion_player_id}: character.}{Passing player reference id.}
-\item{\code{completion_player}: character.}{Passing player name.}
-\item{\code{completion_yds}: integer.}{Passing yards.}
-\item{\code{rush_player_id}: character.}{Rushing player reference id.}
-\item{\code{rush_player}: character.}{Rushing player name.}
-\item{\code{rush_yds}: integer.}{Rushing yards.}
-\item{\code{interception_player_id}: character.}{Intercepting player reference id.}
-\item{\code{interception_player}: character.}{Intercepting player name.}
-\item{\code{interception_stat}: integer.}{Intercepting stat.}
-\item{\code{interception_thrown_player_id}: character.}{Interception passing player reference id.}
-\item{\code{interception_thrown_player}: character.}{Interception passing player name.}
-\item{\code{interception_thrown_stat}: integer.}{Interception thrown stat.}
-\item{\code{touchdown_player_id}: character.}{Touchdown scoring player reference id.}
-\item{\code{touchdown_player}: character.}{Touchdown scoring player name.}
-\item{\code{touchdown_stat}: integer.}{Touchdown scoring stat.}
-\item{\code{incompletion_player_id}: character.}{Incomplete receiver player reference id.}
-\item{\code{incompletion_player}: character.}{Incomplete receiver player name.}
-\item{\code{incompletion_stat}: integer.}{Incomplete stat.}
-\item{\code{target_player_id}: character.}{Targeted receiver player reference id.}
-\item{\code{target_player}: character.}{Targeted receiver player name.}
-\item{\code{target_stat}: integer.}{Target stat.}
-\item{\code{fumble_recovered_player_id}: logical.}{Fumble recovering player reference id.}
-\item{\code{fumble_recovered_player}: logical.}{Fumble recovering player name.}
-\item{\code{fumble_recovered_stat}: logical.}{Fumble recovered stat.}
-\item{\code{fumble_forced_player_id}: logical.}{Fumble forcing player reference id.}
-\item{\code{fumble_forced_player}: logical.}{Fumble forcing player name.}
-\item{\code{fumble_forced_stat}: logical.}{Fumble forced stat.}
-\item{\code{fumble_player_id}: logical.}{Fumbling player reference id.}
-\item{\code{fumble_player}: logical.}{Fumbling player name.}
-\item{\code{fumble_stat}: logical.}{Fumble stat.}
-\item{\code{sack_player_id}: character.}{Sacking player(s) reference id.}
-\item{\code{sack_player}: character.}{Sacking player(s) name.}
-\item{\code{sack_stat}: integer.}{Sack stat.}
-\item{\code{sack_taken_player_id}: character.}{Sack taking player reference id.}
-\item{\code{sack_taken_player}: character.}{Sack taking player name.}
-\item{\code{sack_taken_stat}: integer.}{Sack taken stat.}
-\item{\code{pass_breakup_player_id}: logical.}{Pass breakup player reference id.}
-\item{\code{pass_breakup_player}: logical.}{Pass breakup player name.}
-\item{\code{pass_breakup_stat}: logical.}{Pass breakup (PBU) stat.}
-\item{\code{field_goal_attempt_player_id}: character.}{Field goal attempting player reference id.}
-\item{\code{field_goal_attempt_player}: character.}{Field goal attempting player name.}
-\item{\code{field_goal_attempt_stat}: integer.}{Field goal attempt stat.}
-\item{\code{field_goal_made_player_id}: character.}{Field goal making player reference id.}
-\item{\code{field_goal_made_player}: character.}{Field goal making player name.}
-\item{\code{field_goal_made_stat}: integer.}{Field goal made stat.}
-\item{\code{field_goal_missed_player_id}: character.}{Field goal missing player reference id.}
-\item{\code{field_goal_missed_player}: character.}{Field goal missing player name.}
-\item{\code{field_goal_missed_stat}: integer.}{Field goal missed stat.}
-\item{\code{field_goal_blocked_player_id}: character.}{Field goal blocked player reference id.}
-\item{\code{field_goal_blocked_player}: character.}{Field goal blocked player name.}
-\item{\code{field_goal_blocked_stat}: integer.}{Field goal blocked stat.}
+\code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}} - A data frame with 66 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   play_id \tab character \tab CFBD play identifier the stat is attributed to. \cr
+   game_id \tab integer \tab CFBD game identifier the play belongs to. \cr
+   season \tab integer \tab Four-digit season year (e.g. 2024). \cr
+   week \tab integer \tab Season week number (1-15 regular season; 1 = postseason/bowl week). \cr
+   opponent \tab character \tab Full name of the opponent on the play. \cr
+   team_score \tab integer \tab Offense team score at the time of the play. \cr
+   opponent_score \tab integer \tab Defense / opponent team score at the time of the play. \cr
+   drive_id \tab character \tab CFBD drive identifier the play belongs to. \cr
+   period \tab integer \tab Game period / quarter of the play (1-4 regulation, 5+ overtime). \cr
+   yards_to_goal \tab integer \tab Distance in yards from the offense's spot to the opponent's goal line (0-100). \cr
+   down \tab integer \tab Down of the play (1-4). \cr
+   distance \tab integer \tab Yards to gain for a first down (or to the goal line in goal-to-go situations). \cr
+   reception_player_id \tab character \tab CFBD athlete_id of the receiver credited with a reception. \cr
+   reception_player \tab character \tab Name of the receiver credited with a reception. \cr
+   reception_yds \tab integer \tab Reception yards gained on the play. \cr
+   completion_player_id \tab character \tab CFBD athlete_id of the passer credited with a completion. \cr
+   completion_player \tab character \tab Name of the passer credited with a completion. \cr
+   completion_yds \tab integer \tab Passing yards gained on the completion. \cr
+   rush_player_id \tab character \tab CFBD athlete_id of the player credited with a rush attempt. \cr
+   rush_player \tab character \tab Name of the player credited with a rush attempt. \cr
+   rush_yds \tab integer \tab Rushing yards gained on the play. \cr
+   interception_player_id \tab character \tab CFBD athlete_id of the defender credited with an interception. \cr
+   interception_player \tab character \tab Name of the defender credited with an interception. \cr
+   interception_stat \tab integer \tab Interception stat value reported by CFBD (typically 1 per INT). \cr
+   interception_thrown_player_id \tab character \tab CFBD athlete_id of the passer charged with the interception. \cr
+   interception_thrown_player \tab character \tab Name of the passer charged with the interception. \cr
+   interception_thrown_stat \tab integer \tab Interception-thrown stat value reported by CFBD (typically 1 per INT thrown). \cr
+   touchdown_player_id \tab character \tab CFBD athlete_id of the player credited with the touchdown. \cr
+   touchdown_player \tab character \tab Name of the player credited with the touchdown. \cr
+   touchdown_stat \tab integer \tab Touchdown stat value reported by CFBD (typically 1 per TD scored). \cr
+   incompletion_player_id \tab character \tab CFBD athlete_id of the targeted receiver on an incompletion. \cr
+   incompletion_player \tab character \tab Name of the targeted receiver on an incompletion. \cr
+   incompletion_stat \tab integer \tab Incompletion stat value reported by CFBD (typically 1 per incompletion). \cr
+   target_player_id \tab character \tab CFBD athlete_id of the targeted receiver on a pass. \cr
+   target_player \tab character \tab Name of the targeted receiver on a pass. \cr
+   target_stat \tab integer \tab Target stat value reported by CFBD (typically 1 per target). \cr
+   fumble_recovered_player_id \tab logical \tab CFBD athlete_id of the player recovering the fumble. \cr
+   fumble_recovered_player \tab logical \tab Name of the player recovering the fumble. \cr
+   fumble_recovered_stat \tab logical \tab Fumble-recovered stat value reported by CFBD (typically 1 per recovery). \cr
+   fumble_forced_player_id \tab logical \tab CFBD athlete_id of the defender credited with forcing the fumble. \cr
+   fumble_forced_player \tab logical \tab Name of the defender credited with forcing the fumble. \cr
+   fumble_forced_stat \tab logical \tab Fumble-forced stat value reported by CFBD (typically 1 per forced fumble). \cr
+   fumble_player_id \tab logical \tab CFBD athlete_id of the player who fumbled. \cr
+   fumble_player \tab logical \tab Name of the player who fumbled. \cr
+   fumble_stat \tab logical \tab Fumble stat value reported by CFBD (typically 1 per fumble). \cr
+   sack_player_id \tab character \tab Comma-separated CFBD athlete_id(s) of the sacking defender(s). \cr
+   sack_player \tab character \tab Comma-separated name(s) of the sacking defender(s). \cr
+   sack_stat \tab integer \tab Sack stat value reported by CFBD (sack credit can be split between defenders). \cr
+   sack_taken_player_id \tab character \tab CFBD athlete_id of the QB charged with taking the sack. \cr
+   sack_taken_player \tab character \tab Name of the QB charged with taking the sack. \cr
+   sack_taken_stat \tab integer \tab Sack-taken stat value reported by CFBD (typically 1 per sack taken). \cr
+   pass_breakup_player_id \tab logical \tab CFBD athlete_id of the defender credited with the pass breakup (PBU). \cr
+   pass_breakup_player \tab logical \tab Name of the defender credited with the pass breakup (PBU). \cr
+   pass_breakup_stat \tab logical \tab Pass breakup (PBU) stat value reported by CFBD (typically 1 per PBU). \cr
+   field_goal_attempt_player_id \tab character \tab CFBD athlete_id of the kicker attempting the field goal. \cr
+   field_goal_attempt_player \tab character \tab Name of the kicker attempting the field goal. \cr
+   field_goal_attempt_stat \tab integer \tab Field goal attempt distance in yards reported by CFBD. \cr
+   field_goal_made_player_id \tab character \tab CFBD athlete_id of the kicker on a made field goal. \cr
+   field_goal_made_player \tab character \tab Name of the kicker on a made field goal. \cr
+   field_goal_made_stat \tab integer \tab Made-field-goal distance in yards reported by CFBD. \cr
+   field_goal_missed_player_id \tab character \tab CFBD athlete_id of the kicker on a missed field goal. \cr
+   field_goal_missed_player \tab character \tab Name of the kicker on a missed field goal. \cr
+   field_goal_missed_stat \tab integer \tab Missed-field-goal distance in yards reported by CFBD. \cr
+   field_goal_blocked_player_id \tab character \tab CFBD athlete_id of the defender credited with blocking the field goal. \cr
+   field_goal_blocked_player \tab character \tab Name of the defender credited with blocking the field goal. \cr
+   field_goal_blocked_stat \tab integer \tab Blocked-field-goal distance in yards reported by CFBD. \cr
 }
 }
 \description{
@@ -116,6 +116,7 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 Other CFBD PBP: 
 \code{\link{cfbd_live_plays}()},
 \code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_pbp_data_v2}()},
 \code{\link{cfbd_play_stats_types}()},
 \code{\link{cfbd_play_types}()},
 \code{\link{cfbd_plays}()}

@@ -5,12 +5,10 @@
 \alias{recruiting}
 \title{\strong{CFB Recruiting Endpoint Overview}}
 \description{
-\describe{
-\item{\code{cfbd_recruiting_player()}:}{ Get college football player recruiting information for a single year with filters available for team, recruit type, state and position.}
-
-\item{\code{cfbd_recruiting_position()}:}{ Get college football position group recruiting information .}
-
-\item{\code{cfbd_recruiting_team()}:}{ Get college football recruiting team rankings information.}
+\itemize{
+\item \code{cfbd_recruiting_player()}: Get college football player recruiting information for a single year with filters available for team, recruit type, state and position.
+\item \code{cfbd_recruiting_position()}: Get college football position group recruiting information .
+\item \code{cfbd_recruiting_team()}: Get college football recruiting team rankings information.
 }
 \subsection{\strong{Get player recruiting rankings}}{
 

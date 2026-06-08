@@ -16,19 +16,19 @@ cfbd_team_matchup(team1, team2, min_year = NULL, max_year = NULL)
 \item{max_year}{(\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})}
 }
 \value{
-\link{cfbd_team_matchup} - A data frame with 11 variables:
-\describe{
-\item{\code{season}: integer.}{Season the game took place.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{date}: character.}{Game date.}
-\item{\code{neutral_site}: logical.}{TRUE/FALSE flag for if the game took place at a neutral site.}
-\item{\code{venue}: character.}{Stadium name.}
-\item{\code{home_team}: character.}{Home team of the game.}
-\item{\code{home_score}: integer.}{Home score in the game.}
-\item{\code{away_team}: character.}{Away team of the game.}
-\item{\code{away_score}: integer.}{Away score in the game.}
-\item{\code{winner}: character.}{Winner of the matchup.}
+\link{cfbd_team_matchup} - A data frame with 11 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Season the game took place. \cr
+   week \tab integer \tab Game week of the season. \cr
+   season_type \tab character \tab Season type of the game. \cr
+   date \tab character \tab Game date. \cr
+   neutral_site \tab logical \tab TRUE/FALSE flag for if the game took place at a neutral site. \cr
+   venue \tab character \tab Stadium name. \cr
+   home_team \tab character \tab Home team of the game. \cr
+   home_score \tab integer \tab Home score in the game. \cr
+   away_team \tab character \tab Away team of the game. \cr
+   away_score \tab integer \tab Away score in the game. \cr
+   winner \tab character \tab Winner of the matchup. \cr
 }
 }
 \description{

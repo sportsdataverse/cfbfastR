@@ -1,20 +1,39 @@
+#' @name cfbd_conferences
+#' @aliases cfbd_conferences conferences
 #' @title
 #' **CFBD Conferences Endpoint Overview**
+#' @description
+#'
+#' * `cfbd_conferences()`: Get college football conference information.
+#'
+#' @details
+#' ## **Get college football conference information**
+#'
+#' ```r
+#' cfbd_conferences()
+#' ```
+#'
+NULL
+
+#' @title
+#' **Get college football conference information**
 #' @description
 #' **Get college football conference information**
 #' Pulls all college football conferences and returns as data frame
 #'
 #' @return [cfbd_conferences()] - A data frame with 94 rows and 5 variables:
-#' \describe{
-#'   \item{`conference_id`:}{Referencing conference id.}
-#'   \item{`name`:}{Conference name.}
-#'   \item{`long_name`:}{Long name for Conference.}
-#'   \item{`abbreviation`:}{Conference abbreviation.}
-#'   \item{`classification`:}{Conference classification (fbs,fcs,ii,iii)}
-#' }
+#'
+#'    |col_name       |types     |description                                                         |
+#'    |:--------------|:---------|:-------------------------------------------------------------------|
+#'    |conference_id  |integer   |Referencing conference id.                                          |
+#'    |name           |character |Conference name.                                                    |
+#'    |long_name      |character |Long name for Conference.                                           |
+#'    |abbreviation   |character |Conference abbreviation.                                            |
+#'    |classification |character |Conference classification (fbs, fcs, ii, iii).                      |
+#'
 #' @keywords Conferences
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @import dplyr
 #' @import tidyr
 #' @family CFBD Conference Functions
@@ -40,23 +59,23 @@ cfbd_conferences <- function() {
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         janitor::clean_names()
 
       # Rename id as conference_id, short_name as long_name
-      df <- df %>%
+      df <- df |>
         dplyr::rename(
           "conference_id" = "id",
           "long_name" = "short_name"
         )
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Conference data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no Conference data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no Conference data available! {conditionMessage(e)}"))
     },
     warning = function(w) {
     },

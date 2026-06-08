@@ -16,15 +16,15 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_metrics_wepa_players_kicking]{cfbd_metrics_wepa_players_kicking()}} - A data frame with 7 variables:\tabular{ll}{
-   col_name \tab types \cr
-   year \tab integer \cr
-   athlete_id \tab character \cr
-   athlete_name \tab character \cr
-   team \tab character \cr
-   conference \tab character \cr
-   paar \tab numeric \cr
-   attempts \tab integer \cr
+\code{\link[=cfbd_metrics_wepa_players_kicking]{cfbd_metrics_wepa_players_kicking()}} - A data frame with 7 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Four-digit season year (e.g. 2019). \cr
+   athlete_id \tab character \tab CFBD athlete identifier (use with \code{cfbd_player_info()}). \cr
+   athlete_name \tab character \tab Kicker full name. \cr
+   team \tab character \tab Full team name (e.g. "TCU"). \cr
+   conference \tab character \tab Team conference name (e.g. "Big 12"). \cr
+   paar \tab numeric \tab Points Added Above Replacement on field goal attempts (kicker value vs baseline). \cr
+   attempts \tab integer \tab Total field goal attempts included in the PAAR calculation. \cr
 }
 }
 \description{

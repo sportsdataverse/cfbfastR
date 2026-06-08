@@ -70,7 +70,7 @@ penalty_detection <- function(raw_df) {
   raw_df$penalty_text[pen_text & !pen_type & !pen_declined_text &
     !pen_offset_text & !pen_no_play_text] <- TRUE
 
-  raw_df <- raw_df %>%
+  raw_df <- raw_df |>
     dplyr::mutate(
       penalty_detail = case_when(
         .data$penalty_offset ~ "Off-Setting",
@@ -142,11 +142,11 @@ penalty_detection <- function(raw_df) {
       yds_penalty = stringr::str_remove(.data$yds_penalty, "\\(")
     )
   suppressWarnings(
-    raw_df <- raw_df %>%
+    raw_df <- raw_df |>
       mutate(yds_penalty = stringr::str_trim(.data$yds_penalty))
   )
   ## -- Kickoff down adjustment ----
-  raw_df <- raw_df %>%
+  raw_df <- raw_df |>
     dplyr::mutate(
       orig_play_type = .data$play_type,
       down = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Kickoff"), 1, .data$down),
@@ -157,7 +157,7 @@ penalty_detection <- function(raw_df) {
       half = ifelse(.data$period <= 2, 1, 2),
       # Timeouts on kickoffs actually breaks everything
       down = ifelse(.data$down == 5 & stringr::str_detect(.data$play_type, "Timeout"), 0, .data$down),
-    ) %>%
+    ) |>
     dplyr::filter(!(.data$game_id == "302610012" & .data$down == 5 & .data$play_type == "Rush"))
   return(raw_df)
 }

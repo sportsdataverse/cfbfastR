@@ -1,3 +1,62 @@
+# **cfbfastR v2.3.0**
+
+This release adds a 65-function ESPN college-football API layer, expanding `cfbfastR`'s ESPN surface from 8 wrappers to 73. The new wrappers expose ESPN's core-v2 endpoints in ESPN's own ID space — complementary to the CollegeFootballData (`cfbd_*`) wrappers, and the natural join partners for `espn_cfb_pbp()` / `espn_cfb_scoreboard()`. Every wrapper was verified live against the 2023, 2024, and 2025 seasons.
+
+**Naming alignment with the sportsdataverse convention (this dev cycle, never on CRAN):** `espn_cfb_player_statistics()` is renamed to `espn_cfb_player_career_stats()` (the core-v2 `/athletes/{id}/statistics` career view, matching hoopR/wehoop/sportsdataverse-py). New `espn_cfb_player_stats_v3()` wraps the comprehensive web-common-v3 `/athletes/{id}/stats` payload (all categories, long format) — the `_v3` companion to `espn_cfb_player_stats()` (core-v2 season statistics).
+
+### New ESPN wrappers — football-specific metrics
+
+* `espn_cfb_powerindex()` — ESPN's College Football Power Index (FPI): every predictive metric and efficiency component, in long format.
+* `espn_cfb_qbr()` — Total Quarterback Rating (QBR) and the full set of clutch-weighted EPA components, one row per qualified passer.
+* `espn_cfb_futures()` — the season betting-futures board (national championship, conference, and award markets) with each sportsbook's American odds.
+* `espn_cfb_recruits()` — ESPN's recruiting board for a class, one row per recruit with grade, position/state/region rank, committed school, and hometown.
+
+### New ESPN wrappers — players
+
+* `espn_cfb_players()`, `espn_cfb_player()`, `espn_cfb_player_eventlog()`, `espn_cfb_player_gamelog()`, `espn_cfb_player_statistics()`, `espn_cfb_player_splits()`, `espn_cfb_player_overview()`, and `espn_cfb_player_seasons()` — player index, biographical detail, per-game logs, season statistics, and split breakdowns. The season-level wrappers resolve `athlete_id` to human-readable name/position columns via an `athlete_detail` argument.
+
+### New ESPN wrappers — teams
+
+* `espn_cfb_teams()`, `espn_cfb_team()`, `espn_cfb_team_roster()`, `espn_cfb_team_schedule()`, `espn_cfb_team_record()`, and `espn_cfb_team_leaders()` — team index, team-in-season detail, roster, schedule, records, and statistical leaders.
+* `espn_cfb_team_ats()`, `espn_cfb_team_powerindex()`, `espn_cfb_team_events()`, `espn_cfb_team_ranks()`, `espn_cfb_team_awards()`, and `espn_cfb_team_coaches()` — team against-the-spread records, single-team power index, season event log, poll-rank history, player awards, and coaching staff.
+
+### New ESPN wrappers — game detail
+
+* `espn_cfb_game_teams()`, `espn_cfb_game_team_linescores()`, `espn_cfb_game_team_leaders()`, `espn_cfb_game_team_roster()`, `espn_cfb_game_team_statistics()`, and `espn_cfb_game_team_records()` — per-game team breakdowns.
+* `espn_cfb_game_odds()`, `espn_cfb_game_broadcasts()`, `espn_cfb_game_predictor()`, `espn_cfb_game_probabilities()`, `espn_cfb_game_powerindex()`, and `espn_cfb_game_pbp()` — per-game odds, broadcasts, pre-game predictor, live win-probability, matchup power index, and play-by-play.
+* `espn_cfb_game_drives()`, `espn_cfb_game_drive_plays()`, `espn_cfb_game_play()`, `espn_cfb_game_leaders()`, `espn_cfb_game_situation()`, `espn_cfb_game_status()`, `espn_cfb_game_player_statistics()`, and `espn_cfb_game_player_box()` — drive log, drive-scoped plays, single-play detail, game statistical leaders, situation, status, and per-player game box lines.
+* The play-level wrappers (`espn_cfb_game_pbp()`, `espn_cfb_game_drive_plays()`, `espn_cfb_game_play()`) extract every field ESPN returns for a play and expose its nested child collections through opt-in parameters: `participants` (`"none"`/`"wide"`/`"long"`) and `participants_list` surface per-play athlete involvement (passer, rusher, tackler, …), and `team_participants` / `team_participants_list` surface the offense/defense team participants — `"wide"` modes pivot to one row per play, the `*_list` flags keep the raw detail as a list-column.
+* `espn_cfb_game_team_records(detail = TRUE)` unpacks each record's full statistic breakdown; `espn_cfb_game_odds(line_history = TRUE)` returns the open/close/current line-movement history. Roster and player-stats wrappers join ESPN position-catalog detail when `position_detail = TRUE`.
+* `espn_cfb_game_drives()` gains a `plays` argument — `"list"` nests each drive's plays (full play-by-play schema, with the participant pass-through options) as a list-column, `"expand"` returns the flat one-row-per-play table with `drive_*` context columns. The new `espn_cfb_unnest_plays()` performs the same drives-to-play-by-play transform on an already-fetched nested frame.
+* The game wrappers join human-readable team detail when `team_detail = TRUE` (default): every team-id column (`team_id`, `home_team_id`, `start_team_id`, `leader_team_id`, …) gains sibling `*_name`, `*_abbreviation`, `*_location`, `*_display_name`, `*_color`, `*_logo_href`, … columns from the ESPN team catalog. `espn_cfb_game_teams(format = "wide")` collapses the two competitor rows into a single per-game row with `home_*` / `away_*` columns for direct joining onto one-row-per-game tables.
+* `espn_cfb_pbp_v2()` — a core-v2-sourced successor to `espn_cfb_pbp()`: assembles play-by-play in one structured request (vs. the legacy site-v2 summary parse) and, with `epa_wpa = TRUE`, runs cfbfastR's full EPA/WPA model pipeline — producing EPA/WPA columns identical to the legacy modeled feed.
+
+### New ESPN wrappers — catalogs and season metadata
+
+* `espn_cfb_seasons()`, `espn_cfb_season_info()`, `espn_cfb_season_types()`, `espn_cfb_season_weeks()`, `espn_cfb_groups()`, and `espn_cfb_standings()` — season structure, conferences, and standings.
+* `espn_cfb_coaches()`, `espn_cfb_coach()`, `espn_cfb_venues()`, `espn_cfb_positions()`, `espn_cfb_awards()`, `espn_cfb_rankings()`, and `espn_cfb_week_rankings()` — league catalogs and poll rankings.
+* `espn_cfb_coach_record()`, `espn_cfb_franchises()`, `espn_cfb_franchise()`, `espn_cfb_venue()`, `espn_cfb_position()`, and `espn_cfb_award()` — coach season win/loss records, the league franchise catalog, and single-record venue / position / award detail.
+
+### New CollegeFootballData wrappers
+
+* `cfbd_betting_ats()` — season against-the-spread (ATS) summary records by team, wrapping the CollegeFootballData `/teams/ats` endpoint.
+* `cfbd_stats_game_havoc()` — per-game havoc statistics (total / front-seven / defensive-back havoc events and rates, offense and defense), wrapping the CollegeFootballData `/stats/game/havoc` endpoint.
+* `cfbd_pbp_data_v2()` is a new public function: a modular successor to `cfbd_pbp_data()` that runs the same EPA/WPA pipeline through a single shared engine (`.run_epa_wpa()`) and a canonical play-type taxonomy (`.pbp_play_types()`). The legacy `cfbd_pbp_data()` is unchanged.
+* `espn_cfb_pbp_v2()` now sources play-by-play and meta through the shared engine, requests `participants = "wide"` and `team_participants = "wide"` from `espn_cfb_game_drives()`, and adds the meta columns `home_team_name`, `home_team_color`, `home_team_alternate_color`, `home_team_rank` (and `away_*`) via the new `.espn_pbp_game_meta()` bridge. Output is a strict superset of legacy `espn_cfb_pbp()` on the meta columns.
+
+### Bug fixes
+
+* `espn_cfb_pbp()` now builds its request URL with the `?event=` query separator (previously concatenated as `summaryevent=`, which returned HTTP 404 for every game) and initializes its return frame before the `tryCatch` so an upstream failure no longer throws `object 'plays_df' not found`.
+* `cfbd_pbp_data_v2()` and `espn_cfb_pbp_v2()` preserve character `id_play` precision through the EPA/WPA pipeline. The legacy shared helper used unquoted numeric literals in two `ifelse` calls (a historical `id_play` swap for one game), which silently coerced character `id_play` to numeric and then lost precision past 2^53 — breaking the play-id join-back in `espn_cfb_pbp_v2()`. The modular `.pbp_clean_pbp_dat()` quotes those literals so `id_play` stays character; the legacy `clean_pbp_dat()` is unchanged.
+
+### Internal changes
+
+- **httr -> httr2 migration.** cfbfastR's HTTP layer now uses the modern `httr2` package (>= 1.0.0) instead of the legacy `httr`. End users running existing wrapper calls (`cfbd_*`, `espn_cfb_*`) should see no behavioural change -- the migration is internal. Custom code that calls `get_req()` or `check_status()` directly must update from `httr::content(res, as = "text")` to `httr2::resp_body_string(res)` and from `httr::status_code(res)` to `httr2::resp_status(res)`.
+- **Proxy support.** `get_req()` now resolves a proxy in the order: explicit `proxy` argument -> `getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars. The proxy value accepts either a URL string or a named list with `url` / `port` / `username` / `password` / `auth` for authenticated proxies.
+- **Dependency footprint trimmed.** `lubridate`, `progressr`, `memoise`, `cachem`, and `magrittr` have moved out of `Imports` (21 -> 16). `lubridate` is gone entirely -- its two `ymd_hm() |> with_tz()` calls in `espn_cfb_schedule.R` are now base-R `as.POSIXct(format = "%Y-%m-%dT%H:%M", tz = "UTC")` + `attr(., "tzone")`. `progressr`, `memoise`, and `cachem` moved to `Suggests` and the helpers degrade gracefully when missing: `load_cfb_pbp()` / `cfbd_pbp_data()` / `pbp_epa_wpa_engine()` run without a progress bar when `progressr` is absent; ESPN catalog wrappers run uncached when `memoise` / `cachem` are absent (`espn_cfb_clear_cache()` becomes a no-op). Drops the `Imports` count below the >20 `R CMD check` NOTE threshold.
+- **Native pipe migration.** All 1,419 `%>%` chains in `R/`, plus 137 across `vignettes/` and `tests/`, were converted to the base-R native pipe `|>`. `magrittr` is no longer an `Imports`; downstream consumers that load `cfbfastR` purely for its functions don't get `%>%` re-exported anymore. User-visible impact is minimal -- the public API is unchanged and `dplyr` (which is in `Imports`) still re-exports `%>%` for users who want to keep writing it. Two non-mechanical fixes were needed during the sweep: three `|> `[[`("url")` chains in `cfbd_betting.R` and `cfbd_coaches.R` (rejected as RHS in R 4.1's `|>`) became `|> purrr::pluck("url")`; seven `|> tibble::tibble(col = .data$.)` constructs were a magrittr quirk that silently duplicated the LHS into both a `.` and the named column -- rewritten to `tibble::tibble(col = <lhs>)`, which drops the redundant `.` column.
+- **Test-time CFBD throttle.** A new `tests/testthat/setup-cfbd-throttle.R` adds a 1-second sleep before every CFBD request made by `devtools::test()` / `R CMD check`. It works by monkey-patching `cfbfastR:::get_req()` for the duration of the test session (restored via `withr::defer(., teardown_env())`) -- the package code is unchanged, so interactive and production calls pay no penalty. Tunable via `options(cfbfastR.test_request_delay = N)` (default 1; set to 0 for unthrottled local runs). Resolves the cascading `HTTP 429` skip-if-empty results that were turning otherwise-green test runs into "all green, mostly skipped." `withr` joins `Suggests` to declare the test-side dependency cleanly (it was already a transitive dep of `testthat`).
+
 # **cfbfastR v2.2.0**
 
 * Fixes a bug in `validate_week()` utility function where some inputs were not being handled correctly (i.e. week 16). Fixes trickle down to `cfbd_pbp_data()` and other functions.

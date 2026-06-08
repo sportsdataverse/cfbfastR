@@ -43,38 +43,38 @@ list columns that give the score at each quarter: \code{home_line_scores} and \c
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
 }
 \value{
-\code{\link[=cfbd_game_info]{cfbd_game_info()}} - A data frame with 22 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{start_date}: character.}{Game date.}
-\item{\code{start_time_tbd}: logical.}{TRUE/FALSE flag for if the game's start time is to be determined.}
-\item{\code{neutral_site}: logical.}{TRUE/FALSE flag for the game taking place at a neutral site.}
-\item{\code{conference_game}: logical.}{TRUE/FALSE flag for this game qualifying as a conference game.}
-\item{\code{attendance}: integer.}{Reported attendance at the game.}
-\item{\code{venue_id}: integer.}{Referencing venue id.}
-\item{\code{venue}: character.}{Venue name.}
-\item{\code{home_id}: integer.}{Home team referencing id.}
-\item{\code{home_team}: character.}{Home team name.}
-\item{\code{home_conference}: character.}{Home team conference.}
-\item{\code{home_division}: character.}{Home team division.}
-\item{\code{home_points}: integer.}{Home team points.}
-\item{\code{home_post_win_prob}: character.}{Home team post-game win probability.}
-\item{\code{home_pregame_elo}: character.}{Home team pre-game ELO rating.}
-\item{\code{home_postgame_elo}: character.}{Home team post-game ELO rating.}
-\item{\code{away_id}: integer.}{Away team referencing id.}
-\item{\code{away_team}: character.}{Away team name.}
-\item{\code{away_conference}: character.}{Away team conference.}
-\item{\code{away_division}: character.}{Away team division.}
-\item{\code{away_points}: integer.}{Away team points.}
-\item{\code{away_post_win_prob}: character.}{Away team post-game win probability.}
-\item{\code{away_pregame_elo}: character.}{Away team pre-game ELO rating.}
-\item{\code{away_postgame_elo}: character.}{Away team post-game ELO rating.}
-\item{\code{excitement_index}: character.}{Game excitement index.}
-\item{\code{highlights}: character.}{Game highlight urls.}
-\item{\code{notes}: character.}{Game notes.}
+\code{\link[=cfbd_game_info]{cfbd_game_info()}} - A data frame with 30 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   season \tab integer \tab Season of the game. \cr
+   week \tab integer \tab Game week. \cr
+   season_type \tab character \tab Season type of the game. \cr
+   start_date \tab character \tab Game date. \cr
+   start_time_tbd \tab logical \tab TRUE/FALSE flag for if the game's start time is to be determined. \cr
+   neutral_site \tab logical \tab TRUE/FALSE flag for the game taking place at a neutral site. \cr
+   conference_game \tab logical \tab TRUE/FALSE flag for this game qualifying as a conference game. \cr
+   attendance \tab integer \tab Reported attendance at the game. \cr
+   venue_id \tab integer \tab Referencing venue id. \cr
+   venue \tab character \tab Venue name. \cr
+   home_id \tab integer \tab Home team referencing id. \cr
+   home_team \tab character \tab Home team name. \cr
+   home_conference \tab character \tab Home team conference. \cr
+   home_division \tab character \tab Home team division. \cr
+   home_points \tab integer \tab Home team points. \cr
+   home_post_win_prob \tab character \tab Home team post-game win probability. \cr
+   home_pregame_elo \tab character \tab Home team pre-game ELO rating. \cr
+   home_postgame_elo \tab character \tab Home team post-game ELO rating. \cr
+   away_id \tab integer \tab Away team referencing id. \cr
+   away_team \tab character \tab Away team name. \cr
+   away_conference \tab character \tab Away team conference. \cr
+   away_division \tab character \tab Away team division. \cr
+   away_points \tab integer \tab Away team points. \cr
+   away_post_win_prob \tab character \tab Away team post-game win probability. \cr
+   away_pregame_elo \tab character \tab Away team pre-game ELO rating. \cr
+   away_postgame_elo \tab character \tab Away team post-game ELO rating. \cr
+   excitement_index \tab character \tab Game excitement index. \cr
+   highlights \tab character \tab Game highlight urls. \cr
+   notes \tab character \tab Game notes. \cr
 }
 }
 \description{

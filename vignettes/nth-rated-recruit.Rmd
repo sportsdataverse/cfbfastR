@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 Hi ```cfbfastR``` users, I'm Eric Hess and I run the [Twitter account](https://twitter.com/arbitanalytics) and blog called [Arbitrary Analytics](https://arbitraryanalytics.com/). My work focuses on sports analytics mainly for Nebraska and the Big Ten. Today, I'm going to walk through how I used the ```cfbfastR``` package to make a simple plot of recent recruiting classes. The final output will give you a quick way to visually approximate how much talent each school has recruited. I'm going to assume you have a basic understanding of working with R and that your development environment is already setup.
 
-We start by loading the packages we need. The ```cfbfastR``` package will provide us with our source of data. The ```dplyr``` package gives us handy data manipulation tools and the ever useful pipe (```%>%```) syntax. Finally, ```ggplot2``` will allow us to make a simple, functional graph of our results.
+We start by loading the packages we need. The ```cfbfastR``` package will provide us with our source of data. The ```dplyr``` package gives us handy data manipulation tools and the ever useful pipe (```|>```) syntax. Finally, ```ggplot2``` will allow us to make a simple, functional graph of our results.
 
 ```{r packages, message=FALSE,warning=FALSE}
 if (!requireNamespace('pacman', quietly = TRUE)){
@@ -30,7 +30,7 @@ pacman::p_load(dplyr, ggplot2, cfbfastR)
 To create the plot I'm going to use two functions from ```cfbfastR```. The first is the ```cfbd_team_info``` function. I'm going to pass ```"B1G"``` to the function for the ```conference``` argument to get info for just Big Ten teams. The next function I'm going to use is the ```cfbd_recruiting_player``` function. The apply function allows me to run the given function for each item in the data frame I pass to it. In this case I run it for each team in the Big Ten. I'm calling this function four times to get each year's class. I'll combine all of these into one large data frame with every team's recruits. For the sake of simplicity, I am only using High School recruits as shown by the ```recruit_type``` argument. You can also get Prep School recruits (```recruit_type = "PrepSchool"```) or junior college recruits (```recruit_type = "JUCO"```).
 
 ```{r cfb}
-teams <- cfbfastR::cfbd_team_info() %>% 
+teams <- cfbfastR::cfbd_team_info() |> 
   dplyr::filter(conference == "Big Ten")
 schools <- teams$school
 yr <- cfbfastR:::most_recent_cfb_season()
@@ -57,24 +57,24 @@ dplyr::glimpse(all.recruits)
 The next step is cleaning the data. The ```cfbd_recruiting_player()``` function gives us 14 pieces of data for each player. Our graph is going to focus on just the rating and what school they committed to. I'm going to keep the player name as well as a check field so I can go back and check my data set more quickly if I have any errors. The next line uses ```dplyr``` syntax to give me just the highest rated 85 recruits in order by their rating. I use this info to assign a ranking for each school's 1-nth recruit. Finally, I use the teams data frame again so each recruits school information can be used on our graph.
 
 ```{r cleaning}
-recruits.limited <- all.recruits %>% 
+recruits.limited <- all.recruits |> 
   dplyr::select(name, rating, committed_to)
-recruits.sorted <- recruits.limited %>% 
-  dplyr::group_by(committed_to) %>% 
-  dplyr::top_n(85, rating) %>% 
-  dplyr::arrange(committed_to, -rating,.by_group=TRUE) %>% 
-  dplyr::mutate(num = dplyr::row_number()) %>% 
+recruits.sorted <- recruits.limited |> 
+  dplyr::group_by(committed_to) |> 
+  dplyr::top_n(85, rating) |> 
+  dplyr::arrange(committed_to, -rating,.by_group=TRUE) |> 
+  dplyr::mutate(num = dplyr::row_number()) |> 
   dplyr::ungroup()
 
-recruits.final <- recruits.sorted %>% 
+recruits.final <- recruits.sorted |> 
   dplyr::left_join(teams, by = c("committed_to"="school"))
 ```
 
 If you follow the Big Ten you know a lot of schools have a shade of red as their primary color. This can make some plots hard to read. Because of this I'm filtering down my data to look at just recruits who committed to a Big Ten West division school. For ```ggplot2``` to use a manually defined color set, I must get a vector of colors that I want, each team's primary color, and assign each value a name corresponding to the school I'm interested in.
 
 ```{r final}
-big.ten.west <- recruits.final %>% filter(division == "West")
-big.ten.west.teams <- teams %>% filter(division == "West")
+big.ten.west <- recruits.final |> filter(division == "West")
+big.ten.west.teams <- teams |> filter(division == "West")
 
 big.ten.west.colors <- big.ten.west.teams$color
 names(big.ten.west.colors) <- big.ten.west.teams$school

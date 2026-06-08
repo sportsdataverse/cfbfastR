@@ -8,10 +8,10 @@
 \alias{nfl_teams}
 \title{\strong{CFBD NFL Draft Endpoint Overview}}
 \description{
-\describe{
-\item{\code{cfbd_draft_teams()}:}{ Get list of NFL teams.}
-\item{\code{cfbd_draft_positions()}:}{ Get list of NFL positions for mapping to college positions.}
-\item{\code{cfbd_draft_picks()}:}{ Get list of NFL Draft picks.}
+\itemize{
+\item \code{cfbd_draft_teams()}: Get list of NFL teams.
+\item \code{cfbd_draft_positions()}: Get list of NFL positions for mapping to college positions.
+\item \code{cfbd_draft_picks()}: Get list of NFL Draft picks.
 }
 }
 \details{

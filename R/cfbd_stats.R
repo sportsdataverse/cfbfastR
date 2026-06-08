@@ -2,13 +2,13 @@
 #' @title
 #' **CFBD Stats Endpoint Overview**
 #' @description
-#' \describe{
-#' \item{```cfbd_stats_categories()```:}{ Get college football mapping for stats categories.}
-#' \item{```cfbd_stats_season_team()```:}{ Get season statistics by team.}
-#' \item{```cfbd_stats_season_advanced()```:}{ Get season advanced statistics by team.}
-#' \item{```cfbd_stats_game_advanced()```:}{ Get game advanced stats.}
-#' \item{```cfbd_stats_season_player()```:}{ Get season statistics by player.}
-#' }
+#'
+#' * `cfbd_stats_categories()`: Get college football mapping for stats categories.
+#' * `cfbd_stats_season_team()`: Get season statistics by team.
+#' * `cfbd_stats_season_advanced()`: Get season advanced statistics by team.
+#' * `cfbd_stats_game_advanced()`: Get game advanced stats.
+#' * `cfbd_stats_season_player()`: Get season statistics by player.
+#'
 #' @details
 #' ### **Get game advanced stats**
 #' ```r
@@ -57,13 +57,15 @@ NULL
 #' \donttest{
 #'    try(cfbd_stats_categories())
 #' }
-#' @return [cfbd_stats_categories()] A data frame with 38 values:
-#' \describe{
-#'   \item{name}{Statistics Categories}
-#' }
+#' @return [cfbd_stats_categories()] A data frame with 1 variable:
+#'
+#'    |col_name |types     |description                                                       |
+#'    |:--------|:---------|:-----------------------------------------------------------------|
+#'    |category |character |CFBD stats category name (e.g. passing, rushing, defensive).      |
+#'
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 resp_body_string
 #' @importFrom glue glue
 #' @importFrom dplyr rename
 #' @family CFBD Stats
@@ -86,18 +88,18 @@ cfbd_stats_categories <- function() {
       check_status(res)
 
       # Get the content and return it as list
-      list <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+      list <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
-      df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) %>%
+      df <- as.data.frame(matrix(unlist(list), nrow = length(list), byrow = TRUE)) |>
         dplyr::rename("category" = "V1")
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Stat categories for CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -115,72 +117,74 @@ cfbd_stats_categories <- function() {
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
 #' @return [cfbd_stats_game_advanced()] - A data frame with 60 variables:
-#' \describe{
-#'   \item{`game_id`: integer.}{Referencing game id.}
-#'   \item{`season`: integer.}{Season of the game.}
-#'   \item{`week`: integer.}{Game week of the season.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`opponent`: character.}{Opponent team name.}
-#'   \item{`off_plays`: integer.}{Offense plays in the game.}
-#'   \item{`off_drives`: integer.}{Offense drives in the game.}
-#'   \item{`off_ppa`: double.}{Offense predicted points added (PPA).}
-#'   \item{`off_total_ppa`: double.}{Offense total predicted points added (PPA).}
-#'   \item{`off_success_rate`: double.}{Offense success rate.}
-#'   \item{`off_explosiveness`: double.}{Offense explosiveness rate.}
-#'   \item{`off_power_success`: double.}{Offense power success rate.}
-#'   \item{`off_stuff_rate`: double.}{Opponent stuff rate.}
-#'   \item{`off_line_yds`: double.}{Offensive line yards.}
-#'   \item{`off_line_yds_total`: integer.}{Offensive line yards total.}
-#'   \item{`off_second_lvl_yds`: double.}{Offense second-level yards.}
-#'   \item{`off_second_lvl_yds_total`: integer.}{Offense second-level yards total.}
-#'   \item{`off_open_field_yds`: integer.}{Offense open field yards.}
-#'   \item{`off_open_field_yds_total`: integer.}{Offense open field yards total.}
-#'   \item{`off_standard_downs_ppa`: double.}{Offense standard downs predicted points added (PPA).}
-#'   \item{`off_standard_downs_success_rate`: double.}{Offense standard downs success rate.}
-#'   \item{`off_standard_downs_explosiveness`: double.}{Offense standard downs explosiveness rate.}
-#'   \item{`off_passing_downs_ppa`: double.}{Offense passing downs predicted points added (PPA).}
-#'   \item{`off_passing_downs_success_rate`: double.}{Offense passing downs success rate.}
-#'   \item{`off_passing_downs_explosiveness`: double.}{Offense passing downs explosiveness rate.}
-#'   \item{`off_rushing_plays_ppa`: double.}{Offense rushing plays predicted points added (PPA).}
-#'   \item{`off_rushing_plays_total_ppa`: double.}{Offense rushing plays total predicted points added (PPA).}
-#'   \item{`off_rushing_plays_success_rate`: double.}{Offense rushing plays success rate.}
-#'   \item{`off_rushing_plays_explosiveness`: double.}{Offense rushing plays explosiveness rate.}
-#'   \item{`off_passing_plays_ppa`: double.}{Offense passing plays predicted points added (PPA).}
-#'   \item{`off_passing_plays_total_ppa`: double.}{Offense passing plays total predicted points added (PPA).}
-#'   \item{`off_passing_plays_success_rate`: double.}{Offense passing plays success rate.}
-#'   \item{`off_passing_plays_explosiveness`: double.}{Offense passing plays explosiveness rate.}
-#'   \item{`def_plays`: integer.}{Defense plays in the game.}
-#'   \item{`def_drives`: integer.}{Defense drives in the game.}
-#'   \item{`def_ppa`: double.}{Defense predicted points added (PPA).}
-#'   \item{`def_total_ppa`: double.}{Defense total predicted points added (PPA).}
-#'   \item{`def_success_rate`: double.}{Defense success rate.}
-#'   \item{`def_explosiveness`: double.}{Defense explosiveness rate.}
-#'   \item{`def_power_success`: double.}{Defense power success rate.}
-#'   \item{`def_stuff_rate`: double.}{Opponent stuff rate.}
-#'   \item{`def_line_yds`: double.}{Offensive line yards.}
-#'   \item{`def_line_yds_total`: integer.}{Offensive line yards total.}
-#'   \item{`def_second_lvl_yds`: double.}{Defense second-level yards.}
-#'   \item{`def_second_lvl_yds_total`: integer.}{Defense second-level yards total.}
-#'   \item{`def_open_field_yds`: integer.}{Defense open field yards.}
-#'   \item{`def_open_field_yds_total`: integer.}{Defense open field yards total.}
-#'   \item{`def_standard_downs_ppa`: double.}{Defense standard downs predicted points added (PPA).}
-#'   \item{`def_standard_downs_success_rate`: double.}{Defense standard downs success rate.}
-#'   \item{`def_standard_downs_explosiveness`: double.}{Defense standard downs explosiveness rate.}
-#'   \item{`def_passing_downs_ppa`: double.}{Defense passing downs predicted points added (PPA).}
-#'   \item{`def_passing_downs_success_rate`: double.}{Defense passing downs success rate.}
-#'   \item{`def_passing_downs_explosiveness`: double.}{Defense passing downs explosiveness rate.}
-#'   \item{`def_rushing_plays_ppa`: double.}{Defense rushing plays predicted points added (PPA).}
-#'   \item{`def_rushing_plays_total_ppa`: double.}{Defense rushing plays total predicted points added (PPA).}
-#'   \item{`def_rushing_plays_success_rate`: double.}{Defense rushing plays success rate.}
-#'   \item{`def_rushing_plays_explosiveness`: double.}{Defense rushing plays explosiveness rate.}
-#'   \item{`def_passing_plays_ppa`: double.}{Defense passing plays predicted points added (PPA).}
-#'   \item{`def_passing_plays_total_ppa`: double.}{Defense passing plays total predicted points added (PPA).}
-#'   \item{`def_passing_plays_success_rate`: double.}{Defense passing plays success rate.}
-#'   \item{`def_passing_plays_explosiveness`: double.}{Defense passing plays explosiveness rate.}
-#' }
+#'
+#'    |col_name                          |types     |description                                                      |
+#'    |:---------------------------------|:---------|:----------------------------------------------------------------|
+#'    |game_id                           |integer   |Referencing game id.                                             |
+#'    |season                            |integer   |Season of the game.                                              |
+#'    |week                              |integer   |Game week of the season.                                         |
+#'    |team                              |character |Team name.                                                       |
+#'    |opponent                          |character |Opponent team name.                                              |
+#'    |off_plays                         |integer   |Offense plays in the game.                                       |
+#'    |off_drives                        |integer   |Offense drives in the game.                                      |
+#'    |off_ppa                           |double    |Offense predicted points added (PPA).                            |
+#'    |off_total_ppa                     |double    |Offense total predicted points added (PPA).                      |
+#'    |off_success_rate                  |double    |Offense success rate.                                            |
+#'    |off_explosiveness                 |double    |Offense explosiveness rate.                                      |
+#'    |off_power_success                 |double    |Offense power success rate.                                      |
+#'    |off_stuff_rate                    |double    |Opponent stuff rate.                                             |
+#'    |off_line_yds                      |double    |Offensive line yards.                                            |
+#'    |off_line_yds_total                |integer   |Offensive line yards total.                                      |
+#'    |off_second_lvl_yds                |double    |Offense second-level yards.                                      |
+#'    |off_second_lvl_yds_total          |integer   |Offense second-level yards total.                                |
+#'    |off_open_field_yds                |integer   |Offense open field yards.                                        |
+#'    |off_open_field_yds_total          |integer   |Offense open field yards total.                                  |
+#'    |off_standard_downs_ppa            |double    |Offense standard downs predicted points added (PPA).             |
+#'    |off_standard_downs_success_rate   |double    |Offense standard downs success rate.                             |
+#'    |off_standard_downs_explosiveness  |double    |Offense standard downs explosiveness rate.                       |
+#'    |off_passing_downs_ppa             |double    |Offense passing downs predicted points added (PPA).              |
+#'    |off_passing_downs_success_rate    |double    |Offense passing downs success rate.                              |
+#'    |off_passing_downs_explosiveness   |double    |Offense passing downs explosiveness rate.                        |
+#'    |off_rushing_plays_ppa             |double    |Offense rushing plays predicted points added (PPA).              |
+#'    |off_rushing_plays_total_ppa       |double    |Offense rushing plays total predicted points added (PPA).        |
+#'    |off_rushing_plays_success_rate    |double    |Offense rushing plays success rate.                              |
+#'    |off_rushing_plays_explosiveness   |double    |Offense rushing plays explosiveness rate.                        |
+#'    |off_passing_plays_ppa             |double    |Offense passing plays predicted points added (PPA).              |
+#'    |off_passing_plays_total_ppa       |double    |Offense passing plays total predicted points added (PPA).        |
+#'    |off_passing_plays_success_rate    |double    |Offense passing plays success rate.                              |
+#'    |off_passing_plays_explosiveness   |double    |Offense passing plays explosiveness rate.                        |
+#'    |def_plays                         |integer   |Defense plays in the game.                                       |
+#'    |def_drives                        |integer   |Defense drives in the game.                                      |
+#'    |def_ppa                           |double    |Defense predicted points added (PPA).                            |
+#'    |def_total_ppa                     |double    |Defense total predicted points added (PPA).                      |
+#'    |def_success_rate                  |double    |Defense success rate.                                            |
+#'    |def_explosiveness                 |double    |Defense explosiveness rate.                                      |
+#'    |def_power_success                 |double    |Defense power success rate.                                      |
+#'    |def_stuff_rate                    |double    |Opponent stuff rate.                                             |
+#'    |def_line_yds                      |double    |Offensive line yards.                                            |
+#'    |def_line_yds_total                |integer   |Offensive line yards total.                                      |
+#'    |def_second_lvl_yds                |double    |Defense second-level yards.                                      |
+#'    |def_second_lvl_yds_total          |integer   |Defense second-level yards total.                                |
+#'    |def_open_field_yds                |integer   |Defense open field yards.                                        |
+#'    |def_open_field_yds_total          |integer   |Defense open field yards total.                                  |
+#'    |def_standard_downs_ppa            |double    |Defense standard downs predicted points added (PPA).             |
+#'    |def_standard_downs_success_rate   |double    |Defense standard downs success rate.                             |
+#'    |def_standard_downs_explosiveness  |double    |Defense standard downs explosiveness rate.                       |
+#'    |def_passing_downs_ppa             |double    |Defense passing downs predicted points added (PPA).              |
+#'    |def_passing_downs_success_rate    |double    |Defense passing downs success rate.                              |
+#'    |def_passing_downs_explosiveness   |double    |Defense passing downs explosiveness rate.                        |
+#'    |def_rushing_plays_ppa             |double    |Defense rushing plays predicted points added (PPA).              |
+#'    |def_rushing_plays_total_ppa       |double    |Defense rushing plays total predicted points added (PPA).        |
+#'    |def_rushing_plays_success_rate    |double    |Defense rushing plays success rate.                              |
+#'    |def_rushing_plays_explosiveness   |double    |Defense rushing plays explosiveness rate.                        |
+#'    |def_passing_plays_ppa             |double    |Defense passing plays predicted points added (PPA).              |
+#'    |def_passing_plays_total_ppa       |double    |Defense passing plays total predicted points added (PPA).        |
+#'    |def_passing_plays_success_rate    |double    |Defense passing plays success rate.                              |
+#'    |def_passing_plays_explosiveness   |double    |Defense passing plays explosiveness rate.                        |
+#'
 #' @keywords Game Advanced Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -223,7 +227,7 @@ cfbd_stats_game_advanced <- function(year,
     "excludeGarbageTime" = excl_garbage_time,
     "seasonType" = season_type
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -234,9 +238,9 @@ cfbd_stats_game_advanced <- function(year,
       check_status(res)
 
       # Get the content, flatten and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
         as.data.frame()
 
       # Column renaming for the 76 returned columns
@@ -270,11 +274,11 @@ cfbd_stats_game_advanced <- function(year,
 
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Advanced game stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no game advanced stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -291,92 +295,94 @@ cfbd_stats_game_advanced <- function(year,
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
 #' @return [cfbd_stats_season_advanced()] - A data frame with 82 variables:
-#' \describe{
-#'   \item{`season`: integer.}{Season of the statistics.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`off_plays`: integer.}{Offense plays in the game.}
-#'   \item{`off_drives`: integer.}{Offense drives in the game.}
-#'   \item{`off_ppa`: double.}{Offense predicted points added (PPA).}
-#'   \item{`off_total_ppa`: double.}{Offense total predicted points added (PPA).}
-#'   \item{`off_success_rate`: double.}{Offense success rate.}
-#'   \item{`off_explosiveness`: double.}{Offense explosiveness rate.}
-#'   \item{`off_power_success`: double.}{Offense power success rate.}
-#'   \item{`off_stuff_rate`: double.}{Offense rushing stuff rate.}
-#'   \item{`off_line_yds`: double.}{Offensive line yards.}
-#'   \item{`off_line_yds_total`: integer.}{Offensive line yards total.}
-#'   \item{`off_second_lvl_yds`: double.}{Offense second-level yards.}
-#'   \item{`off_second_lvl_yds_total`: integer.}{Offense second-level yards total.}
-#'   \item{`off_open_field_yds`: integer.}{Offense open field yards.}
-#'   \item{`off_open_field_yds_total`: integer.}{Offense open field yards total.}
-#'   \item{`off_total_opportunities`: integer.}{Offense opportunities.}
-#'   \item{`off_pts_per_opp`: double.}{Offense points per scoring opportunity.}
-#'   \item{`off_field_pos_avg_start`: double.}{Offense starting average field position.}
-#'   \item{`off_field_pos_avg_predicted_points`: double.}{Offense starting average field position predicted points (PP).}
-#'   \item{`off_havoc_total`: double.}{Offense havoc rate total.}
-#'   \item{`off_havoc_front_seven`: double.}{Offense front-7 havoc rate.}
-#'   \item{`off_havoc_db`: double.}{Offense defensive back havoc rate.}
-#'   \item{`off_standard_downs_rate`: double.}{Offense standard downs rate.}
-#'   \item{`off_standard_downs_ppa`: double.}{Offense standard downs predicted points added (PPA).}
-#'   \item{`off_standard_downs_success_rate`: double.}{Offense standard downs success rate.}
-#'   \item{`off_standard_downs_explosiveness`: double.}{Offense standard downs explosiveness rate.}
-#'   \item{`off_passing_downs_rate`: double.}{Offense passing downs rate.}
-#'   \item{`off_passing_downs_ppa`: double.}{Offense passing downs predicted points added (PPA).}
-#'   \item{`off_passing_downs_success_rate`: double.}{Offense passing downs success rate.}
-#'   \item{`off_passing_downs_explosiveness`: double.}{Offense passing downs explosiveness rate.}
-#'   \item{`off_rushing_plays_rate`: double.}{Offense rushing plays rate.}
-#'   \item{`off_rushing_plays_ppa`: double.}{Offense rushing plays predicted points added (PPA).}
-#'   \item{`off_rushing_plays_total_ppa`: double.}{Offense rushing plays total predicted points added (PPA).}
-#'   \item{`off_rushing_plays_success_rate`: double.}{Offense rushing plays success rate.}
-#'   \item{`off_rushing_plays_explosiveness`: double.}{Offense rushing plays explosiveness rate.}
-#'   \item{`off_passing_plays_rate`: double.}{Offense passing plays rate.}
-#'   \item{`off_passing_plays_ppa`: double.}{Offense passing plays predicted points added (PPA).}
-#'   \item{`off_passing_plays_total_ppa`: double.}{Offense passing plays total predicted points added (PPA).}
-#'   \item{`off_passing_plays_success_rate`: double.}{Offense passing plays success rate.}
-#'   \item{`off_passing_plays_explosiveness`: double.}{Offense passing plays explosiveness rate.}
-#'   \item{`def_plays`: integer.}{Defense plays in the game.}
-#'   \item{`def_drives`: integer.}{Defense drives in the game.}
-#'   \item{`def_ppa`: double.}{Defense predicted points added (PPA).}
-#'   \item{`def_total_ppa`: double.}{Defense total predicted points added (PPA).}
-#'   \item{`def_success_rate`: double.}{Defense success rate.}
-#'   \item{`def_explosiveness`: double.}{Defense explosiveness rate.}
-#'   \item{`def_power_success`: double.}{Defense power success rate.}
-#'   \item{`def_stuff_rate`: double.}{Defense rushing stuff rate.}
-#'   \item{`def_line_yds`: double.}{Defense Offensive line yards allowed.}
-#'   \item{`def_line_yds_total`: integer.}{Defense Offensive line yards total allowed.}
-#'   \item{`def_second_lvl_yds`: double.}{Defense second-level yards.}
-#'   \item{`def_second_lvl_yds_total`: integer.}{Defense second-level yards total.}
-#'   \item{`def_open_field_yds`: integer.}{Defense open field yards.}
-#'   \item{`def_open_field_yds_total`: integer.}{Defense open field yards total.}
-#'   \item{`def_total_opportunities`: integer.}{Defense opportunities.}
-#'   \item{`def_pts_per_opp`: double.}{Defense points per scoring opportunity.}
-#'   \item{`def_field_pos_avg_start`: double.}{Defense starting average field position.}
-#'   \item{`def_field_pos_avg_predicted_points`: double.}{Defense starting average field position predicted points (PP).}
-#'   \item{`def_havoc_total`: double.}{Defense havoc rate total.}
-#'   \item{`def_havoc_front_seven`: double.}{Defense front-7 havoc rate.}
-#'   \item{`def_havoc_db`: double.}{Defense defensive back havoc rate.}
-#'   \item{`def_standard_downs_rate`: double.}{Defense standard downs rate.}
-#'   \item{`def_standard_downs_ppa`: double.}{Defense standard downs predicted points added (PPA).}
-#'   \item{`def_standard_downs_success_rate`: double.}{Defense standard downs success rate.}
-#'   \item{`def_standard_downs_explosiveness`: double.}{Defense standard downs explosiveness rate.}
-#'   \item{`def_passing_downs_rate`: double.}{Defense passing downs rate.}
-#'   \item{`def_passing_downs_ppa`: double.}{Defense passing downs predicted points added (PPA).}
-#'   \item{`def_passing_downs_success_rate`: double.}{Defense passing downs success rate.}
-#'   \item{`def_passing_downs_explosiveness`: double.}{Defense passing downs explosiveness rate.}
-#'   \item{`def_rushing_plays_rate`: double.}{Defense rushing plays rate.}
-#'   \item{`def_rushing_plays_ppa`: double.}{Defense rushing plays predicted points added (PPA).}
-#'   \item{`def_rushing_plays_total_ppa`: double.}{Defense rushing plays total predicted points added (PPA).}
-#'   \item{`def_rushing_plays_success_rate`: double.}{Defense rushing plays success rate.}
-#'   \item{`def_rushing_plays_explosiveness`: double.}{Defense rushing plays explosiveness rate.}
-#'   \item{`def_passing_plays_rate`: double.}{Defense passing plays rate.}
-#'   \item{`def_passing_plays_ppa`: double.}{Defense passing plays predicted points added (PPA).}
-#'   \item{`def_passing_plays_total_ppa`: double.}{Defense passing plays total predicted points added (PPA).}
-#'   \item{`def_passing_plays_success_rate`: double.}{Defense passing plays success rate.}
-#'   \item{`def_passing_plays_explosiveness`: double.}{Defense passing plays explosiveness rate.}
-#' }
+#'
+#'    |col_name                            |types     |description                                                       |
+#'    |:-----------------------------------|:---------|:-----------------------------------------------------------------|
+#'    |season                              |integer   |Season of the statistics.                                         |
+#'    |team                                |character |Team name.                                                        |
+#'    |conference                          |character |Conference of the team.                                           |
+#'    |off_plays                           |integer   |Offense plays in the game.                                        |
+#'    |off_drives                          |integer   |Offense drives in the game.                                       |
+#'    |off_ppa                             |double    |Offense predicted points added (PPA).                             |
+#'    |off_total_ppa                       |double    |Offense total predicted points added (PPA).                       |
+#'    |off_success_rate                    |double    |Offense success rate.                                             |
+#'    |off_explosiveness                   |double    |Offense explosiveness rate.                                       |
+#'    |off_power_success                   |double    |Offense power success rate.                                       |
+#'    |off_stuff_rate                      |double    |Offense rushing stuff rate.                                       |
+#'    |off_line_yds                        |double    |Offensive line yards.                                             |
+#'    |off_line_yds_total                  |integer   |Offensive line yards total.                                       |
+#'    |off_second_lvl_yds                  |double    |Offense second-level yards.                                       |
+#'    |off_second_lvl_yds_total            |integer   |Offense second-level yards total.                                 |
+#'    |off_open_field_yds                  |integer   |Offense open field yards.                                         |
+#'    |off_open_field_yds_total            |integer   |Offense open field yards total.                                   |
+#'    |off_total_opportunities             |integer   |Offense opportunities.                                            |
+#'    |off_pts_per_opp                     |double    |Offense points per scoring opportunity.                           |
+#'    |off_field_pos_avg_start             |double    |Offense starting average field position.                          |
+#'    |off_field_pos_avg_predicted_points  |double    |Offense starting average field position predicted points (PP).    |
+#'    |off_havoc_total                     |double    |Offense havoc rate total.                                         |
+#'    |off_havoc_front_seven               |double    |Offense front-7 havoc rate.                                       |
+#'    |off_havoc_db                        |double    |Offense defensive back havoc rate.                                |
+#'    |off_standard_downs_rate             |double    |Offense standard downs rate.                                      |
+#'    |off_standard_downs_ppa              |double    |Offense standard downs predicted points added (PPA).              |
+#'    |off_standard_downs_success_rate     |double    |Offense standard downs success rate.                              |
+#'    |off_standard_downs_explosiveness    |double    |Offense standard downs explosiveness rate.                        |
+#'    |off_passing_downs_rate              |double    |Offense passing downs rate.                                       |
+#'    |off_passing_downs_ppa               |double    |Offense passing downs predicted points added (PPA).               |
+#'    |off_passing_downs_success_rate      |double    |Offense passing downs success rate.                               |
+#'    |off_passing_downs_explosiveness     |double    |Offense passing downs explosiveness rate.                         |
+#'    |off_rushing_plays_rate              |double    |Offense rushing plays rate.                                       |
+#'    |off_rushing_plays_ppa               |double    |Offense rushing plays predicted points added (PPA).               |
+#'    |off_rushing_plays_total_ppa         |double    |Offense rushing plays total predicted points added (PPA).         |
+#'    |off_rushing_plays_success_rate      |double    |Offense rushing plays success rate.                               |
+#'    |off_rushing_plays_explosiveness     |double    |Offense rushing plays explosiveness rate.                         |
+#'    |off_passing_plays_rate              |double    |Offense passing plays rate.                                       |
+#'    |off_passing_plays_ppa               |double    |Offense passing plays predicted points added (PPA).               |
+#'    |off_passing_plays_total_ppa         |double    |Offense passing plays total predicted points added (PPA).         |
+#'    |off_passing_plays_success_rate      |double    |Offense passing plays success rate.                               |
+#'    |off_passing_plays_explosiveness     |double    |Offense passing plays explosiveness rate.                         |
+#'    |def_plays                           |integer   |Defense plays in the game.                                        |
+#'    |def_drives                          |integer   |Defense drives in the game.                                       |
+#'    |def_ppa                             |double    |Defense predicted points added (PPA).                             |
+#'    |def_total_ppa                       |double    |Defense total predicted points added (PPA).                       |
+#'    |def_success_rate                    |double    |Defense success rate.                                             |
+#'    |def_explosiveness                   |double    |Defense explosiveness rate.                                       |
+#'    |def_power_success                   |double    |Defense power success rate.                                       |
+#'    |def_stuff_rate                      |double    |Defense rushing stuff rate.                                       |
+#'    |def_line_yds                        |double    |Defense Offensive line yards allowed.                             |
+#'    |def_line_yds_total                  |integer   |Defense Offensive line yards total allowed.                       |
+#'    |def_second_lvl_yds                  |double    |Defense second-level yards.                                       |
+#'    |def_second_lvl_yds_total            |integer   |Defense second-level yards total.                                 |
+#'    |def_open_field_yds                  |integer   |Defense open field yards.                                         |
+#'    |def_open_field_yds_total            |integer   |Defense open field yards total.                                   |
+#'    |def_total_opportunities             |integer   |Defense opportunities.                                            |
+#'    |def_pts_per_opp                     |double    |Defense points per scoring opportunity.                           |
+#'    |def_field_pos_avg_start             |double    |Defense starting average field position.                          |
+#'    |def_field_pos_avg_predicted_points  |double    |Defense starting average field position predicted points (PP).    |
+#'    |def_havoc_total                     |double    |Defense havoc rate total.                                         |
+#'    |def_havoc_front_seven               |double    |Defense front-7 havoc rate.                                       |
+#'    |def_havoc_db                        |double    |Defense defensive back havoc rate.                                |
+#'    |def_standard_downs_rate             |double    |Defense standard downs rate.                                      |
+#'    |def_standard_downs_ppa              |double    |Defense standard downs predicted points added (PPA).              |
+#'    |def_standard_downs_success_rate     |double    |Defense standard downs success rate.                              |
+#'    |def_standard_downs_explosiveness    |double    |Defense standard downs explosiveness rate.                        |
+#'    |def_passing_downs_rate              |double    |Defense passing downs rate.                                       |
+#'    |def_passing_downs_ppa               |double    |Defense passing downs predicted points added (PPA).               |
+#'    |def_passing_downs_success_rate      |double    |Defense passing downs success rate.                               |
+#'    |def_passing_downs_explosiveness     |double    |Defense passing downs explosiveness rate.                         |
+#'    |def_rushing_plays_rate              |double    |Defense rushing plays rate.                                       |
+#'    |def_rushing_plays_ppa               |double    |Defense rushing plays predicted points added (PPA).               |
+#'    |def_rushing_plays_total_ppa         |double    |Defense rushing plays total predicted points added (PPA).         |
+#'    |def_rushing_plays_success_rate      |double    |Defense rushing plays success rate.                               |
+#'    |def_rushing_plays_explosiveness     |double    |Defense rushing plays explosiveness rate.                         |
+#'    |def_passing_plays_rate              |double    |Defense passing plays rate.                                       |
+#'    |def_passing_plays_ppa               |double    |Defense passing plays predicted points added (PPA).               |
+#'    |def_passing_plays_total_ppa         |double    |Defense passing plays total predicted points added (PPA).         |
+#'    |def_passing_plays_success_rate      |double    |Defense passing plays success rate.                               |
+#'    |def_passing_plays_explosiveness     |double    |Defense passing plays explosiveness rate.                         |
+#'
 #' @keywords Team Season Advanced Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -413,7 +419,7 @@ cfbd_stats_season_advanced <- function(year,
     "startWeek" = start_week,
     "endWeek" = end_week
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -424,8 +430,8 @@ cfbd_stats_season_advanced <- function(year,
       check_status(res)
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON(flatten = TRUE)
 
       colnames(df) <- gsub("offense.", "off_", colnames(df))
@@ -456,11 +462,11 @@ cfbd_stats_season_advanced <- function(year,
       colnames(df) <- gsub("Opportunies", "_opportunities", colnames(df))
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Advanced season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available!"))
+      message(glue::glue("{Sys.time()}:Invalid arguments or no season advanced stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -485,71 +491,73 @@ cfbd_stats_season_advanced <- function(year,
 #' Special Teams: punting, puntReturns, kicking, kickReturns
 #'
 #' @return [cfbd_stats_season_player()] - A data frame with 59 variables:
-#' \describe{
-#'   \item{`year`: integer.}{Season of the player stats.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of the team.}
-#'   \item{`athlete_id`: character.}{Athlete referencing id.}
-#'   \item{`player`: character.}{Player name.}
-#'   \item{`position`: character.}{Player position.}
-#'   \item{`passing_completions`: double.}{Passing completions.}
-#'   \item{`passing_att`: double.}{Passing attempts.}
-#'   \item{`passing_pct`: double.}{Passing completion percentage.}
-#'   \item{`passing_yds`: double.}{Passing yardage.}
-#'   \item{`passing_td`: double.}{Passing touchdowns.}
-#'   \item{`passing_int`: double.}{Passing interceptions.}
-#'   \item{`passing_ypa`: double.}{Passing yards per attempt.}
-#'   \item{`rushing_car`: double.}{Rushing yards per carry.}
-#'   \item{`rushing_yds`: double.}{Rushing yards total.}
-#'   \item{`rushing_td`: double.}{Rushing touchdowns.}
-#'   \item{`rushing_ypc`: double.}{Rushing yards per carry.}
-#'   \item{`rushing_long`: double.}{Rushing longest yardage attempt.}
-#'   \item{`receiving_rec`: double.}{Receiving - pass receptions.}
-#'   \item{`receiving_yds`: double.}{Receiving - pass reception yards.}
-#'   \item{`receiving_td`: double.}{Receiving - passing reception touchdowns.}
-#'   \item{`receiving_ypr`: double.}{Receiving - passing yards per reception.}
-#'   \item{`receiving_long`: double.}{Receiving - longest pass reception yardage.}
-#'   \item{`fumbles_fum`: double.}{Fumbles.}
-#'   \item{`fumbles_rec`: double.}{Fumbles recovered.}
-#'   \item{`fumbles_lost`: double.}{Fumbles lost.}
-#'   \item{`defensive_solo`: double.}{Defensive solo tackles.}
-#'   \item{`defensive_tot`: double.}{Defensive total tackles.}
-#'   \item{`defensive_tfl`: double.}{Defensive tackles for loss.}
-#'   \item{`defensive_sacks`: double.}{Defensive sacks.}
-#'   \item{`defensive_qb_hur`: double.}{Defensive quarterback hurries.}
-#'   \item{`interceptions_int`: double.}{Interceptions total.}
-#'   \item{`interceptions_yds`: double.}{Interception return yards.}
-#'   \item{`interceptions_avg`: double.}{Interception return yards average.}
-#'   \item{`interceptions_td`: double.}{Interception return touchdowns.}
-#'   \item{`defensive_pd`: double.}{Defense - passes defensed.}
-#'   \item{`defensive_td`: double.}{Defense - defensive touchdowns.}
-#'   \item{`kicking_fgm`: double.}{Kicking - field goals made.}
-#'   \item{`kicking_fga`: double.}{Kicking - field goals attempted.}
-#'   \item{`kicking_pct`: double.}{Kicking - field goal percentage.}
-#'   \item{`kicking_xpa`: double.}{Kicking - extra points attempted.}
-#'   \item{`kicking_xpm`: double.}{Kicking - extra points made.}
-#'   \item{`kicking_pts`: double.}{Kicking - total points.}
-#'   \item{`kicking_long`: double.}{Kicking - longest successful field goal attempt.}
-#'   \item{`kick_returns_no`: double.}{Kick Returns - number of kick returns.}
-#'   \item{`kick_returns_yds`: double.}{Kick Returns - kick return yards.}
-#'   \item{`kick_returns_avg`: double.}{Kick Returns - kick return average yards per return.}
-#'   \item{`kick_returns_td`: double.}{Kick Returns - kick return touchdowns.}
-#'   \item{`kick_returns_long`: double.}{Kick Returns - longest kick return yardage.}
-#'   \item{`punting_no`: double.}{Punting - number of punts.}
-#'   \item{`punting_yds`: double.}{Punting - punting yardage.}
-#'   \item{`punting_ypp`: double.}{Punting - yards per punt.}
-#'   \item{`punting_long`: double.}{Punting - longest punt yardage.}
-#'   \item{`punting_in_20`: double.}{Punting - punt downed inside the 20 yard line.}
-#'   \item{`punting_tb`: double.}{Punting - punt caused a touchback.}
-#'   \item{`punt_returns_no`: double.}{Punt Returns - number of punt returns.}
-#'   \item{`punt_returns_yds`: double.}{Punt Returns - punt return yardage total.}
-#'   \item{`punt_returns_avg`: double.}{Punt Returns - punt return average yards per return.}
-#'   \item{`punt_returns_td`: double.}{Punt Returns - punt return touchdowns.}
-#'   \item{`punt_returns_long`: double.}{Punt Returns - longest punt return yardage.}
-#' }
+#'
+#'    |col_name             |types     |description                                            |
+#'    |:--------------------|:---------|:------------------------------------------------------|
+#'    |year                 |integer   |Season of the player stats.                            |
+#'    |team                 |character |Team name.                                             |
+#'    |conference           |character |Conference of the team.                                |
+#'    |athlete_id           |character |Athlete referencing id.                                |
+#'    |player               |character |Player name.                                           |
+#'    |position             |character |Player position.                                       |
+#'    |passing_completions  |double    |Passing completions.                                   |
+#'    |passing_att          |double    |Passing attempts.                                      |
+#'    |passing_pct          |double    |Passing completion percentage.                         |
+#'    |passing_yds          |double    |Passing yardage.                                       |
+#'    |passing_td           |double    |Passing touchdowns.                                    |
+#'    |passing_int          |double    |Passing interceptions.                                 |
+#'    |passing_ypa          |double    |Passing yards per attempt.                             |
+#'    |rushing_car          |double    |Rushing yards per carry.                               |
+#'    |rushing_yds          |double    |Rushing yards total.                                   |
+#'    |rushing_td           |double    |Rushing touchdowns.                                    |
+#'    |rushing_ypc          |double    |Rushing yards per carry.                               |
+#'    |rushing_long         |double    |Rushing longest yardage attempt.                       |
+#'    |receiving_rec        |double    |Receiving - pass receptions.                           |
+#'    |receiving_yds        |double    |Receiving - pass reception yards.                      |
+#'    |receiving_td         |double    |Receiving - passing reception touchdowns.              |
+#'    |receiving_ypr        |double    |Receiving - passing yards per reception.               |
+#'    |receiving_long       |double    |Receiving - longest pass reception yardage.            |
+#'    |fumbles_fum          |double    |Fumbles.                                               |
+#'    |fumbles_rec          |double    |Fumbles recovered.                                     |
+#'    |fumbles_lost         |double    |Fumbles lost.                                          |
+#'    |defensive_solo       |double    |Defensive solo tackles.                                |
+#'    |defensive_tot        |double    |Defensive total tackles.                               |
+#'    |defensive_tfl        |double    |Defensive tackles for loss.                            |
+#'    |defensive_sacks      |double    |Defensive sacks.                                       |
+#'    |defensive_qb_hur     |double    |Defensive quarterback hurries.                         |
+#'    |interceptions_int    |double    |Interceptions total.                                   |
+#'    |interceptions_yds    |double    |Interception return yards.                             |
+#'    |interceptions_avg    |double    |Interception return yards average.                     |
+#'    |interceptions_td     |double    |Interception return touchdowns.                        |
+#'    |defensive_pd         |double    |Defense - passes defensed.                             |
+#'    |defensive_td         |double    |Defense - defensive touchdowns.                        |
+#'    |kicking_fgm          |double    |Kicking - field goals made.                            |
+#'    |kicking_fga          |double    |Kicking - field goals attempted.                       |
+#'    |kicking_pct          |double    |Kicking - field goal percentage.                       |
+#'    |kicking_xpa          |double    |Kicking - extra points attempted.                      |
+#'    |kicking_xpm          |double    |Kicking - extra points made.                           |
+#'    |kicking_pts          |double    |Kicking - total points.                                |
+#'    |kicking_long         |double    |Kicking - longest successful field goal attempt.       |
+#'    |kick_returns_no      |double    |Kick Returns - number of kick returns.                 |
+#'    |kick_returns_yds     |double    |Kick Returns - kick return yards.                      |
+#'    |kick_returns_avg     |double    |Kick Returns - kick return average yards per return.   |
+#'    |kick_returns_td      |double    |Kick Returns - kick return touchdowns.                 |
+#'    |kick_returns_long    |double    |Kick Returns - longest kick return yardage.            |
+#'    |punting_no           |double    |Punting - number of punts.                             |
+#'    |punting_yds          |double    |Punting - punting yardage.                             |
+#'    |punting_ypp          |double    |Punting - yards per punt.                              |
+#'    |punting_long         |double    |Punting - longest punt yardage.                        |
+#'    |punting_in_20        |double    |Punting - punt downed inside the 20 yard line.         |
+#'    |punting_tb           |double    |Punting - punt caused a touchback.                     |
+#'    |punt_returns_no      |double    |Punt Returns - number of punt returns.                 |
+#'    |punt_returns_yds     |double    |Punt Returns - punt return yardage total.              |
+#'    |punt_returns_avg     |double    |Punt Returns - punt return average yards per return.   |
+#'    |punt_returns_td      |double    |Punt Returns - punt return touchdowns.                 |
+#'    |punt_returns_long    |double    |Punt Returns - longest punt return yardage.            |
+#'
 #' @keywords Player Season Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
@@ -606,7 +614,7 @@ cfbd_stats_season_player <- function(year,
     "seasonType" = season_type,
     "category" = category
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   cols <- c(
     "team", "conference", "athlete_id", "player", "position", "category",
@@ -656,51 +664,51 @@ cfbd_stats_season_player <- function(year,
       check_status(res)
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::mutate(
           statType = paste0(.data$category, "_", .data$statType)
-        ) %>%
+        ) |>
         tidyr::pivot_wider(
           names_from = "statType",
           values_from = "stat"
-        ) %>%
-        dplyr::rename("athlete_id" = "playerId") %>%
+        ) |>
+        dplyr::rename("athlete_id" = "playerId") |>
         janitor::clean_names()
 
       df[cols[!(cols %in% colnames(df))]] <- NA
       suppressWarnings(
-      df <- df %>%
-        dplyr::select(dplyr::all_of(cols), dplyr::everything()) %>%
-        dplyr::mutate_at(numeric_cols, as.numeric) %>%
-        as.data.frame() %>%
+      df <- df |>
+        dplyr::select(dplyr::all_of(cols), dplyr::everything()) |>
+        dplyr::mutate_at(numeric_cols, as.numeric) |>
+        as.data.frame() |>
         dplyr::mutate(year = year))
 
       # Check if Category is Null
       if (is.null(category)) {
         suppressWarnings(
-        df <- df %>%
-          dplyr::select(-dplyr::any_of(c("category"))) %>%
-          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$position, .data$year) %>%
-          dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) %>%
-          dplyr::arrange(.data$year, .data$athlete_id) %>%
-          dplyr::ungroup() %>%
+        df <- df |>
+          dplyr::select(-dplyr::any_of(c("category"))) |>
+          dplyr::group_by(.data$team, .data$conference, .data$athlete_id, .data$player, .data$position, .data$year) |>
+          dplyr::summarise_all(function(x) mean(x, na.rm = TRUE)) |>
+          dplyr::arrange(.data$year, .data$athlete_id) |>
+          dplyr::ungroup() |>
           dplyr::mutate_all(function(x) replace(x, is.nan(x), NA)))
       }
 
 
-      df <- df  %>%
-        dplyr::select(-dplyr::any_of(c("category"))) %>%
+      df <- df  |>
+        dplyr::select(-dplyr::any_of(c("category"))) |>
         dplyr::select(
           "year", "team", "conference", "athlete_id", "player", "position",
           dplyr::everything(),
           -dplyr::any_of("season")
-        ) %>%
+        ) |>
         make_cfbfastR_data("Advanced player season stats from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no season stats - player data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -720,57 +728,59 @@ cfbd_stats_season_player <- function(year,
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
 #' @return [cfbd_stats_season_team()] - A data frame with 32 variables:
-#' \describe{
-#'   \item{`season`: integer}{Season for stats.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of team.}
-#'   \item{`games`: integer.}{Number of games.}
-#'   \item{`time_of_poss_total`: integer.}{Time of possession total.}
-#'   \item{`time_of_poss_pg`: double.}{Time of possession per game.}
-#'   \item{`pass_comps`: integer.}{Total number of pass completions.}
-#'   \item{`pass_atts`: integer.}{Total number of pass attempts.}
-#'   \item{`completion_pct`: double.}{Passing completion percentage.}
-#'   \item{`net_pass_yds`: integer.}{Net passing yards.}
-#'   \item{`pass_ypa`: double.}{Passing yards per attempt.}
-#'   \item{`pass_ypr`: double.}{Passing yards per reception.}
-#'   \item{`pass_TDs`: integer.}{Passing touchdowns.}
-#'   \item{`interceptions`: integer.}{Passing interceptions.}
-#'   \item{`int_pct`: double.}{Interception percentage (of attempts).}
-#'   \item{`rush_atts`: integer.}{Rushing attempts.}
-#'   \item{`rush_yds`: integer.}{Rushing yards.}
-#'   \item{`rush_TDs`: integer.}{Rushing touchdowns.}
-#'   \item{`rush_ypc`: double.}{Rushing yards per carry.}
-#'   \item{`total_yds`: integer.}{Rushing total yards.}
-#'   \item{`fumbles_lost`: integer.}{Fumbles lost.}
-#'   \item{`turnovers`: integer.}{Turnovers total.}
-#'   \item{`turnovers_pg`: double.}{Turnovers per game.}
-#'   \item{`first_downs`: integer.}{Number of first downs.}
-#'   \item{`third_downs`: integer.}{Number of third downs.}
-#'   \item{`third_down_convs`: integer.}{Number of third down conversions.}
-#'   \item{`third_conv_rate`: double.}{Third down conversion rate.}
-#'   \item{`fourth_down_convs`: integer.}{Fourth down conversions.}
-#'   \item{`fourth_downs`: integer.}{Fourth downs.}
-#'   \item{`fourth_conv_rate`: double.}{Fourth down conversion rate.}
-#'   \item{`penalties`: integer.}{Total number of penalties.}
-#'   \item{`penalty_yds`: integer.}{Penalty yards total.}
-#'   \item{`penalties_pg`: double.}{Penalties per game.}
-#'   \item{`penalty_yds_pg`: double.}{Penalty yardage per game.}
-#'   \item{`yards_per_penalty`: double.}{Average yards per penalty.}
-#'   \item{`kick_returns`: integer.}{Number of kick returns.}
-#'   \item{`kick_return_yds`: integer.}{Total kick return yards.}
-#'   \item{`kick_return_TDs`: integer.}{Total kick return touchdowns.}
-#'   \item{`kick_return_avg`: double.}{Kick return yards average.}
-#'   \item{`punt_returns`: integer.}{Number of punt returns.}
-#'   \item{`punt_return_yds`: integer.}{Punt return total yards.}
-#'   \item{`punt_return_TDs`: integer.}{Punt return total touchdowns.}
-#'   \item{`punt_return_avg`: double.}{Punt return yards average.}
-#'   \item{`passes_intercepted`: integer.}{Passes intercepted.}
-#'   \item{`passes_intercepted_yds`: integer.}{Pass interception return yards.}
-#'   \item{`passes_intercepted_TDs`: integer.}{Pass interception return touchdowns.}
-#' }
+#'
+#'    |col_name                |types     |description                                      |
+#'    |:-----------------------|:---------|:------------------------------------------------|
+#'    |season                  |integer   |Season for stats.                                |
+#'    |team                    |character |Team name.                                       |
+#'    |conference              |character |Conference of team.                              |
+#'    |games                   |integer   |Number of games.                                 |
+#'    |time_of_poss_total      |integer   |Time of possession total.                        |
+#'    |time_of_poss_pg         |double    |Time of possession per game.                     |
+#'    |pass_comps              |integer   |Total number of pass completions.                |
+#'    |pass_atts               |integer   |Total number of pass attempts.                   |
+#'    |completion_pct          |double    |Passing completion percentage.                   |
+#'    |net_pass_yds            |integer   |Net passing yards.                               |
+#'    |pass_ypa                |double    |Passing yards per attempt.                       |
+#'    |pass_ypr                |double    |Passing yards per reception.                     |
+#'    |pass_TDs                |integer   |Passing touchdowns.                              |
+#'    |interceptions           |integer   |Passing interceptions.                           |
+#'    |int_pct                 |double    |Interception percentage (of attempts).           |
+#'    |rush_atts               |integer   |Rushing attempts.                                |
+#'    |rush_yds                |integer   |Rushing yards.                                   |
+#'    |rush_TDs                |integer   |Rushing touchdowns.                              |
+#'    |rush_ypc                |double    |Rushing yards per carry.                         |
+#'    |total_yds               |integer   |Rushing total yards.                             |
+#'    |fumbles_lost            |integer   |Fumbles lost.                                    |
+#'    |turnovers               |integer   |Turnovers total.                                 |
+#'    |turnovers_pg            |double    |Turnovers per game.                              |
+#'    |first_downs             |integer   |Number of first downs.                           |
+#'    |third_downs             |integer   |Number of third downs.                           |
+#'    |third_down_convs        |integer   |Number of third down conversions.                |
+#'    |third_conv_rate         |double    |Third down conversion rate.                      |
+#'    |fourth_down_convs       |integer   |Fourth down conversions.                         |
+#'    |fourth_downs            |integer   |Fourth downs.                                    |
+#'    |fourth_conv_rate        |double    |Fourth down conversion rate.                     |
+#'    |penalties               |integer   |Total number of penalties.                       |
+#'    |penalty_yds             |integer   |Penalty yards total.                             |
+#'    |penalties_pg            |double    |Penalties per game.                              |
+#'    |penalty_yds_pg          |double    |Penalty yardage per game.                        |
+#'    |yards_per_penalty       |double    |Average yards per penalty.                       |
+#'    |kick_returns            |integer   |Number of kick returns.                          |
+#'    |kick_return_yds         |integer   |Total kick return yards.                         |
+#'    |kick_return_TDs         |integer   |Total kick return touchdowns.                    |
+#'    |kick_return_avg         |double    |Kick return yards average.                       |
+#'    |punt_returns            |integer   |Number of punt returns.                          |
+#'    |punt_return_yds         |integer   |Punt return total yards.                         |
+#'    |punt_return_TDs         |integer   |Punt return total touchdowns.                    |
+#'    |punt_return_avg         |double    |Punt return yards average.                       |
+#'    |passes_intercepted      |integer   |Passes intercepted.                              |
+#'    |passes_intercepted_yds  |integer   |Pass interception return yards.                  |
+#'    |passes_intercepted_TDs  |integer   |Pass interception return touchdowns.             |
+#'
 #' @keywords Team Season Stats
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr2 url_modify resp_body_string
 #' @importFrom utils URLdecode
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
@@ -816,7 +826,7 @@ cfbd_stats_season_team <- function(year,
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
   # Expected column names for full season data
   expected_colnames <- c(
@@ -837,8 +847,8 @@ cfbd_stats_season_team <- function(year,
       check_status(res)
 
       # Get the content and return result as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
         jsonlite::fromJSON()
 
       # Pivot category columns to get stats for each team game on one row
@@ -851,7 +861,7 @@ cfbd_stats_season_team <- function(year,
       missing <- setdiff(expected_colnames, colnames(df))
       df[missing] <- NA_real_
 
-      df <- df %>%
+      df <- df |>
         # dplyr::mutate(
         #   time_of_poss_pg = ifelse(is.na(.data$games), NA_real_, .data$possessionTime / .data$games),
         #   completion_pct = ifelse(is.na(.data$passAttempts), NA_real_, .data$passCompletions / .data$passAttempts),
@@ -867,7 +877,7 @@ cfbd_stats_season_team <- function(year,
         #   turnovers_pg = ifelse(is.na(.data$games), NA_real_, .data$turnovers / .data$games),
         #   kick_return_avg = ifelse(is.na(.data$kickReturns), NA_real_, .data$kickReturnYards / .data$kickReturns),
         #   punt_return_avg = ifelse(is.na(.data$puntReturns), NA_real_, .data$puntReturnYards / .data$puntReturns)
-        # ) %>%
+        # ) |>
         dplyr::select(
           "season",
           "team",
@@ -901,7 +911,7 @@ cfbd_stats_season_team <- function(year,
           "passesIntercepted",
           "interceptionYards",
           "interceptionTDs"
-        ) %>%
+        ) |>
         dplyr::rename(
           "time_of_poss_total" = "possessionTime",
           "pass_comps" = "passCompletions",
@@ -931,12 +941,134 @@ cfbd_stats_season_team <- function(year,
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Season stats from CollegeFootballData.com",Sys.time())
 
     },
     error = function(e) {
-        message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available!"))
+        message(glue::glue("{Sys.time()}:Invalid arguments or no season team stats data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get game havoc statistics**
+#' @description
+#' Get havoc-rate statistics aggregated by game. Havoc measures defensive
+#' disruption -- the share of plays that end in a tackle for loss, a forced
+#' fumble, a pass defensed, or an interception -- split into front-seven and
+#' defensive-back contributions. Each row carries both the team's own
+#' defensive havoc (`def_*`) and the havoc the team's offense allowed
+#' (`off_*`) in that game.
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required
+#' if `team` is not specified.
+#' @param team (*String* optional): D-I Team. Required if `year` is not
+#' specified.
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for
+#' seasons pre-playoff (i.e. 2013 or earlier).
+#' @param opponent (*String* optional): Opponent D-I Team.
+#' @param season_type (*String* optional): Season type - regular,
+#' postseason, both, allstar, spring_regular, spring_postseason.
+#'
+#' @return [cfbd_stats_game_havoc()] - A data frame with 22 variables:
+#'
+#'    |col_name                      |types     |description                                            |
+#'    |:-----------------------------|:---------|:------------------------------------------------------|
+#'    |game_id                       |integer   |Referencing game id.                                   |
+#'    |season                        |integer   |Season of the game.                                    |
+#'    |season_type                   |character |Season type of the game.                               |
+#'    |week                          |integer   |Game week of the season.                               |
+#'    |team                          |character |Team name.                                             |
+#'    |conference                    |character |Conference of the team.                                |
+#'    |opponent                      |character |Opponent team name.                                    |
+#'    |opponent_conference           |character |Conference of the opponent.                            |
+#'    |off_total_plays               |integer   |Offense plays in the game.                             |
+#'    |off_total_havoc_events        |integer   |Total havoc events allowed by the offense.             |
+#'    |off_front_seven_havoc_events  |integer   |Front-seven havoc events allowed by the offense.       |
+#'    |off_db_havoc_events           |integer   |Defensive-back havoc events allowed by the offense.    |
+#'    |off_havoc_rate                |double    |Total havoc rate allowed by the offense.               |
+#'    |off_front_seven_havoc_rate    |double    |Front-seven havoc rate allowed by the offense.         |
+#'    |off_db_havoc_rate             |double    |Defensive-back havoc rate allowed by the offense.      |
+#'    |def_total_plays               |integer   |Defense plays in the game.                             |
+#'    |def_total_havoc_events        |integer   |Total havoc events created by the defense.             |
+#'    |def_front_seven_havoc_events  |integer   |Front-seven havoc events created by the defense.       |
+#'    |def_db_havoc_events           |integer   |Defensive-back havoc events created by the defense.    |
+#'    |def_havoc_rate                |double    |Total havoc rate created by the defense.               |
+#'    |def_front_seven_havoc_rate    |double    |Front-seven havoc rate created by the defense.         |
+#'    |def_db_havoc_rate             |double    |Defensive-back havoc rate created by the defense.      |
+#'
+#' @keywords Game Havoc Stats
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 url_modify resp_body_string
+#' @importFrom utils URLdecode
+#' @importFrom cli cli_abort
+#' @importFrom janitor clean_names
+#' @importFrom dplyr as_tibble
+#' @importFrom glue glue
+#' @family CFBD Stats
+#' @export
+#' @examples
+#' \donttest{
+#'    try(cfbd_stats_game_havoc(year = 2023, team = "Georgia"))
+#'
+#'    try(cfbd_stats_game_havoc(2022, week = 1))
+#' }
+#'
+cfbd_stats_game_havoc <- function(year = NULL,
+                                  team = NULL,
+                                  week = NULL,
+                                  opponent = NULL,
+                                  season_type = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  if (!is.null(season_type)) validate_season_type(season_type)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+  opponent <- handle_accents(opponent)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/stats/game/havoc"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "week" = week,
+    "opponent" = opponent,
+    "seasonType" = season_type
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url)
+      check_status(res)
+
+      # Get the content, flatten and return result as data.frame
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        as.data.frame()
+
+      # Column renaming for the nested offense./defense. blocks
+      colnames(df) <- gsub("offense.", "off_", colnames(df))
+      colnames(df) <- gsub("defense.", "def_", colnames(df))
+
+      df <- df |>
+        janitor::clean_names() |>
+        dplyr::as_tibble() |>
+        make_cfbfastR_data("Game havoc stats from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game havoc stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }

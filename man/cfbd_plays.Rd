@@ -45,35 +45,35 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 \item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 }
 \value{
-\code{\link[=cfbd_plays]{cfbd_plays()}} - A data frame with 29 columns:
-\describe{
-\item{\code{play_id}: character.}{Referencing play id.}
-\item{\code{offense}: character.}{Offense on the field.}
-\item{\code{offense_conference}: character.}{Conference of the offense on the field.}
-\item{\code{defense}: character.}{Defense on the field.}
-\item{\code{defense_conference}: character.}{Conference of the defense on the field.}
-\item{\code{home}: character.}{Home team.}
-\item{\code{away}: character.}{Away team.}
-\item{\code{offense_score}: integer.}{Offense's post-play score.}
-\item{\code{defense_score}: integer.}{Defense's post-play score.}
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{drive_id}: character.}{Referencing drive id.}
-\item{\code{drive_number}: integer.}{Drive number in the game.}
-\item{\code{play_number}: integer.}{Play number in the game.}
-\item{\code{period}: integer.}{Game period (quarter).}
-\item{\code{offense_timeouts}: integer.}{Timeouts for the offense at the end of the play.}
-\item{\code{defense_timeouts}: integer.}{Timeouts for the defense at the end of the play.}
-\item{\code{yard_line}: integer.}{Yard line (~0-50) of the play.}
-\item{\code{yards_to_goal}: integer.}{Yards to the goal line (~0-100).}
-\item{\code{down}: integer.}{Down of the play.}
-\item{\code{distance}: integer.}{Distance to the sticks, i.e. 1st down or goal-line in goal-to-go situations.}
-\item{\code{scoring}: logical.}{Scoring play flag.}
-\item{\code{yards_gained}: integer.}{Yards net gained by the offense on the play.}
-\item{\code{play_type}: character.}{Categorical label of the type of the play.}
-\item{\code{play_text}: character.}{A text description of the play.}
-\item{\code{ppa}: character.}{Predicted Points Added (calculated by CFBD).}
-\item{\code{clock_minutes}: integer.}{Minutes left on the clock.}
-\item{\code{clock_seconds}: integer.}{Seconds left on the clock.}
+\code{\link[=cfbd_plays]{cfbd_plays()}} - A data frame with 27 columns:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   play_id \tab character \tab CFBD play identifier (unique within a game when combined with game_id). \cr
+   offense \tab character \tab Full name of the offense (team in possession) on the play. \cr
+   offense_conference \tab character \tab Conference name of the offense (e.g. "SEC", "ACC"). \cr
+   defense \tab character \tab Full name of the defense on the play. \cr
+   defense_conference \tab character \tab Conference name of the defense (e.g. "SEC", "ACC"). \cr
+   home \tab character \tab Full home team name for the game. \cr
+   away \tab character \tab Full away team name for the game. \cr
+   offense_score \tab integer \tab Offense's score after the play (points). \cr
+   defense_score \tab integer \tab Defense's score after the play (points). \cr
+   game_id \tab integer \tab CFBD game identifier the play belongs to. \cr
+   drive_id \tab character \tab CFBD drive identifier the play belongs to. \cr
+   drive_number \tab integer \tab Sequential drive number within the game (1-indexed). \cr
+   play_number \tab integer \tab Sequential play number within the game (1-indexed). \cr
+   period \tab integer \tab Game period / quarter (1-4 regulation, 5+ overtime). \cr
+   offense_timeouts \tab integer \tab Timeouts remaining for the offense at the end of the play. \cr
+   defense_timeouts \tab integer \tab Timeouts remaining for the defense at the end of the play. \cr
+   yard_line \tab integer \tab Field-position yard line at the start of the play (0-50 scale from the offense's side). \cr
+   yards_to_goal \tab integer \tab Distance in yards from the offense's spot to the opponent's goal line (0-100). \cr
+   down \tab integer \tab Down of the play (1-4). \cr
+   distance \tab integer \tab Yards to gain for a first down (or to the goal line in goal-to-go situations). \cr
+   scoring \tab logical \tab TRUE when the play results in a score (TD, FG, safety, two-point conversion). \cr
+   yards_gained \tab integer \tab Net yards gained by the offense on the play. \cr
+   play_type \tab character \tab CFBD categorical label for the play type (see \code{\link[=cfbd_play_types]{cfbd_play_types()}}). \cr
+   play_text \tab character \tab Free-form text description of the play from the CFBD feed. \cr
+   ppa \tab character \tab Predicted Points Added (CFBD's CFB-EPA analogue) for the play. \cr
+   clock_minutes \tab integer \tab Minutes remaining on the game clock at the start of the play. \cr
+   clock_seconds \tab integer \tab Seconds remaining on the game clock at the start of the play. \cr
 }
 }
 \description{
@@ -88,6 +88,7 @@ PAC, MAC, MWC, CUSA, Ind, SBC, AAC, Western, MVIAA, SWC, PCC, Big 6, etc.)}
 Other CFBD PBP: 
 \code{\link{cfbd_live_plays}()},
 \code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_pbp_data_v2}()},
 \code{\link{cfbd_play_stats_player}()},
 \code{\link{cfbd_play_stats_types}()},
 \code{\link{cfbd_play_types}()}

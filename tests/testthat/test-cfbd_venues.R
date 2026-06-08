@@ -9,6 +9,9 @@ test_that("CFB Venues", {
 
   x <- cfbd_venues()
 
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_setequal(ncol(x), length(cols))
   expect_setequal(colnames(x), cols)
   expect_s3_class(x, "data.frame")

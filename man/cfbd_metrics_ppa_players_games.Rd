@@ -40,18 +40,18 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
 }
 \value{
-\code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}} - A data frame with 9 variables:
-\describe{
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{athlete_id}: character.}{Athlete referencing id.}
-\item{\code{name}: character.}{Athlete name.}
-\item{\code{position}: character.}{Athlete position.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{opponent}: character.}{Team Opponent name.}
-\item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
-\item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
-\item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}
+\code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}} - A data frame with 10 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Season of the game. \cr
+   week \tab integer \tab Game week of the season. \cr
+   athlete_id \tab character \tab Athlete referencing id. \cr
+   name \tab character \tab Athlete name. \cr
+   position \tab character \tab Athlete position. \cr
+   team \tab character \tab Team name. \cr
+   opponent \tab character \tab Team opponent name. \cr
+   avg_PPA_all \tab numeric \tab Average overall predicted points added (PPA). \cr
+   avg_PPA_pass \tab numeric \tab Average passing predicted points added (PPA). \cr
+   avg_PPA_rush \tab numeric \tab Average rushing predicted points added (PPA). \cr
 }
 }
 \description{

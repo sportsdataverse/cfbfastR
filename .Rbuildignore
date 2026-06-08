@@ -34,3 +34,12 @@ cfb_pbp_db
 ^\.pre-commit-config\.yaml$
 ^man_backup$
 ^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$
+^\.remember$
+^CLAUDE\.md$
+^CONTRIBUTING\.md$
+^\.vscode$
+^tools$
+^\.pytest_cache$
+^\.lintr$

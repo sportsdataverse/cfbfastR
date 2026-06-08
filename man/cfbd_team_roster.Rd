@@ -12,24 +12,24 @@ cfbd_team_roster(year, team = NULL)
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
 \value{
-\code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 12 variables:
-\describe{
-\item{\code{athlete_id}: character.}{Referencing athlete id.}
-\item{\code{first_name}: character.}{Athlete first name.}
-\item{\code{last_name}: character.}{Athlete last name.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{weight}: integer.}{Athlete weight.}
-\item{\code{height}: integer.}{Athlete height.}
-\item{\code{jersey}: integer.}{Athlete jersey number.}
-\item{\code{year}: integer.}{Athlete year.}
-\item{\code{position}: character.}{Athlete position.}
-\item{\code{home_city}: character.}{Hometown of the athlete.}
-\item{\code{home_state}: character.}{Hometown state of the athlete.}
-\item{\code{home_country}: character.}{Hometown country of the athlete.}
-\item{\code{home_latitude}: numeric.}{Hometown latitude.}
-\item{\code{home_longitude}: number.}{Hometown longitude.}
-\item{\code{home_county_fips}: integer.}{Hometown FIPS code.}
-\item{\code{headshot_url}: character}{Player ESPN headshot url.}
+\code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 16 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   athlete_id \tab character \tab Referencing athlete id. \cr
+   first_name \tab character \tab Athlete first name. \cr
+   last_name \tab character \tab Athlete last name. \cr
+   team \tab character \tab Team name. \cr
+   weight \tab integer \tab Athlete weight (lbs). \cr
+   height \tab integer \tab Athlete height (inches). \cr
+   jersey \tab integer \tab Athlete jersey number. \cr
+   year \tab integer \tab Athlete year. \cr
+   position \tab character \tab Athlete position. \cr
+   home_city \tab character \tab Hometown of the athlete. \cr
+   home_state \tab character \tab Hometown state of the athlete. \cr
+   home_country \tab character \tab Hometown country of the athlete. \cr
+   home_latitude \tab numeric \tab Hometown latitude. \cr
+   home_longitude \tab numeric \tab Hometown longitude. \cr
+   home_county_fips \tab integer \tab Hometown FIPS code. \cr
+   headshot_url \tab character \tab Player ESPN headshot url. \cr
 }
 }
 \description{

@@ -4,12 +4,12 @@
 \alias{cfbd_teams}
 \title{\strong{CFBD Teams Endpoint Overview}}
 \description{
-\describe{
-\item{\code{cfbd_team_info()}:}{ Team Info Lookup.}
-\item{\code{cfbd_team_roster()}:}{ Get a team's full roster by year.}
-\item{\code{cfbd_team_talent()}:}{ Get composite team talent rankings for all teams in a given year.}
-\item{\code{cfbd_team_matchup_records()}:}{ Get matchup history records between two teams.}
-\item{\code{cfbd_team_matchup()}:}{ Get matchup history between two teams.}
+\itemize{
+\item \code{cfbd_team_info()}: Team Info Lookup.
+\item \code{cfbd_team_roster()}: Get a team's full roster by year.
+\item \code{cfbd_team_talent()}: Get composite team talent rankings for all teams in a given year.
+\item \code{cfbd_team_matchup_records()}: Get matchup history records between two teams.
+\item \code{cfbd_team_matchup()}: Get matchup history between two teams.
 }
 \subsection{\strong{Team info lookup}}{
 

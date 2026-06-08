@@ -16,14 +16,14 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 \value{
-\code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}} - A data frame with 6 variables:
-\describe{
-\item{\code{year}: integer.}{Season of the SRS rating.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{division}: logical.}{Division in the conference for the team.}
-\item{\code{rating}: double.}{Simple Rating System (SRS) rating.}
-\item{\code{ranking}: integer.}{Simple Rating System ranking within the group returned.}
+\code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}} - A data frame with 6 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   year \tab integer \tab Season of the SRS rating. \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Conference of the team. \cr
+   division \tab character \tab Division in the conference for the team. \cr
+   rating \tab numeric \tab Simple Rating System (SRS) rating. \cr
+   ranking \tab integer \tab Simple Rating System ranking within the group returned. \cr
 }
 }
 \description{

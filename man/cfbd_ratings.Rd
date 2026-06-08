@@ -4,13 +4,13 @@
 \alias{cfbd_ratings}
 \title{\strong{CFBD Ratings and Rankings Endpoints Overview}}
 \description{
-\describe{
-\item{\code{cfbd_rankings()}:}{ Gets Historical CFB poll rankings at a specific week.}
-\item{\code{cfbd_ratings_sp()}:}{ Get SP historical rating data.}
-\item{\code{cfbd_ratings_sp_conference()}:}{ Get SP conference-level historical rating data.}
-\item{\code{cfbd_ratings_srs()}:}{ Get SRS historical rating data.}
-\item{\code{cfbd_ratings_elo()}:}{ Get Elo historical rating data.}
-\item{\code{cfbd_ratings_fpi()}:}{ Get FPI historical rating data.}
+\itemize{
+\item \code{cfbd_rankings()}: Gets Historical CFB poll rankings at a specific week.
+\item \code{cfbd_ratings_sp()}: Get SP historical rating data.
+\item \code{cfbd_ratings_sp_conference()}: Get SP conference-level historical rating data.
+\item \code{cfbd_ratings_srs()}: Get SRS historical rating data.
+\item \code{cfbd_ratings_elo()}: Get Elo historical rating data.
+\item \code{cfbd_ratings_fpi()}: Get FPI historical rating data.
 }
 \subsection{\strong{Get historical Coaches and AP poll data}}{
 

@@ -27,27 +27,39 @@ cfbd_coaches(
 \item{max_year}{(\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY})}
 }
 \value{
-\describe{
-\item{first_name:character.}{First name of coach.}
-\item{last_name:character.}{Last name of coach.}
-\item{hire_date:character.}{Hire date of coach.}
-\item{school:character.}{School of coach.}
-\item{year:integer.}{Season of record.}
-\item{games:integer.}{Games as coach.}
-\item{wins:integer.}{Wins for the season.}
-\item{losses:integer.}{ Losses for the season.}
-\item{ties:integer.}{Ties for the season.}
-\item{preseason_rank:integer.}{Preseason rank for the school of coach.}
-\item{postseason_rank:integer.}{Postseason rank for the school of coach.}
-\item{srs:character.}{Simple Rating System adjustment for team.}
-\item{sp_overall:character.}{Bill Connelly's SP+ overall for team.}
-\item{sp_offense:character.}{Bill Connelly's SP+ offense for team.}
-\item{sp_defense:character.}{Bill Connelly's SP+ defense for team.}
+Returns a tibble with 15 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   first_name \tab character \tab First name of coach. \cr
+   last_name \tab character \tab Last name of coach. \cr
+   hire_date \tab character \tab Hire date of coach (ISO date string from CFBD). \cr
+   school \tab character \tab School of coach for the listed season. \cr
+   year \tab integer \tab Four-digit season year of record. \cr
+   games \tab integer \tab Games coached during the season. \cr
+   wins \tab integer \tab Wins for the season. \cr
+   losses \tab integer \tab Losses for the season. \cr
+   ties \tab integer \tab Ties for the season. \cr
+   preseason_rank \tab integer \tab Preseason AP rank for the school of coach (NA if unranked). \cr
+   postseason_rank \tab integer \tab Postseason AP rank for the school of coach (NA if unranked). \cr
+   srs \tab character \tab Simple Rating System adjustment for team. \cr
+   sp_overall \tab character \tab Bill Connelly's SP+ overall rating for team. \cr
+   sp_offense \tab character \tab Bill Connelly's SP+ offense rating for team. \cr
+   sp_defense \tab character \tab Bill Connelly's SP+ defense rating for team. \cr
 }
 }
 \description{
+\itemize{
+\item \code{cfbd_coaches()}: A coach search function which provides coaching records and school history for a given coach.
+}
+
 \strong{Coach information search}
 A coach search function which provides coaching records and school history for a given coach
+}
+\details{
+\subsection{\strong{Coach information search}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{

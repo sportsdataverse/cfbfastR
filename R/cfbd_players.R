@@ -3,11 +3,11 @@
 #' @title
 #' **CFBD Players Endpoint Overview**
 #' @description
-#' \describe{
-#' \item{`cfbd_player_info()`:}{ Player information search.}
-#' \item{`cfbd_player_returning()`:}{ Player returning production.}
-#' \item{`cfbd_player_usage()`:}{ Player usage.}
-#' }
+#'
+#' * `cfbd_player_info()`: Player information search.
+#' * `cfbd_player_returning()`: Player returning production.
+#' * `cfbd_player_usage()`: Player usage.
+#'
 #' @details
 #' ### **Player information lookup**
 #' ```r
@@ -37,23 +37,25 @@ NULL
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020
 #' @return [cfbd_player_info()] - A data frame with 12 variables:
-#' \describe{
-#'   \item{`athlete_id`:character.}{Unique player identifier `athlete_id`.}
-#'   \item{`team`:character.}{Team of the player.}
-#'   \item{`name`:character.}{Player name.}
-#'   \item{`first_name`:character.}{Player first name.}
-#'   \item{`last_name`:character.}{Player last name.}
-#'   \item{`weight`:integer.}{Player weight.}
-#'   \item{`height`:integer.}{Player height.}
-#'   \item{`jersey`:integer.}{Player jersey number.}
-#'   \item{`position`:character.}{Player position.}
-#'   \item{`home_town`:character.}{Player home town.}
-#'   \item{`team_color`:character.}{Player team color.}
-#'   \item{`team_color_secondary`:character.}{Player team secondary color.}
-#' }
+#'
+#'    |col_name             |types     |description                                            |
+#'    |:--------------------|:---------|:------------------------------------------------------|
+#'    |athlete_id           |character |Unique CFBD player identifier.                         |
+#'    |team                 |character |Team of the player.                                    |
+#'    |name                 |character |Player full name.                                      |
+#'    |first_name           |character |Player first name.                                     |
+#'    |last_name            |character |Player last name.                                      |
+#'    |weight               |integer   |Player weight in pounds.                               |
+#'    |height               |integer   |Player height in inches.                               |
+#'    |jersey               |integer   |Player jersey number.                                  |
+#'    |position             |character |Player position abbreviation (e.g. QB, RB, WR).        |
+#'    |home_town            |character |Player home town.                                      |
+#'    |team_color           |character |Player team primary color (hex code).                  |
+#'    |team_color_secondary |character |Player team secondary color (hex code).                |
+#'
 #' @keywords Players
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
@@ -95,7 +97,7 @@ cfbd_player_info <- function(search_term,
     "team" = team,
     "year" = year
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -106,21 +108,21 @@ cfbd_player_info <- function(search_term,
       check_status(res)
       # Get the content and return it as data.frame
 
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        janitor::clean_names() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names() |>
         dplyr::rename(
           "athlete_id" = "id",
           "home_town" = "hometown"
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player information from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -138,26 +140,28 @@ cfbd_player_info <- function(search_term,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return [cfbd_player_returning()] - A data frame with 15 variables:
-#' \describe{
-#'   \item{`season`:integer.}{Returning player season.}
-#'   \item{`team`:character.}{Team name.}
-#'   \item{`conference`:character.}{Conference of team.}
-#'   \item{`total_ppa`:double.}{Total predicted points added returning.}
-#'   \item{`total_passing_ppa`:double.}{Total passing predicted points added returning.}
-#'   \item{`total_receiving_ppa`:double.}{Total receiving predicted points added returning.}
-#'   \item{`total_rushing_ppa`:double.}{Total rushing predicted points added returning.}
-#'   \item{`percent_ppa`:double.}{Percentage of prior year's predicted points added returning.}
-#'   \item{`percent_passing_ppa`:double.}{Percentage of prior year's passing predicted points added returning.}
-#'   \item{`percent_receiving_ppa`:double.}{Percentage of prior year's receiving predicted points added returning.}
-#'   \item{`percent_rushing_ppa`:double.}{Percentage of prior year's rushing predicted points added returning.}
-#'   \item{`usage`:double.}{.}
-#'   \item{`passing_usage`:double.}{.}
-#'   \item{`receiving_usage`:double.}{.}
-#'   \item{`rushing_usage`:double.}{.}
-#' }
+#'
+#'    |col_name              |types     |description                                                            |
+#'    |:---------------------|:---------|:----------------------------------------------------------------------|
+#'    |season                |integer   |Four-digit season year for returning production.                       |
+#'    |team                  |character |Team name.                                                             |
+#'    |conference            |character |Conference of team.                                                    |
+#'    |total_ppa             |numeric   |Total predicted points added (PPA) returning.                          |
+#'    |total_passing_ppa     |numeric   |Total passing predicted points added returning.                        |
+#'    |total_receiving_ppa   |numeric   |Total receiving predicted points added returning.                      |
+#'    |total_rushing_ppa     |numeric   |Total rushing predicted points added returning.                        |
+#'    |percent_ppa           |numeric   |Percentage of prior year's predicted points added returning.           |
+#'    |percent_passing_ppa   |numeric   |Percentage of prior year's passing predicted points added returning.   |
+#'    |percent_receiving_ppa |numeric   |Percentage of prior year's receiving predicted points added returning. |
+#'    |percent_rushing_ppa   |numeric   |Percentage of prior year's rushing predicted points added returning.   |
+#'    |usage                 |numeric   |Share of prior year's overall offensive usage returning.               |
+#'    |passing_usage         |numeric   |Share of prior year's passing usage returning.                         |
+#'    |receiving_usage       |numeric   |Share of prior year's receiving usage returning.                       |
+#'    |rushing_usage         |numeric   |Share of prior year's rushing usage returning.                         |
+#'
 #' @keywords Returning Production
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom dplyr rename
@@ -186,7 +190,7 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
     "team" = team,
     "conference" = conference
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -196,9 +200,9 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON() |>
         dplyr::rename(
           "total_ppa" = "totalPPA",
           "total_passing_ppa" = "totalPassingPPA",
@@ -214,11 +218,11 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Returning production data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no returning player data available! {conditionMessage(e)}"))
     },
     finally = {
     }
@@ -242,25 +246,27 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 #' Can be found using the [cfbd_player_info()] function.
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @return [cfbd_player_usage()] - A data frame with 14 variables:
-#' \describe{
-#'   \item{`season`: integer.}{Player usage season.}
-#'   \item{`athlete_id`: character.}{Referencing athlete id.}
-#'   \item{`name`: character.}{Athlete name.}
-#'   \item{`position`: character.}{Athlete position.}
-#'   \item{`team`: character.}{Team name.}
-#'   \item{`conference`: character.}{Conference of team.}
-#'   \item{`usg_overall`: double.}{Player usage of overall offense.}
-#'   \item{`usg_pass`: double.}{Player passing usage percentage.}
-#'   \item{`usg_rush`: double.}{Player rushing usage percentage.}
-#'   \item{`usg_1st_down`: double.}{Player first down usage percentage.}
-#'   \item{`usg_2nd_down`: double.}{Player second down usage percentage.}
-#'   \item{`usg_3rd_down`: double.}{Player third down usage percentage.}
-#'   \item{`usg_standard_downs`: double.}{Player standard down usage percentage.}
-#'   \item{`usg_passing_downs`: double.}{Player passing down usage percentage.}
-#' }
+#'
+#'    |col_name           |types     |description                                            |
+#'    |:------------------|:---------|:------------------------------------------------------|
+#'    |season             |integer   |Four-digit season year for player usage.               |
+#'    |athlete_id         |character |Unique CFBD athlete identifier.                        |
+#'    |name               |character |Athlete full name.                                     |
+#'    |position           |character |Athlete position abbreviation (e.g. QB, RB, WR).       |
+#'    |team               |character |Team name.                                             |
+#'    |conference         |character |Conference of team.                                    |
+#'    |usg_overall        |numeric   |Player share of overall offensive usage.               |
+#'    |usg_pass           |numeric   |Player share of team passing usage.                    |
+#'    |usg_rush           |numeric   |Player share of team rushing usage.                    |
+#'    |usg_1st_down       |numeric   |Player share of team usage on first downs.             |
+#'    |usg_2nd_down       |numeric   |Player share of team usage on second downs.            |
+#'    |usg_3rd_down       |numeric   |Player share of team usage on third downs.             |
+#'    |usg_standard_downs |numeric   |Player share of team usage on standard downs.          |
+#'    |usg_passing_downs  |numeric   |Player share of team usage on passing downs.           |
+#'
 #' @keywords Player Usage
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY
+#' @importFrom httr2 url_modify_query resp_body_string
 #' @importFrom cli cli_abort
 #' @importFrom glue glue
 #' @importFrom purrr map_if
@@ -306,7 +312,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     "playerId" = athlete_id,
     "excludeGarbageTime" = excl_garbage_time
   )
-  full_url <- httr::modify_url(base_url, query=query_params)
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -317,11 +323,11 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res %>%
-        httr::content(as = "text", encoding = "UTF-8") %>%
-        jsonlite::fromJSON(flatten = TRUE) %>%
-        purrr::map_if(is.data.frame, list) %>%
-        dplyr::as_tibble() %>%
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        purrr::map_if(is.data.frame, list) |>
+        dplyr::as_tibble() |>
         dplyr::rename(
           "athlete_id" = "id",
           "usg_overall" = "usage.overall",
@@ -335,11 +341,11 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
         )
 
 
-      df <- df %>%
+      df <- df |>
         make_cfbfastR_data("Player usage data from CollegeFootballData.com",Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available! {conditionMessage(e)}"))
     },
     finally = {
     }

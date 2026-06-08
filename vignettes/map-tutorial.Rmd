@@ -55,12 +55,12 @@ There's a lot here, but the basics are we get some IDs that we can merge on othe
 co_2021 <- cfbd_recruiting_player(year = 2021)
 
 #Now let's manipulate the data so that its what we want
-top_recs_co_2021 <- co_2021 %>% 
-  dplyr::filter(stars == 5) %>% #filter gives you the data which fulfills a condition
+top_recs_co_2021 <- co_2021 |> 
+  dplyr::filter(stars == 5) |> #filter gives you the data which fulfills a condition
   dplyr::mutate( #mutate creates new variables within a dataframe
     latitude = as.double(hometown_info_latitude), 
-    longitude = as.double(hometown_info_longitude)) %>% 
-  dplyr::select(name, latitude, longitude, state_province) %>% #This just selects the columns we care about
+    longitude = as.double(hometown_info_longitude)) |> 
+  dplyr::select(name, latitude, longitude, state_province) |> #This just selects the columns we care about
   dplyr::distinct() #this is to get rid of duplicate names
 
 ```
@@ -68,7 +68,7 @@ top_recs_co_2021 <- co_2021 %>%
 A few quick programming notes: 
 
 1. I save the Class of 2021 dataset as its own object. This is so that if we make a mistake whilst manipulating the data we don't have to load in the data again. For this specific problem its not a big deal, but when you deal with larger datasets that take longer to load its a good convention to do.
-2. The `%>%` characters are called a pipe and can be read as "and then." As an example, we would read the above chunk as "We load in the Class of 2021 data and then we filter to only the 5 stars and then we create the new `longitude` and `latitude` variables.
+2. The `|>` characters are called a pipe and can be read as "and then." As an example, we would read the above chunk as "We load in the Class of 2021 data and then we filter to only the 5 stars and then we create the new `longitude` and `latitude` variables.
 3. The function `as.double` takes something and transforms it into a double (a number with a decimal points). For example, `"8.0"` and `8` both become `8.0` using `as.double()`
 4. At the end I `select` the columns which have the information we care about. This gets rid of extraneous data. This isn't super important for this dataset in particular, but is a practice I find useful when working with larger datasets so I don't take up too much memory.
 5. The `distinct` function at the end gets rid of duplicate rows. We do this because recruiting data from `cfbd_recruiting_player` can at times be messy, especially when players have ratings which change later in the processs. 
@@ -77,17 +77,17 @@ So now let's make a map of it. The most sensible thing to do seems to just put p
 
 Before we look at the code there's a couple `ggplot2` basics I would like to cover first
 
-1. `ggplot2` uses `+` instead of `%>%` as a pipe for reasons that are beyond my feeble mind's capabilities. 
+1. `ggplot2` uses `+` instead of `|>` as a pipe for reasons that are beyond my feeble mind's capabilities. 
 2. You place individual plot elements with the `geom_` functions. For example if you want to place a scatter plot that's `geom_point`, for bars it's `geom_bar`, for lines its `geom_line`, etc. Specifically for maps we use `geom_polygon`
 3. We map variables from a given data frame to geoms using the `aes` function. 
 4. The world isn't flat, but plotting maps in R defaults to a flat projection (Mercator) which can cause some pretty massive distortion. We can fix this by changing to another projection which better maintains an area's proportions (an Albers projection in this case)
 
 ```{r gg_continental, fig.alt= "A map of the continental United States with points representing the locations of 5 star recruits from the class of 2021."}
 
-cont_48 <- states %>% 
+cont_48 <- states |> 
   dplyr::filter(!state_name %in% c("Alaska", "Hawaii")) #This means "Filter for states whose names aren't in the group of 'Hawaii' and 'Alaska'"
 
-ggplot()+ #ggplot uses + instead of %>% as a pipe for some reason. 
+ggplot()+ #ggplot uses + instead of |> as a pipe for some reason. 
   geom_polygon(data = cont_48, mapping = aes(x = long, y = lat, group = group), color = 'white', fill = 'grey')+ #color controls the color of borders, fill controls the color of things inside the border
   geom_point(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude), color = 'black')+
   coord_map(projection = 'albers', lat0 = 39, lat1 = 45) #This is the one that changes the projection
@@ -142,10 +142,10 @@ Sick, now we have all the players in the 2017-2021 classes. We want to eventuall
 So we'll do this quick clean up and then we'll group the players by state and get some counts. 
 
 ```{r clean_rec_classes}
-clean_rec_classes <- recruiting_classes %>% 
-  dplyr::select(year, name, position, state_province) %>% #Get the data that we want
-  dplyr::distinct() %>% #Get rid of duplicated rows
-  dplyr::group_by(state_province) %>% #Group the data by each state
+clean_rec_classes <- recruiting_classes |> 
+  dplyr::select(year, name, position, state_province) |> #Get the data that we want
+  dplyr::distinct() |> #Get rid of duplicated rows
+  dplyr::group_by(state_province) |> #Group the data by each state
   dplyr::summarise( #Summarise works like mutate, but instead of adding on a new column it creates a single row of variables for each group
     count = dplyr::n() #n() is a function which returns the number of occurrences of each group in the larger dataset
   )
@@ -189,16 +189,16 @@ What I'll do now is go ahead and make a more fancy looking graph. I won't explai
 
 ```{r tristate_recs, fig.alt="Where are Recruits in the Tri-State Area from?"}
 
-tri_state_recs <- recruiting_classes %>% 
-  dplyr::select(year, name, position, state_province, hometown_info_latitude, hometown_info_longitude) %>% 
-  dplyr::distinct() %>% 
-  dplyr::filter(state_province %in% c('PA','NY','NJ')) %>% 
+tri_state_recs <- recruiting_classes |> 
+  dplyr::select(year, name, position, state_province, hometown_info_latitude, hometown_info_longitude) |> 
+  dplyr::distinct() |> 
+  dplyr::filter(state_province %in% c('PA','NY','NJ')) |> 
   dplyr::mutate(
     latitude = as.double(hometown_info_latitude),
     longitude = as.double(hometown_info_longitude)
   )
 
-tri_state_map <- map_counts %>% 
+tri_state_map <- map_counts |> 
   dplyr::filter(state_abbv %in% c('PA','NY','NJ'))
 
 ggplot()+

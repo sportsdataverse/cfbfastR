@@ -53,11 +53,11 @@ add_yardage <- function(play_df) {
   play_df$yds_penalty <- NA_real_
 
   if (!("cleaned_text" %in% colnames(play_df))) {
-    play_df <- play_df %>%
+    play_df <- play_df |>
       clean_play_text()
   }
 
-  play_df <- play_df %>%
+  play_df <- play_df |>
     dplyr::mutate(
       yds_rushed = dplyr::case_when(
         .data$rush == 1 & stringr::str_detect(.data$cleaned_text, regex("run for no gain", ignore_case = TRUE)) ~ 0,
@@ -183,7 +183,7 @@ add_yardage <- function(play_df) {
       )
     )
   suppressWarnings(
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::mutate(
         yds_int_return = dplyr::case_when(
           .data$pass == 1 & .data$int_td == 1 & stringr::str_detect(.data$play_text, regex("Yd Interception Return", ignore_case = TRUE)) ~
@@ -212,7 +212,7 @@ add_yardage <- function(play_df) {
       )
   )
 
-  play_df <- play_df %>%
+  play_df <- play_df |>
     dplyr::mutate(
       yds_kickoff = NA_real_,
       yds_kickoff = ifelse(.data$kickoff_play == 1, as.numeric(stringr::str_extract(
@@ -268,7 +268,7 @@ add_yardage <- function(play_df) {
       )
     )
   suppressWarnings(
-    play_df <- play_df %>%
+    play_df <- play_df |>
       dplyr::mutate(
         yds_penalty = as.numeric(dplyr::case_when(
           .data$penalty_detail %in% c("Penalty Declined", "Penalty Offset") ~ 0,

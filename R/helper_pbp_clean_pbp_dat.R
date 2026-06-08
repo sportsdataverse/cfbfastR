@@ -200,7 +200,7 @@ clean_pbp_dat <- function(play_df) {
     "Pass Interception Return",
     "Pass Interception Return Touchdown"
   )
-  play_df <- play_df %>%
+  play_df <- play_df |>
     dplyr::mutate(
       #-- Touchdowns----
       scoring_play = ifelse(.data$play_type %in% scores_vec, 1, 0),

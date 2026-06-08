@@ -29,27 +29,27 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
 }
 \value{
-\code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 18 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week of the season.}
-\item{\code{season_type}: character.}{Season Type (regular, postseason, etc.}
-\item{\code{conference}: character.}{Conference of the team.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{opponent}: character.}{Team Opponent.}
-\item{\code{off_overall}: character.}{Offense overall predicted points added (PPA).}
-\item{\code{off_passing}: character.}{Offense passing predicted points added (PPA).}
-\item{\code{off_rushing}: character.}{Offense rushing predicted points added (PPA).}
-\item{\code{off_first_down}: character.}{Offense 1st down predicted points added (PPA).}
-\item{\code{off_second_down}: character.}{Offense 2nd down predicted points added (PPA).}
-\item{\code{off_third_down}: character.}{Offense 3rd down predicted points added (PPA).}
-\item{\code{def_overall}: character.}{Defense overall predicted points added (PPA).}
-\item{\code{def_passing}: character.}{Defense passing predicted points added (PPA).}
-\item{\code{def_rushing}: character.}{Defense rushing predicted points added (PPA).}
-\item{\code{def_first_down}: character.}{Defense 1st down predicted points added (PPA).}
-\item{\code{def_second_down}: character.}{Defense 2nd down predicted points added (PPA).}
-\item{\code{def_third_down}: character.}{Defense 3rd down predicted points added (PPA).}
+\code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 19 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   season \tab integer \tab Season of the game. \cr
+   week \tab integer \tab Game week of the season. \cr
+   season_type \tab character \tab Season type (regular, postseason, etc.). \cr
+   conference \tab character \tab Conference of the team. \cr
+   team \tab character \tab Team name. \cr
+   opponent \tab character \tab Team opponent name. \cr
+   off_overall \tab numeric \tab Offense overall predicted points added (PPA). \cr
+   off_passing \tab numeric \tab Offense passing predicted points added (PPA). \cr
+   off_rushing \tab numeric \tab Offense rushing predicted points added (PPA). \cr
+   off_first_down \tab numeric \tab Offense 1st down predicted points added (PPA). \cr
+   off_second_down \tab numeric \tab Offense 2nd down predicted points added (PPA). \cr
+   off_third_down \tab numeric \tab Offense 3rd down predicted points added (PPA). \cr
+   def_overall \tab numeric \tab Defense overall predicted points added (PPA). \cr
+   def_passing \tab numeric \tab Defense passing predicted points added (PPA). \cr
+   def_rushing \tab numeric \tab Defense rushing predicted points added (PPA). \cr
+   def_first_down \tab numeric \tab Defense 1st down predicted points added (PPA). \cr
+   def_second_down \tab numeric \tab Defense 2nd down predicted points added (PPA). \cr
+   def_third_down \tab numeric \tab Defense 3rd down predicted points added (PPA). \cr
 }
 }
 \description{

@@ -39,31 +39,31 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
 }
 \value{
-\code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:
-\describe{
-\item{\code{season}: integer.}{Season.}
-\item{\code{athlete_id}: character.}{Athlete referencing id.}
-\item{\code{name}: character.}{Athlete name.}
-\item{\code{position}: character.}{Athlete Position.}
-\item{\code{team}: character.}{Team name.}
-\item{\code{conference}: character.}{Team conference.}
-\item{\code{countable_plays}: integer.}{DEPRECATED Number of plays which can be counted.}
-\item{\code{avg_PPA_all}: double.}{Average overall predicted points added (PPA).}
-\item{\code{avg_PPA_pass}: double.}{Average passing predicted points added (PPA).}
-\item{\code{avg_PPA_rush}: double.}{Average rushing predicted points added (PPA).}
-\item{\code{avg_PPA_first_down}: double.}{Average 1st down predicted points added (PPA).}
-\item{\code{avg_PPA_second_down}: double.}{Average 2nd down predicted points added (PPA).}
-\item{\code{avg_PPA_third_down}: double.}{Average 3rd down predicted points added (PPA).}
-\item{\code{avg_PPA_standard_downs}: double.}{Average standard down predicted points added (PPA).}
-\item{\code{avg_PPA_passing_downs}: double.}{Average passing down predicted points added (PPA).}
-\item{\code{total_PPA_all}: double.}{Total overall predicted points added (PPA).}
-\item{\code{total_PPA_pass}: double.}{Total passing predicted points added (PPA).}
-\item{\code{total_PPA_rush}: double.}{Total rushing predicted points added (PPA).}
-\item{\code{total_PPA_first_down}: double.}{Total 1st down predicted points added (PPA).}
-\item{\code{total_PPA_second_down}: double.}{Total 2nd down predicted points added (PPA).}
-\item{\code{total_PPA_third_down}: double.}{Total 3rd down predicted points added (PPA).}
-\item{\code{total_PPA_standard_downs}: double.}{Total standard down predicted points added (PPA).}
-\item{\code{total_PPA_passing_downs}: double.}{Total passing down predicted points added (PPA).}
+\code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}} - A data frame with 23 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Four-digit season year. \cr
+   athlete_id \tab character \tab Athlete referencing id. \cr
+   name \tab character \tab Athlete name. \cr
+   position \tab character \tab Athlete position abbreviation (e.g. "QB", "RB"). \cr
+   team \tab character \tab Team name. \cr
+   conference \tab character \tab Team conference name. \cr
+   countable_plays \tab integer \tab DEPRECATED Number of plays which can be counted. \cr
+   avg_PPA_all \tab numeric \tab Average overall predicted points added (PPA). \cr
+   avg_PPA_pass \tab numeric \tab Average passing predicted points added (PPA). \cr
+   avg_PPA_rush \tab numeric \tab Average rushing predicted points added (PPA). \cr
+   avg_PPA_first_down \tab numeric \tab Average 1st down predicted points added (PPA). \cr
+   avg_PPA_second_down \tab numeric \tab Average 2nd down predicted points added (PPA). \cr
+   avg_PPA_third_down \tab numeric \tab Average 3rd down predicted points added (PPA). \cr
+   avg_PPA_standard_downs \tab numeric \tab Average standard down predicted points added (PPA). \cr
+   avg_PPA_passing_downs \tab numeric \tab Average passing down predicted points added (PPA). \cr
+   total_PPA_all \tab numeric \tab Total overall predicted points added (PPA). \cr
+   total_PPA_pass \tab numeric \tab Total passing predicted points added (PPA). \cr
+   total_PPA_rush \tab numeric \tab Total rushing predicted points added (PPA). \cr
+   total_PPA_first_down \tab numeric \tab Total 1st down predicted points added (PPA). \cr
+   total_PPA_second_down \tab numeric \tab Total 2nd down predicted points added (PPA). \cr
+   total_PPA_third_down \tab numeric \tab Total 3rd down predicted points added (PPA). \cr
+   total_PPA_standard_downs \tab numeric \tab Total standard down predicted points added (PPA). \cr
+   total_PPA_passing_downs \tab numeric \tab Total passing down predicted points added (PPA). \cr
 }
 }
 \description{

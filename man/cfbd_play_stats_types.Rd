@@ -7,10 +7,10 @@
 cfbd_play_stats_types()
 }
 \value{
-\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} - A data frame with 25 rows and 2 variables:
-\describe{
-\item{\code{play_stat_type_id}: integer}{Referencing play stat type ID.}
-\item{\code{name}: character}{Type of play stats.}
+\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}} - A data frame with 25 rows and 2 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   play_stat_type_id \tab integer \tab CFBD play stat type identifier (used as a filter in \code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}}). \cr
+   name \tab character \tab Human-readable name of the play stat type (e.g. "Reception", "Sack", "Touchdown"). \cr
 }
 }
 \description{
@@ -25,6 +25,7 @@ cfbd_play_stats_types()
 Other CFBD PBP: 
 \code{\link{cfbd_live_plays}()},
 \code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_pbp_data_v2}()},
 \code{\link{cfbd_play_stats_player}()},
 \code{\link{cfbd_play_types}()},
 \code{\link{cfbd_plays}()}

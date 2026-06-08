@@ -11,24 +11,24 @@ cfbd_metrics_wp(game_id)
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 \value{
-\code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}} - A data frame with 16 variables:
-\describe{
-\item{\code{play_id}: character.}{Play referencing id.}
-\item{\code{play_text}: character.}{A text description of the play.}
-\item{\code{home_id}: integer.}{Home team referencing id.}
-\item{\code{home}: character.}{Home team name.}
-\item{\code{away_id}: integer.}{Away team referencing id.}
-\item{\code{away}: character.}{Away team name.}
-\item{\code{spread}: character.}{Betting lines provider spread.}
-\item{\code{home_ball}: logical.}{Home team has the ball.}
-\item{\code{home_score}: integer.}{Home team score.}
-\item{\code{away_score}: integer.}{Away team score.}
-\item{\code{down}: integer.}{Down of the play.}
-\item{\code{distance}: integer.}{Distance to the sticks (to 1st down marker of goal-line in goal-to-go situations).}
-\item{\code{home_win_prob}: character.}{Home team win probability.}
-\item{\code{away_win_prob}: double.}{Away team win probability.}
-\item{\code{play_number}: integer.}{Game play number.}
-\item{\code{yard_line}: integer.}{Yard line of the play (0-100 yards).}
+\code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}} - A data frame with 16 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   play_id \tab character \tab Play referencing id. \cr
+   play_text \tab character \tab A text description of the play. \cr
+   home_id \tab integer \tab Home team referencing id. \cr
+   home \tab character \tab Home team name. \cr
+   away_id \tab integer \tab Away team referencing id. \cr
+   away \tab character \tab Away team name. \cr
+   spread \tab numeric \tab Betting lines provider spread. \cr
+   home_ball \tab logical \tab Home team has the ball. \cr
+   home_score \tab integer \tab Home team score. \cr
+   away_score \tab integer \tab Away team score. \cr
+   down \tab integer \tab Down of the play. \cr
+   distance \tab integer \tab Distance to the sticks (to 1st down marker or goal-line in goal-to-go situations). \cr
+   home_win_prob \tab numeric \tab Home team win probability (0-1). \cr
+   away_win_prob \tab numeric \tab Away team win probability (0-1). \cr
+   play_number \tab integer \tab Game play number. \cr
+   yard_line \tab integer \tab Yard line of the play (0-100 yards). \cr
 }
 }
 \description{

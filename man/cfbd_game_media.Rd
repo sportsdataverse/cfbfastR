@@ -32,21 +32,21 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}
 }
 \value{
-\code{\link[=cfbd_game_media]{cfbd_game_media()}} - A data frame with 13 variables:
-\describe{
-\item{\code{game_id}: integer.}{Referencing game id.}
-\item{\code{season}: integer.}{Season of the game.}
-\item{\code{week}: integer.}{Game week.}
-\item{\code{season_type}: character.}{Season type of the game.}
-\item{\code{start_time}: character.}{Game start time.}
-\item{\code{is_start_time_tbd}: logical.}{TRUE/FALSE flag for if the start time is still to be determined.}
-\item{\code{home_team}: character.}{Home team of the game.}
-\item{\code{home_conference}: character.}{Conference of the home team.}
-\item{\code{away_team}: character.}{Away team of the game.}
-\item{\code{away_conference}: character.}{Conference of the away team.}
-\item{\code{tv}: list.}{TV broadcast networks.}
-\item{\code{radio}: logical.}{Radio broadcast networks.}
-\item{\code{web}: list.}{Web viewing platforms carrying the game.}
+\code{\link[=cfbd_game_media]{cfbd_game_media()}} - A data frame with 13 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   game_id \tab integer \tab Referencing game id. \cr
+   season \tab integer \tab Season of the game. \cr
+   week \tab integer \tab Game week. \cr
+   season_type \tab character \tab Season type of the game. \cr
+   start_time \tab character \tab Game start time. \cr
+   is_start_time_tbd \tab logical \tab TRUE/FALSE flag for if the start time is still to be determined. \cr
+   home_team \tab character \tab Home team of the game. \cr
+   home_conference \tab character \tab Conference of the home team. \cr
+   away_team \tab character \tab Away team of the game. \cr
+   away_conference \tab character \tab Conference of the away team. \cr
+   tv \tab list \tab TV broadcast networks. \cr
+   radio \tab logical \tab Radio broadcast networks. \cr
+   web \tab list \tab Web viewing platforms carrying the game. \cr
 }
 }
 \description{

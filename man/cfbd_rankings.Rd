@@ -14,17 +14,17 @@ cfbd_rankings(year, week = NULL, season_type = "both")
 \item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 }
 \value{
-\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:\tabular{ll}{
-   col_name \tab types \cr
-   season \tab integer \cr
-   season_type \tab character \cr
-   week \tab integer \cr
-   poll \tab character \cr
-   rank \tab integer \cr
-   school \tab character \cr
-   conference \tab character \cr
-   first_place_votes \tab integer \cr
-   points \tab integer \cr
+\code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   season \tab integer \tab Four-digit year of the season (e.g. 2019). \cr
+   season_type \tab character \tab CFBD season type: "regular", "postseason", "both", or "allstar". \cr
+   week \tab integer \tab Week number within the season (1-15 regular, 1 for postseason). \cr
+   poll \tab character \tab Poll name (e.g. "AP Top 25", "Coaches Poll", "Playoff Committee Rankings"). \cr
+   rank \tab integer \tab Position of the school within the poll for the given week (1 = top-ranked). \cr
+   school \tab character \tab Full school/team name as reported by the poll (e.g. "Georgia"). \cr
+   conference \tab character \tab Conference affiliation of the ranked school (e.g. "SEC", "ACC"). \cr
+   first_place_votes \tab integer \tab Number of first-place votes the school received in this poll week. \cr
+   points \tab integer \tab Total points accumulated by the school in the poll's weighted voting. \cr
 }
 }
 \description{

@@ -167,39 +167,38 @@ navbar:
       menu:
       - text: Vignettes
         href: articles/index.html
-      - text: Introductory
-      - text: CFB Analytics with cfbfastR
-        href: articles/intro.html
-      - text: Animated Win Probability Plots
+      - text: Making Animated Win Probability Charts with cfbfastR
         href: articles/animated-wp-plotting.html
-      - text: Fourth Down Tendency Plots
+      - text: CFB Data Betting Lines Examples
+        href: articles/cfbd_betting.html
+      - text: CFB Data Games Examples
+        href: articles/cfbd_games.html
+      - text: CFB Data Plays Examples
+        href: articles/cfbd_plays.html
+      - text: CFB Data Recruiting Examples
+        href: articles/cfbd_recruiting.html
+      - text: CFB Data Stats Examples
+        href: articles/cfbd_stats.html
+      - text: CFB Data Teams Examples
+        href: articles/cfbd_teams.html
+      - text: ESPN College Football Cookbook
+        href: articles/cfbfastR-espn-cookbook.html
+      - text: College Football Expected Points Model Fundamentals - Part I
+        href: articles/college-football-expected-points-model-fundamentals-part-i.html
+      - text: College Football Expected Points Model Fundamentals - Part II
+        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
+      - text: College Football Expected Points Model Fundamentals - Part III
+        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+      - text: Creating Fourth Down Tendency Plots Using cfbfastR
         href: articles/fourth-down-plot-tutorial.html
-      - text: Rolling EPA Graphs
-        href: articles/rolling-epa-graph.html
-      - text: Visualizing Team Talent with Player Recruit Rankings
-        href: articles/nth-rated-recruit.html
+      - text: Introduction to cfbfastR
+        href: articles/intro.html
       - text: Intro to Visualizing Recruiting Geography
         href: articles/map-tutorial.html
-      - text: Expected Points Model Fundamentals
-      - text: "Part 1 - Model Definition"
-        href: articles/college-football-expected-points-model-fundamentals-part-i.html
-      - text: "Part 2 - Regression Models"
-        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
-      - text: "Part 3 - History of Expected Points Models"
-        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
-      - text: CFBD Tutorials
-      - text: "CFBD Betting"
-        href: articles/cfbd_betting.html
-      - text: "CFBD Games"
-        href: articles/cfbd_games.html
-      - text: "CFBD Plays"
-        href: articles/cfbd_plays.html
-      - text: "CFBD Recruiting"
-        href: articles/cfbd_recruiting.html
-      - text: "CFBD Stats"
-        href: articles/cfbd_stats.html
-      - text: "CFBD Teams"
-        href: articles/cfbd_teams.html
+      - text: Visualizing Team Talent from Player Recruiting Rankings
+        href: articles/nth-rated-recruit.html
+      - text: Rolling EPA Graph
+        href: articles/rolling-epa-graph.html
     news:
       icon: "fas fa-newspaper"
       text: " News"
@@ -302,14 +301,27 @@ navbar:
       href: https://github.com/sportsdataverse/cfbfastR/
 
 reference:
+  - title: Function family overviews
+    desc: "One-page summaries of the cfbd_* and espn_cfb_* function families."
+    contents:
+      - '`cfbd_api_key`'
+      - '`cfbd_betting`'
+      - '`cfbd_coaches`'
+      - '`cfbd_conferences`'
+      - '`cfbd_drives`'
+      - '`cfbd_pbp`'
+      - '`cfbd_pbp_v2`'
+      - '`cfbd_venues`'
+      - '`espn_cfb_catalog`'
+      - '`espn_cfb_game`'
+      - '`espn_cfb_player`'
+      - '`espn_cfb_season`'
+      - '`espn_cfb_team`'
   - title: "cfbfastR Data"
-  - subtitle: Full Seasons PBP Data
+  - subtitle: Full Season Loaders
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data
     contents:
-      - '`load_cfb_pbp`'
-      - '`load_cfb_rosters`'
-      - '`load_cfb_schedules`'
-      - '`load_cfb_teams`'
+      - starts_with("load_cfb_")
   - subtitle: "Update or Create Database"
     desc: Functions exported by cfbfastR which update and create a database of cfbfastR play-by-play data
     contents:
@@ -318,9 +330,10 @@ reference:
     desc: Functions exported by cfbfastR which return Expected Points and Win Probability model outputs.
     contents:
       - '`cfbd_pbp_data`'
-  - title: College Football Data API and ESPN Functions
-  - subtitle: College Football Data API Key
-    desc: Functions for using your API key.
+      - '`cfbd_pbp_data_v2`'
+  - title: College Football Data API
+  - subtitle: API Key Helpers
+    desc: Functions for registering and inspecting your CollegeFootballData.com API key.
     contents:
       - '`register_cfbd`'
   - subtitle: Games Data
@@ -353,33 +366,32 @@ reference:
       - '`cfbd_players`'
       - starts_with("cfbd_player")
   - subtitle: Stats Data
-    desc: Functions exported by cfbfastR sourced from the conferences endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbfastR sourced from the stats endpoint of the CollegeFootballData API
     contents:
       - '`cfbd_stats`'
       - starts_with("cfbd_stats")
   - subtitle: Rankings and Ratings Data
-    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API and ESPN
+    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_ratings`'
       - starts_with("cfbd_ratings_")
       - starts_with("cfbd_rankings")
-      - '`espn_ratings_fpi`'
   - subtitle: NFL Draft Data
     desc: Functions exported by cfbfastR sourced from the draft endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_draft`'
       - starts_with("cfbd_draft_")
   - subtitle: Betting Data
-    desc: Functions exported by cfbfastR sourced from lines endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbfastR sourced from lines and betting endpoints of the CollegeFootballData API
     contents:
-      - '`cfbd_betting_lines`'
+      - starts_with("cfbd_betting")
   - subtitle: Metrics Data
-    desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API and ESPN
+    desc: Functions exported by cfbfastR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_metrics`'
       - starts_with("cfbd_metrics_")
   - subtitle: Recruiting Data
-    desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbfastR sourced from the recruiting endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_recruiting`'
       - starts_with("cfbd_recruiting_")
@@ -390,48 +402,106 @@ reference:
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
   - title: "ESPN Data"
-  - subtitle: Functions with ESPN connections
-    desc: Functions exported by cfbfastR which allow access to ESPN data
+  - subtitle: ESPN CFB -- Game data
+    desc: Per-game ESPN endpoints (play-by-play, drives, plays, leaders, predictor, situation, odds)
     contents:
-      - starts_with("espn_")
+      - '`espn_cfb_pbp`'
+      - '`espn_cfb_pbp_v2`'
+      - '`espn_cfb_unnest_plays`'
+      - starts_with("espn_cfb_game")
+  - subtitle: ESPN CFB -- Schedule, scoreboard & calendar
+    desc: Calendar, schedule, and scoreboard endpoints
+    contents:
+      - '`espn_cfb_scoreboard`'
+      - '`espn_cfb_schedule`'
+      - '`espn_cfb_calendar`'
+  - subtitle: ESPN CFB -- Season metadata
+    desc: Season, week, rankings, standings, and group endpoints
+    contents:
+      - '`espn_cfb_seasons`'
+      - '`espn_cfb_season_info`'
+      - '`espn_cfb_season_types`'
+      - '`espn_cfb_season_weeks`'
+      - '`espn_cfb_week_rankings`'
+      - '`espn_cfb_rankings`'
+      - '`espn_cfb_standings`'
+      - '`espn_cfb_groups`'
+  - subtitle: ESPN CFB -- Team detail
+    desc: Team-scoped catalog and detail endpoints
+    contents:
+      - '`espn_cfb_team`'
+      - '`espn_cfb_teams`'
+      - starts_with("espn_cfb_team_")
+  - subtitle: ESPN CFB -- Athlete coverage
+    desc: Player, position and recruit endpoints
+    contents:
+      - '`espn_cfb_player`'
+      - '`espn_cfb_players`'
+      - starts_with("espn_cfb_player_")
+      - '`espn_cfb_position`'
+      - '`espn_cfb_positions`'
+      - '`espn_cfb_recruits`'
+  - subtitle: ESPN CFB -- Coaches & venues
+    desc: Coach, coach record, and venue endpoints
+    contents:
+      - '`espn_cfb_coach`'
+      - '`espn_cfb_coaches`'
+      - '`espn_cfb_coach_record`'
+      - '`espn_cfb_venue`'
+      - '`espn_cfb_venues`'
+  - subtitle: ESPN CFB -- Awards, futures & franchises
+    desc: Award catalog, futures markets, and franchise records
+    contents:
+      - '`espn_cfb_award`'
+      - '`espn_cfb_awards`'
+      - '`espn_cfb_franchise`'
+      - '`espn_cfb_franchises`'
+      - '`espn_cfb_futures`'
+  - subtitle: ESPN CFB -- Metrics & ratings
+    desc: Win probability, QBR, power index, and FPI ratings
+    contents:
+      - '`espn_metrics_wp`'
+      - '`espn_ratings_fpi`'
+      - '`espn_cfb_qbr`'
+      - '`espn_cfb_powerindex`'
+  - subtitle: ESPN CFB -- Cache management
+    desc: Catalog-cache management helpers
+    contents:
+      - '`espn_cfb_clear_cache`'
   - title: Helper Functions and Data
   - subtitle: Included data
     desc: Data included within the package
     contents:
       - '`data`'
   - subtitle: Model functions and PBP helpers
-    desc: Model functions and play-by-play helpers
+    desc: Expected points / win probability models and play-by-play parsing helpers
     contents:
       - '`create_epa`'
       - '`create_wpa`'
       - '`helpers_pbp`'
+      - '`epa_fg_probs`'
   - subtitle: cfbfastR Helper Functions
-    desc: Internal functions used by cfbfastR
+    desc: Internal helpers used by cfbfastR
     contents:
       - '`csv_from_url`'
       - '`rds_from_url`'
 articles:
-  - title: Introductory
-    navbar: Introductory
+  - title: "Cookbooks & Guides"
+    desc: "End-to-end recipes and reference guides."
     contents:
-      - intro
       - animated-wp-plotting
-      - fourth-down-plot-tutorial
-      - rolling-epa-graph
-      - nth-rated-recruit
-      - map-tutorial
-  - title: Expected Points Model Fundamentals
-    navbar: Expected Points Model Fundamentals
-    contents:
-      - college-football-expected-points-model-fundamentals-part-i
-      - college-football-expected-points-model-fundamentals-part-ii
-      - college-football-expected-points-model-fundamentals-part-iii
-  - title: CFBD Tutorials
-    navbar: CFBD Tutorials
-    contents:
       - cfbd_betting
       - cfbd_games
       - cfbd_plays
       - cfbd_recruiting
       - cfbd_stats
       - cfbd_teams
+      - cfbfastR-espn-cookbook
+      - college-football-expected-points-model-fundamentals-part-i
+      - college-football-expected-points-model-fundamentals-part-ii
+      - college-football-expected-points-model-fundamentals-part-iii
+      - fourth-down-plot-tutorial
+      - intro
+      - map-tutorial
+      - nth-rated-recruit
+      - rolling-epa-graph

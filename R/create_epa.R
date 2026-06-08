@@ -41,15 +41,15 @@ create_epa <- function(play_df,
   ##
 
 
-  clean_pbp <- play_df %>%
-    dplyr::mutate(down = as.numeric(.data$down)) %>%
-    dplyr::filter(.data$down > 0) %>%
+  clean_pbp <- play_df |>
+    dplyr::mutate(down = as.numeric(.data$down)) |>
+    dplyr::filter(.data$down > 0) |>
     dplyr::filter(.data$period <= 4)
 
   ## 1) pred_df and pred_df_after selection and prediction ----
   weights <- c(0, 3, -3, -2, -7, 2, 7)
   # get before play expected points model variables
-  pred_df <- clean_pbp %>%
+  pred_df <- clean_pbp |>
     dplyr::select(
       "id_play",
       "drive_id",
@@ -63,12 +63,12 @@ create_epa <- function(play_df,
       "Under_two",
       "Goal_To_Go",
       "pos_score_diff_start"
-    ) %>%
-    dplyr::filter(.data$down > 0) %>%
+    ) |>
+    dplyr::filter(.data$down > 0) |>
     dplyr::mutate(down = as.factor(.data$down))
 
   # get after play expected points model variables
-  pred_df_after <- clean_pbp %>%
+  pred_df_after <- clean_pbp |>
     dplyr::select(
       "id_play",
       "drive_id",
@@ -83,14 +83,14 @@ create_epa <- function(play_df,
       "new_Under_two",
       "new_Goal_To_Go",
       "new_pos_score_diff_start"
-    ) %>%
-    dplyr::mutate(new_down = as.numeric(.data$new_down)) %>%
-    dplyr::filter(.data$new_down > 0) %>%
+    ) |>
+    dplyr::mutate(new_down = as.numeric(.data$new_down)) |>
+    dplyr::filter(.data$new_down > 0) |>
     dplyr::mutate(new_down = as.factor(.data$new_down))
   # rename column names for post play variables to expected points model variables
   colnames(pred_df_after)[6:13] <- gsub("new_", "", colnames(pred_df_after)[6:13])
   # rename yardline to yards_to_goal
-  pred_df_after <- pred_df_after %>%
+  pred_df_after <- pred_df_after |>
     dplyr::rename("yards_to_goal" = "yardline")
 
   # ep_start - make predictions on pred_df
@@ -265,43 +265,43 @@ create_epa <- function(play_df,
   pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] <- 0
 
   # insert before lags here
-  pred_df <- pred_df %>%
-    dplyr::group_by(.data$game_id) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+  pred_df <- pred_df |>
+    dplyr::group_by(.data$game_id) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       lag_ep_before3 = dplyr::lag(.data$ep_before, 3),
       lag_ep_before2 = dplyr::lag(.data$ep_before, 2),
       lag_ep_before = dplyr::lag(.data$ep_before, 1),
       lead_ep_before = dplyr::lead(.data$ep_before, 1),
       lead_ep_before2 = dplyr::lead(.data$ep_before, 2)
-    ) %>%
+    ) |>
     dplyr::ungroup()
 
   # insert after lags here
-  pred_df_after <- pred_df_after %>%
-    dplyr::group_by(.data$game_id) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+  pred_df_after <- pred_df_after |>
+    dplyr::group_by(.data$game_id) |>
+    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
     dplyr::mutate(
       lag_ep_after = dplyr::lag(.data$ep_after, 1),
       lag_ep_after2 = dplyr::lag(.data$ep_after, 2),
       lag_ep_after3 = dplyr::lag(.data$ep_after, 3),
       lead_ep_after = dplyr::lead(.data$ep_after, 1),
       lead_ep_after2 = dplyr::lead(.data$ep_after, 2)
-    ) %>%
+    ) |>
     dplyr::ungroup()
 
 
   ## 4) Join ep_before calcs df, pred_df, with ep_after calcs df, pred_df_after. ----
   # join together multiple dataframes back together
   # to get ep_before and ep_after for plays
-  pred_df <- play_df %>%
+  pred_df <- play_df |>
     dplyr::left_join(
-      pred_df_after %>%
+      pred_df_after |>
         dplyr::select(-"play_type", -"turnover"),
       by = c("game_id", "drive_id", "id_play")
-    ) %>%
+    ) |>
     dplyr::left_join(
-      pred_df %>% select(-"play_type") %>%
+      pred_df |> select(-"play_type") |>
         dplyr::select(
           "id_play",
           "drive_id",
@@ -324,8 +324,8 @@ create_epa <- function(play_df,
       by = c("game_id", "drive_id", "id_play")
     )
 
-  pred_df <- pred_df %>%
-    dplyr::arrange(.data$game_id, .data$id_play) %>%
+  pred_df <- pred_df |>
+    dplyr::arrange(.data$game_id, .data$id_play) |>
     dplyr::mutate(
       ep_after = ifelse(.data$downs_turnover == 1, -1 * .data$lead_ep_before, .data$ep_after),
       ep_after = ifelse(stringr::str_detect(.data$play_text, regex("safety", ignore_case = TRUE)) &
@@ -343,7 +343,7 @@ create_epa <- function(play_df,
     )
 
   # 6) Prep WPA variables, drop transformed columns-----
-  pred_df <- pred_df %>%
+  pred_df <- pred_df |>
     dplyr::mutate(
       adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
       turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
@@ -382,7 +382,7 @@ create_epa <- function(play_df,
       ExpScoreDiff = .data$pos_score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
       ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff / (.data$adj_TimeSecsRem + 1)
-    ) %>%
+    ) |>
     dplyr::select(
       -"new_TimeSecsRem",
       -"new_down",
@@ -392,7 +392,7 @@ create_epa <- function(play_df,
       -"new_Under_two",
       -"new_Goal_To_Go",
       -"new_pos_score_diff_start"
-    ) %>%
+    ) |>
     dplyr::select(
       "game_id",
       "id_play",
@@ -450,7 +450,7 @@ create_epa <- function(play_df,
       "offense_score",
       "defense_score",
       dplyr::everything()
-    ) %>%
+    ) |>
     dplyr::mutate(
       middle_8 = ifelse(.data$adj_TimeSecsRem >= 1560 & .data$adj_TimeSecsRem <= 2040, TRUE, FALSE),
       rz_play = ifelse((.data$yards_to_goal <= 20), 1, 0),
@@ -497,7 +497,7 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
 
     make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat, type = "response")
 
-    missed_fg_dat <- fg_dat %>%
+    missed_fg_dat <- fg_dat |>
       # Subtract 5.065401 from TimeSecs since average time for FG att:
       dplyr::mutate(
         TimeSecsRem = .data$TimeSecsRem - 5.065401,
@@ -514,10 +514,10 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
           TRUE, FALSE
         ),
         pos_score_diff_start = -1 * .data$pos_score_diff_start
-      ) %>% as.data.frame()
+      ) |> as.data.frame()
 
-    missed_fg_ep_preds <- ep_model %>%
-      predict(newdata = missed_fg_dat, type = "probs") %>%
+    missed_fg_ep_preds <- ep_model |>
+      predict(newdata = missed_fg_dat, type = "probs") |>
       as.data.frame()
 
     if (dim(missed_fg_ep_preds)[2] == 1) {

@@ -12,8 +12,14 @@ cols <- c(
 test_that("CFB Drives", {
   skip_on_cran()
   x <- cfbd_drives(2018, week = 1, team = "TCU")
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_in(colnames(x), cols)
   expect_in(colnames(y), cols)
   expect_s3_class(x, "data.frame")

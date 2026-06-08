@@ -22,35 +22,35 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year. Required if conference not provided and the \code{year} parameter is only supported if \code{only_fbs} is TRUE.}
 }
 \value{
-\code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 12 variables:
-\describe{
-\item{\code{team_id}: integer.}{Referencing team id.}
-\item{\code{school}: character.}{Team name.}
-\item{\code{mascot}: character.}{Team mascot.}
-\item{\code{abbreviation}: character.}{Team abbreviations.}
-\item{\code{alt_name1}: character.}{Team alternate name 1 (as it appears in \code{play_text}).}
-\item{\code{alt_name2}: character.}{Team alternate name 2 (as it appears in \code{play_text}).}
-\item{\code{alt_name3}: character.}{Team alternate name 3 (as it appears in \code{play_text}).}
-\item{\code{conference}: character.}{Conference of team.}
-\item{\code{division}: character.}{Division of team within the conference.}
-\item{\code{classification}: character.}{Conference classification (fbs,fcs,ii,iii)}
-\item{\code{color}: character.}{Team color (primary).}
-\item{\code{alt_color}: character.}{Team color (alternate).}
-\item{\code{logos}: character.}{Team logos.}
-\item{\code{venue_id}: character.}{Referencing venue id.}
-\item{\code{venue_name}: character.}{Stadium name.}
-\item{\code{city}: character.}{Team/venue city.}
-\item{\code{state}: character.}{Team/venue state.}
-\item{\code{zip}: character.}{Team/venue zip code (someone double check Miami (FL) on if they're in the same zip code).}
-\item{\code{country_code}: character.}{Team/venue country code.}
-\item{\code{timezone}: character.}{Team/venue timezone.}
-\item{\code{latitude}: character.}{Venue latitude.}
-\item{\code{longitude}: character.}{Venue longitude.}
-\item{\code{elevation}: character.}{Venue elevation.}
-\item{\code{capacity}: character.}{Venue capacity.}
-\item{\code{year_constructed}: character.}{Year the venue was constructed.}
-\item{\code{grass}: character.}{TRUE/FALSE response on whether the field is grass or not (oh, and there are so many others).}
-\item{\code{dome}: character.}{TRUE/FALSE flag for if the venue is a domed stadium.}
+\code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 27 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   team_id \tab integer \tab Referencing team id. \cr
+   school \tab character \tab Team name. \cr
+   mascot \tab character \tab Team mascot. \cr
+   abbreviation \tab character \tab Team abbreviations. \cr
+   alt_name1 \tab character \tab Team alternate name 1 (as it appears in \code{play_text}). \cr
+   alt_name2 \tab character \tab Team alternate name 2 (as it appears in \code{play_text}). \cr
+   alt_name3 \tab character \tab Team alternate name 3 (as it appears in \code{play_text}). \cr
+   conference \tab character \tab Conference of team. \cr
+   division \tab character \tab Division of team within the conference. \cr
+   classification \tab character \tab Conference classification (fbs, fcs, ii, iii). \cr
+   color \tab character \tab Team color (primary). \cr
+   alt_color \tab character \tab Team color (alternate). \cr
+   logos \tab character \tab Team logos. \cr
+   venue_id \tab character \tab Referencing venue id. \cr
+   venue_name \tab character \tab Stadium name. \cr
+   city \tab character \tab Team/venue city. \cr
+   state \tab character \tab Team/venue state. \cr
+   zip \tab character \tab Team/venue zip code. \cr
+   country_code \tab character \tab Team/venue country code. \cr
+   timezone \tab character \tab Team/venue timezone. \cr
+   latitude \tab numeric \tab Venue latitude. \cr
+   longitude \tab numeric \tab Venue longitude. \cr
+   elevation \tab numeric \tab Venue elevation. \cr
+   capacity \tab integer \tab Venue capacity. \cr
+   year_constructed \tab integer \tab Year the venue was constructed. \cr
+   grass \tab logical \tab TRUE/FALSE response on whether the field is grass or not. \cr
+   dome \tab logical \tab TRUE/FALSE flag for if the venue is a domed stadium. \cr
 }
 }
 \description{

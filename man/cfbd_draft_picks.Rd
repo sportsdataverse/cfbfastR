@@ -24,32 +24,32 @@ cfbd_draft_picks(
 \item{position}{(\emph{String}): NFL position abbreviation, see \code{\link[=cfbd_draft_positions]{cfbd_draft_positions()}} for valid selections.}
 }
 \value{
-\code{\link[=cfbd_draft_picks]{cfbd_draft_picks()}} - A data frame with 23 variables:
-\describe{
-\item{\code{college_athlete_id}: integer.}{College athlete referencing id.}
-\item{\code{nfl_athlete_id}: integer}{NFL athlete referencing id.}
-\item{\code{college_id}: integer}{College team referencing id.}
-\item{\code{college_team}: character}{College team name.}
-\item{\code{college_conference}: character}{Conference of college team.}
-\item{\code{nfl_team_id}: integer.}{NFL team ID.}
-\item{\code{nfl_team}: character}{NFL team name of drafted player.}
-\item{\code{year}: integer.}{NFL draft class year.}
-\item{\code{overall}: integer.}{Overall draft pick number.}
-\item{\code{round}: integer.}{Round of NFL draft the draftee was picked in.}
-\item{\code{pick}: integer.}{Pick number of the NFL draftee within the round they were picked in.}
-\item{\code{name}: character.}{NFL draftee name.}
-\item{\code{position}: character.}{NFL draftee position.}
-\item{\code{height}: double.}{NFL draftee height.}
-\item{\code{weight}: integer.}{NFL draftee weight.}
-\item{\code{pre_draft_ranking}: integer}{Pre-draft ranking (ESPN).}
-\item{\code{pre_draft_position_ranking}: integer.}{Pre-draft position ranking (ESPN).}
-\item{\code{pre_draft_grade}: double.}{Pre-draft scouts grade (ESPN).}
-\item{\code{hometown_info_city}: character.}{Hometown of the NFL draftee.}
-\item{\code{hometown_info_state_province}: character.}{Hometown state of the NFL draftee.}
-\item{\code{hometown_info_country}: character.}{Hometown country of the NFL draftee.}
-\item{\code{hometown_info_latitude}: character.}{Hometown latitude of the NFL draftee.}
-\item{\code{hometown_info_longitude}: character.}{Hometown longitude of the NFL draftee.}
-\item{\code{hometown_info_county_fips}: character.}{Hometown FIPS code of the NFL draftee.}
+\code{\link[=cfbd_draft_picks]{cfbd_draft_picks()}} - A data frame with 24 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   college_athlete_id \tab integer \tab College athlete referencing id. \cr
+   nfl_athlete_id \tab integer \tab NFL athlete referencing id. \cr
+   college_id \tab integer \tab College team referencing id. \cr
+   college_team \tab character \tab College team name. \cr
+   college_conference \tab character \tab Conference of college team. \cr
+   nfl_team_id \tab integer \tab NFL team ID. \cr
+   nfl_team \tab character \tab NFL team name of drafted player. \cr
+   year \tab integer \tab NFL draft class year. \cr
+   overall \tab integer \tab Overall draft pick number. \cr
+   round \tab integer \tab Round of NFL draft the draftee was picked in. \cr
+   pick \tab integer \tab Pick number of the NFL draftee within the round they were picked in. \cr
+   name \tab character \tab NFL draftee name. \cr
+   position \tab character \tab NFL draftee position. \cr
+   height \tab numeric \tab NFL draftee height. \cr
+   weight \tab integer \tab NFL draftee weight. \cr
+   pre_draft_ranking \tab integer \tab Pre-draft ranking (ESPN). \cr
+   pre_draft_position_ranking \tab integer \tab Pre-draft position ranking (ESPN). \cr
+   pre_draft_grade \tab numeric \tab Pre-draft scouts grade (ESPN). \cr
+   hometown_info_city \tab character \tab Hometown of the NFL draftee. \cr
+   hometown_info_state_province \tab character \tab Hometown state of the NFL draftee. \cr
+   hometown_info_country \tab character \tab Hometown country of the NFL draftee. \cr
+   hometown_info_latitude \tab character \tab Hometown latitude of the NFL draftee. \cr
+   hometown_info_longitude \tab character \tab Hometown longitude of the NFL draftee. \cr
+   hometown_info_county_fips \tab character \tab Hometown FIPS code of the NFL draftee. \cr
 }
 }
 \description{

@@ -16,7 +16,7 @@ jobs:
       RSPM: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
 
       - uses: r-lib/actions/setup-r@v2
 

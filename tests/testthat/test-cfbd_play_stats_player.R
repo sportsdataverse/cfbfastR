@@ -76,8 +76,14 @@ cols <- c(
 test_that("CFB Play Stats - Player", {
   skip_on_cran()
   x <- cfbd_play_stats_player(game_id = 401012356)
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_play_stats_player(game_id = 401110720)
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_setequal(colnames(x), cols)
   expect_setequal(colnames(y), cols)
   expect_s3_class(x, "data.frame")

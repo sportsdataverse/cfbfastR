@@ -22,8 +22,14 @@ cols2 <- c(
 test_that("CFB Game Box Advanced", {
   skip_on_cran()
   x <- cfbd_game_box_advanced(game_id = 401012356)
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
 
   y <- cfbd_game_box_advanced(game_id = 401110720)
+  if (is.null(y) || !is.data.frame(y) || nrow(y) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
   expect_equal(nrow(x), 2)
   expect_equal(nrow(y), 2)
   expect_setequal(colnames(x), cols2)

@@ -7,12 +7,12 @@
 cfbd_draft_teams()
 }
 \value{
-\code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}} - A data frame with 4 variables:
-\describe{
-\item{\code{nfl_location}: character.}{NFL team location (city).}
-\item{\code{nfl_nickname}: integer}{NFL team nickname (mascot).}
-\item{\code{nfl_display_name}: integer}{NFL team display name (usually more neat/complete).}
-\item{\code{nfl_logo}: character}{URL for NFL team logo.}
+\code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}} - A data frame with 4 variables:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   nfl_location \tab character \tab NFL team location (city). \cr
+   nfl_nickname \tab character \tab NFL team nickname (mascot). \cr
+   nfl_display_name \tab character \tab NFL team display name (usually more neat/complete). \cr
+   nfl_logo \tab character \tab URL for NFL team logo. \cr
 }
 }
 \description{
