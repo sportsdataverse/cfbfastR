@@ -40,33 +40,16 @@ cfbd_recruiting_position(
 
 `cfbd_recruiting_position()` - A data frame with 7 variables:
 
-- `team`: character.:
-
-  Recruiting team.
-
-- `conference`: character.:
-
-  Recruiting team conference.
-
-- `position_group`: character.:
-
-  Position group of the recruits.
-
-- `avg_rating`: double.:
-
-  Average rating of the recruits in the position group.
-
-- `total_rating`: double.:
-
-  Sum of the ratings of the recruits in the position group.
-
-- `commits`: integer.:
-
-  Number of commits in the position group.
-
-- `avg_stars`: double.:
-
-  Average stars of the recruits in the position group.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| team | character | Recruiting team (school) name. |
+| conference | character | Conference affiliation of the recruiting team. |
+| position_group | character | Position group of the recruits (e.g. Offensive Line, Defensive Back). |
+| avg_rating | numeric | Average 247Sports composite rating of recruits in the position group. |
+| total_rating | numeric | Sum of the 247Sports composite ratings of recruits in the group. |
+| commits | integer | Number of commits in the position group. |
+| avg_stars | numeric | Average star rating of recruits in the position group. |
 
 ## See also
 
@@ -81,7 +64,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_position(2018, team = "Texas"))
 #> ── Recruiting position group info from CollegeFootballData.com ─────────────────
-#> ℹ Data updated: 2026-01-19 16:22:45 UTC
+#> ℹ Data updated: 2026-06-08 01:44:42 UTC
 #> # A tibble: 16 × 7
 #>    team  conference position_group avg_rating total_rating commits avg_stars    
 #>    <chr> <chr>      <chr>               <dbl>        <dbl> <chr>   <chr>        
@@ -104,7 +87,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_position(2016, 2020, team = "Virginia"))
 #> ── Recruiting position group info from CollegeFootballData.com ─────────────────
-#> ℹ Data updated: 2026-01-19 16:22:45 UTC
+#> ℹ Data updated: 2026-06-08 01:44:43 UTC
 #> # A tibble: 16 × 7
 #>    team     conference position_group avg_rating total_rating commits avg_stars 
 #>    <chr>    <chr>      <chr>               <dbl>        <dbl> <chr>   <chr>     
@@ -127,7 +110,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_position(2015, 2020, conference = "SEC"))
 #> ── Recruiting position group info from CollegeFootballData.com ─────────────────
-#> ℹ Data updated: 2026-01-19 16:22:45 UTC
+#> ℹ Data updated: 2026-06-08 01:44:43 UTC
 #> # A tibble: 224 × 7
 #>    team     conference position_group avg_rating total_rating commits avg_stars 
 #>    <chr>    <chr>      <chr>               <dbl>        <dbl> <chr>   <chr>     

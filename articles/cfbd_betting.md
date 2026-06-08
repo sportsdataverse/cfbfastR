@@ -3,22 +3,36 @@
 ### **Load and Install Packages**
 
 ``` r
+
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
 pacman::p_load(dplyr,tidyr, gt, cfbfastR)
+```
+
+    ## Installing package into '/home/runner/work/_temp/Library'
+    ## (as 'lib' is unspecified)
+
+    ## also installing the dependencies 'V8', 'reactR', 'bigD', 'bitops', 'juicyjuice', 'reactable'
+
+    ## 
+    ## gt installed
+
+``` r
+
 # pacman::p_load_current_gh("sportsdataverse/cfbfastR")
 ```
 
 ### **Get Betting information from games**
 
 ``` r
+
 cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 ```
 
-    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
+    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-01-19 16:24:14 UTC
+    ## ℹ Data updated: 2026-06-08 01:48:59 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -35,12 +49,13 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
     ## #   away_moneyline <lgl>
 
 ``` r
+
 # 7 OTs LSU at TAMU
 cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 ```
 
-    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
-    ## ℹ Data updated: 2026-01-19 16:24:14 UTC
+    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
+    ## ℹ Data updated: 2026-06-08 01:48:59 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

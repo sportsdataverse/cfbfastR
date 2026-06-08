@@ -16,11 +16,11 @@ cfbd_api_key_info()
 
 Returns a data frame with 2 variables:
 
-|                 |         |
-|-----------------|---------|
-| col_name        | types   |
-| patron_level    | integer |
-| remaining_calls | integer |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| patron_level | integer | CFBD Patreon tier associated with the API key (0 = free tier, higher = paid tier). |
+| remaining_calls | integer | Number of API calls remaining in the current rate-limit window for this key. |
 
 ## Details
 

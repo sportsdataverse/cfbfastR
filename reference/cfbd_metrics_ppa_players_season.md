@@ -65,97 +65,32 @@ cfbd_metrics_ppa_players_season(
 
 `cfbd_metrics_ppa_players_season()` - A data frame with 23 variables:
 
-- `season`: integer.:
-
-  Season.
-
-- `athlete_id`: character.:
-
-  Athlete referencing id.
-
-- `name`: character.:
-
-  Athlete name.
-
-- `position`: character.:
-
-  Athlete Position.
-
-- `team`: character.:
-
-  Team name.
-
-- `conference`: character.:
-
-  Team conference.
-
-- `countable_plays`: integer.:
-
-  DEPRECATED Number of plays which can be counted.
-
-- `avg_PPA_all`: double.:
-
-  Average overall predicted points added (PPA).
-
-- `avg_PPA_pass`: double.:
-
-  Average passing predicted points added (PPA).
-
-- `avg_PPA_rush`: double.:
-
-  Average rushing predicted points added (PPA).
-
-- `avg_PPA_first_down`: double.:
-
-  Average 1st down predicted points added (PPA).
-
-- `avg_PPA_second_down`: double.:
-
-  Average 2nd down predicted points added (PPA).
-
-- `avg_PPA_third_down`: double.:
-
-  Average 3rd down predicted points added (PPA).
-
-- `avg_PPA_standard_downs`: double.:
-
-  Average standard down predicted points added (PPA).
-
-- `avg_PPA_passing_downs`: double.:
-
-  Average passing down predicted points added (PPA).
-
-- `total_PPA_all`: double.:
-
-  Total overall predicted points added (PPA).
-
-- `total_PPA_pass`: double.:
-
-  Total passing predicted points added (PPA).
-
-- `total_PPA_rush`: double.:
-
-  Total rushing predicted points added (PPA).
-
-- `total_PPA_first_down`: double.:
-
-  Total 1st down predicted points added (PPA).
-
-- `total_PPA_second_down`: double.:
-
-  Total 2nd down predicted points added (PPA).
-
-- `total_PPA_third_down`: double.:
-
-  Total 3rd down predicted points added (PPA).
-
-- `total_PPA_standard_downs`: double.:
-
-  Total standard down predicted points added (PPA).
-
-- `total_PPA_passing_downs`: double.:
-
-  Total passing down predicted points added (PPA).
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Four-digit season year. |
+| athlete_id | character | Athlete referencing id. |
+| name | character | Athlete name. |
+| position | character | Athlete position abbreviation (e.g. "QB", "RB"). |
+| team | character | Team name. |
+| conference | character | Team conference name. |
+| countable_plays | integer | DEPRECATED Number of plays which can be counted. |
+| avg_PPA_all | numeric | Average overall predicted points added (PPA). |
+| avg_PPA_pass | numeric | Average passing predicted points added (PPA). |
+| avg_PPA_rush | numeric | Average rushing predicted points added (PPA). |
+| avg_PPA_first_down | numeric | Average 1st down predicted points added (PPA). |
+| avg_PPA_second_down | numeric | Average 2nd down predicted points added (PPA). |
+| avg_PPA_third_down | numeric | Average 3rd down predicted points added (PPA). |
+| avg_PPA_standard_downs | numeric | Average standard down predicted points added (PPA). |
+| avg_PPA_passing_downs | numeric | Average passing down predicted points added (PPA). |
+| total_PPA_all | numeric | Total overall predicted points added (PPA). |
+| total_PPA_pass | numeric | Total passing predicted points added (PPA). |
+| total_PPA_rush | numeric | Total rushing predicted points added (PPA). |
+| total_PPA_first_down | numeric | Total 1st down predicted points added (PPA). |
+| total_PPA_second_down | numeric | Total 2nd down predicted points added (PPA). |
+| total_PPA_third_down | numeric | Total 3rd down predicted points added (PPA). |
+| total_PPA_standard_downs | numeric | Total standard down predicted points added (PPA). |
+| total_PPA_passing_downs | numeric | Total passing down predicted points added (PPA). |
 
 ## See also
 
@@ -177,8 +112,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_players_season(year = 2019, team = "TCU"))
-#> ── Player season PPA data from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:01 UTC
+#> ── Player season PPA data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:56 UTC
 #> # A tibble: 19 × 23
 #>    season athlete_id name     position team  conference avg_PPA_all avg_PPA_pass
 #>     <int> <chr>      <chr>    <chr>    <chr> <chr>            <dbl>        <dbl>

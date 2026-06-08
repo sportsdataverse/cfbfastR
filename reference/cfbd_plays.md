@@ -74,122 +74,45 @@ cfbd_plays(
 
 ## Value
 
-`cfbd_plays()` - A data frame with 29 columns:
+`cfbd_plays()` - A data frame with 27 columns:
 
-- `play_id`: character.:
-
-  Referencing play id.
-
-- `offense`: character.:
-
-  Offense on the field.
-
-- `offense_conference`: character.:
-
-  Conference of the offense on the field.
-
-- `defense`: character.:
-
-  Defense on the field.
-
-- `defense_conference`: character.:
-
-  Conference of the defense on the field.
-
-- `home`: character.:
-
-  Home team.
-
-- `away`: character.:
-
-  Away team.
-
-- `offense_score`: integer.:
-
-  Offense's post-play score.
-
-- `defense_score`: integer.:
-
-  Defense's post-play score.
-
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `drive_id`: character.:
-
-  Referencing drive id.
-
-- `drive_number`: integer.:
-
-  Drive number in the game.
-
-- `play_number`: integer.:
-
-  Play number in the game.
-
-- `period`: integer.:
-
-  Game period (quarter).
-
-- `offense_timeouts`: integer.:
-
-  Timeouts for the offense at the end of the play.
-
-- `defense_timeouts`: integer.:
-
-  Timeouts for the defense at the end of the play.
-
-- `yard_line`: integer.:
-
-  Yard line (~0-50) of the play.
-
-- `yards_to_goal`: integer.:
-
-  Yards to the goal line (~0-100).
-
-- `down`: integer.:
-
-  Down of the play.
-
-- `distance`: integer.:
-
-  Distance to the sticks, i.e. 1st down or goal-line in goal-to-go
-  situations.
-
-- `scoring`: logical.:
-
-  Scoring play flag.
-
-- `yards_gained`: integer.:
-
-  Yards net gained by the offense on the play.
-
-- `play_type`: character.:
-
-  Categorical label of the type of the play.
-
-- `play_text`: character.:
-
-  A text description of the play.
-
-- `ppa`: character.:
-
-  Predicted Points Added (calculated by CFBD).
-
-- `clock_minutes`: integer.:
-
-  Minutes left on the clock.
-
-- `clock_seconds`: integer.:
-
-  Seconds left on the clock.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| play_id | character | CFBD play identifier (unique within a game when combined with game_id). |
+| offense | character | Full name of the offense (team in possession) on the play. |
+| offense_conference | character | Conference name of the offense (e.g. "SEC", "ACC"). |
+| defense | character | Full name of the defense on the play. |
+| defense_conference | character | Conference name of the defense (e.g. "SEC", "ACC"). |
+| home | character | Full home team name for the game. |
+| away | character | Full away team name for the game. |
+| offense_score | integer | Offense's score after the play (points). |
+| defense_score | integer | Defense's score after the play (points). |
+| game_id | integer | CFBD game identifier the play belongs to. |
+| drive_id | character | CFBD drive identifier the play belongs to. |
+| drive_number | integer | Sequential drive number within the game (1-indexed). |
+| play_number | integer | Sequential play number within the game (1-indexed). |
+| period | integer | Game period / quarter (1-4 regulation, 5+ overtime). |
+| offense_timeouts | integer | Timeouts remaining for the offense at the end of the play. |
+| defense_timeouts | integer | Timeouts remaining for the defense at the end of the play. |
+| yard_line | integer | Field-position yard line at the start of the play (0-50 scale from the offense's side). |
+| yards_to_goal | integer | Distance in yards from the offense's spot to the opponent's goal line (0-100). |
+| down | integer | Down of the play (1-4). |
+| distance | integer | Yards to gain for a first down (or to the goal line in goal-to-go situations). |
+| scoring | logical | TRUE when the play results in a score (TD, FG, safety, two-point conversion). |
+| yards_gained | integer | Net yards gained by the offense on the play. |
+| play_type | character | CFBD categorical label for the play type (see [`cfbd_play_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.md)). |
+| play_text | character | Free-form text description of the play from the CFBD feed. |
+| ppa | character | Predicted Points Added (CFBD's CFB-EPA analogue) for the play. |
+| clock_minutes | integer | Minutes remaining on the game clock at the start of the play. |
+| clock_seconds | integer | Seconds remaining on the game clock at the start of the play. |
 
 ## See also
 
 Other CFBD PBP:
 [`cfbd_live_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.md),
 [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+[`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md),
 [`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md),
 [`cfbd_play_stats_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.md),
 [`cfbd_play_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.md)
@@ -199,8 +122,8 @@ Other CFBD PBP:
 ``` r
 # \donttest{
   try(cfbd_plays(year = 2021, week = 1))
-#> ── Play-by-play data from CollegeFootballData.com ──────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:37 UTC
+#> ── Play-by-play data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:36 UTC
 #> # A tibble: 15,066 × 28
 #>     game_id drive_id play_id drive_number play_number offense offense_conference
 #>       <int> <chr>    <chr>          <int>       <int> <chr>   <chr>             

@@ -21,70 +21,25 @@ cfbd_metrics_wp(game_id)
 
 `cfbd_metrics_wp()` - A data frame with 16 variables:
 
-- `play_id`: character.:
-
-  Play referencing id.
-
-- `play_text`: character.:
-
-  A text description of the play.
-
-- `home_id`: integer.:
-
-  Home team referencing id.
-
-- `home`: character.:
-
-  Home team name.
-
-- `away_id`: integer.:
-
-  Away team referencing id.
-
-- `away`: character.:
-
-  Away team name.
-
-- `spread`: character.:
-
-  Betting lines provider spread.
-
-- `home_ball`: logical.:
-
-  Home team has the ball.
-
-- `home_score`: integer.:
-
-  Home team score.
-
-- `away_score`: integer.:
-
-  Away team score.
-
-- `down`: integer.:
-
-  Down of the play.
-
-- `distance`: integer.:
-
-  Distance to the sticks (to 1st down marker of goal-line in goal-to-go
-  situations).
-
-- `home_win_prob`: character.:
-
-  Home team win probability.
-
-- `away_win_prob`: double.:
-
-  Away team win probability.
-
-- `play_number`: integer.:
-
-  Game play number.
-
-- `yard_line`: integer.:
-
-  Yard line of the play (0-100 yards).
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| play_id | character | Play referencing id. |
+| play_text | character | A text description of the play. |
+| home_id | integer | Home team referencing id. |
+| home | character | Home team name. |
+| away_id | integer | Away team referencing id. |
+| away | character | Away team name. |
+| spread | numeric | Betting lines provider spread. |
+| home_ball | logical | Home team has the ball. |
+| home_score | integer | Home team score. |
+| away_score | integer | Away team score. |
+| down | integer | Down of the play. |
+| distance | integer | Distance to the sticks (to 1st down marker or goal-line in goal-to-go situations). |
+| home_win_prob | numeric | Home team win probability (0-1). |
+| away_win_prob | numeric | Away team win probability (0-1). |
+| play_number | integer | Game play number. |
+| yard_line | integer | Yard line of the play (0-100 yards). |
 
 ## See also
 
@@ -106,8 +61,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_wp(game_id = 401012356))
-#> ── WP data from CollegeFootballData.com ────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:05 UTC
+#> ── WP data from CollegeFootballData.com ────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:42:02 UTC
 #> # A tibble: 224 × 16
 #>    play_id     play_text home_id home  away_id away  spread home_ball home_score
 #>    <chr>       <chr>       <int> <chr>   <int> <chr>  <int> <lgl>          <int>

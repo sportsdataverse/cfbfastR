@@ -46,83 +46,30 @@ cfbd_recruiting_player(
 
 ## Value
 
-`cfbd_recruiting_player()` - A data frame with 14 variables:
+`cfbd_recruiting_player()` - A data frame with 19 variables:
 
-- `id`: integer.:
-
-  Referencing id - 247Sports.
-
-- `athlete_id`:
-
-  Athlete referencing id.
-
-- `recruit_type`: character.:
-
-  High School, Prep School, or Junior College.
-
-- `year`: integer.:
-
-  Recruit class year.
-
-- `ranking`: integer.:
-
-  Recruit Ranking.
-
-- `name`: character.:
-
-  Recruit Name.
-
-- `school`: character.:
-
-  School recruit attended.
-
-- `committed_to`: character.:
-
-  School the recruit is committed to.
-
-- `position`: character.:
-
-  Recruit position.
-
-- `height`: double.:
-
-  Recruit height.
-
-- `weight`: integer.:
-
-  Recruit weight.
-
-- `stars`: integer.:
-
-  Recruit stars.
-
-- `rating`: double.:
-
-  247 composite rating.
-
-- `city`: character.:
-
-  Hometown of the recruit.
-
-- `state_province`: character.:
-
-  Hometown state of the recruit.
-
-- `country`: character.:
-
-  Hometown country of the recruit.
-
-- `hometown_info_latitude`: character.:
-
-  Hometown latitude.
-
-- `hometown_info_longitude`: character.:
-
-  Hometown longitude.
-
-- `hometown_info_fips_code`: character.:
-
-  Hometown FIPS code.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| id | integer | 247Sports referencing id for the recruit. |
+| athlete_id | integer | CFBD athlete referencing id linking to player tables. |
+| recruit_type | character | Recruit class: High School, Prep School, or Junior College. |
+| year | integer | Recruiting class year (four-digit season). |
+| ranking | integer | Recruit national ranking within the class. |
+| name | character | Recruit full name. |
+| school | character | High school, prep school, or JUCO program the recruit attended. |
+| committed_to | character | College program the recruit is committed to. |
+| position | character | Recruit position abbreviation (e.g. QB, WR, OT). |
+| height | numeric | Recruit height in inches. |
+| weight | integer | Recruit weight in pounds. |
+| stars | integer | Recruit star rating on the 247Sports scale (2-5). |
+| rating | numeric | 247Sports composite rating for the recruit. |
+| city | character | Hometown city of the recruit. |
+| state_province | character | Hometown state or province of the recruit. |
+| country | character | Hometown country of the recruit. |
+| hometown_info_latitude | character | Latitude of the recruit's hometown. |
+| hometown_info_longitude | character | Longitude of the recruit's hometown. |
+| hometown_info_fips_code | character | FIPS code of the recruit's hometown. |
 
 ## See also
 
@@ -136,8 +83,8 @@ Other CFBD Recruiting:
 ``` r
 # \donttest{
   try(cfbd_recruiting_player(2018, team = "Texas"))
-#> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:44 UTC
+#> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:42 UTC
 #> # A tibble: 28 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
@@ -158,8 +105,8 @@ Other CFBD Recruiting:
 #> #   hometown_info_fips_code <chr>
 
   try(cfbd_recruiting_player(2016, recruit_type = "JUCO"))
-#> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:44 UTC
+#> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:42 UTC
 #> # A tibble: 470 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
@@ -180,8 +127,8 @@ Other CFBD Recruiting:
 #> #   hometown_info_fips_code <chr>
 
   try(cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL"))
-#> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:44 UTC
+#> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:42 UTC
 #> # A tibble: 25 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       

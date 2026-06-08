@@ -11,16 +11,18 @@ cfbd_stats_categories()
 
 ## Value
 
-`cfbd_stats_categories()` A data frame with 38 values:
+`cfbd_stats_categories()` A data frame with 1 variable:
 
-- name:
-
-  Statistics Categories
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| category | character | CFBD stats category name (e.g. passing, rushing, defensive). |
 
 ## See also
 
 Other CFBD Stats:
 [`cfbd_stats_game_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.md),
+[`cfbd_stats_game_havoc()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_havoc.md),
 [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md),
 [`cfbd_stats_season_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.md),
 [`cfbd_stats_season_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.md)
@@ -30,8 +32,8 @@ Other CFBD Stats:
 ``` r
 # \donttest{
    try(cfbd_stats_categories())
-#> ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:48 UTC
+#> ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:45 UTC
 #> # A tibble: 38 × 1
 #>    category          
 #>    <chr>             

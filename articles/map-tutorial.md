@@ -45,6 +45,7 @@ which gives us info on every rated player in a class! Let’s see what
 sort of data we get from it.
 
 ``` r
+
 str(cfbd_recruiting_player(year = 2021))
 ```
 
@@ -68,7 +69,7 @@ str(cfbd_recruiting_player(year = 2021))
     ##  $ hometown_info_latitude : num [1:2666] 32.9 33.9 42.9 47.6 39.9 ...
     ##  $ hometown_info_longitude: num [1:2666] -97.1 -117.6 -87.9 -122 -82.8 ...
     ##  $ hometown_info_fips_code: chr [1:2666] "48439" "06065" "55079" "53033" ...
-    ##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-01-19 16:27:01"
+    ##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-06-08 01:53:07"
     ##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"
 
 There’s a lot here, but the basics are we get some IDs that we can merge
@@ -83,16 +84,17 @@ for the set of players we want (5 stars) and `mutate` the data to make a
 new variable so that have longitudes and latitudes as numbers.
 
 ``` r
+
 #Save the class of 2021 to its own variable
 co_2021 <- cfbd_recruiting_player(year = 2021)
 
 #Now let's manipulate the data so that its what we want
-top_recs_co_2021 <- co_2021 %>% 
-  dplyr::filter(stars == 5) %>% #filter gives you the data which fulfills a condition
+top_recs_co_2021 <- co_2021 |> 
+  dplyr::filter(stars == 5) |> #filter gives you the data which fulfills a condition
   dplyr::mutate( #mutate creates new variables within a dataframe
     latitude = as.double(hometown_info_latitude), 
-    longitude = as.double(hometown_info_longitude)) %>% 
-  dplyr::select(name, latitude, longitude, state_province) %>% #This just selects the columns we care about
+    longitude = as.double(hometown_info_longitude)) |> 
+  dplyr::select(name, latitude, longitude, state_province) |> #This just selects the columns we care about
   dplyr::distinct() #this is to get rid of duplicate names
 ```
 
@@ -103,10 +105,10 @@ A few quick programming notes:
     load in the data again. For this specific problem its not a big
     deal, but when you deal with larger datasets that take longer to
     load its a good convention to do.
-2.  The `%>%` characters are called a pipe and can be read as “and
-    then.” As an example, we would read the above chunk as “We load in
-    the Class of 2021 data and then we filter to only the 5 stars and
-    then we create the new `longitude` and `latitude` variables.
+2.  The `|>` characters are called a pipe and can be read as “and then.”
+    As an example, we would read the above chunk as “We load in the
+    Class of 2021 data and then we filter to only the 5 stars and then
+    we create the new `longitude` and `latitude` variables.
 3.  The function `as.double` takes something and transforms it into a
     double (a number with a decimal points). For example, `"8.0"` and
     `8` both become `8.0` using
@@ -131,7 +133,7 @@ these states, so we’ll have to ignore these.
 Before we look at the code there’s a couple `ggplot2` basics I would
 like to cover first
 
-1.  `ggplot2` uses `+` instead of `%>%` as a pipe for reasons that are
+1.  `ggplot2` uses `+` instead of `|>` as a pipe for reasons that are
     beyond my feeble mind’s capabilities.
 2.  You place individual plot elements with the `geom_` functions. For
     example if you want to place a scatter plot that’s `geom_point`, for
@@ -146,10 +148,11 @@ like to cover first
     case)
 
 ``` r
-cont_48 <- states %>% 
+
+cont_48 <- states |> 
   dplyr::filter(!state_name %in% c("Alaska", "Hawaii")) #This means "Filter for states whose names aren't in the group of 'Hawaii' and 'Alaska'"
 
-ggplot()+ #ggplot uses + instead of %>% as a pipe for some reason. 
+ggplot()+ #ggplot uses + instead of |> as a pipe for some reason. 
   geom_polygon(data = cont_48, mapping = aes(x = long, y = lat, group = group), color = 'white', fill = 'grey')+ #color controls the color of borders, fill controls the color of things inside the border
   geom_point(data = top_recs_co_2021, mapping = aes(x = longitude, y = latitude), color = 'black')+
   coord_map(projection = 'albers', lat0 = 39, lat1 = 45) #This is the one that changes the projection
@@ -174,6 +177,7 @@ which makes sure text doesn’t overlap on `ggplot2` plots. Uncomment the
 first line if you don’t have this package already installed.
 
 ``` r
+
 #install.packages('ggrepel')
 library(ggrepel)
 
@@ -245,6 +249,7 @@ class, and then smush it to the earlier players. We’ll repeat this until
 we get to 2021.
 
 ``` r
+
 recruiting_classes <- data.frame() # this makes an empty dataframe
 for(i in 2017:2021){
   recruiting_classes <- dplyr::bind_rows(recruiting_classes, cfbd_recruiting_player(year = i)) #This adds the rows from cfbd_recruiting_player() to the existing rows so we get all players
@@ -265,10 +270,11 @@ So we’ll do this quick clean up and then we’ll group the players by
 state and get some counts.
 
 ``` r
-clean_rec_classes <- recruiting_classes %>% 
-  dplyr::select(year, name, position, state_province) %>% #Get the data that we want
-  dplyr::distinct() %>% #Get rid of duplicated rows
-  dplyr::group_by(state_province) %>% #Group the data by each state
+
+clean_rec_classes <- recruiting_classes |> 
+  dplyr::select(year, name, position, state_province) |> #Get the data that we want
+  dplyr::distinct() |> #Get rid of duplicated rows
+  dplyr::group_by(state_province) |> #Group the data by each state
   dplyr::summarise( #Summarise works like mutate, but instead of adding on a new column it creates a single row of variables for each group
     count = dplyr::n() #n() is a function which returns the number of occurrences of each group in the larger dataset
   )
@@ -276,10 +282,13 @@ clean_rec_classes <- recruiting_classes %>%
 
 We introduced some new functions here, but I think `group_by` is pretty
 straightforward so I won’t explain that much further. `summarise` (you
-can also use `summarize` if you want) and `n()` however may not be as
-obvious. So if it’s not clear, let’s take a quick peek at the data:
+can also use `summarize` if you want) and
+[`n()`](https://dplyr.tidyverse.org/reference/context.html) however may
+not be as obvious. So if it’s not clear, let’s take a quick peek at the
+data:
 
 ``` r
+
 dplyr::glimpse(clean_rec_classes)
 ```
 
@@ -315,6 +324,7 @@ first dataset to groups in the second dataset and we end up with a
 dataset that has everything associated with each group.
 
 ``` r
+
 map_counts <- dplyr::inner_join(states, clean_rec_classes, by = c('state_abbv'='state_province'))
 #The by.x and by.y are necessary because the state abbreviations are under differently named columns in the two datasets
 ```
@@ -322,6 +332,7 @@ map_counts <- dplyr::inner_join(states, clean_rec_classes, by = c('state_abbv'='
 Let’s take a peek at the data:
 
 ``` r
+
 dplyr::glimpse(map_counts)
 ```
 
@@ -342,6 +353,7 @@ Awesome! We now have the counts and data we use to to make the map, so
 let’s make the plot now!
 
 ``` r
+
 ggplot(data = map_counts)+
   geom_polygon(mapping = aes(x = long, y = lat, group = group, fill = count), color = 'white')+
   coord_map(projection = 'albers', lat0 = 39, lat1 = 45)
@@ -370,16 +382,17 @@ how many prospects overall came from each state using a unique color
 scale.
 
 ``` r
-tri_state_recs <- recruiting_classes %>% 
-  dplyr::select(year, name, position, state_province, hometown_info_latitude, hometown_info_longitude) %>% 
-  dplyr::distinct() %>% 
-  dplyr::filter(state_province %in% c('PA','NY','NJ')) %>% 
+
+tri_state_recs <- recruiting_classes |> 
+  dplyr::select(year, name, position, state_province, hometown_info_latitude, hometown_info_longitude) |> 
+  dplyr::distinct() |> 
+  dplyr::filter(state_province %in% c('PA','NY','NJ')) |> 
   dplyr::mutate(
     latitude = as.double(hometown_info_latitude),
     longitude = as.double(hometown_info_longitude)
   )
 
-tri_state_map <- map_counts %>% 
+tri_state_map <- map_counts |> 
   dplyr::filter(state_abbv %in% c('PA','NY','NJ'))
 
 ggplot()+

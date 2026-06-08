@@ -45,13 +45,13 @@ cfbd_ratings_elo(
 
 `cfbd_ratings_elo()` - A data frame with 4 variables:
 
-|            |           |
-|------------|-----------|
-| col_name   | types     |
-| year       | integer   |
-| team       | character |
-| conference | character |
-| elo        | numeric   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Four-digit season year (e.g. 2019). |
+| team | character | Full team name (e.g. "Texas"). |
+| conference | character | Conference affiliation for the team in the given season. |
+| elo | numeric | CFBD-calculated Elo rating for the team as of the requested week. |
 
 ## See also
 
@@ -67,16 +67,16 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_elo(year = 2019, team = "Texas"))
-#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:39 UTC
+#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:37 UTC
 #> # A tibble: 1 × 4
 #>    year team  conference   elo
 #>   <int> <chr> <chr>      <dbl>
 #> 1  2019 Texas Big 12      1866
 
   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
-#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:40 UTC
+#> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:38 UTC
 #> # A tibble: 14 × 4
 #>     year team              conference   elo
 #>    <int> <chr>             <chr>      <dbl>

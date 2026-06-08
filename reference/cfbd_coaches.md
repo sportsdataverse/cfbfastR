@@ -1,5 +1,8 @@
 # **CFBD Coaches Endpoint Overview**
 
+- `cfbd_coaches()`: A coach search function which provides coaching
+  records and school history for a given coach.
+
 **Coach information search** A coach search function which provides
 coaching records and school history for a given coach
 
@@ -47,73 +50,40 @@ cfbd_coaches(
 
 ## Value
 
-- first_name:character.:
+Returns a tibble with 15 variables:
 
-  First name of coach.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| first_name | character | First name of coach. |
+| last_name | character | Last name of coach. |
+| hire_date | character | Hire date of coach (ISO date string from CFBD). |
+| school | character | School of coach for the listed season. |
+| year | integer | Four-digit season year of record. |
+| games | integer | Games coached during the season. |
+| wins | integer | Wins for the season. |
+| losses | integer | Losses for the season. |
+| ties | integer | Ties for the season. |
+| preseason_rank | integer | Preseason AP rank for the school of coach (NA if unranked). |
+| postseason_rank | integer | Postseason AP rank for the school of coach (NA if unranked). |
+| srs | character | Simple Rating System adjustment for team. |
+| sp_overall | character | Bill Connelly's SP+ overall rating for team. |
+| sp_offense | character | Bill Connelly's SP+ offense rating for team. |
+| sp_defense | character | Bill Connelly's SP+ defense rating for team. |
 
-- last_name:character.:
+## Details
 
-  Last name of coach.
+### **Coach information search**
 
-- hire_date:character.:
-
-  Hire date of coach.
-
-- school:character.:
-
-  School of coach.
-
-- year:integer.:
-
-  Season of record.
-
-- games:integer.:
-
-  Games as coach.
-
-- wins:integer.:
-
-  Wins for the season.
-
-- losses:integer.:
-
-  Losses for the season.
-
-- ties:integer.:
-
-  Ties for the season.
-
-- preseason_rank:integer.:
-
-  Preseason rank for the school of coach.
-
-- postseason_rank:integer.:
-
-  Postseason rank for the school of coach.
-
-- srs:character.:
-
-  Simple Rating System adjustment for team.
-
-- sp_overall:character.:
-
-  Bill Connelly's SP+ overall for team.
-
-- sp_offense:character.:
-
-  Bill Connelly's SP+ offense for team.
-
-- sp_defense:character.:
-
-  Bill Connelly's SP+ defense for team.
+    cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
 
 ## Examples
 
 ``` r
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
-#> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:46 UTC
+#> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:40 UTC
 #> # A tibble: 125 × 15
 #>    first_name last_name   hire_date school   year games  wins losses  ties
 #>    <chr>      <chr>       <chr>     <chr>   <int> <int> <int>  <int> <int>

@@ -23,45 +23,29 @@ espn_cfb_calendar(year = NULL, groups = NULL)
 
 `espn_cfb_calendar()` - A data frame with 8 variables:
 
-- `season`: character.:
+- `season`: character.: .
 
-  .
+- `season_type`: character.: .
 
-- `season_type`: character.:
+- `label`: character.: .
 
-  .
+- `alternate_label`: character.: .
 
-- `label`: character.:
+- `detail`: character.: .
 
-  .
+- `week`: character.: .
 
-- `alternate_label`: character.:
+- `start_date`: character.: .
 
-  .
-
-- `detail`: character.:
-
-  .
-
-- `week`: character.:
-
-  .
-
-- `start_date`: character.:
-
-  .
-
-- `end_date`: character.:
-
-  .
+- `end_date`: character.: .
 
 ## Examples
 
 ``` r
 # \donttest{
   try(espn_cfb_calendar(2021))
-#> ── Calendar Data from ESPN ─────────────────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:10 UTC
+#> ── Calendar Data from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:45:05 UTC
 #> # A tibble: 17 × 8
 #>    season season_type    label  alternate_label detail week  start_date end_date
 #>    <chr>  <chr>          <chr>  <chr>           <chr>  <chr> <chr>      <chr>   

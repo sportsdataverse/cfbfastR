@@ -28,18 +28,18 @@ cfbd_rankings(year, week = NULL, season_type = "both")
 
 `cfbd_rankings()` - A data frame with 9 variables:
 
-|                   |           |
-|-------------------|-----------|
-| col_name          | types     |
-| season            | integer   |
-| season_type       | character |
-| week              | integer   |
-| poll              | character |
-| rank              | integer   |
-| school            | character |
-| conference        | character |
-| first_place_votes | integer   |
-| points            | integer   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Four-digit year of the season (e.g. 2019). |
+| season_type | character | CFBD season type: "regular", "postseason", "both", or "allstar". |
+| week | integer | Week number within the season (1-15 regular, 1 for postseason). |
+| poll | character | Poll name (e.g. "AP Top 25", "Coaches Poll", "Playoff Committee Rankings"). |
+| rank | integer | Position of the school within the poll for the given week (1 = top-ranked). |
+| school | character | Full school/team name as reported by the poll (e.g. "Georgia"). |
+| conference | character | Conference affiliation of the ranked school (e.g. "SEC", "ACC"). |
+| first_place_votes | integer | Number of first-place votes the school received in this poll week. |
+| points | integer | Total points accumulated by the school in the poll's weighted voting. |
 
 ## See also
 
@@ -55,8 +55,8 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_rankings(year = 2019, week = 12))
-#> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:38 UTC
+#> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:36 UTC
 #> # A tibble: 100 × 10
 #>    season season_type  week poll       rank teamId school     conference
 #>     <int> <chr>       <int> <chr>     <int>  <int> <chr>      <chr>     
@@ -74,8 +74,8 @@ Other CFBD Ratings and Rankings:
 #> # ℹ 2 more variables: first_place_votes <int>, points <int>
 
   try(cfbd_rankings(year = 2018, week = 14))
-#> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:38 UTC
+#> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:36 UTC
 #> # A tibble: 75 × 10
 #>    season season_type  week poll       rank teamId school     conference       
 #>     <int> <chr>       <int> <chr>     <int>  <int> <chr>      <chr>            
@@ -93,8 +93,8 @@ Other CFBD Ratings and Rankings:
 #> # ℹ 2 more variables: first_place_votes <int>, points <int>
 
   try(cfbd_rankings(year = 2013, season_type = "postseason"))
-#> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:38 UTC
+#> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:36 UTC
 #> # A tibble: 75 × 10
 #>    season season_type  week poll                   rank teamId school conference
 #>     <int> <chr>       <int> <chr>                 <int>  <int> <chr>  <chr>     

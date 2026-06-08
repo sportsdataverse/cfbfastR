@@ -40,8 +40,8 @@ Other loaders:
 ``` r
 # \donttest{
   try(load_cfb_teams())
-#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:28 UTC
+#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:48:14 UTC
 #> # A tibble: 136 × 29
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     

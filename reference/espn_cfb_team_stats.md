@@ -333,18 +333,18 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(espn_cfb_team_stats(team_id = 52, year = 2020))
-#> ── CFB Team Season stats from ESPN.com ─────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:18 UTC
-#> # A tibble: 1 × 341
-#>   team_id team_guid          team_uid team_sdr team_slug team_location team_name
-#>   <chr>   <chr>              <chr>    <chr>    <chr>     <chr>         <chr>    
-#> 1 52      fa181128-4809-a20… s:20~l:… 5995     florida-… Florida State Seminoles
-#> # ℹ 334 more variables: team_nickname <chr>, team_abbreviation <chr>,
-#> #   team_display_name <chr>, team_short_display_name <chr>, team_color <chr>,
+#> ── CFB Team Season stats from ESPN.com ─────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:48:00 UTC
+#> # A tibble: 1 × 372
+#>   season season_type team_id team_guid team_uid team_sdr team_slug team_location
+#>    <dbl> <chr>       <chr>   <chr>     <chr>    <chr>    <chr>     <chr>        
+#> 1   2020 regular     52      fa181128… s:20~l:… 5995     florida-… Florida State
+#> # ℹ 364 more variables: team_name <chr>, team_nickname <chr>,
+#> #   team_abbreviation <chr>, team_display_name <chr>,
+#> #   team_short_display_name <chr>, team_color <chr>,
 #> #   team_alternate_color <chr>, is_active <lgl>, is_all_star <lgl>,
 #> #   logo_href <chr>, logo_dark_href <chr>, logos_href_2 <chr>,
 #> #   logos_rel_primary_logo_on_white_color <chr>, logos_href_3 <chr>,
-#> #   logos_rel_primary_logo_on_black_color <chr>, logos_href_4 <chr>,
-#> #   logos_width_4 <int>, logos_height_4 <int>, logos_alt_4 <chr>, …
+#> #   logos_rel_primary_logo_on_black_color <chr>, logos_href_4 <chr>, …
 # }
 ```

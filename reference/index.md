@@ -1,8 +1,97 @@
 # Package index
 
+## Function family overviews
+
+One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
+
+- [`cfbd_api_key`](https://cfbfastR.sportsdataverse.org/reference/cfbd_api_key.md)
+  [`api_key`](https://cfbfastR.sportsdataverse.org/reference/cfbd_api_key.md)
+  :
+
+  **CFBD API Key Endpoint Overview**
+
+- [`cfbd_betting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  [`betting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  [`lines`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  [`spreads`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  :
+
+  **CFBD Betting Endpoint Overview**
+
+- [`cfbd_coaches()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.md)
+  :
+
+  **CFBD Coaches Endpoint Overview**
+
+- [`cfbd_conferences()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.md)
+  :
+
+  **CFBD Conferences Endpoint Overview**
+
+- [`cfbd_drives()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.md)
+  :
+
+  **CFBD Drives Endpoint Overview**
+
+- [`cfbd_pbp`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp.md)
+  [`play_by_play`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp.md)
+  :
+
+  **CFBD Play-by-Play Endpoint Overview**
+
+- [`cfbd_pbp_v2`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_v2.md)
+  [`pbp_v2`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_v2.md)
+  [`modular_epa`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_v2.md)
+  [`modular_wpa`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_v2.md)
+  :
+
+  **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
+
+- [`cfbd_venues()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.md)
+  :
+
+  **CFBD Venues Endpoint Overview**
+
+- [`espn_cfb_catalog`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_catalog.md)
+  [`catalog`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_catalog.md)
+  [`awards`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_catalog.md)
+  [`franchises`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_catalog.md)
+  [`positions`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_catalog.md)
+  [`clear_cache`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_catalog.md)
+  :
+
+  **ESPN College Football Catalog Endpoint Overview**
+
+- [`espn_cfb_game`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  [`game`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  [`plays`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  [`leaders`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  :
+
+  **ESPN College Football Game Endpoint Overview**
+
+- [`espn_cfb_player()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player.md)
+  :
+
+  **ESPN College Football Player Endpoint Overview**
+
+- [`espn_cfb_season`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season.md)
+  [`season`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season.md)
+  [`seasons`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season.md)
+  [`standings`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season.md)
+  [`rankings`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season.md)
+  :
+
+  **ESPN College Football Season Endpoint Overview**
+
+- [`espn_cfb_team()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team.md)
+  :
+
+  **ESPN College Football Team Endpoint Overview**
+
 ## cfbfastR Data
 
-### Full Seasons PBP Data
+### Full Season Loaders
 
 Functions exported by cfbfastR which load full seasons of cfbfastR data
 
@@ -41,11 +130,18 @@ Probability model outputs.
   **Get college football play by play data with cfbfastR expected
   points/win probability added**
 
-## College Football Data API and ESPN Functions
+- [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md)
+  :
 
-### College Football Data API Key
+  **Get college football play-by-play data — modular EPA/WPA pipeline
+  (v2)**
 
-Functions for using your API key.
+## College Football Data API
+
+### API Key Helpers
+
+Functions for registering and inspecting your CollegeFootballData.com
+API key.
 
 - [`cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
   [`has_cfbd_key()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
@@ -117,7 +213,7 @@ CollegeFootballData API
 - [`cfbd_drives()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_drives.md)
   :
 
-  **CFBD Drives Endpoint**
+  **CFBD Drives Endpoint Overview**
 
 ### Plays Data
 
@@ -217,8 +313,8 @@ CollegeFootballData API
 
 ### Stats Data
 
-Functions exported by cfbfastR sourced from the conferences endpoint of
-the CollegeFootballData API
+Functions exported by cfbfastR sourced from the stats endpoint of the
+CollegeFootballData API
 
 - [`cfbd_stats`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats.md)
   :
@@ -234,6 +330,11 @@ the CollegeFootballData API
   :
 
   **Get game advanced stats**
+
+- [`cfbd_stats_game_havoc()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_havoc.md)
+  :
+
+  **Get game havoc statistics**
 
 - [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md)
   :
@@ -253,7 +354,7 @@ the CollegeFootballData API
 ### Rankings and Ratings Data
 
 Functions exported by cfbfastR sourced from the rankings and ratings
-endpoints of the CollegeFootballData API and ESPN
+endpoints of the CollegeFootballData API
 
 - [`cfbd_ratings`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings.md)
   :
@@ -290,11 +391,6 @@ endpoints of the CollegeFootballData API and ESPN
 
   **Get historical Coaches and AP poll data**
 
-- [`espn_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.md)
-  :
-
-  **ESPN FPI Ratings**
-
 ### NFL Draft Data
 
 Functions exported by cfbfastR sourced from the draft endpoints of the
@@ -326,8 +422,21 @@ CollegeFootballData API
 
 ### Betting Data
 
-Functions exported by cfbfastR sourced from lines endpoint of the
-CollegeFootballData API
+Functions exported by cfbfastR sourced from lines and betting endpoints
+of the CollegeFootballData API
+
+- [`cfbd_betting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  [`betting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  [`lines`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  [`spreads`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.md)
+  :
+
+  **CFBD Betting Endpoint Overview**
+
+- [`cfbd_betting_ats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_ats.md)
+  :
+
+  **CFBD Against-the-Spread (ATS) Records**
 
 - [`cfbd_betting_lines()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.md)
   :
@@ -337,7 +446,7 @@ CollegeFootballData API
 ### Metrics Data
 
 Functions exported by cfbfastR sourced from the Predicted Points Added
-(PPA) endpoints of the CollegeFootballData API and ESPN
+(PPA) endpoints of the CollegeFootballData API
 
 - [`cfbd_metrics`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics.md)
   :
@@ -409,8 +518,8 @@ Functions exported by cfbfastR sourced from the Predicted Points Added
 
 ### Recruiting Data
 
-Functions exported by cfbfastR sourced from the rankings and ratings
-endpoints of the CollegeFootballData API
+Functions exported by cfbfastR sourced from the recruiting endpoints of
+the CollegeFootballData API
 
 - [`cfbd_recruiting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting.md)
   [`recruiting`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting.md)
@@ -460,20 +569,135 @@ coaches endpoints of the CollegeFootballData API
 
 ## ESPN Data
 
-### Functions with ESPN connections
+### ESPN CFB – Game data
 
-Functions exported by cfbfastR which allow access to ESPN data
-
-- [`espn_cfb_calendar()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.md)
-  : ESPN Calendar
+Per-game ESPN endpoints (play-by-play, drives, plays, leaders,
+predictor, situation, odds)
 
 - [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   : Get ESPN college football PBP data
 
-- [`espn_cfb_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.md)
+- [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
   :
 
-  **Get ESPN college football player stats data**
+  **Get ESPN College Football Play-by-Play (core-v2)**
+
+- [`espn_cfb_unnest_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_unnest_plays.md)
+  :
+
+  **Unnest ESPN CFB drive plays into a flat play-by-play table**
+
+- [`espn_cfb_game`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  [`game`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  [`plays`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  [`leaders`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game.md)
+  :
+
+  **ESPN College Football Game Endpoint Overview**
+
+- [`espn_cfb_game_broadcasts()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_broadcasts.md)
+  :
+
+  **ESPN College Football Game Broadcasts**
+
+- [`espn_cfb_game_drive_plays()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drive_plays.md)
+  :
+
+  **ESPN College Football Game Drive Plays**
+
+- [`espn_cfb_game_drives()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_drives.md)
+  :
+
+  **ESPN College Football Game Drives**
+
+- [`espn_cfb_game_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_leaders.md)
+  :
+
+  **ESPN College Football Game Leaders**
+
+- [`espn_cfb_game_odds()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_odds.md)
+  :
+
+  **ESPN College Football Game Odds**
+
+- [`espn_cfb_game_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_pbp.md)
+  :
+
+  **ESPN College Football Game Plays (Core-v2 Play-by-Play)**
+
+- [`espn_cfb_game_play()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_play.md)
+  :
+
+  **ESPN College Football Game Play (Single Play Detail)**
+
+- [`espn_cfb_game_player_box()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_box.md)
+  :
+
+  **ESPN College Football Game Player Box Score**
+
+- [`espn_cfb_game_player_statistics()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_player_statistics.md)
+  :
+
+  **ESPN College Football Game Player Statistics (Single Athlete)**
+
+- [`espn_cfb_game_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_powerindex.md)
+  :
+
+  **ESPN College Football Game Power Index (Matchup FPI)**
+
+- [`espn_cfb_game_predictor()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_predictor.md)
+  :
+
+  **ESPN College Football Game Predictor (BPI Matchup Predictor)**
+
+- [`espn_cfb_game_probabilities()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_probabilities.md)
+  :
+
+  **ESPN College Football Game Win Probabilities**
+
+- [`espn_cfb_game_situation()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_situation.md)
+  :
+
+  **ESPN College Football Game Situation**
+
+- [`espn_cfb_game_status()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_status.md)
+  :
+
+  **ESPN College Football Game Status**
+
+- [`espn_cfb_game_team_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_leaders.md)
+  :
+
+  **ESPN College Football Game Team Leaders**
+
+- [`espn_cfb_game_team_linescores()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_linescores.md)
+  :
+
+  **ESPN College Football Game Team Linescores**
+
+- [`espn_cfb_game_team_records()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_records.md)
+  :
+
+  **ESPN College Football Game Team Records**
+
+- [`espn_cfb_game_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_roster.md)
+  :
+
+  **ESPN College Football Game Team Roster**
+
+- [`espn_cfb_game_team_statistics()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_team_statistics.md)
+  :
+
+  **ESPN College Football Game Team Statistics**
+
+- [`espn_cfb_game_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_game_teams.md)
+  :
+
+  **ESPN College Football Game Teams**
+
+### ESPN CFB – Schedule, scoreboard & calendar
+
+Calendar, schedule, and scoreboard endpoints
 
 - [`espn_cfb_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.md)
   [`espn_cfb_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_scoreboard.md)
@@ -481,10 +705,252 @@ Functions exported by cfbfastR which allow access to ESPN data
 
   **ESPN Scoreboard**
 
+- [`espn_cfb_calendar()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_calendar.md)
+  : ESPN Calendar
+
+### ESPN CFB – Season metadata
+
+Season, week, rankings, standings, and group endpoints
+
+- [`espn_cfb_seasons()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_seasons.md)
+  :
+
+  **ESPN College Football Seasons Index**
+
+- [`espn_cfb_season_info()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season_info.md)
+  :
+
+  **ESPN College Football Season Detail**
+
+- [`espn_cfb_season_types()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season_types.md)
+  :
+
+  **ESPN College Football Season Types**
+
+- [`espn_cfb_season_weeks()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_season_weeks.md)
+  :
+
+  **ESPN College Football Season Weeks**
+
+- [`espn_cfb_week_rankings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_week_rankings.md)
+  :
+
+  **ESPN College Football Weekly Rankings**
+
+- [`espn_cfb_rankings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_rankings.md)
+  :
+
+  **ESPN College Football Ranking Sources**
+
+- [`espn_cfb_standings()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_standings.md)
+  :
+
+  **ESPN College Football Standings (Long Format)**
+
+- [`espn_cfb_groups()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_groups.md)
+  :
+
+  **ESPN College Football Groups & Conferences**
+
+### ESPN CFB – Team detail
+
+Team-scoped catalog and detail endpoints
+
+- [`espn_cfb_team()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team.md)
+  :
+
+  **ESPN College Football Team Endpoint Overview**
+
+- [`espn_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_teams.md)
+  :
+
+  **ESPN College Football Teams Index**
+
+- [`espn_cfb_team_ats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_ats.md)
+  :
+
+  **ESPN College Football Team Against-the-Spread Records**
+
+- [`espn_cfb_team_awards()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_awards.md)
+  :
+
+  **ESPN College Football Team Awards**
+
+- [`espn_cfb_team_coaches()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_coaches.md)
+  :
+
+  **ESPN College Football Team Coaches**
+
+- [`espn_cfb_team_events()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_events.md)
+  :
+
+  **ESPN College Football Team Season Event Log**
+
+- [`espn_cfb_team_leaders()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_leaders.md)
+  :
+
+  **ESPN College Football Team Statistical Leaders**
+
+- [`espn_cfb_team_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_powerindex.md)
+  :
+
+  **ESPN College Football Single-Team Power Index (Long Format)**
+
+- [`espn_cfb_team_ranks()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_ranks.md)
+  :
+
+  **ESPN College Football Team Poll Rank History**
+
+- [`espn_cfb_team_record()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_record.md)
+  :
+
+  **ESPN College Football Team Record (Long Format)**
+
+- [`espn_cfb_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_roster.md)
+  :
+
+  **ESPN College Football Team Roster (Season-Scoped)**
+
+- [`espn_cfb_team_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_schedule.md)
+  :
+
+  **ESPN College Football Team Schedule**
+
 - [`espn_cfb_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_stats.md)
   :
 
   **Get ESPN college football team stats data**
+
+### ESPN CFB – Athlete coverage
+
+Player, position and recruit endpoints
+
+- [`espn_cfb_player()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player.md)
+  :
+
+  **ESPN College Football Player Endpoint Overview**
+
+- [`espn_cfb_players()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_players.md)
+  :
+
+  **ESPN College Football Players Index**
+
+- [`espn_cfb_player_career_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_career_stats.md)
+  :
+
+  **ESPN College Football Player Season Statistics (Long Format)**
+
+- [`espn_cfb_player_eventlog()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_eventlog.md)
+  :
+
+  **ESPN College Football Player Event Log**
+
+- [`espn_cfb_player_gamelog()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_gamelog.md)
+  :
+
+  **ESPN College Football Player Game Log**
+
+- [`espn_cfb_player_overview()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_overview.md)
+  :
+
+  **ESPN College Football Player Statistics Overview**
+
+- [`espn_cfb_player_seasons()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_seasons.md)
+  :
+
+  **ESPN College Football Player Seasons**
+
+- [`espn_cfb_player_splits()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_splits.md)
+  :
+
+  **ESPN College Football Player Statistical Splits**
+
+- [`espn_cfb_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.md)
+  :
+
+  **Get ESPN college football player stats data**
+
+- [`espn_cfb_player_stats_v3()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats_v3.md)
+  :
+
+  **ESPN College Football Player Stats (web v3, all categories)**
+
+- [`espn_cfb_position()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_position.md)
+  :
+
+  **ESPN College Football Position Detail**
+
+- [`espn_cfb_positions()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_positions.md)
+  :
+
+  **ESPN College Football Positions Index**
+
+- [`espn_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_recruits.md)
+  :
+
+  **ESPN College Football Recruits**
+
+### ESPN CFB – Coaches & venues
+
+Coach, coach record, and venue endpoints
+
+- [`espn_cfb_coach()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coach.md)
+  :
+
+  **ESPN College Football Coach Detail**
+
+- [`espn_cfb_coaches()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coaches.md)
+  :
+
+  **ESPN College Football Coaches Index**
+
+- [`espn_cfb_coach_record()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_coach_record.md)
+  :
+
+  **ESPN College Football Coach Season Record**
+
+- [`espn_cfb_venue()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_venue.md)
+  :
+
+  **ESPN College Football Venue Detail**
+
+- [`espn_cfb_venues()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_venues.md)
+  :
+
+  **ESPN College Football Venues Index**
+
+### ESPN CFB – Awards, futures & franchises
+
+Award catalog, futures markets, and franchise records
+
+- [`espn_cfb_award()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_award.md)
+  :
+
+  **ESPN College Football Award Detail**
+
+- [`espn_cfb_awards()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_awards.md)
+  :
+
+  **ESPN College Football Awards**
+
+- [`espn_cfb_franchise()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_franchise.md)
+  :
+
+  **ESPN College Football Franchise Detail**
+
+- [`espn_cfb_franchises()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_franchises.md)
+  :
+
+  **ESPN College Football Franchises Index**
+
+- [`espn_cfb_futures()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_futures.md)
+  :
+
+  **ESPN College Football Betting Futures (Long Format)**
+
+### ESPN CFB – Metrics & ratings
+
+Win probability, QBR, power index, and FPI ratings
 
 - [`espn_metrics_wp()`](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.md)
   :
@@ -495,6 +961,25 @@ Functions exported by cfbfastR which allow access to ESPN data
   :
 
   **ESPN FPI Ratings**
+
+- [`espn_cfb_qbr()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_qbr.md)
+  :
+
+  **ESPN College Football Total Quarterback Rating (QBR)**
+
+- [`espn_cfb_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_powerindex.md)
+  :
+
+  **ESPN College Football Power Index (Long Format)**
+
+### ESPN CFB – Cache management
+
+Catalog-cache management helpers
+
+- [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md)
+  :
+
+  **Clear the cfbfastR ESPN catalog cache**
 
 ## Helper Functions and Data
 
@@ -510,7 +995,8 @@ Data included within the package
 
 ### Model functions and PBP helpers
 
-Model functions and play-by-play helpers
+Expected points / win probability models and play-by-play parsing
+helpers
 
 - [`create_epa()`](https://cfbfastR.sportsdataverse.org/reference/create_epa.md)
   [`epa_fg_probs()`](https://cfbfastR.sportsdataverse.org/reference/create_epa.md)
@@ -540,7 +1026,7 @@ Model functions and play-by-play helpers
 
 ### cfbfastR Helper Functions
 
-Internal functions used by cfbfastR
+Internal helpers used by cfbfastR
 
 - [`csv_from_url()`](https://cfbfastR.sportsdataverse.org/reference/csv_from_url.md)
   :

@@ -21,71 +21,27 @@ cfbd_team_roster(year, team = NULL)
 
 ## Value
 
-`cfbd_team_roster()` - A data frame with 12 variables:
+`cfbd_team_roster()` - A data frame with 16 variables:
 
-- `athlete_id`: character.:
-
-  Referencing athlete id.
-
-- `first_name`: character.:
-
-  Athlete first name.
-
-- `last_name`: character.:
-
-  Athlete last name.
-
-- `team`: character.:
-
-  Team name.
-
-- `weight`: integer.:
-
-  Athlete weight.
-
-- `height`: integer.:
-
-  Athlete height.
-
-- `jersey`: integer.:
-
-  Athlete jersey number.
-
-- `year`: integer.:
-
-  Athlete year.
-
-- `position`: character.:
-
-  Athlete position.
-
-- `home_city`: character.:
-
-  Hometown of the athlete.
-
-- `home_state`: character.:
-
-  Hometown state of the athlete.
-
-- `home_country`: character.:
-
-  Hometown country of the athlete.
-
-- `home_latitude`: numeric.:
-
-  Hometown latitude.
-
-- `home_longitude`: number.:
-
-  Hometown longitude.
-
-- `home_county_fips`: integer.:
-
-  Hometown FIPS code.
-
-- `headshot_url`: character:
-
-  Player ESPN headshot url.
+|                  |           |                                  |
+|------------------|-----------|----------------------------------|
+| col_name         | types     | description                      |
+| athlete_id       | character | Referencing athlete id.          |
+| first_name       | character | Athlete first name.              |
+| last_name        | character | Athlete last name.               |
+| team             | character | Team name.                       |
+| weight           | integer   | Athlete weight (lbs).            |
+| height           | integer   | Athlete height (inches).         |
+| jersey           | integer   | Athlete jersey number.           |
+| year             | integer   | Athlete year.                    |
+| position         | character | Athlete position.                |
+| home_city        | character | Hometown of the athlete.         |
+| home_state       | character | Hometown state of the athlete.   |
+| home_country     | character | Hometown country of the athlete. |
+| home_latitude    | numeric   | Hometown latitude.               |
+| home_longitude   | numeric   | Hometown longitude.              |
+| home_county_fips | integer   | Hometown FIPS code.              |
+| headshot_url     | character | Player ESPN headshot url.        |
 
 ## See also
 
@@ -100,8 +56,8 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_roster(year = 2013, team = "Florida State"))
-#> ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:05 UTC
+#> ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:57 UTC
 #> # A tibble: 134 × 17
 #>    athlete_id first_name last_name   team    weight height jersey  year position
 #>    <chr>      <chr>      <chr>       <chr>    <int>  <int>  <int> <int> <chr>   

@@ -18,47 +18,21 @@ cfbd_recruiting_transfer_portal(year)
 
 ## Value
 
-`cfbd_recruiting_transfer_portal()` - A data frame with 11 variables:
+`cfbd_recruiting_transfer_portal()` - A data frame with 10 variables:
 
-- `season`:integer:
-
-  Season of transfer.
-
-- `first_name`:character.:
-
-  Player's first name.
-
-- `last_name`:character.:
-
-  Player's last name.
-
-- `position`:character.:
-
-  Player position.
-
-- `origin`:character.:
-
-  original team.
-
-- `destination`:character.:
-
-  new team.
-
-- `transfer_date`:character.:
-
-  Date of transfer.
-
-- `rating`:character.:
-
-  Player's 247 transfer rating.
-
-- `stars`:integer:
-
-  Player's star rating.
-
-- `eligibilty`:character.:
-
-  Player's eligibilty status.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Season of the transfer (four-digit year). |
+| first_name | character | Player's first name. |
+| last_name | character | Player's last name. |
+| position | character | Player position abbreviation (e.g. QB, WR, OT). |
+| origin | character | Original (transferring-from) team. |
+| destination | character | New (transferring-to) team. |
+| transfer_date | character | Date the transfer was reported (parsed downstream to POSIXct). |
+| rating | character | Player's 247Sports transfer rating. |
+| stars | integer | Player's 247Sports star rating (2-5). |
+| eligibilty | character | Player's eligibility status at time of transfer. |
 
 ## See also
 
@@ -72,8 +46,8 @@ Other CFBD Recruiting:
 ``` r
 # \donttest{
   try(cfbd_recruiting_transfer_portal(year = 2021))
-#> ── Transfer portal data from CollegeFootballData.com ───────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:47 UTC
+#> ── Transfer portal data from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:44 UTC
 #> # A tibble: 1,770 × 10
 #>    season first_name last_name   position origin destination transfer_date      
 #>     <int> <chr>      <chr>       <chr>    <chr>  <chr>       <dttm>             

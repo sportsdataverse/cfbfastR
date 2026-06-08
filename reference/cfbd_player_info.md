@@ -40,53 +40,21 @@ cfbd_player_info(search_term, position = NULL, team = NULL, year = NULL)
 
 `cfbd_player_info()` - A data frame with 12 variables:
 
-- `athlete_id`:character.:
-
-  Unique player identifier `athlete_id`.
-
-- `team`:character.:
-
-  Team of the player.
-
-- `name`:character.:
-
-  Player name.
-
-- `first_name`:character.:
-
-  Player first name.
-
-- `last_name`:character.:
-
-  Player last name.
-
-- `weight`:integer.:
-
-  Player weight.
-
-- `height`:integer.:
-
-  Player height.
-
-- `jersey`:integer.:
-
-  Player jersey number.
-
-- `position`:character.:
-
-  Player position.
-
-- `home_town`:character.:
-
-  Player home town.
-
-- `team_color`:character.:
-
-  Player team color.
-
-- `team_color_secondary`:character.:
-
-  Player team secondary color.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| athlete_id | character | Unique CFBD player identifier. |
+| team | character | Team of the player. |
+| name | character | Player full name. |
+| first_name | character | Player first name. |
+| last_name | character | Player last name. |
+| weight | integer | Player weight in pounds. |
+| height | integer | Player height in inches. |
+| jersey | integer | Player jersey number. |
+| position | character | Player position abbreviation (e.g. QB, RB, WR). |
+| home_town | character | Player home town. |
+| team_color | character | Player team primary color (hex code). |
+| team_color_secondary | character | Player team secondary color (hex code). |
 
 ## See also
 
@@ -99,8 +67,8 @@ Other CFBD Players:
 ``` r
 # \donttest{
   try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
-#> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:34 UTC
+#> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:32 UTC
 #> # A tibble: 1 × 12
 #>   athlete_id team       name  first_name last_name weight height jersey position
 #>   <chr>      <chr>      <chr> <chr>      <chr>      <int>  <int>  <int> <chr>   
@@ -109,8 +77,8 @@ Other CFBD Players:
 #> #   team_color_secondary <chr>
 
   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
-#> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:34 UTC
+#> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:32 UTC
 #> # A tibble: 2 × 12
 #>   athlete_id team    name     first_name last_name weight height jersey position
 #>   <chr>      <chr>   <chr>    <chr>      <chr>      <int>  <int>  <int> <chr>   

@@ -24,38 +24,38 @@ cfbd_ratings_sp(year = NULL, team = NULL)
 
 `cfbd_ratings_sp()` - A data frame with 26 variables:
 
-|                           |           |
-|---------------------------|-----------|
-| col_name                  | types     |
-| year                      | integer   |
-| team                      | character |
-| conference                | character |
-| rating                    | numeric   |
-| ranking                   | integer   |
-| second_order_wins         | numeric   |
-| sos                       | numeric   |
-| offense_ranking           | integer   |
-| offense_rating            | numeric   |
-| offense_success           | numeric   |
-| offense_explosiveness     | numeric   |
-| offense_rushing           | numeric   |
-| offense_passing           | numeric   |
-| offense_standard_downs    | numeric   |
-| offense_passing_downs     | numeric   |
-| offense_run_rate          | numeric   |
-| offense_pace              | numeric   |
-| defense_ranking           | integer   |
-| defense_rating            | numeric   |
-| defense_success           | numeric   |
-| defense_explosiveness     | numeric   |
-| defense_rushing           | numeric   |
-| defense_passing           | numeric   |
-| defense_standard_downs    | numeric   |
-| defense_passing_downs     | numeric   |
-| defense_havoc_total       | numeric   |
-| defense_havoc_front_seven | numeric   |
-| defense_havoc_db          | numeric   |
-| special_teams_rating      | numeric   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Four-digit season year (e.g. 2018). |
+| team | character | Full team name (e.g. "Texas A&M"). |
+| conference | character | Conference affiliation for the team in the given season. |
+| rating | numeric | Overall SP+ rating (Bill Connelly methodology, in points per game). |
+| ranking | integer | National rank of the team's overall SP+ rating (1 = best). |
+| second_order_wins | numeric | Estimated wins based on opponent-adjusted efficiency rather than actual results. |
+| sos | numeric | Strength of schedule rating (SP+ scale). |
+| offense_ranking | integer | National rank of the team's offensive SP+ rating (1 = best). |
+| offense_rating | numeric | Offensive SP+ rating (points per drive adjusted for opponent). |
+| offense_success | numeric | Offensive success rate component of SP+ (probability 0-1). |
+| offense_explosiveness | numeric | Offensive explosiveness component of SP+ (EqPts/play on successful plays). |
+| offense_rushing | numeric | Offensive rushing efficiency component of SP+. |
+| offense_passing | numeric | Offensive passing efficiency component of SP+. |
+| offense_standard_downs | numeric | Offensive SP+ on standard downs (1st, 2nd & \<= 7, 3rd/4th & \<= 4). |
+| offense_passing_downs | numeric | Offensive SP+ on passing downs (2nd & \>= 8, 3rd/4th & \>= 5). |
+| offense_run_rate | numeric | Share of offensive snaps that are designed runs (0-1). |
+| offense_pace | numeric | Average seconds per play for the offense. |
+| defense_ranking | integer | National rank of the team's defensive SP+ rating (1 = best). |
+| defense_rating | numeric | Defensive SP+ rating (points per drive allowed, opponent-adjusted). |
+| defense_success | numeric | Defensive success rate component of SP+ (probability 0-1). |
+| defense_explosiveness | numeric | Defensive explosiveness component of SP+ (EqPts/play allowed on successes). |
+| defense_rushing | numeric | Defensive rushing efficiency component of SP+. |
+| defense_passing | numeric | Defensive passing efficiency component of SP+. |
+| defense_standard_downs | numeric | Defensive SP+ on standard downs. |
+| defense_passing_downs | numeric | Defensive SP+ on passing downs. |
+| defense_havoc_total | numeric | Total havoc rate (TFLs + PBUs + forced fumbles divided by plays). |
+| defense_havoc_front_seven | numeric | Havoc rate contributed by the defensive front seven. |
+| defense_havoc_db | numeric | Havoc rate contributed by defensive backs. |
+| special_teams_rating | numeric | Special teams SP+ rating (points per game). |
 
 ## See also
 
@@ -71,8 +71,8 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_sp(year = 2018))
-#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:41 UTC
+#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:39 UTC
 #> # A tibble: 131 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -95,8 +95,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_rushing <dbl>, defense_passing <dbl>, …
 
   try(cfbd_ratings_sp(team = "Texas A&M"))
-#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:41 UTC
+#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:39 UTC
 #> # A tibble: 112 × 29
 #>     year team  conference rating ranking second_order_wins   sos offense_ranking
 #>    <int> <chr> <chr>       <dbl>   <int>             <dbl> <dbl>           <int>
@@ -106,7 +106,7 @@ Other CFBD Ratings and Rankings:
 #>  4  1973 Texa… SEC           8.9      42                NA    NA              37
 #>  5  1974 Texa… SEC          14.9      27                NA    NA              49
 #>  6  1975 Texa… SEC          19.1      17                NA    NA              44
-#>  7  1976 Texa… SEC          20.8      11                NA    NA              23
+#>  7  1976 Texa… SEC          20.8      10                NA    NA              23
 #>  8  1977 Texa… SEC          11.8      34                NA    NA              11
 #>  9  1978 Texa… SEC           8.2      43                NA    NA              45
 #> 10  1979 Texa… SEC          21.4       7                NA    NA              39
@@ -119,8 +119,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_rushing <dbl>, defense_passing <dbl>, …
 
   try(cfbd_ratings_sp(year = 2019, team = "Texas"))
-#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:41 UTC
+#> ── SP+ data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:39 UTC
 #> # A tibble: 2 × 29
 #>    year team   conference rating ranking second_order_wins sos   offense_ranking
 #>   <int> <chr>  <chr>       <dbl>   <int> <lgl>             <lgl>           <int>

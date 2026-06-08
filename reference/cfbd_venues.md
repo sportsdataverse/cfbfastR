@@ -1,5 +1,9 @@
 # **CFBD Venues Endpoint Overview**
 
+- `cfbd_venues()`: Pulls all college football venues and data on
+  capacity, grass, city/state, location, elevation, dome, timezone and
+  construction year.
+
 Pulls all college football venues and data on capacity, grass,
 city/state, location, elevation, dome, timezone and construction year.
 
@@ -11,67 +15,31 @@ cfbd_venues()
 
 ## Value
 
-A data frame with 337 rows and 13 variables:
+A data frame with 337 rows and 14 variables:
 
-- `venue_id`:integer.:
-
-  Referencing venue ID.
-
-- `name`:character.:
-
-  Venue name.
-
-- `capacity`:integer.:
-
-  Stadium capacity.
-
-- `grass`:logical.:
-
-  TRUE/FALSE response on whether the field is grass or not (oh, and
-  there are so many others).
-
-- `city`:character.:
-
-  Venue city.
-
-- `state`:character.:
-
-  Venue state.
-
-- `zip`:character.:
-
-  Venue zip.
-
-- `country_code`:character.:
-
-  Venue country code.
-
-- `latitude`:double.:
-
-  Venue latitude.
-
-- `longitude`: double.:
-
-  Venue longitude.
-
-- `elevation`:character.:
-
-  Venue elevation.
-
-- `year_constructed`:integer.:
-
-  Year in which the venue was constructed.
-
-- `dome`:logical.:
-
-  TRUE/FALSE response to whether the venue has a dome or not.
-
-- `timezone`:character.:
-
-  Time zone in which the venue resides (i.e. Eastern Time -\>
-  "America/New York").
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| venue_id | integer | Referencing venue ID. |
+| name | character | Venue name. |
+| capacity | integer | Stadium capacity. |
+| grass | logical | TRUE/FALSE response on whether the field is grass or not. |
+| city | character | Venue city. |
+| state | character | Venue state. |
+| zip | character | Venue zip code. |
+| country_code | character | Venue country code. |
+| latitude | numeric | Venue latitude in decimal degrees. |
+| longitude | numeric | Venue longitude in decimal degrees. |
+| elevation | character | Venue elevation above sea level. |
+| year_constructed | integer | Year in which the venue was constructed. |
+| dome | logical | TRUE/FALSE response to whether the venue has a dome or not. |
+| timezone | character | Time zone in which the venue resides (i.e. Eastern Time -\> "America/New_York"). |
 
 ## Details
+
+### **CFB Venue Information**
+
+    cfbd_venues()
 
 CFB Venue Information
 
@@ -82,9 +50,9 @@ CFB Venue Information
 ``` r
 # \donttest{
   try(cfbd_venues())
-#> ── Venue data from CollegeFootballData.com ─────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:07 UTC
-#> # A tibble: 837 × 14
+#> ── Venue data from CollegeFootballData.com ─────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:59 UTC
+#> # A tibble: 840 × 14
 #>    venue_id name    capacity grass dome  city  state zip   country_code timezone
 #>       <int> <chr>      <int> <lgl> <lgl> <chr> <chr> <chr> <chr>        <chr>   
 #>  1     5938 Al Whi…     4000 NA    FALSE Port… "NM"  88130 US           NA      
@@ -97,7 +65,7 @@ CFB Venue Information
 #>  8     6043 Bethpa…     6000 FALSE FALSE Broo… "NY"  11545 US           America…
 #>  9    11539 Charlo…       NA NA    FALSE Jame… "ND"  NA    US           NA      
 #> 10    11488 Centre…       NA TRUE  NA    Pawt… "RI"  NA    USA          NA      
-#> # ℹ 827 more rows
+#> # ℹ 830 more rows
 #> # ℹ 4 more variables: latitude <dbl>, longitude <dbl>, elevation <chr>,
 #> #   year_constructed <int>
 # }

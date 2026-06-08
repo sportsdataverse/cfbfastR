@@ -31,23 +31,23 @@ cfbd_ratings_fpi(year = NULL, team = NULL, conference = NULL)
 
 `cfbd_ratings_fpi()` - A data frame with 14 variables:
 
-|                                             |           |
-|---------------------------------------------|-----------|
-| col_name                                    | types     |
-| year                                        | integer   |
-| team                                        | character |
-| conference                                  | character |
-| fpi                                         | numeric   |
-| resume_ranks_strength_of_record             | integer   |
-| resume_ranks_fpi                            | integer   |
-| resume_ranks_average_win_probability        | integer   |
-| resume_ranks_strength_of_schedule           | integer   |
-| resume_ranks_remaining_strength_of_schedule | integer   |
-| resume_ranks_game_control                   | integer   |
-| efficiencies_overall                        | numeric   |
-| efficiencies_offense                        | numeric   |
-| efficiencies_defense                        | numeric   |
-| efficiencies_special_teams                  | numeric   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Four-digit season year (e.g. 2019). |
+| team | character | Full team name (e.g. "Texas"). |
+| conference | character | Conference affiliation for the team in the given season. |
+| fpi | numeric | ESPN Football Power Index rating (projected scoring margin vs. average team). |
+| resume_ranks_strength_of_record | integer | National rank of the team's strength of record (1 = best). |
+| resume_ranks_fpi | integer | National rank of the team's FPI rating (1 = best). |
+| resume_ranks_average_win_probability | integer | National rank of the team's average single-game win probability (1 = best). |
+| resume_ranks_strength_of_schedule | integer | National rank of the team's schedule strength to date (1 = toughest). |
+| resume_ranks_remaining_strength_of_schedule | integer | National rank of the team's remaining schedule strength (1 = toughest). |
+| resume_ranks_game_control | integer | National rank of the team's average in-game win probability (1 = best). |
+| efficiencies_overall | numeric | Overall FPI efficiency rating (combined offense, defense, and special teams). |
+| efficiencies_offense | numeric | FPI offensive efficiency rating. |
+| efficiencies_defense | numeric | FPI defensive efficiency rating. |
+| efficiencies_special_teams | numeric | FPI special teams efficiency rating. |
 
 ## See also
 
@@ -63,8 +63,8 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_fpi(year = 2019, team = "Texas"))
-#> ── ESPN FPI ratings from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:41 UTC
+#> ── ESPN FPI ratings from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:38 UTC
 #> # A tibble: 1 × 14
 #>    year team  conference   fpi resume_ranks_strength_of_record resume_ranks_fpi
 #>   <int> <chr> <chr>      <dbl>                           <int>            <int>
@@ -77,8 +77,8 @@ Other CFBD Ratings and Rankings:
 #> #   efficiencies_special_teams <dbl>
 
   try(cfbd_ratings_fpi(year = 2018, conference = "SEC"))
-#> ── ESPN FPI ratings from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:41 UTC
+#> ── ESPN FPI ratings from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:38 UTC
 #> # A tibble: 14 × 14
 #>     year team           conference   fpi resume_ranks_strengt…¹ resume_ranks_fpi
 #>    <int> <chr>          <chr>      <dbl>                  <int>            <int>

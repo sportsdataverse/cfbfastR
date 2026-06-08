@@ -48,254 +48,76 @@ cfbd_stats_game_advanced(
 
 `cfbd_stats_game_advanced()` - A data frame with 60 variables:
 
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `season`: integer.:
-
-  Season of the game.
-
-- `week`: integer.:
-
-  Game week of the season.
-
-- `team`: character.:
-
-  Team name.
-
-- `opponent`: character.:
-
-  Opponent team name.
-
-- `off_plays`: integer.:
-
-  Offense plays in the game.
-
-- `off_drives`: integer.:
-
-  Offense drives in the game.
-
-- `off_ppa`: double.:
-
-  Offense predicted points added (PPA).
-
-- `off_total_ppa`: double.:
-
-  Offense total predicted points added (PPA).
-
-- `off_success_rate`: double.:
-
-  Offense success rate.
-
-- `off_explosiveness`: double.:
-
-  Offense explosiveness rate.
-
-- `off_power_success`: double.:
-
-  Offense power success rate.
-
-- `off_stuff_rate`: double.:
-
-  Opponent stuff rate.
-
-- `off_line_yds`: double.:
-
-  Offensive line yards.
-
-- `off_line_yds_total`: integer.:
-
-  Offensive line yards total.
-
-- `off_second_lvl_yds`: double.:
-
-  Offense second-level yards.
-
-- `off_second_lvl_yds_total`: integer.:
-
-  Offense second-level yards total.
-
-- `off_open_field_yds`: integer.:
-
-  Offense open field yards.
-
-- `off_open_field_yds_total`: integer.:
-
-  Offense open field yards total.
-
-- `off_standard_downs_ppa`: double.:
-
-  Offense standard downs predicted points added (PPA).
-
-- `off_standard_downs_success_rate`: double.:
-
-  Offense standard downs success rate.
-
-- `off_standard_downs_explosiveness`: double.:
-
-  Offense standard downs explosiveness rate.
-
-- `off_passing_downs_ppa`: double.:
-
-  Offense passing downs predicted points added (PPA).
-
-- `off_passing_downs_success_rate`: double.:
-
-  Offense passing downs success rate.
-
-- `off_passing_downs_explosiveness`: double.:
-
-  Offense passing downs explosiveness rate.
-
-- `off_rushing_plays_ppa`: double.:
-
-  Offense rushing plays predicted points added (PPA).
-
-- `off_rushing_plays_total_ppa`: double.:
-
-  Offense rushing plays total predicted points added (PPA).
-
-- `off_rushing_plays_success_rate`: double.:
-
-  Offense rushing plays success rate.
-
-- `off_rushing_plays_explosiveness`: double.:
-
-  Offense rushing plays explosiveness rate.
-
-- `off_passing_plays_ppa`: double.:
-
-  Offense passing plays predicted points added (PPA).
-
-- `off_passing_plays_total_ppa`: double.:
-
-  Offense passing plays total predicted points added (PPA).
-
-- `off_passing_plays_success_rate`: double.:
-
-  Offense passing plays success rate.
-
-- `off_passing_plays_explosiveness`: double.:
-
-  Offense passing plays explosiveness rate.
-
-- `def_plays`: integer.:
-
-  Defense plays in the game.
-
-- `def_drives`: integer.:
-
-  Defense drives in the game.
-
-- `def_ppa`: double.:
-
-  Defense predicted points added (PPA).
-
-- `def_total_ppa`: double.:
-
-  Defense total predicted points added (PPA).
-
-- `def_success_rate`: double.:
-
-  Defense success rate.
-
-- `def_explosiveness`: double.:
-
-  Defense explosiveness rate.
-
-- `def_power_success`: double.:
-
-  Defense power success rate.
-
-- `def_stuff_rate`: double.:
-
-  Opponent stuff rate.
-
-- `def_line_yds`: double.:
-
-  Offensive line yards.
-
-- `def_line_yds_total`: integer.:
-
-  Offensive line yards total.
-
-- `def_second_lvl_yds`: double.:
-
-  Defense second-level yards.
-
-- `def_second_lvl_yds_total`: integer.:
-
-  Defense second-level yards total.
-
-- `def_open_field_yds`: integer.:
-
-  Defense open field yards.
-
-- `def_open_field_yds_total`: integer.:
-
-  Defense open field yards total.
-
-- `def_standard_downs_ppa`: double.:
-
-  Defense standard downs predicted points added (PPA).
-
-- `def_standard_downs_success_rate`: double.:
-
-  Defense standard downs success rate.
-
-- `def_standard_downs_explosiveness`: double.:
-
-  Defense standard downs explosiveness rate.
-
-- `def_passing_downs_ppa`: double.:
-
-  Defense passing downs predicted points added (PPA).
-
-- `def_passing_downs_success_rate`: double.:
-
-  Defense passing downs success rate.
-
-- `def_passing_downs_explosiveness`: double.:
-
-  Defense passing downs explosiveness rate.
-
-- `def_rushing_plays_ppa`: double.:
-
-  Defense rushing plays predicted points added (PPA).
-
-- `def_rushing_plays_total_ppa`: double.:
-
-  Defense rushing plays total predicted points added (PPA).
-
-- `def_rushing_plays_success_rate`: double.:
-
-  Defense rushing plays success rate.
-
-- `def_rushing_plays_explosiveness`: double.:
-
-  Defense rushing plays explosiveness rate.
-
-- `def_passing_plays_ppa`: double.:
-
-  Defense passing plays predicted points added (PPA).
-
-- `def_passing_plays_total_ppa`: double.:
-
-  Defense passing plays total predicted points added (PPA).
-
-- `def_passing_plays_success_rate`: double.:
-
-  Defense passing plays success rate.
-
-- `def_passing_plays_explosiveness`: double.:
-
-  Defense passing plays explosiveness rate.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| game_id | integer | Referencing game id. |
+| season | integer | Season of the game. |
+| week | integer | Game week of the season. |
+| team | character | Team name. |
+| opponent | character | Opponent team name. |
+| off_plays | integer | Offense plays in the game. |
+| off_drives | integer | Offense drives in the game. |
+| off_ppa | double | Offense predicted points added (PPA). |
+| off_total_ppa | double | Offense total predicted points added (PPA). |
+| off_success_rate | double | Offense success rate. |
+| off_explosiveness | double | Offense explosiveness rate. |
+| off_power_success | double | Offense power success rate. |
+| off_stuff_rate | double | Opponent stuff rate. |
+| off_line_yds | double | Offensive line yards. |
+| off_line_yds_total | integer | Offensive line yards total. |
+| off_second_lvl_yds | double | Offense second-level yards. |
+| off_second_lvl_yds_total | integer | Offense second-level yards total. |
+| off_open_field_yds | integer | Offense open field yards. |
+| off_open_field_yds_total | integer | Offense open field yards total. |
+| off_standard_downs_ppa | double | Offense standard downs predicted points added (PPA). |
+| off_standard_downs_success_rate | double | Offense standard downs success rate. |
+| off_standard_downs_explosiveness | double | Offense standard downs explosiveness rate. |
+| off_passing_downs_ppa | double | Offense passing downs predicted points added (PPA). |
+| off_passing_downs_success_rate | double | Offense passing downs success rate. |
+| off_passing_downs_explosiveness | double | Offense passing downs explosiveness rate. |
+| off_rushing_plays_ppa | double | Offense rushing plays predicted points added (PPA). |
+| off_rushing_plays_total_ppa | double | Offense rushing plays total predicted points added (PPA). |
+| off_rushing_plays_success_rate | double | Offense rushing plays success rate. |
+| off_rushing_plays_explosiveness | double | Offense rushing plays explosiveness rate. |
+| off_passing_plays_ppa | double | Offense passing plays predicted points added (PPA). |
+| off_passing_plays_total_ppa | double | Offense passing plays total predicted points added (PPA). |
+| off_passing_plays_success_rate | double | Offense passing plays success rate. |
+| off_passing_plays_explosiveness | double | Offense passing plays explosiveness rate. |
+| def_plays | integer | Defense plays in the game. |
+| def_drives | integer | Defense drives in the game. |
+| def_ppa | double | Defense predicted points added (PPA). |
+| def_total_ppa | double | Defense total predicted points added (PPA). |
+| def_success_rate | double | Defense success rate. |
+| def_explosiveness | double | Defense explosiveness rate. |
+| def_power_success | double | Defense power success rate. |
+| def_stuff_rate | double | Opponent stuff rate. |
+| def_line_yds | double | Offensive line yards. |
+| def_line_yds_total | integer | Offensive line yards total. |
+| def_second_lvl_yds | double | Defense second-level yards. |
+| def_second_lvl_yds_total | integer | Defense second-level yards total. |
+| def_open_field_yds | integer | Defense open field yards. |
+| def_open_field_yds_total | integer | Defense open field yards total. |
+| def_standard_downs_ppa | double | Defense standard downs predicted points added (PPA). |
+| def_standard_downs_success_rate | double | Defense standard downs success rate. |
+| def_standard_downs_explosiveness | double | Defense standard downs explosiveness rate. |
+| def_passing_downs_ppa | double | Defense passing downs predicted points added (PPA). |
+| def_passing_downs_success_rate | double | Defense passing downs success rate. |
+| def_passing_downs_explosiveness | double | Defense passing downs explosiveness rate. |
+| def_rushing_plays_ppa | double | Defense rushing plays predicted points added (PPA). |
+| def_rushing_plays_total_ppa | double | Defense rushing plays total predicted points added (PPA). |
+| def_rushing_plays_success_rate | double | Defense rushing plays success rate. |
+| def_rushing_plays_explosiveness | double | Defense rushing plays explosiveness rate. |
+| def_passing_plays_ppa | double | Defense passing plays predicted points added (PPA). |
+| def_passing_plays_total_ppa | double | Defense passing plays total predicted points added (PPA). |
+| def_passing_plays_success_rate | double | Defense passing plays success rate. |
+| def_passing_plays_explosiveness | double | Defense passing plays explosiveness rate. |
 
 ## See also
 
 Other CFBD Stats:
 [`cfbd_stats_categories()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.md),
+[`cfbd_stats_game_havoc()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_havoc.md),
 [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md),
 [`cfbd_stats_season_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.md),
 [`cfbd_stats_season_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.md)
@@ -305,8 +127,8 @@ Other CFBD Stats:
 ``` r
 # \donttest{
    try(cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M"))
-#> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:48 UTC
+#> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:45 UTC
 #> # A tibble: 1 × 62
 #>     game_id season season_type  week team  opponent off_plays off_drives off_ppa
 #>       <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>   <dbl>
@@ -320,8 +142,8 @@ Other CFBD Stats:
 #> #   off_standard_downs_explosiveness <dbl>, off_passing_downs_ppa <dbl>, …
 
    try(cfbd_stats_game_advanced(2019, team = "LSU"))
-#> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:48 UTC
+#> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:46 UTC
 #> # A tibble: 15 × 62
 #>     game_id season season_type  week team  opponent off_plays off_drives off_ppa
 #>       <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>   <dbl>
@@ -349,8 +171,8 @@ Other CFBD Stats:
 #> #   off_standard_downs_explosiveness <dbl>, off_passing_downs_ppa <dbl>, …
 
    try(cfbd_stats_game_advanced(2013, team = "Florida State"))
-#> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:48 UTC
+#> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:46 UTC
 #> # A tibble: 14 × 62
 #>    game_id season season_type  week team  opponent off_plays off_drives  off_ppa
 #>      <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>    <dbl>

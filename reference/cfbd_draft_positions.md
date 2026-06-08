@@ -12,13 +12,11 @@ cfbd_draft_positions()
 
 `cfbd_draft_positions()` - A data frame with 2 variables:
 
-- `position_name`: character.:
-
-  NFL Position group name.
-
-- `position_abbreviation`: integer:
-
-  NFL position group abbreviation.
+|                       |           |                                  |
+|-----------------------|-----------|----------------------------------|
+| col_name              | types     | description                      |
+| position_name         | character | NFL Position group name.         |
+| position_abbreviation | character | NFL position group abbreviation. |
 
 ## See also
 
@@ -31,8 +29,8 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_positions())
-#> ── NFL positions data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:49 UTC
+#> ── NFL positions data from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:42 UTC
 #> # A tibble: 29 × 2
 #>    position_name     position_abbreviation
 #>    <chr>             <chr>                

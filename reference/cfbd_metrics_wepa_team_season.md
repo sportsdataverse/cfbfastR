@@ -30,35 +30,35 @@ cfbd_metrics_wepa_team_season(year = NULL, team = NULL, conference = NULL)
 
 `cfbd_metrics_wepa_team_season()` - A data frame with 26 variables:
 
-|                                     |           |
-|-------------------------------------|-----------|
-| col_name                            | types     |
-| year                                | integer   |
-| team_id                             | integer   |
-| team                                | character |
-| conference                          | character |
-| explosiveness                       | numeric   |
-| explosiveness_allowed               | numeric   |
-| epa_total                           | numeric   |
-| epa_passing                         | numeric   |
-| epa_rushing                         | numeric   |
-| epa_allowed_total                   | numeric   |
-| epa_allowed_passing                 | numeric   |
-| epa_allowed_rushing                 | numeric   |
-| success_rate_total                  | numeric   |
-| success_rate_standard_downs         | numeric   |
-| success_rate_passing_downs          | numeric   |
-| success_rate_allowed_total          | numeric   |
-| success_rate_allowed_standard_downs | numeric   |
-| success_rate_allowed_passing_downs  | numeric   |
-| rushing_line_yards                  | numeric   |
-| rushing_second_level_yards          | numeric   |
-| rushing_open_field_yards            | numeric   |
-| rushing_highlight_yards             | numeric   |
-| rushing_allowed_line_yards          | numeric   |
-| rushing_allowed_second_level_yards  | numeric   |
-| rushing_allowed_open_field_yards    | numeric   |
-| rushing_allowed_highlight_yards     | numeric   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Four-digit season year (e.g. 2019). |
+| team_id | integer | CFBD internal team identifier. |
+| team | character | Full team name (e.g. "TCU"). |
+| conference | character | Team conference name (e.g. "Big 12"). |
+| explosiveness | numeric | Offensive opponent-adjusted explosiveness rate (higher = more big plays). |
+| explosiveness_allowed | numeric | Defensive opponent-adjusted explosiveness rate allowed. |
+| epa_total | numeric | Opponent-adjusted total offensive EPA per play (predicted points added). |
+| epa_passing | numeric | Opponent-adjusted offensive passing EPA per play. |
+| epa_rushing | numeric | Opponent-adjusted offensive rushing EPA per play. |
+| epa_allowed_total | numeric | Opponent-adjusted total defensive EPA per play allowed. |
+| epa_allowed_passing | numeric | Opponent-adjusted defensive passing EPA per play allowed. |
+| epa_allowed_rushing | numeric | Opponent-adjusted defensive rushing EPA per play allowed. |
+| success_rate_total | numeric | Opponent-adjusted offensive success rate across all plays (proportion 0-1). |
+| success_rate_standard_downs | numeric | Opponent-adjusted offensive success rate on standard downs (proportion 0-1). |
+| success_rate_passing_downs | numeric | Opponent-adjusted offensive success rate on passing downs (proportion 0-1). |
+| success_rate_allowed_total | numeric | Opponent-adjusted defensive success rate allowed across all plays (proportion 0-1). |
+| success_rate_allowed_standard_downs | numeric | Opponent-adjusted defensive success rate allowed on standard downs (proportion 0-1). |
+| success_rate_allowed_passing_downs | numeric | Opponent-adjusted defensive success rate allowed on passing downs (proportion 0-1). |
+| rushing_line_yards | numeric | Opponent-adjusted offensive line yards per rush (Football Outsiders methodology). |
+| rushing_second_level_yards | numeric | Opponent-adjusted offensive second-level yards per rush (5-10 yards past line of scrimmage). |
+| rushing_open_field_yards | numeric | Opponent-adjusted offensive open-field yards per rush (10+ yards past line of scrimmage). |
+| rushing_highlight_yards | numeric | Opponent-adjusted offensive highlight yards per opportunity rush. |
+| rushing_allowed_line_yards | numeric | Opponent-adjusted defensive line yards per rush allowed. |
+| rushing_allowed_second_level_yards | numeric | Opponent-adjusted defensive second-level yards per rush allowed. |
+| rushing_allowed_open_field_yards | numeric | Opponent-adjusted defensive open-field yards per rush allowed. |
+| rushing_allowed_highlight_yards | numeric | Opponent-adjusted defensive highlight yards per opportunity rush allowed. |
 
 ## See also
 
@@ -81,7 +81,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_team_season(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted team season PPA data from CollegeFootballData.com ─────────
-#> ℹ Data updated: 2026-01-19 16:22:04 UTC
+#> ℹ Data updated: 2026-06-08 01:42:01 UTC
 #> # A tibble: 1 × 26
 #>    year team_id team  conference explosiveness explosiveness_allowed epa_total
 #>   <int>   <int> <chr> <chr>              <dbl>                 <dbl>     <dbl>

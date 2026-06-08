@@ -25,128 +25,35 @@ cfbd_ratings_sp_conference(year = NULL, conference = NULL)
 
 `cfbd_ratings_sp_conference()` - A data frame with 25 variables:
 
-- `year`: integer.:
-
-  Season of the conference rating.
-
-- `conference`: character.:
-
-  Conference name.
-
-- `rating`: double.:
-
-  Conference SP+ rating.
-
-- `second_order_wins`: logical.:
-
-  Second-order wins for the conference - Not available for recent
-  seasons.
-
-- `sos`: logical.:
-
-  Strength of schedule for the conference - Not available for recent
-  seasons..
-
-- `offense_rating`: double.:
-
-  Overall offense rating for the conference.
-
-- `offense_success`: logical.:
-
-  Offense success rating for the conference - Not available for recent
-  seasons.
-
-- `offense_explosiveness`: logical.:
-
-  Offense explosiveness rating for the conference - Not available for
-  recent seasons.
-
-- `offense_rushing`: logical.:
-
-  Offense rushing rating for the conference - Not available for recent
-  seasons.
-
-- `offense_passing`: logical.:
-
-  Offense passing rating for the conference - Not available for recent
-  seasons.
-
-- `offense_standard_downs`: logical.:
-
-  Offense standard downs rating for the conference - Not available for
-  recent seasons.
-
-- `offense_passing_downs`: logical.:
-
-  Offensive passing downs rating for the conference - Not available for
-  recent seasons.
-
-- `offense_run_rate`: logical.:
-
-  Offense rushing rate for the conference - Not available for recent
-  seasons.
-
-- `offense_pace`: logical.:
-
-  Offense pace factor for the conference - Not available for recent
-  seasons.
-
-- `defense_ranking`: integer.:
-
-  Overall defense ranking for the conference.
-
-- `defense_rating`: double.:
-
-  Overall defense rating for the conference.
-
-- `defense_success`: logical.:
-
-  Defense success rating for the conference - Not available for recent
-  seasons.
-
-- `defense_explosiveness`: logical.:
-
-  Defense explosiveness rating for the conference - Not available for
-  recent seasons.
-
-- `defense_rushing`: logical.:
-
-  Defense rushing rating for the conference - Not available for recent
-  seasons.
-
-- `defense_passing`: logical.:
-
-  Defense passing rating for the conference - Not available for recent
-  seasons.
-
-- `defense_standard_downs`: logical.:
-
-  Defense standard downs rating for the conference - Not available for
-  recent seasons.
-
-- `defense_passing_downs`: logical.:
-
-  Defensive passing downs rating for the conference - Not available for
-  recent seasons.
-
-- `defense_havoc_total`: logical.:
-
-  Total defensive havoc rate for the conference - Not available for
-  recent seasons.
-
-- `defense_havoc_front_seven`: logical.:
-
-  Defense havoc rate from front 7 players for the conference - Not
-  available for recent seasons.
-
-- `defense_havoc_db`: logical.:
-
-  Defense havoc rate from defensive backs for the conference - Not
-  available for recent seasons.
-
-- `special_teams_rating`: double.:
-
-  Special teams rating for the conference.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Season of the conference rating. |
+| conference | character | Conference name. |
+| rating | numeric | Conference SP+ rating. |
+| second_order_wins | logical | Second-order wins for the conference - Not available for recent seasons. |
+| sos | logical | Strength of schedule for the conference - Not available for recent seasons. |
+| offense_rating | numeric | Overall offense rating for the conference. |
+| offense_success | logical | Offense success rating for the conference - Not available for recent seasons. |
+| offense_explosiveness | logical | Offense explosiveness rating for the conference - Not available for recent seasons. |
+| offense_rushing | logical | Offense rushing rating for the conference - Not available for recent seasons. |
+| offense_passing | logical | Offense passing rating for the conference - Not available for recent seasons. |
+| offense_standard_downs | logical | Offense standard downs rating for the conference - Not available for recent seasons. |
+| offense_passing_downs | logical | Offensive passing downs rating for the conference - Not available for recent seasons. |
+| offense_run_rate | logical | Offense rushing rate for the conference - Not available for recent seasons. |
+| offense_pace | logical | Offense pace factor for the conference - Not available for recent seasons. |
+| defense_ranking | integer | Overall defense ranking for the conference. |
+| defense_rating | numeric | Overall defense rating for the conference. |
+| defense_success | logical | Defense success rating for the conference - Not available for recent seasons. |
+| defense_explosiveness | logical | Defense explosiveness rating for the conference - Not available for recent seasons. |
+| defense_rushing | logical | Defense rushing rating for the conference - Not available for recent seasons. |
+| defense_passing | logical | Defense passing rating for the conference - Not available for recent seasons. |
+| defense_standard_downs | logical | Defense standard downs rating for the conference - Not available for recent seasons. |
+| defense_passing_downs | logical | Defensive passing downs rating for the conference - Not available for recent seasons. |
+| defense_havoc_total | logical | Total defensive havoc rate for the conference - Not available for recent seasons. |
+| defense_havoc_front_seven | logical | Defense havoc rate from front 7 players for the conference - Not available for recent seasons. |
+| defense_havoc_db | logical | Defense havoc rate from defensive backs for the conference - Not available for recent seasons. |
+| special_teams_rating | numeric | Special teams rating for the conference. |
 
 ## See also
 
@@ -162,8 +69,8 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_sp_conference(year = 2019))
-#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:42 UTC
+#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:40 UTC
 #> # A tibble: 11 × 25
 #>     year conference        rating second_order_wins sos   offense_rating
 #>    <int> <chr>              <dbl> <lgl>             <lgl>          <dbl>
@@ -187,8 +94,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_havoc_front_seven <lgl>, defense_havoc_db <lgl>, …
 
   try(cfbd_ratings_sp_conference(year = 2012, conference = "SEC"))
-#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:42 UTC
+#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:40 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>
@@ -202,8 +109,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_havoc_front_seven <dbl>, defense_havoc_db <dbl>, …
 
   try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
-#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:42 UTC
+#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:40 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>

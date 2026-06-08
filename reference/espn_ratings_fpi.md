@@ -18,81 +18,47 @@ espn_ratings_fpi(year = 2019)
 
 A data frame with 20 variables:
 
-- `year`: integer.:
+- `year`: integer. Season of the Football Power Index (FPI) Rating.
 
-  Season of the Football Power Index (FPI) Rating.
+- `team_id`: integer. Unique ESPN team ID - `team_id`.
 
-- `team_id`: integer.:
+- `team_name`: character. Team Name.
 
-  Unique ESPN team ID - `team_id`.
+- `team_abbreviation`: character. Team abbreviation.
 
-- `team_name`: character.:
+- `fpi`: character. Football Power Index (FPI) Rating.
 
-  Team Name.
+- `fpi_rk`: character. Football Power Index (FPI) Rank.
 
-- `team_abbreviation`: character.:
+- `trend`: character. Football Power Index (FPI) ranking trend.
 
-  Team abbreviation.
+- `projected_wins`: character. Projected Win total for the season.
 
-- `fpi`: character.:
+- `projected_losses`: character. Projected Loss total for the season.
 
-  Football Power Index (FPI) Rating.
+- `win_out_pct`: double. Probability the team wins out.
 
-- `fpi_rk`: character.:
+- `win_6_pct`: double. Probability the team wins at least six games.
 
-  Football Power Index (FPI) Rank.
+- `win_division_pct`: double. Probability the team wins at their
+  division.
 
-- `trend`: character.:
+- `playoff_pct`: double. Probability the team reaches the playoff.
 
-  Football Power Index (FPI) ranking trend.
+- `nc_game_pct`: double. Probability the team reaches the national
+  championship game.
 
-- `projected_wins`: character.:
+- `nc_win_pct`: double. Probability the team wins the national
+  championship game.
 
-  Projected Win total for the season.
+- `win_conference_pct`: double. Probability the team wins their
+  conference game.
 
-- `projected_losses`: character.:
+- `w`: integer. Wins on the season.
 
-  Projected Loss total for the season.
+- `l`: integer. Losses on the season.
 
-- `win_out_pct`: double.:
-
-  Probability the team wins out.
-
-- `win_6_pct`: double.:
-
-  Probability the team wins at least six games.
-
-- `win_division_pct`: double.:
-
-  Probability the team wins at their division.
-
-- `playoff_pct`: double.:
-
-  Probability the team reaches the playoff.
-
-- `nc_game_pct`: double.:
-
-  Probability the team reaches the national championship game.
-
-- `nc_win_pct`: double.:
-
-  Probability the team wins the national championship game.
-
-- `win_conference_pct`: double.:
-
-  Probability the team wins their conference game.
-
-- `w`: integer.:
-
-  Wins on the season.
-
-- `l`: integer.:
-
-  Losses on the season.
-
-- `t`: character.:
-
-  Ties on the season.
+- `t`: character. Ties on the season.
 
 ## Details
 
@@ -103,25 +69,25 @@ Adapted from sabinanalytic's fork of the cfbfastR repo
 ``` r
 # \donttest{
   try(espn_ratings_fpi(year=2019))
-#> ── FPI rating data from ESPN ───────────────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:21 UTC
-#> # A tibble: 130 × 19
-#>     year team_id team_name  team_abbreviation fpi   fpi_rk trend projected_wins
-#>    <int>   <int> <chr>      <chr>             <chr> <chr>  <chr> <chr>         
-#>  1  2019     194 Ohio State OSU               33.7  1st    -     13.0          
-#>  2  2019     228 Clemson    CLEM              31.5  2nd    -     14.0          
-#>  3  2019      99 LSU        LSU               30.3  3rd    -     15.0          
-#>  4  2019     333 Alabama    ALA               29.4  4th    -     11.0          
-#>  5  2019      61 Georgia    UGA               24.0  5th    -     12.0          
-#>  6  2019    2483 Oregon     ORE               21.7  6th    -     12.0          
-#>  7  2019     213 Penn State PSU               21.5  7th    -     11.0          
-#>  8  2019     275 Wisconsin  WIS               21.3  8th    -     10.0          
-#>  9  2019      57 Florida    FLA               21.3  9th    -     11.0          
-#> 10  2019       2 Auburn     AUB               21.3  10th   -     9.0           
+#> ── FPI rating data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:48:07 UTC
+#> # A tibble: 130 × 20
+#>    season  year team_id team_name  team_abbreviation fpi   fpi_rk trend
+#>     <dbl> <int>   <int> <chr>      <chr>             <chr> <chr>  <chr>
+#>  1   2019  2019     194 Ohio State OSU               33.7  1st    -    
+#>  2   2019  2019     228 Clemson    CLEM              31.5  2nd    -    
+#>  3   2019  2019      99 LSU        LSU               30.3  3rd    -    
+#>  4   2019  2019     333 Alabama    ALA               29.4  4th    -    
+#>  5   2019  2019      61 Georgia    UGA               24.0  5th    -    
+#>  6   2019  2019    2483 Oregon     ORE               21.7  6th    -    
+#>  7   2019  2019     213 Penn State PSU               21.5  7th    -    
+#>  8   2019  2019     275 Wisconsin  WIS               21.3  8th    -    
+#>  9   2019  2019      57 Florida    FLA               21.3  9th    -    
+#> 10   2019  2019       2 Auburn     AUB               21.3  10th   -    
 #> # ℹ 120 more rows
-#> # ℹ 11 more variables: projected_losses <chr>, win_out_pct <dbl>,
-#> #   win_6_pct <dbl>, win_division_pct <dbl>, playoff_pct <dbl>,
-#> #   nc_game_pct <dbl>, nc_win_pct <dbl>, win_conference_pct <dbl>, w <int>,
-#> #   l <int>, t <chr>
+#> # ℹ 12 more variables: projected_wins <chr>, projected_losses <chr>,
+#> #   win_out_pct <dbl>, win_6_pct <dbl>, win_division_pct <dbl>,
+#> #   playoff_pct <dbl>, nc_game_pct <dbl>, nc_win_pct <dbl>,
+#> #   win_conference_pct <dbl>, w <int>, l <int>, t <chr>
 # }
 ```

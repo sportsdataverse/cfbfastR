@@ -37,41 +37,18 @@ cfbd_metrics_wp_pregame(
 
 `cfbd_metrics_wp_pregame()` - A data frame with 9 variables:
 
-- `season`: integer.:
-
-  Season of game.
-
-- `season_type`: character.:
-
-  Season type of game.
-
-- `week`: integer.:
-
-  Game week of the season.
-
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `home_team`: character.:
-
-  Home team name.
-
-- `away_team`: character.:
-
-  Away team name.
-
-- `spread`: integer.:
-
-  Betting line provider spread.
-
-- `home_win_prob`: double.:
-
-  Home win probability - pre-game prediction.
-
-- `away_win_prob`: double.:
-
-  Away win probability - pre-game prediction.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Season of the game. |
+| season_type | character | Season type of the game (regular, postseason, etc.). |
+| week | integer | Game week of the season. |
+| game_id | integer | Referencing game id. |
+| home_team | character | Home team name. |
+| away_team | character | Away team name. |
+| spread | numeric | Betting line provider spread. |
+| home_win_prob | numeric | Home win probability - pre-game prediction (0-1). |
+| away_win_prob | numeric | Away win probability - pre-game prediction (0-1). |
 
 ## See also
 
@@ -93,8 +70,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M"))
-#> ── pre-game WP data from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:05 UTC
+#> ── pre-game WP data from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:42:02 UTC
 #> # A tibble: 1 × 9
 #>   season season_type  week   game_id home_team away_team    spread home_win_prob
 #>    <int> <chr>       <int>     <int> <chr>     <chr>         <int>         <dbl>

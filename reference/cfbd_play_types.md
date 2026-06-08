@@ -12,23 +12,19 @@ cfbd_play_types()
 
 `cfbd_play_types()` - A data frame with 48 rows and 3 variables:
 
-- `play_type_id`: integer:
-
-  Referencing play type id.
-
-- `text`: character:
-
-  play type description.
-
-- `abbreviation`: character:
-
-  play type abbreviation used for function call
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| play_type_id | integer | CFBD play type identifier (matches `play_type` IDs in [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)). |
+| text | character | Human-readable play type description (e.g. "Rush", "Pass Reception", "Field Goal"). |
+| abbreviation | character | Short play type abbreviation used as the `play_type` filter argument in API calls. |
 
 ## See also
 
 Other CFBD PBP:
 [`cfbd_live_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.md),
 [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+[`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md),
 [`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md),
 [`cfbd_play_stats_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.md),
 [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)
@@ -38,8 +34,8 @@ Other CFBD PBP:
 ``` r
 # \donttest{
   try(cfbd_play_types())
-#> ── Play types data from CollegeFootballData.com ────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:33 UTC
+#> ── Play types data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:31 UTC
 #> # A tibble: 49 × 3
 #>    play_type_id text              abbreviation
 #>           <int> <chr>             <chr>       

@@ -22,13 +22,11 @@ cfbd_metrics_ppa_predicted(down, distance)
 
 `cfbd_metrics_ppa_predicted()` - A data frame with 2 variables:
 
-- `yard_line`: integer.:
-
-  Yards to goal
-
-- `predicted_points`: character.:
-
-  Predicted points at in that down-distance-yardline scenario
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| yard_line | integer | Yards to goal. |
+| predicted_points | numeric | Predicted points in that down-distance-yardline scenario. |
 
 ## See also
 
@@ -50,8 +48,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_predicted(down = 1, distance = 10))
-#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:01 UTC
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:57 UTC
 #> # A tibble: 90 × 2
 #>    yard_line predicted_points
 #>        <int>            <dbl>
@@ -68,8 +66,8 @@ Other CFBD Metrics:
 #> # ℹ 80 more rows
 
   try(cfbd_metrics_ppa_predicted(down = 3, distance = 10))
-#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:01 UTC
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:57 UTC
 #> # A tibble: 90 × 2
 #>    yard_line predicted_points
 #>        <int>            <dbl>

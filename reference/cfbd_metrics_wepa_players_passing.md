@@ -46,17 +46,17 @@ cfbd_metrics_wepa_players_passing(
 
 `cfbd_metrics_wepa_players_passing()` - A data frame with 8 variables:
 
-|              |           |
-|--------------|-----------|
-| col_name     | types     |
-| year         | integer   |
-| athlete_id   | character |
-| athlete_name | character |
-| position     | character |
-| team         | character |
-| conference   | character |
-| wepa         | numeric   |
-| plays        | integer   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Four-digit season year (e.g. 2019). |
+| athlete_id | character | CFBD athlete identifier (use with [`cfbd_player_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.md)). |
+| athlete_name | character | Player full name. |
+| position | character | Player position abbreviation (e.g. "QB", "RB"). |
+| team | character | Full team name (e.g. "TCU"). |
+| conference | character | Team conference name (e.g. "Big 12"). |
+| wepa | numeric | Opponent-adjusted weighted EPA (passing predicted points added). |
+| plays | integer | Total qualifying passing plays included in the WEPA calculation. |
 
 ## See also
 
@@ -79,7 +79,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_players_passing(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted players passing PPA data from CollegeFootballData.com ─────
-#> ℹ Data updated: 2026-01-19 16:22:03 UTC
+#> ℹ Data updated: 2026-06-08 01:41:59 UTC
 #> # A tibble: 1 × 8
 #>    year athlete_id athlete_name position team  conference  wepa plays
 #>   <int> <chr>      <chr>        <chr>    <chr> <chr>      <dbl> <int>

@@ -12,18 +12,12 @@ cfbd_metrics_fg_ep()
 
 `cfbd_metrics_fg_ep()` - A data frame with 3 variables:
 
-- `yards_to_goal`: integer.:
-
-  Yards to the goal line (0-100).
-
-- `distance`: integer.:
-
-  Distance to goal posts from kicking location (17 yds further than
-  yards to goal).
-
-- `expected_points`: double.:
-
-  Expected points given yards to goal / distance.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| yards_to_goal | integer | Yards to the goal line (0-100). |
+| distance | integer | Distance to goal posts from kicking location (17 yds further than yards to goal). |
+| expected_points | numeric | Expected points given yards to goal / distance. |
 
 ## See also
 
@@ -45,8 +39,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_fg_ep())
-#> ── FG expected points data from CollegeFootballData.com ────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:58 UTC
+#> ── FG expected points data from CollegeFootballData.com ────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:54 UTC
 #> # A tibble: 100 × 3
 #>    yards_to_goal distance expected_points
 #>            <int>    <int>           <dbl>

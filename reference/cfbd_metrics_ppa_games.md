@@ -49,83 +49,30 @@ cfbd_metrics_ppa_games(
 
 ## Value
 
-`cfbd_metrics_ppa_games()` - A data frame with 18 variables:
+`cfbd_metrics_ppa_games()` - A data frame with 19 variables:
 
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `season`: integer.:
-
-  Season of the game.
-
-- `week`: integer.:
-
-  Game week of the season.
-
-- `season_type`: character.:
-
-  Season Type (regular, postseason, etc.
-
-- `conference`: character.:
-
-  Conference of the team.
-
-- `team`: character.:
-
-  Team name.
-
-- `opponent`: character.:
-
-  Team Opponent.
-
-- `off_overall`: character.:
-
-  Offense overall predicted points added (PPA).
-
-- `off_passing`: character.:
-
-  Offense passing predicted points added (PPA).
-
-- `off_rushing`: character.:
-
-  Offense rushing predicted points added (PPA).
-
-- `off_first_down`: character.:
-
-  Offense 1st down predicted points added (PPA).
-
-- `off_second_down`: character.:
-
-  Offense 2nd down predicted points added (PPA).
-
-- `off_third_down`: character.:
-
-  Offense 3rd down predicted points added (PPA).
-
-- `def_overall`: character.:
-
-  Defense overall predicted points added (PPA).
-
-- `def_passing`: character.:
-
-  Defense passing predicted points added (PPA).
-
-- `def_rushing`: character.:
-
-  Defense rushing predicted points added (PPA).
-
-- `def_first_down`: character.:
-
-  Defense 1st down predicted points added (PPA).
-
-- `def_second_down`: character.:
-
-  Defense 2nd down predicted points added (PPA).
-
-- `def_third_down`: character.:
-
-  Defense 3rd down predicted points added (PPA).
+|                 |           |                                                |
+|-----------------|-----------|------------------------------------------------|
+| col_name        | types     | description                                    |
+| game_id         | integer   | Referencing game id.                           |
+| season          | integer   | Season of the game.                            |
+| week            | integer   | Game week of the season.                       |
+| season_type     | character | Season type (regular, postseason, etc.).       |
+| conference      | character | Conference of the team.                        |
+| team            | character | Team name.                                     |
+| opponent        | character | Team opponent name.                            |
+| off_overall     | numeric   | Offense overall predicted points added (PPA).  |
+| off_passing     | numeric   | Offense passing predicted points added (PPA).  |
+| off_rushing     | numeric   | Offense rushing predicted points added (PPA).  |
+| off_first_down  | numeric   | Offense 1st down predicted points added (PPA). |
+| off_second_down | numeric   | Offense 2nd down predicted points added (PPA). |
+| off_third_down  | numeric   | Offense 3rd down predicted points added (PPA). |
+| def_overall     | numeric   | Defense overall predicted points added (PPA).  |
+| def_passing     | numeric   | Defense passing predicted points added (PPA).  |
+| def_rushing     | numeric   | Defense rushing predicted points added (PPA).  |
+| def_first_down  | numeric   | Defense 1st down predicted points added (PPA). |
+| def_second_down | numeric   | Defense 2nd down predicted points added (PPA). |
+| def_third_down  | numeric   | Defense 3rd down predicted points added (PPA). |
 
 ## See also
 
@@ -147,8 +94,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
-#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:58 UTC
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:55 UTC
 #> # A tibble: 12 × 19
 #>      game_id season  week season_type team  conference opponent      off_overall
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <dbl>

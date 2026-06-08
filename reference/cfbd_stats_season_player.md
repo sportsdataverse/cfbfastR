@@ -58,251 +58,76 @@ cfbd_stats_season_player(
 
 `cfbd_stats_season_player()` - A data frame with 59 variables:
 
-- `year`: integer.:
-
-  Season of the player stats.
-
-- `team`: character.:
-
-  Team name.
-
-- `conference`: character.:
-
-  Conference of the team.
-
-- `athlete_id`: character.:
-
-  Athlete referencing id.
-
-- `player`: character.:
-
-  Player name.
-
-- `position`: character.:
-
-  Player position.
-
-- `passing_completions`: double.:
-
-  Passing completions.
-
-- `passing_att`: double.:
-
-  Passing attempts.
-
-- `passing_pct`: double.:
-
-  Passing completion percentage.
-
-- `passing_yds`: double.:
-
-  Passing yardage.
-
-- `passing_td`: double.:
-
-  Passing touchdowns.
-
-- `passing_int`: double.:
-
-  Passing interceptions.
-
-- `passing_ypa`: double.:
-
-  Passing yards per attempt.
-
-- `rushing_car`: double.:
-
-  Rushing yards per carry.
-
-- `rushing_yds`: double.:
-
-  Rushing yards total.
-
-- `rushing_td`: double.:
-
-  Rushing touchdowns.
-
-- `rushing_ypc`: double.:
-
-  Rushing yards per carry.
-
-- `rushing_long`: double.:
-
-  Rushing longest yardage attempt.
-
-- `receiving_rec`: double.:
-
-  Receiving - pass receptions.
-
-- `receiving_yds`: double.:
-
-  Receiving - pass reception yards.
-
-- `receiving_td`: double.:
-
-  Receiving - passing reception touchdowns.
-
-- `receiving_ypr`: double.:
-
-  Receiving - passing yards per reception.
-
-- `receiving_long`: double.:
-
-  Receiving - longest pass reception yardage.
-
-- `fumbles_fum`: double.:
-
-  Fumbles.
-
-- `fumbles_rec`: double.:
-
-  Fumbles recovered.
-
-- `fumbles_lost`: double.:
-
-  Fumbles lost.
-
-- `defensive_solo`: double.:
-
-  Defensive solo tackles.
-
-- `defensive_tot`: double.:
-
-  Defensive total tackles.
-
-- `defensive_tfl`: double.:
-
-  Defensive tackles for loss.
-
-- `defensive_sacks`: double.:
-
-  Defensive sacks.
-
-- `defensive_qb_hur`: double.:
-
-  Defensive quarterback hurries.
-
-- `interceptions_int`: double.:
-
-  Interceptions total.
-
-- `interceptions_yds`: double.:
-
-  Interception return yards.
-
-- `interceptions_avg`: double.:
-
-  Interception return yards average.
-
-- `interceptions_td`: double.:
-
-  Interception return touchdowns.
-
-- `defensive_pd`: double.:
-
-  Defense - passes defensed.
-
-- `defensive_td`: double.:
-
-  Defense - defensive touchdowns.
-
-- `kicking_fgm`: double.:
-
-  Kicking - field goals made.
-
-- `kicking_fga`: double.:
-
-  Kicking - field goals attempted.
-
-- `kicking_pct`: double.:
-
-  Kicking - field goal percentage.
-
-- `kicking_xpa`: double.:
-
-  Kicking - extra points attempted.
-
-- `kicking_xpm`: double.:
-
-  Kicking - extra points made.
-
-- `kicking_pts`: double.:
-
-  Kicking - total points.
-
-- `kicking_long`: double.:
-
-  Kicking - longest successful field goal attempt.
-
-- `kick_returns_no`: double.:
-
-  Kick Returns - number of kick returns.
-
-- `kick_returns_yds`: double.:
-
-  Kick Returns - kick return yards.
-
-- `kick_returns_avg`: double.:
-
-  Kick Returns - kick return average yards per return.
-
-- `kick_returns_td`: double.:
-
-  Kick Returns - kick return touchdowns.
-
-- `kick_returns_long`: double.:
-
-  Kick Returns - longest kick return yardage.
-
-- `punting_no`: double.:
-
-  Punting - number of punts.
-
-- `punting_yds`: double.:
-
-  Punting - punting yardage.
-
-- `punting_ypp`: double.:
-
-  Punting - yards per punt.
-
-- `punting_long`: double.:
-
-  Punting - longest punt yardage.
-
-- `punting_in_20`: double.:
-
-  Punting - punt downed inside the 20 yard line.
-
-- `punting_tb`: double.:
-
-  Punting - punt caused a touchback.
-
-- `punt_returns_no`: double.:
-
-  Punt Returns - number of punt returns.
-
-- `punt_returns_yds`: double.:
-
-  Punt Returns - punt return yardage total.
-
-- `punt_returns_avg`: double.:
-
-  Punt Returns - punt return average yards per return.
-
-- `punt_returns_td`: double.:
-
-  Punt Returns - punt return touchdowns.
-
-- `punt_returns_long`: double.:
-
-  Punt Returns - longest punt return yardage.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Season of the player stats. |
+| team | character | Team name. |
+| conference | character | Conference of the team. |
+| athlete_id | character | Athlete referencing id. |
+| player | character | Player name. |
+| position | character | Player position. |
+| passing_completions | double | Passing completions. |
+| passing_att | double | Passing attempts. |
+| passing_pct | double | Passing completion percentage. |
+| passing_yds | double | Passing yardage. |
+| passing_td | double | Passing touchdowns. |
+| passing_int | double | Passing interceptions. |
+| passing_ypa | double | Passing yards per attempt. |
+| rushing_car | double | Rushing yards per carry. |
+| rushing_yds | double | Rushing yards total. |
+| rushing_td | double | Rushing touchdowns. |
+| rushing_ypc | double | Rushing yards per carry. |
+| rushing_long | double | Rushing longest yardage attempt. |
+| receiving_rec | double | Receiving - pass receptions. |
+| receiving_yds | double | Receiving - pass reception yards. |
+| receiving_td | double | Receiving - passing reception touchdowns. |
+| receiving_ypr | double | Receiving - passing yards per reception. |
+| receiving_long | double | Receiving - longest pass reception yardage. |
+| fumbles_fum | double | Fumbles. |
+| fumbles_rec | double | Fumbles recovered. |
+| fumbles_lost | double | Fumbles lost. |
+| defensive_solo | double | Defensive solo tackles. |
+| defensive_tot | double | Defensive total tackles. |
+| defensive_tfl | double | Defensive tackles for loss. |
+| defensive_sacks | double | Defensive sacks. |
+| defensive_qb_hur | double | Defensive quarterback hurries. |
+| interceptions_int | double | Interceptions total. |
+| interceptions_yds | double | Interception return yards. |
+| interceptions_avg | double | Interception return yards average. |
+| interceptions_td | double | Interception return touchdowns. |
+| defensive_pd | double | Defense - passes defensed. |
+| defensive_td | double | Defense - defensive touchdowns. |
+| kicking_fgm | double | Kicking - field goals made. |
+| kicking_fga | double | Kicking - field goals attempted. |
+| kicking_pct | double | Kicking - field goal percentage. |
+| kicking_xpa | double | Kicking - extra points attempted. |
+| kicking_xpm | double | Kicking - extra points made. |
+| kicking_pts | double | Kicking - total points. |
+| kicking_long | double | Kicking - longest successful field goal attempt. |
+| kick_returns_no | double | Kick Returns - number of kick returns. |
+| kick_returns_yds | double | Kick Returns - kick return yards. |
+| kick_returns_avg | double | Kick Returns - kick return average yards per return. |
+| kick_returns_td | double | Kick Returns - kick return touchdowns. |
+| kick_returns_long | double | Kick Returns - longest kick return yardage. |
+| punting_no | double | Punting - number of punts. |
+| punting_yds | double | Punting - punting yardage. |
+| punting_ypp | double | Punting - yards per punt. |
+| punting_long | double | Punting - longest punt yardage. |
+| punting_in_20 | double | Punting - punt downed inside the 20 yard line. |
+| punting_tb | double | Punting - punt caused a touchback. |
+| punt_returns_no | double | Punt Returns - number of punt returns. |
+| punt_returns_yds | double | Punt Returns - punt return yardage total. |
+| punt_returns_avg | double | Punt Returns - punt return average yards per return. |
+| punt_returns_td | double | Punt Returns - punt return touchdowns. |
+| punt_returns_long | double | Punt Returns - longest punt return yardage. |
 
 ## See also
 
 Other CFBD Stats:
 [`cfbd_stats_categories()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.md),
 [`cfbd_stats_game_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.md),
+[`cfbd_stats_game_havoc()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_havoc.md),
 [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md),
 [`cfbd_stats_season_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_team.md)
 
@@ -312,7 +137,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-01-19 16:22:51 UTC
+#> ℹ Data updated: 2026-06-08 01:44:49 UTC
 #> # A tibble: 544 × 60
 #>     year team          conference athlete_id player position passing_completions
 #>    <dbl> <chr>         <chr>      <chr>      <chr>  <chr>                  <dbl>
@@ -336,7 +161,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-01-19 16:22:54 UTC
+#> ℹ Data updated: 2026-06-08 01:44:50 UTC
 #> # A tibble: 2 × 60
 #>    year team  conference athlete_id player        position passing_completions
 #>   <dbl> <chr> <chr>      <chr>      <chr>         <chr>                  <dbl>
@@ -352,7 +177,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-01-19 16:22:56 UTC
+#> ℹ Data updated: 2026-06-08 01:44:51 UTC
 #> # A tibble: 3 × 60
 #>    year team          conference athlete_id player  position passing_completions
 #>   <dbl> <chr>         <chr>      <chr>      <chr>   <chr>                  <dbl>

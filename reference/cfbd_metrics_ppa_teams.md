@@ -40,89 +40,30 @@ cfbd_metrics_ppa_teams(
 
 `cfbd_metrics_ppa_teams()` - A data frame with 21 variables:
 
-- `season`: integer.:
-
-  .
-
-- `conference`: character.:
-
-  .
-
-- `team`: character.:
-
-  .
-
-- `off_overall`: character.:
-
-  Offense overall predicted points added (PPA).
-
-- `off_passing`: character.:
-
-  Offense passing predicted points added (PPA).
-
-- `off_rushing`: character.:
-
-  Offense rushing predicted points added (PPA).
-
-- `off_first_down`: character.:
-
-  Offense 1st down predicted points added (PPA).
-
-- `off_second_down`: character.:
-
-  Offense 2nd down predicted points added (PPA).
-
-- `off_third_down`: character.:
-
-  Offense 3rd down predicted points added (PPA).
-
-- `off_cumulative_total`: character.:
-
-  Offense cumulative total predicted points added (PPA).
-
-- `off_cumulative_passing`: character.:
-
-  Offense cumulative total passing predicted points added (PPA).
-
-- `off_cumulative_rushing`: character.:
-
-  Offense cumulative total rushing predicted points added (PPA).
-
-- `def_overall`: character.:
-
-  Defense overall predicted points added (PPA).
-
-- `def_passing`: character.:
-
-  Defense passing predicted points added (PPA).
-
-- `def_rushing`: character.:
-
-  Defense rushing predicted points added (PPA).
-
-- `def_first_down`: character.:
-
-  Defense 1st down predicted points added (PPA).
-
-- `def_second_down`: character.:
-
-  Defense 2nd down predicted points added (PPA).
-
-- `def_third_down`: character.:
-
-  Defense 3rd down predicted points added (PPA).
-
-- `def_cumulative_total`: character.:
-
-  Defense cumulative total predicted points added (PPA).
-
-- `def_cumulative_passing`: character.:
-
-  Defense cumulative total passing predicted points added (PPA).
-
-- `def_cumulative_rushing`: character.:
-
-  Defense cumulative total rushing predicted points added (PPA).
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Four-digit season year. |
+| conference | character | Team conference name. |
+| team | character | Team name. |
+| off_overall | numeric | Offense overall predicted points added (PPA). |
+| off_passing | numeric | Offense passing predicted points added (PPA). |
+| off_rushing | numeric | Offense rushing predicted points added (PPA). |
+| off_first_down | numeric | Offense 1st down predicted points added (PPA). |
+| off_second_down | numeric | Offense 2nd down predicted points added (PPA). |
+| off_third_down | numeric | Offense 3rd down predicted points added (PPA). |
+| off_cumulative_total | numeric | Offense cumulative total predicted points added (PPA). |
+| off_cumulative_passing | numeric | Offense cumulative total passing predicted points added (PPA). |
+| off_cumulative_rushing | numeric | Offense cumulative total rushing predicted points added (PPA). |
+| def_overall | numeric | Defense overall predicted points added (PPA). |
+| def_passing | numeric | Defense passing predicted points added (PPA). |
+| def_rushing | numeric | Defense rushing predicted points added (PPA). |
+| def_first_down | numeric | Defense 1st down predicted points added (PPA). |
+| def_second_down | numeric | Defense 2nd down predicted points added (PPA). |
+| def_third_down | numeric | Defense 3rd down predicted points added (PPA). |
+| def_cumulative_total | numeric | Defense cumulative total predicted points added (PPA). |
+| def_cumulative_passing | numeric | Defense cumulative total passing predicted points added (PPA). |
+| def_cumulative_rushing | numeric | Defense cumulative total rushing predicted points added (PPA). |
 
 ## See also
 
@@ -144,8 +85,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
-#> ── Team PPA data from CollegeFootballData.com ──────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:02 UTC
+#> ── Team PPA data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:58 UTC
 #> # A tibble: 1 × 21
 #>   season conference team  off_overall off_passing off_rushing off_first_down
 #>    <int> <chr>      <chr>       <dbl>       <dbl>       <dbl>          <dbl>

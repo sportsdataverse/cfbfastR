@@ -12,21 +12,13 @@ cfbd_draft_teams()
 
 `cfbd_draft_teams()` - A data frame with 4 variables:
 
-- `nfl_location`: character.:
-
-  NFL team location (city).
-
-- `nfl_nickname`: integer:
-
-  NFL team nickname (mascot).
-
-- `nfl_display_name`: integer:
-
-  NFL team display name (usually more neat/complete).
-
-- `nfl_logo`: character:
-
-  URL for NFL team logo.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| nfl_location | character | NFL team location (city). |
+| nfl_nickname | character | NFL team nickname (mascot). |
+| nfl_display_name | character | NFL team display name (usually more neat/complete). |
+| nfl_logo | character | URL for NFL team logo. |
 
 ## See also
 
@@ -39,8 +31,8 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_teams())
-#> ── NFL teams data from CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:49 UTC
+#> ── NFL teams data from CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:43 UTC
 #> # A tibble: 32 × 4
 #>    nfl_location nfl_nickname nfl_display_name     nfl_logo                      
 #>    <chr>        <chr>        <chr>                <chr>                         

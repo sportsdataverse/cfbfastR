@@ -1,4 +1,4 @@
-pandoc: 3.1.11
+pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
@@ -9,6 +9,7 @@ articles:
   cfbd_recruiting: cfbd_recruiting.html
   cfbd_stats: cfbd_stats.html
   cfbd_teams: cfbd_teams.html
+  cfbfastR-espn-cookbook: cfbfastR-espn-cookbook.html
   college-football-expected-points-model-fundamentals-part-i: college-football-expected-points-model-fundamentals-part-i.html
   college-football-expected-points-model-fundamentals-part-ii: college-football-expected-points-model-fundamentals-part-ii.html
   college-football-expected-points-model-fundamentals-part-iii: college-football-expected-points-model-fundamentals-part-iii.html
@@ -17,7 +18,7 @@ articles:
   map-tutorial: map-tutorial.html
   nth-rated-recruit: nth-rated-recruit.html
   rolling-epa-graph: rolling-epa-graph.html
-last_built: 2026-01-19T16:21Z
+last_built: 2026-06-08T01:41Z
 urls:
   reference: https://cfbfastR.sportsdataverse.org/reference
   article: https://cfbfastR.sportsdataverse.org/articles

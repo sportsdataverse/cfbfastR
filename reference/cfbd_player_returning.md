@@ -34,65 +34,24 @@ cfbd_player_returning(
 
 `cfbd_player_returning()` - A data frame with 15 variables:
 
-- `season`:integer.:
-
-  Returning player season.
-
-- `team`:character.:
-
-  Team name.
-
-- `conference`:character.:
-
-  Conference of team.
-
-- `total_ppa`:double.:
-
-  Total predicted points added returning.
-
-- `total_passing_ppa`:double.:
-
-  Total passing predicted points added returning.
-
-- `total_receiving_ppa`:double.:
-
-  Total receiving predicted points added returning.
-
-- `total_rushing_ppa`:double.:
-
-  Total rushing predicted points added returning.
-
-- `percent_ppa`:double.:
-
-  Percentage of prior year's predicted points added returning.
-
-- `percent_passing_ppa`:double.:
-
-  Percentage of prior year's passing predicted points added returning.
-
-- `percent_receiving_ppa`:double.:
-
-  Percentage of prior year's receiving predicted points added returning.
-
-- `percent_rushing_ppa`:double.:
-
-  Percentage of prior year's rushing predicted points added returning.
-
-- `usage`:double.:
-
-  .
-
-- `passing_usage`:double.:
-
-  .
-
-- `receiving_usage`:double.:
-
-  .
-
-- `rushing_usage`:double.:
-
-  .
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Four-digit season year for returning production. |
+| team | character | Team name. |
+| conference | character | Conference of team. |
+| total_ppa | numeric | Total predicted points added (PPA) returning. |
+| total_passing_ppa | numeric | Total passing predicted points added returning. |
+| total_receiving_ppa | numeric | Total receiving predicted points added returning. |
+| total_rushing_ppa | numeric | Total rushing predicted points added returning. |
+| percent_ppa | numeric | Percentage of prior year's predicted points added returning. |
+| percent_passing_ppa | numeric | Percentage of prior year's passing predicted points added returning. |
+| percent_receiving_ppa | numeric | Percentage of prior year's receiving predicted points added returning. |
+| percent_rushing_ppa | numeric | Percentage of prior year's rushing predicted points added returning. |
+| usage | numeric | Share of prior year's overall offensive usage returning. |
+| passing_usage | numeric | Share of prior year's passing usage returning. |
+| receiving_usage | numeric | Share of prior year's receiving usage returning. |
+| rushing_usage | numeric | Share of prior year's rushing usage returning. |
 
 ## See also
 
@@ -105,8 +64,8 @@ Other CFBD Players:
 ``` r
 # \donttest{
    try(cfbd_player_returning(year = 2019, team = "Florida State"))
-#> ── Returning production data from CollegeFootballData.com ──── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:34 UTC
+#> ── Returning production data from CollegeFootballData.com ──── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:33 UTC
 #> # A tibble: 1 × 15
 #>   season team         conference total_ppa total_passing_ppa total_receiving_ppa
 #>    <int> <chr>        <chr>          <dbl>             <dbl>               <dbl>

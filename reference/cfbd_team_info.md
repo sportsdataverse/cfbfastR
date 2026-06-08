@@ -36,117 +36,38 @@ cfbd_team_info(
 
 ## Value
 
-`cfbd_team_info()` - A data frame with 12 variables:
+`cfbd_team_info()` - A data frame with 27 variables:
 
-- `team_id`: integer.:
-
-  Referencing team id.
-
-- `school`: character.:
-
-  Team name.
-
-- `mascot`: character.:
-
-  Team mascot.
-
-- `abbreviation`: character.:
-
-  Team abbreviations.
-
-- `alt_name1`: character.:
-
-  Team alternate name 1 (as it appears in `play_text`).
-
-- `alt_name2`: character.:
-
-  Team alternate name 2 (as it appears in `play_text`).
-
-- `alt_name3`: character.:
-
-  Team alternate name 3 (as it appears in `play_text`).
-
-- `conference`: character.:
-
-  Conference of team.
-
-- `division`: character.:
-
-  Division of team within the conference.
-
-- `classification`: character.:
-
-  Conference classification (fbs,fcs,ii,iii)
-
-- `color`: character.:
-
-  Team color (primary).
-
-- `alt_color`: character.:
-
-  Team color (alternate).
-
-- `logos`: character.:
-
-  Team logos.
-
-- `venue_id`: character.:
-
-  Referencing venue id.
-
-- `venue_name`: character.:
-
-  Stadium name.
-
-- `city`: character.:
-
-  Team/venue city.
-
-- `state`: character.:
-
-  Team/venue state.
-
-- `zip`: character.:
-
-  Team/venue zip code (someone double check Miami (FL) on if they're in
-  the same zip code).
-
-- `country_code`: character.:
-
-  Team/venue country code.
-
-- `timezone`: character.:
-
-  Team/venue timezone.
-
-- `latitude`: character.:
-
-  Venue latitude.
-
-- `longitude`: character.:
-
-  Venue longitude.
-
-- `elevation`: character.:
-
-  Venue elevation.
-
-- `capacity`: character.:
-
-  Venue capacity.
-
-- `year_constructed`: character.:
-
-  Year the venue was constructed.
-
-- `grass`: character.:
-
-  TRUE/FALSE response on whether the field is grass or not (oh, and
-  there are so many others).
-
-- `dome`: character.:
-
-  TRUE/FALSE flag for if the venue is a domed stadium.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| team_id | integer | Referencing team id. |
+| school | character | Team name. |
+| mascot | character | Team mascot. |
+| abbreviation | character | Team abbreviations. |
+| alt_name1 | character | Team alternate name 1 (as it appears in `play_text`). |
+| alt_name2 | character | Team alternate name 2 (as it appears in `play_text`). |
+| alt_name3 | character | Team alternate name 3 (as it appears in `play_text`). |
+| conference | character | Conference of team. |
+| division | character | Division of team within the conference. |
+| classification | character | Conference classification (fbs, fcs, ii, iii). |
+| color | character | Team color (primary). |
+| alt_color | character | Team color (alternate). |
+| logos | character | Team logos. |
+| venue_id | character | Referencing venue id. |
+| venue_name | character | Stadium name. |
+| city | character | Team/venue city. |
+| state | character | Team/venue state. |
+| zip | character | Team/venue zip code. |
+| country_code | character | Team/venue country code. |
+| timezone | character | Team/venue timezone. |
+| latitude | numeric | Venue latitude. |
+| longitude | numeric | Venue longitude. |
+| elevation | numeric | Venue elevation. |
+| capacity | integer | Venue capacity. |
+| year_constructed | integer | Year the venue was constructed. |
+| grass | logical | TRUE/FALSE response on whether the field is grass or not. |
+| dome | logical | TRUE/FALSE flag for if the venue is a domed stadium. |
 
 ## See also
 
@@ -161,8 +82,8 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_info(conference = "SEC"))
-#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:02 UTC
+#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:55 UTC
 #> # A tibble: 16 × 29
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
@@ -189,8 +110,8 @@ Other CFBD Teams:
 #> #   capacity <int>, year_constructed <int>, grass <lgl>, dome <lgl>
 
   try(cfbd_team_info(conference = "Ind"))
-#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:02 UTC
+#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:55 UTC
 #> # A tibble: 2 × 29
 #>   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>     <int> <chr>     <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
@@ -203,8 +124,8 @@ Other CFBD Teams:
 #> #   capacity <int>, year_constructed <int>, grass <lgl>, dome <lgl>
 
   try(cfbd_team_info(year = 2019))
-#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:02 UTC
+#> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:55 UTC
 #> # A tibble: 130 × 29
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     

@@ -66,47 +66,21 @@ cfbd_metrics_ppa_players_games(
 
 ## Value
 
-`cfbd_metrics_ppa_players_games()` - A data frame with 9 variables:
+`cfbd_metrics_ppa_players_games()` - A data frame with 10 variables:
 
-- `season`: integer.:
-
-  Season of the game.
-
-- `week`: integer.:
-
-  Game week of the season.
-
-- `athlete_id`: character.:
-
-  Athlete referencing id.
-
-- `name`: character.:
-
-  Athlete name.
-
-- `position`: character.:
-
-  Athlete position.
-
-- `team`: character.:
-
-  Team name.
-
-- `opponent`: character.:
-
-  Team Opponent name.
-
-- `avg_PPA_all`: double.:
-
-  Average overall predicted points added (PPA).
-
-- `avg_PPA_pass`: double.:
-
-  Average passing predicted points added (PPA).
-
-- `avg_PPA_rush`: double.:
-
-  Average rushing predicted points added (PPA).
+|              |           |                                               |
+|--------------|-----------|-----------------------------------------------|
+| col_name     | types     | description                                   |
+| season       | integer   | Season of the game.                           |
+| week         | integer   | Game week of the season.                      |
+| athlete_id   | character | Athlete referencing id.                       |
+| name         | character | Athlete name.                                 |
+| position     | character | Athlete position.                             |
+| team         | character | Team name.                                    |
+| opponent     | character | Team opponent name.                           |
+| avg_PPA_all  | numeric   | Average overall predicted points added (PPA). |
+| avg_PPA_pass | numeric   | Average passing predicted points added (PPA). |
+| avg_PPA_rush | numeric   | Average rushing predicted points added (PPA). |
 
 ## See also
 
@@ -128,8 +102,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_players_games(year = 2019, week = 3, team = "TCU"))
-#> ── Player PPA data from CollegeFootballData.com ────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:00 UTC
+#> ── Player PPA data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:56 UTC
 #> # A tibble: 8 × 11
 #>   season  week season_type athlete_id name   position team  opponent avg_PPA_all
 #>    <int> <int> <chr>       <chr>      <chr>  <chr>    <chr> <chr>          <dbl>

@@ -1,5 +1,7 @@
 # **CFBD Conferences Endpoint Overview**
 
+- `cfbd_conferences()`: Get college football conference information.
+
 **Get college football conference information** Pulls all college
 football conferences and returns as data frame
 
@@ -13,33 +15,28 @@ cfbd_conferences()
 
 `cfbd_conferences()` - A data frame with 94 rows and 5 variables:
 
-- `conference_id`::
+|                |           |                                                |
+|----------------|-----------|------------------------------------------------|
+| col_name       | types     | description                                    |
+| conference_id  | integer   | Referencing conference id.                     |
+| name           | character | Conference name.                               |
+| long_name      | character | Long name for Conference.                      |
+| abbreviation   | character | Conference abbreviation.                       |
+| classification | character | Conference classification (fbs, fcs, ii, iii). |
 
-  Referencing conference id.
+## Details
 
-- `name`::
+### **Get college football conference information**
 
-  Conference name.
-
-- `long_name`::
-
-  Long name for Conference.
-
-- `abbreviation`::
-
-  Conference abbreviation.
-
-- `classification`::
-
-  Conference classification (fbs,fcs,ii,iii)
+    cfbd_conferences()
 
 ## Examples
 
 ``` r
 # \donttest{
   try(cfbd_conferences())
-#> ── Conference data from CollegeFootballData.com ────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:47 UTC
+#> ── Conference data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:41 UTC
 #> # A tibble: 106 × 5
 #>    conference_id name          long_name             abbreviation classification
 #>            <int> <chr>         <chr>                 <chr>        <chr>         

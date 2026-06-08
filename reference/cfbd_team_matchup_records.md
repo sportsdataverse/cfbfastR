@@ -30,33 +30,16 @@ cfbd_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 
 `cfbd_team_matchup_records()` - A data frame with 7 variables:
 
-- `start_year`: character.:
-
-  Span starting year.
-
-- `end_year`: character.:
-
-  Span ending year.
-
-- `team1`: character.:
-
-  First team selected in query.
-
-- `team1_wins`: character.:
-
-  First team wins in series against `team2`.
-
-- `team2`: character.:
-
-  Second team selected in query.
-
-- `team2_wins`: character.:
-
-  Second team wins in series against `team1`.
-
-- `ties`: character.:
-
-  Number of ties in the series.
+|            |           |                                           |
+|------------|-----------|-------------------------------------------|
+| col_name   | types     | description                               |
+| start_year | integer   | Span starting year.                       |
+| end_year   | integer   | Span ending year.                         |
+| team1      | character | First team selected in query.             |
+| team1_wins | integer   | First team wins in series against team2.  |
+| team2      | character | Second team selected in query.            |
+| team2_wins | integer   | Second team wins in series against team1. |
+| ties       | integer   | Number of ties in the series.             |
 
 ## See also
 
@@ -71,16 +54,16 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_matchup_records("Texas", "Oklahoma"))
-#> ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:04 UTC
+#> ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:57 UTC
 #> # A tibble: 1 × 7
 #>   start_year end_year team1 team1_wins team2    team2_wins  ties
 #>        <int>    <int> <chr>      <int> <chr>         <int> <int>
 #> 1       1902     2025 Texas         62 Oklahoma         51     5
 
   try(cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975))
-#> ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:04 UTC
+#> ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:57 UTC
 #> # A tibble: 1 × 7
 #>   start_year end_year team1     team1_wins team2 team2_wins  ties
 #>        <int>    <int> <chr>          <int> <chr>      <int> <int>

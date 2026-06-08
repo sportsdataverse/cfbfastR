@@ -70,100 +70,45 @@ cfbd_betting_lines(
 
 ## Value
 
-Betting information for games with the following columns:
+Betting information for games with the following 21 columns:
 
-- game_id:integer.:
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| game_id | integer | Unique CFBD game identifier. |
+| season | integer | Four-digit season year (e.g. 2024). |
+| season_type | character | Season type (regular, postseason, both). |
+| week | integer | Week of the season; 1-15, or 1-14 for seasons pre-playoff (2013 earlier). |
+| start_date | character | Kickoff timestamp in ISO 8601 format. |
+| home_team | character | Home D-I team name. |
+| home_conference | character | Home team D-I conference. |
+| home_classification | character | Home team conference classification (fbs, fcs, ii, iii). |
+| home_score | integer | Final score of the home team. |
+| away_team | character | Away D-I team name. |
+| away_conference | character | Away team D-I conference. |
+| away_classification | character | Away team conference classification (fbs, fcs, ii, iii). |
+| away_score | integer | Final score of the away team. |
+| provider | character | Sportsbook / line provider name. |
+| spread | character | Closing point spread for the game. |
+| formatted_spread | character | Human-readable formatted spread (e.g. "Florida State -7.5"). |
+| spread_open | character | Opening point spread for the game. |
+| over_under | character | Closing over/under (total) for the game. |
+| over_under_open | character | Opening over/under (total) for the game. |
+| home_moneyline | character | Home team moneyline odds. |
+| away_moneyline | character | Away team moneyline odds. |
 
-  Unique game identifier - game_id.
+## See also
 
-- season:integer.:
-
-  Season parameter.
-
-- season_type:character.):
-
-  Season Type (regular, postseason, both
-
-- week:integer.:
-
-  Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or
-  earlier).
-
-- start_date:character.:
-
-  Start Date
-
-- home_team:character.:
-
-  Home D-I Team.
-
-- home_conference:character.:
-
-  Home D-I Conference.
-
-- home_classification:character.:
-
-  Home Conference classification (fbs,fcs,ii,iii)
-
-- home_score:integer.:
-
-  Home Score.
-
-- away_team:character.:
-
-  Away D-I Team.
-
-- away_conference:character.:
-
-  Away D-I Conference.
-
-- away_classification:character.:
-
-  Away Conference classification (fbs,fcs,ii,iii)
-
-- away_score:integer.:
-
-  Away Score.
-
-- provider:character.:
-
-  Line provider.
-
-- spread:character.:
-
-  Spread for the game.
-
-- formatted_spread:character.:
-
-  Formatted spread for the game.
-
-- spread_open:character.:
-
-  Opening spread for the game.
-
-- over_under:character.:
-
-  Over/Under for the game.
-
-- over_under_open:character.:
-
-  Opening over/under for the game.
-
-- home_moneyline:character.:
-
-  Home team moneyline.
-
-- away_moneyline:character.:
-
-  Away team moneyline.
+Other CFBD Betting Functions:
+[`cfbd_betting_ats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_ats.md)
 
 ## Examples
 
 ``` r
 # \donttest{
    try(cfbd_betting_lines(year = 2018, week = 12, team = "Florida State"))
-#> ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:45 UTC
+#> ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:39 UTC
 #> # A tibble: 4 × 23
 #>     game_id season season_type  week start_date           home_team_id home_team
 #>       <int>  <int> <chr>       <int> <chr>                       <int> <chr>    

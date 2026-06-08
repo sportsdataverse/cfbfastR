@@ -42,6 +42,7 @@ of the package.
 ##### **Load and install the necessary packages**
 
 ``` r
+
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -81,8 +82,8 @@ accessed from this package:
 However, there is only one data *provider* involved for most game data,
 ESPN’s data provider.
 
-As of `cfbfastR` version 2.2.1, the package exports 87 functions. The
-bulk (~60) of the functions within the package serve as the unofficial R
+As of `cfbfastR` version 2.3.0, the package exports 157 functions. The
+bulk (~62) of the functions within the package serve as the unofficial R
 API client for the [College Football Data
 API](https://collegefootballdata.com).
 
@@ -108,6 +109,7 @@ a new script will pop open named `.Renviron`, **THEN** paste the
 following in the new script that pops up (with**out** quotations)
 
 ``` r
+
 CFBD_API_KEY = YOUR-API-KEY-HERE
 ```
 
@@ -122,6 +124,7 @@ For less consistent usage, save your API key as the environment variable
 using a command like the following.
 
 ``` r
+
 Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
 
@@ -146,6 +149,7 @@ We are going to load in data for seasons 2014-2025, it’ll take between
 45-90 seconds to run.
 
 ``` r
+
 tictoc::tic()
 pbp <- data.frame()
 seasons <- 2014:cfbfastR:::most_recent_cfb_season()
@@ -156,19 +160,20 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 66.278 sec elapsed
+    ## 67.704 sec elapsed
 
-In the selected seasons, there are 12859 games for which the data
+In the selected seasons, there are 12863 games for which the data
 repository has play by play data. In the present term, the data
 repository supplies over a million rows of play by play data with 362
 columns of data. The most relevant play columns are kept to the left of
 the data frame for clarity, let’s take a look at the first 40 or so.
 
 ``` r
+
 glimpse(pbp[1:40])
 ```
 
-    ## Rows: 2,295,053
+    ## Rows: 2,296,165
     ## Columns: 40
     ## $ year               <int> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 201…
     ## $ week               <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …

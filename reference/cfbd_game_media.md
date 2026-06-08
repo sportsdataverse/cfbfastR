@@ -56,57 +56,22 @@ cfbd_game_media(
 
 `cfbd_game_media()` - A data frame with 13 variables:
 
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `season`: integer.:
-
-  Season of the game.
-
-- `week`: integer.:
-
-  Game week.
-
-- `season_type`: character.:
-
-  Season type of the game.
-
-- `start_time`: character.:
-
-  Game start time.
-
-- `is_start_time_tbd`: logical.:
-
-  TRUE/FALSE flag for if the start time is still to be determined.
-
-- `home_team`: character.:
-
-  Home team of the game.
-
-- `home_conference`: character.:
-
-  Conference of the home team.
-
-- `away_team`: character.:
-
-  Away team of the game.
-
-- `away_conference`: character.:
-
-  Conference of the away team.
-
-- `tv`: list.:
-
-  TV broadcast networks.
-
-- `radio`: logical.:
-
-  Radio broadcast networks.
-
-- `web`: list.:
-
-  Web viewing platforms carrying the game.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| game_id | integer | Referencing game id. |
+| season | integer | Season of the game. |
+| week | integer | Game week. |
+| season_type | character | Season type of the game. |
+| start_time | character | Game start time. |
+| is_start_time_tbd | logical | TRUE/FALSE flag for if the start time is still to be determined. |
+| home_team | character | Home team of the game. |
+| home_conference | character | Conference of the home team. |
+| away_team | character | Away team of the game. |
+| away_conference | character | Conference of the away team. |
+| tv | list | TV broadcast networks. |
+| radio | logical | Radio broadcast networks. |
+| web | list | Web viewing platforms carrying the game. |
 
 ## See also
 
@@ -125,8 +90,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_media(2019, week = 4, conference = "ACC"))
-#> ── Game media data from CollegeFootballData.com ────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:52 UTC
+#> ── Game media data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:46 UTC
 #> # A tibble: 10 × 13
 #>      game_id season  week season_type start_time     is_start_time_tbd home_team
 #>        <int>  <int> <int> <chr>       <chr>          <lgl>             <chr>    

@@ -51,5 +51,5 @@ https://cfbfastR.sportsdataverse.org/ doi:
       journal = {CRAN: Contributed Packages},
       publisher = {The R Foundation},
       year = {2021},
-      note = {R package version 2.2.1},
+      note = {R package version 2.3.0},
     }

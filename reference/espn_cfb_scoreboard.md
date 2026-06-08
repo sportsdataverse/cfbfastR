@@ -54,415 +54,257 @@ espn_cfb_schedule(
 or 54 variables depending on if there are completed games: shared
 variables
 
-- `matchup`: character.:
+- `matchup`: character.: Long matchup description with full team names
+  (Utah Utes at UCLA Bruins).
 
-  Long matchup description with full team names (Utah Utes at UCLA
-  Bruins).
+- `matchup_short`: character.: Short matchup description with team
+  abbreviations (UTAH @ UCLA).
 
-- `matchup_short`: character.:
+- `season`: integer.: Season of the game.
 
-  Short matchup description with team abbreviations (UTAH @ UCLA).
+- `type`: character.: Season type of the game in CFBD format.
 
-- `season`: integer.:
+- `slug`: character.: Season type of the game in ESPN format.
 
-  Season of the game.
-
-- `type`: character.:
-
-  Season type of the game in CFBD format.
-
-- `slug`: character.:
-
-  Season type of the game in ESPN format.
-
-- `game_id`: character.:
-
-  Referencing game ID.
+- `game_id`: character.: Referencing game ID.
 
 - `game_uid`: character.:
 
-- `game_date`: character.:
+- `game_date`: character.: Game date.
 
-  Game date.
-
-- `attendance`: integer.:
-
-  Reported attendance at the game.
+- `attendance`: integer.: Reported attendance at the game.
 
 - `play_by_play_available`: logical:
 
-- `home_team_name`: character.:
+- `home_team_name`: character.: Home team mascot name (Sun Devils).
 
-  Home team mascot name (Sun Devils).
+- `home_team_logo`: character.: Home team logo url.
 
-- `home_team_logo`: character.:
+- `home_team_abb`: character.: Home team abbreviation (ASU).
 
-  Home team logo url.
+- `home_team_id`: character.: Home team ID.
 
-- `home_team_abb`: character.:
+- `home_team_location`: character.: Home team name (Arizona State).
 
-  Home team abbreviation (ASU).
+- `home_team_full`: character.: Home team full name (Arizona State Sun
+  Devils).
 
-- `home_team_id`: character.:
+- `home_team_color`: character.: Home team color.
 
-  Home team ID.
+- `home_score`: integer.: Home team points.
 
-- `home_team_location`: character.:
+- `home_win`: integer.: 1 if home team won, 0 if home team lost, NA if
+  game is unfinished
 
-  Home team name (Arizona State).
+- `home_record`: character: Home team record.
 
-- `home_team_full`: character.:
+- `away_team_name`: character.: Away team mascot name (Sun Devils).
 
-  Home team full name (Arizona State Sun Devils).
+- `away_team_logo`: character.: Away team logo url.
 
-- `home_team_color`: character.:
+- `away_team_abb`: character.: Away team abbreviation (ASU).
 
-  Home team color.
+- `away_team_id`: character.: Away team ID.
 
-- `home_score`: integer.:
+- `away_team_location`: character.: Away team name (Arizona State).
 
-  Home team points.
+- `away_team_full`: character.: Away team full name (Arizona State Sun
+  Devils).
 
-- `home_win`: integer.:
+- `away_team_color`: character.: Away team color.
 
-  1 if home team won, 0 if home team lost, NA if game is unfinished
+- `away_score`: integer.: Away team points.
 
-- `home_record`: character:
+- `away_win`: integer.: 1 if away team won, 0 if home team lost, NA if
+  game is unfinished
 
-  Home team record.
+- `away_record`: character: Away team record.
 
-- `away_team_name`: character.:
+- `status_name`: character.: Status of the game
 
-  Away team mascot name (Sun Devils).
-
-- `away_team_logo`: character.:
-
-  Away team logo url.
-
-- `away_team_abb`: character.:
-
-  Away team abbreviation (ASU).
-
-- `away_team_id`: character.:
-
-  Away team ID.
-
-- `away_team_location`: character.:
-
-  Away team name (Arizona State).
-
-- `away_team_full`: character.:
-
-  Away team full name (Arizona State Sun Devils).
-
-- `away_team_color`: character.:
-
-  Away team color.
-
-- `away_score`: integer.:
-
-  Away team points.
-
-- `away_win`: integer.:
-
-  1 if away team won, 0 if home team lost, NA if game is unfinished
-
-- `away_record`: character:
-
-  Away team record.
-
-- `status_name`: character.:
-
-  Status of the game
-
-- `start_date`: character.:
-
-  Game date.
+- `start_date`: character.: Game date.
 
 Unique variables when there are completed games
 
-- `broadcast_market`: character.:
+- `broadcast_market`: character.: Broadcast market (typically "national"
+  or NA)
 
-  Broadcast market (typically "national" or NA)
+- `broadcast_name`: character.: Broadcast channel i.e. ESPN, ABC, FOX
 
-- `broadcast_name`: character.:
+- `passing_leader_yards`: numeric.: Passing yards of game's passing
+  leader
 
-  Broadcast channel i.e. ESPN, ABC, FOX
+- `passing_leader_stat`: character.: Stat line of game's passing leader
 
-- `passing_leader_yards`: numeric.:
+- `passing_leader_name`: character.: Name of game's passing leader
 
-  Passing yards of game's passing leader
+- `passing_leader_shortname`: character.: First initial and last name of
+  game's passing leader
 
-- `passing_leader_stat`: character.:
+- `passing_leader_headshot`: character.: Headshot url of game's passing
+  leader
 
-  Stat line of game's passing leader
+- `passing_leader_team_id`: character.: Team ID of game's passing leader
 
-- `passing_leader_name`: character.:
+- `passing_leader_pos`: character.: Position of game's passing leader
 
-  Name of game's passing leader
+- `rushing_leader_yards`: numeric.: Passing yards of game's rushing
+  leader
 
-- `passing_leader_shortname`: character.:
+- `rushing_leader_stat`: character.: Stat line of game's rushing leader
 
-  First initial and last name of game's passing leader
+- `rushing_leader_name`: character.: Name of game's rushing leader
 
-- `passing_leader_headshot`: character.:
+- `rushing_leader_shortname`: character.: First initial and last name of
+  game's rushing leader
 
-  Headshot url of game's passing leader
+- `rushing_leader_headshot`: character.: Headshot url of game's rushing
+  leader
 
-- `passing_leader_team_id`: character.:
+- `rushing_leader_team_id`: character.: Team ID of game's rushing leader
 
-  Team ID of game's passing leader
+- `rushing_leader_pos`: character.: Position of game's rushing leader
 
-- `passing_leader_pos`: character.:
+- `receiving_leader_yards`: numeric.: Passing yards of game's receiving
+  leader
 
-  Position of game's passing leader
+- `receiving_leader_stat`: character.: Stat line of game's receiving
+  leader
 
-- `rushing_leader_yards`: numeric.:
+- `receiving_leader_name`: character.: Name of game's receiving leader
 
-  Passing yards of game's rushing leader
+- `receiving_leader_shortname`: character.: First initial and last name
+  of game's receiving leader
 
-- `rushing_leader_stat`: character.:
+- `receiving_leader_headshot`: character.: Headshot url of game's
+  receiving leader
 
-  Stat line of game's rushing leader
+- `receiving_leader_team_id`: character.: Team ID of game's receiving
+  leader
 
-- `rushing_leader_name`: character.:
-
-  Name of game's rushing leader
-
-- `rushing_leader_shortname`: character.:
-
-  First initial and last name of game's rushing leader
-
-- `rushing_leader_headshot`: character.:
-
-  Headshot url of game's rushing leader
-
-- `rushing_leader_team_id`: character.:
-
-  Team ID of game's rushing leader
-
-- `rushing_leader_pos`: character.:
-
-  Position of game's rushing leader
-
-- `receiving_leader_yards`: numeric.:
-
-  Passing yards of game's receiving leader
-
-- `receiving_leader_stat`: character.:
-
-  Stat line of game's receiving leader
-
-- `receiving_leader_name`: character.:
-
-  Name of game's receiving leader
-
-- `receiving_leader_shortname`: character.:
-
-  First initial and last name of game's receiving leader
-
-- `receiving_leader_headshot`: character.:
-
-  Headshot url of game's receiving leader
-
-- `receiving_leader_team_id`: character.:
-
-  Team ID of game's receiving leader
-
-- `receiving_leader_pos`: character.:
-
-  Position of game's receiving leader
+- `receiving_leader_pos`: character.: Position of game's receiving
+  leader
 
 `espn_cfb_schedule()` - A data frame with 8 variables:
 
-- `matchup`: character.:
+- `matchup`: character.: .
 
-  .
+- `matchup_short`: character.: .
 
-- `matchup_short`: character.:
+- `season`: integer.: .
 
-  .
+- `type`: character.: .
 
-- `season`: integer.:
+- `slug`: character.: .
 
-  .
+- `game_id`: character.: .
 
-- `type`: character.:
+- `game_uid`: character.: .
 
-  .
+- `game_date`: Date.: .
 
-- `slug`: character.:
+- `attendance`: integer.: .
 
-  .
+- `date_valid`: logical.: .
 
-- `game_id`: character.:
+- `play_by_play_available`: logical.: .
 
-  .
+- `home_team_name`: character.: .
 
-- `game_uid`: character.:
+- `home_team_logo`: character.: .
 
-  .
+- `home_team_abb`: character.: .
 
-- `game_date`: Date.:
+- `home_team_id`: character.: .
 
-  .
+- `home_team_location`: character.: .
 
-- `attendance`: integer.:
+- `home_team_full`: character.: .
 
-  .
+- `home_team_color`: character.: .
 
-- `date_valid`: logical.:
+- `home_score`: integer.: .
 
-  .
+- `home_win`: integer.: .
 
-- `play_by_play_available`: logical.:
+- `home_record`: character.: .
 
-  .
+- `away_team_name`: character.: .
 
-- `home_team_name`: character.:
+- `away_team_logo`: character.: .
 
-  .
+- `away_team_abb`: character.: .
 
-- `home_team_logo`: character.:
+- `away_team_id`: character.: .
 
-  .
+- `away_team_location`: character.: .
 
-- `home_team_abb`: character.:
+- `away_team_full`: character.: .
 
-  .
+- `away_team_color`: character.: .
 
-- `home_team_id`: character.:
+- `away_score`: integer.: .
 
-  .
+- `away_win`: integer.: .
 
-- `home_team_location`: character.:
+- `away_record`: character.: .
 
-  .
+- `status_name`: character.: .
 
-- `home_team_full`: character.:
+- `start_date`: character.: .
 
-  .
+- `highlights`: logical.: .
 
-- `home_team_color`: character.:
-
-  .
-
-- `home_score`: integer.:
-
-  .
-
-- `home_win`: integer.:
-
-  .
-
-- `home_record`: character.:
-
-  .
-
-- `away_team_name`: character.:
-
-  .
-
-- `away_team_logo`: character.:
-
-  .
-
-- `away_team_abb`: character.:
-
-  .
-
-- `away_team_id`: character.:
-
-  .
-
-- `away_team_location`: character.:
-
-  .
-
-- `away_team_full`: character.:
-
-  .
-
-- `away_team_color`: character.:
-
-  .
-
-- `away_score`: integer.:
-
-  .
-
-- `away_win`: integer.:
-
-  .
-
-- `away_record`: character.:
-
-  .
-
-- `status_name`: character.:
-
-  .
-
-- `start_date`: character.:
-
-  .
-
-- `highlights`: logical.:
-
-  .
-
-- `game_date_time`: datetime.:
-
-  .
+- `game_date_time`: datetime.: .
 
 ## Examples
 
 ``` r
 # \donttest{
   try(espn_cfb_scoreboard())
-#> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:17 UTC
-#> # A tibble: 47 × 59
+#> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:46:45 UTC
+#> # A tibble: 99 × 36
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Miami Hurricane… MIA VS IU       2025 post… post… 401769… s:20~l:… 2026-01-19
-#>  2 Army Black Knig… ARMY VS NAVY    2025 post… post… 401762… s:20~l:… 2025-12-13
-#>  3 Boise State Bro… BOIS VS WASH    2025 post… post… 401778… s:20~l:… 2025-12-13
-#>  4 Troy Trojans at… TROY VS JVST    2025 post… post… 401778… s:20~l:… 2025-12-16
-#>  5 Old Dominion Mo… ODU VS USF      2025 post… post… 401778… s:20~l:… 2025-12-17
-#>  6 Louisiana Ragin… UL VS DEL       2025 post… post… 401778… s:20~l:… 2025-12-17
-#>  7 Missouri State … MOST VS ARST    2025 post… post… 401838… s:20~l:… 2025-12-18
-#>  8 Alabama Crimson… ALA @ OU        2025 post… post… 401779… s:20~l:… 2025-12-19
-#>  9 Kennesaw State … KENN VS WMU     2025 post… post… 401778… s:20~l:… 2025-12-19
-#> 10 Memphis Tigers … MEM VS NCSU     2025 post… post… 401778… s:20~l:… 2025-12-19
-#> # ℹ 37 more rows
-#> # ℹ 51 more variables: attendance <int>, date_valid <lgl>,
+#>  1 North Carolina … UNC VS TCU      2026 regu… regu… 401856… s:20~l:… 2026-08-29
+#>  2 San José State … SJSU @ USC      2026 regu… regu… 401864… s:20~l:… 2026-08-29
+#>  3 NC State Wolfpa… NCSU @ UVA      2026 regu… regu… 401858… s:20~l:… 2026-08-29
+#>  4 Jacksonville St… JVST @ NDSU     2026 regu… regu… 401864… s:20~l:… 2026-08-29
+#>  5 Sacramento Stat… SAC @ EMU       2026 regu… regu… 401866… s:20~l:… 2026-08-29
+#>  6 Hawai'i Rainbow… HAW @ STAN      2026 regu… regu… 401858… s:20~l:… 2026-08-29
+#>  7 New Mexico Stat… NMSU @ FSU      2026 regu… regu… 401864… s:20~l:… 2026-08-29
+#>  8 Memphis Tigers … MEM @ UNLV      2026 regu… regu… 401862… s:20~l:… 2026-08-29
+#>  9 Massachusetts M… MASS @ RUTG     2026 regu… regu… 401858… s:20~l:… 2026-09-03
+#> 10 Bethune-Cookman… BCU @ UCF       2026 regu… regu… 401856… s:20~l:… 2026-09-03
+#> # ℹ 89 more rows
+#> # ℹ 28 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
 #> #   home_team_abb <chr>, home_team_id <chr>, home_team_location <chr>,
 #> #   home_team_full <chr>, home_team_color <chr>, home_score <int>,
-#> #   home_win <int>, home_record <chr>, away_team_name <chr>,
+#> #   home_win <int>, home_record <lgl>, away_team_name <chr>,
 #> #   away_team_logo <chr>, away_team_abb <chr>, away_team_id <chr>, …
 # }
 
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
-#> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:18 UTC
-#> # A tibble: 54 × 60
-#>    matchup          matchup_short season type  slug  game_id game_uid game_date 
-#>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Coastal Carolin… CCU @ APP       2021 regu… regu… 401309… s:20~l:… 2021-10-20
-#>  2 Tulane Green Wa… TULN @ SMU      2021 regu… regu… 401301… s:20~l:… 2021-10-21
-#>  3 Florida Atlanti… FAU @ CLT       2021 regu… regu… 401282… s:20~l:… 2021-10-21
-#>  4 Louisiana Ragin… UL @ ARST       2021 regu… regu… 401309… s:20~l:… 2021-10-21
-#>  5 San José State … SJSU @ UNLV     2021 regu… regu… 401310… s:20~l:… 2021-10-21
-#>  6 Middle Tennesse… MTSU @ CONN     2021 regu… regu… 401282… s:20~l:… 2021-10-22
-#>  7 Memphis Tigers … MEM @ UCF       2021 regu… regu… 401301… s:20~l:… 2021-10-22
-#>  8 Colorado State … CSU @ USU       2021 regu… regu… 401310… s:20~l:… 2021-10-22
-#>  9 Washington Husk… WASH @ ARIZ     2021 regu… regu… 401309… s:20~l:… 2021-10-22
-#> 10 Cincinnati Bear… CIN @ NAVY      2021 regu… regu… 401301… s:20~l:… 2021-10-23
+#> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:46:46 UTC
+#> # A tibble: 54 × 62
+#>    season_type week    matchup matchup_short season type  slug  game_id game_uid
+#>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   
+#>  1 ""          &week=8 Coasta… CCU @ APP       2021 regu… regu… 401309… s:20~l:…
+#>  2 ""          &week=8 Tulane… TULN @ SMU      2021 regu… regu… 401301… s:20~l:…
+#>  3 ""          &week=8 Florid… FAU @ CLT       2021 regu… regu… 401282… s:20~l:…
+#>  4 ""          &week=8 Louisi… UL @ ARST       2021 regu… regu… 401309… s:20~l:…
+#>  5 ""          &week=8 San Jo… SJSU @ UNLV     2021 regu… regu… 401310… s:20~l:…
+#>  6 ""          &week=8 Middle… MTSU @ CONN     2021 regu… regu… 401282… s:20~l:…
+#>  7 ""          &week=8 Memphi… MEM @ UCF       2021 regu… regu… 401301… s:20~l:…
+#>  8 ""          &week=8 Colora… CSU @ USU       2021 regu… regu… 401310… s:20~l:…
+#>  9 ""          &week=8 Washin… WASH @ ARIZ     2021 regu… regu… 401309… s:20~l:…
+#> 10 ""          &week=8 Cincin… CIN @ NAVY      2021 regu… regu… 401301… s:20~l:…
 #> # ℹ 44 more rows
-#> # ℹ 52 more variables: attendance <int>, date_valid <lgl>,
+#> # ℹ 53 more variables: game_date <date>, attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
 #> #   home_team_abb <chr>, home_team_id <chr>, home_team_location <chr>,
 #> #   home_team_full <chr>, home_team_color <chr>, home_score <int>,

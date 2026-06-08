@@ -18,32 +18,18 @@ cfbd_conf_types_df
 
 A data frame with 45 rows and 3 variables:
 
-- id:
+- `id`: Referencing play id
 
-  Referencing play id
+- `text`: play type description
 
-- text:
-
-  play type description
-
-- abbreviation:
-
-  play type abbreviation used for function call
+- `abbreviation`: play type abbreviation used for function call
 
 A data frame with 11 rows and 4 variables:
 
-- id:
+- `id`: Referencing conference id
 
-  Referencing conference id
+- `name`: Conference name
 
-- name:
+- `short_name`: Short name for Conference
 
-  Conference name
-
-- short_name:
-
-  Short name for Conference
-
-- abbreviation:
-
-  Conference abbreviation
+- `abbreviation`: Conference abbreviation

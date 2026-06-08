@@ -46,103 +46,35 @@ cfbd_draft_picks(
 
 ## Value
 
-`cfbd_draft_picks()` - A data frame with 23 variables:
+`cfbd_draft_picks()` - A data frame with 24 variables:
 
-- `college_athlete_id`: integer.:
-
-  College athlete referencing id.
-
-- `nfl_athlete_id`: integer:
-
-  NFL athlete referencing id.
-
-- `college_id`: integer:
-
-  College team referencing id.
-
-- `college_team`: character:
-
-  College team name.
-
-- `college_conference`: character:
-
-  Conference of college team.
-
-- `nfl_team_id`: integer.:
-
-  NFL team ID.
-
-- `nfl_team`: character:
-
-  NFL team name of drafted player.
-
-- `year`: integer.:
-
-  NFL draft class year.
-
-- `overall`: integer.:
-
-  Overall draft pick number.
-
-- `round`: integer.:
-
-  Round of NFL draft the draftee was picked in.
-
-- `pick`: integer.:
-
-  Pick number of the NFL draftee within the round they were picked in.
-
-- `name`: character.:
-
-  NFL draftee name.
-
-- `position`: character.:
-
-  NFL draftee position.
-
-- `height`: double.:
-
-  NFL draftee height.
-
-- `weight`: integer.:
-
-  NFL draftee weight.
-
-- `pre_draft_ranking`: integer:
-
-  Pre-draft ranking (ESPN).
-
-- `pre_draft_position_ranking`: integer.:
-
-  Pre-draft position ranking (ESPN).
-
-- `pre_draft_grade`: double.:
-
-  Pre-draft scouts grade (ESPN).
-
-- `hometown_info_city`: character.:
-
-  Hometown of the NFL draftee.
-
-- `hometown_info_state_province`: character.:
-
-  Hometown state of the NFL draftee.
-
-- `hometown_info_country`: character.:
-
-  Hometown country of the NFL draftee.
-
-- `hometown_info_latitude`: character.:
-
-  Hometown latitude of the NFL draftee.
-
-- `hometown_info_longitude`: character.:
-
-  Hometown longitude of the NFL draftee.
-
-- `hometown_info_county_fips`: character.:
-
-  Hometown FIPS code of the NFL draftee.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| college_athlete_id | integer | College athlete referencing id. |
+| nfl_athlete_id | integer | NFL athlete referencing id. |
+| college_id | integer | College team referencing id. |
+| college_team | character | College team name. |
+| college_conference | character | Conference of college team. |
+| nfl_team_id | integer | NFL team ID. |
+| nfl_team | character | NFL team name of drafted player. |
+| year | integer | NFL draft class year. |
+| overall | integer | Overall draft pick number. |
+| round | integer | Round of NFL draft the draftee was picked in. |
+| pick | integer | Pick number of the NFL draftee within the round they were picked in. |
+| name | character | NFL draftee name. |
+| position | character | NFL draftee position. |
+| height | numeric | NFL draftee height. |
+| weight | integer | NFL draftee weight. |
+| pre_draft_ranking | integer | Pre-draft ranking (ESPN). |
+| pre_draft_position_ranking | integer | Pre-draft position ranking (ESPN). |
+| pre_draft_grade | numeric | Pre-draft scouts grade (ESPN). |
+| hometown_info_city | character | Hometown of the NFL draftee. |
+| hometown_info_state_province | character | Hometown state of the NFL draftee. |
+| hometown_info_country | character | Hometown country of the NFL draftee. |
+| hometown_info_latitude | character | Hometown latitude of the NFL draftee. |
+| hometown_info_longitude | character | Hometown longitude of the NFL draftee. |
+| hometown_info_county_fips | character | Hometown FIPS code of the NFL draftee. |
 
 ## See also
 
@@ -155,8 +87,8 @@ Other CFBD Draft:
 ``` r
 # \donttest{
   try(cfbd_draft_picks(year = 2020))
-#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:48 UTC
+#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:42 UTC
 #> # A tibble: 255 × 24
 #>    college_athlete_id nfl_athlete_id college_id college_team college_conference
 #>                 <int>          <int>      <int> <chr>        <chr>             
@@ -179,8 +111,8 @@ Other CFBD Draft:
 #> #   hometown_info_country <chr>, hometown_info_latitude <chr>, …
 
   try(cfbd_draft_picks(year = 2016, position = "PK"))
-#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:48 UTC
+#> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:42 UTC
 #> # A tibble: 1 × 24
 #>   college_athlete_id nfl_athlete_id college_id college_team  college_conference
 #>                <int>          <int>      <int> <chr>         <chr>             

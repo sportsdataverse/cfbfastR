@@ -59,278 +59,84 @@ cfbd_play_stats_player(
 
 ## Value
 
-`cfbd_play_stats_player()` - A data frame with 54 variables:
-
-- `play_id`: character.:
-
-  Referencing play id.
-
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `season`: integer.:
-
-  Season of the play.
-
-- `week`: integer.:
-
-  Week of the play.
-
-- `opponent`: character.:
-
-  Opponent of the offense on the play.
-
-- `team_score`: integer.:
-
-  Offense team score.
-
-- `opponent_score`: integer.:
-
-  Defense team score.
-
-- `drive_id`: character.:
-
-  Referencing drive id.
-
-- `period`: integer.:
-
-  Game period (quarter) of the play.
-
-- `yards_to_goal`: integer.:
-
-  Yards to the goal line (~0-100).
-
-- `down`: integer.:
-
-  Down of the play.
-
-- `distance`: integer.:
-
-  Distance to the sticks, i.e. 1st down or goal-line in goal-to-go
-  situations.
-
-- `reception_player_id`: character.:
-
-  Pass receiver player reference id.
-
-- `reception_player`: character.:
-
-  Pass receiver player name.
-
-- `reception_yds`: integer.:
-
-  Reception yards.
-
-- `completion_player_id`: character.:
-
-  Passing player reference id.
-
-- `completion_player`: character.:
-
-  Passing player name.
-
-- `completion_yds`: integer.:
-
-  Passing yards.
-
-- `rush_player_id`: character.:
-
-  Rushing player reference id.
-
-- `rush_player`: character.:
-
-  Rushing player name.
-
-- `rush_yds`: integer.:
-
-  Rushing yards.
-
-- `interception_player_id`: character.:
-
-  Intercepting player reference id.
-
-- `interception_player`: character.:
-
-  Intercepting player name.
-
-- `interception_stat`: integer.:
-
-  Intercepting stat.
-
-- `interception_thrown_player_id`: character.:
-
-  Interception passing player reference id.
-
-- `interception_thrown_player`: character.:
-
-  Interception passing player name.
-
-- `interception_thrown_stat`: integer.:
-
-  Interception thrown stat.
-
-- `touchdown_player_id`: character.:
-
-  Touchdown scoring player reference id.
-
-- `touchdown_player`: character.:
-
-  Touchdown scoring player name.
-
-- `touchdown_stat`: integer.:
-
-  Touchdown scoring stat.
-
-- `incompletion_player_id`: character.:
-
-  Incomplete receiver player reference id.
-
-- `incompletion_player`: character.:
-
-  Incomplete receiver player name.
-
-- `incompletion_stat`: integer.:
-
-  Incomplete stat.
-
-- `target_player_id`: character.:
-
-  Targeted receiver player reference id.
-
-- `target_player`: character.:
-
-  Targeted receiver player name.
-
-- `target_stat`: integer.:
-
-  Target stat.
-
-- `fumble_recovered_player_id`: logical.:
-
-  Fumble recovering player reference id.
-
-- `fumble_recovered_player`: logical.:
-
-  Fumble recovering player name.
-
-- `fumble_recovered_stat`: logical.:
-
-  Fumble recovered stat.
-
-- `fumble_forced_player_id`: logical.:
-
-  Fumble forcing player reference id.
-
-- `fumble_forced_player`: logical.:
-
-  Fumble forcing player name.
-
-- `fumble_forced_stat`: logical.:
-
-  Fumble forced stat.
-
-- `fumble_player_id`: logical.:
-
-  Fumbling player reference id.
-
-- `fumble_player`: logical.:
-
-  Fumbling player name.
-
-- `fumble_stat`: logical.:
-
-  Fumble stat.
-
-- `sack_player_id`: character.:
-
-  Sacking player(s) reference id.
-
-- `sack_player`: character.:
-
-  Sacking player(s) name.
-
-- `sack_stat`: integer.:
-
-  Sack stat.
-
-- `sack_taken_player_id`: character.:
-
-  Sack taking player reference id.
-
-- `sack_taken_player`: character.:
-
-  Sack taking player name.
-
-- `sack_taken_stat`: integer.:
-
-  Sack taken stat.
-
-- `pass_breakup_player_id`: logical.:
-
-  Pass breakup player reference id.
-
-- `pass_breakup_player`: logical.:
-
-  Pass breakup player name.
-
-- `pass_breakup_stat`: logical.:
-
-  Pass breakup (PBU) stat.
-
-- `field_goal_attempt_player_id`: character.:
-
-  Field goal attempting player reference id.
-
-- `field_goal_attempt_player`: character.:
-
-  Field goal attempting player name.
-
-- `field_goal_attempt_stat`: integer.:
-
-  Field goal attempt stat.
-
-- `field_goal_made_player_id`: character.:
-
-  Field goal making player reference id.
-
-- `field_goal_made_player`: character.:
-
-  Field goal making player name.
-
-- `field_goal_made_stat`: integer.:
-
-  Field goal made stat.
-
-- `field_goal_missed_player_id`: character.:
-
-  Field goal missing player reference id.
-
-- `field_goal_missed_player`: character.:
-
-  Field goal missing player name.
-
-- `field_goal_missed_stat`: integer.:
-
-  Field goal missed stat.
-
-- `field_goal_blocked_player_id`: character.:
-
-  Field goal blocked player reference id.
-
-- `field_goal_blocked_player`: character.:
-
-  Field goal blocked player name.
-
-- `field_goal_blocked_stat`: integer.:
-
-  Field goal blocked stat.
+`cfbd_play_stats_player()` - A data frame with 66 variables:
+
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| play_id | character | CFBD play identifier the stat is attributed to. |
+| game_id | integer | CFBD game identifier the play belongs to. |
+| season | integer | Four-digit season year (e.g. 2024). |
+| week | integer | Season week number (1-15 regular season; 1 = postseason/bowl week). |
+| opponent | character | Full name of the opponent on the play. |
+| team_score | integer | Offense team score at the time of the play. |
+| opponent_score | integer | Defense / opponent team score at the time of the play. |
+| drive_id | character | CFBD drive identifier the play belongs to. |
+| period | integer | Game period / quarter of the play (1-4 regulation, 5+ overtime). |
+| yards_to_goal | integer | Distance in yards from the offense's spot to the opponent's goal line (0-100). |
+| down | integer | Down of the play (1-4). |
+| distance | integer | Yards to gain for a first down (or to the goal line in goal-to-go situations). |
+| reception_player_id | character | CFBD athlete_id of the receiver credited with a reception. |
+| reception_player | character | Name of the receiver credited with a reception. |
+| reception_yds | integer | Reception yards gained on the play. |
+| completion_player_id | character | CFBD athlete_id of the passer credited with a completion. |
+| completion_player | character | Name of the passer credited with a completion. |
+| completion_yds | integer | Passing yards gained on the completion. |
+| rush_player_id | character | CFBD athlete_id of the player credited with a rush attempt. |
+| rush_player | character | Name of the player credited with a rush attempt. |
+| rush_yds | integer | Rushing yards gained on the play. |
+| interception_player_id | character | CFBD athlete_id of the defender credited with an interception. |
+| interception_player | character | Name of the defender credited with an interception. |
+| interception_stat | integer | Interception stat value reported by CFBD (typically 1 per INT). |
+| interception_thrown_player_id | character | CFBD athlete_id of the passer charged with the interception. |
+| interception_thrown_player | character | Name of the passer charged with the interception. |
+| interception_thrown_stat | integer | Interception-thrown stat value reported by CFBD (typically 1 per INT thrown). |
+| touchdown_player_id | character | CFBD athlete_id of the player credited with the touchdown. |
+| touchdown_player | character | Name of the player credited with the touchdown. |
+| touchdown_stat | integer | Touchdown stat value reported by CFBD (typically 1 per TD scored). |
+| incompletion_player_id | character | CFBD athlete_id of the targeted receiver on an incompletion. |
+| incompletion_player | character | Name of the targeted receiver on an incompletion. |
+| incompletion_stat | integer | Incompletion stat value reported by CFBD (typically 1 per incompletion). |
+| target_player_id | character | CFBD athlete_id of the targeted receiver on a pass. |
+| target_player | character | Name of the targeted receiver on a pass. |
+| target_stat | integer | Target stat value reported by CFBD (typically 1 per target). |
+| fumble_recovered_player_id | logical | CFBD athlete_id of the player recovering the fumble. |
+| fumble_recovered_player | logical | Name of the player recovering the fumble. |
+| fumble_recovered_stat | logical | Fumble-recovered stat value reported by CFBD (typically 1 per recovery). |
+| fumble_forced_player_id | logical | CFBD athlete_id of the defender credited with forcing the fumble. |
+| fumble_forced_player | logical | Name of the defender credited with forcing the fumble. |
+| fumble_forced_stat | logical | Fumble-forced stat value reported by CFBD (typically 1 per forced fumble). |
+| fumble_player_id | logical | CFBD athlete_id of the player who fumbled. |
+| fumble_player | logical | Name of the player who fumbled. |
+| fumble_stat | logical | Fumble stat value reported by CFBD (typically 1 per fumble). |
+| sack_player_id | character | Comma-separated CFBD athlete_id(s) of the sacking defender(s). |
+| sack_player | character | Comma-separated name(s) of the sacking defender(s). |
+| sack_stat | integer | Sack stat value reported by CFBD (sack credit can be split between defenders). |
+| sack_taken_player_id | character | CFBD athlete_id of the QB charged with taking the sack. |
+| sack_taken_player | character | Name of the QB charged with taking the sack. |
+| sack_taken_stat | integer | Sack-taken stat value reported by CFBD (typically 1 per sack taken). |
+| pass_breakup_player_id | logical | CFBD athlete_id of the defender credited with the pass breakup (PBU). |
+| pass_breakup_player | logical | Name of the defender credited with the pass breakup (PBU). |
+| pass_breakup_stat | logical | Pass breakup (PBU) stat value reported by CFBD (typically 1 per PBU). |
+| field_goal_attempt_player_id | character | CFBD athlete_id of the kicker attempting the field goal. |
+| field_goal_attempt_player | character | Name of the kicker attempting the field goal. |
+| field_goal_attempt_stat | integer | Field goal attempt distance in yards reported by CFBD. |
+| field_goal_made_player_id | character | CFBD athlete_id of the kicker on a made field goal. |
+| field_goal_made_player | character | Name of the kicker on a made field goal. |
+| field_goal_made_stat | integer | Made-field-goal distance in yards reported by CFBD. |
+| field_goal_missed_player_id | character | CFBD athlete_id of the kicker on a missed field goal. |
+| field_goal_missed_player | character | Name of the kicker on a missed field goal. |
+| field_goal_missed_stat | integer | Missed-field-goal distance in yards reported by CFBD. |
+| field_goal_blocked_player_id | character | CFBD athlete_id of the defender credited with blocking the field goal. |
+| field_goal_blocked_player | character | Name of the defender credited with blocking the field goal. |
+| field_goal_blocked_stat | integer | Blocked-field-goal distance in yards reported by CFBD. |
 
 ## See also
 
 Other CFBD PBP:
 [`cfbd_live_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.md),
 [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+[`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md),
 [`cfbd_play_stats_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_types.md),
 [`cfbd_play_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.md),
 [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)
@@ -340,8 +146,8 @@ Other CFBD PBP:
 ``` r
 # \donttest{
   try(cfbd_play_stats_player(game_id = 401628414))
-#> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:10 UTC
+#> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:22 UTC
 #> # A tibble: 132 × 70
 #>      game_id season  week team     conference opponent team_score opponent_score
 #>        <int>  <int> <int> <chr>    <chr>      <chr>         <int>          <int>
@@ -363,8 +169,8 @@ Other CFBD PBP:
 #> #   completion_yds <int>, rush_player_id <chr>, rush_player <chr>,
 #> #   rush_yds <int>, interception_player_id <chr>, interception_player <chr>, …
   try(cfbd_play_stats_player(year = 2025, week = 1))
-#> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:32 UTC
+#> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:30 UTC
 #> # A tibble: 1,306 × 70
 #>      game_id season  week team    conference opponent  team_score opponent_score
 #>        <int>  <int> <int> <chr>   <chr>      <chr>          <int>          <int>

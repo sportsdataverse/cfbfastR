@@ -29,16 +29,16 @@ cfbd_metrics_wepa_players_kicking(year = NULL, team = NULL, conference = NULL)
 
 `cfbd_metrics_wepa_players_kicking()` - A data frame with 7 variables:
 
-|              |           |
-|--------------|-----------|
-| col_name     | types     |
-| year         | integer   |
-| athlete_id   | character |
-| athlete_name | character |
-| team         | character |
-| conference   | character |
-| paar         | numeric   |
-| attempts     | integer   |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Four-digit season year (e.g. 2019). |
+| athlete_id | character | CFBD athlete identifier (use with [`cfbd_player_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_info.md)). |
+| athlete_name | character | Kicker full name. |
+| team | character | Full team name (e.g. "TCU"). |
+| conference | character | Team conference name (e.g. "Big 12"). |
+| paar | numeric | Points Added Above Replacement on field goal attempts (kicker value vs baseline). |
+| attempts | integer | Total field goal attempts included in the PAAR calculation. |
 
 ## See also
 
@@ -61,7 +61,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_players_kicking(year = 2019, team = "TCU"))
 #> ── Points Added Above Replacement (PAAR) ratings for kicking data from CollegeFo
-#> ℹ Data updated: 2026-01-19 16:22:02 UTC
+#> ℹ Data updated: 2026-06-08 01:41:59 UTC
 #> # A tibble: 2 × 7
 #>    year athlete_id athlete_name  team  conference  paar attempts
 #>   <int> <chr>      <chr>         <chr> <chr>      <dbl>    <int>

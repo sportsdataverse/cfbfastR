@@ -1,38 +1,25 @@
 # **Series of functions to help clean the play-by-play data for analysis**
 
-- `add_play_counts()`: function:
+- `add_play_counts()`: function: Adds play counts to Play-by-Play data
+  pulled from the API's raw game data.
 
-  Adds play counts to Play-by-Play data pulled from the API's raw game
-  data.
+- `add_yardage()`: function: Add yardage extracted from play text.
 
-- `add_yardage()`: function:
+- `add_player_cols()`: function: Add player columns extracted from play
+  text.
 
-  Add yardage extracted from play text.
+- `clean_drive_dat()`: function: Create new Drive results and id data.
 
-- `add_player_cols()`: function:
+- `clean_pbp_dat()`: function: Clean Play-by-Play data.
 
-  Add player columns extracted from play text.
+- `penalty_detection()`: function: Adds penalty columns to Play-by-Play
+  data pulled from the API.
 
-- `clean_drive_dat()`: function:
+- `prep_epa_df_after()`: function: Creates the post-play inputs for the
+  Expected Points model to predict on for each game.
 
-  Create new Drive results and id data.
-
-- `clean_pbp_dat()`: function:
-
-  Clean Play-by-Play data.
-
-- `penalty_detection()`: function:
-
-  Adds penalty columns to Play-by-Play data pulled from the API.
-
-- `prep_epa_df_after()`: function:
-
-  Creates the post-play inputs for the Expected Points model to predict
-  on for each game.
-
-- `clean_drive_info()`: function:
-
-  Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column.
+- `clean_drive_info()`: function: Cleans CFB (D-I) Drive-By-Drive Data
+  to create `pts_drive` column.
 
 Cleans Play-by-Play data pulled from the API's raw game data
 
@@ -87,494 +74,255 @@ penalty_detection(raw_df)
 
 The original `play_df` with the following columns appended/redefined:
 
-- `game_play_number`.:
+- `game_play_number`: .
 
-  .
+- `half_clock_minutes`: .
 
-- `half_clock_minutes`.:
+- `TimeSecsRem`: .
 
-  .
+- `Under_two`: .
 
-- `TimeSecsRem`.:
+- `half`: .
 
-  .
+- `kickoff_play`: .
 
-- `Under_two`.:
+- `pos_team`: .
 
-  .
+- `def_pos_team`: .
 
-- `half`.:
+- `receives_2H_kickoff`: .
 
-  .
+- `pos_score_diff`: .
 
-- `kickoff_play`.:
+- `lag_pos_score_diff`: .
 
-  .
+- `lag_pos_team`: .
 
-- `pos_team`.:
+- `lead_pos_team`: .
 
-  .
+- `lead_pos_team2`: .
 
-- `def_pos_team`.:
+- `pos_score_pts`: .
 
-  .
+- `pos_score_diff_start`: .
 
-- `receives_2H_kickoff`.:
+- `score_diff`: .
 
-  .
+- `lag_score_diff`: .
 
-- `pos_score_diff`.:
+- `lag_offense_play`: .
 
-  .
+- `lead_offense_play`: .
 
-- `lag_pos_score_diff`.:
+- `lead_offense_play2`: .
 
-  .
+- `score_pts`: .
 
-- `lag_pos_team`.:
+- `score_diff_start`: .
 
-  .
+- `offense_receives_2H_kickoff`: .
 
-- `lead_pos_team`.:
+- `half_play_number`: .
 
-  .
+- `lag_off_timeouts`: .
 
-- `lead_pos_team2`.:
+- `lag_def_timeouts`: .
 
-  .
+- `off_timeouts_rem_before`: .
 
-- `pos_score_pts`.:
+- `def_timeouts_rem_before`: .
 
-  .
+- `off_timeout_called`: .
 
-- `pos_score_diff_start`.:
+- `def_timeout_called`: .
 
-  .
+- `lead_TimeSecsRem`: .
 
-- `score_diff`.:
+- `lead_TimeSecsRem2`: .
 
-  .
+- `lead_yards_to_goal`: .
 
-- `lag_score_diff`.:
+- `lead_yards_to_goal2`: .
 
-  .
+- `lead_down`: .
 
-- `lag_offense_play`.:
+- `lead_down2`: .
 
-  .
+- `lag_distance3`: .
 
-- `lead_offense_play`.:
+- `lag_distance2`: .
 
-  .
+- `lag_distance`: .
 
-- `lead_offense_play2`.:
+- `lead_distance`: .
 
-  .
+- `lead_distance2`: .
 
-- `score_pts`.:
+- `end_of_half`: .
 
-  .
+- `lag_play_type3`: .
 
-- `score_diff_start`.:
+- `lag_play_type2`: .
 
-  .
+- `lag_play_type`: .
 
-- `offense_receives_2H_kickoff`.:
+- `lead_play_type`: .
 
-  .
+- `lead_play_type2`: .
 
-- `half_play_number`.:
+- `lead_play_type3`: .
 
-  .
+- `change_of_poss`: .
 
-- `lag_off_timeouts`.:
+- `change_of_pos_team`: .
 
-  .
+- `pos_team_timeouts`: .
 
-- `lag_def_timeouts`.:
+- `def_pos_team_timeouts`: .
 
-  .
+- `pos_team_timeouts_rem_before`: .
 
-- `off_timeouts_rem_before`.:
-
-  .
-
-- `def_timeouts_rem_before`.:
-
-  .
-
-- `off_timeout_called`.:
-
-  .
-
-- `def_timeout_called`.:
-
-  .
-
-- `lead_TimeSecsRem`.:
-
-  .
-
-- `lead_TimeSecsRem2`.:
-
-  .
-
-- `lead_yards_to_goal`.:
-
-  .
-
-- `lead_yards_to_goal2`.:
-
-  .
-
-- `lead_down`.:
-
-  .
-
-- `lead_down2`.:
-
-  .
-
-- `lag_distance3`.:
-
-  .
-
-- `lag_distance2`.:
-
-  .
-
-- `lag_distance`.:
-
-  .
-
-- `lead_distance`.:
-
-  .
-
-- `lead_distance2`.:
-
-  .
-
-- `end_of_half`.:
-
-  .
-
-- `lag_play_type3`.:
-
-  .
-
-- `lag_play_type2`.:
-
-  .
-
-- `lag_play_type`.:
-
-  .
-
-- `lead_play_type`.:
-
-  .
-
-- `lead_play_type2`.:
-
-  .
-
-- `lead_play_type3`.:
-
-  .
-
-- `change_of_poss`.:
-
-  .
-
-- `change_of_pos_team`.:
-
-  .
-
-- `pos_team_timeouts`.:
-
-  .
-
-- `def_pos_team_timeouts`.:
-
-  .
-
-- `pos_team_timeouts_rem_before`.:
-
-  .
-
-- `def_pos_team_timeouts_rem_before`.:
-
-  .
+- `def_pos_team_timeouts_rem_before`: .
 
 The original `play_df` with the following columns appended/redefined:
 
-- `lag_change_of_poss`.:
+- `lag_change_of_poss`: .
 
-  .
+- `lag_punt`: .
 
-- `lag_punt`.:
+- `lag_scoring_play`: .
 
-  .
+- `lag_turnover_vec`: .
 
-- `lag_scoring_play`.:
+- `lag_downs_turnover`: .
 
-  .
+- `lead_play_type`: .
 
-- `lag_turnover_vec`.:
+- `lead_play_type2`: .
 
-  .
+- `lead_play_type3`: .
 
-- `lag_downs_turnover`.:
+- `drive_numbers`: .
 
-  .
+- `number_of_drives`: .
 
-- `lead_play_type`.:
+- `pts_scored`: .
 
-  .
+- `drive_result_detailed`: .
 
-- `lead_play_type2`.:
+- `drive_result_detailed_flag`: .
 
-  .
+- `drive_result2`: .
 
-- `lead_play_type3`.:
+- `lag_new_drive_pts`: .
 
-  .
+- `lag_drive_result_detailed`: .
 
-- `drive_numbers`.:
+- `lead_drive_result_detailed`: .
 
-  .
+- `new_drive_pts`: .
 
-- `number_of_drives`.:
+- `drive_scoring`: .
 
-  .
+- `drive_play`: .
 
-- `pts_scored`.:
+- `drive_play_number`: .
 
-  .
+- `drive_event`: .
 
-- `drive_result_detailed`.:
+- `drive_event_number`: .
 
-  .
+- `new_id`: .
 
-- `drive_result_detailed_flag`.:
+- `log_ydstogo`: .
 
-  .
+- `down`: .
 
-- `drive_result2`.:
+- `distance`: .
 
-  .
+- `yards_to_goal`: .
 
-- `lag_new_drive_pts`.:
+- `yards_gained`: .
 
-  .
-
-- `lag_drive_result_detailed`.:
-
-  .
-
-- `lead_drive_result_detailed`.:
-
-  .
-
-- `new_drive_pts`.:
-
-  .
-
-- `drive_scoring`.:
-
-  .
-
-- `drive_play`.:
-
-  .
-
-- `drive_play_number`.:
-
-  .
-
-- `drive_event`.:
-
-  .
-
-- `drive_event_number`.:
-
-  .
-
-- `new_id`.:
-
-  .
-
-- `log_ydstogo`.:
-
-  .
-
-- `down`.:
-
-  .
-
-- `distance`.:
-
-  .
-
-- `yards_to_goal`.:
-
-  .
-
-- `yards_gained`.:
-
-  .
-
-- `Goal_To_Go`.:
-
-  .
+- `Goal_To_Go`: .
 
 `dat` with the following columns appended/modified:
 
-- `turnover_indicator`.:
+- `turnover_indicator`: .
 
-  .
+- `down`: .
 
-- `down`.:
+- `new_id`: .
 
-  .
+- `new_down`: .
 
-- `new_id`.:
+- `distance`: .
 
-  .
+- `yards_to_goal`: .
 
-- `new_down`.:
+- `yards_gained`: .
 
-  .
+- `turnover`: .
 
-- `distance`.:
+- `drive_start_yards_to_goal`: .
 
-  .
+- `end_of_half`: .
 
-- `yards_to_goal`.:
+- `new_yardline`: .
 
-  .
+- `new_distance`: .
 
-- `yards_gained`.:
+- `new_log_ydstogo`: .
 
-  .
+- `new_Goal_To_Go`: .
 
-- `turnover`.:
+- `new_TimeSecsRem`: .
 
-  .
+- `new_Under_two`: .
 
-- `drive_start_yards_to_goal`.:
+- `first_by_penalty`: .
 
-  .
+- `lag_first_by_penalty`: .
 
-- `end_of_half`.:
+- `lag_first_by_penalty2`: .
 
-  .
+- `first_by_yards`: .
 
-- `new_yardline`.:
+- `lag_first_by_yards`: .
 
-  .
+- `lag_first_by_yards2`: .
 
-- `new_distance`.:
+- `row`: .
 
-  .
+- `new_series`: .
 
-- `new_log_ydstogo`.:
+- `firstD_by_kickoff`: .
 
-  .
+- `firstD_by_poss`: .
 
-- `new_Goal_To_Go`.:
+- `firstD_by_yards`: .
 
-  .
+- `firstD_by_penalty`: .
 
-- `new_TimeSecsRem`.:
+- `yds_punted`: .
 
-  .
+- `yds_punt_gained`: .
 
-- `new_Under_two`.:
-
-  .
-
-- `first_by_penalty`.:
-
-  .
-
-- `lag_first_by_penalty`.:
-
-  .
-
-- `lag_first_by_penalty2`.:
-
-  .
-
-- `first_by_yards`.:
-
-  .
-
-- `lag_first_by_yards`.:
-
-  .
-
-- `lag_first_by_yards2`.:
-
-  .
-
-- `row`.:
-
-  .
-
-- `new_series`.:
-
-  .
-
-- `firstD_by_kickoff`.:
-
-  .
-
-- `firstD_by_poss`.:
-
-  .
-
-- `firstD_by_yards`.:
-
-  .
-
-- `firstD_by_penalty`.:
-
-  .
-
-- `yds_punted`.:
-
-  .
-
-- `yds_punt_gained`.:
-
-  .
-
-- `missing_yard_flag`.:
-
-  .
+- `missing_yard_flag`: .
 
 The original `drive_df` with the following columns appended to it:
 
 - `drive_id`: Returned as `drive_id` from original variable `drive_id`:
-
   .
 
-- `pts_drive`: End result of the drive:
+- `pts_drive`: End result of the drive: .
 
-  .
-
-- `scoring`: Logical flag for if drive was a scoring drive updated:
-
-  .
+- `scoring`: Logical flag for if drive was a scoring drive updated: .
 
 The original `play_df` with the following columns appended to it:
 
 - `cleaned_text`: `play_text` with miscellanous items removed: pass
-  depth/location, clock timestamps, No Huddle/Shotgun status, etc.:
-
-  .
+  depth/location, clock timestamps, No Huddle/Shotgun status, etc.: .
 
 The original `pbp` with the following columns appended to it:
 
@@ -937,131 +685,73 @@ The original `raw_df` with the following columns appended/redefined:
 
 Requires the following columns to be present
 
-- `game_id`:
+- `game_id`: .
 
-  .
+- `id_play`: .
 
-- `id_play`:
+- `clock_minutes`: .
 
-  .
+- `clock_seconds`: .
 
-- `clock_minutes`:
+- `half`: .
 
-  .
+- `period`: .
 
-- `clock_seconds`:
+- `offense_play`: .
 
-  .
+- `defense_play`: .
 
-- `half`:
+- `home`: .
 
-  .
+- `away`: .
 
-- `period`:
+- `offense_score`: .
 
-  .
+- `defense_score`: .
 
-- `offense_play`:
+- `offense_timeouts`: .
 
-  .
+- `defense_timeouts`: .
 
-- `defense_play`:
+- `play_text`: .
 
-  .
-
-- `home`:
-
-  .
-
-- `away`:
-
-  .
-
-- `offense_score`:
-
-  .
-
-- `defense_score`:
-
-  .
-
-- `offense_timeouts`:
-
-  .
-
-- `defense_timeouts`:
-
-  .
-
-- `play_text`:
-
-  .
-
-- `play_type`:
-
-  .
+- `play_type`: .
 
 Prep for EPA calculations at the end of the play. Requires the following
 columns be present:
 
-- `game_id`.:
+- `game_id`: .
 
-  .
+- `id_play`: .
 
-- `id_play`.:
+- `drive_id`: .
 
-  .
+- `down`: .
 
-- `drive_id`.:
+- `distance`: .
 
-  .
+- `period`: .
 
-- `down`.:
+- `yards_to_goal`: .
 
-  .
-
-- `distance`.:
-
-  .
-
-- `period`.:
-
-  .
-
-- `yards_to_goal`.:
-
-  .
-
-- `play_type`.:
-
-  .
+- `play_type`: .
 
 Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column.
 Requires the following columns be present:
 
-- `drive_id`: Returned as `drive_id`:
+- `drive_id`: Returned as `drive_id`: .
 
-  .
+- `drive_result`: End result of the drive: .
 
-- `drive_result`: End result of the drive:
+- `scoring`: Logical flag for if drive was a scoring drive: .
 
-  .
-
-- `scoring`: Logical flag for if drive was a scoring drive:
-
-  .
-
-- `game_id`: Unique game identifier:
-
-  .
+- `game_id`: Unique game identifier: .
 
 Cleans CFB play-by-play text to be compliant with existing play-by-play
 parsing. Generally not recommended for standalone use. This method
 exists due to ESPN PBP changes midway through the 2025 season.
 
-- `play_text`: Returned as `play_text`:
-
-  .
+- `play_text`: Returned as `play_text`: .
 
 Cleans CFB (D-I) player Data to create player name columns. Requires the
 following columns be present:

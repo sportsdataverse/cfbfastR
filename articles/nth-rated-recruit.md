@@ -12,11 +12,12 @@ that your development environment is already setup.
 
 We start by loading the packages we need. The `cfbfastR` package will
 provide us with our source of data. The `dplyr` package gives us handy
-data manipulation tools and the ever useful pipe (`%>%`) syntax.
-Finally, `ggplot2` will allow us to make a simple, functional graph of
-our results.
+data manipulation tools and the ever useful pipe (`|>`) syntax. Finally,
+`ggplot2` will allow us to make a simple, functional graph of our
+results.
 
 ``` r
+
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -38,7 +39,8 @@ argument. You can also get Prep School recruits
 (`recruit_type = "JUCO"`).
 
 ``` r
-teams <- cfbfastR::cfbd_team_info() %>% 
+
+teams <- cfbfastR::cfbd_team_info() |> 
   dplyr::filter(conference == "Big Ten")
 schools <- teams$school
 yr <- cfbfastR:::most_recent_cfb_season()
@@ -61,13 +63,14 @@ all.recruits <- purrr::map2_dfr(
 tictoc::toc()
 ```
 
-    ## 7.276 sec elapsed
+    ## 19.731 sec elapsed
 
 ``` r
+
 dplyr::glimpse(all.recruits)
 ```
 
-    ## Rows: 1,051
+    ## Rows: 801
     ## Columns: 19
     ## $ id                      <chr> "114420", "114678", "114756", "114760", "11477…
     ## $ athlete_id              <chr> "4714773", "4826636", "4869962", "4790965", "4…
@@ -101,16 +104,17 @@ their rating. I use this info to assign a ranking for each school’s
 recruits school information can be used on our graph.
 
 ``` r
-recruits.limited <- all.recruits %>% 
+
+recruits.limited <- all.recruits |> 
   dplyr::select(name, rating, committed_to)
-recruits.sorted <- recruits.limited %>% 
-  dplyr::group_by(committed_to) %>% 
-  dplyr::top_n(85, rating) %>% 
-  dplyr::arrange(committed_to, -rating,.by_group=TRUE) %>% 
-  dplyr::mutate(num = dplyr::row_number()) %>% 
+recruits.sorted <- recruits.limited |> 
+  dplyr::group_by(committed_to) |> 
+  dplyr::top_n(85, rating) |> 
+  dplyr::arrange(committed_to, -rating,.by_group=TRUE) |> 
+  dplyr::mutate(num = dplyr::row_number()) |> 
   dplyr::ungroup()
 
-recruits.final <- recruits.sorted %>% 
+recruits.final <- recruits.sorted |> 
   dplyr::left_join(teams, by = c("committed_to"="school"))
 ```
 
@@ -123,8 +127,9 @@ each team’s primary color, and assign each value a name corresponding to
 the school I’m interested in.
 
 ``` r
-big.ten.west <- recruits.final %>% filter(division == "West")
-big.ten.west.teams <- teams %>% filter(division == "West")
+
+big.ten.west <- recruits.final |> filter(division == "West")
+big.ten.west.teams <- teams |> filter(division == "West")
 
 big.ten.west.colors <- big.ten.west.teams$color
 names(big.ten.west.colors) <- big.ten.west.teams$school
@@ -137,6 +142,7 @@ color values we defined earlier. I added some extra horizontal lines to
 approximate the ratings of 3, 4, and 5 star recruits.
 
 ``` r
+
 ggplot(big.ten.west, aes(x=num, y=rating, color = committed_to)) + 
   geom_line(size = 1.2) +
   scale_color_manual(values = big.ten.west.colors) +

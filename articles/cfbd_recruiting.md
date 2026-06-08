@@ -3,6 +3,7 @@
 ### **Load and Install Packages**
 
 ``` r
+
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -16,12 +17,13 @@ Gets CFB recruiting information for a single year with filters available
 for team, recruit type, state and position.
 
 ``` r
+
 cfbd_recruiting_player(2018, team = "Texas")
 ```
 
-    ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
+    ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-01-19 16:24:24 UTC
+    ## ℹ Data updated: 2026-06-08 01:49:12 UTC
 
     ## # A tibble: 28 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -43,12 +45,12 @@ cfbd_recruiting_player(2018, team = "Texas")
     ## #   hometown_info_fips_code <chr>
 
 ``` r
+
 cfbd_recruiting_player(2016, recruit_type = "JUCO")
 ```
 
-    ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-
-    ## ℹ Data updated: 2026-01-19 16:24:25 UTC
+    ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+    ## ℹ Data updated: 2026-06-08 01:49:12 UTC
 
     ## # A tibble: 470 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -70,11 +72,12 @@ cfbd_recruiting_player(2016, recruit_type = "JUCO")
     ## #   hometown_info_fips_code <chr>
 
 ``` r
+
 cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL")
 ```
 
-    ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.2.1 ──
-    ## ℹ Data updated: 2026-01-19 16:24:25 UTC
+    ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
+    ## ℹ Data updated: 2026-06-08 01:49:12 UTC
 
     ## # A tibble: 25 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -98,12 +101,13 @@ cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state
 ### **CFB Recruiting Information Position Groups.**
 
 ``` r
+
 cfbd_recruiting_position(2018, team = "Texas")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
 
-    ## ℹ Data updated: 2026-01-19 16:24:25 UTC
+    ## ℹ Data updated: 2026-06-08 01:49:12 UTC
 
     ## # A tibble: 16 × 7
     ##    team  conference position_group avg_rating total_rating commits avg_stars    
@@ -126,11 +130,12 @@ cfbd_recruiting_position(2018, team = "Texas")
     ## 16 Texas SEC        All Positions       0.878         17.6 20      3.4500000000…
 
 ``` r
+
 cfbd_recruiting_position(2016, 2020, team = "Virginia")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
-    ## ℹ Data updated: 2026-01-19 16:24:25 UTC
+    ## ℹ Data updated: 2026-06-08 01:49:12 UTC
 
     ## # A tibble: 16 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -153,11 +158,13 @@ cfbd_recruiting_position(2016, 2020, team = "Virginia")
     ## 16 Virginia ACC        All Positions       0.839         7.55 9       2.8888888…
 
 ``` r
+
 cfbd_recruiting_position(2015, 2020, conference = "SEC")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
-    ## ℹ Data updated: 2026-01-19 16:24:25 UTC
+
+    ## ℹ Data updated: 2026-06-08 01:49:13 UTC
 
     ## # A tibble: 224 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -177,12 +184,13 @@ cfbd_recruiting_position(2015, 2020, conference = "SEC")
 ### **CFB Recruiting Information Team Rankings.**
 
 ``` r
+
 cfbd_recruiting_team(2018, team = "Texas")
 ```
 
-    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.2.1 ──
+    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-01-19 16:24:26 UTC
+    ## ℹ Data updated: 2026-06-08 01:49:13 UTC
 
     ## # A tibble: 1 × 4
     ##    year team   rank points
@@ -190,11 +198,12 @@ cfbd_recruiting_team(2018, team = "Texas")
     ## 1  2018 Texas     3   300.
 
 ``` r
+
 cfbd_recruiting_team(2016, team = "Virginia")
 ```
 
-    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.2.1 ──
-    ## ℹ Data updated: 2026-01-19 16:24:26 UTC
+    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
+    ## ℹ Data updated: 2026-06-08 01:49:13 UTC
 
     ## # A tibble: 1 × 4
     ##    year team      rank points
@@ -202,11 +211,12 @@ cfbd_recruiting_team(2016, team = "Virginia")
     ## 1  2016 Virginia    63   165.
 
 ``` r
+
 cfbd_recruiting_team(2016, team = "Texas A&M")
 ```
 
-    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.2.1 ──
-    ## ℹ Data updated: 2026-01-19 16:24:26 UTC
+    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
+    ## ℹ Data updated: 2026-06-08 01:49:13 UTC
 
     ## # A tibble: 1 × 4
     ##    year team       rank points
@@ -214,11 +224,12 @@ cfbd_recruiting_team(2016, team = "Texas A&M")
     ## 1  2016 Texas A&M    18   239.
 
 ``` r
+
 cfbd_recruiting_team(2011)
 ```
 
-    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.2.1 ──
-    ## ℹ Data updated: 2026-01-19 16:24:26 UTC
+    ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
+    ## ℹ Data updated: 2026-06-08 01:49:13 UTC
 
     ## # A tibble: 137 × 4
     ##     year team           rank points

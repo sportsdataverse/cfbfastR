@@ -380,30 +380,30 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(espn_cfb_player_stats(athlete_id = 530308, year = 2013))
-#> ── CFB Player Season stats from ESPN.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:16 UTC
-#> # A tibble: 1 × 335
-#>   athlete_id athlete_uid    athlete_guid athlete_type sdr   first_name last_name
-#>   <chr>      <chr>          <chr>        <chr>        <chr> <chr>      <chr>    
-#> 1 530308     s:20~l:23~a:5… 57af2581-ce… football     2969… Jameis     Winston  
-#> # ℹ 328 more variables: full_name <chr>, display_name <chr>, short_name <chr>,
-#> #   weight <dbl>, display_weight <chr>, height <dbl>, display_height <chr>,
-#> #   age <int>, date_of_birth <chr>, birth_place_city <chr>,
-#> #   birth_place_state <chr>, birth_place_country <chr>,
+#> ── CFB Player Season stats from ESPN.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:46:31 UTC
+#> # A tibble: 1 × 337
+#>   season season_type athlete_id athlete_uid      athlete_guid athlete_type sdr  
+#>    <dbl> <chr>       <chr>      <chr>            <chr>        <chr>        <chr>
+#> 1   2013 regular     530308     s:20~l:23~a:530… 57af2581-ce… football     2969…
+#> # ℹ 330 more variables: first_name <chr>, last_name <chr>, full_name <chr>,
+#> #   display_name <chr>, short_name <chr>, weight <dbl>, display_weight <chr>,
+#> #   height <dbl>, display_height <chr>, age <int>, date_of_birth <chr>,
+#> #   birth_place_city <chr>, birth_place_state <chr>, birth_place_country <chr>,
 #> #   birth_country_alternate_id <chr>, birth_country_abbreviation <chr>,
 #> #   slug <chr>, jersey <chr>, flag_href <chr>, flag_alt <chr>,
 #> #   flag_x_country_flag <chr>, position_id <chr>, position_name <chr>, …
   try(espn_cfb_player_stats(athlete_id = 4360799, year = 2022))
-#> ── CFB Player Season stats from ESPN.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:16 UTC
-#> # A tibble: 1 × 340
-#>   athlete_id athlete_uid    athlete_guid athlete_type sdr   first_name last_name
-#>   <chr>      <chr>          <chr>        <chr>        <chr> <chr>      <chr>    
-#> 1 4360799    s:20~l:23~a:4… 3deb6032-be… football     4360… Jordan     Travis   
-#> # ℹ 333 more variables: full_name <chr>, display_name <chr>, short_name <chr>,
-#> #   weight <dbl>, display_weight <chr>, height <dbl>, display_height <chr>,
-#> #   age <int>, date_of_birth <chr>, birth_place_city <chr>,
-#> #   birth_place_state <chr>, birth_place_country <chr>,
+#> ── CFB Player Season stats from ESPN.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:46:31 UTC
+#> # A tibble: 1 × 343
+#>   season season_type athlete_id athlete_uid      athlete_guid athlete_type sdr  
+#>    <dbl> <chr>       <chr>      <chr>            <chr>        <chr>        <chr>
+#> 1   2022 regular     4360799    s:20~l:23~a:436… 3deb6032-be… football     4360…
+#> # ℹ 336 more variables: first_name <chr>, last_name <chr>, full_name <chr>,
+#> #   display_name <chr>, short_name <chr>, weight <dbl>, display_weight <chr>,
+#> #   height <dbl>, display_height <chr>, age <int>, date_of_birth <chr>,
+#> #   birth_place_city <chr>, birth_place_state <chr>, birth_place_country <chr>,
 #> #   birth_country_alternate_id <chr>, birth_country_abbreviation <chr>,
 #> #   slug <chr>, headshot_href <chr>, headshot_alt <chr>, jersey <chr>,
 #> #   flag_href <chr>, flag_alt <chr>, flag_x_country_flag <chr>, …

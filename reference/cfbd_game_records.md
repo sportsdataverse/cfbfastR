@@ -29,145 +29,44 @@ cfbd_game_records(year, team = NULL, conference = NULL)
 
 `cfbd_game_records()` - A data frame with 35 variables:
 
-- `year`: integer.:
-
-  Season of the games.
-
-- `team_id`: integer.:
-
-  Referencing team id.
-
-- `team`: character.:
-
-  Team name.
-
-- `classification`: character:
-
-  Conference classification (fbs,fcs,ii,iii)
-
-- `conference`: character.:
-
-  Conference of the team.
-
-- `division`: character.:
-
-  Division in the conference of the team.
-
-- `expected_wins`: numeric:
-
-  Expected number of wins based on post-game win probability.
-
-- `total_games`: integer.:
-
-  Total number of games played.
-
-- `total_wins`: integer.:
-
-  Total wins.
-
-- `total_losses`: integer.:
-
-  Total losses.
-
-- `total_ties`: integer.:
-
-  Total ties.
-
-- `conference_games`: integer.:
-
-  Number of conference games.
-
-- `conference_wins`: integer.:
-
-  Total conference wins.
-
-- `conference_losses`: integer.:
-
-  Total conference losses.
-
-- `conference_ties`: integer.:
-
-  Total conference ties.
-
-- `home_games`: integer.:
-
-  Total home games.
-
-- `home_wins`: integer.:
-
-  Total home wins.
-
-- `home_losses`: integer.:
-
-  Total home losses.
-
-- `home_ties`: integer.:
-
-  Total home ties.
-
-- `away_games`: integer.:
-
-  Total away games.
-
-- `away_wins`: integer.:
-
-  Total away wins.
-
-- `away_losses`: integer.:
-
-  Total away losses.
-
-- `away_ties`: integer.:
-
-  Total away ties.
-
-- `neutral_games`: integer.:
-
-  Total neutral site games.
-
-- `neutral_wins`: integer.:
-
-  Total neutral site wins.
-
-- `neutral_losses`: integer.:
-
-  Total neutral site losses.
-
-- `neutral_ties`: integer.:
-
-  Total neutral site ties.
-
-- `regular_season_games`: integer.:
-
-  Total regular season games.
-
-- `regular_season_wins`: integer.:
-
-  Total regular season wins.
-
-- `regular_season_losses`: integer.:
-
-  Total regular season losses.
-
-- `regular_season_ties`: integer.:
-
-  Total regular season ties.
-
-- `postseason_games`: integer.:
-
-  Total postseason games.
-
-- `postseason_wins`: integer.:
-
-  Total postseason wins.
-
-- `postseason_losses`: integer.:
-
-  Total postseason losses.
-
-- `postseason_ties`: integer.:
-
-  Total postseason ties.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Season of the games. |
+| team_id | integer | Referencing team id. |
+| team | character | Team name. |
+| classification | character | Conference classification (fbs, fcs, ii, iii). |
+| conference | character | Conference of the team. |
+| division | character | Division in the conference of the team. |
+| expected_wins | numeric | Expected number of wins based on post-game win probability. |
+| total_games | integer | Total number of games played. |
+| total_wins | integer | Total wins. |
+| total_losses | integer | Total losses. |
+| total_ties | integer | Total ties. |
+| conference_games | integer | Number of conference games. |
+| conference_wins | integer | Total conference wins. |
+| conference_losses | integer | Total conference losses. |
+| conference_ties | integer | Total conference ties. |
+| home_games | integer | Total home games. |
+| home_wins | integer | Total home wins. |
+| home_losses | integer | Total home losses. |
+| home_ties | integer | Total home ties. |
+| away_games | integer | Total away games. |
+| away_wins | integer | Total away wins. |
+| away_losses | integer | Total away losses. |
+| away_ties | integer | Total away ties. |
+| neutral_games | integer | Total neutral site games. |
+| neutral_wins | integer | Total neutral site wins. |
+| neutral_losses | integer | Total neutral site losses. |
+| neutral_ties | integer | Total neutral site ties. |
+| regular_season_games | integer | Total regular season games. |
+| regular_season_wins | integer | Total regular season wins. |
+| regular_season_losses | integer | Total regular season losses. |
+| regular_season_ties | integer | Total regular season ties. |
+| postseason_games | integer | Total postseason games. |
+| postseason_wins | integer | Total postseason wins. |
+| postseason_losses | integer | Total postseason losses. |
+| postseason_ties | integer | Total postseason ties. |
 
 ## See also
 
@@ -186,8 +85,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_records(2018, team = "Notre Dame"))
-#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:53 UTC
+#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:48 UTC
 #> # A tibble: 1 × 35
 #>    year team_id team       classification conference      division expected_wins
 #>   <int>   <int> <chr>      <chr>          <chr>           <chr>            <dbl>
@@ -201,8 +100,8 @@ Other CFBD Games:
 #> #   regular_season_games <int>, regular_season_wins <int>, …
 
   try(cfbd_game_records(2013, team = "Florida State"))
-#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:53 UTC
+#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:49 UTC
 #> # A tibble: 1 × 35
 #>    year team_id team          classification conference division expected_wins
 #>   <int>   <int> <chr>         <chr>          <chr>      <chr>            <dbl>

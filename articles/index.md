@@ -1,11 +1,8 @@
 # Articles
 
-### Introductory
+### Cookbooks & Guides
 
-- [Introduction to
-  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/intro.md):
-
-  Getting started with using `cfbfastR` and college football analytics.
+End-to-end recipes and reference guides.
 
 - [Making Animated Win Probability Charts with
   cfbfastR](https://cfbfastR.sportsdataverse.org/articles/animated-wp-plotting.md):
@@ -15,49 +12,6 @@
   college football using data from
   [CollegeFootballData.com](https://www.collegefootballdata.com)
   collected using the `cfbfastR` package for R.
-
-- [Creating Fourth Down Tendency Plots Using
-  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.md):
-
-  A rundown of the Big XII returning coaches fourth down tendencies
-
-- [Rolling EPA
-  Graph](https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.md):
-
-  **IT’S GRAPHIN’ TIME**  
-  ^*To be said in an extremely Power Rangers voice*^**
-
-- [Visualizing Team Talent from Player Recruiting
-  Rankings](https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.md):
-
-  A quick way to visually approximate how much talent each school
-  recruited using `cfbfastR` and `ggplot2`.
-
-- [Intro to Visualizing Recruiting
-  Geography](https://cfbfastR.sportsdataverse.org/articles/map-tutorial.md):
-
-### Expected Points Model Fundamentals
-
-- [College Football Expected Points Model Fundamentals - Part
-  I](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.md):
-
-  Expected points model definition - a model explainer
-
-- [College Football Expected Points Model Fundamentals - Part
-  II](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.md):
-
-  Motivating the regression - I do bad regression to show that a
-  multinomial logistic regression model is necessary
-
-- [College Football Expected Points Model Fundamentals - Part
-  III](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md):
-
-  A brief history of expected points models. Learn about Virgil Carter’s
-  1970 paper and the origins of the nflscrapR expected points model
-  (which the cfbscrapR package used). The cfbfastR package includes
-  support for this model as well.
-
-### CFBD Tutorials
 
 - [CFB Data Betting Lines
   Examples](https://cfbfastR.sportsdataverse.org/articles/cfbd_betting.md):
@@ -114,3 +68,53 @@
   and team matchup history (`cfbd_team_matchup_history()`) and records
   ([`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md))
   from the CFBD API
+
+- [ESPN College Football
+  Cookbook](https://cfbfastR.sportsdataverse.org/articles/cfbfastR-espn-cookbook.md):
+
+  A recipe-driven tour of the `espn_cfb_*()` family in `cfbfastR` –
+  teams, games, play-by-play, modeled EPA/WPA, and ratings.
+
+- [College Football Expected Points Model Fundamentals - Part
+  I](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.md):
+
+  Expected points model definition - a model explainer
+
+- [College Football Expected Points Model Fundamentals - Part
+  II](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.md):
+
+  Motivating the regression - I do bad regression to show that a
+  multinomial logistic regression model is necessary
+
+- [College Football Expected Points Model Fundamentals - Part
+  III](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md):
+
+  A brief history of expected points models. Learn about Virgil Carter’s
+  1970 paper and the origins of the nflscrapR expected points model
+  (which the cfbscrapR package used). The cfbfastR package includes
+  support for this model as well.
+
+- [Creating Fourth Down Tendency Plots Using
+  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.md):
+
+  A rundown of the Big XII returning coaches fourth down tendencies
+
+- [Introduction to
+  cfbfastR](https://cfbfastR.sportsdataverse.org/articles/intro.md):
+
+  Getting started with using `cfbfastR` and college football analytics.
+
+- [Intro to Visualizing Recruiting
+  Geography](https://cfbfastR.sportsdataverse.org/articles/map-tutorial.md):
+
+- [Visualizing Team Talent from Player Recruiting
+  Rankings](https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.md):
+
+  A quick way to visually approximate how much talent each school
+  recruited using `cfbfastR` and `ggplot2`.
+
+- [Rolling EPA
+  Graph](https://cfbfastR.sportsdataverse.org/articles/rolling-epa-graph.md):
+
+  **IT’S GRAPHIN’ TIME**  
+  ^*To be said in an extremely Power Rangers voice*^**

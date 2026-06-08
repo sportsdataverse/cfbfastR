@@ -22,6 +22,7 @@ plotting, `glue` to easily make the labels, `ggimage` to put the logos
 on the plot, and `animation` to actually build the GIF.
 
 ``` r
+
 if (!requireNamespace('pacman', quietly = TRUE)){
   install.packages('pacman')
 }
@@ -39,25 +40,26 @@ get the win probabilities for the plot.
 will pull the game info such as the home and away team and the result.
 
 ``` r
+
 team <- "Utah"
 week <- 1
 year <- 2019
 
 interp_TimeSecsRem <- function(pbp) {
-  temp <- pbp %>%
-    mutate(TimeSecsRem = ifelse(TimeSecsRem == lag(TimeSecsRem), NA, TimeSecsRem)) %>%
+  temp <- pbp |>
+    mutate(TimeSecsRem = ifelse(TimeSecsRem == lag(TimeSecsRem), NA, TimeSecsRem)) |>
     select(TimeSecsRem)
   ind <- which(temp$TimeSecsRem == 1800)
   temp$TimeSecsRem[1] <- 1800
   temp$TimeSecsRem[nrow(temp)] <- 0
   temp$TimeSecsRem[ind-1] <- 0
-  pbp<- pbp %>%
-    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) %>%
+  pbp<- pbp |>
+    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) |>
     mutate(clock_minutes = floor(TimeSecsRem/60),clock_seconds = TimeSecsRem %% 60)
   return(pbp)
 }
-game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>%
-  filter(down > 0) %>%
+game_pbp <- cfbfastR::cfbd_pbp_data(year, team = team, week = week, epa_wpa = TRUE) |>
+  filter(down > 0) |>
   interp_TimeSecsRem()
 
 game <- cfbfastR::cfbd_game_info(year=year, team = team, week = week, season_type = "regular")
@@ -70,17 +72,18 @@ info. We’ll also add in a `result` column that is the score difference
 between the home and the away teams that we’ll use later.
 
 ``` r
+
 team_info <- cfbfastR::cfbd_team_info()
-team_logos <- team_info %>%
+team_logos <- team_info |>
   select(school, color, alt_color, logo, alt_name2)
-game <- game %>%
-  left_join(team_logos, by = c("away_team" = "school"),) %>%
+game <- game |>
+  left_join(team_logos, by = c("away_team" = "school"),) |>
   rename(away_logo = logo, away_color = color, away_alt_color = alt_color, away_abr = alt_name2)
 
-game <- game %>%
-  left_join(team_logos, by = c("home_team" = "school")) %>%
-  rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) %>%
-  mutate(result = home_points - away_points) %>%
+game <- game |>
+  left_join(team_logos, by = c("home_team" = "school")) |>
+  rename(home_logo = logo, home_color = color, home_alt_color = alt_color, home_abr = alt_name2) |>
+  mutate(result = home_points - away_points) |>
   rename(home_score = home_points, away_score = away_points)
 ```
 
@@ -103,10 +106,11 @@ score. We create the `time` column to use as the clock on the right side
 of the animation.
 
 ``` r
-game_pbp <- game_pbp %>%
+
+game_pbp <- game_pbp |>
   rename(qtr = period, wp = wp_before, posteam = pos_team, defteam = def_pos_team,
          away_team = away, home_team = home, play_id = game_play_number,
-         posteam_score = pos_team_score, defteam_score = def_pos_team_score) %>%
+         posteam_score = pos_team_score, defteam_score = def_pos_team_score) |>
   mutate(game_seconds_remaining = ifelse(half == 1, TimeSecsRem + 1800, TimeSecsRem),
          result = game$result,
          minlabel = ifelse(clock_minutes >= 15,
@@ -125,8 +129,9 @@ probability so that it is always the probability of the away team
 winning.
 
 ``` r
-base_wp_data <- game_pbp %>%
-  filter(!is.na(wp)) %>%
+
+base_wp_data <- game_pbp |>
+  filter(!is.na(wp)) |>
   mutate(s = game_seconds_remaining,
          wp = ifelse(posteam == away_team, wp, 1 - wp))
 ```
@@ -134,6 +139,7 @@ base_wp_data <- game_pbp %>%
 Then we fix the plays without a wpa.
 
 ``` r
+
 # fix if play other than last is NA
 for (r in (nrow(base_wp_data)-1):1) {
   if (!is.na(base_wp_data$wp[r]) && is.na(base_wp_data$wpa[r]))
@@ -157,9 +163,10 @@ We’ll also simplify our data frame by only selecting the relevant
 columns for our plots.
 
 ``` r
+
 abs_wpa <- 0.07
 
-wp_data <- base_wp_data %>%
+wp_data <- base_wp_data |>
   mutate(
     helped=ifelse(wpa > 0, posteam, defteam),
     text =
@@ -205,7 +212,7 @@ wp_data <- base_wp_data %>%
        TRUE ~ ""),
     text = ifelse(text == "","", glue("{text}\n{helped} +{abs(round(100*wpa))}%")),
     away_score = ifelse(posteam == away_team, posteam_score, defteam_score),
-    home_score = ifelse(posteam == away_team, defteam_score, posteam_score)) %>%
+    home_score = ifelse(posteam == away_team, defteam_score, posteam_score)) |>
   select(play_id, qtr, time, s, wp, wpa, posteam, away_score, home_score, text)
 ```
 
@@ -213,6 +220,7 @@ This is where the real magic happens. Sharpe’s code will iterate over
 the labels and try to determine valid locations for each one.
 
 ``` r
+
 # points for plotting
 x_max <- 0
 x_lab_min <- 3600 - 250
@@ -221,7 +229,7 @@ x_score <- 320 - x_max
 # determine the location of the label
 wp_data$x_text <- NA
 wp_data$y_text <- NA
-wp_data <- wp_data %>% arrange(desc(abs(wpa)))
+wp_data <- wp_data |> arrange(desc(abs(wpa)))
 
 seq_fix <- function(start, end, move)
 {
@@ -244,14 +252,14 @@ for (r in which(wp_data$text != ""))
   for (i in 1:length(y_spots))
   {
     valid <- TRUE
-    if (nrow(wp_data %>%
+    if (nrow(wp_data |>
              filter(y_spots[i] - 0.1 < wp & wp < y_spots[i] + 0.1 &
                     wp_data$s[r] - 300 < s & s < wp_data$s[r] + 300)) > 0)
     {
       # too close to the WP line
       valid <- FALSE
     }
-    if (nrow(wp_data %>%
+    if (nrow(wp_data |>
              filter(y_spots[i] - 0.1 < y_text & y_text < y_spots[i] + 0.1 &
                     wp_data$s[r] - 600 < x_text & x_text < wp_data$s[r] + 600)) > 0)
     {
@@ -281,14 +289,14 @@ for (r in which(wp_data$text != ""))
     for (i in 1:length(x_spots))
     {
       valid <- TRUE
-      if (nrow(wp_data %>%
+      if (nrow(wp_data |>
                filter(wp_data$wp[r] - 0.1 < wp & wp < wp_data$wp[r] + 0.1 &
                       x_spots[i] - 300 < s & s < x_spots[i] + 300)) > 0)
       {
         # too close to the WP line
         valid <- FALSE
       }
-      if (nrow(wp_data %>%
+      if (nrow(wp_data |>
                filter(wp_data$wp[r] - 0.1 < y_text & y_text < wp_data$wp[r] + 0.1 &
                       x_spots[i] - 600 < x_text & x_text < x_spots[i] + 600)) > 0)
       {
@@ -318,6 +326,7 @@ of the game, filter out any other weirdness, and arrange our data frame
 by the order of the plays.
 
 ``` r
+
 # add on WP boundaries
 first_row <- data.frame(play_id = 0, qtr = 1, time = "15:00", s = 3600,
                         wp = 0.5, wpa = NA, text = as.character(""),
@@ -329,11 +338,11 @@ last_row <- data.frame(play_id = 999999, qtr = max(wp_data$qtr), s = x_max - 1,
                        wpa = NA, text = as.character(""), x_text = x_max, y_text = 0.5,
                        away_score = game$away_score, home_score = game$home_score,
                        stringsAsFactors = FALSE)
-wp_data <- wp_data %>%
+wp_data <- wp_data |>
   filter(posteam != "",
-         wpa != 0) %>%
-  bind_rows(first_row) %>%
-  bind_rows(last_row) %>%
+         wpa != 0) |>
+  bind_rows(first_row) |>
+  bind_rows(last_row) |>
   arrange(play_id)
 ```
 
@@ -345,21 +354,22 @@ game. This is where you can make any changes to the plot that you would
 like.
 
 ``` r
+
 draw_frame <- function(n_sec)
 {
 
   # frame data
-  frm_data <- wp_data %>%
+  frm_data <- wp_data |>
     filter(s >= n_sec)
 
   # output quarter changes
-  if (nrow(frm_data %>% filter(qtr == max(qtr))) == 1)
+  if (nrow(frm_data |> filter(qtr == max(qtr))) == 1)
   {
     print(glue("Plotting pbp in quarter {max(frm_data$qtr)}"))
   }
 
   # plot
-  frm_plot <- frm_data %>%
+  frm_plot <- frm_data |>
     ggplot(aes(x = s, y = wp)) +
     theme_minimal() +
     geom_vline(xintercept = c(3600, x_max), color = "#5555AA") +
@@ -412,7 +422,7 @@ draw_frame <- function(n_sec)
     annotate("text", x = -1*x_score, y = 0.50, label = clock, color = "#000000", size = 6)
 
   # label key moments
-  frm_labels <- frm_data %>%
+  frm_labels <- frm_data |>
     filter(text != "")
   frm_plot <- frm_plot +
     geom_point(frm_labels, mapping = aes(x = s, y = wp),
@@ -431,6 +441,7 @@ Let’s test our function to make sure the plot looks like how we want it
 by running our function with 6 minutes left in the game.
 
 ``` r
+
 draw_frame(360)
 ```
 
@@ -441,6 +452,7 @@ Looks great, so next we create the `draw_game()` function which will
 draw every frame for our GIF.
 
 ``` r
+
 draw_game <- function()
 {
   lapply(wp_data$s, function(n_sec)
@@ -458,6 +470,7 @@ draw_game <- function()
 Finally, we run our `draw_game()` function inside of `saveGIF()`.
 
 ``` r
+
   # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
@@ -472,6 +485,7 @@ be careful, this will drastically increase the rendering time and the
 file size.
 
 ``` r
+
 # saveGIF(draw_game(), interval = 0.1, movie.name = 'animated_wp_wide.gif',
 #         ani.width = 800, ani.height = 500, ani.res = 110)
 ```

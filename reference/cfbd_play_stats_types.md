@@ -12,19 +12,18 @@ cfbd_play_stats_types()
 
 `cfbd_play_stats_types()` - A data frame with 25 rows and 2 variables:
 
-- `play_stat_type_id`: integer:
-
-  Referencing play stat type ID.
-
-- `name`: character:
-
-  Type of play stats.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| play_stat_type_id | integer | CFBD play stat type identifier (used as a filter in [`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md)). |
+| name | character | Human-readable name of the play stat type (e.g. "Reception", "Sack", "Touchdown"). |
 
 ## See also
 
 Other CFBD PBP:
 [`cfbd_live_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_plays.md),
 [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+[`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md),
 [`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md),
 [`cfbd_play_types()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_types.md),
 [`cfbd_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_plays.md)
@@ -34,8 +33,8 @@ Other CFBD PBP:
 ``` r
 # \donttest{
   try(cfbd_play_stats_types())
-#> ── Play stats type data from CollegeFootballData.com ───────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:33 UTC
+#> ── Play stats type data from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:31 UTC
 #> # A tibble: 26 × 2
 #>    play_stat_type_id name            
 #>                <int> <chr>           

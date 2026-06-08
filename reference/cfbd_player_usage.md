@@ -60,61 +60,23 @@ cfbd_player_usage(
 
 `cfbd_player_usage()` - A data frame with 14 variables:
 
-- `season`: integer.:
-
-  Player usage season.
-
-- `athlete_id`: character.:
-
-  Referencing athlete id.
-
-- `name`: character.:
-
-  Athlete name.
-
-- `position`: character.:
-
-  Athlete position.
-
-- `team`: character.:
-
-  Team name.
-
-- `conference`: character.:
-
-  Conference of team.
-
-- `usg_overall`: double.:
-
-  Player usage of overall offense.
-
-- `usg_pass`: double.:
-
-  Player passing usage percentage.
-
-- `usg_rush`: double.:
-
-  Player rushing usage percentage.
-
-- `usg_1st_down`: double.:
-
-  Player first down usage percentage.
-
-- `usg_2nd_down`: double.:
-
-  Player second down usage percentage.
-
-- `usg_3rd_down`: double.:
-
-  Player third down usage percentage.
-
-- `usg_standard_downs`: double.:
-
-  Player standard down usage percentage.
-
-- `usg_passing_downs`: double.:
-
-  Player passing down usage percentage.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| season | integer | Four-digit season year for player usage. |
+| athlete_id | character | Unique CFBD athlete identifier. |
+| name | character | Athlete full name. |
+| position | character | Athlete position abbreviation (e.g. QB, RB, WR). |
+| team | character | Team name. |
+| conference | character | Conference of team. |
+| usg_overall | numeric | Player share of overall offensive usage. |
+| usg_pass | numeric | Player share of team passing usage. |
+| usg_rush | numeric | Player share of team rushing usage. |
+| usg_1st_down | numeric | Player share of team usage on first downs. |
+| usg_2nd_down | numeric | Player share of team usage on second downs. |
+| usg_3rd_down | numeric | Player share of team usage on third downs. |
+| usg_standard_downs | numeric | Player share of team usage on standard downs. |
+| usg_passing_downs | numeric | Player share of team usage on passing downs. |
 
 ## See also
 
@@ -127,8 +89,8 @@ Other CFBD Players:
 ``` r
 # \donttest{
   try(cfbd_player_usage(year = 2019, position = "WR", team = "Florida State"))
-#> ── Player usage data from CollegeFootballData.com ──────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:35 UTC
+#> ── Player usage data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:33 UTC
 #> # A tibble: 9 × 14
 #>   season athlete_id name          position team  conference usg_overall usg_pass
 #>    <int> <chr>      <chr>         <chr>    <chr> <chr>            <dbl>    <dbl>

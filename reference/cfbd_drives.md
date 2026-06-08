@@ -1,4 +1,6 @@
-# **CFBD Drives Endpoint**
+# **CFBD Drives Endpoint Overview**
+
+- `cfbd_drives()`: Get college football game drives.
 
 **Get college football game drives**
 
@@ -75,127 +77,55 @@ cfbd_drives(
 
 ## Value
 
-`cfbd_drives()` - A data frame with variables as follows:
+`cfbd_drives()` - A data frame with 28 variables:
 
-- `offense`:character.:
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| offense | character | Drive offense team name. |
+| offense_conference | character | Drive offense team's conference. |
+| defense | character | Drive defense team name. |
+| defense_conference | character | Drive defense team's conference. |
+| game_id | integer | Unique CFBD game identifier. |
+| drive_id | character | Unique CFBD drive identifier. |
+| drive_number | integer | Drive number within the game. |
+| scoring | logical | Flag indicating whether the drive ended in a score. |
+| start_period | integer | Period (quarter) in which the drive starts. |
+| start_yardline | integer | Yard line at the drive start. |
+| start_yards_to_goal | integer | Yards-to-goal at the drive start. |
+| end_period | integer | Period (quarter) in which the drive ends. |
+| end_yardline | integer | Yard line at drive end. |
+| end_yards_to_goal | integer | Yards-to-goal at drive end. |
+| plays | integer | Number of plays in the drive. |
+| yards | integer | Total yards gained on the drive. |
+| drive_result | character | Result of the drive (e.g. TD, FG, PUNT). |
+| is_home_offense | logical | Flag indicating whether the offense on the field is the home team. |
+| start_offense_score | numeric | Offense score at the start of the drive. |
+| start_defense_score | numeric | Defense score at the start of the drive. |
+| end_offense_score | numeric | Offense score at the end of the drive. |
+| end_defense_score | numeric | Defense score at the end of the drive. |
+| time_minutes_start | integer | Game clock minutes at drive start. |
+| time_seconds_start | integer | Game clock seconds at drive start. |
+| time_minutes_end | integer | Game clock minutes at drive end. |
+| time_seconds_end | integer | Game clock seconds at drive end. |
+| time_minutes_elapsed | numeric | Minutes elapsed during the drive. |
+| time_seconds_elapsed | integer | Seconds elapsed during the drive. |
 
-  Drive offense.
+## Details
 
-- `offense_conference`:character.:
+### **Get college football game drives**
 
-  Drive offense's conference.
+    cfbd_drives(year = 2018, week = 1, team = "TCU")
 
-- `defense`:character.:
-
-  Drive defense.
-
-- `defense_conference`:character.:
-
-  Drive defense's conference.
-
-- `game_id`:integer.:
-
-  Unique game identifier - `game_id`.
-
-- `drive_id`:character.:
-
-  Unique drive identifier - `drive_id`.
-
-- `drive_number`:integer.:
-
-  Drive number in game.
-
-- `scoring`:logical.:
-
-  Drive ends in a score.
-
-- `start_period`:integer.:
-
-  Period (or Quarter) in which the drive starts.
-
-- `start_yardline`:integer.:
-
-  Yard line at the drive start.
-
-- `start_yards_to_goal`:integer.:
-
-  Yards-to-Goal at the drive start.
-
-- `end_period`:integer.:
-
-  Period (or Quarter) in which the drive ends.
-
-- `end_yardline`:integer.:
-
-  Yard line at drive end.
-
-- `end_yards_to_goal`:integer.:
-
-  Yards-to-Goal at drive end.
-
-- `plays`:integer.:
-
-  Number of drive plays.
-
-- `yards`:integer.:
-
-  Total drive yards.
-
-- `drive_result`:character.:
-
-  Result of the drive description.
-
-- `is_home_offense`:logical.:
-
-  Flag for if the offense on the field is the home offense
-
-- `start_offense_score`:numeric.:
-
-  Offense score at the start of the drive.
-
-- `start_defense_score`:numeric.:
-
-  Defense score at the start of the drive.
-
-- `end_offense_score`:numeric.:
-
-  Offense score at the end of the drive.
-
-- `end_defense_score`:numeric.:
-
-  Defense score at the end of the drive.
-
-- `time_minutes_start`:integer.:
-
-  Minutes at drive start.
-
-- `time_seconds_start`:integer.:
-
-  Seconds at drive start.
-
-- `time_minutes_end`:integer.:
-
-  Minutes at drive end.
-
-- `time_seconds_end`:integer.:
-
-  Seconds at drive end.
-
-- `time_minutes_elapsed`:double.:
-
-  Minutes elapsed during drive.
-
-- `time_seconds_elapsed`:integer.:
-
-  Seconds elapsed during drive.
+    cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC")
 
 ## Examples
 
 ``` r
 # \donttest{
   try(cfbd_drives(year=2018, week = 1, team = "TCU"))
-#> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:50 UTC
+#> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:44 UTC
 #> # A tibble: 25 × 28
 #>    drive_id      game_id offense  offense_conference defense  defense_conference
 #>    <chr>           <int> <chr>    <chr>              <chr>    <chr>             
@@ -218,8 +148,8 @@ cfbd_drives(
 #> #   end_defense_score <int>, time_minutes_start <int>, …
 
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
-#> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:50 UTC
+#> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:44 UTC
 #> # A tibble: 259 × 28
 #>    drive_id      game_id offense   offense_conference defense defense_conference
 #>    <chr>           <int> <chr>     <chr>              <chr>   <chr>             

@@ -24,39 +24,30 @@ espn_metrics_wp(game_id)
 
 `espn_metrics_wp()` - A data frame with 5 variables:
 
-- `game_id`: character.:
+- `game_id`: character. Referencing game ID (should be same as `game_id`
+  from other functions).
 
-  Referencing game ID (should be same as `game_id` from other
-  functions).
+- `play_id`: character. Referencing play ID.
 
-- `play_id`: character.:
+- `seconds_left`: integer. DEPRECATED. Seconds left in the game.
 
-  Referencing play ID.
+- `home_win_percentage`: double. The probability of the home team
+  winning the game.
 
-- `seconds_left`: integer.:
+- `away_win_percentage`: double. The probability of the away team
+  winning the game (calculated as 1 - `home_win_percentage` -
+  `tie_percentage`).
 
-  DEPRECATED. Seconds left in the game.
-
-- `home_win_percentage`: double.:
-
-  The probability of the home team winning the game.
-
-- `away_win_percentage`: double.:
-
-  The probability of the away team winning the game (calculated as 1 -
-  `home_win_percentage` - `tie_percentage`).
-
-- `tie_percentage`: double.:
-
-  The probability of the game ending the final period in a tie.
+- `tie_percentage`: double. The probability of the game ending the final
+  period in a tie.
 
 ## Examples
 
 ``` r
 # \donttest{
   try(espn_metrics_wp(game_id = 401628369))
-#> ── Win probability chart data from ESPN ────────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:19 UTC
+#> ── Win probability chart data from ESPN ────────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:48:07 UTC
 #> # A tibble: 196 × 6
 #>    game_id   play_id        seconds_left home_win_percentage away_win_percentage
 #>    <chr>     <chr>          <lgl>                      <dbl>               <dbl>

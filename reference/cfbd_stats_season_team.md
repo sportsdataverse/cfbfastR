@@ -51,195 +51,62 @@ cfbd_stats_season_team(
 
 `cfbd_stats_season_team()` - A data frame with 32 variables:
 
-- `season`: integer:
-
-  Season for stats.
-
-- `team`: character.:
-
-  Team name.
-
-- `conference`: character.:
-
-  Conference of team.
-
-- `games`: integer.:
-
-  Number of games.
-
-- `time_of_poss_total`: integer.:
-
-  Time of possession total.
-
-- `time_of_poss_pg`: double.:
-
-  Time of possession per game.
-
-- `pass_comps`: integer.:
-
-  Total number of pass completions.
-
-- `pass_atts`: integer.:
-
-  Total number of pass attempts.
-
-- `completion_pct`: double.:
-
-  Passing completion percentage.
-
-- `net_pass_yds`: integer.:
-
-  Net passing yards.
-
-- `pass_ypa`: double.:
-
-  Passing yards per attempt.
-
-- `pass_ypr`: double.:
-
-  Passing yards per reception.
-
-- `pass_TDs`: integer.:
-
-  Passing touchdowns.
-
-- `interceptions`: integer.:
-
-  Passing interceptions.
-
-- `int_pct`: double.:
-
-  Interception percentage (of attempts).
-
-- `rush_atts`: integer.:
-
-  Rushing attempts.
-
-- `rush_yds`: integer.:
-
-  Rushing yards.
-
-- `rush_TDs`: integer.:
-
-  Rushing touchdowns.
-
-- `rush_ypc`: double.:
-
-  Rushing yards per carry.
-
-- `total_yds`: integer.:
-
-  Rushing total yards.
-
-- `fumbles_lost`: integer.:
-
-  Fumbles lost.
-
-- `turnovers`: integer.:
-
-  Turnovers total.
-
-- `turnovers_pg`: double.:
-
-  Turnovers per game.
-
-- `first_downs`: integer.:
-
-  Number of first downs.
-
-- `third_downs`: integer.:
-
-  Number of third downs.
-
-- `third_down_convs`: integer.:
-
-  Number of third down conversions.
-
-- `third_conv_rate`: double.:
-
-  Third down conversion rate.
-
-- `fourth_down_convs`: integer.:
-
-  Fourth down conversions.
-
-- `fourth_downs`: integer.:
-
-  Fourth downs.
-
-- `fourth_conv_rate`: double.:
-
-  Fourth down conversion rate.
-
-- `penalties`: integer.:
-
-  Total number of penalties.
-
-- `penalty_yds`: integer.:
-
-  Penalty yards total.
-
-- `penalties_pg`: double.:
-
-  Penalties per game.
-
-- `penalty_yds_pg`: double.:
-
-  Penalty yardage per game.
-
-- `yards_per_penalty`: double.:
-
-  Average yards per penalty.
-
-- `kick_returns`: integer.:
-
-  Number of kick returns.
-
-- `kick_return_yds`: integer.:
-
-  Total kick return yards.
-
-- `kick_return_TDs`: integer.:
-
-  Total kick return touchdowns.
-
-- `kick_return_avg`: double.:
-
-  Kick return yards average.
-
-- `punt_returns`: integer.:
-
-  Number of punt returns.
-
-- `punt_return_yds`: integer.:
-
-  Punt return total yards.
-
-- `punt_return_TDs`: integer.:
-
-  Punt return total touchdowns.
-
-- `punt_return_avg`: double.:
-
-  Punt return yards average.
-
-- `passes_intercepted`: integer.:
-
-  Passes intercepted.
-
-- `passes_intercepted_yds`: integer.:
-
-  Pass interception return yards.
-
-- `passes_intercepted_TDs`: integer.:
-
-  Pass interception return touchdowns.
+|                        |           |                                        |
+|------------------------|-----------|----------------------------------------|
+| col_name               | types     | description                            |
+| season                 | integer   | Season for stats.                      |
+| team                   | character | Team name.                             |
+| conference             | character | Conference of team.                    |
+| games                  | integer   | Number of games.                       |
+| time_of_poss_total     | integer   | Time of possession total.              |
+| time_of_poss_pg        | double    | Time of possession per game.           |
+| pass_comps             | integer   | Total number of pass completions.      |
+| pass_atts              | integer   | Total number of pass attempts.         |
+| completion_pct         | double    | Passing completion percentage.         |
+| net_pass_yds           | integer   | Net passing yards.                     |
+| pass_ypa               | double    | Passing yards per attempt.             |
+| pass_ypr               | double    | Passing yards per reception.           |
+| pass_TDs               | integer   | Passing touchdowns.                    |
+| interceptions          | integer   | Passing interceptions.                 |
+| int_pct                | double    | Interception percentage (of attempts). |
+| rush_atts              | integer   | Rushing attempts.                      |
+| rush_yds               | integer   | Rushing yards.                         |
+| rush_TDs               | integer   | Rushing touchdowns.                    |
+| rush_ypc               | double    | Rushing yards per carry.               |
+| total_yds              | integer   | Rushing total yards.                   |
+| fumbles_lost           | integer   | Fumbles lost.                          |
+| turnovers              | integer   | Turnovers total.                       |
+| turnovers_pg           | double    | Turnovers per game.                    |
+| first_downs            | integer   | Number of first downs.                 |
+| third_downs            | integer   | Number of third downs.                 |
+| third_down_convs       | integer   | Number of third down conversions.      |
+| third_conv_rate        | double    | Third down conversion rate.            |
+| fourth_down_convs      | integer   | Fourth down conversions.               |
+| fourth_downs           | integer   | Fourth downs.                          |
+| fourth_conv_rate       | double    | Fourth down conversion rate.           |
+| penalties              | integer   | Total number of penalties.             |
+| penalty_yds            | integer   | Penalty yards total.                   |
+| penalties_pg           | double    | Penalties per game.                    |
+| penalty_yds_pg         | double    | Penalty yardage per game.              |
+| yards_per_penalty      | double    | Average yards per penalty.             |
+| kick_returns           | integer   | Number of kick returns.                |
+| kick_return_yds        | integer   | Total kick return yards.               |
+| kick_return_TDs        | integer   | Total kick return touchdowns.          |
+| kick_return_avg        | double    | Kick return yards average.             |
+| punt_returns           | integer   | Number of punt returns.                |
+| punt_return_yds        | integer   | Punt return total yards.               |
+| punt_return_TDs        | integer   | Punt return total touchdowns.          |
+| punt_return_avg        | double    | Punt return yards average.             |
+| passes_intercepted     | integer   | Passes intercepted.                    |
+| passes_intercepted_yds | integer   | Pass interception return yards.        |
+| passes_intercepted_TDs | integer   | Pass interception return touchdowns.   |
 
 ## See also
 
 Other CFBD Stats:
 [`cfbd_stats_categories()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.md),
 [`cfbd_stats_game_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.md),
+[`cfbd_stats_game_havoc()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_havoc.md),
 [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md),
 [`cfbd_stats_season_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.md)
 
@@ -248,8 +115,8 @@ Other CFBD Stats:
 ``` r
 # \donttest{
    try(cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8))
-#> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:59 UTC
+#> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:52 UTC
 #> # A tibble: 10 × 32
 #>    season team          conference games time_of_poss_total pass_comps pass_atts
 #>     <int> <chr>         <chr>      <int>              <int>      <int>     <int>
@@ -272,8 +139,8 @@ Other CFBD Stats:
 #> #   punt_return_yds <int>, punt_return_TDs <int>, passes_intercepted <int>, …
 
    try(cfbd_stats_season_team(2019, team = "LSU"))
-#> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:00 UTC
+#> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:54 UTC
 #> # A tibble: 1 × 32
 #>   season team  conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr> <chr>      <int>              <int>      <int>     <int>
@@ -287,8 +154,8 @@ Other CFBD Stats:
 #> #   punt_return_yds <int>, punt_return_TDs <int>, passes_intercepted <int>, …
 
    try(cfbd_stats_season_team(2013, team = "Florida State"))
-#> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:23:01 UTC
+#> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:54 UTC
 #> # A tibble: 1 × 32
 #>   season team          conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr>         <chr>      <int>              <int>      <int>     <int>

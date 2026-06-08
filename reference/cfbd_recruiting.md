@@ -1,16 +1,13 @@
 # **CFB Recruiting Endpoint Overview**
 
-- [`cfbd_recruiting_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.md)::
-
+- [`cfbd_recruiting_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.md):
   Get college football player recruiting information for a single year
   with filters available for team, recruit type, state and position.
 
-- [`cfbd_recruiting_position()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.md)::
-
+- [`cfbd_recruiting_position()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.md):
   Get college football position group recruiting information .
 
-- [`cfbd_recruiting_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.md)::
-
+- [`cfbd_recruiting_team()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.md):
   Get college football recruiting team rankings information.
 
 ### **Get player recruiting rankings**

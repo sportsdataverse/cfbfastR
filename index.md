@@ -15,6 +15,7 @@ You can install the CRAN version of
 [**`cfbfastR`**](https://CRAN.R-project.org/package=cfbfastR) with:
 
 ``` r
+
 install.packages("cfbfastR")
 ```
 
@@ -23,6 +24,7 @@ You can install the released version of
 [GitHub](https://github.com/sportsdataverse/cfbfastR) with:
 
 ``` r
+
 # You can install using the pacman package using the following code:
 if (!requireNamespace('remotes', quietly = TRUE)){
   install.packages('remotes', repos = "https://cloud.r-project.org")
@@ -53,6 +55,7 @@ requires an API key, here’s a quick run-down:
   following in the new script that pops up (with**out** quotations)
 
 ``` r
+
 CFBD_API_KEY = YOUR-API-KEY-HERE
 ```
 
@@ -67,8 +70,30 @@ functions without any other changes.
   `CFBD_API_KEY` (with quotations) using a command like the following.
 
 ``` r
+
 Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
 ```
+
+## **Proxy support**
+
+If you run `cfbfastR` from behind a corporate proxy, set it once per
+session and every `cfbd_*()` / `espn_cfb_*()` call routes through it:
+
+``` r
+
+options(cfbfastR.proxy = "http://proxy.host.example:8080")
+# or, for an authenticated proxy:
+options(cfbfastR.proxy = list(
+  url = "http://proxy.host.example", port = 8080,
+  username = "me", password = "pw", auth = "basic"
+))
+```
+
+The resolution order is: explicit `proxy =` argument -\>
+`getOption("cfbfastR.proxy")` -\> `http_proxy` / `https_proxy` env vars.
+See the [intro
+vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) and
+`CLAUDE.md` for full detail.
 
 ## Follow [cfbfastR](https://x.com/cfbfastR) and the [SportsDataverse](https://x.com/SportsDataverse) on Twitter and star this repo
 
@@ -166,6 +191,7 @@ package in publications, use:
 BibTex Citation
 
 ``` bibtex
+
 @article{gilani_et_al_2021_cfbfastr,
   author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
   title = {cfbfastR: Access College Football Play by Play Data},

@@ -72,127 +72,41 @@ cfbd_game_info(
 
 ## Value
 
-`cfbd_game_info()` - A data frame with 22 variables:
+`cfbd_game_info()` - A data frame with 30 variables:
 
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `season`: integer.:
-
-  Season of the game.
-
-- `week`: integer.:
-
-  Game week.
-
-- `season_type`: character.:
-
-  Season type of the game.
-
-- `start_date`: character.:
-
-  Game date.
-
-- `start_time_tbd`: logical.:
-
-  TRUE/FALSE flag for if the game's start time is to be determined.
-
-- `neutral_site`: logical.:
-
-  TRUE/FALSE flag for the game taking place at a neutral site.
-
-- `conference_game`: logical.:
-
-  TRUE/FALSE flag for this game qualifying as a conference game.
-
-- `attendance`: integer.:
-
-  Reported attendance at the game.
-
-- `venue_id`: integer.:
-
-  Referencing venue id.
-
-- `venue`: character.:
-
-  Venue name.
-
-- `home_id`: integer.:
-
-  Home team referencing id.
-
-- `home_team`: character.:
-
-  Home team name.
-
-- `home_conference`: character.:
-
-  Home team conference.
-
-- `home_division`: character.:
-
-  Home team division.
-
-- `home_points`: integer.:
-
-  Home team points.
-
-- `home_post_win_prob`: character.:
-
-  Home team post-game win probability.
-
-- `home_pregame_elo`: character.:
-
-  Home team pre-game ELO rating.
-
-- `home_postgame_elo`: character.:
-
-  Home team post-game ELO rating.
-
-- `away_id`: integer.:
-
-  Away team referencing id.
-
-- `away_team`: character.:
-
-  Away team name.
-
-- `away_conference`: character.:
-
-  Away team conference.
-
-- `away_division`: character.:
-
-  Away team division.
-
-- `away_points`: integer.:
-
-  Away team points.
-
-- `away_post_win_prob`: character.:
-
-  Away team post-game win probability.
-
-- `away_pregame_elo`: character.:
-
-  Away team pre-game ELO rating.
-
-- `away_postgame_elo`: character.:
-
-  Away team post-game ELO rating.
-
-- `excitement_index`: character.:
-
-  Game excitement index.
-
-- `highlights`: character.:
-
-  Game highlight urls.
-
-- `notes`: character.:
-
-  Game notes.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| game_id | integer | Referencing game id. |
+| season | integer | Season of the game. |
+| week | integer | Game week. |
+| season_type | character | Season type of the game. |
+| start_date | character | Game date. |
+| start_time_tbd | logical | TRUE/FALSE flag for if the game's start time is to be determined. |
+| neutral_site | logical | TRUE/FALSE flag for the game taking place at a neutral site. |
+| conference_game | logical | TRUE/FALSE flag for this game qualifying as a conference game. |
+| attendance | integer | Reported attendance at the game. |
+| venue_id | integer | Referencing venue id. |
+| venue | character | Venue name. |
+| home_id | integer | Home team referencing id. |
+| home_team | character | Home team name. |
+| home_conference | character | Home team conference. |
+| home_division | character | Home team division. |
+| home_points | integer | Home team points. |
+| home_post_win_prob | character | Home team post-game win probability. |
+| home_pregame_elo | character | Home team pre-game ELO rating. |
+| home_postgame_elo | character | Home team post-game ELO rating. |
+| away_id | integer | Away team referencing id. |
+| away_team | character | Away team name. |
+| away_conference | character | Away team conference. |
+| away_division | character | Away team division. |
+| away_points | integer | Away team points. |
+| away_post_win_prob | character | Away team post-game win probability. |
+| away_pregame_elo | character | Away team pre-game ELO rating. |
+| away_postgame_elo | character | Away team post-game ELO rating. |
+| excitement_index | character | Game excitement index. |
+| highlights | character | Game highlight urls. |
+| notes | character | Game notes. |
 
 ## See also
 
@@ -211,8 +125,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
-#> ── Game information from CollegeFootballData.com ───────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:51 UTC
+#> ── Game information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:46 UTC
 #> # A tibble: 5 × 31
 #>     game_id season  week season_type start_date         start_time_tbd completed
 #>       <int>  <int> <int> <chr>       <chr>              <lgl>          <lgl>    

@@ -31,29 +31,15 @@ cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 
 `cfbd_ratings_srs()` - A data frame with 6 variables:
 
-- `year`: integer.:
-
-  Season of the SRS rating.
-
-- `team`: character.:
-
-  Team name.
-
-- `conference`: character.:
-
-  Conference of the team.
-
-- `division`: logical.:
-
-  Division in the conference for the team.
-
-- `rating`: double.:
-
-  Simple Rating System (SRS) rating.
-
-- `ranking`: integer.:
-
-  Simple Rating System ranking within the group returned.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| year | integer | Season of the SRS rating. |
+| team | character | Team name. |
+| conference | character | Conference of the team. |
+| division | character | Division in the conference for the team. |
+| rating | numeric | Simple Rating System (SRS) rating. |
+| ranking | integer | Simple Rating System ranking within the group returned. |
 
 ## See also
 
@@ -69,16 +55,16 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_srs(year = 2019, team = "Texas"))
-#> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:43 UTC
+#> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:40 UTC
 #> # A tibble: 1 × 6
 #>    year team  conference division ranking rating
 #>   <int> <chr> <chr>      <lgl>      <int>  <dbl>
 #> 1  2019 Texas Big 12     NA             1   16.0
 
   try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
-#> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:22:43 UTC
+#> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:44:41 UTC
 #> # A tibble: 14 × 6
 #>     year team              conference division ranking rating
 #>    <int> <chr>             <chr>      <chr>      <int>  <dbl>

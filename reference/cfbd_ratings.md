@@ -1,27 +1,21 @@
 # **CFBD Ratings and Rankings Endpoints Overview**
 
-- [`cfbd_rankings()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.md)::
-
+- [`cfbd_rankings()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.md):
   Gets Historical CFB poll rankings at a specific week.
 
-- [`cfbd_ratings_sp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.md)::
-
+- [`cfbd_ratings_sp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp.md):
   Get SP historical rating data.
 
-- [`cfbd_ratings_sp_conference()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.md)::
-
+- [`cfbd_ratings_sp_conference()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_sp_conference.md):
   Get SP conference-level historical rating data.
 
-- [`cfbd_ratings_srs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.md)::
-
+- [`cfbd_ratings_srs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs.md):
   Get SRS historical rating data.
 
-- [`cfbd_ratings_elo()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.md)::
-
+- [`cfbd_ratings_elo()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.md):
   Get Elo historical rating data.
 
-- [`cfbd_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_fpi.md)::
-
+- [`cfbd_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_fpi.md):
   Get FPI historical rating data.
 
 ### **Get historical Coaches and AP poll data**

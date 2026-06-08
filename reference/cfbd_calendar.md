@@ -18,25 +18,14 @@ cfbd_calendar(year)
 
 `cfbd_calendar()` - A data frame with 5 variables:
 
-- `season`: character.:
-
-  Calendar season.
-
-- `week`: integer.:
-
-  Calendar game week.
-
-- `season_type`: character:
-
-  Season type of calendar week.
-
-- `first_game_start`: character.:
-
-  First game start time of the calendar week.
-
-- `last_game_start`: character.:
-
-  Last game start time of the calendar week.
+|                  |           |                                             |
+|------------------|-----------|---------------------------------------------|
+| col_name         | types     | description                                 |
+| season           | character | Calendar season.                            |
+| week             | integer   | Calendar game week.                         |
+| season_type      | character | Season type of calendar week.               |
+| first_game_start | character | First game start time of the calendar week. |
+| last_game_start  | character | Last game start time of the calendar week.  |
 
 ## See also
 
@@ -55,8 +44,8 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_calendar(2019))
-#> ── Calendar data from CollegeFootballData.com ──────────────── cfbfastR 2.2.1 ──
-#> ℹ Data updated: 2026-01-19 16:21:46 UTC
+#> ── Calendar data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-06-08 01:41:40 UTC
 #> # A tibble: 17 × 5
 #>    season  week season_type first_game_start         last_game_start         
 #>     <int> <int> <chr>       <chr>                    <chr>                   

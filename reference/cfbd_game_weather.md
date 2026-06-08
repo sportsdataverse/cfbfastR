@@ -45,97 +45,32 @@ cfbd_game_weather(
 
 `cfbd_game_weather()` - A data frame with 23 variables:
 
-- `game_id`: integer.:
-
-  Referencing game id.
-
-- `season`: integer.:
-
-  Season of the game.
-
-- `week`: integer.:
-
-  Game week.
-
-- `season_type`: character.:
-
-  Season type of the game.
-
-- `start_date`: character.:
-
-  Game date.
-
-- `start_time_tbd`: logical.:
-
-  TRUE/FALSE flag for if the game's start time is to be determined.
-
-- `game_indoors`: logical.:
-
-  TRUE/FALSE flag for if the game is indoors
-
-- `home_team`: character.:
-
-  Home team name.
-
-- `home_conference`: character.:
-
-  Home team conference.
-
-- `away_team`: character.:
-
-  Away team name.
-
-- `away_conference`: character.:
-
-  Away team conference.
-
-- `venue_id`: integer.:
-
-  Referencing venue id.
-
-- `venue`: character.:
-
-  Venue name.
-
-- `temperature`: integer.:
-
-  Temperature.
-
-- `dew_point`: integer.:
-
-  Dew Point.
-
-- `humidity`: integer.:
-
-  Humidity.
-
-- `precipitation`: integer.:
-
-  Precipitation.
-
-- `snowfall`: integer.:
-
-  Snowfall.
-
-- `wind_direction`: integer.:
-
-  Wind direction.
-
-- `wind_speed`: integer.:
-
-  Wind Speed.
-
-- `pressure`: integer.:
-
-  Pressure.
-
-- `weather_condition_code`: integer.:
-
-  Weather condition code.
-
-- `weather_condition`: character.:
-
-  Weather condition.
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| game_id | integer | Referencing game id. |
+| season | integer | Season of the game. |
+| week | integer | Game week. |
+| season_type | character | Season type of the game. |
+| start_date | character | Game date. |
+| start_time_tbd | logical | TRUE/FALSE flag for if the game's start time is to be determined. |
+| game_indoors | logical | TRUE/FALSE flag for if the game is indoors. |
+| home_team | character | Home team name. |
+| home_conference | character | Home team conference. |
+| away_team | character | Away team name. |
+| away_conference | character | Away team conference. |
+| venue_id | integer | Referencing venue id. |
+| venue | character | Venue name. |
+| temperature | integer | Game-time temperature, in degrees Fahrenheit. |
+| dew_point | integer | Dew point at kickoff, in degrees Fahrenheit. |
+| humidity | integer | Relative humidity at kickoff, as a percentage (0-100). |
+| precipitation | integer | Precipitation total at kickoff, in inches. |
+| snowfall | integer | Snowfall total at kickoff, in inches. |
+| wind_direction | integer | Wind direction, in degrees (0-360, 0 = north). |
+| wind_speed | integer | Wind speed, in miles per hour. |
+| pressure | integer | Barometric pressure, in millibars. |
+| weather_condition_code | integer | Weather condition code from the upstream weather provider. |
+| weather_condition | character | Free-text weather condition (e.g. "Clear", "Light rain"). |
 
 ## See also
 
