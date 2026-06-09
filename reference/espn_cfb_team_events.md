@@ -149,24 +149,24 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_events(team_id = 61, year = 2024))
 #> ── Team season event log from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:57:56 UTC
+#> ℹ Data updated: 2026-06-09 18:19:17 UTC
 #> # A tibble: 14 × 15
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  2   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  3   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  4   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  5   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  6   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  7   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  8   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  9   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 10   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 11   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 12   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 13   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 14   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  1   2024 61      NA        NA                NA            NA               
+#>  2   2024 61      NA        NA                NA            NA               
+#>  3   2024 61      NA        NA                NA            NA               
+#>  4   2024 61      NA        NA                NA            NA               
+#>  5   2024 61      NA        NA                NA            NA               
+#>  6   2024 61      NA        NA                NA            NA               
+#>  7   2024 61      NA        NA                NA            NA               
+#>  8   2024 61      NA        NA                NA            NA               
+#>  9   2024 61      NA        NA                NA            NA               
+#> 10   2024 61      NA        NA                NA            NA               
+#> 11   2024 61      NA        NA                NA            NA               
+#> 12   2024 61      NA        NA                NA            NA               
+#> 13   2024 61      NA        NA                NA            NA               
+#> 14   2024 61      NA        NA                NA            NA               
 #> # ℹ 9 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, event_order <int>, game_id <chr>,
@@ -174,7 +174,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_events(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team season event log from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:57:56 UTC
+#> ℹ Data updated: 2026-06-09 18:19:17 UTC
 #> # A tibble: 14 × 5
 #>    season team_id event_order game_id   event_ref                               
 #>     <int> <chr>         <int> <chr>     <chr>                                   

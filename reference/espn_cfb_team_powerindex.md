@@ -156,20 +156,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_powerindex(team_id = 61, year = 2024))
 #> ── Team Power Index data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:57:57 UTC
+#> ℹ Data updated: 2026-06-09 18:19:18 UTC
 #> # A tibble: 43 × 21
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  2   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  3   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  4   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  5   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  6   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  7   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  8   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  9   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 10   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  1   2024 61      NA        NA                NA            NA               
+#>  2   2024 61      NA        NA                NA            NA               
+#>  3   2024 61      NA        NA                NA            NA               
+#>  4   2024 61      NA        NA                NA            NA               
+#>  5   2024 61      NA        NA                NA            NA               
+#>  6   2024 61      NA        NA                NA            NA               
+#>  7   2024 61      NA        NA                NA            NA               
+#>  8   2024 61      NA        NA                NA            NA               
+#>  9   2024 61      NA        NA                NA            NA               
+#> 10   2024 61      NA        NA                NA            NA               
 #> # ℹ 33 more rows
 #> # ℹ 15 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
@@ -179,7 +179,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_powerindex(team_id = 61, year = 2024,
                                team_detail = FALSE))
 #> ── Team Power Index data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:57:57 UTC
+#> ℹ Data updated: 2026-06-09 18:19:19 UTC
 #> # A tibble: 43 × 11
 #>    season team_id team_ref      last_updated metric_group stat_name abbreviation
 #>     <int> <chr>   <chr>         <chr>        <chr>        <chr>     <chr>       

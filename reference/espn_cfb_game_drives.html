@@ -87,22 +87,18 @@ one-row-per-play table."><meta property="og:image" content="https://github.com/s
     <li><a class="external-link dropdown-item" href="https://hoopR.sportsdataverse.org/">hoopR</a></li>
     <li><a class="external-link dropdown-item" href="https://wehoop.sportsdataverse.org/">wehoop</a></li>
     <li><a class="external-link dropdown-item" href="https://fastRhockey.sportsdataverse.org/">fastRhockey</a></li>
-    <li><a class="external-link dropdown-item" href="https://hockeyr.netlify.app/">hockeyR</a></li>
     <li><a class="external-link dropdown-item" href="https://abhiamishra.github.io/ggshakeR/">ggshakeR</a></li>
     <li><a class="external-link dropdown-item" href="https://BillPetti.github.io/baseballr/">baseballr</a></li>
-    <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/worldfootballR/">worldfootballR</a></li>
     <li><a class="external-link dropdown-item" href="https://usfootballR.sportsdataverse.org/">usfootballR</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/Dato-Futbol/soccerAnimate/">soccerAnimate</a></li>
     <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/chessR/">chessR</a></li>
     <li><a class="external-link dropdown-item" href="https://oddsapiR.sportsdataverse.org/">oddsapiR</a></li>
     <li><a class="external-link dropdown-item" href="https://sportyR.sportsdataverse.org/">sportyR</a></li>
-    <li><a class="external-link dropdown-item" href="https://torvik.dev/">toRvik</a></li>
     <li><a class="external-link dropdown-item" href="https://cfbplotR.sportsdataverse.org/">cfbplotR</a></li>
     <li><a class="external-link dropdown-item" href="https://camdenk.github.io/mlbplotR/">mlbplotR</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/sportsdataverse/softballR/">softballR</a></li>
     <li><a class="external-link dropdown-item" href="https://cfb4th.sportsdataverse.org/">cfb4th</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslR/">nwslR</a></li>
-    <li><a class="external-link dropdown-item" href="https://jacklich10.github.io/gamezoneR/">gamezoneR</a></li>
     <li><a class="external-link dropdown-item" href="https://recruitr.sportsdataverse.org/">recruitR</a></li>
     <li><a class="external-link dropdown-item" href="https://puntalytics.github.io/puntr/">puntr</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -110,7 +106,6 @@ one-row-per-play table."><meta property="og:image" content="https://github.com/s
     <li><a class="external-link dropdown-item" href="https://py.sportsdataverse.org/">sportsdataverse-py</a></li>
     <li><a class="external-link dropdown-item" href="https://sportypy.sportsdataverse.org/">sportypy</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslpy/">nwslpy</a></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/sportsdataverse/recruitR-py/">recruitR-py</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nathanblumenfeld/collegebaseball/">collegebaseball</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Node.js Packages</h6></li>
@@ -347,30 +342,30 @@ flat table as <code>plays = "expand"</code> without any further HTTP.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_drives</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game drives data from ESPN ──────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 07:55:55 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 18:16:58 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 52</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   drive_id    sequence_number description           team_id team_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401628339 4016283392  2               1 play, 22 yards, 0:… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401628339 4016283394  4               7 plays, 58 yards, 3… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401628339 4016283396  6               14 plays, 71 yards, … 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401628339 4016283397  7               11 plays, 34 yards, … 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401628339 4016283398  8               7 plays, 80 yards, 3… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401628339 40162833910 10              5 plays, 14 yards, 0… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 401628339 40162833911 11              5 plays, 75 yards, 2… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 401628339 40162833913 13              1 play, 27 yards, 0:… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 401628339 40162833915 15              10 plays, 69 yards, … 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 401628339 40162833917 17              6 plays, 25 yards, 8… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> 401628339 40162833919 19              7 plays, 37 yards, 2… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    Golden E…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401628339 4016283392  2               1 play, 22 yards, 0:… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401628339 4016283394  4               7 plays, 58 yards, 3… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401628339 4016283396  6               14 plays, 71 yards, … 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401628339 4016283397  7               11 plays, 34 yards, … 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401628339 4016283398  8               7 plays, 80 yards, 3… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401628339 40162833910 10              5 plays, 14 yards, 0… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 401628339 40162833911 11              5 plays, 75 yards, 2… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 401628339 40162833913 13              1 play, 27 yards, 0:… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 401628339 40162833915 15              10 plays, 69 yards, … 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 401628339 40162833917 17              6 plays, 25 yards, 8… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> 401628339 40162833919 19              7 plays, 37 yards, 2… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    <span style="color: #BB0000;">NA</span>       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 46 more variables: team_abbreviation &lt;chr&gt;, team_location &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_display_name &lt;chr&gt;, team_short_display_name &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_nickname &lt;chr&gt;, team_color &lt;chr&gt;, team_alternate_color &lt;chr&gt;,</span></span>
@@ -380,30 +375,30 @@ flat table as <code>plays = "expand"</code> without any further HTTP.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   end_team_nickname &lt;chr&gt;, end_team_color &lt;chr&gt;, …</span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_drives</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>, plays <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game drives data from ESPN ──────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 07:55:56 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 18:16:58 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 53</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   drive_id    sequence_number description           team_id team_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401628339 4016283392  2               1 play, 22 yards, 0:… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401628339 4016283394  4               7 plays, 58 yards, 3… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401628339 4016283396  6               14 plays, 71 yards, … 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401628339 4016283397  7               11 plays, 34 yards, … 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401628339 4016283398  8               7 plays, 80 yards, 3… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401628339 40162833910 10              5 plays, 14 yards, 0… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 401628339 40162833911 11              5 plays, 75 yards, 2… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 401628339 40162833913 13              1 play, 27 yards, 0:… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 401628339 40162833915 15              10 plays, 69 yards, … 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 401628339 40162833917 17              6 plays, 25 yards, 8… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    Golden E…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> 401628339 40162833919 19              7 plays, 37 yards, 2… 61      Bulldogs </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    Golden E…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 401628339 4016283392  2               1 play, 22 yards, 0:… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 401628339 4016283394  4               7 plays, 58 yards, 3… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 401628339 4016283396  6               14 plays, 71 yards, … 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 401628339 4016283397  7               11 plays, 34 yards, … 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 401628339 4016283398  8               7 plays, 80 yards, 3… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 401628339 40162833910 10              5 plays, 14 yards, 0… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 401628339 40162833911 11              5 plays, 75 yards, 2… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 401628339 40162833913 13              1 play, 27 yards, 0:… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 401628339 40162833915 15              10 plays, 69 yards, … 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 401628339 40162833917 17              6 plays, 25 yards, 8… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> 401628339 40162833919 19              7 plays, 37 yards, 2… 61      <span style="color: #BB0000;">NA</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    <span style="color: #BB0000;">NA</span>       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 47 more variables: team_abbreviation &lt;chr&gt;, team_location &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_display_name &lt;chr&gt;, team_short_display_name &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_nickname &lt;chr&gt;, team_color &lt;chr&gt;, team_alternate_color &lt;chr&gt;,</span></span>
@@ -413,7 +408,7 @@ flat table as <code>plays = "expand"</code> without any further HTTP.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   end_team_nickname &lt;chr&gt;, end_team_color &lt;chr&gt;, …</span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_drives</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>, plays <span class="op">=</span> <span class="st">"expand"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game drive plays (expanded) data from ESPN ──────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 07:55:56 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 18:16:59 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 156 × 106</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    drive_game_id drive_drive_id drive_sequence_number drive_description     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
@@ -436,7 +431,7 @@ flat table as <code>plays = "expand"</code> without any further HTTP.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   drive_team_logo_dark_href &lt;chr&gt;, drive_end_team_id &lt;chr&gt;, …</span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_drives</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>, team_detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game drives data from ESPN ──────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 07:55:56 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 18:16:59 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 32</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id drive_id sequence_number description team_id end_team_id start_period</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>

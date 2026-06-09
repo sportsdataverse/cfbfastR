@@ -147,7 +147,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_overview(athlete_id = 102597, year = 2024))
 #> ── Player statistics overview from ESPN ────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:49 UTC
+#> ℹ Data updated: 2026-06-09 18:18:01 UTC
 #> # A tibble: 5 × 24
 #>   athlete_id season stat_season completions passing_attempts completion_pct
 #>   <chr>       <int> <chr>       <chr>       <chr>            <chr>         
@@ -166,7 +166,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_player_overview(athlete_id = 102597, year = 2024,
                                athlete_detail = FALSE))
 #> ── Player statistics overview from ESPN ────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:49 UTC
+#> ℹ Data updated: 2026-06-09 18:18:01 UTC
 #> # A tibble: 5 × 18
 #>   athlete_id season stat_season completions passing_attempts completion_pct
 #>   <chr>       <int> <chr>       <chr>       <chr>            <chr>         

@@ -125,7 +125,7 @@ cfbd_drives(
 # \donttest{
   try(cfbd_drives(year=2018, week = 1, team = "TCU"))
 #> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:52:17 UTC
+#> ℹ Data updated: 2026-06-09 18:13:05 UTC
 #> # A tibble: 25 × 28
 #>    drive_id      game_id offense  offense_conference defense  defense_conference
 #>    <chr>           <int> <chr>    <chr>              <chr>    <chr>             
@@ -149,7 +149,7 @@ cfbd_drives(
 
   try(cfbd_drives(2018, team = "Texas A&M", defense_conference = "SEC"))
 #> ── Drives data from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:52:18 UTC
+#> ℹ Data updated: 2026-06-09 18:13:05 UTC
 #> # A tibble: 259 × 28
 #>    drive_id      game_id offense   offense_conference defense defense_conference
 #>    <chr>           <int> <chr>     <chr>              <chr>   <chr>             

@@ -264,30 +264,30 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_drives(game_id = 401628339))
 #> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:55:55 UTC
+#> ℹ Data updated: 2026-06-09 18:16:58 UTC
 #> # A tibble: 20 × 52
 #>    game_id   drive_id    sequence_number description           team_id team_name
 #>    <chr>     <chr>       <chr>           <chr>                 <chr>   <chr>    
-#>  1 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    Golden E…
-#>  2 401628339 4016283392  2               1 play, 22 yards, 0:… 61      Bulldogs 
-#>  3 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    Golden E…
-#>  4 401628339 4016283394  4               7 plays, 58 yards, 3… 61      Bulldogs 
-#>  5 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    Golden E…
-#>  6 401628339 4016283396  6               14 plays, 71 yards, … 61      Bulldogs 
-#>  7 401628339 4016283397  7               11 plays, 34 yards, … 2635    Golden E…
-#>  8 401628339 4016283398  8               7 plays, 80 yards, 3… 61      Bulldogs 
-#>  9 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    Golden E…
-#> 10 401628339 40162833910 10              5 plays, 14 yards, 0… 61      Bulldogs 
-#> 11 401628339 40162833911 11              5 plays, 75 yards, 2… 61      Bulldogs 
-#> 12 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    Golden E…
-#> 13 401628339 40162833913 13              1 play, 27 yards, 0:… 61      Bulldogs 
-#> 14 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    Golden E…
-#> 15 401628339 40162833915 15              10 plays, 69 yards, … 61      Bulldogs 
-#> 16 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    Golden E…
-#> 17 401628339 40162833917 17              6 plays, 25 yards, 8… 61      Bulldogs 
-#> 18 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    Golden E…
-#> 19 401628339 40162833919 19              7 plays, 37 yards, 2… 61      Bulldogs 
-#> 20 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    Golden E…
+#>  1 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    NA       
+#>  2 401628339 4016283392  2               1 play, 22 yards, 0:… 61      NA       
+#>  3 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    NA       
+#>  4 401628339 4016283394  4               7 plays, 58 yards, 3… 61      NA       
+#>  5 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    NA       
+#>  6 401628339 4016283396  6               14 plays, 71 yards, … 61      NA       
+#>  7 401628339 4016283397  7               11 plays, 34 yards, … 2635    NA       
+#>  8 401628339 4016283398  8               7 plays, 80 yards, 3… 61      NA       
+#>  9 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    NA       
+#> 10 401628339 40162833910 10              5 plays, 14 yards, 0… 61      NA       
+#> 11 401628339 40162833911 11              5 plays, 75 yards, 2… 61      NA       
+#> 12 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    NA       
+#> 13 401628339 40162833913 13              1 play, 27 yards, 0:… 61      NA       
+#> 14 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    NA       
+#> 15 401628339 40162833915 15              10 plays, 69 yards, … 61      NA       
+#> 16 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    NA       
+#> 17 401628339 40162833917 17              6 plays, 25 yards, 8… 61      NA       
+#> 18 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    NA       
+#> 19 401628339 40162833919 19              7 plays, 37 yards, 2… 61      NA       
+#> 20 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    NA       
 #> # ℹ 46 more variables: team_abbreviation <chr>, team_location <chr>,
 #> #   team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
@@ -297,30 +297,30 @@ Other ESPN CFB Functions:
 #> #   end_team_nickname <chr>, end_team_color <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, plays = "list"))
 #> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:55:56 UTC
+#> ℹ Data updated: 2026-06-09 18:16:58 UTC
 #> # A tibble: 20 × 53
 #>    game_id   drive_id    sequence_number description           team_id team_name
 #>    <chr>     <chr>       <chr>           <chr>                 <chr>   <chr>    
-#>  1 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    Golden E…
-#>  2 401628339 4016283392  2               1 play, 22 yards, 0:… 61      Bulldogs 
-#>  3 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    Golden E…
-#>  4 401628339 4016283394  4               7 plays, 58 yards, 3… 61      Bulldogs 
-#>  5 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    Golden E…
-#>  6 401628339 4016283396  6               14 plays, 71 yards, … 61      Bulldogs 
-#>  7 401628339 4016283397  7               11 plays, 34 yards, … 2635    Golden E…
-#>  8 401628339 4016283398  8               7 plays, 80 yards, 3… 61      Bulldogs 
-#>  9 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    Golden E…
-#> 10 401628339 40162833910 10              5 plays, 14 yards, 0… 61      Bulldogs 
-#> 11 401628339 40162833911 11              5 plays, 75 yards, 2… 61      Bulldogs 
-#> 12 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    Golden E…
-#> 13 401628339 40162833913 13              1 play, 27 yards, 0:… 61      Bulldogs 
-#> 14 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    Golden E…
-#> 15 401628339 40162833915 15              10 plays, 69 yards, … 61      Bulldogs 
-#> 16 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    Golden E…
-#> 17 401628339 40162833917 17              6 plays, 25 yards, 8… 61      Bulldogs 
-#> 18 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    Golden E…
-#> 19 401628339 40162833919 19              7 plays, 37 yards, 2… 61      Bulldogs 
-#> 20 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    Golden E…
+#>  1 401628339 4016283391  1               3 plays, 6 yards, 2:… 2635    NA       
+#>  2 401628339 4016283392  2               1 play, 22 yards, 0:… 61      NA       
+#>  3 401628339 4016283393  3               3 plays, 1 yard, 2:06 2635    NA       
+#>  4 401628339 4016283394  4               7 plays, 58 yards, 3… 61      NA       
+#>  5 401628339 4016283395  5               7 plays, 5 yards, 4:… 2635    NA       
+#>  6 401628339 4016283396  6               14 plays, 71 yards, … 61      NA       
+#>  7 401628339 4016283397  7               11 plays, 34 yards, … 2635    NA       
+#>  8 401628339 4016283398  8               7 plays, 80 yards, 3… 61      NA       
+#>  9 401628339 4016283399  9               3 plays, 1 yard, 0:26 2635    NA       
+#> 10 401628339 40162833910 10              5 plays, 14 yards, 0… 61      NA       
+#> 11 401628339 40162833911 11              5 plays, 75 yards, 2… 61      NA       
+#> 12 401628339 40162833912 12              1 play, 2 yards, 0:10 2635    NA       
+#> 13 401628339 40162833913 13              1 play, 27 yards, 0:… 61      NA       
+#> 14 401628339 40162833914 14              3 plays, 3 yards, 1:… 2635    NA       
+#> 15 401628339 40162833915 15              10 plays, 69 yards, … 61      NA       
+#> 16 401628339 40162833916 16              8 plays, 37 yards, 5… 2635    NA       
+#> 17 401628339 40162833917 17              6 plays, 25 yards, 8… 61      NA       
+#> 18 401628339 40162833918 18              3 plays, -6 yards, 1… 2635    NA       
+#> 19 401628339 40162833919 19              7 plays, 37 yards, 2… 61      NA       
+#> 20 401628339 40162833920 20              7 plays, 60 yards, 3… 2635    NA       
 #> # ℹ 47 more variables: team_abbreviation <chr>, team_location <chr>,
 #> #   team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
@@ -330,7 +330,7 @@ Other ESPN CFB Functions:
 #> #   end_team_nickname <chr>, end_team_color <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, plays = "expand"))
 #> ── Game drive plays (expanded) data from ESPN ──────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:55:56 UTC
+#> ℹ Data updated: 2026-06-09 18:16:59 UTC
 #> # A tibble: 156 × 106
 #>    drive_game_id drive_drive_id drive_sequence_number drive_description     
 #>    <chr>         <chr>          <chr>                 <chr>                 
@@ -353,7 +353,7 @@ Other ESPN CFB Functions:
 #> #   drive_team_logo_dark_href <chr>, drive_end_team_id <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, team_detail = FALSE))
 #> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:55:56 UTC
+#> ℹ Data updated: 2026-06-09 18:16:59 UTC
 #> # A tibble: 20 × 32
 #>    game_id drive_id sequence_number description team_id end_team_id start_period
 #>    <chr>   <chr>    <chr>           <chr>       <chr>   <chr>              <int>

@@ -177,22 +177,22 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_eventlog(athlete_id = 102597, year = 2024))
 #> ── Player event log from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:47 UTC
+#> ℹ Data updated: 2026-06-09 18:17:59 UTC
 #> # A tibble: 12 × 24
 #>    athlete_id season game_id   team_id team_name team_abbreviation team_location
 #>    <chr>       <int> <chr>     <chr>   <chr>     <chr>             <chr>        
-#>  1 102597       2024 401628460 264     Huskies   WASH              Washington   
-#>  2 102597       2024 401628473 264     Huskies   WASH              Washington   
-#>  3 102597       2024 401628484 264     Huskies   WASH              Washington   
-#>  4 102597       2024 401628491 264     Huskies   WASH              Washington   
-#>  5 102597       2024 401628501 264     Huskies   WASH              Washington   
-#>  6 102597       2024 401628505 264     Huskies   WASH              Washington   
-#>  7 102597       2024 401628512 264     Huskies   WASH              Washington   
-#>  8 102597       2024 401628526 264     Huskies   WASH              Washington   
-#>  9 102597       2024 401628540 264     Huskies   WASH              Washington   
-#> 10 102597       2024 401628546 264     Huskies   WASH              Washington   
-#> 11 102597       2024 401628553 264     Huskies   WASH              Washington   
-#> 12 102597       2024 401628569 264     Huskies   WASH              Washington   
+#>  1 102597       2024 401628460 264     NA        NA                NA           
+#>  2 102597       2024 401628473 264     NA        NA                NA           
+#>  3 102597       2024 401628484 264     NA        NA                NA           
+#>  4 102597       2024 401628491 264     NA        NA                NA           
+#>  5 102597       2024 401628501 264     NA        NA                NA           
+#>  6 102597       2024 401628505 264     NA        NA                NA           
+#>  7 102597       2024 401628512 264     NA        NA                NA           
+#>  8 102597       2024 401628526 264     NA        NA                NA           
+#>  9 102597       2024 401628540 264     NA        NA                NA           
+#> 10 102597       2024 401628546 264     NA        NA                NA           
+#> 11 102597       2024 401628553 264     NA        NA                NA           
+#> 12 102597       2024 401628569 264     NA        NA                NA           
 #> # ℹ 17 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>, played <lgl>,
@@ -204,7 +204,7 @@ Other ESPN CFB Functions:
                                team_detail = FALSE,
                                athlete_detail = FALSE))
 #> ── Player event log from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:47 UTC
+#> ℹ Data updated: 2026-06-09 18:18:00 UTC
 #> # A tibble: 12 × 8
 #>    athlete_id season game_id   team_id played event_ref          competition_ref
 #>    <chr>       <int> <chr>     <chr>   <lgl>  <chr>              <chr>          

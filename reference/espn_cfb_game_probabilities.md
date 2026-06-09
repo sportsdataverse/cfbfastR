@@ -171,20 +171,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_probabilities(game_id = 401628339))
 #> ── Game win probabilities data from ESPN ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:29 UTC
+#> ℹ Data updated: 2026-06-09 18:17:39 UTC
 #> # A tibble: 157 × 41
 #>    game_id   play_id            sequence_number home_team_id home_team_name
 #>    <chr>     <chr>              <chr>           <chr>        <chr>         
-#>  1 401628339 401628339101849903 101849903       61           Bulldogs      
-#>  2 401628339 401628339101849905 101849905       61           Bulldogs      
-#>  3 401628339 401628339101849908 101849908       61           Bulldogs      
-#>  4 401628339 401628339101857801 101857801       61           Bulldogs      
-#>  5 401628339 401628339101866801 101866801       61           Bulldogs      
-#>  6 401628339 401628339101866802 101866802       61           Bulldogs      
-#>  7 401628339 401628339101875001 101875001       61           Bulldogs      
-#>  8 401628339 401628339101877201 101877201       61           Bulldogs      
-#>  9 401628339 401628339101877203 101877203       61           Bulldogs      
-#> 10 401628339 401628339101877501 101877501       61           Bulldogs      
+#>  1 401628339 401628339101849903 101849903       61           NA            
+#>  2 401628339 401628339101849905 101849905       61           NA            
+#>  3 401628339 401628339101849908 101849908       61           NA            
+#>  4 401628339 401628339101857801 101857801       61           NA            
+#>  5 401628339 401628339101866801 101866801       61           NA            
+#>  6 401628339 401628339101866802 101866802       61           NA            
+#>  7 401628339 401628339101875001 101875001       61           NA            
+#>  8 401628339 401628339101877201 101877201       61           NA            
+#>  9 401628339 401628339101877203 101877203       61           NA            
+#> 10 401628339 401628339101877501 101877501       61           NA            
 #> # ℹ 147 more rows
 #> # ℹ 36 more variables: home_team_abbreviation <chr>, home_team_location <chr>,
 #> #   home_team_display_name <chr>, home_team_short_display_name <chr>,
@@ -195,7 +195,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_probabilities(game_id = 401628339,
                                   team_detail = FALSE))
 #> ── Game win probabilities data from ESPN ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:30 UTC
+#> ℹ Data updated: 2026-06-09 18:17:39 UTC
 #> # A tibble: 157 × 21
 #>    game_id play_id sequence_number home_team_id away_team_id home_win_percentage
 #>    <chr>   <chr>   <chr>           <chr>        <chr>                      <dbl>

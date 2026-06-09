@@ -157,20 +157,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_statistics(game_id = 401628339))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:35 UTC
+#> ℹ Data updated: 2026-06-09 18:17:45 UTC
 #> # A tibble: 568 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  2 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  3 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  4 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  5 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  6 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  7 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  1 401628339 61      NA        NA                NA            NA               
+#>  2 401628339 61      NA        NA                NA            NA               
+#>  3 401628339 61      NA        NA                NA            NA               
+#>  4 401628339 61      NA        NA                NA            NA               
+#>  5 401628339 61      NA        NA                NA            NA               
+#>  6 401628339 61      NA        NA                NA            NA               
+#>  7 401628339 61      NA        NA                NA            NA               
+#>  8 401628339 61      NA        NA                NA            NA               
+#>  9 401628339 61      NA        NA                NA            NA               
+#> 10 401628339 61      NA        NA                NA            NA               
 #> # ℹ 558 more rows
 #> # ℹ 24 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
@@ -181,7 +181,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_statistics(game_id = 401628339,
                                     team_detail = FALSE))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:36 UTC
+#> ℹ Data updated: 2026-06-09 18:17:46 UTC
 #> # A tibble: 568 × 20
 #>    game_id   team_id home_away split_id split_name split_abbreviation
 #>    <chr>     <chr>   <chr>     <chr>    <chr>      <chr>             

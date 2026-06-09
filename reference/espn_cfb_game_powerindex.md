@@ -148,18 +148,18 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_powerindex(game_id = 401628339))
 #> ── Game power index data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:28 UTC
+#> ℹ Data updated: 2026-06-09 18:17:37 UTC
 #> # A tibble: 8 × 22
-#>   game_id   season team_id team_name     team_abbreviation team_location 
-#>   <chr>      <int> <chr>   <chr>         <chr>             <chr>         
-#> 1 401628339   2024 61      Bulldogs      UGA               Georgia       
-#> 2 401628339   2024 61      Bulldogs      UGA               Georgia       
-#> 3 401628339   2024 61      Bulldogs      UGA               Georgia       
-#> 4 401628339   2024 61      Bulldogs      UGA               Georgia       
-#> 5 401628339   2024 2635    Golden Eagles TNTC              Tennessee Tech
-#> 6 401628339   2024 2635    Golden Eagles TNTC              Tennessee Tech
-#> 7 401628339   2024 2635    Golden Eagles TNTC              Tennessee Tech
-#> 8 401628339   2024 2635    Golden Eagles TNTC              Tennessee Tech
+#>   game_id   season team_id team_name team_abbreviation team_location
+#>   <chr>      <int> <chr>   <chr>     <chr>             <chr>        
+#> 1 401628339   2024 61      NA        NA                NA           
+#> 2 401628339   2024 61      NA        NA                NA           
+#> 3 401628339   2024 61      NA        NA                NA           
+#> 4 401628339   2024 61      NA        NA                NA           
+#> 5 401628339   2024 2635    NA        NA                NA           
+#> 6 401628339   2024 2635    NA        NA                NA           
+#> 7 401628339   2024 2635    NA        NA                NA           
+#> 8 401628339   2024 2635    NA        NA                NA           
 #> # ℹ 16 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>, stat_name <chr>,
@@ -168,7 +168,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_game_powerindex(game_id = 401628339, team_detail = FALSE))
 #> ── Game power index data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:56:28 UTC
+#> ℹ Data updated: 2026-06-09 18:17:38 UTC
 #> # A tibble: 8 × 12
 #>   game_id  season team_id stat_name abbreviation display_name short_display_name
 #>   <chr>     <int> <chr>   <chr>     <chr>        <chr>        <chr>             

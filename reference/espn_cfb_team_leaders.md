@@ -161,20 +161,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_leaders(team_id = 61, year = 2024))
 #> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:57:56 UTC
+#> ℹ Data updated: 2026-06-09 18:19:18 UTC
 #> # A tibble: 176 × 20
 #>    season season_type team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>   <chr>     <chr>             <chr>        
-#>  1   2024           2 61      Bulldogs  UGA               Georgia      
-#>  2   2024           2 61      Bulldogs  UGA               Georgia      
-#>  3   2024           2 61      Bulldogs  UGA               Georgia      
-#>  4   2024           2 61      Bulldogs  UGA               Georgia      
-#>  5   2024           2 61      Bulldogs  UGA               Georgia      
-#>  6   2024           2 61      Bulldogs  UGA               Georgia      
-#>  7   2024           2 61      Bulldogs  UGA               Georgia      
-#>  8   2024           2 61      Bulldogs  UGA               Georgia      
-#>  9   2024           2 61      Bulldogs  UGA               Georgia      
-#> 10   2024           2 61      Bulldogs  UGA               Georgia      
+#>  1   2024           2 61      NA        NA                NA           
+#>  2   2024           2 61      NA        NA                NA           
+#>  3   2024           2 61      NA        NA                NA           
+#>  4   2024           2 61      NA        NA                NA           
+#>  5   2024           2 61      NA        NA                NA           
+#>  6   2024           2 61      NA        NA                NA           
+#>  7   2024           2 61      NA        NA                NA           
+#>  8   2024           2 61      NA        NA                NA           
+#>  9   2024           2 61      NA        NA                NA           
+#> 10   2024           2 61      NA        NA                NA           
 #> # ℹ 166 more rows
 #> # ℹ 14 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
@@ -184,7 +184,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_leaders(team_id = 61, year = 2024,
                             team_detail = FALSE))
 #> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 07:57:56 UTC
+#> ℹ Data updated: 2026-06-09 18:19:18 UTC
 #> # A tibble: 176 × 10
 #>    season season_type team_id category_name category_display leader_rank
 #>     <int>       <int> <chr>   <chr>         <chr>                  <int>
