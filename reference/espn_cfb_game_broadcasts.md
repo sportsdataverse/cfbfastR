@@ -131,7 +131,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_broadcasts(game_id = 401628339))
 #> ── Game broadcasts data from ESPN ──────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:16:53 UTC
+#> ℹ Data updated: 2026-06-09 20:01:24 UTC
 #> # A tibble: 2 × 23
 #>   game_id   type_id type_name type_slug station slug  channel priority partnered
 #>   <chr>     <chr>   <chr>     <chr>     <chr>   <chr> <chr>      <int> <lgl>    

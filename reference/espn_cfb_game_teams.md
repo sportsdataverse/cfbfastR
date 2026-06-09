@@ -200,12 +200,12 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_teams(game_id = 401628339))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:17:46 UTC
+#> ℹ Data updated: 2026-06-09 20:02:09 UTC
 #> # A tibble: 2 × 38
 #>   game_id   competitor_id competitor_name competitor_abbreviation
 #>   <chr>     <chr>         <chr>           <chr>                  
-#> 1 401628339 61            NA              NA                     
-#> 2 401628339 2635          NA              NA                     
+#> 1 401628339 61            Bulldogs        UGA                    
+#> 2 401628339 2635          Golden Eagles   TNTC                   
 #> # ℹ 34 more variables: competitor_location <chr>,
 #> #   competitor_display_name <chr>, competitor_short_display_name <chr>,
 #> #   competitor_nickname <chr>, competitor_color <chr>,
@@ -215,11 +215,11 @@ Other ESPN CFB Functions:
 #> #   team_short_display_name <chr>, team_nickname <chr>, team_color <chr>, …
   try(espn_cfb_game_teams(game_id = 401628339, format = "wide"))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:17:47 UTC
+#> ℹ Data updated: 2026-06-09 20:02:09 UTC
 #> # A tibble: 1 × 73
 #>   game_id   home_competitor_id home_competitor_name home_competitor_abbreviation
 #>   <chr>     <chr>              <chr>                <chr>                       
-#> 1 401628339 61                 NA                   NA                          
+#> 1 401628339 61                 Bulldogs             UGA                         
 #> # ℹ 69 more variables: home_competitor_location <chr>,
 #> #   home_competitor_display_name <chr>,
 #> #   home_competitor_short_display_name <chr>, home_competitor_nickname <chr>,
@@ -229,7 +229,7 @@ Other ESPN CFB Functions:
 #> #   home_team_location <chr>, home_team_display_name <chr>, …
   try(espn_cfb_game_teams(game_id = 401628339, team_detail = FALSE))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:17:47 UTC
+#> ℹ Data updated: 2026-06-09 20:02:09 UTC
 #> # A tibble: 2 × 18
 #>   game_id   competitor_id team_id order home_away winner competitor_type
 #>   <chr>     <chr>         <chr>   <int> <chr>     <lgl>  <chr>          

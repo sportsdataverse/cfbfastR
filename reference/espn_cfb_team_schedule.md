@@ -175,23 +175,23 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_schedule(team_id = 61, year = 2024))
 #> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:40 UTC
+#> ℹ Data updated: 2026-06-09 20:03:39 UTC
 #> # A tibble: 13 × 43
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1   2024 61      NA        NA                NA            NA               
-#>  2   2024 61      NA        NA                NA            NA               
-#>  3   2024 61      NA        NA                NA            NA               
-#>  4   2024 61      NA        NA                NA            NA               
-#>  5   2024 61      NA        NA                NA            NA               
-#>  6   2024 61      NA        NA                NA            NA               
-#>  7   2024 61      NA        NA                NA            NA               
-#>  8   2024 61      NA        NA                NA            NA               
-#>  9   2024 61      NA        NA                NA            NA               
-#> 10   2024 61      NA        NA                NA            NA               
-#> 11   2024 61      NA        NA                NA            NA               
-#> 12   2024 61      NA        NA                NA            NA               
-#> 13   2024 61      NA        NA                NA            NA               
+#>  1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  2   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  3   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  4   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  5   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  6   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  7   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  8   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  9   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 10   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 11   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 12   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 13   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 37 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, game_id <chr>, game_date <chr>, game_name <chr>,
@@ -202,7 +202,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_schedule(team_id = 61, year = 2024,
                              team_detail = FALSE))
 #> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:40 UTC
+#> ℹ Data updated: 2026-06-09 20:03:39 UTC
 #> # A tibble: 13 × 23
 #>    season team_id game_id  game_date game_name game_short_name season_type  week
 #>     <int> <chr>   <chr>    <chr>     <chr>     <chr>                 <int> <int>

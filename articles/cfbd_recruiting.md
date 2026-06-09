@@ -23,7 +23,7 @@ cfbd_recruiting_player(2018, team = "Texas")
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-09 18:20:41 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:38 UTC
 
     ## # A tibble: 28 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -50,7 +50,7 @@ cfbd_recruiting_player(2016, recruit_type = "JUCO")
 ```
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-09 18:20:41 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:38 UTC
 
     ## # A tibble: 470 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -77,7 +77,7 @@ cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state
 ```
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-09 18:20:41 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:38 UTC
 
     ## # A tibble: 25 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -107,7 +107,7 @@ cfbd_recruiting_position(2018, team = "Texas")
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
 
-    ## ℹ Data updated: 2026-06-09 18:20:42 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 16 × 7
     ##    team  conference position_group avg_rating total_rating commits avg_stars    
@@ -135,7 +135,7 @@ cfbd_recruiting_position(2016, 2020, team = "Virginia")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
-    ## ℹ Data updated: 2026-06-09 18:20:42 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 16 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -163,7 +163,7 @@ cfbd_recruiting_position(2015, 2020, conference = "SEC")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
-    ## ℹ Data updated: 2026-06-09 18:20:42 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 224 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -189,7 +189,7 @@ cfbd_recruiting_team(2018, team = "Texas")
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-09 18:20:42 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 1 × 4
     ##    year team   rank points
@@ -202,8 +202,7 @@ cfbd_recruiting_team(2016, team = "Virginia")
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-
-    ## ℹ Data updated: 2026-06-09 18:20:43 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 1 × 4
     ##    year team      rank points
@@ -216,7 +215,7 @@ cfbd_recruiting_team(2016, team = "Texas A&M")
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-09 18:20:43 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 1 × 4
     ##    year team       rank points
@@ -229,7 +228,7 @@ cfbd_recruiting_team(2011)
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-09 18:20:43 UTC
+    ## ℹ Data updated: 2026-06-09 20:04:39 UTC
 
     ## # A tibble: 137 × 4
     ##     year team           rank points

@@ -170,20 +170,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_standings(year = 2024))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:18:52 UTC
+#> ℹ Data updated: 2026-06-09 20:03:04 UTC
 #> # A tibble: 36,892 × 23
 #>    season season_type group_id team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>    <chr>   <chr>     <chr>             <chr>        
-#>  1   2024           2 90       147     NA        NA                NA           
-#>  2   2024           2 90       147     NA        NA                NA           
-#>  3   2024           2 90       147     NA        NA                NA           
-#>  4   2024           2 90       147     NA        NA                NA           
-#>  5   2024           2 90       147     NA        NA                NA           
-#>  6   2024           2 90       147     NA        NA                NA           
-#>  7   2024           2 90       147     NA        NA                NA           
-#>  8   2024           2 90       147     NA        NA                NA           
-#>  9   2024           2 90       147     NA        NA                NA           
-#> 10   2024           2 90       147     NA        NA                NA           
+#>  1   2024           2 90       147     Bobcats   MTST              Montana State
+#>  2   2024           2 90       147     Bobcats   MTST              Montana State
+#>  3   2024           2 90       147     Bobcats   MTST              Montana State
+#>  4   2024           2 90       147     Bobcats   MTST              Montana State
+#>  5   2024           2 90       147     Bobcats   MTST              Montana State
+#>  6   2024           2 90       147     Bobcats   MTST              Montana State
+#>  7   2024           2 90       147     Bobcats   MTST              Montana State
+#>  8   2024           2 90       147     Bobcats   MTST              Montana State
+#>  9   2024           2 90       147     Bobcats   MTST              Montana State
+#> 10   2024           2 90       147     Bobcats   MTST              Montana State
 #> # ℹ 36,882 more rows
 #> # ℹ 16 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
@@ -193,7 +193,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_standings(year = 2024, team_detail = FALSE))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:14 UTC
+#> ℹ Data updated: 2026-06-09 20:03:27 UTC
 #> # A tibble: 36,892 × 13
 #>    season season_type group_id team_id record_type record_name record_summary
 #>     <int>       <int> <chr>    <chr>   <chr>       <chr>       <chr>         

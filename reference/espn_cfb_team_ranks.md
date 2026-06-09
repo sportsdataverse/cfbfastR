@@ -166,14 +166,14 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_ranks(team_id = 61, year = 2024))
 #> ── Team poll rank history from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:19 UTC
+#> ℹ Data updated: 2026-06-09 20:03:32 UTC
 #> # A tibble: 4 × 25
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#> 1   2024 61      NA        NA                NA            NA               
-#> 2   2024 61      NA        NA                NA            NA               
-#> 3   2024 61      NA        NA                NA            NA               
-#> 4   2024 61      NA        NA                NA            NA               
+#> 1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 2   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 3   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 4   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 19 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, week <int>, poll_id <chr>, poll_name <chr>,
@@ -183,7 +183,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_ranks(team_id = 61, year = 2024,
                           team_detail = FALSE))
 #> ── Team poll rank history from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:19 UTC
+#> ℹ Data updated: 2026-06-09 20:03:32 UTC
 #> # A tibble: 4 × 15
 #>   season team_id  week poll_id poll_name      poll_short_name poll_type headline
 #>    <int> <chr>   <int> <chr>   <chr>          <chr>           <chr>     <chr>   

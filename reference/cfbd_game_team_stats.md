@@ -169,7 +169,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:13:10 UTC
+#> ℹ Data updated: 2026-06-09 19:57:48 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
@@ -181,8 +181,8 @@ Other CFBD Games:
 #>  6 401403885 Mississip… SEC        away      LSU      SEC                     16
 #>  7 401403903 Auburn     SEC        home      LSU      SEC                     17
 #>  8 401403903 LSU        SEC        away      Auburn   SEC                     21
-#>  9 401403867 Florida S… ACC        home      LSU      SEC                     24
-#> 10 401403867 LSU        SEC        away      Florida… ACC                     23
+#>  9 401403934 Alabama    SEC        away      LSU      SEC                     31
+#> 10 401403934 LSU        SEC        home      Alabama  SEC                     32
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -193,20 +193,20 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:13:10 UTC
+#> ℹ Data updated: 2026-06-09 19:57:48 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
 #>  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
 #>  2 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
-#>  3 332570052 Florida S… ACC        home      Nevada   Mountain West           62
-#>  4 332570052 Nevada     Mountain … away      Florida… ACC                      7
-#>  5 332990052 Florida S… ACC        home      NC State ACC                     49
-#>  6 332990052 NC State   ACC        away      Florida… ACC                     17
-#>  7 333060052 Florida S… ACC        home      Miami    ACC                     41
-#>  8 333060052 Miami      ACC        away      Florida… ACC                     14
-#>  9 333200052 Florida S… ACC        home      Syracuse ACC                     59
-#> 10 333200052 Syracuse   ACC        away      Florida… ACC                      3
+#>  3 333200052 Florida S… ACC        home      Syracuse ACC                     59
+#>  4 333200052 Syracuse   ACC        away      Florida… ACC                      3
+#>  5 333410052 Florida S… ACC        home      Duke     ACC                     45
+#>  6 333410052 Duke       ACC        away      Florida… ACC                      7
+#>  7 332570052 Nevada     Mountain … away      Florida… ACC                      7
+#>  8 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+#>  9 332450221 Pittsburgh ACC        home      Florida… ACC                     13
+#> 10 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

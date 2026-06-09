@@ -194,20 +194,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_roster(team_id = 61, year = 2024))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:27 UTC
+#> ℹ Data updated: 2026-06-09 20:03:35 UTC
 #> # A tibble: 177 × 38
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1   2024 61      NA        NA                NA            NA               
-#>  2   2024 61      NA        NA                NA            NA               
-#>  3   2024 61      NA        NA                NA            NA               
-#>  4   2024 61      NA        NA                NA            NA               
-#>  5   2024 61      NA        NA                NA            NA               
-#>  6   2024 61      NA        NA                NA            NA               
-#>  7   2024 61      NA        NA                NA            NA               
-#>  8   2024 61      NA        NA                NA            NA               
-#>  9   2024 61      NA        NA                NA            NA               
-#> 10   2024 61      NA        NA                NA            NA               
+#>  1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  2   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  3   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  4   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  5   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  6   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  7   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  8   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  9   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 10   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 167 more rows
 #> # ℹ 32 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
@@ -218,20 +218,20 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_roster(team_id = 61, year = 2024,
                            position_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:33 UTC
+#> ℹ Data updated: 2026-06-09 20:03:36 UTC
 #> # A tibble: 177 × 32
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1   2024 61      NA        NA                NA            NA               
-#>  2   2024 61      NA        NA                NA            NA               
-#>  3   2024 61      NA        NA                NA            NA               
-#>  4   2024 61      NA        NA                NA            NA               
-#>  5   2024 61      NA        NA                NA            NA               
-#>  6   2024 61      NA        NA                NA            NA               
-#>  7   2024 61      NA        NA                NA            NA               
-#>  8   2024 61      NA        NA                NA            NA               
-#>  9   2024 61      NA        NA                NA            NA               
-#> 10   2024 61      NA        NA                NA            NA               
+#>  1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  2   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  3   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  4   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  5   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  6   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  7   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  8   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  9   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 10   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 167 more rows
 #> # ℹ 26 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
@@ -242,7 +242,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_roster(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:39 UTC
+#> ℹ Data updated: 2026-06-09 20:03:38 UTC
 #> # A tibble: 177 × 28
 #>    season team_id athlete_id first_name last_name full_name  display_name jersey
 #>     <int> <chr>   <chr>      <chr>      <chr>     <chr>      <chr>        <chr> 

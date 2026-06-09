@@ -159,17 +159,17 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_ats(team_id = 61, year = 2024))
 #> ── Team against-the-spread records from ESPN ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:15 UTC
+#> ℹ Data updated: 2026-06-09 20:03:28 UTC
 #> # A tibble: 7 × 19
 #>   season season_type team_id team_name team_abbreviation team_location
 #>    <int>       <int> <chr>   <chr>     <chr>             <chr>        
-#> 1   2024           2 61      NA        NA                NA           
-#> 2   2024           2 61      NA        NA                NA           
-#> 3   2024           2 61      NA        NA                NA           
-#> 4   2024           2 61      NA        NA                NA           
-#> 5   2024           2 61      NA        NA                NA           
-#> 6   2024           2 61      NA        NA                NA           
-#> 7   2024           2 61      NA        NA                NA           
+#> 1   2024           2 61      Bulldogs  UGA               Georgia      
+#> 2   2024           2 61      Bulldogs  UGA               Georgia      
+#> 3   2024           2 61      Bulldogs  UGA               Georgia      
+#> 4   2024           2 61      Bulldogs  UGA               Georgia      
+#> 5   2024           2 61      Bulldogs  UGA               Georgia      
+#> 6   2024           2 61      Bulldogs  UGA               Georgia      
+#> 7   2024           2 61      Bulldogs  UGA               Georgia      
 #> # ℹ 13 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>, ats_type_id <chr>,
@@ -177,7 +177,7 @@ Other ESPN CFB Functions:
 #> #   pushes <int>
   try(espn_cfb_team_ats(team_id = 61, year = 2024, team_detail = FALSE))
 #> ── Team against-the-spread records from ESPN ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:15 UTC
+#> ℹ Data updated: 2026-06-09 20:03:28 UTC
 #> # A tibble: 7 × 9
 #>   season season_type team_id ats_type_id ats_type_name   ats_description    wins
 #>    <int>       <int> <chr>   <chr>       <chr>           <chr>             <int>

@@ -141,20 +141,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_coaches(year = 2024))
 #> ── Coaches index from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:16:40 UTC
+#> ℹ Data updated: 2026-06-09 20:01:19 UTC
 #> # A tibble: 268 × 18
-#>    season coach_id first_name last_name   team_id team_name team_abbreviation
-#>     <int> <chr>    <chr>      <chr>       <chr>   <chr>     <chr>            
-#>  1   2024 5120149  Alex       Golesh      58      NA        NA               
-#>  2   2024 162030   Alex       Mortensen   NA      NA        NA               
-#>  3   2024 15744    Major      Applewhite  6       NA        NA               
-#>  4   2024 4606657  Ryan       Silverfield 235     NA        NA               
-#>  5   2024 5119667  Kenny      Dillingham  9       NA        NA               
-#>  6   2024 4077317  Brent      Brennan     12      NA        NA               
-#>  7   2024 5218798  Tim        Skipper     278     NA        NA               
-#>  8   2024 5345545  Alonzo     Carter      NA      NA        NA               
-#>  9   2024 156919   Sean       Lewis       21      NA        NA               
-#> 10   2024 559953   Ken        Niumatalolo 23      NA        NA               
+#>    season coach_id first_name last_name   team_id team_name  team_abbreviation
+#>     <int> <chr>    <chr>      <chr>       <chr>   <chr>      <chr>            
+#>  1   2024 5120149  Alex       Golesh      58      Bulls      USF              
+#>  2   2024 162030   Alex       Mortensen   NA      NA         NA               
+#>  3   2024 15744    Major      Applewhite  6       Jaguars    USA              
+#>  4   2024 4606657  Ryan       Silverfield 235     Tigers     MEM              
+#>  5   2024 5119667  Kenny      Dillingham  9       Sun Devils ASU              
+#>  6   2024 4077317  Brent      Brennan     12      Wildcats   ARIZ             
+#>  7   2024 5218798  Tim        Skipper     278     Bulldogs   FRES             
+#>  8   2024 5345545  Alonzo     Carter      NA      NA         NA               
+#>  9   2024 156919   Sean       Lewis       21      Aztecs     SDSU             
+#> 10   2024 559953   Ken        Niumatalolo 23      Spartans   SJSU             
 #> # ℹ 258 more rows
 #> # ℹ 11 more variables: team_location <chr>, team_display_name <chr>,
 #> #   team_short_display_name <chr>, team_nickname <chr>, team_color <chr>,
@@ -163,7 +163,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
 #> ── Coaches index from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:16:49 UTC
+#> ℹ Data updated: 2026-06-09 20:01:21 UTC
 #> # A tibble: 268 × 8
 #>    season coach_id first_name last_name   team_id coach_ref  person_ref team_ref
 #>     <int> <chr>    <chr>      <chr>       <chr>   <chr>      <chr>      <chr>   

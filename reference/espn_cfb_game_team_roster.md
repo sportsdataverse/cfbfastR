@@ -181,20 +181,20 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_roster(game_id = 401628339))
 #> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:17:44 UTC
+#> ℹ Data updated: 2026-06-09 20:02:06 UTC
 #> # A tibble: 242 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1 401628339 61      NA        NA                NA            NA               
-#>  2 401628339 61      NA        NA                NA            NA               
-#>  3 401628339 61      NA        NA                NA            NA               
-#>  4 401628339 61      NA        NA                NA            NA               
-#>  5 401628339 61      NA        NA                NA            NA               
-#>  6 401628339 61      NA        NA                NA            NA               
-#>  7 401628339 61      NA        NA                NA            NA               
-#>  8 401628339 61      NA        NA                NA            NA               
-#>  9 401628339 61      NA        NA                NA            NA               
-#> 10 401628339 61      NA        NA                NA            NA               
+#>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  2 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  3 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  4 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  5 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  6 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  7 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 232 more rows
 #> # ℹ 24 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
@@ -205,20 +205,20 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_roster(game_id = 401628339,
                                 position_detail = FALSE))
 #> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:17:44 UTC
+#> ℹ Data updated: 2026-06-09 20:02:07 UTC
 #> # A tibble: 242 × 25
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
-#>  1 401628339 61      NA        NA                NA            NA               
-#>  2 401628339 61      NA        NA                NA            NA               
-#>  3 401628339 61      NA        NA                NA            NA               
-#>  4 401628339 61      NA        NA                NA            NA               
-#>  5 401628339 61      NA        NA                NA            NA               
-#>  6 401628339 61      NA        NA                NA            NA               
-#>  7 401628339 61      NA        NA                NA            NA               
-#>  8 401628339 61      NA        NA                NA            NA               
-#>  9 401628339 61      NA        NA                NA            NA               
-#> 10 401628339 61      NA        NA                NA            NA               
+#>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  2 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  3 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  4 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  5 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  6 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  7 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 232 more rows
 #> # ℹ 19 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
@@ -229,7 +229,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_roster(game_id = 401628339,
                                 team_detail = FALSE))
 #> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:17:44 UTC
+#> ℹ Data updated: 2026-06-09 20:02:07 UTC
 #> # A tibble: 242 × 20
 #>    game_id   team_id home_away athlete_id player_id display_name  jersey
 #>    <chr>     <chr>   <chr>     <chr>      <chr>     <chr>         <chr> 

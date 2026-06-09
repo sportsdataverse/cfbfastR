@@ -270,11 +270,11 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team(team_id = 61, year = 2024))
 #> ── Team detail from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:15 UTC
+#> ℹ Data updated: 2026-06-09 20:03:28 UTC
 #> # A tibble: 1 × 32
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#> 1   2024 61      NA        NA                NA            NA               
+#> 1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 26 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, guid <chr>, uid <chr>, slug <chr>,
@@ -284,7 +284,7 @@ Other ESPN CFB Functions:
 #> #   venue_id <chr>, venue_name <chr>, venue_city <chr>, venue_state <chr>, …
   try(espn_cfb_team(team_id = 61, year = 2024, team_detail = FALSE))
 #> ── Team detail from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 18:19:15 UTC
+#> ℹ Data updated: 2026-06-09 20:03:28 UTC
 #> # A tibble: 1 × 22
 #>   season team_id guid   uid   slug  abbreviation display_name short_display_name
 #>    <int> <chr>   <chr>  <chr> <chr> <chr>        <chr>        <chr>             
