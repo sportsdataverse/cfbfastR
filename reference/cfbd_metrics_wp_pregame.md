@@ -71,7 +71,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wp_pregame(year = 2019, week = 9, team = "Texas A&M"))
 #> ── pre-game WP data from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-08 01:42:02 UTC
+#> ℹ Data updated: 2026-06-09 07:52:33 UTC
 #> # A tibble: 1 × 9
 #>   season season_type  week   game_id home_team away_team    spread home_win_prob
 #>    <int> <chr>       <int>     <int> <chr>     <chr>         <int>         <dbl>

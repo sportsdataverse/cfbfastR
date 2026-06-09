@@ -52,7 +52,7 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-08 01:49:04 UTC
+    ## ℹ Data updated: 2026-06-09 07:59:05 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
@@ -61,12 +61,12 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
     ##  2 401110778 LSU        SEC        away      Texas    Big 12                  45
     ##  3 401110842 Alabama    SEC        home      LSU      SEC                     41
     ##  4 401110842 LSU        SEC        away      Alabama  SEC                     46
-    ##  5 401110859 LSU        SEC        home      Arkansas SEC                     56
-    ##  6 401110859 Arkansas   SEC        away      LSU      SEC                     20
-    ##  7 401110819 LSU        SEC        home      Florida  SEC                     42
-    ##  8 401110819 Florida    SEC        away      LSU      SEC                     28
-    ##  9 401110813 LSU        SEC        home      Utah St… Mountain West           42
-    ## 10 401110813 Utah State Mountain … away      LSU      SEC                      6
+    ##  5 401110850 Ole Miss   SEC        home      LSU      SEC                     37
+    ##  6 401110850 LSU        SEC        away      Ole Miss SEC                     58
+    ##  7 401110869 LSU        SEC        home      Texas A… SEC                     50
+    ##  8 401110869 Texas A&M  SEC        away      LSU      SEC                      7
+    ##  9 401110790 LSU        SEC        home      Northwe… Southland               65
+    ## 10 401110790 Northwest… Southland  away      LSU      SEC                     14
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -82,7 +82,7 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-08 01:49:05 UTC
+    ## ℹ Data updated: 2026-06-09 07:59:06 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
@@ -95,8 +95,8 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
     ##  6 332710103 Florida S… ACC        away      Boston … ACC                     48
     ##  7 332780052 Florida S… ACC        home      Maryland ACC                     63
     ##  8 332780052 Maryland   ACC        away      Florida… ACC                      0
-    ##  9 333200052 Florida S… ACC        home      Syracuse ACC                     59
-    ## 10 333200052 Syracuse   ACC        away      Florida… ACC                      3
+    ##  9 333340057 Florida    SEC        home      Florida… ACC                      7
+    ## 10 333340057 Florida S… ACC        away      Florida  SEC                     37
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

@@ -117,7 +117,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_venue(venue_id = 3785))
 #> ── Venue detail from ESPN ──────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-08 01:48:03 UTC
+#> ℹ Data updated: 2026-06-09 07:58:17 UTC
 #> # A tibble: 1 × 9
 #>   venue_id full_name         city  state zip_code country grass indoor venue_ref
 #>   <chr>    <chr>             <chr> <chr> <chr>    <chr>   <lgl> <lgl>  <chr>    
