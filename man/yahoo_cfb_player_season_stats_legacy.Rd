@@ -5,7 +5,7 @@
 \title{\strong{Get Yahoo Sports CFB legacy per-category player leaders}}
 \usage{
 yahoo_cfb_player_season_stats_legacy(
-  season = 2024,
+  season = most_recent_cfb_season(),
   category = "Passing",
   sort_stat = "PASSING_YARDS",
   league_structure = "ncaaf.struct.div.1",
@@ -13,7 +13,7 @@ yahoo_cfb_player_season_stats_legacy(
 )
 }
 \arguments{
-\item{season}{(integer, required): Season year. Defaults to \code{2024}.}
+\item{season}{(integer): Season year. Defaults to \code{most_recent_cfb_season()}.}
 
 \item{category}{(character): One of \code{Passing}, \code{Rushing}, \code{Receiving},
 \code{Defense}, \code{Kicking}, \code{Punting}, \code{Returns}. Defaults to \code{"Passing"}.}
@@ -27,7 +27,7 @@ yahoo_cfb_player_season_stats_legacy(
 }
 \value{
 A \code{cfbfastR}-tagged tibble: \code{player_id}, \code{display_name}, \code{team},
-\code{season}, \code{category}, plus one column per \code{statId}.
+\code{team_abbreviation}, \code{season}, \code{category}, plus one column per \code{statId}.
 }
 \description{
 Flattens a legacy \verb{seasonStatsFootball\{Category\}Ncaaf} query (one category per
@@ -39,5 +39,14 @@ call) into a wide player tibble.
                                            sort_stat = "RUSHING_YARDS"))
 }
 }
+\seealso{
+Other Yahoo CFB Functions: 
+\code{\link{yahoo_cfb_boxscore}()},
+\code{\link{yahoo_cfb_player_season_stats}()},
+\code{\link{yahoo_cfb_scoreboard}()},
+\code{\link{yahoo_cfb_team_season_stats}()},
+\code{\link{yahoo_cfb_team_season_stats_legacy}()}
+}
+\concept{Yahoo CFB Functions}
 \keyword{Data}
 \keyword{Stats}

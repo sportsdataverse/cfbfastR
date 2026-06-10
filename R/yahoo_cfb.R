@@ -37,11 +37,13 @@
 #' @importFrom janitor make_clean_names
 .yahoo_entity_cols <- function(row) {
   ent <- .yahoo_or(row[["player"]], row[["team"]])
+  if (is.null(ent)) return(list())
   if (!is.null(ent[["playerId"]])) {
+    team_node <- .yahoo_or(ent[["team"]], list())
     list(player_id = .yahoo_or(ent[["playerId"]], NA_character_),
          display_name = .yahoo_or(ent[["displayName"]], NA_character_),
-         team = .yahoo_or(ent[["team"]][["displayName"]], NA_character_),
-         team_abbreviation = .yahoo_or(ent[["team"]][["abbreviation"]], NA_character_))
+         team = .yahoo_or(team_node[["displayName"]], NA_character_),
+         team_abbreviation = .yahoo_or(team_node[["abbreviation"]], NA_character_))
   } else {
     list(team = .yahoo_or(ent[["displayName"]], NA_character_),
          team_abbreviation = .yahoo_or(ent[["abbreviation"]], NA_character_))
@@ -95,7 +97,7 @@
 #' one call) into one wide tibble with one row per player. NCAAF data is
 #' available 2013-present.
 #'
-#' @param season (integer, required): Season year (e.g. `2024`). Defaults to `2024`.
+#' @param season (integer): Season year (e.g. `2024`). Defaults to `most_recent_cfb_season()`.
 #' @param league_structure (character): Division filter. Defaults to `"ncaaf.struct.div.1"` (FBS).
 #' @param count (integer): Max players. Defaults to `200`.
 #' @param qualified (logical): Restrict to qualified leaders. Defaults to `FALSE`.
@@ -114,11 +116,12 @@
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @export
+#' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_player_season_stats(season = 2024))
 #' }
-yahoo_cfb_player_season_stats <- function(season = 2024,
+yahoo_cfb_player_season_stats <- function(season = most_recent_cfb_season(),
                                           league_structure = "ncaaf.struct.div.1",
                                           count = 200, qualified = FALSE) {
   out <- data.frame()
@@ -146,7 +149,7 @@ yahoo_cfb_player_season_stats <- function(season = 2024,
 #' Flattens the shangrila `leagueStatsByTeam` response into one wide tibble with
 #' one row per team (all stat groups in one call).
 #'
-#' @param season (integer, required): Season year. Defaults to `2024`.
+#' @param season (integer): Season year. Defaults to `most_recent_cfb_season()`.
 #' @param league_structure (character): Division filter. Defaults to `"ncaaf.struct.div.1"`.
 #' @param count (integer): Max teams. Defaults to `200`.
 #' @return A `cfbfastR`-tagged tibble with one row per team: `team`,
@@ -156,11 +159,12 @@ yahoo_cfb_player_season_stats <- function(season = 2024,
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @export
+#' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_team_season_stats(season = 2024))
 #' }
-yahoo_cfb_team_season_stats <- function(season = 2024,
+yahoo_cfb_team_season_stats <- function(season = most_recent_cfb_season(),
                                         league_structure = "ncaaf.struct.div.1",
                                         count = 200) {
   out <- data.frame()
@@ -187,7 +191,7 @@ yahoo_cfb_team_season_stats <- function(season = 2024,
 #' Flattens a legacy `seasonStatsFootball{Category}Ncaaf` query (one category per
 #' call) into a wide player tibble.
 #'
-#' @param season (integer, required): Season year. Defaults to `2024`.
+#' @param season (integer): Season year. Defaults to `most_recent_cfb_season()`.
 #' @param category (character): One of `Passing`, `Rushing`, `Receiving`,
 #'   `Defense`, `Kicking`, `Punting`, `Returns`. Defaults to `"Passing"`.
 #' @param sort_stat (character): Required sort stat id (a `FootballStatId`, e.g.
@@ -195,18 +199,19 @@ yahoo_cfb_team_season_stats <- function(season = 2024,
 #' @param league_structure (character): Defaults to `"ncaaf.struct.div.1"`.
 #' @param count (integer): Defaults to `200`.
 #' @return A `cfbfastR`-tagged tibble: `player_id`, `display_name`, `team`,
-#'   `season`, `category`, plus one column per `statId`.
+#'   `team_abbreviation`, `season`, `category`, plus one column per `statId`.
 #'
 #' @keywords Stats Data
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @export
+#' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
 #'                                            sort_stat = "RUSHING_YARDS"))
 #' }
-yahoo_cfb_player_season_stats_legacy <- function(season = 2024, category = "Passing",
+yahoo_cfb_player_season_stats_legacy <- function(season = most_recent_cfb_season(), category = "Passing",
                                                  sort_stat = "PASSING_YARDS",
                                                  league_structure = "ncaaf.struct.div.1",
                                                  count = 200) {
@@ -237,7 +242,7 @@ yahoo_cfb_player_season_stats_legacy <- function(season = 2024, category = "Pass
 #'
 #' Flattens a legacy `seasonTeamStatsFootball{Category}` query into a wide team tibble.
 #'
-#' @param season (integer, required): Season year. Defaults to `2024`.
+#' @param season (integer): Season year. Defaults to `most_recent_cfb_season()`.
 #' @param category (character): One of `Passing`, `Rushing`, `Receiving`,
 #'   `Defense`, `Kicking`, `Punting`, `Returns`, `Kickoffs`, `Offense`.
 #'   Defaults to `"Passing"`.
@@ -251,12 +256,13 @@ yahoo_cfb_player_season_stats_legacy <- function(season = 2024, category = "Pass
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @export
+#' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
 #'                                          sort_stat = "RUSHING_YARDS"))
 #' }
-yahoo_cfb_team_season_stats_legacy <- function(season = 2024, category = "Passing",
+yahoo_cfb_team_season_stats_legacy <- function(season = most_recent_cfb_season(), category = "Passing",
                                                sort_stat = "PASSING_YARDS",
                                                league_structure = "ncaaf.struct.div.1",
                                                count = 200) {
@@ -288,7 +294,7 @@ yahoo_cfb_team_season_stats_legacy <- function(season = 2024, category = "Passin
 #' Flattens the editorial `scoreboard` games map into one tibble (one row per
 #' game). The full payload also embeds teams/leagues/odds maps.
 #'
-#' @param season (integer, required): Season year.
+#' @param season (integer): Season year. Defaults to `most_recent_cfb_season()`.
 #' @param week (integer): Schedule week. Defaults to `1`.
 #' @param count (integer): Max games. Defaults to `500`.
 #' @return A `cfbfastR`-tagged tibble with one row per game; columns are the
@@ -300,11 +306,12 @@ yahoo_cfb_team_season_stats_legacy <- function(season = 2024, category = "Passin
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @export
+#' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_scoreboard(season = 2024, week = 1))
 #' }
-yahoo_cfb_scoreboard <- function(season, week = 1, count = 500) {
+yahoo_cfb_scoreboard <- function(season = most_recent_cfb_season(), week = 1, count = 500) {
   out <- data.frame()
   tryCatch(
     expr = {
@@ -336,6 +343,7 @@ yahoo_cfb_scoreboard <- function(season, week = 1, count = 500) {
 #'
 #' @keywords Boxscore Data
 #' @export
+#' @family Yahoo CFB Functions
 #' @examples
 #' \donttest{
 #'   try(yahoo_cfb_boxscore(game_id = "ncaaf.g.202509200023"))

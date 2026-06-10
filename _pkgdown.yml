@@ -458,6 +458,11 @@ reference:
     desc: Catalog-cache management helpers
     contents:
       - '`espn_cfb_clear_cache`'
+  - title: "Yahoo Sports Data"
+  - subtitle: Yahoo CFB -- Stats, scoreboard & boxscore
+    desc: Yahoo Sports college-football endpoints (player/team season stats, legacy per-category leaders, scoreboard, and boxscore scaffold), wrapping Yahoo's shangrila stats graph and editorial feed
+    contents:
+      - starts_with("yahoo_cfb_")
   - title: Helper Functions and Data
   - subtitle: Included data
     desc: Data included within the package

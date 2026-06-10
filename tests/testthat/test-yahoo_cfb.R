@@ -56,6 +56,43 @@ test_that(".yahoo_modern_rows pivots stats wide with entity columns", {
   expect_equal(rows[[1]][["passing_touchdowns"]], "40")
 })
 
+test_that("yahoo_cfb_team_season_stats flattens modern team payload + is self-describing", {
+  fake <- list(data = list(leagues = list(list(footballStats = list(
+    list(team = list(displayName = "Team A", abbreviation = "TA"),
+         stats = list(list(statId = "PASSING_YARDS", value = "4000"))))))))
+  testthat::local_mocked_bindings(.yahoo_get = function(base, path, query = list()) fake)
+  out <- yahoo_cfb_team_season_stats(season = 2024)
+  expect_s3_class(out, "data.frame")
+  expect_true(all(c("team", "team_abbreviation", "passing_yards", "season") %in% colnames(out)))
+  expect_equal(out$team[1], "Team A")
+  expect_equal(out$team_abbreviation[1], "TA")
+  expect_equal(out$season[1], 2024)
+})
+
+test_that("yahoo_cfb_team_season_stats_legacy validates category and flattens team leaders", {
+  fake <- list(data = list(leagues = list(list(leaders = list(
+    list(team = list(displayName = "Team B", abbreviation = "TB"),
+         stats = list(list(statId = "RUSHING_YARDS", value = "2000"))))))))
+  testthat::local_mocked_bindings(.yahoo_get = function(base, path, query = list()) fake)
+  out <- yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
+                                            sort_stat = "RUSHING_YARDS")
+  expect_s3_class(out, "data.frame")
+  expect_true(all(c("team", "team_abbreviation", "rushing_yards", "season", "category") %in% colnames(out)))
+  expect_equal(out$team[1], "Team B")
+  expect_equal(out$team_abbreviation[1], "TB")
+  expect_equal(out$category[1], "Rushing")
+  expect_error(
+    yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Bogus", sort_stat = "X"),
+    "category"
+  )
+})
+
+test_that(".yahoo_entity_cols returns empty list for NULL entity", {
+  row_no_player_no_team <- list()
+  result <- cfbfastR:::.yahoo_entity_cols(row_no_player_no_team)
+  expect_equal(result, list())
+})
+
 test_that("LIVE: yahoo_cfb_player_season_stats returns rows", {
   skip_on_cran()
   skip_on_ci()

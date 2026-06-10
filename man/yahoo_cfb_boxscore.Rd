@@ -23,5 +23,14 @@ boxscore uses a normalized decoder-dictionary schema
   try(yahoo_cfb_boxscore(game_id = "ncaaf.g.202509200023"))
 }
 }
+\seealso{
+Other Yahoo CFB Functions: 
+\code{\link{yahoo_cfb_player_season_stats}()},
+\code{\link{yahoo_cfb_player_season_stats_legacy}()},
+\code{\link{yahoo_cfb_scoreboard}()},
+\code{\link{yahoo_cfb_team_season_stats}()},
+\code{\link{yahoo_cfb_team_season_stats_legacy}()}
+}
+\concept{Yahoo CFB Functions}
 \keyword{Boxscore}
 \keyword{Data}

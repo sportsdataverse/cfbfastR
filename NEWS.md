@@ -37,6 +37,10 @@ This release adds a 65-function ESPN college-football API layer, expanding `cfbf
 * `espn_cfb_coaches()`, `espn_cfb_coach()`, `espn_cfb_venues()`, `espn_cfb_positions()`, `espn_cfb_awards()`, `espn_cfb_rankings()`, and `espn_cfb_week_rankings()` — league catalogs and poll rankings.
 * `espn_cfb_coach_record()`, `espn_cfb_franchises()`, `espn_cfb_franchise()`, `espn_cfb_venue()`, `espn_cfb_position()`, and `espn_cfb_award()` — coach season win/loss records, the league franchise catalog, and single-record venue / position / award detail.
 
+### New Yahoo Sports wrappers
+
+* Added Yahoo Sports college football wrappers: `yahoo_cfb_player_season_stats()`, `yahoo_cfb_team_season_stats()`, `yahoo_cfb_player_season_stats_legacy()`, `yahoo_cfb_team_season_stats_legacy()`, `yahoo_cfb_scoreboard()`, and `yahoo_cfb_boxscore()` (scaffold), wrapping Yahoo's shangrila stats graph and editorial feed.
+
 ### New CollegeFootballData wrappers
 
 * `cfbd_betting_ats()` — season against-the-spread (ATS) summary records by team, wrapping the CollegeFootballData `/teams/ats` endpoint.

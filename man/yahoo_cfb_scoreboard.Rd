@@ -4,10 +4,10 @@
 \alias{yahoo_cfb_scoreboard}
 \title{\strong{Get Yahoo Sports college football scoreboard}}
 \usage{
-yahoo_cfb_scoreboard(season, week = 1, count = 500)
+yahoo_cfb_scoreboard(season = most_recent_cfb_season(), week = 1, count = 500)
 }
 \arguments{
-\item{season}{(integer, required): Season year.}
+\item{season}{(integer): Season year. Defaults to \code{most_recent_cfb_season()}.}
 
 \item{week}{(integer): Schedule week. Defaults to \code{1}.}
 
@@ -28,5 +28,14 @@ game). The full payload also embeds teams/leagues/odds maps.
   try(yahoo_cfb_scoreboard(season = 2024, week = 1))
 }
 }
+\seealso{
+Other Yahoo CFB Functions: 
+\code{\link{yahoo_cfb_boxscore}()},
+\code{\link{yahoo_cfb_player_season_stats}()},
+\code{\link{yahoo_cfb_player_season_stats_legacy}()},
+\code{\link{yahoo_cfb_team_season_stats}()},
+\code{\link{yahoo_cfb_team_season_stats_legacy}()}
+}
+\concept{Yahoo CFB Functions}
 \keyword{Data}
 \keyword{Schedule}
