@@ -88,3 +88,55 @@
   if (!length(rows)) return(data.frame())
   dplyr::bind_rows(lapply(rows, function(r) as.data.frame(r, stringsAsFactors = FALSE)))
 }
+
+#' **Get Yahoo Sports college football player season stats (modern)**
+#'
+#' Flattens the shangrila `leagueStatsIndividual` response (all stat groups in
+#' one call) into one wide tibble with one row per player. NCAAF data is
+#' available 2013-present.
+#'
+#' @param season (integer, required): Season year (e.g. `2024`). Defaults to `2024`.
+#' @param league_structure (character): Division filter. Defaults to `"ncaaf.struct.div.1"` (FBS).
+#' @param count (integer): Max players. Defaults to `200`.
+#' @param qualified (logical): Restrict to qualified leaders. Defaults to `FALSE`.
+#' @return A `cfbfastR`-tagged tibble with one row per player. Core columns:
+#'
+#' * `player_id`: character.: Yahoo player id (`ncaaf.p.*`).
+#' * `display_name`: character.: Player name.
+#' * `team`: character.: Team display name.
+#' * `team_abbreviation`: character.: Team abbreviation.
+#' * `season`: integer.: Season echoed back.
+#'
+#' Remaining columns are one per `statId` (e.g. `passing_yards`, `rushing_yards`,
+#' `receptions`, ...), value as displayed (character). Column set grows over time.
+#'
+#' @keywords Stats Data
+#' @importFrom janitor clean_names
+#' @importFrom tibble as_tibble
+#' @export
+#' @examples
+#' \donttest{
+#'   try(yahoo_cfb_player_season_stats(season = 2024))
+#' }
+yahoo_cfb_player_season_stats <- function(season = 2024,
+                                          league_structure = "ncaaf.struct.div.1",
+                                          count = 200, qualified = FALSE) {
+  out <- data.frame()
+  tryCatch(
+    expr = {
+      raw <- .yahoo_get(.YAHOO_SHANGRILA, "leagueStatsIndividual",
+                        query = list(leagues = "ncaaf", season = season, count = count,
+                                     leagueStructureId = league_structure,
+                                     qualified = tolower(as.character(qualified))))
+      out <- .yahoo_bind(.yahoo_modern_rows(raw, "footballStats")) |>
+        tibble::as_tibble() |>
+        janitor::clean_names()
+      if (nrow(out)) out[["season"]] <- season
+      out <- make_cfbfastR_data(out, "Player season stats from Yahoo Sports (shangrila)", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo player stats available!"))
+    }
+  )
+  return(.attach_query_meta_auto(out))
+}
