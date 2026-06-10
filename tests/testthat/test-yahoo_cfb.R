@@ -55,3 +55,15 @@ test_that(".yahoo_modern_rows pivots stats wide with entity columns", {
   expect_equal(rows[[1]][["passing_yards"]], "4000")
   expect_equal(rows[[1]][["passing_touchdowns"]], "40")
 })
+
+test_that("LIVE: yahoo_cfb_player_season_stats returns rows", {
+  skip_on_cran()
+  skip_on_ci()
+  if (Sys.getenv("YAHOO_TESTS") != "1") skip("set YAHOO_TESTS=1 to run live Yahoo tests")
+  x <- yahoo_cfb_player_season_stats(season = 2024)
+  if (!is.data.frame(x) || nrow(x) == 0) skip("No rows returned at test time")
+  core <- c("player_id", "display_name", "team", "season")
+  expect_in(sort(core), sort(colnames(x)))   # subset direction: Yahoo adds columns
+  expect_s3_class(x, "data.frame")
+  Sys.sleep(2)
+})
