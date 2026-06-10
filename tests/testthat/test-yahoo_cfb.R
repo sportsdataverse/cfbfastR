@@ -1,3 +1,19 @@
+test_that("legacy wrappers validate category and flatten leaders", {
+  fake <- list(data = list(leagues = list(list(leaders = list(
+    list(player = list(playerId = "ncaaf.p.9", displayName = "RB Nine",
+                       team = list(displayName = "Team C", abbreviation = "TC")),
+         stats = list(list(statId = "RUSHING_YARDS", value = "1500"))))))))
+  testthat::local_mocked_bindings(.yahoo_get = function(base, path, query = list()) fake)
+  out <- yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
+                                              sort_stat = "RUSHING_YARDS")
+  expect_equal(out$rushing_yards[1], "1500")
+  expect_equal(out$category[1], "Rushing")
+  expect_error(
+    yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Bogus", sort_stat = "X"),
+    "category"
+  )
+})
+
 test_that("yahoo_cfb_player_season_stats flattens modern payload + is self-describing", {
   fake <- list(data = list(leagues = list(list(footballStats = list(
     list(player = list(playerId = "ncaaf.p.1", displayName = "QB One",

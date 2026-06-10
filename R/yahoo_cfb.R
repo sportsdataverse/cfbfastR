@@ -140,3 +140,145 @@ yahoo_cfb_player_season_stats <- function(season = 2024,
   )
   return(.attach_query_meta_auto(out))
 }
+
+#' **Get Yahoo Sports college football team season stats (modern)**
+#'
+#' Flattens the shangrila `leagueStatsByTeam` response into one wide tibble with
+#' one row per team (all stat groups in one call).
+#'
+#' @param season (integer, required): Season year. Defaults to `2024`.
+#' @param league_structure (character): Division filter. Defaults to `"ncaaf.struct.div.1"`.
+#' @param count (integer): Max teams. Defaults to `200`.
+#' @return A `cfbfastR`-tagged tibble with one row per team: `team`,
+#'   `team_abbreviation`, `season`, plus one column per `statId`.
+#'
+#' @keywords Stats Data
+#' @importFrom janitor clean_names
+#' @importFrom tibble as_tibble
+#' @export
+#' @examples
+#' \donttest{
+#'   try(yahoo_cfb_team_season_stats(season = 2024))
+#' }
+yahoo_cfb_team_season_stats <- function(season = 2024,
+                                        league_structure = "ncaaf.struct.div.1",
+                                        count = 200) {
+  out <- data.frame()
+  tryCatch(
+    expr = {
+      raw <- .yahoo_get(.YAHOO_SHANGRILA, "leagueStatsByTeam",
+                        query = list(leagues = "ncaaf", season = season, count = count,
+                                     leagueStructureId = league_structure))
+      out <- .yahoo_bind(.yahoo_modern_rows(raw, "footballStats")) |>
+        tibble::as_tibble() |>
+        janitor::clean_names()
+      if (nrow(out)) out[["season"]] <- season
+      out <- make_cfbfastR_data(out, "Team season stats from Yahoo Sports (shangrila)", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo team stats available!"))
+    }
+  )
+  return(.attach_query_meta_auto(out))
+}
+
+#' **Get Yahoo Sports CFB legacy per-category player leaders**
+#'
+#' Flattens a legacy `seasonStatsFootball{Category}Ncaaf` query (one category per
+#' call) into a wide player tibble.
+#'
+#' @param season (integer, required): Season year. Defaults to `2024`.
+#' @param category (character): One of `Passing`, `Rushing`, `Receiving`,
+#'   `Defense`, `Kicking`, `Punting`, `Returns`. Defaults to `"Passing"`.
+#' @param sort_stat (character): Required sort stat id (a `FootballStatId`, e.g.
+#'   `"PASSING_YARDS"`). Defaults to `"PASSING_YARDS"`.
+#' @param league_structure (character): Defaults to `"ncaaf.struct.div.1"`.
+#' @param count (integer): Defaults to `200`.
+#' @return A `cfbfastR`-tagged tibble: `player_id`, `display_name`, `team`,
+#'   `season`, `category`, plus one column per `statId`.
+#'
+#' @keywords Stats Data
+#' @importFrom janitor clean_names
+#' @importFrom tibble as_tibble
+#' @export
+#' @examples
+#' \donttest{
+#'   try(yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
+#'                                            sort_stat = "RUSHING_YARDS"))
+#' }
+yahoo_cfb_player_season_stats_legacy <- function(season = 2024, category = "Passing",
+                                                 sort_stat = "PASSING_YARDS",
+                                                 league_structure = "ncaaf.struct.div.1",
+                                                 count = 200) {
+  if (!category %in% .YAHOO_LEGACY_PLAYER_CATS) {
+    stop(glue::glue("category must be one of: {paste(.YAHOO_LEGACY_PLAYER_CATS, collapse = ', ')}"))
+  }
+  out <- data.frame()
+  tryCatch(
+    expr = {
+      raw <- .yahoo_get(.YAHOO_SHANGRILA, paste0("seasonStatsFootball", category, "Ncaaf"),
+                        query = list(season = season, league = "ncaaf",
+                                     leagueStructure = league_structure,
+                                     count = count, sortStatId = sort_stat))
+      out <- .yahoo_bind(.yahoo_legacy_rows(raw)) |>
+        tibble::as_tibble() |>
+        janitor::clean_names()
+      if (nrow(out)) { out[["season"]] <- season; out[["category"]] <- category }
+      out <- make_cfbfastR_data(out, "Legacy player season stats from Yahoo Sports (shangrila)", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo legacy player stats available!"))
+    }
+  )
+  return(.attach_query_meta_auto(out))
+}
+
+#' **Get Yahoo Sports CFB legacy per-category team stats**
+#'
+#' Flattens a legacy `seasonTeamStatsFootball{Category}` query into a wide team tibble.
+#'
+#' @param season (integer, required): Season year. Defaults to `2024`.
+#' @param category (character): One of `Passing`, `Rushing`, `Receiving`,
+#'   `Defense`, `Kicking`, `Punting`, `Returns`, `Kickoffs`, `Offense`.
+#'   Defaults to `"Passing"`.
+#' @param sort_stat (character): Required sort stat id. Defaults to `"PASSING_YARDS"`.
+#' @param league_structure (character): Defaults to `"ncaaf.struct.div.1"`.
+#' @param count (integer): Defaults to `200`.
+#' @return A `cfbfastR`-tagged tibble: `team`, `team_abbreviation`, `season`,
+#'   `category`, plus one column per `statId`.
+#'
+#' @keywords Stats Data
+#' @importFrom janitor clean_names
+#' @importFrom tibble as_tibble
+#' @export
+#' @examples
+#' \donttest{
+#'   try(yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
+#'                                          sort_stat = "RUSHING_YARDS"))
+#' }
+yahoo_cfb_team_season_stats_legacy <- function(season = 2024, category = "Passing",
+                                               sort_stat = "PASSING_YARDS",
+                                               league_structure = "ncaaf.struct.div.1",
+                                               count = 200) {
+  if (!category %in% .YAHOO_LEGACY_TEAM_CATS) {
+    stop(glue::glue("category must be one of: {paste(.YAHOO_LEGACY_TEAM_CATS, collapse = ', ')}"))
+  }
+  out <- data.frame()
+  tryCatch(
+    expr = {
+      raw <- .yahoo_get(.YAHOO_SHANGRILA, paste0("seasonTeamStatsFootball", category),
+                        query = list(season = season, league = "ncaaf",
+                                     leagueStructure = league_structure,
+                                     count = count, sortStatId = sort_stat))
+      out <- .yahoo_bind(.yahoo_legacy_rows(raw)) |>
+        tibble::as_tibble() |>
+        janitor::clean_names()
+      if (nrow(out)) { out[["season"]] <- season; out[["category"]] <- category }
+      out <- make_cfbfastR_data(out, "Legacy team season stats from Yahoo Sports (shangrila)", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo legacy team stats available!"))
+    }
+  )
+  return(.attach_query_meta_auto(out))
+}
