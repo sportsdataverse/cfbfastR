@@ -4,6 +4,19 @@ This release adds a 65-function ESPN college-football API layer, expanding `cfbf
 
 **Naming alignment with the sportsdataverse convention (this dev cycle, never on CRAN):** `espn_cfb_player_statistics()` is renamed to `espn_cfb_player_career_stats()` (the core-v2 `/athletes/{id}/statistics` career view, matching hoopR/wehoop/sportsdataverse-py). New `espn_cfb_player_stats_v3()` wraps the comprehensive web-common-v3 `/athletes/{id}/stats` payload (all categories, long format) — the `_v3` companion to `espn_cfb_player_stats()` (core-v2 season statistics).
 
+### New Fox Sports API wrappers (`fox_cfb_*`)
+
+A read-only Fox Sports "Bifrost" college-football layer (`api.foxsports.com/bifrost/v1/cfb/*`), complementary to the `espn_cfb_*` and `cfbd_*` families. Eight wrappers flatten Fox's layout-oriented JSON (sections → tables → rows → cells) into tidy `cfbfastR`-tagged tibbles. Reverse-engineering notes and an OpenAPI 3.1 spec live in the `sdv-internal-refs` repo. Verified live against the 2025 season.
+
+* `fox_cfb_pbp()` — game play-by-play (quarters → drives → plays), one row per play.
+* `fox_cfb_boxscore()` — per-team player stat tables, tidy long (one row per player-stat).
+* `fox_cfb_odds()` — matchup six-pack (spread / to-win / total) per team.
+* `fox_cfb_team_roster()` — roster by position group, one row per player.
+* `fox_cfb_team_stats()` — team stat leaders by category.
+* `fox_cfb_team_gamelog()` — per-game team stats, tidy long (game × category × stat), each game keyed to its Fox event id.
+* `fox_cfb_standings()` — a team's conference standings table.
+* `fox_cfb_league_leaders()` — statistical leaderboards by category (`stats-con`).
+
 ### New ESPN wrappers — football-specific metrics
 
 * `espn_cfb_powerindex()` — ESPN's College Football Power Index (FPI): every predictive metric and efficiency component, in long format.
