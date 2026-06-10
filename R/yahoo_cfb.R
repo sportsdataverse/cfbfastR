@@ -282,3 +282,74 @@ yahoo_cfb_team_season_stats_legacy <- function(season = 2024, category = "Passin
   )
   return(.attach_query_meta_auto(out))
 }
+
+#' **Get Yahoo Sports college football scoreboard**
+#'
+#' Flattens the editorial `scoreboard` games map into one tibble (one row per
+#' game). The full payload also embeds teams/leagues/odds maps.
+#'
+#' @param season (integer, required): Season year.
+#' @param week (integer): Schedule week. Defaults to `1`.
+#' @param count (integer): Max games. Defaults to `500`.
+#' @return A `cfbfastR`-tagged tibble with one row per game; columns are the
+#'   Yahoo game fields (`gameid`, `home_team_id`, `away_team_id`,
+#'   `total_home_points`, `total_away_points`, `status_type`, ...) plus `season`
+#'   and `week`. Column set varies with game state.
+#'
+#' @keywords Schedule Data
+#' @importFrom janitor clean_names
+#' @importFrom tibble as_tibble
+#' @export
+#' @examples
+#' \donttest{
+#'   try(yahoo_cfb_scoreboard(season = 2024, week = 1))
+#' }
+yahoo_cfb_scoreboard <- function(season, week = 1, count = 500) {
+  out <- data.frame()
+  tryCatch(
+    expr = {
+      raw <- .yahoo_get(.YAHOO_EDITORIAL, "scoreboard",
+                        query = list(leagues = "ncaaf", week = week, season = season,
+                                     count = count, v = 2))
+      out <- .yahoo_bind(.yahoo_map_rows(raw, "scoreboard", "games")) |>
+        tibble::as_tibble() |>
+        janitor::clean_names()
+      if (nrow(out)) { out[["season"]] <- season; out[["week"]] <- week }
+      out <- make_cfbfastR_data(out, "Scoreboard from Yahoo Sports (editorial)", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid arguments or no Yahoo scoreboard available!"))
+    }
+  )
+  return(.attach_query_meta_auto(out))
+}
+
+#' **Get Yahoo Sports college football boxscore (SCAFFOLD)**
+#'
+#' Returns the raw editorial `boxscore/{game_id}` JSON (as a nested list). The
+#' boxscore uses a normalized decoder-dictionary schema
+#' (`player_stats[playerId][variation][stat_type]` joined against `stat_types` /
+#' `stat_categories`); full decoding is a follow-up.
+#'
+#' @param game_id (character, required): Dotted game id (e.g. `"ncaaf.g.202509200023"`).
+#' @return The raw parsed JSON list (`service$boxscore`). TODO: decode to tibbles.
+#'
+#' @keywords Boxscore Data
+#' @export
+#' @examples
+#' \donttest{
+#'   try(yahoo_cfb_boxscore(game_id = "ncaaf.g.202509200023"))
+#' }
+yahoo_cfb_boxscore <- function(game_id) {
+  raw <- NULL
+  tryCatch(
+    expr = {
+      raw <- .yahoo_get(.YAHOO_EDITORIAL, paste0("boxscore/", game_id), query = list(v = 4))
+      # TODO(scaffold): decode service$boxscore$player_stats via stat_types into tibbles.
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: invalid game_id or no Yahoo boxscore available!"))
+    }
+  )
+  return(raw)
+}

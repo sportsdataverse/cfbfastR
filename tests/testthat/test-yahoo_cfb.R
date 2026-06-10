@@ -1,3 +1,15 @@
+test_that("yahoo_cfb_scoreboard flattens games map and is self-describing", {
+  fake <- list(service = list(scoreboard = list(games = list(
+    `ncaaf.g.1` = list(gameid = "ncaaf.g.1", home_team_id = "ncaaf.t.1",
+                       away_team_id = "ncaaf.t.2", total_home_points = "21",
+                       total_away_points = "17")))))
+  testthat::local_mocked_bindings(.yahoo_get = function(base, path, query = list()) fake)
+  out <- yahoo_cfb_scoreboard(season = 2024, week = 1)
+  expect_s3_class(out, "data.frame")
+  expect_equal(out$gameid[1], "ncaaf.g.1")
+  expect_equal(out$week[1], 1)
+})
+
 test_that("legacy wrappers validate category and flatten leaders", {
   fake <- list(data = list(leagues = list(list(leaders = list(
     list(player = list(playerId = "ncaaf.p.9", displayName = "RB Nine",
