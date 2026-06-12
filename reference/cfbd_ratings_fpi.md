@@ -64,7 +64,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_fpi(year = 2019, team = "Texas"))
 #> ── ESPN FPI ratings from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:46:33 UTC
+#> ℹ Data updated: 2026-06-12 14:19:13 UTC
 #> # A tibble: 1 × 14
 #>    year team  conference   fpi resume_ranks_strength_of_record resume_ranks_fpi
 #>   <int> <chr> <chr>      <dbl>                           <int>            <int>
@@ -78,7 +78,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_fpi(year = 2018, conference = "SEC"))
 #> ── ESPN FPI ratings from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:46:33 UTC
+#> ℹ Data updated: 2026-06-12 14:19:13 UTC
 #> # A tibble: 14 × 14
 #>     year team           conference   fpi resume_ranks_strengt…¹ resume_ranks_fpi
 #>    <int> <chr>          <chr>      <dbl>                  <int>            <int>
