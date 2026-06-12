@@ -78,6 +78,7 @@ passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) |>
    dplyr::left_join(logos, by=c("team"="school")) |>
    dplyr::group_by(team) |>
+   dplyr::mutate(logo = sprintf('<img src="%s" height="30" alt="%s logo">', logo, team)) |>
    dplyr::select(logo,
                  player,
                  passing_completions,
@@ -118,16 +119,9 @@ passing_df |> gt() |>
       domain = c(-60,60)
     )
   ) |>
-  # add alt-text to the logos in the table
-  # this is important for accessibility and for people using screen readers
-  
-  text_transform(
-    locations = cells_body(c("logo")),
-    fn = function(logo){
-      
-     web_image(url= logo, height = 30)
-
-  }) |>
+  # Render the team logos from pre-built <img> HTML that carries alt text
+  # (gt::web_image() cannot set alt; important for screen-reader accessibility).
+  fmt_markdown(columns = "logo") |>
   tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0")) |>
   gt_theme_538(table.width = px(550))
 
