@@ -47,7 +47,7 @@ espn_metrics_wp(game_id)
 # \donttest{
   try(espn_metrics_wp(game_id = 401628369))
 #> ── Win probability chart data from ESPN ────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 02:25:02 UTC
+#> ℹ Data updated: 2026-06-12 03:19:43 UTC
 #> # A tibble: 196 × 6
 #>    game_id   play_id        seconds_left home_win_percentage away_win_percentage
 #>    <chr>     <chr>          <lgl>                      <dbl>               <dbl>

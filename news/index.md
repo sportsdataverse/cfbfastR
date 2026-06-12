@@ -203,6 +203,18 @@ spec live in the `sdv-internal-refs` repo. Verified live against the
   — coach season win/loss records, the league franchise catalog, and
   single-record venue / position / award detail.
 
+#### New Yahoo Sports wrappers
+
+- Added Yahoo Sports college football wrappers:
+  [`yahoo_cfb_player_season_stats()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats.md),
+  [`yahoo_cfb_team_season_stats()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_team_season_stats.md),
+  [`yahoo_cfb_player_season_stats_legacy()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats_legacy.md),
+  [`yahoo_cfb_team_season_stats_legacy()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_team_season_stats_legacy.md),
+  [`yahoo_cfb_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_scoreboard.md),
+  and
+  [`yahoo_cfb_boxscore()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_boxscore.md)
+  (scaffold), wrapping Yahoo’s shangrila stats graph and editorial feed.
+
 #### New CollegeFootballData wrappers
 
 - [`cfbd_betting_ats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_ats.md)

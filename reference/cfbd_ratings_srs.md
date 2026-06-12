@@ -56,7 +56,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_srs(year = 2019, team = "Texas"))
 #> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 02:22:05 UTC
+#> ℹ Data updated: 2026-06-12 03:15:34 UTC
 #> # A tibble: 1 × 6
 #>    year team  conference division ranking rating
 #>   <int> <chr> <chr>      <lgl>      <int>  <dbl>
@@ -64,7 +64,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
 #> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 02:22:05 UTC
+#> ℹ Data updated: 2026-06-12 03:15:34 UTC
 #> # A tibble: 14 × 6
 #>     year team              conference division ranking rating
 #>    <int> <chr>             <chr>      <chr>      <int>  <dbl>

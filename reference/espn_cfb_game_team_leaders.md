@@ -161,7 +161,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_leaders(game_id = 401628339))
 #> ── Game team leaders data from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 02:23:21 UTC
+#> ℹ Data updated: 2026-06-12 03:17:30 UTC
 #> # A tibble: 193 × 35
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -185,7 +185,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_leaders(game_id = 401628339,
                                  team_detail = FALSE))
 #> ── Game team leaders data from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 02:23:21 UTC
+#> ℹ Data updated: 2026-06-12 03:17:30 UTC
 #> # A tibble: 193 × 15
 #>    game_id   team_id home_away category_name   category_display
 #>    <chr>     <chr>   <chr>     <chr>           <chr>           

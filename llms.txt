@@ -1233,6 +1233,44 @@ Catalog-cache management helpers
 
   **Clear the cfbfastR ESPN catalog cache**
 
+## Yahoo Sports Data
+
+### Yahoo CFB – Stats, scoreboard & boxscore
+
+Yahoo Sports college-football endpoints (player/team season stats,
+legacy per-category leaders, scoreboard, and boxscore scaffold),
+wrapping Yahoo’s shangrila stats graph and editorial feed
+
+- [`yahoo_cfb_boxscore()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_boxscore.md)
+  :
+
+  **Get Yahoo Sports college football boxscore (SCAFFOLD)**
+
+- [`yahoo_cfb_player_season_stats()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats.md)
+  :
+
+  **Get Yahoo Sports college football player season stats (modern)**
+
+- [`yahoo_cfb_player_season_stats_legacy()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats_legacy.md)
+  :
+
+  **Get Yahoo Sports CFB legacy per-category player leaders**
+
+- [`yahoo_cfb_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_scoreboard.md)
+  :
+
+  **Get Yahoo Sports college football scoreboard**
+
+- [`yahoo_cfb_team_season_stats()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_team_season_stats.md)
+  :
+
+  **Get Yahoo Sports college football team season stats (modern)**
+
+- [`yahoo_cfb_team_season_stats_legacy()`](https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_team_season_stats_legacy.md)
+  :
+
+  **Get Yahoo Sports CFB legacy per-category team stats**
+
 ## Helper Functions and Data
 
 ### Included data

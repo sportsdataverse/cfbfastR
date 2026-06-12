@@ -199,5 +199,11 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/rds_from_url.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/register_cfbd.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/update_cfb_db.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_boxscore.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_player_season_stats_legacy.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_scoreboard.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_team_season_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/yahoo_cfb_team_season_stats_legacy.html</loc></url>
 </urlset>
 

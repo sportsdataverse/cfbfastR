@@ -30,7 +30,7 @@ Other CFBD Draft:
 # \donttest{
   try(cfbd_draft_positions())
 #> ── NFL positions data from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 02:19:09 UTC
+#> ℹ Data updated: 2026-06-12 03:12:14 UTC
 #> # A tibble: 29 × 2
 #>    position_name     position_abbreviation
 #>    <chr>             <chr>                
