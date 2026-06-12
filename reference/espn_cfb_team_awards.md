@@ -161,7 +161,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_awards(team_id = 61, year = 2023))
 #> ── Team awards from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 14:21:56 UTC
+#> ℹ Data updated: 2026-06-12 22:27:38 UTC
 #> # A tibble: 2 × 30
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -177,7 +177,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_awards(team_id = 61, year = 2023,
                            team_detail = FALSE))
 #> ── Team awards from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 14:21:56 UTC
+#> ℹ Data updated: 2026-06-12 22:27:38 UTC
 #> # A tibble: 2 × 10
 #>   season team_id award_id award_name award_description athlete_id winner_team_id
 #>    <int> <chr>   <chr>    <chr>      <chr>             <chr>      <chr>         

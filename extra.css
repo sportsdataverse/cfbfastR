@@ -271,3 +271,11 @@ small.nav-text {
 .navbar-nav .nav-link:focus {
   color: #EAEBEC;
 }
+
+/* Navbar version badge. pkgdown renders it as <small class="nav-text text-muted">,
+   and BS5's .text-muted (!important) beats the site's white, resolving to a dark
+   secondary colour that vanishes on the #222 navbar in light mode. Pin it light
+   (the navbar is #222 in both modes). */
+small.nav-text.text-muted {
+  color: #EAEBEC !important;
+}

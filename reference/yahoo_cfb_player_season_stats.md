@@ -68,26 +68,26 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_player_season_stats(season = 2024))
 #> ── Player season stats from Yahoo Sports (shangrila) ───────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 14:23:35 UTC
+#> ℹ Data updated: 2026-06-12 22:29:09 UTC
 #> # A tibble: 191 × 88
-#>    player_id      display_name     team    team_abbreviation field_goal_attempts
-#>    <chr>          <chr>            <chr>   <chr>             <chr>              
-#>  1 ncaaf.p.64742  Trey Sanders     TCU     TCU               NA                 
-#>  2 ncaaf.p.176026 Alexander Diggs  Kennes… KENN              NA                 
-#>  3 ncaaf.p.177536 Carson Kent      Pittsb… PITT              NA                 
-#>  4 ncaaf.p.218709 Eric Goins       Notre … ND                0                  
-#>  5 ncaaf.p.220824 Rico Watson III  South … S FLA             NA                 
-#>  6 ncaaf.p.263248 Cam McCormick    Miami … MIA               NA                 
-#>  7 ncaaf.p.264043 Danarius Johnson Kennes… KENN              NA                 
-#>  8 ncaaf.p.270875 Keenan Pili      Tennes… TENN              NA                 
-#>  9 ncaaf.p.276361 Spencer Curtis   Hawaii  HAW               NA                 
-#> 10 ncaaf.p.276368 Logan Lutui      BYU     BYU               NA                 
+#>    player_id      display_name    team  team_abbreviation field_goals_made_20_29
+#>    <chr>          <chr>           <chr> <chr>             <chr>                 
+#>  1 ncaaf.p.64742  Trey Sanders    TCU   TCU               NA                    
+#>  2 ncaaf.p.176026 Alexander Diggs Kenn… KENN              NA                    
+#>  3 ncaaf.p.177536 Carson Kent     Pitt… PITT              NA                    
+#>  4 ncaaf.p.218709 Eric Goins      Notr… ND                0                     
+#>  5 ncaaf.p.220824 Rico Watson III Sout… S FLA             NA                    
+#>  6 ncaaf.p.263248 Cam McCormick   Miam… MIA               NA                    
+#>  7 ncaaf.p.264043 Danarius Johns… Kenn… KENN              NA                    
+#>  8 ncaaf.p.270875 Keenan Pili     Tenn… TENN              NA                    
+#>  9 ncaaf.p.276361 Spencer Curtis  Hawa… HAW               NA                    
+#> 10 ncaaf.p.276368 Logan Lutui     BYU   BYU               NA                    
 #> # ℹ 181 more rows
-#> # ℹ 83 more variables: field_goal_percentage <chr>,
-#> #   return_yards_per_kickoff <chr>, passing_yards_per_attempt <chr>,
-#> #   interception_return_yards <chr>, tackles_for_loss <chr>,
-#> #   punt_return_touchdowns <chr>, field_goal_attempts_30_39 <chr>,
-#> #   interception_return_touchdowns <chr>, field_goals_made <chr>,
-#> #   punt_yards_per_punt <chr>, passing_completions <chr>, …
+#> # ℹ 83 more variables: passing_completions <chr>, passing_yards_per_game <chr>,
+#> #   longest_kickoff_return <chr>, field_goal_attempts_20_29 <chr>,
+#> #   games_rushing <chr>, field_goal_attempts_40_49 <chr>,
+#> #   return_yards_per_kickoff <chr>, receiving_yards_per_game <chr>,
+#> #   qb_rating <chr>, solo_tackles <chr>, sacks_yards <chr>,
+#> #   punt_yards_per_punt <chr>, games_returns <chr>, passes_defended <chr>, …
 # }
 ```
