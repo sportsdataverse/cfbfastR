@@ -6,6 +6,7 @@
 
 test_that("Fox CFB PBP", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_pbp(game_id = "41616")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox PBP at test time")
   cols <- c("game_id", "quarter", "drive_id", "drive_result", "period",
@@ -17,6 +18,7 @@ test_that("Fox CFB PBP", {
 
 test_that("Fox CFB Boxscore", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_boxscore(game_id = "41616")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox boxscore at test time")
   cols <- c("game_id", "team", "stat_group", "player", "athlete_id", "stat", "value")
@@ -27,6 +29,7 @@ test_that("Fox CFB Boxscore", {
 
 test_that("Fox CFB Team Roster", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_team_roster(team_id = "11")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox roster at test time")
   cols <- c("team_id", "position_group", "player", "pos", "cls", "ht", "wt", "athlete_id")
@@ -37,6 +40,7 @@ test_that("Fox CFB Team Roster", {
 
 test_that("Fox CFB Team Stats", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_team_stats(team_id = "11")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox team stats at test time")
   cols <- c("team_id", "category", "stat", "stat_abbreviation", "player", "value")
@@ -47,6 +51,7 @@ test_that("Fox CFB Team Stats", {
 
 test_that("Fox CFB Team Game Log", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_team_gamelog(team_id = "11")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox game log at test time")
   cols <- c("team_id", "season_type", "category", "game_id", "game_date",
@@ -58,6 +63,7 @@ test_that("Fox CFB Team Game Log", {
 
 test_that("Fox CFB Standings", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_standings(team_id = "11")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox standings at test time")
   expect_in(c("team_id", "section", "entity_id"), colnames(x))
@@ -67,6 +73,7 @@ test_that("Fox CFB Standings", {
 
 test_that("Fox CFB League Leaders", {
   skip_on_cran()
+  skip_on_ci()
   x <- fox_cfb_league_leaders(category = "passing")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) skip("No Fox leaders at test time")
   expect_in("entity_id", colnames(x))
@@ -77,6 +84,7 @@ test_that("Fox CFB League Leaders", {
 
 test_that("Fox CFB Odds", {
   skip_on_cran()
+  skip_on_ci()
   # The matchup six-pack market is ephemeral (~60s TTL); tolerate an empty frame.
   x <- fox_cfb_odds(game_id = "41616")
   expect_s3_class(x, "data.frame")

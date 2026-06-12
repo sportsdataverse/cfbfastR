@@ -17,9 +17,9 @@ A \code{cfbfastR}-tagged tibble with one row per player:
 \item \code{position_group}: character.: Roster group ("OFFENSE", "DEFENSE", "SPECIAL TEAMS").
 \item \code{player}: character.: Player name.
 \item \code{pos}: character.: Position abbreviation.
-\item \code{class}: character.: Class (FR/SO/JR/SR).
-\item \code{height}: character.: Listed height.
-\item \code{weight}: character.: Listed weight.
+\item \code{cls}: character.: Class (FR/SO/JR/SR).
+\item \code{ht}: character.: Listed height.
+\item \code{wt}: character.: Listed weight.
 \item \code{athlete_id}: character.: Fox athlete id (from the player's contentUri).
 }
 }

@@ -122,13 +122,16 @@ fox_cfb_pbp <- function(game_id) {
           }
         }
       }
-      pbp_out <- (if (length(rows)) do.call(rbind, rows) else data.frame()) |>
+      pbp_out <- (if (length(rows)) dplyr::bind_rows(rows) else data.frame()) |>
         tibble::as_tibble() |>
         janitor::clean_names() |>
         make_cfbfastR_data("Play-by-play data from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid game_id or no Fox PBP data available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid game_id or no Fox PBP data available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(pbp_out))
@@ -147,9 +150,9 @@ fox_cfb_pbp <- function(game_id) {
 #' * `position_group`: character.: Roster group ("OFFENSE", "DEFENSE", "SPECIAL TEAMS").
 #' * `player`: character.: Player name.
 #' * `pos`: character.: Position abbreviation.
-#' * `class`: character.: Class (FR/SO/JR/SR).
-#' * `height`: character.: Listed height.
-#' * `weight`: character.: Listed weight.
+#' * `cls`: character.: Class (FR/SO/JR/SR).
+#' * `ht`: character.: Listed height.
+#' * `wt`: character.: Listed weight.
 #' * `athlete_id`: character.: Fox athlete id (from the player's contentUri).
 #'
 #' @keywords Roster Data
@@ -190,7 +193,10 @@ fox_cfb_team_roster <- function(team_id) {
         make_cfbfastR_data("Roster data from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid team_id or no Fox roster data available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid team_id or no Fox roster data available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(roster_out))
@@ -249,13 +255,16 @@ fox_cfb_boxscore <- function(game_id) {
           }
         }
       }
-      box_out <- (if (length(rows)) do.call(rbind, rows) else data.frame()) |>
+      box_out <- (if (length(rows)) dplyr::bind_rows(rows) else data.frame()) |>
         tibble::as_tibble() |>
         janitor::clean_names() |>
         make_cfbfastR_data("Boxscore data from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid game_id or no Fox boxscore data available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid game_id or no Fox boxscore data available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(box_out))
@@ -301,7 +310,10 @@ fox_cfb_standings <- function(team_id) {
         make_cfbfastR_data("Standings data from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: no Fox standings data available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: no Fox standings data available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(standings_out))
@@ -348,13 +360,16 @@ fox_cfb_team_stats <- function(team_id) {
             stringsAsFactors = FALSE)
         }
       }
-      stats_out <- (if (length(rows)) do.call(rbind, rows) else data.frame()) |>
+      stats_out <- (if (length(rows)) dplyr::bind_rows(rows) else data.frame()) |>
         tibble::as_tibble() |>
         janitor::clean_names() |>
         make_cfbfastR_data("Team stat leaders from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid team_id or no Fox team stats available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid team_id or no Fox team stats available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(stats_out))
@@ -414,13 +429,16 @@ fox_cfb_team_gamelog <- function(team_id) {
           }
         }
       }
-      gamelog_out <- (if (length(rows)) do.call(rbind, rows) else data.frame()) |>
+      gamelog_out <- (if (length(rows)) dplyr::bind_rows(rows) else data.frame()) |>
         tibble::as_tibble() |>
         janitor::clean_names() |>
         make_cfbfastR_data("Team game log from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid team_id or no Fox game log available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid team_id or no Fox game log available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(gamelog_out))
@@ -443,6 +461,7 @@ fox_cfb_team_gamelog <- function(team_id) {
 #' @importFrom janitor clean_names
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr bind_rows
+#' @importFrom cli cli_abort
 #' @export
 #' @examples
 #' \donttest{
@@ -450,6 +469,31 @@ fox_cfb_team_gamelog <- function(team_id) {
 #' }
 fox_cfb_league_leaders <- function(category = "passing", who = "player",
                                    page = 0, group_id = "2") {
+  valid_who <- c("player", "team")
+  if (length(who) != 1L || !who %in% valid_who) {
+    cli::cli_abort(c(
+      "{.arg who} must be one of {.val {valid_who}}.",
+      "x" = "You supplied {.val {who}}."
+    ))
+  }
+  valid_category <- c("passing", "rushing", "receiving", "defense",
+                      "kicking", "returning", "scoring", "yardage")
+  if (who == "team") {
+    valid_category <- c(valid_category, "downs", "turnovers")
+  }
+  if (length(category) != 1L || !category %in% valid_category) {
+    cli::cli_abort(c(
+      "{.arg category} must be one of {.val {valid_category}} for {.arg who} = {.val {who}}.",
+      "x" = "You supplied {.val {category}}."
+    ))
+  }
+  if (length(page) != 1L || !is.numeric(page) || is.na(page) ||
+      page < 0 || page != as.integer(page)) {
+    cli::cli_abort(c(
+      "{.arg page} must be a single non-negative (0-based) integer.",
+      "x" = "You supplied {.val {page}}."
+    ))
+  }
   leaders_out <- data.frame()
   tryCatch(
     expr = {
@@ -462,7 +506,10 @@ fox_cfb_league_leaders <- function(category = "passing", who = "player",
         make_cfbfastR_data("Statistical leaders from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid arguments or no Fox leaders available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid arguments or no Fox leaders available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(leaders_out))
@@ -520,7 +567,10 @@ fox_cfb_odds <- function(game_id) {
         make_cfbfastR_data("Game odds from Fox Sports (Bifrost)", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: invalid game_id or no Fox odds available!"))
+      cli::cli_alert_danger(c(
+        "{Sys.time()}: invalid game_id or no Fox odds available!",
+        "x" = "Error: {conditionMessage(e)}"
+      ))
     }
   )
   return(.attach_query_meta_auto(odds_out))
