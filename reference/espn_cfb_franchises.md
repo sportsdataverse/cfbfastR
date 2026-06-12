@@ -109,7 +109,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_franchises())
 #> ── Franchises index from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 20:01:22 UTC
+#> ℹ Data updated: 2026-06-12 02:22:43 UTC
 #> # A tibble: 797 × 2
 #>    franchise_id franchise_ref                                                   
 #>    <chr>        <chr>                                                           

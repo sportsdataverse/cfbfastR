@@ -63,14 +63,14 @@ all.recruits <- purrr::map2_dfr(
 tictoc::toc()
 ```
 
-    ## 17.346 sec elapsed
+    ## 23.303 sec elapsed
 
 ``` r
 
 dplyr::glimpse(all.recruits)
 ```
 
-    ## Rows: 872
+    ## Rows: 806
     ## Columns: 19
     ## $ id                      <chr> "114420", "114678", "114756", "114760", "11477…
     ## $ athlete_id              <chr> "4714773", "4826636", "4869962", "4790965", "4…

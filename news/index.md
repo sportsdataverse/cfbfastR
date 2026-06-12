@@ -24,6 +24,34 @@ wraps the comprehensive web-common-v3 `/athletes/{id}/stats` payload
 [`espn_cfb_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_player_stats.md)
 (core-v2 season statistics).
 
+#### New Fox Sports API wrappers (`fox_cfb_*`)
+
+A read-only Fox Sports “Bifrost” college-football layer
+(`api.foxsports.com/bifrost/v1/cfb/*`), complementary to the
+`espn_cfb_*` and `cfbd_*` families. Eight wrappers flatten Fox’s
+layout-oriented JSON (sections → tables → rows → cells) into tidy
+`cfbfastR`-tagged tibbles. Reverse-engineering notes and an OpenAPI 3.1
+spec live in the `sdv-internal-refs` repo. Verified live against the
+2025 season.
+
+- [`fox_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_pbp.md)
+  — game play-by-play (quarters → drives → plays), one row per play.
+- [`fox_cfb_boxscore()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_boxscore.md)
+  — per-team player stat tables, tidy long (one row per player-stat).
+- [`fox_cfb_odds()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_odds.md)
+  — matchup six-pack (spread / to-win / total) per team.
+- [`fox_cfb_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_team_roster.md)
+  — roster by position group, one row per player.
+- [`fox_cfb_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_team_stats.md)
+  — team stat leaders by category.
+- [`fox_cfb_team_gamelog()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_team_gamelog.md)
+  — per-game team stats, tidy long (game × category × stat), each game
+  keyed to its Fox event id.
+- [`fox_cfb_standings()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_standings.md)
+  — a team’s conference standings table.
+- [`fox_cfb_league_leaders()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_league_leaders.md)
+  — statistical leaderboards by category (`stats-con`).
+
 #### New ESPN wrappers — football-specific metrics
 
 - [`espn_cfb_powerindex()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_powerindex.md)
@@ -261,7 +289,7 @@ wraps the comprehensive web-common-v3 `/athletes/{id}/stats` payload
   re-exported anymore. User-visible impact is minimal – the public API
   is unchanged and `dplyr` (which is in `Imports`) still re-exports
   `%>%` for users who want to keep writing it. Two non-mechanical fixes
-  were needed during the sweep: three `|>`\[\[`("url")` chains in
+  were needed during the sweep: three `|> [[("url")` chains in
   `cfbd_betting.R` and `cfbd_coaches.R` (rejected as RHS in R 4.1’s
   `|>`) became `|> purrr::pluck("url")`; seven
   `|> tibble::tibble(col = .data$.)` constructs were a magrittr quirk

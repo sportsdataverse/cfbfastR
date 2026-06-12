@@ -772,6 +772,53 @@ coaches endpoints of the CollegeFootballData API
 
   **CFBD Coaches Endpoint Overview**
 
+## Fox Sports Data
+
+### Fox CFB – Read-only Bifrost wrappers
+
+Fox Sports college-football endpoints (play-by-play, boxscore, odds,
+roster, team stats, game log, standings, and statistical leaders)
+
+- [`fox_cfb_boxscore()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_boxscore.md)
+  :
+
+  **Get Fox Sports college football boxscore**
+
+- [`fox_cfb_league_leaders()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_league_leaders.md)
+  :
+
+  **Get Fox Sports college football statistical leaders**
+
+- [`fox_cfb_odds()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_odds.md)
+  :
+
+  **Get Fox Sports college football game odds**
+
+- [`fox_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_pbp.md)
+  :
+
+  **Get Fox Sports college football play-by-play**
+
+- [`fox_cfb_standings()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_standings.md)
+  :
+
+  **Get Fox Sports college football conference standings**
+
+- [`fox_cfb_team_gamelog()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_team_gamelog.md)
+  :
+
+  **Get Fox Sports college football team game log**
+
+- [`fox_cfb_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_team_roster.md)
+  :
+
+  **Get Fox Sports college football team roster**
+
+- [`fox_cfb_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/fox_cfb_team_stats.md)
+  :
+
+  **Get Fox Sports college football team stat leaders**
+
 ## ESPN Data
 
 ### ESPN CFB – Game data

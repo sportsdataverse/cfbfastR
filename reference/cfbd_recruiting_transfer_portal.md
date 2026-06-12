@@ -47,7 +47,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_transfer_portal(year = 2021))
 #> ── Transfer portal data from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 20:00:50 UTC
+#> ℹ Data updated: 2026-06-12 02:22:09 UTC
 #> # A tibble: 1,770 × 10
 #>    season first_name last_name   position origin destination transfer_date      
 #>     <int> <chr>      <chr>       <chr>    <chr>  <chr>       <dttm>             

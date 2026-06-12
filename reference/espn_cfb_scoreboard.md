@@ -263,7 +263,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 20:02:35 UTC
+#> ℹ Data updated: 2026-06-12 02:23:54 UTC
 #> # A tibble: 99 × 36
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-09 20:02:35 UTC
+#> ℹ Data updated: 2026-06-12 02:23:54 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   
