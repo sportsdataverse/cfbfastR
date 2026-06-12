@@ -20,7 +20,7 @@ cfbd_team_info(conference = "SEC")
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-12 13:18:01 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:55 UTC
 
     ## # A tibble: 16 × 29
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -53,7 +53,7 @@ cfbd_team_info(conference = "Ind")
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-12 13:18:01 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:55 UTC
 
     ## # A tibble: 2 × 29
     ##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -72,8 +72,7 @@ cfbd_team_info(year = 2019)
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-
-    ## ℹ Data updated: 2026-06-12 13:18:02 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:55 UTC
 
     ## # A tibble: 130 × 29
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -104,7 +103,7 @@ cfbd_team_matchup_records("Texas", "Oklahoma")
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-12 13:18:02 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:55 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1 team1_wins team2    team2_wins  ties
@@ -117,7 +116,8 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-12 13:18:02 UTC
+
+    ## ℹ Data updated: 2026-06-12 13:52:56 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1     team1_wins team2 team2_wins  ties
@@ -133,7 +133,7 @@ cfbd_team_matchup("Texas", "Oklahoma")
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-12 13:18:02 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:56 UTC
 
     ## # A tibble: 118 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -157,8 +157,7 @@ cfbd_team_matchup("Texas A&M", "TCU")
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
-
-    ## ℹ Data updated: 2026-06-12 13:18:03 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:56 UTC
 
     ## # A tibble: 89 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -182,7 +181,7 @@ cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-12 13:18:03 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:56 UTC
 
     ## # A tibble: 22 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -206,7 +205,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
-    ## ℹ Data updated: 2026-06-12 13:18:03 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:56 UTC
 
     ## # A tibble: 52 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -233,7 +232,7 @@ cfbd_team_roster(year = 2013, team = "Florida State")
 
     ## ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-12 13:18:03 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:56 UTC
 
     ## # A tibble: 134 × 17
     ##    athlete_id first_name last_name   team    weight height jersey  year position
@@ -262,7 +261,7 @@ cfbd_team_talent()
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-06-12 13:18:03 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:57 UTC
 
     ## # A tibble: 134 × 3
     ##     year school     talent
@@ -285,7 +284,7 @@ cfbd_team_talent(year = 2018)
 ```
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-    ## ℹ Data updated: 2026-06-12 13:18:03 UTC
+    ## ℹ Data updated: 2026-06-12 13:52:57 UTC
 
     ## # A tibble: 237 × 3
     ##     year school        talent

@@ -148,7 +148,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_franchise(franchise_id = 2))
 #> ── Franchise detail from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:12:06 UTC
+#> ℹ Data updated: 2026-06-12 13:47:10 UTC
 #> # A tibble: 1 × 26
 #>   franchise_id uid       slug  location name  nickname abbreviation display_name
 #>   <chr>        <chr>     <chr> <chr>    <chr> <chr>    <chr>        <chr>       
@@ -161,7 +161,7 @@ Other ESPN CFB Functions:
 #> #   team_logo_dark_href <chr>, team_ref <chr>, franchise_ref <chr>
   try(espn_cfb_franchise(franchise_id = 2, team_detail = FALSE))
 #> ── Franchise detail from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:12:06 UTC
+#> ℹ Data updated: 2026-06-12 13:47:10 UTC
 #> # A tibble: 1 × 16
 #>   franchise_id uid       slug  location name  nickname abbreviation display_name
 #>   <chr>        <chr>     <chr> <chr>    <chr> <chr>    <chr>        <chr>       

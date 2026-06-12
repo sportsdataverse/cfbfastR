@@ -123,7 +123,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_plays(year = 2021, week = 1))
 #> ── Play-by-play data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:11:28 UTC
+#> ℹ Data updated: 2026-06-12 13:46:30 UTC
 #> # A tibble: 15,066 × 28
 #>     game_id drive_id play_id drive_number play_number offense offense_conference
 #>       <int> <chr>    <chr>          <int>       <int> <chr>   <chr>             

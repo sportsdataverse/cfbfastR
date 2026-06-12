@@ -231,3 +231,28 @@ small.nav-text {
     color: #D1DAE8;
 
 }
+
+/* ── Dark-mode legibility ──────────────────────────────────────────────────
+   The text/heading colours above are hardcoded #0f0f0f for the light theme and
+   are invisible on the dark page. These rules apply ONLY in dark mode
+   ([data-bs-theme="dark"]) and only to page content (#main), so the light
+   theme, fonts, glow, navbar and dropdowns are untouched. Colours are from this
+   site's own palette. */
+[data-bs-theme="dark"] body {
+  color: #EAEBEC;
+}
+[data-bs-theme="dark"] #main h1,
+[data-bs-theme="dark"] #main h2,
+[data-bs-theme="dark"] #main h3,
+[data-bs-theme="dark"] #main h4,
+[data-bs-theme="dark"] #main h5,
+[data-bs-theme="dark"] #main h6,
+[data-bs-theme="dark"] #main .h1,
+[data-bs-theme="dark"] #main .h2,
+[data-bs-theme="dark"] #main .h3,
+[data-bs-theme="dark"] #main .h4 {
+  color: #EAEBEC;
+}
+[data-bs-theme="dark"] #main a {
+  color: #D1DAE8;
+}

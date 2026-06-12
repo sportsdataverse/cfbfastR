@@ -169,20 +169,20 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:08:43 UTC
+#> ℹ Data updated: 2026-06-12 13:43:46 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
 #>  1 401403923 LSU        SEC        home      Ole Miss SEC                     45
 #>  2 401403923 Ole Miss   SEC        away      LSU      SEC                     20
-#>  3 401403873 Southern   SWAC       away      LSU      SEC                     17
-#>  4 401403873 LSU        SEC        home      Southern SWAC                    65
-#>  5 401403939 LSU        SEC        away      Arkansas SEC                     13
-#>  6 401403939 Arkansas   SEC        home      LSU      SEC                     10
-#>  7 401403867 LSU        SEC        away      Florida… ACC                     23
-#>  8 401403867 Florida S… ACC        home      LSU      SEC                     24
-#>  9 401403963 Texas A&M  SEC        home      LSU      SEC                     38
-#> 10 401403963 LSU        SEC        away      Texas A… SEC                     23
+#>  3 401403939 Arkansas   SEC        home      LSU      SEC                     10
+#>  4 401403939 LSU        SEC        away      Arkansas SEC                     13
+#>  5 401403873 Southern   SWAC       away      LSU      SEC                     17
+#>  6 401403873 LSU        SEC        home      Southern SWAC                    65
+#>  7 401403903 Auburn     SEC        home      LSU      SEC                     17
+#>  8 401403903 LSU        SEC        away      Auburn   SEC                     21
+#>  9 401403867 Florida S… ACC        home      LSU      SEC                     24
+#> 10 401403867 LSU        SEC        away      Florida… ACC                     23
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -193,7 +193,7 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 13:08:44 UTC
+#> ℹ Data updated: 2026-06-12 13:43:46 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
