@@ -4,6 +4,7 @@ description: "A utility to quickly obtain clean and tidy college football play b
 alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
 template:
   bootstrap: 5
+  light-switch: true
   bootswatch: flatly
   ganalytics: G-SE5ZJL93W6
   includes:
@@ -15,13 +16,13 @@ template:
     success: "#EAEBEC"
     link-color: "#024992"
     link-hover-color: "#23B7EE"
-    nav-link-color: "#FFFFF"
+    nav-link-color: "#FFFFFF"
     nav-link-hover-color: "#EAEBEC"
     nav-link-focus-color: "#EAEBEC"
     nav-link-dropdown-toggle-hover-color: "#EAEBEC"
     navbar-hover-color: "#EAEBEC"
     navbar-brand-hover-color: "#EAEBEC"
-    nav-tabs-link-active-bg	: "#EAEBEC"
+    nav-tabs-link-active-bg: "#EAEBEC"
     nav-pills-link-active-color: "#EAEBEC"
     btn-link-color: "#EAEBEC"
     btn-link-hover-color: "#EAEBEC"
@@ -89,7 +90,7 @@ home:
 navbar:
   structure:
     left:  [home, reference, articles, news, network, data, games]
-    right: [twitter, github]
+    right: [search, x, github, lightswitch]
   icon: https://raw.githubusercontent.com/sportsdataverse/cfbfastR/main/man/figures/logo.ico
   title: "cfbfastR"
   components:
@@ -97,8 +98,8 @@ navbar:
       title: cfbfastR
       description: An R package to quickly obtain clean and tidy College Football play-by-play data
       icon: "fas fa-home"
-      text: ""
       href: index.html
+      aria-label: Home
       links:
       - text: cfbfastR beginner's guide
         href: articles/intro.html
@@ -281,14 +282,14 @@ navbar:
       icon: "fas fa-football-ball"
       text: " GP"
       href: http://gameonpaper.com/cfb
-    twitter:
-      icon: "fab fa-twitter fa-lg"
-      text: ""
-      href: http://twitter.com/cfbfastR
+    x:
+      icon: "fab fa-x-twitter fa-lg"
+      href: https://x.com/cfbfastR
+      aria-label: X (Twitter)
     github:
       icon: "fab fa-github fa-lg"
-      text: ""
       href: https://github.com/sportsdataverse/cfbfastR/
+      aria-label: GitHub
 
 reference:
   - title: Function family overviews
