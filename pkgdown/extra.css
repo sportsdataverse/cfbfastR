@@ -141,7 +141,7 @@ pre, code {
     animation: glow 3s ease-in-out infinite alternate;
 }
 
-.navbar-dark .navbar-brand {
+.navbar-brand {
     font-family: "Bungee";
     font-size: 16px;
     color: #F2EC84;
