@@ -391,6 +391,11 @@ reference:
       - '`cfbd_venues`'
       - '`cfbd_conferences`'
       - '`cfbd_coaches`'
+  - title: "Fox Sports Data"
+  - subtitle: Fox CFB -- Read-only Bifrost wrappers
+    desc: Fox Sports college-football endpoints (play-by-play, boxscore, odds, roster, team stats, game log, standings, and statistical leaders)
+    contents:
+      - starts_with("fox_cfb_")
   - title: "ESPN Data"
   - subtitle: ESPN CFB -- Game data
     desc: Per-game ESPN endpoints (play-by-play, drives, plays, leaders, predictor, situation, odds)
