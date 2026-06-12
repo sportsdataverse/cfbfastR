@@ -67,6 +67,7 @@ passing_df <- dplyr::bind_rows(
    cfbd_stats_season_player(2013, team = "Florida State", category = "passing")) |>
    dplyr::left_join(logos, by=c("team"="school")) |>
    dplyr::group_by(team) |>
+   dplyr::mutate(logo = sprintf('<img src="%s" height="30" alt="%s logo">', logo, team)) |>
    dplyr::select(logo,
                  player,
                  passing_completions,
@@ -113,16 +114,9 @@ passing_df |> gt() |>
       domain = c(-60,60)
     )
   ) |>
-  # add alt-text to the logos in the table
-  # this is important for accessibility and for people using screen readers
-  
-  text_transform(
-    locations = cells_body(c("logo")),
-    fn = function(logo){
-      
-     web_image(url= logo, height = 30)
-
-  }) |>
+  # Render the team logos from pre-built <img> HTML that carries alt text
+  # (gt::web_image() cannot set alt; important for screen-reader accessibility).
+  fmt_markdown(columns = "logo") |>
   tab_source_note(source_note = md("**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0")) |>
   gt_theme_538(table.width = px(550))
 ```
@@ -135,12 +129,12 @@ passing_df |> gt() |>
 |----|----|----|----|----|----|----|----|
 |  | Player | C | Att | Yds | TDs | INTs | YPA |
 | LSU |  |  |  |  |  |  |  |
-| ![](http://a.espncdn.com/i/teamlogos/ncaa/500/99.png) | Joe Burrow | 402 | 527 | 5671 | 60 | 6 | 10.8 |
-| ![](http://a.espncdn.com/i/teamlogos/ncaa/500/99.png) | Myles Brennan | 24 | 40 | 353 | 1 | 1 | 8.8 |
+| ![LSU logo](http://a.espncdn.com/i/teamlogos/ncaa/500/99.png) | Joe Burrow | 402 | 527 | 5671 | 60 | 6 | 10.8 |
+| ![LSU logo](http://a.espncdn.com/i/teamlogos/ncaa/500/99.png) | Myles Brennan | 24 | 40 | 353 | 1 | 1 | 8.8 |
 | Florida State |  |  |  |  |  |  |  |
-| ![](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Jameis Winston | 257 | 384 | 4057 | 40 | 10 | 10.6 |
-| ![](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Jake Coker | 18 | 36 | 250 | 0 | 1 | 6.9 |
-| ![](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Sean Maguire | 13 | 21 | 116 | 2 | 2 | 5.5 |
+| ![Florida State logo](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Jameis Winston | 257 | 384 | 4057 | 40 | 10 | 10.6 |
+| ![Florida State logo](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Jake Coker | 18 | 36 | 250 | 0 | 1 | 6.9 |
+| ![Florida State logo](http://a.espncdn.com/i/teamlogos/ncaa/500/52.png) | Sean Maguire | 13 | 21 | 116 | 2 | 2 | 5.5 |
 | **Table:** @SaiemGilani \| **Data:** @CFB_Data with @cfbfastR v2.0.0 |  |  |  |  |  |  |  |
 
 ### **College Football Mapping for Stats Categories**
@@ -152,7 +146,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-06-12 03:23:08 UTC
+    ## ℹ Data updated: 2026-06-12 13:17:56 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

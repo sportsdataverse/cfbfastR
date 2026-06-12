@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
@@ -43,7 +43,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html" title="cfbfastR"><span class="fa fas fa-home"></span> </a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" title="cfbfastR" aria-label="Home"><span class="fa fas fa-home"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-funcs" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-code"></span> Funcs</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-funcs">
@@ -150,8 +150,19 @@
 <li class="nav-item"><a class="external-link nav-link" href="http://gameonpaper.com/cfb"><span class="fa fas fa-football-ball"></span>  GP</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="http://twitter.com/cfbfastR"><span class="fa fab fa-twitter fa-lg"></span> </a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/cfbfastR/"><span class="fa fab fa-github fa-lg"></span> </a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://x.com/cfbfastR" aria-label="X (Twitter)"><span class="fa fab fa-x-twitter fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/cfbfastR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -244,6 +255,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <span>   <span class="fu"><a href="../reference/cfbd_stats_season_player.html">cfbd_stats_season_player</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">team</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>logo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">'&lt;img src="%s" height="30" alt="%s logo"&gt;'</span>, <span class="va">logo</span>, <span class="va">team</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">logo</span>,</span>
 <span>                 <span class="va">player</span>,</span>
 <span>                 <span class="va">passing_completions</span>,</span>
@@ -286,16 +298,9 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <span>      domain <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>,<span class="fl">60</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># add alt-text to the logos in the table</span></span>
-<span>  <span class="co"># this is important for accessibility and for people using screen readers</span></span>
-<span>  </span>
-<span>  <span class="fu">text_transform</span><span class="op">(</span></span>
-<span>    locations <span class="op">=</span> <span class="fu">cells_body</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"logo"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    fn <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">logo</span><span class="op">)</span><span class="op">{</span></span>
-<span>      </span>
-<span>     <span class="fu">web_image</span><span class="op">(</span>url<span class="op">=</span> <span class="va">logo</span>, height <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Render the team logos from pre-built &lt;img&gt; HTML that carries alt text</span></span>
+<span>  <span class="co"># (gt::web_image() cannot set alt; important for screen-reader accessibility).</span></span>
+<span>  <span class="fu">fmt_markdown</span><span class="op">(</span>columns <span class="op">=</span> <span class="st">"logo"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tab_source_note</span><span class="op">(</span>source_note <span class="op">=</span> <span class="fu">md</span><span class="op">(</span><span class="st">"**Table:** @SaiemGilani | **Data:** @CFB_Data with @cfbfastR v2.0.0"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt_theme_538</span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning: Since gt v0.9.0, the `colors` argument has been deprecated.</span></span>
@@ -772,7 +777,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <th colspan="8" class="gt_group_heading" scope="colgroup" id="LSU">LSU</th>
     </tr>
 <tr class="gt_row_group_first">
-<td headers="LSU  logo" class="gt_row gt_left"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/99.png" style="height:30px;"></td>
+<td headers="LSU  logo" class="gt_row gt_left"><span class="gt_from_md"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/99.png" height="30" alt="LSU logo"></span></td>
 <td headers="LSU  player" class="gt_row gt_left">Joe Burrow</td>
 <td headers="LSU  passing_completions" class="gt_row gt_right">402</td>
 <td headers="LSU  passing_att" class="gt_row gt_right">527</td>
@@ -782,7 +787,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <td headers="LSU  passing_ypa" class="gt_row gt_right">10.8</td>
 </tr>
 <tr>
-<td headers="LSU  logo" class="gt_row gt_left"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/99.png" style="height:30px;"></td>
+<td headers="LSU  logo" class="gt_row gt_left"><span class="gt_from_md"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/99.png" height="30" alt="LSU logo"></span></td>
 <td headers="LSU  player" class="gt_row gt_left">Myles Brennan</td>
 <td headers="LSU  passing_completions" class="gt_row gt_right">24</td>
 <td headers="LSU  passing_att" class="gt_row gt_right">40</td>
@@ -795,7 +800,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <th colspan="8" class="gt_group_heading" scope="colgroup" id="Florida State">Florida State</th>
     </tr>
 <tr class="gt_row_group_first">
-<td headers="Florida State  logo" class="gt_row gt_left"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/52.png" style="height:30px;"></td>
+<td headers="Florida State  logo" class="gt_row gt_left"><span class="gt_from_md"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/52.png" height="30" alt="Florida State logo"></span></td>
 <td headers="Florida State  player" class="gt_row gt_left">Jameis Winston</td>
 <td headers="Florida State  passing_completions" class="gt_row gt_right">257</td>
 <td headers="Florida State  passing_att" class="gt_row gt_right">384</td>
@@ -805,7 +810,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <td headers="Florida State  passing_ypa" class="gt_row gt_right">10.6</td>
 </tr>
 <tr>
-<td headers="Florida State  logo" class="gt_row gt_left"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/52.png" style="height:30px;"></td>
+<td headers="Florida State  logo" class="gt_row gt_left"><span class="gt_from_md"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/52.png" height="30" alt="Florida State logo"></span></td>
 <td headers="Florida State  player" class="gt_row gt_left">Jake Coker</td>
 <td headers="Florida State  passing_completions" class="gt_row gt_right">18</td>
 <td headers="Florida State  passing_att" class="gt_row gt_right">36</td>
@@ -815,7 +820,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <td headers="Florida State  passing_ypa" class="gt_row gt_right">6.9</td>
 </tr>
 <tr>
-<td headers="Florida State  logo" class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #000000;"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/52.png" style="height:30px;"></td>
+<td headers="Florida State  logo" class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #000000;"><span class="gt_from_md"><img src="http://a.espncdn.com/i/teamlogos/ncaa/500/52.png" height="30" alt="Florida State logo"></span></td>
 <td headers="Florida State  player" class="gt_row gt_left" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #000000;">Sean Maguire</td>
 <td headers="Florida State  passing_completions" class="gt_row gt_right" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #000000;">13</td>
 <td headers="Florida State  passing_att" class="gt_row gt_right" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #000000;">21</td>
@@ -838,7 +843,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Stat categories for CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-12 03:23:08 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-12 13:17:56 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 38 × 1</span></span></span>
 <span><span class="co">##    category          </span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>

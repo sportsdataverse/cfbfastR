@@ -166,7 +166,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_ranks(team_id = 61, year = 2024))
 #> ── Team poll rank history from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 03:19:15 UTC
+#> ℹ Data updated: 2026-06-12 13:14:18 UTC
 #> # A tibble: 4 × 25
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -183,7 +183,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_ranks(team_id = 61, year = 2024,
                           team_detail = FALSE))
 #> ── Team poll rank history from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 03:19:15 UTC
+#> ℹ Data updated: 2026-06-12 13:14:18 UTC
 #> # A tibble: 4 × 15
 #>   season team_id  week poll_id poll_name      poll_short_name poll_type headline
 #>    <int> <chr>   <int> <chr>   <chr>          <chr>           <chr>     <chr>   

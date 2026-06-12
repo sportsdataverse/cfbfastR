@@ -137,7 +137,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_player(year = 2018, conference = "B12", start_week = 1, end_week = 7))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-06-12 03:15:49 UTC
+#> ℹ Data updated: 2026-06-12 13:11:43 UTC
 #> # A tibble: 544 × 60
 #>     year team          conference athlete_id player position passing_completions
 #>    <dbl> <chr>         <chr>      <chr>      <chr>  <chr>                  <dbl>
@@ -161,7 +161,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_player(2019, team = "LSU", category = "passing"))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-06-12 03:15:52 UTC
+#> ℹ Data updated: 2026-06-12 13:11:44 UTC
 #> # A tibble: 2 × 60
 #>    year team  conference athlete_id player        position passing_completions
 #>   <dbl> <chr> <chr>      <chr>      <chr>         <chr>                  <dbl>
@@ -177,7 +177,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_player(2013, team = "Florida State", category = "passing"))
 #> ── Advanced player season stats from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-06-12 03:15:53 UTC
+#> ℹ Data updated: 2026-06-12 13:11:44 UTC
 #> # A tibble: 3 × 60
 #>    year team          conference athlete_id player  position passing_completions
 #>   <dbl> <chr>         <chr>      <chr>      <chr>   <chr>                  <dbl>
