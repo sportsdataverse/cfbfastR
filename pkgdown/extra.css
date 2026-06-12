@@ -241,18 +241,18 @@ small.nav-text {
 [data-bs-theme="dark"] body {
   color: #EAEBEC;
 }
-[data-bs-theme="dark"] #main h1,
-[data-bs-theme="dark"] #main h2,
-[data-bs-theme="dark"] #main h3,
-[data-bs-theme="dark"] #main h4,
-[data-bs-theme="dark"] #main h5,
-[data-bs-theme="dark"] #main h6,
-[data-bs-theme="dark"] #main .h1,
-[data-bs-theme="dark"] #main .h2,
-[data-bs-theme="dark"] #main .h3,
-[data-bs-theme="dark"] #main .h4 {
+[data-bs-theme="dark"] :is(#main, aside) h1,
+[data-bs-theme="dark"] :is(#main, aside) h2,
+[data-bs-theme="dark"] :is(#main, aside) h3,
+[data-bs-theme="dark"] :is(#main, aside) h4,
+[data-bs-theme="dark"] :is(#main, aside) h5,
+[data-bs-theme="dark"] :is(#main, aside) h6,
+[data-bs-theme="dark"] :is(#main, aside) .h1,
+[data-bs-theme="dark"] :is(#main, aside) .h2,
+[data-bs-theme="dark"] :is(#main, aside) .h3,
+[data-bs-theme="dark"] :is(#main, aside) .h4 {
   color: #EAEBEC;
 }
-[data-bs-theme="dark"] #main a {
+[data-bs-theme="dark"] :is(#main, aside) a {
   color: #D1DAE8;
 }
