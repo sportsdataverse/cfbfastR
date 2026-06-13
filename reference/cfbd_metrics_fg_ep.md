@@ -40,7 +40,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_fg_ep())
 #> ── FG expected points data from CollegeFootballData.com ────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-12 22:22:36 UTC
+#> ℹ Data updated: 2026-06-13 02:46:42 UTC
 #> # A tibble: 100 × 3
 #>    yards_to_goal distance expected_points
 #>            <int>    <int>           <dbl>
