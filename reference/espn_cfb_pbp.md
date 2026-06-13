@@ -33,7 +33,7 @@ Saiem Gilani
  # \donttest{
    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN.com ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 02:50:24 UTC
+#> ℹ Data updated: 2026-06-13 03:26:08 UTC
 #> # A tibble: 196 × 419
 #>      game_id id_play         drive_id home  away  drive_number drive_play_number
 #>        <dbl> <chr>           <chr>    <chr> <chr>        <int>             <dbl>

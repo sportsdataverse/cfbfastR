@@ -34,7 +34,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_types())
 #> ── Play stats type data from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 02:48:47 UTC
+#> ℹ Data updated: 2026-06-13 03:24:13 UTC
 #> # A tibble: 26 × 2
 #>    play_stat_type_id name            
 #>                <int> <chr>           

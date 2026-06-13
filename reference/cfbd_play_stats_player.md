@@ -147,7 +147,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_player(game_id = 401628414))
 #> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 02:48:38 UTC
+#> ℹ Data updated: 2026-06-13 03:24:05 UTC
 #> # A tibble: 132 × 70
 #>      game_id season  week team     conference opponent team_score opponent_score
 #>        <int>  <int> <int> <chr>    <chr>      <chr>         <int>          <int>
@@ -170,7 +170,7 @@ Other CFBD PBP:
 #> #   rush_yds <int>, interception_player_id <chr>, interception_player <chr>, …
   try(cfbd_play_stats_player(year = 2025, week = 1))
 #> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 02:48:45 UTC
+#> ℹ Data updated: 2026-06-13 03:24:12 UTC
 #> # A tibble: 1,306 × 70
 #>      game_id season  week team    conference opponent  team_score opponent_score
 #>        <int>  <int> <int> <chr>   <chr>      <chr>          <int>          <int>
