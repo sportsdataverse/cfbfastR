@@ -159,7 +159,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_ats(team_id = 61, year = 2024))
 #> ── Team against-the-spread records from ESPN ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:27:25 UTC
+#> ℹ Data updated: 2026-06-13 04:22:48 UTC
 #> # A tibble: 7 × 19
 #>   season season_type team_id team_name team_abbreviation team_location
 #>    <int>       <int> <chr>   <chr>     <chr>             <chr>        
@@ -177,7 +177,7 @@ Other ESPN CFB Functions:
 #> #   pushes <int>
   try(espn_cfb_team_ats(team_id = 61, year = 2024, team_detail = FALSE))
 #> ── Team against-the-spread records from ESPN ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:27:26 UTC
+#> ℹ Data updated: 2026-06-13 04:22:48 UTC
 #> # A tibble: 7 × 9
 #>   season season_type team_id ats_type_id ats_type_name   ats_description    wins
 #>    <int>       <int> <chr>   <chr>       <chr>           <chr>             <int>

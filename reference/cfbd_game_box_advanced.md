@@ -116,7 +116,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_box_advanced(game_id = 401114233))
 #> ── Advanced box score data from CollegeFootballData.com ────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:21:40 UTC
+#> ℹ Data updated: 2026-06-13 04:18:06 UTC
 #> # A tibble: 2 × 69
 #>   team     ppa_plays ppa_overall_total ppa_overall_quarter1 ppa_overall_quarter2
 #>   <chr>        <dbl>             <dbl>                <dbl>                <dbl>

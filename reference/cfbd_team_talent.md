@@ -39,7 +39,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_talent())
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-06-13 03:24:38 UTC
+#> ℹ Data updated: 2026-06-13 04:20:17 UTC
 #> # A tibble: 134 × 3
 #>     year school     talent
 #>    <int> <chr>       <dbl>
@@ -57,7 +57,7 @@ Other CFBD Teams:
 
   try(cfbd_team_talent(year = 2018))
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-06-13 03:24:38 UTC
+#> ℹ Data updated: 2026-06-13 04:20:17 UTC
 #> # A tibble: 237 × 3
 #>     year school        talent
 #>    <int> <chr>          <dbl>

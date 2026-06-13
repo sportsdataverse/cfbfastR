@@ -200,7 +200,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_teams(game_id = 401628339))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:26:02 UTC
+#> ℹ Data updated: 2026-06-13 04:21:36 UTC
 #> # A tibble: 2 × 38
 #>   game_id   competitor_id competitor_name competitor_abbreviation
 #>   <chr>     <chr>         <chr>           <chr>                  
@@ -215,7 +215,7 @@ Other ESPN CFB Functions:
 #> #   team_short_display_name <chr>, team_nickname <chr>, team_color <chr>, …
   try(espn_cfb_game_teams(game_id = 401628339, format = "wide"))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:26:02 UTC
+#> ℹ Data updated: 2026-06-13 04:21:36 UTC
 #> # A tibble: 1 × 73
 #>   game_id   home_competitor_id home_competitor_name home_competitor_abbreviation
 #>   <chr>     <chr>              <chr>                <chr>                       
@@ -229,7 +229,7 @@ Other ESPN CFB Functions:
 #> #   home_team_location <chr>, home_team_display_name <chr>, …
   try(espn_cfb_game_teams(game_id = 401628339, team_detail = FALSE))
 #> ── Game teams data from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:26:02 UTC
+#> ℹ Data updated: 2026-06-13 04:21:36 UTC
 #> # A tibble: 2 × 18
 #>   game_id   competitor_id team_id order home_away winner competitor_type
 #>   <chr>     <chr>         <chr>   <int> <chr>     <lgl>  <chr>          

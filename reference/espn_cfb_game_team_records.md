@@ -166,7 +166,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_records(game_id = 401628339))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:25:58 UTC
+#> ℹ Data updated: 2026-06-13 04:21:34 UTC
 #> # A tibble: 8 × 24
 #>   game_id   team_id team_name  team_abbreviation team_location team_display_name
 #>   <chr>     <chr>   <chr>      <chr>             <chr>         <chr>            
@@ -186,7 +186,7 @@ Other ESPN CFB Functions:
 #> #   value <dbl>, record_ref <chr>
   try(espn_cfb_game_team_records(game_id = 401628339, detail = TRUE))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:25:58 UTC
+#> ℹ Data updated: 2026-06-13 04:21:34 UTC
 #> # A tibble: 76 × 23
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -210,7 +210,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_records(game_id = 401628339,
                                  team_detail = FALSE))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:25:58 UTC
+#> ℹ Data updated: 2026-06-13 04:21:34 UTC
 #> # A tibble: 8 × 14
 #>   game_id   team_id home_away record_id name      abbreviation display_name     
 #>   <chr>     <chr>   <chr>     <chr>     <chr>     <chr>        <chr>            

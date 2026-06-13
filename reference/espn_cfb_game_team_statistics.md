@@ -157,7 +157,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_statistics(game_id = 401628339))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:26:01 UTC
+#> ℹ Data updated: 2026-06-13 04:21:35 UTC
 #> # A tibble: 568 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -181,7 +181,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_statistics(game_id = 401628339,
                                     team_detail = FALSE))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 03:26:01 UTC
+#> ℹ Data updated: 2026-06-13 04:21:36 UTC
 #> # A tibble: 568 × 20
 #>    game_id   team_id home_away split_id split_name split_abbreviation
 #>    <chr>     <chr>   <chr>     <chr>    <chr>      <chr>             
