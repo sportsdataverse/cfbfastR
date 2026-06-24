@@ -83,7 +83,7 @@ Returns a tibble with 15 variables:
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 #> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 04:18:03 UTC
+#> ℹ Data updated: 2026-06-24 02:01:52 UTC
 #> # A tibble: 125 × 15
 #>    first_name last_name   hire_date school   year games  wins losses  ties
 #>    <chr>      <chr>       <chr>     <chr>   <int> <int> <int>  <int> <int>

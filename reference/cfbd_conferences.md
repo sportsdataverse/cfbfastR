@@ -36,7 +36,7 @@ cfbd_conferences()
 # \donttest{
   try(cfbd_conferences())
 #> ── Conference data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-13 04:18:03 UTC
+#> ℹ Data updated: 2026-06-24 02:01:52 UTC
 #> # A tibble: 106 × 5
 #>    conference_id name          long_name             abbreviation classification
 #>            <int> <chr>         <chr>                 <chr>        <chr>         
