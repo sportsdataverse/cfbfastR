@@ -377,8 +377,8 @@ espn_cfb_team <- function(team_id = NULL,
 #'   try(espn_cfb_team_ats(team_id = 61, year = 2024, team_detail = FALSE))
 #' }
 espn_cfb_team_ats <- function(team_id = NULL,
-                              year = NULL,
-                              season_type = 2,
+  year = NULL,
+  season_type = 2,
                               team_detail = TRUE) {
 
   # Validation ----
@@ -546,7 +546,7 @@ espn_cfb_team_ats <- function(team_id = NULL,
 #'                            team_detail = FALSE))
 #' }
 espn_cfb_team_awards <- function(team_id = NULL,
-                                 year = NULL,
+  year = NULL,
                                  team_detail = TRUE) {
 
   # Validation ----
@@ -687,8 +687,8 @@ espn_cfb_team_awards <- function(team_id = NULL,
 
 #' @title
 #' **ESPN College Football Team Coaches**
-#' @description Get the coaches associated with a college football team for a
-#' season -- one row per coach, with name, birth detail, and experience.
+#' @description Get the coach associated with a college football team for the
+#' current season -- one row per coach, with name, birth detail, and experience.
 #' @details Wraps the ESPN core-v2 team coaches endpoint
 #' `sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/teams/{team_id}/coaches`.
 #' The index endpoint returns a `$ref` list of coach resources; this wrapper
@@ -705,7 +705,7 @@ espn_cfb_team_awards <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year DEPRECATED. (*Integer*): Season, 4 digit format (*YYYY*). Defaults to most recent CFB season.
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -747,20 +747,30 @@ espn_cfb_team_awards <- function(team_id = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_team_coaches(team_id = 61, year = 2024))
-#'   try(espn_cfb_team_coaches(team_id = 61, year = 2024,
-#'                             team_detail = FALSE))
+#'   try(espn_cfb_team_coaches(team_id = 61))
+#'   try(espn_cfb_team_coaches(team_id = 61, team_detail = FALSE))
 #' }
-espn_cfb_team_coaches <- function(team_id = NULL,
-                                  year = NULL,
-                                  team_detail = TRUE) {
-
+espn_cfb_team_coaches <- function(
+  team_id = NULL,
+  year = most_recent_cfb_season(),
+  team_detail = TRUE
+) {
   # Validation ----
   if (is.null(team_id)) {
-    cli::cli_abort("{.arg team_id} is required for the ESPN team coaches endpoint.")
+    cli::cli_abort(
+      "{.arg team_id} is required for the ESPN team coaches endpoint."
+    )
   }
   if (is.null(year)) {
-    cli::cli_abort("{.arg year} is required for the ESPN team coaches endpoint.")
+    cli::cli_abort(
+      "{.arg year} is required for the ESPN team coaches endpoint."
+    )
+  }
+  if (year != most_recent_cfb_season()) {
+    cli::cli_warn(
+      "{.fn espn_cfb_team_coaches} only supports current season, returning current season coach"
+    )
+    year <- most_recent_cfb_season()
   }
   validate_year(year)
 
@@ -924,7 +934,7 @@ espn_cfb_team_coaches <- function(team_id = NULL,
 #'                            team_detail = FALSE))
 #' }
 espn_cfb_team_events <- function(team_id = NULL,
-                                 year = NULL,
+  year = NULL,
                                  team_detail = TRUE) {
 
   # Validation ----
@@ -1086,8 +1096,8 @@ espn_cfb_team_events <- function(team_id = NULL,
 #'                             team_detail = FALSE))
 #' }
 espn_cfb_team_leaders <- function(team_id = NULL,
-                                  year = NULL,
-                                  season_type = 2,
+  year = NULL,
+  season_type = 2,
                                   team_detail = TRUE) {
 
   # Validation ----
@@ -1263,7 +1273,7 @@ espn_cfb_team_leaders <- function(team_id = NULL,
 #'                                team_detail = FALSE))
 #' }
 espn_cfb_team_powerindex <- function(team_id = NULL,
-                                     year = NULL,
+  year = NULL,
                                      team_detail = TRUE) {
 
   # Validation ----
@@ -1433,8 +1443,8 @@ espn_cfb_team_powerindex <- function(team_id = NULL,
 #'                           team_detail = FALSE))
 #' }
 espn_cfb_team_ranks <- function(team_id = NULL,
-                                year = NULL,
-                                week = NULL,
+  year = NULL,
+  week = NULL,
                                 team_detail = TRUE) {
 
   # Validation ----
@@ -1633,8 +1643,8 @@ espn_cfb_team_ranks <- function(team_id = NULL,
 #'                            team_detail = FALSE))
 #' }
 espn_cfb_team_record <- function(team_id = NULL,
-                                 year = NULL,
-                                 season_type = 2,
+  year = NULL,
+  season_type = 2,
                                  team_detail = TRUE) {
 
   # Validation ----
@@ -1836,8 +1846,8 @@ espn_cfb_team_record <- function(team_id = NULL,
 #'                            team_detail = FALSE))
 #' }
 espn_cfb_team_roster <- function(team_id = NULL,
-                                 year = NULL,
-                                 position_detail = TRUE,
+  year = NULL,
+  position_detail = TRUE,
                                  team_detail = TRUE) {
 
   # Validation ----
@@ -1867,9 +1877,9 @@ espn_cfb_team_roster <- function(team_id = NULL,
 
   get_json <- function(u) {
     (httr2::request(u) |>
-       httr2::req_headers(!!!headers) |>
+      httr2::req_headers(!!!headers) |>
        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
-       httr2::req_perform()) |>
+      httr2::req_perform()) |>
       httr2::resp_body_string(encoding = "UTF-8") |>
       jsonlite::fromJSON(simplifyVector = FALSE)
   }
@@ -2072,7 +2082,7 @@ espn_cfb_team_roster <- function(team_id = NULL,
 #'                              team_detail = FALSE))
 #' }
 espn_cfb_team_schedule <- function(team_id = NULL,
-                                   year = NULL,
+  year = NULL,
                                    team_detail = TRUE) {
 
   # Validation ----
@@ -2663,7 +2673,7 @@ espn_cfb_team_stats <- function(team_id, year, season_type='regular', total=FALS
           stats_category_name = glue::glue("{.data$name}_{.data$stats_name}")) |>
         dplyr::select("stats_category_name", "stats_value") |>
         tidyr::pivot_wider(names_from = "stats_category_name",
-                           values_from = "stats_value",
+          values_from = "stats_value",
                            values_fn = dplyr::first) |>
         janitor::clean_names()
 
@@ -2805,10 +2815,8 @@ espn_cfb_teams <- function() {
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN teams data available!"))
     },
-    warning = function(w) {
-    },
-    finally = {
-    }
+    warning = function(w) {},
+    finally = {}
   )
   return(.attach_query_meta_auto(df))
 }
