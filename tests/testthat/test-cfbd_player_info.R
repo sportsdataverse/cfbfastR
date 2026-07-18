@@ -3,7 +3,8 @@
 cols <- c(
   "athlete_id", "team", "name", "first_name", "last_name",
   "weight", "height", "jersey", "position",
-  "home_town", "team_color", "team_color_secondary"
+  "home_town", "team_color", "team_color_secondary",
+  "active_start_year", "active_end_year", "team_stints"
 )
 
 test_that("CFB Player Info", {
