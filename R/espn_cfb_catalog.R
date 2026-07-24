@@ -138,6 +138,7 @@ NULL
 #' [espn_cfb_awards()].
 #' @param award_id (*Integer* required): ESPN award id.
 #' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_award', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), the ESPN team
 #' catalog ([espn_cfb_teams()]) is fetched once and friendly team fields are
 #' joined in next to the `team_id` column. The sibling columns `team_name`,
@@ -325,7 +326,8 @@ espn_cfb_award <- function(award_id = NULL,
 #' as ESPN athlete ids (and team ids) only -- join to an athlete source for
 #' names. An award with no winner recorded yet still contributes one row
 #' with `athlete_id`/`team_id` left `NA`.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_awards', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), the ESPN team
 #' catalog ([espn_cfb_teams()]) is fetched once and friendly team fields are
 #' joined in next to the `team_id` column. The sibling columns `team_name`,
@@ -532,7 +534,8 @@ espn_cfb_awards <- function(year = NULL,
 #' single-row tibble. Enumerate `coach_id`s with [espn_cfb_coaches()].
 #' @param coach_id (*Integer* required): ESPN coach id.
 #' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
-#' Used to resolve the team the coach led that season.
+#' Used to resolve the team the coach led that season. \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_coach', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), the ESPN team
 #' catalog ([espn_cfb_teams()]) is fetched once and friendly team fields are
 #' joined in next to the `team_id` column. The sibling columns `team_name`,
@@ -705,7 +708,8 @@ espn_cfb_coach <- function(coach_id = NULL,
 #' alongside the per-stat fields, so the table is self-describing. Enumerate
 #' `coach_id`s with [espn_cfb_coaches()].
 #' @param coach_id (*Integer* required): ESPN coach id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_coach_record', 'min_year']`
 #' @param season_type (*Integer* default 2): ESPN season type -- `2` for
 #' regular season, `3` for postseason.
 #' @return A data frame with one row per stat category:
@@ -844,7 +848,8 @@ espn_cfb_coach_record <- function(coach_id = NULL,
 #' one row per coach. The `coach_id` column is the value
 #' [espn_cfb_coach()] accepts for the full per-coach detail (date of birth,
 #' birthplace, career-record / coach-season counts).
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_coaches', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), the ESPN team
 #' catalog ([espn_cfb_teams()]) is fetched once and friendly team fields are
 #' joined in next to the `team_id` column. The sibling columns `team_name`,

@@ -245,7 +245,8 @@ espn_cfb_scoreboard <- function(date = NULL) {
 
 #' ESPN Schedule
 #' @rdname espn_cfb_scoreboard
-#' @param year (int): Used to define different seasons. 2002 is the earliest available season.
+#' @param year (int): Used to define different seasons. \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_schedule', 'min_year']`
 #' @param week (int): Week of the schedule.
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #' @param season_type (string): "regular", "postseason", "off-season", or "both".
@@ -502,7 +503,8 @@ espn_cfb_schedule <- function(year=NULL, week=NULL, season_type=NULL, groups=NUL
 #'
 #' look up the men's college football calendar for a given season
 #'
-#' @param year (int): Used to define different seasons. 2002 is the earliest available season.
+#' @param year (int): Used to define different seasons. \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_calendar', 'min_year']`
 #' @param groups (string): Used to define different divisions. FBS or FCS.
 #'
 #' @return [espn_cfb_calendar()] - A data frame with 8 variables:

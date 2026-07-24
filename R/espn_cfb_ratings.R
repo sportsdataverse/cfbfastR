@@ -17,7 +17,8 @@
 #' (e.g. the Heisman) populate `athlete_id` instead, with the other id
 #' column left `NA`. `odds_value` is the raw American-odds string ESPN
 #' returns (e.g. `-400`, `+150`).
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_futures', 'min_year']`
 #' @return A data frame with one row per market-provider-entry:
 #'
 #'    |col_name       |types     |description                                            |
@@ -197,7 +198,8 @@ espn_cfb_futures <- function(year = NULL) {
 #' adds and retires metrics across seasons, and a long frame absorbs that
 #' drift without breaking column expectations. Pivot wider with
 #' [tidyr::pivot_wider()] keyed on `stat_name` when a wide table is wanted.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_powerindex', 'min_year']`
 #' @return A data frame with one row per team-metric:
 #'
 #'    |col_name      |types     |description                                        |
@@ -348,7 +350,8 @@ espn_cfb_powerindex <- function(year = NULL) {
 #' rather than erroring the wrapper. To resolve names without these extra
 #' calls, join `athlete_id` to another athlete source (e.g.
 #' [cfbd_team_roster()]).
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_qbr', 'min_year']`
 #' @param group (*Integer* default 80): ESPN group id. `80` = all FBS.
 #' Conference group ids (e.g. `4` ACC, `8` Big 12, `12` SEC, `21` Big Ten)
 #' also work.
@@ -523,7 +526,8 @@ espn_cfb_qbr <- function(year = NULL,
 #' **ESPN FPI Ratings**
 #' @description Get FPI historical rating data (most recent of each year)
 #' @details Adapted from sabinanalytic's fork of the cfbfastR repo
-#' @param year Year
+#' @param year Year \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_ratings_fpi', 'min_year']`
 #' @return A data frame with 20 variables:
 #'
 #' * `year`: integer. Season of the Football Power Index (FPI) Rating.
