@@ -24,7 +24,8 @@ NULL
 #' @description
 #' Extract college football (D-I) play by play Data - for plays
 #' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
-#' @param year Select year, (example: 2018)
+#' @param year Select year, (example: 2018) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_pbp_data', 'min_year']`
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
 #' @param play_type Select play type (example: see the [cfbd_play_type_df])

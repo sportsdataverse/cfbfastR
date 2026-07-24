@@ -24,7 +24,8 @@ NULL
 #' @param first (*String* optional): First name for the coach you are trying to look up
 #' @param last (*String* optional): Last name for the coach you are trying to look up
 #' @param team (*String* optional): Team - Select a valid team, D1 football
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_coaches', 'min_year']`
 #' @param min_year (*Integer* optional): Minimum Year filter (inclusive), 4 digit format (*YYYY*).
 #' @param max_year (*Integer* optional): Maximum Year filter (inclusive), 4 digit format (*YYYY*)
 #' @return Returns a tibble with 15 variables:

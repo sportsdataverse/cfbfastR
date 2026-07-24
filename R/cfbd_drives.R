@@ -22,7 +22,8 @@ NULL
 #' **CFBD Drives Endpoint**
 #' @description
 #' **Get college football game drives**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_drives', 'min_year']`
 #' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team

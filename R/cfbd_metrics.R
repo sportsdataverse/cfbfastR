@@ -126,7 +126,8 @@ cfbd_metrics_fg_ep <- function(){
 
 #' @title
 #' **Get opponent-adjusted team season statistics for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_wepa_team_season', 'min_year']`
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -226,7 +227,8 @@ cfbd_metrics_wepa_team_season <- function(year = NULL,
 
 #' @title
 #' **Get opponent-adjusted player passing statistics for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_wepa_players_passing', 'min_year']`
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -322,7 +324,8 @@ cfbd_metrics_wepa_players_passing <- function(year = NULL,
 
 #' @title
 #' **Get opponent-adjusted player rushing statistics for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_wepa_players_rushing', 'min_year']`
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -418,7 +421,8 @@ cfbd_metrics_wepa_players_rushing <- function(year = NULL,
 
 #' @title
 #' **Get Points Added Above Replacement (PAAR) ratings for kickers**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_wepa_players_kicking', 'min_year']`
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -498,7 +502,8 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 
 #' @title
 #' **Get team game averages for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_ppa_games', 'min_year']`
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -614,7 +619,8 @@ cfbd_metrics_ppa_games <- function(year,
 
 #' @title
 #' **Get player game averages for predicted points added (PPA)**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_ppa_players_games', 'min_year']`
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if team not provided.
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team. Required if week not provided.
@@ -736,7 +742,8 @@ cfbd_metrics_ppa_players_games <- function(year = NULL,
 
 #' @title
 #' **Get player season averages for predicted points added (PPA)**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if athlete_id not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if athlete_id not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_ppa_players_season', 'min_year']`
 #' @param team (*String* optional): D-I Team.
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -943,7 +950,8 @@ cfbd_metrics_ppa_predicted <- function(down,
 
 #' @title
 #' **Get team averages for predicted points added (PPA)**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_ppa_teams', 'min_year']`
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference name - select a valid FBS conference
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
@@ -1045,7 +1053,8 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
 
 #' @title
 #' **Get pre-game win probability data from API**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_metrics_wp_pregame', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason

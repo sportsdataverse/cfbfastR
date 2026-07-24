@@ -109,7 +109,8 @@ cfbd_stats_categories <- function() {
 
 #' @title
 #' **Get game advanced stats**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_game_advanced', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param team (*String* optional): D-I Team
 #' @param opponent (*String* optional): Opponent D-I Team
@@ -288,7 +289,8 @@ cfbd_stats_game_advanced <- function(year,
 
 #' @title
 #' **Get season advanced statistics by team**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_season_advanced', 'min_year']`
 #' @param team (*String* optional): D-I Team
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
@@ -477,7 +479,8 @@ cfbd_stats_season_advanced <- function(year,
 
 #' @title
 #' **Get season statistics by player**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_season_player', 'min_year']`
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
@@ -718,7 +721,8 @@ cfbd_stats_season_player <- function(year,
 
 #' @title
 #' **Get season statistics by team**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_season_team', 'min_year']`
 #' @param season_type (*String* default: both): Select Season Type - regular, postseason, or both
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
@@ -963,8 +967,8 @@ cfbd_stats_season_team <- function(year,
 #' defensive-back contributions. Each row carries both the team's own
 #' defensive havoc (`def_*`) and the havoc the team's offense allowed
 #' (`off_*`) in that game.
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required
-#' if `team` is not specified.
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if `team` is not specified. \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_game_havoc', 'min_year']`
 #' @param team (*String* optional): D-I Team. Required if `year` is not
 #' specified.
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for

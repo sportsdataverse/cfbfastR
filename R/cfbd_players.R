@@ -35,7 +35,8 @@ NULL
 #'  * Special Teams: K, P, LS, PK
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
-#' If left NULL, API default will only provide results for most recent year of final rosters: 2020
+#' If left NULL, API default will only provide results for most recent year of final rosters: 2020 \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_player_info', 'min_year']`
 #' @return [cfbd_player_info()] - A data frame with 12 variables:
 #'
 #'    |col_name             |types     |description                                            |
@@ -134,7 +135,8 @@ cfbd_player_info <- function(search_term,
 
 #' @title
 #' **Get player returning production**
-#' @param year (*Integer* required, default most recent season): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* required, default most recent season): Year, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_player_returning', 'min_year']`
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -232,7 +234,8 @@ cfbd_player_returning <- function(year = most_recent_cfb_season(),
 
 #' @title
 #' **Get player usage metrics**
-#' @param year (*Integer* required, default most recent season): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* required, default most recent season): Year, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_player_usage', 'min_year']`
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC

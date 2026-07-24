@@ -162,7 +162,8 @@ cfbd_draft_positions <- function() {
 
 #' @title
 #' **Get list of NFL draft picks**
-#' @param year (*Integer* required): NFL draft class, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): NFL draft class, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_draft_picks', 'min_year']`
 #' @param nfl_team (*String*): NFL drafting team, see [cfbd_draft_teams()] for valid selections.
 #' @param college (*String*): NFL draftee college team, see [cfbd_team_info()] for valid selections.
 #' @param conference (*String*): NFL draftee college team conference, see [cfbd_conferences()] for valid selections.

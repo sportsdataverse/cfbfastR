@@ -57,7 +57,8 @@
 NULL
 #' @title
 #' **Get player recruiting rankings**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000. Required if team not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) Required if team not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_recruiting_player', 'min_year']`
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param recruit_type (*String* optional): default API return is 'HighSchool', other options include 'JUCO'
 #' or 'PrepSchool'  - For position group information
@@ -264,7 +265,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
 #' @title
 #' **Get college football recruiting team rankings information.**
-#' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*) - Minimum: 2000. Required if team not provided.
+#' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*) Required if team not provided. \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_recruiting_team', 'min_year']`
 #' @param team (*String* optional): Team - Select a valid team, D1 football. Required if year not provided.
 #'
 #' @return [cfbd_recruiting_team()] - A data frame with 4 variables:
@@ -343,7 +345,8 @@ cfbd_recruiting_team <- function(year = NULL,
 
 #' @title
 #' **Get Transfer Portal Data**
-#' @param year (*Integer* required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_recruiting_transfer_portal', 'min_year']`
 #' @return [cfbd_recruiting_transfer_portal()] - A data frame with 10 variables:
 #'
 #'    |col_name      |types     |description                                                          |
