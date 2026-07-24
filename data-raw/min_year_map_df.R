@@ -36,6 +36,10 @@ get_returned_rows <- function(...) {
 
 update_map <- function(df, func_name, new_year) {
   if (df[df$function_name == func_name, 'min_year'] == new_year) {
+    df[
+      df$function_name == func_name,
+      'last_updated'
+    ] <- Sys.Date()
     print(glue::glue('{func_name}: OK'))
   } else {
     df[
