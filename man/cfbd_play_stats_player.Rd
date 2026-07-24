@@ -15,7 +15,8 @@ cfbd_play_stats_player(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2012}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
@@ -113,13 +114,13 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 }
 }
 \seealso{
-Other CFBD PBP: 
-\code{\link{cfbd_live_plays}()},
-\code{\link{cfbd_pbp_data}()},
-\code{\link{cfbd_pbp_data_v2}()},
-\code{\link{cfbd_play_stats_types}()},
-\code{\link{cfbd_play_types}()},
-\code{\link{cfbd_plays}()}
+Other CFBD PBP:
+\code{\link[=cfbd_live_plays]{cfbd_live_plays()}},
+\code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}},
+\code{\link[=cfbd_pbp_data_v2]{cfbd_pbp_data_v2()}},
+\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}},
+\code{\link[=cfbd_play_types]{cfbd_play_types()}},
+\code{\link[=cfbd_plays]{cfbd_plays()}}
 }
 \concept{CFBD PBP}
 \keyword{PBP}

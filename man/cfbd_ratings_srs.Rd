@@ -7,7 +7,8 @@
 cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided \cr
+Minimum value accepted: 1919}
 
 \item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 
@@ -38,12 +39,12 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 
 }
 \seealso{
-Other CFBD Ratings and Rankings: 
-\code{\link{cfbd_rankings}()},
-\code{\link{cfbd_ratings_elo}()},
-\code{\link{cfbd_ratings_fpi}()},
-\code{\link{cfbd_ratings_sp}()},
-\code{\link{cfbd_ratings_sp_conference}()}
+Other CFBD Ratings and Rankings:
+\code{\link[=cfbd_rankings]{cfbd_rankings()}},
+\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}},
+\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}},
+\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}},
+\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}}
 }
 \concept{CFBD Ratings and Rankings}
 \keyword{SRS}

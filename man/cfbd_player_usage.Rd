@@ -14,7 +14,8 @@ cfbd_player_usage(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required, default most recent season): Year, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required, default most recent season): Year, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2013}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
@@ -64,9 +65,9 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 
 }
 \seealso{
-Other CFBD Players: 
-\code{\link{cfbd_player_info}()},
-\code{\link{cfbd_player_returning}()}
+Other CFBD Players:
+\code{\link[=cfbd_player_info]{cfbd_player_info()}},
+\code{\link[=cfbd_player_returning]{cfbd_player_returning()}}
 }
 \concept{CFBD Players}
 \keyword{Player}

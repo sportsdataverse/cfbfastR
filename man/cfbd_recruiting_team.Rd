@@ -7,7 +7,8 @@
 cfbd_recruiting_team(year = NULL, team = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}) - Minimum: 2000. Required if team not provided.}
+\item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}) Required if team not provided. \cr
+Minimum value accepted: 2000}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football. Required if year not provided.}
 }
@@ -36,10 +37,10 @@ cfbd_recruiting_team(year = NULL, team = NULL)
 
 }
 \seealso{
-Other CFBD Recruiting: 
-\code{\link{cfbd_recruiting_player}()},
-\code{\link{cfbd_recruiting_position}()},
-\code{\link{cfbd_recruiting_transfer_portal}()}
+Other CFBD Recruiting:
+\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}},
+\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}},
+\code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}}
 }
 \concept{CFBD Recruiting}
 \keyword{Recruiting}

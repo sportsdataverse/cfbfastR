@@ -15,7 +15,8 @@ cfbd_game_player_stats(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY}) \cr
+Minimum value accepted: 2004}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
@@ -111,15 +112,15 @@ Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 }
 }
 \seealso{
-Other CFBD Games: 
-\code{\link{cfbd_calendar}()},
-\code{\link{cfbd_game_box_advanced}()},
-\code{\link{cfbd_game_info}()},
-\code{\link{cfbd_game_media}()},
-\code{\link{cfbd_game_records}()},
-\code{\link{cfbd_game_team_stats}()},
-\code{\link{cfbd_game_weather}()},
-\code{\link{cfbd_live_scoreboard}()}
+Other CFBD Games:
+\code{\link[=cfbd_calendar]{cfbd_calendar()}},
+\code{\link[=cfbd_game_box_advanced]{cfbd_game_box_advanced()}},
+\code{\link[=cfbd_game_info]{cfbd_game_info()}},
+\code{\link[=cfbd_game_media]{cfbd_game_media()}},
+\code{\link[=cfbd_game_records]{cfbd_game_records()}},
+\code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}},
+\code{\link[=cfbd_game_weather]{cfbd_game_weather()}},
+\code{\link[=cfbd_live_scoreboard]{cfbd_live_scoreboard()}}
 }
 \concept{CFBD Games}
 \keyword{Game}

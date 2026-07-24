@@ -14,7 +14,8 @@ cfbd_stats_season_team(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 1878}
 
 \item{season_type}{(\emph{String} default: both): Select Season Type - regular, postseason, or both}
 
@@ -92,12 +93,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 }
 }
 \seealso{
-Other CFBD Stats: 
-\code{\link{cfbd_stats_categories}()},
-\code{\link{cfbd_stats_game_advanced}()},
-\code{\link{cfbd_stats_game_havoc}()},
-\code{\link{cfbd_stats_season_advanced}()},
-\code{\link{cfbd_stats_season_player}()}
+Other CFBD Stats:
+\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}},
+\code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}},
+\code{\link[=cfbd_stats_game_havoc]{cfbd_stats_game_havoc()}},
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}},
+\code{\link[=cfbd_stats_season_player]{cfbd_stats_season_player()}}
 }
 \concept{CFBD Stats}
 \keyword{Season}

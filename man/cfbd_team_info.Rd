@@ -19,7 +19,8 @@ Required if year not provided}
 \item{only_fbs}{(\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.
 If year is left blank while only_fbs is TRUE, then will return values for most current year}
 
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year. Required if conference not provided and the \code{year} parameter is only supported if \code{only_fbs} is TRUE.}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year. Required if conference not provided and the \code{year} parameter is only supported if \code{only_fbs} is TRUE. \cr
+Minimum value accepted: 2011}
 }
 \value{
 \code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 27 variables:\tabular{lll}{
@@ -66,11 +67,11 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 }
 }
 \seealso{
-Other CFBD Teams: 
-\code{\link{cfbd_team_matchup}()},
-\code{\link{cfbd_team_matchup_records}()},
-\code{\link{cfbd_team_roster}()},
-\code{\link{cfbd_team_talent}()}
+Other CFBD Teams:
+\code{\link[=cfbd_team_matchup]{cfbd_team_matchup()}},
+\code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}},
+\code{\link[=cfbd_team_roster]{cfbd_team_roster()}},
+\code{\link[=cfbd_team_talent]{cfbd_team_talent()}}
 }
 \concept{CFBD Teams}
 \keyword{Teams}

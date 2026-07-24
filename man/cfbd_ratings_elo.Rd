@@ -13,7 +13,8 @@ cfbd_ratings_elo(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 1953}
 
 \item{week}{(\emph{Integer} optional): Maximum Week of ratings.}
 
@@ -46,12 +47,12 @@ Acquire the CFBD calculated elo ratings data by team, year, week, and conference
 
 }
 \seealso{
-Other CFBD Ratings and Rankings: 
-\code{\link{cfbd_rankings}()},
-\code{\link{cfbd_ratings_fpi}()},
-\code{\link{cfbd_ratings_sp}()},
-\code{\link{cfbd_ratings_sp_conference}()},
-\code{\link{cfbd_ratings_srs}()}
+Other CFBD Ratings and Rankings:
+\code{\link[=cfbd_rankings]{cfbd_rankings()}},
+\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}},
+\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}},
+\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}},
+\code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}}
 }
 \concept{CFBD Ratings and Rankings}
 \keyword{elo}

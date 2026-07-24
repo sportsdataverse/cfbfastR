@@ -9,7 +9,8 @@ espn_cfb_team_stats(team_id, year, season_type = "regular", total = FALSE)
 \arguments{
 \item{team_id}{Team ID}
 
-\item{year}{Year}
+\item{year}{Year \cr
+Minimum value accepted: 2004}
 
 \item{season_type}{(character, default: regular): Season type - regular or postseason}
 

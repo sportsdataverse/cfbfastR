@@ -7,7 +7,8 @@
 cfbd_team_roster(year, team = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2004}
 
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
@@ -42,11 +43,11 @@ Get a teams full roster by year. If team is not selected, API returns rosters fo
 
 }
 \seealso{
-Other CFBD Teams: 
-\code{\link{cfbd_team_info}()},
-\code{\link{cfbd_team_matchup}()},
-\code{\link{cfbd_team_matchup_records}()},
-\code{\link{cfbd_team_talent}()}
+Other CFBD Teams:
+\code{\link[=cfbd_team_info]{cfbd_team_info()}},
+\code{\link[=cfbd_team_matchup]{cfbd_team_matchup()}},
+\code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}},
+\code{\link[=cfbd_team_talent]{cfbd_team_talent()}}
 }
 \concept{CFBD Teams}
 \keyword{Roster}

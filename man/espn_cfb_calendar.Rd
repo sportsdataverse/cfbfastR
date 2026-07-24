@@ -7,7 +7,8 @@
 espn_cfb_calendar(year = NULL, groups = NULL)
 }
 \arguments{
-\item{year}{(int): Used to define different seasons. 2002 is the earliest available season.}
+\item{year}{(int): Used to define different seasons. \cr
+Minimum value accepted: 1999}
 
 \item{groups}{(string): Used to define different divisions. FBS or FCS.}
 }

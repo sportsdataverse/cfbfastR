@@ -7,7 +7,8 @@
 cfbd_team_talent(year = most_recent_cfb_season())
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2015}
 }
 \value{
 \code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:\tabular{lll}{
@@ -29,11 +30,11 @@ Extracts team talent composite as sourced from 247 rankings
 
 }
 \seealso{
-Other CFBD Teams: 
-\code{\link{cfbd_team_info}()},
-\code{\link{cfbd_team_matchup}()},
-\code{\link{cfbd_team_matchup_records}()},
-\code{\link{cfbd_team_roster}()}
+Other CFBD Teams:
+\code{\link[=cfbd_team_info]{cfbd_team_info()}},
+\code{\link[=cfbd_team_matchup]{cfbd_team_matchup()}},
+\code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}},
+\code{\link[=cfbd_team_roster]{cfbd_team_roster()}}
 }
 \concept{CFBD Teams}
 \keyword{Team}

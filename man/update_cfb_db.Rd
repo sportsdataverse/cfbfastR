@@ -62,10 +62,10 @@ is provided but the argument \code{tblname} will still be used to write the
 data table into the database.
 }
 \seealso{
-Other loaders: 
-\code{\link{load_cfb_pbp}()},
-\code{\link{load_cfb_rosters}()},
-\code{\link{load_cfb_schedules}()},
-\code{\link{load_cfb_teams}()}
+Other loaders:
+\code{\link[=load_cfb_pbp]{load_cfb_pbp()}},
+\code{\link[=load_cfb_rosters]{load_cfb_rosters()}},
+\code{\link[=load_cfb_schedules]{load_cfb_schedules()}},
+\code{\link[=load_cfb_teams]{load_cfb_teams()}}
 }
 \concept{loaders}

@@ -12,7 +12,8 @@ cfbd_metrics_wp_pregame(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2013}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
@@ -43,18 +44,18 @@ cfbd_metrics_wp_pregame(
 }
 }
 \seealso{
-Other CFBD Metrics: 
-\code{\link{cfbd_metrics_fg_ep}()},
-\code{\link{cfbd_metrics_ppa_games}()},
-\code{\link{cfbd_metrics_ppa_players_games}()},
-\code{\link{cfbd_metrics_ppa_players_season}()},
-\code{\link{cfbd_metrics_ppa_predicted}()},
-\code{\link{cfbd_metrics_ppa_teams}()},
-\code{\link{cfbd_metrics_wepa_players_kicking}()},
-\code{\link{cfbd_metrics_wepa_players_passing}()},
-\code{\link{cfbd_metrics_wepa_players_rushing}()},
-\code{\link{cfbd_metrics_wepa_team_season}()},
-\code{\link{cfbd_metrics_wp}()}
+Other CFBD Metrics:
+\code{\link[=cfbd_metrics_fg_ep]{cfbd_metrics_fg_ep()}},
+\code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}},
+\code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}},
+\code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}},
+\code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}},
+\code{\link[=cfbd_metrics_ppa_teams]{cfbd_metrics_ppa_teams()}},
+\code{\link[=cfbd_metrics_wepa_players_kicking]{cfbd_metrics_wepa_players_kicking()}},
+\code{\link[=cfbd_metrics_wepa_players_passing]{cfbd_metrics_wepa_players_passing()}},
+\code{\link[=cfbd_metrics_wepa_players_rushing]{cfbd_metrics_wepa_players_rushing()}},
+\code{\link[=cfbd_metrics_wepa_team_season]{cfbd_metrics_wepa_team_season()}},
+\code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}}
 }
 \concept{CFBD Metrics}
 \keyword{Data}

@@ -15,7 +15,8 @@ cfbd_stats_season_player(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2004}
 
 \item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 
@@ -113,12 +114,12 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 }
 }
 \seealso{
-Other CFBD Stats: 
-\code{\link{cfbd_stats_categories}()},
-\code{\link{cfbd_stats_game_advanced}()},
-\code{\link{cfbd_stats_game_havoc}()},
-\code{\link{cfbd_stats_season_advanced}()},
-\code{\link{cfbd_stats_season_team}()}
+Other CFBD Stats:
+\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}},
+\code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}},
+\code{\link[=cfbd_stats_game_havoc]{cfbd_stats_game_havoc()}},
+\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}},
+\code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}}
 }
 \concept{CFBD Stats}
 \keyword{Player}

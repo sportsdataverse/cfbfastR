@@ -15,7 +15,8 @@ cfbd_pbp_data_v2(
 )
 }
 \arguments{
-\item{year}{(\emph{Numeric} required): Season year (e.g. \code{2024}).}
+\item{year}{(\emph{Numeric} required): Season year (e.g. \code{2024}). \cr
+Minimum value accepted: 2003}
 
 \item{season_type}{(\emph{Character}): Season type — \code{"regular"} (default),
 \code{"postseason"}, \code{"both"}, \code{"allstar"}, \code{"spring_regular"},
@@ -78,13 +79,13 @@ equivalence harness proves the new path matches.
 }
 }
 \seealso{
-Other CFBD PBP: 
-\code{\link{cfbd_live_plays}()},
-\code{\link{cfbd_pbp_data}()},
-\code{\link{cfbd_play_stats_player}()},
-\code{\link{cfbd_play_stats_types}()},
-\code{\link{cfbd_play_types}()},
-\code{\link{cfbd_plays}()}
+Other CFBD PBP:
+\code{\link[=cfbd_live_plays]{cfbd_live_plays()}},
+\code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}},
+\code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}},
+\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}},
+\code{\link[=cfbd_play_types]{cfbd_play_types()}},
+\code{\link[=cfbd_plays]{cfbd_plays()}}
 }
 \concept{CFBD PBP}
 \keyword{CFB}

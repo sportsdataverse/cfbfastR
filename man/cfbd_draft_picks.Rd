@@ -13,7 +13,8 @@ cfbd_draft_picks(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): NFL draft class, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): NFL draft class, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 1997}
 
 \item{nfl_team}{(\emph{String}): NFL drafting team, see \code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}} for valid selections.}
 
@@ -63,9 +64,9 @@ cfbd_draft_picks(
 }
 }
 \seealso{
-Other CFBD Draft: 
-\code{\link{cfbd_draft_positions}()},
-\code{\link{cfbd_draft_teams}()}
+Other CFBD Draft:
+\code{\link[=cfbd_draft_positions]{cfbd_draft_positions()}},
+\code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}}
 }
 \concept{CFBD Draft}
 \keyword{Draft}

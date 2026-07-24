@@ -7,7 +7,8 @@
 cfbd_rankings(year, week = NULL, season_type = "both")
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2002}
 
 \item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
@@ -41,12 +42,12 @@ cfbd_rankings(year, week = NULL, season_type = "both")
 
 }
 \seealso{
-Other CFBD Ratings and Rankings: 
-\code{\link{cfbd_ratings_elo}()},
-\code{\link{cfbd_ratings_fpi}()},
-\code{\link{cfbd_ratings_sp}()},
-\code{\link{cfbd_ratings_sp_conference}()},
-\code{\link{cfbd_ratings_srs}()}
+Other CFBD Ratings and Rankings:
+\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}},
+\code{\link[=cfbd_ratings_fpi]{cfbd_ratings_fpi()}},
+\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}},
+\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}},
+\code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}}
 }
 \concept{CFBD Ratings and Rankings}
 \keyword{CFB}

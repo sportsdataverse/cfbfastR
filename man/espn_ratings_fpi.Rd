@@ -7,7 +7,8 @@
 espn_ratings_fpi(year = 2019)
 }
 \arguments{
-\item{year}{Year}
+\item{year}{Year \cr
+Minimum value accepted: 2004}
 }
 \value{
 A data frame with 20 variables:

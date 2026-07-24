@@ -11,7 +11,8 @@ cfbd_player_returning(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required, default most recent season): Year, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required, default most recent season): Year, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2014}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
@@ -49,9 +50,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 }
 \seealso{
-Other CFBD Players: 
-\code{\link{cfbd_player_info}()},
-\code{\link{cfbd_player_usage}()}
+Other CFBD Players:
+\code{\link[=cfbd_player_info]{cfbd_player_info()}},
+\code{\link[=cfbd_player_usage]{cfbd_player_usage()}}
 }
 \concept{CFBD Players}
 \keyword{Production}

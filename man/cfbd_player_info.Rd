@@ -20,7 +20,8 @@ Position Group  - options include:
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
-If left NULL, API default will only provide results for most recent year of final rosters: 2020}
+If left NULL, API default will only provide results for most recent year of final rosters: 2020 \cr
+Minimum value accepted: 2004}
 }
 \value{
 \code{\link[=cfbd_player_info]{cfbd_player_info()}} - A data frame with 12 variables:\tabular{lll}{
@@ -50,9 +51,9 @@ If left NULL, API default will only provide results for most recent year of fina
 }
 }
 \seealso{
-Other CFBD Players: 
-\code{\link{cfbd_player_returning}()},
-\code{\link{cfbd_player_usage}()}
+Other CFBD Players:
+\code{\link[=cfbd_player_returning]{cfbd_player_returning()}},
+\code{\link[=cfbd_player_usage]{cfbd_player_usage()}}
 }
 \concept{CFBD Players}
 \keyword{Players}
