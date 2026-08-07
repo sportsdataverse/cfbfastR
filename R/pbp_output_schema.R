@@ -149,14 +149,22 @@
 )
 
 #' Player-name alias columns dropped on output (legacy quirks)
+#'
+#' `punt_return_player` / `kickoff_return_player` are the raw regex
+#' intermediates and `rush_player_name` duplicates `rusher_player_name`, so all
+#' three are genuine aliases.
+#'
+#' The two `*_return_player_name` columns were dropped here historically but are
+#' NOT aliases: the released pbp ships `punt_return_player_id` /
+#' `kickoff_return_player_id`, so withholding the name twin made returners the
+#' only credited role in the dataset identifiable by id alone. They are retained
+#' as of this change so every role ships id *and* name.
 #' @keywords internal
 #' @noRd
 .pbp_drop_player_aliases <- c(
   "punt_return_player",
   "kickoff_return_player",
-  "rush_player_name",
-  "punt_return_player_name",
-  "kickoff_return_player_name"
+  "rush_player_name"
 )
 
 #' Lag/lead intermediates produced for the pipeline's internal use

@@ -42,10 +42,17 @@ test_that(".pbp_apply_output_schema() drops the documented player-name aliases",
     stringsAsFactors              = FALSE
   )
   out <- cfbfastR:::.pbp_apply_output_schema(df)
+  # Genuine aliases: the raw regex intermediates and the rusher_player_name
+  # duplicate.
   drop_set <- c("punt_return_player", "kickoff_return_player",
-                "rush_player_name", "punt_return_player_name",
-                "kickoff_return_player_name")
+                "rush_player_name")
   expect_false(any(drop_set %in% colnames(out)))
+
+  # The returner NAME columns are retained: the released pbp ships
+  # punt_return_player_id / kickoff_return_player_id, so dropping the name twin
+  # made a returner the only credited role identifiable by id alone.
+  expect_true(all(c("punt_return_player_name",
+                    "kickoff_return_player_name") %in% colnames(out)))
 })
 
 test_that(".pbp_apply_output_schema(output = 'default') drops the tier-1 sets", {
