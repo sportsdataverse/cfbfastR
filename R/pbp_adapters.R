@@ -75,9 +75,26 @@
         .data$plays_start_team_id == .data$home_team_id ~ .data$home,
         TRUE ~ .data$away
       ),
+      # This was a copy of `offense_play` -- both branches returned `home` --
+      # so `defense_play` named the team with the ball on every ESPN play.
       defense_play = dplyr::case_when(
-        .data$plays_start_team_id == .data$home_team_id ~ .data$home,
-        TRUE ~ .data$away
+        .data$plays_start_team_id == .data$home_team_id ~ .data$away,
+        TRUE ~ .data$home
+      ),
+      # Id-keyed twins of the two columns above. `home`/`away` are team NAMES
+      # resolved through the ESPN teams catalog, and that catalog can come back
+      # empty -- `espn_cfb_teams()` currently returns zero rows, which makes
+      # `home`/`away` NA and takes `pos_team`, `def_pos_team`, `offense_play`
+      # and `defense_play` down with them. The ids come straight off the play
+      # and are always present, so anything that needs to know WHICH TEAM
+      # (roster matching, team attribution) keys on these instead of the names.
+      offense_play_id = dplyr::case_when(
+        .data$plays_start_team_id == .data$home_team_id ~ .data$home_team_id,
+        TRUE ~ .data$away_team_id
+      ),
+      defense_play_id = dplyr::case_when(
+        .data$plays_start_team_id == .data$home_team_id ~ .data$away_team_id,
+        TRUE ~ .data$home_team_id
       ),
       offense_score = dplyr::case_when(
         .data$offense_play == .data$home ~ .data$plays_home_score,

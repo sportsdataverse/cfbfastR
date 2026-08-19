@@ -54,6 +54,11 @@
     # fuzzy-match narration. Ordering these the other way round would resolve
     # the ids off the messy name and then relabel them.
     .pbp_join_participants(participants = participants) |>
+    # Team attribution must precede id resolution, not follow it: the role ->
+    # team map reads `kicking_team`, `return_team`, `punt_return_team` and
+    # `fumble_recovery_team`, so before this stage existed every special-teams
+    # role matched against a column that was not there.
+    .pbp_add_attribution_cols() |>
     # Identity resolution needs the names add_player_cols() just extracted. The
     # roster is PASSED IN rather than fetched here: one game's play-by-play would
     # otherwise cost an extra roster request per call, and a season sweep would

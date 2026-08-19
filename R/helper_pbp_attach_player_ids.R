@@ -40,17 +40,26 @@
 #' @importFrom dplyr mutate
 #' @noRd
 
-# role -> (name column, id column, team column that fielded the role)
+# role -> (name column, id column, team column that fielded the role).
+#
+# The team columns are the ID-keyed ones. `pos_team` / `def_pos_team` are team
+# NAMES resolved through the ESPN teams catalog, and they go NA whenever that
+# catalog is unavailable -- which takes the team-aware tier with them and
+# silently drops every match down to the global-unique fallback. The ids come
+# straight off the play. `kicking_team` / `return_team` / `punt_return_team` /
+# `fumble_recovery_team` are produced by `.pbp_add_attribution_cols()`; before
+# that landed they did not exist at all, so every special-teams role matched
+# with a NA team.
 .pbp_player_id_team_map <- list(
-  c("rusher_player_name",            "rusher_player_id",            "pos_team"),
-  c("passer_player_name",            "passer_player_id",            "pos_team"),
-  c("receiver_player_name",          "receiver_player_id",          "pos_team"),
-  c("fumble_player_name",            "fumble_player_id",            "pos_team"),
-  c("sack_player_name",              "sack_player_id",              "def_pos_team"),
-  c("sack_player_name2",             "sack_player_id2",             "def_pos_team"),
-  c("interception_player_name",      "interception_player_id",      "def_pos_team"),
-  c("pass_breakup_player_name",      "pass_breakup_player_id",      "def_pos_team"),
-  c("fumble_forced_player_name",     "fumble_forced_player_id",     "def_pos_team"),
+  c("rusher_player_name",            "rusher_player_id",            "pos_team_id"),
+  c("passer_player_name",            "passer_player_id",            "pos_team_id"),
+  c("receiver_player_name",          "receiver_player_id",          "pos_team_id"),
+  c("fumble_player_name",            "fumble_player_id",            "pos_team_id"),
+  c("sack_player_name",              "sack_player_id",              "def_pos_team_id"),
+  c("sack_player_name2",             "sack_player_id2",             "def_pos_team_id"),
+  c("interception_player_name",      "interception_player_id",      "def_pos_team_id"),
+  c("pass_breakup_player_name",      "pass_breakup_player_id",      "def_pos_team_id"),
+  c("fumble_forced_player_name",     "fumble_forced_player_id",     "def_pos_team_id"),
   c("fumble_recovered_player_name",  "fumble_recovered_player_id",  "fumble_recovery_team"),
   c("fg_kicker_player_name",         "fg_kicker_player_id",         "kicking_team"),
   c("punter_player_name",            "punter_player_id",            "kicking_team"),
@@ -226,9 +235,24 @@
     NA_character_
   }
 
+  # Resolve a role's team column, preferring the id-keyed name and falling back
+  # to the bare one. Two frames reach here: the engine's, where `pos_team` is a
+  # team NAME and `pos_team_id` is the id, and sdv-py's, where `pos_team` is
+  # itself the id. Preferring `*_id` and accepting the bare column covers both
+  # without the caller having to rename anything.
+  team_vec <- function(teamc) {
+    for (cand in unique(c(teamc, sub("_id$", "", teamc)))) {
+      if (cand %in% names(raw_df)) {
+        v <- as.character(raw_df[[cand]])
+        if (any(!is.na(v))) return(v)
+      }
+    }
+    rep(NA_character_, nrow(raw_df))
+  }
+
   for (m in present) {
     nm <- m[1]; idc <- m[2]; teamc <- m[3]
-    teams <- if (teamc %in% names(raw_df)) as.character(raw_df[[teamc]]) else rep(NA_character_, nrow(raw_df))
+    teams <- team_vec(teamc)
     raw_df[[idc]] <- mapply(resolve_one, raw_df[[nm]], teams, USE.NAMES = FALSE)
   }
   raw_df

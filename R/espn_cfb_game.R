@@ -6639,6 +6639,18 @@ espn_cfb_pbp_v2 <- function(game_id,
         plays_df <- .espn_cfb_expand_participant_names(plays_df, sidecar$names)
       }
 
+      # ESPN's core-v2 play feed carries its OWN `is_turnover` flag, and the
+      # join below keeps the context copy of any column the engine also
+      # produces -- so ESPN's would silently mask the derived one and leave it
+      # disagreeing with `turnover_team`, which is derived. The two are *known*
+      # to differ: the derived flag counts giveaways only (interceptions and
+      # fumbles lost) so it reconciles against ESPN's official box, while
+      # ESPN's per-play flag also fires on blocked kicks. Both are kept, under
+      # names that say which is which.
+      if ("is_turnover" %in% names(plays_df)) {
+        names(plays_df)[names(plays_df) == "is_turnover"] <- "espn_is_turnover"
+      }
+
       context_df <- plays_df
 
       adapter <- plays_df |>

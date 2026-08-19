@@ -72,6 +72,23 @@
                         )
       ),
       def_pos_team = ifelse(.data$pos_team == .data$home, .data$away, .data$home),
+      # Id-keyed twins, same kickoff flip. Kept alongside rather than replacing
+      # the name columns: `pos_team` is a documented output column and callers
+      # read it as a name. These exist because the name columns go NA whenever
+      # the ESPN teams catalog is unavailable, and roster matching / team
+      # attribution need a key that does not.
+      pos_team_id = if (all(c("offense_play_id", "home_team_id", "away_team_id") %in% names(play_df))) {
+        ifelse(.data$offense_play_id == .data$home_team_id & .data$kickoff_play == 1, .data$away_team_id,
+               ifelse(.data$offense_play_id == .data$away_team_id & .data$kickoff_play == 1,
+                      .data$home_team_id, .data$offense_play_id))
+      } else {
+        NA_character_
+      },
+      def_pos_team_id = if (all(c("home_team_id", "away_team_id") %in% names(play_df))) {
+        ifelse(.data$pos_team_id == .data$home_team_id, .data$away_team_id, .data$home_team_id)
+      } else {
+        NA_character_
+      },
       pos_team_score = ifelse(.data$kickoff_play == 1, .data$defense_score, .data$offense_score),
       def_pos_team_score = ifelse(.data$kickoff_play == 1, .data$offense_score, .data$defense_score),
       lag_pos_team = dplyr::lag(.data$pos_team, 1),
