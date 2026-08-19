@@ -26,7 +26,8 @@ cfbd_pbp_data(
 
 - year:
 
-  Select year, (example: 2018)
+  Select year, (example: 2018)  
+  Minimum value accepted: 2001
 
 - season_type:
 

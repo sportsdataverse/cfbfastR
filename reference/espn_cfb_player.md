@@ -71,7 +71,8 @@ espn_cfb_player(
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2004
 
 - team_detail:
 
@@ -289,7 +290,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player(athlete_id = 102597, year = 2024))
 #> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:07 UTC
+#> ℹ Data updated: 2026-08-19 17:58:40 UTC
 #> # A tibble: 1 × 46
 #>   athlete_id season uid        guid  first_name last_name full_name display_name
 #>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       
@@ -304,7 +305,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_player(athlete_id = 102597, year = 2024,
                       team_detail = FALSE, position_detail = FALSE))
 #> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:07 UTC
+#> ℹ Data updated: 2026-08-19 17:58:40 UTC
 #> # A tibble: 1 × 33
 #>   athlete_id season uid        guid  first_name last_name full_name display_name
 #>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       

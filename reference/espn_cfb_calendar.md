@@ -12,8 +12,8 @@ espn_cfb_calendar(year = NULL, groups = NULL)
 
 - year:
 
-  (int): Used to define different seasons. 2002 is the earliest
-  available season.
+  (int): Used to define different seasons.  
+  Minimum value accepted: 1999
 
 - groups:
 
@@ -45,7 +45,7 @@ espn_cfb_calendar(year = NULL, groups = NULL)
 # \donttest{
   try(espn_cfb_calendar(2021))
 #> ── Calendar Data from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:36 UTC
+#> ℹ Data updated: 2026-08-19 17:56:33 UTC
 #> # A tibble: 17 × 8
 #>    season season_type    label  alternate_label detail week  start_date end_date
 #>    <chr>  <chr>          <chr>  <chr>           <chr>  <chr> <chr>      <chr>   

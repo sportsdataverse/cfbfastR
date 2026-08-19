@@ -22,7 +22,8 @@ espn_cfb_player_stats_v3(athlete_id = NULL, year = NULL, athlete_detail = TRUE)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2004
 
 - athlete_detail:
 
@@ -125,7 +126,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_stats_v3(athlete_id = 4431611, year = 2023))
 #> ── Player web-v3 statistics from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:13 UTC
+#> ℹ Data updated: 2026-08-19 17:58:47 UTC
 #> # A tibble: 190 × 18
 #>    athlete_id season category category_display team_id team_slug     stat_season
 #>    <chr>       <int> <chr>    <chr>            <chr>   <chr>               <int>

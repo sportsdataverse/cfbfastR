@@ -19,7 +19,8 @@ cfbd_ratings_elo(
 
 - year:
 
-  (*Integer* optional): Year, 4 digit format (*YYYY*)
+  (*Integer* optional): Year, 4 digit format (*YYYY*)  
+  Minimum value accepted: 1890
 
 - week:
 
@@ -68,7 +69,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_elo(year = 2019, team = "Texas"))
 #> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:50 UTC
+#> ℹ Data updated: 2026-08-19 17:55:39 UTC
 #> # A tibble: 1 × 4
 #>    year team  conference   elo
 #>   <int> <chr> <chr>      <dbl>
@@ -76,7 +77,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #> ── Elo ratings from CollegeFootballData.com ────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:51 UTC
+#> ℹ Data updated: 2026-08-19 17:55:40 UTC
 #> # A tibble: 14 × 4
 #>     year team              conference   elo
 #>    <int> <chr>             <chr>      <dbl>

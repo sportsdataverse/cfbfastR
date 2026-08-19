@@ -13,7 +13,8 @@ espn_cfb_awards(year = NULL, team_detail = TRUE)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 1935
 
 - team_detail:
 
@@ -142,7 +143,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_awards(year = 2024))
 #> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:34 UTC
+#> ℹ Data updated: 2026-08-19 17:56:30 UTC
 #> # A tibble: 34 × 19
 #>    season award_id name                 description athlete_id team_id team_name
 #>     <int> <chr>    <chr>                <chr>       <chr>      <chr>   <chr>    
@@ -164,7 +165,7 @@ Other ESPN CFB Functions:
 #> #   athlete_ref <chr>, team_ref <chr>
   try(espn_cfb_awards(year = 2024, team_detail = FALSE))
 #> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:35 UTC
+#> ℹ Data updated: 2026-08-19 17:56:32 UTC
 #> # A tibble: 34 × 9
 #>    season award_id name     description athlete_id team_id award_ref athlete_ref
 #>     <int> <chr>    <chr>    <chr>       <chr>      <chr>   <chr>     <chr>      

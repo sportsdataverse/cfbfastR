@@ -18,7 +18,8 @@ cfbd_draft_picks(
 
 - year:
 
-  (*Integer* required): NFL draft class, 4 digit format (*YYYY*)
+  (*Integer* required): NFL draft class, 4 digit format (*YYYY*)  
+  Minimum value accepted: 1967
 
 - nfl_team:
 
@@ -88,7 +89,7 @@ Other CFBD Draft:
 # \donttest{
   try(cfbd_draft_picks(year = 2020))
 #> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:35:04 UTC
+#> ℹ Data updated: 2026-08-19 17:52:10 UTC
 #> # A tibble: 255 × 24
 #>    college_athlete_id nfl_athlete_id college_id college_team college_conference
 #>                 <int>          <int>      <int> <chr>        <chr>             
@@ -112,7 +113,7 @@ Other CFBD Draft:
 
   try(cfbd_draft_picks(year = 2016, position = "PK"))
 #> ── NFL draft data from CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:35:04 UTC
+#> ℹ Data updated: 2026-08-19 17:52:10 UTC
 #> # A tibble: 1 × 24
 #>   college_athlete_id nfl_athlete_id college_id college_team  college_conference
 #>                <int>          <int>      <int> <chr>         <chr>             

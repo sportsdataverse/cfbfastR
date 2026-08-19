@@ -155,7 +155,8 @@ season – one row per (award x winning athlete).</p>
 
 
 <dt id="arg-year">year<a class="anchor" aria-label="anchor" href="#arg-year"></a></dt>
-<dd><p>(<em>Integer</em> required): Season, 4 digit format (<em>YYYY</em>).</p></dd>
+<dd><p>(<em>Integer</em> required): Season, 4 digit format (<em>YYYY</em>). <br>
+Minimum value accepted: 1935</p></dd>
 
 
 <dt id="arg-team-detail">team_detail<a class="anchor" aria-label="anchor" href="#arg-team-detail"></a></dt>
@@ -263,7 +264,7 @@ A catalog failure degrades to <code>NA</code> rather than erroring the wrapper. 
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_team_awards</span><span class="op">(</span>team_id <span class="op">=</span> <span class="fl">61</span>, year <span class="op">=</span> <span class="fl">2023</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team awards from ESPN ───────────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 17:41:16 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 18:00:16 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 30</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season team_id team_name team_abbreviation team_location team_display_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span>
@@ -279,7 +280,7 @@ A catalog failure degrades to <code>NA</code> rather than erroring the wrapper. 
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_team_awards</span><span class="op">(</span>team_id <span class="op">=</span> <span class="fl">61</span>, year <span class="op">=</span> <span class="fl">2023</span>,</span></span>
 <span class="r-in"><span>                           team_detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team awards from ESPN ───────────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 17:41:16 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 18:00:16 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season team_id award_id award_name award_description athlete_id winner_team_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>

@@ -13,7 +13,8 @@ cfbd_playoffs_cfp_participants(year, proxy = NULL)
 
 - year:
 
-  (*Integer* required): Season, 4 digits (YYYY).
+  (*Integer* required): Season, 4 digits (YYYY).  
+  Minimum value accepted: 2014
 
 - proxy:
 
@@ -54,7 +55,7 @@ Other CFBD Playoff Functions:
 # \donttest{
   try(cfbd_playoffs_cfp_participants(year = 2024))
 #> ── Get College Football Playoff participants from CollegeFootballData.com ──────
-#> ℹ Data updated: 2026-08-19 17:37:44 UTC
+#> ℹ Data updated: 2026-08-19 17:55:32 UTC
 #> # A tibble: 12 × 12
 #>    committee_rank  seed bid_type  qualification_reason       conference_champion
 #>             <int> <int> <chr>     <chr>                      <lgl>              

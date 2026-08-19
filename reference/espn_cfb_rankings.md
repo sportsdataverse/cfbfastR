@@ -14,7 +14,8 @@ espn_cfb_rankings(year = NULL)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2000
 
 ## Value
 
@@ -118,7 +119,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_rankings(year = 2024))
 #> ── Ranking sources from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:28 UTC
+#> ℹ Data updated: 2026-08-19 17:59:07 UTC
 #> # A tibble: 7 × 7
 #>   season ranking_id name                short_name type  n_snapshots ranking_ref
 #>    <int> <chr>      <chr>               <chr>      <chr>       <int> <chr>      

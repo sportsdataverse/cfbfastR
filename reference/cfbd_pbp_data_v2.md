@@ -27,7 +27,8 @@ cfbd_pbp_data_v2(
 
 - year:
 
-  (*Numeric* required): Season year (e.g. `2024`).
+  (*Numeric* required): Season year (e.g. `2024`).  
+  Minimum value accepted: 2001
 
 - season_type:
 

@@ -18,7 +18,8 @@ espn_cfb_coach_record(coach_id = NULL, year = NULL, season_type = 2)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2001
 
 - season_type:
 
@@ -135,7 +136,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_coach_record(coach_id = 5120149, year = 2024))
 #> ── Coach season record from ESPN ───────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:39 UTC
+#> ℹ Data updated: 2026-08-19 17:56:36 UTC
 #> # A tibble: 5 × 15
 #>   coach_id season season_type record_id record_name   record_type record_summary
 #>   <chr>     <int>       <int> <chr>     <chr>         <chr>       <chr>         

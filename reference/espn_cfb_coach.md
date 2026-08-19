@@ -19,7 +19,8 @@ espn_cfb_coach(coach_id = NULL, year = NULL, team_detail = TRUE)
 - year:
 
   (*Integer* required): Season, 4 digit format (*YYYY*). Used to resolve
-  the team the coach led that season.
+  the team the coach led that season.  
+  Minimum value accepted: 2001
 
 - team_detail:
 
@@ -147,7 +148,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_coach(coach_id = 5120149, year = 2024))
 #> ── Coach detail from ESPN ──────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:38 UTC
+#> ℹ Data updated: 2026-08-19 17:56:36 UTC
 #> # A tibble: 1 × 20
 #>   coach_id season first_name last_name uid   team_id team_name team_abbreviation
 #>   <chr>     <int> <chr>      <chr>     <chr> <chr>   <chr>     <chr>            
@@ -159,7 +160,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>, person_ref <chr>
   try(espn_cfb_coach(coach_id = 5120149, year = 2024, team_detail = FALSE))
 #> ── Coach detail from ESPN ──────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:38 UTC
+#> ℹ Data updated: 2026-08-19 17:56:36 UTC
 #> # A tibble: 1 × 10
 #>   coach_id season first_name last_name uid              team_id n_career_records
 #>   <chr>     <int> <chr>      <chr>     <chr>            <chr>              <int>

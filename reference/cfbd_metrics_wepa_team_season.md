@@ -13,7 +13,8 @@ cfbd_metrics_wepa_team_season(year = NULL, team = NULL, conference = NULL)
 
 - year:
 
-  (*Integer* required): Year, 4 digit format (*YYYY*)
+  (*Integer* required): Year, 4 digit format (*YYYY*)  
+  Minimum value accepted: 2008
 
 - team:
 
@@ -81,7 +82,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_team_season(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted team season PPA data from CollegeFootballData.com ─────────
-#> ℹ Data updated: 2026-08-19 17:35:30 UTC
+#> ℹ Data updated: 2026-08-19 17:52:35 UTC
 #> # A tibble: 1 × 26
 #>    year team_id team  conference explosiveness explosiveness_allowed epa_total
 #>   <int>   <int> <chr> <chr>              <dbl>                 <dbl>     <dbl>

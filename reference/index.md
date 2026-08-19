@@ -1171,6 +1171,7 @@ Data included within the package
 
 - [`cfbd_play_type_df`](https://cfbfastR.sportsdataverse.org/reference/data.md)
   [`cfbd_conf_types_df`](https://cfbfastR.sportsdataverse.org/reference/data.md)
+  [`min_year_map_df`](https://cfbfastR.sportsdataverse.org/reference/data.md)
   :
 
   **Data in the package for reference**

@@ -148,7 +148,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_powerindex(game_id = 401628339))
 #> ── Game power index data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:39:44 UTC
+#> ℹ Data updated: 2026-08-19 17:58:11 UTC
 #> # A tibble: 8 × 22
 #>   game_id   season team_id team_name     team_abbreviation team_location 
 #>   <chr>      <int> <chr>   <chr>         <chr>             <chr>         
@@ -168,7 +168,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_game_powerindex(game_id = 401628339, team_detail = FALSE))
 #> ── Game power index data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:39:45 UTC
+#> ℹ Data updated: 2026-08-19 17:58:12 UTC
 #> # A tibble: 8 × 12
 #>   game_id  season team_id stat_name abbreviation display_name short_display_name
 #>   <chr>     <int> <chr>   <chr>     <chr>        <chr>        <chr>             

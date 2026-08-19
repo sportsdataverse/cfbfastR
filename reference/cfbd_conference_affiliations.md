@@ -29,7 +29,8 @@ cfbd_conference_affiliations(
 
 - year:
 
-  (*Integer* optional): Season, 4 digits (YYYY).
+  (*Integer* optional): Season, 4 digits (YYYY).  
+  Minimum value accepted: 1869
 
 - min_year:
 
@@ -80,7 +81,7 @@ Other CFBD Conference Functions:
 # \donttest{
   try(cfbd_conference_affiliations(team = "Georgia"))
 #> ── Get conference affiliations by team and season from CollegeFootballData.com ─
-#> ℹ Data updated: 2026-08-19 17:34:59 UTC
+#> ℹ Data updated: 2026-08-19 17:52:07 UTC
 #> # A tibble: 9 × 9
 #>   team_id team    conference_id conference conference_abbreviat…¹ classification
 #>     <int> <chr>           <int> <chr>      <chr>                  <chr>         

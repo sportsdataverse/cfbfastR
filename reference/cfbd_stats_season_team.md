@@ -20,7 +20,8 @@ cfbd_stats_season_team(
 
 - year:
 
-  (*Integer* required): Year, 4 digit format (*YYYY*)
+  (*Integer* required): Year, 4 digit format (*YYYY*)  
+  Minimum value accepted: 1869
 
 - season_type:
 
@@ -122,7 +123,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8))
 #> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:20 UTC
+#> ℹ Data updated: 2026-08-19 17:56:12 UTC
 #> # A tibble: 10 × 32
 #>    season team          conference games time_of_poss_total pass_comps pass_atts
 #>     <int> <chr>         <chr>      <int>              <int>      <int>     <int>
@@ -146,7 +147,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_team(2019, team = "LSU"))
 #> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:21 UTC
+#> ℹ Data updated: 2026-08-19 17:56:14 UTC
 #> # A tibble: 1 × 32
 #>   season team  conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr> <chr>      <int>              <int>      <int>     <int>
@@ -161,7 +162,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_team(2013, team = "Florida State"))
 #> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:22 UTC
+#> ℹ Data updated: 2026-08-19 17:56:15 UTC
 #> # A tibble: 1 × 32
 #>   season team          conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr>         <chr>      <int>              <int>      <int>     <int>

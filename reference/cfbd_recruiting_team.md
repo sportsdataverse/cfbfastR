@@ -12,8 +12,9 @@ cfbd_recruiting_team(year = NULL, team = NULL)
 
 - year:
 
-  (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*) -
-  Minimum: 2000. Required if team not provided.
+  (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*)
+  Required if team not provided.  
+  Minimum value accepted: 2000
 
 - team:
 
@@ -45,7 +46,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_team(2018, team = "Texas"))
 #> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:57 UTC
+#> ℹ Data updated: 2026-08-19 17:55:48 UTC
 #> # A tibble: 1 × 4
 #>    year team   rank points
 #>   <int> <chr> <int>  <dbl>
@@ -53,7 +54,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_team(2016, team = "Virginia"))
 #> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:57 UTC
+#> ℹ Data updated: 2026-08-19 17:55:48 UTC
 #> # A tibble: 1 × 4
 #>    year team      rank points
 #>   <int> <chr>    <int>  <dbl>
@@ -61,7 +62,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_team(2016, team = "Texas A&M"))
 #> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:58 UTC
+#> ℹ Data updated: 2026-08-19 17:55:48 UTC
 #> # A tibble: 1 × 4
 #>    year team       rank points
 #>   <int> <chr>     <int>  <dbl>
@@ -69,7 +70,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_team(2011))
 #> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:58 UTC
+#> ℹ Data updated: 2026-08-19 17:55:49 UTC
 #> # A tibble: 137 × 4
 #>     year team           rank points
 #>    <int> <chr>         <int>  <dbl>

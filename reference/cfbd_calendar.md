@@ -12,7 +12,8 @@ cfbd_calendar(year)
 
 - year:
 
-  (*Integer* required): Year, 4 digit format (*YYYY*)
+  (*Integer* required): Year, 4 digit format (*YYYY*)  
+  Minimum value accepted: 2002
 
 ## Value
 
@@ -45,7 +46,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_calendar(2019))
 #> ── Calendar data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:34:55 UTC
+#> ℹ Data updated: 2026-08-19 17:52:02 UTC
 #> # A tibble: 17 × 5
 #>    season  week season_type first_game_start         last_game_start         
 #>     <int> <int> <chr>       <chr>                    <chr>                   

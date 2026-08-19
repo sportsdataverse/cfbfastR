@@ -17,7 +17,8 @@ espn_cfb_recruits(year = NULL, max_results = 100)
 - year:
 
   (*Integer* required): Recruiting class / signing year, 4 digit format
-  (*YYYY*).
+  (*YYYY*).  
+  Minimum value accepted: 2006
 
 - max_results:
 
@@ -168,7 +169,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_recruits(year = 2024, max_results = 25))
 #> ── Recruiting class data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:29 UTC
+#> ℹ Data updated: 2026-08-19 17:59:09 UTC
 #> # A tibble: 25 × 31
 #>    season recruit_id recruiting_class athlete_id alternate_athlete_id first_name
 #>     <dbl> <chr>                 <int> <chr>      <chr>                <chr>     

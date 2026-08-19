@@ -18,7 +18,8 @@ cfbd_metrics_wepa_players_passing(
 
 - year:
 
-  (*Integer* required): Year, 4 digit format (*YYYY*)
+  (*Integer* required): Year, 4 digit format (*YYYY*)  
+  Minimum value accepted: 2013
 
 - team:
 
@@ -79,7 +80,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_players_passing(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted players passing PPA data from CollegeFootballData.com ─────
-#> ℹ Data updated: 2026-08-19 17:35:28 UTC
+#> ℹ Data updated: 2026-08-19 17:52:34 UTC
 #> # A tibble: 1 × 8
 #>    year athlete_id athlete_name position team  conference  wepa plays
 #>   <int> <chr>      <chr>        <chr>    <chr> <chr>      <dbl> <int>

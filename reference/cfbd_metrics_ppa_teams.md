@@ -19,7 +19,8 @@ cfbd_metrics_ppa_teams(
 - year:
 
   (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team
-  not provided
+  not provided  
+  Minimum value accepted: 2001
 
 - team:
 
@@ -92,7 +93,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
 #> ── Team PPA data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:35:27 UTC
+#> ℹ Data updated: 2026-08-19 17:52:32 UTC
 #> # A tibble: 1 × 21
 #>   season conference team  off_overall off_passing off_rushing off_first_down
 #>    <int> <chr>      <chr>       <dbl>       <dbl>       <dbl>          <dbl>

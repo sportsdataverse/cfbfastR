@@ -34,7 +34,8 @@ cfbd_player_info(search_term, position = NULL, team = NULL, year = NULL)
 
   (*Integer* optional): Year, 4 digit format (*YYYY*). If left NULL, API
   default will only provide results for most recent year of final
-  rosters: 2020
+  rosters: 2020  
+  Minimum value accepted: 2004
 
 ## Value
 
@@ -68,7 +69,7 @@ Other CFBD Players:
 # \donttest{
   try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
 #> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:40 UTC
+#> ℹ Data updated: 2026-08-19 17:55:24 UTC
 #> # A tibble: 1 × 15
 #>   athlete_id team       name  first_name last_name weight height jersey position
 #>   <chr>      <chr>      <chr> <chr>      <chr>      <int>  <int>  <int> <chr>   
@@ -79,7 +80,7 @@ Other CFBD Players:
 
   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
 #> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:41 UTC
+#> ℹ Data updated: 2026-08-19 17:55:25 UTC
 #> # A tibble: 2 × 15
 #>   athlete_id team    name     first_name last_name weight height jersey position
 #>   <chr>      <chr>   <chr>    <chr>      <chr>      <int>  <int>  <int> <chr>   

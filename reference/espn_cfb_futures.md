@@ -14,7 +14,8 @@ espn_cfb_futures(year = NULL)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2014
 
 ## Value
 
@@ -125,7 +126,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_futures(year = 2024))
 #> ── Betting futures data from ESPN ──────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:39:03 UTC
+#> ℹ Data updated: 2026-08-19 17:57:10 UTC
 #> # A tibble: 916 × 12
 #>    season market_id market_name           market_type market_display provider_id
 #>     <int> <chr>     <chr>                 <chr>       <chr>          <chr>      

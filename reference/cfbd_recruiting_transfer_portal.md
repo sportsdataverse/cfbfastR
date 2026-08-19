@@ -14,7 +14,8 @@ cfbd_recruiting_transfer_portal(year)
 
   (*Integer* required): Year of the offseason (2021 would return
   transfer portal data starting from the end of the 2020 season), 4
-  digit format (*YYYY*).
+  digit format (*YYYY*).  
+  Minimum value accepted: 2021
 
 ## Value
 
@@ -47,7 +48,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_transfer_portal(year = 2021))
 #> ── Transfer portal data from CollegeFootballData.com ───────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:59 UTC
+#> ℹ Data updated: 2026-08-19 17:55:49 UTC
 #> # A tibble: 1,770 × 10
 #>    season first_name last_name   position origin destination transfer_date      
 #>     <int> <chr>      <chr>       <chr>    <chr>  <chr>       <dttm>             

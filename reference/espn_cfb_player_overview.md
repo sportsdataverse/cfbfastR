@@ -18,7 +18,8 @@ espn_cfb_player_overview(athlete_id = NULL, year = NULL, athlete_detail = TRUE)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2004
 
 - athlete_detail:
 
@@ -147,7 +148,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_overview(athlete_id = 102597, year = 2024))
 #> ── Player statistics overview from ESPN ────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:10 UTC
+#> ℹ Data updated: 2026-08-19 17:58:43 UTC
 #> # A tibble: 5 × 24
 #>   athlete_id season stat_season completions passing_attempts completion_pct
 #>   <chr>       <int> <chr>       <chr>       <chr>            <chr>         
@@ -166,7 +167,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_player_overview(athlete_id = 102597, year = 2024,
                                athlete_detail = FALSE))
 #> ── Player statistics overview from ESPN ────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:10 UTC
+#> ℹ Data updated: 2026-08-19 17:58:43 UTC
 #> # A tibble: 5 × 18
 #>   athlete_id season stat_season completions passing_attempts completion_pct
 #>   <chr>       <int> <chr>       <chr>       <chr>            <chr>         

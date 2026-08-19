@@ -22,7 +22,8 @@ espn_cfb_players(
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 1936
 
 - page:
 
@@ -165,7 +166,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1))
 #> ── Players index from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:14 UTC
+#> ℹ Data updated: 2026-08-19 17:58:48 UTC
 #> # A tibble: 100 × 6
 #>    season athlete_id athlete_ref                          page page_count  count
 #>     <int> <chr>      <chr>                               <int>      <int>  <int>
@@ -183,7 +184,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1, limit = 5,
                        athlete_detail = TRUE))
 #> ── Players index from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:14 UTC
+#> ℹ Data updated: 2026-08-19 17:58:48 UTC
 #> # A tibble: 5 × 12
 #>   season athlete_id athlete_ref      page page_count  count athlete_display_name
 #>    <int> <chr>      <chr>           <int>      <int>  <int> <chr>               

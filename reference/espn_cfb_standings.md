@@ -20,7 +20,8 @@ espn_cfb_standings(
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2001
 
 - group_id:
 
@@ -170,7 +171,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_standings(year = 2024))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:59 UTC
+#> ℹ Data updated: 2026-08-19 17:59:49 UTC
 #> # A tibble: 36,892 × 23
 #>    season season_type group_id team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>    <chr>   <chr>     <chr>             <chr>        
@@ -193,7 +194,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_standings(year = 2024, team_detail = FALSE))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:41:14 UTC
+#> ℹ Data updated: 2026-08-19 18:00:13 UTC
 #> # A tibble: 36,892 × 13
 #>    season season_type group_id team_id record_type record_name record_summary
 #>     <int>       <int> <chr>    <chr>   <chr>       <chr>       <chr>         

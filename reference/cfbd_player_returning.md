@@ -17,7 +17,8 @@ cfbd_player_returning(
 - year:
 
   (*Integer* required, default most recent season): Year, 4 digit format
-  (*YYYY*).
+  (*YYYY*).  
+  Minimum value accepted: 2014
 
 - team:
 
@@ -65,7 +66,7 @@ Other CFBD Players:
 # \donttest{
    try(cfbd_player_returning(year = 2019, team = "Florida State"))
 #> ── Returning production data from CollegeFootballData.com ──── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:41 UTC
+#> ℹ Data updated: 2026-08-19 17:55:25 UTC
 #> # A tibble: 1 × 15
 #>   season team         conference total_ppa total_passing_ppa total_receiving_ppa
 #>    <int> <chr>        <chr>          <dbl>             <dbl>               <dbl>

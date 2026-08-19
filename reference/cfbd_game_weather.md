@@ -19,7 +19,8 @@ cfbd_game_weather(
 
 - year:
 
-  (*Integer* required): Year, 4 digit format(*YYYY*)
+  (*Integer* required): Year, 4 digit format(*YYYY*)  
+  Minimum value accepted: 2001
 
 - week:
 

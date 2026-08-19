@@ -119,7 +119,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_position(position_id = 8))
 #> ── Position detail from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:14 UTC
+#> ℹ Data updated: 2026-08-19 17:58:49 UTC
 #> # A tibble: 1 × 7
 #>   position_id name        display_name abbreviation leaf  parent_id position_ref
 #>   <chr>       <chr>       <chr>        <chr>        <lgl> <chr>     <chr>       

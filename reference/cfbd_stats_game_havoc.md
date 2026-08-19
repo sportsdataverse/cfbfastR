@@ -24,7 +24,8 @@ cfbd_stats_game_havoc(
 - year:
 
   (*Integer* optional): Year, 4 digit format (*YYYY*). Required if
-  `team` is not specified.
+  `team` is not specified.  
+  Minimum value accepted: 2004
 
 - team:
 
@@ -89,7 +90,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_game_havoc(year = 2023, team = "Georgia"))
 #> ── Game havoc stats from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:02 UTC
+#> ℹ Data updated: 2026-08-19 17:55:53 UTC
 #> # A tibble: 14 × 22
 #>      game_id season season_type  week team    conference opponent      
 #>        <int>  <int> <chr>       <int> <chr>   <chr>      <chr>         
@@ -117,7 +118,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_havoc(2022, week = 1))
 #> ── Game havoc stats from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:02 UTC
+#> ℹ Data updated: 2026-08-19 17:55:53 UTC
 #> # A tibble: 273 × 22
 #>      game_id season season_type  week team       conference opponent  
 #>        <int>  <int> <chr>       <int> <chr>      <chr>      <chr>     

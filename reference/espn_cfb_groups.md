@@ -14,7 +14,8 @@ espn_cfb_groups(year = NULL, season_type = 2)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2001
 
 - season_type:
 
@@ -130,7 +131,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_groups(year = 2024))
 #> ── Groups and conferences from ESPN ────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:39:58 UTC
+#> ℹ Data updated: 2026-08-19 17:58:28 UTC
 #> # A tibble: 78 × 12
 #>    season season_type group_id name        abbreviation short_name is_conference
 #>     <int>       <int> <chr>    <chr>       <chr>        <chr>      <lgl>        

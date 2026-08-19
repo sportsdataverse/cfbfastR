@@ -13,7 +13,8 @@ cfbd_conference_changes(year, proxy = NULL)
 
 - year:
 
-  (*Integer* required): Season, 4 digits (YYYY).
+  (*Integer* required): Season, 4 digits (YYYY).  
+  Minimum value accepted: 1887
 
 - proxy:
 
@@ -53,7 +54,7 @@ Other CFBD Conference Functions:
 # \donttest{
   try(cfbd_conference_changes(year = 2024))
 #> ── Get conference realignment changes from CollegeFootballData.com ─────────────
-#> ℹ Data updated: 2026-08-19 17:35:00 UTC
+#> ℹ Data updated: 2026-08-19 17:52:08 UTC
 #> # A tibble: 36 × 11
 #>    team_id team        from_conference_id from_conference from_conference_abbr…¹
 #>      <int> <chr>                    <int> <chr>           <chr>                 

@@ -23,7 +23,8 @@ espn_cfb_team_leaders(
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2004
 
 - season_type:
 
@@ -161,7 +162,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_leaders(team_id = 61, year = 2024))
 #> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:41:18 UTC
+#> ℹ Data updated: 2026-08-19 18:00:18 UTC
 #> # A tibble: 176 × 20
 #>    season season_type team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>   <chr>     <chr>             <chr>        
@@ -184,7 +185,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_leaders(team_id = 61, year = 2024,
                             team_detail = FALSE))
 #> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:41:18 UTC
+#> ℹ Data updated: 2026-08-19 18:00:18 UTC
 #> # A tibble: 176 × 10
 #>    season season_type team_id category_name category_display leader_rank
 #>     <int>       <int> <chr>   <chr>         <chr>                  <int>

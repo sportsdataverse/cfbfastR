@@ -14,7 +14,8 @@ espn_cfb_powerindex(year = NULL)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 2005
 
 ## Value
 
@@ -123,7 +124,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_powerindex(year = 2024))
 #> ── Power Index data from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:20 UTC
+#> ℹ Data updated: 2026-08-19 17:58:57 UTC
 #> # A tibble: 5,762 × 10
 #>    season team_id team_ref      metric_group stat_name abbreviation display_name
 #>     <int> <chr>   <chr>         <chr>        <chr>     <chr>        <chr>       

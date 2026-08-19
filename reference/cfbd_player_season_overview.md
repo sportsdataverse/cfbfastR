@@ -12,7 +12,8 @@ cfbd_player_season_overview(year, athlete_id, proxy = NULL)
 
 - year:
 
-  (*Integer* required): Season, 4 digits (YYYY).
+  (*Integer* required): Season, 4 digits (YYYY).  
+  Minimum value accepted: 2004
 
 - athlete_id:
 
@@ -70,7 +71,7 @@ cfbd_player_season_overview(year, athlete_id, proxy = NULL)
 # \donttest{
   try(cfbd_player_season_overview(year = 2024, athlete_id = 4429105))
 #> ── Get a player season overview from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-08-19 17:37:42 UTC
+#> ℹ Data updated: 2026-08-19 17:55:27 UTC
 #> # A tibble: 1 × 31
 #>   season id      name   position team  conference games usage_overall usage_pass
 #>    <int> <chr>   <chr>  <chr>    <chr> <chr>      <int>         <dbl>      <dbl>

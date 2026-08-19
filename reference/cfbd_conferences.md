@@ -21,7 +21,8 @@ cfbd_conferences(year = NULL, division = NULL)
 
 - year:
 
-  (*Integer* optional): Season filter, 4 digits (YYYY).
+  (*Integer* optional): Season filter, 4 digits (YYYY).  
+  Minimum value accepted: 1869
 
 - division:
 
@@ -67,7 +68,7 @@ Other CFBD Conference Functions:
 # \donttest{
   try(cfbd_conferences())
 #> ── Conference data from CollegeFootballData.com ────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:35:01 UTC
+#> ℹ Data updated: 2026-08-19 17:52:08 UTC
 #> # A tibble: 256 × 6
 #>    conference_id name         long_name abbreviation classification member_count
 #>            <int> <chr>        <chr>     <chr>        <chr>                 <int>

@@ -16,7 +16,8 @@ espn_cfb_team_stats(team_id, year, season_type = "regular", total = FALSE)
 
 - year:
 
-  Year
+  Year  
+  Minimum value accepted: 2004
 
 - season_type:
 
@@ -334,7 +335,7 @@ Saiem Gilani
 # \donttest{
   try(espn_cfb_team_stats(team_id = 52, year = 2020))
 #> ── CFB Team Season stats from ESPN.com ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:41:47 UTC
+#> ℹ Data updated: 2026-08-19 18:00:57 UTC
 #> # A tibble: 1 × 378
 #>   season season_type team_id team_guid team_uid team_sdr team_slug team_location
 #>    <dbl> <chr>       <chr>   <chr>     <chr>    <chr>    <chr>     <chr>        

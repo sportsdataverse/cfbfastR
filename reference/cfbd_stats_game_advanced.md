@@ -19,7 +19,8 @@ cfbd_stats_game_advanced(
 
 - year:
 
-  (*Integer* required): Year, 4 digit format(*YYYY*)
+  (*Integer* required): Year, 4 digit format(*YYYY*)  
+  Minimum value accepted: 2001
 
 - week:
 
@@ -128,7 +129,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M"))
 #> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:01 UTC
+#> ℹ Data updated: 2026-08-19 17:55:51 UTC
 #> # A tibble: 1 × 62
 #>     game_id season season_type  week team  opponent off_plays off_drives off_ppa
 #>       <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>   <dbl>
@@ -143,7 +144,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_advanced(2019, team = "LSU"))
 #> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:01 UTC
+#> ℹ Data updated: 2026-08-19 17:55:52 UTC
 #> # A tibble: 15 × 62
 #>     game_id season season_type  week team  opponent off_plays off_drives off_ppa
 #>       <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>   <dbl>
@@ -172,7 +173,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_advanced(2013, team = "Florida State"))
 #> ── Advanced game stats from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:38:01 UTC
+#> ℹ Data updated: 2026-08-19 17:55:52 UTC
 #> # A tibble: 14 × 62
 #>    game_id season season_type  week team  opponent off_plays off_drives  off_ppa
 #>      <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>    <dbl>

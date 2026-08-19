@@ -45,7 +45,8 @@ cfbd_coaches(
 
 - year:
 
-  (*Integer* optional): Year, 4 digit format (*YYYY*).
+  (*Integer* optional): Year, 4 digit format (*YYYY*).  
+  Minimum value accepted: 1886
 
 - min_year:
 
@@ -111,7 +112,7 @@ Other CFBD Coaches Functions:
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 #> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:34:55 UTC
+#> ℹ Data updated: 2026-08-19 17:52:03 UTC
 #> # A tibble: 126 × 19
 #>       id first_name last_name   hire_date team_id school  conference  year games
 #>    <int> <chr>      <chr>       <chr>       <int> <chr>   <chr>      <int> <int>

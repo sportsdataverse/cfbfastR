@@ -13,7 +13,8 @@ espn_cfb_season_weeks(year = NULL, season_type = 2)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  (*Integer* required): Season, 4 digit format (*YYYY*).  
+  Minimum value accepted: 1999
 
 - season_type:
 
@@ -122,7 +123,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_season_weeks(year = 2024))
 #> ── Season weeks from ESPN ──────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:40:34 UTC
+#> ℹ Data updated: 2026-08-19 17:59:14 UTC
 #> # A tibble: 16 × 7
 #>    season season_type  week text    start_date        end_date          week_ref
 #>     <int>       <int> <int> <chr>   <chr>             <chr>             <chr>   

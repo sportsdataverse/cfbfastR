@@ -24,7 +24,8 @@ cfbd_stats_player_success(
 
 - year:
 
-  (*Integer* optional): Season, 4 digits (YYYY).
+  (*Integer* optional): Season, 4 digits (YYYY).  
+  Minimum value accepted: 2013
 
 - conference:
 
@@ -97,7 +98,7 @@ Other CFBD Stats Functions:
 # \donttest{
   try(cfbd_stats_player_success(year = 2024, team = "Georgia"))
 #> ── Get player success rates by season from CollegeFootballData.com ─────────────
-#> ℹ Data updated: 2026-08-19 17:38:03 UTC
+#> ℹ Data updated: 2026-08-19 17:55:54 UTC
 #> # A tibble: 17 × 12
 #>    season id     name  position team  conference passing_plays passing_successes
 #>     <int> <chr>  <chr> <chr>    <chr> <chr>              <int>             <int>

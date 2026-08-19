@@ -14,7 +14,8 @@ cfbd_ratings_srs(year = NULL, team = NULL, conference = NULL)
 - year:
 
   (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team
-  not provided
+  not provided  
+  Minimum value accepted: 1897
 
 - team:
 
@@ -56,7 +57,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_srs(year = 2019, team = "Texas"))
 #> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:54 UTC
+#> ℹ Data updated: 2026-08-19 17:55:44 UTC
 #> # A tibble: 1 × 6
 #>    year team  conference division ranking rating
 #>   <int> <chr> <chr>      <lgl>      <int>  <dbl>
@@ -64,7 +65,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_srs(year = 2018, conference = "SEC"))
 #> ── SRS data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:54 UTC
+#> ℹ Data updated: 2026-08-19 17:55:44 UTC
 #> # A tibble: 14 × 6
 #>     year team              conference division ranking rating
 #>    <int> <chr>             <chr>      <chr>      <int>  <dbl>

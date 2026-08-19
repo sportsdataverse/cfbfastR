@@ -19,7 +19,8 @@ cfbd_ratings_srs_expanded(
 
 - year:
 
-  (*Integer* optional): Season, 4 digits (YYYY).
+  (*Integer* optional): Season, 4 digits (YYYY).  
+  Minimum value accepted: 2003
 
 - team:
 
@@ -67,7 +68,7 @@ Other CFBD Ratings Functions:
 # \donttest{
   try(cfbd_ratings_srs_expanded(year = 2024))
 #> ── Get expanded SRS ratings from CollegeFootballData.com ───── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:37:54 UTC
+#> ℹ Data updated: 2026-08-19 17:55:44 UTC
 #> # A tibble: 264 × 7
 #>     year team           classification conference       division ranking rating
 #>    <int> <chr>          <chr>          <chr>            <chr>      <int>  <dbl>
