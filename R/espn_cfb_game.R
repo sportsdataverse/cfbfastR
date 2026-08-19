@@ -6620,6 +6620,25 @@ espn_cfb_pbp_v2 <- function(game_id,
       }
 
       # --- epa_wpa = TRUE: adapter -> shared engine ----------------------
+      # Refuse to model an obviously malformed feed. A truncated game still
+      # models cleanly -- it produces EPA, drive results and a box score that
+      # all look reasonable and are all wrong -- and nothing downstream can tell
+      # that from a real blowout with a short game script, so the check belongs
+      # here or nowhere. `completed` is inferred from the frame rather than
+      # fetched: a feed that reached the end of the game contains the play that
+      # says so.
+      completed <- any(grepl("^End of Game$",
+                             plays_df$type_text %||% character(0)))
+      if (.pbp_corrupt_check(plays_df, completed = completed)) {
+        cli::cli_alert_warning(
+          "Play-by-play for game {game_id} looks incomplete
+           ({nrow(plays_df)} play{?s}); skipping EPA/WPA modeling."
+        )
+        return(plays_df |> make_cfbfastR_data(
+          "Play-by-play data from ESPN (core-v2)", Sys.time()
+        ))
+      }
+
       # The one deliberate extra request, and only when asked for. One payload
       # buys two things: ESPN's FULL athlete names (the core-v2 roster renders
       # them short -- "J. Mitchell" -- which is both a parity divergence and a

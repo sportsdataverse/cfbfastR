@@ -47,6 +47,13 @@
   "is_turnover", "espn_is_turnover", "turnover_team", "is_st_turnover",
   "is_blocked_punt_turnover", "is_blocked_fg_turnover",
   "penalized_team", "penalty_team_id", "penalty_yards_signed",
+  # Air yards + the play-text descriptors (helper_pbp_air_yards.R). "default"
+  # tier: air_yards / yards_after_catch split a completion into the throw and
+  # the run after it, which is the basic unit of passing analysis and cfbfastR
+  # had neither half. Thin by nature -- ESPN only annotates the catch point on
+  # recent seasons -- but null-where-absent, not wrong.
+  "air_yardsToEndzone", "air_yards", "yards_after_catch",
+  "pass_depth", "pass_direction", "rush_direction", "qb_hurry",
   # series_columns
   "new_series", "firstD_by_kickoff", "firstD_by_poss",
   "firstD_by_penalty", "firstD_by_yards",

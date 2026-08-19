@@ -1,3 +1,35 @@
+#' Refuse to model a play-by-play feed that is obviously malformed
+#'
+#' @description Ported from sdv-py's `CFBPlayProcess.corrupt_pbp_check`. Three
+#'   heuristics that historically mean ESPN delivered a broken payload: no plays
+#'   at all, implausibly few plays for a game that has finished, or implausibly
+#'   many.
+#'
+#' @details The value of this is entirely in *not* publishing. A game with 12
+#'   plays still models cleanly -- it produces EPA, drive results and a box score
+#'   that all look reasonable and are all wrong, because the feed was truncated.
+#'   Downstream there is nothing to distinguish that from a real blowout with a
+#'   short game script, so the check has to happen here or not at all.
+#'
+#'   `completed` gates the two count-based rules deliberately. A game in
+#'   progress legitimately has few plays, and rejecting it would turn a live feed
+#'   into an error. When the state is unknown (`NA`) only the zero-play rule
+#'   applies -- the conservative reading, since that one is malformed at any
+#'   point in a game.
+#'
+#' @param play_df (*data.frame* required): the parsed plays frame.
+#' @param completed (*logical* optional): whether the game has finished. `NA`
+#'   (default) means unknown.
+#' @return `TRUE` when the feed looks corrupt and should not be modeled.
+#' @keywords internal
+#' @noRd
+.pbp_corrupt_check <- function(play_df, completed = NA) {
+  n <- if (is.data.frame(play_df)) nrow(play_df) else 0L
+  if (n == 0L) return(TRUE)
+  if (!isTRUE(completed)) return(FALSE)
+  n < 50L || n > 500L
+}
+
 #' Modular PBP -- run the EPA/WPA pipeline for a single game
 #'
 #' The 10-stage chain extracted from the legacy entry points
@@ -47,7 +79,12 @@
     .pbp_clean_pbp_dat() |>
     .pbp_clean_drive_dat() |>
     add_yardage() |>
+    # Air yards needs the possessing/defending team ids to side the catch-point
+    # abbreviation, so it sits after .pbp_add_play_counts() and before the name
+    # extraction -- the same position it holds in sdv-py.
+    .pbp_add_air_yards_cols() |>
     add_player_cols() |>
+    .pbp_add_pass_direction_cols() |>
     # ESPN's own participants[] names overwrite the regex captures BEFORE the
     # ids are resolved, not after: the whole point is to hand the roster matcher
     # a clean key ("Rod Smith 3 Yd" -> "Rod Smith") instead of asking it to

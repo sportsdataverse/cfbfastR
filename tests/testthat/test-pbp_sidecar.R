@@ -85,3 +85,38 @@ test_that("resolve_names rejects a non-scalar-logical", {
   expect_error(espn_cfb_pbp_v2(1, resolve_names = c(TRUE, TRUE)),
                "must be a single")
 })
+
+### corrupt_pbp_check -- ported from sdv-py's CFBPlayProcess.corrupt_pbp_check.
+
+test_that("an empty play feed is always rejected", {
+  # Zero plays is malformed at any point in a game, so this rule does not wait
+  # for the completed flag.
+  empty <- data.frame(type_text = character(0), stringsAsFactors = FALSE)
+  expect_true(.pbp_corrupt_check(empty, completed = TRUE))
+  expect_true(.pbp_corrupt_check(empty, completed = FALSE))
+  expect_true(.pbp_corrupt_check(empty, completed = NA))
+  expect_true(.pbp_corrupt_check(NULL))
+})
+
+test_that("the count rules only apply to a completed game", {
+  short <- data.frame(x = seq_len(12))
+  long  <- data.frame(x = seq_len(600))
+  ok    <- data.frame(x = seq_len(160))
+
+  # A game in progress legitimately has few plays; rejecting it would turn a
+  # live feed into an error.
+  expect_false(.pbp_corrupt_check(short, completed = FALSE))
+  expect_false(.pbp_corrupt_check(short, completed = NA))
+  expect_true(.pbp_corrupt_check(short, completed = TRUE))
+  expect_true(.pbp_corrupt_check(long, completed = TRUE))
+  expect_false(.pbp_corrupt_check(ok, completed = TRUE))
+})
+
+test_that("the boundaries are exactly 50 and 500", {
+  # A truncated game models cleanly and looks reasonable, so the thresholds are
+  # the only thing standing between a broken feed and a published one.
+  expect_true(.pbp_corrupt_check(data.frame(x = seq_len(49)), completed = TRUE))
+  expect_false(.pbp_corrupt_check(data.frame(x = seq_len(50)), completed = TRUE))
+  expect_false(.pbp_corrupt_check(data.frame(x = seq_len(500)), completed = TRUE))
+  expect_true(.pbp_corrupt_check(data.frame(x = seq_len(501)), completed = TRUE))
+})

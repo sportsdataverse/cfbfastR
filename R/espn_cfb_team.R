@@ -2733,11 +2733,15 @@ espn_cfb_teams <- function() {
     "college-football/teams?limit=900"
   )
 
+  # No `User-Agent`. site.api.espn.com now returns HTTP 403 for a spoofed
+  # browser UA -- measured 2026-08-19: this endpoint answers 200 with httr2's
+  # default UA, with `curl/8.5.0`, or with Accept/Origin/Referer and no UA at
+  # all, and 403 with the Chrome string (or any short UA such as "R"). The 403
+  # was silent: `espn_cfb_teams()` caught it, returned zero rows, and every
+  # consumer degraded to NA -- which took `home`/`away`, `pos_team`,
+  # `def_pos_team`, `offense_play`, `defense_play` and every team abbreviation
+  # on the ESPN play-by-play path down with it.
   headers <- c(
-    `User-Agent` = paste0(
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ",
-      "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
-    ),
     `Accept` = "application/json, text/plain, */*",
     `Origin` = "https://www.espn.com",
     `Referer` = "https://www.espn.com/"
