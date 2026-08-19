@@ -86,17 +86,39 @@
 )
 
 # ASCII-fold, lowercase, drop punctuation + generational suffixes, collapse
-# whitespace. Empty and the team sentinel return "" so they never match.
+# whitespace. Empty input returns "" so it never matches.
 #
-# The sentinel is matched CASE-INSENSITIVELY. ESPN writes it as "TEAM" on a
-# team-credited rush ("TEAM run for a loss of 2 yards"), and an exact-case test
-# lets it through to the surname tier, where it resolves to whichever roster
-# player the fallback happens to reach -- a wrong athlete on a play that had no
-# individual ball carrier at all.
+# The team sentinel ("TEAM run for a loss of 2 yards") is NOT blanked here. It
+# used to be, because with only a game roster to match against there is no
+# "team" record to hit exactly, so the sentinel fell through to the surname tier
+# and resolved to whichever roster player the fallback happened to reach -- a
+# wrong athlete on a play that had no individual ball carrier at all.
+#
+# ESPN's box score DOES carry the sentinel, as a negative athlete id (`-5154`,
+# name `" Team"`), which is the id sdv-py credits. So the rule is not "never
+# match" but "exact match only": the fuzzy tiers are withheld for it in
+# `match_one()`, leaving the exact tiers to hit when the box score is present
+# and to miss -- yielding NA, the old behaviour -- when it is not.
+#
+# The blank-out below is deliberately CASE-SENSITIVE and deliberately runs
+# before folding, mirroring sdv-py's `_norm_player_name`. This looks like a bug
+# and is load-bearing, so do not "fix" it: ESPN writes three different strings
+# and they mean different things.
+#
+#   "TEAM"  play-text sentinel on a team-credited rush -> resolves to the box
+#           score's team entry, which is the credit sdv-py assigns
+#   " Team" the box score's own label for that entry -> must normalise to the
+#           same key, or the match above cannot happen
+#   "Team"  a bare capture with no play-text or box-score provenance -> blanked,
+#           because there is nothing to say which team it belongs to
+#
+# Folding case here would collapse all three and credit the wrong side of the
+# ball on the fumble columns, where the team column is the defence.
 .norm_player_name <- function(x) {
-  out <- iconv(as.character(x), to = "ASCII//TRANSLIT")
+  x <- as.character(x)
+  out <- iconv(x, to = "ASCII//TRANSLIT")
   out <- tolower(trimws(out))
-  out[is.na(x) | !is.na(out) & out == "team"] <- ""
+  out[is.na(x) | (!is.na(x) & x == "Team")] <- ""
   out <- sub("\\.$", "", out)
   out <- gsub("\\b(jr|sr|ii|iii|iv|v)\\b\\.?", "", out)
   out <- gsub("[^a-z0-9 ]", "", out)
@@ -174,6 +196,9 @@
   match_one <- function(name, team_id, allow_fallback) {
     nn <- .norm_player_name(name)
     if (!nzchar(nn)) return(NA_character_)
+    # The team sentinel is exact-match-only: it has no surname to fall back on,
+    # and the fuzzy tiers would hand it an arbitrary player. See .norm_player_name.
+    if (identical(nn, "team")) allow_fallback <- FALSE
     tid <- as.character(team_id)
     hit <- lu(team_lu, paste(nn, tid, sep = "\r"))
     if (!is.na(hit)) return(hit)

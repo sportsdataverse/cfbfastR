@@ -6,16 +6,16 @@
 
 test_that("engine resolution follows per-call > option > default", {
   withr::local_options(list(cfbfastR.pbp_engine = NULL))
-  # Default stays legacy so an existing script is untouched until it opts in.
-  expect_equal(.pbp_engine(NULL), "legacy")
+  # v2 is the default as of this release; `legacy` is the escape hatch.
+  expect_equal(.pbp_engine(NULL), "v2")
   expect_equal(.pbp_engine("v2"), "v2")
   expect_equal(.pbp_engine("legacy"), "legacy")
 
-  withr::local_options(list(cfbfastR.pbp_engine = "v2"))
-  expect_equal(.pbp_engine(NULL), "v2")
-  # A per-call argument must beat the session option, or a user cannot pin one
-  # call back to legacy while the rest of the session is upgraded.
-  expect_equal(.pbp_engine("legacy"), "legacy")
+  withr::local_options(list(cfbfastR.pbp_engine = "legacy"))
+  expect_equal(.pbp_engine(NULL), "legacy")
+  # A per-call argument must beat the session option, or a user who pinned the
+  # whole session to legacy cannot upgrade a single call.
+  expect_equal(.pbp_engine("v2"), "v2")
 })
 
 test_that("auto tracks whatever this release considers current", {

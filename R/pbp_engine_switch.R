@@ -18,12 +18,14 @@
 #'   }
 #'
 #'   The per-call argument wins over the option; the option wins over the
-#'   default. The default is `"legacy"` today, so nothing changes for an existing
-#'   script until it opts in. It is intended to flip to `"v2"` in a future
-#'   release, which is why `"auto"` exists: `"auto"` means *whatever this version
-#'   of the package considers current*, so a caller who writes `engine = "auto"`
-#'   now is upgraded by the release that flips the default rather than by editing
-#'   their code again.
+#'   default. **The default is `"v2"` as of this release.** An existing script
+#'   keeps working and gains the new columns; a caller who needs the old frame
+#'   back has the escape hatch `engine = "legacy"`, per call or session-wide via
+#'   `options(cfbfastR.pbp_engine = "legacy")`.
+#'
+#'   `"auto"` means *whatever this version of the package considers current*, so
+#'   a caller who writes it is carried forward by future flips rather than by
+#'   editing their code again. It resolves to `"v2"` today.
 #'
 #'   Delegation is safe because `tests/testthat/test-pbp_equivalence.R` asserts
 #'   v2 reproduces the legacy frames column-for-column, with an explicit
@@ -41,7 +43,7 @@
   # a one-line change here plus the option default below.
   current <- "v2"
 
-  e <- engine %||% getOption("cfbfastR.pbp_engine", "legacy")
+  e <- engine %||% getOption("cfbfastR.pbp_engine", current)
   if (!is.character(e) || length(e) != 1L || !e %in% c("legacy", "v2", "auto")) {
     cli::cli_abort(c(
       "{.arg engine} must be one of {.val legacy}, {.val v2}, or {.val auto}.",
@@ -67,12 +69,13 @@
   if (isTRUE(.pbp_engine_nudge_state$warned)) return(invisible(NULL))
   .pbp_engine_nudge_state$warned <- TRUE
   cli::cli_inform(c(
-    "i" = "{.fn {fn}} is running the legacy play-by-play engine.",
-    "*" = "{.fn {v2_fn}} adds penalty enforcement resolution, roster-resolved
-           {.field *_player_id} columns and the {.arg output} tier selector.",
-    "*" = "Upgrade every call in this session with
-           {.code options(cfbfastR.pbp_engine = \"v2\")}, or this one with
-           {.code engine = \"v2\"}."
+    "i" = "{.fn {fn}} is running the legacy play-by-play engine, which is no
+           longer the default.",
+    "*" = "{.fn {v2_fn}} adds penalty enforcement resolution, ESPN-resolved
+           player names, {.field *_player_id} columns and the {.arg output}
+           tier selector.",
+    "*" = "Drop {.code engine = \"legacy\"} (or
+           {.code options(cfbfastR.pbp_engine = \"legacy\")}) to get it back."
   ))
   invisible(NULL)
 }

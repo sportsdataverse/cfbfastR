@@ -15,7 +15,8 @@
 .espn_memoised_helpers <- c(
   ".espn_cfb_team_lookup",
   ".espn_cfb_position_lookup",
-  ".espn_cfb_participant_roster"
+  ".espn_cfb_participant_roster",
+  ".espn_cfb_pbp_sidecar"
 )
 
 .onLoad <- function(libname, pkgname) {

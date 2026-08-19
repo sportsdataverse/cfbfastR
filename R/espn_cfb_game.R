@@ -6495,6 +6495,16 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #'   computation scratchpad. For dashboards / game logs.
 #' * `"full"` -- legacy behavior, drops only the player-name aliases.
 #'
+#' @param resolve_names (*Logical*): when `TRUE` (default) and
+#' `epa_wpa = TRUE`, spend **one extra request per game** on ESPN's play-by-play
+#' sidecar to (a) render participant names in full (`"Jalen Mitchell"` rather
+#' than the core-v2 roster's `"J. Mitchell"`) and (b) add the per-player box
+#' score as a second identity source, which is the only one available on the
+#' large share of games where ESPN 404s the roster resource. Memoised per
+#' `game_id`, so the two uses cost one request between them. Set `FALSE` for a
+#' bulk sweep that would rather have the short names than the requests. Ignored
+#' when `epa_wpa = FALSE`.
+#'
 #' @return A data frame with one row per play. When `epa_wpa = FALSE`, the
 #' assembled core-v2 play-by-play frame:
 #'
@@ -6532,8 +6542,16 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
 #'   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #' }
 espn_cfb_pbp_v2 <- function(game_id,
-                            epa_wpa = FALSE,
-                            output  = "default") {
+                            epa_wpa       = FALSE,
+                            output        = "default",
+                            resolve_names = TRUE) {
+  if (!is.logical(resolve_names) || length(resolve_names) != 1L ||
+      is.na(resolve_names)) {
+    cli::cli_abort(c(
+      "{.arg resolve_names} must be a single {.code TRUE} or {.code FALSE}.",
+      x = "You supplied {.val {resolve_names}}."
+    ))
+  }
   if (!is.character(output) || length(output) != 1L ||
       !output %in% c("default", "lean", "full")) {
     cli::cli_abort(c(
@@ -6602,6 +6620,25 @@ espn_cfb_pbp_v2 <- function(game_id,
       }
 
       # --- epa_wpa = TRUE: adapter -> shared engine ----------------------
+      # The one deliberate extra request, and only when asked for. One payload
+      # buys two things: ESPN's FULL athlete names (the core-v2 roster renders
+      # them short -- "J. Mitchell" -- which is both a parity divergence and a
+      # weaker key for id resolution) and the box-score identity records that
+      # cover the games where ESPN 404s the roster resource.
+      #
+      # It runs BEFORE `context_df` is taken because the participant name
+      # columns live on the context frame, and the join below keeps the context
+      # copy of any column the engine also produces. Expanding after the split
+      # would improve the modeled frame and then discard it.
+      sidecar <- if (isTRUE(resolve_names)) {
+        .espn_cfb_pbp_sidecar(game_id)
+      } else {
+        NULL
+      }
+      if (!is.null(sidecar)) {
+        plays_df <- .espn_cfb_expand_participant_names(plays_df, sidecar$names)
+      }
+
       context_df <- plays_df
 
       adapter <- plays_df |>
@@ -6638,11 +6675,10 @@ espn_cfb_pbp_v2 <- function(game_id,
       # above asked for `participants = "wide"`. Reshaping that in place costs
       # zero extra requests; fetching a participants feed here would double them.
       part_cols <- intersect(.participant_name_cols, names(plays_df))
+      part_id_cols <- intersect(sub("_player_name$", "_player_id", part_cols),
+                                names(plays_df))
       participants_df <- if (length(part_cols)) {
-        stats::setNames(
-          plays_df[, c("play_id", part_cols), drop = FALSE],
-          c("play_id", part_cols)
-        )
+        plays_df[, c("play_id", part_cols, part_id_cols), drop = FALSE]
       } else {
         NULL
       }
@@ -6652,6 +6688,15 @@ espn_cfb_pbp_v2 <- function(game_id,
       # `position_detail = TRUE`, so this is a cache hit, not a request. The
       # argument must match that call or the memoise key misses.
       roster_df <- .espn_cfb_roster_frame(game_id, position_detail = TRUE)
+
+      # Roster first, box score second -- they agree on ids, so order only
+      # decides which source seeds a name. A name that genuinely maps to two
+      # ids is dropped as ambiguous, which is the intended conservative
+      # behaviour. The box score is the only identity source on the games where
+      # ESPN 404s the roster.
+      if (!is.null(sidecar) && nrow(sidecar$records)) {
+        roster_df <- rbind(roster_df, sidecar$records)
+      }
 
       epa_df <- .run_epa_wpa(
         adapter,
