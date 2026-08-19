@@ -111,6 +111,8 @@ NULL
 #' list columns that give the score at each quarter: `home_line_scores` and `away_line_scores`.
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #'
+#' @param competition (*String* optional): Competition filter; `cfp` restricts to College Football Playoff games.
+#' @param round (*String* optional): Playoff round -- `first_round`, `quarterfinal`, `semifinal`, `championship`.
 #' @return [cfbd_game_info()] - A data frame with 30 variables:
 #'
 #'   |col_name           |types     |description                                                                |
@@ -169,7 +171,9 @@ cfbd_game_info <- function(year,
                            conference = NULL,
                            division = 'fbs',
                            game_id = NULL,
-                           quarter_scores = FALSE) {
+                           quarter_scores = FALSE,
+                           competition = NULL,
+                           round = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -193,8 +197,14 @@ cfbd_game_info <- function(year,
     "home" = home_team,
     "away" = away_team,
     "conference" = conference,
-    "division" = division,
-    "id" = game_id
+    # CFBD v5 renamed this query parameter to `classification`; sending
+    # `division=` is silently IGNORED (measured: division=fcs returned all
+    # 270 week-5 games, classification=fcs returned the correct 56). The R
+    # argument keeps its name so callers are unaffected.
+    "classification" = division,
+    "id" = game_id,
+    "competition" = competition,
+    "round" = round
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
@@ -254,6 +264,7 @@ cfbd_game_info <- function(year,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_game_weather()] - A data frame with 23 variables:
 #'
 #'   |col_name               |types     |description                                                          |
@@ -295,10 +306,12 @@ cfbd_game_weather <- function(year,
                               week = NULL,
                               season_type = "regular",
                               team = NULL,
-                              conference = NULL) {
+                              conference = NULL,
+                              division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
@@ -313,7 +326,8 @@ cfbd_game_weather <- function(year,
     "week" = week,
     "seasonType" = season_type,
     "team" = team,
-    "conference" = conference
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
@@ -773,6 +787,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the [cfbd_game_info()] function
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_game_player_stats()] - A data frame with 32 variables:
 #'
 #'   |col_name            |types     |description                                                                        |
@@ -863,7 +878,8 @@ cfbd_game_player_stats <- function(year,
                                    team = NULL,
                                    conference = NULL,
                                    category = NULL,
-                                   game_id = NULL) {
+                                   game_id = NULL,
+                                   division = NULL) {
 
   stat_categories <- c(
     "passing", "receiving", "rushing", "defensive", "fumbles",
@@ -876,6 +892,7 @@ cfbd_game_player_stats <- function(year,
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
@@ -894,7 +911,8 @@ cfbd_game_player_stats <- function(year,
     "team" = team,
     "conference" = conference,
     "category" = category,
-    "gameId" = game_id
+    "gameId" = game_id,
+    "classification" = division
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
@@ -1641,7 +1659,11 @@ cfbd_live_scoreboard <- function(division = 'fbs',
   base_url <- "https://api.collegefootballdata.com/scoreboard?"
   query_params <- list(
     "conference" = conference,
-    "division" = division
+    # CFBD v5 renamed this query parameter to `classification`; sending
+    # `division=` is silently IGNORED (measured: division=fcs returned all
+    # 270 week-5 games, classification=fcs returned the correct 56). The R
+    # argument keeps its name so callers are unaffected.
+    "classification" = division
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 

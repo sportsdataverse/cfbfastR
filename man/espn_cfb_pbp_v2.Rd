@@ -4,7 +4,12 @@
 \alias{espn_cfb_pbp_v2}
 \title{\strong{Get ESPN College Football Play-by-Play (core-v2)}}
 \usage{
-espn_cfb_pbp_v2(game_id, epa_wpa = FALSE, output = "default")
+espn_cfb_pbp_v2(
+  game_id,
+  epa_wpa = FALSE,
+  output = "default",
+  resolve_names = TRUE
+)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): ESPN game identifier.}
@@ -29,6 +34,16 @@ WPA scratchpad. ~75 columns lighter than \code{"full"}.
 computation scratchpad. For dashboards / game logs.
 \item \code{"full"} -- legacy behavior, drops only the player-name aliases.
 }}
+
+\item{resolve_names}{(\emph{Logical}): when \code{TRUE} (default) and
+\code{epa_wpa = TRUE}, spend \strong{one extra request per game} on ESPN's play-by-play
+sidecar to (a) render participant names in full (\code{"Jalen Mitchell"} rather
+than the core-v2 roster's \code{"J. Mitchell"}) and (b) add the per-player box
+score as a second identity source, which is the only one available on the
+large share of games where ESPN 404s the roster resource. Memoised per
+\code{game_id}, so the two uses cost one request between them. Set \code{FALSE} for a
+bulk sweep that would rather have the short names than the requests. Ignored
+when \code{epa_wpa = FALSE}.}
 }
 \value{
 A data frame with one row per play. When \code{epa_wpa = FALSE}, the

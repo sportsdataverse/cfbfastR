@@ -10,7 +10,8 @@ cfbd_metrics_ppa_games(
   season_type = "both",
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  division = NULL
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}} - A data frame with 19 variables:\tabular{lll}{

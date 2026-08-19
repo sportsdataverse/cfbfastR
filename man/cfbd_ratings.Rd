@@ -11,6 +11,8 @@
 \item \code{cfbd_ratings_srs()}: Get SRS historical rating data.
 \item \code{cfbd_ratings_elo()}: Get Elo historical rating data.
 \item \code{cfbd_ratings_fpi()}: Get FPI historical rating data.
+\item \code{cfbd_ratings_core()}: Get CFBD core team ratings.
+\item \code{cfbd_ratings_srs_expanded()}: Get expanded SRS ratings with component breakdown.
 }
 \subsection{\strong{Get historical Coaches and AP poll data}}{
 
@@ -71,6 +73,18 @@ Acquire the ESPN FPI ratings data by \strong{team}, \strong{year}, and \strong{c
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_fpi(year = 2019, team = "Texas")
 
 cfbd_ratings_fpi(year = 2018, conference = "SEC")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get core team ratings}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_core(year = 2024)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get expanded SRS ratings}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_ratings_srs_expanded(year = 2024)
 }\if{html}{\out{</div>}}
 }
 }

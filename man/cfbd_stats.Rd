@@ -10,6 +10,8 @@
 \item \code{cfbd_stats_season_advanced()}: Get season advanced statistics by team.
 \item \code{cfbd_stats_game_advanced()}: Get game advanced stats.
 \item \code{cfbd_stats_season_player()}: Get season statistics by player.
+\item \code{cfbd_stats_player_success()}: Get player success rates by season.
+\item \code{cfbd_stats_player_success_game()}: Get player success rates by game.
 }
 }
 \details{
@@ -54,6 +56,18 @@ cfbd_stats_season_team(2013, team = "Florida State")
 This function identifies all Stats Categories identified in the regular stats endpoint.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_categories()
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player success rates by season}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_player_success(year = 2024, team = "Georgia")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get player success rates by game}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_stats_player_success_game(year = 2024, week = 5)
 }\if{html}{\out{</div>}}
 }
 }

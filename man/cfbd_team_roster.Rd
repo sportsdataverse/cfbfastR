@@ -4,13 +4,15 @@
 \alias{cfbd_team_roster}
 \title{\strong{Get team rosters}}
 \usage{
-cfbd_team_roster(year, team = NULL)
+cfbd_team_roster(year, team = NULL, division = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY}) \cr
 Minimum value accepted: 2004}
 
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 16 variables:\tabular{lll}{

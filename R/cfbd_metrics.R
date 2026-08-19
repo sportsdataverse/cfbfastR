@@ -512,6 +512,7 @@ cfbd_metrics_wepa_players_kicking <- function(year = NULL,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_metrics_ppa_games()] - A data frame with 19 variables:
 #'
 #'  |col_name        |types     |description                                                                       |
@@ -555,10 +556,12 @@ cfbd_metrics_ppa_games <- function(year,
                                    season_type = "both",
                                    team = NULL,
                                    conference = NULL,
-                                   excl_garbage_time = FALSE) {
+                                   excl_garbage_time = FALSE,
+                                   division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
@@ -575,7 +578,8 @@ cfbd_metrics_ppa_games <- function(year,
     "seasonType" = season_type,
     "team" = team,
     "conference" = conference,
-    "excludeGarbageTime" = excl_garbage_time
+    "excludeGarbageTime" = excl_garbage_time,
+    "classification" = division
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
@@ -958,6 +962,7 @@ cfbd_metrics_ppa_predicted <- function(down,
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
 #' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_metrics_ppa_teams()] - A data frame with 21 variables:
 #'
 #'  |col_name               |types     |description                                                                       |
@@ -1001,10 +1006,12 @@ cfbd_metrics_ppa_predicted <- function(down,
 cfbd_metrics_ppa_teams <- function(year = NULL,
                                    team = NULL,
                                    conference = NULL,
-                                   excl_garbage_time = FALSE) {
+                                   excl_garbage_time = FALSE,
+                                   division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_reqs(year, team)
   validate_year(year)
   validate_list(excl_garbage_time, c(T,F))
@@ -1018,7 +1025,8 @@ cfbd_metrics_ppa_teams <- function(year = NULL,
     "year" = year,
     "team" = team,
     "conference" = conference,
-    "excludeGarbageTime" = excl_garbage_time
+    "excludeGarbageTime" = excl_garbage_time,
+    "classification" = division
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 

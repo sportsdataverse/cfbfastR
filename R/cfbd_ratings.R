@@ -9,6 +9,8 @@
 #' * `cfbd_ratings_srs()`: Get SRS historical rating data.
 #' * `cfbd_ratings_elo()`: Get Elo historical rating data.
 #' * `cfbd_ratings_fpi()`: Get FPI historical rating data.
+#' * `cfbd_ratings_core()`: Get CFBD core team ratings.
+#' * `cfbd_ratings_srs_expanded()`: Get expanded SRS ratings with component breakdown.
 #'
 #' ### **Get historical Coaches and AP poll data**
 #' ```r
@@ -59,6 +61,19 @@
 #'
 #' cfbd_ratings_fpi(year = 2018, conference = "SEC")
 #' ```
+#'
+#' ## **Get core team ratings**
+#'
+#' ```r
+#' cfbd_ratings_core(year = 2024)
+#' ```
+#'
+#' ## **Get expanded SRS ratings**
+#'
+#' ```r
+#' cfbd_ratings_srs_expanded(year = 2024)
+#' ```
+
 NULL
 #' @title
 #' **Get historical Coaches and AP poll data**
@@ -67,6 +82,14 @@ NULL
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
+#' @param poll (*String* optional): Poll filter. CFBD accepts only `"cfp"` here --
+#'   any other value returns HTTP 400, so it is validated rather than passed through.
+#'   Omit it to get every poll (AP, Coaches, CFP) and filter the result frame.
+#' @param latest (*Logical* optional): Return the latest College Football Playoff
+#'   snapshot, preferring the one marked final. **Requires `poll = "cfp"`** and
+#'   cannot be combined with `final`.
+#' @param final (*Logical* optional): Return the College Football Playoff snapshot
+#'   marked final. **Requires `poll = "cfp"`** and cannot be combined with `latest`.
 #' @return [cfbd_rankings()] - A data frame with 9 variables:
 #'
 #'  |col_name          |types     |description                                                                            |
@@ -100,20 +123,46 @@ NULL
 #'   try(cfbd_rankings(year = 2013, season_type = "postseason"))
 #' }
 #'
-cfbd_rankings <- function(year, week = NULL, season_type = "both") {
+cfbd_rankings <- function(year, week = NULL, season_type = "both",
+                          poll = NULL, latest = NULL, final = NULL) {
 
   # Validation ----
   validate_api_key()
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type, allow_both = TRUE)
+  # `poll` is CFBD's College Football Playoff snapshot selector. The API 400s on
+  # any other value, so validating gives a usable error rather than a bare HTTP
+  # failure. Omit `poll` entirely to get every poll (AP, Coaches, CFP).
+  if (!is.null(poll)) validate_list(poll, "cfp")
+  # Both snapshot flags REQUIRE poll = "cfp" and are mutually exclusive -- CFBD
+  # returns HTTP 400 otherwise, which is what these two checks turn into a
+  # readable message.
+  if (!is.null(latest) && !is.null(final)) {
+    cli::cli_abort(c(
+      "{.arg latest} and {.arg final} cannot be combined.",
+      i = "{.arg latest} returns the most recent CFP snapshot, preferring the
+           one marked final; {.arg final} returns the final snapshot only."
+    ))
+  }
+  if ((!is.null(latest) || !is.null(final)) && !identical(poll, "cfp")) {
+    cli::cli_abort(c(
+      "{.arg latest} and {.arg final} require {.code poll = \"cfp\"}.",
+      x = "You supplied {.code poll = {.val {poll %||% NULL}}}.",
+      i = "They select a College Football Playoff snapshot, so the CFP poll must
+           be requested explicitly."
+    ))
+  }
 
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/rankings"
   query_params <- list(
     "year" = year,
     "week" = week,
-    "seasonType" = season_type
+    "seasonType" = season_type,
+    "poll" = poll,
+    "latest" = latest,
+    "final" = final
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
@@ -288,6 +337,7 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_ratings_sp_conference()] - A data frame with 25 variables:
 #'
 #'  |col_name                  |types     |description                                                                              |
@@ -336,17 +386,20 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 #'   try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
 #' }
 #'
-cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL) {
+cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
+  division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
 
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/ratings/sp/conferences"
   query_params <- list(
     "year" = year,
-    "conference" = conference
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
@@ -663,6 +716,159 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no ESPN FPI rating system data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get core team ratings**
+#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param team (*String* optional): Team filter.
+#' @param conference (*String* optional): Conference abbreviation filter.
+#' @description
+#' **Get core team ratings**
+#' CFBD's core team rating measures.
+#'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
+#' @return [cfbd_ratings_core()] - A tibble with 11 columns:
+#'
+#'    |col_name            |types     |description                                        |
+#'    |:------------------|:--------|:-------------------------------------------------|
+#'    |year                |integer   |Four-digit season year.                            |
+#'    |through_season_type |character |Season type the rating is computed through.        |
+#'    |through_week        |integer   |Week the rating is computed through.               |
+#'    |team                |character |Team name.                                         |
+#'    |conference          |character |Conference name.                                   |
+#'    |overall             |numeric   |Overall rating.                                    |
+#'    |offense             |numeric   |Offensive rating.                                  |
+#'    |defense             |numeric   |Defensive rating.                                  |
+#'    |offense_plays       |integer   |Offensive plays underlying the rating.             |
+#'    |defense_plays       |integer   |Defensive plays underlying the rating.             |
+#'    |model_version       |character |Version of the rating model that produced the row. |
+#'
+#' @keywords Ratings
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string url_modify
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Ratings Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_ratings_core(year = 2024))
+#' }
+cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ratings/core"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names()
+
+      df <- df |>
+        make_cfbfastR_data("Get core team ratings from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ratings data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get expanded SRS ratings**
+#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param team (*String* optional): Team filter.
+#' @param conference (*String* optional): Conference abbreviation filter.
+#' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.
+#' @description
+#' **Get expanded SRS ratings**
+#' Simple Rating System with its component breakdown.
+#'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
+#' @return [cfbd_ratings_srs_expanded()] - A tibble with 7 columns:
+#'
+#'    |col_name       |types     |description                                          |
+#'    |:-------------|:--------|:---------------------------------------------------|
+#'    |year           |integer   |Four-digit season year.                              |
+#'    |team           |character |Team name.                                           |
+#'    |classification |character |Division classification (fbs, fcs, ii, ii/iii, iii). |
+#'    |conference     |character |Conference name.                                     |
+#'    |division       |logical   |Division.                                            |
+#'    |ranking        |integer   |Rank by rating.                                      |
+#'    |rating         |numeric   |Rating value.                                        |
+#'
+#' @keywords Ratings
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string url_modify
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Ratings Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_ratings_srs_expanded(year = 2024))
+#' }
+cfbd_ratings_srs_expanded <- function(year = NULL, team = NULL, conference = NULL, division = NULL, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_division(division)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/ratings/srs/expanded"
+  query_params <- list(
+    "year" = year,
+    "team" = team,
+    "conference" = conference,
+    "classification" = division
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names()
+
+      df <- df |>
+        make_cfbfastR_data("Get expanded SRS ratings from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no ratings data available! {conditionMessage(e)}"))
     },
     finally = {
     }

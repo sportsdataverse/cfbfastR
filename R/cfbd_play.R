@@ -196,6 +196,7 @@ cfbd_plays <- function(year = 2020,
 #' @param stat_type_id (*Integer* optional): Stat Type ID filter for querying a single stat type
 #' Can be found using the [cfbd_play_stats_types()] function
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
+#' @param conference (*String* optional): Conference abbreviation filter.
 #' @return [cfbd_play_stats_player()] - A data frame with 66 variables:
 #'
 #'    |col_name                      |types     |description                                                                                |
@@ -287,7 +288,8 @@ cfbd_play_stats_player <- function(year = NULL,
                                    game_id = NULL,
                                    athlete_id = NULL,
                                    stat_type_id = NULL,
-                                   season_type = "both") {
+                                   season_type = "both",
+                                   conference = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -310,7 +312,8 @@ cfbd_play_stats_player <- function(year = NULL,
     "gameId" = game_id,
     "athleteId" = athlete_id,
     "statTypeId" = stat_type_id,
-    "seasonType" = season_type
+    "seasonType" = season_type,
+    "conference" = conference
   )
   full_url <- httr2::request(base_url) |>
     httr2::req_url_query(!!!.compact(query_params)) |>

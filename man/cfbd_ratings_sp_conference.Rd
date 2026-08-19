@@ -4,7 +4,7 @@
 \alias{cfbd_ratings_sp_conference}
 \title{\strong{Get conference level SP historical rating data}}
 \usage{
-cfbd_ratings_sp_conference(year = NULL, conference = NULL)
+cfbd_ratings_sp_conference(year = NULL, conference = NULL, division = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
@@ -13,6 +13,8 @@ Minimum value accepted: 1990}
 \item{conference}{(\emph{String} optional): Conference abbreviation - S&P+ information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}} - A data frame with 25 variables:\tabular{lll}{

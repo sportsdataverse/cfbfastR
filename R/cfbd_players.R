@@ -7,6 +7,7 @@
 #' * `cfbd_player_info()`: Player information search.
 #' * `cfbd_player_returning()`: Player returning production.
 #' * `cfbd_player_usage()`: Player usage.
+#' * `cfbd_player_season_overview()`: Get a season overview for a single player.
 #'
 #' @details
 #' ### **Player information lookup**
@@ -23,6 +24,13 @@
 #' ```r
 #'  cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
 #' ```
+#'
+#' ## **Get a player season overview**
+#'
+#' ```r
+#' cfbd_player_season_overview(year = 2024, athlete_id = 4429105)
+#' ```
+
 NULL
 
 #' @title
@@ -349,6 +357,110 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get a player season overview**
+#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param athlete_id (*Integer* required): Player identifier.
+#' @description
+#' **Get a player season overview**
+#' Season overview for a single player.
+#'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
+#' @return [cfbd_player_season_overview()] - A tibble with 31 columns:
+#'
+#'    |col_name                   |types     |description                                     |
+#'    |:-------------------------|:--------|:----------------------------------------------|
+#'    |season                     |integer   |Four-digit season year.                         |
+#'    |id                         |character |Record identifier.                              |
+#'    |name                       |character |Display name.                                   |
+#'    |position                   |character |Listed position.                                |
+#'    |team                       |character |Team name.                                      |
+#'    |conference                 |character |Conference name.                                |
+#'    |games                      |integer   |Games played in the season.                     |
+#'    |usage_overall              |numeric   |Share of team plays the player was involved in. |
+#'    |usage_pass                 |numeric   |Share of team pass plays involving the player.  |
+#'    |usage_rush                 |numeric   |Share of team rush plays involving the player.  |
+#'    |usage_first_down           |numeric   |Usage share on first down.                      |
+#'    |usage_second_down          |numeric   |Usage share on second down.                     |
+#'    |usage_third_down           |numeric   |Usage share on third down.                      |
+#'    |usage_standard_downs       |numeric   |Usage share on standard downs.                  |
+#'    |usage_passing_downs        |numeric   |Usage share on passing downs.                   |
+#'    |ppa_average_all            |numeric   |Ppa average all.                                |
+#'    |ppa_average_pass           |numeric   |Ppa average pass.                               |
+#'    |ppa_average_rush           |numeric   |Ppa average rush.                               |
+#'    |ppa_average_first_down     |numeric   |Ppa average first down.                         |
+#'    |ppa_average_second_down    |numeric   |Ppa average second down.                        |
+#'    |ppa_average_third_down     |numeric   |Ppa average third down.                         |
+#'    |ppa_average_standard_downs |numeric   |Ppa average standard downs.                     |
+#'    |ppa_average_passing_downs  |numeric   |Ppa average passing downs.                      |
+#'    |ppa_total_all              |numeric   |Ppa total all.                                  |
+#'    |ppa_total_pass             |numeric   |Ppa total pass.                                 |
+#'    |ppa_total_rush             |numeric   |Ppa total rush.                                 |
+#'    |ppa_total_first_down       |numeric   |Ppa total first down.                           |
+#'    |ppa_total_second_down      |numeric   |Ppa total second down.                          |
+#'    |ppa_total_third_down       |numeric   |Ppa total third down.                           |
+#'    |ppa_total_standard_downs   |numeric   |Ppa total standard downs.                       |
+#'    |ppa_total_passing_downs    |numeric   |Ppa total passing downs.                        |
+#'
+#' @keywords Players
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string url_modify
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Players Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_player_season_overview(year = 2024, athlete_id = 4429105))
+#' }
+cfbd_player_season_overview <- function(year, athlete_id, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/player/season/overview"
+  query_params <- list(
+    "year" = year,
+    "playerId" = athlete_id
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      # One nested object per player-season: scalars plus `usage`, `ppa` and
+      # `boxScoreStats` blocks whose members are themselves scalars of differing
+      # lengths -- which is why a plain as_tibble() fails with "columns must
+      # have compatible sizes". Flattening lifts each into its own prefixed
+      # column, giving a single rectangular row.
+      df <- dplyr::as_tibble(as.data.frame(.cfbd_flatten_scalars(df),
+                                           stringsAsFactors = FALSE)) |>
+        janitor::clean_names()
+
+      df <- df |>
+        make_cfbfastR_data("Get a player season overview from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no players data available! {conditionMessage(e)}"))
     },
     finally = {
     }

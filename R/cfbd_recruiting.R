@@ -68,6 +68,7 @@ NULL
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'
 #'  * Special Teams: 'K', 'P'
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_recruiting_player()] - A data frame with 19 variables:
 #'
 #'    |col_name                |types     |description                                                              |
@@ -113,7 +114,8 @@ cfbd_recruiting_player <- function(year = NULL,
                                    team = NULL,
                                    recruit_type = "HighSchool",
                                    state = NULL,
-                                   position = NULL) {
+                                   position = NULL,
+                                   division = NULL) {
 
   # Validation Lists ----
   pos_groups <- c(
@@ -123,6 +125,7 @@ cfbd_recruiting_player <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_reqs(year, team)
   validate_year(year)
   validate_range(year, 2000)
@@ -140,7 +143,8 @@ cfbd_recruiting_player <- function(year = NULL,
     "team" = team,
     "classification" = recruit_type,
     "position" = position,
-    "state" = state
+    "state" = state,
+    "classification" = division
   )
   full_url <- httr2::req_url_query(httr2::request(base_url), !!!.compact(query_params))$url
 
@@ -181,6 +185,7 @@ cfbd_recruiting_player <- function(year = NULL,
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
+#' @param recruit_type (*String* optional): `HighSchool`, `PrepSchool` or `JUCO`.
 #' @return [cfbd_recruiting_position()] - A data frame with 7 variables:
 #'
 #'    |col_name       |types     |description                                                          |
@@ -211,7 +216,8 @@ cfbd_recruiting_player <- function(year = NULL,
 #' }
 #'
 cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
-                                     team = NULL, conference = NULL) {
+                                     team = NULL, conference = NULL,
+                                     recruit_type = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -227,7 +233,8 @@ cfbd_recruiting_position <- function(start_year = NULL, end_year = NULL,
     "startYear" = start_year,
     "endYear" = end_year,
     "team" = team,
-    "conference" = conference
+    "conference" = conference,
+    "recruitType" = recruit_type
   )
   full_url <- httr2::req_url_query(httr2::request(base_url), !!!.compact(query_params))$url
 

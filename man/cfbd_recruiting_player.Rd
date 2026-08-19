@@ -9,7 +9,8 @@ cfbd_recruiting_player(
   team = NULL,
   recruit_type = "HighSchool",
   state = NULL,
-  position = NULL
+  position = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ or 'PrepSchool'  - For position group information}
 \item Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'
 \item Special Teams: 'K', 'P'
 }}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}} - A data frame with 19 variables:\tabular{lll}{
