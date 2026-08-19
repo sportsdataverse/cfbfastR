@@ -153,6 +153,8 @@ test_that("an 18-digit play id joins exactly", {
   out <- .pbp_join_participants(df, parts)
   expect_equal(out$rusher_player_name, c("First Runner", "Second Runner"))
 
-  # And the same ids arriving as doubles must not silently match the wrong row.
+  # And integer64 -- what arrow hands back for these ids -- must round-trip
+  # exactly. Guarded because bit64 is only a Suggests.
+  skip_if_not_installed("bit64")
   expect_equal(.as_play_key(bit64::as.integer64(ids)), ids)
 })

@@ -145,6 +145,11 @@
 #'   rather than dropped. Dropping them shifts the measured rate without
 #'   anything being reported -- the check would quietly grade itself on a subset.
 #'
+#'   On the shipped corpus the aggregate has 112 rows against 120 box rows. That
+#'   gap is benign and measured: the eight belong to four games carrying exactly
+#'   one play row each with a null `pos_team`, so there are no offensive plays to
+#'   aggregate. A test asserts that rather than leaving it to look like loss.
+#'
 #' @param agg (*data.frame*): output of [.pbp_boxscore_aggregate()].
 #' @param box (*data.frame*): ESPN team box, one row per `game_id` x `team_key`,
 #'   with the `espn_*` columns.

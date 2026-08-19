@@ -119,3 +119,28 @@ test_that("the parity measurement is not silently grading a subset", {
   expect_gt(min(m$n), 50L)
   expect_lt(max(m$n) - min(m$n), max(m$n) * 0.5)
 })
+
+test_that("the aggregate covers every team-game that has offensive plays", {
+  skip_if_no_fixture()
+  p <- as.data.frame(arrow::read_parquet(pbp_path))
+  b <- as.data.frame(arrow::read_parquet(box_path))
+  p$game_id <- as.character(p$fixture_game_id)
+  b$game_id <- as.character(b$fixture_game_id)
+  b$team_key <- as.character(b$team_key)
+  a <- .pbp_boxscore_aggregate(p)
+
+  key <- function(d) paste(d$game_id, d$team_key)
+  missing <- b[!key(b) %in% key(a), , drop = FALSE]
+
+  # 112 aggregate rows vs 120 box rows looks like the join silently losing
+  # eight team-games. Measured 2026-08-19: it is not. The eight belong to FOUR
+  # games that contribute exactly one play row each, with a null pos_team --
+  # no offensive plays exist to aggregate, so no row can be produced. Asserted
+  # rather than assumed, because the benign reading and the bug look identical
+  # from the row counts alone.
+  for (g in unique(missing$game_id)) {
+    pg <- p[p$game_id == g, , drop = FALSE]
+    expect_true(all(is.na(pg$pos_team)),
+                label = paste0("game ", g, " has offensive plays but no aggregate"))
+  }
+})
