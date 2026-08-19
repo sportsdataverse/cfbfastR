@@ -49,6 +49,9 @@ Returns a tibble with 15 variables:\tabular{lll}{
 \description{
 \itemize{
 \item \code{cfbd_coaches()}: A coach search function which provides coaching records and school history for a given coach.
+\item \code{cfbd_coaches_profile()}: Get a single coach's biographical profile.
+\item \code{cfbd_coaches_seasons()}: Get season-by-season coaching records.
+\item \code{cfbd_coaches_tenures()}: Get the start and end of each coaching tenure.
 }
 
 \strong{Coach information search}
@@ -60,11 +63,35 @@ A coach search function which provides coaching records and school history for a
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
 }\if{html}{\out{</div>}}
 }
+
+\subsection{\strong{Get a coach profile}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_coaches_profile(coach_id = 1)
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get coaching seasons}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_coaches_seasons(team = "Georgia")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get coaching tenures}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_coaches_tenures(team = "Georgia")
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 }
+}
+\seealso{
+Other CFBD Coaches Functions: 
+\code{\link{cfbd_coaches_profile}()},
+\code{\link{cfbd_coaches_seasons}()},
+\code{\link{cfbd_coaches_tenures}()}
 }
 \concept{CFBD Coaches Functions}
 \keyword{Coaches}

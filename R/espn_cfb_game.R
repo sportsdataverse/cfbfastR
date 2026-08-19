@@ -384,7 +384,7 @@ espn_cfb_clear_cache <- function() {
     return(invisible(NULL))
   }
   ns <- rlang::ns_env("cfbfastR")
-  for (fn in c(".espn_cfb_team_lookup", ".espn_cfb_position_lookup")) {
+  for (fn in .espn_memoised_helpers) {
     helper <- tryCatch(get(fn, envir = ns), error = function(e) NULL)
     # memoise::forget() errors on non-memoised functions (cache "off"),
     # so only forget helpers that are actually memoised.
@@ -549,6 +549,40 @@ espn_cfb_clear_cache <- function() {
     warning = function(w) {}
   )
   roster_lk
+}
+
+#' Reshape the participant roster lookup into an id-resolution frame
+#'
+#' @description [.pbp_attach_player_ids()] wants a roster as a data frame of
+#'   `athlete_id` / `display_name` / `team_id`; `.espn_cfb_participant_roster()`
+#'   holds the same three fields as an athlete-id-keyed list. This is the
+#'   adapter between them, and it deliberately reuses that helper rather than
+#'   calling [espn_cfb_game_team_roster()] again -- the helper is memoised, so
+#'   going through it turns what would be a second roster request per game into
+#'   a cache hit.
+#'
+#' @param game_id ESPN game identifier.
+#' @param position_detail Passed straight through. It must match the value the
+#'   surrounding wrapper already used for this `game_id`, or the memoise key
+#'   misses and the saving is lost.
+#' @return A data frame with `athlete_id`, `display_name` and `team_id`; zero
+#'   rows when the roster is unavailable (ESPN 404s it for a large share of
+#'   games), which the id resolver treats as "no roster".
+#' @keywords internal
+#' @noRd
+.espn_cfb_roster_frame <- function(game_id, position_detail = FALSE) {
+  lk <- .espn_cfb_participant_roster(game_id, position_detail = position_detail)
+  if (!length(lk)) {
+    return(data.frame(athlete_id = character(0), display_name = character(0),
+                      team_id = character(0), stringsAsFactors = FALSE))
+  }
+  data.frame(
+    athlete_id   = names(lk),
+    display_name = vapply(lk, function(e) as.character(e$name %||% NA), character(1)),
+    team_id      = vapply(lk, function(e) as.character(e$team_id %||% NA), character(1)),
+    row.names    = NULL,
+    stringsAsFactors = FALSE
+  )
 }
 
 
@@ -6081,6 +6115,16 @@ espn_cfb_game_teams <- function(game_id = NULL,
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom dplyr filter select rename bind_cols bind_rows
 #' @importFrom tidyr unnest unnest_wider everything
+#' @param engine (*Character* optional): which play-by-play engine to run.
+#' One of `"v2"`, `"legacy"` or `"auto"`; `NULL` (default) resolves from
+#' `getOption("cfbfastR.pbp_engine")`, which itself defaults to `"v2"` as of
+#' this release. `"legacy"` is the escape hatch that reproduces the pre-2.3.0
+#' frame; `"auto"` means whatever this version of the package considers current,
+#' so it is carried forward by future default flips.
+#' @param output (*Character*): modeled-output column set, one of `"default"`,
+#' `"lean"` or `"full"`. Only meaningful when the call reaches the v2 engine; it
+#' is accepted here so a delegating caller can reach the tier selector without
+#' switching to the `espn_cfb_pbp_v2()` name.
 #' @export
 #'
 #' @examples
@@ -6088,7 +6132,16 @@ espn_cfb_game_teams <- function(game_id = NULL,
 #'    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #'  }
 #'
-espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
+espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "default"){
+  # See .pbp_engine(): per-call `engine=` beats the session option, which beats
+  # the default -- and that default is now "v2". `output` is accepted here so a
+  # delegating caller can
+  # reach the tier selector without switching to the v2 name.
+  if (identical(.pbp_engine(engine), "v2")) {
+    return(espn_cfb_pbp_v2(game_id = game_id, epa_wpa = epa_wpa, output = output))
+  }
+  .pbp_engine_nudge("espn_cfb_pbp", "espn_cfb_pbp_v2")
+
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 
@@ -6453,6 +6506,16 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #'   computation scratchpad. For dashboards / game logs.
 #' * `"full"` -- legacy behavior, drops only the player-name aliases.
 #'
+#' @param resolve_names (*Logical*): when `TRUE` (default) and
+#' `epa_wpa = TRUE`, spend **one extra request per game** on ESPN's play-by-play
+#' sidecar to (a) render participant names in full (`"Jalen Mitchell"` rather
+#' than the core-v2 roster's `"J. Mitchell"`) and (b) add the per-player box
+#' score as a second identity source, which is the only one available on the
+#' large share of games where ESPN 404s the roster resource. Memoised per
+#' `game_id`, so the two uses cost one request between them. Set `FALSE` for a
+#' bulk sweep that would rather have the short names than the requests. Ignored
+#' when `epa_wpa = FALSE`.
+#'
 #' @return A data frame with one row per play. When `epa_wpa = FALSE`, the
 #' assembled core-v2 play-by-play frame:
 #'
@@ -6490,8 +6553,16 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
 #'   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #' }
 espn_cfb_pbp_v2 <- function(game_id,
-                            epa_wpa = FALSE,
-                            output  = "default") {
+                            epa_wpa       = FALSE,
+                            output        = "default",
+                            resolve_names = TRUE) {
+  if (!is.logical(resolve_names) || length(resolve_names) != 1L ||
+      is.na(resolve_names)) {
+    cli::cli_abort(c(
+      "{.arg resolve_names} must be a single {.code TRUE} or {.code FALSE}.",
+      x = "You supplied {.val {resolve_names}}."
+    ))
+  }
   if (!is.character(output) || length(output) != 1L ||
       !output %in% c("default", "lean", "full")) {
     cli::cli_abort(c(
@@ -6560,6 +6631,56 @@ espn_cfb_pbp_v2 <- function(game_id,
       }
 
       # --- epa_wpa = TRUE: adapter -> shared engine ----------------------
+      # Refuse to model an obviously malformed feed. A truncated game still
+      # models cleanly -- it produces EPA, drive results and a box score that
+      # all look reasonable and are all wrong -- and nothing downstream can tell
+      # that from a real blowout with a short game script, so the check belongs
+      # here or nowhere. `completed` is inferred from the frame rather than
+      # fetched: a feed that reached the end of the game contains the play that
+      # says so.
+      completed <- any(grepl("^End of Game$",
+                             plays_df$type_text %||% character(0)))
+      if (.pbp_corrupt_check(plays_df, completed = completed)) {
+        cli::cli_alert_warning(
+          "Play-by-play for game {game_id} looks incomplete
+           ({nrow(plays_df)} play{?s}); skipping EPA/WPA modeling."
+        )
+        return(plays_df |> make_cfbfastR_data(
+          "Play-by-play data from ESPN (core-v2)", Sys.time()
+        ))
+      }
+
+      # The one deliberate extra request, and only when asked for. One payload
+      # buys two things: ESPN's FULL athlete names (the core-v2 roster renders
+      # them short -- "J. Mitchell" -- which is both a parity divergence and a
+      # weaker key for id resolution) and the box-score identity records that
+      # cover the games where ESPN 404s the roster resource.
+      #
+      # It runs BEFORE `context_df` is taken because the participant name
+      # columns live on the context frame, and the join below keeps the context
+      # copy of any column the engine also produces. Expanding after the split
+      # would improve the modeled frame and then discard it.
+      sidecar <- if (isTRUE(resolve_names)) {
+        .espn_cfb_pbp_sidecar(game_id)
+      } else {
+        NULL
+      }
+      if (!is.null(sidecar)) {
+        plays_df <- .espn_cfb_expand_participant_names(plays_df, sidecar$names)
+      }
+
+      # ESPN's core-v2 play feed carries its OWN `is_turnover` flag, and the
+      # join below keeps the context copy of any column the engine also
+      # produces -- so ESPN's would silently mask the derived one and leave it
+      # disagreeing with `turnover_team`, which is derived. The two are *known*
+      # to differ: the derived flag counts giveaways only (interceptions and
+      # fumbles lost) so it reconciles against ESPN's official box, while
+      # ESPN's per-play flag also fires on blocked kicks. Both are kept, under
+      # names that say which is which.
+      if ("is_turnover" %in% names(plays_df)) {
+        names(plays_df)[names(plays_df) == "is_turnover"] <- "espn_is_turnover"
+      }
+
       context_df <- plays_df
 
       adapter <- plays_df |>
@@ -6592,11 +6713,40 @@ espn_cfb_pbp_v2 <- function(game_id,
         ) |>
         .espn_to_epa_input(game_id = game_id)
 
+      # ESPN's participants[] names are ALREADY on `plays_df` -- the drives call
+      # above asked for `participants = "wide"`. Reshaping that in place costs
+      # zero extra requests; fetching a participants feed here would double them.
+      part_cols <- intersect(.participant_name_cols, names(plays_df))
+      part_id_cols <- intersect(sub("_player_name$", "_player_id", part_cols),
+                                names(plays_df))
+      participants_df <- if (length(part_cols)) {
+        plays_df[, c("play_id", part_cols, part_id_cols), drop = FALSE]
+      } else {
+        NULL
+      }
+
+      # Same story for the roster: `.espn_cfb_participant_roster()` is memoised
+      # (see zzz.R) and the drives call already warmed it for this game_id with
+      # `position_detail = TRUE`, so this is a cache hit, not a request. The
+      # argument must match that call or the memoise key misses.
+      roster_df <- .espn_cfb_roster_frame(game_id, position_detail = TRUE)
+
+      # Roster first, box score second -- they agree on ids, so order only
+      # decides which source seeds a name. A name that genuinely maps to two
+      # ids is dropped as ambiguous, which is the intended conservative
+      # behaviour. The box score is the only identity source on the games where
+      # ESPN 404s the roster.
+      if (!is.null(sidecar) && nrow(sidecar$records)) {
+        roster_df <- rbind(roster_df, sidecar$records)
+      }
+
       epa_df <- .run_epa_wpa(
         adapter,
-        ep_model = ep_model,
-        fg_model = fg_model,
-        wp_model = wp_model
+        ep_model     = ep_model,
+        fg_model     = fg_model,
+        wp_model     = wp_model,
+        roster       = roster_df,
+        participants = participants_df
       ) |>
         dplyr::select(-dplyr::any_of("ppa"))   # drop the placeholder
 

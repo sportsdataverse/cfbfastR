@@ -4,12 +4,24 @@
 \alias{espn_cfb_pbp}
 \title{Get ESPN college football PBP data}
 \usage{
-espn_cfb_pbp(game_id, epa_wpa = FALSE)
+espn_cfb_pbp(game_id, epa_wpa = FALSE, engine = NULL, output = "default")
 }
 \arguments{
 \item{game_id}{Game ID}
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
+
+\item{engine}{(\emph{Character} optional): which play-by-play engine to run.
+One of \code{"v2"}, \code{"legacy"} or \code{"auto"}; \code{NULL} (default) resolves from
+\code{getOption("cfbfastR.pbp_engine")}, which itself defaults to \code{"v2"} as of
+this release. \code{"legacy"} is the escape hatch that reproduces the pre-2.3.0
+frame; \code{"auto"} means whatever this version of the package considers current,
+so it is carried forward by future default flips.}
+
+\item{output}{(\emph{Character}): modeled-output column set, one of \code{"default"},
+\code{"lean"} or \code{"full"}. Only meaningful when the call reaches the v2 engine; it
+is accepted here so a delegating caller can reach the tier selector without
+switching to the \code{espn_cfb_pbp_v2()} name.}
 }
 \value{
 A data frame with college football play-by-play data

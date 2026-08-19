@@ -415,6 +415,20 @@ NULL
 #'  # Get play by play data for 2025 regular season week 1
 #'  cfbd_pbp_data(year = 2025, week = 1, season_type = 'regular', epa_wpa = TRUE)
 #' ```
+#' @param engine (*Character* optional): which play-by-play engine to run.
+#' One of `"v2"`, `"legacy"` or `"auto"`; `NULL` (default) resolves from
+#' `getOption("cfbfastR.pbp_engine")`, which itself defaults to `"v2"` as of this
+#' release. On `"v2"` this delegates to [cfbd_pbp_data_v2()], which adds penalty
+#' enforcement resolution, ESPN-resolved player names, the `*_player_id` columns
+#' and team attribution. `"legacy"` reproduces the pre-2.3.0 frame unchanged.
+#' @param ... Additional arguments passed to [cfbd_pbp_data_v2()] when the call
+#' delegates -- notably `output`, the `"default"` / `"lean"` / `"full"` modeled
+#' column-set selector. Ignored on the legacy path.
+#' @param defense (*String* optional): Defensive team filter.
+#' @param offense_conference (*String* optional): Offensive team conference filter.
+#' @param defense_conference (*String* optional): Defensive team conference filter.
+#' @param conference (*String* optional): Conference filter (either side of the ball).
+#' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.
 #' @export
 
 cfbd_pbp_data <- function(year,
@@ -423,7 +437,27 @@ cfbd_pbp_data <- function(year,
                           team = NULL,
                           play_type = NULL,
                           epa_wpa = FALSE,
-                          ...) {
+                          engine = NULL,
+                          ...,
+                          defense = NULL,
+                          offense_conference = NULL,
+                          defense_conference = NULL,
+                          conference = NULL,
+                          division = NULL) {
+  # Upgrade path. `engine = "v2"` (or options(cfbfastR.pbp_engine = "v2"))
+  # delegates to the modular engine, which is where new parsing work lands.
+  # The leading arguments are identical to cfbd_pbp_data_v2()'s by design, so
+  # this hands them straight over; `output` flows through `...`.
+  if (identical(.pbp_engine(engine), "v2")) {
+    dots <- list(...)
+    return(do.call(cfbd_pbp_data_v2, c(
+      list(year = year, season_type = season_type, week = week, team = team,
+           play_type = play_type, epa_wpa = epa_wpa),
+      dots[intersect(names(dots), "output")]
+    )))
+  }
+  .pbp_engine_nudge("cfbd_pbp_data", "cfbd_pbp_data_v2")
+
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 
@@ -435,6 +469,7 @@ cfbd_pbp_data <- function(year,
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
@@ -465,7 +500,12 @@ cfbd_pbp_data <- function(year,
     "year" = year,
     "week" = week,
     "team" = team,
-    "playType" = pt_abb
+    "playType" = pt_abb,
+    "defense" = defense,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::url_modify(play_base_url, query = .compact(query_params))
 

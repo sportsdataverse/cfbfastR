@@ -339,6 +339,66 @@ validate_list <- function(var = NULL, allowable = NULL){
   }
 }
 
+#' Validate a CFBD division / classification value
+#'
+#' @description CFBD calls this filter `classification` on the wire; cfbfastR
+#'   has always exposed it to users as `division`. Both names refer to the same
+#'   five values.
+#'
+#' @details Worth validating rather than passing through: CFBD **ignores** a
+#'   filter value it does not recognise instead of rejecting it, so a typo
+#'   returns every division silently rather than erroring. That is the same
+#'   failure mode that hid the `division=` vs `classification=` rename.
+#'
+#' @param division Division/classification value.
+#' @param allow_null When `TRUE`, `NULL` passes (the filter is simply omitted).
+#' @return Invisibly `TRUE`; aborts otherwise.
+#' @keywords internal
+#' @noRd
+#' Flatten a nested CFBD object into rectangular columns
+#'
+#' @description Several CFBD endpoints return a single nested **object** rather
+#'   than an array of records -- scalars at the top level, with one or more
+#'   nested blocks beneath. `jsonlite` hands those back as a bare list, which
+#'   breaks cfbfastR's tibble contract and any dplyr verb a caller reaches for.
+#'
+#' @details Recursively lifts every nested scalar into a prefixed column
+#'   (`usage$overall` becomes `usage_overall`), so the result is one row of
+#'   atomic columns. Members that are themselves rectangular -- a data frame of
+#'   career seasons, say -- are left for the caller to unnest, because the right
+#'   row grain differs per endpoint and guessing it here would be wrong.
+#'
+#' @param x A named list parsed from a CFBD response.
+#' @param prefix Column-name prefix used during recursion.
+#' @return A named list of length-1 atomic values.
+#' @keywords internal
+#' @noRd
+.cfbd_flatten_scalars <- function(x, prefix = "") {
+  out <- list()
+  if (is.null(x) || !length(x)) return(out)
+  for (nm in names(x)) {
+    v <- x[[nm]]
+    key <- if (nzchar(prefix)) paste0(prefix, "_", nm) else nm
+    if (is.null(v) || (is.atomic(v) && !length(v))) {
+      out[[key]] <- NA
+    } else if (is.atomic(v) && length(v) == 1L) {
+      out[[key]] <- v
+    } else if (is.list(v) && !is.data.frame(v) && !is.null(names(v))) {
+      out <- c(out, .cfbd_flatten_scalars(v, key))
+    }
+    # data frames and unnamed lists are deliberately skipped -- see @details
+  }
+  out
+}
+
+validate_division <- function(division = NULL, allow_null = TRUE) {
+  if (is.null(division)) {
+    if (allow_null) return(invisible(TRUE))
+    cli::cli_abort("Missing required field: division")
+  }
+  validate_list(division, c("fbs", "fcs", "ii", "ii/iii", "iii"))
+}
+
 validate_season_type <- function(season_type = NULL, allow_both = TRUE){
   allowable <- c('postseason', 'regular', 'both', 'allstar', 'spring_regular', 'spring_postseason')
   if(allow_both) allowable <- c(allowable, 'both')

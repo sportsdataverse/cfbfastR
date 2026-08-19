@@ -11,7 +11,13 @@ cfbd_pbp_data(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  ...
+  engine = NULL,
+  ...,
+  defense = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL,
+  conference = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -27,7 +33,26 @@ cfbd_pbp_data(
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 
-\item{...}{Additional arguments passed to an underlying function.}
+\item{engine}{(\emph{Character} optional): which play-by-play engine to run.
+One of \code{"v2"}, \code{"legacy"} or \code{"auto"}; \code{NULL} (default) resolves from
+\code{getOption("cfbfastR.pbp_engine")}, which itself defaults to \code{"v2"} as of this
+release. On \code{"v2"} this delegates to \code{\link[=cfbd_pbp_data_v2]{cfbd_pbp_data_v2()}}, which adds penalty
+enforcement resolution, ESPN-resolved player names, the \verb{*_player_id} columns
+and team attribution. \code{"legacy"} reproduces the pre-2.3.0 frame unchanged.}
+
+\item{...}{Additional arguments passed to \code{\link[=cfbd_pbp_data_v2]{cfbd_pbp_data_v2()}} when the call
+delegates -- notably \code{output}, the \code{"default"} / \code{"lean"} / \code{"full"} modeled
+column-set selector. Ignored on the legacy path.}
+
+\item{defense}{(\emph{String} optional): Defensive team filter.}
+
+\item{offense_conference}{(\emph{String} optional): Offensive team conference filter.}
+
+\item{defense_conference}{(\emph{String} optional): Defensive team conference filter.}
+
+\item{conference}{(\emph{String} optional): Conference filter (either side of the ball).}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}.}
 }
 \value{
 A data frame with 368 variables:\tabular{lll}{

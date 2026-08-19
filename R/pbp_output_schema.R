@@ -21,6 +21,39 @@
   "wpa", "wp_before", "wp_after",
   "def_wp_before", "def_wp_after",
   "penalty_detail", "yds_penalty", "penalty_1st_conv",
+  # Enforcement resolution ported from sdv-py (helper_pbp_penalty_enforcement.R).
+  # These sit in "default" deliberately: penalty_negated_play answers "did this
+  # play count", which every EPA consumer needs, and the counts are what make
+  # multi-penalty plays representable at all.
+  "penalty_count", "penalty_declined_count", "penalty_all_declined",
+  "penalty_enforcement", "penalty_negated_play",
+  # Roster-resolved athlete ids (helper_pbp_attach_player_ids.R). "default" tier:
+  # cfbfastR emitted player NAMES only, so every downstream join was string-keyed
+  # and collided on duplicate names -- the id is the fix, not an extra.
+  "rusher_player_id", "passer_player_id", "receiver_player_id", "fumble_player_id", "sack_player_id", "sack_player_id2", "interception_player_id", "pass_breakup_player_id", "fumble_forced_player_id", "fumble_recovered_player_id", "fg_kicker_player_id", "punter_player_id", "kickoff_player_id", "kickoff_return_player_id", "punt_return_player_id", "fg_block_player_id", "punt_block_player_id", "fg_return_player_id", "punt_block_return_player_id",
+  # Team attribution + the turnover model (helper_pbp_attribution.R). "default"
+  # tier: "which team lost the ball" is the question every turnover-rate,
+  # takeaway and special-teams metric starts from, and cfbfastR could not answer
+  # it at all before these landed. The per-side flags are kept alongside the
+  # single-flag `is_turnover` view because one play can lose the ball twice, and
+  # a single boolean cannot say that both teams turned it over.
+  "pos_team_id", "def_pos_team_id",
+  "kicking_team", "return_team", "punt_return_team", "kick_return_team",
+  "fg_team", "punt_team", "sack_team", "interception_team",
+  "pass_breakup_team", "forced_fumble_team", "fumble_recovery_team",
+  "fumble_or_muff", "fumbling_team", "recovery_team", "recovery_team_2",
+  "int_turnover", "pos_fumble_lost", "def_fumble_lost",
+  "is_pos_team_turnover", "is_def_pos_team_turnover",
+  "is_turnover", "espn_is_turnover", "turnover_team", "is_st_turnover",
+  "is_blocked_punt_turnover", "is_blocked_fg_turnover",
+  "penalized_team", "penalty_team_id", "penalty_yards_signed",
+  # Air yards + the play-text descriptors (helper_pbp_air_yards.R). "default"
+  # tier: air_yards / yards_after_catch split a completion into the throw and
+  # the run after it, which is the basic unit of passing analysis and cfbfastR
+  # had neither half. Thin by nature -- ESPN only annotates the catch point on
+  # recent seasons -- but null-where-absent, not wrong.
+  "air_yardsToEndzone", "air_yards", "yards_after_catch",
+  "pass_depth", "pass_direction", "rush_direction", "qb_hurry",
   # series_columns
   "new_series", "firstD_by_kickoff", "firstD_by_poss",
   "firstD_by_penalty", "firstD_by_yards",

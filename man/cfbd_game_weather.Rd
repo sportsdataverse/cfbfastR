@@ -9,7 +9,8 @@ cfbd_game_weather(
   week = NULL,
   season_type = "regular",
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ cfbd_game_weather(
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:\tabular{lll}{

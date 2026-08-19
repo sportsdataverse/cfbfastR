@@ -9,6 +9,7 @@
 \item \code{cfbd_player_info()}: Player information search.
 \item \code{cfbd_player_returning()}: Player returning production.
 \item \code{cfbd_player_usage()}: Player usage.
+\item \code{cfbd_player_season_overview()}: Get a season overview for a single player.
 }
 }
 \details{
@@ -29,6 +30,12 @@
 \subsection{\strong{Get player usage metrics}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{ cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get a player season overview}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_player_season_overview(year = 2024, athlete_id = 4429105)
 }\if{html}{\out{</div>}}
 }
 }
