@@ -101,6 +101,8 @@ Two spec parameters were deliberately **not** exposed after testing them: `/rank
 
 ### Bug fixes
 
+* `espn_cfb_team_coaches()` — the `year` argument is deprecated. ESPN's core-v2 coaches endpoint returns the **current** coach whatever season is requested, echoing the requested year back in the response, so historical calls silently returned today's coach labelled with the old season (#125). `year` now defaults to `most_recent_cfb_season()`; passing any other season warns and is coerced, rather than returning misattributed data. Existing calls keep working.
+
 * `espn_cfb_teams()` returned **zero rows**, because `site.api.espn.com` now answers HTTP 403 to a spoofed browser `User-Agent`. The failure was silent — the wrapper caught it and returned an empty frame — and every consumer degraded to `NA`, which took `home`, `away`, `pos_team`, `def_pos_team`, `offense_play`, `defense_play` and every team abbreviation on the ESPN play-by-play path down with it. Measured 2026-08-19: the endpoint answers 200 with httr2's default UA, with `curl/8.5.0`, or with `Accept`/`Origin`/`Referer` and no UA at all, and 403 with the Chrome string. The `User-Agent` header is dropped.
 
   Probing every ESPN host the package uses narrowed the blast radius to **exactly two callers** — `espn_cfb_teams()` and `espn_cfb_team_schedule()`, the only two that combine `site.api.espn.com` with the spoofed header. `espn_cfb_team_schedule()` was returning zero rows for the same reason and now returns data. The other ~65 occurrences of the header sit on `sports.core.api.espn.com` and `site.web.api.espn.com`, which answer 200 either way, so they are left alone.

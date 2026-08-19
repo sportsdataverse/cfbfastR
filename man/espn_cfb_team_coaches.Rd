@@ -13,7 +13,7 @@ espn_cfb_team_coaches(
 \arguments{
 \item{team_id}{(\emph{Integer} required): ESPN team id.}
 
-\item{year}{(\emph{Integer}): DEPRECATED. Season, 4 digit format (\emph{YYYY}). Defaults to most recent CFB season.}
+\item{year}{DEPRECATED. (\emph{Integer}): Season, 4 digit format (\emph{YYYY}). Defaults to most recent CFB season.}
 
 \item{team_detail}{(\emph{Logical}): when \code{TRUE} (default), fetch the ESPN
 team catalog once and join friendly team fields next to the \code{team_id}
@@ -74,7 +74,7 @@ A catalog failure degrades to \code{NA} rather than erroring the wrapper. Set
 }
 }
 \seealso{
-Other ESPN CFB Functions:
+Other ESPN CFB Functions: 
 \code{\link{espn_cfb_award}()},
 \code{\link{espn_cfb_awards}()},
 \code{\link{espn_cfb_clear_cache}()},
