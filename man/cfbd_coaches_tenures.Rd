@@ -4,7 +4,13 @@
 \alias{cfbd_coaches_tenures}
 \title{\strong{Get coaching tenures}}
 \usage{
-cfbd_coaches_tenures(coach_id = NULL, team = NULL, year = NULL, active = NULL)
+cfbd_coaches_tenures(
+  coach_id = NULL,
+  team = NULL,
+  year = NULL,
+  active = NULL,
+  proxy = NULL
+)
 }
 \arguments{
 \item{coach_id}{(\emph{Integer} optional): Coach identifier.}
@@ -14,6 +20,11 @@ cfbd_coaches_tenures(coach_id = NULL, team = NULL, year = NULL, active = NULL)
 \item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY).}
 
 \item{active}{(\emph{Logical} optional): Restrict to currently active tenures.}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_coaches_tenures]{cfbd_coaches_tenures()}} - A tibble with 20 columns:\tabular{lll}{

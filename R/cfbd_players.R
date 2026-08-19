@@ -369,6 +369,10 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
 #' **Get a player season overview**
 #' Season overview for a single player.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_player_season_overview()] - A tibble with 31 columns:
 #'
 #'    |col_name                   |types     |description                                     |
@@ -416,7 +420,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
 #' \donttest{
 #'   try(cfbd_player_season_overview(year = 2024, athlete_id = 4429105))
 #' }
-cfbd_player_season_overview <- function(year, athlete_id) {
+cfbd_player_season_overview <- function(year, athlete_id, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -433,7 +437,7 @@ cfbd_player_season_overview <- function(year, athlete_id) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

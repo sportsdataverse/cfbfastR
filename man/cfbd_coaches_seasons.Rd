@@ -9,7 +9,8 @@ cfbd_coaches_seasons(
   team = NULL,
   year = NULL,
   min_year = NULL,
-  max_year = NULL
+  max_year = NULL,
+  proxy = NULL
 )
 }
 \arguments{
@@ -22,6 +23,11 @@ cfbd_coaches_seasons(
 \item{min_year}{(\emph{Integer} optional): Earliest season to include.}
 
 \item{max_year}{(\emph{Integer} optional): Latest season to include.}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_coaches_seasons]{cfbd_coaches_seasons()}} - A tibble with 68 columns:\tabular{lll}{

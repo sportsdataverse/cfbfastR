@@ -37,7 +37,6 @@ NULL
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr
 #' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
-#' @param provider (*String* optional): Sportsbook filter, e.g. `DraftKings`, `Bovada`, `ESPN Bet`.
 #' @return Betting information for games with the following 21 columns:
 #'
 #'    |col_name            |types     |description                                                                |
@@ -87,8 +86,7 @@ cfbd_betting_lines <- function(game_id = NULL,
                                home_team = NULL,
                                away_team = NULL,
                                conference = NULL,
-                               line_provider=NULL,
-                               provider = NULL) {
+                               line_provider=NULL) {
 
   # Validation Lists ----
   providers <- c(
@@ -122,8 +120,7 @@ cfbd_betting_lines <- function(game_id = NULL,
     "home" = home_team,
     "away" = away_team,
     "conference" = conference,
-    "provider" = line_provider,
-    "provider" = provider
+    "provider" = line_provider
   )
   full_url <- httr2::request(base_url) |>
     httr2::req_url_query(!!!.compact(query_params)) |>
@@ -138,10 +135,23 @@ cfbd_betting_lines <- function(game_id = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res |>
+      parsed <- res |>
         httr2::resp_body_string(encoding = "UTF-8") |>
         stringr::str_replace_all("NaN", 'null') |>
-        jsonlite::fromJSON(flatten = TRUE) |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      # An empty response has no `lines` column to unnest, and reaching the
+      # unnest anyway fails with "Column `lines` doesn't exist" -- which reads
+      # like a parser bug rather than "this filter matched no games". CFBD
+      # returns nothing for a provider that did not operate in the requested
+      # season (`consensus` and `numberfire` are historical; 2024 carries
+      # DraftKings, Bovada and ESPN Bet), so this is a routine outcome, not an
+      # error. Return the empty frame and let the caller see zero rows.
+      if (!is.data.frame(parsed) || nrow(parsed) == 0L || !"lines" %in% names(parsed)) {
+        return(df)
+      }
+
+      df <- parsed |>
         purrr::map_if(is.data.frame, list) |>
         dplyr::as_tibble() |>
         tidyr::unnest("lines")

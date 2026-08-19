@@ -1114,6 +1114,10 @@ cfbd_stats_game_havoc <- function(year = NULL,
 #' **Get player success rates by season**
 #' Season-level player success-rate metrics.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_stats_player_success()] - A tibble with 12 columns:
 #'
 #'    |col_name             |types     |description             |
@@ -1142,7 +1146,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
 #' \donttest{
 #'   try(cfbd_stats_player_success(year = 2024, team = "Georgia"))
 #' }
-cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NULL, athlete_id = NULL, season_type = 'regular', start_week = NULL, end_week = NULL, threshold = NULL, excl_garbage_time = NULL) {
+cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NULL, athlete_id = NULL, season_type = 'regular', start_week = NULL, end_week = NULL, threshold = NULL, excl_garbage_time = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -1166,7 +1170,7 @@ cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NUL
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>
@@ -1200,6 +1204,10 @@ cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NUL
 #' **Get player success rates by game**
 #' Game-level player success-rate metrics.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_stats_player_success_game()] - A tibble with 16 columns:
 #'
 #'    |col_name             |types     |description                                                                          |
@@ -1232,7 +1240,7 @@ cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NUL
 #' \donttest{
 #'   try(cfbd_stats_player_success_game(year = 2024, week = 5))
 #' }
-cfbd_stats_player_success_game <- function(year, week = NULL, season_type = 'regular', conference = NULL, team = NULL, athlete_id = NULL, threshold = NULL, excl_garbage_time = NULL) {
+cfbd_stats_player_success_game <- function(year, week = NULL, season_type = 'regular', conference = NULL, team = NULL, athlete_id = NULL, threshold = NULL, excl_garbage_time = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -1257,7 +1265,7 @@ cfbd_stats_player_success_game <- function(year, week = NULL, season_type = 'reg
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

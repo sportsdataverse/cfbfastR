@@ -10,7 +10,8 @@ cfbd_conference_affiliations(
   year = NULL,
   min_year = NULL,
   max_year = NULL,
-  division = NULL
+  division = NULL,
+  proxy = NULL
 )
 }
 \arguments{
@@ -25,6 +26,11 @@ cfbd_conference_affiliations(
 \item{max_year}{(\emph{Integer} optional): Latest season to include.}
 
 \item{division}{(\emph{String} optional): Division/classification filter -- \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}.}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_conference_affiliations]{cfbd_conference_affiliations()}} - A tibble with 9 columns:\tabular{lll}{

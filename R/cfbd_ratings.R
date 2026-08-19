@@ -726,6 +726,10 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
 #' **Get core team ratings**
 #' CFBD's core team rating measures.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_ratings_core()] - A tibble with 11 columns:
 #'
 #'    |col_name            |types     |description                                        |
@@ -753,7 +757,7 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
 #' \donttest{
 #'   try(cfbd_ratings_core(year = 2024))
 #' }
-cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL) {
+cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -770,7 +774,7 @@ cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>
@@ -800,6 +804,10 @@ cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL) {
 #' **Get expanded SRS ratings**
 #' Simple Rating System with its component breakdown.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_ratings_srs_expanded()] - A tibble with 7 columns:
 #'
 #'    |col_name       |types     |description                                          |
@@ -823,7 +831,7 @@ cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL) {
 #' \donttest{
 #'   try(cfbd_ratings_srs_expanded(year = 2024))
 #' }
-cfbd_ratings_srs_expanded <- function(year = NULL, team = NULL, conference = NULL, division = NULL) {
+cfbd_ratings_srs_expanded <- function(year = NULL, team = NULL, conference = NULL, division = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -842,7 +850,7 @@ cfbd_ratings_srs_expanded <- function(year = NULL, team = NULL, conference = NUL
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

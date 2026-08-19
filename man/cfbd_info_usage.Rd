@@ -4,7 +4,7 @@
 \alias{cfbd_info_usage}
 \title{\strong{Get API key usage information}}
 \usage{
-cfbd_info_usage(days = NULL, limit = NULL, api = NULL)
+cfbd_info_usage(days = NULL, limit = NULL, api = NULL, proxy = NULL)
 }
 \arguments{
 \item{days}{(\emph{Integer} optional): Look-back window in days.}
@@ -12,6 +12,11 @@ cfbd_info_usage(days = NULL, limit = NULL, api = NULL)
 \item{limit}{(\emph{Integer} optional): Maximum rows to return.}
 
 \item{api}{(\emph{String} optional): API filter -- \code{all}, \code{cfb} or \code{cbb}.}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_info_usage]{cfbd_info_usage()}} - A tibble with 11 columns:\tabular{lll}{

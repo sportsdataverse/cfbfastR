@@ -153,6 +153,10 @@ cfbd_coaches <- function(first = NULL,
 #' **Get a coach profile**
 #' Biographical profile for a single coach.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_coaches_profile()] - A tibble with 19 columns:
 #'
 #'    |col_name              |types     |description                          |
@@ -188,7 +192,7 @@ cfbd_coaches <- function(first = NULL,
 #' \donttest{
 #'   try(cfbd_coaches_profile(coach_id = 1))
 #' }
-cfbd_coaches_profile <- function(coach_id) {
+cfbd_coaches_profile <- function(coach_id, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -203,7 +207,7 @@ cfbd_coaches_profile <- function(coach_id) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>
@@ -257,6 +261,10 @@ cfbd_coaches_profile <- function(coach_id) {
 #' **Get coaching seasons**
 #' Season-by-season coaching records.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_coaches_seasons()] - A tibble with 68 columns:
 #'
 #'    |col_name                                 |types     |description                               |
@@ -341,7 +349,7 @@ cfbd_coaches_profile <- function(coach_id) {
 #' \donttest{
 #'   try(cfbd_coaches_seasons(team = "Georgia"))
 #' }
-cfbd_coaches_seasons <- function(coach_id = NULL, team = NULL, year = NULL, min_year = NULL, max_year = NULL) {
+cfbd_coaches_seasons <- function(coach_id = NULL, team = NULL, year = NULL, min_year = NULL, max_year = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -360,7 +368,7 @@ cfbd_coaches_seasons <- function(coach_id = NULL, team = NULL, year = NULL, min_
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>
@@ -390,6 +398,10 @@ cfbd_coaches_seasons <- function(coach_id = NULL, team = NULL, year = NULL, min_
 #' **Get coaching tenures**
 #' Start and end of each coaching tenure.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_coaches_tenures()] - A tibble with 20 columns:
 #'
 #'    |col_name              |types     |description                               |
@@ -426,7 +438,7 @@ cfbd_coaches_seasons <- function(coach_id = NULL, team = NULL, year = NULL, min_
 #' \donttest{
 #'   try(cfbd_coaches_tenures(team = "Georgia"))
 #' }
-cfbd_coaches_tenures <- function(coach_id = NULL, team = NULL, year = NULL, active = NULL) {
+cfbd_coaches_tenures <- function(coach_id = NULL, team = NULL, year = NULL, active = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -444,7 +456,7 @@ cfbd_coaches_tenures <- function(coach_id = NULL, team = NULL, year = NULL, acti
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

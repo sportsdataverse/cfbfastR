@@ -595,6 +595,10 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 #' **Get FBS teams**
 #' Every FBS team for a season.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_teams_fbs()] - A tibble with 43 columns:
 #'
 #'    |col_name                   |types     |description                                          |
@@ -654,7 +658,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 #' \donttest{
 #'   try(cfbd_teams_fbs(year = 2024))
 #' }
-cfbd_teams_fbs <- function(year = NULL) {
+cfbd_teams_fbs <- function(year = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -669,7 +673,7 @@ cfbd_teams_fbs <- function(year = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

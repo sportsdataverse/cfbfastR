@@ -4,10 +4,15 @@
 \alias{cfbd_playoffs_cfp}
 \title{\strong{Get College Football Playoff bracket information}}
 \usage{
-cfbd_playoffs_cfp(year)
+cfbd_playoffs_cfp(year, proxy = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_playoffs_cfp]{cfbd_playoffs_cfp()}} - A tibble with 46 columns:\tabular{lll}{

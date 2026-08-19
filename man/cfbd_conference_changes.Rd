@@ -4,10 +4,15 @@
 \alias{cfbd_conference_changes}
 \title{\strong{Get conference realignment changes}}
 \usage{
-cfbd_conference_changes(year)
+cfbd_conference_changes(year, proxy = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_conference_changes]{cfbd_conference_changes()}} - A tibble with 11 columns:\tabular{lll}{

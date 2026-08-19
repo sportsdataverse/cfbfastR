@@ -17,6 +17,10 @@ NULL
 #' **Get API key usage information**
 #' Call volume and remaining quota for the configured CFBD API key.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_info_usage()] - A tibble with 11 columns:
 #'
 #'    |col_name           |types     |description                                                                             |
@@ -44,7 +48,7 @@ NULL
 #' \donttest{
 #'   try(cfbd_info_usage())
 #' }
-cfbd_info_usage <- function(days = NULL, limit = NULL, api = NULL) {
+cfbd_info_usage <- function(days = NULL, limit = NULL, api = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -62,7 +66,7 @@ cfbd_info_usage <- function(days = NULL, limit = NULL, api = NULL) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

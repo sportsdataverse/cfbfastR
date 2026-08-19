@@ -121,6 +121,10 @@ cfbd_conferences <- function(year = NULL, division = NULL) {
 #' **Get conference affiliations by team and season**
 #' Which conference each team belonged to, by season.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_conference_affiliations()] - A tibble with 9 columns:
 #'
 #'    |col_name                |types     |description                                          |
@@ -146,7 +150,7 @@ cfbd_conferences <- function(year = NULL, division = NULL) {
 #' \donttest{
 #'   try(cfbd_conference_affiliations(team = "Georgia"))
 #' }
-cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = NULL, min_year = NULL, max_year = NULL, division = NULL) {
+cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = NULL, min_year = NULL, max_year = NULL, division = NULL, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -167,7 +171,7 @@ cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = 
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>
@@ -194,6 +198,10 @@ cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = 
 #' **Get conference realignment changes**
 #' Teams that changed conference in a given season.
 #'
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   [get_req()]. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_conference_changes()] - A tibble with 11 columns:
 #'
 #'    |col_name                     |types     |description                                |
@@ -221,7 +229,7 @@ cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = 
 #' \donttest{
 #'   try(cfbd_conference_changes(year = 2024))
 #' }
-cfbd_conference_changes <- function(year) {
+cfbd_conference_changes <- function(year, proxy = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -237,7 +245,7 @@ cfbd_conference_changes <- function(year) {
   df <- data.frame()
   tryCatch(
     expr = {
-      res <- get_req(full_url)
+      res <- get_req(full_url, proxy = proxy)
       check_status(res)
 
       df <- res |>

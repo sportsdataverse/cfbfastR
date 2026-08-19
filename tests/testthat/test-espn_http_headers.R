@@ -52,8 +52,13 @@ test_that("no site.api.espn.com caller sends a User-Agent", {
 test_that("the sidecar fetch does not send a User-Agent either", {
   # cdn.espn.com answers 200 with an EMPTY body when a browser UA is sent, which
   # is worse than a 403: nothing raises, the JSON parse just yields nothing.
-  src <- readLines(testthat::test_path("..", "..", "R", "helper_pbp_sidecar.R"),
-                   warn = FALSE)
+  # R CMD check runs the suite against the INSTALLED package, where R/*.R does
+  # not exist -- so existence must be checked BEFORE readLines(), not after.
+  # Guarding on the result of the read is too late: the connection error is
+  # raised first, which is what broke CI while every local pkgload run passed.
+  f <- testthat::test_path("..", "..", "R", "helper_pbp_sidecar.R")
+  skip_if_not(file.exists(f), "package sources not available (installed check)")
+  src <- readLines(f, warn = FALSE)
   skip_if(length(src) == 0, "sidecar source not available")
   expect_false(any(grepl("User-Agent", src[!grepl("^\\s*#", src)])))
 })

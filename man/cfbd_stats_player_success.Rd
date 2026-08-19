@@ -13,7 +13,8 @@ cfbd_stats_player_success(
   start_week = NULL,
   end_week = NULL,
   threshold = NULL,
-  excl_garbage_time = NULL
+  excl_garbage_time = NULL,
+  proxy = NULL
 )
 }
 \arguments{
@@ -34,6 +35,11 @@ cfbd_stats_player_success(
 \item{threshold}{(\emph{Numeric} optional): Minimum success-rate threshold.}
 
 \item{excl_garbage_time}{(\emph{Logical} optional): Exclude garbage-time plays.}
+
+\item{proxy}{(\emph{List} optional): Per-call proxy override passed to
+\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
+variables, so a caller can override the shared setting for one endpoint.}
 }
 \value{
 \code{\link[=cfbd_stats_player_success]{cfbd_stats_player_success()}} - A tibble with 12 columns:\tabular{lll}{
