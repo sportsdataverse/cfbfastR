@@ -21,6 +21,12 @@
   "wpa", "wp_before", "wp_after",
   "def_wp_before", "def_wp_after",
   "penalty_detail", "yds_penalty", "penalty_1st_conv",
+  # Enforcement resolution ported from sdv-py (helper_pbp_penalty_enforcement.R).
+  # These sit in "default" deliberately: penalty_negated_play answers "did this
+  # play count", which every EPA consumer needs, and the counts are what make
+  # multi-penalty plays representable at all.
+  "penalty_count", "penalty_declined_count", "penalty_all_declined",
+  "penalty_enforcement", "penalty_negated_play",
   # series_columns
   "new_series", "firstD_by_kickoff", "firstD_by_poss",
   "firstD_by_penalty", "firstD_by_yards",

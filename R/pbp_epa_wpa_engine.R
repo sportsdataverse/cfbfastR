@@ -31,6 +31,10 @@
   }
   df |>
     penalty_detection() |>
+    # Enforcement resolution runs immediately after detection and before
+    # anything reads the play's outcome: a nullified play must not be credited
+    # with its yards or its touchdown downstream.
+    penalty_enforcement() |>
     .pbp_add_play_counts() |>
     .pbp_clean_pbp_dat() |>
     .pbp_clean_drive_dat() |>
