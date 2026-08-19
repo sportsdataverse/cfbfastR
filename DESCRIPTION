@@ -36,7 +36,7 @@ Depends:
 Imports:
     cli (>= 3.0.0),
     data.table (>= 1.15.0),
-    dplyr (>= 1.0.0),
+    dplyr (>= 1.1.1),
     glue (>= 1.4.0),
     httr2 (>= 1.0.0),
     janitor,
