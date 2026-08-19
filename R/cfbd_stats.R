@@ -8,6 +8,8 @@
 #' * `cfbd_stats_season_advanced()`: Get season advanced statistics by team.
 #' * `cfbd_stats_game_advanced()`: Get game advanced stats.
 #' * `cfbd_stats_season_player()`: Get season statistics by player.
+#' * `cfbd_stats_player_success()`: Get player success rates by season.
+#' * `cfbd_stats_player_success_game()`: Get player success rates by game.
 #'
 #' @details
 #' ### **Get game advanced stats**
@@ -47,6 +49,19 @@
 #' ```r
 #' cfbd_stats_categories()
 #' ````
+#'
+#' ## **Get player success rates by season**
+#'
+#' ```r
+#' cfbd_stats_player_success(year = 2024, team = "Georgia")
+#' ```
+#'
+#' ## **Get player success rates by game**
+#'
+#' ```r
+#' cfbd_stats_player_success_game(year = 2024, week = 5)
+#' ```
+
 NULL
 
 #' @title
@@ -294,6 +309,7 @@ cfbd_stats_game_advanced <- function(year,
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_stats_season_advanced()] - A data frame with 82 variables:
 #'
 #'    |col_name                            |types     |description                                                       |
@@ -397,10 +413,12 @@ cfbd_stats_season_advanced <- function(year,
                                        team = NULL,
                                        excl_garbage_time = FALSE,
                                        start_week = NULL,
-                                       end_week = NULL) {
+                                       end_week = NULL,
+                                       division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_list(excl_garbage_time, c(T,F))
   validate_week(start_week)
@@ -417,7 +435,8 @@ cfbd_stats_season_advanced <- function(year,
     "team" = team,
     "excludeGarbageTime" = excl_garbage_time,
     "startWeek" = start_week,
-    "endWeek" = end_week
+    "endWeek" = end_week,
+    "classification" = division
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
@@ -727,6 +746,7 @@ cfbd_stats_season_player <- function(year,
 #' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_stats_season_team()] - A data frame with 32 variables:
 #'
 #'    |col_name                |types     |description                                      |
@@ -803,10 +823,12 @@ cfbd_stats_season_team <- function(year,
                                    team = NULL,
                                    conference = NULL,
                                    start_week = NULL,
-                                   end_week = NULL) {
+                                   end_week = NULL,
+                                   division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_season_type(season_type)
   validate_week(start_week)
@@ -824,7 +846,8 @@ cfbd_stats_season_team <- function(year,
     "startWeek" = start_week,
     "endWeek" = end_week,
     "team" = team,
-    "conference" = conference
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
@@ -1069,6 +1092,184 @@ cfbd_stats_game_havoc <- function(year = NULL,
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no game havoc stats data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get player success rates by season**
+#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param conference (*String* optional): Conference abbreviation filter.
+#' @param team (*String* optional): Team filter.
+#' @param athlete_id (*Integer* optional): Player identifier.
+#' @param season_type (*String* optional): Season type -- `regular`, `postseason`, `both`, `allstar`, `spring_regular` or `spring_postseason`.
+#' @param start_week (*Integer* optional): First week to include.
+#' @param end_week (*Integer* optional): Last week to include.
+#' @param threshold (*Numeric* optional): Minimum success-rate threshold.
+#' @param excl_garbage_time (*Logical* optional): Exclude garbage-time plays.
+#' @description
+#' **Get player success rates by season**
+#' Season-level player success-rate metrics.
+#'
+#' @return [cfbd_stats_player_success()] - A tibble with 12 columns:
+#'
+#'    |col_name             |types     |description             |
+#'    |:-------------------|:--------|:----------------------|
+#'    |season               |integer   |Four-digit season year. |
+#'    |id                   |character |Record identifier.      |
+#'    |name                 |character |Display name.           |
+#'    |position             |character |Position.               |
+#'    |team                 |character |Team name.              |
+#'    |conference           |character |Conference name.        |
+#'    |passing_plays        |integer   |Passing plays.          |
+#'    |passing_successes    |integer   |Passing successes.      |
+#'    |passing_success_rate |numeric   |Passing success rate.   |
+#'    |rushing_plays        |integer   |Rushing plays.          |
+#'    |rushing_successes    |integer   |Rushing successes.      |
+#'    |rushing_success_rate |numeric   |Rushing success rate.   |
+#'
+#' @keywords Stats
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string url_modify
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Stats Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_stats_player_success(year = 2024, team = "Georgia"))
+#' }
+cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NULL, athlete_id = NULL, season_type = 'regular', start_week = NULL, end_week = NULL, threshold = NULL, excl_garbage_time = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_season_type(season_type)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/stats/player/success"
+  query_params <- list(
+    "year" = year,
+    "conference" = conference,
+    "team" = team,
+    "playerId" = athlete_id,
+    "seasonType" = season_type,
+    "startWeek" = start_week,
+    "endWeek" = end_week,
+    "threshold" = threshold,
+    "excludeGarbageTime" = excl_garbage_time
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- get_req(full_url)
+      check_status(res)
+
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names()
+
+      df <- df |>
+        make_cfbfastR_data("Get player success rates by season from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no stats data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get player success rates by game**
+#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param week (*Integer* optional): Week filter.
+#' @param season_type (*String* optional): Season type -- `regular`, `postseason`, `both`, `allstar`, `spring_regular` or `spring_postseason`.
+#' @param conference (*String* optional): Conference abbreviation filter.
+#' @param team (*String* optional): Team filter.
+#' @param athlete_id (*Integer* optional): Player identifier.
+#' @param threshold (*Numeric* optional): Minimum success-rate threshold.
+#' @param excl_garbage_time (*Logical* optional): Exclude garbage-time plays.
+#' @description
+#' **Get player success rates by game**
+#' Game-level player success-rate metrics.
+#'
+#' @return [cfbd_stats_player_success_game()] - A tibble with 16 columns:
+#'
+#'    |col_name             |types     |description                                                                          |
+#'    |:-------------------|:--------|:-----------------------------------------------------------------------------------|
+#'    |season               |integer   |Four-digit season year.                                                              |
+#'    |season_type          |character |Season type (regular, postseason, both, allstar, spring_regular, spring_postseason). |
+#'    |week                 |integer   |Week of the season.                                                                  |
+#'    |game_id              |integer   |Referencing game id.                                                                 |
+#'    |id                   |character |Record identifier.                                                                   |
+#'    |name                 |character |Display name.                                                                        |
+#'    |position             |character |Position.                                                                            |
+#'    |team                 |character |Team name.                                                                           |
+#'    |conference           |character |Conference name.                                                                     |
+#'    |opponent             |character |Opponent.                                                                            |
+#'    |passing_plays        |integer   |Passing plays.                                                                       |
+#'    |passing_successes    |integer   |Passing successes.                                                                   |
+#'    |passing_success_rate |numeric   |Passing success rate.                                                                |
+#'    |rushing_plays        |integer   |Rushing plays.                                                                       |
+#'    |rushing_successes    |integer   |Rushing successes.                                                                   |
+#'    |rushing_success_rate |numeric   |Rushing success rate.                                                                |
+#'
+#' @keywords Stats
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string url_modify
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Stats Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_stats_player_success_game(year = 2024, week = 5))
+#' }
+cfbd_stats_player_success_game <- function(year, week = NULL, season_type = 'regular', conference = NULL, team = NULL, athlete_id = NULL, threshold = NULL, excl_garbage_time = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_season_type(season_type)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/stats/player/success/game"
+  query_params <- list(
+    "year" = year,
+    "week" = week,
+    "seasonType" = season_type,
+    "conference" = conference,
+    "team" = team,
+    "playerId" = athlete_id,
+    "threshold" = threshold,
+    "excludeGarbageTime" = excl_garbage_time
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- get_req(full_url)
+      check_status(res)
+
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names()
+
+      df <- df |>
+        make_cfbfastR_data("Get player success rates by game from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no stats data available! {conditionMessage(e)}"))
     },
     finally = {
     }

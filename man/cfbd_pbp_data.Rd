@@ -12,7 +12,12 @@ cfbd_pbp_data(
   play_type = NULL,
   epa_wpa = FALSE,
   engine = NULL,
-  ...
+  ...,
+  defense = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL,
+  conference = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -38,6 +43,16 @@ and team attribution. \code{"legacy"} reproduces the pre-2.3.0 frame unchanged.}
 \item{...}{Additional arguments passed to \code{\link[=cfbd_pbp_data_v2]{cfbd_pbp_data_v2()}} when the call
 delegates -- notably \code{output}, the \code{"default"} / \code{"lean"} / \code{"full"} modeled
 column-set selector. Ignored on the legacy path.}
+
+\item{defense}{(\emph{String} optional): Defensive team filter.}
+
+\item{offense_conference}{(\emph{String} optional): Offensive team conference filter.}
+
+\item{defense_conference}{(\emph{String} optional): Defensive team conference filter.}
+
+\item{conference}{(\emph{String} optional): Conference filter (either side of the ball).}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}.}
 }
 \value{
 A data frame with 368 variables:\tabular{lll}{

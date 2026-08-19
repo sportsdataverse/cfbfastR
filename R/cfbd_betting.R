@@ -37,6 +37,7 @@ NULL
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr
 #' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
+#' @param provider (*String* optional): Sportsbook filter, e.g. `DraftKings`, `Bovada`, `ESPN Bet`.
 #' @return Betting information for games with the following 21 columns:
 #'
 #'    |col_name            |types     |description                                                                |
@@ -86,7 +87,8 @@ cfbd_betting_lines <- function(game_id = NULL,
                                home_team = NULL,
                                away_team = NULL,
                                conference = NULL,
-                               line_provider=NULL) {
+                               line_provider=NULL,
+                               provider = NULL) {
 
   # Validation Lists ----
   providers <- c(
@@ -120,7 +122,8 @@ cfbd_betting_lines <- function(game_id = NULL,
     "home" = home_team,
     "away" = away_team,
     "conference" = conference,
-    "provider" = line_provider
+    "provider" = line_provider,
+    "provider" = provider
   )
   full_url <- httr2::request(base_url) |>
     httr2::req_url_query(!!!.compact(query_params)) |>

@@ -8,6 +8,7 @@
 #' * `cfbd_team_talent()`: Get composite team talent rankings for all teams in a given year.
 #' * `cfbd_team_matchup_records()`: Get matchup history records between two teams.
 #' * `cfbd_team_matchup()`: Get matchup history between two teams.
+#' * `cfbd_teams_fbs()`: Get every FBS team for a season.
 #'
 #' ## **Team info lookup**
 #'
@@ -56,6 +57,13 @@
 #'
 #' cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 #' ```
+#'
+#' ## **Get FBS teams**
+#'
+#' ```r
+#' cfbd_teams_fbs(year = 2024)
+#' ```
+
 NULL
 #' @title
 #' **Team info lookup**
@@ -421,6 +429,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @param year (*Integer* required): Year,  4 digit format (*YYYY*)
 #' @param team (*String* optional): Team, select a valid team in D-I football
 #'
+#' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @return [cfbd_team_roster()] - A data frame with 16 variables:
 #'
 #'    |col_name         |types     |description                       |
@@ -455,10 +464,12 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'   try(cfbd_team_roster(year = 2013, team = "Florida State"))
 #' }
 #'
-cfbd_team_roster <- function(year, team = NULL) {
+cfbd_team_roster <- function(year, team = NULL,
+  division = NULL) {
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
 
   # Team Name Handling ----
@@ -468,7 +479,8 @@ cfbd_team_roster <- function(year, team = NULL) {
   base_url <- "https://api.collegefootballdata.com/roster"
   query_params <- list(
     "year" = year,
-    "team" = team
+    "team" = team,
+    "classification" = division
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 
@@ -569,6 +581,118 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get FBS teams**
+#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @description
+#' **Get FBS teams**
+#' Every FBS team for a season.
+#'
+#' @return [cfbd_teams_fbs()] - A tibble with 43 columns:
+#'
+#'    |col_name                   |types     |description                                          |
+#'    |:-------------------------|:--------|:---------------------------------------------------|
+#'    |id                         |integer   |Record identifier.                                   |
+#'    |school                     |character |School name.                                         |
+#'    |mascot                     |character |Team mascot.                                         |
+#'    |abbreviation               |character |Abbreviation.                                        |
+#'    |alternate_names_1          |character |First alternate team name.                           |
+#'    |alternate_names_2          |character |Second alternate team name.                          |
+#'    |alternate_names_3          |character |Third alternate team name.                           |
+#'    |conference                 |character |Conference name.                                     |
+#'    |division                   |character |Division.                                            |
+#'    |classification             |character |Division classification (fbs, fcs, ii, ii/iii, iii). |
+#'    |color                      |character |Primary team color (hex).                            |
+#'    |alternate_color            |character |Alternate color.                                     |
+#'    |logos_1                    |character |Primary team logo URL.                               |
+#'    |logos_2                    |character |Alternate (dark) team logo URL.                      |
+#'    |logos_3                    |character |Logos 3.                                             |
+#'    |logos_4                    |character |Logos 4.                                             |
+#'    |logos_5                    |character |Logos 5.                                             |
+#'    |logos_6                    |character |Logos 6.                                             |
+#'    |logos_7                    |character |Logos 7.                                             |
+#'    |logos_8                    |character |Logos 8.                                             |
+#'    |logos_9                    |character |Logos 9.                                             |
+#'    |logos_10                   |character |Logos 10.                                            |
+#'    |logos_11                   |character |Logos 11.                                            |
+#'    |logos_12                   |character |Logos 12.                                            |
+#'    |logos_13                   |character |Logos 13.                                            |
+#'    |logos_14                   |character |Logos 14.                                            |
+#'    |logos_15                   |character |Logos 15.                                            |
+#'    |logos_16                   |character |Logos 16.                                            |
+#'    |twitter                    |character |Team Twitter/X handle.                               |
+#'    |location_id                |integer   |Venue identifier.                                    |
+#'    |location_name              |character |Venue name.                                          |
+#'    |location_city              |character |Venue city.                                          |
+#'    |location_state             |character |Venue state.                                         |
+#'    |location_zip               |character |Venue zip.                                           |
+#'    |location_country_code      |character |Venue country code.                                  |
+#'    |location_timezone          |character |Venue timezone.                                      |
+#'    |location_latitude          |numeric   |Venue latitude.                                      |
+#'    |location_longitude         |numeric   |Venue longitude.                                     |
+#'    |location_elevation         |character |Venue elevation.                                     |
+#'    |location_capacity          |integer   |Venue capacity.                                      |
+#'    |location_construction_year |integer   |Venue construction year.                             |
+#'    |location_grass             |logical   |Venue grass.                                         |
+#'    |location_dome              |logical   |Venue dome.                                          |
+#'
+#' @keywords Teams
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string url_modify
+#' @import dplyr
+#' @import tidyr
+#' @family CFBD Teams Functions
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_teams_fbs(year = 2024))
+#' }
+cfbd_teams_fbs <- function(year = NULL) {
+
+  # Validation ----
+  validate_api_key()
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/teams/fbs"
+  query_params <- list(
+    "year" = year
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      res <- get_req(full_url)
+      check_status(res)
+
+      df <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE) |>
+        janitor::clean_names()
+
+      # `logos` and `alternate_names` arrive as variable-length character
+      # vectors. cfbd_team_info() widens them rather than shipping list-columns,
+      # and this endpoint returns the same fields, so it follows suit -- a
+      # list-column here would break dplyr verbs and any write to csv/parquet.
+      if ("logos" %in% names(df)) {
+        df <- tidyr::unnest_wider(df, "logos", names_sep = "_")
+      }
+      if ("alternate_names" %in% names(df)) {
+        df <- tidyr::unnest_wider(df, "alternate_names", names_sep = "_")
+      }
+
+      df <- df |>
+        make_cfbfastR_data("Get FBS teams from CollegeFootballData.com", Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no teams data available! {conditionMessage(e)}"))
     },
     finally = {
     }

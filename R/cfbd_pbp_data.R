@@ -424,6 +424,11 @@ NULL
 #' @param ... Additional arguments passed to [cfbd_pbp_data_v2()] when the call
 #' delegates -- notably `output`, the `"default"` / `"lean"` / `"full"` modeled
 #' column-set selector. Ignored on the legacy path.
+#' @param defense (*String* optional): Defensive team filter.
+#' @param offense_conference (*String* optional): Offensive team conference filter.
+#' @param defense_conference (*String* optional): Defensive team conference filter.
+#' @param conference (*String* optional): Conference filter (either side of the ball).
+#' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.
 #' @export
 
 cfbd_pbp_data <- function(year,
@@ -433,7 +438,12 @@ cfbd_pbp_data <- function(year,
                           play_type = NULL,
                           epa_wpa = FALSE,
                           engine = NULL,
-                          ...) {
+                          ...,
+                          defense = NULL,
+                          offense_conference = NULL,
+                          defense_conference = NULL,
+                          conference = NULL,
+                          division = NULL) {
   # Upgrade path. `engine = "v2"` (or options(cfbfastR.pbp_engine = "v2"))
   # delegates to the modular engine, which is where new parsing work lands.
   # The leading arguments are identical to cfbd_pbp_data_v2()'s by design, so
@@ -459,6 +469,7 @@ cfbd_pbp_data <- function(year,
 
   # Validation ----
   validate_api_key()
+  validate_division(division)
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
@@ -489,7 +500,12 @@ cfbd_pbp_data <- function(year,
     "year" = year,
     "week" = week,
     "team" = team,
-    "playType" = pt_abb
+    "playType" = pt_abb,
+    "defense" = defense,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::url_modify(play_base_url, query = .compact(query_params))
 

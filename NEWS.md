@@ -87,6 +87,18 @@ A read-only Fox Sports "Bifrost" college-football layer (`api.foxsports.com/bifr
 
   It encodes three conventions proven against the box, two of which are the opposite of the NFL's: **NCAA charges a sack to rushing** (attempt and yardage both), **pass attempts exclude sacks**, and **a penalty belongs to the team that committed it** — a positive `penalty_yards_signed` means the offence gained, so the defence was flagged. Floors are measured from the shipped 60-game corpus, never guessed, and are per-stat because parity is strongly era-dependent (interceptions reconcile at 97%, 2004-inclusive rushing yardage at 31%).
 
+### CFBD API coverage
+
+Audited against the CollegeFootballData OpenAPI spec (5.24.1, 74 endpoints).
+
+**15 endpoints that had no wrapper now have one:** `cfbd_playoffs_cfp()`, `cfbd_playoffs_cfp_games()`, `cfbd_playoffs_cfp_participants()`, `cfbd_conference_affiliations()`, `cfbd_conference_changes()`, `cfbd_coaches_profile()`, `cfbd_coaches_seasons()`, `cfbd_coaches_tenures()`, `cfbd_ratings_core()`, `cfbd_ratings_srs_expanded()`, `cfbd_teams_fbs()`, `cfbd_stats_player_success()`, `cfbd_stats_player_success_game()`, `cfbd_player_season_overview()` and `cfbd_info_usage()`. Every one was exercised against the live API before being committed.
+
+**26 parameters added** to existing wrappers — most importantly `division` on ten more functions, plus `defense` / `offense_conference` / `defense_conference` / `conference` / `division` on `cfbd_pbp_data()`, `competition` and `round` on `cfbd_game_info()` (College Football Playoff filtering), `provider` on `cfbd_betting_lines()`, `conference` on `cfbd_play_stats_player()` and `recruit_type` on `cfbd_recruiting_position()`. `cfbd_conferences()` previously took **no arguments at all** and now accepts `year` and `division`.
+
+**New `validate_division()`** covering `fbs` / `fcs` / `ii` / `ii/iii` / `iii`. This validates locally because CFBD *ignores* an unrecognised filter value rather than rejecting it — so without it a typo silently returns every division.
+
+Two spec parameters were deliberately **not** exposed after testing them: `/rankings` declares `latest` and `final` as booleans, but the API returns HTTP 400 for every form of both. `poll` is validated to `"cfp"`, the only value it accepts.
+
 ### Bug fixes
 
 * `espn_cfb_teams()` returned **zero rows**, because `site.api.espn.com` now answers HTTP 403 to a spoofed browser `User-Agent`. The failure was silent — the wrapper caught it and returned an empty frame — and every consumer degraded to `NA`, which took `home`, `away`, `pos_team`, `def_pos_team`, `offense_play`, `defense_play` and every team abbreviation on the ESPN play-by-play path down with it. Measured 2026-08-19: the endpoint answers 200 with httr2's default UA, with `curl/8.5.0`, or with `Accept`/`Origin`/`Referer` and no UA at all, and 403 with the Chrome string. The `User-Agent` header is dropped.

@@ -13,7 +13,8 @@ cfbd_betting_lines(
   home_team = NULL,
   away_team = NULL,
   conference = NULL,
-  line_provider = NULL
+  line_provider = NULL,
+  provider = NULL
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC \cr}
 
 \item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
+
+\item{provider}{(\emph{String} optional): Sportsbook filter, e.g. \code{DraftKings}, \code{Bovada}, \verb{ESPN Bet}.}
 }
 \value{
 Betting information for games with the following 21 columns:\tabular{lll}{

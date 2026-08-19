@@ -4,7 +4,14 @@
 \alias{cfbd_rankings}
 \title{\strong{Get historical Coaches and AP poll data}}
 \usage{
-cfbd_rankings(year, week = NULL, season_type = "both")
+cfbd_rankings(
+  year,
+  week = NULL,
+  season_type = "both",
+  poll = NULL,
+  latest = NULL,
+  final = NULL
+)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
@@ -12,6 +19,17 @@ cfbd_rankings(year, week = NULL, season_type = "both")
 \item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 
 \item{season_type}{(\emph{String} default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
+
+\item{poll}{(\emph{String} optional): Poll filter. CFBD accepts only \code{"cfp"} here --
+any other value returns HTTP 400, so it is validated rather than passed through.
+Omit it to get every poll (AP, Coaches, CFP) and filter the result frame.}
+
+\item{latest}{(\emph{Logical} optional): Return the latest College Football Playoff
+snapshot, preferring the one marked final. \strong{Requires \code{poll = "cfp"}} and
+cannot be combined with \code{final}.}
+
+\item{final}{(\emph{Logical} optional): Return the College Football Playoff snapshot
+marked final. \strong{Requires \code{poll = "cfp"}} and cannot be combined with \code{latest}.}
 }
 \value{
 \code{\link[=cfbd_rankings]{cfbd_rankings()}} - A data frame with 9 variables:\tabular{lll}{
