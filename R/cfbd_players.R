@@ -366,7 +366,8 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
 
 #' @title
 #' **Get a player season overview**
-#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param year (*Integer* required): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_player_season_overview', 'min_year']`
 #' @param athlete_id (*Integer* required): Player identifier.
 #' @description
 #' **Get a player season overview**

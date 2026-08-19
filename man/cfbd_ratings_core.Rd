@@ -7,7 +7,8 @@
 cfbd_ratings_core(year = NULL, team = NULL, conference = NULL, proxy = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2016}
 
 \item{team}{(\emph{String} optional): Team filter.}
 

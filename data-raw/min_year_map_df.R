@@ -1,37 +1,30 @@
-# Check for minimums not updated in the last 3 months
-# Include all functions that pass a minimum year through to another function
-functions_to_update <- 
-  min_year_map_df |> 
-  dplyr::filter(
-      last_updated < Sys.Date() - 90 |
-      function_name %in% unique(min_year_map_df$inherit_min_from)
-  )
-
-min_year_map <-
-  functions_to_update |> 
-  dplyr::select(function_name, min_year) |> 
-  tibble::deframe()
-
-inherit_map <- 
-  min_year_map_df |> 
-  dplyr::select(function_name, inherit_min_from) |> 
-  dplyr::filter(!is.na(inherit_min_from)) |> 
-  tibble::deframe()
-
 # Helper functions ----
 formal_names <- function(func) {
   names(formals(getExportedValue("cfbfastR", func)))
 }
 get_returned_rows <- function(...) {
-  dplyr::coalesce(
-    nrow(
-      tryCatch(
-        tf(...)$result,
-        error = function(e) e
-      )
-    ),
-    0
-  )
+  # A zero row count is ambiguous. CFBD answers HTTP 204 when a season genuinely
+  # holds no data, but 5xx when it is overloaded, and the wrappers turn BOTH into
+  # an empty frame. Reading a 5xx as "no data" stops the backward walk early and
+  # records a minimum that is too high -- silently, and in user-facing docs.
+  # `purrr::quietly()` keeps the wrapper's message, which names the status, so a
+  # zero is only accepted once it is corroborated by something other than a
+  # server error.
+  for (attempt in 1:4) {
+    out <- tryCatch(tf(...), error = function(e) NULL)
+    if (!is.null(out)) {
+      n <- dplyr::coalesce(nrow(out$result), 0L)
+      if (n > 0) {
+        return(n)
+      }
+      msg <- paste(out$messages, out$warnings, collapse = " ")
+      if (!grepl("HTTP 5|timed out|Timeout|Could not resolve", msg)) {
+        return(0L)
+      }
+    }
+    Sys.sleep(2)
+  }
+  0L
 }
 
 update_map <- function(df, func_name, new_year) {
@@ -61,7 +54,7 @@ all_objs <- getNamespaceExports("cfbfastR")
 func_with_year <- c()
 for (func in all_objs) {
   if ('year' %in% formal_names(func)) {
-    func_with_year[func] <- 2025
+    func_with_year[func] <- most_recent_cfb_season()
   }
 }
 
@@ -81,6 +74,46 @@ for (func in all_objs) {
     espn_team_func <- append(espn_team_func, func)
   }
 }
+
+# Onboard any exported year-taking function that is not in the map yet, so a
+# newly-added wrapper picks up a minimum instead of being silently skipped
+# forever. `last_updated = NA` marks it as never probed, which the filter below
+# treats as due.
+new_funcs <- setdiff(names(func_with_year), min_year_map_df$function_name)
+if (length(new_funcs) > 0) {
+  print(glue::glue('Onboarding {length(new_funcs)} new function(s): {paste(new_funcs, collapse = ", ")}'))
+  min_year_map_df <- dplyr::bind_rows(
+    min_year_map_df,
+    tibble::tibble(
+      function_name = new_funcs,
+      min_year = unname(func_with_year[new_funcs]),
+      last_updated = as.Date(NA),
+      inherit_min_from = NA_character_
+    )
+  ) |>
+    dplyr::arrange(function_name)
+}
+
+# Check for minimums not updated in the last 3 months
+# Include all functions that pass a minimum year through to another function
+functions_to_update <- 
+  min_year_map_df |> 
+  dplyr::filter(
+      is.na(last_updated) |
+      last_updated < Sys.Date() - 90 |
+      function_name %in% unique(min_year_map_df$inherit_min_from)
+  )
+
+min_year_map <-
+  functions_to_update |> 
+  dplyr::select(function_name, min_year) |> 
+  tibble::deframe()
+
+inherit_map <- 
+  min_year_map_df |> 
+  dplyr::select(function_name, inherit_min_from) |> 
+  dplyr::filter(!is.na(inherit_min_from)) |> 
+  tibble::deframe()
 
 for (i in seq_along(min_year_map)) {
   func <- min_year_map[i]

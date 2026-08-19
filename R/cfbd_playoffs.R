@@ -12,7 +12,8 @@ NULL
 
 #' @title
 #' **Get College Football Playoff bracket information**
-#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param year (*Integer* required): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_playoffs_cfp', 'min_year']`
 #' @description
 #' **Get College Football Playoff bracket information**
 #' Returns the College Football Playoff bracket for a season.
@@ -176,7 +177,8 @@ cfbd_playoffs_cfp <- function(year, proxy = NULL) {
 
 #' @title
 #' **Get College Football Playoff games**
-#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param year (*Integer* required): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_playoffs_cfp_games', 'min_year']`
 #' @param round (*String* optional): `first_round`, `quarterfinal`, `semifinal` or `championship`.
 #' @description
 #' **Get College Football Playoff games**
@@ -301,7 +303,8 @@ cfbd_playoffs_cfp_games <- function(year, round = NULL, proxy = NULL) {
 
 #' @title
 #' **Get College Football Playoff participants**
-#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param year (*Integer* required): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_playoffs_cfp_participants', 'min_year']`
 #' @description
 #' **Get College Football Playoff participants**
 #' Returns the teams that participated in the College Football Playoff for a season.

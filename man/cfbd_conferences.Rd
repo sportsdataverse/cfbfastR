@@ -8,7 +8,8 @@
 cfbd_conferences(year = NULL, division = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Season filter, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} optional): Season filter, 4 digits (YYYY). \cr
+Minimum value accepted: 1872}
 
 \item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }

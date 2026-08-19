@@ -7,7 +7,8 @@
 cfbd_playoffs_cfp_games(year, round = NULL, proxy = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2014}
 
 \item{round}{(\emph{String} optional): \code{first_round}, \code{quarterfinal}, \code{semifinal} or \code{championship}.}
 

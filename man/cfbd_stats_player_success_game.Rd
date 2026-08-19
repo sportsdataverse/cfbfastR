@@ -17,7 +17,8 @@ cfbd_stats_player_success_game(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2013}
 
 \item{week}{(\emph{Integer} optional): Week filter.}
 

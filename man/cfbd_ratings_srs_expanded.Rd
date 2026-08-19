@@ -13,7 +13,8 @@ cfbd_ratings_srs_expanded(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2003}
 
 \item{team}{(\emph{String} optional): Team filter.}
 

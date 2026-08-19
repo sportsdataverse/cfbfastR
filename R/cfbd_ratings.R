@@ -725,7 +725,8 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
 
 #' @title
 #' **Get core team ratings**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_core', 'min_year']`
 #' @param team (*String* optional): Team filter.
 #' @param conference (*String* optional): Conference abbreviation filter.
 #' @description
@@ -802,7 +803,8 @@ cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL, proxy
 
 #' @title
 #' **Get expanded SRS ratings**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_srs_expanded', 'min_year']`
 #' @param team (*String* optional): Team filter.
 #' @param conference (*String* optional): Conference abbreviation filter.
 #' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.

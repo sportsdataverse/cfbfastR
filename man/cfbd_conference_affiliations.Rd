@@ -19,7 +19,8 @@ cfbd_conference_affiliations(
 
 \item{conference}{(\emph{String} optional): Conference abbreviation filter.}
 
-\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 1872}
 
 \item{min_year}{(\emph{Integer} optional): Earliest season to include.}
 

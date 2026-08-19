@@ -1105,7 +1105,8 @@ cfbd_stats_game_havoc <- function(year = NULL,
 
 #' @title
 #' **Get player success rates by season**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_player_success', 'min_year']`
 #' @param conference (*String* optional): Conference abbreviation filter.
 #' @param team (*String* optional): Team filter.
 #' @param athlete_id (*Integer* optional): Player identifier.
@@ -1196,7 +1197,8 @@ cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NUL
 
 #' @title
 #' **Get player success rates by game**
-#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param year (*Integer* required): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_stats_player_success_game', 'min_year']`
 #' @param week (*Integer* optional): Week filter.
 #' @param season_type (*String* optional): Season type -- `regular`, `postseason`, `both`, `allstar`, `spring_regular` or `spring_postseason`.
 #' @param conference (*String* optional): Conference abbreviation filter.

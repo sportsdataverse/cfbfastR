@@ -593,7 +593,8 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 
 #' @title
 #' **Get FBS teams**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_teams_fbs', 'min_year']`
 #' @description
 #' **Get FBS teams**
 #' Every FBS team for a season.
