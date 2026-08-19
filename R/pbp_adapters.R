@@ -88,11 +88,16 @@
       # and `defense_play` down with them. The ids come straight off the play
       # and are always present, so anything that needs to know WHICH TEAM
       # (roster matching, team attribution) keys on these instead of the names.
+      # The is.na() arm is explicit on purpose: a bare `TRUE ~ away_team_id`
+      # turns an unknown start team into a CONFIRMED away possession, and every
+      # team-aware stage downstream then trusts it. Unknown must stay unknown.
       offense_play_id = dplyr::case_when(
+        is.na(.data$plays_start_team_id) ~ NA_character_,
         .data$plays_start_team_id == .data$home_team_id ~ .data$home_team_id,
         TRUE ~ .data$away_team_id
       ),
       defense_play_id = dplyr::case_when(
+        is.na(.data$plays_start_team_id) ~ NA_character_,
         .data$plays_start_team_id == .data$home_team_id ~ .data$away_team_id,
         TRUE ~ .data$home_team_id
       ),

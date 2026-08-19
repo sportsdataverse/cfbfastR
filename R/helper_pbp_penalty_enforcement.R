@@ -66,7 +66,7 @@
 # the second says nothing about "no play" on 26 of the 179 plays carrying it.
 .penalty_negated_text <- "no play|nullified by penalty"
 
-penalty_enforcement <- function(raw_df) {
+.penalty_enforcement <- function(raw_df) {
   if (!nrow(raw_df)) {
     return(dplyr::mutate(
       raw_df,

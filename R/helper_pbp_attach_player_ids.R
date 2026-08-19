@@ -253,7 +253,14 @@
   for (m in present) {
     nm <- m[1]; idc <- m[2]; teamc <- m[3]
     teams <- team_vec(teamc)
-    raw_df[[idc]] <- mapply(resolve_one, raw_df[[nm]], teams, USE.NAMES = FALSE)
+    # mapply() over a zero-row frame returns list(), which assigns a LOGICAL
+    # column -- so an empty game would ship id columns of the wrong type and a
+    # downstream rbind would fail on schema. Keep the documented character type.
+    raw_df[[idc]] <- if (nrow(raw_df)) {
+      as.character(mapply(resolve_one, raw_df[[nm]], teams, USE.NAMES = FALSE))
+    } else {
+      character(0)
+    }
   }
   raw_df
 }

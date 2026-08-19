@@ -140,7 +140,13 @@ test_that("the aggregate covers every team-game that has offensive plays", {
   # from the row counts alone.
   for (g in unique(missing$game_id)) {
     pg <- p[p$game_id == g, , drop = FALSE]
-    expect_true(all(is.na(pg$pos_team)),
+    # Resolve the key the way production does. Reading `pg$pos_team` directly
+    # would make this assertion VACUOUS if the column were ever renamed:
+    # `all(is.na(NULL))` is TRUE, so a genuinely missing aggregate would pass.
+    key <- .attr_col(pg, "pos_team_id", "pos_team")
+    expect_false(is.null(key),
+                 label = paste0("game ", g, " has no offensive-team key column"))
+    expect_true(all(is.na(key)),
                 label = paste0("game ", g, " has offensive plays but no aggregate"))
   }
 })

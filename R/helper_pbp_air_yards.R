@@ -59,8 +59,20 @@
 
   # pos_team / def_pos_team are ids; map each back to ITS abbreviation for this
   # play so the catch-point abbreviation can be sided against them.
-  pos_abbr <- ifelse(!is.na(pos) & pos == home_id, home_ab, away_ab)
-  def_abbr <- ifelse(!is.na(def) & def == home_id, home_ab, away_ab)
+  #
+  # The NA arm is load-bearing. `.pbp_add_play_counts()` sets pos_team_id and
+  # def_pos_team_id to NA for the WHOLE frame when the id columns it needs are
+  # absent, and a bare `ifelse(pos == home_id, home_ab, away_ab)` sends both
+  # sides to the away abbreviation on those rows. The first branch of the siding
+  # logic below would then win every time and emit `100 - catch_line` for every
+  # play -- wrong on roughly half of them, with nothing to show it. An unknown
+  # side must stay unknown so the catch point resolves to NA instead.
+  side_abbr <- function(team_id) {
+    ifelse(is.na(team_id) | is.na(home_id), NA_character_,
+           ifelse(team_id == home_id, home_ab, away_ab))
+  }
+  pos_abbr <- side_abbr(pos)
+  def_abbr <- side_abbr(def)
 
   # The optional "the " is not in sdv-py's pattern and is required here. sdv-py
   # parses ESPN's CDN summary feed, which writes "caught at OU35"; cfbfastR's v2

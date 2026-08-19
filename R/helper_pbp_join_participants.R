@@ -48,6 +48,7 @@
 #' @importFrom dplyr left_join distinct coalesce if_else join_by
 #' @importFrom stringr str_squish
 #' @noRd
+NULL
 
 # (pbp column, participant column, authoritative?) -- see @details for why the
 # two return roles are cleanup-only. `pass_defender_player_name` is absent here

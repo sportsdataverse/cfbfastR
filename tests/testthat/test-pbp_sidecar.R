@@ -13,7 +13,9 @@ test_that("a missing sidecar degrades to empty frames, never an error", {
   expect_named(s, c("names", "records"))
   expect_equal(nrow(s$names), 0L)
   expect_equal(nrow(s$records), 0L)
-  expect_equal(names(s$records), c("athlete_id", "display_name", "team_id"))
+  # Subset direction: a future column added to the records frame is not a
+  # regression, but a missing one is.
+  expect_in(c("athlete_id", "display_name", "team_id"), names(s$records))
 })
 
 test_that("participant names expand from short to full form by id", {

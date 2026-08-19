@@ -50,15 +50,15 @@
 #'   chain (the CFBD path); the ESPN paths default to `FALSE` because the
 #'   downstream `.pbp_add_yardage()` already guards on the missing
 #'   `cleaned_text` column.
-#' @return The modeled single-game frame.
-#' @keywords internal
-#' @noRd
 #' @param roster One game's roster (`athlete_id` / `display_name` / `team_id`),
 #'   passed in rather than fetched here -- see the call-site comment below.
 #' @param participants One row per play of ESPN `participants[]` names, as
 #'   `espn_cfb_game_pbp(participants = "wide")` returns. Also passed in: the
 #'   ESPN v2 path already has this frame in hand from the drives call, so
 #'   threading it costs nothing while fetching it would double the requests.
+#' @return The modeled single-game frame.
+#' @keywords internal
+#' @noRd
 .run_epa_wpa <- function(df,
                          ep_model,
                          fg_model,
@@ -74,7 +74,7 @@
     # Enforcement resolution runs immediately after detection and before
     # anything reads the play's outcome: a nullified play must not be credited
     # with its yards or its touchdown downstream.
-    penalty_enforcement() |>
+    .penalty_enforcement() |>
     .pbp_add_play_counts() |>
     .pbp_clean_pbp_dat() |>
     .pbp_clean_drive_dat() |>
@@ -136,9 +136,22 @@
                                  participants = NULL) {
   # Slice a multi-game side frame down to one game, tolerating a frame that has
   # no game_id (a caller who already scoped it) and a game with no rows.
+  warned_no_gid <- FALSE
   slice_for <- function(side, gid) {
     if (is.null(side) || !is.data.frame(side) || !nrow(side)) return(NULL)
-    if (!"game_id" %in% names(side)) return(side)
+    if (!"game_id" %in% names(side)) {
+      # Handing an unscoped frame to every game is right for a single-game
+      # caller and wrong for a sweep -- one game's roster would be applied to
+      # all of them. Say so once rather than silently doing it N times.
+      if (!warned_no_gid && length(g_ids) > 1L) {
+        warned_no_gid <<- TRUE
+        cli::cli_alert_warning(
+          "A roster/participants frame has no {.field game_id}; applying it to
+           all {length(g_ids)} games. Add {.field game_id} to scope it per game."
+        )
+      }
+      return(side)
+    }
     s <- side[as.character(side$game_id) == as.character(gid), , drop = FALSE]
     if (nrow(s)) s else NULL
   }

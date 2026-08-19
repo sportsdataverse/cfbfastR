@@ -76,7 +76,9 @@
     fumbles_lost  = flag("fumble_lost"),
     # NCAA: a sack is a rushing attempt with negative rushing yardage.
     rush_att = is_rush + is_sack,
-    pass_att = is_pass - is_sack,
+    # pmax: a row flagged `sack` but not `pass` would otherwise contribute -1
+    # and silently understate the team total in the sum below.
+    pass_att = pmax(is_pass - is_sack, 0L),
     rush_yds = yds("yds_rushed") * is_rush + yds("yds_sacked") * is_sack,
     pass_yds = yds("yds_receiving") * is_pass,
     stringsAsFactors = FALSE
@@ -141,9 +143,18 @@
 #'   compare each rate against a floor **measured from real data**, never a
 #'   guessed one.
 #'
-#'   Rows whose team key is missing on either side are counted as unmatched
-#'   rather than dropped. Dropping them shifts the measured rate without
-#'   anything being reported -- the check would quietly grade itself on a subset.
+#'   **Rows the join does not match are excluded from both `n` and `rate`**, and
+#'   so are rows where ESPN's box has no value for that stat (older seasons omit
+#'   several). That is the honest description of what the code does; an earlier
+#'   version of this note claimed the opposite.
+#'
+#'   The exclusion is a real hazard rather than a detail: a team-key
+#'   normalisation change can shrink the denominator and *raise* the rate with
+#'   nothing reported. It is guarded from the test side instead of here --
+#'   `test-pbp_boxscore_parity.R` asserts a floor on `min(n)`, bounds the spread
+#'   across stats, and proves every unmatched team-game genuinely has no
+#'   offensive plays. `n` is returned alongside `rate` so a caller can see the
+#'   denominator move.
 #'
 #'   On the shipped corpus the aggregate has 112 rows against 120 box rows. That
 #'   gap is benign and measured: the eight belong to four games carrying exactly

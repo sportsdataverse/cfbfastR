@@ -30,3 +30,12 @@ CRAN and dev versions of this package.
 
 * We saw 0 new problems
 * We failed to check 0 packages
+
+## Behaviour change in this release
+
+`cfbd_pbp_data()` and `espn_cfb_pbp()` now run the v2 play-by-play engine by
+default. The previous behaviour remains available via `engine = "legacy"` per
+call, or `options(cfbfastR.pbp_engine = "legacy")` for a session, and a
+once-per-session message points at it. `tests/testthat/test-pbp_equivalence.R`
+asserts the v2 engine reproduces the legacy frames column-for-column against an
+explicit allow-list of intentional deltas (1,788 assertions with network).

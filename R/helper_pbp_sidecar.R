@@ -44,6 +44,7 @@
 #' Any failure degrades to two empty frames -- "no extra source", never an error.
 #' @keywords internal
 #' @importFrom rlang "%||%"
+#' @importFrom httr2 request req_timeout req_retry req_perform resp_body_string
 #' @noRd
 .espn_cfb_pbp_sidecar <- function(game_id) {
   empty <- list(
@@ -62,10 +63,23 @@
         "https://cdn.espn.com/core/college-football/playbyplay?xhr=1&gameId=",
         game_id
       )
-      # simplifyVector = FALSE keeps the ragged statistics/athletes arrays as
-      # lists; letting jsonlite simplify them collapses categories with
-      # different key sets into a malformed frame.
-      resp <- jsonlite::fromJSON(url, simplifyVector = FALSE)
+      # Through httr2, not `jsonlite::fromJSON(url)`: a bare URL connection has
+      # no timeout and no retry, and espn_cfb_pbp_v2() issues this once per game
+      # -- one stalled ESPN connection would hang a whole season sweep.
+      #
+      # Deliberately NO User-Agent. cdn.espn.com answers a spoofed browser UA
+      # with HTTP 200 and a ZERO-BYTE body, which is worse than the 403
+      # site.api returns: nothing raises and the parse silently yields nothing.
+      # See tests/testthat/test-espn_http_headers.R.
+      resp <- httr2::request(url) |>
+        httr2::req_timeout(30) |>
+        httr2::req_retry(max_tries = 3, backoff = ~ 2) |>
+        httr2::req_perform() |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        # simplifyVector = FALSE keeps the ragged statistics/athletes arrays as
+        # lists; letting jsonlite simplify them collapses categories with
+        # different key sets into a malformed frame.
+        jsonlite::fromJSON(simplifyVector = FALSE)
 
       # --- naming: playerHash ---------------------------------------------
       ph <- (resp[["__gamepackage__"]] %||% list())[["playerHash"]] %||% list()
@@ -110,7 +124,14 @@
                                   row.names = NULL, stringsAsFactors = FALSE)
       }
     },
-    error = function(e) {},
+    error = function(e) {
+      # Degrade, but say so. Silently returning empty frames here is how the
+      # site.api 403 went unnoticed: every consumer just saw NA.
+      cli::cli_alert_warning(
+        "ESPN play-by-play sidecar unavailable for game {game_id}:
+         {conditionMessage(e)}. Falling back to roster-only names and ids."
+      )
+    },
     warning = function(w) {}
   )
   out

@@ -1,4 +1,4 @@
-### Parity oracle: sdv-py CFBPlayProcess.__setup_penalty_data -> penalty_enforcement()
+### Parity oracle: sdv-py CFBPlayProcess.__setup_penalty_data -> .penalty_enforcement()
 ###
 ### The golden fixture is 60 games -- 5 from each of 2004, 2006, 2008, 2010,
 ### 2013, 2014, 2017, 2019, 2020, 2021, 2023 and 2025 -- spread across each
@@ -41,7 +41,7 @@ as_r_input <- function(g) {
 
 # Run the R side and re-align it to the oracle on `.row`.
 paired <- function(g) {
-  r <- as_r_input(g) |> penalty_detection() |> penalty_enforcement()
+  r <- as_r_input(g) |> penalty_detection() |> .penalty_enforcement()
   merge(r, transform(g, .row = seq_len(nrow(g))), by = ".row", suffixes = c(".r", ".py"))
 }
 

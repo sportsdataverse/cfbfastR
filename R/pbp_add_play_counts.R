@@ -78,14 +78,19 @@
       # the ESPN teams catalog is unavailable, and roster matching / team
       # attribution need a key that does not.
       pos_team_id = if (all(c("offense_play_id", "home_team_id", "away_team_id") %in% names(play_df))) {
-        ifelse(.data$offense_play_id == .data$home_team_id & .data$kickoff_play == 1, .data$away_team_id,
-               ifelse(.data$offense_play_id == .data$away_team_id & .data$kickoff_play == 1,
-                      .data$home_team_id, .data$offense_play_id))
+        as.character(
+          ifelse(.data$offense_play_id == .data$home_team_id & .data$kickoff_play == 1, .data$away_team_id,
+                 ifelse(.data$offense_play_id == .data$away_team_id & .data$kickoff_play == 1,
+                        .data$home_team_id, .data$offense_play_id)))
       } else {
         NA_character_
       },
+      # as.character on both arms: the ifelse() returns whatever type the id
+      # columns happen to carry, so without it the column type would depend on
+      # the input rather than the contract.
       def_pos_team_id = if (all(c("home_team_id", "away_team_id") %in% names(play_df))) {
-        ifelse(.data$pos_team_id == .data$home_team_id, .data$away_team_id, .data$home_team_id)
+        as.character(ifelse(.data$pos_team_id == .data$home_team_id,
+                            .data$away_team_id, .data$home_team_id))
       } else {
         NA_character_
       },

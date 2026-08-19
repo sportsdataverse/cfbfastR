@@ -6115,6 +6115,16 @@ espn_cfb_game_teams <- function(game_id = NULL,
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom dplyr filter select rename bind_cols bind_rows
 #' @importFrom tidyr unnest unnest_wider everything
+#' @param engine (*Character* optional): which play-by-play engine to run.
+#' One of `"v2"`, `"legacy"` or `"auto"`; `NULL` (default) resolves from
+#' `getOption("cfbfastR.pbp_engine")`, which itself defaults to `"v2"` as of
+#' this release. `"legacy"` is the escape hatch that reproduces the pre-2.3.0
+#' frame; `"auto"` means whatever this version of the package considers current,
+#' so it is carried forward by future default flips.
+#' @param output (*Character*): modeled-output column set, one of `"default"`,
+#' `"lean"` or `"full"`. Only meaningful when the call reaches the v2 engine; it
+#' is accepted here so a delegating caller can reach the tier selector without
+#' switching to the `espn_cfb_pbp_v2()` name.
 #' @export
 #'
 #' @examples
@@ -6124,7 +6134,8 @@ espn_cfb_game_teams <- function(game_id = NULL,
 #'
 espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "default"){
   # See .pbp_engine(): per-call `engine=` beats the session option, which beats
-  # the "legacy" default. `output` is accepted here so a delegating caller can
+  # the default -- and that default is now "v2". `output` is accepted here so a
+  # delegating caller can
   # reach the tier selector without switching to the v2 name.
   if (identical(.pbp_engine(engine), "v2")) {
     return(espn_cfb_pbp_v2(game_id = game_id, epa_wpa = epa_wpa, output = output))

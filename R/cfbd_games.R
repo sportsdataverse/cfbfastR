@@ -192,7 +192,11 @@ cfbd_game_info <- function(year,
     "home" = home_team,
     "away" = away_team,
     "conference" = conference,
-    "division" = division,
+    # CFBD v5 renamed this query parameter to `classification`; sending
+    # `division=` is silently IGNORED (measured: division=fcs returned all
+    # 270 week-5 games, classification=fcs returned the correct 56). The R
+    # argument keeps its name so callers are unaffected.
+    "classification" = division,
     "id" = game_id
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
@@ -1634,7 +1638,11 @@ cfbd_live_scoreboard <- function(division = 'fbs',
   base_url <- "https://api.collegefootballdata.com/scoreboard?"
   query_params <- list(
     "conference" = conference,
-    "division" = division
+    # CFBD v5 renamed this query parameter to `classification`; sending
+    # `division=` is silently IGNORED (measured: division=fcs returned all
+    # 270 week-5 games, classification=fcs returned the correct 56). The R
+    # argument keeps its name so callers are unaffected.
+    "classification" = division
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
