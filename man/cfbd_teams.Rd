@@ -10,6 +10,7 @@
 \item \code{cfbd_team_talent()}: Get composite team talent rankings for all teams in a given year.
 \item \code{cfbd_team_matchup_records()}: Get matchup history records between two teams.
 \item \code{cfbd_team_matchup()}: Get matchup history between two teams.
+\item \code{cfbd_teams_fbs()}: Get every FBS team for a season.
 }
 \subsection{\strong{Team info lookup}}{
 
@@ -66,5 +67,11 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 }\if{html}{\out{</div>}}
 }
 
+}
+
+\subsection{\strong{Get FBS teams}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_teams_fbs(year = 2024)
+}\if{html}{\out{</div>}}
 }
 }

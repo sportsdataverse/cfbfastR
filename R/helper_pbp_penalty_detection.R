@@ -36,9 +36,15 @@ penalty_detection <- function(raw_df) {
   #-- 'Declined' in play text ----
   pen_declined_text <- stringr::str_detect(raw_df$play_text, regex("declined", ignore_case = TRUE))
   #-- 'No Play' in play text ----
-  pen_no_play_text <- stringr::str_detect(raw_df$play_text, regex("no play", ignore_case = TRUE))
+  # "nullified by penalty" is ESPN's own verdict that the play did not count and
+  # is the RELIABLE negation signal; 26 of the 179 plays carrying it in 2025 say
+  # nothing about "no play", so matching only "no play" silently loses them.
+  pen_no_play_text <- stringr::str_detect(raw_df$play_text, regex("no play|nullified by penalty", ignore_case = TRUE))
   #-- 'Off-setting' in play text ----
-  pen_offset_text <- stringr::str_detect(raw_df$play_text, regex("off-setting", ignore_case = TRUE))
+  # ESPN spells this BOTH ways and overwhelmingly WITHOUT the hyphen: 44
+  # "offsetting" against 1 "off-setting" in 2025. The hyphen-only pattern this
+  # replaces matched exactly one of the 45.
+  pen_offset_text <- stringr::str_detect(raw_df$play_text, regex("off-?setting", ignore_case = TRUE))
   #-- '1st Down' in play text ----
   pen_1st_down_text <- stringr::str_detect(raw_df$play_text, regex("1st down", ignore_case = TRUE))
 

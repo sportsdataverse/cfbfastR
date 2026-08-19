@@ -135,10 +135,23 @@ cfbd_betting_lines <- function(game_id = NULL,
       check_status(res)
 
       # Get the content and return it as data.frame
-      df <- res |>
+      parsed <- res |>
         httr2::resp_body_string(encoding = "UTF-8") |>
         stringr::str_replace_all("NaN", 'null') |>
-        jsonlite::fromJSON(flatten = TRUE) |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      # An empty response has no `lines` column to unnest, and reaching the
+      # unnest anyway fails with "Column `lines` doesn't exist" -- which reads
+      # like a parser bug rather than "this filter matched no games". CFBD
+      # returns nothing for a provider that did not operate in the requested
+      # season (`consensus` and `numberfire` are historical; 2024 carries
+      # DraftKings, Bovada and ESPN Bet), so this is a routine outcome, not an
+      # error. Return the empty frame and let the caller see zero rows.
+      if (!is.data.frame(parsed) || nrow(parsed) == 0L || !"lines" %in% names(parsed)) {
+        return(df)
+      }
+
+      df <- parsed |>
         purrr::map_if(is.data.frame, list) |>
         dplyr::as_tibble() |>
         tidyr::unnest("lines")

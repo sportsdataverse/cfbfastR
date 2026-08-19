@@ -8,7 +8,8 @@ cfbd_recruiting_position(
   start_year = NULL,
   end_year = NULL,
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  recruit_type = NULL
 )
 }
 \arguments{
@@ -21,6 +22,8 @@ cfbd_recruiting_position(
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{recruit_type}{(\emph{String} optional): \code{HighSchool}, \code{PrepSchool} or \code{JUCO}.}
 }
 \value{
 \code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}} - A data frame with 7 variables:\tabular{lll}{

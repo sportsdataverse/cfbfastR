@@ -1,0 +1,386 @@
+{
+ "2004": [
+  {
+   "game_id": 242410193,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 242670248,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 242950277,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 243142459,
+   "week": 12,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 243492572,
+   "week": 1,
+   "season_type": 3,
+   "has_participants": true
+  }
+ ],
+ "2006": [
+  {
+   "game_id": 262430009,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 262692116,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 262912226,
+   "week": 8,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 263112459,
+   "week": 11,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 263532628,
+   "week": 1,
+   "season_type": 3,
+   "has_participants": true
+  }
+ ],
+ "2008": [
+  {
+   "game_id": 282410024,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 282690204,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 282950218,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 283232309,
+   "week": 13,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 290173147,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2010": [
+  {
+   "game_id": 302450005,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 302730197,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 302990068,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 303270193,
+   "week": 13,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 310223147,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2013": [
+  {
+   "game_id": 332410006,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 332690059,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 332952032,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 333302459,
+   "week": 14,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 340183147,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2014": [
+  {
+   "game_id": 400547640,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400547674,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400547696,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400547719,
+   "week": 14,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400751619,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2017": [
+  {
+   "game_id": 400933827,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400933872,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400933898,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400933930,
+   "week": 13,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 400953746,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2019": [
+  {
+   "game_id": 401110720,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401110806,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401110831,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401110863,
+   "week": 14,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401155538,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2020": [
+  {
+   "game_id": 401207093,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401207142,
+   "week": 6,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401207174,
+   "week": 11,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401207203,
+   "week": 15,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401279078,
+   "week": 5,
+   "season_type": 5,
+   "has_participants": true
+  }
+ ],
+ "2021": [
+  {
+   "game_id": 401281942,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401282089,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401282116,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401282145,
+   "week": 13,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401386134,
+   "week": 1,
+   "season_type": 4,
+   "has_participants": true
+  }
+ ],
+ "2023": [
+  {
+   "game_id": 401520145,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401520276,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401520345,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401520401,
+   "week": 12,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401551469,
+   "week": 1,
+   "season_type": 3,
+   "has_participants": true
+  }
+ ],
+ "2025": [
+  {
+   "game_id": 401752665,
+   "week": 1,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401752717,
+   "week": 5,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401752746,
+   "week": 9,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401752773,
+   "week": 13,
+   "season_type": 2,
+   "has_participants": true
+  },
+  {
+   "game_id": 401769070,
+   "week": 1,
+   "season_type": 3,
+   "has_participants": true
+  }
+ ]
+}

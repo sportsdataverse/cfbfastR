@@ -11,7 +11,8 @@ cfbd_game_player_stats(
   team = NULL,
   conference = NULL,
   category = NULL,
-  game_id = NULL
+  game_id = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}} - A data frame with 32 variables:\tabular{lll}{

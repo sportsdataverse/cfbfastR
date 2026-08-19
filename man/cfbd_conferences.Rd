@@ -5,7 +5,12 @@
 \alias{conferences}
 \title{\strong{CFBD Conferences Endpoint Overview}}
 \usage{
-cfbd_conferences()
+cfbd_conferences(year = NULL, division = NULL)
+}
+\arguments{
+\item{year}{(\emph{Integer} optional): Season filter, 4 digits (YYYY).}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_conferences]{cfbd_conferences()}} - A data frame with 94 rows and 5 variables:\tabular{lll}{
@@ -20,6 +25,8 @@ cfbd_conferences()
 \description{
 \itemize{
 \item \code{cfbd_conferences()}: Get college football conference information.
+\item \code{cfbd_conference_affiliations()}: Get conference affiliations by team and season.
+\item \code{cfbd_conference_changes()}: Get conference realignment changes for a season.
 }
 
 \strong{Get college football conference information}
@@ -31,11 +38,28 @@ Pulls all college football conferences and returns as data frame
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conferences()
 }\if{html}{\out{</div>}}
 }
+
+\subsection{\strong{Get conference affiliations by team and season}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conference_affiliations(team = "Georgia")
+}\if{html}{\out{</div>}}
+}
+
+\subsection{\strong{Get conference realignment changes}}{
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_conference_changes(year = 2024)
+}\if{html}{\out{</div>}}
+}
 }
 \examples{
 \donttest{
   try(cfbd_conferences())
 }
+}
+\seealso{
+Other CFBD Conference Functions: 
+\code{\link{cfbd_conference_affiliations}()},
+\code{\link{cfbd_conference_changes}()}
 }
 \concept{CFBD Conference Functions}
 \keyword{Conferences}

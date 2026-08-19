@@ -43,3 +43,4 @@ cfb_pbp_db
 ^tools$
 ^\.pytest_cache$
 ^\.lintr$
+^\.omc$

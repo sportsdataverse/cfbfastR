@@ -45,12 +45,7 @@ Next, we'll need to get the coaching information, so we'll use the ```cfbd_coach
 coaches <- purrr::map_dfr(seasons,function(x){cfbfastR::cfbd_coaches(year = x)})
 
 ```
-In order to get the school's conference information, we'll use the ```cfbd_team_info``` function and use ```dplyr```'s ```left_join``` function, joining on the `school` column in both tables:
-```{r teams_info}
-team_info <- cfbfastR::cfbd_team_info()
-coaches <- coaches |> 
-  dplyr::left_join(team_info, by="school")
-```
+`cfbd_coaches()` already returns each coach's `conference`, so no extra lookup is needed.
 
 ```{r fourth_down_coaches2}
 coaches <- coaches |>

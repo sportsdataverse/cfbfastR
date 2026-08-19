@@ -228,10 +228,10 @@ cfbd_draft_picks <- function(year = NULL,
   base_url <- "https://api.collegefootballdata.com/draft/picks"
   query_params <- list(
     "year" = year,
-    "team" = nfl_team,
-    "school" = college,
     "conference" = conference,
-    "position" = position
+    "position" = position,
+    "team" = nfl_team,
+    "school" = college
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 

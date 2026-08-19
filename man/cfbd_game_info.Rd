@@ -14,7 +14,9 @@ cfbd_game_info(
   conference = NULL,
   division = "fbs",
   game_id = NULL,
-  quarter_scores = FALSE
+  quarter_scores = FALSE,
+  competition = NULL,
+  round = NULL
 )
 }
 \arguments{
@@ -41,6 +43,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
 list columns that give the score at each quarter: \code{home_line_scores} and \code{away_line_scores}.
 I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.}
+
+\item{competition}{(\emph{String} optional): Competition filter; \code{cfp} restricts to College Football Playoff games.}
+
+\item{round}{(\emph{String} optional): Playoff round -- \code{first_round}, \code{quarterfinal}, \code{semifinal}, \code{championship}.}
 }
 \value{
 \code{\link[=cfbd_game_info]{cfbd_game_info()}} - A data frame with 30 variables:\tabular{lll}{

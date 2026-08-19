@@ -9,7 +9,8 @@ cfbd_stats_season_advanced(
   team = NULL,
   excl_garbage_time = FALSE,
   start_week = NULL,
-  end_week = NULL
+  end_week = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ cfbd_stats_season_advanced(
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
+
+\item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
 \code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}} - A data frame with 82 variables:\tabular{lll}{

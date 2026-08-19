@@ -390,8 +390,20 @@ reference:
     desc: Functions exported by cfbfastR sourced from venues, conferences, and coaches endpoints of the CollegeFootballData API
     contents:
       - '`cfbd_venues`'
-      - '`cfbd_conferences`'
-      - '`cfbd_coaches`'
+      - starts_with("cfbd_conference")
+      - starts_with("cfbd_coaches")
+  - subtitle: Playoffs
+    desc: College Football Playoff bracket, games, and participants
+    contents:
+      - starts_with("cfbd_playoffs")
+  - subtitle: API Info
+    desc: CFBD API key usage and remaining quota
+    contents:
+      # Prefix match, not the single function: the `@name cfbd_info` family
+      # overview generates its own topic, and pkgdown errors when ANY documented
+      # topic is missing from the index. Listing only `cfbd_info_usage` left
+      # `cfbd_info` unindexed and broke the site build on main.
+      - starts_with("cfbd_info")
   - title: "Fox Sports Data"
   - subtitle: Fox CFB -- Read-only Bifrost wrappers
     desc: Fox Sports college-football endpoints (play-by-play, boxscore, odds, roster, team stats, game log, standings, and statistical leaders)
