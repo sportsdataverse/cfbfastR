@@ -384,7 +384,7 @@ espn_cfb_clear_cache <- function() {
     return(invisible(NULL))
   }
   ns <- rlang::ns_env("cfbfastR")
-  for (fn in c(".espn_cfb_team_lookup", ".espn_cfb_position_lookup")) {
+  for (fn in .espn_memoised_helpers) {
     helper <- tryCatch(get(fn, envir = ns), error = function(e) NULL)
     # memoise::forget() errors on non-memoised functions (cache "off"),
     # so only forget helpers that are actually memoised.
@@ -549,6 +549,40 @@ espn_cfb_clear_cache <- function() {
     warning = function(w) {}
   )
   roster_lk
+}
+
+#' Reshape the participant roster lookup into an id-resolution frame
+#'
+#' @description [.pbp_attach_player_ids()] wants a roster as a data frame of
+#'   `athlete_id` / `display_name` / `team_id`; `.espn_cfb_participant_roster()`
+#'   holds the same three fields as an athlete-id-keyed list. This is the
+#'   adapter between them, and it deliberately reuses that helper rather than
+#'   calling [espn_cfb_game_team_roster()] again -- the helper is memoised, so
+#'   going through it turns what would be a second roster request per game into
+#'   a cache hit.
+#'
+#' @param game_id ESPN game identifier.
+#' @param position_detail Passed straight through. It must match the value the
+#'   surrounding wrapper already used for this `game_id`, or the memoise key
+#'   misses and the saving is lost.
+#' @return A data frame with `athlete_id`, `display_name` and `team_id`; zero
+#'   rows when the roster is unavailable (ESPN 404s it for a large share of
+#'   games), which the id resolver treats as "no roster".
+#' @keywords internal
+#' @noRd
+.espn_cfb_roster_frame <- function(game_id, position_detail = FALSE) {
+  lk <- .espn_cfb_participant_roster(game_id, position_detail = position_detail)
+  if (!length(lk)) {
+    return(data.frame(athlete_id = character(0), display_name = character(0),
+                      team_id = character(0), stringsAsFactors = FALSE))
+  }
+  data.frame(
+    athlete_id   = names(lk),
+    display_name = vapply(lk, function(e) as.character(e$name %||% NA), character(1)),
+    team_id      = vapply(lk, function(e) as.character(e$team_id %||% NA), character(1)),
+    row.names    = NULL,
+    stringsAsFactors = FALSE
+  )
 }
 
 
@@ -6600,11 +6634,32 @@ espn_cfb_pbp_v2 <- function(game_id,
         ) |>
         .espn_to_epa_input(game_id = game_id)
 
+      # ESPN's participants[] names are ALREADY on `plays_df` -- the drives call
+      # above asked for `participants = "wide"`. Reshaping that in place costs
+      # zero extra requests; fetching a participants feed here would double them.
+      part_cols <- intersect(.participant_name_cols, names(plays_df))
+      participants_df <- if (length(part_cols)) {
+        stats::setNames(
+          plays_df[, c("play_id", part_cols), drop = FALSE],
+          c("play_id", part_cols)
+        )
+      } else {
+        NULL
+      }
+
+      # Same story for the roster: `.espn_cfb_participant_roster()` is memoised
+      # (see zzz.R) and the drives call already warmed it for this game_id with
+      # `position_detail = TRUE`, so this is a cache hit, not a request. The
+      # argument must match that call or the memoise key misses.
+      roster_df <- .espn_cfb_roster_frame(game_id, position_detail = TRUE)
+
       epa_df <- .run_epa_wpa(
         adapter,
-        ep_model = ep_model,
-        fg_model = fg_model,
-        wp_model = wp_model
+        ep_model     = ep_model,
+        fg_model     = fg_model,
+        wp_model     = wp_model,
+        roster       = roster_df,
+        participants = participants_df
       ) |>
         dplyr::select(-dplyr::any_of("ppa"))   # drop the placeholder
 

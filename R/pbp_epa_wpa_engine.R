@@ -21,12 +21,19 @@
 #' @return The modeled single-game frame.
 #' @keywords internal
 #' @noRd
+#' @param roster One game's roster (`athlete_id` / `display_name` / `team_id`),
+#'   passed in rather than fetched here -- see the call-site comment below.
+#' @param participants One row per play of ESPN `participants[]` names, as
+#'   `espn_cfb_game_pbp(participants = "wide")` returns. Also passed in: the
+#'   ESPN v2 path already has this frame in hand from the drives call, so
+#'   threading it costs nothing while fetching it would double the requests.
 .run_epa_wpa <- function(df,
                          ep_model,
                          fg_model,
                          wp_model,
                          clean_text = FALSE,
-                         roster = NULL) {
+                         roster = NULL,
+                         participants = NULL) {
   if (isTRUE(clean_text)) {
     df <- clean_play_text(df)
   }
@@ -41,6 +48,12 @@
     .pbp_clean_drive_dat() |>
     add_yardage() |>
     add_player_cols() |>
+    # ESPN's own participants[] names overwrite the regex captures BEFORE the
+    # ids are resolved, not after: the whole point is to hand the roster matcher
+    # a clean key ("Rod Smith 3 Yd" -> "Rod Smith") instead of asking it to
+    # fuzzy-match narration. Ordering these the other way round would resolve
+    # the ids off the messy name and then relabel them.
+    .pbp_join_participants(participants = participants) |>
     # Identity resolution needs the names add_player_cols() just extracted. The
     # roster is PASSED IN rather than fetched here: one game's play-by-play would
     # otherwise cost an extra roster request per call, and a season sweep would
@@ -62,6 +75,10 @@
 #' @param clean_text See `.run_epa_wpa()`.
 #' @param min_plays Skip games with fewer than this many rows (default 20,
 #'   matching the legacy `cfbd_pbp_data()` guard).
+#' @param rosters,participants Optional multi-game frames carrying a `game_id`
+#'   column; each game is handed only its own slice. Supplying them once for the
+#'   whole sweep is the point -- a per-game fetch inside the loop would re-request
+#'   the same two rosters for every game those teams played.
 #' @return Multi-game modeled frame, one bound row per surviving game.
 #' @keywords internal
 #' @noRd
@@ -72,7 +89,17 @@
                                  fg_model,
                                  wp_model,
                                  clean_text = FALSE,
-                                 min_plays = 20L) {
+                                 min_plays = 20L,
+                                 rosters = NULL,
+                                 participants = NULL) {
+  # Slice a multi-game side frame down to one game, tolerating a frame that has
+  # no game_id (a caller who already scoped it) and a game with no rows.
+  slice_for <- function(side, gid) {
+    if (is.null(side) || !is.data.frame(side) || !nrow(side)) return(NULL)
+    if (!"game_id" %in% names(side)) return(side)
+    s <- side[as.character(side$game_id) == as.character(gid), , drop = FALSE]
+    if (nrow(s)) s else NULL
+  }
   g_ids <- sort(unique(df$game_id))
   if (length(g_ids) == 0L) return(df[0L, , drop = FALSE])
 
@@ -92,10 +119,12 @@
     }
     modeled <- .run_epa_wpa(
       game_plays,
-      ep_model   = ep_model,
-      fg_model   = fg_model,
-      wp_model   = wp_model,
-      clean_text = clean_text
+      ep_model     = ep_model,
+      fg_model     = fg_model,
+      wp_model     = wp_model,
+      clean_text   = clean_text,
+      roster       = slice_for(rosters, gid),
+      participants = slice_for(participants, gid)
     )
     p(sprintf("game_id=%s", gid))
     modeled

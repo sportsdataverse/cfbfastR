@@ -1,3 +1,23 @@
+#' Internal helpers wrapped by the ESPN cache
+#'
+#' Single source of truth for `.onLoad()` (which memoises them) and
+#' [espn_cfb_clear_cache()] (which forgets them). Kept as one constant because
+#' the two lists silently diverging means a helper that caches but never clears.
+#'
+#' `.espn_cfb_participant_roster` is game-scoped rather than a static catalog,
+#' but it is the most-repeated ESPN call in the package: `espn_cfb_pbp_v2()`
+#' needs one game's roster twice -- once to name participants, once to resolve
+#' player ids -- and a season sweep asks for it once per game. Memoising by
+#' `game_id` collapses both to a single request.
+#'
+#' @keywords internal
+#' @noRd
+.espn_memoised_helpers <- c(
+  ".espn_cfb_team_lookup",
+  ".espn_cfb_position_lookup",
+  ".espn_cfb_participant_roster"
+)
+
 .onLoad <- function(libname, pkgname) {
   ep_model <- load_ep_model()
   fg_model <- load_fg_model()
@@ -50,7 +70,7 @@
     }
 
     ns <- rlang::ns_env("cfbfastR")
-    for (fn in c(".espn_cfb_team_lookup", ".espn_cfb_position_lookup")) {
+    for (fn in .espn_memoised_helpers) {
       assign(
         fn,
         memoise::memoise(
