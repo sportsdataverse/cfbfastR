@@ -8,7 +8,7 @@ cfbd_ratings_sp_conference(year = NULL, conference = NULL, division = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 1990}
+Minimum value accepted: 1970}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - S&P+ information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC

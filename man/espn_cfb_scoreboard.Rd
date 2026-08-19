@@ -19,7 +19,7 @@ espn_cfb_schedule(
 \item{date}{(\emph{Integer} required - YYYYMMDD): Date to pull}
 
 \item{year}{(int): Used to define different seasons. \cr
-Minimum value accepted: 2001}
+Minimum value accepted: 1877}
 
 \item{week}{(int): Week of the schedule.}
 

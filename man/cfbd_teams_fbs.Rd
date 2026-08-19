@@ -8,7 +8,7 @@ cfbd_teams_fbs(year = NULL, proxy = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
-Minimum value accepted: 1872}
+Minimum value accepted: 1869}
 
 \item{proxy}{(\emph{List} optional): Per-call proxy override passed to
 \code{get_req()}. \code{NULL} (default) falls back to

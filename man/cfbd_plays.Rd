@@ -20,7 +20,7 @@ cfbd_plays(
 }
 \arguments{
 \item{year}{Select year, (example: 2018) \cr
-Minimum value accepted: 2003}
+Minimum value accepted: 2001}
 
 \item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 

@@ -14,7 +14,7 @@ cfbd_draft_picks(
 }
 \arguments{
 \item{year}{(\emph{Integer} required): NFL draft class, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 1997}
+Minimum value accepted: 1967}
 
 \item{nfl_team}{(\emph{String}): NFL drafting team, see \code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}} for valid selections.}
 

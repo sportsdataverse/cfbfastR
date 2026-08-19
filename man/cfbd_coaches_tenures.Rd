@@ -18,7 +18,7 @@ cfbd_coaches_tenures(
 \item{team}{(\emph{String} optional): Team filter.}
 
 \item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
-Minimum value accepted: 1985}
+Minimum value accepted: 1886}
 
 \item{active}{(\emph{Logical} optional): Restrict to currently active tenures.}
 

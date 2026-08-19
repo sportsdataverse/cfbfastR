@@ -16,7 +16,7 @@ cfbd_metrics_ppa_games(
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 2003}
+Minimum value accepted: 2001}
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 

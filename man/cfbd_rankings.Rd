@@ -15,7 +15,7 @@ cfbd_rankings(
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 2002}
+Minimum value accepted: 1936}
 
 \item{week}{(\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
 

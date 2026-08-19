@@ -20,7 +20,7 @@ Required if year not provided}
 If year is left blank while only_fbs is TRUE, then will return values for most current year}
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year. Required if conference not provided and the \code{year} parameter is only supported if \code{only_fbs} is TRUE. \cr
-Minimum value accepted: 2011}
+Minimum value accepted: 1869}
 }
 \value{
 \code{\link[=cfbd_team_info]{cfbd_team_info()}} - A data frame with 27 variables:\tabular{lll}{

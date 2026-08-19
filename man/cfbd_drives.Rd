@@ -19,7 +19,7 @@ cfbd_drives(
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 2003}
+Minimum value accepted: 2001}
 
 \item{season_type}{(\emph{String} default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason}
 

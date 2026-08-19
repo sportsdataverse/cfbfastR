@@ -16,7 +16,7 @@ cfbd_stats_season_team(
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 1878}
+Minimum value accepted: 1869}
 
 \item{season_type}{(\emph{String} default: both): Select Season Type - regular, postseason, or both}
 

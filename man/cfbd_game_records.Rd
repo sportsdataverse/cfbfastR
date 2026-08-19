@@ -8,7 +8,7 @@ cfbd_game_records(year, team = NULL, conference = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
-Minimum value accepted: 1980}
+Minimum value accepted: 1869}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 

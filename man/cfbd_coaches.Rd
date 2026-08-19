@@ -21,7 +21,7 @@ cfbd_coaches(
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). \cr
-Minimum value accepted: 1985}
+Minimum value accepted: 1886}
 
 \item{min_year}{(\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).}
 
