@@ -4,12 +4,16 @@
 \alias{espn_cfb_team_coaches}
 \title{\strong{ESPN College Football Team Coaches}}
 \usage{
-espn_cfb_team_coaches(team_id = NULL, year = NULL, team_detail = TRUE)
+espn_cfb_team_coaches(
+  team_id = NULL,
+  year = most_recent_cfb_season(),
+  team_detail = TRUE
+)
 }
 \arguments{
 \item{team_id}{(\emph{Integer} required): ESPN team id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{DEPRECATED. (\emph{Integer}): Season, 4 digit format (\emph{YYYY}). Defaults to most recent CFB season.}
 
 \item{team_detail}{(\emph{Logical}): when \code{TRUE} (default), fetch the ESPN
 team catalog once and join friendly team fields next to the \code{team_id}
@@ -43,8 +47,8 @@ A data frame with one row per coach:\tabular{lll}{
 }
 }
 \description{
-Get the coaches associated with a college football team for a
-season -- one row per coach, with name, birth detail, and experience.
+Get the coach associated with a college football team for the
+current season -- one row per coach, with name, birth detail, and experience.
 }
 \details{
 Wraps the ESPN core-v2 team coaches endpoint
@@ -65,9 +69,8 @@ A catalog failure degrades to \code{NA} rather than erroring the wrapper. Set
 }
 \examples{
 \donttest{
-  try(espn_cfb_team_coaches(team_id = 61, year = 2024))
-  try(espn_cfb_team_coaches(team_id = 61, year = 2024,
-                            team_detail = FALSE))
+  try(espn_cfb_team_coaches(team_id = 61))
+  try(espn_cfb_team_coaches(team_id = 61, team_detail = FALSE))
 }
 }
 \seealso{

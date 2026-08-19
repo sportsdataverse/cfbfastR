@@ -687,8 +687,8 @@ espn_cfb_team_awards <- function(team_id = NULL,
 
 #' @title
 #' **ESPN College Football Team Coaches**
-#' @description Get the coaches associated with a college football team for a
-#' season -- one row per coach, with name, birth detail, and experience.
+#' @description Get the coach associated with a college football team for the
+#' current season -- one row per coach, with name, birth detail, and experience.
 #' @details Wraps the ESPN core-v2 team coaches endpoint
 #' `sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/teams/{team_id}/coaches`.
 #' The index endpoint returns a `$ref` list of coach resources; this wrapper
@@ -705,7 +705,7 @@ espn_cfb_team_awards <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year DEPRECATED. (*Integer*): Season, 4 digit format (*YYYY*). Defaults to most recent CFB season.
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -747,14 +747,14 @@ espn_cfb_team_awards <- function(team_id = NULL,
 #' @export
 #' @examples
 #' \donttest{
-#'   try(espn_cfb_team_coaches(team_id = 61, year = 2024))
-#'   try(espn_cfb_team_coaches(team_id = 61, year = 2024,
-#'                             team_detail = FALSE))
+#'   try(espn_cfb_team_coaches(team_id = 61))
+#'   try(espn_cfb_team_coaches(team_id = 61, team_detail = FALSE))
 #' }
-espn_cfb_team_coaches <- function(team_id = NULL,
-                                  year = NULL,
-                                  team_detail = TRUE) {
-
+espn_cfb_team_coaches <- function(
+  team_id = NULL,
+  year = most_recent_cfb_season(),
+  team_detail = TRUE
+) {
   # Validation ----
   if (is.null(team_id)) {
     cli::cli_abort("{.arg team_id} is required for the ESPN team coaches endpoint.")
@@ -762,7 +762,19 @@ espn_cfb_team_coaches <- function(team_id = NULL,
   if (is.null(year)) {
     cli::cli_abort("{.arg year} is required for the ESPN team coaches endpoint.")
   }
+  if (length(year) != 1L) {
+    cli::cli_abort(c(
+      "{.arg year} must be a single season.",
+      x = "You supplied {length(year)} values."
+    ))
+  }
   validate_year(year)
+  if (year != most_recent_cfb_season()) {
+    cli::cli_warn(
+      "{.fn espn_cfb_team_coaches} only supports current season, returning current season coach"
+    )
+    year <- most_recent_cfb_season()
+  }
 
   url <- glue::glue(
     "https://sports.core.api.espn.com/v2/sports/football/leagues/",
