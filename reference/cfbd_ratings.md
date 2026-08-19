@@ -18,6 +18,12 @@
 - [`cfbd_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_fpi.md):
   Get FPI historical rating data.
 
+- [`cfbd_ratings_core()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_core.md):
+  Get CFBD core team ratings.
+
+- [`cfbd_ratings_srs_expanded()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs_expanded.md):
+  Get expanded SRS ratings with component breakdown.
+
 ### **Get historical Coaches and AP poll data**
 
     cfbd_rankings(year = 2019, week = 12)
@@ -71,3 +77,11 @@ Acquire the ESPN FPI ratings data by **team**, **year**, and
     cfbd_ratings_fpi(year = 2019, team = "Texas")
 
     cfbd_ratings_fpi(year = 2018, conference = "SEC")
+
+### **Get core team ratings**
+
+    cfbd_ratings_core(year = 2024)
+
+### **Get expanded SRS ratings**
+
+    cfbd_ratings_srs_expanded(year = 2024)

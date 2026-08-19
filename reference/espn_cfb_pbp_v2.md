@@ -16,7 +16,12 @@ faster and more robust to the site-v2 feed's column drift.
 ## Usage
 
 ``` r
-espn_cfb_pbp_v2(game_id, epa_wpa = FALSE, output = "default")
+espn_cfb_pbp_v2(
+  game_id,
+  epa_wpa = FALSE,
+  output = "default",
+  resolve_names = TRUE
+)
 ```
 
 ## Arguments
@@ -50,6 +55,18 @@ espn_cfb_pbp_v2(game_id, epa_wpa = FALSE, output = "default")
     scratchpad. For dashboards / game logs.
 
   - `"full"` – legacy behavior, drops only the player-name aliases.
+
+- resolve_names:
+
+  (*Logical*): when `TRUE` (default) and `epa_wpa = TRUE`, spend **one
+  extra request per game** on ESPN's play-by-play sidecar to (a) render
+  participant names in full (`"Jalen Mitchell"` rather than the core-v2
+  roster's `"J. Mitchell"`) and (b) add the per-player box score as a
+  second identity source, which is the only one available on the large
+  share of games where ESPN 404s the roster resource. Memoised per
+  `game_id`, so the two uses cost one request between them. Set `FALSE`
+  for a bulk sweep that would rather have the short names than the
+  requests. Ignored when `epa_wpa = FALSE`.
 
 ## Value
 
@@ -221,8 +238,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_pbp_v2(game_id = 401628339, epa_wpa = TRUE))
 #> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:06:53 UTC
-#> # A tibble: 156 × 449
+#> ℹ Data updated: 2026-08-19 12:30:07 UTC
+#> # A tibble: 156 × 510
 #>    season id_play    game_id game_play_number half_play_number drive_play_number
 #>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
 #>  1   2024 401628339… 401628…                1                1                 1
@@ -236,7 +253,7 @@ Other ESPN CFB Functions:
 #>  9   2024 401628339… 401628…                8                8                 2
 #> 10   2024 401628339… 401628…                9                9                 3
 #> # ℹ 146 more rows
-#> # ℹ 443 more variables: pos_team <chr>, def_pos_team <chr>,
+#> # ℹ 504 more variables: pos_team <chr>, def_pos_team <chr>,
 #> #   pos_team_score <int>, def_pos_team_score <int>, half <fct>, period <int>,
 #> #   clock_minutes <dbl>, clock_seconds <dbl>, play_type <chr>, play_text <chr>,
 #> #   down <dbl>, distance <dbl>, yards_to_goal <dbl>, yards_gained <dbl>,

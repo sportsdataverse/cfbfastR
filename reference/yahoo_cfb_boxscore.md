@@ -3540,7 +3540,7 @@ Other Yahoo CFB Functions:
 #> NULL
 #> 
 #> $service$boxscore$games$ncaaf.g.202509200023$last_updated
-#> [1] "2025-09-20 17:40:29"
+#> [1] "2026-08-12 11:07:04"
 #> 
 #> $service$boxscore$games$ncaaf.g.202509200023$teams
 #> $service$boxscore$games$ncaaf.g.202509200023$teams[[1]]

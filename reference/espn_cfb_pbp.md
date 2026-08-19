@@ -5,7 +5,7 @@ Get ESPN college football PBP data
 ## Usage
 
 ``` r
-espn_cfb_pbp(game_id, epa_wpa = FALSE)
+espn_cfb_pbp(game_id, epa_wpa = FALSE, engine = NULL, output = "default")
 ```
 
 ## Arguments
@@ -18,6 +18,24 @@ espn_cfb_pbp(game_id, epa_wpa = FALSE)
 
   Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win
   Probability Added variables
+
+- engine:
+
+  (*Character* optional): which play-by-play engine to run. One of
+  `"v2"`, `"legacy"` or `"auto"`; `NULL` (default) resolves from
+  `getOption("cfbfastR.pbp_engine")`, which itself defaults to `"v2"` as
+  of this release. `"legacy"` is the escape hatch that reproduces the
+  pre-2.3.0 frame; `"auto"` means whatever this version of the package
+  considers current, so it is carried forward by future default flips.
+
+- output:
+
+  (*Character*): modeled-output column set, one of `"default"`, `"lean"`
+  or `"full"`. Only meaningful when the call reaches the v2 engine; it
+  is accepted here so a delegating caller can reach the tier selector
+  without switching to the
+  [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
+  name.
 
 ## Value
 
@@ -32,27 +50,27 @@ Saiem Gilani
 ``` r
  # \donttest{
    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
-#> ── Play-by-play data from ESPN.com ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:06:49 UTC
-#> # A tibble: 196 × 419
-#>      game_id id_play         drive_id home  away  drive_number drive_play_number
-#>        <dbl> <chr>           <chr>    <chr> <chr>        <int>             <dbl>
-#>  1 401282614 40128261410184… 4012826… Flor… Notr…            1                 1
-#>  2 401282614 40128261410185… 4012826… Flor… Notr…            1                 2
-#>  3 401282614 40128261410185… 4012826… Flor… Notr…            1                 2
-#>  4 401282614 40128261410186… 4012826… Flor… Notr…            1                 3
-#>  5 401282614 40128261410186… 4012826… Flor… Notr…            1                 4
-#>  6 401282614 40128261410187… 4012826… Flor… Notr…            1                 5
-#>  7 401282614 40128261410187… 4012826… Flor… Notr…            1                 2
-#>  8 401282614 40128261410187… 4012826… Flor… Notr…            2                 1
-#>  9 401282614 40128261410187… 4012826… Flor… Notr…            2                 3
-#> 10 401282614 40128261410187… 4012826… Flor… Notr…            2                 3
+#> ── Play-by-play data from ESPN (core-v2) ───────────────────── cfbfastR 2.3.0 ──
+#> ℹ Data updated: 2026-08-19 12:30:02 UTC
+#> # A tibble: 196 × 510
+#>    season id_play    game_id game_play_number half_play_number drive_play_number
+#>     <int> <chr>      <chr>              <dbl>            <dbl>             <dbl>
+#>  1   2021 401282614… 401282…                1                1                 1
+#>  2   2021 401282614… 401282…                2                2                 2
+#>  3   2021 401282614… 401282…                2                2                 2
+#>  4   2021 401282614… 401282…                3                3                 3
+#>  5   2021 401282614… 401282…                4                4                 4
+#>  6   2021 401282614… 401282…                5                5                 5
+#>  7   2021 401282614… 401282…                6                7                 2
+#>  8   2021 401282614… 401282…                7                6                 1
+#>  9   2021 401282614… 401282…                8                8                 3
+#> 10   2021 401282614… 401282…                8                8                 3
 #> # ℹ 186 more rows
-#> # ℹ 412 more variables: game_play_number <dbl>, pos_team <chr>,
-#> #   def_pos_team <chr>, clock_minutes <dbl>, clock_seconds <dbl>, half <fct>,
-#> #   period <int>, TimeSecsRem <dbl>, play_type <chr>, play_text <chr>,
+#> # ℹ 504 more variables: pos_team <chr>, def_pos_team <chr>,
+#> #   pos_team_score <int>, def_pos_team_score <int>, half <fct>, period <int>,
+#> #   clock_minutes <dbl>, clock_seconds <dbl>, play_type <chr>, play_text <chr>,
 #> #   down <dbl>, distance <dbl>, yards_to_goal <dbl>, yards_gained <dbl>,
-#> #   Goal_To_Go <lgl>, Under_two <lgl>, pos_score_diff <int>,
-#> #   pos_score_diff_start <dbl>, pos_team_score <int>, …
+#> #   EPA <dbl>, ep_before <dbl>, ep_after <dbl>, wpa <dbl>, wp_before <dbl>,
+#> #   wp_after <dbl>, def_wp_before <dbl>, def_wp_after <dbl>, …
  # }
 ```

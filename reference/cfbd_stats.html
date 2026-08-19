@@ -6,6 +6,8 @@ cfbd_stats_season_team(): Get season statistics by team.
 cfbd_stats_season_advanced(): Get season advanced statistics by team.
 cfbd_stats_game_advanced(): Get game advanced stats.
 cfbd_stats_season_player(): Get season statistics by player.
+cfbd_stats_player_success(): Get player success rates by season.
+cfbd_stats_player_success_game(): Get player success rates by game.
 
 "><meta property="og:description" content="
 
@@ -14,6 +16,8 @@ cfbd_stats_season_team(): Get season statistics by team.
 cfbd_stats_season_advanced(): Get season advanced statistics by team.
 cfbd_stats_game_advanced(): Get game advanced stats.
 cfbd_stats_season_player(): Get season statistics by player.
+cfbd_stats_player_success(): Get player success rates by season.
+cfbd_stats_player_success_game(): Get player success rates by game.
 
 "><meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -157,6 +161,8 @@ cfbd_stats_season_player(): Get season statistics by player.
 <li><p><code><a href="cfbd_stats_season_advanced.html">cfbd_stats_season_advanced()</a></code>: Get season advanced statistics by team.</p></li>
 <li><p><code><a href="cfbd_stats_game_advanced.html">cfbd_stats_game_advanced()</a></code>: Get game advanced stats.</p></li>
 <li><p><code><a href="cfbd_stats_season_player.html">cfbd_stats_season_player()</a></code>: Get season statistics by player.</p></li>
+<li><p><code><a href="cfbd_stats_player_success.html">cfbd_stats_player_success()</a></code>: Get player success rates by season.</p></li>
+<li><p><code><a href="cfbd_stats_player_success_game.html">cfbd_stats_player_success_game()</a></code>: Get player success rates by game.</p></li>
 </ul></div>
 
 
@@ -211,6 +217,20 @@ cfbd_stats_season_player(): Get season statistics by player.
 <p></p><div class="sourceCode r"><pre><code><span><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></span></code></pre><p></p></div>
 </div>
 
+<div class="section">
+<h3 id="get-player-success-rates-by-season"><strong>Get player success rates by season</strong><a class="anchor" aria-label="anchor" href="#get-player-success-rates-by-season"></a></h3>
+
+
+<p></p><div class="sourceCode r"><pre><code><span><span class="fu"><a href="../reference/cfbd_stats_player_success.html">cfbd_stats_player_success</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, team <span class="op">=</span> <span class="st">"Georgia"</span><span class="op">)</span></span></code></pre><p></p></div>
+</div>
+
+<div class="section">
+<h3 id="get-player-success-rates-by-game"><strong>Get player success rates by game</strong><a class="anchor" aria-label="anchor" href="#get-player-success-rates-by-game"></a></h3>
+
+
+<p></p><div class="sourceCode r"><pre><code><span><span class="fu"><a href="../reference/cfbd_stats_player_success_game.html">cfbd_stats_player_success_game</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, week <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre><p></p></div>
+</div>
+
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -222,7 +242,7 @@ cfbd_stats_season_player(): Get season statistics by player.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

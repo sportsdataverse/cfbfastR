@@ -157,8 +157,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_statistics(game_id = 401628339))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:06:42 UTC
-#> # A tibble: 568 × 30
+#> ℹ Data updated: 2026-08-19 12:29:54 UTC
+#> # A tibble: 580 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
 #>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
@@ -171,7 +171,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 558 more rows
+#> # ℹ 570 more rows
 #> # ℹ 24 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, home_away <chr>, split_id <chr>,
@@ -181,8 +181,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_statistics(game_id = 401628339,
                                     team_detail = FALSE))
 #> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:06:43 UTC
-#> # A tibble: 568 × 20
+#> ℹ Data updated: 2026-08-19 12:29:54 UTC
+#> # A tibble: 580 × 20
 #>    game_id   team_id home_away split_id split_name split_abbreviation
 #>    <chr>     <chr>   <chr>     <chr>    <chr>      <chr>             
 #>  1 401628339 61      home      0        Season     Season            
@@ -195,7 +195,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 61      home      0        Season     Season            
 #>  9 401628339 61      home      0        Season     Season            
 #> 10 401628339 61      home      0        Season     Season            
-#> # ℹ 558 more rows
+#> # ℹ 570 more rows
 #> # ℹ 14 more variables: category_name <chr>, category_display <chr>,
 #> #   category_short_display <chr>, category_abbreviation <chr>,
 #> #   category_summary <chr>, stat_name <chr>, abbreviation <chr>,

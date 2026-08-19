@@ -12,7 +12,8 @@ cfbd_play_stats_player(
   game_id = NULL,
   athlete_id = NULL,
   stat_type_id = NULL,
-  season_type = "both"
+  season_type = "both",
+  conference = NULL
 )
 ```
 
@@ -56,6 +57,10 @@ cfbd_play_stats_player(
 
   (*String* default both): Season type - regular, postseason, both,
   allstar, spring_regular, spring_postseason
+
+- conference:
+
+  (*String* optional): Conference abbreviation filter.
 
 ## Value
 
@@ -147,7 +152,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_player(game_id = 401628414))
 #> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:37 UTC
+#> ℹ Data updated: 2026-08-19 12:27:59 UTC
 #> # A tibble: 132 × 70
 #>      game_id season  week team     conference opponent team_score opponent_score
 #>        <int>  <int> <int> <chr>    <chr>      <chr>         <int>          <int>
@@ -170,7 +175,7 @@ Other CFBD PBP:
 #> #   rush_yds <int>, interception_player_id <chr>, interception_player <chr>, …
   try(cfbd_play_stats_player(year = 2025, week = 1))
 #> ── Play-level player data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:45 UTC
+#> ℹ Data updated: 2026-08-19 12:28:05 UTC
 #> # A tibble: 1,306 × 70
 #>      game_id season  week team    conference opponent  team_score opponent_score
 #>        <int>  <int> <int> <chr>   <chr>      <chr>          <int>          <int>

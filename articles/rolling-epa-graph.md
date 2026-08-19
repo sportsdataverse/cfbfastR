@@ -20,7 +20,7 @@ pacman::p_load(tidyverse, zoo, ggimage, cfbfastR)
 Using the
 [load_cfb_pbp()](https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html)
 method, we will pull down a dataframe that contains ALL of the play by
-play data for ALL teams in 2025. This method only takes about 30
+play data for ALL teams in 2026. This method only takes about 30
 seconds.
 
 ``` r
@@ -84,14 +84,14 @@ head(off_epa)
 ```
 
     ## # A tibble: 6 × 5
-    ##   Team               offense_conference off_epa  Rank TeamRank             
-    ##   <chr>              <chr>                <dbl> <int> <chr>                
-    ## 1 Miami              ACC                  0.285     1 Miami #1             
-    ## 2 Eastern Washington Big Sky              0.262     2 Eastern Washington #2
-    ## 3 Monmouth           CAA                  0.258     3 Monmouth #3          
-    ## 4 Montana State      Big Sky              0.253     4 Montana State #4     
-    ## 5 South Dakota       MVFC                 0.239     5 South Dakota #5      
-    ## 6 Ohio State         Big Ten              0.219     6 Ohio State #6
+    ##   Team          offense_conference off_epa  Rank TeamRank        
+    ##   <chr>         <chr>                <dbl> <int> <chr>           
+    ## 1 Alabama State SWAC                 0.334     1 Alabama State #1
+    ## 2 Vanderbilt    SEC                  0.267     2 Vanderbilt #2   
+    ## 3 Jackson State SWAC                 0.227     3 Jackson State #3
+    ## 4 North Texas   American Athletic    0.223     4 North Texas #4  
+    ## 5 Navy          American Athletic    0.222     5 Navy #5         
+    ## 6 USC           Big Ten              0.215     6 USC #6
 
 Ok, now let’s start to visualize the data beyond the top few schools.
 Let’s graph all the teams that have a positive EPA on the year.

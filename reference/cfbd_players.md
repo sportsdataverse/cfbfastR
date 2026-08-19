@@ -9,6 +9,9 @@
 - [`cfbd_player_usage()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.md):
   Player usage.
 
+- [`cfbd_player_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_season_overview.md):
+  Get a season overview for a single player.
+
 ## Details
 
 ### **Player information lookup**
@@ -24,3 +27,7 @@
 ### **Get player usage metrics**
 
      cfbd_player_usage(year = 2019, position = "WR", team = "Florida State")
+
+### **Get a player season overview**
+
+    cfbd_player_season_overview(year = 2024, athlete_id = 4429105)

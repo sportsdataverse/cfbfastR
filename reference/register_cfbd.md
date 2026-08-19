@@ -30,9 +30,9 @@ To get access to an API key, follow the instructions at
 **Using the key:** You can save the key for consistent usage by adding
 `CFBD_API_KEY=YOUR-API-KEY-HERE` to your .Renviron file (easily accessed
 via
-[**[`usethis::edit_r_environ()`](https://usethis.r-lib.org/reference/edit.html)**](https://usethis.r-lib.org/reference/edit.html)).
+[**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
 Run
-[**[`usethis::edit_r_environ()`](https://usethis.r-lib.org/reference/edit.html)**](https://usethis.r-lib.org/reference/edit.html),
+[**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
 a new script will pop open named `.Renviron`, **THEN** paste the
 following in the new script that pops up (with**out** quotations)
 

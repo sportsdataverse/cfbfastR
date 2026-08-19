@@ -11,7 +11,8 @@ cfbd_metrics_ppa_games(
   season_type = "both",
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  division = NULL
 )
 ```
 
@@ -46,6 +47,11 @@ cfbd_metrics_ppa_games(
 
   (*Logical* default FALSE): Select whether to exclude Garbage Time
   (TRUE or FALSE)
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -95,7 +101,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 #> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:02:10 UTC
+#> ℹ Data updated: 2026-08-19 12:25:27 UTC
 #> # A tibble: 12 × 19
 #>      game_id season  week season_type team  conference opponent      off_overall
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <dbl>

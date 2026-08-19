@@ -6,7 +6,7 @@ rosters for every team from the selected year.
 ## Usage
 
 ``` r
-cfbd_team_roster(year, team = NULL)
+cfbd_team_roster(year, team = NULL, division = NULL)
 ```
 
 ## Arguments
@@ -18,6 +18,11 @@ cfbd_team_roster(year, team = NULL)
 - team:
 
   (*String* optional): Team, select a valid team in D-I football
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -57,7 +62,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_roster(year = 2013, team = "Florida State"))
 #> ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:26 UTC
+#> ℹ Data updated: 2026-08-19 12:28:49 UTC
 #> # A tibble: 134 × 17
 #>    athlete_id first_name last_name   team    weight height jersey  year position
 #>    <chr>      <chr>      <chr>       <chr>    <int>  <int>  <int> <int> <chr>   

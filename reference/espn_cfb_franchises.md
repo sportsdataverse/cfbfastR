@@ -109,8 +109,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_franchises())
 #> ── Franchises index from ESPN ──────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:51 UTC
-#> # A tibble: 797 × 2
+#> ℹ Data updated: 2026-08-19 12:29:09 UTC
+#> # A tibble: 804 × 2
 #>    franchise_id franchise_ref                                                   
 #>    <chr>        <chr>                                                           
 #>  1 2            http://sports.core.api.espn.com/v2/sports/football/leagues/coll…
@@ -122,7 +122,7 @@ Other ESPN CFB Functions:
 #>  7 11           http://sports.core.api.espn.com/v2/sports/football/leagues/coll…
 #>  8 12           http://sports.core.api.espn.com/v2/sports/football/leagues/coll…
 #>  9 13           http://sports.core.api.espn.com/v2/sports/football/leagues/coll…
-#> 10 15           http://sports.core.api.espn.com/v2/sports/football/leagues/coll…
-#> # ℹ 787 more rows
+#> 10 16           http://sports.core.api.espn.com/v2/sports/football/leagues/coll…
+#> # ℹ 794 more rows
 # }
 ```

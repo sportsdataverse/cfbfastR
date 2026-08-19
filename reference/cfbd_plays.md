@@ -123,20 +123,20 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_plays(year = 2021, week = 1))
 #> ── Play-by-play data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:51 UTC
+#> ℹ Data updated: 2026-08-19 12:28:14 UTC
 #> # A tibble: 15,066 × 28
 #>     game_id drive_id play_id drive_number play_number offense offense_conference
 #>       <int> <chr>    <chr>          <int>       <int> <chr>   <chr>             
-#>  1   4.01e8 4012827… 401282…            1           1 Illino… Big Ten           
-#>  2   4.01e8 4012827… 401282…            1           7 Nebras… Big Ten           
-#>  3   4.01e8 4012827… 401282…            1           6 Nebras… Big Ten           
-#>  4   4.01e8 4012827… 401282…            1           5 Nebras… Big Ten           
-#>  5   4.01e8 4012827… 401282…            1           4 Nebras… Big Ten           
-#>  6   4.01e8 4012827… 401282…            1           3 Nebras… Big Ten           
-#>  7   4.01e8 4012827… 401282…            1           2 Nebras… Big Ten           
-#>  8   4.01e8 4012827… 401282…            2           5 Illino… Big Ten           
-#>  9   4.01e8 4012827… 401282…            2           4 Illino… Big Ten           
-#> 10   4.01e8 4012827… 401282…            2           3 Illino… Big Ten           
+#>  1   4.01e8 4012819… 401281…           17           3 Georgia SEC               
+#>  2   4.01e8 4012819… 401281…           19           5 Georgia SEC               
+#>  3   4.01e8 4012819… 401281…           19           6 Georgia SEC               
+#>  4   4.01e8 4012819… 401281…           19           2 Georgia SEC               
+#>  5   4.01e8 4012819… 401281…           19           3 Georgia SEC               
+#>  6   4.01e8 4012819… 401281…           19           4 Georgia SEC               
+#>  7   4.01e8 4012819… 401281…           21           4 Georgia SEC               
+#>  8   4.01e8 4012819… 401281…           21          16 Georgia SEC               
+#>  9   4.01e8 4012819… 401281…           21          13 Georgia SEC               
+#> 10   4.01e8 4012819… 401281…           21          11 Georgia SEC               
 #> # ℹ 15,056 more rows
 #> # ℹ 21 more variables: offense_score <int>, defense <chr>,
 #> #   defense_conference <chr>, defense_score <int>, home <chr>, away <chr>,

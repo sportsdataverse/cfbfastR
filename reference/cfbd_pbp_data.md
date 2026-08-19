@@ -12,7 +12,13 @@ cfbd_pbp_data(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  ...
+  engine = NULL,
+  ...,
+  defense = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL,
+  conference = NULL,
+  division = NULL
 )
 ```
 
@@ -45,9 +51,44 @@ cfbd_pbp_data(
   Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win
   Probability Added variables
 
+- engine:
+
+  (*Character* optional): which play-by-play engine to run. One of
+  `"v2"`, `"legacy"` or `"auto"`; `NULL` (default) resolves from
+  `getOption("cfbfastR.pbp_engine")`, which itself defaults to `"v2"` as
+  of this release. On `"v2"` this delegates to
+  [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md),
+  which adds penalty enforcement resolution, ESPN-resolved player names,
+  the `*_player_id` columns and team attribution. `"legacy"` reproduces
+  the pre-2.3.0 frame unchanged.
+
 - ...:
 
-  Additional arguments passed to an underlying function.
+  Additional arguments passed to
+  [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md)
+  when the call delegates – notably `output`, the `"default"` / `"lean"`
+  / `"full"` modeled column-set selector. Ignored on the legacy path.
+
+- defense:
+
+  (*String* optional): Defensive team filter.
+
+- offense_conference:
+
+  (*String* optional): Offensive team conference filter.
+
+- defense_conference:
+
+  (*String* optional): Defensive team conference filter.
+
+- conference:
+
+  (*String* optional): Conference filter (either side of the ball).
+
+- division:
+
+  (*String* optional): Division/classification filter – `fbs`, `fcs`,
+  `ii`, `ii/iii`, `iii`.
 
 ## Value
 

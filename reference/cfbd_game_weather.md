@@ -10,7 +10,8 @@ cfbd_game_weather(
   week = NULL,
   season_type = "regular",
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  division = NULL
 )
 ```
 
@@ -40,6 +41,11 @@ cfbd_game_weather(
   conference Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
   Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind,
   SBC, AAC
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 

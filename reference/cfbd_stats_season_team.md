@@ -11,7 +11,8 @@ cfbd_stats_season_team(
   team = NULL,
   conference = NULL,
   start_week = NULL,
-  end_week = NULL
+  end_week = NULL,
+  division = NULL
 )
 ```
 
@@ -46,6 +47,11 @@ cfbd_stats_season_team(
 
   (*Integer* optional): Ending Week - values range from 1-15, 1-14 for
   seasons pre-playoff, i.e. 2013 or earlier
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -116,7 +122,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_team(year = 2018, conference = "B12", start_week = 1, end_week = 8))
 #> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:19 UTC
+#> ℹ Data updated: 2026-08-19 12:28:44 UTC
 #> # A tibble: 10 × 32
 #>    season team          conference games time_of_poss_total pass_comps pass_atts
 #>     <int> <chr>         <chr>      <int>              <int>      <int>     <int>
@@ -140,7 +146,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_team(2019, team = "LSU"))
 #> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:20 UTC
+#> ℹ Data updated: 2026-08-19 12:28:45 UTC
 #> # A tibble: 1 × 32
 #>   season team  conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr> <chr>      <int>              <int>      <int>     <int>
@@ -155,7 +161,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_season_team(2013, team = "Florida State"))
 #> ── Season stats from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:21 UTC
+#> ℹ Data updated: 2026-08-19 12:28:46 UTC
 #> # A tibble: 1 × 32
 #>   season team          conference games time_of_poss_total pass_comps pass_atts
 #>    <int> <chr>         <chr>      <int>              <int>      <int>     <int>

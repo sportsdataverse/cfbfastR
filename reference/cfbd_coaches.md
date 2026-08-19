@@ -3,6 +3,15 @@
 - `cfbd_coaches()`: A coach search function which provides coaching
   records and school history for a given coach.
 
+- [`cfbd_coaches_profile()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_profile.md):
+  Get a single coach's biographical profile.
+
+- [`cfbd_coaches_seasons()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_seasons.md):
+  Get season-by-season coaching records.
+
+- [`cfbd_coaches_tenures()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_tenures.md):
+  Get the start and end of each coaching tenure.
+
 **Coach information search** A coach search function which provides
 coaching records and school history for a given coach
 
@@ -77,28 +86,48 @@ Returns a tibble with 15 variables:
 
     cfbd_coaches(first = "Nick", last = "Saban", team = "alabama")
 
+### **Get a coach profile**
+
+    cfbd_coaches_profile(coach_id = 1)
+
+### **Get coaching seasons**
+
+    cfbd_coaches_seasons(team = "Georgia")
+
+### **Get coaching tenures**
+
+    cfbd_coaches_tenures(team = "Georgia")
+
+## See also
+
+Other CFBD Coaches Functions:
+[`cfbd_coaches_profile()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_profile.md),
+[`cfbd_coaches_seasons()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_seasons.md),
+[`cfbd_coaches_tenures()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_tenures.md)
+
 ## Examples
 
 ``` r
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 #> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:01:52 UTC
-#> # A tibble: 125 × 15
-#>    first_name last_name   hire_date school   year games  wins losses  ties
-#>    <chr>      <chr>       <chr>     <chr>   <int> <int> <int>  <int> <int>
-#>  1 M.         Griffin     NA        Alabama  1900     5     2      3     0
-#>  2 G.H.       Harvey      NA        Alabama  1901     5     2      1     2
-#>  3 Eli        Abbott      NA        Alabama  1902     8     4      4     0
-#>  4 J.O.       Heyworth    NA        Alabama  1902     8     4      4     0
-#>  5 W.B.       Blount      NA        Alabama  1903     7     3      4     0
-#>  6 W.B.       Blount      NA        Alabama  1904    10     7      3     0
-#>  7 Jack       Leavenworth NA        Alabama  1905    10     6      4     0
-#>  8 J.W.H.     Pollard     NA        Alabama  1906     6     5      1     0
-#>  9 J.W.H.     Pollard     NA        Alabama  1907     8     5      1     2
-#> 10 J.W.H.     Pollard     NA        Alabama  1908     8     6      1     1
-#> # ℹ 115 more rows
-#> # ℹ 6 more variables: preseason_rank <int>, postseason_rank <int>, srs <dbl>,
-#> #   sp_overall <dbl>, sp_offense <dbl>, sp_defense <dbl>
+#> ℹ Data updated: 2026-08-19 12:25:07 UTC
+#> # A tibble: 126 × 19
+#>       id first_name last_name   hire_date team_id school  conference  year games
+#>    <int> <chr>      <chr>       <chr>       <int> <chr>   <chr>      <int> <int>
+#>  1   600 M.         Griffin     NA            333 Alabama SIAA        1900     5
+#>  2   601 G.H.       Harvey      NA            333 Alabama SIAA        1901     5
+#>  3   602 Eli        Abbott      NA            333 Alabama SIAA        1902     8
+#>  4   603 J.O.       Heyworth    NA            333 Alabama SIAA        1902     8
+#>  5   604 W.B.       Blount      NA            333 Alabama SIAA        1903     7
+#>  6   604 W.B.       Blount      NA            333 Alabama SIAA        1904    10
+#>  7   605 Jack       Leavenworth NA            333 Alabama SIAA        1905    10
+#>  8   606 J.W.H.     Pollard     NA            333 Alabama SIAA        1906     6
+#>  9   606 J.W.H.     Pollard     NA            333 Alabama SIAA        1907     8
+#> 10   606 J.W.H.     Pollard     NA            333 Alabama SIAA        1908     8
+#> # ℹ 116 more rows
+#> # ℹ 10 more variables: wins <int>, losses <int>, ties <int>,
+#> #   win_percentage <dbl>, preseason_rank <int>, postseason_rank <int>,
+#> #   srs <dbl>, sp_overall <dbl>, sp_offense <dbl>, sp_defense <dbl>
 # }
 ```

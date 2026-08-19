@@ -243,13 +243,251 @@ spec live in the `sdv-internal-refs` repo. Verified live against the
   [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   on the meta columns.
 
+#### Play-by-play engine — v2 is now the default
+
+- **[`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md)
+  and
+  [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  now run the v2 engine by default.** Both gain penalty enforcement
+  resolution, ESPN-resolved player names, the `*_player_id` columns and
+  the `output` tier selector without a code change. The previous
+  behaviour is one argument away — `engine = "legacy"` per call, or
+  `options(cfbfastR.pbp_engine = "legacy")` for a session — and a
+  once-per-session message says so. `engine = "auto"` continues to mean
+  “whatever this release considers current”.
+  `tests/testthat/test-pbp_equivalence.R` asserts v2 reproduces the
+  legacy frames column-for-column, with an explicit allow-list of
+  intentional deltas.
+
+- Play-by-play now overwrites the regex-extracted `*_player_name` values
+  with ESPN’s own `participants[]` names (2014 onward), so a capture
+  that trailed narration (`"Rod Smith 3 Yd"`), abbreviated, or carried a
+  team code becomes the real name. Ported from `sportsdataverse`’s
+  `CFBPlayProcess.__join_participants` and verified against a 60-game
+  offline oracle (5 games from each of 2004, 2006, 2008, 2010, 2013,
+  2014, 2017, 2019, 2020, 2021, 2023, 2025, including the postseason):
+  1,236 of 9,545 × 11 name cells change, with zero divergence from the
+  Python. The stage runs **before** id resolution, so the roster matcher
+  gets a clean key rather than narration.
+
+- [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
+  gains `resolve_names` (default `TRUE`). When `epa_wpa = TRUE` it
+  spends one memoised request per game on ESPN’s play-by-play sidecar,
+  which supplies (a) full athlete names — `"Jalen Mitchell"` rather than
+  the core-v2 roster’s `"J. Mitchell"` — and (b) the per-player box
+  score as a second identity source. The box score is the *only*
+  identity source on the large share of games where ESPN 404s the roster
+  resource; adding it cuts `*_player_id` divergence from sdv-py from
+  52/163,656 to 26/166,482 — fewer mismatches over more plays. Set
+  `resolve_names = FALSE` for a bulk sweep that would rather have the
+  short names than the requests.
+
+- Play-by-play now resolves **which team** each event belongs to, adding
+  30 columns cfbfastR could not previously produce: the special-teams
+  flip (`kicking_team`, `return_team`, `punt_return_team`,
+  `kick_return_team`, `fg_team`, `punt_team`), the event-credit columns
+  (`sack_team`, `interception_team`, `pass_breakup_team`,
+  `forced_fumble_team`, `fumble_recovery_team`), the fumble/recovery
+  chain (`fumble_or_muff`, `fumbling_team`, `recovery_team`,
+  `recovery_team_2`), the per-side turnover model (`is_turnover`,
+  `turnover_team`, `int_turnover`, `pos_fumble_lost`, `def_fumble_lost`,
+  `is_pos_team_turnover`, `is_def_pos_team_turnover`, `is_st_turnover`,
+  `is_blocked_punt_turnover`, `is_blocked_fg_turnover`), penalty
+  attribution (`penalized_team`, `penalty_team_id`,
+  `penalty_yards_signed`) and the id-keyed `pos_team_id` /
+  `def_pos_team_id`. Ported from `sportsdataverse`’s
+  `CFBPlayProcess.__add_attribution_cols` and verified against the
+  60-game offline oracle at zero divergence over 267,260 cells.
+
+  The turnover flags are framed **per side** because one play can lose
+  the ball twice — the offense fumbles, the defense recovers and fumbles
+  back — and a single boolean cannot say that both teams turned it over.
+  Blocked punts and blocked field goals deliberately stay *out* of
+  `is_turnover`: ESPN’s official box counts only giveaways, so folding
+  them in would break the reconciliation against it. They get their own
+  flags instead.
+
+  On the ESPN path, ESPN’s own per-play turnover flag is preserved as
+  **`espn_is_turnover`** rather than being silently overwritten. The two
+  legitimately differ — ESPN’s also fires on blocked kicks.
+
+- Play-by-play gains `air_yards`, `air_yardsToEndzone` and
+  `yards_after_catch`, splitting a completed pass into the yards thrown
+  and the yards run after the catch. ESPN states the catch point as
+  `"caught at OU35"`; the stated yard line belongs to whichever team
+  owns that side of the field, so the abbreviation is sided against the
+  possessing and defending teams with the same prefix-tolerant matcher
+  the recovery and penalty teams use. `yards_after_catch` is computed
+  for completions only. Ported from `sportsdataverse`’s
+  `CFBPlayProcess.__add_air_yards_cols`.
+
+  **One deliberate divergence from the Python:** sdv-py’s pattern has no
+  article, so it resolves `"caught at OU35"` and silently drops
+  `"thrown to the ARK30"`. Both forms occur in ESPN’s text — and
+  cfbfastR’s core-v2 feed uses the article form almost exclusively,
+  where a verbatim port would have matched nothing at all. This
+  implementation accepts both. The parity test is partitioned
+  accordingly: exact agreement on the 137 oracle rows sdv-py resolves,
+  plus an explicit assertion that the 7 article-form rows it drops are
+  recovered here.
+
+- Play-by-play gains `pass_depth`, `pass_direction`, `rush_direction`
+  and `qb_hurry`, read from the play text (`"short"`/`"deep"`,
+  `"left"`/`"middle"`/`"right"`, and ESPN’s `"QB hurried by"`
+  annotation). Null where ESPN omits the phrase — sacks, screens, and
+  older seasons that never annotated depth or direction.
+
+- [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
+  now refuses to run the EPA/WPA models on an obviously malformed feed —
+  no plays, or implausibly few or many for a game that has finished —
+  and returns the unmodeled frame with a warning instead. A truncated
+  game models perfectly cleanly and produces EPA, drive results and a
+  box score that all look reasonable and are all wrong, and nothing
+  downstream can distinguish that from a real blowout. The count rules
+  apply only to completed games so a live feed is never rejected. Ported
+  from `CFBPlayProcess.corrupt_pbp_check`.
+
+- A **pbp-to-boxscore parity gate** now guards the test suite. The
+  per-play parity tests check a play against itself; this aggregates
+  play-by-play by team and compares it against ESPN’s own team box,
+  which is the only cheap end-to-end judge of whether parsing put the
+  right events on the right *team*. An attribution bug leaves every
+  per-play assertion green and shows up here immediately. Ported from
+  `sportsdataverse`’s `tools/validation/checks/boxscore_parity`, adapted
+  from a per-season harness check to a per-game library gate.
+
+  It encodes three conventions proven against the box, two of which are
+  the opposite of the NFL’s: **NCAA charges a sack to rushing** (attempt
+  and yardage both), **pass attempts exclude sacks**, and **a penalty
+  belongs to the team that committed it** — a positive
+  `penalty_yards_signed` means the offence gained, so the defence was
+  flagged. Floors are measured from the shipped 60-game corpus, never
+  guessed, and are per-stat because parity is strongly era-dependent
+  (interceptions reconcile at 97%, 2004-inclusive rushing yardage at
+  31%).
+
+#### CFBD API coverage
+
+Audited against the CollegeFootballData OpenAPI spec (5.24.1, 74
+endpoints).
+
+**15 endpoints that had no wrapper now have one:**
+[`cfbd_playoffs_cfp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs_cfp.md),
+[`cfbd_playoffs_cfp_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs_cfp_games.md),
+[`cfbd_playoffs_cfp_participants()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs_cfp_participants.md),
+[`cfbd_conference_affiliations()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conference_affiliations.md),
+[`cfbd_conference_changes()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conference_changes.md),
+[`cfbd_coaches_profile()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_profile.md),
+[`cfbd_coaches_seasons()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_seasons.md),
+[`cfbd_coaches_tenures()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_tenures.md),
+[`cfbd_ratings_core()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_core.md),
+[`cfbd_ratings_srs_expanded()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs_expanded.md),
+[`cfbd_teams_fbs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_teams_fbs.md),
+[`cfbd_stats_player_success()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_player_success.md),
+[`cfbd_stats_player_success_game()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_player_success_game.md),
+[`cfbd_player_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_season_overview.md)
+and
+[`cfbd_info_usage()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_info_usage.md).
+Every one was exercised against the live API before being committed.
+
+**26 parameters added** to existing wrappers — most importantly
+`division` on ten more functions, plus `defense` / `offense_conference`
+/ `defense_conference` / `conference` / `division` on
+[`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+`competition` and `round` on
+[`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md)
+(College Football Playoff filtering), `provider` on
+[`cfbd_betting_lines()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.md),
+`conference` on
+[`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md)
+and `recruit_type` on
+[`cfbd_recruiting_position()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.md).
+[`cfbd_conferences()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.md)
+previously took **no arguments at all** and now accepts `year` and
+`division`.
+
+**New `validate_division()`** covering `fbs` / `fcs` / `ii` / `ii/iii` /
+`iii`. This validates locally because CFBD *ignores* an unrecognised
+filter value rather than rejecting it — so without it a typo silently
+returns every division.
+
+Two spec parameters were deliberately **not** exposed after testing
+them: `/rankings` declares `latest` and `final` as booleans, but the API
+returns HTTP 400 for every form of both. `poll` is validated to `"cfp"`,
+the only value it accepts.
+
 #### Bug fixes
+
+- [`espn_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_teams.md)
+  returned **zero rows**, because `site.api.espn.com` now answers HTTP
+  403 to a spoofed browser `User-Agent`. The failure was silent — the
+  wrapper caught it and returned an empty frame — and every consumer
+  degraded to `NA`, which took `home`, `away`, `pos_team`,
+  `def_pos_team`, `offense_play`, `defense_play` and every team
+  abbreviation on the ESPN play-by-play path down with it. Measured
+  2026-08-19: the endpoint answers 200 with httr2’s default UA, with
+  `curl/8.5.0`, or with `Accept`/`Origin`/`Referer` and no UA at all,
+  and 403 with the Chrome string. The `User-Agent` header is dropped.
+
+  Probing every ESPN host the package uses narrowed the blast radius to
+  **exactly two callers** —
+  [`espn_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_teams.md)
+  and
+  [`espn_cfb_team_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_schedule.md),
+  the only two that combine `site.api.espn.com` with the spoofed header.
+  [`espn_cfb_team_schedule()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_schedule.md)
+  was returning zero rows for the same reason and now returns data. The
+  other ~65 occurrences of the header sit on `sports.core.api.espn.com`
+  and `site.web.api.espn.com`, which answer 200 either way, so they are
+  left alone.
+
+  Worth knowing for anyone adding an ESPN call: `cdn.espn.com` does
+  something worse than a 403 under the browser UA — it answers **200
+  with a zero-byte body**, so nothing raises and the parse silently
+  yields nothing. `tests/testthat/test-espn_http_headers.R` is a
+  source-level guard that fails if the header is re-added to a
+  `site.api` caller.
+
+- `defense_play` was a copy-paste duplicate of `offense_play` in the
+  ESPN adapter — both
+  [`case_when()`](https://dplyr.tidyverse.org/reference/case-and-replace-when.html)
+  branches returned the home team — so it named the team **with** the
+  ball on every ESPN play.
+
+- Play-by-play gains `pos_team_id` / `def_pos_team_id` /
+  `offense_play_id` / `defense_play_id`. `pos_team`, `def_pos_team`,
+  `offense_play` and `defense_play` are team NAMES resolved through the
+  ESPN teams catalog, and when that catalog is unavailable they all go
+  NA together — which silently disabled team-aware roster matching,
+  dropping every player-id lookup to the global-unique fallback. The ids
+  come straight off the play and are always present.
+  ([`espn_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_teams.md)
+  currently returns zero rows, so this is the live condition, not a
+  hypothetical.)
+
+- `.espn_cfb_participant_roster()` is now memoised alongside the ESPN
+  catalog helpers.
+  [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)
+  needs one game’s roster twice — once to name participants, once to
+  resolve player ids — and a season sweep asked for it once per game;
+  both now cost a single request. The memoised-helper list is a single
+  constant shared by `.onLoad()` and
+  [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md),
+  which had been a second hand-maintained copy that could silently drift
+  into caching a helper it never cleared.
+
+- `.run_epa_wpa_by_game()` had no roster argument, so
+  [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md)
+  could never resolve `*_player_id` columns however the roster was
+  supplied. It now threads `rosters` and `participants` through, sliced
+  per `game_id`.
 
 - [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
   now builds its request URL with the `?event=` query separator
   (previously concatenated as `summaryevent=`, which returned HTTP 404
   for every game) and initializes its return frame before the `tryCatch`
   so an upstream failure no longer throws `object 'plays_df' not found`.
+
 - [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md)
   and
   [`espn_cfb_pbp_v2()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp_v2.md)

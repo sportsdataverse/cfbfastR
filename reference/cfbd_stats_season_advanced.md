@@ -10,7 +10,8 @@ cfbd_stats_season_advanced(
   team = NULL,
   excl_garbage_time = FALSE,
   start_week = NULL,
-  end_week = NULL
+  end_week = NULL,
+  division = NULL
 )
 ```
 
@@ -38,6 +39,11 @@ cfbd_stats_season_advanced(
 
   (*Integer* optional): Ending Week - values range from 1-15, 1-14 for
   seasons pre-playoff, i.e. 2013 or earlier
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -143,7 +149,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_advanced(2019, team = "LSU"))
 #> ── Advanced season stats from CollegeFootballData.com ──────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:11 UTC
+#> ℹ Data updated: 2026-08-19 12:28:39 UTC
 #> # A tibble: 1 × 82
 #>   season team  conference off_plays off_drives off_ppa off_total_ppa
 #>    <int> <chr> <chr>          <int>      <int>   <dbl>         <dbl>

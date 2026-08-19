@@ -89,7 +89,7 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_game_havoc(year = 2023, team = "Georgia"))
 #> ── Game havoc stats from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:10 UTC
+#> ℹ Data updated: 2026-08-19 12:28:28 UTC
 #> # A tibble: 14 × 22
 #>      game_id season season_type  week team    conference opponent      
 #>        <int>  <int> <chr>       <int> <chr>   <chr>      <chr>         
@@ -117,7 +117,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_havoc(2022, week = 1))
 #> ── Game havoc stats from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:10 UTC
+#> ℹ Data updated: 2026-08-19 12:28:28 UTC
 #> # A tibble: 273 × 22
 #>      game_id season season_type  week team       conference opponent  
 #>        <int>  <int> <chr>       <int> <chr>      <chr>      <chr>     
@@ -128,7 +128,7 @@ Other CFBD Stats:
 #>  5 401403855   2022 regular         1 Arkansas   SEC        Cincinnati
 #>  6 401403855   2022 regular         1 Cincinnati AAC        Arkansas  
 #>  7 401403856   2022 regular         1 Auburn     SEC        Mercer    
-#>  8 401403856   2022 regular         1 Mercer     NA         Auburn    
+#>  8 401403856   2022 regular         1 Mercer     SOCON      Auburn    
 #>  9 401403857   2022 regular         1 Florida    SEC        Utah      
 #> 10 401403857   2022 regular         1 Utah       PAC        Florida   
 #> # ℹ 263 more rows

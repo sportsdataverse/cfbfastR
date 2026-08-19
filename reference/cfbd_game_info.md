@@ -15,7 +15,9 @@ cfbd_game_info(
   conference = NULL,
   division = "fbs",
   game_id = NULL,
-  quarter_scores = FALSE
+  quarter_scores = FALSE,
+  competition = NULL,
+  round = NULL
 )
 ```
 
@@ -69,6 +71,16 @@ cfbd_game_info(
   columns that give the score at each quarter: `home_line_scores` and
   `away_line_scores`. I have defaulted the parameter to false so that
   you will not have to go to the trouble of dropping it.
+
+- competition:
+
+  (*String* optional): Competition filter; `cfp` restricts to College
+  Football Playoff games.
+
+- round:
+
+  (*String* optional): Playoff round – `first_round`, `quarterfinal`,
+  `semifinal`, `championship`.
 
 ## Value
 
@@ -126,8 +138,8 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
 #> ── Game information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:01:59 UTC
-#> # A tibble: 5 × 31
+#> ℹ Data updated: 2026-08-19 12:25:17 UTC
+#> # A tibble: 5 × 32
 #>     game_id season  week season_type start_date         start_time_tbd completed
 #>       <int>  <int> <int> <chr>       <chr>              <lgl>          <lgl>    
 #> 1 401013452   2018     7 regular     2018-10-13T18:00:… FALSE          TRUE     
@@ -135,7 +147,7 @@ Other CFBD Games:
 #> 3 401013370   2018     7 regular     2018-10-13T19:30:… FALSE          TRUE     
 #> 4 401013442   2018     7 regular     2018-10-13T21:00:… FALSE          TRUE     
 #> 5 401016408   2018     7 regular     2018-10-14T02:15:… FALSE          TRUE     
-#> # ℹ 24 more variables: neutral_site <lgl>, conference_game <lgl>,
+#> # ℹ 25 more variables: neutral_site <lgl>, conference_game <lgl>,
 #> #   attendance <int>, venue_id <int>, venue <chr>, home_id <int>,
 #> #   home_team <chr>, home_division <chr>, home_conference <chr>,
 #> #   home_points <int>, home_post_win_prob <dbl>, home_pregame_elo <int>,

@@ -41,22 +41,22 @@ Other loaders:
 # \donttest{
   try(load_cfb_schedules(2024))
 #> ── Games and schedules from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:47 UTC
-#> # A tibble: 3,801 × 31
+#> ℹ Data updated: 2026-08-19 12:31:47 UTC
+#> # A tibble: 920 × 32
 #>      game_id season  week season_type start_date        start_time_tbd completed
 #>        <int>  <int> <int> <chr>       <chr>             <lgl>          <lgl>    
-#>  1 401693677   2024     1 regular     2024-08-24T04:00… TRUE           TRUE     
-#>  2 401635525   2024     1 regular     2024-08-24T16:00… FALSE          TRUE     
-#>  3 401654665   2024     1 regular     2024-08-24T19:30… FALSE          TRUE     
-#>  4 401643697   2024     1 regular     2024-08-24T20:00… FALSE          TRUE     
-#>  5 401654662   2024     1 regular     2024-08-24T23:00… FALSE          TRUE     
-#>  6 401636372   2024     1 regular     2024-08-24T23:30… FALSE          TRUE     
-#>  7 401643696   2024     1 regular     2024-08-25T00:00… FALSE          TRUE     
-#>  8 401643858   2024     1 regular     2024-08-25T03:59… FALSE          TRUE     
-#>  9 401675545   2024     1 regular     2024-08-29T04:00… TRUE           TRUE     
-#> 10 401673041   2024     1 regular     2024-08-29T22:00… FALSE          TRUE     
-#> # ℹ 3,791 more rows
-#> # ℹ 24 more variables: neutral_site <lgl>, conference_game <lgl>,
+#>  1 401635525   2024     1 regular     2024-08-24T16:00… FALSE          TRUE     
+#>  2 401643697   2024     1 regular     2024-08-24T20:00… FALSE          TRUE     
+#>  3 401643696   2024     1 regular     2024-08-25T00:00… FALSE          TRUE     
+#>  4 401643858   2024     1 regular     2024-08-25T03:59… FALSE          TRUE     
+#>  5 401628458   2024     1 regular     2024-08-29T22:00… FALSE          TRUE     
+#>  6 401634299   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  7 401628581   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  8 401636387   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  9 401644730   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#> 10 401644729   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#> # ℹ 910 more rows
+#> # ℹ 25 more variables: neutral_site <lgl>, conference_game <lgl>,
 #> #   attendance <int>, venue_id <int>, venue <chr>, home_id <int>,
 #> #   home_team <chr>, home_division <chr>, home_conference <chr>,
 #> #   home_points <int>, home_post_win_prob <dbl>, home_pregame_elo <int>,

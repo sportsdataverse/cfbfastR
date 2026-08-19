@@ -175,7 +175,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_schedule(team_id = 61, year = 2024))
 #> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:27 UTC
+#> ℹ Data updated: 2026-08-19 12:31:27 UTC
 #> # A tibble: 13 × 43
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -202,7 +202,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_schedule(team_id = 61, year = 2024,
                              team_detail = FALSE))
 #> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:27 UTC
+#> ℹ Data updated: 2026-08-19 12:31:27 UTC
 #> # A tibble: 13 × 23
 #>    season team_id game_id  game_date game_name game_short_name season_type  week
 #>     <int> <chr>   <chr>    <chr>     <chr>     <chr>                 <int> <int>

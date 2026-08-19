@@ -334,12 +334,12 @@ Saiem Gilani
 # \donttest{
   try(espn_cfb_team_stats(team_id = 52, year = 2020))
 #> ── CFB Team Season stats from ESPN.com ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:28 UTC
-#> # A tibble: 1 × 372
+#> ℹ Data updated: 2026-08-19 12:31:28 UTC
+#> # A tibble: 1 × 378
 #>   season season_type team_id team_guid team_uid team_sdr team_slug team_location
 #>    <dbl> <chr>       <chr>   <chr>     <chr>    <chr>    <chr>     <chr>        
 #> 1   2020 regular     52      fa181128… s:20~l:… 5995     florida-… Florida State
-#> # ℹ 364 more variables: team_name <chr>, team_nickname <chr>,
+#> # ℹ 370 more variables: team_name <chr>, team_nickname <chr>,
 #> #   team_abbreviation <chr>, team_display_name <chr>,
 #> #   team_short_display_name <chr>, team_color <chr>,
 #> #   team_alternate_color <chr>, is_active <lgl>, is_all_star <lgl>,

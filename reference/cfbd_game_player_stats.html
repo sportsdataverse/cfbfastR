@@ -147,7 +147,8 @@
 <span>  team <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  category <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  game_id <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  game_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  division <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -188,6 +189,10 @@ Special Teams: punting, puntReturns, kicking, kickReturns</p></dd>
 <dd><p>(<em>Integer</em> optional): Game ID filter for querying a single game
 Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a></code> function</p></dd>
 
+
+<dt id="arg-division">division<a class="anchor" aria-label="anchor" href="#arg-division"></a></dt>
+<dd><p>(<em>String</em> optional): Division/classification filter – one of <code>fbs</code>, <code>fcs</code>, <code>ii</code>, <code>ii/iii</code>, <code>iii</code>. Sent to CFBD as <code>classification</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -210,7 +215,7 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_player_stats</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span>, week <span class="op">=</span> <span class="fl">15</span>, team <span class="op">=</span> <span class="st">"Alabama"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-24 02:02:00 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 12:25:18 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id team     conference home_away team_points athlete_id athlete_name  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
@@ -234,7 +239,7 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_game_player_stats</span><span class="op">(</span><span class="fl">2013</span>, week <span class="op">=</span> <span class="fl">1</span>, team <span class="op">=</span> <span class="st">"Florida State"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player stats data from CollegeFootballData.com ─────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-24 02:02:00 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 12:25:19 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 60</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     game_id team        conference home_away team_points athlete_id athlete_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
@@ -260,7 +265,7 @@ Can be found using the <code><a href="cfbd_game_info.html">cfbd_game_info()</a><
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

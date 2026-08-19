@@ -285,6 +285,11 @@ CollegeFootballData API
 
   **Get composite team talent rankings for all teams in a given year**
 
+- [`cfbd_teams_fbs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_teams_fbs.md)
+  :
+
+  **Get FBS teams**
+
 ### Players Data
 
 Functions exported by cfbfastR sourced from the players endpoint of the
@@ -305,6 +310,11 @@ CollegeFootballData API
   :
 
   **Get player returning production**
+
+- [`cfbd_player_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_season_overview.md)
+  :
+
+  **Get a player season overview**
 
 - [`cfbd_player_usage()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_player_usage.md)
   :
@@ -336,6 +346,16 @@ CollegeFootballData API
 
   **Get game havoc statistics**
 
+- [`cfbd_stats_player_success()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_player_success.md)
+  :
+
+  **Get player success rates by season**
+
+- [`cfbd_stats_player_success_game()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_player_success_game.md)
+  :
+
+  **Get player success rates by game**
+
 - [`cfbd_stats_season_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_advanced.md)
   :
 
@@ -361,6 +381,11 @@ endpoints of the CollegeFootballData API
 
   **CFBD Ratings and Rankings Endpoints Overview**
 
+- [`cfbd_ratings_core()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_core.md)
+  :
+
+  **Get core team ratings**
+
 - [`cfbd_ratings_elo()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_elo.md)
   :
 
@@ -385,6 +410,11 @@ endpoints of the CollegeFootballData API
   :
 
   **Get SRS historical rating data**
+
+- [`cfbd_ratings_srs_expanded()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_ratings_srs_expanded.md)
+  :
+
+  **Get expanded SRS ratings**
 
 - [`cfbd_rankings()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rankings.md)
   :
@@ -557,6 +587,16 @@ coaches endpoints of the CollegeFootballData API
 
   **CFBD Venues Endpoint Overview**
 
+- [`cfbd_conference_affiliations()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conference_affiliations.md)
+  :
+
+  **Get conference affiliations by team and season**
+
+- [`cfbd_conference_changes()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conference_changes.md)
+  :
+
+  **Get conference realignment changes**
+
 - [`cfbd_conferences()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_conferences.md)
   :
 
@@ -566,6 +606,63 @@ coaches endpoints of the CollegeFootballData API
   :
 
   **CFBD Coaches Endpoint Overview**
+
+- [`cfbd_coaches_profile()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_profile.md)
+  :
+
+  **Get a coach profile**
+
+- [`cfbd_coaches_seasons()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_seasons.md)
+  :
+
+  **Get coaching seasons**
+
+- [`cfbd_coaches_tenures()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches_tenures.md)
+  :
+
+  **Get coaching tenures**
+
+### Playoffs
+
+College Football Playoff bracket, games, and participants
+
+- [`cfbd_playoffs`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs.md)
+  [`playoffs`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs.md)
+  [`cfp`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs.md)
+  :
+
+  **CFBD Playoffs Endpoint Overview**
+
+- [`cfbd_playoffs_cfp()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs_cfp.md)
+  :
+
+  **Get College Football Playoff bracket information**
+
+- [`cfbd_playoffs_cfp_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs_cfp_games.md)
+  :
+
+  **Get College Football Playoff games**
+
+- [`cfbd_playoffs_cfp_participants()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_playoffs_cfp_participants.md)
+  :
+
+  **Get College Football Playoff participants**
+
+### API Info
+
+CFBD API key usage and remaining quota
+
+- [`cfbd_info`](https://cfbfastR.sportsdataverse.org/reference/cfbd_info.md)
+  [`info`](https://cfbfastR.sportsdataverse.org/reference/cfbd_info.md)
+  [`usage`](https://cfbfastR.sportsdataverse.org/reference/cfbd_info.md)
+  :
+
+  **CFBD Info Endpoint Overview**
+
+- [`cfbd_info_usage()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_info_usage.md)
+  :
+
+  **Get API key usage information**
 
 ## Fox Sports Data
 

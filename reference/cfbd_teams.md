@@ -15,6 +15,9 @@
 - [`cfbd_team_matchup()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.md):
   Get matchup history between two teams.
 
+- [`cfbd_teams_fbs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_teams_fbs.md):
+  Get every FBS team for a season.
+
 ### **Team info lookup**
 
 Lists all teams in conference or all D-I teams if conference is left
@@ -58,3 +61,7 @@ from 247 rankings
     cfbd_team_matchup_records("Texas", "Oklahoma")
 
     cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
+
+### **Get FBS teams**
+
+    cfbd_teams_fbs(year = 2024)

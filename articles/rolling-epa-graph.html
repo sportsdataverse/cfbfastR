@@ -206,7 +206,7 @@ time and compare that performance to other teams around the country.</p>
 </h2>
 <p>Using the <a href="https://saiemgilani.github.io/cfbfastR/reference/load_cfb_pbp.html" class="external-link">load_cfb_pbp()</a>
 method, we will pull down a dataframe that contains ALL of the play by
-play data for ALL teams in 2025. This method only takes about 30
+play data for ALL teams in 2026. This method only takes about 30
 seconds.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">yr</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">:::</span><span class="fu">most_recent_cfb_season</span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span></span>
@@ -257,14 +257,14 @@ but better).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
-<span><span class="co">##   Team               offense_conference off_epa  Rank TeamRank             </span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> Miami              ACC                  0.285     1 Miami #1             </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> Eastern Washington Big Sky              0.262     2 Eastern Washington #2</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">3</span> Monmouth           CAA                  0.258     3 Monmouth #3          </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">4</span> Montana State      Big Sky              0.253     4 Montana State #4     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">5</span> South Dakota       MVFC                 0.239     5 South Dakota #5      </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">6</span> Ohio State         Big Ten              0.219     6 Ohio State #6</span></span></code></pre>
+<span><span class="co">##   Team          offense_conference off_epa  Rank TeamRank        </span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> Alabama State SWAC                 0.334     1 Alabama State #1</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> Vanderbilt    SEC                  0.267     2 Vanderbilt #2   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> Jackson State SWAC                 0.227     3 Jackson State #3</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span> North Texas   American Athletic    0.223     4 North Texas #4  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span> Navy          American Athletic    0.222     5 Navy #5         </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">6</span> USC           Big Ten              0.215     6 USC #6</span></span></code></pre>
 <p>Ok, now let’s start to visualize the data beyond the top few schools.
 Let’s graph all the teams that have a positive EPA on the year.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -422,7 +422,7 @@ and I’ll share them as much as possible.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

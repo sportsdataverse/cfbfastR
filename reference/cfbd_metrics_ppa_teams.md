@@ -9,7 +9,8 @@ cfbd_metrics_ppa_teams(
   year = NULL,
   team = NULL,
   conference = NULL,
-  excl_garbage_time = FALSE
+  excl_garbage_time = FALSE,
+  division = NULL
 )
 ```
 
@@ -35,6 +36,11 @@ cfbd_metrics_ppa_teams(
 
   (*Logical* default FALSE): Select whether to exclude Garbage Time
   (TRUE or FALSE)
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -86,7 +92,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
 #> ── Team PPA data from CollegeFootballData.com ──────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:02:13 UTC
+#> ℹ Data updated: 2026-08-19 12:25:31 UTC
 #> # A tibble: 1 × 21
 #>   season conference team  off_overall off_passing off_rushing off_first_down
 #>    <int> <chr>      <chr>       <dbl>       <dbl>       <dbl>          <dbl>

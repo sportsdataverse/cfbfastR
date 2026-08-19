@@ -38,26 +38,14 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_talent())
-#> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-06-24 02:05:27 UTC
-#> # A tibble: 134 × 3
-#>     year school     talent
-#>    <int> <chr>       <dbl>
-#>  1  2025 Georgia     1003.
-#>  2  2025 Alabama      994.
-#>  3  2025 Ohio State   974.
-#>  4  2025 Texas        974.
-#>  5  2025 Oregon       941.
-#>  6  2025 LSU          920.
-#>  7  2025 Clemson      918.
-#>  8  2025 Texas A&M    917.
-#>  9  2025 Notre Dame   912.
-#> 10  2025 Penn State   910.
-#> # ℹ 124 more rows
+#> 2026-08-19 12:28:50.50315:Invalid arguments or no team talent data available! ℹ In argument: `talent = as.numeric(.data$talent)`.
+#> Caused by error in `.data$talent`:
+#> ! Column `talent` not found in `.data`.
+#> data frame with 0 columns and 0 rows
 
   try(cfbd_team_talent(year = 2018))
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-06-24 02:05:27 UTC
+#> ℹ Data updated: 2026-08-19 12:28:50 UTC
 #> # A tibble: 237 × 3
 #>     year school        talent
 #>    <int> <chr>          <dbl>

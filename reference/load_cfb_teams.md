@@ -41,8 +41,8 @@ Other loaders:
 # \donttest{
   try(load_cfb_teams())
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:48 UTC
-#> # A tibble: 136 × 29
+#> ℹ Data updated: 2026-08-19 12:31:47 UTC
+#> # A tibble: 138 × 43
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
 #>  1    2005 Air For… Falco… AF           AF        Air Force NA        Mountain …
@@ -55,11 +55,12 @@ Other loaders:
 #>  8    2032 Arkansa… Red W… ARST         ARST      Arkansas… NA        Sun Belt  
 #>  9     349 Army     Black… ARMY         ARMY      Army      NA        American …
 #> 10       2 Auburn   Tigers AUB          AUB       Auburn    NA        SEC       
-#> # ℹ 126 more rows
-#> # ℹ 21 more variables: division <chr>, classification <chr>, color <chr>,
-#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, twitter <chr>, venue_id <int>,
-#> #   venue_name <chr>, city <chr>, state <chr>, zip <chr>, country_code <chr>,
-#> #   timezone <chr>, latitude <dbl>, longitude <dbl>, elevation <chr>,
-#> #   capacity <int>, year_constructed <int>, grass <lgl>, dome <lgl>
+#> # ℹ 128 more rows
+#> # ℹ 35 more variables: division <chr>, classification <chr>, color <chr>,
+#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, logos_3 <chr>, logos_4 <chr>,
+#> #   logos_5 <chr>, logos_6 <chr>, logos_7 <chr>, logos_8 <chr>, logos_9 <chr>,
+#> #   logos_10 <chr>, logos_11 <chr>, logos_12 <chr>, logos_13 <chr>,
+#> #   logos_14 <chr>, logos_15 <chr>, logos_16 <chr>, twitter <chr>,
+#> #   venue_id <int>, venue_name <chr>, city <chr>, state <chr>, zip <chr>, …
 # }
 ```

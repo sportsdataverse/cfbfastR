@@ -226,27 +226,27 @@ this, <code><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_p
 rated player in a class! Let’s see what sort of data we get from it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## cfbfstR_ [2,666 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span></span>
-<span><span class="co">##  $ id                     : chr [1:2666] "115742" "115743" "115744" "115745" ...</span></span>
-<span><span class="co">##  $ athlete_id             : chr [1:2666] NA "4431274" NA "4566154" ...</span></span>
-<span><span class="co">##  $ recruit_type           : chr [1:2666] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span></span>
-<span><span class="co">##  $ year                   : int [1:2666] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span></span>
-<span><span class="co">##  $ ranking                : int [1:2666] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
-<span><span class="co">##  $ name                   : chr [1:2666] "Quinn Ewers" "Korey Foreman" "JC Latham" "J.T. Tuimoloau" ...</span></span>
-<span><span class="co">##  $ school                 : chr [1:2666] "Southlake Carroll" "Centennial" "IMG Academy" "Eastside Catholic" ...</span></span>
-<span><span class="co">##  $ committed_to           : chr [1:2666] "Ohio State" "USC" "Alabama" "Ohio State" ...</span></span>
-<span><span class="co">##  $ position               : chr [1:2666] "QB" "DL" "OT" "DL" ...</span></span>
-<span><span class="co">##  $ height                 : num [1:2666] 75 76 78 76.5 77 ...</span></span>
-<span><span class="co">##  $ weight                 : int [1:2666] 206 265 305 277 248 283 210 315 245 190 ...</span></span>
-<span><span class="co">##  $ stars                  : int [1:2666] 5 5 5 5 5 5 5 5 5 5 ...</span></span>
-<span><span class="co">##  $ rating                 : num [1:2666] 1 0.999 0.999 0.999 0.998 ...</span></span>
-<span><span class="co">##  $ city                   : chr [1:2666] "Southlake" "Corona" "Oak Creek" "Sammamish" ...</span></span>
-<span><span class="co">##  $ state_province         : chr [1:2666] "TX" "CA" "WI" "WA" ...</span></span>
-<span><span class="co">##  $ country                : chr [1:2666] "USA" "USA" "USA" "USA" ...</span></span>
-<span><span class="co">##  $ hometown_info_latitude : num [1:2666] 32.9 33.9 42.9 47.6 39.9 ...</span></span>
-<span><span class="co">##  $ hometown_info_longitude: num [1:2666] -97.1 -117.6 -87.9 -122 -82.8 ...</span></span>
-<span><span class="co">##  $ hometown_info_fips_code: chr [1:2666] "48439" "06065" "55079" "53033" ...</span></span>
-<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-06-24 02:15:54"</span></span>
+<pre><code><span><span class="co">## cfbfstR_ [3,364 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span></span>
+<span><span class="co">##  $ id                     : chr [1:3364] "115742" "254930" "254944" "115743" ...</span></span>
+<span><span class="co">##  $ athlete_id             : chr [1:3364] NA NA NA "4431274" ...</span></span>
+<span><span class="co">##  $ recruit_type           : chr [1:3364] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span></span>
+<span><span class="co">##  $ year                   : int [1:3364] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span></span>
+<span><span class="co">##  $ ranking                : int [1:3364] 1 1 2 2 3 3 4 5 5 6 ...</span></span>
+<span><span class="co">##  $ name                   : chr [1:3364] "Quinn Ewers" "Marques Buford Jr." "Lorenz Terry" "Korey Foreman" ...</span></span>
+<span><span class="co">##  $ school                 : chr [1:3364] "Southlake Carroll" "St. Thomas More (Prep)" "Fork Union Military Academy" "Corona Centennial" ...</span></span>
+<span><span class="co">##  $ committed_to           : chr [1:3364] "Ohio State" "Nebraska" "Virginia" "USC" ...</span></span>
+<span><span class="co">##  $ position               : chr [1:3364] "QB" "CB" "DL" "DL" ...</span></span>
+<span><span class="co">##  $ height                 : num [1:3364] 75 72 77 76 78 73 76.5 70 77 76 ...</span></span>
+<span><span class="co">##  $ weight                 : int [1:3364] 206 190 240 265 305 200 277 180 248 180 ...</span></span>
+<span><span class="co">##  $ stars                  : int [1:3364] 5 3 3 5 5 3 5 3 5 3 ...</span></span>
+<span><span class="co">##  $ rating                 : num [1:3364] 1 0.859 0.844 0.999 0.999 ...</span></span>
+<span><span class="co">##  $ city                   : chr [1:3364] "Southlake" "Oakdale" "Fork Union" "Corona" ...</span></span>
+<span><span class="co">##  $ state_province         : chr [1:3364] "TX" "CT" "VA" "CA" ...</span></span>
+<span><span class="co">##  $ country                : chr [1:3364] "USA" "USA" "USA" "USA" ...</span></span>
+<span><span class="co">##  $ hometown_info_latitude : num [1:3364] 32.9 41.5 37.8 33.9 27.5 ...</span></span>
+<span><span class="co">##  $ hometown_info_longitude: num [1:3364] -97.1 -72.2 -78.3 -117.6 -82.6 ...</span></span>
+<span><span class="co">##  $ hometown_info_fips_code: chr [1:3364] "48439" "09011" "51065" "06065" ...</span></span>
+<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-08-19 12:39:20"</span></span>
 <span><span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can
 merge on other <code>cfbfastR</code> datasets, basic information on each
@@ -444,10 +444,10 @@ be as obvious. So if it’s not clear, let’s take a quick peek at the
 data:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">clean_rec_classes</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 70</span></span>
+<pre><code><span><span class="co">## Rows: 61</span></span>
 <span><span class="co">## Columns: 2</span></span>
-<span><span class="co">## $ state_province <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AB"<span style="color: #949494;">, </span>"AK"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AR"<span style="color: #949494;">, </span>"AS"<span style="color: #949494;">, </span>"AUST"<span style="color: #949494;">, </span>"AZ"<span style="color: #949494;">, </span>"BC"<span style="color: #949494;">, </span>"BELG…</span></span>
-<span><span class="co">## $ count          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3<span style="color: #949494;">, </span>5<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>168<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>40<span style="color: #949494;">, </span>377<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>2002<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>152<span style="color: #949494;">, </span>87<span style="color: #949494;">, </span>94…</span></span></code></pre>
+<span><span class="co">## $ state_province <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AB"<span style="color: #949494;">, </span>"AK"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AR"<span style="color: #949494;">, </span>"AS"<span style="color: #949494;">, </span>"AZ"<span style="color: #949494;">, </span>"BC"<span style="color: #949494;">, </span>"CA"<span style="color: #949494;">, </span>"CO"<span style="color: #949494;">, </span>"…</span></span>
+<span><span class="co">## $ count          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 4<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>186<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>422<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>2169<span style="color: #949494;">, </span>168<span style="color: #949494;">, </span>126<span style="color: #949494;">, </span>104<span style="color: #949494;">, </span>17<span style="color: #949494;">, </span>1<span style="color: #949494;">,</span>…</span></span></code></pre>
 <p>So now we have the recruit count for every state from 2017-2021! You
 may be confused by the <code>""</code> and <code>"AB"</code> groups, but
 those refer to non-US provinces, which will end up being dropped.</p>
@@ -488,7 +488,7 @@ up with a dataset that has everything associated with each group.</p>
 <span><span class="co">## $ state_fips <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">, </span>"01"<span style="color: #949494;">,</span>…</span></span>
 <span><span class="co">## $ state_abbv <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">, </span>"AL"<span style="color: #949494;">,</span>…</span></span>
 <span><span class="co">## $ state_name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Alabama"<span style="color: #949494;">, </span>"Ala…</span></span>
-<span><span class="co">## $ count      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">, </span>727<span style="color: #949494;">,</span>…</span></span></code></pre>
+<span><span class="co">## $ count      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">, </span>809<span style="color: #949494;">,</span>…</span></span></code></pre>
 <p>Awesome! We now have the counts and data we use to to make the map,
 so let’s make the plot now!</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -547,6 +547,8 @@ scale.</p>
 <span>    legend.position <span class="op">=</span> <span class="st">'bottom'</span> <span class="co">#This moves the legend to the bottom of the graph</span></span>
 <span>  <span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: Removed 5 rows containing missing values or values outside the scale range</span></span>
+<span><span class="co">## (`geom_point()`).</span></span></code></pre>
 <p><img src="map-tutorial_files/figure-html/tristate_recs-1.png" class="r-plt" alt="Where are Recruits in the Tri-State Area from?" width="700"></p>
 <p>Hope you found this tutorial useful! If you have any questions on how
 to manage recruiting data feel free to reach out to me on <a href="https://twitter.com/ConorMcQ5" class="external-link">Twitter</a>!</p>
@@ -562,7 +564,7 @@ to manage recruiting data feel free to reach out to me on <a href="https://twitt
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -34,7 +34,7 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 33.49 sec elapsed
+    ## 36.605 sec elapsed
 
 Next, we’ll need to get the coaching information, so we’ll use the
 `cfbd_coaches` function:
@@ -44,16 +44,8 @@ Next, we’ll need to get the coaching information, so we’ll use the
 coaches <- purrr::map_dfr(seasons,function(x){cfbfastR::cfbd_coaches(year = x)})
 ```
 
-In order to get the school’s conference information, we’ll use the
-`cfbd_team_info` function and use `dplyr`’s `left_join` function,
-joining on the `school` column in both tables:
-
-``` r
-
-team_info <- cfbfastR::cfbd_team_info()
-coaches <- coaches |> 
-  dplyr::left_join(team_info, by="school")
-```
+[`cfbd_coaches()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_coaches.md)
+already returns each coach’s `conference`, so no extra lookup is needed.
 
 ``` r
 

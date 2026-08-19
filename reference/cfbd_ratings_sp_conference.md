@@ -5,7 +5,7 @@
 ## Usage
 
 ``` r
-cfbd_ratings_sp_conference(year = NULL, conference = NULL)
+cfbd_ratings_sp_conference(year = NULL, conference = NULL, division = NULL)
 ```
 
 ## Arguments
@@ -20,6 +20,11 @@ cfbd_ratings_sp_conference(year = NULL, conference = NULL)
   conference Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
   Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind,
   SBC, AAC
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -70,7 +75,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_sp_conference(year = 2019))
 #> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:58 UTC
+#> ℹ Data updated: 2026-08-19 12:28:19 UTC
 #> # A tibble: 11 × 25
 #>     year conference        rating second_order_wins sos   offense_rating
 #>    <int> <chr>              <dbl> <lgl>             <lgl>          <dbl>
@@ -95,7 +100,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp_conference(year = 2012, conference = "SEC"))
 #> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:58 UTC
+#> ℹ Data updated: 2026-08-19 12:28:20 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>
@@ -110,7 +115,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
 #> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:58 UTC
+#> ℹ Data updated: 2026-08-19 12:28:20 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>

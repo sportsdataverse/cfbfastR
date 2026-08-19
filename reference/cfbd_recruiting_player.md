@@ -10,7 +10,8 @@ cfbd_recruiting_player(
   team = NULL,
   recruit_type = "HighSchool",
   state = NULL,
-  position = NULL
+  position = NULL,
+  division = NULL
 )
 ```
 
@@ -43,6 +44,11 @@ cfbd_recruiting_player(
   - Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'
 
   - Special Teams: 'K', 'P'
+
+- division:
+
+  (*String* optional): Division/classification filter – one of `fbs`,
+  `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 
 ## Value
 
@@ -84,19 +90,19 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_player(2018, team = "Texas"))
 #> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:02 UTC
+#> ℹ Data updated: 2026-08-19 12:28:22 UTC
 #> # A tibble: 28 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
-#>  1 126288 4362077    HighSchool    2018      19 Caden Sterns Steele Texas       
+#>  1 126288 4362077    HighSchool    2018      19 Caden Sterns Cibol… Texas       
 #>  2 126293 4362086    HighSchool    2018      24 B.J. Foster  Angle… Texas       
 #>  3 126316 4362074    HighSchool    2018      47 Jalen Green  Heigh… Texas       
 #>  4 126321 4362088    HighSchool    2018      52 DeMarvion O… Arp    Texas       
 #>  5 126330 4362107    HighSchool    2018      61 Brennan Eag… Alief… Texas       
-#>  6 126333 4362076    HighSchool    2018      64 Anthony Cook Lamar  Texas       
+#>  6 126333 4362076    HighSchool    2018      64 Anthony Cook Houst… Texas       
 #>  7 126365 NA         HighSchool    2018      96 Joshua Moore Yoakum Texas       
-#>  8 126373 4362109    HighSchool    2018     104 Al'vonte Wo… Lamar  Texas       
-#>  9 126384 4362082    HighSchool    2018     115 D'Shawn Jam… Lamar  Texas       
+#>  8 126373 4362109    HighSchool    2018     104 Al'vonte Wo… Houst… Texas       
+#>  9 126384 4362082    HighSchool    2018     115 D'Shawn Jam… Houst… Texas       
 #> 10 126388 4362091    HighSchool    2018     119 Ayodele Ade… IMG A… Texas       
 #> # ℹ 18 more rows
 #> # ℹ 11 more variables: position <chr>, height <dbl>, weight <int>, stars <int>,
@@ -106,8 +112,8 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_player(2016, recruit_type = "JUCO"))
 #> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:02 UTC
-#> # A tibble: 470 × 19
+#> ℹ Data updated: 2026-08-19 12:28:22 UTC
+#> # A tibble: 553 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
 #>  1 185438 NA         JUCO          2016       1 Jonathan Ko… Arizo… Tennessee   
@@ -120,7 +126,7 @@ Other CFBD Recruiting:
 #>  8 185445 NA         JUCO          2016       8 Tyree Horton Highl… TCU         
 #>  9 185446 NA         JUCO          2016       9 Ryan Parker  Tyler… TCU         
 #> 10 185447 545367     JUCO          2016      10 Derrick Wil… Trini… Texas Tech  
-#> # ℹ 460 more rows
+#> # ℹ 543 more rows
 #> # ℹ 11 more variables: position <chr>, height <dbl>, weight <int>, stars <int>,
 #> #   rating <dbl>, city <chr>, state_province <chr>, country <chr>,
 #> #   hometown_info_latitude <dbl>, hometown_info_longitude <dbl>,
@@ -128,21 +134,21 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL"))
 #> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:04 UTC
-#> # A tibble: 25 × 19
+#> ℹ Data updated: 2026-08-19 12:28:22 UTC
+#> # A tibble: 29 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
 #>  1 118517 4429039    HighSchool    2020     110 Marcus Dume… St. T… LSU         
 #>  2 118535 4429010    HighSchool    2020     128 Jalen Rivers Oakle… Miami       
-#>  3 118565 NA         HighSchool    2020     158 Issiah Walk… Norla… Florida     
+#>  3 118565 NA         HighSchool    2020     158 Issiah Walk… Miami… Florida     
 #>  4 118687 4429177    HighSchool    2020     280 Joshua Braun Suwan… Florida     
-#>  5 118711 4433873    HighSchool    2020     304 Connor McLa… Jesuit Stanford    
+#>  5 118711 4433873    HighSchool    2020     304 Connor McLa… Tampa… Stanford    
 #>  6 118886 4593066    HighSchool    2020     483 Cayden Baker Fort … North Carol…
 #>  7 118939 4565556    HighSchool    2020     533 Michael Ran… Lenna… Georgia Tech
-#>  8 119485 NA         HighSchool    2020    1090 Lloyd Willis Killi… NA          
-#>  9 119526 NA         HighSchool    2020    1131 Bradley Ash… Dunca… NA          
-#> 10 119570 NA         HighSchool    2020    1167 Cade Kootso… Crest… NA          
-#> # ℹ 15 more rows
+#>  8 254339 4431266    HighSchool    2020     647 Gerald Minc… Cardi… Florida     
+#>  9 119485 4568715    HighSchool    2020    1090 Lloyd Willis Miami… Florida Sta…
+#> 10 119526 4429232    HighSchool    2020    1131 Bradley Ash… Dunca… Vanderbilt  
+#> # ℹ 19 more rows
 #> # ℹ 11 more variables: position <chr>, height <int>, weight <int>, stars <int>,
 #> #   rating <dbl>, city <chr>, state_province <chr>, country <chr>,
 #> #   hometown_info_latitude <dbl>, hometown_info_longitude <dbl>,

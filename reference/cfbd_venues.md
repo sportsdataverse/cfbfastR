@@ -51,8 +51,8 @@ CFB Venue Information
 # \donttest{
   try(cfbd_venues())
 #> ── Venue data from CollegeFootballData.com ─────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:28 UTC
-#> # A tibble: 840 × 14
+#> ℹ Data updated: 2026-08-19 12:28:52 UTC
+#> # A tibble: 852 × 14
 #>    venue_id name    capacity grass dome  city  state zip   country_code timezone
 #>       <int> <chr>      <int> <lgl> <lgl> <chr> <chr> <chr> <chr>        <chr>   
 #>  1     5938 Al Whi…     4000 NA    FALSE Port… "NM"  88130 US           NA      
@@ -64,8 +64,8 @@ CFB Venue Information
 #>  7    11589 Hinchl…       NA NA    TRUE  Pate… "NJ"  NA    US           NA      
 #>  8     6043 Bethpa…     6000 FALSE FALSE Broo… "NY"  11545 US           America…
 #>  9    11539 Charlo…       NA NA    FALSE Jame… "ND"  NA    US           NA      
-#> 10    11488 Centre…       NA TRUE  NA    Pawt… "RI"  NA    USA          NA      
-#> # ℹ 830 more rows
+#> 10    11712 Bank o…       NA NA    FALSE Sun … "WI"  NA    US           NA      
+#> # ℹ 842 more rows
 #> # ℹ 4 more variables: latitude <dbl>, longitude <dbl>, elevation <chr>,
 #> #   year_constructed <int>
 # }

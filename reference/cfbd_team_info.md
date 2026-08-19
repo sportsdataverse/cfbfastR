@@ -83,8 +83,8 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_info(conference = "SEC"))
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:22 UTC
-#> # A tibble: 16 × 29
+#> ℹ Data updated: 2026-08-19 12:28:46 UTC
+#> # A tibble: 16 × 43
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
 #>  1     333 Alabama  Crims… ALA          ALA       Alabama   NA        SEC       
@@ -103,30 +103,34 @@ Other CFBD Teams:
 #> 14     251 Texas    Longh… TEX          TEX       Texas     NA        SEC       
 #> 15     245 Texas A… Aggies TA&M         TA&M      Texas A&M NA        SEC       
 #> 16     238 Vanderb… Commo… VAN          VAN       Vanderbi… NA        SEC       
-#> # ℹ 21 more variables: division <lgl>, classification <chr>, color <chr>,
-#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, twitter <chr>, venue_id <int>,
-#> #   venue_name <chr>, city <chr>, state <chr>, zip <chr>, country_code <chr>,
-#> #   timezone <chr>, latitude <dbl>, longitude <dbl>, elevation <chr>,
-#> #   capacity <int>, year_constructed <int>, grass <lgl>, dome <lgl>
+#> # ℹ 35 more variables: division <lgl>, classification <chr>, color <chr>,
+#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, logos_3 <chr>, logos_4 <chr>,
+#> #   logos_5 <chr>, logos_6 <chr>, logos_7 <chr>, logos_8 <chr>, logos_9 <chr>,
+#> #   logos_10 <chr>, logos_11 <chr>, logos_12 <chr>, logos_13 <chr>,
+#> #   logos_14 <chr>, logos_15 <chr>, logos_16 <chr>, twitter <chr>,
+#> #   venue_id <int>, venue_name <chr>, city <chr>, state <chr>, zip <chr>,
+#> #   country_code <chr>, timezone <chr>, latitude <dbl>, longitude <dbl>, …
 
   try(cfbd_team_info(conference = "Ind"))
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:22 UTC
-#> # A tibble: 2 × 29
+#> ℹ Data updated: 2026-08-19 12:28:47 UTC
+#> # A tibble: 2 × 43
 #>   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>     <int> <chr>     <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
 #> 1      87 Notre Da… Fight… ND           ND        Notre Da… NA        FBS Indep…
 #> 2      41 UConn     Huski… CONN         Connecti… CONN      UConn     FBS Indep…
-#> # ℹ 21 more variables: division <lgl>, classification <chr>, color <chr>,
-#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, twitter <chr>, venue_id <int>,
-#> #   venue_name <chr>, city <chr>, state <chr>, zip <chr>, country_code <chr>,
-#> #   timezone <chr>, latitude <dbl>, longitude <dbl>, elevation <chr>,
-#> #   capacity <int>, year_constructed <int>, grass <lgl>, dome <lgl>
+#> # ℹ 35 more variables: division <lgl>, classification <chr>, color <chr>,
+#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, logos_3 <chr>, logos_4 <chr>,
+#> #   logos_5 <chr>, logos_6 <chr>, logos_7 <chr>, logos_8 <chr>, logos_9 <chr>,
+#> #   logos_10 <chr>, logos_11 <chr>, logos_12 <chr>, logos_13 <chr>,
+#> #   logos_14 <chr>, logos_15 <chr>, logos_16 <chr>, twitter <chr>,
+#> #   venue_id <int>, venue_name <chr>, city <chr>, state <chr>, zip <chr>,
+#> #   country_code <chr>, timezone <chr>, latitude <dbl>, longitude <dbl>, …
 
   try(cfbd_team_info(year = 2019))
 #> ── Team information from CollegeFootballData.com ───────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:05:22 UTC
-#> # A tibble: 130 × 29
+#> ℹ Data updated: 2026-08-19 12:28:47 UTC
+#> # A tibble: 130 × 43
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
 #>  1    2005 Air For… Falco… AF           AF        Air Force NA        Mountain …
@@ -140,10 +144,11 @@ Other CFBD Teams:
 #>  9     349 Army     Black… ARMY         ARMY      Army      NA        FBS Indep…
 #> 10       2 Auburn   Tigers AUB          AUB       Auburn    NA        SEC       
 #> # ℹ 120 more rows
-#> # ℹ 21 more variables: division <chr>, classification <chr>, color <chr>,
-#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, twitter <chr>, venue_id <int>,
-#> #   venue_name <chr>, city <chr>, state <chr>, zip <chr>, country_code <chr>,
-#> #   timezone <chr>, latitude <dbl>, longitude <dbl>, elevation <chr>,
-#> #   capacity <int>, year_constructed <int>, grass <lgl>, dome <lgl>
+#> # ℹ 35 more variables: division <chr>, classification <chr>, color <chr>,
+#> #   alt_color <chr>, logo <chr>, logo_2 <chr>, logos_3 <chr>, logos_4 <chr>,
+#> #   logos_5 <chr>, logos_6 <chr>, logos_7 <chr>, logos_8 <chr>, logos_9 <chr>,
+#> #   logos_10 <chr>, logos_11 <chr>, logos_12 <chr>, logos_13 <chr>,
+#> #   logos_14 <chr>, logos_15 <chr>, logos_16 <chr>, twitter <chr>,
+#> #   venue_id <int>, venue_name <chr>, city <chr>, state <chr>, zip <chr>, …
 # }
 ```

@@ -144,7 +144,8 @@
 <span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  team <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conference <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  excl_garbage_time <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  excl_garbage_time <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  division <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -168,6 +169,10 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 
 <dt id="arg-excl-garbage-time">excl_garbage_time<a class="anchor" aria-label="anchor" href="#arg-excl-garbage-time"></a></dt>
 <dd><p>(<em>Logical</em> default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)</p></dd>
+
+
+<dt id="arg-division">division<a class="anchor" aria-label="anchor" href="#arg-division"></a></dt>
+<dd><p>(<em>String</em> optional): Division/classification filter – one of <code>fbs</code>, <code>fcs</code>, <code>ii</code>, <code>ii/iii</code>, <code>iii</code>. Sent to CFBD as <code>classification</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -194,7 +199,7 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_metrics_ppa_teams</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"TCU"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team PPA data from CollegeFootballData.com ──────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-24 02:02:13 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 12:25:31 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season conference team  off_overall off_passing off_rushing off_first_down</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -217,7 +222,7 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

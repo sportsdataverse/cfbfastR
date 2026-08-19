@@ -164,21 +164,21 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024))
 #> ── Player season statistics from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:06:55 UTC
-#> # A tibble: 157 × 19
+#> ℹ Data updated: 2026-08-19 12:30:08 UTC
+#> # A tibble: 163 × 19
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                
 #>  1 102597       2024           2 general  General          fumbles              
 #>  2 102597       2024           2 general  General          fumblesLost          
 #>  3 102597       2024           2 general  General          fumblesForced        
-#>  4 102597       2024           2 general  General          fumblesForcedPrimary 
-#>  5 102597       2024           2 general  General          fumblesRecovered     
-#>  6 102597       2024           2 general  General          fumblesRecoveredYards
-#>  7 102597       2024           2 general  General          fumblesTouchdowns    
-#>  8 102597       2024           2 general  General          gamesPlayed          
-#>  9 102597       2024           2 general  General          offensiveTwoPtReturns
-#> 10 102597       2024           2 general  General          offensiveFumblesTouc…
-#> # ℹ 147 more rows
+#>  4 102597       2024           2 general  General          defensiveFumblesForc…
+#>  5 102597       2024           2 general  General          miscFumblesForced    
+#>  6 102597       2024           2 general  General          specialTeamsFumblesF…
+#>  7 102597       2024           2 general  General          fumblesRecovered     
+#>  8 102597       2024           2 general  General          fumblesRecoveredYards
+#>  9 102597       2024           2 general  General          fumblesTouchdowns    
+#> 10 102597       2024           2 general  General          gamesPlayed          
+#> # ℹ 153 more rows
 #> # ℹ 13 more variables: display_name <chr>, abbreviation <chr>,
 #> #   description <chr>, value <dbl>, display_value <chr>, per_game_value <dbl>,
 #> #   per_game_display_value <chr>, athlete_display_name <chr>,
@@ -187,21 +187,21 @@ Other ESPN CFB Functions:
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024,
                                  athlete_detail = FALSE))
 #> ── Player season statistics from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:06:55 UTC
-#> # A tibble: 157 × 13
+#> ℹ Data updated: 2026-08-19 12:30:08 UTC
+#> # A tibble: 163 × 13
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                
 #>  1 102597       2024           2 general  General          fumbles              
 #>  2 102597       2024           2 general  General          fumblesLost          
 #>  3 102597       2024           2 general  General          fumblesForced        
-#>  4 102597       2024           2 general  General          fumblesForcedPrimary 
-#>  5 102597       2024           2 general  General          fumblesRecovered     
-#>  6 102597       2024           2 general  General          fumblesRecoveredYards
-#>  7 102597       2024           2 general  General          fumblesTouchdowns    
-#>  8 102597       2024           2 general  General          gamesPlayed          
-#>  9 102597       2024           2 general  General          offensiveTwoPtReturns
-#> 10 102597       2024           2 general  General          offensiveFumblesTouc…
-#> # ℹ 147 more rows
+#>  4 102597       2024           2 general  General          defensiveFumblesForc…
+#>  5 102597       2024           2 general  General          miscFumblesForced    
+#>  6 102597       2024           2 general  General          specialTeamsFumblesF…
+#>  7 102597       2024           2 general  General          fumblesRecovered     
+#>  8 102597       2024           2 general  General          fumblesRecoveredYards
+#>  9 102597       2024           2 general  General          fumblesTouchdowns    
+#> 10 102597       2024           2 general  General          gamesPlayed          
+#> # ℹ 153 more rows
 #> # ℹ 7 more variables: display_name <chr>, abbreviation <chr>,
 #> #   description <chr>, value <dbl>, display_value <chr>, per_game_value <dbl>,
 #> #   per_game_display_value <chr>

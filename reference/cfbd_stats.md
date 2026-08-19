@@ -15,6 +15,12 @@
 - [`cfbd_stats_season_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_season_player.md):
   Get season statistics by player.
 
+- [`cfbd_stats_player_success()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_player_success.md):
+  Get player success rates by season.
+
+- [`cfbd_stats_player_success_game()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_player_success_game.md):
+  Get player success rates by game.
+
 ## Details
 
 ### **Get game advanced stats**
@@ -51,3 +57,11 @@ This function identifies all Stats Categories identified in the regular
 stats endpoint.
 
     cfbd_stats_categories()
+
+### **Get player success rates by season**
+
+    cfbd_stats_player_success(year = 2024, team = "Georgia")
+
+### **Get player success rates by game**
+
+    cfbd_stats_player_success_game(year = 2024, week = 5)

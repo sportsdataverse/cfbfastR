@@ -68,23 +68,25 @@ Other CFBD Players:
 # \donttest{
   try(cfbd_player_info(search_term = "James", position = "DB", team = "Florida State", year = 2017))
 #> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:47 UTC
-#> # A tibble: 1 × 12
+#> ℹ Data updated: 2026-08-19 12:28:07 UTC
+#> # A tibble: 1 × 15
 #>   athlete_id team       name  first_name last_name weight height jersey position
 #>   <chr>      <chr>      <chr> <chr>      <chr>      <int>  <int>  <int> <chr>   
 #> 1 3691739    Florida S… Derw… Derwin     James        211     75      3 DB      
-#> # ℹ 3 more variables: home_town <chr>, team_color <chr>,
-#> #   team_color_secondary <chr>
+#> # ℹ 6 more variables: home_town <chr>, team_color <chr>,
+#> #   team_color_secondary <chr>, active_start_year <int>, active_end_year <int>,
+#> #   team_stints <list>
 
   try(cfbd_player_info(search_term = "Lawrence", team = "Clemson"))
 #> ── Player information from CollegeFootballData.com ─────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:04:47 UTC
-#> # A tibble: 2 × 12
+#> ℹ Data updated: 2026-08-19 12:28:07 UTC
+#> # A tibble: 2 × 15
 #>   athlete_id team    name     first_name last_name weight height jersey position
 #>   <chr>      <chr>   <chr>    <chr>      <chr>      <int>  <int>  <int> <chr>   
 #> 1 4035483    Clemson Dexter … Dexter     Lawrence     340     76     90 DT      
 #> 2 4360310    Clemson Trevor … Trevor     Lawrence     220     78     16 QB      
-#> # ℹ 3 more variables: home_town <chr>, team_color <chr>,
-#> #   team_color_secondary <chr>
+#> # ℹ 6 more variables: home_town <chr>, team_color <chr>,
+#> #   team_color_secondary <chr>, active_start_year <int>, active_end_year <int>,
+#> #   team_stints <list>
 # }
 ```

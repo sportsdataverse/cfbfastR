@@ -263,7 +263,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:07:13 UTC
+#> ℹ Data updated: 2026-08-19 12:30:24 UTC
 #> # A tibble: 99 × 36
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
@@ -282,14 +282,14 @@ Unique variables when there are completed games
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
 #> #   home_team_abb <chr>, home_team_id <chr>, home_team_location <chr>,
 #> #   home_team_full <chr>, home_team_color <chr>, home_score <int>,
-#> #   home_win <int>, home_record <lgl>, away_team_name <chr>,
+#> #   home_win <int>, home_record <chr>, away_team_name <chr>,
 #> #   away_team_logo <chr>, away_team_abb <chr>, away_team_id <chr>, …
 # }
 
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:07:14 UTC
+#> ℹ Data updated: 2026-08-19 12:30:24 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

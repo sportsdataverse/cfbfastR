@@ -194,7 +194,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_roster(team_id = 61, year = 2024))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:18 UTC
+#> ℹ Data updated: 2026-08-19 12:31:22 UTC
 #> # A tibble: 177 × 38
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -218,7 +218,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_roster(team_id = 61, year = 2024,
                            position_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:22 UTC
+#> ℹ Data updated: 2026-08-19 12:31:24 UTC
 #> # A tibble: 177 × 32
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -242,19 +242,19 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_roster(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-06-24 02:08:27 UTC
+#> ℹ Data updated: 2026-08-19 12:31:26 UTC
 #> # A tibble: 177 × 28
 #>    season team_id athlete_id first_name last_name full_name  display_name jersey
 #>     <int> <chr>   <chr>      <chr>      <chr>     <chr>      <chr>        <chr> 
-#>  1   2024 61      4870588    Joenel     Aguero    Joenel Ag… Joenel Ague… 8     
+#>  1   2024 61      4870588    Joenel     Aguero    Joenel Ag… Joenel Ague… 6     
 #>  2   2024 61      4870598    CJ         Allen     CJ Allen   CJ Allen     3     
 #>  3   2024 61      5150384    Liam       Badger    Liam Badg… Liam Badger  96    
-#>  4   2024 61      4691816    Aliou      Bah       Aliou Bah  Aliou Bah    66    
+#>  4   2024 61      4691816    Aliou      Bah       Aliou Bah  Aliou Bah    55    
 #>  5   2024 61      5160178    Clinton    Barlow    Clinton B… Clinton Bar… 67    
 #>  6   2024 61      4914220    Henry      Bates     Henry Bat… Henry Bates  94    
 #>  7   2024 61      4430841    Carson     Beck      Carson Be… Carson Beck  11    
 #>  8   2024 61      4712579    Dillon     Bell      Dillon Be… Dillon Bell  86    
-#>  9   2024 61      5150831    Jeremy     Bell      Jeremy Be… Jeremy Bell  81    
+#>  9   2024 61      5150831    Jeremy     Bell      Jeremy Be… Jeremy Bell  11    
 #> 10   2024 61      5081059    Luke       Bennett   Luke Benn… Luke Bennett 29    
 #> # ℹ 167 more rows
 #> # ℹ 20 more variables: position <chr>, position_abbr <chr>, height <dbl>,
