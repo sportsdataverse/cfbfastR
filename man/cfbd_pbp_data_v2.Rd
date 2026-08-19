@@ -15,7 +15,8 @@ cfbd_pbp_data_v2(
 )
 }
 \arguments{
-\item{year}{(\emph{Numeric} required): Season year (e.g. \code{2024}).}
+\item{year}{(\emph{Numeric} required): Season year (e.g. \code{2024}). \cr
+Minimum value accepted: 2001}
 
 \item{season_type}{(\emph{Character}): Season type — \code{"regular"} (default),
 \code{"postseason"}, \code{"both"}, \code{"allstar"}, \code{"spring_regular"},

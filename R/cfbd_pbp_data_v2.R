@@ -44,7 +44,8 @@ NULL
 #' (`.pbp_play_types()`), and the canonical output schema
 #' (`.pbp_output_order`). Side-by-side with the legacy entry point until the
 #' equivalence harness proves the new path matches.
-#' @param year (*Numeric* required): Season year (e.g. `2024`).
+#' @param year (*Numeric* required): Season year (e.g. `2024`). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_pbp_data_v2', 'min_year']`
 #' @param season_type (*Character*): Season type — `"regular"` (default),
 #'   `"postseason"`, `"both"`, `"allstar"`, `"spring_regular"`,
 #'   `"spring_postseason"`.
@@ -82,8 +83,7 @@ NULL
 #' @keywords CFB PBP
 #' @family CFBD PBP
 #' @importFrom rlang .data
-#' @importFrom dplyr filter group_by mutate left_join select rename ungroup
-#'   slice_min any_of all_of setdiff
+#' @importFrom dplyr filter group_by mutate left_join select rename ungroup slice_min any_of all_of setdiff
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr2 request req_url_query req_perform resp_body_string

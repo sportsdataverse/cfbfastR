@@ -32,7 +32,8 @@ NULL
 
 #' @title
 #' **Get college football conference information**
-#' @param year (*Integer* optional): Season filter, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season filter, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_conferences', 'min_year']`
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
 #' @description
 #' **Get college football conference information**
@@ -113,7 +114,8 @@ cfbd_conferences <- function(year = NULL, division = NULL) {
 #' **Get conference affiliations by team and season**
 #' @param team (*String* optional): Team filter.
 #' @param conference (*String* optional): Conference abbreviation filter.
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_conference_affiliations', 'min_year']`
 #' @param min_year (*Integer* optional): Earliest season to include.
 #' @param max_year (*Integer* optional): Latest season to include.
 #' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.
@@ -193,7 +195,8 @@ cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = 
 
 #' @title
 #' **Get conference realignment changes**
-#' @param year (*Integer* required): Season, 4 digits (YYYY).
+#' @param year (*Integer* required): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_conference_changes', 'min_year']`
 #' @description
 #' **Get conference realignment changes**
 #' Teams that changed conference in a given season.

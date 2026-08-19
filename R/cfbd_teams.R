@@ -73,7 +73,8 @@ NULL
 #' Required if year not provided
 #' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year. Required if conference not provided and the `year` parameter is only supported if `only_fbs` is TRUE.
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year. Required if conference not provided and the `year` parameter is only supported if `only_fbs` is TRUE. \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_team_info', 'min_year']`
 #' @return [cfbd_team_info()] - A data frame with 27 variables:
 #'
 #'    |col_name         |types     |description                                                                  |
@@ -426,7 +427,8 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @description
 #' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'
-#' @param year (*Integer* required): Year,  4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year,  4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_team_roster', 'min_year']`
 #' @param team (*String* optional): Team, select a valid team in D-I football
 #'
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
@@ -522,7 +524,8 @@ cfbd_team_roster <- function(year, team = NULL,
 #'
 #' @description
 #' Extracts team talent composite as sourced from 247 rankings
-#' @param year (*Integer* optional): Year 4 digit format (*YYYY*)
+#' @param year (*Integer* optional): Year 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_team_talent', 'min_year']`
 #'
 #' @return [cfbd_team_talent()] - A data frame with 3 variables:
 #'
@@ -590,7 +593,8 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 
 #' @title
 #' **Get FBS teams**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_teams_fbs', 'min_year']`
 #' @description
 #' **Get FBS teams**
 #' Every FBS team for a season.

@@ -14,7 +14,8 @@ cfbd_stats_season_advanced(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2001}
 
 \item{team}{(\emph{String} optional): D-I Team}
 

@@ -18,7 +18,8 @@ espn_cfb_schedule(
 \arguments{
 \item{date}{(\emph{Integer} required - YYYYMMDD): Date to pull}
 
-\item{year}{(int): Used to define different seasons. 2002 is the earliest available season.}
+\item{year}{(int): Used to define different seasons. \cr
+Minimum value accepted: 1877}
 
 \item{week}{(int): Week of the schedule.}
 

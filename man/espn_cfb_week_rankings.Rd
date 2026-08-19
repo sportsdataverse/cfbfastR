@@ -12,7 +12,8 @@ espn_cfb_week_rankings(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2002}
 
 \item{week}{(\emph{Integer} required): Week number within the season type.}
 

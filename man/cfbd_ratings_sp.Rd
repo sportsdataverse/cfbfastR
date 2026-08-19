@@ -7,7 +7,8 @@
 cfbd_ratings_sp(year = NULL, team = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided \cr
+Minimum value accepted: 1970}
 
 \item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 }

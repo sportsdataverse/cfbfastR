@@ -13,8 +13,8 @@ cfbd_stats_game_havoc(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required
-if \code{team} is not specified.}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if \code{team} is not specified. \cr
+Minimum value accepted: 2004}
 
 \item{team}{(\emph{String} optional): D-I Team. Required if \code{year} is not
 specified.}

@@ -7,7 +7,8 @@
 cfbd_player_season_overview(year, athlete_id, proxy = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2004}
 
 \item{athlete_id}{(\emph{Integer} required): Player identifier.}
 

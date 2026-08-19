@@ -15,7 +15,8 @@ cfbd_metrics_ppa_players_season(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if athlete_id not provided}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if athlete_id not provided \cr
+Minimum value accepted: 2013}
 
 \item{team}{(\emph{String} optional): D-I Team.}
 

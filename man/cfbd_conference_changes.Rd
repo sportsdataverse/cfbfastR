@@ -7,7 +7,8 @@
 cfbd_conference_changes(year, proxy = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 1887}
 
 \item{proxy}{(\emph{List} optional): Per-call proxy override passed to
 \code{get_req()}. \code{NULL} (default) falls back to

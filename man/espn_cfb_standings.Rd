@@ -12,7 +12,8 @@ espn_cfb_standings(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2001}
 
 \item{group_id}{(\emph{Integer} default 90): ESPN group id. \code{90} = NCAA
 Division I (all D-I teams). Conference group ids also work.}

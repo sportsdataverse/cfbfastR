@@ -7,7 +7,8 @@
 espn_cfb_season_weeks(year = NULL, season_type = 2)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 1999}
 
 \item{season_type}{(\emph{Integer} default 2): ESPN season type id.
 \code{2} = regular season (the only type with a meaningful week calendar),

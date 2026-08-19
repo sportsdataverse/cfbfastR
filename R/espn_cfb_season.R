@@ -86,7 +86,8 @@ NULL
 #' Big Ten, ...); the `group_id` of a conference is what
 #' [espn_cfb_standings()] accepts as `group_id`. The `parent_group_id`
 #' column lets you reconstruct the division -> conference nesting.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_groups', 'min_year']`
 #' @param season_type (*Integer* default 2): ESPN season type id.
 #' `2` = regular season is the sensible default.
 #' @return A data frame with one row per group:
@@ -245,7 +246,8 @@ espn_cfb_groups <- function(year = NULL,
 #' many weekly snapshots that source published in the season. To pull the
 #' actual ranked teams for a given week, feed `season`, `season_type`, and
 #' a `week` to [espn_cfb_week_rankings()].
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_rankings', 'min_year']`
 #' @return A data frame with one row per ranking source:
 #'
 #'    |col_name    |types     |description                                          |
@@ -366,7 +368,8 @@ espn_cfb_rankings <- function(year = NULL) {
 #' `rankings_ref` to [espn_cfb_rankings()], and so on. `active_type_*`
 #' describes the season type ESPN currently considers "live" for the year
 #' (preseason / regular / postseason / off-season).
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_season_info', 'min_year']`
 #' @return A single-row data frame:
 #'
 #'    |col_name          |types     |description                                       |
@@ -486,7 +489,8 @@ espn_cfb_season_info <- function(year = NULL) {
 #' ids returned here are the values other Batch 5 wrappers
 #' ([espn_cfb_season_weeks()], [espn_cfb_groups()], [espn_cfb_standings()],
 #' [espn_cfb_week_rankings()]) accept as their `season_type` argument.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_season_types', 'min_year']`
 #' @return A data frame with one row per season type:
 #'
 #'    |col_name      |types     |description                                          |
@@ -611,7 +615,8 @@ espn_cfb_season_types <- function(year = NULL) {
 #' The index returns one `$ref` per week; this wrapper dereferences each and
 #' returns one row per week (~15-16 for a regular season). The `week`
 #' numbers returned here are the values [espn_cfb_week_rankings()] accepts.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_season_weeks', 'min_year']`
 #' @param season_type (*Integer* default 2): ESPN season type id.
 #' `2` = regular season (the only type with a meaningful week calendar),
 #' `3` = postseason, `1` = preseason.
@@ -868,7 +873,8 @@ espn_cfb_seasons <- function() {
 #' `team_id`.
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_standings', 'min_year']`
 #' @param group_id (*Integer* default 90): ESPN group id. `90` = NCAA
 #' Division I (all D-I teams). Conference group ids also work.
 #' @param season_type (*Integer* default 2): ESPN season type id.
@@ -1074,7 +1080,8 @@ espn_cfb_standings <- function(year = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join; teams are
 #' then returned as ESPN team ids only.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_week_rankings', 'min_year']`
 #' @param week (*Integer* required): Week number within the season type.
 #' @param season_type (*Integer* default 2): ESPN season type id.
 #' `2` = regular season, `3` = postseason.

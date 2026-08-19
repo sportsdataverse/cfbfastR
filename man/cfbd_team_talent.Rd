@@ -7,7 +7,8 @@
 cfbd_team_talent(year = most_recent_cfb_season())
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2015}
 }
 \value{
 \code{\link[=cfbd_team_talent]{cfbd_team_talent()}} - A data frame with 3 variables:\tabular{lll}{

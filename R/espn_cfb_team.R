@@ -152,7 +152,8 @@ NULL
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -331,7 +332,8 @@ espn_cfb_team <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_ats', 'min_year']`
 #' @param season_type (*Integer* default 2): ESPN season type. `2` = regular
 #' season, `3` = postseason.
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
@@ -490,7 +492,8 @@ espn_cfb_team_ats <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_awards', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to every team-id
 #' column (`team_id`, `winner_team_id`) in the output (see *Details*). Set
@@ -895,7 +898,8 @@ espn_cfb_team_coaches <- function(
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_events', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -1050,7 +1054,8 @@ espn_cfb_team_events <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_leaders', 'min_year']`
 #' @param season_type (*Integer* default 2): ESPN season type. `2` = regular
 #' season, `3` = postseason.
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
@@ -1228,7 +1233,8 @@ espn_cfb_team_leaders <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_powerindex', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -1392,7 +1398,8 @@ espn_cfb_team_powerindex <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_ranks', 'min_year']`
 #' @param week (*Integer* optional): Regular-season week. When supplied, the
 #' team's rank at that specific week is returned.
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
@@ -1598,7 +1605,8 @@ espn_cfb_team_ranks <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_record', 'min_year']`
 #' @param season_type (*Integer* default 2): ESPN season type. `2` = regular
 #' season, `3` = postseason.
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
@@ -1777,7 +1785,8 @@ espn_cfb_team_record <- function(team_id = NULL,
 #' `NA` rather than erroring the wrapper. Set `position_detail = FALSE` to
 #' skip the extra fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_roster', 'min_year']`
 #' @param position_detail (*Logical*): when `TRUE` (default), fetch the
 #' ESPN position catalog once and join it onto `position_id`, appending the
 #' five `position_*` detail columns shown in the *Value* table. A catalog
@@ -2015,7 +2024,8 @@ espn_cfb_team_roster <- function(team_id = NULL,
 #' A catalog failure degrades to `NA` rather than erroring the wrapper. Set
 #' `team_detail = FALSE` to skip the catalog fetch and the join.
 #' @param team_id (*Integer* required): ESPN team id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_schedule', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to every team-id
 #' column (`team_id`, `opponent_id`) in the output (see *Details*). Set
@@ -2239,7 +2249,8 @@ espn_cfb_team_schedule <- function(team_id = NULL,
 #' **Get ESPN college football team stats data**
 #' @author Saiem Gilani
 #' @param team_id Team ID
-#' @param year Year
+#' @param year Year \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_team_stats', 'min_year']`
 #' @param season_type (character, default: regular): Season type - regular or postseason
 #' @param total (boolean, default: FALSE): Totals
 #' @keywords CFB Team Stats

@@ -7,7 +7,8 @@
 cfbd_playoffs_cfp(year, proxy = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} required): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2014}
 
 \item{proxy}{(\emph{List} optional): Per-call proxy override passed to
 \code{get_req()}. \code{NULL} (default) falls back to

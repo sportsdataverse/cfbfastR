@@ -9,7 +9,8 @@ espn_cfb_team_powerindex(team_id = NULL, year = NULL, team_detail = TRUE)
 \arguments{
 \item{team_id}{(\emph{Integer} required): ESPN team id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2005}
 
 \item{team_detail}{(\emph{Logical}): when \code{TRUE} (default), fetch the ESPN
 team catalog once and join friendly team fields next to the \code{team_id}

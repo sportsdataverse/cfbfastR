@@ -8,7 +8,8 @@ espn_cfb_recruits(year = NULL, max_results = 100)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Recruiting class / signing year, 4
-digit format (\emph{YYYY}).}
+digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2006}
 
 \item{max_results}{(\emph{Integer} default 100): Maximum number of recruits
 to dereference and return. The index is alphabetical, so this returns

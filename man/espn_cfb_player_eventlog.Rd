@@ -14,7 +14,8 @@ espn_cfb_player_eventlog(
 \arguments{
 \item{athlete_id}{(\emph{Character/Integer} required): ESPN athlete id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2004}
 
 \item{team_detail}{(\emph{Logical}): when \code{TRUE} (default), fetch the ESPN
 team catalog once and join friendly team fields next to the \code{team_id}

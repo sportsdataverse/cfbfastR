@@ -7,7 +7,8 @@
 cfbd_team_roster(year, team = NULL, division = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2004}
 
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 

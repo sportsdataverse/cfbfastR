@@ -7,7 +7,8 @@
 espn_cfb_powerindex(year = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2005}
 }
 \value{
 A data frame with one row per team-metric:\tabular{lll}{

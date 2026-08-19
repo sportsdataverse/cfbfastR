@@ -116,7 +116,7 @@ NULL
 #'
 #' @param athlete_id ESPN athlete id.
 #' @param year Optional season (4-digit year). When `NULL` the league-wide
-#'   athlete resource is used.
+#'   athlete resource is used. \cr
 #' @return A named list with `display_name`, `first_name`, `last_name`,
 #'   `jersey`, `position`, `position_abbreviation` (each character, possibly
 #'   `NA`).
@@ -318,7 +318,8 @@ NULL
 #' degrades to `NA` rather than erroring the wrapper. Set
 #' `position_detail = FALSE` to skip the catalog fetch and the join.
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -574,7 +575,8 @@ espn_cfb_player <- function(athlete_id = NULL,
 #' to `NA` rather than erroring the wrapper. Set `athlete_detail = FALSE` to
 #' skip the fetch and reproduce the prior output exactly.
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_eventlog', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -777,7 +779,8 @@ espn_cfb_player_eventlog <- function(athlete_id = NULL,
 #' to `NA` rather than erroring the wrapper. Set `athlete_detail = FALSE` to
 #' skip the fetch and reproduce the prior output exactly.
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_gamelog', 'min_year']`
 #' @param team_detail (*Logical*): when `TRUE` (default), fetch the ESPN
 #' team catalog once and join friendly team fields next to the `team_id`
 #' column (see *Details*). Set `FALSE` to skip the catalog fetch and the
@@ -998,7 +1001,8 @@ espn_cfb_player_gamelog <- function(athlete_id = NULL,
 #' to `NA` rather than erroring the wrapper. Set `athlete_detail = FALSE` to
 #' skip the fetch and reproduce the prior output exactly.
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_overview', 'min_year']`
 #' @param athlete_detail (*Logical*): when `TRUE` (default), fetch the
 #' requested athlete's ESPN record once and append the `athlete_*` name
 #' columns (see *Details*). Set `FALSE` to skip the fetch, reproducing the
@@ -1330,7 +1334,8 @@ espn_cfb_player_seasons <- function(athlete_id = NULL,
 #' to `NA` rather than erroring the wrapper. Set `athlete_detail = FALSE` to
 #' skip the fetch and reproduce the prior output exactly.
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_splits', 'min_year']`
 #' @param athlete_detail (*Logical*): when `TRUE` (default), fetch the
 #' requested athlete's ESPN record once and append the `athlete_*` name
 #' columns (see *Details*). Set `FALSE` to skip the fetch, reproducing the
@@ -1483,7 +1488,8 @@ espn_cfb_player_splits <- function(athlete_id = NULL,
 #' This is the richer "v3" companion to [espn_cfb_player_stats()] (core-v2 season
 #' statistics) and [espn_cfb_player_career_stats()].
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_stats_v3', 'min_year']`
 #' @param athlete_detail (*Logical*): when `TRUE` (default), append the
 #' `athlete_*` name columns via one extra athlete fetch.
 #' @return A data frame with one row per (category x team-season x stat):
@@ -1644,7 +1650,8 @@ espn_cfb_player_stats_v3 <- function(athlete_id = NULL,
 #' to `NA` rather than erroring the wrapper. Set `athlete_detail = FALSE` to
 #' skip the fetch and reproduce the prior output exactly.
 #' @param athlete_id (*Character/Integer* required): ESPN athlete id.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_career_stats', 'min_year']`
 #' @param season_type (*Integer* optional, default 2): ESPN season type.
 #' `2` = regular season, `3` = postseason.
 #' @param athlete_detail (*Logical*): when `TRUE` (default), fetch the
@@ -1793,7 +1800,8 @@ espn_cfb_player_career_stats <- function(athlete_id = NULL,
 #' **Get ESPN college football player stats data**
 #' @author Saiem Gilani
 #' @param athlete_id Athlete ID
-#' @param year Year
+#' @param year Year \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_player_stats', 'min_year']`
 #' @param season_type (character, default: regular): Season type - regular or postseason
 #' @param total (boolean, default: FALSE): Totals
 #' @keywords CFB Player Stats
@@ -2673,7 +2681,8 @@ espn_cfb_player_stats <- function(athlete_id, year, season_type='regular', total
 #' fetch failure leaves that player's name columns `NA` rather than
 #' erroring the wrapper. Keep `limit` small (or `athlete_detail = FALSE`)
 #' when walking many pages.
-#' @param year (*Integer* required): Season, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Season, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_players', 'min_year']`
 #' @param page (*Integer* optional, default 1): First page of the index to
 #' fetch.
 #' @param max_pages (*Integer* optional, default 1): Number of consecutive
@@ -2856,7 +2865,8 @@ espn_cfb_players <- function(year = NULL,
 #' equals the recruit's top-level status (e.g. `Signed`); recruits still
 #' uncommitted at fetch time leave both columns `NA`.
 #' @param year (*Integer* required): Recruiting class / signing year, 4
-#' digit format (*YYYY*).
+#' digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'espn_cfb_recruits', 'min_year']`
 #' @param max_results (*Integer* default 100): Maximum number of recruits
 #' to dereference and return. The index is alphabetical, so this returns
 #' the alphabetically-first `max_results` recruits; raise it to pull more

@@ -9,7 +9,8 @@ espn_cfb_player_overview(athlete_id = NULL, year = NULL, athlete_detail = TRUE)
 \arguments{
 \item{athlete_id}{(\emph{Character/Integer} required): ESPN athlete id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2004}
 
 \item{athlete_detail}{(\emph{Logical}): when \code{TRUE} (default), fetch the
 requested athlete's ESPN record once and append the \verb{athlete_*} name

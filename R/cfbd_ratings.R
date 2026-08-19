@@ -77,7 +77,8 @@
 NULL
 #' @title
 #' **Get historical Coaches and AP poll data**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_rankings', 'min_year']`
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #'
@@ -205,7 +206,8 @@ cfbd_rankings <- function(year, week = NULL, season_type = "both",
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_sp', 'min_year']`
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #'
 #' @return [cfbd_ratings_sp()] - A data frame with 26 variables:
@@ -329,7 +331,8 @@ cfbd_ratings_sp <- function(year = NULL, team = NULL) {
 
 #' @title
 #' **Get conference level SP historical rating data**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_sp_conference', 'min_year']`
 #' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
@@ -456,7 +459,8 @@ cfbd_ratings_sp_conference <- function(year = NULL, conference = NULL,
 #' @description
 #' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_srs', 'min_year']`
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference abbreviation - SRS information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -543,7 +547,8 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' @description
 #' Acquire the CFBD calculated elo ratings data by team, year, week, and conference
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_elo', 'min_year']`
 #' @param week (*Integer* optional): Maximum Week of ratings.
 #' @param season_type (*String* default both): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -631,7 +636,8 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
 #' @description
 #' Acquire the ESPN calculated FPI ratings data by team, year, and conference
 #'
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Required if team not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_fpi', 'min_year']`
 #' @param team (*String* optional): D-I Team. Required if year not provided
 #' @param conference (*String* optional): Conference name - select a valid FBS conference
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
@@ -719,7 +725,8 @@ cfbd_ratings_fpi <- function(year = NULL, team = NULL, conference = NULL) {
 
 #' @title
 #' **Get core team ratings**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_core', 'min_year']`
 #' @param team (*String* optional): Team filter.
 #' @param conference (*String* optional): Conference abbreviation filter.
 #' @description
@@ -796,7 +803,8 @@ cfbd_ratings_core <- function(year = NULL, team = NULL, conference = NULL, proxy
 
 #' @title
 #' **Get expanded SRS ratings**
-#' @param year (*Integer* optional): Season, 4 digits (YYYY).
+#' @param year (*Integer* optional): Season, 4 digits (YYYY). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_ratings_srs_expanded', 'min_year']`
 #' @param team (*String* optional): Team filter.
 #' @param conference (*String* optional): Conference abbreviation filter.
 #' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.

@@ -12,8 +12,7 @@
 #' @keywords internal
 #' @noRd
 #' @importFrom rlang .data
-#' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n
-#'   lag lead if_else
+#' @importFrom dplyr mutate arrange group_by case_when mutate_at ungroup n lag lead if_else
 #' @importFrom tidyr replace_na
 .pbp_prep_epa_df_after <- function(dat) {
   tt                 <- .pbp_play_types()

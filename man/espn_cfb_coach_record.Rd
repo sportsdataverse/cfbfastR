@@ -9,7 +9,8 @@ espn_cfb_coach_record(coach_id = NULL, year = NULL, season_type = 2)
 \arguments{
 \item{coach_id}{(\emph{Integer} required): ESPN coach id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2001}
 
 \item{season_type}{(\emph{Integer} default 2): ESPN season type -- \code{2} for
 regular season, \code{3} for postseason.}

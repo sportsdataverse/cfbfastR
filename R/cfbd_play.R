@@ -57,7 +57,8 @@ NULL
 #' @title
 #' **Get college football play-by-play data.**
 #' @param season_type (*String* default regular): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
-#' @param year Select year, (example: 2018)
+#' @param year Select year, (example: 2018) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_plays', 'min_year']`
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
 #' @param offense Select offense name (example: Texas, Texas A&M, Clemson)
@@ -184,7 +185,8 @@ cfbd_plays <- function(year = 2020,
 
 #' @title
 #' **Gets player info associated by play**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_play_stats_player', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (*String* optional): D-I Team
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game

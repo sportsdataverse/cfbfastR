@@ -14,7 +14,8 @@ espn_cfb_player_career_stats(
 \arguments{
 \item{athlete_id}{(\emph{Character/Integer} required): ESPN athlete id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2004}
 
 \item{season_type}{(\emph{Integer} optional, default 2): ESPN season type.
 \code{2} = regular season, \code{3} = postseason.}

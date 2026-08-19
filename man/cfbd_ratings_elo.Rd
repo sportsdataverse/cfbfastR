@@ -13,7 +13,8 @@ cfbd_ratings_elo(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 1890}
 
 \item{week}{(\emph{Integer} optional): Maximum Week of ratings.}
 

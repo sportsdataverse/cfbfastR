@@ -7,7 +7,8 @@
 cfbd_calendar(year)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
+Minimum value accepted: 2002}
 }
 \value{
 \code{\link[=cfbd_calendar]{cfbd_calendar()}} - A data frame with 5 variables:\tabular{lll}{

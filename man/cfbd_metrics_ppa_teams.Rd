@@ -13,7 +13,8 @@ cfbd_metrics_ppa_teams(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Required if team not provided \cr
+Minimum value accepted: 2001}
 
 \item{team}{(\emph{String} optional): D-I Team. Required if year not provided}
 

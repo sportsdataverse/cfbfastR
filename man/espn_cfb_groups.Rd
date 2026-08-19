@@ -7,7 +7,8 @@
 espn_cfb_groups(year = NULL, season_type = 2)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2001}
 
 \item{season_type}{(\emph{Integer} default 2): ESPN season type id.
 \code{2} = regular season is the sensible default.}

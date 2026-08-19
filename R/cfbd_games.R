@@ -95,7 +95,8 @@ NULL
 
 #' @title
 #' **Get results information from games.**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_info', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default both): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -254,7 +255,8 @@ cfbd_game_info <- function(year,
 
 #' @title
 #' **Get weather from games.**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_weather', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -376,7 +378,8 @@ cfbd_game_weather <- function(year,
 
 #' @title
 #' **Get calendar of weeks by season.**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_calendar', 'min_year']`
 #' @return [cfbd_calendar()] - A data frame with 5 variables:
 #'
 #'   |col_name         |types     |description                                       |
@@ -449,7 +452,8 @@ cfbd_calendar <- function(year) {
 
 #' @title
 #' **Get game media information (TV, radio, etc).**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_media', 'min_year']`
 #' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default both): Select Season Type, regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -768,7 +772,8 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 
 #' @title
 #' **Get player statistics by game**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_player_stats', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -1110,7 +1115,8 @@ cfbd_game_player_stats <- function(year,
 
 #' @title
 #' **Get team records by year**
-#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_records', 'min_year']`
 #' @param team (*String* optional): Team - Select a valid team, D1 football
 #' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
@@ -1251,7 +1257,8 @@ cfbd_game_records <- function(year,
 
 #' @title
 #' **Get team statistics by game**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*). Required year filter (along with one of `week`, `team`, or `conference`), unless `game_id` is specified
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*). Required year filter (along with one of `week`, `team`, or `conference`), unless `game_id` is specified \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_team_stats', 'min_year']`
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if `team` and `conference` not specified.
 #' @param season_type (*String* default: regular): Select Season Type - regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team. Required if `week` and `conference` not specified.

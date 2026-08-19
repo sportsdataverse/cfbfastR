@@ -18,7 +18,8 @@ cfbd_coaches_seasons(
 
 \item{team}{(\emph{String} optional): Team filter.}
 
-\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 1886}
 
 \item{min_year}{(\emph{Integer} optional): Earliest season to include.}
 

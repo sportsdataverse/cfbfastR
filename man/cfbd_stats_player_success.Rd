@@ -18,7 +18,8 @@ cfbd_stats_player_success(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY).}
+\item{year}{(\emph{Integer} optional): Season, 4 digits (YYYY). \cr
+Minimum value accepted: 2013}
 
 \item{conference}{(\emph{String} optional): Conference abbreviation filter.}
 

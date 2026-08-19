@@ -16,7 +16,8 @@ cfbd_game_team_stats(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}). Required year filter (along with one of \code{week}, \code{team}, or \code{conference}), unless \code{game_id} is specified}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}). Required year filter (along with one of \code{week}, \code{team}, or \code{conference}), unless \code{game_id} is specified \cr
+Minimum value accepted: 2004}
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier. Required if \code{team} and \code{conference} not specified.}
 

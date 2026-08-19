@@ -14,7 +14,8 @@ espn_cfb_team_roster(
 \arguments{
 \item{team_id}{(\emph{Integer} required): ESPN team id.}
 
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2004}
 
 \item{position_detail}{(\emph{Logical}): when \code{TRUE} (default), fetch the
 ESPN position catalog once and join it onto \code{position_id}, appending the

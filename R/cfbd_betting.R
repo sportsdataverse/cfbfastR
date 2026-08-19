@@ -27,7 +27,8 @@ NULL
 #' @description **Get betting lines information for games**
 #' @param game_id (*Integer* optional): Game ID filter for querying a single game. Required if year not provided \cr
 #' Can be found using the [cfbd_game_info()] function
-#' @param year (*Integer* optional): Year, 4 digit format(*YYYY*). Required if game_id not provided
+#' @param year (*Integer* optional): Year, 4 digit format(*YYYY*). Required if game_id not provided \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_betting_lines', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
 #' @param team (*String* optional): D-I Team
@@ -202,7 +203,8 @@ cfbd_betting_lines <- function(game_id = NULL,
 #' the closing spread, plus the average margin by which it beat the
 #' spread. Complements [cfbd_betting_lines()], which returns the
 #' per-game lines themselves.
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*).
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*). \cr
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_betting_ats', 'min_year']`
 #' @param team (*String* optional): D-I Team
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference \cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC \cr

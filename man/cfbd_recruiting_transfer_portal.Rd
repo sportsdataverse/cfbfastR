@@ -7,7 +7,8 @@
 cfbd_recruiting_transfer_portal(year)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Year of the offseason (2021 would return transfer portal data starting from the end of the 2020 season), 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2021}
 }
 \value{
 \code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}} - A data frame with 10 variables:\tabular{lll}{

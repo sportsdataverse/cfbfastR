@@ -7,7 +7,8 @@
 espn_cfb_awards(year = NULL, team_detail = TRUE)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 1935}
 
 \item{team_detail}{(\emph{Logical}): when \code{TRUE} (default), the ESPN team
 catalog (\code{\link[=espn_cfb_teams]{espn_cfb_teams()}}) is fetched once and friendly team fields are

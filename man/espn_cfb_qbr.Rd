@@ -7,7 +7,8 @@
 espn_cfb_qbr(year = NULL, group = 80, athlete_detail = FALSE)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season, 4 digit format (\emph{YYYY}). \cr
+Minimum value accepted: 2004}
 
 \item{group}{(\emph{Integer} default 80): ESPN group id. \code{80} = all FBS.
 Conference group ids (e.g. \code{4} ACC, \code{8} Big 12, \code{12} SEC, \code{21} Big Ten)
