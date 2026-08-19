@@ -370,7 +370,7 @@ cfbd_player_usage <- function(year = most_recent_cfb_season(),
 #' Season overview for a single player.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_player_season_overview()] - A tibble with 31 columns:

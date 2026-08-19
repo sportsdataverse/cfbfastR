@@ -596,7 +596,7 @@ cfbd_team_talent <- function(year = most_recent_cfb_season()) {
 #' Every FBS team for a season.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_teams_fbs()] - A tibble with 43 columns:

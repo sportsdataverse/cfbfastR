@@ -1115,7 +1115,7 @@ cfbd_stats_game_havoc <- function(year = NULL,
 #' Season-level player success-rate metrics.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_stats_player_success()] - A tibble with 12 columns:
@@ -1205,7 +1205,7 @@ cfbd_stats_player_success <- function(year = NULL, conference = NULL, team = NUL
 #' Game-level player success-rate metrics.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_stats_player_success_game()] - A tibble with 16 columns:

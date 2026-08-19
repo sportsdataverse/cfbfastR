@@ -10,7 +10,7 @@ cfbd_coaches_profile(coach_id, proxy = NULL)
 \item{coach_id}{(\emph{Integer} required): Coach identifier.}
 
 \item{proxy}{(\emph{List} optional): Per-call proxy override passed to
-\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{get_req()}. \code{NULL} (default) falls back to
 \code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
 variables, so a caller can override the shared setting for one endpoint.}
 }

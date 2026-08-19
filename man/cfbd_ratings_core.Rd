@@ -14,7 +14,7 @@ cfbd_ratings_core(year = NULL, team = NULL, conference = NULL, proxy = NULL)
 \item{conference}{(\emph{String} optional): Conference abbreviation filter.}
 
 \item{proxy}{(\emph{List} optional): Per-call proxy override passed to
-\code{\link[=get_req]{get_req()}}. \code{NULL} (default) falls back to
+\code{get_req()}. \code{NULL} (default) falls back to
 \code{getOption("cfbfastR.proxy")} and then the \verb{http(s)_proxy} environment
 variables, so a caller can override the shared setting for one endpoint.}
 }

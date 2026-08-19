@@ -18,7 +18,7 @@ NULL
 #' Returns the College Football Playoff bracket for a season.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_playoffs_cfp()] - A tibble with 46 columns:
@@ -183,7 +183,7 @@ cfbd_playoffs_cfp <- function(year, proxy = NULL) {
 #' Returns the games played in the College Football Playoff for a season.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_playoffs_cfp_games()] - A tibble with 34 columns:
@@ -307,7 +307,7 @@ cfbd_playoffs_cfp_games <- function(year, round = NULL, proxy = NULL) {
 #' Returns the teams that participated in the College Football Playoff for a season.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_playoffs_cfp_participants()] - A tibble with 12 columns:

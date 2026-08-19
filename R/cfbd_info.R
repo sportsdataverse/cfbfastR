@@ -18,7 +18,7 @@ NULL
 #' Call volume and remaining quota for the configured CFBD API key.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_info_usage()] - A tibble with 11 columns:

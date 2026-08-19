@@ -122,7 +122,7 @@ cfbd_conferences <- function(year = NULL, division = NULL) {
 #' Which conference each team belonged to, by season.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_conference_affiliations()] - A tibble with 9 columns:
@@ -199,7 +199,7 @@ cfbd_conference_affiliations <- function(team = NULL, conference = NULL, year = 
 #' Teams that changed conference in a given season.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_conference_changes()] - A tibble with 11 columns:

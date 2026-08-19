@@ -154,7 +154,7 @@ cfbd_coaches <- function(first = NULL,
 #' Biographical profile for a single coach.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_coaches_profile()] - A tibble with 19 columns:
@@ -262,7 +262,7 @@ cfbd_coaches_profile <- function(coach_id, proxy = NULL) {
 #' Season-by-season coaching records.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_coaches_seasons()] - A tibble with 68 columns:
@@ -399,7 +399,7 @@ cfbd_coaches_seasons <- function(coach_id = NULL, team = NULL, year = NULL, min_
 #' Start and end of each coaching tenure.
 #'
 #' @param proxy (*List* optional): Per-call proxy override passed to
-#'   [get_req()]. `NULL` (default) falls back to
+#'   `get_req()`. `NULL` (default) falls back to
 #'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
 #'   variables, so a caller can override the shared setting for one endpoint.
 #' @return [cfbd_coaches_tenures()] - A tibble with 20 columns:
