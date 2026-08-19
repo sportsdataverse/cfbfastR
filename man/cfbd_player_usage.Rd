@@ -65,9 +65,9 @@ Can be found using the \code{\link[=cfbd_player_info]{cfbd_player_info()}} funct
 
 }
 \seealso{
-Other CFBD Players:
-\code{\link[=cfbd_player_info]{cfbd_player_info()}},
-\code{\link[=cfbd_player_returning]{cfbd_player_returning()}}
+Other CFBD Players: 
+\code{\link{cfbd_player_info}()},
+\code{\link{cfbd_player_returning}()}
 }
 \concept{CFBD Players}
 \keyword{Player}

@@ -51,10 +51,10 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 }
 \seealso{
-Other CFBD Recruiting:
-\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}},
-\code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}},
-\code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}}
+Other CFBD Recruiting: 
+\code{\link{cfbd_recruiting_player}()},
+\code{\link{cfbd_recruiting_team}()},
+\code{\link{cfbd_recruiting_transfer_portal}()}
 }
 \concept{CFBD Recruiting}
 \keyword{Recruiting}

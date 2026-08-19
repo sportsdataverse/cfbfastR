@@ -114,12 +114,12 @@ Special Teams: punting, puntReturns, kicking, kickReturns}
 }
 }
 \seealso{
-Other CFBD Stats:
-\code{\link[=cfbd_stats_categories]{cfbd_stats_categories()}},
-\code{\link[=cfbd_stats_game_advanced]{cfbd_stats_game_advanced()}},
-\code{\link[=cfbd_stats_game_havoc]{cfbd_stats_game_havoc()}},
-\code{\link[=cfbd_stats_season_advanced]{cfbd_stats_season_advanced()}},
-\code{\link[=cfbd_stats_season_team]{cfbd_stats_season_team()}}
+Other CFBD Stats: 
+\code{\link{cfbd_stats_categories}()},
+\code{\link{cfbd_stats_game_advanced}()},
+\code{\link{cfbd_stats_game_havoc}()},
+\code{\link{cfbd_stats_season_advanced}()},
+\code{\link{cfbd_stats_season_team}()}
 }
 \concept{CFBD Stats}
 \keyword{Player}

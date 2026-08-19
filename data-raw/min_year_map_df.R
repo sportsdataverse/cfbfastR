@@ -127,4 +127,4 @@ for (i in seq_along(min_year_map)) {
   }
 }
 
-usethis::use_data(min_year_map_df, overwrite = TRUE, internal = TRUE)
+usethis::use_data(min_year_map_df, overwrite = TRUE)

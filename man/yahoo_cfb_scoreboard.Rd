@@ -29,12 +29,12 @@ game). The full payload also embeds teams/leagues/odds maps.
 }
 }
 \seealso{
-Other Yahoo CFB Functions:
-\code{\link[=yahoo_cfb_boxscore]{yahoo_cfb_boxscore()}},
-\code{\link[=yahoo_cfb_player_season_stats]{yahoo_cfb_player_season_stats()}},
-\code{\link[=yahoo_cfb_player_season_stats_legacy]{yahoo_cfb_player_season_stats_legacy()}},
-\code{\link[=yahoo_cfb_team_season_stats]{yahoo_cfb_team_season_stats()}},
-\code{\link[=yahoo_cfb_team_season_stats_legacy]{yahoo_cfb_team_season_stats_legacy()}}
+Other Yahoo CFB Functions: 
+\code{\link{yahoo_cfb_boxscore}()},
+\code{\link{yahoo_cfb_player_season_stats}()},
+\code{\link{yahoo_cfb_player_season_stats_legacy}()},
+\code{\link{yahoo_cfb_team_season_stats}()},
+\code{\link{yahoo_cfb_team_season_stats_legacy}()}
 }
 \concept{Yahoo CFB Functions}
 \keyword{Data}

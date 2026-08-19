@@ -50,9 +50,9 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 }
 \seealso{
-Other CFBD Players:
-\code{\link[=cfbd_player_info]{cfbd_player_info()}},
-\code{\link[=cfbd_player_usage]{cfbd_player_usage()}}
+Other CFBD Players: 
+\code{\link{cfbd_player_info}()},
+\code{\link{cfbd_player_usage}()}
 }
 \concept{CFBD Players}
 \keyword{Production}

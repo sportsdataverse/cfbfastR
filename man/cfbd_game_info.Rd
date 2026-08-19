@@ -93,15 +93,15 @@ I have defaulted the parameter to false so that you will not have to go to the t
 }
 }
 \seealso{
-Other CFBD Games:
-\code{\link[=cfbd_calendar]{cfbd_calendar()}},
-\code{\link[=cfbd_game_box_advanced]{cfbd_game_box_advanced()}},
-\code{\link[=cfbd_game_media]{cfbd_game_media()}},
-\code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}},
-\code{\link[=cfbd_game_records]{cfbd_game_records()}},
-\code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}},
-\code{\link[=cfbd_game_weather]{cfbd_game_weather()}},
-\code{\link[=cfbd_live_scoreboard]{cfbd_live_scoreboard()}}
+Other CFBD Games: 
+\code{\link{cfbd_calendar}()},
+\code{\link{cfbd_game_box_advanced}()},
+\code{\link{cfbd_game_media}()},
+\code{\link{cfbd_game_player_stats}()},
+\code{\link{cfbd_game_records}()},
+\code{\link{cfbd_game_team_stats}()},
+\code{\link{cfbd_game_weather}()},
+\code{\link{cfbd_live_scoreboard}()}
 }
 \concept{CFBD Games}
 \keyword{Game}

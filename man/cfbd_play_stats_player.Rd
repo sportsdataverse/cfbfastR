@@ -117,13 +117,13 @@ Can be found using the \code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types
 }
 }
 \seealso{
-Other CFBD PBP:
-\code{\link[=cfbd_live_plays]{cfbd_live_plays()}},
-\code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}},
-\code{\link[=cfbd_pbp_data_v2]{cfbd_pbp_data_v2()}},
-\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}},
-\code{\link[=cfbd_play_types]{cfbd_play_types()}},
-\code{\link[=cfbd_plays]{cfbd_plays()}}
+Other CFBD PBP: 
+\code{\link{cfbd_live_plays}()},
+\code{\link{cfbd_pbp_data}()},
+\code{\link{cfbd_pbp_data_v2}()},
+\code{\link{cfbd_play_stats_types}()},
+\code{\link{cfbd_play_types}()},
+\code{\link{cfbd_plays}()}
 }
 \concept{CFBD PBP}
 \keyword{PBP}

@@ -24,7 +24,6 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Saiem Gilani \email{saiem.gilani@gmail.com} (\href{https://orcid.org/0000-0002-7194-9067}{ORCID})
   \item Akshay Easwaran \email{akeaswaran@me.com}
   \item Jared Lee \email{13jaredlee@gmail.com}
   \item Eric Hess \email{eric.hess.13@gmail.com}
