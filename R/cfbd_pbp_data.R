@@ -423,7 +423,22 @@ cfbd_pbp_data <- function(year,
                           team = NULL,
                           play_type = NULL,
                           epa_wpa = FALSE,
+                          engine = NULL,
                           ...) {
+  # Upgrade path. `engine = "v2"` (or options(cfbfastR.pbp_engine = "v2"))
+  # delegates to the modular engine, which is where new parsing work lands.
+  # The leading arguments are identical to cfbd_pbp_data_v2()'s by design, so
+  # this hands them straight over; `output` flows through `...`.
+  if (identical(.pbp_engine(engine), "v2")) {
+    dots <- list(...)
+    return(do.call(cfbd_pbp_data_v2, c(
+      list(year = year, season_type = season_type, week = week, team = team,
+           play_type = play_type, epa_wpa = epa_wpa),
+      dots[intersect(names(dots), "output")]
+    )))
+  }
+  .pbp_engine_nudge("cfbd_pbp_data", "cfbd_pbp_data_v2")
+
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 

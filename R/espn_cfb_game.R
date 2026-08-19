@@ -6088,7 +6088,15 @@ espn_cfb_game_teams <- function(game_id = NULL,
 #'    try(espn_cfb_pbp(game_id = 401282614, epa_wpa = TRUE))
 #'  }
 #'
-espn_cfb_pbp <- function(game_id, epa_wpa = FALSE){
+espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "default"){
+  # See .pbp_engine(): per-call `engine=` beats the session option, which beats
+  # the "legacy" default. `output` is accepted here so a delegating caller can
+  # reach the tier selector without switching to the v2 name.
+  if (identical(.pbp_engine(engine), "v2")) {
+    return(espn_cfb_pbp_v2(game_id = game_id, epa_wpa = epa_wpa, output = output))
+  }
+  .pbp_engine_nudge("espn_cfb_pbp", "espn_cfb_pbp_v2")
+
   old <- options(list(stringsAsFactors = FALSE, scipen = 999))
   on.exit(options(old))
 
