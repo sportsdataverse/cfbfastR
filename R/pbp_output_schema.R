@@ -27,6 +27,10 @@
   # multi-penalty plays representable at all.
   "penalty_count", "penalty_declined_count", "penalty_all_declined",
   "penalty_enforcement", "penalty_negated_play",
+  # Roster-resolved athlete ids (helper_pbp_attach_player_ids.R). "default" tier:
+  # cfbfastR emitted player NAMES only, so every downstream join was string-keyed
+  # and collided on duplicate names -- the id is the fix, not an extra.
+  "rusher_player_id", "passer_player_id", "receiver_player_id", "fumble_player_id", "sack_player_id", "sack_player_id2", "interception_player_id", "pass_breakup_player_id", "fumble_forced_player_id", "fumble_recovered_player_id", "fg_kicker_player_id", "punter_player_id", "kickoff_player_id", "kickoff_return_player_id", "punt_return_player_id", "fg_block_player_id", "punt_block_player_id", "fg_return_player_id", "punt_block_return_player_id",
   # series_columns
   "new_series", "firstD_by_kickoff", "firstD_by_poss",
   "firstD_by_penalty", "firstD_by_yards",

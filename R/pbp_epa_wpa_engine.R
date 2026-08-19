@@ -25,7 +25,8 @@
                          ep_model,
                          fg_model,
                          wp_model,
-                         clean_text = FALSE) {
+                         clean_text = FALSE,
+                         roster = NULL) {
   if (isTRUE(clean_text)) {
     df <- clean_play_text(df)
   }
@@ -40,6 +41,11 @@
     .pbp_clean_drive_dat() |>
     add_yardage() |>
     add_player_cols() |>
+    # Identity resolution needs the names add_player_cols() just extracted. The
+    # roster is PASSED IN rather than fetched here: one game's play-by-play would
+    # otherwise cost an extra roster request per call, and a season sweep would
+    # re-request the same two rosters for every game those teams played.
+    .pbp_attach_player_ids(roster = roster) |>
     .pbp_prep_epa_df_after() |>
     .pbp_create_epa(ep_model = ep_model, fg_model = fg_model) |>
     .pbp_create_wpa_naive(wp_model = wp_model)
