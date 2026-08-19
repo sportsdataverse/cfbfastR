@@ -146,7 +146,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
 
-    ## ℹ Data updated: 2026-08-19 12:35:19 UTC
+    ## ℹ Data updated: 2026-08-19 17:44:53 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

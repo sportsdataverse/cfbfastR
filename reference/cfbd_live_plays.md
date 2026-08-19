@@ -139,7 +139,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_live_plays(game_id=401520182))
 #> ── Live play-by-play data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 12:25:24 UTC
+#> ℹ Data updated: 2026-08-19 17:35:19 UTC
 #> # A tibble: 164 × 98
 #>      game_id home_team_id home_team    away_team_id away_team play_id home_score
 #>        <int>        <int> <chr>               <int> <chr>     <chr>        <int>

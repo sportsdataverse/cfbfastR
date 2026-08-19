@@ -1,12 +1,16 @@
 # **ESPN College Football Team Coaches**
 
-Get the coaches associated with a college football team for a season –
-one row per coach, with name, birth detail, and experience.
+Get the coach associated with a college football team for the current
+season – one row per coach, with name, birth detail, and experience.
 
 ## Usage
 
 ``` r
-espn_cfb_team_coaches(team_id = NULL, year = NULL, team_detail = TRUE)
+espn_cfb_team_coaches(
+  team_id = NULL,
+  year = most_recent_cfb_season(),
+  team_detail = TRUE
+)
 ```
 
 ## Arguments
@@ -17,7 +21,8 @@ espn_cfb_team_coaches(team_id = NULL, year = NULL, team_detail = TRUE)
 
 - year:
 
-  (*Integer* required): Season, 4 digit format (*YYYY*).
+  DEPRECATED. (*Integer*): Season, 4 digit format (*YYYY*). Defaults to
+  most recent CFB season.
 
 - team_detail:
 
@@ -146,26 +151,25 @@ Other ESPN CFB Functions:
 
 ``` r
 # \donttest{
-  try(espn_cfb_team_coaches(team_id = 61, year = 2024))
+  try(espn_cfb_team_coaches(team_id = 61))
 #> ── Team coaches from ESPN ──────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 12:31:15 UTC
+#> ℹ Data updated: 2026-08-19 17:41:17 UTC
 #> # A tibble: 1 × 21
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
-#> 1   2024 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
+#> 1   2026 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> # ℹ 15 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, coach_id <chr>, first_name <chr>,
 #> #   last_name <chr>, date_of_birth <chr>, birth_city <chr>, birth_state <chr>,
 #> #   birth_country <chr>, experience <int>, coach_ref <chr>
-  try(espn_cfb_team_coaches(team_id = 61, year = 2024,
-                            team_detail = FALSE))
+  try(espn_cfb_team_coaches(team_id = 61, team_detail = FALSE))
 #> ── Team coaches from ESPN ──────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 12:31:15 UTC
+#> ℹ Data updated: 2026-08-19 17:41:17 UTC
 #> # A tibble: 1 × 11
 #>   season team_id coach_id first_name last_name date_of_birth     birth_city
 #>    <int> <chr>   <chr>    <chr>      <chr>     <chr>             <chr>     
-#> 1   2024 61      3960423  Kirby      Smart     1975-12-23T08:00Z Montgomery
+#> 1   2026 61      3960423  Kirby      Smart     1975-12-23T08:00Z Montgomery
 #> # ℹ 4 more variables: birth_state <chr>, birth_country <chr>, experience <int>,
 #> #   coach_ref <chr>
 # }

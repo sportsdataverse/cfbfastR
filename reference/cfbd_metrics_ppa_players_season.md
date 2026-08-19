@@ -113,7 +113,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_players_season(year = 2019, team = "TCU"))
 #> ── Player season PPA data from CollegeFootballData.com ─────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 12:25:28 UTC
+#> ℹ Data updated: 2026-08-19 17:35:26 UTC
 #> # A tibble: 19 × 23
 #>    season athlete_id name     position team  conference avg_PPA_all avg_PPA_pass
 #>     <int> <chr>      <chr>    <chr>    <chr> <chr>            <dbl>        <dbl>

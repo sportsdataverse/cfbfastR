@@ -418,6 +418,16 @@ the only value it accepts.
 
 #### Bug fixes
 
+- [`espn_cfb_team_coaches()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team_coaches.md)
+  — the `year` argument is deprecated. ESPN’s core-v2 coaches endpoint
+  returns the **current** coach whatever season is requested, echoing
+  the requested year back in the response, so historical calls silently
+  returned today’s coach labelled with the old season
+  ([\#125](https://github.com/sportsdataverse/cfbfastR/issues/125)).
+  `year` now defaults to `most_recent_cfb_season()`; passing any other
+  season warns and is coerced, rather than returning misattributed data.
+  Existing calls keep working.
+
 - [`espn_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_teams.md)
   returned **zero rows**, because `site.api.espn.com` now answers HTTP
   403 to a spoofed browser `User-Agent`. The failure was silent — the

@@ -96,7 +96,7 @@ Other CFBD Stats Functions:
 # \donttest{
   try(cfbd_stats_player_success_game(year = 2024, week = 5))
 #> ── Get player success rates by game from CollegeFootballData.com ───────────────
-#> ℹ Data updated: 2026-08-19 12:28:37 UTC
+#> ℹ Data updated: 2026-08-19 17:38:13 UTC
 #> # A tibble: 1,052 × 16
 #>    season season_type  week   game_id id      name     position team  conference
 #>     <int> <chr>       <int>     <int> <chr>   <chr>    <chr>    <chr> <chr>     

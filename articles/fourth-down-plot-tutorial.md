@@ -34,7 +34,7 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 36.605 sec elapsed
+    ## 31.871 sec elapsed
 
 Next, we’ll need to get the coaching information, so we’ll use the
 `cfbd_coaches` function:
