@@ -2089,11 +2089,11 @@ espn_cfb_team_schedule <- function(team_id = NULL,
     "college-football/teams/{team_id}/schedule?season={year}"
   )
 
+  # No `User-Agent` -- see espn_cfb_teams(). site.api.espn.com answers HTTP 403
+  # to a spoofed browser UA; the other ESPN hosts this package uses
+  # (sports.core.api, site.web.api) do not care either way, so only the two
+  # site.api callers in this package drop it.
   headers <- c(
-    `User-Agent` = paste0(
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ",
-      "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
-    ),
     `Accept` = "application/json, text/plain, */*",
     `Origin` = "https://www.espn.com",
     `Referer` = "https://www.espn.com/"
