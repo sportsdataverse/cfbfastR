@@ -32,6 +32,38 @@ if (!requireNamespace('remotes', quietly = TRUE)){
 remotes::install_github("sportsdataverse/cfbfastR")
 ```
 
+## **Full Season Data Loaders**
+
+`cfbfastR` ships four loader families that pull pre-built season
+datasets from the [sportsdataverse-data
+releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+— no API key, no scraping, one function call per dataset:
+
+| Family | Functions | Source / contents | Coverage |
+|----|----|----|----|
+| Classic | [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md), [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md), [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md), [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md) | The original cfbfastR EPA/WPA play-by-play + companions | pbp 2014+ |
+| ESPN | `load_espn_cfb_*()` (27) | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+ |
+| Ratings & recruiting | [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md), [`load_cfb_ratings_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings_weekly.md), [`load_cfb_fpi_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_fpi_weekly.md), [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md), [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md), [`load_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruits.md), [`load_cfb_recruiting_proj()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruiting_proj.md), [`load_cfb_returning_production()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_returning_production.md), plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, CFBD↔︎ESPN id crosswalks | varies (2002+) |
+| NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10) | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses | 2013+ |
+
+**Which play-by-play do I want?**
+
+- [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
+  — the classic cfbfastR pbp with the full EPA/WPA model columns; FBS,
+  2014+. Existing code keeps working unchanged.
+- [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+  — the ESPN-derived pbp (469 columns incl. EPA/WPA and participant ids)
+  with deeper history, 2004+.
+- [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md)
+  — stats.ncaa.org pbp incl. FCS and lower divisions, 2013+;
+  [`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+  is the same data reshaped onto cfbfastR pbp column conventions for
+  cross-source binds.
+
+All loaders accept a vector of seasons (or `seasons = TRUE` for
+everything published) and an optional `dbConnection` + `tablename` to
+write straight into a database instead of returning a tibble.
+
 ## **Breaking Changes**
 
 [**Full News on
@@ -300,19 +332,307 @@ One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
 
 Functions exported by cfbfastR which load full seasons of cfbfastR data
 
+- [`load_cfb_fpi_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_fpi_weekly.md)
+  :
+
+  **Load college football weekly ESPN FPI ratings from the
+  SportsDataverse data repo**
+
 - [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
   :
 
   **Load cleaned play-by-play from the data repo**
 
+- [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md)
+  :
+
+  **Load college football season power ratings from the SportsDataverse
+  data repo**
+
+- [`load_cfb_ratings_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings_weekly.md)
+  :
+
+  **Load college football weekly power ratings from the SportsDataverse
+  data repo**
+
+- [`load_cfb_recruiting_proj()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruiting_proj.md)
+  :
+
+  **Load college football recruiting projections from the
+  SportsDataverse data repo**
+
+- [`load_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruits.md)
+  :
+
+  **Load college football recruiting rankings from the SportsDataverse
+  data repo**
+
+- [`load_cfb_returning_production()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_returning_production.md)
+  :
+
+  **Load college football returning production from the SportsDataverse
+  data repo**
+
 - [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md)
   : Load College Football Rosters
+
+- [`load_cfb_rosters_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters_crosswalk.md)
+  :
+
+  **Load college football roster id crosswalk from the SportsDataverse
+  data repo**
+
+- [`load_cfb_schedule_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedule_crosswalk.md)
+  :
+
+  **Load college football schedule id crosswalk from the SportsDataverse
+  data repo**
 
 - [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md)
   : Load CFB Game/Schedule Data from data repo
 
+- [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md)
+  :
+
+  **Load college football weekly team summaries from the SportsDataverse
+  data repo**
+
+- [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md)
+  :
+
+  **Load college football team talent composite from the SportsDataverse
+  data repo**
+
 - [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md)
   : Load CFB team info from the data repo
+
+- [`load_cfb_teams_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams_crosswalk.md)
+  :
+
+  **Load college football team id crosswalk from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_adv_defensive()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_defensive.md)
+  :
+
+  **Load college football advanced defensive from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_adv_defensive_players()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_defensive_players.md)
+  :
+
+  **Load college football advanced defensive players from the
+  SportsDataverse data repo**
+
+- [`load_espn_cfb_adv_drives()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_drives.md)
+  :
+
+  **Load college football advanced drives from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_adv_passing()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_passing.md)
+  :
+
+  **Load college football advanced passing from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_adv_receiving()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_receiving.md)
+  :
+
+  **Load college football advanced receiving from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_adv_rushing()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_rushing.md)
+  :
+
+  **Load college football advanced rushing from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_adv_situational()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_situational.md)
+  :
+
+  **Load college football advanced situational from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_adv_specialists()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_specialists.md)
+  :
+
+  **Load college football advanced specialists from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_adv_team()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_team.md)
+  :
+
+  **Load college football advanced team from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_adv_team_gamelog()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_team_gamelog.md)
+  :
+
+  **Load college football advanced team gamelog from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_adv_turnover()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_adv_turnover.md)
+  :
+
+  **Load college football advanced turnover from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_betting()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_betting.md)
+  :
+
+  **Load ESPN college football betting lines from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_drives()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_drives.md)
+  :
+
+  **Load ESPN college football drives from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_game_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_game_rosters.md)
+  :
+
+  **Load ESPN college football game rosters from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_linescores()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_linescores.md)
+  :
+
+  **Load ESPN college football linescores from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_model_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_model_pbp.md)
+  :
+
+  **Load college football model-enriched play-by-play from the
+  SportsDataverse data repo**
+
+- [`load_espn_cfb_passing()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_passing.md)
+  :
+
+  **Load college football passing EPA splits from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+  :
+
+  **Load ESPN college football play-by-play from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_percentiles()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_percentiles.md)
+  :
+
+  **Load college football team percentile profiles from the
+  SportsDataverse data repo**
+
+- [`load_espn_cfb_play_participants()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_play_participants.md)
+  :
+
+  **Load ESPN college football play participants from the
+  SportsDataverse data repo**
+
+- [`load_espn_cfb_player_box()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_player_box.md)
+  :
+
+  **Load ESPN college football player box scores from the
+  SportsDataverse data repo**
+
+- [`load_espn_cfb_power_index()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_power_index.md)
+  :
+
+  **Load ESPN college football FPI power index from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_receiving()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_receiving.md)
+  :
+
+  **Load college football receiving EPA splits from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_rushing()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_rushing.md)
+  :
+
+  **Load college football rushing EPA splits from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_schedules.md)
+  :
+
+  **Load ESPN college football schedules from the SportsDataverse data
+  repo**
+
+- [`load_espn_cfb_team_box()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_box.md)
+  :
+
+  **Load ESPN college football team box scores from the SportsDataverse
+  data repo**
+
+- [`load_espn_cfb_team_summaries()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_summaries.md)
+  :
+
+  **Load college football team season summaries from the SportsDataverse
+  data repo**
+
+- [`load_ncaa_mfb_drives()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_drives.md)
+  :
+
+  **Load NCAA men's football drives (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_linescore()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_linescore.md)
+  :
+
+  **Load NCAA men's football linescores (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_officials()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_officials.md)
+  :
+
+  **Load NCAA men's football officials (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md)
+  :
+
+  **Load NCAA men's football play-by-play (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+  :
+
+  **Load NCAA men's football play-by-play, cfbfastR-shaped from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_player_stats.md)
+  :
+
+  **Load NCAA men's football player stats (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_rosters.md)
+  :
+
+  **Load NCAA men's football rosters (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_schedule()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_schedule.md)
+  :
+
+  **Load NCAA men's football schedules (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_team_stats.md)
+  :
+
+  **Load NCAA men's football team stats (stats.ncaa.org) from the
+  SportsDataverse data repo**
+
+- [`load_ncaa_mfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_teams.md)
+  :
+
+  **Load NCAA men's football teams (stats.ncaa.org) from the
+  SportsDataverse data repo**
 
 ### Update or Create Database
 

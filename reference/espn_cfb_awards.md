@@ -142,8 +142,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_awards(year = 2024))
-#> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:56:30 UTC
+#> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:14 UTC
 #> # A tibble: 34 × 19
 #>    season award_id name                 description athlete_id team_id team_name
 #>     <int> <chr>    <chr>                <chr>       <chr>      <chr>   <chr>    
@@ -164,8 +164,8 @@ Other ESPN CFB Functions:
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>, award_ref <chr>,
 #> #   athlete_ref <chr>, team_ref <chr>
   try(espn_cfb_awards(year = 2024, team_detail = FALSE))
-#> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:56:32 UTC
+#> ── Awards data from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:14 UTC
 #> # A tibble: 34 × 9
 #>    season award_id name     description athlete_id team_id award_ref athlete_ref
 #>     <int> <chr>    <chr>    <chr>       <chr>      <chr>   <chr>     <chr>      

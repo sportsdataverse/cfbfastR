@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,7 +137,7 @@
 
 <p><code>cfbfastR</code> is the R package for clean, tidy college-football play-by-play, schedule, roster, ratings, betting, recruiting, and box-score data. It wraps <strong>CollegeFootballData (CFBD)</strong>, <strong>ESPN</strong> college-football endpoints, plus <strong>Fox Sports</strong> and <strong>Yahoo</strong>. Companions: <code>sportsdataverse</code>/<code>cfbfastR-py</code> (Python CFB surface), and the <code>cfbfastR-cfb-raw</code> (scraper) + <code>cfbfastR-cfb-data</code> (modeling/release) pipeline repos. Released on CRAN + r-universe. Docs: <a href="https://cfbfastR.sportsdataverse.org" class="uri">https://cfbfastR.sportsdataverse.org</a>.</p>
 <ul><li>
-<strong>Version:</strong> 2.3.0 (DESCRIPTION) · <strong>License:</strong> MIT · <strong>R:</strong> &gt;= 4.1.0 (native pipe <code>|&gt;</code>)</li>
+<strong>Version:</strong> 3.0.0 (DESCRIPTION) · <strong>License:</strong> MIT · <strong>R:</strong> &gt;= 4.1.0 (native pipe <code>|&gt;</code>)</li>
 <li>
 <strong>Branch:</strong> <code>main</code> is default + release branch.</li>
 <li>
@@ -171,7 +171,7 @@
 </td>
 <td>ESPN (<code>site.api.espn.com</code> + <code>sports.core.api.espn.com</code>)</td>
 <td>none</td>
-<td>~75 wrappers (2.3.0 expanded ESPN from 8 → 73); core-v2 <code>$ref</code>-heavy payloads</td>
+<td>~75 wrappers (3.0.0 expanded ESPN from 8 → 73); core-v2 <code>$ref</code>-heavy payloads</td>
 </tr><tr><td><code>fox_cfb_*</code></td>
 <td><code>api.foxsports.com/bifrost/v1/cfb</code></td>
 <td>public web key</td>
@@ -181,13 +181,16 @@
 <td>Yahoo Sports</td>
 <td>none</td>
 <td>scoreboard/boxscore/player+team season stats</td>
-</tr><tr><td><code>load_cfb_*</code></td>
+</tr><tr><td>
+<code>load_cfb_*</code> / <code>load_espn_cfb_*</code> / <code>load_ncaa_mfb_*</code>
+</td>
 <td>release artifacts</td>
 <td>none</td>
-<td>full-season loaders from <code>sportsdataverse-data</code> releases</td>
+<td>43 full-season loaders from <code>sportsdataverse-data</code> releases</td>
 </tr></tbody></table><p><strong>CFBD API key:</strong> <code><a href="reference/register_cfbd.html">register_cfbd()</a></code> saves <code>CFBD_API_KEY</code>; <code><a href="reference/register_cfbd.html">cfbd_key()</a></code> / <code><a href="reference/register_cfbd.html">has_cfbd_key()</a></code> / <code><a href="reference/register_cfbd.html">cfbd_api_key_info()</a></code> inspect it. Register at <a href="https://collegefootballdata.com/key" class="external-link uri">https://collegefootballdata.com/key</a>.</p>
 <p><strong>Loaders:</strong> <code>load_cfb_pbp(seasons)</code> pulls per-season <code>.rds</code> from the <code>sportsdataverse-data</code> release tag <code>cfbfastR_cfb_pbp</code> (<strong>floor 2014</strong>, default <code>most_recent_cfb_season()</code>); <code>load_cfb.R</code> has <code>load_cfb_rosters/_schedules/_teams</code>. <code><a href="reference/update_cfb_db.html">update_cfb_db()</a></code> builds/refreshes a local SQLite copy. Progress via <code>progressr</code> (optional Suggest) — there is no <code>furrr</code>/<code>future</code> parallelism.</p>
-<p><strong>Modular PBP/EPA/WPA engine</strong> (<code>R/pbp_*.R</code>, landed in 2.3.0): legacy entry points <code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code> + <code>espn_cfb_pbp(epa_wpa=)</code> and <strong>v2</strong> orchestrators <code><a href="reference/cfbd_pbp_data_v2.html">cfbd_pbp_data_v2()</a></code> + <code><a href="reference/espn_cfb_pbp_v2.html">espn_cfb_pbp_v2()</a></code> both feed one shared <code>.run_epa_wpa()</code> engine (<code>pbp_epa_wpa_engine.R</code>). Flow: <code>.cfbd_to_epa_input()</code> / <code>.espn_to_epa_input()</code> adapters (<code>pbp_adapters.R</code>) → engine → play taxonomy centralized in <code>pbp_taxonomy.R</code> (single source of truth, replaced 4 drifted copies) → <code>.pbp_apply_output_schema(df, output=)</code> applies <code>.pbp_output_order</code> column order + the <strong><code>"default"</code>/<code>"lean"</code>/<code>"full"</code> tier</strong> selectors (<code>pbp_output_schema.R</code>). Models are mgcv/nnet/xgboost EP/FG/WP. ESPN team/venue/coach metadata the bare payload omits is resolved by <code>.espn_pbp_game_meta()</code>.</p>
+<p><strong>Release-dataset loaders (3.0.0):</strong> three generated-then-hand-maintained files follow the wehoop <code>load_ncaa_wbb.R</code> shape (seasons vector or <code>TRUE</code>, progressr, <code>rbindlist</code>, <code>dbConnection</code>/<code>tablename</code> write-through with dots forwarded to <code>dbWriteTable</code>): <code>R/load_espn_cfb.R</code> (27 <code>load_espn_cfb_*</code> ESPN-derived datasets, mostly 2004+), <code>R/load_cfb_datasets.R</code> (11 ratings / talent / recruiting / crosswalk datasets), <code>R/load_ncaa_mfb.R</code> (10 stats.ncaa.org datasets, 2013+, incl. FCS). One loader per release tag; stem == asset file prefix. Parquet-only tags go through <code><a href="reference/parquet_from_url.html">parquet_from_url()</a></code> (<code>utils.R</code>, arrow is Suggests → guarded by <code><a href="https://rlang.r-lib.org/reference/is_installed.html" class="external-link">rlang::check_installed</a></code>). PBP delineation: <code>load_cfb_pbp</code> = classic cfbfastR EPA pbp (2014+); <code>load_espn_cfb_pbp</code> = ESPN-derived 469-col pbp (2004+); <code>load_ncaa_mfb_pbp</code> = native stats.ncaa.org parse; <code>load_ncaa_mfb_pbp_cfbfastr</code> = same plays on cfbfastR column conventions. When a new tag appears on sportsdataverse-data, add a loader to the matching file following the neighboring function’s shape.</p>
+<p><strong>Modular PBP/EPA/WPA engine</strong> (<code>R/pbp_*.R</code>, landed in 3.0.0): legacy entry points <code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code> + <code>espn_cfb_pbp(epa_wpa=)</code> and <strong>v2</strong> orchestrators <code><a href="reference/cfbd_pbp_data_v2.html">cfbd_pbp_data_v2()</a></code> + <code><a href="reference/espn_cfb_pbp_v2.html">espn_cfb_pbp_v2()</a></code> both feed one shared <code>.run_epa_wpa()</code> engine (<code>pbp_epa_wpa_engine.R</code>). Flow: <code>.cfbd_to_epa_input()</code> / <code>.espn_to_epa_input()</code> adapters (<code>pbp_adapters.R</code>) → engine → play taxonomy centralized in <code>pbp_taxonomy.R</code> (single source of truth, replaced 4 drifted copies) → <code>.pbp_apply_output_schema(df, output=)</code> applies <code>.pbp_output_order</code> column order + the <strong><code>"default"</code>/<code>"lean"</code>/<code>"full"</code> tier</strong> selectors (<code>pbp_output_schema.R</code>). Models are mgcv/nnet/xgboost EP/FG/WP. ESPN team/venue/coach metadata the bare payload omits is resolved by <code>.espn_pbp_game_meta()</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="conventions">Conventions<a class="anchor" aria-label="anchor" href="#conventions"></a></h2>
@@ -225,7 +228,7 @@
 <div class="section level2">
 <h2 id="gotchas">Gotchas<a class="anchor" aria-label="anchor" href="#gotchas"></a></h2>
 <ul><li>
-<strong><code>refactor/pbp-epa-wpa-modular</code> is merged</strong> — the modular engine + ESPN catalog expansion shipped in 2.3.0 on <code>main</code>. Don’t look for a separate dev branch.</li>
+<strong><code>refactor/pbp-epa-wpa-modular</code> is merged</strong> — the modular engine + ESPN catalog expansion shipped in 3.0.0 on <code>main</code>. Don’t look for a separate dev branch.</li>
 <li>
 <strong>CFBD rate limits:</strong> free tier caps per-minute; wrappers surface <code>cli_alert_danger</code> on 429 but don’t hot-retry — <code><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep()</a></code> and re-run the range.</li>
 <li>
@@ -234,7 +237,7 @@
 <strong><code>season</code> convention:</strong> calendar year of the fall season (Jan-2024 Rose Bowl is <code>season=2023</code>); OT possessions model as drives with <code>period &gt;= 5</code>.</li>
 <li>Functions deprecated via <code><a href="https://lifecycle.r-lib.org/reference/deprecate_soft.html" class="external-link">lifecycle::deprecate_stop()</a></code> + <code>@keywords internal</code> live in <code>cfbd_metrics.R</code> / <code>espn_cfb_ratings.R</code> and are excluded from the pkgdown index.</li>
 <li>
-<strong><code>_pkgdown.yml</code></strong> auto-picks <code>starts_with("cfbd_"/"espn_cfb_"/"load_cfb_")</code>; other new exports need a manual <code>reference:</code> entry. Keep <code>NEWS.md</code> / <code>cran-comments.md</code> / <code>_pkgdown.yml</code> in sync on any API-surface change. New <code>NEWS.md</code> bullets go under the current <code># **cfbfastR v2.3.0**</code> heading — don’t open a new version section before release.</li>
+<strong><code>_pkgdown.yml</code></strong> auto-picks <code>starts_with("cfbd_"/"espn_cfb_"/"load_cfb_")</code>; other new exports need a manual <code>reference:</code> entry. Keep <code>NEWS.md</code> / <code>cran-comments.md</code> / <code>_pkgdown.yml</code> in sync on any API-surface change. New <code>NEWS.md</code> bullets go under the current <code># **cfbfastR v3.0.0**</code> heading — don’t open a new version section before release.</li>
 <li>Never hand-edit <code>NAMESPACE</code> or <code>man/</code> — regenerate with <code>devtools::document()</code>.</li>
 <li>
 <strong>Never add AI co-author trailers (Claude/Copilot/etc.) to commits.</strong> Conventional Commits (<code>feat:</code>/<code>fix:</code>/<code>docs:</code>/<code>test:</code>/<code>refactor:</code>/<code>chore:</code>/<code>ci:</code>), scope when useful (<code>fix(pbp): ...</code>). ```</li>

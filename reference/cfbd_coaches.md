@@ -111,8 +111,8 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
-#> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:52:03 UTC
+#> ── Coaches data from CollegeFootballData.com ───────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:32:08 UTC
 #> # A tibble: 126 × 19
 #>       id first_name last_name   hire_date team_id school  conference  year games
 #>    <int> <chr>      <chr>       <chr>       <int> <chr>   <chr>      <int> <int>

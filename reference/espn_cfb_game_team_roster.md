@@ -180,8 +180,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_game_team_roster(game_id = 401628339))
-#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:19 UTC
+#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:15 UTC
 #> # A tibble: 242 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -204,8 +204,8 @@ Other ESPN CFB Functions:
 #> #   athlete_ref <chr>, position_ref <chr>, position_name <chr>, …
   try(espn_cfb_game_team_roster(game_id = 401628339,
                                 position_detail = FALSE))
-#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:20 UTC
+#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:15 UTC
 #> # A tibble: 242 × 25
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -228,8 +228,8 @@ Other ESPN CFB Functions:
 #> #   athlete_ref <chr>, position_ref <chr>
   try(espn_cfb_game_team_roster(game_id = 401628339,
                                 team_detail = FALSE))
-#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:20 UTC
+#> ── Game team roster data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:15 UTC
 #> # A tibble: 242 × 20
 #>    game_id   team_id home_away athlete_id player_id display_name  jersey
 #>    <chr>     <chr>   <chr>     <chr>      <chr>     <chr>         <chr> 

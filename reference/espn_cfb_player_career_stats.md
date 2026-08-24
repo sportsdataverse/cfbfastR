@@ -164,8 +164,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024))
-#> ── Player season statistics from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:41 UTC
+#> ── Player season statistics from ESPN ──────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:33 UTC
 #> # A tibble: 163 × 19
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                
@@ -187,8 +187,8 @@ Other ESPN CFB Functions:
 #> #   athlete_position <chr>, athlete_position_abbreviation <chr>
   try(espn_cfb_player_career_stats(athlete_id = 102597, year = 2024,
                                  athlete_detail = FALSE))
-#> ── Player season statistics from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:41 UTC
+#> ── Player season statistics from ESPN ──────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:33 UTC
 #> # A tibble: 163 × 13
 #>    athlete_id season season_type category category_display stat_name            
 #>    <chr>       <int>       <int> <chr>    <chr>            <chr>                

@@ -109,8 +109,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_seasons())
-#> ── Seasons index from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:59:23 UTC
+#> ── Seasons index from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:38:02 UTC
 #> # A tibble: 155 × 5
 #>    season display_name start_date        end_date          season_ref           
 #>     <int> <chr>        <chr>             <chr>             <chr>                

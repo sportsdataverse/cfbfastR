@@ -32,6 +32,38 @@ if (!requireNamespace('remotes', quietly = TRUE)){
 remotes::install_github("sportsdataverse/cfbfastR")
 ```
 
+## **Full Season Data Loaders**
+
+`cfbfastR` ships four loader families that pull pre-built season
+datasets from the [sportsdataverse-data
+releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+— no API key, no scraping, one function call per dataset:
+
+| Family | Functions | Source / contents | Coverage |
+|----|----|----|----|
+| Classic | [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md), [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md), [`load_cfb_rosters()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters.md), [`load_cfb_teams()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams.md) | The original cfbfastR EPA/WPA play-by-play + companions | pbp 2014+ |
+| ESPN | `load_espn_cfb_*()` (27) | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+ |
+| Ratings & recruiting | [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md), [`load_cfb_ratings_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings_weekly.md), [`load_cfb_fpi_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_fpi_weekly.md), [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md), [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md), [`load_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruits.md), [`load_cfb_recruiting_proj()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruiting_proj.md), [`load_cfb_returning_production()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_returning_production.md), plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, CFBD↔︎ESPN id crosswalks | varies (2002+) |
+| NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10) | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses | 2013+ |
+
+**Which play-by-play do I want?**
+
+- [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
+  — the classic cfbfastR pbp with the full EPA/WPA model columns; FBS,
+  2014+. Existing code keeps working unchanged.
+- [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+  — the ESPN-derived pbp (469 columns incl. EPA/WPA and participant ids)
+  with deeper history, 2004+.
+- [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md)
+  — stats.ncaa.org pbp incl. FCS and lower divisions, 2013+;
+  [`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+  is the same data reshaped onto cfbfastR pbp column conventions for
+  cross-source binds.
+
+All loaders accept a vector of seasons (or `seasons = TRUE` for
+everything published) and an optional `dbConnection` + `tablename` to
+write straight into a database instead of returning a tibble.
+
 ## **Breaking Changes**
 
 [**Full News on

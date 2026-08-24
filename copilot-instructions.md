@@ -25,7 +25,7 @@
 
 ## Project Context
 
-cfbfastR is an R package (v2.3.0 dev) that provides clean, tidy college
+cfbfastR is an R package (v3.0.0 dev) that provides clean, tidy college
 football play-by-play, schedule, roster, ratings, and box-score data. It
 wraps the CollegeFootballData API (CFBD) and ESPN College Football
 endpoints, exporting 150+ functions across four function-family
@@ -46,10 +46,9 @@ development guide.**
 
 - Use feature branches for changes.
 - `main` is the default branch and release branch.
-- The active 2.3.0 development work lives on
-  `refactor/pbp-epa-wpa-modular` – the modular PBP/EPA/WPA engine, the
-  ESPN catalog refactor, and the equivalence harness all merge into that
-  branch before promotion to `main`.
+- The 3.0.0 development line lives on `main` — the modular PBP/EPA/WPA
+  engine, the ESPN catalog refactor, the equivalence harness, and the
+  release-dataset loaders have all landed there.
 - For any change to exported functions, update tests and documentation
   in the same PR.
 
@@ -81,7 +80,23 @@ pkgdown::build_site()
 | ESPN College Football catalog | `espn_cfb_` | [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md), [`espn_cfb_team()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_team.md) |
 | ESPN win-probability metrics | `espn_metrics_` | [`espn_metrics_wp()`](https://cfbfastR.sportsdataverse.org/reference/espn_metrics.md) |
 | ESPN ratings | `espn_ratings_` | [`espn_ratings_fpi()`](https://cfbfastR.sportsdataverse.org/reference/espn_ratings_fpi.md) |
-| Full-season data loaders | `load_cfb_` | [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md), [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md) |
+| Full-season data loaders | `load_cfb_` | [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md), [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md) |
+| ESPN-derived release datasets | `load_espn_cfb_` | [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md), [`load_espn_cfb_team_box()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_team_box.md) |
+| stats.ncaa.org release datasets | `load_ncaa_mfb_` | [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md), [`load_ncaa_mfb_schedule()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_schedule.md) |
+
+Loader delineation:
+[`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
+is the classic cfbfastR EPA/WPA pbp (2014+);
+[`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+is the ESPN-derived 469-column pbp (2004+);
+[`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md)
+is the native stats.ncaa.org parse (2013+, incl. FCS) and
+[`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+reshapes it onto cfbfastR pbp columns. One loader per
+sportsdataverse-data release tag; new loaders go in `R/load_espn_cfb.R`,
+`R/load_cfb_datasets.R`, or `R/load_ncaa_mfb.R` following the
+neighboring function’s shape (parquet-only tags use
+[`parquet_from_url()`](https://cfbfastR.sportsdataverse.org/reference/parquet_from_url.md)).
 
 The CFBD API requires a bearer token. Set the `CFBD_API_KEY` environment
 variable; users can register one via
@@ -394,7 +409,7 @@ regions by hand.
   two:
 
   - `NEWS.md` – all new bullets go under the most recent **unreleased**
-    version heading (currently `# **cfbfastR 2.3.0**`). Do NOT create a
+    version heading (currently `# **cfbfastR 3.0.0**`). Do NOT create a
     new version section ahead of release.
   - `cran-comments.md` – every user-visible / behavioral change should
     be reflected before submission. Internal-only changes can be

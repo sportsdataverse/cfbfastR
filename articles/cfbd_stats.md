@@ -144,9 +144,9 @@ passing_df |> gt() |>
 cfbd_stats_categories()
 ```
 
-    ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 2.3.0 ──
+    ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-19 18:05:03 UTC
+    ## ℹ Data updated: 2026-08-24 11:43:49 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

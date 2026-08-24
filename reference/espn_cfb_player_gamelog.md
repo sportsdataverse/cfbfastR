@@ -190,8 +190,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_player_gamelog(athlete_id = 102597, year = 2024))
-#> ── Player game log from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:42 UTC
+#> ── Player game log from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:35 UTC
 #> # A tibble: 11 × 46
 #>    athlete_id season season_type       game_id game_date  week at_vs opponent_id
 #>    <chr>       <int> <chr>             <chr>   <chr>     <int> <chr> <chr>      
@@ -216,8 +216,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_player_gamelog(athlete_id = 102597, year = 2024,
                               team_detail = FALSE,
                               athlete_detail = FALSE))
-#> ── Player game log from ESPN ───────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:43 UTC
+#> ── Player game log from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:35 UTC
 #> # A tibble: 11 × 30
 #>    athlete_id season season_type       game_id game_date  week at_vs opponent_id
 #>    <chr>       <int> <chr>             <chr>   <chr>     <int> <chr> <chr>      

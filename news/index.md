@@ -1,6 +1,57 @@
 # Changelog
 
-## **cfbfastR v2.3.0**
+## **cfbfastR v3.0.0**
+
+#### New release-dataset loaders (39 functions)
+
+`cfbfastR` now loads every published CFB dataset on the
+[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+release repo, closing the gap with `sportsdataverse-py`’s loader
+surface. All loaders return `cfbfastR_data`-tagged tibbles, accept
+`seasons = TRUE` for the full published range, and support the
+`dbConnection`/`tablename` database write-through.
+
+- `load_espn_cfb_*()` — 27 loaders for the ESPN-derived family: `pbp`,
+  `schedules`, `team_box`, `player_box`, `drives`, `game_rosters`,
+  `linescores`, `betting`, `play_participants`, `power_index`,
+  `percentiles`, `passing`, `rushing`, `receiving`, `team_summaries`,
+  `model_pbp`, and the eleven `adv_*` advanced-stats datasets.
+- [`load_cfb_ratings()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings.md),
+  [`load_cfb_ratings_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_ratings_weekly.md),
+  [`load_cfb_fpi_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_fpi_weekly.md),
+  [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md),
+  [`load_cfb_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_talent.md),
+  [`load_cfb_recruits()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruits.md),
+  [`load_cfb_recruiting_proj()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_recruiting_proj.md),
+  [`load_cfb_returning_production()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_returning_production.md)
+  — season/weekly ratings, talent, and recruiting datasets.
+- [`load_cfb_schedule_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedule_crosswalk.md),
+  [`load_cfb_teams_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_teams_crosswalk.md),
+  [`load_cfb_rosters_crosswalk()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_rosters_crosswalk.md)
+  — CFBD/ESPN id crosswalks.
+- `load_ncaa_mfb_*()` — 10 loaders for the stats.ncaa.org men’s football
+  family (covers FCS and lower divisions): `pbp`, `pbp_cfbfastr` (the
+  cfbfastR-schema-shaped variant), `drives`, `linescore`, `officials`,
+  `player_stats`, `rosters`, `schedule`, `team_stats`, `teams`.
+- New internal
+  [`parquet_from_url()`](https://cfbfastR.sportsdataverse.org/reference/parquet_from_url.md)
+  helper backs the parquet-only datasets (requires the suggested `arrow`
+  package).
+
+**Which play-by-play loader do I want?** Nothing is deprecated — the
+classic functions are unchanged; the new families add sources:
+
+- [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
+  (unchanged) — the classic cfbfastR EPA/WPA play-by-play, FBS 2014+.
+- [`load_espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_espn_cfb_pbp.md)
+  (new) — the ESPN-derived play-by-play (469 columns, EPA/WPA +
+  participant ids), 2004+.
+- [`load_ncaa_mfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp.md)
+  (new) — stats.ncaa.org play-by-play incl. FCS and lower divisions,
+  2013+;
+  [`load_ncaa_mfb_pbp_cfbfastr()`](https://cfbfastR.sportsdataverse.org/reference/load_ncaa_mfb_pbp_cfbfastr.md)
+  is the same data reshaped onto cfbfastR pbp column conventions for
+  cross-source binds.
 
 This release adds a 65-function ESPN college-football API layer,
 expanding `cfbfastR`’s ESPN surface from 8 wrappers to 73. The new
@@ -396,7 +447,7 @@ Every one was exercised against the live API before being committed.
 [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
 `competition` and `round` on
 [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md)
-(College Football Playoff filtering), `provider` on
+(College Football Playoff filtering), `line_provider` on
 [`cfbd_betting_lines()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_lines.md),
 `conference` on
 [`cfbd_play_stats_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_play_stats_player.md)

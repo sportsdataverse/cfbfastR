@@ -36,7 +36,7 @@
 
     <a class="navbar-brand me-2" href="index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -201,6 +201,67 @@
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"sportsdataverse/cfbfastR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="full-season-data-loaders">
+<strong>Full Season Data Loaders</strong><a class="anchor" aria-label="anchor" href="#full-season-data-loaders"></a>
+</h2>
+<p><code>cfbfastR</code> ships four loader families that pull pre-built season datasets from the <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data releases</a> — no API key, no scraping, one function call per dataset:</p>
+<table class="table">
+<colgroup>
+<col width="3%">
+<col width="48%">
+<col width="45%">
+<col width="2%">
+</colgroup>
+<thead><tr>
+<th>Family</th>
+<th>Functions</th>
+<th>Source / contents</th>
+<th>Coverage</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Classic</td>
+<td>
+<code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code>, <code><a href="reference/load_cfb_schedules.html">load_cfb_schedules()</a></code>, <code><a href="reference/load_cfb_rosters.html">load_cfb_rosters()</a></code>, <code><a href="reference/load_cfb_teams.html">load_cfb_teams()</a></code>
+</td>
+<td>The original cfbfastR EPA/WPA play-by-play + companions</td>
+<td>pbp 2014+</td>
+</tr>
+<tr>
+<td>ESPN</td>
+<td>
+<code>load_espn_cfb_*()</code> (27)</td>
+<td>ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven <code>adv_*</code> advanced-stat datasets</td>
+<td>mostly 2004+</td>
+</tr>
+<tr>
+<td>Ratings &amp; recruiting</td>
+<td>
+<code><a href="reference/load_cfb_ratings.html">load_cfb_ratings()</a></code>, <code><a href="reference/load_cfb_ratings_weekly.html">load_cfb_ratings_weekly()</a></code>, <code><a href="reference/load_cfb_fpi_weekly.html">load_cfb_fpi_weekly()</a></code>, <code><a href="reference/load_cfb_team_summaries_weekly.html">load_cfb_team_summaries_weekly()</a></code>, <code><a href="reference/load_cfb_team_talent.html">load_cfb_team_talent()</a></code>, <code><a href="reference/load_cfb_recruits.html">load_cfb_recruits()</a></code>, <code><a href="reference/load_cfb_recruiting_proj.html">load_cfb_recruiting_proj()</a></code>, <code><a href="reference/load_cfb_returning_production.html">load_cfb_returning_production()</a></code>, plus the <code>load_cfb_*_crosswalk()</code> id crosswalks</td>
+<td>Season/weekly power ratings, talent composite, recruiting, CFBD↔︎ESPN id crosswalks</td>
+<td>varies (2002+)</td>
+</tr>
+<tr>
+<td>NCAA (stats.ncaa.org)</td>
+<td>
+<code>load_ncaa_mfb_*()</code> (10)</td>
+<td>pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses</td>
+<td>2013+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Which play-by-play do I want?</strong></p>
+<ul>
+<li>
+<code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code> — the classic cfbfastR pbp with the full EPA/WPA model columns; FBS, 2014+. Existing code keeps working unchanged.</li>
+<li>
+<code><a href="reference/load_espn_cfb_pbp.html">load_espn_cfb_pbp()</a></code> — the ESPN-derived pbp (469 columns incl. EPA/WPA and participant ids) with deeper history, 2004+.</li>
+<li>
+<code><a href="reference/load_ncaa_mfb_pbp.html">load_ncaa_mfb_pbp()</a></code> — stats.ncaa.org pbp incl. FCS and lower divisions, 2013+; <code><a href="reference/load_ncaa_mfb_pbp_cfbfastr.html">load_ncaa_mfb_pbp_cfbfastr()</a></code> is the same data reshaped onto cfbfastR pbp column conventions for cross-source binds.</li>
+</ul>
+<p>All loaders accept a vector of seasons (or <code>seasons = TRUE</code> for everything published) and an optional <code>dbConnection</code> + <code>tablename</code> to write straight into a database instead of returning a tibble.</p>
+</div>
+<div class="section level2">
 <h2 id="breaking-changes">
 <strong>Breaking Changes</strong><a class="anchor" aria-label="anchor" href="#breaking-changes"></a>
 </h2>
@@ -214,13 +275,13 @@
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key" class="external-link">College Football Data Key Registration.</a></p></li>
 <li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=YOUR-API-KEY-HERE</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span></span></code></pre></div>
 <p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the <code>cfbd_</code> functions without any other changes.</p>
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"YOUR-API-KEY-HERE"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>

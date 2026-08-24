@@ -161,8 +161,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_team_leaders(team_id = 61, year = 2024))
-#> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 18:00:18 UTC
+#> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:38:55 UTC
 #> # A tibble: 176 × 20
 #>    season season_type team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>   <chr>     <chr>             <chr>        
@@ -184,8 +184,8 @@ Other ESPN CFB Functions:
 #> #   display_value <chr>, athlete_ref <chr>
   try(espn_cfb_team_leaders(team_id = 61, year = 2024,
                             team_detail = FALSE))
-#> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 18:00:18 UTC
+#> ── Team statistical leaders from ESPN ──────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:38:55 UTC
 #> # A tibble: 176 × 10
 #>    season season_type team_id category_name category_display leader_rank
 #>     <int>       <int> <chr>   <chr>         <chr>                  <int>

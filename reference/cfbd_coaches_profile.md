@@ -60,8 +60,8 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches_profile(coach_id = 1))
-#> ── Get a coach profile from CollegeFootballData.com ────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:52:04 UTC
+#> ── Get a coach profile from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:32:09 UTC
 #> # A tibble: 1 × 20
 #>      id first_name last_name display_name  current_team birth_date alma_mater_id
 #>   <int> <chr>      <chr>     <chr>         <lgl>        <chr>              <int>

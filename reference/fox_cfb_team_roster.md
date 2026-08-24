@@ -44,9 +44,9 @@ A `cfbfastR`-tagged tibble with one row per player:
 ``` r
 # \donttest{
   try(fox_cfb_team_roster(team_id = "11"))
-#> ── Roster data from Fox Sports (Bifrost) ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 18:01:13 UTC
-#> # A tibble: 114 × 8
+#> ── Roster data from Fox Sports (Bifrost) ───────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:39:21 UTC
+#> # A tibble: 113 × 8
 #>    team_id position_group player             pos   cls   ht     wt    athlete_id
 #>    <chr>   <chr>          <chr>              <chr> <chr> <chr>  <chr> <chr>     
 #>  1 11      OFFENSE        Seuseu Alofaituli  OL    SO    "6'2\… 290 … 233452    
@@ -59,6 +59,6 @@ A `cfbfastR`-tagged tibble with one row per player:
 #>  8 11      OFFENSE        Brennan Burton     WR    SO    "6'0\… 205 … 227766    
 #>  9 11      OFFENSE        Demetrius Campbell OL    FR    "6'6\… 330 … 233461    
 #> 10 11      OFFENSE        Jackson Cantwell   OL    FR    "6'8\… 330 … 249398    
-#> # ℹ 104 more rows
+#> # ℹ 103 more rows
 # }
 ```

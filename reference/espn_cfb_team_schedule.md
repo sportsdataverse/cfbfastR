@@ -175,8 +175,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_team_schedule(team_id = 61, year = 2024))
-#> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 18:00:56 UTC
+#> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:39:07 UTC
 #> # A tibble: 13 × 43
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -202,8 +202,8 @@ Other ESPN CFB Functions:
 #> #   opponent_team_location <chr>, opponent_team_display_name <chr>, …
   try(espn_cfb_team_schedule(team_id = 61, year = 2024,
                              team_detail = FALSE))
-#> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 18:00:56 UTC
+#> ── Team schedule from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:39:07 UTC
 #> # A tibble: 13 × 23
 #>    season team_id game_id  game_date game_name game_short_name season_type  week
 #>     <int> <chr>   <chr>    <chr>     <chr>     <chr>                 <int> <int>

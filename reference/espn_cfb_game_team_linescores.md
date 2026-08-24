@@ -144,8 +144,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_game_team_linescores(game_id = 401628339))
-#> ── Game team linescores data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:17 UTC
+#> ── Game team linescores data from ESPN ─────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:13 UTC
 #> # A tibble: 8 × 20
 #>   game_id   team_id team_name  team_abbreviation team_location team_display_name
 #>   <chr>     <chr>   <chr>      <chr>             <chr>         <chr>            
@@ -164,8 +164,8 @@ Other ESPN CFB Functions:
 #> #   source_description <chr>, linescore_ref <chr>
   try(espn_cfb_game_team_linescores(game_id = 401628339,
                                     team_detail = FALSE))
-#> ── Game team linescores data from ESPN ─────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:17 UTC
+#> ── Game team linescores data from ESPN ─────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:13 UTC
 #> # A tibble: 8 × 10
 #>   game_id   team_id home_away period value display_value source_id source_state
 #>   <chr>     <chr>   <chr>      <int> <dbl> <chr>         <chr>     <chr>       

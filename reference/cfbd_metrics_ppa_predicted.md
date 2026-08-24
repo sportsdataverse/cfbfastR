@@ -48,8 +48,8 @@ Other CFBD Metrics:
 ``` r
 # \donttest{
   try(cfbd_metrics_ppa_predicted(down = 1, distance = 10))
-#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:52:31 UTC
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:32:29 UTC
 #> # A tibble: 90 × 2
 #>    yard_line predicted_points
 #>        <int>            <dbl>
@@ -66,8 +66,8 @@ Other CFBD Metrics:
 #> # ℹ 80 more rows
 
   try(cfbd_metrics_ppa_predicted(down = 3, distance = 10))
-#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:52:31 UTC
+#> ── PPA data from CollegeFootballData.com ───────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:32:29 UTC
 #> # A tibble: 90 × 2
 #>    yard_line predicted_points
 #>        <int>            <dbl>

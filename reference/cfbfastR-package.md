@@ -25,6 +25,9 @@ Useful links:
 
 Authors:
 
+- Saiem Gilani <saiem.gilani@gmail.com>
+  ([ORCID](https://orcid.org/0000-0002-7194-9067))
+
 - Akshay Easwaran <akeaswaran@me.com>
 
 - Jared Lee <13jaredlee@gmail.com>
@@ -54,3 +57,5 @@ Other contributors:
 - John Edwards <edwards1860@gmail.com> \[contributor\]
 
 - Brad Hill <bradhill119@gmail.com> \[contributor\]
+
+- cfbfastR authors \[copyright holder\]

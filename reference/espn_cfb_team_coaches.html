@@ -9,7 +9,7 @@ current season – one row per coach, with name, birth detail, and experience.">
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -264,8 +264,8 @@ A catalog failure degrades to <code>NA</code> rather than erroring the wrapper. 
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_team_coaches</span><span class="op">(</span>team_id <span class="op">=</span> <span class="fl">61</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team coaches from ESPN ──────────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 18:00:16 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team coaches from ESPN ──────────────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-24 11:38:53 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season team_id team_name team_abbreviation team_location team_display_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span>
@@ -276,8 +276,8 @@ A catalog failure degrades to <code>NA</code> rather than erroring the wrapper. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   last_name &lt;chr&gt;, date_of_birth &lt;chr&gt;, birth_city &lt;chr&gt;, birth_state &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   birth_country &lt;chr&gt;, experience &lt;int&gt;, coach_ref &lt;chr&gt;</span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_team_coaches</span><span class="op">(</span>team_id <span class="op">=</span> <span class="fl">61</span>, team_detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team coaches from ESPN ──────────────────────────────────── <span style="font-style: italic;">cfbfastR 2.3.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-19 18:00:17 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team coaches from ESPN ──────────────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-24 11:38:53 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season team_id coach_id first_name last_name date_of_birth     birth_city</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>

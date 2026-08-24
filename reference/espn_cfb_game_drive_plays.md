@@ -330,8 +330,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391))
-#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:57:12 UTC
+#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:31 UTC
 #> # A tibble: 6 × 85
 #>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
 #>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
@@ -351,8 +351,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391,
                                 participants = "long"))
-#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:57:13 UTC
+#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:31 UTC
 #> # A tibble: 14 × 126
 #>    game_id  drive_id play_id sequence_number type_id type_text type_abbreviation
 #>    <chr>    <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
@@ -381,8 +381,8 @@ Other ESPN CFB Functions:
                                 drive_id = 4016283391,
                                 participants = "wide",
                                 participants_list = TRUE))
-#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:57:17 UTC
+#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:33 UTC
 #> # A tibble: 6 × 134
 #>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
 #>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
@@ -403,8 +403,8 @@ Other ESPN CFB Functions:
                                 drive_id = 4016283391,
                                 team_participants = "wide",
                                 team_participants_list = TRUE))
-#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:57:18 UTC
+#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:33 UTC
 #> # A tibble: 6 × 112
 #>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
 #>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            
@@ -424,8 +424,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_drive_plays(game_id = 401628339,
                                 drive_id = 4016283391,
                                 team_detail = FALSE))
-#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:57:18 UTC
+#> ── Game drive plays data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:36:33 UTC
 #> # A tibble: 6 × 55
 #>   game_id   drive_id play_id sequence_number type_id type_text type_abbreviation
 #>   <chr>     <chr>    <chr>   <chr>           <chr>   <chr>     <chr>            

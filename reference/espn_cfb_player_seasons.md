@@ -140,8 +140,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_player_seasons(athlete_id = 102597))
-#> ── Player seasons from ESPN ────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:44 UTC
+#> ── Player seasons from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:36 UTC
 #> # A tibble: 10 × 11
 #>    athlete_id season stat_type season_ref    statistics_ref athlete_display_name
 #>    <chr>       <int> <chr>     <chr>         <chr>          <chr>               
@@ -159,8 +159,8 @@ Other ESPN CFB Functions:
 #> #   athlete_jersey <chr>, athlete_position <chr>,
 #> #   athlete_position_abbreviation <chr>
   try(espn_cfb_player_seasons(athlete_id = 102597, athlete_detail = FALSE))
-#> ── Player seasons from ESPN ────────────────────────────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:58:44 UTC
+#> ── Player seasons from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:37:36 UTC
 #> # A tibble: 10 × 5
 #>    athlete_id season stat_type season_ref                         statistics_ref
 #>    <chr>       <int> <chr>     <chr>                              <chr>         

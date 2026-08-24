@@ -33,6 +33,8 @@
 
 - **[Brad Hill](https://twitter.com/bradisblogging)**. Contributor.
 
+- **cfbfastR authors**. Copyright holder.
+
 ## Citation
 
 Source:
@@ -51,5 +53,5 @@ https://cfbfastR.sportsdataverse.org/ doi:
       journal = {CRAN: Contributed Packages},
       publisher = {The R Foundation},
       year = {2021},
-      note = {R package version 2.3.0},
+      note = {R package version 3.0.0},
     }

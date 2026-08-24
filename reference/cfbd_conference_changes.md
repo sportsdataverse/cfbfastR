@@ -54,7 +54,7 @@ Other CFBD Conference Functions:
 # \donttest{
   try(cfbd_conference_changes(year = 2024))
 #> ── Get conference realignment changes from CollegeFootballData.com ─────────────
-#> ℹ Data updated: 2026-08-19 17:52:08 UTC
+#> ℹ Data updated: 2026-08-24 11:32:12 UTC
 #> # A tibble: 36 × 11
 #>    team_id team        from_conference_id from_conference from_conference_abbr…¹
 #>      <int> <chr>                    <int> <chr>           <chr>                 

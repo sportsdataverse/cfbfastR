@@ -86,12 +86,12 @@ Other CFBD Games:
 ``` r
 # \donttest{
   try(cfbd_game_records(2018, team = "Notre Dame"))
-#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:52:18 UTC
+#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:32:19 UTC
 #> # A tibble: 1 × 35
-#>    year team_id team       classification conference      division expected_wins
-#>   <int>   <int> <chr>      <chr>          <chr>           <chr>            <dbl>
-#> 1  2018      87 Notre Dame fbs            FBS Independen… ""                10.5
+#>   year  team_id team       classification conference      division expected_wins
+#>   <chr>   <int> <chr>      <chr>          <chr>           <chr>            <dbl>
+#> 1 2018       87 Notre Dame fbs            FBS Independen… ""                10.5
 #> # ℹ 28 more variables: total_games <int>, total_wins <int>, total_losses <int>,
 #> #   total_ties <int>, conference_games <int>, conference_wins <int>,
 #> #   conference_losses <int>, conference_ties <int>, home_games <int>,
@@ -101,12 +101,12 @@ Other CFBD Games:
 #> #   regular_season_games <int>, regular_season_wins <int>, …
 
   try(cfbd_game_records(2013, team = "Florida State"))
-#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 2.3.0 ──
-#> ℹ Data updated: 2026-08-19 17:52:18 UTC
+#> ── Game records data from CollegeFootballData.com ──────────── cfbfastR 3.0.0 ──
+#> ℹ Data updated: 2026-08-24 11:32:19 UTC
 #> # A tibble: 1 × 35
-#>    year team_id team          classification conference division expected_wins
-#>   <int>   <int> <chr>         <chr>          <chr>      <chr>            <dbl>
-#> 1  2013      52 Florida State fbs            ACC        Atlantic          12.3
+#>   year  team_id team          classification conference division expected_wins
+#>   <chr>   <int> <chr>         <chr>          <chr>      <chr>            <dbl>
+#> 1 2013       52 Florida State fbs            ACC        Atlantic          12.3
 #> # ℹ 28 more variables: total_games <int>, total_wins <int>, total_losses <int>,
 #> #   total_ties <int>, conference_games <int>, conference_wins <int>,
 #> #   conference_losses <int>, conference_ties <int>, home_games <int>,

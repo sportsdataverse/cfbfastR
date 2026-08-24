@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,7 @@
 
 <div class="section level2">
 <h2 id="project-context">Project Context<a class="anchor" aria-label="anchor" href="#project-context"></a></h2>
-<p>cfbfastR is an R package (v2.3.0 dev) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD) and ESPN College Football endpoints, exporting 150+ functions across four function-family prefixes: <code>cfbd_*()</code>, <code>espn_cfb_*()</code>, <code>espn_metrics_*()</code>, and <code>espn_ratings_*()</code>. Full-season parquet/RDS releases land under <code>load_cfb_*()</code>. The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (<a href="https://cfbfastr.sportsdataverse.org/" class="external-link uri">https://cfbfastr.sportsdataverse.org/</a>).</p>
+<p>cfbfastR is an R package (v3.0.0 dev) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD) and ESPN College Football endpoints, exporting 150+ functions across four function-family prefixes: <code>cfbd_*()</code>, <code>espn_cfb_*()</code>, <code>espn_metrics_*()</code>, and <code>espn_ratings_*()</code>. Full-season parquet/RDS releases land under <code>load_cfb_*()</code>. The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (<a href="https://cfbfastr.sportsdataverse.org/" class="external-link uri">https://cfbfastr.sportsdataverse.org/</a>).</p>
 <p>When this file conflicts with the repository’s developer docs, follow <code>CLAUDE.md</code>, <code>CONTRIBUTING.md</code>, and the current test implementations under <code>tests/testthat/</code> as the source of truth.</p>
 <p><strong>If a section here is incomplete, see <code>CLAUDE.md</code> for the full development guide.</strong></p>
 </div>
@@ -165,7 +165,7 @@
 <ul><li>Use feature branches for changes.</li>
 <li>
 <code>main</code> is the default branch and release branch.</li>
-<li>The active 2.3.0 development work lives on <code>refactor/pbp-epa-wpa-modular</code> – the modular PBP/EPA/WPA engine, the ESPN catalog refactor, and the equivalence harness all merge into that branch before promotion to <code>main</code>.</li>
+<li>The 3.0.0 development line lives on <code>main</code> — the modular PBP/EPA/WPA engine, the ESPN catalog refactor, the equivalence harness, and the release-dataset loaders have all landed there.</li>
 <li>For any change to exported functions, update tests and documentation in the same PR.</li>
 </ul></div>
 <div class="section level2">
@@ -210,9 +210,20 @@
 </tr><tr><td>Full-season data loaders</td>
 <td><code>load_cfb_</code></td>
 <td>
-<code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code>, <code><a href="reference/load_cfb_schedules.html">load_cfb_schedules()</a></code>
+<code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code>, <code><a href="reference/load_cfb_ratings.html">load_cfb_ratings()</a></code>
 </td>
-</tr></tbody></table><p>The CFBD API requires a bearer token. Set the <code>CFBD_API_KEY</code> environment variable; users can register one via <code><a href="reference/register_cfbd.html">register_cfbd()</a></code> and confirm with <code><a href="reference/register_cfbd.html">cfbd_api_key_info()</a></code> / <code><a href="reference/register_cfbd.html">has_cfbd_key()</a></code>.</p>
+</tr><tr><td>ESPN-derived release datasets</td>
+<td><code>load_espn_cfb_</code></td>
+<td>
+<code><a href="reference/load_espn_cfb_pbp.html">load_espn_cfb_pbp()</a></code>, <code><a href="reference/load_espn_cfb_team_box.html">load_espn_cfb_team_box()</a></code>
+</td>
+</tr><tr><td>stats.ncaa.org release datasets</td>
+<td><code>load_ncaa_mfb_</code></td>
+<td>
+<code><a href="reference/load_ncaa_mfb_pbp.html">load_ncaa_mfb_pbp()</a></code>, <code><a href="reference/load_ncaa_mfb_schedule.html">load_ncaa_mfb_schedule()</a></code>
+</td>
+</tr></tbody></table><p>Loader delineation: <code><a href="reference/load_cfb_pbp.html">load_cfb_pbp()</a></code> is the classic cfbfastR EPA/WPA pbp (2014+); <code><a href="reference/load_espn_cfb_pbp.html">load_espn_cfb_pbp()</a></code> is the ESPN-derived 469-column pbp (2004+); <code><a href="reference/load_ncaa_mfb_pbp.html">load_ncaa_mfb_pbp()</a></code> is the native stats.ncaa.org parse (2013+, incl. FCS) and <code><a href="reference/load_ncaa_mfb_pbp_cfbfastr.html">load_ncaa_mfb_pbp_cfbfastr()</a></code> reshapes it onto cfbfastR pbp columns. One loader per sportsdataverse-data release tag; new loaders go in <code>R/load_espn_cfb.R</code>, <code>R/load_cfb_datasets.R</code>, or <code>R/load_ncaa_mfb.R</code> following the neighboring function’s shape (parquet-only tags use <code><a href="reference/parquet_from_url.html">parquet_from_url()</a></code>).</p>
+<p>The CFBD API requires a bearer token. Set the <code>CFBD_API_KEY</code> environment variable; users can register one via <code><a href="reference/register_cfbd.html">register_cfbd()</a></code> and confirm with <code><a href="reference/register_cfbd.html">cfbd_api_key_info()</a></code> / <code><a href="reference/register_cfbd.html">has_cfbd_key()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="code-style">Code Style<a class="anchor" aria-label="anchor" href="#code-style"></a></h2>
@@ -390,7 +401,7 @@
 <li>
 <p><strong>Release notes triad – <code>NEWS.md</code> / <code>cran-comments.md</code> / <code>_pkgdown.yml</code>.</strong> Whenever you add a <code>NEWS.md</code> bullet, check the other two:</p>
 <ul><li>
-<code>NEWS.md</code> – all new bullets go under the most recent <strong>unreleased</strong> version heading (currently <code># **cfbfastR 2.3.0**</code>). Do NOT create a new version section ahead of release.</li>
+<code>NEWS.md</code> – all new bullets go under the most recent <strong>unreleased</strong> version heading (currently <code># **cfbfastR 3.0.0**</code>). Do NOT create a new version section ahead of release.</li>
 <li>
 <code>cran-comments.md</code> – every user-visible / behavioral change should be reflected before submission. Internal-only changes can be omitted.</li>
 <li>
