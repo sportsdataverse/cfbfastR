@@ -47,7 +47,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_drives (sportsdataverse-data release). Published to the
+Loads season-level drive summaries -- one row per drive with start/end
+field position, result, plays, yards, and clock. Published to the
 \code{espn_cfb_drives} release tag on the sportsdataverse-data repo.
 }
 \examples{

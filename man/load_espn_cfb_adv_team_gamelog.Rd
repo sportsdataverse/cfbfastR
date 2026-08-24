@@ -117,7 +117,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_team_gamelog (sportsdataverse-data release). Published
+Loads season-level advanced team game logs -- one row per team-game
+with the same advanced-stat profile at game grain. Published
 to the \code{espn_cfb_adv_team_gamelog} release tag on the sportsdataverse-data
 repo.
 }

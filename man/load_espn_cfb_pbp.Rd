@@ -501,8 +501,16 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_pbp (sportsdataverse-data release). Published to the
-\code{espn_cfb_pbp} release tag on the sportsdataverse-data repo.
+Loads season-level ESPN-derived college football play-by-play -- one row
+per play with the full EPA/WPA model columns and participant ids,
+covering 2004 to present. Published to the \code{espn_cfb_pbp} release tag on
+the sportsdataverse-data repo.
+
+Delineation from the sibling pbp loaders: \code{\link[=load_cfb_pbp]{load_cfb_pbp()}} is the
+classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+\code{load_espn_cfb_pbp()} is this ESPN-derived build with deeper history;
+\code{\link[=load_ncaa_mfb_pbp]{load_ncaa_mfb_pbp()}} is the stats.ncaa.org parse covering FCS and
+lower divisions (2013+).
 }
 \examples{
 \donttest{

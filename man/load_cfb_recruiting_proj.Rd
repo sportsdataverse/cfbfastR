@@ -32,7 +32,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_recruiting_proj (sportsdataverse-data release). Published to the
+Loads recruiting-based team projections -- one row per team-season with
+talent-derived projection inputs. Published to the
 \code{cfb_recruiting_proj} release tag on the sportsdataverse-data repo.
 }
 \examples{

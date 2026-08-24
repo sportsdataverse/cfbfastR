@@ -51,7 +51,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_turnover (sportsdataverse-data release). Published to
+Loads season-level turnover aggregates -- one row per team with
+turnovers won/lost, expected turnovers, and turnover luck. Published to
 the \code{espn_cfb_adv_turnover} release tag on the sportsdataverse-data repo.
 }
 \examples{

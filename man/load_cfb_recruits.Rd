@@ -36,7 +36,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_recruits (sportsdataverse-data release). Published to the
+Loads player recruiting rankings -- one row per recruit-season with
+stars, rating, position, and school commitment. Published to the
 \code{cfb_recruits} release tag on the sportsdataverse-data repo.
 }
 \examples{

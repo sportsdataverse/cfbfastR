@@ -59,7 +59,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_passing (sportsdataverse-data release). Published to the
+Loads season-level advanced passing stats -- one row per qualifying
+passer with EPA, CPOE, air-yards, and pressure splits. Published to the
 \code{espn_cfb_adv_passing} release tag on the sportsdataverse-data repo.
 }
 \examples{

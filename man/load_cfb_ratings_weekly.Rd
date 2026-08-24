@@ -43,7 +43,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_ratings_weekly (sportsdataverse-data release). Published to the
+Loads weekly team power ratings -- one row per team-week, the as-of-
+week snapshots behind the season-end ratings. Published to the
 \code{cfb_ratings_weekly} release tag on the sportsdataverse-data repo.
 }
 \examples{

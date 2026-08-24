@@ -33,7 +33,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_returning_production (sportsdataverse-data release). Published to
+Loads returning production shares -- one row per team-season with the
+share of prior-season production returning, overall and by unit.
+Published to
 the \code{cfb_returning_production} release tag on the sportsdataverse-data
 repo.
 }

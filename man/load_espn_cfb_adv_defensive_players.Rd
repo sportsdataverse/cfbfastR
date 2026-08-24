@@ -41,7 +41,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_defensive_players (sportsdataverse-data release).
+Loads season-level advanced defensive player stats -- one row per
+player with tackles, TFL, sacks, pressures, and coverage counting
+stats.
 Published to the \code{espn_cfb_adv_defensive_players} release tag on the
 sportsdataverse-data repo.
 }

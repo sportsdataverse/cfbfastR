@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 2.3.0
+Version: 3.0.0
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-7194-9067")),
@@ -17,7 +17,8 @@ Authors@R: c(
     person("Matt", "Spencer", , "maatspencer@gmail.com", role = "ctb"),
     person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = "ctb"),
     person("John", "Edwards", , "edwards1860@gmail.com", role = "ctb"),
-    person("Brad", "Hill", , "bradhill119@gmail.com", role = "ctb")
+    person("Brad", "Hill", , "bradhill119@gmail.com", role = "ctb"),
+    person("cfbfastR authors", role = "cph")
   )
 Description: A utility to quickly obtain clean and tidy college football
     data. Serves as a wrapper around the
@@ -70,8 +71,8 @@ Suggests:
     usethis (>= 1.6.0),
     withr,
     xgboost (>= 1.1)
+Config/roxygen2/version: 8.1.0
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.1.0

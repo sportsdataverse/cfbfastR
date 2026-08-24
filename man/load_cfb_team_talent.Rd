@@ -34,7 +34,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_team_talent (sportsdataverse-data release). Published to the
+Loads the 247Sports team talent composite -- one row per team-season.
+Published to the
 \code{cfb_team_talent} release tag on the sportsdataverse-data repo.
 }
 \examples{

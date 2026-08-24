@@ -78,7 +78,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_fpi_weekly (sportsdataverse-data release). Published to the
+Loads weekly ESPN FPI snapshots -- one row per team-week with FPI and
+its components as published that week. Published to the
 \code{cfb_fpi_weekly} release tag on the sportsdataverse-data repo.
 }
 \examples{

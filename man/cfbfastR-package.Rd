@@ -43,6 +43,7 @@ Other contributors:
   \item Sebastian Carl \email{mrcaseb@gmail.com} [contributor]
   \item John Edwards \email{edwards1860@gmail.com} [contributor]
   \item Brad Hill \email{bradhill119@gmail.com} [contributor]
+  \item cfbfastR authors [copyright holder]
 }
 
 }

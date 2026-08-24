@@ -411,7 +411,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_team_summaries_weekly (sportsdataverse-data release). Published
+Loads weekly team summaries -- one row per team-week with cumulative-
+to-date EPA and success-rate profiles. Published
 to the \code{cfb_team_summaries_weekly} release tag on the sportsdataverse-data
 repo.
 }

@@ -88,7 +88,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_player_box (sportsdataverse-data release). Published to the
+Loads season-level player box scores -- one row per player-game-
+category with the stat lines ESPN publishes per game. Published to the
 \code{espn_cfb_player_box} release tag on the sportsdataverse-data repo.
 }
 \examples{

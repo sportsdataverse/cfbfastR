@@ -36,7 +36,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_betting (sportsdataverse-data release). Published to the
+Loads season-level betting lines -- long format, one row per book per
+selection per market type (spread, moneyline, total), with open/close
+prices. Published to the
 \code{espn_cfb_betting} release tag on the sportsdataverse-data repo.
 }
 \examples{

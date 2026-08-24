@@ -105,7 +105,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_game_rosters (sportsdataverse-data release). Published to
+Loads season-level game rosters -- one row per player-game with team,
+position, and status, keyed by ESPN athlete id. Published to
 the \code{espn_cfb_game_rosters} release tag on the sportsdataverse-data repo.
 }
 \examples{

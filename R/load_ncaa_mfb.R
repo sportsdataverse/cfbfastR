@@ -18,6 +18,10 @@ NULL
 #'   divisions that ESPN's feed misses; one row per play with drive and
 #'   participant context. Published to the `ncaa_mfb_pbp` release tag on the
 #'   sportsdataverse-data repo.
+#'
+#'   For the same plays reshaped onto cfbfastR pbp column conventions (for
+#'   binding with [load_cfb_pbp()] / [load_espn_cfb_pbp()] output), use
+#'   [load_ncaa_mfb_pbp_cfbfastr()].
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2013 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2013)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.

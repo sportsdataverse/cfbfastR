@@ -48,7 +48,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_team_box (sportsdataverse-data release). Published to the
+Loads season-level team box scores -- one row per team-game with
+scoring, team statistics, and opponent context. Published to the
 \code{espn_cfb_team_box} release tag on the sportsdataverse-data repo.
 }
 \examples{

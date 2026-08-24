@@ -72,7 +72,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_passing (sportsdataverse-data release). Published to the
+Loads season-level passing EPA splits -- one row per team (offense and
+defense views) with dropback EPA, success, and explosiveness
+aggregates. Published to the
 \code{espn_cfb_passing} release tag on the sportsdataverse-data repo.
 }
 \examples{

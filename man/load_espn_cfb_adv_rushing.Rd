@@ -43,7 +43,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_rushing (sportsdataverse-data release). Published to the
+Loads season-level advanced rushing stats -- one row per qualifying
+rusher with EPA per rush, success rate, and yardage-band splits.
+Published to the
 \code{espn_cfb_adv_rushing} release tag on the sportsdataverse-data repo.
 }
 \examples{

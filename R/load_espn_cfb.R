@@ -13,8 +13,16 @@ NULL
 #' @rdname load_espn_cfb_pbp
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_pbp (sportsdataverse-data release). Published to the
-#'   `espn_cfb_pbp` release tag on the sportsdataverse-data repo.
+#'   Loads season-level ESPN-derived college football play-by-play -- one row
+#'   per play with the full EPA/WPA model columns and participant ids,
+#'   covering 2004 to present. Published to the `espn_cfb_pbp` release tag on
+#'   the sportsdataverse-data repo.
+#'
+#'   Delineation from the sibling pbp loaders: [load_cfb_pbp()] is the
+#'   classic cfbfastR EPA/WPA pbp (FBS, 2014+, unchanged);
+#'   `load_espn_cfb_pbp()` is this ESPN-derived build with deeper history;
+#'   [load_ncaa_mfb_pbp()] is the stats.ncaa.org parse covering FCS and
+#'   lower divisions (2013+).
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
@@ -632,7 +640,8 @@ NULL
 #' @rdname load_espn_cfb_team_box
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_team_box (sportsdataverse-data release). Published to the
+#'   Loads season-level team box scores -- one row per team-game with
+#'   scoring, team statistics, and opponent context. Published to the
 #'   `espn_cfb_team_box` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -714,7 +723,8 @@ NULL
 #' @rdname load_espn_cfb_player_box
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_player_box (sportsdataverse-data release). Published to the
+#'   Loads season-level player box scores -- one row per player-game-
+#'   category with the stat lines ESPN publishes per game. Published to the
 #'   `espn_cfb_player_box` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -836,7 +846,8 @@ NULL
 #' @rdname load_espn_cfb_drives
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_drives (sportsdataverse-data release). Published to the
+#'   Loads season-level drive summaries -- one row per drive with start/end
+#'   field position, result, plays, yards, and clock. Published to the
 #'   `espn_cfb_drives` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -917,7 +928,8 @@ NULL
 #' @rdname load_espn_cfb_game_rosters
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_game_rosters (sportsdataverse-data release). Published to
+#'   Loads season-level game rosters -- one row per player-game with team,
+#'   position, and status, keyed by ESPN athlete id. Published to
 #'   the `espn_cfb_game_rosters` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1056,7 +1068,8 @@ NULL
 #' @rdname load_espn_cfb_linescores
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_linescores (sportsdataverse-data release). Published to the
+#'   Loads season-level period linescores -- one row per team-period with
+#'   points scored. Published to the
 #'   `espn_cfb_linescores` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1122,7 +1135,9 @@ NULL
 #' @rdname load_espn_cfb_betting
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_betting (sportsdataverse-data release). Published to the
+#'   Loads season-level betting lines -- long format, one row per book per
+#'   selection per market type (spread, moneyline, total), with open/close
+#'   prices. Published to the
 #'   `espn_cfb_betting` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1192,7 +1207,9 @@ NULL
 #' @rdname load_espn_cfb_play_participants
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_play_participants (sportsdataverse-data release). Published
+#'   Loads season-level per-play participants -- one row per play-
+#'   participant with role type and ESPN athlete id, the join partner for
+#'   play-level attribution. Published
 #'   to the `espn_cfb_play_participants` release tag on the sportsdataverse-
 #'   data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2014 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2014)
@@ -1326,7 +1343,9 @@ NULL
 #' @rdname load_espn_cfb_power_index
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_power_index (sportsdataverse-data release). Published to the
+#'   Loads season-level ESPN FPI power-index snapshots -- one row per team
+#'   with FPI rating, projected wins, and efficiency components. Published
+#'   to the
 #'   `espn_cfb_power_index` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2015 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2015)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1394,7 +1413,9 @@ NULL
 #' @rdname load_espn_cfb_percentiles
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_percentiles (sportsdataverse-data release). Published to the
+#'   Loads season-level team percentile profiles -- one row per team with
+#'   league-percentile placements across the summary metrics. Published to
+#'   the
 #'   `espn_cfb_percentiles` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1482,7 +1503,9 @@ NULL
 #' @rdname load_espn_cfb_passing
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_passing (sportsdataverse-data release). Published to the
+#'   Loads season-level passing EPA splits -- one row per team (offense and
+#'   defense views) with dropback EPA, success, and explosiveness
+#'   aggregates. Published to the
 #'   `espn_cfb_passing` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1588,7 +1611,9 @@ NULL
 #' @rdname load_espn_cfb_rushing
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_rushing (sportsdataverse-data release). Published to the
+#'   Loads season-level rushing EPA splits -- one row per team (offense and
+#'   defense views) with rush EPA, success, line yards, and stuff-rate
+#'   aggregates. Published to the
 #'   `espn_cfb_rushing` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1677,7 +1702,8 @@ NULL
 #' @rdname load_espn_cfb_receiving
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_receiving (sportsdataverse-data release). Published to the
+#'   Loads season-level receiving EPA splits -- one row per team with
+#'   target, catch, and yards-after-catch aggregates. Published to the
 #'   `espn_cfb_receiving` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1770,7 +1796,9 @@ NULL
 #' @rdname load_espn_cfb_team_summaries
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_team_summaries (sportsdataverse-data release). Published to
+#'   Loads season-level team summaries -- one row per team with the full
+#'   offense/defense/special-teams EPA and success-rate profile. Published
+#'   to
 #'   the `espn_cfb_team_summaries` release tag on the sportsdataverse-data
 #'   repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
@@ -2215,7 +2243,9 @@ NULL
 #' @rdname load_espn_cfb_model_pbp
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_model_pbp (sportsdataverse-data release). Published to the
+#'   Loads season-level model-enriched play-by-play -- the modeling-grade
+#'   pbp frame with the engineered features the cfbfastR EP/WP model suite
+#'   trains on. Published to the
 #'   `espn_cfb_model_pbp` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -2319,7 +2349,8 @@ NULL
 #' @rdname load_espn_cfb_adv_defensive
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_defensive (sportsdataverse-data release). Published to
+#'   Loads season-level advanced defensive team stats -- one row per defense
+#'   with havoc, TFL, drive-stop, and pass-rush aggregates. Published to
 #'   the `espn_cfb_adv_defensive` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -2402,7 +2433,9 @@ NULL
 #' @rdname load_espn_cfb_adv_defensive_players
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_defensive_players (sportsdataverse-data release).
+#'   Loads season-level advanced defensive player stats -- one row per
+#'   player with tackles, TFL, sacks, pressures, and coverage counting
+#'   stats.
 #'   Published to the `espn_cfb_adv_defensive_players` release tag on the
 #'   sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
@@ -2478,7 +2511,9 @@ NULL
 #' @rdname load_espn_cfb_adv_drives
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_drives (sportsdataverse-data release). Published to the
+#'   Loads season-level advanced drive aggregates -- one row per team with
+#'   drive-level scoring, efficiency, and field-position splits. Published
+#'   to the
 #'   `espn_cfb_adv_drives` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -2551,7 +2586,8 @@ NULL
 #' @rdname load_espn_cfb_adv_passing
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_passing (sportsdataverse-data release). Published to the
+#'   Loads season-level advanced passing stats -- one row per qualifying
+#'   passer with EPA, CPOE, air-yards, and pressure splits. Published to the
 #'   `espn_cfb_adv_passing` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -2644,7 +2680,9 @@ NULL
 #' @rdname load_espn_cfb_adv_receiving
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_receiving (sportsdataverse-data release). Published to
+#'   Loads season-level advanced receiving stats -- one row per qualifying
+#'   receiver with target share, EPA per target, and YAC splits. Published
+#'   to
 #'   the `espn_cfb_adv_receiving` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -2722,7 +2760,9 @@ NULL
 #' @rdname load_espn_cfb_adv_rushing
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_rushing (sportsdataverse-data release). Published to the
+#'   Loads season-level advanced rushing stats -- one row per qualifying
+#'   rusher with EPA per rush, success rate, and yardage-band splits.
+#'   Published to the
 #'   `espn_cfb_adv_rushing` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -2799,7 +2839,9 @@ NULL
 #' @rdname load_espn_cfb_adv_situational
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_situational (sportsdataverse-data release). Published to
+#'   Loads season-level situational splits -- one row per team-situation
+#'   (down, distance band, field zone, game state) with EPA and success
+#'   aggregates. Published to
 #'   the `espn_cfb_adv_situational` release tag on the sportsdataverse-data
 #'   repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
@@ -2935,7 +2977,9 @@ NULL
 #' @rdname load_espn_cfb_adv_specialists
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_specialists (sportsdataverse-data release). Published to
+#'   Loads season-level specialist stats -- one row per
+#'   kicker/punter/returner with kicking EPA, field-goal profile, and return
+#'   aggregates. Published to
 #'   the `espn_cfb_adv_specialists` release tag on the sportsdataverse-data
 #'   repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
@@ -3011,7 +3055,9 @@ NULL
 #' @rdname load_espn_cfb_adv_team
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_team (sportsdataverse-data release). Published to the
+#'   Loads season-level advanced team stats -- one row per team with the
+#'   offense/defense EPA, success, explosiveness, and havoc profile.
+#'   Published to the
 #'   `espn_cfb_adv_team` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that
@@ -3152,7 +3198,8 @@ NULL
 #' @rdname load_espn_cfb_adv_team_gamelog
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_team_gamelog (sportsdataverse-data release). Published
+#'   Loads season-level advanced team game logs -- one row per team-game
+#'   with the same advanced-stat profile at game grain. Published
 #'   to the `espn_cfb_adv_team_gamelog` release tag on the sportsdataverse-data
 #'   repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
@@ -3304,7 +3351,8 @@ NULL
 #' @rdname load_espn_cfb_adv_turnover
 #' @author Saiem Gilani
 #' @description
-#'   Load espn_cfb_adv_turnover (sportsdataverse-data release). Published to
+#'   Loads season-level turnover aggregates -- one row per team with
+#'   turnovers won/lost, expected turnovers, and turnover luck. Published to
 #'   the `espn_cfb_adv_turnover` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2004 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2004)
 #' @param ... Additional arguments passed to an underlying function that

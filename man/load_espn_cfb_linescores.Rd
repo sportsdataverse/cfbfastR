@@ -32,7 +32,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_linescores (sportsdataverse-data release). Published to the
+Loads season-level period linescores -- one row per team-period with
+points scored. Published to the
 \code{espn_cfb_linescores} release tag on the sportsdataverse-data repo.
 }
 \examples{

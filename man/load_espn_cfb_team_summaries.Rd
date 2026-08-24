@@ -410,7 +410,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_team_summaries (sportsdataverse-data release). Published to
+Loads season-level team summaries -- one row per team with the full
+offense/defense/special-teams EPA and success-rate profile. Published
+to
 the \code{espn_cfb_team_summaries} release tag on the sportsdataverse-data
 repo.
 }

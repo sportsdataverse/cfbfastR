@@ -42,7 +42,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load cfb_ratings (sportsdataverse-data release). Published to the
+Loads season-end team power ratings from the cfbfastR modeling suite --
+one row per team with overall/offense/defense/special-teams ratings on
+the points scale. Published to the
 \code{cfb_ratings} release tag on the sportsdataverse-data repo.
 }
 \examples{

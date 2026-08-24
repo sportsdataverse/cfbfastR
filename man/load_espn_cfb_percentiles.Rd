@@ -54,7 +54,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_percentiles (sportsdataverse-data release). Published to the
+Loads season-level team percentile profiles -- one row per team with
+league-percentile placements across the summary metrics. Published to
+the
 \code{espn_cfb_percentiles} release tag on the sportsdataverse-data repo.
 }
 \examples{

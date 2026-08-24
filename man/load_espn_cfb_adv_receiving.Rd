@@ -44,7 +44,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_receiving (sportsdataverse-data release). Published to
+Loads season-level advanced receiving stats -- one row per qualifying
+receiver with target share, EPA per target, and YAC splits. Published
+to
 the \code{espn_cfb_adv_receiving} release tag on the sportsdataverse-data repo.
 }
 \examples{

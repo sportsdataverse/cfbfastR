@@ -83,6 +83,10 @@ stats.ncaa.org by the sdv-py cfb_ncaa_pbp parser. Covers FCS and lower
 divisions that ESPN's feed misses; one row per play with drive and
 participant context. Published to the \code{ncaa_mfb_pbp} release tag on the
 sportsdataverse-data repo.
+
+For the same plays reshaped onto cfbfastR pbp column conventions (for
+binding with \code{\link[=load_cfb_pbp]{load_cfb_pbp()}} / \code{\link[=load_espn_cfb_pbp]{load_espn_cfb_pbp()}} output), use
+\code{\link[=load_ncaa_mfb_pbp_cfbfastr]{load_ncaa_mfb_pbp_cfbfastr()}}.
 }
 \examples{
 \donttest{

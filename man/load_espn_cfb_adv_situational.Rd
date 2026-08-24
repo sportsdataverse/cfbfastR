@@ -101,7 +101,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_situational (sportsdataverse-data release). Published to
+Loads season-level situational splits -- one row per team-situation
+(down, distance band, field zone, game state) with EPA and success
+aggregates. Published to
 the \code{espn_cfb_adv_situational} release tag on the sportsdataverse-data
 repo.
 }

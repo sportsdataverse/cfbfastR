@@ -47,6 +47,35 @@ if (!requireNamespace('remotes', quietly = TRUE)){
 remotes::install_github("sportsdataverse/cfbfastR")
 ```
 
+## **Full Season Data Loaders**
+
+`cfbfastR` ships four loader families that pull pre-built season
+datasets from the [sportsdataverse-data
+releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+— no API key, no scraping, one function call per dataset:
+
+| Family                | Functions                                                                                                                                                                                                                                                                         | Source / contents                                                                                                                                                                                                                                              | Coverage       |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| Classic               | `load_cfb_pbp()`, `load_cfb_schedules()`, `load_cfb_rosters()`, `load_cfb_teams()`                                                                                                                                                                                                | The original cfbfastR EPA/WPA play-by-play + companions                                                                                                                                                                                                        | pbp 2014+      |
+| ESPN                  | `load_espn_cfb_*()` (27)                                                                                                                                                                                                                                                          | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+   |
+| Ratings & recruiting  | `load_cfb_ratings()`, `load_cfb_ratings_weekly()`, `load_cfb_fpi_weekly()`, `load_cfb_team_summaries_weekly()`, `load_cfb_team_talent()`, `load_cfb_recruits()`, `load_cfb_recruiting_proj()`, `load_cfb_returning_production()`, plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, CFBD↔ESPN id crosswalks                                                                                                                                                                             | varies (2002+) |
+| NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10)                                                                                                                                                                                                                                                          | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses                                                                                                       | 2013+          |
+
+**Which play-by-play do I want?**
+
+  - `load_cfb_pbp()` — the classic cfbfastR pbp with the full EPA/WPA
+    model columns; FBS, 2014+. Existing code keeps working unchanged.
+  - `load_espn_cfb_pbp()` — the ESPN-derived pbp (469 columns
+    incl. EPA/WPA and participant ids) with deeper history, 2004+.
+  - `load_ncaa_mfb_pbp()` — stats.ncaa.org pbp incl. FCS and lower
+    divisions, 2013+; `load_ncaa_mfb_pbp_cfbfastr()` is the same data
+    reshaped onto cfbfastR pbp column conventions for cross-source
+    binds.
+
+All loaders accept a vector of seasons (or `seasons = TRUE` for
+everything published) and an optional `dbConnection` + `tablename` to
+write straight into a database instead of returning a tibble.
+
 ## **Breaking Changes**
 
 [**Full News on
@@ -57,17 +86,19 @@ Releases**](https://cfbfastR.sportsdataverse.org/news/index.html)
 The [CollegeFootballData API](https://collegefootballdata.com/) now
 requires an API key, here’s a quick run-down:
 
-- To get an API key, follow the directions here: [College Football Data
-  Key Registration.](https://collegefootballdata.com/key)
+  - To get an API key, follow the directions here: [College Football
+    Data Key Registration.](https://collegefootballdata.com/key)
 
-- Using the key: You can save the key for consistent usage by adding
-  `CFBD_API_KEY=YOUR-API-KEY-HERE` to your .Renviron file (easily
-  accessed via
-  [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
-  Run
-  [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
-  a new script will pop open named `.Renviron`, **THEN** paste the
-  following in the new script that pops up (with**out** quotations)
+  - Using the key: You can save the key for consistent usage by adding
+    `CFBD_API_KEY=YOUR-API-KEY-HERE` to your .Renviron file (easily
+    accessed via
+    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
+    Run
+    [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
+    a new script will pop open named `.Renviron`, **THEN** paste the
+    following in the new script that pops up (with**out** quotations)
+
+<!-- end list -->
 
 ``` r
 CFBD_API_KEY = YOUR-API-KEY-HERE
@@ -79,9 +110,12 @@ exists the shortcut `Ctrl + Shift + F10` to restart your session). If
 set correctly, from then on you should be able to use any of the `cfbd_`
 functions without any other changes.
 
-- For less consistent usage: At the beginning of every session or within
-  an R environment, save your API key as the environment variable
-  `CFBD_API_KEY` (with quotations) using a command like the following.
+  - For less consistent usage: At the beginning of every session or
+    within an R environment, save your API key as the environment
+    variable `CFBD_API_KEY` (with quotations) using a command like the
+    following.
+
+<!-- end list -->
 
 ``` r
 Sys.setenv(CFBD_API_KEY = "YOUR-API-KEY-HERE")
@@ -101,8 +135,8 @@ options(cfbfastR.proxy = list(
 ))
 ```
 
-The resolution order is: explicit `proxy =` argument ->
-`getOption("cfbfastR.proxy")` -> `http_proxy` / `https_proxy` env vars.
+The resolution order is: explicit `proxy =` argument -\>
+`getOption("cfbfastR.proxy")` -\> `http_proxy` / `https_proxy` env vars.
 See the [intro
 vignette](https://cfbfastR.sportsdataverse.org/articles/intro.html) and
 `CLAUDE.md` for full detail.
@@ -119,81 +153,81 @@ stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR.svg?color=ee
 
 ## **Our Authors**
 
-- [Saiem Gilani](https://x.com/saiemgilani)
-  <a href="https://x.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge" alt="@saiemgilani" /></a>
-  <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
+  - [Saiem Gilani](https://x.com/saiemgilani)
+    <a href="https://x.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge" alt="@saiemgilani" /></a>
+    <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
 
-- [Akshay Easwaran](https://x.com/akeaswaran)
-  <a href="https://x.com/akeaswaran" target="blank"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge" alt="@akeaswaran" /></a>
-  <a href="https://github.com/akeaswaran" target="blank"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge" alt="@akeaswaran" /></a>
+  - [Akshay Easwaran](https://x.com/akeaswaran)
+    <a href="https://x.com/akeaswaran" target="blank"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge" alt="@akeaswaran" /></a>
+    <a href="https://github.com/akeaswaran" target="blank"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge" alt="@akeaswaran" /></a>
 
-- [Jared Lee](https://x.com/JaredDLee) </br>
-  <a href="https://x.com/JaredDLee" target="blank"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge" alt="@JaredDLee" /></a>
-  <a href="https://github.com/Kazink36" target="blank"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge" alt="@Kazink36" /></a>
+  - [Jared Lee](https://x.com/JaredDLee) </br>
+    <a href="https://x.com/JaredDLee" target="blank"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge" alt="@JaredDLee" /></a>
+    <a href="https://github.com/Kazink36" target="blank"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge" alt="@Kazink36" /></a>
 
-- [Eric Hess](https://x.com/arbitanalytics) </br>
-  <a href="https://x.com/arbitanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge" alt="@arbitanalytics" /></a>
-  <a href="https://github.com/ehess" target="blank"><img src="https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge" alt="@ehess" /></a>
+  - [Eric Hess](https://x.com/arbitanalytics) </br>
+    <a href="https://x.com/arbitanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge" alt="@arbitanalytics" /></a>
+    <a href="https://github.com/ehess" target="blank"><img src="https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge" alt="@ehess" /></a>
 
 # **Our Contributors (they’re awesome)**
 
-- [Nate Manzo](https://x.com/cfbnate)
-  <a href="https://x.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge" alt="@cfbnate" /></a>
-  <a href="https://github.com/natemanzo" target="blank"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge" alt="@natemanzo" /></a>
+  - [Nate Manzo](https://x.com/cfbnate)
+    <a href="https://x.com/cfbnate" target="blank"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge" alt="@cfbnate" /></a>
+    <a href="https://github.com/natemanzo" target="blank"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge" alt="@natemanzo" /></a>
 
-- [Michael Egle](https://x.com/deceptivespeed_)
-  <a href="https://x.com/deceptivespeed_" target="blank"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=x&style=for-the-badge" alt="@deceptivespeed_" /></a>
-  <a href="https://github.com/michaelegle" target="blank"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge" alt="@michaelegle" /></a>
+  - [Michael Egle](https://x.com/deceptivespeed_)
+    <a href="https://x.com/deceptivespeed_" target="blank"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=x&style=for-the-badge" alt="@deceptivespeed_" /></a>
+    <a href="https://github.com/michaelegle" target="blank"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge" alt="@michaelegle" /></a>
 
-- [Jason DeLoach](https://x.com/CFBNumbers)
-  <a href="https://x.com/CFBNumbers" target="blank"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&label=%40CFBNumbers&logo=x&style=for-the-badge" alt="@CFBNumbers" /></a>
-  <a href="https://github.com/CFBNumbers" target="blank"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&logo=Github&style=for-the-badge" alt="@CFBNumbers" /></a>
+  - [Jason DeLoach](https://x.com/CFBNumbers)
+    <a href="https://x.com/CFBNumbers" target="blank"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&label=%40CFBNumbers&logo=x&style=for-the-badge" alt="@CFBNumbers" /></a>
+    <a href="https://github.com/CFBNumbers" target="blank"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&logo=Github&style=for-the-badge" alt="@CFBNumbers" /></a>
 
-- [Tej Seth](https://x.com/tejfbanalytics)
-  <a href="https://x.com/tejfbanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/Tejseth41?color=blue&label=%40Tejseth41&logo=x&style=for-the-badge" alt="@Tejseth41" /></a>
-  <a href="https://github.com/tejseth" target="blank"><img src="https://img.shields.io/github/followers/tejseth?color=eee&logo=Github&style=for-the-badge" alt="@tejseth" /></a>
+  - [Tej Seth](https://x.com/tejfbanalytics)
+    <a href="https://x.com/tejfbanalytics" target="blank"><img src="https://img.shields.io/twitter/follow/Tejseth41?color=blue&label=%40Tejseth41&logo=x&style=for-the-badge" alt="@Tejseth41" /></a>
+    <a href="https://github.com/tejseth" target="blank"><img src="https://img.shields.io/github/followers/tejseth?color=eee&logo=Github&style=for-the-badge" alt="@tejseth" /></a>
 
-- [Conor McQuiston](https://x.com/ConorMcQ5)
-  <a href="https://x.com/ConorMcQ5" target="blank"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge" alt="@ConorMcQ5" /></a>
-  <a href="https://github.com/mcqconor" target="blank"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge" alt="@mcqconor" /></a>
+  - [Conor McQuiston](https://x.com/ConorMcQ5)
+    <a href="https://x.com/ConorMcQ5" target="blank"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge" alt="@ConorMcQ5" /></a>
+    <a href="https://github.com/mcqconor" target="blank"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge" alt="@mcqconor" /></a>
 
-- [Tan Ho](https://x.com/_TanHo)
-  <a href="https://x.com/_TanHo" target="blank"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=x&style=for-the-badge" alt="@_TanHo" /></a>
-  <a href="https://github.com/tanho63" target="blank"><img src="https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge" alt="@tanho63" /></a>
+  - [Tan Ho](https://x.com/_TanHo)
+    <a href="https://x.com/_TanHo" target="blank"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=x&style=for-the-badge" alt="@_TanHo" /></a>
+    <a href="https://github.com/tanho63" target="blank"><img src="https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge" alt="@tanho63" /></a>
 
-- [Keegan Abdoo](https://x.com/KeeganAbdoo)
-  <a href="https://x.com/KeeganAbdoo" target="blank"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=x&style=for-the-badge" alt="@KeeganAbdoo" /></a>
-  <a href="https://github.com/keegan-abdoo" target="blank"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge" alt="@keegan-abdoo" /></a>
+  - [Keegan Abdoo](https://x.com/KeeganAbdoo)
+    <a href="https://x.com/KeeganAbdoo" target="blank"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=x&style=for-the-badge" alt="@KeeganAbdoo" /></a>
+    <a href="https://github.com/keegan-abdoo" target="blank"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge" alt="@keegan-abdoo" /></a>
 
-- [Matt Spencer](https://x.com/Maatspencer)
-  <a href="https://x.com/Maatspencer" target="blank"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=x&style=for-the-badge" alt="@Maatspencer" /></a>
-  <a href="https://github.com/Maatspencer" target="blank"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge" alt="@Maatspencer" /></a>
+  - [Matt Spencer](https://x.com/Maatspencer)
+    <a href="https://x.com/Maatspencer" target="blank"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=x&style=for-the-badge" alt="@Maatspencer" /></a>
+    <a href="https://github.com/Maatspencer" target="blank"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge" alt="@Maatspencer" /></a>
 
-- [Sebastian Carl](https://x.com/mrcaseb)
-  <a href="https://x.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=x&style=for-the-badge" alt="@mrcaseb" /></a>
-  <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge" alt="@mrcaseb" /></a>
+  - [Sebastian Carl](https://x.com/mrcaseb)
+    <a href="https://x.com/mrcaseb" target="blank"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=x&style=for-the-badge" alt="@mrcaseb" /></a>
+    <a href="https://github.com/mrcaseb" target="blank"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge" alt="@mrcaseb" /></a>
 
-- [John Edwards](https://x.com/John_B_Edwards) </br>
-  <a href="https://x.com/John_B_Edwards" target="blank"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=x&style=for-the-badge" alt="@John_B_Edwards" /></a>
-  <a href="https://github.com/john-b-edwards" target="blank"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge" alt="@john-b-edwards" /></a>
+  - [John Edwards](https://x.com/John_B_Edwards) </br>
+    <a href="https://x.com/John_B_Edwards" target="blank"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=x&style=for-the-badge" alt="@John_B_Edwards" /></a>
+    <a href="https://github.com/john-b-edwards" target="blank"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge" alt="@john-b-edwards" /></a>
 
-- [Brad Hill](https://x.com/bradisblogging)</br>
-  <a href="https://x.com/bradisblogging" target="blank"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=X&style=for-the-badge" alt="@bradisblogging" /></a>
-  <a href="https://github.com/bradisbrad" target="blank"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge" alt="@bradisbrad" /></a>
+  - [Brad Hill](https://x.com/bradisblogging)</br>
+    <a href="https://x.com/bradisblogging" target="blank"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=X&style=for-the-badge" alt="@bradisblogging" /></a>
+    <a href="https://github.com/bradisbrad" target="blank"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge" alt="@bradisbrad" /></a>
 
 # **Authors Emeritus - `cfbscrapR`\[archived\]**
 
-- [Meyappan Subbiah](https://x.com/msubbaiah1)
-  <a href="https://x.com/msubbaiah1" target="blank"><img src="https://img.shields.io/twitter/follow/msubbaiah1?color=blue&label=%40msubbaiah1&logo=x&style=for-the-badge" alt="@msubbaiah1" /></a>
-  <a href="https://github.com/meysubb" target="blank"><img src="https://img.shields.io/github/followers/meysubb?color=eee&logo=Github&style=for-the-badge" alt="@meysubb" /></a>
+  - [Meyappan Subbiah](https://x.com/msubbaiah1)
+    <a href="https://x.com/msubbaiah1" target="blank"><img src="https://img.shields.io/twitter/follow/msubbaiah1?color=blue&label=%40msubbaiah1&logo=x&style=for-the-badge" alt="@msubbaiah1" /></a>
+    <a href="https://github.com/meysubb" target="blank"><img src="https://img.shields.io/github/followers/meysubb?color=eee&logo=Github&style=for-the-badge" alt="@meysubb" /></a>
 
-- [Parker Fleming](https://x.com/statsowar)
-  <a href="https://x.com/statsowar" target="blank"><img src="https://img.shields.io/twitter/follow/statsowar?color=blue&label=%40statsowar&logo=x&style=for-the-badge" alt="@statsowar" /></a>
-  <a href="https://github.com/spfleming" target="blank"><img src="https://img.shields.io/github/followers/spfleming?color=eee&logo=Github&style=for-the-badge" alt="@spfleming" /></a>
+  - [Parker Fleming](https://x.com/statsowar)
+    <a href="https://x.com/statsowar" target="blank"><img src="https://img.shields.io/twitter/follow/statsowar?color=blue&label=%40statsowar&logo=x&style=for-the-badge" alt="@statsowar" /></a>
+    <a href="https://github.com/spfleming" target="blank"><img src="https://img.shields.io/github/followers/spfleming?color=eee&logo=Github&style=for-the-badge" alt="@spfleming" /></a>
 
 # **Special Thanks**
 
-- [Nick Tice](https://github.com/NickTice)
+  - [Nick Tice](https://github.com/NickTice)
 
 ## **Citations**
 

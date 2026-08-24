@@ -70,7 +70,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_model_pbp (sportsdataverse-data release). Published to the
+Loads season-level model-enriched play-by-play -- the modeling-grade
+pbp frame with the engineered features the cfbfastR EP/WP model suite
+trains on. Published to the
 \code{espn_cfb_model_pbp} release tag on the sportsdataverse-data repo.
 }
 \examples{

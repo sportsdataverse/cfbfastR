@@ -34,7 +34,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_power_index (sportsdataverse-data release). Published to the
+Loads season-level ESPN FPI power-index snapshots -- one row per team
+with FPI rating, projected wins, and efficiency components. Published
+to the
 \code{espn_cfb_power_index} release tag on the sportsdataverse-data repo.
 }
 \examples{

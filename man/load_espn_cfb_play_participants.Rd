@@ -99,7 +99,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_play_participants (sportsdataverse-data release). Published
+Loads season-level per-play participants -- one row per play-
+participant with role type and ESPN athlete id, the join partner for
+play-level attribution. Published
 to the \code{espn_cfb_play_participants} release tag on the sportsdataverse-
 data repo.
 }

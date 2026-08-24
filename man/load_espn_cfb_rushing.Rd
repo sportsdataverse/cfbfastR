@@ -55,7 +55,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_rushing (sportsdataverse-data release). Published to the
+Loads season-level rushing EPA splits -- one row per team (offense and
+defense views) with rush EPA, success, line yards, and stuff-rate
+aggregates. Published to the
 \code{espn_cfb_rushing} release tag on the sportsdataverse-data repo.
 }
 \examples{

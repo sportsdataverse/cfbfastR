@@ -39,7 +39,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_drives (sportsdataverse-data release). Published to the
+Loads season-level advanced drive aggregates -- one row per team with
+drive-level scoring, efficiency, and field-position splits. Published
+to the
 \code{espn_cfb_adv_drives} release tag on the sportsdataverse-data repo.
 }
 \examples{

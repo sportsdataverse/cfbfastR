@@ -1,6 +1,6 @@
 ## Release summary
 
-This is a minor release that:
+This is a major release (2.2.0 -> 3.0.0; the 2.3.0 development version was renumbered and never published) that:
 
 * Adds a large new ESPN college-football API layer — 65 new `espn_cfb_*()`
   wrappers covering players, teams, games, play-by-play, season structure,
@@ -18,6 +18,13 @@ This is a minor release that:
 * Migrates the package's internal HTTP layer from `httr` to
   `httr2` (>= 1.0.0); no user-visible behaviour change for existing
   wrapper calls.
+* Adds 48 full-season data loaders (`load_espn_cfb_*()`, `load_cfb_*()`
+  dataset loaders, `load_ncaa_mfb_*()`) that download pre-built season
+  datasets from the sportsdataverse-data GitHub releases; all examples are
+  wrapped in `\donttest{try(...)}` and every download failure degrades to a
+  zero-row table with a warning rather than an error.
+* Documentation migrated to roxygen2 8.1.0; adds a `cph` role to
+  `Authors@R` and refreshes the LICENSE year.
 
 ## R CMD check results
 

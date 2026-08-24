@@ -59,7 +59,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_receiving (sportsdataverse-data release). Published to the
+Loads season-level receiving EPA splits -- one row per team with
+target, catch, and yards-after-catch aggregates. Published to the
 \code{espn_cfb_receiving} release tag on the sportsdataverse-data repo.
 }
 \examples{

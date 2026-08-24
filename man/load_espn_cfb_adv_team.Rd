@@ -107,7 +107,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_team (sportsdataverse-data release). Published to the
+Loads season-level advanced team stats -- one row per team with the
+offense/defense EPA, success, explosiveness, and havoc profile.
+Published to the
 \code{espn_cfb_adv_team} release tag on the sportsdataverse-data repo.
 }
 \examples{

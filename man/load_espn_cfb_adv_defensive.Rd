@@ -49,7 +49,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_defensive (sportsdataverse-data release). Published to
+Loads season-level advanced defensive team stats -- one row per defense
+with havoc, TFL, drive-stop, and pass-rush aggregates. Published to
 the \code{espn_cfb_adv_defensive} release tag on the sportsdataverse-data repo.
 }
 \examples{

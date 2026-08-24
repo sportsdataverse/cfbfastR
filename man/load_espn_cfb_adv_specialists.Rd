@@ -41,7 +41,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Load espn_cfb_adv_specialists (sportsdataverse-data release). Published to
+Loads season-level specialist stats -- one row per
+kicker/punter/returner with kicking EPA, field-goal profile, and return
+aggregates. Published to
 the \code{espn_cfb_adv_specialists} release tag on the sportsdataverse-data
 repo.
 }
