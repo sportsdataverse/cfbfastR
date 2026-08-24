@@ -61,18 +61,18 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 }
 }
 \seealso{
-Other CFBD Metrics: 
-\code{\link{cfbd_metrics_fg_ep}()},
-\code{\link{cfbd_metrics_ppa_games}()},
-\code{\link{cfbd_metrics_ppa_players_games}()},
-\code{\link{cfbd_metrics_ppa_players_season}()},
-\code{\link{cfbd_metrics_ppa_predicted}()},
-\code{\link{cfbd_metrics_wepa_players_kicking}()},
-\code{\link{cfbd_metrics_wepa_players_passing}()},
-\code{\link{cfbd_metrics_wepa_players_rushing}()},
-\code{\link{cfbd_metrics_wepa_team_season}()},
-\code{\link{cfbd_metrics_wp}()},
-\code{\link{cfbd_metrics_wp_pregame}()}
+Other CFBD Metrics:
+\code{\link[=cfbd_metrics_fg_ep]{cfbd_metrics_fg_ep()}},
+\code{\link[=cfbd_metrics_ppa_games]{cfbd_metrics_ppa_games()}},
+\code{\link[=cfbd_metrics_ppa_players_games]{cfbd_metrics_ppa_players_games()}},
+\code{\link[=cfbd_metrics_ppa_players_season]{cfbd_metrics_ppa_players_season()}},
+\code{\link[=cfbd_metrics_ppa_predicted]{cfbd_metrics_ppa_predicted()}},
+\code{\link[=cfbd_metrics_wepa_players_kicking]{cfbd_metrics_wepa_players_kicking()}},
+\code{\link[=cfbd_metrics_wepa_players_passing]{cfbd_metrics_wepa_players_passing()}},
+\code{\link[=cfbd_metrics_wepa_players_rushing]{cfbd_metrics_wepa_players_rushing()}},
+\code{\link[=cfbd_metrics_wepa_team_season]{cfbd_metrics_wepa_team_season()}},
+\code{\link[=cfbd_metrics_wp]{cfbd_metrics_wp()}},
+\code{\link[=cfbd_metrics_wp_pregame]{cfbd_metrics_wp_pregame()}}
 }
 \concept{CFBD Metrics}
 \keyword{Points}

@@ -41,9 +41,9 @@ Teams that changed conference in a given season.
 }
 }
 \seealso{
-Other CFBD Conference Functions: 
-\code{\link{cfbd_conference_affiliations}()},
-\code{\link{cfbd_conferences}()}
+Other CFBD Conference Functions:
+\code{\link[=cfbd_conference_affiliations]{cfbd_conference_affiliations()}},
+\code{\link[=cfbd_conferences]{cfbd_conferences()}}
 }
 \concept{CFBD Conference Functions}
 \keyword{Conferences}

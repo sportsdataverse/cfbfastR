@@ -432,13 +432,13 @@ Extract college football (D-I) play by play Data - for plays
 }\if{html}{\out{</div>}}
 }
 \seealso{
-Other CFBD PBP: 
-\code{\link{cfbd_live_plays}()},
-\code{\link{cfbd_pbp_data_v2}()},
-\code{\link{cfbd_play_stats_player}()},
-\code{\link{cfbd_play_stats_types}()},
-\code{\link{cfbd_play_types}()},
-\code{\link{cfbd_plays}()}
+Other CFBD PBP:
+\code{\link[=cfbd_live_plays]{cfbd_live_plays()}},
+\code{\link[=cfbd_pbp_data_v2]{cfbd_pbp_data_v2()}},
+\code{\link[=cfbd_play_stats_player]{cfbd_play_stats_player()}},
+\code{\link[=cfbd_play_stats_types]{cfbd_play_stats_types()}},
+\code{\link[=cfbd_play_types]{cfbd_play_types()}},
+\code{\link[=cfbd_plays]{cfbd_plays()}}
 }
 \concept{CFBD PBP}
 \keyword{Play-by-Play}

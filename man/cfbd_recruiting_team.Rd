@@ -37,10 +37,10 @@ Minimum value accepted: 2000}
 
 }
 \seealso{
-Other CFBD Recruiting: 
-\code{\link{cfbd_recruiting_player}()},
-\code{\link{cfbd_recruiting_position}()},
-\code{\link{cfbd_recruiting_transfer_portal}()}
+Other CFBD Recruiting:
+\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}},
+\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}},
+\code{\link[=cfbd_recruiting_transfer_portal]{cfbd_recruiting_transfer_portal()}}
 }
 \concept{CFBD Recruiting}
 \keyword{Recruiting}

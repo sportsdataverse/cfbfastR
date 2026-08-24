@@ -553,7 +553,7 @@ espn_cfb_clear_cache <- function() {
 
 #' Reshape the participant roster lookup into an id-resolution frame
 #'
-#' @description [.pbp_attach_player_ids()] wants a roster as a data frame of
+#' @description `.pbp_attach_player_ids()` wants a roster as a data frame of
 #'   `athlete_id` / `display_name` / `team_id`; `.espn_cfb_participant_roster()`
 #'   holds the same three fields as an athlete-id-keyed list. This is the
 #'   adapter between them, and it deliberately reuses that helper rather than

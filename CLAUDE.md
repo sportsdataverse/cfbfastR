@@ -7,7 +7,7 @@ Companions: `sportsdataverse`/`cfbfastR-py` (Python CFB surface), and the
 `cfbfastR-cfb-raw` (scraper) + `cfbfastR-cfb-data` (modeling/release) pipeline repos.
 Released on CRAN + r-universe. Docs: <https://cfbfastR.sportsdataverse.org>.
 
-- **Version:** 2.3.0 (DESCRIPTION) · **License:** MIT · **R:** >= 4.1.0 (native pipe `|>`)
+- **Version:** 3.0.0 (DESCRIPTION) · **License:** MIT · **R:** >= 4.1.0 (native pipe `|>`)
 - **Branch:** `main` is default + release branch.
 - **Maintainer:** Saiem Gilani.
 
@@ -38,10 +38,10 @@ Five source-prefixed families; `R/` is grouped by prefix:
 | Prefix | Source | Auth | Notes |
 |---|---|---|---|
 | `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics |
-| `espn_cfb_*` / `espn_metrics_*` / `espn_ratings_*` | ESPN (`site.api.espn.com` + `sports.core.api.espn.com`) | none | ~75 wrappers (2.3.0 expanded ESPN from 8 → 73); core-v2 `$ref`-heavy payloads |
+| `espn_cfb_*` / `espn_metrics_*` / `espn_ratings_*` | ESPN (`site.api.espn.com` + `sports.core.api.espn.com`) | none | ~75 wrappers (3.0.0 expanded ESPN from 8 → 73); core-v2 `$ref`-heavy payloads |
 | `fox_cfb_*` | `api.foxsports.com/bifrost/v1/cfb` | public web key | 8 wrappers (pbp/boxscore/odds/roster/stats/gamelog/standings/leaders); key overridable via `options(cfbfastR.fox_key=)` |
 | `yahoo_cfb_*` | Yahoo Sports | none | scoreboard/boxscore/player+team season stats |
-| `load_cfb_*` | release artifacts | none | full-season loaders from `sportsdataverse-data` releases |
+| `load_cfb_*` / `load_espn_cfb_*` / `load_ncaa_mfb_*` | release artifacts | none | 43 full-season loaders from `sportsdataverse-data` releases |
 
 **CFBD API key:** `register_cfbd()` saves `CFBD_API_KEY`; `cfbd_key()` / `has_cfbd_key()` /
 `cfbd_api_key_info()` inspect it. Register at <https://collegefootballdata.com/key>.
@@ -52,7 +52,22 @@ Five source-prefixed families; `R/` is grouped by prefix:
 `update_cfb_db()` builds/refreshes a local SQLite copy. Progress via `progressr`
 (optional Suggest) — there is no `furrr`/`future` parallelism.
 
-**Modular PBP/EPA/WPA engine** (`R/pbp_*.R`, landed in 2.3.0): legacy entry points
+**Release-dataset loaders (3.0.0):** three generated-then-hand-maintained files
+follow the wehoop `load_ncaa_wbb.R` shape (seasons vector or `TRUE`, progressr,
+`rbindlist`, `dbConnection`/`tablename` write-through with dots forwarded to
+`dbWriteTable`): `R/load_espn_cfb.R` (27 `load_espn_cfb_*` ESPN-derived
+datasets, mostly 2004+), `R/load_cfb_datasets.R` (11 ratings / talent /
+recruiting / crosswalk datasets), `R/load_ncaa_mfb.R` (10 stats.ncaa.org
+datasets, 2013+, incl. FCS). One loader per release tag; stem == asset file
+prefix. Parquet-only tags go through `parquet_from_url()` (`utils.R`, arrow is
+Suggests → guarded by `rlang::check_installed`). PBP delineation:
+`load_cfb_pbp` = classic cfbfastR EPA pbp (2014+); `load_espn_cfb_pbp` =
+ESPN-derived 469-col pbp (2004+); `load_ncaa_mfb_pbp` = native stats.ncaa.org
+parse; `load_ncaa_mfb_pbp_cfbfastr` = same plays on cfbfastR column
+conventions. When a new tag appears on sportsdataverse-data, add a loader to
+the matching file following the neighboring function's shape.
+
+**Modular PBP/EPA/WPA engine** (`R/pbp_*.R`, landed in 3.0.0): legacy entry points
 `cfbd_pbp_data()` + `espn_cfb_pbp(epa_wpa=)` and **v2** orchestrators `cfbd_pbp_data_v2()`
 + `espn_cfb_pbp_v2()` both feed one shared `.run_epa_wpa()` engine
 (`pbp_epa_wpa_engine.R`). Flow: `.cfbd_to_epa_input()` / `.espn_to_epa_input()` adapters
@@ -113,7 +128,7 @@ all cached endpoints; filesystem backend persists under `tools::R_user_dir("cfbf
 ## Gotchas
 
 - **`refactor/pbp-epa-wpa-modular` is merged** — the modular engine + ESPN catalog expansion
-  shipped in 2.3.0 on `main`. Don't look for a separate dev branch.
+  shipped in 3.0.0 on `main`. Don't look for a separate dev branch.
 - **CFBD rate limits:** free tier caps per-minute; wrappers surface `cli_alert_danger` on 429
   but don't hot-retry — `Sys.sleep()` and re-run the range.
 - **ESPN `$ref` payloads:** core API returns `{"$ref": "..."}` placeholders instead of inlined
@@ -125,7 +140,7 @@ all cached endpoints; filesystem backend persists under `tools::R_user_dir("cfbf
   `cfbd_metrics.R` / `espn_cfb_ratings.R` and are excluded from the pkgdown index.
 - **`_pkgdown.yml`** auto-picks `starts_with("cfbd_"/"espn_cfb_"/"load_cfb_")`; other new exports
   need a manual `reference:` entry. Keep `NEWS.md` / `cran-comments.md` / `_pkgdown.yml` in sync
-  on any API-surface change. New `NEWS.md` bullets go under the current `# **cfbfastR v2.3.0**`
+  on any API-surface change. New `NEWS.md` bullets go under the current `# **cfbfastR v3.0.0**`
   heading — don't open a new version section before release.
 - Never hand-edit `NAMESPACE` or `man/` — regenerate with `devtools::document()`.
 - **Never add AI co-author trailers (Claude/Copilot/etc.) to commits.** Conventional Commits

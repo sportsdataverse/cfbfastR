@@ -24,6 +24,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Saiem Gilani \email{saiem.gilani@gmail.com} (\href{https://orcid.org/0000-0002-7194-9067}{ORCID})
   \item Akshay Easwaran \email{akeaswaran@me.com}
   \item Jared Lee \email{13jaredlee@gmail.com}
   \item Eric Hess \email{eric.hess.13@gmail.com}
@@ -42,6 +43,7 @@ Other contributors:
   \item Sebastian Carl \email{mrcaseb@gmail.com} [contributor]
   \item John Edwards \email{edwards1860@gmail.com} [contributor]
   \item Brad Hill \email{bradhill119@gmail.com} [contributor]
+  \item cfbfastR authors [copyright holder]
 }
 
 }

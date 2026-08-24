@@ -74,6 +74,32 @@ rds_from_url <- function(url) {
   data.table::setDT(load)
   return(load)
 }
+
+#' Load .parquet file from a remote connection
+#'
+#' @param url a character url
+#'
+#' @return a dataframe as created by [`arrow::read_parquet()`]; a zero-row
+#'   `data.table` when the download or read fails.
+#' @keywords internal
+#' @importFrom data.table data.table setDT
+parquet_from_url <- function(url) {
+  rlang::check_installed("arrow")
+  tmp <- tempfile(fileext = ".parquet")
+  on.exit(unlink(tmp), add = TRUE)
+  dl <- try(utils::download.file(url, tmp, mode = "wb", quiet = TRUE), silent = TRUE)
+  if (inherits(dl, "try-error")) {
+    cli::cli_warn("Failed to download {.url {url}}")
+    return(data.table::data.table())
+  }
+  load <- try(arrow::read_parquet(tmp), silent = TRUE)
+  if (inherits(load, "try-error")) {
+    cli::cli_warn("Failed to read parquet from {.url {url}}")
+    return(data.table::data.table())
+  }
+  data.table::setDT(load)
+  return(load)
+}
 # read rds that has been pre-fetched
 read_raw_rds <- function(raw) {
   con <- gzcon(rawConnection(raw))
@@ -339,22 +365,6 @@ validate_list <- function(var = NULL, allowable = NULL){
   }
 }
 
-#' Validate a CFBD division / classification value
-#'
-#' @description CFBD calls this filter `classification` on the wire; cfbfastR
-#'   has always exposed it to users as `division`. Both names refer to the same
-#'   five values.
-#'
-#' @details Worth validating rather than passing through: CFBD **ignores** a
-#'   filter value it does not recognise instead of rejecting it, so a typo
-#'   returns every division silently rather than erroring. That is the same
-#'   failure mode that hid the `division=` vs `classification=` rename.
-#'
-#' @param division Division/classification value.
-#' @param allow_null When `TRUE`, `NULL` passes (the filter is simply omitted).
-#' @return Invisibly `TRUE`; aborts otherwise.
-#' @keywords internal
-#' @noRd
 #' Flatten a nested CFBD object into rectangular columns
 #'
 #' @description Several CFBD endpoints return a single nested **object** rather
@@ -391,6 +401,22 @@ validate_list <- function(var = NULL, allowable = NULL){
   out
 }
 
+#' Validate a CFBD division / classification value
+#'
+#' @description CFBD calls this filter `classification` on the wire; cfbfastR
+#'   has always exposed it to users as `division`. Both names refer to the same
+#'   five values.
+#'
+#' @details Worth validating rather than passing through: CFBD **ignores** a
+#'   filter value it does not recognise instead of rejecting it, so a typo
+#'   returns every division silently rather than erroring. That is the same
+#'   failure mode that hid the `division=` vs `classification=` rename.
+#'
+#' @param division Division/classification value.
+#' @param allow_null When `TRUE`, `NULL` passes (the filter is simply omitted).
+#' @return Invisibly `TRUE`; aborts otherwise.
+#' @keywords internal
+#' @noRd
 validate_division <- function(division = NULL, allow_null = TRUE) {
   if (is.null(division)) {
     if (allow_null) return(invisible(TRUE))

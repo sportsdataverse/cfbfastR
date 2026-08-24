@@ -45,8 +45,8 @@ CFBD's core team rating measures.
 }
 }
 \seealso{
-Other CFBD Ratings Functions: 
-\code{\link{cfbd_ratings_srs_expanded}()}
+Other CFBD Ratings Functions:
+\code{\link[=cfbd_ratings_srs_expanded]{cfbd_ratings_srs_expanded()}}
 }
 \concept{CFBD Ratings Functions}
 \keyword{Ratings}

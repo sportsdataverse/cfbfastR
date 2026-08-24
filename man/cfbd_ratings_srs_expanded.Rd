@@ -49,8 +49,8 @@ Simple Rating System with its component breakdown.
 }
 }
 \seealso{
-Other CFBD Ratings Functions: 
-\code{\link{cfbd_ratings_core}()}
+Other CFBD Ratings Functions:
+\code{\link[=cfbd_ratings_core]{cfbd_ratings_core()}}
 }
 \concept{CFBD Ratings Functions}
 \keyword{Ratings}

@@ -51,9 +51,9 @@ Minimum value accepted: 2004}
 }
 }
 \seealso{
-Other CFBD Players: 
-\code{\link{cfbd_player_returning}()},
-\code{\link{cfbd_player_usage}()}
+Other CFBD Players:
+\code{\link[=cfbd_player_returning]{cfbd_player_returning()}},
+\code{\link[=cfbd_player_usage]{cfbd_player_usage()}}
 }
 \concept{CFBD Players}
 \keyword{Players}

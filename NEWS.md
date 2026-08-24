@@ -1,4 +1,43 @@
-# **cfbfastR v2.3.0**
+# **cfbfastR v3.0.0**
+
+### New release-dataset loaders (39 functions)
+
+`cfbfastR` now loads every published CFB dataset on the
+[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+release repo, closing the gap with `sportsdataverse-py`'s loader surface. All
+loaders return `cfbfastR_data`-tagged tibbles, accept `seasons = TRUE` for the
+full published range, and support the `dbConnection`/`tablename` database
+write-through.
+
+* `load_espn_cfb_*()` — 27 loaders for the ESPN-derived family: `pbp`,
+  `schedules`, `team_box`, `player_box`, `drives`, `game_rosters`,
+  `linescores`, `betting`, `play_participants`, `power_index`, `percentiles`,
+  `passing`, `rushing`, `receiving`, `team_summaries`, `model_pbp`, and the
+  eleven `adv_*` advanced-stats datasets.
+* `load_cfb_ratings()`, `load_cfb_ratings_weekly()`, `load_cfb_fpi_weekly()`,
+  `load_cfb_team_summaries_weekly()`, `load_cfb_team_talent()`,
+  `load_cfb_recruits()`, `load_cfb_recruiting_proj()`,
+  `load_cfb_returning_production()` — season/weekly ratings, talent, and
+  recruiting datasets.
+* `load_cfb_schedule_crosswalk()`, `load_cfb_teams_crosswalk()`,
+  `load_cfb_rosters_crosswalk()` — CFBD/ESPN id crosswalks.
+* `load_ncaa_mfb_*()` — 10 loaders for the stats.ncaa.org men's football
+  family (covers FCS and lower divisions): `pbp`, `pbp_cfbfastr` (the
+  cfbfastR-schema-shaped variant), `drives`, `linescore`, `officials`,
+  `player_stats`, `rosters`, `schedule`, `team_stats`, `teams`.
+* New internal `parquet_from_url()` helper backs the parquet-only datasets
+  (requires the suggested `arrow` package).
+
+**Which play-by-play loader do I want?** Nothing is deprecated — the classic
+functions are unchanged; the new families add sources:
+
+* `load_cfb_pbp()` (unchanged) — the classic cfbfastR EPA/WPA play-by-play,
+  FBS 2014+.
+* `load_espn_cfb_pbp()` (new) — the ESPN-derived play-by-play (469 columns,
+  EPA/WPA + participant ids), 2004+.
+* `load_ncaa_mfb_pbp()` (new) — stats.ncaa.org play-by-play incl. FCS and
+  lower divisions, 2013+; `load_ncaa_mfb_pbp_cfbfastr()` is the same data
+  reshaped onto cfbfastR pbp column conventions for cross-source binds.
 
 This release adds a 65-function ESPN college-football API layer, expanding `cfbfastR`'s ESPN surface from 8 wrappers to 73. The new wrappers expose ESPN's core-v2 endpoints in ESPN's own ID space — complementary to the CollegeFootballData (`cfbd_*`) wrappers, and the natural join partners for `espn_cfb_pbp()` / `espn_cfb_scoreboard()`. Every wrapper was verified live against the 2023, 2024, and 2025 seasons.
 
@@ -93,7 +132,7 @@ Audited against the CollegeFootballData OpenAPI spec (5.24.1, 74 endpoints).
 
 **15 endpoints that had no wrapper now have one:** `cfbd_playoffs_cfp()`, `cfbd_playoffs_cfp_games()`, `cfbd_playoffs_cfp_participants()`, `cfbd_conference_affiliations()`, `cfbd_conference_changes()`, `cfbd_coaches_profile()`, `cfbd_coaches_seasons()`, `cfbd_coaches_tenures()`, `cfbd_ratings_core()`, `cfbd_ratings_srs_expanded()`, `cfbd_teams_fbs()`, `cfbd_stats_player_success()`, `cfbd_stats_player_success_game()`, `cfbd_player_season_overview()` and `cfbd_info_usage()`. Every one was exercised against the live API before being committed.
 
-**26 parameters added** to existing wrappers — most importantly `division` on ten more functions, plus `defense` / `offense_conference` / `defense_conference` / `conference` / `division` on `cfbd_pbp_data()`, `competition` and `round` on `cfbd_game_info()` (College Football Playoff filtering), `provider` on `cfbd_betting_lines()`, `conference` on `cfbd_play_stats_player()` and `recruit_type` on `cfbd_recruiting_position()`. `cfbd_conferences()` previously took **no arguments at all** and now accepts `year` and `division`.
+**26 parameters added** to existing wrappers — most importantly `division` on ten more functions, plus `defense` / `offense_conference` / `defense_conference` / `conference` / `division` on `cfbd_pbp_data()`, `competition` and `round` on `cfbd_game_info()` (College Football Playoff filtering), `line_provider` on `cfbd_betting_lines()`, `conference` on `cfbd_play_stats_player()` and `recruit_type` on `cfbd_recruiting_position()`. `cfbd_conferences()` previously took **no arguments at all** and now accepts `year` and `division`.
 
 **New `validate_division()`** covering `fbs` / `fcs` / `ii` / `ii/iii` / `iii`. This validates locally because CFBD *ignores* an unrecognised filter value rather than rejecting it — so without it a typo silently returns every division.
 

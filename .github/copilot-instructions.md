@@ -26,7 +26,7 @@
 
 ## Project Context
 
-cfbfastR is an R package (v2.3.0 dev) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD) and ESPN College Football endpoints, exporting 150+ functions across four function-family prefixes: `cfbd_*()`, `espn_cfb_*()`, `espn_metrics_*()`, and `espn_ratings_*()`. Full-season parquet/RDS releases land under `load_cfb_*()`. The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (https://cfbfastr.sportsdataverse.org/).
+cfbfastR is an R package (v3.0.0 dev) that provides clean, tidy college football play-by-play, schedule, roster, ratings, and box-score data. It wraps the CollegeFootballData API (CFBD) and ESPN College Football endpoints, exporting 150+ functions across four function-family prefixes: `cfbd_*()`, `espn_cfb_*()`, `espn_metrics_*()`, and `espn_ratings_*()`. Full-season parquet/RDS releases land under `load_cfb_*()`. The package uses roxygen2 for documentation, testthat for testing, and pkgdown for the documentation site (https://cfbfastr.sportsdataverse.org/).
 
 When this file conflicts with the repository's developer docs, follow `CLAUDE.md`, `CONTRIBUTING.md`, and the current test implementations under `tests/testthat/` as the source of truth.
 
@@ -36,7 +36,7 @@ When this file conflicts with the repository's developer docs, follow `CLAUDE.md
 
 - Use feature branches for changes.
 - `main` is the default branch and release branch.
-- The active 2.3.0 development work lives on `refactor/pbp-epa-wpa-modular` -- the modular PBP/EPA/WPA engine, the ESPN catalog refactor, and the equivalence harness all merge into that branch before promotion to `main`.
+- The 3.0.0 development line lives on `main` — the modular PBP/EPA/WPA engine, the ESPN catalog refactor, the equivalence harness, and the release-dataset loaders have all landed there.
 - For any change to exported functions, update tests and documentation in the same PR.
 
 ## Build & Development Commands
@@ -66,7 +66,18 @@ pkgdown::build_site()
 | ESPN College Football catalog          | `espn_cfb_`        | `espn_cfb_pbp()`, `espn_cfb_team()`                |
 | ESPN win-probability metrics           | `espn_metrics_`    | `espn_metrics_wp()`                                |
 | ESPN ratings                           | `espn_ratings_`    | `espn_ratings_fpi()`                               |
-| Full-season data loaders               | `load_cfb_`        | `load_cfb_pbp()`, `load_cfb_schedules()`           |
+| Full-season data loaders               | `load_cfb_`        | `load_cfb_pbp()`, `load_cfb_ratings()`             |
+| ESPN-derived release datasets          | `load_espn_cfb_`   | `load_espn_cfb_pbp()`, `load_espn_cfb_team_box()`  |
+| stats.ncaa.org release datasets        | `load_ncaa_mfb_`   | `load_ncaa_mfb_pbp()`, `load_ncaa_mfb_schedule()`  |
+
+Loader delineation: `load_cfb_pbp()` is the classic cfbfastR EPA/WPA pbp
+(2014+); `load_espn_cfb_pbp()` is the ESPN-derived 469-column pbp (2004+);
+`load_ncaa_mfb_pbp()` is the native stats.ncaa.org parse (2013+, incl. FCS)
+and `load_ncaa_mfb_pbp_cfbfastr()` reshapes it onto cfbfastR pbp columns.
+One loader per sportsdataverse-data release tag; new loaders go in
+`R/load_espn_cfb.R`, `R/load_cfb_datasets.R`, or `R/load_ncaa_mfb.R`
+following the neighboring function's shape (parquet-only tags use
+`parquet_from_url()`).
 
 The CFBD API requires a bearer token. Set the `CFBD_API_KEY` environment variable; users can register one via `register_cfbd()` and confirm with `cfbd_api_key_info()` / `has_cfbd_key()`.
 
@@ -256,7 +267,7 @@ Two regeneration steps are part of the commit workflow whenever the relevant sou
 - **DESCRIPTION.** After editing `DESCRIPTION`, run `usethis::use_tidy_description()` to normalize field order, alphabetize `Imports`/`Suggests`, and reflow long lines.
 
 - **Release notes triad -- `NEWS.md` / `cran-comments.md` / `_pkgdown.yml`.** Whenever you add a `NEWS.md` bullet, check the other two:
-  - `NEWS.md` -- all new bullets go under the most recent **unreleased** version heading (currently `# **cfbfastR 2.3.0**`). Do NOT create a new version section ahead of release.
+  - `NEWS.md` -- all new bullets go under the most recent **unreleased** version heading (currently `# **cfbfastR 3.0.0**`). Do NOT create a new version section ahead of release.
   - `cran-comments.md` -- every user-visible / behavioral change should be reflected before submission. Internal-only changes can be omitted.
   - `_pkgdown.yml` -- new exports go in the right `reference:` section. `starts_with("cfbd_")` / `starts_with("espn_cfb_")` / `starts_with("load_cfb_")` selectors auto-pick up matching prefixes; explicitly-listed functions need a manual entry.
 

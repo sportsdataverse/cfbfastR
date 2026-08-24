@@ -10,7 +10,7 @@
 #'   to render -- so a capture that trailed narration (`"Russell Wilson deep
 #'   out"`), abbreviated (`"A. Smith"`), or carried a team code
 #'   (`"Matt Ryan (BC)"`) becomes the real name. Everything downstream that keys
-#'   on the name -- above all [.pbp_attach_player_ids()] -- gets a better key.
+#'   on the name -- above all `.pbp_attach_player_ids()` -- gets a better key.
 #'
 #'   Two coalesce modes, because the roles differ in how much ESPN's attribution
 #'   can be trusted:

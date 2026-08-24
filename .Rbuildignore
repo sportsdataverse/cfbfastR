@@ -44,3 +44,6 @@ cfb_pbp_db
 ^\.pytest_cache$
 ^\.lintr$
 ^\.omc$
+^\.understand$
+^\.understand-anything$
+^\.ruff_cache$

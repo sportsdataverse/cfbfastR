@@ -2,6 +2,11 @@
 #' **Load cleaned play-by-play from the data repo**
 #' @description helper that loads multiple seasons from the data repo either into memory
 #' or writes it into a db using some forwarded arguments in the dots
+#'
+#' This is the classic cfbfastR EPA/WPA play-by-play (FBS, 2014+). For the
+#' ESPN-derived pbp with deeper history (2004+) see [load_espn_cfb_pbp()];
+#' for stats.ncaa.org pbp covering FCS and lower divisions (2013+) see
+#' [load_ncaa_mfb_pbp()].
 #' @param seasons A vector of 4-digit years associated with given College Football seasons.
 #' @param ... Additional arguments passed to an underlying function that writes
 #' the season data into a database (used by [`update_cfb_db()`][update_cfb_db])

@@ -48,10 +48,10 @@ Biographical profile for a single coach.
 }
 }
 \seealso{
-Other CFBD Coaches Functions: 
-\code{\link{cfbd_coaches}()},
-\code{\link{cfbd_coaches_seasons}()},
-\code{\link{cfbd_coaches_tenures}()}
+Other CFBD Coaches Functions:
+\code{\link[=cfbd_coaches]{cfbd_coaches()}},
+\code{\link[=cfbd_coaches_seasons]{cfbd_coaches_seasons()}},
+\code{\link[=cfbd_coaches_tenures]{cfbd_coaches_tenures()}}
 }
 \concept{CFBD Coaches Functions}
 \keyword{Coaches}

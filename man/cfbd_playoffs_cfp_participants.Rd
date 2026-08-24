@@ -42,9 +42,9 @@ Returns the teams that participated in the College Football Playoff for a season
 }
 }
 \seealso{
-Other CFBD Playoff Functions: 
-\code{\link{cfbd_playoffs_cfp}()},
-\code{\link{cfbd_playoffs_cfp_games}()}
+Other CFBD Playoff Functions:
+\code{\link[=cfbd_playoffs_cfp]{cfbd_playoffs_cfp()}},
+\code{\link[=cfbd_playoffs_cfp_games]{cfbd_playoffs_cfp_games()}}
 }
 \concept{CFBD Playoff Functions}
 \keyword{Playoffs}

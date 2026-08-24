@@ -173,10 +173,58 @@ export(fox_cfb_team_gamelog)
 export(fox_cfb_team_roster)
 export(fox_cfb_team_stats)
 export(has_cfbd_key)
+export(load_cfb_fpi_weekly)
 export(load_cfb_pbp)
+export(load_cfb_ratings)
+export(load_cfb_ratings_weekly)
+export(load_cfb_recruiting_proj)
+export(load_cfb_recruits)
+export(load_cfb_returning_production)
 export(load_cfb_rosters)
+export(load_cfb_rosters_crosswalk)
+export(load_cfb_schedule_crosswalk)
 export(load_cfb_schedules)
+export(load_cfb_team_summaries_weekly)
+export(load_cfb_team_talent)
 export(load_cfb_teams)
+export(load_cfb_teams_crosswalk)
+export(load_espn_cfb_adv_defensive)
+export(load_espn_cfb_adv_defensive_players)
+export(load_espn_cfb_adv_drives)
+export(load_espn_cfb_adv_passing)
+export(load_espn_cfb_adv_receiving)
+export(load_espn_cfb_adv_rushing)
+export(load_espn_cfb_adv_situational)
+export(load_espn_cfb_adv_specialists)
+export(load_espn_cfb_adv_team)
+export(load_espn_cfb_adv_team_gamelog)
+export(load_espn_cfb_adv_turnover)
+export(load_espn_cfb_betting)
+export(load_espn_cfb_drives)
+export(load_espn_cfb_game_rosters)
+export(load_espn_cfb_linescores)
+export(load_espn_cfb_model_pbp)
+export(load_espn_cfb_passing)
+export(load_espn_cfb_pbp)
+export(load_espn_cfb_percentiles)
+export(load_espn_cfb_play_participants)
+export(load_espn_cfb_player_box)
+export(load_espn_cfb_power_index)
+export(load_espn_cfb_receiving)
+export(load_espn_cfb_rushing)
+export(load_espn_cfb_schedules)
+export(load_espn_cfb_team_box)
+export(load_espn_cfb_team_summaries)
+export(load_ncaa_mfb_drives)
+export(load_ncaa_mfb_linescore)
+export(load_ncaa_mfb_officials)
+export(load_ncaa_mfb_pbp)
+export(load_ncaa_mfb_pbp_cfbfastr)
+export(load_ncaa_mfb_player_stats)
+export(load_ncaa_mfb_rosters)
+export(load_ncaa_mfb_schedule)
+export(load_ncaa_mfb_team_stats)
+export(load_ncaa_mfb_teams)
 export(penalty_detection)
 export(prep_epa_df_after)
 export(update_cfb_db)
@@ -194,96 +242,124 @@ import(tidyr)
 import(utils)
 importFrom(Rcpp,getRcppVersion)
 importFrom(RcppParallel,defaultNumThreads)
-importFrom(cli,cli_abort)
-importFrom(cli,cli_alert_warning)
-importFrom(data.table,data.table)
-importFrom(data.table,fread)
-importFrom(data.table,setDT)
-importFrom(dplyr,all_of)
-importFrom(dplyr,any_of)
-importFrom(dplyr,arrange)
-importFrom(dplyr,as_tibble)
-importFrom(dplyr,between)
-importFrom(dplyr,bind_cols)
-importFrom(dplyr,bind_rows)
-importFrom(dplyr,case_when)
-importFrom(dplyr,coalesce)
-importFrom(dplyr,distinct)
-importFrom(dplyr,everything)
-importFrom(dplyr,filter)
-importFrom(dplyr,group_by)
-importFrom(dplyr,if_else)
-importFrom(dplyr,join_by)
-importFrom(dplyr,lag)
-importFrom(dplyr,lead)
-importFrom(dplyr,left_join)
-importFrom(dplyr,mutate)
-importFrom(dplyr,mutate_at)
-importFrom(dplyr,n)
-importFrom(dplyr,rename)
-importFrom(dplyr,rename_with)
-importFrom(dplyr,row_number)
-importFrom(dplyr,select)
-importFrom(dplyr,setdiff)
-importFrom(dplyr,slice_min)
-importFrom(dplyr,starts_with)
-importFrom(dplyr,tibble)
-importFrom(dplyr,ungroup)
+importFrom(cli,
+  cli_abort,
+  cli_alert_warning
+)
+importFrom(data.table,
+  data.table,
+  fread,
+  setDT
+)
+importFrom(dplyr,
+  all_of,
+  any_of,
+  arrange,
+  as_tibble,
+  between,
+  bind_cols,
+  bind_rows,
+  case_when,
+  coalesce,
+  distinct,
+  everything,
+  filter,
+  group_by,
+  if_else,
+  join_by,
+  lag,
+  lead,
+  left_join,
+  mutate,
+  mutate_at,
+  n,
+  rename,
+  rename_with,
+  row_number,
+  select,
+  setdiff,
+  slice_min,
+  starts_with,
+  tibble,
+  ungroup
+)
 importFrom(glue,glue)
-importFrom(httr2,req_error)
-importFrom(httr2,req_headers)
-importFrom(httr2,req_perform)
-importFrom(httr2,req_proxy)
-importFrom(httr2,req_retry)
-importFrom(httr2,req_timeout)
-importFrom(httr2,req_url_query)
-importFrom(httr2,request)
-importFrom(httr2,resp_body_string)
-importFrom(httr2,resp_status)
-importFrom(httr2,resp_status_desc)
-importFrom(httr2,url_modify)
-importFrom(httr2,url_modify_query)
-importFrom(janitor,clean_names)
-importFrom(janitor,make_clean_names)
-importFrom(jsonlite,fromJSON)
-importFrom(jsonlite,toJSON)
-importFrom(mgcv,bam)
-importFrom(mgcv,predict.bam)
+importFrom(httr2,
+  req_error,
+  req_headers,
+  req_perform,
+  req_proxy,
+  req_retry,
+  req_timeout,
+  req_url_query,
+  request,
+  resp_body_string,
+  resp_status,
+  resp_status_desc,
+  url_modify,
+  url_modify_query
+)
+importFrom(janitor,
+  clean_names,
+  make_clean_names
+)
+importFrom(jsonlite,
+  fromJSON,
+  toJSON
+)
+importFrom(mgcv,
+  bam,
+  predict.bam
+)
 importFrom(nnet,multinom)
-importFrom(purrr,list_rbind)
-importFrom(purrr,map)
-importFrom(purrr,map_dfr)
-importFrom(purrr,map_if)
-importFrom(purrr,pluck)
-importFrom(purrr,quietly)
-importFrom(purrr,set_names)
-importFrom(rlang,"%||%")
-importFrom(rlang,.data)
-importFrom(stats,na.omit)
-importFrom(stats,predict)
-importFrom(stats,setNames)
-importFrom(stringr,regex)
-importFrom(stringr,str_count)
-importFrom(stringr,str_detect)
-importFrom(stringr,str_extract)
-importFrom(stringr,str_length)
-importFrom(stringr,str_match)
-importFrom(stringr,str_match_all)
-importFrom(stringr,str_remove)
-importFrom(stringr,str_replace)
-importFrom(stringr,str_replace_all)
-importFrom(stringr,str_squish)
-importFrom(stringr,str_sub)
-importFrom(stringr,str_trim)
-importFrom(tibble,as_tibble)
-importFrom(tibble,enframe)
-importFrom(tidyr,everything)
-importFrom(tidyr,fill)
-importFrom(tidyr,pivot_wider)
-importFrom(tidyr,replace_na)
-importFrom(tidyr,unnest)
-importFrom(tidyr,unnest_wider)
-importFrom(utils,URLdecode)
-importFrom(utils,URLencode)
-importFrom(utils,data)
-importFrom(utils,globalVariables)
+importFrom(purrr,
+  list_rbind,
+  map,
+  map_dfr,
+  map_if,
+  pluck,
+  quietly,
+  set_names
+)
+importFrom(rlang,
+  "%||%",
+  .data
+)
+importFrom(stats,
+  na.omit,
+  predict,
+  setNames
+)
+importFrom(stringr,
+  regex,
+  str_count,
+  str_detect,
+  str_extract,
+  str_length,
+  str_match,
+  str_match_all,
+  str_remove,
+  str_replace,
+  str_replace_all,
+  str_squish,
+  str_sub,
+  str_trim
+)
+importFrom(tibble,
+  as_tibble,
+  enframe
+)
+importFrom(tidyr,
+  everything,
+  fill,
+  pivot_wider,
+  replace_na,
+  unnest,
+  unnest_wider
+)
+importFrom(utils,
+  URLdecode,
+  URLencode,
+  data,
+  globalVariables
+)

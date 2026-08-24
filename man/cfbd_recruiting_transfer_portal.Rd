@@ -34,10 +34,10 @@ Minimum value accepted: 2021}
 }
 }
 \seealso{
-Other CFBD Recruiting: 
-\code{\link{cfbd_recruiting_player}()},
-\code{\link{cfbd_recruiting_position}()},
-\code{\link{cfbd_recruiting_team}()}
+Other CFBD Recruiting:
+\code{\link[=cfbd_recruiting_player]{cfbd_recruiting_player()}},
+\code{\link[=cfbd_recruiting_position]{cfbd_recruiting_position()}},
+\code{\link[=cfbd_recruiting_team]{cfbd_recruiting_team()}}
 }
 \concept{CFBD Recruiting}
 \keyword{Recruiting}

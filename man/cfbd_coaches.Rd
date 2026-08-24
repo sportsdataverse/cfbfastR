@@ -89,10 +89,10 @@ A coach search function which provides coaching records and school history for a
 }
 }
 \seealso{
-Other CFBD Coaches Functions: 
-\code{\link{cfbd_coaches_profile}()},
-\code{\link{cfbd_coaches_seasons}()},
-\code{\link{cfbd_coaches_tenures}()}
+Other CFBD Coaches Functions:
+\code{\link[=cfbd_coaches_profile]{cfbd_coaches_profile()}},
+\code{\link[=cfbd_coaches_seasons]{cfbd_coaches_seasons()}},
+\code{\link[=cfbd_coaches_tenures]{cfbd_coaches_tenures()}}
 }
 \concept{CFBD Coaches Functions}
 \keyword{Coaches}

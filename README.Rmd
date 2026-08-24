@@ -45,6 +45,33 @@ remotes::install_github("sportsdataverse/cfbfastR")
 
 
 
+## **Full Season Data Loaders**
+
+`cfbfastR` ships four loader families that pull pre-built season datasets
+from the [sportsdataverse-data releases](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+— no API key, no scraping, one function call per dataset:
+
+| Family | Functions | Source / contents | Coverage |
+|---|---|---|---|
+| Classic | `load_cfb_pbp()`, `load_cfb_schedules()`, `load_cfb_rosters()`, `load_cfb_teams()` | The original cfbfastR EPA/WPA play-by-play + companions | pbp 2014+ |
+| ESPN | `load_espn_cfb_*()` (27) | ESPN-derived datasets: pbp, schedules, team/player box, drives, game rosters, linescores, betting, play participants, FPI power index, percentiles, passing/rushing/receiving EPA splits, team summaries, model pbp, and eleven `adv_*` advanced-stat datasets | mostly 2004+ |
+| Ratings & recruiting | `load_cfb_ratings()`, `load_cfb_ratings_weekly()`, `load_cfb_fpi_weekly()`, `load_cfb_team_summaries_weekly()`, `load_cfb_team_talent()`, `load_cfb_recruits()`, `load_cfb_recruiting_proj()`, `load_cfb_returning_production()`, plus the `load_cfb_*_crosswalk()` id crosswalks | Season/weekly power ratings, talent composite, recruiting, CFBD↔ESPN id crosswalks | varies (2002+) |
+| NCAA (stats.ncaa.org) | `load_ncaa_mfb_*()` (10) | pbp (native + cfbfastR-shaped), drives, linescore, officials, player/team stats, rosters, schedule, teams — includes FCS and lower divisions ESPN misses | 2013+ |
+
+**Which play-by-play do I want?**
+
+* `load_cfb_pbp()` — the classic cfbfastR pbp with the full EPA/WPA model
+  columns; FBS, 2014+. Existing code keeps working unchanged.
+* `load_espn_cfb_pbp()` — the ESPN-derived pbp (469 columns incl. EPA/WPA and
+  participant ids) with deeper history, 2004+.
+* `load_ncaa_mfb_pbp()` — stats.ncaa.org pbp incl. FCS and lower divisions,
+  2013+; `load_ncaa_mfb_pbp_cfbfastr()` is the same data reshaped onto
+  cfbfastR pbp column conventions for cross-source binds.
+
+All loaders accept a vector of seasons (or `seasons = TRUE` for everything
+published) and an optional `dbConnection` + `tablename` to write straight into
+a database instead of returning a tibble.
+
 ## **Breaking Changes**
 
 [**Full News on Releases**](https://cfbfastR.sportsdataverse.org/news/index.html)

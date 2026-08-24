@@ -64,9 +64,9 @@ Minimum value accepted: 1967}
 }
 }
 \seealso{
-Other CFBD Draft: 
-\code{\link{cfbd_draft_positions}()},
-\code{\link{cfbd_draft_teams}()}
+Other CFBD Draft:
+\code{\link[=cfbd_draft_positions]{cfbd_draft_positions()}},
+\code{\link[=cfbd_draft_teams]{cfbd_draft_teams()}}
 }
 \concept{CFBD Draft}
 \keyword{Draft}
