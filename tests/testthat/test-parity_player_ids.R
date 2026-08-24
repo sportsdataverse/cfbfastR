@@ -10,6 +10,7 @@ roster_path  <- testthat::test_path("fixtures", "parity", "game_rosters.parquet"
 box_path     <- testthat::test_path("fixtures", "parity", "game_boxscores.parquet")
 
 skip_if_no_fixture <- function() {
+  testthat::skip_on_cran()
   testthat::skip_if_not(file.exists(fixture_path) && file.exists(roster_path),
                         "parity fixtures not generated")
   testthat::skip_if_not_installed("arrow")

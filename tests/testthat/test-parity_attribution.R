@@ -9,6 +9,7 @@
 oracle_path <- testthat::test_path("fixtures", "parity", "attribution_oracle.parquet")
 
 skip_if_no_fixture <- function() {
+  testthat::skip_on_cran()
   testthat::skip_if_not(file.exists(oracle_path), "parity fixtures not generated")
   testthat::skip_if_not_installed("arrow")
 }
