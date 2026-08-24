@@ -26,9 +26,27 @@ This is a major release (2.2.0 -> 3.0.0; the 2.3.0 development version was renum
 * Documentation migrated to roxygen2 8.1.0; adds a `cph` role to
   `Authors@R` and refreshes the LICENSE year.
 
+## Test environments
+
+* local Windows 10, R 4.6.1 (full suite + `--run-donttest`)
+* GitHub Actions: windows-latest (release), ubuntu-latest (release, oldrel-1)
+* R-hub: linux, windows, macos (R-devel)
+
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
+
+(The local Windows run shows one NOTE about a `''NULL''` file in the check
+directory; this is a known artifact of rcmdcheck on Windows in the local
+environment and does not appear on the CI or R-hub platforms.)
+
+## Internet resources
+
+All functions that access internet resources (the CollegeFootballData and
+ESPN APIs, and the pre-built season datasets on GitHub release assets) fail
+gracefully with an informative message and return an empty table when the
+resource is unavailable. Examples for these functions are wrapped in
+`\donttest{try(...)}`.
 
 ## revdepcheck results
 
