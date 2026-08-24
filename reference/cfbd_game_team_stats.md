@@ -170,7 +170,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:32:20 UTC
+#> ℹ Data updated: 2026-08-24 12:06:37 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
@@ -178,12 +178,12 @@ Other CFBD Games:
 #>  2 401403923 Ole Miss   SEC        away      LSU      SEC                     20
 #>  3 401403939 Arkansas   SEC        home      LSU      SEC                     10
 #>  4 401403939 LSU        SEC        away      Arkansas SEC                     13
-#>  5 401403867 Florida S… ACC        home      LSU      SEC                     24
-#>  6 401403867 LSU        SEC        away      Florida… ACC                     23
-#>  7 401403934 Alabama    SEC        away      LSU      SEC                     31
-#>  8 401403934 LSU        SEC        home      Alabama  SEC                     32
-#>  9 401437036 Georgia    SEC        home      LSU      SEC                     50
-#> 10 401437036 LSU        SEC        away      Georgia  SEC                     30
+#>  5 401403873 Southern   SWAC       away      LSU      SEC                     17
+#>  6 401403873 LSU        SEC        home      Southern SWAC                    65
+#>  7 401403963 Texas A&M  SEC        home      LSU      SEC                     38
+#>  8 401403963 LSU        SEC        away      Texas A… SEC                     23
+#>  9 401403885 LSU        SEC        home      Mississ… SEC                     31
+#> 10 401403885 Mississip… SEC        away      LSU      SEC                     16
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -194,20 +194,20 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:32:20 UTC
+#> ℹ Data updated: 2026-08-24 12:06:37 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
-#>  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
-#>  2 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
-#>  3 332450221 Pittsburgh ACC        home      Florida… ACC                     13
-#>  4 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-#>  5 332710103 Boston Co… ACC        home      Florida… ACC                     34
-#>  6 332710103 Florida S… ACC        away      Boston … ACC                     48
-#>  7 332780052 Florida S… ACC        home      Maryland ACC                     63
-#>  8 332780052 Maryland   ACC        away      Florida… ACC                      0
-#>  9 333060052 Florida S… ACC        home      Miami    ACC                     41
-#> 10 333060052 Miami      ACC        away      Florida… ACC                     14
+#>  1 332570052 Florida S… ACC        home      Nevada   Mountain West           62
+#>  2 332570052 Nevada     Mountain … away      Florida… ACC                      7
+#>  3 332990052 Florida S… ACC        home      NC State ACC                     49
+#>  4 332990052 NC State   ACC        away      Florida… ACC                     17
+#>  5 333200052 Florida S… ACC        home      Syracuse ACC                     59
+#>  6 333200052 Syracuse   ACC        away      Florida… ACC                      3
+#>  7 333410052 Florida S… ACC        home      Duke     ACC                     45
+#>  8 333410052 Duke       ACC        away      Florida… ACC                      7
+#>  9 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
+#> 10 332640052 Florida S… ACC        home      Bethune… MEAC                    54
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

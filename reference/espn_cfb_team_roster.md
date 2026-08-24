@@ -195,7 +195,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_roster(team_id = 61, year = 2024))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:39:03 UTC
+#> ℹ Data updated: 2026-08-24 12:12:37 UTC
 #> # A tibble: 177 × 38
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -219,7 +219,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_roster(team_id = 61, year = 2024,
                            position_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:39:05 UTC
+#> ℹ Data updated: 2026-08-24 12:12:39 UTC
 #> # A tibble: 177 × 32
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -243,7 +243,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_roster(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team roster from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:39:06 UTC
+#> ℹ Data updated: 2026-08-24 12:12:40 UTC
 #> # A tibble: 177 × 28
 #>    season team_id athlete_id first_name last_name full_name  display_name jersey
 #>     <int> <chr>   <chr>      <chr>      <chr>     <chr>      <chr>        <chr> 

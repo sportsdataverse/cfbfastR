@@ -83,7 +83,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_rankings(year = 2019, week = 12))
 #> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:35:18 UTC
+#> ℹ Data updated: 2026-08-24 12:09:28 UTC
 #> # A tibble: 100 × 11
 #>    season season_type  week poll      isFinal  rank teamId school     conference
 #>     <int> <chr>       <int> <chr>     <lgl>   <int>  <int> <chr>      <chr>     
@@ -102,7 +102,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_rankings(year = 2018, week = 14))
 #> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:35:18 UTC
+#> ℹ Data updated: 2026-08-24 12:09:28 UTC
 #> # A tibble: 75 × 11
 #>    season season_type  week poll      isFinal  rank teamId school     conference
 #>     <int> <chr>       <int> <chr>     <lgl>   <int>  <int> <chr>      <chr>     
@@ -121,7 +121,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_rankings(year = 2013, season_type = "postseason"))
 #> ── Rankings data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:35:19 UTC
+#> ℹ Data updated: 2026-08-24 12:09:28 UTC
 #> # A tibble: 75 × 11
 #>    season season_type  week poll          isFinal  rank teamId school conference
 #>     <int> <chr>       <int> <chr>         <lgl>   <int>  <int> <chr>  <chr>     

@@ -82,7 +82,7 @@ Other CFBD Playoff Functions:
 # \donttest{
   try(cfbd_playoffs_cfp_games(year = 2024))
 #> ── Get College Football Playoff games from CollegeFootballData.com ─────────────
-#> ℹ Data updated: 2026-08-24 11:35:15 UTC
+#> ℹ Data updated: 2026-08-24 12:09:25 UTC
 #> # A tibble: 11 × 34
 #>       id bracket_slot round      round_name round_order matchup_order start_date
 #>    <int> <chr>        <chr>      <chr>            <int>         <int> <chr>     

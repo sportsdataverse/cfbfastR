@@ -149,7 +149,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama"))
 #> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:32:18 UTC
+#> ℹ Data updated: 2026-08-24 12:06:33 UTC
 #> # A tibble: 48 × 60
 #>      game_id team     conference home_away team_points athlete_id athlete_name  
 #>        <int> <chr>    <chr>      <chr>           <int>      <int> <chr>         
@@ -173,7 +173,7 @@ Other CFBD Games:
 
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
 #> ── Game player stats data from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 11:32:19 UTC
+#> ℹ Data updated: 2026-08-24 12:06:33 UTC
 #> # A tibble: 3 × 60
 #>     game_id team        conference home_away team_points athlete_id athlete_name
 #>       <int> <chr>       <chr>      <chr>           <int>      <int> <chr>       

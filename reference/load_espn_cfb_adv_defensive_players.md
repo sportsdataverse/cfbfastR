@@ -70,7 +70,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive_players(2004))
 #> ── college football advanced defensive players from the SportsDataverse data rep
-#> ℹ Data updated: 2026-08-24 11:39:43 UTC
+#> ℹ Data updated: 2026-08-24 12:13:14 UTC
 #> # A tibble: 926 × 8
 #>    def_pos_team_id def_pos_team             player_name        fumble_recoveries
 #>              <int> <chr>                    <chr>                          <int>

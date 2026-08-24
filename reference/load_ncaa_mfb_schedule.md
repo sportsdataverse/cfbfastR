@@ -69,7 +69,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_schedule(2013))
 #> ── NCAA men's football schedules (stats.ncaa.org) from the SportsDataverse data 
-#> ℹ Data updated: 2026-08-24 11:40:23 UTC
+#> ℹ Data updated: 2026-08-24 12:13:53 UTC
 #> # A tibble: 3,349 × 13
 #>    team_id team_name  date       opponent_id opponent  result outcome team_score
 #>    <chr>   <chr>      <chr>      <chr>       <chr>     <chr>  <chr>        <int>
