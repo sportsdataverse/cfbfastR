@@ -53,6 +53,7 @@ expect_col_parity <- function(m, nm) {
 }
 
 test_that("penalty flags match sdv-py on the 60-game oracle", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   m <- paired(read_golden())
 
@@ -64,6 +65,7 @@ test_that("penalty flags match sdv-py on the 60-game oracle", {
 })
 
 test_that("penalty enforcement classes match sdv-py", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   m <- paired(read_golden())
 
@@ -74,6 +76,7 @@ test_that("penalty enforcement classes match sdv-py", {
 })
 
 test_that("an unknown enforcement class stays NA rather than collapsing to FALSE", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   m <- paired(read_golden())
 
@@ -85,6 +88,7 @@ test_that("an unknown enforcement class stays NA rather than collapsing to FALSE
 })
 
 test_that("every fixture season is represented in the oracle", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   g <- read_golden()
   expect_setequal(

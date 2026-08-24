@@ -69,6 +69,7 @@ count_mismatches <- function(x) {
 differs <- function(a, b) !((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
 
 test_that("player ids resolve to sdv-py's athlete ids", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   m <- count_mismatches(resolved())
 
@@ -88,6 +89,7 @@ test_that("player ids resolve to sdv-py's athlete ids", {
 })
 
 test_that("the box score is what closes the gap, not the roster alone", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   skip_if_not(file.exists(box_path), "box-score fixture not generated")
 
@@ -102,6 +104,7 @@ test_that("the box score is what closes the gap, not the roster alone", {
 })
 
 test_that("a bare Team sentinel is never fuzzy-matched to a player", {
+  testthat::skip_on_cran()
   # "Team" with no play-text or box-score provenance must not resolve: reaching
   # the surname tier returns whichever roster player the fallback lands on -- a
   # wrong athlete on a play that had no individual ball carrier.
@@ -117,6 +120,7 @@ test_that("a bare Team sentinel is never fuzzy-matched to a player", {
 })
 
 test_that("the play-text sentinel resolves to the box score's team entry", {
+  testthat::skip_on_cran()
   # ESPN writes "TEAM" in the play text and " Team" in the box score, and
   # sdv-py credits the box entry's negative id. Both must normalise to the same
   # key while a bare "Team" stays blanked -- see .norm_player_name, where the
@@ -130,6 +134,7 @@ test_that("the play-text sentinel resolves to the box score's team entry", {
 })
 
 test_that("no roster still yields the id columns, all NA", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   g <- as.data.frame(arrow::read_parquet(fixture_path))
   idc <- grep("_player_id$", names(g), value = TRUE)
@@ -143,6 +148,7 @@ test_that("no roster still yields the id columns, all NA", {
 })
 
 test_that("a trailing (TEAM) suffix is stripped from captured names", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   df <- data.frame(
     rusher_player_name = c("Bryan Randall (VT)", "Matt Ryan (BC)", "Plain Name"),

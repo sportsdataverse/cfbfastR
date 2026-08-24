@@ -19,6 +19,7 @@
 ### the moment someone re-adds the header rather than months later in a release.
 
 test_that("no site.api.espn.com caller sends a User-Agent", {
+  testthat::skip_on_cran()
   r_dir <- testthat::test_path("..", "..", "R")
   skip_if_not(dir.exists(r_dir), "package sources not available")
 
@@ -50,6 +51,7 @@ test_that("no site.api.espn.com caller sends a User-Agent", {
 })
 
 test_that("the sidecar fetch does not send a User-Agent either", {
+  testthat::skip_on_cran()
   # cdn.espn.com answers 200 with an EMPTY body when a browser UA is sent, which
   # is worse than a 403: nothing raises, the JSON parse just yields nothing.
   # R CMD check runs the suite against the INSTALLED package, where R/*.R does

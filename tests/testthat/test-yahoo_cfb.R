@@ -1,4 +1,5 @@
 test_that("yahoo_cfb_scoreboard flattens games map and is self-describing", {
+  testthat::skip_on_cran()
   fake <- list(service = list(scoreboard = list(games = list(
     `ncaaf.g.1` = list(gameid = "ncaaf.g.1", home_team_id = "ncaaf.t.1",
                        away_team_id = "ncaaf.t.2", total_home_points = "21",
@@ -11,6 +12,7 @@ test_that("yahoo_cfb_scoreboard flattens games map and is self-describing", {
 })
 
 test_that("legacy wrappers validate category and flatten leaders", {
+  testthat::skip_on_cran()
   fake <- list(data = list(leagues = list(list(leaders = list(
     list(player = list(playerId = "ncaaf.p.9", displayName = "RB Nine",
                        team = list(displayName = "Team C", abbreviation = "TC")),
@@ -27,6 +29,7 @@ test_that("legacy wrappers validate category and flatten leaders", {
 })
 
 test_that("yahoo_cfb_player_season_stats flattens modern payload + is self-describing", {
+  testthat::skip_on_cran()
   fake <- list(data = list(leagues = list(list(footballStats = list(
     list(player = list(playerId = "ncaaf.p.1", displayName = "QB One",
                        team = list(displayName = "Team A", abbreviation = "TA")),
@@ -39,6 +42,7 @@ test_that("yahoo_cfb_player_season_stats flattens modern payload + is self-descr
 })
 
 test_that(".yahoo_modern_rows pivots stats wide with entity columns", {
+  testthat::skip_on_cran()
   payload <- list(data = list(leagues = list(list(footballStats = list(
     list(
       player = list(playerId = "ncaaf.p.1", displayName = "QB One",
@@ -57,6 +61,7 @@ test_that(".yahoo_modern_rows pivots stats wide with entity columns", {
 })
 
 test_that("yahoo_cfb_team_season_stats flattens modern team payload + is self-describing", {
+  testthat::skip_on_cran()
   fake <- list(data = list(leagues = list(list(footballStats = list(
     list(team = list(displayName = "Team A", abbreviation = "TA"),
          stats = list(list(statId = "PASSING_YARDS", value = "4000"))))))))
@@ -70,6 +75,7 @@ test_that("yahoo_cfb_team_season_stats flattens modern team payload + is self-de
 })
 
 test_that("yahoo_cfb_team_season_stats_legacy validates category and flattens team leaders", {
+  testthat::skip_on_cran()
   fake <- list(data = list(leagues = list(list(leaders = list(
     list(team = list(displayName = "Team B", abbreviation = "TB"),
          stats = list(list(statId = "RUSHING_YARDS", value = "2000"))))))))
@@ -88,6 +94,7 @@ test_that("yahoo_cfb_team_season_stats_legacy validates category and flattens te
 })
 
 test_that(".yahoo_entity_cols returns empty list for NULL entity", {
+  testthat::skip_on_cran()
   row_no_player_no_team <- list()
   result <- cfbfastR:::.yahoo_entity_cols(row_no_player_no_team)
   expect_equal(result, list())

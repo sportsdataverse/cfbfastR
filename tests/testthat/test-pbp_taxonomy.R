@@ -1,4 +1,5 @@
 test_that(".pbp_play_types() returns the canonical play-type vectors", {
+  testthat::skip_on_cran()
   tt <- cfbfastR:::.pbp_play_types()
 
   expect_type(tt, "list")

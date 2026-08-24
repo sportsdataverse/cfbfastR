@@ -40,6 +40,7 @@ joined <- function() {
 differs <- function(a, b) !((is.na(a) & is.na(b)) | (!is.na(a) & !is.na(b) & a == b))
 
 test_that("participant names coalesce exactly as sdv-py does", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   x <- joined()
 
@@ -53,6 +54,7 @@ test_that("participant names coalesce exactly as sdv-py does", {
 })
 
 test_that("the stage actually rewrites names (the oracle is not a no-op)", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   x <- joined()
 
@@ -66,6 +68,7 @@ test_that("the stage actually rewrites names (the oracle is not a no-op)", {
 })
 
 test_that("row count and column set survive the join", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   o <- as.data.frame(arrow::read_parquet(oracle_path))
   p <- as.data.frame(arrow::read_parquet(parts_path))
@@ -82,6 +85,7 @@ test_that("row count and column set survive the join", {
 })
 
 test_that("a duplicated participant row cannot fan out the plays", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   p <- as.data.frame(arrow::read_parquet(parts_path))
   gid <- p$fixture_game_id[1]
@@ -95,6 +99,7 @@ test_that("a duplicated participant row cannot fan out the plays", {
 })
 
 test_that("no participants leaves the frame untouched", {
+  testthat::skip_on_cran()
   df <- data.frame(id = c("1", "2"),
                    rusher_player_name = c("A. Smith", NA_character_),
                    stringsAsFactors = FALSE)
@@ -104,6 +109,7 @@ test_that("no participants leaves the frame untouched", {
 })
 
 test_that("return roles clean up but never introduce a name", {
+  testthat::skip_on_cran()
   df <- data.frame(
     id = c("10", "11"),
     punt_return_player_name    = c("J. Smth", NA_character_),
@@ -122,6 +128,7 @@ test_that("return roles clean up but never introduce a name", {
 })
 
 test_that("the pass defender is routed to the interceptor on interceptions", {
+  testthat::skip_on_cran()
   df <- data.frame(
     id  = c("20", "21"),
     int = c(1, 0),
@@ -142,6 +149,7 @@ test_that("the pass defender is routed to the interceptor on interceptions", {
 })
 
 test_that("an 18-digit play id joins exactly", {
+  testthat::skip_on_cran()
   # ESPN play ids run past 2^53, so a numeric join key silently collides
   # neighbouring plays. Two ids that differ only in the last digit must not
   # cross-match.
