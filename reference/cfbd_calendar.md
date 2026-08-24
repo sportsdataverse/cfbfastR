@@ -46,7 +46,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_calendar(2019))
 #> ── Calendar data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 12:06:17 UTC
+#> ℹ Data updated: 2026-08-24 12:57:27 UTC
 #> # A tibble: 17 × 5
 #>    season  week season_type first_game_start         last_game_start         
 #>     <int> <int> <chr>       <chr>                    <chr>                   

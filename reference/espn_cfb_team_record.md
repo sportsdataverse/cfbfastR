@@ -162,7 +162,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_record(team_id = 61, year = 2024))
 #> ── Team record from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 12:12:35 UTC
+#> ℹ Data updated: 2026-08-24 13:05:18 UTC
 #> # A tibble: 92 × 19
 #>    season season_type team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>   <chr>     <chr>             <chr>        
@@ -185,7 +185,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_record(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team record from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 12:12:35 UTC
+#> ℹ Data updated: 2026-08-24 13:05:18 UTC
 #> # A tibble: 92 × 9
 #>    season season_type team_id record_type record_name record_summary stat_name  
 #>     <int>       <int> <chr>   <chr>       <chr>       <chr>          <chr>      
