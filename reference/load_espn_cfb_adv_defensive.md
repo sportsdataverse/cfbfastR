@@ -77,7 +77,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive(2004))
 #> ── college football advanced defensive from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-08-24 13:33:06 UTC
+#> ℹ Data updated: 2026-08-24 14:49:50 UTC
 #> # A tibble: 926 × 22
 #>    def_pos_team_id def_pos_team          scrimmage_plays   TFL TFL_pass TFL_rush
 #>              <int> <chr>                           <int> <int>    <int>    <int>

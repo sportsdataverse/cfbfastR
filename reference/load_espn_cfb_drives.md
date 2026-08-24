@@ -78,7 +78,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_drives/drives_2004.rds>
 #> ── ESPN college football drives from the SportsDataverse data repo ─────────────
-#> ℹ Data updated: 2026-08-24 13:33:15 UTC
+#> ℹ Data updated: 2026-08-24 14:50:03 UTC
 #> # A tibble: 0 × 0
 # }
 ```
