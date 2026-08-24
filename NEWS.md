@@ -1,5 +1,31 @@
 # **cfbfastR v2.3.0**
 
+### New release-dataset loaders (39 functions)
+
+`cfbfastR` now loads every published CFB dataset on the
+[sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases)
+release repo, closing the gap with `sportsdataverse-py`'s loader surface. All
+loaders return `cfbfastR_data`-tagged tibbles, accept `seasons = TRUE` for the
+full published range, and support the `dbConnection`/`tablename` database
+write-through.
+
+* `load_espn_cfb_*()` — 27 loaders for the ESPN-derived family: `pbp`,
+  `schedules`, `team_box`, `player_box`, `drives`, `game_rosters`,
+  `linescores`, `betting`, `play_participants`, `power_index`, `percentiles`,
+  `passing`, `rushing`, `receiving`, `team_summaries`, `model_pbp`, and the
+  eleven `adv_*` advanced-stats datasets.
+* `load_cfb_ratings()`, `load_cfb_ratings_weekly()`, `load_cfb_fpi_weekly()`,
+  `load_cfb_team_summaries_weekly()`, `load_cfb_team_talent()`,
+  `load_cfb_recruits()`, `load_cfb_recruiting_proj()`,
+  `load_cfb_returning_production()` — season/weekly ratings, talent, and
+  recruiting datasets.
+* `load_cfb_schedule_crosswalk()`, `load_cfb_teams_crosswalk()`,
+  `load_cfb_rosters_crosswalk()` — CFBD/ESPN id crosswalks.
+* `load_ncaa_mfb_pbp()` — NCAA men's football play-by-play parsed from
+  stats.ncaa.org (covers FCS and lower divisions).
+* New internal `parquet_from_url()` helper backs the parquet-only datasets
+  (requires the suggested `arrow` package).
+
 This release adds a 65-function ESPN college-football API layer, expanding `cfbfastR`'s ESPN surface from 8 wrappers to 73. The new wrappers expose ESPN's core-v2 endpoints in ESPN's own ID space — complementary to the CollegeFootballData (`cfbd_*`) wrappers, and the natural join partners for `espn_cfb_pbp()` / `espn_cfb_scoreboard()`. Every wrapper was verified live against the 2023, 2024, and 2025 seasons.
 
 **Naming alignment with the sportsdataverse convention (this dev cycle, never on CRAN):** `espn_cfb_player_statistics()` is renamed to `espn_cfb_player_career_stats()` (the core-v2 `/athletes/{id}/statistics` career view, matching hoopR/wehoop/sportsdataverse-py). New `espn_cfb_player_stats_v3()` wraps the comprehensive web-common-v3 `/athletes/{id}/stats` payload (all categories, long format) — the `_v3` companion to `espn_cfb_player_stats()` (core-v2 season statistics).

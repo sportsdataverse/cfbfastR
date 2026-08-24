@@ -313,6 +313,8 @@ reference:
     desc: Functions exported by cfbfastR which load full seasons of cfbfastR data
     contents:
       - starts_with("load_cfb_")
+      - starts_with("load_espn_cfb_")
+      - '`load_ncaa_mfb_pbp`'
   - subtitle: "Update or Create Database"
     desc: Functions exported by cfbfastR which update and create a database of cfbfastR play-by-play data
     contents:
