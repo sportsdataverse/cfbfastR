@@ -15,6 +15,7 @@ pbp_path <- testthat::test_path("fixtures", "parity", "boxparity_pbp.parquet")
 box_path <- testthat::test_path("fixtures", "parity", "boxparity_box.parquet")
 
 skip_if_no_fixture <- function() {
+  testthat::skip_on_cran()
   testthat::skip_if_not(file.exists(pbp_path) && file.exists(box_path),
                         "boxscore-parity fixtures not generated")
   testthat::skip_if_not_installed("arrow")

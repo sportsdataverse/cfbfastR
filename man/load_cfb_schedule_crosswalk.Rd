@@ -28,7 +28,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    espn_game_id \tab integer \tab ESPN game id for the crosswalk row. \cr
    fox_game_id \tab character \tab Fox Sports game id for the same game. \cr
    yahoo_game_id \tab character \tab Yahoo Sports game id for the same game. \cr
-   yahoo_global_game_id \tab character \tab Yahoo's cross-season global game key in ncaaf.g.\if{html}{\out{<number>}} form, distinct from the date-encoded yahoo_game_id. \cr
+   yahoo_global_game_id \tab character \tab Yahoo's cross-season global game key in \code{ncaaf.g.NNNN} form, distinct from the date-encoded yahoo_game_id. \cr
    home_team \tab character \tab  \cr
    away_team \tab character \tab  \cr
    espn_date \tab character \tab Kickoff date as YYYY-MM-DD taken from ESPN's schedule, null on games that matched no ESPN row. \cr

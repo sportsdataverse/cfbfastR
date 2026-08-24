@@ -13,6 +13,7 @@
 fixture_path <- testthat::test_path("fixtures", "parity", "sdvpy_golden.parquet")
 
 skip_if_no_fixture <- function() {
+  testthat::skip_on_cran()
   testthat::skip_if_not(file.exists(fixture_path), "parity golden fixture not generated")
   testthat::skip_if_not_installed("arrow")
 }

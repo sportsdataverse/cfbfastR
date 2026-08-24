@@ -37,6 +37,7 @@ py_form <- function(txt) {
 }
 
 test_that("air yards match sdv-py on every row sdv-py resolves", {
+  testthat::skip_on_cran()
   skip_if_not(file.exists(air_path), "air-yards fixture not generated")
   skip_if_not_installed("arrow")
   x <- replay(air_path, .pbp_add_air_yards_cols)
@@ -49,6 +50,7 @@ test_that("air yards match sdv-py on every row sdv-py resolves", {
 })
 
 test_that("the article form recovers catch points sdv-py drops", {
+  testthat::skip_on_cran()
   skip_if_not(file.exists(air_path), "air-yards fixture not generated")
   skip_if_not_installed("arrow")
   x <- replay(air_path, .pbp_add_air_yards_cols)
@@ -65,6 +67,7 @@ test_that("the article form recovers catch points sdv-py drops", {
 })
 
 test_that("the air-yards oracle is not degenerate", {
+  testthat::skip_on_cran()
   skip_if_not(file.exists(air_path), "air-yards fixture not generated")
   skip_if_not_installed("arrow")
   o <- as.data.frame(arrow::read_parquet(air_path))

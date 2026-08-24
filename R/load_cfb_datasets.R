@@ -1022,7 +1022,7 @@ NULL
 #'    |espn_game_id         |integer   |ESPN game id for the crosswalk row. |
 #'    |fox_game_id          |character |Fox Sports game id for the same game. |
 #'    |yahoo_game_id        |character |Yahoo Sports game id for the same game. |
-#'    |yahoo_global_game_id |character |Yahoo's cross-season global game key in ncaaf.g.<number> form, distinct from the date-encoded yahoo_game_id. |
+#'    |yahoo_global_game_id |character |Yahoo's cross-season global game key in `ncaaf.g.NNNN` form, distinct from the date-encoded yahoo_game_id. |
 #'    |home_team            |character | |
 #'    |away_team            |character | |
 #'    |espn_date            |character |Kickoff date as YYYY-MM-DD taken from ESPN's schedule, null on games that matched no ESPN row. |
