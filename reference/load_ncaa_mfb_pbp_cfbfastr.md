@@ -163,7 +163,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_pbp_cfbfastr(2013))
 #> ── NCAA men's football play-by-play, cfbfastR-shaped from the SportsDataverse da
-#> ℹ Data updated: 2026-08-24 13:07:04 UTC
+#> ℹ Data updated: 2026-08-24 13:33:38 UTC
 #> # A tibble: 304,146 × 105
 #>    game_id  id_play drive_id game_play_number half_play_number drive_play_number
 #>      <int>  <int64>    <int>            <int>            <int>             <int>

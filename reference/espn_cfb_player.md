@@ -290,7 +290,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player(athlete_id = 102597, year = 2024))
 #> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 13:03:50 UTC
+#> ℹ Data updated: 2026-08-24 13:31:35 UTC
 #> # A tibble: 1 × 46
 #>   athlete_id season uid        guid  first_name last_name full_name display_name
 #>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       
@@ -305,7 +305,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_player(athlete_id = 102597, year = 2024,
                       team_detail = FALSE, position_detail = FALSE))
 #> ── Player detail from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 13:03:50 UTC
+#> ℹ Data updated: 2026-08-24 13:31:35 UTC
 #> # A tibble: 1 × 33
 #>   athlete_id season uid        guid  first_name last_name full_name display_name
 #>   <chr>       <int> <chr>      <chr> <chr>      <chr>     <chr>     <chr>       

@@ -116,7 +116,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_pbp(2013))
 #> ── NCAA men's football play-by-play (stats.ncaa.org) from the SportsDataverse da
-#> ℹ Data updated: 2026-08-24 13:07:00 UTC
+#> ℹ Data updated: 2026-08-24 13:33:35 UTC
 #> # A tibble: 344,180 × 51
 #>    contest_id drive_number play_number offense drive_result drive_scored  down
 #>    <chr>             <int>       <int> <chr>   <chr>        <lgl>        <int>

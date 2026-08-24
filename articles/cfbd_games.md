@@ -52,21 +52,21 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-24 13:10:15 UTC
+    ## ℹ Data updated: 2026-08-24 13:36:01 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
-    ##  1 401110842 Alabama    SEC        home      LSU      SEC                     41
-    ##  2 401110842 LSU        SEC        away      Alabama  SEC                     46
-    ##  3 401110850 Ole Miss   SEC        home      LSU      SEC                     37
-    ##  4 401110850 LSU        SEC        away      Ole Miss SEC                     58
-    ##  5 401110790 LSU        SEC        home      Northwe… Southland               65
-    ##  6 401110790 Northwest… Southland  away      LSU      SEC                     14
-    ##  7 401132981 LSU        SEC        home      Georgia  SEC                     37
-    ##  8 401132981 Georgia    SEC        away      LSU      SEC                     10
-    ##  9 401110778 Texas      Big 12     home      LSU      SEC                     38
-    ## 10 401110778 LSU        SEC        away      Texas    Big 12                  45
+    ##  1 401110828 Mississip… SEC        home      LSU      SEC                     13
+    ##  2 401110828 LSU        SEC        away      Mississ… SEC                     36
+    ##  3 401110833 LSU        SEC        home      Auburn   SEC                     23
+    ##  4 401110833 Auburn     SEC        away      LSU      SEC                     20
+    ##  5 401110859 LSU        SEC        home      Arkansas SEC                     56
+    ##  6 401110859 Arkansas   SEC        away      LSU      SEC                     20
+    ##  7 401110819 LSU        SEC        home      Florida  SEC                     42
+    ##  8 401110819 Florida    SEC        away      LSU      SEC                     28
+    ##  9 401110813 LSU        SEC        home      Utah St… Mountain West           42
+    ## 10 401110813 Utah State Mountain … away      LSU      SEC                      6
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -81,8 +81,7 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 ```
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
-
-    ## ℹ Data updated: 2026-08-24 13:10:16 UTC
+    ## ℹ Data updated: 2026-08-24 13:36:01 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
@@ -95,8 +94,8 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
     ##  6 332710103 Florida S… ACC        away      Boston … ACC                     48
     ##  7 332780052 Florida S… ACC        home      Maryland ACC                     63
     ##  8 332780052 Maryland   ACC        away      Florida… ACC                      0
-    ##  9 333060052 Florida S… ACC        home      Miami    ACC                     41
-    ## 10 333060052 Miami      ACC        away      Florida… ACC                     14
+    ##  9 332990052 Florida S… ACC        home      NC State ACC                     49
+    ## 10 332990052 NC State   ACC        away      Florida… ACC                     17
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

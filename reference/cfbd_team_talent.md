@@ -39,14 +39,14 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_talent())
-#> 2026-08-24 13:01:51.394586:Invalid arguments or no team talent data available! ℹ In argument: `talent = as.numeric(.data$talent)`.
+#> 2026-08-24 13:30:36.105378:Invalid arguments or no team talent data available! ℹ In argument: `talent = as.numeric(.data$talent)`.
 #> Caused by error in `.data$talent`:
 #> ! Column `talent` not found in `.data`.
 #> data frame with 0 columns and 0 rows
 
   try(cfbd_team_talent(year = 2018))
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-08-24 13:01:51 UTC
+#> ℹ Data updated: 2026-08-24 13:30:36 UTC
 #> # A tibble: 237 × 3
 #>     year school        talent
 #>    <int> <chr>          <dbl>

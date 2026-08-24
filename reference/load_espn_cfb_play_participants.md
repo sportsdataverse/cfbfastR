@@ -131,7 +131,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_play_participants/play_participants_2014.rds>
 #> ── ESPN college football play participants from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-08-24 13:06:47 UTC
+#> ℹ Data updated: 2026-08-24 13:33:24 UTC
 #> # A tibble: 0 × 0
 # }
 ```

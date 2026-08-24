@@ -20,7 +20,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-24 13:10:08 UTC
+    ## ℹ Data updated: 2026-08-24 13:35:56 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -43,7 +43,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-24 13:10:08 UTC
+    ## ℹ Data updated: 2026-08-24 13:35:56 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
