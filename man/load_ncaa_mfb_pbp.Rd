@@ -24,119 +24,65 @@ writes the season data into a database.}
 \value{
 Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    col_name \tab types \tab description \cr
-   game_id \tab integer \tab  \cr
-   id_play \tab integer \tab  \cr
-   drive_id \tab integer \tab  \cr
-   game_play_number \tab integer \tab  \cr
-   half_play_number \tab integer \tab  \cr
-   drive_play_number \tab integer \tab  \cr
+   contest_id \tab character \tab  \cr
    drive_number \tab integer \tab  \cr
-   season \tab integer \tab  \cr
-   year \tab integer \tab  \cr
-   week \tab integer \tab  \cr
-   period \tab integer \tab  \cr
-   half \tab integer \tab  \cr
-   clock.minutes \tab integer \tab  \cr
-   clock.seconds \tab integer \tab  \cr
-   TimeSecsRem \tab integer \tab  \cr
-   Under_two \tab logical \tab  \cr
-   pos_team \tab character \tab  \cr
-   def_pos_team \tab character \tab  \cr
-   offense_play \tab character \tab  \cr
-   defense_play \tab character \tab  \cr
-   home \tab character \tab  \cr
-   away \tab character \tab  \cr
-   pos_team_score \tab integer \tab  \cr
-   def_pos_team_score \tab integer \tab  \cr
-   offense_score \tab integer \tab  \cr
-   defense_score \tab integer \tab  \cr
-   pos_score_diff \tab integer \tab  \cr
-   score_pts \tab integer \tab  \cr
-   scoring_play \tab logical \tab  \cr
-   scoring \tab logical \tab  \cr
+   play_number \tab integer \tab  \cr
+   offense \tab character \tab  \cr
+   drive_result \tab character \tab  \cr
+   drive_scored \tab logical \tab  \cr
    down \tab integer \tab  \cr
    distance \tab integer \tab  \cr
    yard_line \tab character \tab  \cr
-   yards_to_goal \tab integer \tab  \cr
-   yards_to_goal_end \tab integer \tab  \cr
-   Goal_To_Go \tab logical \tab  \cr
-   log_ydstogo \tab double \tab  \cr
-   yards_gained \tab integer \tab  \cr
+   yard_line_side \tab character \tab  \cr
+   yard_line_number \tab integer \tab  \cr
    play_type \tab character \tab  \cr
-   orig_play_type \tab character \tab  \cr
-   play_text \tab character \tab  \cr
-   rush \tab logical \tab  \cr
-   rush_td \tab logical \tab  \cr
-   pass \tab logical \tab  \cr
-   pass_td \tab logical \tab  \cr
-   pass_attempt \tab logical \tab  \cr
-   completion \tab logical \tab  \cr
-   target \tab logical \tab  \cr
-   sack \tab logical \tab  \cr
-   sack_vec \tab logical \tab  \cr
-   int \tab logical \tab  \cr
-   int_td \tab logical \tab  \cr
-   turnover_vec \tab logical \tab  \cr
-   downs_turnover \tab logical \tab  \cr
-   touchdown \tab logical \tab  \cr
-   td_play \tab logical \tab  \cr
-   safety \tab logical \tab  \cr
-   fumble_vec \tab logical \tab  \cr
-   punt \tab logical \tab  \cr
-   punt_play \tab logical \tab  \cr
-   kickoff_play \tab logical \tab  \cr
-   kick_play \tab logical \tab  \cr
-   fg_inds \tab logical \tab  \cr
+   clock \tab character \tab  \cr
+   yards_gained \tab integer \tab  \cr
+   formation \tab character \tab  \cr
+   passer \tab character \tab  \cr
+   rusher \tab character \tab  \cr
+   receiver \tab character \tab  \cr
+   kicker \tab character \tab  \cr
+   punter \tab character \tab  \cr
+   returner \tab character \tab  \cr
+   run_direction \tab character \tab  \cr
+   qb_scramble \tab logical \tab  \cr
+   pass_complete \tab logical \tab  \cr
+   pass_depth \tab character \tab  \cr
+   pass_direction \tab character \tab  \cr
+   tackler_1 \tab character \tab  \cr
+   tackler_2 \tab character \tab  \cr
+   kick_yards \tab integer \tab  \cr
+   return_yards \tab integer \tab  \cr
+   punt_yards \tab integer \tab  \cr
+   fg_distance \tab integer \tab  \cr
    fg_made \tab logical \tab  \cr
-   punt_blocked \tab logical \tab  \cr
-   punt_fair_catch \tab logical \tab  \cr
-   firstD_by_yards \tab logical \tab  \cr
-   firstD_by_penalty \tab logical \tab  \cr
+   is_first_down \tab logical \tab  \cr
+   is_touchdown \tab logical \tab  \cr
+   is_safety \tab logical \tab  \cr
+   is_fumble \tab logical \tab  \cr
+   is_turnover \tab logical \tab  \cr
+   turnover_type \tab character \tab  \cr
+   out_of_bounds \tab logical \tab  \cr
+   no_play \tab logical \tab  \cr
+   fair_catch \tab logical \tab  \cr
    penalty_flag \tab logical \tab  \cr
-   penalty_no_play \tab logical \tab  \cr
-   penalty_declined \tab logical \tab  \cr
-   penalty_offset \tab logical \tab  \cr
-   penalty_text \tab character \tab  \cr
-   yds_penalty \tab integer \tab  \cr
-   rusher_player_name \tab character \tab  \cr
-   passer_player_name \tab character \tab  \cr
-   receiver_player_name \tab character \tab  \cr
-   interception_player_name \tab character \tab  \cr
-   punter_player_name \tab character \tab  \cr
-   punt_returner_player_name \tab character \tab  \cr
-   fg_kicker_player_name \tab character \tab  \cr
-   kickoff_player_name \tab character \tab  \cr
-   kickoff_returner_player_name \tab character \tab  \cr
-   yds_rushed \tab integer \tab  \cr
-   yds_receiving \tab integer \tab  \cr
-   yds_sacked \tab integer \tab  \cr
-   yds_punted \tab integer \tab  \cr
-   yds_punt_return \tab integer \tab  \cr
-   yds_kickoff \tab integer \tab  \cr
-   yds_kickoff_return \tab integer \tab  \cr
-   yds_int_return \tab integer \tab  \cr
-   yds_fg \tab integer \tab  \cr
-   drive_result \tab character \tab  \cr
-   drive_scoring \tab logical \tab  \cr
-   ot_synthesized \tab logical \tab  \cr
-   lag_pos_team \tab character \tab  \cr
-   lead_pos_team \tab character \tab  \cr
-   lag_play_type \tab character \tab  \cr
-   lead_play_type \tab character \tab  \cr
-   lag_play_text \tab character \tab  \cr
-   lead_play_text \tab character \tab  \cr
-   change_of_pos_team \tab logical \tab  \cr
-   play_after_turnover \tab logical \tab  \cr
-   n_plays_in_game \tab integer \tab  \cr
+   penalty_team \tab character \tab  \cr
+   penalty_type \tab character \tab  \cr
+   penalty_player \tab character \tab  \cr
+   penalty_yards \tab integer \tab  \cr
+   end_yard_line \tab character \tab  \cr
+   play_text \tab character \tab  \cr
    espn_game_id \tab character \tab  \cr
+   season \tab integer \tab  \cr
 }
 }
 \description{
 Loads season-level NCAA men's football play-by-play parsed from
 stats.ncaa.org by the sdv-py cfb_ncaa_pbp parser. Covers FCS and lower
 divisions that ESPN's feed misses; one row per play with drive and
-participant context. Published to the \code{ncaa_mfb_pbp_cfbfastr} release tag
-on the sportsdataverse-data repo.
+participant context. Published to the \code{ncaa_mfb_pbp} release tag on the
+sportsdataverse-data repo.
 }
 \examples{
 \donttest{

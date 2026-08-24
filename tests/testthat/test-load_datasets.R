@@ -31,6 +31,19 @@ test_that("release-dataset loaders return tagged data (parquet path)", {
   expect_gt(nrow(z), 10000)
 })
 
+test_that("ncaa_mfb family loaders return tagged data", {
+  skip_on_cran()
+  skip_if_offline("github.com")
+
+  x <- load_ncaa_mfb_teams(2023)
+  expect_s3_class(x, "cfbfastR_data")
+  expect_gt(nrow(x), 200)
+
+  y <- load_ncaa_mfb_schedule(2023)
+  expect_s3_class(y, "cfbfastR_data")
+  expect_gt(nrow(y), 2000)
+})
+
 test_that("seasonal loaders validate the seasons argument", {
   skip_on_cran()
 

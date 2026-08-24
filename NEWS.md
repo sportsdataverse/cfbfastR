@@ -21,8 +21,10 @@ write-through.
   recruiting datasets.
 * `load_cfb_schedule_crosswalk()`, `load_cfb_teams_crosswalk()`,
   `load_cfb_rosters_crosswalk()` — CFBD/ESPN id crosswalks.
-* `load_ncaa_mfb_pbp()` — NCAA men's football play-by-play parsed from
-  stats.ncaa.org (covers FCS and lower divisions).
+* `load_ncaa_mfb_*()` — 10 loaders for the stats.ncaa.org men's football
+  family (covers FCS and lower divisions): `pbp`, `pbp_cfbfastr` (the
+  cfbfastR-schema-shaped variant), `drives`, `linescore`, `officials`,
+  `player_stats`, `rosters`, `schedule`, `team_stats`, `teams`.
 * New internal `parquet_from_url()` helper backs the parquet-only datasets
   (requires the suggested `arrow` package).
 
