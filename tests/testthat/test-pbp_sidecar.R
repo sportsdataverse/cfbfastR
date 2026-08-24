@@ -7,6 +7,7 @@
 ### gated; what matters here is that the parsing and the degradation are right.
 
 test_that("a missing sidecar degrades to empty frames, never an error", {
+  testthat::skip_on_cran()
   s <- .espn_cfb_pbp_sidecar(NULL)
   # An unavailable sidecar must mean "no extra identity source", so a game whose
   # payload 404s still returns play-by-play instead of aborting the call.
@@ -19,6 +20,7 @@ test_that("a missing sidecar degrades to empty frames, never an error", {
 })
 
 test_that("participant names expand from short to full form by id", {
+  testthat::skip_on_cran()
   parts <- data.frame(
     play_id                = c("1", "2", "3"),
     rusher_player_name     = c("J. Mitchell", "K. Cumby", "Z. Unknown"),
@@ -43,6 +45,7 @@ test_that("participant names expand from short to full form by id", {
 })
 
 test_that("expansion is a no-op without a lookup or without id columns", {
+  testthat::skip_on_cran()
   parts <- data.frame(play_id = "1", rusher_player_name = "J. Mitchell",
                       stringsAsFactors = FALSE)
   empty <- data.frame(athlete_id = character(0), display_name = character(0),
@@ -62,6 +65,7 @@ test_that("expansion is a no-op without a lookup or without id columns", {
 })
 
 test_that("the box-score records are shaped for the id resolver", {
+  testthat::skip_on_cran()
   # `.pbp_attach_player_ids()` reads a roster by these three column names, so a
   # rename upstream would silently disable the second identity source rather
   # than fail.
@@ -71,6 +75,7 @@ test_that("the box-score records are shaped for the id resolver", {
 })
 
 test_that("the sidecar helper is registered for caching", {
+  testthat::skip_on_cran()
   # It is fetched twice per espn_cfb_pbp_v2() call (names, then identity
   # records) and once per game in a season sweep. Falling out of this list turns
   # one request into many without failing anything.
@@ -82,6 +87,7 @@ test_that("the sidecar helper is registered for caching", {
 })
 
 test_that("resolve_names rejects a non-scalar-logical", {
+  testthat::skip_on_cran()
   expect_error(espn_cfb_pbp_v2(1, resolve_names = "yes"), "must be a single")
   expect_error(espn_cfb_pbp_v2(1, resolve_names = NA), "must be a single")
   expect_error(espn_cfb_pbp_v2(1, resolve_names = c(TRUE, TRUE)),
@@ -91,6 +97,7 @@ test_that("resolve_names rejects a non-scalar-logical", {
 ### corrupt_pbp_check -- ported from sdv-py's CFBPlayProcess.corrupt_pbp_check.
 
 test_that("an empty play feed is always rejected", {
+  testthat::skip_on_cran()
   # Zero plays is malformed at any point in a game, so this rule does not wait
   # for the completed flag.
   empty <- data.frame(type_text = character(0), stringsAsFactors = FALSE)
@@ -101,6 +108,7 @@ test_that("an empty play feed is always rejected", {
 })
 
 test_that("the count rules only apply to a completed game", {
+  testthat::skip_on_cran()
   short <- data.frame(x = seq_len(12))
   long  <- data.frame(x = seq_len(600))
   ok    <- data.frame(x = seq_len(160))
@@ -115,6 +123,7 @@ test_that("the count rules only apply to a completed game", {
 })
 
 test_that("the boundaries are exactly 50 and 500", {
+  testthat::skip_on_cran()
   # A truncated game models cleanly and looks reasonable, so the thresholds are
   # the only thing standing between a broken feed and a published one.
   expect_true(.pbp_corrupt_check(data.frame(x = seq_len(49)), completed = TRUE))

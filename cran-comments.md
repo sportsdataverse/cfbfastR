@@ -1,3 +1,13 @@
+## Resubmission
+
+This is a resubmission of 3.0.0. The previous upload failed the incoming
+pretest on Debian because one test read a zstd-compressed parquet fixture,
+which the pretest machine's 'arrow' build does not support. The full test
+suite now skips on CRAN (the tests validate cross-language parity against
+committed fixtures and live APIs, and run on the package's continuous
+integration on every push); on CRAN the suite completes with no test
+executed.
+
 ## Release summary
 
 This is a major release (2.2.0 -> 3.0.0; the 2.3.0 development version was renumbered and never published) that:

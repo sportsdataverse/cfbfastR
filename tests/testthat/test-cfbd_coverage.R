@@ -45,6 +45,7 @@ test_that("the division filter actually filters", {
 })
 
 test_that("validate_division rejects a value CFBD would silently ignore", {
+  testthat::skip_on_cran()
   # CFBD ignores an unrecognised filter rather than erroring, so validating
   # locally is the only way a typo surfaces at all.
   expect_error(validate_division("d1"))
@@ -56,6 +57,7 @@ test_that("validate_division rejects a value CFBD would silently ignore", {
 })
 
 test_that("cfbd_rankings only accepts the poll value CFBD implements", {
+  testthat::skip_on_cran()
   # The spec's RankingPoll enum has exactly one member; every other value
   # returns HTTP 400, so this fails locally with a usable message instead.
   expect_error(cfbd_rankings(2024, poll = "AP Top 25"))

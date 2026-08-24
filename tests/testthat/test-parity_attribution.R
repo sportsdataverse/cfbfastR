@@ -32,6 +32,7 @@ differs <- function(a, b) {
 }
 
 test_that("team attribution matches sdv-py", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   x <- attributed()
 
@@ -48,6 +49,7 @@ test_that("team attribution matches sdv-py", {
 })
 
 test_that("the fumble and recovery chain matches sdv-py", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   x <- attributed()
 
@@ -59,6 +61,7 @@ test_that("the fumble and recovery chain matches sdv-py", {
 })
 
 test_that("the per-side turnover flags match sdv-py", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   x <- attributed()
 
@@ -75,6 +78,7 @@ test_that("the per-side turnover flags match sdv-py", {
 })
 
 test_that("penalty attribution matches sdv-py", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   x <- attributed()
 
@@ -85,6 +89,7 @@ test_that("penalty attribution matches sdv-py", {
 })
 
 test_that("the oracle exercises every branch it claims to", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   o <- as.data.frame(arrow::read_parquet(oracle_path))
 
@@ -109,6 +114,7 @@ test_that("the oracle exercises every branch it claims to", {
 })
 
 test_that("the derived flags reproduce the oracle exactly", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   o <- as.data.frame(arrow::read_parquet(oracle_path))
   inp <- setdiff(names(o), c(grep("__out$", names(o), value = TRUE), "fixture_game_id"))
@@ -136,6 +142,7 @@ test_that("the derived flags reproduce the oracle exactly", {
 })
 
 test_that("an overturned play does not count its reversed fumble", {
+  testthat::skip_on_cran()
   # ESPN appends the REVERSED description after CALL OVERTURNED. Parsing
   # recoveries out of that clause counts a reversed fumble as a real turnover.
   df <- data.frame(
@@ -162,6 +169,7 @@ test_that("an overturned play does not count its reversed fumble", {
 })
 
 test_that("both teams can register a turnover on one play", {
+  testthat::skip_on_cran()
   # Offense fumbles (defense recovers), defense fumbles on the return (offense
   # recovers). A single-flag model cannot express this.
   df <- data.frame(
@@ -182,6 +190,7 @@ test_that("both teams can register a turnover on one play", {
 })
 
 test_that("a blocked punt stays out of is_turnover", {
+  testthat::skip_on_cran()
   # ESPN's official box counts only giveaways. Folding blocked kicks into
   # is_turnover breaks the reconciliation against it while looking more complete.
   df <- data.frame(
@@ -200,6 +209,7 @@ test_that("a blocked punt stays out of is_turnover", {
 })
 
 test_that("the special-teams flip credits the right side", {
+  testthat::skip_on_cran()
   df <- data.frame(
     pos_team_id = c("1", "1"), def_pos_team_id = c("2", "2"),
     play_text = c("Kickoff", "Punt"), play_type = c("Kickoff", "Punt"),

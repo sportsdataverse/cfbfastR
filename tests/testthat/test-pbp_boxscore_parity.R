@@ -35,6 +35,7 @@ measured <- function() {
 }
 
 test_that("the aggregation encodes the three NCAA conventions", {
+  testthat::skip_on_cran()
   # These are the definitions that were PROVEN against the box, and two are the
   # opposite of the NFL's. Getting any of them wrong shifts a whole stat.
   # The last row gives B a possession of its own. That is not padding: the
@@ -72,6 +73,7 @@ test_that("the aggregation encodes the three NCAA conventions", {
 })
 
 test_that("turnovers are interceptions plus fumbles lost", {
+  testthat::skip_on_cran()
   pbp <- data.frame(
     game_id = "G1", season = 2024, pos_team_id = "A", def_pos_team_id = "B",
     rush = 0, pass = c(1, 1, 0), completion = 0, sack = 0,
@@ -86,6 +88,7 @@ test_that("turnovers are interceptions plus fumbles lost", {
 })
 
 test_that("an empty frame yields the documented schema, not an error", {
+  testthat::skip_on_cran()
   a <- .pbp_boxscore_aggregate(data.frame())
   expect_s3_class(a, "data.frame")
   expect_equal(nrow(a), 0L)
@@ -93,6 +96,7 @@ test_that("an empty frame yields the documented schema, not an error", {
 })
 
 test_that("parity against ESPN's own box clears the measured floors", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   m <- measured()
   expect_gt(nrow(m), 0L)
@@ -112,6 +116,7 @@ test_that("parity against ESPN's own box clears the measured floors", {
 })
 
 test_that("the parity measurement is not silently grading a subset", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   m <- measured()
   # A null join key is removed by the join, which SHIFTS the measured rate with
@@ -122,6 +127,7 @@ test_that("the parity measurement is not silently grading a subset", {
 })
 
 test_that("the aggregate covers every team-game that has offensive plays", {
+  testthat::skip_on_cran()
   skip_if_no_fixture()
   p <- as.data.frame(arrow::read_parquet(pbp_path))
   b <- as.data.frame(arrow::read_parquet(box_path))

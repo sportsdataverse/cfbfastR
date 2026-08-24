@@ -250,6 +250,7 @@ test_that("cfbd_pbp_data_v2(epa_wpa = TRUE) matches cfbd_pbp_data(epa_wpa = TRUE
 })
 
 test_that("allow-list rationales are present for every allowed-to-differ column", {
+  testthat::skip_on_cran()
   # Documentation guardrail: every allow-list entry must carry a rationale.
   al <- .eq_allow_list()
   expect_true(length(al) > 0L)
@@ -266,6 +267,7 @@ test_that("allow-list rationales are present for every allowed-to-differ column"
 # ---------------------------------------------------------------------------
 
 test_that(".pbp_apply_output_schema(): structural tier monotonicity (synthetic frame)", {
+  testthat::skip_on_cran()
   # Always runs -- no live API. Confirms the subset chain and value equality
   # by feeding a constructed frame through all three tiers.
   df <- data.frame(

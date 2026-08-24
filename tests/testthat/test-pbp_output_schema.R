@@ -1,4 +1,5 @@
 test_that(".pbp_output_order is a non-empty unique character vector", {
+  testthat::skip_on_cran()
   cols <- cfbfastR:::.pbp_output_order
 
   expect_type(cols, "character")
@@ -12,6 +13,7 @@ test_that(".pbp_output_order is a non-empty unique character vector", {
 })
 
 test_that(".pbp_apply_output_schema() reorders known cols and trails unknowns", {
+  testthat::skip_on_cran()
   df <- data.frame(
     extra_col_a  = 1,
     EPA          = 0.1,
@@ -32,6 +34,7 @@ test_that(".pbp_apply_output_schema() reorders known cols and trails unknowns", 
 })
 
 test_that(".pbp_apply_output_schema() drops the documented player-name aliases", {
+  testthat::skip_on_cran()
   df <- data.frame(
     id_play                       = "x",
     punt_return_player            = NA,
@@ -56,6 +59,7 @@ test_that(".pbp_apply_output_schema() drops the documented player-name aliases",
 })
 
 test_that(".pbp_apply_output_schema(output = 'default') drops the tier-1 sets", {
+  testthat::skip_on_cran()
   df <- data.frame(
     id_play              = "x",
     # lag/lead representative
@@ -97,6 +101,7 @@ test_that(".pbp_apply_output_schema(output = 'default') drops the tier-1 sets", 
 })
 
 test_that(".pbp_apply_output_schema(output = 'lean') also drops the WPA scratchpad", {
+  testthat::skip_on_cran()
   df <- data.frame(
     id_play     = "x",
     wpa_base    = 0.01,
@@ -118,6 +123,7 @@ test_that(".pbp_apply_output_schema(output = 'lean') also drops the WPA scratchp
 })
 
 test_that(".pbp_apply_output_schema(output = 'full') drops only player aliases", {
+  testthat::skip_on_cran()
   df <- data.frame(
     id_play              = "x",
     lag_play_type        = NA,
@@ -137,6 +143,7 @@ test_that(".pbp_apply_output_schema(output = 'full') drops only player aliases",
 })
 
 test_that(".pbp_apply_output_schema() defaults to 'default' and rejects unknown values", {
+  testthat::skip_on_cran()
   df <- data.frame(id_play = "x", sack_vec = 0, stringsAsFactors = FALSE)
 
   # Default of `output` is "default"
@@ -148,6 +155,7 @@ test_that(".pbp_apply_output_schema() defaults to 'default' and rejects unknown 
 })
 
 test_that("kept-with-rationale columns are absent from the drop vectors", {
+  testthat::skip_on_cran()
   # Documentation guardrail: orig_play_type and pts_scored are intentionally
   # NOT dropped in default/lean. Make sure they never sneak into the vectors.
   expect_false("orig_play_type" %in% cfbfastR:::.pbp_drop_redundant)

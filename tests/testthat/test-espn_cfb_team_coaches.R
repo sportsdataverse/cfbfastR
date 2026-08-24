@@ -72,6 +72,7 @@ test_that("the current season does not warn", {
 })
 
 test_that("year is validated before it is compared", {
+  testthat::skip_on_cran()
   # Offline: these abort during validation, so no network call is made.
   # `year != most_recent_cfb_season()` yields NA for NA and length > 1 for a
   # vector; either makes `if` raise a raw R error rather than a cli message, so

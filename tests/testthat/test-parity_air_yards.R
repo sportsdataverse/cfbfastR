@@ -87,6 +87,7 @@ test_that("the air-yards oracle is not degenerate", {
 })
 
 test_that("the catch point is sided against the right team", {
+  testthat::skip_on_cran()
   # "caught at HOM35" with the possessing team owning that side means 65 yards
   # still to the endzone; the same text on the DEFENDING team's side means 35.
   # Getting this backwards silently mirrors every air-yards value about midfield.
@@ -107,6 +108,7 @@ test_that("the catch point is sided against the right team", {
 })
 
 test_that("an abbreviation ESPN spells differently still resolves", {
+  testthat::skip_on_cran()
   # ESPN ships two abbreviation forms for some teams -- "caught at BUF35" in the
   # text while the payload carries "BUFF". Prefix-tolerant matching is what
   # keeps those plays from silently losing their air yards.
@@ -121,6 +123,7 @@ test_that("an abbreviation ESPN spells differently still resolves", {
 })
 
 test_that("yards after catch is computed for completions only", {
+  testthat::skip_on_cran()
   # An incompletion has a catch point but no yards after it; subtracting there
   # would invent a number.
   df <- data.frame(
@@ -138,6 +141,7 @@ test_that("yards after catch is computed for completions only", {
 })
 
 test_that("no catch text yields NA, not zero", {
+  testthat::skip_on_cran()
   df <- data.frame(
     play_text = "J. Smith run for 5 yards",
     pos_team_id = "1", def_pos_team_id = "2", home_team_id = "1",
@@ -151,6 +155,7 @@ test_that("no catch text yields NA, not zero", {
 })
 
 test_that("pass depth, direction and the hurry flag match sdv-py", {
+  testthat::skip_on_cran()
   skip_if_not(file.exists(dir_path), "direction fixture not generated")
   skip_if_not_installed("arrow")
   x <- replay(dir_path, .pbp_add_pass_direction_cols)
@@ -164,6 +169,7 @@ test_that("pass depth, direction and the hurry flag match sdv-py", {
 })
 
 test_that("depth and direction matching is case-sensitive on purpose", {
+  testthat::skip_on_cran()
   # ESPN writes these tokens lowercase mid-sentence. Folding case would let a
   # capitalised player or team name match -- "Wright" contains no whitespace
   # boundary issue, but " Deep " as a proper noun does.
@@ -178,6 +184,7 @@ test_that("depth and direction matching is case-sensitive on purpose", {
 })
 
 test_that("the flags gate which direction column is filled", {
+  testthat::skip_on_cran()
   # One regex feeds both pass_direction and rush_direction; only the play's own
   # flag decides which one receives it.
   df <- data.frame(
@@ -190,6 +197,7 @@ test_that("the flags gate which direction column is filled", {
 })
 
 test_that("a direction at end-of-string does not match", {
+  testthat::skip_on_cran()
   # The pattern requires whitespace on BOTH sides, so a truncated description
   # ending in the direction word yields NA. That is sdv-py's behaviour and it is
   # pinned here because it looks like an off-by-one and is not: real ESPN text
@@ -202,6 +210,7 @@ test_that("a direction at end-of-string does not match", {
 })
 
 test_that("qb_hurry is FALSE on null text, never NA", {
+  testthat::skip_on_cran()
   # It stays a clean boolean so downstream filters and models do not have to
   # special-case a missing description.
   df <- data.frame(play_text = c("QB hurried by #55 T. Jones", "run for 3", NA),

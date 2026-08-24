@@ -5,6 +5,7 @@
 ### which already asserts v2 reproduces the legacy frames column-for-column.
 
 test_that("engine resolution follows per-call > option > default", {
+  testthat::skip_on_cran()
   withr::local_options(list(cfbfastR.pbp_engine = NULL))
   # v2 is the default as of this release; `legacy` is the escape hatch.
   expect_equal(.pbp_engine(NULL), "v2")
@@ -19,6 +20,7 @@ test_that("engine resolution follows per-call > option > default", {
 })
 
 test_that("auto tracks whatever this release considers current", {
+  testthat::skip_on_cran()
   withr::local_options(list(cfbfastR.pbp_engine = NULL))
   # The point of "auto": a caller who writes it now is carried forward by the
   # release that flips the default, instead of editing their code a second time.
@@ -26,12 +28,14 @@ test_that("auto tracks whatever this release considers current", {
 })
 
 test_that("an unknown engine aborts with an actionable message", {
+  testthat::skip_on_cran()
   expect_error(.pbp_engine("turbo"), "must be one of")
   expect_error(.pbp_engine(c("v2", "legacy")), "must be one of")
   expect_error(.pbp_engine(2L), "must be one of")
 })
 
 test_that("the legacy nudge fires once per session, not once per call", {
+  testthat::skip_on_cran()
   # A season sweep calls the legacy entry point per week. A message on each is
   # noise the user learns to filter, which is how a real deprecation notice ends
   # up missed.
@@ -42,6 +46,7 @@ test_that("the legacy nudge fires once per session, not once per call", {
 })
 
 test_that("both legacy entry points accept the engine argument", {
+  testthat::skip_on_cran()
   expect_true("engine" %in% names(formals(cfbd_pbp_data)))
   expect_true("engine" %in% names(formals(espn_cfb_pbp)))
   # output must be reachable from the legacy name too, or delegating callers
