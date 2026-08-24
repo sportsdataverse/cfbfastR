@@ -39,7 +39,7 @@
 #' \describe{
 #' \item{`names`}{`athlete_id` / `display_name` -- the naming lookup.}
 #' \item{`records`}{`athlete_id` / `display_name` / `team_id` -- the identity
-#'   records, shaped for [.pbp_attach_player_ids()]'s `roster` argument.}
+#'   records, shaped for `.pbp_attach_player_ids()`'s `roster` argument.}
 #' }
 #' Any failure degrades to two empty frames -- "no extra source", never an error.
 #' @keywords internal

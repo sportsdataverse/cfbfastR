@@ -62,10 +62,10 @@ Start and end of each coaching tenure.
 }
 }
 \seealso{
-Other CFBD Coaches Functions: 
-\code{\link{cfbd_coaches}()},
-\code{\link{cfbd_coaches_profile}()},
-\code{\link{cfbd_coaches_seasons}()}
+Other CFBD Coaches Functions:
+\code{\link[=cfbd_coaches]{cfbd_coaches()}},
+\code{\link[=cfbd_coaches_profile]{cfbd_coaches_profile()}},
+\code{\link[=cfbd_coaches_seasons]{cfbd_coaches_seasons()}}
 }
 \concept{CFBD Coaches Functions}
 \keyword{Coaches}

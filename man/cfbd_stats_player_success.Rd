@@ -69,8 +69,8 @@ Season-level player success-rate metrics.
 }
 }
 \seealso{
-Other CFBD Stats Functions: 
-\code{\link{cfbd_stats_player_success_game}()}
+Other CFBD Stats Functions:
+\code{\link[=cfbd_stats_player_success_game]{cfbd_stats_player_success_game()}}
 }
 \concept{CFBD Stats Functions}
 \keyword{Stats}

@@ -339,22 +339,6 @@ validate_list <- function(var = NULL, allowable = NULL){
   }
 }
 
-#' Validate a CFBD division / classification value
-#'
-#' @description CFBD calls this filter `classification` on the wire; cfbfastR
-#'   has always exposed it to users as `division`. Both names refer to the same
-#'   five values.
-#'
-#' @details Worth validating rather than passing through: CFBD **ignores** a
-#'   filter value it does not recognise instead of rejecting it, so a typo
-#'   returns every division silently rather than erroring. That is the same
-#'   failure mode that hid the `division=` vs `classification=` rename.
-#'
-#' @param division Division/classification value.
-#' @param allow_null When `TRUE`, `NULL` passes (the filter is simply omitted).
-#' @return Invisibly `TRUE`; aborts otherwise.
-#' @keywords internal
-#' @noRd
 #' Flatten a nested CFBD object into rectangular columns
 #'
 #' @description Several CFBD endpoints return a single nested **object** rather
@@ -391,6 +375,22 @@ validate_list <- function(var = NULL, allowable = NULL){
   out
 }
 
+#' Validate a CFBD division / classification value
+#'
+#' @description CFBD calls this filter `classification` on the wire; cfbfastR
+#'   has always exposed it to users as `division`. Both names refer to the same
+#'   five values.
+#'
+#' @details Worth validating rather than passing through: CFBD **ignores** a
+#'   filter value it does not recognise instead of rejecting it, so a typo
+#'   returns every division silently rather than erroring. That is the same
+#'   failure mode that hid the `division=` vs `classification=` rename.
+#'
+#' @param division Division/classification value.
+#' @param allow_null When `TRUE`, `NULL` passes (the filter is simply omitted).
+#' @return Invisibly `TRUE`; aborts otherwise.
+#' @keywords internal
+#' @noRd
 validate_division <- function(division = NULL, allow_null = TRUE) {
   if (is.null(division)) {
     if (allow_null) return(invisible(TRUE))

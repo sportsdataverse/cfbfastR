@@ -62,7 +62,7 @@
 
 #' Auto-attach the calling wrapper's query args (internal)
 #'
-#' Convenience wrapper around [.attach_query_meta()] that introspects
+#' Convenience wrapper around `.attach_query_meta()` that introspects
 #' the calling function's formals and lifts the conventionally-named
 #' query args (`year`, `season`, `season_type`, `week`, `team_id`,
 #' `athlete_id`, `game_id`) from `parent.frame()`. `year` is renamed

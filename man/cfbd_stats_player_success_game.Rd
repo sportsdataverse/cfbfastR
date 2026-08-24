@@ -70,8 +70,8 @@ Game-level player success-rate metrics.
 }
 }
 \seealso{
-Other CFBD Stats Functions: 
-\code{\link{cfbd_stats_player_success}()}
+Other CFBD Stats Functions:
+\code{\link[=cfbd_stats_player_success]{cfbd_stats_player_success()}}
 }
 \concept{CFBD Stats Functions}
 \keyword{Stats}

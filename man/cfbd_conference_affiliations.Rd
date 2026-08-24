@@ -57,9 +57,9 @@ Which conference each team belonged to, by season.
 }
 }
 \seealso{
-Other CFBD Conference Functions: 
-\code{\link{cfbd_conference_changes}()},
-\code{\link{cfbd_conferences}()}
+Other CFBD Conference Functions:
+\code{\link[=cfbd_conference_changes]{cfbd_conference_changes()}},
+\code{\link[=cfbd_conferences]{cfbd_conferences()}}
 }
 \concept{CFBD Conference Functions}
 \keyword{Conferences}

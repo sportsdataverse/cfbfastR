@@ -58,9 +58,9 @@ Pulls all college football conferences and returns as data frame
 }
 }
 \seealso{
-Other CFBD Conference Functions: 
-\code{\link{cfbd_conference_affiliations}()},
-\code{\link{cfbd_conference_changes}()}
+Other CFBD Conference Functions:
+\code{\link[=cfbd_conference_affiliations]{cfbd_conference_affiliations()}},
+\code{\link[=cfbd_conference_changes]{cfbd_conference_changes()}}
 }
 \concept{CFBD Conference Functions}
 \keyword{Conferences}

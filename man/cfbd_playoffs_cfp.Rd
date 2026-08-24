@@ -76,9 +76,9 @@ Returns the College Football Playoff bracket for a season.
 }
 }
 \seealso{
-Other CFBD Playoff Functions: 
-\code{\link{cfbd_playoffs_cfp_games}()},
-\code{\link{cfbd_playoffs_cfp_participants}()}
+Other CFBD Playoff Functions:
+\code{\link[=cfbd_playoffs_cfp_games]{cfbd_playoffs_cfp_games()}},
+\code{\link[=cfbd_playoffs_cfp_participants]{cfbd_playoffs_cfp_participants()}}
 }
 \concept{CFBD Playoff Functions}
 \keyword{Playoffs}

@@ -161,7 +161,7 @@
 #'   one play row each with a null `pos_team`, so there are no offensive plays to
 #'   aggregate. A test asserts that rather than leaving it to look like loss.
 #'
-#' @param agg (*data.frame*): output of [.pbp_boxscore_aggregate()].
+#' @param agg (*data.frame*): output of `.pbp_boxscore_aggregate()`.
 #' @param box (*data.frame*): ESPN team box, one row per `game_id` x `team_key`,
 #'   with the `espn_*` columns.
 #' @return A data frame of `stat`, `n`, `matched` and `rate`.

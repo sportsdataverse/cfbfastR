@@ -66,9 +66,9 @@ Returns the games played in the College Football Playoff for a season.
 }
 }
 \seealso{
-Other CFBD Playoff Functions: 
-\code{\link{cfbd_playoffs_cfp}()},
-\code{\link{cfbd_playoffs_cfp_participants}()}
+Other CFBD Playoff Functions:
+\code{\link[=cfbd_playoffs_cfp]{cfbd_playoffs_cfp()}},
+\code{\link[=cfbd_playoffs_cfp_participants]{cfbd_playoffs_cfp_participants()}}
 }
 \concept{CFBD Playoff Functions}
 \keyword{Playoffs}

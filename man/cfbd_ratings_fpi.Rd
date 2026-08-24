@@ -47,12 +47,12 @@ Acquire the ESPN calculated FPI ratings data by team, year, and conference
 
 }
 \seealso{
-Other CFBD Ratings and Rankings: 
-\code{\link{cfbd_rankings}()},
-\code{\link{cfbd_ratings_elo}()},
-\code{\link{cfbd_ratings_sp}()},
-\code{\link{cfbd_ratings_sp_conference}()},
-\code{\link{cfbd_ratings_srs}()}
+Other CFBD Ratings and Rankings:
+\code{\link[=cfbd_rankings]{cfbd_rankings()}},
+\code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}},
+\code{\link[=cfbd_ratings_sp]{cfbd_ratings_sp()}},
+\code{\link[=cfbd_ratings_sp_conference]{cfbd_ratings_sp_conference()}},
+\code{\link[=cfbd_ratings_srs]{cfbd_ratings_srs()}}
 }
 \concept{CFBD Ratings and Rankings}
 \keyword{FPI}

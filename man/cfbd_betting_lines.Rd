@@ -74,7 +74,7 @@ Betting information for games with the following 21 columns:\tabular{lll}{
 }
 }
 \seealso{
-Other CFBD Betting Functions: 
-\code{\link{cfbd_betting_ats}()}
+Other CFBD Betting Functions:
+\code{\link[=cfbd_betting_ats]{cfbd_betting_ats()}}
 }
 \concept{CFBD Betting Functions}

@@ -5,7 +5,7 @@
 #'
 #' @details cfbfastR knew *what* happened on a play and *who* did it, but not
 #'   which side to credit. That gap is why every special-teams role in
-#'   [.pbp_attach_player_ids()] matched against a team column that did not
+#'   `.pbp_attach_player_ids()` matched against a team column that did not
 #'   exist, and why no turnover column could be derived at all.
 #'
 #'   Three ideas do the work:

@@ -45,7 +45,7 @@ per-game lines themselves.
 }
 }
 \seealso{
-Other CFBD Betting Functions: 
-\code{\link{cfbd_betting_lines}()}
+Other CFBD Betting Functions:
+\code{\link[=cfbd_betting_lines]{cfbd_betting_lines()}}
 }
 \concept{CFBD Betting Functions}
