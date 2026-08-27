@@ -1,6 +1,6 @@
 ---
 title: "Intro to Visualizing Recruiting Geography"
-author: "Conor R. McQuiston <br><a href='https://twitter.com/ConorMcQ5' target='blank'><img src='https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge' alt='@ConorMcQ5' /></a> <a href='https://github.com/mcqconor' target='blank'><img src='https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge' alt='@mcqconor' /></a>"
+author: "Saiem Gilani, Akshay Easwaran, Jared Lee <br><a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a> <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>"
 opengraph:
   image: 
     src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
@@ -239,47 +239,58 @@ Hope you found this tutorial useful! If you have any questions on how to manage 
 <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
 -   [Jared Lee](https://x.com/JaredDLee)
 <a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
-<a href='https://github.com/JaredDLee' target='blank'><img src='https://img.shields.io/github/followers/JaredDLee?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+<a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Kazink36'/></a>
 -   [Eric Hess](https://x.com/arbitanalytics)
 <a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
-<a href='https://github.com/arbitanalytics' target='blank'><img src='https://img.shields.io/github/followers/arbitanalytics?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
+<a href='https://github.com/ehess' target='blank'><img src='https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@ehess'/></a>
 
 ## **Our Contributors**
 -   [Michael Egle](https://x.com/deceptivespeed_)
 <a href='https://x.com/deceptivespeed_' target='blank'><img src='https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge' alt='@deceptivespeed_'/></a>
+<a href='https://github.com/michaelegle' target='blank'><img src='https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@michaelegle'/></a>
 -   [Nate Manzo](https://x.com/cfbnate)
 <a href='https://x.com/cfbnate' target='blank'><img src='https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge' alt='@cfbnate'/></a>
+<a href='https://github.com/natemanzo' target='blank'><img src='https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@natemanzo'/></a>
 -   [Jason DeLoach](https://x.com/CFBNumbers)
 <a href='https://x.com/CFBNumbers' target='blank'><img src='https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge' alt='@CFBNumbers'/></a>
+<a href='https://github.com/CFBNumbers' target='blank'><img src='https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@CFBNumbers'/></a>
 -   [Tej Seth](https://x.com/tejfbanalytics)
 <a href='https://x.com/tejfbanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge' alt='@tejfbanalytics'/></a>
+<a href='https://github.com/tejseth' target='blank'><img src='https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@tejseth'/></a>
 -   [Conor McQuiston](https://x.com/ConorMcQ5)
 <a href='https://x.com/ConorMcQ5' target='blank'><img src='https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge' alt='@ConorMcQ5'/></a>
+<a href='https://github.com/mcqconor' target='blank'><img src='https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@mcqconor'/></a>
 -   [Tan Ho](https://x.com/_TanHo)
 <a href='https://x.com/_TanHo' target='blank'><img src='https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge' alt='@_TanHo'/></a>
+<a href='https://github.com/tanho63' target='blank'><img src='https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@tanho63'/></a>
 -   [Keegan Abdoo](https://x.com/KeeganAbdoo)
 <a href='https://x.com/KeeganAbdoo' target='blank'><img src='https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge' alt='@KeeganAbdoo'/></a>
+<a href='https://github.com/keegan-abdoo' target='blank'><img src='https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@keegan-abdoo'/></a>
 -   [Matt Spencer](https://x.com/Maatspencer)
 <a href='https://x.com/Maatspencer' target='blank'><img src='https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge' alt='@Maatspencer'/></a>
+<a href='https://github.com/Maatspencer' target='blank'><img src='https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Maatspencer'/></a>
 -   [Sebastian Carl](https://x.com/mrcaseb)
 <a href='https://x.com/mrcaseb' target='blank'><img src='https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge' alt='@mrcaseb'/></a>
+<a href='https://github.com/mrcaseb' target='blank'><img src='https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@mrcaseb'/></a>
 -   [John Edwards](https://x.com/John_B_Edwards)
 <a href='https://x.com/John_B_Edwards' target='blank'><img src='https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge' alt='@John_B_Edwards'/></a>
+<a href='https://github.com/john-b-edwards' target='blank'><img src='https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@john-b-edwards'/></a>
 -   [Brad Hill](https://x.com/bradisblogging)
 <a href='https://x.com/bradisblogging' target='blank'><img src='https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge' alt='@bradisblogging'/></a>
+<a href='https://github.com/bradisbrad' target='blank'><img src='https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@bradisbrad'/></a>
 
 ## **Citation**
 
 To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R package in publications, use:
 
-BibTex Citation
+BibTeX Citation
 
 ```bibtex
 @misc{cfbfastr,
-  author = {Saiem Gilani, Akshay Easwaran, Jared Lee, Eric Hess},
-  title = {cfbfastR: The SportsDataverse's R Package for College Football Data},
+  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
+  title = {cfbfastR: Access College Football Play by Play Data},
   url = {https://cfbfastR.sportsdataverse.org/},
-  year = {2026}
+  year = {2021}
 }
 ```
 
