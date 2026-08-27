@@ -40,7 +40,7 @@ You can install the released version of
 [GitHub](https://github.com/sportsdataverse/cfbfastR) with:
 
 ``` r
-# You can install using the pacman package using the following code:
+# You can install using the pak package using the following code:
 if (!requireNamespace('remotes', quietly = TRUE)){
   install.packages('remotes', repos = "https://cloud.r-project.org")
 }

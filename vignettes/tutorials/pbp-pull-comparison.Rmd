@@ -14,8 +14,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-pacman::p_load_current_gh("r-lib/pkgapi")
-pacman::p_load_current_gh("hadley/emo")
+pak::pak("r-lib/pkgapi")
+pak::pak("hadley/emo")
 library(pkgapi)
 pkg <- pkgapi::map_package(path = "../")
 library(dplyr)
