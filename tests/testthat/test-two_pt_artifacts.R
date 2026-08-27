@@ -64,6 +64,61 @@ test_that("decision rows are offensive touchdowns only", {
   expect_equal(.two_pt_decision_rows(df), c(TRUE, TRUE, FALSE, FALSE))
 })
 
+test_that("a standalone PAT row is never a decision row (pre-2014 shape)", {
+  # Before 2014 the extra point / two-point try is its OWN row rather than
+  # sharing the touchdown's. Those rows are already POST-touchdown, so the +6 in
+  # .two_pt_score_diff() must never reach them -- it would score the decision six
+  # points further ahead than the game actually was.
+  #
+  # Today that holds only BY CONSTRUCTION: pass_td/rush_td are assigned from an
+  # exact play_type match ("Passing Touchdown" / "Rushing Touchdown") in
+  # clean_pbp_dat(), so a standalone PAT scores 0 on both and cannot qualify.
+  # Nothing else enforces it. Broaden that assignment -- a regex, or folding in
+  # "Two-Point Conversion Good" -- and the +6 silently starts firing on already-
+  # post-TD rows. This is the test that would notice.
+  df <- data.frame(
+    play_type          = c("Extra Point Good", "Two-Point Conversion Good",
+                           "Extra Point Missed", "Passing Touchdown"),
+    pass_td            = c(0, 0, 0, 1),
+    rush_td            = c(0, 0, 0, 0),
+    # a PAT IS an offensive scoring play, so offense_score_play alone cannot
+    # exclude it -- the TD flags are what carry the exclusion
+    offense_score_play = c(1, 1, 0, 1)
+  )
+  expect_equal(.two_pt_decision_rows(df), c(FALSE, FALSE, FALSE, TRUE))
+})
+
+test_that("the production TD derivation classifies no PAT play type as a touchdown", {
+  # The test above holds only because clean_pbp_dat() assigns pass_td/rush_td from
+  # an EXACT play_type match. Comparing PAT literals against touchdown literals
+  # here would be tautological -- it would pass no matter what production does.
+  # So read the rule out of the SHIPPED function and evaluate PAT types against it:
+  # broaden the rule (another play_type, or a switch to a regex) and this fails.
+  src <- paste(deparse(body(cfbfastR:::.pbp_clean_pbp_dat)), collapse = " ")
+
+  td_set <- function(flag) {
+    i <- regexpr(paste0(flag, " = ifelse"), src, fixed = TRUE)
+    expect_true(i > 0,
+                info = paste0("no ", flag, " assignment found; if it was restructured",
+                              " this guard must be UPDATED, not deleted"))
+    rest <- substring(src, i)
+    j <- regexpr("%in% ", rest, fixed = TRUE)
+    rest <- substring(rest, j + 5L)
+    eval(parse(text = substring(rest, 1L, regexpr(")", rest, fixed = TRUE))))
+  }
+
+  pat_types <- c("Extra Point Good", "Extra Point Missed",
+                 "Two-Point Conversion Good", "Two-Point Conversion Missed")
+  for (flag in c("pass_td", "rush_td")) {
+    s <- td_set(flag)
+    expect_gt(length(s), 0)
+    expect_false(any(pat_types %in% s),
+                 info = paste(flag, "now treats a PAT play type as a touchdown;",
+                              "the +6 in .two_pt_score_diff() would fire on an",
+                              "already-post-TD row"))
+  }
+})
+
 test_that(".pbp_add_two_pt_prob degrades to NA rather than raising", {
   df <- data.frame(pos_score_diff_start = 0, pass_td = 1, rush_td = 0,
                    offense_score_play = 1)
