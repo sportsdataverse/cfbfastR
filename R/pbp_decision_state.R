@@ -28,7 +28,9 @@ NULL
   "period", "pos_team_receives_2H_kickoff",
   "pos_team_timeouts_rem_before", "def_pos_team_timeouts_rem_before",
   "pos_score_diff_start", "pos_team_spread", "is_home",
-  "down", "distance", "yards_to_goal", "TimeSecsRem", "adj_TimeSecsRem"
+  "down", "distance", "yards_to_goal", "TimeSecsRem", "adj_TimeSecsRem",
+  # fourth-down only: its model reads the implied team total and a rule era
+  "posteam_total", "season"
 )
 
 #' Build the decision-surface state frame from a play-by-play frame
@@ -37,7 +39,7 @@ NULL
 #'   supply them (no pre-game line, missing clock columns).
 #' @keywords internal
 #' @noRd
-.cfb_state_from_pbp <- function(df) {
+.cfb_state_from_pbp <- function(df, season = NULL) {
   spread <- .wp_pos_team_spread(df)
   if (is.null(spread)) return(NULL)
   num <- function(nm) {
@@ -56,8 +58,14 @@ NULL
     distance = num("distance"),
     yards_to_goal = num("yards_to_goal"),
     TimeSecsRem = num("TimeSecsRem"),
-    adj_TimeSecsRem = num("adj_TimeSecsRem")
+    adj_TimeSecsRem = num("adj_TimeSecsRem"),
+    posteam_total = {
+      tot <- .cfb_posteam_total(df)
+      if (is.null(tot)) rep(NA_real_, nrow(df)) else tot
+    },
+    season = rep(NA_real_, nrow(df))
   )
+  if (!is.null(season)) st$season <- suppressWarnings(as.numeric(season))[1]
   if (all(is.na(st$adj_TimeSecsRem)) || all(is.na(st$TimeSecsRem))) return(NULL)
   st
 }
