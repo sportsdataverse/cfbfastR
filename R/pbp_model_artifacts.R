@@ -415,6 +415,17 @@ NULL
 #' required inputs yields all-`NA` columns, so the surface is safe to run
 #' unconditionally in the pipeline.
 #'
+#' **Interpreting `cpoe` before ~2014.** ESPN's early play-by-play does not
+#' label sacks: 2013 week 1 carries 5 across 13,800 plays, against ~337 per
+#' week from 2018 on. A sack is a pass play with no completion, so its absence
+#' inflates the observed completion rate and pushes league-wide `cpoe` roughly
+#' +6 percentage points in those seasons (2013 wk1 +5.9pp and wk8 +6.7pp,
+#' against +0.05pp in 2018 and +0.54pp in 2021). This is an upstream
+#' data-coverage artefact rather than a model or scoring error -- mean `cp`
+#' itself is stable at ~0.566 in every era, and excluding sacks the completion
+#' rates converge (0.626 / 0.601 / 0.605). Treat early-era `cpoe` as
+#' non-comparable to the modern era, not as better quarterback play.
+#'
 #' @keywords internal
 #' @noRd
 .pbp_add_cp_cpoe <- function(df) {
