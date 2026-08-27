@@ -132,14 +132,37 @@ load_fg_model <- function(){
   )
   return (fg_model)
 }
-load_wp_model <- function(){
+#' Load the Win Probability model
+#'
+#' Prefers `wp_naive.ubj` from the shared `cfb_model_artifacts` release, the
+#' same artifact `sportsdataverse-py` scores with. Falls back to the retired
+#' `mgcv::bam` GAM on `cfbfastR-data` when the bundle or `xgboost` is
+#' unavailable; [`.wp_predict()`] accepts either generation.
+#'
+#' @keywords internal
+#' @noRd
+load_wp_model <- function() {
+  if (requireNamespace("xgboost", quietly = TRUE)) {
+    f <- .cfb_model_file("wp_naive.ubj")
+    if (!is.null(f)) {
+      booster <- try(xgboost::xgb.load(f), silent = TRUE)
+      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
+    }
+  }
+  .load_legacy_wp_model()
+}
+
+#' Retired mgcv GAM WP model, kept as the offline/no-xgboost fallback
+#' @keywords internal
+#' @noRd
+.load_legacy_wp_model <- function() {
   wp_model <- NULL
-  .url = url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/wp_model.Rdata")
+  .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/wp_model.Rdata")
   on.exit(close(.url))
   try(
     load(.url),
     silent = TRUE
   )
-  return (wp_model)
+  return(wp_model)
 }
 

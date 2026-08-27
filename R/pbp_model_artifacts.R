@@ -97,9 +97,14 @@ NULL
   )
   if (!inherits(ok, "try-error") && file.exists(tmp) && file.size(tmp) > 0) {
     # Only replace the cached copy once the download is complete, so an
-    # interrupted fetch can't leave a truncated model in place.
-    file.rename(tmp, dest)
-    return(dest)
+    # interrupted fetch can't leave a truncated model in place. file.rename()
+    # returns FALSE rather than erroring when the destination is locked (a
+    # concurrent R session on Windows holds the file), so returning `dest`
+    # unconditionally would hand back a stale-or-absent path as if it were the
+    # fresh download.
+    if (isTRUE(file.rename(tmp, dest))) return(dest)
+    # Rename lost: score from the freshly downloaded copy in place.
+    return(tmp)
   }
   unlink(tmp)
   # Stale beats absent: an expired cached copy still scores.
@@ -184,6 +189,100 @@ NULL
   )
   colnames(m) <- .EP_FEATURES
   m
+}
+
+#' Win Probability feature contract (naive, spread-free)
+#'
+#' Order matters -- it is the booster's own feature order, taken from the
+#' bundle manifest. Eleven of the twelve already exist on the frame
+#' `.pbp_create_wpa_naive()` receives; only `is_home` is derived here.
+#'
+#' @keywords internal
+#' @noRd
+.WP_NAIVE_FEATURES <- c(
+  "pos_team_receives_2H_kickoff", "TimeSecsRem", "adj_TimeSecsRem",
+  "ExpScoreDiff_Time_Ratio", "pos_score_diff_start", "down", "distance",
+  "yards_to_goal", "is_home", "pos_team_timeouts_rem_before",
+  "def_pos_team_timeouts_rem_before", "period"
+)
+
+#' Is the team in possession the home team?
+#'
+#' Mirrors sdv-py's `is_home = pos_team == homeTeamId` (it compares team ids;
+#' the cfbfastR frame carries team names, same semantic). Returns 0/1 with
+#' `NA` treated as not-home, since the booster cannot take a missing value and
+#' a neutral-site or unresolved possession team should not fabricate an
+#' advantage.
+#'
+#' @keywords internal
+#' @noRd
+.wp_is_home <- function(newdata) {
+  if ("is_home" %in% names(newdata)) {
+    v <- suppressWarnings(as.numeric(newdata$is_home))
+    return(ifelse(is.na(v), 0, v))
+  }
+  if (!all(c("pos_team", "home") %in% names(newdata))) {
+    cli::cli_abort(c(
+      "Cannot derive {.field is_home} for the WP model.",
+      i = "Need either {.field is_home}, or both {.field pos_team} and {.field home}."
+    ))
+  }
+  as.numeric(!is.na(newdata$pos_team) & !is.na(newdata$home) &
+               newdata$pos_team == newdata$home)
+}
+
+#' Build the WP model's feature matrix
+#'
+#' @param newdata One row per play, carrying the WP inputs
+#'   `.pbp_create_epa()` prepares.
+#' @keywords internal
+#' @noRd
+.wp_feature_matrix <- function(newdata) {
+  derived <- "is_home"
+  need <- setdiff(.WP_NAIVE_FEATURES, derived)
+  missing_cols <- setdiff(need, names(newdata))
+  if (length(missing_cols)) {
+    # Bound locally: cli's glue transformer cannot interpolate a dot-prefixed
+    # symbol inside {.field {...}}.
+    wanted <- .WP_NAIVE_FEATURES
+    cli::cli_abort(c(
+      "WP scoring frame is missing required column{?s}: {.field {missing_cols}}.",
+      i = "The bundled WP model needs {.field {wanted}}."
+    ))
+  }
+  cols <- lapply(need, function(nm) {
+    # as.character() first so a factor `down` contributes its VALUE, not its
+    # level code -- the same trap guarded in .ep_feature_matrix().
+    suppressWarnings(as.numeric(as.character(newdata[[nm]])))
+  })
+  names(cols) <- need
+  cols$is_home <- .wp_is_home(newdata)
+  m <- do.call(cbind, cols[.WP_NAIVE_FEATURES])
+  colnames(m) <- .WP_NAIVE_FEATURES
+  m
+}
+
+#' Score the Win Probability model, whichever generation is loaded
+#'
+#' @param wp_model The bundle's `xgb.Booster`, or the retired `mgcv::bam` GAM.
+#' @param newdata One row per play.
+#' @return Numeric vector of offense win probabilities, `nrow(newdata)` long.
+#' @keywords internal
+#' @noRd
+.wp_predict <- function(wp_model, newdata) {
+  if (!inherits(wp_model, "xgb.Booster")) {
+    return(as.vector(stats::predict(wp_model, newdata = newdata,
+                                    type = "response")))
+  }
+  rlang::check_installed("xgboost", reason = "to score the bundled WP model.")
+  x <- .wp_feature_matrix(newdata)
+  p <- as.numeric(stats::predict(wp_model, x))
+  if (length(p) != nrow(x)) {
+    cli::cli_abort(
+      "WP model returned {length(p)} value{?s} for {nrow(x)} play{?s}."
+    )
+  }
+  p
 }
 
 #' Score the EP model, whichever generation is loaded

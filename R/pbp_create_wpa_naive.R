@@ -20,8 +20,9 @@
 .pbp_create_wpa_naive <- function(df, wp_model) {
   df <- df |>
     dplyr::arrange(.data$game_id, .data$new_id)
-  Off_Win_Prob <- as.vector(predict(wp_model, newdata = df, type = "response"))
-  df$wp_before <- Off_Win_Prob
+  # .wp_predict() handles either model generation and derives `is_home`, the
+  # one bundle feature the frame does not already carry.
+  df$wp_before <- .wp_predict(wp_model, df)
   # Kickoff plays
   # Calculate EP before at kickoff as what happens if it was a touchback
   # 25 yard line in 2012 and onwards
@@ -34,7 +35,7 @@
     new_kick["log_ydstogo"] <- log(10)
     new_kick["ExpScoreDiff"] <- new_kick["pos_score_diff_start"] + new_kick["ep_before"]
     new_kick["ExpScoreDiff_Time_Ratio"] <- new_kick["ExpScoreDiff"] / (new_kick["adj_TimeSecsRem"] + 1)
-    df[kickoff_ind, "wp_before"] <- as.vector(predict(wp_model, new_kick, type = "response"))
+    df[kickoff_ind, "wp_before"] <- .wp_predict(wp_model, new_kick)
   }
   g_ids <- sort(unique(df$game_id))
   df2 <- purrr::list_rbind(purrr::map(
