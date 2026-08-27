@@ -120,7 +120,10 @@
     .pbp_add_xpass(season = season) |>
     # Model-scoring half of the two-point surface; the WP-comparison decision
     # columns need hypothetical ensuing-drive states and are tracked in #140.
-    .pbp_add_two_pt_prob(season = season)
+    .pbp_add_two_pt_prob(season = season) |>
+    # Decision surface on top of the conversion probability: scores the
+    # opponent's ensuing drive for each try outcome and compares.
+    .pbp_add_two_pt_decision(season = season)
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress
