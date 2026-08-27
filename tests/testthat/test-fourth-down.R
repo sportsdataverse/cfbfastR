@@ -207,10 +207,18 @@ test_that("turning it over on downs while LEADING is not an automatic loss", {
   # The clamp condition is read off the post-turnover frame, where the score
   # differential has already been negated. Reading it as "the offence trails"
   # inverts it and pins a LEADING team's failed-conversion WP to zero.
-  lead <- .fd_go_wp(mk_late(distance = 1, diff = 3, pos_to = 3, def_to = 0))
-  trail <- .fd_go_wp(mk_late(distance = 1, diff = -3, pos_to = 3, def_to = 0))
+  #
+  # The timeouts here are load-bearing and easy to get backwards. After a
+  # turnover `new_def_to` is the OFFENCE'S pre-play count, so firing the clamp
+  # needs `pos_to = 0` -- not `def_to = 0`, which leaves `new_def_to == 3` and
+  # no threshold applies at all. Configured that way this test passes on the
+  # model's own gradient with EITHER sign (0.776 vs 0.037), which is no gate.
+  lead <- .fd_go_wp(mk_late(distance = 1, diff = 3, pos_to = 0, def_to = 3))
+  trail <- .fd_go_wp(mk_late(distance = 1, diff = -3, pos_to = 0, def_to = 3))
+  # Exactly zero is the clamp's signature -- the model alone never returns it.
+  expect_identical(trail$wp_fail, 0)
+  # And the leading team must be left alone entirely.
   expect_gt(lead$wp_fail, 0.5)
-  expect_lt(trail$wp_fail, 0.1)
 })
 
 test_that("field-goal probability carries cfb4th's two policy clamps", {
@@ -315,4 +323,46 @@ test_that("a goal-line gain is a touchdown even when distance exceeds it", {
   # And the scoring outcome has to beat the failing one, which cannot be true
   # when every outcome is bucketed as a failure.
   expect_gt(bad$wp_succeed, bad$wp_fail)
+})
+
+test_that("a punt return touchdown clamps toward a win, not a loss", {
+  # Possession never changes on those rows -- the ball comes straight back --
+  # so the win probability there is already the punting team's and a kneel-out
+  # is a WIN for it. cfb4th clamps every row to zero, which pins a punting team
+  # still leading after conceding the score to a certain loss.
+  #
+  # Asserted through the clamp helper: return-TD rows carry under 0.2% of the
+  # punt distribution's mass, so an assertion on punt_wp would pass either way.
+  wp <- 0.5
+  lead <- TRUE
+  expect_equal(.fd_kneel_clamp(wp, lead, 60, 0, 0, period = 4), 0)
+  expect_equal(.fd_kneel_clamp(wp, lead, 60, 0, 1, period = 4), 1)
+  # Not leading is nobody's kneel-out, whichever value is passed.
+  expect_equal(.fd_kneel_clamp(wp, FALSE, 60, 0, 1, period = 4), 0.5)
+})
+
+test_that(".fd_punt_wp itself routes return touchdowns to the winning clamp", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  # The helper-level test above pins the clamp's arithmetic but never runs the
+  # `rtd` selector, so a regression to `value = 0` inside .fd_punt_wp() would
+  # not fail it. Swap the empirical distribution for a certain return
+  # touchdown: punt_wp is then determined entirely by that branch, and the
+  # 0.2%-of-the-mass problem that forced the helper-level test disappears.
+  old <- .cfb_model_env$punt_dist
+  on.exit(.cfb_model_env$punt_dist <- old, add = TRUE)
+  .cfb_model_env$punt_dist <- data.frame(
+    yards_to_goal = 50, yards_to_goal_end = 100, pct = 1
+  )
+
+  # Up 10, concede the return TD -> still up 3, and the receiving team has no
+  # timeouts left to stop the clock, so the punting team kneels out a win.
+  lead <- .fd_punt_wp(mk_late(distance = 10, yards_to_goal = 50, diff = 10,
+                              pos_to = 3, def_to = 0))
+  expect_identical(lead, 1)
+
+  # Up only 3, the same return TD puts them behind, so nothing is clamped.
+  behind <- .fd_punt_wp(mk_late(distance = 10, yards_to_goal = 50, diff = 3,
+                                pos_to = 3, def_to = 0))
+  expect_lt(behind, 1)
 })
