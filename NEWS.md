@@ -36,6 +36,12 @@ agree on EPA for a given play and a retrain updates both from one publish
   plays, `cpoe` on the percentage-point scale `100 * (completion - cp)`,
   matching `sportsdataverse-py`. The model loads lazily on first use and the
   stage degrades to `NA` columns rather than failing.
+* **New: spread-aware win probability.** A `vegas_wp` column is added
+  alongside the unchanged naive `wp_before` — the same split nflfastR draws
+  between `wp` and `vegas_wp`. It is `NA` wherever the game has no pre-game
+  line (the ESPN path, and CFBD before 2013). Sign convention verified over 83
+  games: CFBD's `spread` is negative when the home team is favoured, and the
+  model reads positive `spread_time` as the team in possession being favoured.
 * Existing EPA/WPA values **will change**: this is a different model
   generation. Rebuild rather than mixing old and new outputs in one dataset.
 

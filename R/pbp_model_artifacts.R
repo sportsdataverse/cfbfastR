@@ -532,3 +532,99 @@ NULL
   keep <- intersect(fnames, colnames(x))
   as.numeric(stats::predict(fg_mod, x[, keep, drop = FALSE]))
 }
+
+#' Spread-aware Win Probability feature contract
+#'
+#' `wp_naive` plus `spread_time` in slot 2 -- the booster's own order.
+#'
+#' @keywords internal
+#' @noRd
+.WP_SPREAD_FEATURES <- append(.WP_NAIVE_FEATURES, "spread_time", after = 1L)
+
+#' Lazily load the bundled spread-aware WP model
+#' @keywords internal
+#' @noRd
+.cfb_wp_spread_model <- function() {
+  if (!is.null(.cfb_model_env$wp_spread)) return(.cfb_model_env$wp_spread)
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  f <- .cfb_model_file("wp_spread.ubj")
+  if (is.null(f)) return(NULL)
+  b <- try(xgboost::xgb.load(f), silent = TRUE)
+  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  .cfb_model_env$wp_spread <- b
+  b
+}
+
+#' Spread from the possessing team's point of view
+#'
+#' **Sign convention, verified empirically over 83 games of 2021 week 1 with
+#' zero exceptions** (`formatted_spread` names the favourite, so it is ground
+#' truth): CFBD's `spread` is negative when the HOME team is favoured and
+#' positive when the AWAY team is favoured.
+#'
+#' The booster reads the opposite orientation: scoring the model directly shows
+#' win probability rising monotonically with `spread_time`
+#' (-28 -> 0.04, 0 -> 0.49, +28 -> 0.96), i.e. **positive means the team in
+#' possession is favoured**. So the home team's spread is negated and the away
+#' team's is kept.
+#'
+#' Getting this backwards is not a crash -- it produces confident, exactly
+#' inverted win probabilities. That is why the convention is pinned by test.
+#'
+#' @keywords internal
+#' @noRd
+.wp_pos_team_spread <- function(df) {
+  if (!all(c("spread", "pos_team", "home") %in% names(df))) return(NULL)
+  spread <- suppressWarnings(as.numeric(df$spread))
+  if (all(is.na(spread))) return(NULL)
+  is_home <- !is.na(df$pos_team) & !is.na(df$home) & df$pos_team == df$home
+  ifelse(is_home, -spread, spread)
+}
+
+#' Time-decayed spread (`spread_time`)
+#'
+#' `pos_team_spread * exp(-4 * elapsed_share)`, so the pre-game line's
+#' influence decays as the game runs down. `elapsed_share` is clamped at 0
+#' below only, matching sdv-py -- its nominal upper clamp cannot bind for any
+#' non-negative `adj_TimeSecsRem`.
+#'
+#' @keywords internal
+#' @noRd
+.wp_spread_time <- function(df) {
+  pts <- .wp_pos_team_spread(df)
+  if (is.null(pts)) return(NULL)
+  adj <- suppressWarnings(as.numeric(df$adj_TimeSecsRem))
+  elapsed_share <- pmax((3600 - adj) / 3600, 0)
+  pts * exp(-4 * elapsed_share)
+}
+
+#' Append spread-aware win probability (`vegas_wp`)
+#'
+#' Additive and non-breaking: the naive `wp_before` / `wpa` columns are left
+#' exactly as they were, and `vegas_wp` is added alongside -- the same split
+#' nflfastR draws between `wp` and `vegas_wp`. `NA` wherever no pre-game spread
+#' is available (the whole ESPN path today, and CFBD before 2013).
+#'
+#' Never raises; a missing model or missing inputs yields an all-`NA` column.
+#'
+#' @keywords internal
+#' @noRd
+.pbp_add_vegas_wp <- function(df) {
+  df$vegas_wp <- rep(NA_real_, nrow(df))
+  if (!nrow(df)) return(df)
+  spread_time <- .wp_spread_time(df)
+  if (is.null(spread_time)) return(df)
+  model <- .cfb_wp_spread_model()
+  if (is.null(model)) return(df)
+
+  p <- try({
+    base <- .wp_feature_matrix(df)
+    x <- cbind(base, spread_time = spread_time)[, .WP_SPREAD_FEATURES, drop = FALSE]
+    as.numeric(stats::predict(model, x))
+  }, silent = TRUE)
+  if (inherits(p, "try-error") || length(p) != nrow(df)) return(df)
+
+  # Rows whose game had no line keep NA rather than a spread-less guess.
+  df$vegas_wp <- ifelse(is.na(spread_time), NA_real_, p)
+  df
+}

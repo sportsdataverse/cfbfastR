@@ -109,7 +109,10 @@
     # Additive and self-contained: CP/CPOE lazily loads its own bundled model
     # and emits all-NA columns rather than raising when it or its inputs are
     # unavailable, matching sdv-py `__process_cpoe`.
-    .pbp_add_cp_cpoe()
+    .pbp_add_cp_cpoe() |>
+    # Additive too: `vegas_wp` alongside the untouched naive `wp_before`,
+    # NA wherever the game has no pre-game line.
+    .pbp_add_vegas_wp()
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress
