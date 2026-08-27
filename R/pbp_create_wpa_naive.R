@@ -49,6 +49,57 @@
   return(df2)
 }
 
+#' Modular PBP -- WPA overlays for an arbitrary win-probability column
+#'
+#' The differencing is not a plain `lead(wp) - wp`: possession changes flip the
+#' perspective (`1 - lead_wp`), and half/period ends read the lead-2 play
+#' because the intervening row is a timeout or an end-of-period marker. That
+#' logic is identical whichever WP column is being differenced, so it lives
+#' here once and is driven by `wp` -- the naive `wp_before` and the
+#' spread-aware `vegas_wp` both route through it.
+#'
+#' MUST be called on ONE GAME at a time, already ordered: `dplyr::lead()` here
+#' would otherwise reach across the game boundary and difference the last play
+#' of one game against the first play of the next.
+#'
+#' @param df One game's plays, ordered.
+#' @param wp Numeric win-probability vector to difference.
+#' @return Numeric WPA vector, `nrow(df)` long.
+#' @keywords internal
+#' @noRd
+.wpa_overlay <- function(df, wp) {
+  lead_wp <- dplyr::lead(wp, 1)
+  lead_wp2 <- dplyr::lead(wp, 2)
+
+  wpa_base <- lead_wp - wp
+  wpa_base_nxt <- lead_wp2 - wp
+  wpa_base_nxt_ind <- ifelse(df$pos_team == df$lead_pos_team2, 1, 0)
+  # possession changed hands: the next team's win probability is this team's loss
+  wpa_change <- (1 - lead_wp) - wp
+  wpa_change_nxt <- (1 - lead_wp2) - wp
+  wpa_change_ind <- ifelse(df$pos_team != df$lead_pos_team, 1, 0)
+  wpa_change_nxt_ind <- ifelse(df$pos_team != df$lead_pos_team2, 1, 0)
+
+  wpa_half_end <- ifelse(df$end_of_half == 1 & wpa_base_nxt_ind == 1 &
+    df$play_type != "Timeout", wpa_base_nxt,
+  ifelse(df$end_of_half == 1 & wpa_change_nxt_ind == 1 &
+    df$play_type != "Timeout", wpa_change_nxt,
+  ifelse(df$end_of_half == 1 & df$pos_team_receives_2H_kickoff == 0 &
+    df$play_type == "Timeout", wpa_base,
+  ifelse(wpa_change_ind == 1, wpa_change, wpa_base))))
+
+  ifelse(df$end_of_half == 1 & df$play_type != "Timeout",
+    wpa_half_end,
+    ifelse((df$lead_play_type %in% c("End Period", "End of Half")) & df$change_of_pos_team == 0,
+      wpa_base_nxt,
+      ifelse((df$lead_play_type %in% c("End Period", "End of Half")) & df$change_of_pos_team == 1,
+        wpa_change_nxt,
+        ifelse(wpa_change_ind == 1, wpa_change, wpa_base)
+      )
+    )
+  )
+}
+
 #' Modular PBP -- per-game WPA calculations
 #'
 #' Verbatim refactor of `wpa_calcs_naive()` for `.pbp_create_wpa_naive()`.
@@ -132,5 +183,16 @@
       home_wp_after = round(.data$home_wp_after, 7),
       away_wp_after = round(.data$away_wp_after, 7)
     )
+
+  # Spread-aware WPA, derived with the same overlays via .wpa_overlay(). It is
+  # computed HERE rather than in its own pipeline stage so it inherits this
+  # function's per-game split and ordering -- a lead() spanning a game boundary
+  # would difference the last play of one game against the first of the next.
+  # The naive block above is left inline and untouched: it produces published
+  # values, and test-wpa_overlay asserts the helper reproduces it exactly.
+  if ("vegas_wp" %in% names(df2)) {
+    df2$vegas_wpa <- round(.wpa_overlay(df2, df2$vegas_wp), 7)
+    df2$vegas_wp_after <- round(df2$vegas_wp + df2$vegas_wpa, 7)
+  }
   return(df2)
 }

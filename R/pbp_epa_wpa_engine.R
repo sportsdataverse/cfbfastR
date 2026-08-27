@@ -105,14 +105,16 @@
     .pbp_prep_epa_df_after() |>
     .pbp_create_epa(ep_model = ep_model, fg_model = fg_model,
                     season = season) |>
+    # vegas_wp is scored BEFORE the WPA stage so that stage -- which already
+    # splits per game and orders the plays -- can difference it into vegas_wpa
+    # without a second grouping pass. A lead() across a game boundary would
+    # otherwise difference two different games.
+    .pbp_add_vegas_wp() |>
     .pbp_create_wpa_naive(wp_model = wp_model) |>
     # Additive and self-contained: CP/CPOE lazily loads its own bundled model
     # and emits all-NA columns rather than raising when it or its inputs are
     # unavailable, matching sdv-py `__process_cpoe`.
     .pbp_add_cp_cpoe() |>
-    # Additive too: `vegas_wp` alongside the untouched naive `wp_before`,
-    # NA wherever the game has no pre-game line.
-    .pbp_add_vegas_wp() |>
     # xpass needs the season for its ORDINAL era feature (2017 cut), which is
     # a different encoding from the FG model's one-hot era (2020 cut).
     .pbp_add_xpass(season = season)

@@ -42,6 +42,8 @@ agree on EPA for a given play and a retrain updates both from one publish
   line (the ESPN path, and CFBD before 2013). Sign convention verified over 83
   games: CFBD's `spread` is negative when the home team is favoured, and the
   model reads positive `spread_time` as the team in possession being favoured.
+  `vegas_wpa` and `vegas_wp_after` are derived alongside it, using the same
+  turnover and half/period-end overlays as the naive `wpa`.
 * **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
   scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
   percentage-point scale `100 * (pass - xpass)`. Note this model uses an
