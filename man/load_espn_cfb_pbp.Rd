@@ -484,6 +484,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    first_down_prob \tab double \tab  \cr
    wp_succeed \tab double \tab  \cr
    wp_fail \tab double \tab  \cr
+   fourth_down_fg_make_prob \tab double \tab  \cr
    make_fg_wp \tab double \tab  \cr
    miss_fg_wp \tab double \tab  \cr
    fg_wp \tab double \tab  \cr

@@ -493,6 +493,7 @@ reference:
     contents:
       - '`create_epa`'
       - '`create_wpa`'
+      - '`create_qbr`'
       - '`helpers_pbp`'
       - '`epa_fg_probs`'
   - subtitle: cfbfastR Helper Functions
