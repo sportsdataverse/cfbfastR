@@ -140,9 +140,9 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_epa</span><span class="op">(</span><span class="va">play_df</span>, <span class="va">ep_model</span>, <span class="va">fg_model</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_epa</span><span class="op">(</span><span class="va">play_df</span>, <span class="va">ep_model</span>, <span class="va">fg_model</span>, season <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">epa_fg_probs</span><span class="op">(</span><span class="va">dat</span>, <span class="va">current_probs</span>, <span class="va">ep_model</span>, <span class="va">fg_mod</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">epa_fg_probs</span><span class="op">(</span><span class="va">dat</span>, <span class="va">current_probs</span>, <span class="va">ep_model</span>, <span class="va">fg_mod</span>, season <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -159,6 +159,11 @@
 
 <dt id="arg-fg-model">fg_model<a class="anchor" aria-label="anchor" href="#arg-fg-model"></a></dt>
 <dd><p>(<em>model</em> default <code>cfbfastR</code>'s <code>fg_model</code>): Field Goal (FG) Model</p></dd>
+
+
+<dt id="arg-season">season<a class="anchor" aria-label="anchor" href="#arg-season"></a></dt>
+<dd><p>(<em>numeric</em> optional): Season of the game, required when the
+loaded FG model is era-aware. See <code>create_epa()</code>.</p></dd>
 
 
 <dt id="arg-dat">dat<a class="anchor" aria-label="anchor" href="#arg-dat"></a></dt>

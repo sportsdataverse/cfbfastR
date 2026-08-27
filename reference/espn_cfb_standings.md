@@ -171,7 +171,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_standings(year = 2024))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 11:00:24 UTC
+#> ℹ Data updated: 2026-08-27 11:50:55 UTC
 #> # A tibble: 38,496 × 23
 #>    season season_type group_id team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>    <chr>   <chr>     <chr>             <chr>        
@@ -194,7 +194,7 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_standings(year = 2024, team_detail = FALSE))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 11:00:49 UTC
+#> ℹ Data updated: 2026-08-27 11:51:17 UTC
 #> # A tibble: 38,496 × 13
 #>    season season_type group_id team_id record_type record_name record_summary
 #>     <int>       <int> <chr>    <chr>   <chr>       <chr>       <chr>         

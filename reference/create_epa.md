@@ -5,9 +5,9 @@ Adds Expected Points calculations to Play-by-Play data.frame
 ## Usage
 
 ``` r
-create_epa(play_df, ep_model, fg_model)
+create_epa(play_df, ep_model, fg_model, season = NULL)
 
-epa_fg_probs(dat, current_probs, ep_model, fg_mod)
+epa_fg_probs(dat, current_probs, ep_model, fg_mod, season = NULL)
 ```
 
 ## Arguments
@@ -25,6 +25,11 @@ epa_fg_probs(dat, current_probs, ep_model, fg_mod)
 - fg_model:
 
   (*model* default `cfbfastR`'s `fg_model`): Field Goal (FG) Model
+
+- season:
+
+  (*numeric* optional): Season of the game, required when the loaded FG
+  model is era-aware. See `create_epa()`.
 
 - dat:
 

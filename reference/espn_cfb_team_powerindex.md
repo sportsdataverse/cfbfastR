@@ -157,7 +157,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_powerindex(team_id = 61, year = 2024))
 #> ── Team Power Index data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 11:00:54 UTC
+#> ℹ Data updated: 2026-08-27 11:51:22 UTC
 #> # A tibble: 43 × 21
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -180,7 +180,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_powerindex(team_id = 61, year = 2024,
                                team_detail = FALSE))
 #> ── Team Power Index data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 11:00:54 UTC
+#> ℹ Data updated: 2026-08-27 11:51:22 UTC
 #> # A tibble: 43 × 11
 #>    season team_id team_ref      last_updated metric_group stat_name abbreviation
 #>     <int> <chr>   <chr>         <chr>        <chr>        <chr>     <chr>       

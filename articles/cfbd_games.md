@@ -32,13 +32,13 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
     ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
     ## Hit:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
-
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
@@ -62,9 +62,9 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 45 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 27 not upgraded.
 
-    ## ✔ 4 pkgs + 72 deps: kept 71 [10.5s]
+    ## ✔ 4 pkgs + 72 deps: kept 71 [10.7s]
 
 ``` r
 
@@ -131,21 +131,21 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 11:06:32 UTC
+    ## ℹ Data updated: 2026-08-27 11:56:20 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
-    ##  1 401110778 Texas      Big 12     home      LSU      SEC                     38
-    ##  2 401110778 LSU        SEC        away      Texas    Big 12                  45
-    ##  3 401110828 Mississip… SEC        home      LSU      SEC                     13
-    ##  4 401110828 LSU        SEC        away      Mississ… SEC                     36
-    ##  5 401110833 LSU        SEC        home      Auburn   SEC                     23
-    ##  6 401110833 Auburn     SEC        away      LSU      SEC                     20
-    ##  7 401110869 LSU        SEC        home      Texas A… SEC                     50
-    ##  8 401110869 Texas A&M  SEC        away      LSU      SEC                      7
-    ##  9 401110725 LSU        SEC        home      Georgia… Sun Belt                55
-    ## 10 401110725 Georgia S… Sun Belt   away      LSU      SEC                      3
+    ##  1 401110833 LSU        SEC        home      Auburn   SEC                     23
+    ##  2 401110833 Auburn     SEC        away      LSU      SEC                     20
+    ##  3 401110859 LSU        SEC        home      Arkansas SEC                     56
+    ##  4 401110859 Arkansas   SEC        away      LSU      SEC                     20
+    ##  5 401110819 LSU        SEC        home      Florida  SEC                     42
+    ##  6 401110819 Florida    SEC        away      LSU      SEC                     28
+    ##  7 401110813 LSU        SEC        home      Utah St… Mountain West           42
+    ##  8 401110813 Utah State Mountain … away      LSU      SEC                      6
+    ##  9 401110869 LSU        SEC        home      Texas A… SEC                     50
+    ## 10 401110869 Texas A&M  SEC        away      LSU      SEC                      7
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -160,21 +160,21 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 ```
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 11:06:32 UTC
+    ## ℹ Data updated: 2026-08-27 11:56:20 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
     ##  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
     ##  2 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
-    ##  3 333060052 Florida S… ACC        home      Miami    ACC                     41
-    ##  4 333060052 Miami      ACC        away      Florida… ACC                     14
-    ##  5 333200052 Florida S… ACC        home      Syracuse ACC                     59
-    ##  6 333200052 Syracuse   ACC        away      Florida… ACC                      3
-    ##  7 333340057 Florida    SEC        home      Florida… ACC                      7
-    ##  8 333340057 Florida S… ACC        away      Florida  SEC                     37
-    ##  9 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
-    ## 10 332450221 Pittsburgh ACC        home      Florida… ACC                     13
+    ##  3 332450221 Pittsburgh ACC        home      Florida… ACC                     13
+    ##  4 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
+    ##  5 332710103 Boston Co… ACC        home      Florida… ACC                     34
+    ##  6 332710103 Florida S… ACC        away      Boston … ACC                     48
+    ##  7 332780052 Florida S… ACC        home      Maryland ACC                     63
+    ##  8 332780052 Maryland   ACC        away      Florida… ACC                      0
+    ##  9 332990052 Florida S… ACC        home      NC State ACC                     49
+    ## 10 332990052 NC State   ACC        away      Florida… ACC                     17
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
