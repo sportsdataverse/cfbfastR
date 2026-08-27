@@ -207,10 +207,18 @@ test_that("turning it over on downs while LEADING is not an automatic loss", {
   # The clamp condition is read off the post-turnover frame, where the score
   # differential has already been negated. Reading it as "the offence trails"
   # inverts it and pins a LEADING team's failed-conversion WP to zero.
-  lead <- .fd_go_wp(mk_late(distance = 1, diff = 3, pos_to = 3, def_to = 0))
-  trail <- .fd_go_wp(mk_late(distance = 1, diff = -3, pos_to = 3, def_to = 0))
+  #
+  # The timeouts here are load-bearing and easy to get backwards. After a
+  # turnover `new_def_to` is the OFFENCE'S pre-play count, so firing the clamp
+  # needs `pos_to = 0` -- not `def_to = 0`, which leaves `new_def_to == 3` and
+  # no threshold applies at all. Configured that way this test passes on the
+  # model's own gradient with EITHER sign (0.776 vs 0.037), which is no gate.
+  lead <- .fd_go_wp(mk_late(distance = 1, diff = 3, pos_to = 0, def_to = 3))
+  trail <- .fd_go_wp(mk_late(distance = 1, diff = -3, pos_to = 0, def_to = 3))
+  # Exactly zero is the clamp's signature -- the model alone never returns it.
+  expect_identical(trail$wp_fail, 0)
+  # And the leading team must be left alone entirely.
   expect_gt(lead$wp_fail, 0.5)
-  expect_lt(trail$wp_fail, 0.1)
 })
 
 test_that("field-goal probability carries cfb4th's two policy clamps", {
