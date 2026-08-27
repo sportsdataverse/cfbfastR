@@ -24,6 +24,18 @@ agree on EPA for a given play and a retrain updates both from one publish
 * `xgboost` (Suggests) is now required to score EP and its floor moved to
   `>= 1.7` for `.ubj` support. Without it — or offline with no cached copy —
   the retired `nnet` model is loaded as a fallback and still works.
+* The **Win Probability** model moved to the bundle's `wp_naive.ubj` on the
+  same terms. Eleven of its twelve features already existed on the frame; only
+  `is_home` is derived.
+* The **Field Goal** model moved to the bundle's era-aware `fg_model.ubj`
+  (`yards_to_goal` + one-hot `era0..era3`). `season` is now threaded through
+  `.run_epa_wpa()` and the exported `create_epa()` / `epa_fg_probs()` gain a
+  `season` argument (defaulting to `NULL`). Scoring the era-aware model
+  without a season is an error rather than a silent all-zero one-hot.
+* **New: completion probability.** `cp` and `cpoe` columns are added on pass
+  plays, `cpoe` on the percentage-point scale `100 * (completion - cp)`,
+  matching `sportsdataverse-py`. The model loads lazily on first use and the
+  stage degrades to `NA` columns rather than failing.
 * Existing EPA/WPA values **will change**: this is a different model
   generation. Rebuild rather than mixing old and new outputs in one dataset.
 
