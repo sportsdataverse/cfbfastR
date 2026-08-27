@@ -130,7 +130,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1><strong>Get Fox Sports college football team stat leaders</strong></h1>
-      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/R/fox_cfb.R" class="external-link"><code>R/fox_cfb.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/R/fox_cfb.R" class="external-link"><code>R/fox_cfb.R</code></a></small>
       <div class="d-none name"><code>fox_cfb_team_stats.Rd</code></div>
     </div>
 
@@ -166,21 +166,19 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">fox_cfb_team_stats</span><span class="op">(</span>team_id <span class="op">=</span> <span class="st">"11"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Team stat leaders from Fox Sports (Bifrost) ─────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:22:12 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    team_id category     stat                    stat_abbreviation player   value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 11      PLAYER STATS Passing Yards           PYDS              Carson … 3,813</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 11      PLAYER STATS Passing Touchdowns      PTD               Carson … 30   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 11      PLAYER STATS Rushing Yards           RYDS              Mark Fl… 1,192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 11      PLAYER STATS Rushing Touchdowns      RTD               Mark Fl… 12   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 1,211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 10   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 11      PLAYER STATS Kicking Points          PTS               Carter … 103  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 11      PLAYER STATS Kick Return Yards       KR YDS            Keelan … 293  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 11      PLAYER STATS Punt Return Yards       PR YDS            Malachi… 298  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 11      PLAYER STATS Defensive Interceptions DEF INT           Bryce F… 6    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more rows</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:01:27 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   team_id category   stat                 stat_abbreviation player value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 11      TEAM STATS Passing Yards / Game PYDS/G            <span style="color: #BB0000;">NA</span>     -    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 11      TEAM STATS Rushing Yards / Game RYDS/G            <span style="color: #BB0000;">NA</span>     -    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 11      TEAM STATS Kicking Points       PTS               <span style="color: #BB0000;">NA</span>     0    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 11      TEAM STATS Kick Return Avg      KR AVG            <span style="color: #BB0000;">NA</span>     -    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 11      TEAM STATS Punt Return Avg      PR AVG            <span style="color: #BB0000;">NA</span>     -    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 11      TEAM STATS Sacks                SCK               <span style="color: #BB0000;">NA</span>     0.0  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> 11      TEAM STATS Third Down Pct       3RD %             <span style="color: #BB0000;">NA</span>     -    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> 11      TEAM STATS Yards / Game         YDS/G             <span style="color: #BB0000;">NA</span>     -    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> 11      TEAM STATS Turnover Plus/Minus  +/-               <span style="color: #BB0000;">NA</span>     0    </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

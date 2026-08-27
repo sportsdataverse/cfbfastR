@@ -176,14 +176,17 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Creating Fourth Down Tendency Plots Using cfbfastR</h1>
-                        <h4 data-toc-skip class="author">Michael Egle
-<br><a href="https://twitter.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
-<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani,
+Akshay Easwaran, Jared Lee
+<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </h4>
             
             <h4 data-toc-skip class="date">9/5/2020</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/vignettes/fourth-down-plot-tutorial.Rmd" class="external-link"><code>vignettes/fourth-down-plot-tutorial.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/vignettes/fourth-down-plot-tutorial.Rmd" class="external-link"><code>vignettes/fourth-down-plot-tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>fourth-down-plot-tutorial.Rmd</code></div>
     </div>
 
@@ -198,14 +201,16 @@ coaches. This tutorial is going to walk through how they’re put
 together. If you haven’t already, you should read the introduction
 tutorial that Parker made to get used to the data and download the
 package.</p>
-<div class="section level2">
-<h2 id="first-well-have-to-install-and-import-the-necessary-packages">First, we’ll have to install and import the necessary packages<a class="anchor" aria-label="anchor" href="#first-well-have-to-install-and-import-the-necessary-packages"></a>
-</h2>
+<div class="section level3">
+<h3 id="first-well-have-to-install-and-import-the-necessary-packages">First, we’ll have to install and import the necessary packages<a class="anchor" aria-label="anchor" href="#first-well-have-to-install-and-import-the-necessary-packages"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">cfbfastR</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span></code></pre></div>
 <p>We are going to load in data for seasons 2014-2020, it’ll take
 between 45-90 seconds to run.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -217,7 +222,7 @@ between 45-90 seconds to run.</p>
 <span>  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 35.778 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 40.409 sec elapsed</span></span></code></pre>
 <p>Next, we’ll need to get the coaching information, so we’ll use the
 <code>cfbd_coaches</code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -248,7 +253,7 @@ it.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">down4</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">play_type</span>, <span class="st">"Field Goal"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>fga <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">play_type</span>, <span class="st">"Field Goal"</span><span class="op">)</span>,</span>
 <span>                             <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
 <span>                punt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">play_type</span> <span class="op">==</span> <span class="st">"Punt"</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
 <span>                attempt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
@@ -264,23 +269,160 @@ show whichever coaches you want.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">coach</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Matt Campbell"</span>, <span class="st">"Steve Sarkisian"</span>, <span class="st">"Lincoln Riley"</span>, <span class="st">"Chris Klieman"</span>, <span class="st">"Matt Wells"</span>,</span>
 <span>                     <span class="st">"Neal Brown"</span>, <span class="st">"Les Miles"</span>, <span class="st">"Mike Gundy"</span>, <span class="st">"Gary Patterson"</span>, <span class="st">"Dave Aranda"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&lt;=</span> <span class="fl">5</span>, <span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">yards_to_goal</span>, color <span class="op">=</span> <span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">coach</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Yards to Go"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">distance</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">yards_to_goal</span>, color <span class="op">=</span> <span class="va">play</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">coach</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Yards to Go"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Big 12 Coaches's Fourth Down Tendencies | CFP Era"</span>,</span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Data from @cfbfastR"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"Visualization by Michael Egle (@deceptivespeed_)"</span>,</span>
 <span>       color <span class="op">=</span> <span class="st">"Decision"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Own 20"</span>, <span class="st">"Own 40"</span>, <span class="st">"Opp 40"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Own 20"</span>, <span class="st">"Own 40"</span>, <span class="st">"Opp 40"</span>,</span>
 <span>                               <span class="st">"Opp 20"</span>, <span class="st">"Endzone"</span><span class="op">)</span>,</span>
 <span>                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme</span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fourth-down-plot-tutorial_files/figure-html/fourth_down_plot-1.png" class="r-plt" alt="Big 12 Coaches's Fourth Down Tendencies | CFP Era" width="700"></p>
 <p>Looks good! Small sample size but can easily be built upon. Hopefully
 you found this tutorial helpful and can make some more cool CFB related
 visualizations with <code>ggplot2</code></p>
+</div>
+<div class="section level2">
+<h2 id="our-authors">
+<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+</h2>
+<ul>
+<li>
+<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</li>
+<li>
+<a href="https://x.com/akeaswaran" class="external-link">Akshay Easwaran</a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
+</li>
+<li>
+<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
+<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
+</li>
+<li>
+<a href="https://x.com/arbitanalytics" class="external-link">Eric Hess</a>
+<a href="https://x.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
+<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+</li>
+</ul>
+<div class="section level3">
+<h3 id="our-contributors">
+<strong>Our Contributors</strong><a class="anchor" aria-label="anchor" href="#our-contributors"></a>
+</h3>
+<ul>
+<li>
+<a href="https://x.com/deceptivespeed_" class="external-link">Michael Egle</a>
+<a href="https://x.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
+<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+</li>
+<li>
+<a href="https://x.com/cfbnate" class="external-link">Nate Manzo</a>
+<a href="https://x.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge" alt="@cfbnate"></a>
+<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+</li>
+<li>
+<a href="https://x.com/CFBNumbers" class="external-link">Jason DeLoach</a>
+<a href="https://x.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+<a href="https://github.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+</li>
+<li>
+<a href="https://x.com/tejfbanalytics" class="external-link">Tej Seth</a>
+<a href="https://x.com/tejfbanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge" alt="@tejfbanalytics"></a>
+<a href="https://github.com/tejseth" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tejseth"></a>
+</li>
+<li>
+<a href="https://x.com/ConorMcQ5" class="external-link">Conor McQuiston</a>
+<a href="https://x.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
+<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
+</li>
+<li>
+<a href="https://x.com/_TanHo" class="external-link">Tan Ho</a>
+<a href="https://x.com/_TanHo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge" alt="@_TanHo"></a>
+<a href="https://github.com/tanho63" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tanho63"></a>
+</li>
+<li>
+<a href="https://x.com/KeeganAbdoo" class="external-link">Keegan Abdoo</a>
+<a href="https://x.com/KeeganAbdoo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge" alt="@KeeganAbdoo"></a>
+<a href="https://github.com/keegan-abdoo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@keegan-abdoo"></a>
+</li>
+<li>
+<a href="https://x.com/Maatspencer" class="external-link">Matt Spencer</a>
+<a href="https://x.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge" alt="@Maatspencer"></a>
+<a href="https://github.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Maatspencer"></a>
+</li>
+<li>
+<a href="https://x.com/mrcaseb" class="external-link">Sebastian Carl</a>
+<a href="https://x.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge" alt="@mrcaseb"></a>
+<a href="https://github.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
+</li>
+<li>
+<a href="https://x.com/John_B_Edwards" class="external-link">John Edwards</a>
+<a href="https://x.com/John_B_Edwards" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge" alt="@John_B_Edwards"></a>
+<a href="https://github.com/john-b-edwards" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@john-b-edwards"></a>
+</li>
+<li>
+<a href="https://x.com/bradisblogging" class="external-link">Brad Hill</a>
+<a href="https://x.com/bradisblogging" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge" alt="@bradisblogging"></a>
+<a href="https://github.com/bradisbrad" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@bradisbrad"></a>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="citation">
+<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
+R package in publications, use:</p>
+<p>BibTeX Citation</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="related-sportsdataverse-packages">
+<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
+</h3>
+<ul>
+<li>
+<a href="https://cfbfastR.sportsdataverse.org/"><strong>cfbfastR</strong></a>
+- college football</li>
+<li>
+<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
+men’s basketball</li>
+<li>
+<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
+women’s basketball</li>
+<li>
+<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
+- baseball</li>
+<li>
+<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
+- hockey</li>
+<li>
+<a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
+- betting odds</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
+- playing surfaces</li>
+<li>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
+- the Python package</li>
+<li>
+<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
+- the R meta-package</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -176,37 +176,144 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>CFB Data Betting Lines Examples</h1>
-                        <h4 data-toc-skip class="author">Saiem Gilani
-<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani,
+Akshay Easwaran, Jared Lee
+<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
 <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/vignettes/cfbd_betting.Rmd" class="external-link"><code>vignettes/cfbd_betting.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/vignettes/cfbd_betting.Rmd" class="external-link"><code>vignettes/cfbd_betting.Rmd</code></a></small>
       <div class="d-none name"><code>cfbd_betting.Rmd</code></div>
     </div>
 
     
     
-<div class="section level3">
-<h3 id="load-and-install-packages">
+<div class="section level4">
+<h4 id="load-and-install-packages">
 <strong>Load and Install Packages</strong><a class="anchor" aria-label="anchor" href="#load-and-install-packages"></a>
-</h3>
+</h4>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span>, <span class="va">cfbfastR</span><span class="op">)</span></span>
-<span><span class="co"># pacman::p_load_current_gh("sportsdataverse/cfbfastR")</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"gt"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Loading metadata database</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Loading metadata database ... done</span></span></code></pre>
+<pre><code><span><span class="co">## </span></span></code></pre>
+<pre><code><span><span class="co">## </span></span></code></pre>
+<pre><code><span><span class="co">## → Package library at <span style="color: #0000BB;">/home/runner/work/_temp/Library</span>.</span></span></code></pre>
+<pre><code><span><span class="co">## → Will <span style="font-style: italic;">update</span> 1 package.</span></span></code></pre>
+<pre><code><span><span class="co">## → The package (0 B) is cached.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #555555;">+ </span><span style="color: #0000BB;">gt</span> 1.3.0 → 1.3.0</span></span></code></pre>
+<pre><code><span><span class="co">## → Will <span style="font-style: italic;">install</span> 1 system package:</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #555555;">+ </span><span style="color: #00BBBB;">libnode-dev</span>  <span style="color: #555555;">- </span><span style="color: #0000BB;">V8</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> No downloads are needed, 1 pkg is cached</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Got <span style="color: #0000BB;">gt</span> 1.3.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (6.35 MB)</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Installing system requirements</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y update`</span></span></code></pre>
+<pre><code><span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease</span></span>
+<span><span class="co">## Hit:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span>
+<span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span>
+<span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`</span></span></code></pre>
+<pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
+<pre><code><span><span class="co">## Building dependency tree...</span></span></code></pre>
+<pre><code><span><span class="co">## Reading state information...</span></span></code></pre>
+<pre><code><span><span class="co">## libicu-dev is already the newest version (70.1-2).</span></span>
+<span><span class="co">## make is already the newest version (4.3-4.1build1).</span></span>
+<span><span class="co">## pandoc is already the newest version (2.9.2.1-3ubuntu2).</span></span>
+<span><span class="co">## cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).</span></span>
+<span><span class="co">## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.27).</span></span>
+<span><span class="co">## libssl-dev is already the newest version (3.0.2-0ubuntu1.29).</span></span>
+<span><span class="co">## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).</span></span>
+<span><span class="co">## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).</span></span>
+<span><span class="co">## The following additional packages will be installed:</span></span></code></pre>
+<pre><code><span><span class="co">## libnode72</span></span></code></pre>
+<pre><code><span><span class="co">## The following NEW packages will be installed:</span></span></code></pre>
+<pre><code><span><span class="co">## libnode-dev libnode72</span></span></code></pre>
+<pre><code><span><span class="co">## 0 upgraded, 2 newly installed, 0 to remove and 45 not upgraded.</span></span>
+<span><span class="co">## Need to get 11.4 MB of archives.</span></span>
+<span><span class="co">## After this operation, 47.4 MB of additional disk space will be used.</span></span>
+<span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
+<pre><code><span><span class="co">## Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode72 amd64 12.22.9~dfsg-1ubuntu3.6 [10.8 MB]</span></span></code></pre>
+<pre><code><span><span class="co">## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]</span></span></code></pre>
+<pre><code><span><span class="co">## Fetched 11.4 MB in 0s (38.9 MB/s)</span></span></code></pre>
+<pre><code><span><span class="co">## Selecting previously unselected package libnode72:amd64.</span></span>
+<span><span class="co">## (Reading database ...</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 60%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 65%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 70%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 75%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 80%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 85%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 90%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 95%</span></span></code></pre>
+<pre><code><span><span class="co">## (Reading database ... 100%(Reading database ... 309582 files and directories currently installed.)</span></span></code></pre>
+<pre><code><span><span class="co">## Preparing to unpack .../libnode72_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...</span></span></code></pre>
+<pre><code><span><span class="co">## Unpacking libnode72:amd64 (12.22.9~dfsg-1ubuntu3.6) ...</span></span></code></pre>
+<pre><code><span><span class="co">## Selecting previously unselected package libnode-dev.</span></span></code></pre>
+<pre><code><span><span class="co">## Preparing to unpack .../libnode-dev_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...</span></span></code></pre>
+<pre><code><span><span class="co">## Unpacking libnode-dev (12.22.9~dfsg-1ubuntu3.6) ...</span></span></code></pre>
+<pre><code><span><span class="co">## Setting up libnode72:amd64 (12.22.9~dfsg-1ubuntu3.6) ...</span></span></code></pre>
+<pre><code><span><span class="co">## Setting up libnode-dev (12.22.9~dfsg-1ubuntu3.6) ...</span></span></code></pre>
+<pre><code><span><span class="co">## Processing triggers for libc-bin (2.35-0ubuntu3.14) ...</span></span></code></pre>
+<pre><code><span><span class="co">## Running kernel seems to be up-to-date.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Services to be restarted:</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart packagekit.service</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart php8.1-fpm.service</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart ssh.service</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart systemd-journald.service</span></span></code></pre>
+<pre><code><span><span class="co">## /etc/needrestart/restart.d/systemd-manager</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart systemd-networkd.service</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart systemd-resolved.service</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart systemd-udevd.service</span></span></code></pre>
+<pre><code><span><span class="co">## Service restarts being deferred:</span></span></code></pre>
+<pre><code><span><span class="co">## systemctl restart hosted-compute-agent.service</span></span>
+<span><span class="co">##  systemctl restart systemd-logind.service</span></span>
+<span><span class="co">##  systemctl restart user@1001.service</span></span>
+<span><span class="co">##  systemctl restart walinuxagent.service</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## No containers need to be restarted.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## No user sessions are running outdated binaries.</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## No VM guests are running outdated hypervisor (qemu) binaries on this host.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Installed <span style="color: #0000BB;">gt</span> 1.3.0  <span style="color: #9E9E9E;">(85ms)</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 4 pkgs + 72 deps: kept 70, upd 1, dld 1 (6.35 MB) <span style="color: #B2B2B2;">[16.2s]</span></span></span></code></pre>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     filter, lag</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com" class="external-link">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span>
+<span><span class="co"># pak::pak("sportsdataverse/cfbfastR")</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-betting-information-from-games">
+<div class="section level4">
+<h4 id="get-betting-information-from-games">
 <strong>Get Betting information from games</strong><a class="anchor" aria-label="anchor" href="#get-betting-information-from-games"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+</h4>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_betting_lines.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">12</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:06 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:06:15 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 23</span></span></span>
 <span><span class="co">##     game_id season season_type  week start_date           home_team_id home_team</span></span>
 <span><span class="co">##       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
@@ -220,11 +327,11 @@
 <span><span class="co">## <span style="color: #949494;">#   provider &lt;chr&gt;, spread &lt;dbl&gt;, formatted_spread &lt;chr&gt;, spread_open &lt;lgl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   over_under &lt;dbl&gt;, over_under_open &lt;lgl&gt;, home_moneyline &lt;lgl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   away_moneyline &lt;lgl&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 7 OTs LSU at TAMU</span></span>
 <span><span class="fu"><a href="../reference/cfbd_betting_lines.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">13</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:06 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:06:15 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 23</span></span></span>
 <span><span class="co">##     game_id season season_type  week start_date           home_team_id home_team</span></span>
 <span><span class="co">##       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
@@ -238,6 +345,143 @@
 <span><span class="co">## <span style="color: #949494;">#   provider &lt;chr&gt;, spread &lt;int&gt;, formatted_spread &lt;chr&gt;, spread_open &lt;lgl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   over_under &lt;dbl&gt;, over_under_open &lt;lgl&gt;, home_moneyline &lt;lgl&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   away_moneyline &lt;lgl&gt;</span></span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="our-authors">
+<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+</h2>
+<ul>
+<li>
+<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</li>
+<li>
+<a href="https://x.com/akeaswaran" class="external-link">Akshay Easwaran</a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
+</li>
+<li>
+<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
+<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
+</li>
+<li>
+<a href="https://x.com/arbitanalytics" class="external-link">Eric Hess</a>
+<a href="https://x.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
+<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+</li>
+</ul>
+<div class="section level3">
+<h3 id="our-contributors">
+<strong>Our Contributors</strong><a class="anchor" aria-label="anchor" href="#our-contributors"></a>
+</h3>
+<ul>
+<li>
+<a href="https://x.com/deceptivespeed_" class="external-link">Michael Egle</a>
+<a href="https://x.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
+<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+</li>
+<li>
+<a href="https://x.com/cfbnate" class="external-link">Nate Manzo</a>
+<a href="https://x.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge" alt="@cfbnate"></a>
+<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+</li>
+<li>
+<a href="https://x.com/CFBNumbers" class="external-link">Jason DeLoach</a>
+<a href="https://x.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+<a href="https://github.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+</li>
+<li>
+<a href="https://x.com/tejfbanalytics" class="external-link">Tej Seth</a>
+<a href="https://x.com/tejfbanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge" alt="@tejfbanalytics"></a>
+<a href="https://github.com/tejseth" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tejseth"></a>
+</li>
+<li>
+<a href="https://x.com/ConorMcQ5" class="external-link">Conor McQuiston</a>
+<a href="https://x.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
+<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
+</li>
+<li>
+<a href="https://x.com/_TanHo" class="external-link">Tan Ho</a>
+<a href="https://x.com/_TanHo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge" alt="@_TanHo"></a>
+<a href="https://github.com/tanho63" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tanho63"></a>
+</li>
+<li>
+<a href="https://x.com/KeeganAbdoo" class="external-link">Keegan Abdoo</a>
+<a href="https://x.com/KeeganAbdoo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge" alt="@KeeganAbdoo"></a>
+<a href="https://github.com/keegan-abdoo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@keegan-abdoo"></a>
+</li>
+<li>
+<a href="https://x.com/Maatspencer" class="external-link">Matt Spencer</a>
+<a href="https://x.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge" alt="@Maatspencer"></a>
+<a href="https://github.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Maatspencer"></a>
+</li>
+<li>
+<a href="https://x.com/mrcaseb" class="external-link">Sebastian Carl</a>
+<a href="https://x.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge" alt="@mrcaseb"></a>
+<a href="https://github.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
+</li>
+<li>
+<a href="https://x.com/John_B_Edwards" class="external-link">John Edwards</a>
+<a href="https://x.com/John_B_Edwards" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge" alt="@John_B_Edwards"></a>
+<a href="https://github.com/john-b-edwards" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@john-b-edwards"></a>
+</li>
+<li>
+<a href="https://x.com/bradisblogging" class="external-link">Brad Hill</a>
+<a href="https://x.com/bradisblogging" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge" alt="@bradisblogging"></a>
+<a href="https://github.com/bradisbrad" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@bradisbrad"></a>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="citation">
+<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
+R package in publications, use:</p>
+<p>BibTeX Citation</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb78-3"><a href="#cb78-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb78-4"><a href="#cb78-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb78-5"><a href="#cb78-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb78-6"><a href="#cb78-6" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="related-sportsdataverse-packages">
+<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
+</h3>
+<ul>
+<li>
+<a href="https://cfbfastR.sportsdataverse.org/"><strong>cfbfastR</strong></a>
+- college football</li>
+<li>
+<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
+men’s basketball</li>
+<li>
+<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
+women’s basketball</li>
+<li>
+<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
+- baseball</li>
+<li>
+<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
+- hockey</li>
+<li>
+<a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
+- betting odds</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
+- playing surfaces</li>
+<li>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
+- the Python package</li>
+<li>
+<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
+- the R meta-package</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

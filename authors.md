@@ -38,7 +38,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/sportsdataverse/cfbfastR/blob/main/inst/CITATION)
 
 Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2021).
 cfbfastR: Access College Football Play by Play Data. Retrieved from

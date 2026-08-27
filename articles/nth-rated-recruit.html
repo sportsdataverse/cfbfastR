@@ -176,14 +176,16 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Visualizing Team Talent from Player Recruiting Rankings</h1>
-                        <h4 data-toc-skip class="author">Eric Hess -
-Arbitrary Analytics
-<br><a href="https://twitter.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
-<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani,
+Akshay Easwaran, Jared Lee
+<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/vignettes/nth-rated-recruit.Rmd" class="external-link"><code>vignettes/nth-rated-recruit.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/vignettes/nth-rated-recruit.Rmd" class="external-link"><code>vignettes/nth-rated-recruit.Rmd</code></a></small>
       <div class="d-none name"><code>nth-rated-recruit.Rmd</code></div>
     </div>
 
@@ -204,10 +206,13 @@ package gives us handy data manipulation tools and the ever useful pipe
 (<code>|&gt;</code>) syntax. Finally, <code>ggplot2</code> will allow us
 to make a simple, functional graph of our results.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">ggplot2</span>, <span class="va">cfbfastR</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span></code></pre></div>
 <p>To create the plot I’m going to use two functions from
 <code>cfbfastR</code>. The first is the <code>cfbd_team_info</code>
 function. I’m going to pass <code>"B1G"</code> to the function for the
@@ -244,10 +249,10 @@ recruits (<code>recruit_type = "JUCO"</code>).</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 17.57 sec elapsed</span></span></code></pre>
+<pre><code><span><span class="co">## 24.328 sec elapsed</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">all.recruits</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 1,278</span></span>
+<pre><code><span><span class="co">## Rows: 1,583</span></span>
 <span><span class="co">## Columns: 19</span></span>
 <span><span class="co">## $ id                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "111475"<span style="color: #949494;">, </span>"111594"<span style="color: #949494;">, </span>"111626"<span style="color: #949494;">, </span>"111964"<span style="color: #949494;">, </span>"11207…</span></span>
 <span><span class="co">## $ athlete_id              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "4870696"<span style="color: #949494;">, </span>"4924137"<span style="color: #949494;">, </span>"4870728"<span style="color: #949494;">, </span>"5078909"<span style="color: #949494;">, </span>"4…</span></span>
@@ -331,7 +336,145 @@ rated or higher. However, Nebraska’s classes are much stronger from the
 10th recruit on. While this graphic oversimplifies the team building
 process (excluding transfers, walk-ons, etc.), it gives the reader a
 good feel for the talent level at a program in a quick glance.</p>
-  </main>
+<div class="section level2">
+<h2 id="our-authors">
+<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+</h2>
+<ul>
+<li>
+<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</li>
+<li>
+<a href="https://x.com/akeaswaran" class="external-link">Akshay Easwaran</a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
+</li>
+<li>
+<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
+<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
+</li>
+<li>
+<a href="https://x.com/arbitanalytics" class="external-link">Eric Hess</a>
+<a href="https://x.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
+<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+</li>
+</ul>
+<div class="section level3">
+<h3 id="our-contributors">
+<strong>Our Contributors</strong><a class="anchor" aria-label="anchor" href="#our-contributors"></a>
+</h3>
+<ul>
+<li>
+<a href="https://x.com/deceptivespeed_" class="external-link">Michael Egle</a>
+<a href="https://x.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
+<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+</li>
+<li>
+<a href="https://x.com/cfbnate" class="external-link">Nate Manzo</a>
+<a href="https://x.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge" alt="@cfbnate"></a>
+<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+</li>
+<li>
+<a href="https://x.com/CFBNumbers" class="external-link">Jason DeLoach</a>
+<a href="https://x.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+<a href="https://github.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+</li>
+<li>
+<a href="https://x.com/tejfbanalytics" class="external-link">Tej Seth</a>
+<a href="https://x.com/tejfbanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge" alt="@tejfbanalytics"></a>
+<a href="https://github.com/tejseth" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tejseth"></a>
+</li>
+<li>
+<a href="https://x.com/ConorMcQ5" class="external-link">Conor McQuiston</a>
+<a href="https://x.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
+<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
+</li>
+<li>
+<a href="https://x.com/_TanHo" class="external-link">Tan Ho</a>
+<a href="https://x.com/_TanHo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge" alt="@_TanHo"></a>
+<a href="https://github.com/tanho63" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tanho63"></a>
+</li>
+<li>
+<a href="https://x.com/KeeganAbdoo" class="external-link">Keegan Abdoo</a>
+<a href="https://x.com/KeeganAbdoo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge" alt="@KeeganAbdoo"></a>
+<a href="https://github.com/keegan-abdoo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@keegan-abdoo"></a>
+</li>
+<li>
+<a href="https://x.com/Maatspencer" class="external-link">Matt Spencer</a>
+<a href="https://x.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge" alt="@Maatspencer"></a>
+<a href="https://github.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Maatspencer"></a>
+</li>
+<li>
+<a href="https://x.com/mrcaseb" class="external-link">Sebastian Carl</a>
+<a href="https://x.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge" alt="@mrcaseb"></a>
+<a href="https://github.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
+</li>
+<li>
+<a href="https://x.com/John_B_Edwards" class="external-link">John Edwards</a>
+<a href="https://x.com/John_B_Edwards" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge" alt="@John_B_Edwards"></a>
+<a href="https://github.com/john-b-edwards" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@john-b-edwards"></a>
+</li>
+<li>
+<a href="https://x.com/bradisblogging" class="external-link">Brad Hill</a>
+<a href="https://x.com/bradisblogging" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge" alt="@bradisblogging"></a>
+<a href="https://github.com/bradisbrad" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@bradisbrad"></a>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="citation">
+<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
+R package in publications, use:</p>
+<p>BibTeX Citation</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="related-sportsdataverse-packages">
+<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
+</h3>
+<ul>
+<li>
+<a href="https://cfbfastR.sportsdataverse.org/"><strong>cfbfastR</strong></a>
+- college football</li>
+<li>
+<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
+men’s basketball</li>
+<li>
+<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
+women’s basketball</li>
+<li>
+<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
+- baseball</li>
+<li>
+<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
+- hockey</li>
+<li>
+<a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
+- betting odds</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
+- playing surfaces</li>
+<li>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
+- the Python package</li>
+<li>
+<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
+- the R meta-package</li>
+</ul>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

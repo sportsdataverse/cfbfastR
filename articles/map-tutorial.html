@@ -17,6 +17,8 @@
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Intro to Visualizing Recruiting Geography">
+<meta name="description" content="Mapping where the blue-chip talent actually comes from, joining &lt;code&gt;cfbd_recruiting_player()&lt;/code&gt; to state geometry to see which parts of the country each program recruits.">
+<meta property="og:description" content="Mapping where the blue-chip talent actually comes from, joining &lt;code&gt;cfbd_recruiting_player()&lt;/code&gt; to state geometry to see which parts of the country each program recruits.">
 <meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true">
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
 <meta name="twitter:card" content="summary_large_image">
@@ -174,14 +176,16 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Intro to Visualizing Recruiting Geography</h1>
-                        <h4 data-toc-skip class="author">Conor R.
-McQuiston
-<br><a href="https://twitter.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
-<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani,
+Akshay Easwaran, Jared Lee
+<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/vignettes/map-tutorial.Rmd" class="external-link"><code>vignettes/map-tutorial.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/vignettes/map-tutorial.Rmd" class="external-link"><code>vignettes/map-tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>map-tutorial.Rmd</code></div>
     </div>
 
@@ -204,9 +208,9 @@ founder Saiem Gilani’s tutorial</a> who goes through that process.</p>
 by running <code>install.packages("your_package_here")</code>.</p>
 <p>Now that we have all of our necessary packages loaded, we are free to
 start making some recruiting viz!</p>
-<div class="section level2">
-<h2 id="where-are-the-top-players-of-the-class-of-2021-from">Where are the Top Players of the Class of 2021 from?<a class="anchor" aria-label="anchor" href="#where-are-the-top-players-of-the-class-of-2021-from"></a>
-</h2>
+<div class="section level3">
+<h3 id="where-are-the-top-players-of-the-class-of-2021-from">Where are the Top Players of the Class of 2021 from?<a class="anchor" aria-label="anchor" href="#where-are-the-top-players-of-the-class-of-2021-from"></a>
+</h3>
 <p>We’ll start off by trying to answer that question. On the surface of
 it, the question seems pretty simple but implicitly has two other
 questions we much answer:</p>
@@ -227,26 +231,26 @@ rated player in a class! Let’s see what sort of data we get from it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## cfbfstR_ [3,364 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span></span>
-<span><span class="co">##  $ id                     : chr [1:3364] "115742" "254930" "254944" "115743" ...</span></span>
+<span><span class="co">##  $ id                     : chr [1:3364] "254930" "115742" "254944" "115743" ...</span></span>
 <span><span class="co">##  $ athlete_id             : chr [1:3364] NA NA NA "4431274" ...</span></span>
 <span><span class="co">##  $ recruit_type           : chr [1:3364] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span></span>
 <span><span class="co">##  $ year                   : int [1:3364] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span></span>
 <span><span class="co">##  $ ranking                : int [1:3364] 1 1 2 2 3 3 4 5 5 6 ...</span></span>
-<span><span class="co">##  $ name                   : chr [1:3364] "Quinn Ewers" "Marques Buford Jr." "Lorenz Terry" "Korey Foreman" ...</span></span>
-<span><span class="co">##  $ school                 : chr [1:3364] "Southlake Carroll" "St. Thomas More (Prep)" "Fork Union Military Academy" "Corona Centennial" ...</span></span>
-<span><span class="co">##  $ committed_to           : chr [1:3364] "Ohio State" "Nebraska" "Virginia" "USC" ...</span></span>
-<span><span class="co">##  $ position               : chr [1:3364] "QB" "CB" "DL" "DL" ...</span></span>
-<span><span class="co">##  $ height                 : num [1:3364] 75 72 77 76 78 73 76.5 70 77 76 ...</span></span>
-<span><span class="co">##  $ weight                 : int [1:3364] 206 190 240 265 305 200 277 180 248 180 ...</span></span>
-<span><span class="co">##  $ stars                  : int [1:3364] 5 3 3 5 5 3 5 3 5 3 ...</span></span>
-<span><span class="co">##  $ rating                 : num [1:3364] 1 0.859 0.844 0.999 0.999 ...</span></span>
-<span><span class="co">##  $ city                   : chr [1:3364] "Southlake" "Oakdale" "Fork Union" "Corona" ...</span></span>
-<span><span class="co">##  $ state_province         : chr [1:3364] "TX" "CT" "VA" "CA" ...</span></span>
+<span><span class="co">##  $ name                   : chr [1:3364] "Marques Buford Jr." "Quinn Ewers" "Lorenz Terry" "Korey Foreman" ...</span></span>
+<span><span class="co">##  $ school                 : chr [1:3364] "St. Thomas More (Prep)" "Southlake Carroll" "Fork Union Military Academy" "Corona Centennial" ...</span></span>
+<span><span class="co">##  $ committed_to           : chr [1:3364] "Nebraska" "Ohio State" "Virginia" "USC" ...</span></span>
+<span><span class="co">##  $ position               : chr [1:3364] "CB" "QB" "DL" "DL" ...</span></span>
+<span><span class="co">##  $ height                 : num [1:3364] 72 75 77 76 73 78 76.5 77 70 76 ...</span></span>
+<span><span class="co">##  $ weight                 : int [1:3364] 190 206 240 265 200 305 277 248 180 180 ...</span></span>
+<span><span class="co">##  $ stars                  : int [1:3364] 3 5 3 5 3 5 5 5 3 3 ...</span></span>
+<span><span class="co">##  $ rating                 : num [1:3364] 0.859 1 0.844 0.999 0.838 ...</span></span>
+<span><span class="co">##  $ city                   : chr [1:3364] "Oakdale" "Southlake" "Fork Union" "Corona" ...</span></span>
+<span><span class="co">##  $ state_province         : chr [1:3364] "CT" "TX" "VA" "CA" ...</span></span>
 <span><span class="co">##  $ country                : chr [1:3364] "USA" "USA" "USA" "USA" ...</span></span>
-<span><span class="co">##  $ hometown_info_latitude : num [1:3364] 32.9 41.5 37.8 33.9 27.5 ...</span></span>
-<span><span class="co">##  $ hometown_info_longitude: num [1:3364] -97.1 -72.2 -78.3 -117.6 -82.6 ...</span></span>
-<span><span class="co">##  $ hometown_info_fips_code: chr [1:3364] "48439" "09011" "51065" "06065" ...</span></span>
-<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-08-27 04:30:44"</span></span>
+<span><span class="co">##  $ hometown_info_latitude : num [1:3364] 41.5 32.9 37.8 33.9 37.8 ...</span></span>
+<span><span class="co">##  $ hometown_info_longitude: num [1:3364] -72.2 -97.1 -78.3 -117.6 -78.3 ...</span></span>
+<span><span class="co">##  $ hometown_info_fips_code: chr [1:3364] "09011" "48439" "51065" "06065" ...</span></span>
+<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-08-27 11:12:20"</span></span>
 <span><span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can
 merge on other <code>cfbfastR</code> datasets, basic information on each
@@ -330,10 +334,10 @@ area’s proportions (an Albers projection in this case)</li>
 <code class="sourceCode R"><span><span class="va">cont_48</span> <span class="op">&lt;-</span> <span class="va">states</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">state_name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span><span class="op">)</span><span class="op">)</span> <span class="co">#This means "Filter for states whose names aren't in the group of 'Hawaii' and 'Alaska'"</span></span>
 <span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span><span class="op">+</span> <span class="co">#ggplot uses + instead of |&gt; as a pipe for some reason. </span></span>
-<span>  <span class="fu">geom_polygon</span><span class="op">(</span>data <span class="op">=</span> <span class="va">cont_48</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'white'</span>, fill <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span><span class="op">+</span> <span class="co">#color controls the color of borders, fill controls the color of things inside the border</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="va">top_recs_co_2021</span>, mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu">coord_map</span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span> <span class="co">#This is the one that changes the projection</span></span></code></pre></div>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span> <span class="co">#ggplot uses + instead of |&gt; as a pipe for some reason. </span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">cont_48</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>, y <span class="op">=</span> <span class="va">lat</span>, group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'white'</span>, fill <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span><span class="op">+</span> <span class="co">#color controls the color of borders, fill controls the color of things inside the border</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">top_recs_co_2021</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html" class="external-link">coord_map</a></span><span class="op">(</span>projection <span class="op">=</span> <span class="st">'albers'</span>, lat0 <span class="op">=</span> <span class="fl">39</span>, lat1 <span class="op">=</span> <span class="fl">45</span><span class="op">)</span> <span class="co">#This is the one that changes the projection</span></span></code></pre></div>
 <p><img src="map-tutorial_files/figure-html/gg_continental-1.png" class="r-plt" alt="A map of the continental United States with points representing the locations of 5 star recruits from the class of 2021." width="700"></p>
 <p>Great! We have successfully made a map where we can see where every
 single 5 star recruit in the Class of 2021 is from. We can see some
@@ -371,9 +375,9 @@ the <code>cfbfastR</code> package 2. How to use some basic
 <code>ggplot2</code>commands 4. How to use the <code>urbnmapr</code>
 package to easily create maps</p>
 </div>
-<div class="section level2">
-<h2 id="which-states-have-the-most-fbs-recruits-recently">Which States Have the Most FBS Recruits Recently?<a class="anchor" aria-label="anchor" href="#which-states-have-the-most-fbs-recruits-recently"></a>
-</h2>
+<div class="section level3">
+<h3 id="which-states-have-the-most-fbs-recruits-recently">Which States Have the Most FBS Recruits Recently?<a class="anchor" aria-label="anchor" href="#which-states-have-the-most-fbs-recruits-recently"></a>
+</h3>
 <p>This is cool that now we can place the top prospects on a map, but
 what if we are more interested in larger trends? We noticed that a lot
 of the top kids are generally from the south east, but does that hold
@@ -552,6 +556,143 @@ scale.</p>
 <p><img src="map-tutorial_files/figure-html/tristate_recs-1.png" class="r-plt" alt="Where are Recruits in the Tri-State Area from?" width="700"></p>
 <p>Hope you found this tutorial useful! If you have any questions on how
 to manage recruiting data feel free to reach out to me on <a href="https://twitter.com/ConorMcQ5" class="external-link">Twitter</a>!</p>
+</div>
+<div class="section level2">
+<h2 id="our-authors">
+<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+</h2>
+<ul>
+<li>
+<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</li>
+<li>
+<a href="https://x.com/akeaswaran" class="external-link">Akshay Easwaran</a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
+</li>
+<li>
+<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
+<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
+</li>
+<li>
+<a href="https://x.com/arbitanalytics" class="external-link">Eric Hess</a>
+<a href="https://x.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
+<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+</li>
+</ul>
+<div class="section level3">
+<h3 id="our-contributors">
+<strong>Our Contributors</strong><a class="anchor" aria-label="anchor" href="#our-contributors"></a>
+</h3>
+<ul>
+<li>
+<a href="https://x.com/deceptivespeed_" class="external-link">Michael Egle</a>
+<a href="https://x.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
+<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+</li>
+<li>
+<a href="https://x.com/cfbnate" class="external-link">Nate Manzo</a>
+<a href="https://x.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge" alt="@cfbnate"></a>
+<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+</li>
+<li>
+<a href="https://x.com/CFBNumbers" class="external-link">Jason DeLoach</a>
+<a href="https://x.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+<a href="https://github.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+</li>
+<li>
+<a href="https://x.com/tejfbanalytics" class="external-link">Tej Seth</a>
+<a href="https://x.com/tejfbanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge" alt="@tejfbanalytics"></a>
+<a href="https://github.com/tejseth" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tejseth"></a>
+</li>
+<li>
+<a href="https://x.com/ConorMcQ5" class="external-link">Conor McQuiston</a>
+<a href="https://x.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
+<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
+</li>
+<li>
+<a href="https://x.com/_TanHo" class="external-link">Tan Ho</a>
+<a href="https://x.com/_TanHo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge" alt="@_TanHo"></a>
+<a href="https://github.com/tanho63" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tanho63"></a>
+</li>
+<li>
+<a href="https://x.com/KeeganAbdoo" class="external-link">Keegan Abdoo</a>
+<a href="https://x.com/KeeganAbdoo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge" alt="@KeeganAbdoo"></a>
+<a href="https://github.com/keegan-abdoo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@keegan-abdoo"></a>
+</li>
+<li>
+<a href="https://x.com/Maatspencer" class="external-link">Matt Spencer</a>
+<a href="https://x.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge" alt="@Maatspencer"></a>
+<a href="https://github.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Maatspencer"></a>
+</li>
+<li>
+<a href="https://x.com/mrcaseb" class="external-link">Sebastian Carl</a>
+<a href="https://x.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge" alt="@mrcaseb"></a>
+<a href="https://github.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
+</li>
+<li>
+<a href="https://x.com/John_B_Edwards" class="external-link">John Edwards</a>
+<a href="https://x.com/John_B_Edwards" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge" alt="@John_B_Edwards"></a>
+<a href="https://github.com/john-b-edwards" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@john-b-edwards"></a>
+</li>
+<li>
+<a href="https://x.com/bradisblogging" class="external-link">Brad Hill</a>
+<a href="https://x.com/bradisblogging" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge" alt="@bradisblogging"></a>
+<a href="https://github.com/bradisbrad" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@bradisbrad"></a>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="citation">
+<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
+R package in publications, use:</p>
+<p>BibTeX Citation</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="related-sportsdataverse-packages">
+<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
+</h3>
+<ul>
+<li>
+<a href="https://cfbfastR.sportsdataverse.org/"><strong>cfbfastR</strong></a>
+- college football</li>
+<li>
+<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
+men’s basketball</li>
+<li>
+<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
+women’s basketball</li>
+<li>
+<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
+- baseball</li>
+<li>
+<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
+- hockey</li>
+<li>
+<a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
+- betting odds</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
+- playing surfaces</li>
+<li>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
+- the Python package</li>
+<li>
+<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
+- the R meta-package</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

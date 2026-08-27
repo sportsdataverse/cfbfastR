@@ -81,7 +81,7 @@ Other CFBD Conference Functions:
 # \donttest{
   try(cfbd_conference_affiliations(team = "Georgia"))
 #> ── Get conference affiliations by team and season from CollegeFootballData.com ─
-#> ℹ Data updated: 2026-08-27 04:14:49 UTC
+#> ℹ Data updated: 2026-08-27 10:54:06 UTC
 #> # A tibble: 9 × 9
 #>   team_id team    conference_id conference conference_abbreviat…¹ classification
 #>     <int> <chr>           <int> <chr>      <chr>                  <chr>         

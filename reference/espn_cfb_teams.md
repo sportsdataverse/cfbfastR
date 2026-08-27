@@ -117,7 +117,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_teams())
 #> ── Teams index from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:22:00 UTC
+#> ℹ Data updated: 2026-08-27 11:01:12 UTC
 #> # A tibble: 759 × 15
 #>    team_id uid          slug  abbreviation display_name short_display_name name 
 #>    <chr>   <chr>        <chr> <chr>        <chr>        <chr>              <chr>

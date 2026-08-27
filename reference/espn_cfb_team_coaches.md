@@ -153,7 +153,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_coaches(team_id = 61))
 #> ── Team coaches from ESPN ──────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:21:22 UTC
+#> ℹ Data updated: 2026-08-27 11:00:52 UTC
 #> # A tibble: 1 × 21
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -165,7 +165,7 @@ Other ESPN CFB Functions:
 #> #   birth_country <chr>, experience <int>, coach_ref <chr>
   try(espn_cfb_team_coaches(team_id = 61, team_detail = FALSE))
 #> ── Team coaches from ESPN ──────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:21:22 UTC
+#> ℹ Data updated: 2026-08-27 11:00:52 UTC
 #> # A tibble: 1 × 11
 #>   season team_id coach_id first_name last_name date_of_birth     birth_city
 #>    <int> <chr>   <chr>    <chr>      <chr>     <chr>             <chr>     

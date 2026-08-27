@@ -107,6 +107,11 @@ End-to-end recipes and reference guides.
 - [Intro to Visualizing Recruiting
   Geography](https://cfbfastR.sportsdataverse.org/articles/map-tutorial.md):
 
+  Mapping where the blue-chip talent actually comes from, joining
+  [`cfbd_recruiting_player()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_player.md)
+  to state geometry to see which parts of the country each program
+  recruits.
+
 - [Visualizing Team Talent from Player Recruiting
   Rankings](https://cfbfastR.sportsdataverse.org/articles/nth-rated-recruit.md):
 

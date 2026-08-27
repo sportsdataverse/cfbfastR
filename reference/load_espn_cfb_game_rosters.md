@@ -136,7 +136,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_game_rosters/game_rosters_2004.rds>
 #> ── ESPN college football game rosters from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-08-27 04:22:42 UTC
+#> ℹ Data updated: 2026-08-27 11:02:03 UTC
 #> # A tibble: 0 × 0
 # }
 ```

@@ -36,20 +36,18 @@ A `cfbfastR`-tagged tibble with one row per (category, leader):
 # \donttest{
   try(fox_cfb_team_stats(team_id = "11"))
 #> ── Team stat leaders from Fox Sports (Bifrost) ─────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:22:12 UTC
-#> # A tibble: 23 × 6
-#>    team_id category     stat                    stat_abbreviation player   value
-#>    <chr>   <chr>        <chr>                   <chr>             <chr>    <chr>
-#>  1 11      PLAYER STATS Passing Yards           PYDS              Carson … 3,813
-#>  2 11      PLAYER STATS Passing Touchdowns      PTD               Carson … 30   
-#>  3 11      PLAYER STATS Rushing Yards           RYDS              Mark Fl… 1,192
-#>  4 11      PLAYER STATS Rushing Touchdowns      RTD               Mark Fl… 12   
-#>  5 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 1,211
-#>  6 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 10   
-#>  7 11      PLAYER STATS Kicking Points          PTS               Carter … 103  
-#>  8 11      PLAYER STATS Kick Return Yards       KR YDS            Keelan … 293  
-#>  9 11      PLAYER STATS Punt Return Yards       PR YDS            Malachi… 298  
-#> 10 11      PLAYER STATS Defensive Interceptions DEF INT           Bryce F… 6    
-#> # ℹ 13 more rows
+#> ℹ Data updated: 2026-08-27 11:01:27 UTC
+#> # A tibble: 9 × 6
+#>   team_id category   stat                 stat_abbreviation player value
+#>   <chr>   <chr>      <chr>                <chr>             <chr>  <chr>
+#> 1 11      TEAM STATS Passing Yards / Game PYDS/G            NA     -    
+#> 2 11      TEAM STATS Rushing Yards / Game RYDS/G            NA     -    
+#> 3 11      TEAM STATS Kicking Points       PTS               NA     0    
+#> 4 11      TEAM STATS Kick Return Avg      KR AVG            NA     -    
+#> 5 11      TEAM STATS Punt Return Avg      PR AVG            NA     -    
+#> 6 11      TEAM STATS Sacks                SCK               NA     0.0  
+#> 7 11      TEAM STATS Third Down Pct       3RD %             NA     -    
+#> 8 11      TEAM STATS Yards / Game         YDS/G             NA     -    
+#> 9 11      TEAM STATS Turnover Plus/Minus  +/-               NA     0    
 # }
 ```

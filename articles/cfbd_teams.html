@@ -176,37 +176,88 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>CFB Data Teams Examples</h1>
-                        <h4 data-toc-skip class="author">Saiem Gilani
-<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani,
+Akshay Easwaran, Jared Lee
+<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
 <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
 </h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/v3.0.0/vignettes/cfbd_teams.Rmd" class="external-link"><code>vignettes/cfbd_teams.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/vignettes/cfbd_teams.Rmd" class="external-link"><code>vignettes/cfbd_teams.Rmd</code></a></small>
       <div class="d-none name"><code>cfbd_teams.Rmd</code></div>
     </div>
 
     
     
-<div class="section level3">
-<h3 id="load-and-install-packages">
+<div class="section level4">
+<h4 id="load-and-install-packages">
 <strong>Load and Install Packages</strong><a class="anchor" aria-label="anchor" href="#load-and-install-packages"></a>
-</h3>
+</h4>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>,<span class="va">tidyr</span>, <span class="va">gt</span>, <span class="va">cfbfastR</span><span class="op">)</span></span>
-<span><span class="co"># pacman::p_load_current_gh("sportsdataverse/cfbfastR")</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"gt"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Loading metadata database</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Loading metadata database ... done</span></span></code></pre>
+<pre><code><span><span class="co">## </span></span></code></pre>
+<pre><code><span><span class="co">## </span></span></code></pre>
+<pre><code><span><span class="co">## → Package library at <span style="color: #0000BB;">/home/runner/work/_temp/Library</span>.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> All system requirements are already installed.</span></span></code></pre>
+<pre><code><span><span class="co">## </span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> No downloads are needed</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Installing system requirements</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y update`</span></span></code></pre>
+<pre><code><span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:6 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span>
+<span><span class="co">## Hit:7 https://packages.microsoft.com/repos/azure-cli jammy InRelease</span></span>
+<span><span class="co">## Hit:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span>
+<span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`</span></span></code></pre>
+<pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
+<pre><code><span><span class="co">## Building dependency tree...</span></span></code></pre>
+<pre><code><span><span class="co">## Reading state information...</span></span></code></pre>
+<pre><code><span><span class="co">## libicu-dev is already the newest version (70.1-2).</span></span>
+<span><span class="co">## make is already the newest version (4.3-4.1build1).</span></span>
+<span><span class="co">## pandoc is already the newest version (2.9.2.1-3ubuntu2).</span></span>
+<span><span class="co">## cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).</span></span>
+<span><span class="co">## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.27).</span></span>
+<span><span class="co">## libssl-dev is already the newest version (3.0.2-0ubuntu1.29).</span></span>
+<span><span class="co">## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).</span></span>
+<span><span class="co">## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).</span></span>
+<span><span class="co">## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).</span></span>
+<span><span class="co">## 0 upgraded, 0 newly installed, 0 to remove and 45 not upgraded.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 4 pkgs + 72 deps: kept 71 <span style="color: #B2B2B2;">[10.3s]</span></span></span></code></pre>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     filter, lag</span></span></code></pre>
+<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com" class="external-link">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span>
+<span><span class="co"># pak::pak("sportsdataverse/cfbfastR")</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="get-team-info">
+<div class="section level4">
+<h4 id="get-team-info">
 <strong>Get Team Info</strong><a class="anchor" aria-label="anchor" href="#get-team-info"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+</h4>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:38 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:33 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 16 × 43</span></span></span>
 <span><span class="co">##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span></span>
 <span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -233,10 +284,10 @@
 <span><span class="co">## <span style="color: #949494;">#   logos_14 &lt;chr&gt;, logos_15 &lt;chr&gt;, logos_16 &lt;chr&gt;, twitter &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, …</span></span></span></code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:38 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:33 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 43</span></span></span>
 <span><span class="co">##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -249,10 +300,10 @@
 <span><span class="co">## <span style="color: #949494;">#   logos_14 &lt;chr&gt;, logos_15 &lt;chr&gt;, logos_16 &lt;chr&gt;, twitter &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, …</span></span></span></code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:38 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:33 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 130 × 43</span></span></span>
 <span><span class="co">##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span></span>
 <span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -274,35 +325,35 @@
 <span><span class="co">## <span style="color: #949494;">#   logos_14 &lt;chr&gt;, logos_15 &lt;chr&gt;, logos_16 &lt;chr&gt;, twitter &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;, …</span></span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="get-team-matchup-history-total-record">
+<div class="section level4">
+<h4 id="get-team-matchup-history-total-record">
 <strong>Get Team Matchup History (Total Record)</strong><a class="anchor" aria-label="anchor" href="#get-team-matchup-history-total-record"></a>
-</h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+</h4>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup record from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:39 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:34 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
 <span><span class="co">##   start_year end_year team1 team1_wins team2    team2_wins  ties</span></span>
 <span><span class="co">##        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>       <span style="text-decoration: underline;">1</span>902     <span style="text-decoration: underline;">2</span>025 Texas         62 Oklahoma         51     5</span></span></code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup record from CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:39 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:34 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
 <span><span class="co">##   start_year end_year team1     team1_wins team2 team2_wins  ties</span></span>
 <span><span class="co">##        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>       <span style="text-decoration: underline;">1</span>975     <span style="text-decoration: underline;">2</span>001 Texas A&amp;M         22 TCU            0     0</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="get-team-matchup-history">
+<div class="section level4">
+<h4 id="get-team-matchup-history">
 <strong>Get Team Matchup History</strong><a class="anchor" aria-label="anchor" href="#get-team-matchup-history"></a>
-</h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+</h4>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ───────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:39 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:34 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 118 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -318,29 +369,29 @@
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">1</span>910    11 regular     1910-11-24T… FALSE        <span style="color: #BB0000;">NA</span>    Texas              0</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 108 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ───────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:39 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ───────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:35 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 89 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">1</span>903    12 regular     1903-11-28T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         14</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">1</span>903     5 regular     1903-10-10T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         11</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">1</span>903    10 regular     1903-11-14T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         16</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span>   <span style="text-decoration: underline;">1</span>903    10 regular     1903-11-14T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         16</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span>   <span style="text-decoration: underline;">1</span>903     5 regular     1903-10-10T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         11</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 4</span>   <span style="text-decoration: underline;">1</span>904     6 regular     1904-10-22T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         29</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 5</span>   <span style="text-decoration: underline;">1</span>905     3 regular     1905-09-30T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         20</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 6</span>   <span style="text-decoration: underline;">1</span>905     8 regular     1905-11-04T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         24</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">1</span>906     6 regular     1906-10-27T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         42</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">1</span>906     8 regular     1906-11-10T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         22</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span>   <span style="text-decoration: underline;">1</span>906     8 regular     1906-11-10T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         22</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">1</span>906     6 regular     1906-10-27T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         42</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">1</span>907     8 regular     1907-11-05T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         32</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">1</span>908     7 regular     1908-10-31T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         13</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 79 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ───────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:39 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:35 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 22 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -356,10 +407,10 @@
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">1</span>984    14 regular     1984-11-24T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         35</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 12 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Florida State"</span>, <span class="st">"Florida"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ───────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:40 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:36 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 52 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -376,14 +427,14 @@
 <span><span class="co">## <span style="color: #949494;"># ℹ 42 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="get-team-rosters">
+<div class="section level4">
+<h4 id="get-team-rosters">
 <strong>Get Team Rosters</strong><a class="anchor" aria-label="anchor" href="#get-team-rosters"></a>
-</h3>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+</h4>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_roster.html">cfbd_team_roster</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team roster data from CollegeFootballData.com ───────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:40 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:36 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 134 × 17</span></span></span>
 <span><span class="co">##    athlete_id first_name last_name   team    weight height jersey  year position</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
@@ -402,20 +453,20 @@
 <span><span class="co">## <span style="color: #949494;">#   home_latitude &lt;dbl&gt;, home_longitude &lt;dbl&gt;, home_county_fips &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   recruit_ids &lt;list&gt;, headshot_url &lt;chr&gt;</span></span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="get-team-talent">
+<div class="section level4">
+<h4 id="get-team-talent">
 <strong>Get Team Talent</strong><a class="anchor" aria-label="anchor" href="#get-team-talent"></a>
-</h3>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+</h4>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 2026-08-27 04:26:40.491808:Invalid arguments or no team talent data available! <span style="color: #00BBBB;">ℹ</span> In argument: `talent = as.numeric(.data$talent)`.</span></span>
+<pre><code><span><span class="co">## 2026-08-27 11:07:36.661343:Invalid arguments or no team talent data available! <span style="color: #00BBBB;">ℹ</span> In argument: `talent = as.numeric(.data$talent)`.</span></span>
 <span><span class="co">## <span style="font-weight: bold;">Caused by error in `.data$talent`:</span></span></span>
 <span><span class="co">## <span style="color: #BBBB00;">!</span> Column `talent` not found in `.data`.</span></span></code></pre>
 <pre><code><span><span class="co">## data frame with 0 columns and 0 rows</span></span></code></pre>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 04:26:40 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 11:07:36 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 237 × 3</span></span></span>
 <span><span class="co">##     year school        talent</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -430,6 +481,143 @@
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>018 Texas           861.</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>018 Notre Dame      848.</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 227 more rows</span></span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="our-authors">
+<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+</h2>
+<ul>
+<li>
+<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</li>
+<li>
+<a href="https://x.com/akeaswaran" class="external-link">Akshay Easwaran</a>
+<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
+</li>
+<li>
+<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
+<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
+<a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
+</li>
+<li>
+<a href="https://x.com/arbitanalytics" class="external-link">Eric Hess</a>
+<a href="https://x.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
+<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
+</li>
+</ul>
+<div class="section level3">
+<h3 id="our-contributors">
+<strong>Our Contributors</strong><a class="anchor" aria-label="anchor" href="#our-contributors"></a>
+</h3>
+<ul>
+<li>
+<a href="https://x.com/deceptivespeed_" class="external-link">Michael Egle</a>
+<a href="https://x.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
+<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+</li>
+<li>
+<a href="https://x.com/cfbnate" class="external-link">Nate Manzo</a>
+<a href="https://x.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge" alt="@cfbnate"></a>
+<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
+</li>
+<li>
+<a href="https://x.com/CFBNumbers" class="external-link">Jason DeLoach</a>
+<a href="https://x.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+<a href="https://github.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@CFBNumbers"></a>
+</li>
+<li>
+<a href="https://x.com/tejfbanalytics" class="external-link">Tej Seth</a>
+<a href="https://x.com/tejfbanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge" alt="@tejfbanalytics"></a>
+<a href="https://github.com/tejseth" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tejseth"></a>
+</li>
+<li>
+<a href="https://x.com/ConorMcQ5" class="external-link">Conor McQuiston</a>
+<a href="https://x.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
+<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
+</li>
+<li>
+<a href="https://x.com/_TanHo" class="external-link">Tan Ho</a>
+<a href="https://x.com/_TanHo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge" alt="@_TanHo"></a>
+<a href="https://github.com/tanho63" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tanho63"></a>
+</li>
+<li>
+<a href="https://x.com/KeeganAbdoo" class="external-link">Keegan Abdoo</a>
+<a href="https://x.com/KeeganAbdoo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge" alt="@KeeganAbdoo"></a>
+<a href="https://github.com/keegan-abdoo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@keegan-abdoo"></a>
+</li>
+<li>
+<a href="https://x.com/Maatspencer" class="external-link">Matt Spencer</a>
+<a href="https://x.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge" alt="@Maatspencer"></a>
+<a href="https://github.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Maatspencer"></a>
+</li>
+<li>
+<a href="https://x.com/mrcaseb" class="external-link">Sebastian Carl</a>
+<a href="https://x.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge" alt="@mrcaseb"></a>
+<a href="https://github.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
+</li>
+<li>
+<a href="https://x.com/John_B_Edwards" class="external-link">John Edwards</a>
+<a href="https://x.com/John_B_Edwards" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge" alt="@John_B_Edwards"></a>
+<a href="https://github.com/john-b-edwards" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@john-b-edwards"></a>
+</li>
+<li>
+<a href="https://x.com/bradisblogging" class="external-link">Brad Hill</a>
+<a href="https://x.com/bradisblogging" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge" alt="@bradisblogging"></a>
+<a href="https://github.com/bradisbrad" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@bradisbrad"></a>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="citation">
+<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
+R package in publications, use:</p>
+<p>BibTeX Citation</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb72-4"><a href="#cb72-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb72-5"><a href="#cb72-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb72-6"><a href="#cb72-6" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="related-sportsdataverse-packages">
+<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
+</h3>
+<ul>
+<li>
+<a href="https://cfbfastR.sportsdataverse.org/"><strong>cfbfastR</strong></a>
+- college football</li>
+<li>
+<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
+men’s basketball</li>
+<li>
+<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
+women’s basketball</li>
+<li>
+<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
+- baseball</li>
+<li>
+<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
+- hockey</li>
+<li>
+<a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
+- betting odds</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
+- playing surfaces</li>
+<li>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
+- the Python package</li>
+<li>
+<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
+- the R meta-package</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

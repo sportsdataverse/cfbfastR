@@ -71,7 +71,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_ratings(2004))
 #> ── college football season power ratings from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-27 04:22:15 UTC
+#> ℹ Data updated: 2026-08-27 11:01:31 UTC
 #> # A tibble: 118 × 15
 #>    season team_id adj_off_epa adj_def_epa adj_st_epa adj_net fei_off fei_def
 #>     <int> <chr>         <dbl>       <dbl>      <dbl>   <dbl>   <dbl>   <dbl>

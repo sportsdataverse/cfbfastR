@@ -1,17 +1,96 @@
 # CFB Data Teams Examples
 
-### **Load and Install Packages**
+#### **Load and Install Packages**
 
 ``` r
 
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
 }
-pacman::p_load(dplyr,tidyr, gt, cfbfastR)
-# pacman::p_load_current_gh("sportsdataverse/cfbfastR")
+pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 ```
 
-### **Get Team Info**
+    ## ℹ Loading metadata database
+
+    ## ✔ Loading metadata database ... done
+
+    ## 
+
+    ## 
+
+    ## → Package library at /home/runner/work/_temp/Library.
+
+    ## ✔ All system requirements are already installed.
+
+    ## 
+
+    ## ℹ No downloads are needed
+
+    ## ℹ Installing system requirements
+
+    ## ℹ Executing `sudo sh -c apt-get -y update`
+
+    ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+
+    ## Hit:6 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+    ## Hit:7 https://packages.microsoft.com/repos/azure-cli jammy InRelease
+    ## Hit:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+
+    ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+    ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
+    ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+
+    ## Reading package lists...
+
+    ## ℹ Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`
+
+    ## Reading package lists...
+
+    ## Building dependency tree...
+
+    ## Reading state information...
+
+    ## libicu-dev is already the newest version (70.1-2).
+    ## make is already the newest version (4.3-4.1build1).
+    ## pandoc is already the newest version (2.9.2.1-3ubuntu2).
+    ## cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).
+    ## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.27).
+    ## libssl-dev is already the newest version (3.0.2-0ubuntu1.29).
+    ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
+    ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
+    ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
+    ## 0 upgraded, 0 newly installed, 0 to remove and 45 not upgraded.
+
+    ## ✔ 4 pkgs + 72 deps: kept 71 [10.3s]
+
+``` r
+
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+
+library(tidyr)
+library(gt)
+library(cfbfastR)
+# pak::pak("sportsdataverse/cfbfastR")
+```
+
+#### **Get Team Info**
 
 ``` r
 
@@ -20,7 +99,7 @@ cfbd_team_info(conference = "SEC")
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 04:26:38 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:33 UTC
 
     ## # A tibble: 16 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -55,7 +134,7 @@ cfbd_team_info(conference = "Ind")
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 04:26:38 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:33 UTC
 
     ## # A tibble: 2 × 43
     ##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -76,7 +155,7 @@ cfbd_team_info(year = 2019)
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 04:26:38 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:33 UTC
 
     ## # A tibble: 130 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -99,7 +178,7 @@ cfbd_team_info(year = 2019)
     ## #   logos_14 <chr>, logos_15 <chr>, logos_16 <chr>, twitter <chr>,
     ## #   venue_id <int>, venue_name <chr>, city <chr>, state <chr>, zip <chr>, …
 
-### **Get Team Matchup History (Total Record)**
+#### **Get Team Matchup History (Total Record)**
 
 ``` r
 
@@ -108,7 +187,7 @@ cfbd_team_matchup_records("Texas", "Oklahoma")
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 04:26:39 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:34 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1 team1_wins team2    team2_wins  ties
@@ -121,14 +200,14 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 04:26:39 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:34 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1     team1_wins team2 team2_wins  ties
     ##        <int>    <int> <chr>          <int> <chr>      <int> <int>
     ## 1       1975     2001 Texas A&M         22 TCU            0     0
 
-### **Get Team Matchup History**
+#### **Get Team Matchup History**
 
 ``` r
 
@@ -137,7 +216,7 @@ cfbd_team_matchup("Texas", "Oklahoma")
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 04:26:39 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:34 UTC
 
     ## # A tibble: 118 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -161,19 +240,20 @@ cfbd_team_matchup("Texas A&M", "TCU")
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 04:26:39 UTC
+
+    ## ℹ Data updated: 2026-08-27 11:07:35 UTC
 
     ## # A tibble: 89 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
     ##     <int> <int> <chr>       <chr>        <lgl>        <lgl> <chr>          <int>
     ##  1   1903    12 regular     1903-11-28T… FALSE        NA    Texas A&M         14
-    ##  2   1903     5 regular     1903-10-10T… FALSE        NA    Texas A&M         11
-    ##  3   1903    10 regular     1903-11-14T… FALSE        NA    Texas A&M         16
+    ##  2   1903    10 regular     1903-11-14T… FALSE        NA    Texas A&M         16
+    ##  3   1903     5 regular     1903-10-10T… FALSE        NA    Texas A&M         11
     ##  4   1904     6 regular     1904-10-22T… FALSE        NA    Texas A&M         29
     ##  5   1905     3 regular     1905-09-30T… FALSE        NA    Texas A&M         20
     ##  6   1905     8 regular     1905-11-04T… FALSE        NA    Texas A&M         24
-    ##  7   1906     6 regular     1906-10-27T… FALSE        NA    Texas A&M         42
-    ##  8   1906     8 regular     1906-11-10T… FALSE        NA    Texas A&M         22
+    ##  7   1906     8 regular     1906-11-10T… FALSE        NA    Texas A&M         22
+    ##  8   1906     6 regular     1906-10-27T… FALSE        NA    Texas A&M         42
     ##  9   1907     8 regular     1907-11-05T… FALSE        NA    Texas A&M         32
     ## 10   1908     7 regular     1908-10-31T… FALSE        NA    Texas A&M         13
     ## # ℹ 79 more rows
@@ -185,7 +265,7 @@ cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 04:26:39 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:35 UTC
 
     ## # A tibble: 22 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -210,7 +290,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 04:26:40 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:36 UTC
 
     ## # A tibble: 52 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -228,7 +308,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
     ## # ℹ 42 more rows
     ## # ℹ 3 more variables: away_team <chr>, away_score <int>, winner <chr>
 
-### **Get Team Rosters**
+#### **Get Team Rosters**
 
 ``` r
 
@@ -237,7 +317,7 @@ cfbd_team_roster(year = 2013, team = "Florida State")
 
     ## ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 04:26:40 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:36 UTC
 
     ## # A tibble: 134 × 17
     ##    athlete_id first_name last_name   team    weight height jersey  year position
@@ -257,14 +337,14 @@ cfbd_team_roster(year = 2013, team = "Florida State")
     ## #   home_latitude <dbl>, home_longitude <dbl>, home_county_fips <chr>,
     ## #   recruit_ids <list>, headshot_url <chr>
 
-### **Get Team Talent**
+#### **Get Team Talent**
 
 ``` r
 
 cfbd_team_talent()
 ```
 
-    ## 2026-08-27 04:26:40.491808:Invalid arguments or no team talent data available! ℹ In argument: `talent = as.numeric(.data$talent)`.
+    ## 2026-08-27 11:07:36.661343:Invalid arguments or no team talent data available! ℹ In argument: `talent = as.numeric(.data$talent)`.
     ## Caused by error in `.data$talent`:
     ## ! Column `talent` not found in `.data`.
 
@@ -277,7 +357,7 @@ cfbd_team_talent(year = 2018)
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-08-27 04:26:40 UTC
+    ## ℹ Data updated: 2026-08-27 11:07:36 UTC
 
     ## # A tibble: 237 × 3
     ##     year school        talent
@@ -293,3 +373,85 @@ cfbd_team_talent(year = 2018)
     ##  9  2018 Texas           861.
     ## 10  2018 Notre Dame      848.
     ## # ℹ 227 more rows
+
+## **Our Authors**
+
+- [Saiem Gilani](https://x.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge)](https://x.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
+- [Akshay Easwaran](https://x.com/akeaswaran)
+  [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
+  [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
+- [Jared Lee](https://x.com/JaredDLee)
+  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
+  [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
+- [Eric Hess](https://x.com/arbitanalytics)
+  [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
+  [![@ehess](https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge)](https://github.com/ehess)
+
+### **Our Contributors**
+
+- [Michael Egle](https://x.com/deceptivespeed_)
+  [![@deceptivespeed\_](https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=x&style=for-the-badge)](https://x.com/deceptivespeed_)
+  [![@michaelegle](https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge)](https://github.com/michaelegle)
+- [Nate Manzo](https://x.com/cfbnate)
+  [![@cfbnate](https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge)](https://x.com/cfbnate)
+  [![@natemanzo](https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge)](https://github.com/natemanzo)
+- [Jason DeLoach](https://x.com/CFBNumbers)
+  [![@CFBNumbers](https://img.shields.io/twitter/follow/CFBNumbers?color=blue&label=%40CFBNumbers&logo=x&style=for-the-badge)](https://x.com/CFBNumbers)
+  [![@CFBNumbers](https://img.shields.io/github/followers/CFBNumbers?color=eee&logo=Github&style=for-the-badge)](https://github.com/CFBNumbers)
+- [Tej Seth](https://x.com/tejfbanalytics)
+  [![@tejfbanalytics](https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&label=%40tejfbanalytics&logo=x&style=for-the-badge)](https://x.com/tejfbanalytics)
+  [![@tejseth](https://img.shields.io/github/followers/tejseth?color=eee&logo=Github&style=for-the-badge)](https://github.com/tejseth)
+- [Conor McQuiston](https://x.com/ConorMcQ5)
+  [![@ConorMcQ5](https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge)](https://x.com/ConorMcQ5)
+  [![@mcqconor](https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge)](https://github.com/mcqconor)
+- [Tan Ho](https://x.com/_TanHo)
+  [![@\_TanHo](https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=x&style=for-the-badge)](https://x.com/_TanHo)
+  [![@tanho63](https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge)](https://github.com/tanho63)
+- [Keegan Abdoo](https://x.com/KeeganAbdoo)
+  [![@KeeganAbdoo](https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=x&style=for-the-badge)](https://x.com/KeeganAbdoo)
+  [![@keegan-abdoo](https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge)](https://github.com/keegan-abdoo)
+- [Matt Spencer](https://x.com/Maatspencer)
+  [![@Maatspencer](https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=x&style=for-the-badge)](https://x.com/Maatspencer)
+  [![@Maatspencer](https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge)](https://github.com/Maatspencer)
+- [Sebastian Carl](https://x.com/mrcaseb)
+  [![@mrcaseb](https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=x&style=for-the-badge)](https://x.com/mrcaseb)
+  [![@mrcaseb](https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge)](https://github.com/mrcaseb)
+- [John Edwards](https://x.com/John_B_Edwards)
+  [![@John_B_Edwards](https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=x&style=for-the-badge)](https://x.com/John_B_Edwards)
+  [![@john-b-edwards](https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge)](https://github.com/john-b-edwards)
+- [Brad Hill](https://x.com/bradisblogging)
+  [![@bradisblogging](https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=x&style=for-the-badge)](https://x.com/bradisblogging)
+  [![@bradisbrad](https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge)](https://github.com/bradisbrad)
+
+### **Citation**
+
+To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R
+package in publications, use:
+
+BibTeX Citation
+
+``` bibtex
+@misc{cfbfastr,
+  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
+  title = {cfbfastR: Access College Football Play by Play Data},
+  url = {https://cfbfastR.sportsdataverse.org/},
+  year = {2021}
+}
+```
+
+### **Related SportsDataverse packages**
+
+- [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college
+  football
+- [**hoopR**](https://hoopR.sportsdataverse.org/) - men’s basketball
+- [**wehoop**](https://wehoop.sportsdataverse.org/) - women’s basketball
+- [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
+- [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
+- [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
+  package
+- [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R
+  meta-package

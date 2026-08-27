@@ -328,7 +328,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_pbp(game_id = 401628339))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:19:10 UTC
+#> ℹ Data updated: 2026-08-27 10:58:33 UTC
 #> # A tibble: 157 × 84
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -351,7 +351,7 @@ Other ESPN CFB Functions:
 #> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>, …
   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide"))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:19:12 UTC
+#> ℹ Data updated: 2026-08-27 10:58:34 UTC
 #> # A tibble: 157 × 156
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -375,7 +375,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_pbp(game_id = 401628339, participants = "wide",
                         participants_list = TRUE))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:19:15 UTC
+#> ℹ Data updated: 2026-08-27 10:58:37 UTC
 #> # A tibble: 157 × 157
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -399,7 +399,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_pbp(game_id = 401628339, team_participants = "wide",
                         team_participants_list = TRUE))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:19:16 UTC
+#> ℹ Data updated: 2026-08-27 10:58:39 UTC
 #> # A tibble: 157 × 111
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
@@ -422,7 +422,7 @@ Other ESPN CFB Functions:
 #> #   scoring_type_display_name <chr>, scoring_type_abbreviation <chr>, …
   try(espn_cfb_game_pbp(game_id = 401628339, team_detail = FALSE))
 #> ── Game plays data from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:19:17 UTC
+#> ℹ Data updated: 2026-08-27 10:58:40 UTC
 #> # A tibble: 157 × 54
 #>    game_id   play_id   sequence_number type_id type_text type_abbreviation text 
 #>    <chr>     <chr>     <chr>           <chr>   <chr>     <chr>             <chr>
