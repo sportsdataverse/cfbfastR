@@ -42,6 +42,11 @@ agree on EPA for a given play and a retrain updates both from one publish
   line (the ESPN path, and CFBD before 2013). Sign convention verified over 83
   games: CFBD's `spread` is negative when the home team is favoured, and the
   model reads positive `spread_time` as the team in possession being favoured.
+* **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
+  scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
+  percentage-point scale `100 * (pass - xpass)`. Note this model uses an
+  *ordinal* rule-era feature cutting at 2006/2013/**2017**, which is a
+  different encoding from the FG model's one-hot `era0..era3` (2006/2013/2020).
 * Existing EPA/WPA values **will change**: this is a different model
   generation. Rebuild rather than mixing old and new outputs in one dataset.
 

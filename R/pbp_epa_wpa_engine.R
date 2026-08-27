@@ -112,7 +112,10 @@
     .pbp_add_cp_cpoe() |>
     # Additive too: `vegas_wp` alongside the untouched naive `wp_before`,
     # NA wherever the game has no pre-game line.
-    .pbp_add_vegas_wp()
+    .pbp_add_vegas_wp() |>
+    # xpass needs the season for its ORDINAL era feature (2017 cut), which is
+    # a different encoding from the FG model's one-hot era (2020 cut).
+    .pbp_add_xpass(season = season)
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress

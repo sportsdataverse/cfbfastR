@@ -628,3 +628,100 @@ NULL
   df$vegas_wp <- ifelse(is.na(spread_time), NA_real_, p)
   df
 }
+
+#' Expected-pass feature contract and the ORDINAL rule-era cuts
+#'
+#' `.XPASS_ERA_CUTS` is the **ordinal** `era` used by `xpass_model` and
+#' `two_pt_model` -- cuts 2006/2013/**2017**, encoded 0/1/2/3 in one column.
+#' It is NOT [.FG_ERA_CUTS], the one-hot `era0..era3` set used by
+#' `fg_model`/`fd_model`, whose third cut is **2020**. The two disagree over
+#' 2018-2020, so they are deliberately separate constants.
+#'
+#' @keywords internal
+#' @noRd
+.XPASS_ERA_CUTS <- c(2006, 2013, 2017)
+
+#' @rdname cfb_model_artifacts
+#' @keywords internal
+#' @noRd
+.XPASS_FEATURES <- c(
+  "down", "distance", "yards_to_goal", "pos_score_diff",
+  "TimeSecsRem", "era", "period"
+)
+
+#' Ordinal CFB rule era from season
+#'
+#' @return 0 (<=2006), 1 (<=2013), 2 (<=2017), 3 (later).
+#' @keywords internal
+#' @noRd
+.cfb_era_ordinal <- function(season, n) {
+  s <- suppressWarnings(as.numeric(season))
+  if (length(s) == 1L) s <- rep(s, n)
+  cuts <- .XPASS_ERA_CUTS
+  ifelse(s <= cuts[1], 0,
+         ifelse(s <= cuts[2], 1,
+                ifelse(s <= cuts[3], 2, 3)))
+}
+
+#' Lazily load the bundled expected-pass model
+#' @keywords internal
+#' @noRd
+.cfb_xpass_model <- function() {
+  if (!is.null(.cfb_model_env$xpass)) return(.cfb_model_env$xpass)
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  f <- .cfb_model_file("xpass_model.ubj")
+  if (is.null(f)) return(NULL)
+  b <- try(xgboost::xgb.load(f), silent = TRUE)
+  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  .cfb_model_env$xpass <- b
+  b
+}
+
+#' Append expected pass rate (`xpass`) and pass over expected (`pass_oe`)
+#'
+#' nflfastR's `xpass` / `pass_oe`, on scrimmage plays only, with `pass_oe` on
+#' the percentage-point scale `100 * (pass - xpass)`.
+#'
+#' Note the `pos_score_diff` feature is fed from **`pos_score_diff_start`**,
+#' the same sourcing subtlety as the CP model: cfbfastR carries a separate
+#' like-named `pos_score_diff` column holding a different value.
+#'
+#' Never raises; missing model, season or inputs yield all-`NA` columns.
+#'
+#' @param season Season of the game, needed for the ordinal era feature.
+#' @keywords internal
+#' @noRd
+.pbp_add_xpass <- function(df, season = NULL) {
+  df$xpass <- rep(NA_real_, nrow(df))
+  df$pass_oe <- rep(NA_real_, nrow(df))
+  need <- c("down", "distance", "yards_to_goal", "pos_score_diff_start",
+            "TimeSecsRem", "period", "pass", "rush")
+  if (!nrow(df) || !all(need %in% names(df))) return(df)
+  if (is.null(season) || all(is.na(season))) return(df)
+  model <- .cfb_xpass_model()
+  if (is.null(model)) return(df)
+
+  p <- try({
+    pick <- function(nm) suppressWarnings(as.numeric(as.character(df[[nm]])))
+    x <- cbind(
+      down = pick("down"),
+      distance = pick("distance"),
+      yards_to_goal = pick("yards_to_goal"),
+      # NOT df$pos_score_diff -- see the note above.
+      pos_score_diff = pick("pos_score_diff_start"),
+      TimeSecsRem = pick("TimeSecsRem"),
+      era = .cfb_era_ordinal(season, nrow(df)),
+      period = pick("period")
+    )
+    colnames(x) <- .XPASS_FEATURES
+    as.numeric(stats::predict(model, x))
+  }, silent = TRUE)
+  if (inherits(p, "try-error") || length(p) != nrow(df)) return(df)
+
+  pass <- suppressWarnings(as.numeric(as.character(df$pass)))
+  rush <- suppressWarnings(as.numeric(as.character(df$rush)))
+  scrimmage <- (pass %in% 1) | (rush %in% 1)
+  df$xpass <- ifelse(scrimmage, p, NA_real_)
+  df$pass_oe <- ifelse(scrimmage & !is.na(pass), 100 * (pass - df$xpass), NA_real_)
+  df
+}
