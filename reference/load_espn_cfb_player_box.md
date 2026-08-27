@@ -119,7 +119,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_player_box/player_box_2004.rds>
 #> ── ESPN college football player box scores from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-08-24 14:50:15 UTC
+#> ℹ Data updated: 2026-08-27 04:22:52 UTC
 #> # A tibble: 0 × 0
 # }
 ```

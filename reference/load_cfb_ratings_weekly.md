@@ -71,7 +71,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_ratings_weekly(2004))
 #> ── college football weekly power ratings from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-24 14:49:34 UTC
+#> ℹ Data updated: 2026-08-27 04:22:16 UTC
 #> # A tibble: 1,579 × 16
 #>    season team_id adj_off_epa adj_def_epa adj_st_epa  adj_net fei_off fei_def
 #>     <int> <chr>         <dbl>       <dbl>      <dbl>    <dbl>   <dbl>   <dbl>

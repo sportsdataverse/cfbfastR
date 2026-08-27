@@ -79,7 +79,7 @@ cfbd_teams_fbs(year = NULL, proxy = NULL)
 # \donttest{
   try(cfbd_teams_fbs(year = 2024))
 #> ── Get FBS teams from CollegeFootballData.com ──────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:45:52 UTC
+#> ℹ Data updated: 2026-08-27 04:18:42 UTC
 #> # A tibble: 134 × 43
 #>       id school         mascot  abbreviation alternate_names_1 alternate_names_2
 #>    <int> <chr>          <chr>   <chr>        <chr>             <chr>            

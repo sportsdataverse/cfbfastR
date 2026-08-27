@@ -142,8 +142,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_coaches(year = 2024))
 #> ── Coaches index from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:46:12 UTC
-#> # A tibble: 266 × 18
+#> ℹ Data updated: 2026-08-27 04:18:57 UTC
+#> # A tibble: 265 × 18
 #>    season coach_id first_name last_name   team_id team_name  team_abbreviation
 #>     <int> <chr>    <chr>      <chr>       <chr>   <chr>      <chr>            
 #>  1   2024 5120149  Alex       Golesh      58      Bulls      USF              
@@ -156,7 +156,7 @@ Other ESPN CFB Functions:
 #>  8   2024 156919   Sean       Lewis       21      Aztecs     SDSU             
 #>  9   2024 559953   Ken        Niumatalolo 23      Spartans   SJSU             
 #> 10   2024 176295   Tavita     Pritchard   NA      NA         NA               
-#> # ℹ 256 more rows
+#> # ℹ 255 more rows
 #> # ℹ 11 more variables: team_location <chr>, team_display_name <chr>,
 #> #   team_short_display_name <chr>, team_nickname <chr>, team_color <chr>,
 #> #   team_alternate_color <chr>, team_logo_href <chr>,
@@ -164,8 +164,8 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_coaches(year = 2024, team_detail = FALSE))
 #> ── Coaches index from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:46:20 UTC
-#> # A tibble: 266 × 8
+#> ℹ Data updated: 2026-08-27 04:18:59 UTC
+#> # A tibble: 265 × 8
 #>    season coach_id first_name last_name   team_id coach_ref  person_ref team_ref
 #>     <int> <chr>    <chr>      <chr>       <chr>   <chr>      <chr>      <chr>   
 #>  1   2024 5120149  Alex       Golesh      58      http://sp… http://sp… http://…
@@ -178,6 +178,6 @@ Other ESPN CFB Functions:
 #>  8   2024 156919   Sean       Lewis       21      http://sp… http://sp… http://…
 #>  9   2024 559953   Ken        Niumatalolo 23      http://sp… http://sp… http://…
 #> 10   2024 176295   Tavita     Pritchard   NA      http://sp… http://sp… NA      
-#> # ℹ 256 more rows
+#> # ℹ 255 more rows
 # }
 ```

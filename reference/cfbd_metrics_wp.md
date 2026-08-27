@@ -62,7 +62,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wp(game_id = 401012356))
 #> ── WP data from CollegeFootballData.com ────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:42:06 UTC
+#> ℹ Data updated: 2026-08-27 04:15:19 UTC
 #> # A tibble: 224 × 16
 #>    play_id     play_text home_id home  away_id away  spread home_ball home_score
 #>    <chr>       <chr>       <int> <chr>   <int> <chr>  <int> <lgl>          <int>

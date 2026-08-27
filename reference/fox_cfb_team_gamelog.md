@@ -44,20 +44,8 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ─────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:49:28 UTC
-#> # A tibble: 340 × 8
-#>    team_id season_type category game_id game_date opponent stat     value
-#>    <chr>   <chr>       <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      POSTSEASON  passing  42792   1/19      IND      comp     19   
-#>  2 11      POSTSEASON  passing  42792   1/19      IND      att      32   
-#>  3 11      POSTSEASON  passing  42792   1/19      IND      pct      59.4 
-#>  4 11      POSTSEASON  passing  42792   1/19      IND      yds      232  
-#>  5 11      POSTSEASON  passing  42792   1/19      IND      pyds_att 10.7 
-#>  6 11      POSTSEASON  passing  42792   1/19      IND      td       1    
-#>  7 11      POSTSEASON  passing  42792   1/19      IND      int      1    
-#>  8 11      POSTSEASON  passing  42792   1/19      IND      sck      1    
-#>  9 11      POSTSEASON  passing  42792   1/19      IND      yds_2    7    
-#> 10 11      POSTSEASON  passing  42792   1/19      IND      qbr      124.3
-#> # ℹ 330 more rows
+#> ℹ Data updated: 2026-08-27 04:22:11 UTC
+#> # A tibble: 0 × 1
+#> # ℹ 1 variable: team_id <chr>
 # }
 ```

@@ -162,8 +162,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_record(team_id = 61, year = 2024))
 #> ── Team record from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:48:58 UTC
-#> # A tibble: 92 × 19
+#> ℹ Data updated: 2026-08-27 04:21:27 UTC
+#> # A tibble: 96 × 19
 #>    season season_type team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>   <chr>     <chr>             <chr>        
 #>  1   2024           2 61      Bulldogs  UGA               Georgia      
@@ -176,7 +176,7 @@ Other ESPN CFB Functions:
 #>  8   2024           2 61      Bulldogs  UGA               Georgia      
 #>  9   2024           2 61      Bulldogs  UGA               Georgia      
 #> 10   2024           2 61      Bulldogs  UGA               Georgia      
-#> # ℹ 82 more rows
+#> # ℹ 86 more rows
 #> # ℹ 13 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>, record_type <chr>,
@@ -185,8 +185,8 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_record(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team record from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:48:59 UTC
-#> # A tibble: 92 × 9
+#> ℹ Data updated: 2026-08-27 04:21:27 UTC
+#> # A tibble: 96 × 9
 #>    season season_type team_id record_type record_name record_summary stat_name  
 #>     <int>       <int> <chr>   <chr>       <chr>       <chr>          <chr>      
 #>  1   2024           2 61      total       overall     11-2           OTLosses   
@@ -199,7 +199,7 @@ Other ESPN CFB Functions:
 #>  8   2024           2 61      total       overall     11-2           gamesPlayed
 #>  9   2024           2 61      total       overall     11-2           leagueWinP…
 #> 10   2024           2 61      total       overall     11-2           losses     
-#> # ℹ 82 more rows
+#> # ℹ 86 more rows
 #> # ℹ 2 more variables: stat_value <dbl>, stat_display <chr>
 # }
 ```

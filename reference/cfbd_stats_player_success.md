@@ -98,7 +98,7 @@ Other CFBD Stats Functions:
 # \donttest{
   try(cfbd_stats_player_success(year = 2024, team = "Georgia"))
 #> ── Get player success rates by season from CollegeFootballData.com ─────────────
-#> ℹ Data updated: 2026-08-24 14:45:18 UTC
+#> ℹ Data updated: 2026-08-27 04:18:06 UTC
 #> # A tibble: 17 × 12
 #>    season id     name  position team  conference passing_plays passing_successes
 #>     <int> <chr>  <chr> <chr>    <chr> <chr>              <int>             <int>

@@ -68,7 +68,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_betting/betting_2004.rds>
 #> ── ESPN college football betting lines from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-08-24 14:50:02 UTC
+#> ℹ Data updated: 2026-08-27 04:22:41 UTC
 #> # A tibble: 0 × 0
 # }
 ```

@@ -2,6 +2,8 @@
 
 ## **cfbfastR v3.0.0**
 
+CRAN release: 2026-08-24
+
 #### New release-dataset loaders (39 functions)
 
 `cfbfastR` now loads every published CFB dataset on the

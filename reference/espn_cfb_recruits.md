@@ -169,7 +169,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_recruits(year = 2024, max_results = 25))
 #> ── Recruiting class data from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:47:54 UTC
+#> ℹ Data updated: 2026-08-27 04:20:23 UTC
 #> # A tibble: 25 × 31
 #>    season recruit_id recruiting_class athlete_id alternate_athlete_id first_name
 #>     <dbl> <chr>                 <int> <chr>      <chr>                <chr>     

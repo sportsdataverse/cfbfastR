@@ -166,7 +166,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_team_records(game_id = 401628339))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:47:14 UTC
+#> ℹ Data updated: 2026-08-27 04:19:44 UTC
 #> # A tibble: 8 × 24
 #>   game_id   team_id team_name  team_abbreviation team_location team_display_name
 #>   <chr>     <chr>   <chr>      <chr>             <chr>         <chr>            
@@ -186,8 +186,8 @@ Other ESPN CFB Functions:
 #> #   value <dbl>, record_ref <chr>
   try(espn_cfb_game_team_records(game_id = 401628339, detail = TRUE))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:47:15 UTC
-#> # A tibble: 76 × 23
+#> ℹ Data updated: 2026-08-27 04:19:44 UTC
+#> # A tibble: 78 × 23
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
 #>  1 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
@@ -200,7 +200,7 @@ Other ESPN CFB Functions:
 #>  8 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #>  9 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
 #> 10 401628339 61      Bulldogs  UGA               Georgia       Georgia Bulldogs 
-#> # ℹ 66 more rows
+#> # ℹ 68 more rows
 #> # ℹ 17 more variables: team_short_display_name <chr>, team_nickname <chr>,
 #> #   team_color <chr>, team_alternate_color <chr>, team_logo_href <chr>,
 #> #   team_logo_dark_href <chr>, home_away <chr>, record_type <chr>,
@@ -210,7 +210,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_team_records(game_id = 401628339,
                                  team_detail = FALSE))
 #> ── Game team records data from ESPN ────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:47:15 UTC
+#> ℹ Data updated: 2026-08-27 04:19:44 UTC
 #> # A tibble: 8 × 14
 #>   game_id   team_id home_away record_id name      abbreviation display_name     
 #>   <chr>     <chr>   <chr>     <chr>     <chr>     <chr>        <chr>            

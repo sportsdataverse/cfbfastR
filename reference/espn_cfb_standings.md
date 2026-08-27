@@ -171,8 +171,8 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_standings(year = 2024))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:48:29 UTC
-#> # A tibble: 36,892 × 23
+#> ℹ Data updated: 2026-08-27 04:20:55 UTC
+#> # A tibble: 38,496 × 23
 #>    season season_type group_id team_id team_name team_abbreviation team_location
 #>     <int>       <int> <chr>    <chr>   <chr>     <chr>             <chr>        
 #>  1   2024           2 90       147     Bobcats   MTST              Montana State
@@ -185,7 +185,7 @@ Other ESPN CFB Functions:
 #>  8   2024           2 90       147     Bobcats   MTST              Montana State
 #>  9   2024           2 90       147     Bobcats   MTST              Montana State
 #> 10   2024           2 90       147     Bobcats   MTST              Montana State
-#> # ℹ 36,882 more rows
+#> # ℹ 38,486 more rows
 #> # ℹ 16 more variables: team_display_name <chr>, team_short_display_name <chr>,
 #> #   team_nickname <chr>, team_color <chr>, team_alternate_color <chr>,
 #> #   team_logo_href <chr>, team_logo_dark_href <chr>, record_type <chr>,
@@ -194,8 +194,8 @@ Other ESPN CFB Functions:
 #> #   team_ref <chr>
   try(espn_cfb_standings(year = 2024, team_detail = FALSE))
 #> ── Standings data from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-24 14:48:52 UTC
-#> # A tibble: 36,892 × 13
+#> ℹ Data updated: 2026-08-27 04:21:15 UTC
+#> # A tibble: 38,496 × 13
 #>    season season_type group_id team_id record_type record_name record_summary
 #>     <int>       <int> <chr>    <chr>   <chr>       <chr>       <chr>         
 #>  1   2024           2 90       147     total       overall     14-0          
@@ -208,7 +208,7 @@ Other ESPN CFB Functions:
 #>  8   2024           2 90       147     total       overall     14-0          
 #>  9   2024           2 90       147     total       overall     14-0          
 #> 10   2024           2 90       147     total       overall     14-0          
-#> # ℹ 36,882 more rows
+#> # ℹ 38,486 more rows
 #> # ℹ 6 more variables: stat_name <chr>, abbreviation <chr>, display_name <chr>,
 #> #   value <dbl>, display_value <chr>, team_ref <chr>
 # }
