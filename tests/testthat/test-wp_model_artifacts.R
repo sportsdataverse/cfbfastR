@@ -78,6 +78,7 @@ test_that(".wp_feature_matrix refuses a frame missing model columns", {
 })
 
 test_that("the published manifest agrees with the in-package WP contract", {
+  skip_on_cran()
   skip_if_offline()
   man <- .cfb_model_manifest()
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
@@ -91,6 +92,7 @@ test_that("the published manifest agrees with the in-package WP contract", {
 })
 
 test_that(".wp_predict returns calibrated probabilities with sane ordering", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   wp_model <- load_wp_model()

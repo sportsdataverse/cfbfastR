@@ -85,6 +85,7 @@ test_that(".pbp_add_cp_cpoe handles a zero-row frame", {
 })
 
 test_that("the published manifest agrees with the in-package CP contract", {
+  skip_on_cran()
   skip_if_offline()
   man <- .cfb_model_manifest()
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
@@ -92,6 +93,7 @@ test_that("the published manifest agrees with the in-package CP contract", {
 })
 
 test_that("cp/cpoe are populated on pass plays only and on the right scale", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   skip_if(is.null(.cfb_cp_model()), "bundled CP model unavailable")

@@ -61,6 +61,7 @@ test_that(".ep_feature_matrix refuses a frame missing model columns", {
 })
 
 test_that("the published manifest agrees with the in-package fallback", {
+  skip_on_cran()
   skip_if_offline()
   man <- .cfb_model_manifest()
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
@@ -78,6 +79,7 @@ test_that("the published manifest agrees with the in-package fallback", {
 })
 
 test_that(".ep_predict returns lev-ordered probabilities that keep rows intact", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   ep_model <- load_ep_model()
@@ -113,6 +115,7 @@ test_that(".ep_predict returns lev-ordered probabilities that keep rows intact",
 })
 
 test_that("a wrong class permutation would be caught by the sanity gate", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   ep_model <- load_ep_model()

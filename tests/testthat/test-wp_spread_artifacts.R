@@ -76,6 +76,7 @@ test_that(".pbp_add_vegas_wp handles a zero-row frame", {
 })
 
 test_that("the published manifest agrees with the in-package spread contract", {
+  skip_on_cran()
   skip_if_offline()
   man <- .cfb_model_manifest()
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
@@ -83,6 +84,7 @@ test_that("the published manifest agrees with the in-package spread contract", {
 })
 
 test_that("vegas_wp favours the favourite -- the sign gate", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   skip_if(is.null(.cfb_wp_spread_model()), "bundled wp_spread model unavailable")
@@ -107,6 +109,7 @@ test_that("vegas_wp favours the favourite -- the sign gate", {
 })
 
 test_that("vegas_wp rises monotonically with the size of the line", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   skip_if(is.null(.cfb_wp_spread_model()), "bundled wp_spread model unavailable")

@@ -34,6 +34,7 @@ test_that(".cfb_era_onehot recycles a scalar season across rows", {
 })
 
 test_that("the era-aware FG model refuses to score without a season", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   fg <- load_fg_model()
@@ -48,6 +49,7 @@ test_that("the era-aware FG model refuses to score without a season", {
 })
 
 test_that("FG make probability falls with distance and stays in [0,1]", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   fg <- load_fg_model()
@@ -64,6 +66,7 @@ test_that("FG make probability falls with distance and stays in [0,1]", {
 })
 
 test_that("era actually moves the FG prediction", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   fg <- load_fg_model()
@@ -79,6 +82,7 @@ test_that("era actually moves the FG prediction", {
 })
 
 test_that("the published manifest agrees with the in-package FG contract", {
+  skip_on_cran()
   skip_if_offline()
   man <- .cfb_model_manifest()
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
@@ -91,6 +95,7 @@ test_that("every entry point forwards season to the era-aware FG model", {
   # every FG/XP play aborted in .fg_make_prob() and the outer handler swallowed
   # it -- the game came back with no modeled EPA at all. Validating only the v2
   # paths is what let that through, so all four are exercised here.
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   fg <- load_fg_model()

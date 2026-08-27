@@ -59,6 +59,7 @@ test_that(".pbp_add_xpass handles a zero-row frame", {
 })
 
 test_that("the published manifest agrees with the in-package xpass contract", {
+  skip_on_cran()
   skip_if_offline()
   man <- .cfb_model_manifest()
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
@@ -66,6 +67,7 @@ test_that("the published manifest agrees with the in-package xpass contract", {
 })
 
 test_that("xpass is scrimmage-only and rises on obvious passing downs", {
+  skip_on_cran()
   skip_if_offline()
   skip_if_not_installed("xgboost")
   skip_if(is.null(.cfb_xpass_model()), "bundled xpass model unavailable")
