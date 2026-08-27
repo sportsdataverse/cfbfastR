@@ -503,7 +503,8 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod,
     end_game_ind <- which(dat$TimeSecsRem <= 0)
     current_probs[end_game_ind, ] <- 0
 
-    make_fg_prob <- .fg_make_prob(fg_mod, fg_dat, season = season)
+    # (the FG make-probability is computed once, below, just before it is
+    # used -- a second call here would score the model twice per FG/XP play)
 
     missed_fg_dat <- fg_dat |>
       # Subtract 5.065401 from TimeSecs since average time for FG att:

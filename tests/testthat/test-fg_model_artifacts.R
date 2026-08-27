@@ -84,3 +84,31 @@ test_that("the published manifest agrees with the in-package FG contract", {
   skip_if(is.null(man), "cfb_model_artifacts MANIFEST.json unavailable")
   expect_identical(unlist(man$assets$fg_model.ubj$features), .FG_FEATURES)
 })
+
+test_that("every entry point forwards season to the era-aware FG model", {
+  # Regression guard. The v2 paths threaded `season` from the start, but the
+  # LEGACY paths called create_epa() without it, so with the era-aware model
+  # every FG/XP play aborted in .fg_make_prob() and the outer handler swallowed
+  # it -- the game came back with no modeled EPA at all. Validating only the v2
+  # paths is what let that through, so all four are exercised here.
+  skip_if_offline()
+  skip_if_not_installed("xgboost")
+  fg <- load_fg_model()
+  skip_if(!inherits(fg, "xgb.Booster"), "bundled FG model unavailable")
+  skip_if(!any(startsWith(.booster_feature_names(fg), "era")),
+          "loaded FG model is not era-aware")
+
+  for (engine in c("legacy", "v2")) {
+    r <- try(suppressWarnings(suppressMessages(
+      espn_cfb_pbp(game_id = "401331242", epa_wpa = TRUE, engine = engine)
+    )), silent = TRUE)
+    skip_if(inherits(r, "try-error") || is.null(r) || !nrow(r),
+            paste("ESPN unavailable for engine", engine))
+    expect_true("fg_make_prob" %in% names(r),
+                info = paste("engine", engine))
+    # A game with no scored field goals would make this vacuous, so require at
+    # least one -- this game has several.
+    expect_gt(sum(!is.na(r$fg_make_prob)), 0)
+    expect_gt(sum(is.finite(r$EPA)), 100)
+  }
+})
