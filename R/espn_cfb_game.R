@@ -6746,7 +6746,10 @@ espn_cfb_pbp_v2 <- function(game_id,
         fg_model     = fg_model,
         wp_model     = wp_model,
         roster       = roster_df,
-        participants = participants_df
+        participants = participants_df,
+        # The era-aware FG model needs the season; meta$season is resolved
+        # from the event's week/season $ref above.
+        season       = meta$season
       ) |>
         dplyr::select(-dplyr::any_of("ppa"))   # drop the placeholder
 

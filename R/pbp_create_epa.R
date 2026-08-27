@@ -15,7 +15,7 @@
 #' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup lead lag rename_with all_of starts_with everything
 #' @importFrom stringr str_detect regex
 #' @import tidyr
-.pbp_create_epa <- function(play_df, ep_model, fg_model) {
+.pbp_create_epa <- function(play_df, ep_model, fg_model, season = NULL) {
   #----------------- Code Description--------
   ## 1) pred_df: Use select before play model variables -> Make predictions
   ## 2) .pbp_epa_fg_probs: Update expected points predictions from before variables with FG make/miss probability weighted adjustment
@@ -102,7 +102,8 @@
     dat = clean_pbp,
     current_probs = ep_start,
     ep_model = ep_model,
-    fg_mod = fg_model
+    fg_mod = fg_model,
+    season = season
   )
   # append `_before` to next score type probability columns
   # Fix (b) Site 2: name-based match instead of positional [1:7]
@@ -398,7 +399,8 @@
 #' @importFrom mgcv predict.bam
 #' @importFrom stringr str_detect
 #' @importFrom dplyr mutate
-.pbp_epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
+.pbp_epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod,
+                              season = NULL) {
   fg_ind <- stringr::str_detect((dat$play_type), "Field Goal")
   ep_ind <- stringr::str_detect((dat$play_type), "Extra Point")
   inds <- fg_ind | ep_ind
@@ -447,10 +449,7 @@
     )
 
     # Get the probability of making the field goal:
-    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_mod,
-      newdata = fg_dat,
-      type = "response"
-    ))
+    make_fg_prob <- .fg_make_prob(fg_mod, fg_dat, season = season)
     # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
     missed_fg_ep_preds <-
       missed_fg_ep_preds * (1 - make_fg_prob)

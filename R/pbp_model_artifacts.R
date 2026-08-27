@@ -442,3 +442,93 @@ NULL
   df$cpoe <- ifelse(is_pass & !is.na(comp), 100 * (comp - df$cp), NA_real_)
   df
 }
+
+#' Field-goal model feature contract and rule-era cuts
+#'
+#' The bundled `fg_model` is era-aware: `yards_to_goal` plus one-hot rule-era
+#' dummies. The retired model was a single-feature `mgcv::bam`
+#' (`fg_made ~ 1 + yards_to_goal`), so era is new information the frame has to
+#' supply.
+#'
+#' **These cuts (2006/2013/2020) are the ONE-HOT `era0..era3` cuts used by
+#' `fg_model` and `fd_model`.** sdv-py also carries a distinct *ordinal* `era`
+#' with cuts 2006/2013/**2017** for `xpass_model` / `two_pt_model`. The two are
+#' not interchangeable; conflating them silently mis-labels the 2018-2020
+#' seasons.
+#'
+#' @keywords internal
+#' @noRd
+.FG_ERA_CUTS <- c(2006, 2013, 2020)
+
+#' @rdname cfb_model_artifacts
+#' @keywords internal
+#' @noRd
+.FG_FEATURES <- c("yards_to_goal", "era0", "era1", "era2", "era3")
+
+#' Feature names of a booster, across xgboost API generations
+#'
+#' xgboost 3.x exposes these via `getinfo(m, "feature_name")`; the older
+#' `m$feature_names` handle attribute comes back empty there and would make a
+#' contract check silently pass on an empty set.
+#'
+#' @keywords internal
+#' @noRd
+.booster_feature_names <- function(model) {
+  fn <- try(xgboost::getinfo(model, "feature_name"), silent = TRUE)
+  if (inherits(fn, "try-error") || !length(fn)) fn <- model$feature_names
+  as.character(fn %||% character())
+}
+
+#' One-hot CFB rule-era dummies from season
+#'
+#' @param season Scalar or length-`n` season; recycled to `n` rows.
+#' @param n Number of rows to emit.
+#' @keywords internal
+#' @noRd
+.cfb_era_onehot <- function(season, n) {
+  s <- suppressWarnings(as.numeric(season))
+  if (length(s) == 1L) s <- rep(s, n)
+  lo <- .FG_ERA_CUTS[1]; mid <- .FG_ERA_CUTS[2]; hi <- .FG_ERA_CUTS[3]
+  cbind(
+    era0 = as.numeric(s <= lo),
+    era1 = as.numeric(s > lo & s <= mid),
+    era2 = as.numeric(s > mid & s <= hi),
+    era3 = as.numeric(s > hi)
+  )
+}
+
+#' Field-goal make probability, whichever model generation is loaded
+#'
+#' @param fg_mod The bundle's `xgb.Booster`, or the retired `mgcv::bam`.
+#' @param newdata Frame carrying `yards_to_goal`.
+#' @param season Season of the game, required when the loaded model declares
+#'   era features.
+#' @return Numeric make-probability, `nrow(newdata)` long.
+#' @keywords internal
+#' @noRd
+.fg_make_prob <- function(fg_mod, newdata, season = NULL) {
+  if (!inherits(fg_mod, "xgb.Booster")) {
+    return(as.numeric(mgcv::predict.bam(fg_mod, newdata = newdata,
+                                        type = "response")))
+  }
+  rlang::check_installed("xgboost", reason = "to score the bundled FG model.")
+  fnames <- .booster_feature_names(fg_mod)
+  if (!length(fnames)) fnames <- "yards_to_goal"
+
+  x <- cbind(yards_to_goal = as.numeric(newdata$yards_to_goal))
+  if (any(startsWith(fnames, "era"))) {
+    # Fail loudly rather than defaulting season: an absent season would make
+    # every era dummy 0, which is not a valid one-hot and silently shifts every
+    # field-goal probability. sdv-py raises here for the same reason.
+    if (is.null(season) || all(is.na(season))) {
+      cli::cli_abort(c(
+        "The bundled era-aware FG model requires {.arg season}.",
+        x = "Without it the era features would all be zero and quietly skew every FG probability.",
+        i = "Pass {.arg season} through {.fn .run_epa_wpa}."
+      ))
+    }
+    x <- cbind(x, .cfb_era_onehot(season, nrow(newdata)))
+  }
+  keep <- intersect(fnames, colnames(x))
+  as.numeric(stats::predict(fg_mod, x[, keep, drop = FALSE]))
+}

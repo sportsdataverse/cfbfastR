@@ -30,7 +30,8 @@
 
 create_epa <- function(play_df,
                        ep_model,
-                       fg_model) {
+                       fg_model,
+                       season = NULL) {
   #----------------- Code Description--------
   ## 1) pred_df: Use select before play model variables -> Make predictions
   ## 2) epa_fg_probs: Update expected points predictions from before variables with FG make/miss probability weighted adjustment
@@ -104,7 +105,8 @@ create_epa <- function(play_df,
     dat = clean_pbp,
     current_probs = ep_start,
     ep_model = ep_model,
-    fg_mod = fg_model
+    fg_mod = fg_model,
+    season = season
   )
   # append `_before` to next score type probability columns
   colnames(ep_start_update)[1:7] <- paste0(colnames(ep_start_update)[1:7], "_before")
@@ -482,7 +484,8 @@ create_epa <- function(play_df,
 #' @importFrom dplyr mutate
 #' @export
 
-epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
+epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod,
+                         season = NULL) {
   fg_ind <- stringr::str_detect((dat$play_type), "Field Goal")
   ep_ind <- stringr::str_detect((dat$play_type), "Extra Point")
   inds <- fg_ind | ep_ind
@@ -493,7 +496,7 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
     end_game_ind <- which(dat$TimeSecsRem <= 0)
     current_probs[end_game_ind, ] <- 0
 
-    make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat, type = "response")
+    make_fg_prob <- .fg_make_prob(fg_mod, fg_dat, season = season)
 
     missed_fg_dat <- fg_dat |>
       # Subtract 5.065401 from TimeSecs since average time for FG att:
@@ -530,10 +533,7 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
     )
 
     # Get the probability of making the field goal:
-    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_mod,
-      newdata = fg_dat,
-      type = "response"
-    ))
+    make_fg_prob <- .fg_make_prob(fg_mod, fg_dat, season = season)
     # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
     missed_fg_ep_preds <-
       missed_fg_ep_preds * (1 - make_fg_prob)

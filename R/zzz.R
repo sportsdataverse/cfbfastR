@@ -122,15 +122,37 @@ load_ep_model <- function() {
   )
   return(ep_model)
 }
-load_fg_model <- function(){
+#' Load the Field Goal model
+#'
+#' Prefers the era-aware `fg_model.ubj` from the shared `cfb_model_artifacts`
+#' release; falls back to the retired single-feature `mgcv::bam` when the
+#' bundle or `xgboost` is unavailable. [`.fg_make_prob()`] scores either.
+#'
+#' @keywords internal
+#' @noRd
+load_fg_model <- function() {
+  if (requireNamespace("xgboost", quietly = TRUE)) {
+    f <- .cfb_model_file("fg_model.ubj")
+    if (!is.null(f)) {
+      booster <- try(xgboost::xgb.load(f), silent = TRUE)
+      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
+    }
+  }
+  .load_legacy_fg_model()
+}
+
+#' Retired single-feature GAM FG model, kept as the offline fallback
+#' @keywords internal
+#' @noRd
+.load_legacy_fg_model <- function() {
   fg_model <- NULL
-  .url = url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/fg_model.Rdata")
+  .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/fg_model.Rdata")
   on.exit(close(.url))
   try(
     load(.url),
     silent = TRUE
   )
-  return (fg_model)
+  return(fg_model)
 }
 #' Load the Win Probability model
 #'

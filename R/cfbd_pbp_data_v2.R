@@ -284,7 +284,9 @@ cfbd_pbp_data_v2 <- function(year,
       fg_model   = fg_model,
       wp_model   = wp_model,
       clean_text = TRUE,
-      min_plays  = 20L
+      min_plays  = 20L,
+      # The era-aware FG model needs the season.
+      season     = year
     ) |>
       .pbp_apply_output_schema(output = output)
   }
