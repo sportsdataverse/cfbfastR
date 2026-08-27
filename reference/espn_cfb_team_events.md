@@ -150,7 +150,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team_events(team_id = 61, year = 2024))
 #> ── Team season event log from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 16:43:42 UTC
+#> ℹ Data updated: 2026-08-27 20:30:15 UTC
 #> # A tibble: 14 × 15
 #>    season team_id team_name team_abbreviation team_location team_display_name
 #>     <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -175,7 +175,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_team_events(team_id = 61, year = 2024,
                            team_detail = FALSE))
 #> ── Team season event log from ESPN ─────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 16:43:42 UTC
+#> ℹ Data updated: 2026-08-27 20:30:15 UTC
 #> # A tibble: 14 × 5
 #>    season team_id event_order game_id   event_ref                               
 #>     <int> <chr>         <int> <chr>     <chr>                                   

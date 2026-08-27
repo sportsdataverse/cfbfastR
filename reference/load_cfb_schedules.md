@@ -41,7 +41,7 @@ Other loaders:
 # \donttest{
   try(load_cfb_schedules(2024))
 #> ── Games and schedules from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 16:44:23 UTC
+#> ℹ Data updated: 2026-08-27 20:31:06 UTC
 #> # A tibble: 920 × 32
 #>      game_id season  week season_type start_date        start_time_tbd completed
 #>        <int>  <int> <int> <chr>       <chr>             <lgl>          <lgl>    
@@ -50,11 +50,11 @@ Other loaders:
 #>  3 401643696   2024     1 regular     2024-08-25T00:00… FALSE          TRUE     
 #>  4 401643858   2024     1 regular     2024-08-25T03:59… FALSE          TRUE     
 #>  5 401628458   2024     1 regular     2024-08-29T22:00… FALSE          TRUE     
-#>  6 401634299   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#>  7 401644727   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#>  8 401628582   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#>  9 401628581   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
-#> 10 401636387   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  6 401628581   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  7 401628582   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  8 401636387   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#>  9 401644727   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
+#> 10 401644730   2024     1 regular     2024-08-29T23:00… FALSE          TRUE     
 #> # ℹ 910 more rows
 #> # ℹ 25 more variables: neutral_site <lgl>, conference_game <lgl>,
 #> #   attendance <int>, venue_id <int>, venue <chr>, home_id <int>,

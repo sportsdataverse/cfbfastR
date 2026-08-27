@@ -271,7 +271,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_team(team_id = 61, year = 2024))
 #> ── Team detail from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 16:43:39 UTC
+#> ℹ Data updated: 2026-08-27 20:30:12 UTC
 #> # A tibble: 1 × 32
 #>   season team_id team_name team_abbreviation team_location team_display_name
 #>    <int> <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -285,7 +285,7 @@ Other ESPN CFB Functions:
 #> #   venue_id <chr>, venue_name <chr>, venue_city <chr>, venue_state <chr>, …
   try(espn_cfb_team(team_id = 61, year = 2024, team_detail = FALSE))
 #> ── Team detail from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 16:43:39 UTC
+#> ℹ Data updated: 2026-08-27 20:30:12 UTC
 #> # A tibble: 1 × 22
 #>   season team_id guid   uid   slug  abbreviation display_name short_display_name
 #>    <int> <chr>   <chr>  <chr> <chr> <chr>        <chr>        <chr>             
