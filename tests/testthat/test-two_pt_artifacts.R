@@ -64,6 +64,39 @@ test_that("decision rows are offensive touchdowns only", {
   expect_equal(.two_pt_decision_rows(df), c(TRUE, TRUE, FALSE, FALSE))
 })
 
+test_that("a standalone PAT row is never a decision row (pre-2014 shape)", {
+  # Before 2014 the extra point / two-point try is its OWN row rather than
+  # sharing the touchdown's. Those rows are already POST-touchdown, so the +6 in
+  # .two_pt_score_diff() must never reach them -- it would score the decision six
+  # points further ahead than the game actually was.
+  #
+  # Today that holds only BY CONSTRUCTION: pass_td/rush_td are assigned from an
+  # exact play_type match ("Passing Touchdown" / "Rushing Touchdown") in
+  # clean_pbp_dat(), so a standalone PAT scores 0 on both and cannot qualify.
+  # Nothing else enforces it. Broaden that assignment -- a regex, or folding in
+  # "Two-Point Conversion Good" -- and the +6 silently starts firing on already-
+  # post-TD rows. This is the test that would notice.
+  df <- data.frame(
+    play_type          = c("Extra Point Good", "Two-Point Conversion Good",
+                           "Extra Point Missed", "Passing Touchdown"),
+    pass_td            = c(0, 0, 0, 1),
+    rush_td            = c(0, 0, 0, 0),
+    # a PAT IS an offensive scoring play, so offense_score_play alone cannot
+    # exclude it -- the TD flags are what carry the exclusion
+    offense_score_play = c(1, 1, 0, 1)
+  )
+  expect_equal(.two_pt_decision_rows(df), c(FALSE, FALSE, FALSE, TRUE))
+})
+
+test_that("the TD flags that gate the decision exclude PAT play types", {
+  # Locks the derivation the test above depends on: these play_type values must
+  # not be treated as touchdowns by the exact-match rule in clean_pbp_dat().
+  pat_types <- c("Extra Point Good", "Extra Point Missed",
+                 "Two-Point Conversion Good", "Two-Point Conversion Missed")
+  expect_false(any(pat_types %in% c("Passing Touchdown")))
+  expect_false(any(pat_types %in% c("Rushing Touchdown")))
+})
+
 test_that(".pbp_add_two_pt_prob degrades to NA rather than raising", {
   df <- data.frame(pos_score_diff_start = 0, pass_td = 1, rush_td = 0,
                    offense_score_play = 1)
