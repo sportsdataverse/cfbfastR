@@ -1,3 +1,32 @@
+# **cfbfastR (development version)**
+
+### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
+
+The EP model is now the XGBoost artifact published in
+[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+— **the same artifact `sportsdataverse-py` scores with**, so both libraries
+agree on EPA for a given play and a retrain updates both from one publish
+([#138](https://github.com/sportsdataverse/cfbfastR/issues/138)).
+
+* **Fixes [#5](https://github.com/sportsdataverse/cfbfastR/issues/5)** — `epa_wpa = TRUE`
+  no longer aborts with `predict.nnet(): missing values in 'x'` on mid-era CFBD
+  data (seasons ~2006–2013), in either engine.
+* EP scoring is consolidated behind one internal helper, so the seven
+  next-score probability columns keep their historical names and order and no
+  downstream code changed. **The bundle's class order differs from the retired
+  model's** with no fixed point between them; the permutation is read from the
+  bundle's `MANIFEST.json` and asserted in tests, because getting it wrong
+  yields EP that is wrong yet plausible-looking.
+* Model artifacts are cached under the package cache dir and refreshed on the
+  `cfbfastR.cache_duration` TTL (default 24h), so a republished model is picked
+  up without a package update. An expired cached copy is still used if the
+  release is unreachable.
+* `xgboost` (Suggests) is now required to score EP and its floor moved to
+  `>= 1.7` for `.ubj` support. Without it — or offline with no cached copy —
+  the retired `nnet` model is loaded as a fallback and still works.
+* Existing EPA/WPA values **will change**: this is a different model
+  generation. Rebuild rather than mixing old and new outputs in one dataset.
+
 # **cfbfastR v3.0.0**
 
 ### New release-dataset loaders (39 functions)

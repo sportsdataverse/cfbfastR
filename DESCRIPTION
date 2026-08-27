@@ -70,7 +70,7 @@ Suggests:
     testthat,
     usethis (>= 1.6.0),
     withr,
-    xgboost (>= 1.1)
+    xgboost (>= 1.7)
 Config/roxygen2/version: 8.1.0
 Config/testthat/edition: 3
 Encoding: UTF-8

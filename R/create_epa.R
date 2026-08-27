@@ -94,9 +94,9 @@ create_epa <- function(play_df,
     dplyr::rename("yards_to_goal" = "yardline")
 
   # ep_start - make predictions on pred_df
-  ep_start <- as.data.frame(predict(ep_model, pred_df, type = "prob"))
-  # ep_start - rename next score type probability columns to ep_model$lev
-  colnames(ep_start) <- ep_model$lev
+  # .ep_predict() returns the seven next-score probabilities already named AND
+  # ordered by .EP_LEV whichever model generation is loaded.
+  ep_start <- .ep_predict(ep_model, pred_df)
 
   ## 2) epa_fg_probs FG model and missed FG weighted adjustment ----
   # ep_start_update - return FG model predictions and missed FG weighted adjustment
@@ -116,9 +116,7 @@ create_epa <- function(play_df,
   })
   ## 3) pred_df_after prediction ----
   # ep_after - calculate post-play expected points
-  ep_end <- predict(ep_model, pred_df_after, type = "prob")
-  # ep_end - rename next score type probability columns to ep_model$lev
-  colnames(ep_end) <- ep_model$lev
+  ep_end <- .ep_predict(ep_model, pred_df_after)
   # append `_after` to next score type probability columns
   colnames(ep_end) <- paste0(colnames(ep_end), "_after")
   pred_df_after <- cbind(pred_df_after, ep_end)
@@ -227,7 +225,7 @@ create_epa <- function(play_df,
     new_kick["distance"] <- 10
     new_kick["yards_to_goal"] <- 75
     new_kick["log_ydstogo"] <- log(10)
-    ep_kickoffs <- as.data.frame(predict(ep_model, new_kick, type = "prob"))
+    ep_kickoffs <- .ep_predict(ep_model, new_kick)
     if (table(kickoff_ind)[2] > 1) {
       pred_df[kickoff_ind, "ep_before"] <- apply(ep_kickoffs, 1, function(row) {
         sum(row * weights)
@@ -507,8 +505,11 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
         Goal_To_Go = rep(FALSE, n()),
         # Now first down:
         down = rep("1", n()),
-        # 10 yards to go
+        # 10 yards to go. `log_ydstogo` served the retired nnet formula; the
+        # bundled model reads raw `distance`, which otherwise would have kept
+        # the REAL play's distance and quietly contradicted the hypothetical.
         log_ydstogo = rep(log(10), n()),
+        distance = rep(10, n()),
         # Create Under_TwoMinute_Warning indicator
         Under_two = ifelse(.data$TimeSecsRem < 120,
           TRUE, FALSE
@@ -516,16 +517,9 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
         pos_score_diff_start = -1 * .data$pos_score_diff_start
       ) |> as.data.frame()
 
-    missed_fg_ep_preds <- ep_model |>
-      predict(newdata = missed_fg_dat, type = "probs") |>
-      as.data.frame()
-
-    if (dim(missed_fg_ep_preds)[2] == 1) {
-      missed_fg_ep_preds <- t(missed_fg_ep_preds)
-    }
-
-
-    colnames(missed_fg_ep_preds) <- ep_model$lev
+    # .ep_predict() always returns an n x 7 lev-named frame, so the old
+    # single-row transpose special case is no longer needed.
+    missed_fg_ep_preds <- .ep_predict(ep_model, missed_fg_dat)
     # Find the rows where TimeSecsRem became 0 or negative and
     # make all the probs equal to 0:
     end_game_i <-
