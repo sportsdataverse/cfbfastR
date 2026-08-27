@@ -33,15 +33,18 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
     ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
-    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+
     ## Hit:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+
+    ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
-    ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
-    ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+    ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
 
@@ -64,7 +67,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
     ## 0 upgraded, 0 newly installed, 0 to remove and 27 not upgraded.
 
-    ## ✔ 4 pkgs + 72 deps: kept 71 [10.6s]
+    ## ✔ 4 pkgs + 72 deps: kept 71 [15.4s]
 
 ``` r
 
@@ -225,7 +228,7 @@ cfbd_stats_categories()
 
     ## ── Stat categories for CollegeFootballData.com ─────────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 11:57:07 UTC
+    ## ℹ Data updated: 2026-08-27 15:36:07 UTC
 
     ## # A tibble: 38 × 1
     ##    category          

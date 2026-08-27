@@ -123,7 +123,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_season_weeks(year = 2024))
 #> ── Season weeks from ESPN ──────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 11:50:29 UTC
+#> ℹ Data updated: 2026-08-27 15:29:01 UTC
 #> # A tibble: 16 × 7
 #>    season season_type  week text    start_date        end_date          week_ref
 #>     <int>       <int> <int> <chr>   <chr>             <chr>             <chr>   

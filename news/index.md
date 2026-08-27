@@ -66,6 +66,54 @@ one publish
   generation. Rebuild rather than mixing old and new outputs in one
   dataset.
 
+#### Decision surfaces and QBR from the same bundle
+
+The three remaining `cfb_model_artifacts` artifacts are now used: the
+two-point, fourth-down and QBR models
+([\#140](https://github.com/sportsdataverse/cfbfastR/issues/140)).
+Unlike the model columns above, these are analytic surfaces — they build
+the game state that WOULD follow a choice, score it, and compare. They
+are ports of [`cfb4th`](https://github.com/sportsdataverse/cfb4th) and
+degrade to `NA` columns rather than failing when a model, the punt
+table, `arrow`, or a pre-game line is missing.
+
+- **New: the two-point decision.** On offensive touchdowns, `two_pt_wp`
+  / `xp_wp` / `two_pt_wp_diff` / `two_pt_recommendation` compare going
+  for two against kicking, using the conversion probability `prob_2pt`
+  and the opponent’s ensuing-drive win probability for each outcome.
+  Verified bit-identical to `sportsdataverse-py` to eight decimals. Read
+  `two_pt_wp_diff` rather than the bare recommendation: cfb4th’s rule
+  has no margin, and the bundled model is optimistic about college
+  conversion rates.
+- **New: the fourth-down decision.** On fourth downs, `go_wp` /
+  `punt_wp` / `fg_wp` and the comparison columns `go_boost`,
+  `go_wp_diff`, `fg_wp_diff`, `punt_wp_diff` and
+  `fourth_down_recommendation`. The go branch expands the fourth-down
+  model’s 76-class yards-gained distribution to one state per possible
+  outcome; the punt branch joins the empirical end-yardline distribution
+  (`NA` inside the 31, where cfb4th’s table is empty); the field-goal
+  branch carries cfb4th’s policy clamps (zero beyond 42 yards-to-goal,
+  0.9x from 35 out). `first_down_prob`, `wp_succeed`, `wp_fail`,
+  `make_fg_wp`, `miss_fg_wp` and `fourth_down_fg_make_prob` are exposed
+  alongside. Note the last of those is namespaced: `fg_make_prob`
+  already means the make probability of the field goal that was actually
+  attempted.
+- **New:
+  [`create_qbr()`](https://cfbfastR.sportsdataverse.org/reference/create_qbr.md).**
+  Per-quarterback, per-game leverage-weighted EPA components scored
+  through the bundled QBR model. It emits its own table rather than
+  columns on the play-by-play frame, so it is an entry point you call on
+  a modeled frame, not a pipeline stage.
+- These three surfaces have **no cross-language oracle** for the
+  fourth-down branches — `sportsdataverse-py`’s `get_go_wp()` raises on
+  pandas 3 — so they were ported from the `cfb4th` R source and gated
+  behaviourally against known college conversion and field-goal rates.
+  Three sign conventions were found inverted in the Python port while
+  doing so; each produced a confident wrong recommendation rather than
+  an error, and each is pinned by test here.
+- Every decision column is `NA` on the ESPN engine, which carries no
+  pre-game spread.
+
 ## **cfbfastR v3.0.0**
 
 CRAN release: 2026-08-24

@@ -1717,6 +1717,9 @@ helpers
 
   **Create WPA**
 
+- [`create_qbr()`](https://cfbfastR.sportsdataverse.org/reference/create_qbr.md)
+  : Calculate QBR for each quarterback in a modeled play-by-play frame
+
 - [`add_play_counts()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
   [`clean_drive_dat()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)
   [`prep_epa_df_after()`](https://cfbfastR.sportsdataverse.org/reference/helpers_pbp.md)

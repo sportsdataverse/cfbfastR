@@ -36,7 +36,7 @@ A `cfbfastR`-tagged tibble with one row per (category, leader):
 # \donttest{
   try(fox_cfb_team_stats(team_id = "11"))
 #> ── Team stat leaders from Fox Sports (Bifrost) ─────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 11:51:45 UTC
+#> ℹ Data updated: 2026-08-27 15:30:29 UTC
 #> # A tibble: 9 × 6
 #>   team_id category   stat                 stat_abbreviation player value
 #>   <chr>   <chr>      <chr>                <chr>             <chr>  <chr>

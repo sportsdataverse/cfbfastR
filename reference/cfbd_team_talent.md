@@ -39,15 +39,27 @@ Other CFBD Teams:
 ``` r
 # \donttest{
   try(cfbd_team_talent())
-#> 2026-08-27 11:48:50.838805:Invalid arguments or no team talent data available! ℹ In argument: `talent = as.numeric(.data$talent)`.
-#> Caused by error in `.data$talent`:
-#> ! Column `talent` not found in `.data`.
-#> data frame with 0 columns and 0 rows
+#> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
+#> ℹ Data updated: 2026-08-27 15:26:59 UTC
+#> # A tibble: 138 × 3
+#>     year school     talent
+#>    <int> <chr>       <dbl>
+#>  1  2026 Georgia     1004.
+#>  2  2026 Texas        985.
+#>  3  2026 Oregon       984.
+#>  4  2026 Alabama      974.
+#>  5  2026 Ohio State   964.
+#>  6  2026 Notre Dame   953.
+#>  7  2026 Texas A&M    933 
+#>  8  2026 LSU          932.
+#>  9  2026 USC          899 
+#> 10  2026 Florida      891.
+#> # ℹ 128 more rows
 
   try(cfbd_team_talent(year = 2018))
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-08-27 11:48:50 UTC
-#> # A tibble: 237 × 3
+#> ℹ Data updated: 2026-08-27 15:26:59 UTC
+#> # A tibble: 236 × 3
 #>     year school        talent
 #>    <int> <chr>          <dbl>
 #>  1  2018 Ohio State      984.
@@ -60,6 +72,6 @@ Other CFBD Teams:
 #>  8  2018 Michigan        862.
 #>  9  2018 Texas           861.
 #> 10  2018 Notre Dame      848.
-#> # ℹ 227 more rows
+#> # ℹ 226 more rows
 # }
 ```

@@ -512,6 +512,7 @@ Returns a `cfbfastR_data` tibble.
 | first_down_prob | double |  |
 | wp_succeed | double |  |
 | wp_fail | double |  |
+| fourth_down_fg_make_prob | double |  |
 | make_fg_wp | double |  |
 | miss_fg_wp | double |  |
 | fg_wp | double |  |
@@ -537,7 +538,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-08-27 11:52:24 UTC
+#> ℹ Data updated: 2026-08-27 15:31:11 UTC
 #> # A tibble: 83,210 × 469
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>
