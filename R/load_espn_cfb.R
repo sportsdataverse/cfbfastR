@@ -492,6 +492,7 @@ NULL
 #'    |first_down_prob                         |double    | |
 #'    |wp_succeed                              |double    | |
 #'    |wp_fail                                 |double    | |
+#'    |fourth_down_fg_make_prob                |double    | |
 #'    |make_fg_wp                              |double    | |
 #'    |miss_fg_wp                              |double    | |
 #'    |fg_wp                                   |double    | |
