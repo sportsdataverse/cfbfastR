@@ -88,13 +88,35 @@ test_that("a standalone PAT row is never a decision row (pre-2014 shape)", {
   expect_equal(.two_pt_decision_rows(df), c(FALSE, FALSE, FALSE, TRUE))
 })
 
-test_that("the TD flags that gate the decision exclude PAT play types", {
-  # Locks the derivation the test above depends on: these play_type values must
-  # not be treated as touchdowns by the exact-match rule in clean_pbp_dat().
+test_that("the production TD derivation classifies no PAT play type as a touchdown", {
+  # The test above holds only because clean_pbp_dat() assigns pass_td/rush_td from
+  # an EXACT play_type match. Comparing PAT literals against touchdown literals
+  # here would be tautological -- it would pass no matter what production does.
+  # So read the rule out of the SHIPPED function and evaluate PAT types against it:
+  # broaden the rule (another play_type, or a switch to a regex) and this fails.
+  src <- paste(deparse(body(cfbfastR:::.pbp_clean_pbp_dat)), collapse = " ")
+
+  td_set <- function(flag) {
+    i <- regexpr(paste0(flag, " = ifelse"), src, fixed = TRUE)
+    expect_true(i > 0,
+                info = paste0("no ", flag, " assignment found; if it was restructured",
+                              " this guard must be UPDATED, not deleted"))
+    rest <- substring(src, i)
+    j <- regexpr("%in% ", rest, fixed = TRUE)
+    rest <- substring(rest, j + 5L)
+    eval(parse(text = substring(rest, 1L, regexpr(")", rest, fixed = TRUE))))
+  }
+
   pat_types <- c("Extra Point Good", "Extra Point Missed",
                  "Two-Point Conversion Good", "Two-Point Conversion Missed")
-  expect_false(any(pat_types %in% c("Passing Touchdown")))
-  expect_false(any(pat_types %in% c("Rushing Touchdown")))
+  for (flag in c("pass_td", "rush_td")) {
+    s <- td_set(flag)
+    expect_gt(length(s), 0)
+    expect_false(any(pat_types %in% s),
+                 info = paste(flag, "now treats a PAT play type as a touchdown;",
+                              "the +6 in .two_pt_score_diff() would fire on an",
+                              "already-post-TD row"))
+  }
 })
 
 test_that(".pbp_add_two_pt_prob degrades to NA rather than raising", {
