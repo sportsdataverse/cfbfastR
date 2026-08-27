@@ -277,8 +277,14 @@ NULL
 #' The rare return-touchdown rows (`yards_to_goal_end == 100`, carrying under
 #' 0.2% of the mass) hand the ball straight back: everything the flip swapped is
 #' swapped again so the punting team is the one receiving a kickoff, and the
-#' seven points come off its differential. The clamp is applied to those rows
-#' exactly as cfb4th applies it, even though possession did not change there.
+#' seven points come off its differential.
+#'
+#' Because possession did NOT change on those rows, the win probability there is
+#' already the punting team's, and the kneel-out is a WIN for it rather than a
+#' loss. cfb4th clamps every row to zero, which pins a punting team that still
+#' leads after conceding the score to a certain loss. That is a deliberate
+#' divergence rather than a faithful port -- the same rule pointed at the wrong
+#' team is what this whole surface had wrong in three other places.
 #'
 #' @return Numeric, `nrow(st)` long; `NA` where the play's field position has no
 #'   punt distribution (inside the 31) or the table is unavailable.
@@ -323,8 +329,15 @@ NULL
   # cfb4th reads the clamp off the RESULTING frame: the team now holding the
   # ball leads, and the team it just took the ball from is out of timeouts, so
   # whoever is asking loses.
-  wp <- .fd_kneel_clamp(wp, s$pos_score_diff_start > 0, s$adj_TimeSecsRem,
-                        s$def_pos_team_timeouts_rem_before, 0, period = s$period)
+  # Pin to 0 where the ball actually changed hands, and to 1 on the return-TD
+  # rows where it came straight back -- see the note above.
+  wp <- ifelse(
+    !rtd,
+    .fd_kneel_clamp(wp, s$pos_score_diff_start > 0, s$adj_TimeSecsRem,
+                    s$def_pos_team_timeouts_rem_before, 0, period = s$period),
+    .fd_kneel_clamp(wp, s$pos_score_diff_start > 0, s$adj_TimeSecsRem,
+                    s$def_pos_team_timeouts_rem_before, 1, period = s$period)
+  )
 
   agg <- tapply(long$pct * wp, idx, sum)
   out[as.integer(names(agg))] <- as.numeric(agg)

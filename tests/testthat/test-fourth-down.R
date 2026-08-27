@@ -324,3 +324,19 @@ test_that("a goal-line gain is a touchdown even when distance exceeds it", {
   # when every outcome is bucketed as a failure.
   expect_gt(bad$wp_succeed, bad$wp_fail)
 })
+
+test_that("a punt return touchdown clamps toward a win, not a loss", {
+  # Possession never changes on those rows -- the ball comes straight back --
+  # so the win probability there is already the punting team's and a kneel-out
+  # is a WIN for it. cfb4th clamps every row to zero, which pins a punting team
+  # still leading after conceding the score to a certain loss.
+  #
+  # Asserted through the clamp helper: return-TD rows carry under 0.2% of the
+  # punt distribution's mass, so an assertion on punt_wp would pass either way.
+  wp <- 0.5
+  lead <- TRUE
+  expect_equal(.fd_kneel_clamp(wp, lead, 60, 0, 0, period = 4), 0)
+  expect_equal(.fd_kneel_clamp(wp, lead, 60, 0, 1, period = 4), 1)
+  # Not leading is nobody's kneel-out, whichever value is passed.
+  expect_equal(.fd_kneel_clamp(wp, FALSE, 60, 0, 1, period = 4), 0.5)
+})
