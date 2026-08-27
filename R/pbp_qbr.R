@@ -177,7 +177,9 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
     pass_epa = double(), rush_epa = double(), pen_epa = double(),
     spread = double(), era0 = double(), era1 = double(), era2 = double(),
     era3 = double(), exp_qbr = double(), stringsAsFactors = FALSE
-  )
+  ) |>
+    janitor::clean_names() |>
+    make_cfbfastR_data("QBR data", Sys.time())
   if (!is.data.frame(play_df) || !nrow(play_df)) return(empty)
   if (!all(c("EPA", "passer_player_name") %in% names(play_df))) {
     cli::cli_abort(c(
@@ -196,16 +198,22 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
   is_pass <- .qbr_flag(play_df, "pass")
   is_rush <- .qbr_flag(play_df, "rush")
 
-  # Only quarterbacks. A player is one for this purpose if he threw a pass in
-  # this frame; that is what keeps a wildcat rusher's carries out of the table
-  # while keeping a quarterback's own carries in it.
-  qbs <- unique(passer[is_pass & !is.na(passer)])
-  if (!length(qbs)) return(empty)
+  # Only quarterbacks, decided PER GAME AND TEAM rather than by name across the
+  # whole frame. A name-only set lets a quarterback who threw in one game but
+  # only carried in another produce a QBR row for that second game with no pass
+  # attempt in it, and merges two same-named players on different teams.
+  gkey <- .qbr_game_key(play_df)
+  pos <- as.character(play_df$pos_team)
+  eligible <- unique(
+    paste(gkey, pos, passer, sep = "\r")[is_pass & !is.na(passer)]
+  )
+  if (!length(eligible)) return(empty)
 
   athlete <- ifelse(!is.na(passer), passer, rusher)
   # cfbfastR carries no `scrimmage_play` column, so it is taken as pass-or-rush
   # -- the same substitution the CP surface makes.
-  keep <- !is.na(athlete) & (is_pass | is_rush) & athlete %in% qbs
+  keep <- !is.na(athlete) & (is_pass | is_rush) &
+    paste(gkey, pos, athlete, sep = "\r") %in% eligible
   if (!any(keep)) return(empty)
 
   epa <- .qbr_epa(play_df)
@@ -229,14 +237,12 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
   game_id <- if ("game_id" %in% names(play_df)) {
     as.character(play_df$game_id)
   } else {
-    # A frame with no game id is treated as one game rather than silently
-    # pooling across games -- the aggregates are per-QB-per-GAME, and merging
-    # two games into one row is a wrong number, not a missing one.
     rep(NA_character_, nrow(play_df))
   }
 
   dat <- data.frame(
     game_id = game_id[keep],
+    gkey = gkey[keep],
     pos_team = as.character(play_df$pos_team)[keep],
     athlete_name = athlete[keep],
     epa = epa[keep],
@@ -249,7 +255,11 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
     season = seasons[keep],
     stringsAsFactors = FALSE
   )
-  grp <- interaction(dat$game_id, dat$pos_team, dat$athlete_name,
+  # Group on the sentinel-backed key, never on `game_id` itself: `split()` drops
+  # every row whose factor level is NA, so a frame with no game id split into
+  # nothing, `rbind` returned NULL, and the documented one-game fallback died on
+  # the next line instead of returning a table.
+  grp <- interaction(dat$gkey, dat$pos_team, dat$athlete_name,
                      drop = TRUE, sep = "\r")
   split_rows <- split(seq_len(nrow(dat)), grp)
 
@@ -258,7 +268,7 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
     masked <- function(flag) .qbr_weighted_mean(ifelse(flag, d$epa, NA_real_),
                                                 ifelse(flag, d$weight, NA_real_))
     data.frame(
-      game_id = d$game_id[1], pos_team = d$pos_team[1],
+      game_id = d$game_id[1], gkey = d$gkey[1], pos_team = d$pos_team[1],
       athlete_name = d$athlete_name[1], plays = nrow(d),
       qbr_epa = .qbr_weighted_mean(d$epa, d$weight),
       sack_epa = masked(d$is_sack),
@@ -275,7 +285,28 @@ create_qbr <- function(play_df, qbr_model = NULL, season = NULL) {
   out <- cbind(out[, setdiff(names(out), "season")],
                .cfb_era_onehot(out$season, nrow(out)))
   out$exp_qbr <- .qbr_predict(out, qbr_model = qbr_model)
-  out[order(out$game_id, out$pos_team, -out$plays), names(empty)]
+  # Order on the sentinel key so an absent game_id does not sort to the end.
+  out <- out[order(out$gkey, out$pos_team, -out$plays), names(empty)]
+  out |>
+    janitor::clean_names() |>
+    make_cfbfastR_data("QBR data", Sys.time())
+}
+
+#' Grouping key that survives an absent `game_id`
+#'
+#' A frame with no `game_id` is treated as ONE game rather than silently pooling
+#' across games -- the aggregates are per-QB-per-GAME, and merging two games into
+#' one row is a wrong number, not a missing one. The sentinel exists because
+#' `split()` DROPS rows whose grouping level is `NA` rather than grouping them,
+#' so keying on `game_id` directly turned that documented fallback into an
+#' error. `game_id` itself stays `NA` in the returned table.
+#'
+#' @keywords internal
+#' @noRd
+.qbr_game_key <- function(df) {
+  if (!"game_id" %in% names(df)) return(rep("<single-game>", nrow(df)))
+  g <- as.character(df$game_id)
+  ifelse(is.na(g), "<single-game>", g)
 }
 
 #' Score the bundled QBR model on an aggregate frame

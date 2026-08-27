@@ -145,7 +145,14 @@ NULL
 
   s <- st[play_idx, , drop = FALSE]
   ytg <- s$yards_to_goal - gain
-  turnover <- as.integer(gain < s$distance)
+  # `distance` is clamped to the goal line before the comparison. On a row that
+  # ships `distance > yards_to_goal` the capped gain reaches the end zone but
+  # still falls short of `distance`, so the touchdown is classified a TURNOVER
+  # and the state becomes a first down at the offence's own goal line -- every
+  # outcome lands in the failure bucket and `first_down_prob` reads 0. cfb4th
+  # compares against the raw `distance`; this is a deliberate divergence,
+  # because the state it produces is not a state the game can be in.
+  turnover <- as.integer(gain < pmin(s$distance, s$yards_to_goal))
   to_mask <- turnover == 1L
   # A failed conversion hands the ball over where it sits, seen from the other
   # end of the field.

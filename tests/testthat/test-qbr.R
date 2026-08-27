@@ -121,3 +121,52 @@ test_that("create_qbr scores the bundled model onto a plausible scale", {
   expect_gt(out$exp_qbr[out$athlete_name == "QB Two"],
             out$exp_qbr[out$game_id == "1" & out$athlete_name == "QB One"])
 })
+
+test_that("pass eligibility is scoped to the game and team, not the name", {
+  # A quarterback who threw in game 1 but only carried in game 2 must not get a
+  # game-2 QBR row: a name-only eligibility set produced one whose pass_epa was
+  # NA, i.e. a quarterback line for a game with no pass attempt in it.
+  pbp <- data.frame(
+    game_id = c("1", "1", "2"), season = 2021,
+    pos_team = "Texas", home = "Texas", spread = -7, home_wp_before = 0.5,
+    EPA = c(1, -0.5, 0.4), pass = c(1, 1, 0), rush = c(0, 0, 1),
+    sack_vec = 0, fumble_vec = 0, penalty_flag = 0,
+    passer_player_name = c("QB One", "QB One", NA),
+    rusher_player_name = c(NA, NA, "QB One"), stringsAsFactors = FALSE
+  )
+  out <- create_qbr(pbp, qbr_model = NA)
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$game_id, "1")
+
+  # Same name, two teams, one game: two players, not one merged line.
+  two <- pbp[c(1, 1), ]
+  two$game_id <- "1"
+  two$pos_team <- c("Texas", "Oklahoma")
+  two$home <- "Texas"
+  expect_equal(nrow(create_qbr(two, qbr_model = NA)), 2L)
+})
+
+test_that("a frame with no game_id is one game, not an error", {
+  # `split()` DROPS rows whose grouping level is NA rather than grouping them,
+  # so keying on game_id directly made this documented fallback throw
+  # "incorrect number of dimensions" instead of returning a table.
+  pbp <- data.frame(
+    season = 2021, pos_team = "Texas", home = "Texas", spread = -7,
+    home_wp_before = 0.5, EPA = c(1, -0.5, 0.4),
+    pass = c(1, 1, 0), rush = c(0, 0, 1),
+    sack_vec = 0, fumble_vec = 0, penalty_flag = 0,
+    passer_player_name = c("QB One", "QB One", NA),
+    rusher_player_name = c(NA, NA, "QB One"), stringsAsFactors = FALSE
+  )
+  out <- create_qbr(pbp, qbr_model = NA)
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$plays, 3L)
+  expect_true(is.na(out$game_id))   # the sentinel is internal only
+})
+
+test_that("create_qbr returns a finalized cfbfastR_data frame on every path", {
+  expect_s3_class(create_qbr(mk_pbp(), qbr_model = NA), "cfbfastR_data")
+  expect_s3_class(create_qbr(mk_pbp()[0, , drop = FALSE]), "cfbfastR_data")
+  no_qb <- mk_pbp(); no_qb$passer_player_name <- NA_character_
+  expect_s3_class(create_qbr(no_qb), "cfbfastR_data")
+})

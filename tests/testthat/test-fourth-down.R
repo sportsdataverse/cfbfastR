@@ -295,3 +295,24 @@ test_that("the decision columns never overwrite a column the pbp frame ships", {
   emitted <- c(.FD_NUMERIC_COLS, "fourth_down_recommendation")
   expect_equal(intersect(emitted, .pbp_output_order), character(0))
 })
+
+test_that("a goal-line gain is a touchdown even when distance exceeds it", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_fd_model()), "bundled fd_model unavailable")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  # CFBD ships ~0.12% of fourth downs with distance > yards_to_goal (32 rows in
+  # 2023, 18 in 2015). Comparing the capped gain against the raw distance marks
+  # every one of those outcomes -- the touchdown included -- a turnover, so
+  # first_down_prob reads exactly 0 and the state becomes a first down at the
+  # offence's OWN goal line. Nothing raises.
+  bad <- .fd_go_wp(mk_late(distance = 8, yards_to_goal = 3, period = 2, adj = 1800))
+  # Not equal to the 4th-and-3 case -- `distance` is itself a feature of the
+  # gain model, so the distribution legitimately differs. What must hold is that
+  # the success bucket is reachable at all: before the clamp it was empty, so
+  # first_down_prob was exactly 0 and wp_succeed exactly NA.
+  expect_gt(bad$first_down_prob, 0)
+  expect_false(is.na(bad$wp_succeed))
+  # And the scoring outcome has to beat the failing one, which cannot be true
+  # when every outcome is bucketed as a failure.
+  expect_gt(bad$wp_succeed, bad$wp_fail)
+})
