@@ -7,6 +7,11 @@
 #' @param play_df (*data.frame* required): Clean PBP as input from [cfbd_pbp_data()]
 #' @param ep_model (*model* default `cfbfastR`'s `ep_model`): Expected Points (EP) Model
 #' @param fg_model (*model* default `cfbfastR`'s `fg_model`): Field Goal (FG) Model
+#' @param season (*numeric* optional): Season of the game. Required when the
+#'   loaded FG model is era-aware (the bundled `fg_model.ubj` takes one-hot
+#'   rule-era features); ignored by the retired single-feature GAM. Passing
+#'   `NULL` with an era-aware model is an error rather than a silent
+#'   all-zero era encoding.
 #' @details Code Description
 #' \describe{
 #'   \item{1. `pred_df`:}{Use select before play model variables -> Make predictions.}
@@ -476,6 +481,8 @@ create_epa <- function(play_df,
 #' @param current_probs (__data.frame__ required): Expected Points (EP) model raw probability outputs from initial prediction
 #' @param ep_model (__model__, default `cfbfastR`'s `ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #' @param fg_mod (__model__, default `cfbfastR`'s `fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
+#' @param season (*numeric* optional): Season of the game, required when the
+#'   loaded FG model is era-aware. See [create_epa()].
 #'
 #' @return Updated expected points probabilities with FG make/miss weighted adjustment
 #' @keywords internal

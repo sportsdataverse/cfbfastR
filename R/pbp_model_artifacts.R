@@ -17,11 +17,10 @@
 #'   one place is the point -- a per-call-site fix would leave the next new
 #'   call site free to get it wrong.
 #'
-#' @name cfb_model_artifacts
 #' @keywords internal
+#' @noRd
 NULL
 
-#' @rdname cfb_model_artifacts
 #' @keywords internal
 #' @noRd
 .CFB_MODEL_BASE <- paste0(
@@ -46,7 +45,6 @@ NULL
 #' @noRd
 .EP_LEV <- c("No_Score", "FG", "Opp_FG", "Opp_Safety", "Opp_TD", "Safety", "TD")
 
-#' @rdname cfb_model_artifacts
 #' @keywords internal
 #' @noRd
 .EP_FEATURES <- c(
@@ -460,7 +458,6 @@ NULL
 #' @noRd
 .FG_ERA_CUTS <- c(2006, 2013, 2020)
 
-#' @rdname cfb_model_artifacts
 #' @keywords internal
 #' @noRd
 .FG_FEATURES <- c("yards_to_goal", "era0", "era1", "era2", "era3")
@@ -641,7 +638,6 @@ NULL
 #' @noRd
 .XPASS_ERA_CUTS <- c(2006, 2013, 2017)
 
-#' @rdname cfb_model_artifacts
 #' @keywords internal
 #' @noRd
 .XPASS_FEATURES <- c(
