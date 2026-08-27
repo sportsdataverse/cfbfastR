@@ -327,3 +327,118 @@ NULL
   colnames(p) <- .EP_LEV
   as.data.frame(p)
 }
+
+#' Completion Probability feature contract
+#'
+#' Order is the booster's own, from the bundle manifest.
+#'
+#' **`score_diff` is fed from `pos_score_diff_start`, not from the frame's own
+#' `score_diff` column.** Both exist in cfbfastR and they are NOT equal (the
+#' former is signed from the possessing team's view), so reading the
+#' like-named column would produce completion probabilities that are wrong yet
+#' entirely plausible. sdv-py's `cp_sources` map is the reference.
+#'
+#' @keywords internal
+#' @noRd
+.CP_FEATURES <- c(
+  "down", "distance", "yards_to_goal", "score_diff",
+  "seconds_remaining", "is_home", "period", "passing_down"
+)
+
+#' Lazily load the bundled completion-probability model
+#'
+#' Unlike EP/WP there is no legacy CFB CP model to fall back to, so this is
+#' bundle-or-nothing and returns `NULL` when unavailable. Loaded on first use
+#' rather than at `.onLoad()` so users who never ask for CP pay no download.
+#'
+#' @keywords internal
+#' @noRd
+.cfb_cp_model <- function() {
+  if (!is.null(.cfb_model_env$cp_model)) return(.cfb_model_env$cp_model)
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  f <- .cfb_model_file("cfb_cp_model.ubj")
+  if (is.null(f)) return(NULL)
+  b <- try(xgboost::xgb.load(f), silent = TRUE)
+  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  .cfb_model_env$cp_model <- b
+  b
+}
+
+#' Is this a passing down?
+#'
+#' cfbfastR/sdv-py definition: a scrimmage play on 2nd & 8+, 3rd & 5+, or
+#' 4th & 5+. cfbfastR carries no `scrimmage_play` column, so it is taken as
+#' pass-or-rush.
+#'
+#' @keywords internal
+#' @noRd
+.cp_passing_down <- function(df) {
+  num <- function(nm) if (nm %in% names(df)) {
+    suppressWarnings(as.numeric(as.character(df[[nm]])))
+  } else rep(NA_real_, nrow(df))
+  scrimmage <- (num("pass") %in% 1) | (num("rush") %in% 1)
+  # `%in%` above collapses NA to FALSE, which is the intent: an unclassified
+  # play is not a passing down.
+  d <- num("down"); dist <- num("distance")
+  out <- scrimmage & (
+    (d == 2 & dist >= 8) | (d == 3 & dist >= 5) | (d == 4 & dist >= 5)
+  )
+  as.numeric(!is.na(out) & out)
+}
+
+#' Build the CP model's feature matrix
+#' @keywords internal
+#' @noRd
+.cp_feature_matrix <- function(df) {
+  n <- nrow(df)
+  pick <- function(nm) suppressWarnings(as.numeric(as.character(df[[nm]])))
+  m <- cbind(
+    down = pick("down"),
+    distance = pick("distance"),
+    yards_to_goal = pick("yards_to_goal"),
+    # NOT df$score_diff -- see .CP_FEATURES.
+    score_diff = pick("pos_score_diff_start"),
+    seconds_remaining = pick("TimeSecsRem"),
+    is_home = .wp_is_home(df),
+    period = pick("period"),
+    passing_down = .cp_passing_down(df)
+  )
+  colnames(m) <- .CP_FEATURES
+  m
+}
+
+#' Append completion probability (`cp`) and completion % over expected (`cpoe`)
+#'
+#' `cp` is populated on pass plays only; `cpoe` is
+#' `100 * (completion - cp)` on those same plays, matching sdv-py's
+#' percentage-point scale. Both are `NA` elsewhere.
+#'
+#' Never raises: a missing model, missing `xgboost`, or a frame lacking the
+#' required inputs yields all-`NA` columns, so the surface is safe to run
+#' unconditionally in the pipeline.
+#'
+#' @keywords internal
+#' @noRd
+.pbp_add_cp_cpoe <- function(df) {
+  # rep() not a scalar: `df$cp <- NA_real_` errors on a zero-row frame
+  # ("replacement has 1 row, data has 0").
+  df$cp <- rep(NA_real_, nrow(df))
+  df$cpoe <- rep(NA_real_, nrow(df))
+  need <- c("down", "distance", "yards_to_goal", "pos_score_diff_start",
+            "TimeSecsRem", "period", "pass", "completion")
+  if (!nrow(df) || !all(need %in% names(df))) return(df)
+  model <- .cfb_cp_model()
+  if (is.null(model)) return(df)
+
+  p <- try({
+    x <- .cp_feature_matrix(df)
+    as.numeric(stats::predict(model, x))
+  }, silent = TRUE)
+  if (inherits(p, "try-error") || length(p) != nrow(df)) return(df)
+
+  is_pass <- suppressWarnings(as.numeric(as.character(df$pass))) %in% 1
+  comp <- suppressWarnings(as.numeric(as.character(df$completion)))
+  df$cp <- ifelse(is_pass, p, NA_real_)
+  df$cpoe <- ifelse(is_pass & !is.na(comp), 100 * (comp - df$cp), NA_real_)
+  df
+}

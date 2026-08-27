@@ -103,7 +103,11 @@
     .pbp_attach_player_ids(roster = roster) |>
     .pbp_prep_epa_df_after() |>
     .pbp_create_epa(ep_model = ep_model, fg_model = fg_model) |>
-    .pbp_create_wpa_naive(wp_model = wp_model)
+    .pbp_create_wpa_naive(wp_model = wp_model) |>
+    # Additive and self-contained: CP/CPOE lazily loads its own bundled model
+    # and emits all-NA columns rather than raising when it or its inputs are
+    # unavailable, matching sdv-py `__process_cpoe`.
+    .pbp_add_cp_cpoe()
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress
