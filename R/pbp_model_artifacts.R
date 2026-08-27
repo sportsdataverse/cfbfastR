@@ -32,6 +32,7 @@ NULL
 #' @keywords internal
 #' @noRd
 .cfb_model_env <- new.env(parent = emptyenv())
+.cfb_model_env$unavailable <- list()
 
 #' EP next-score class order, point values and feature contract
 #'
@@ -353,11 +354,18 @@ NULL
 #' @noRd
 .cfb_cp_model <- function() {
   if (!is.null(.cfb_model_env$cp_model)) return(.cfb_model_env$cp_model)
-  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  # A failed fetch is remembered too. Without it .cfb_model_file() retries the
+  # download on EVERY game of a season sweep and pays the timeout each time.
+  if (isTRUE(.cfb_model_env$unavailable[["cp_model"]])) return(NULL)
+  fail <- function() {
+    .cfb_model_env$unavailable[["cp_model"]] <- TRUE
+    NULL
+  }
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(fail())
   f <- .cfb_model_file("cfb_cp_model.ubj")
-  if (is.null(f)) return(NULL)
+  if (is.null(f)) return(fail())
   b <- try(xgboost::xgb.load(f), silent = TRUE)
-  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  if (inherits(b, "try-error") || is.null(b)) return(fail())
   .cfb_model_env$cp_model <- b
   b
 }
@@ -450,6 +458,42 @@ NULL
   df$cp <- ifelse(is_pass, p, NA_real_)
   df$cpoe <- ifelse(is_pass & !is.na(comp), 100 * (comp - df$cp), NA_real_)
   df
+}
+
+#' Season of a game, falling back to its date
+#'
+#' `.espn_pbp_game_meta()` leaves `season` as `NA_integer_` when the event's
+#' week/season `$ref` cannot be resolved. Handing that to the era-aware FG
+#' model aborts scoring for the whole game, and the wrapper's outer handler
+#' swallows it -- the game comes back silently unmodeled.
+#'
+#' The season is therefore DERIVED from the game date rather than defaulted:
+#' fabricating one would produce a valid-looking era one-hot and quietly skew
+#' every field-goal probability, which is the failure this whole path is built
+#' to avoid. The cut matches [most_recent_cfb_season()] -- a game before
+#' August belongs to the previous season, which is what keeps bowl and playoff
+#' games in January with the season they were played in.
+#'
+#' @param season Season as resolved by the caller; used when usable.
+#' @param game_date Date-like string, e.g. ESPN's ISO timestamp.
+#' @return Numeric season, or `NA_real_` when neither source is usable.
+#' @keywords internal
+#' @noRd
+.cfb_season_or_date <- function(season, game_date = NULL) {
+  s <- suppressWarnings(as.numeric(season))
+  if (length(s) && !all(is.na(s))) return(s)
+  if (is.null(game_date) || !length(game_date) || all(is.na(game_date))) {
+    return(NA_real_)
+  }
+  # tryCatch, not suppressWarnings: as.Date() on an unparseable string ERRORS
+  # ("character string is not in a standard unambiguous format"), which would
+  # propagate out of the very helper that exists to degrade gracefully.
+  d <- tryCatch(as.Date(substr(as.character(game_date[1]), 1, 10)),
+                error = function(e) NA)
+  if (length(d) != 1L || is.na(d)) return(NA_real_)
+  yr <- as.numeric(format(d, "%Y"))
+  mo <- as.numeric(format(d, "%m"))
+  ifelse(mo < 8, yr - 1, yr)
 }
 
 #' Field-goal model feature contract and rule-era cuts
@@ -554,11 +598,18 @@ NULL
 #' @noRd
 .cfb_wp_spread_model <- function() {
   if (!is.null(.cfb_model_env$wp_spread)) return(.cfb_model_env$wp_spread)
-  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  # A failed fetch is remembered too. Without it .cfb_model_file() retries the
+  # download on EVERY game of a season sweep and pays the timeout each time.
+  if (isTRUE(.cfb_model_env$unavailable[["wp_spread"]])) return(NULL)
+  fail <- function() {
+    .cfb_model_env$unavailable[["wp_spread"]] <- TRUE
+    NULL
+  }
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(fail())
   f <- .cfb_model_file("wp_spread.ubj")
-  if (is.null(f)) return(NULL)
+  if (is.null(f)) return(fail())
   b <- try(xgboost::xgb.load(f), silent = TRUE)
-  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  if (inherits(b, "try-error") || is.null(b)) return(fail())
   .cfb_model_env$wp_spread <- b
   b
 }
@@ -675,11 +726,18 @@ NULL
 #' @noRd
 .cfb_xpass_model <- function() {
   if (!is.null(.cfb_model_env$xpass)) return(.cfb_model_env$xpass)
-  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  # A failed fetch is remembered too. Without it .cfb_model_file() retries the
+  # download on EVERY game of a season sweep and pays the timeout each time.
+  if (isTRUE(.cfb_model_env$unavailable[["xpass"]])) return(NULL)
+  fail <- function() {
+    .cfb_model_env$unavailable[["xpass"]] <- TRUE
+    NULL
+  }
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(fail())
   f <- .cfb_model_file("xpass_model.ubj")
-  if (is.null(f)) return(NULL)
+  if (is.null(f)) return(fail())
   b <- try(xgboost::xgb.load(f), silent = TRUE)
-  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  if (inherits(b, "try-error") || is.null(b)) return(fail())
   .cfb_model_env$xpass <- b
   b
 }
@@ -747,11 +805,18 @@ NULL
 #' @noRd
 .cfb_two_pt_model <- function() {
   if (!is.null(.cfb_model_env$two_pt)) return(.cfb_model_env$two_pt)
-  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  # A failed fetch is remembered too. Without it .cfb_model_file() retries the
+  # download on EVERY game of a season sweep and pays the timeout each time.
+  if (isTRUE(.cfb_model_env$unavailable[["two_pt"]])) return(NULL)
+  fail <- function() {
+    .cfb_model_env$unavailable[["two_pt"]] <- TRUE
+    NULL
+  }
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(fail())
   f <- .cfb_model_file("two_pt_model.ubj")
-  if (is.null(f)) return(NULL)
+  if (is.null(f)) return(fail())
   b <- try(xgboost::xgb.load(f), silent = TRUE)
-  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  if (inherits(b, "try-error") || is.null(b)) return(fail())
   .cfb_model_env$two_pt <- b
   b
 }

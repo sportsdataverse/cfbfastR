@@ -117,3 +117,39 @@ test_that("every entry point forwards season to the era-aware FG model", {
     expect_gt(sum(is.finite(r$EPA)), 100)
   }
 })
+
+test_that(".cfb_season_or_date prefers a resolved season", {
+  expect_equal(.cfb_season_or_date(2021, "2022-01-10T00:00Z"), 2021)
+  expect_equal(.cfb_season_or_date(c(2019, 2019), NULL), c(2019, 2019))
+})
+
+test_that(".cfb_season_or_date derives the season from the game date", {
+  # An unresolved meta$season would otherwise abort FG scoring and hand back a
+  # silently unmodeled game.
+  expect_equal(.cfb_season_or_date(NA, "2021-09-04T23:30Z"), 2021)
+  # January bowl and playoff games belong to the PREVIOUS season -- the same
+  # August cut most_recent_cfb_season() uses.
+  expect_equal(.cfb_season_or_date(NA, "2022-01-10T00:00Z"), 2021)
+  expect_equal(.cfb_season_or_date(NA_integer_, "2021-12-31"), 2021)
+  expect_equal(.cfb_season_or_date(NA, "2021-07-15"), 2020)
+})
+
+test_that(".cfb_season_or_date returns NA rather than inventing a season", {
+  # Fabricating one would produce a valid-looking era one-hot and quietly skew
+  # every field-goal probability -- the failure the hard error exists to catch.
+  expect_true(is.na(.cfb_season_or_date(NA, NULL)))
+  expect_true(is.na(.cfb_season_or_date(NA, NA)))
+  expect_true(is.na(.cfb_season_or_date(NA, "not-a-date")))
+})
+
+test_that("an unavailable bundled model is not re-fetched on every call", {
+  # A season sweep calls these once per game; without negative caching a
+  # failing artifact re-downloads (and re-times-out) for every game.
+  old <- .cfb_model_env$unavailable
+  on.exit(.cfb_model_env$unavailable <- old, add = TRUE)
+  .cfb_model_env$unavailable <- list(cp_model = TRUE)
+  cached <- .cfb_model_env$cp_model
+  .cfb_model_env$cp_model <- NULL
+  on.exit(.cfb_model_env$cp_model <- cached, add = TRUE)
+  expect_null(.cfb_cp_model())
+})

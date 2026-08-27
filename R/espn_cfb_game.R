@@ -6752,9 +6752,11 @@ espn_cfb_pbp_v2 <- function(game_id,
         wp_model     = wp_model,
         roster       = roster_df,
         participants = participants_df,
-        # The era-aware FG model needs the season; meta$season is resolved
-        # from the event's week/season $ref above.
-        season       = meta$season
+        # The era-aware FG model needs the season. meta$season is NA when the
+        # event's week/season $ref could not be resolved, so fall back to
+        # deriving it from the game date -- otherwise FG scoring aborts and the
+        # outer handler hands back a silently unmodeled game.
+        season       = .cfb_season_or_date(meta$season, meta$game_date)
       ) |>
         dplyr::select(-dplyr::any_of("ppa"))   # drop the placeholder
 
