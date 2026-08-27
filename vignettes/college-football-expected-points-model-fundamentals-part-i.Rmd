@@ -176,3 +176,68 @@ BibTex Citation
 -   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
 -   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
 -   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package
+
+# **Our Authors**
+-   [Saiem Gilani](https://x.com/saiemgilani)
+<a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a>
+<a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>
+-   [Akshay Easwaran](https://x.com/akeaswaran)
+<a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a>
+<a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
+-   [Jared Lee](https://x.com/JaredDLee)
+<a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+<a href='https://github.com/JaredDLee' target='blank'><img src='https://img.shields.io/github/followers/JaredDLee?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@JaredDLee'/></a>
+-   [Eric Hess](https://x.com/arbitanalytics)
+<a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
+<a href='https://github.com/arbitanalytics' target='blank'><img src='https://img.shields.io/github/followers/arbitanalytics?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
+
+## **Our Contributors**
+-   [Michael Egle](https://x.com/deceptivespeed_)
+<a href='https://x.com/deceptivespeed_' target='blank'><img src='https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge' alt='@deceptivespeed_'/></a>
+-   [Nate Manzo](https://x.com/cfbnate)
+<a href='https://x.com/cfbnate' target='blank'><img src='https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge' alt='@cfbnate'/></a>
+-   [Jason DeLoach](https://x.com/CFBNumbers)
+<a href='https://x.com/CFBNumbers' target='blank'><img src='https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge' alt='@CFBNumbers'/></a>
+-   [Tej Seth](https://x.com/tejfbanalytics)
+<a href='https://x.com/tejfbanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge' alt='@tejfbanalytics'/></a>
+-   [Conor McQuiston](https://x.com/ConorMcQ5)
+<a href='https://x.com/ConorMcQ5' target='blank'><img src='https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge' alt='@ConorMcQ5'/></a>
+-   [Tan Ho](https://x.com/_TanHo)
+<a href='https://x.com/_TanHo' target='blank'><img src='https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge' alt='@_TanHo'/></a>
+-   [Keegan Abdoo](https://x.com/KeeganAbdoo)
+<a href='https://x.com/KeeganAbdoo' target='blank'><img src='https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge' alt='@KeeganAbdoo'/></a>
+-   [Matt Spencer](https://x.com/Maatspencer)
+<a href='https://x.com/Maatspencer' target='blank'><img src='https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge' alt='@Maatspencer'/></a>
+-   [Sebastian Carl](https://x.com/mrcaseb)
+<a href='https://x.com/mrcaseb' target='blank'><img src='https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge' alt='@mrcaseb'/></a>
+-   [John Edwards](https://x.com/John_B_Edwards)
+<a href='https://x.com/John_B_Edwards' target='blank'><img src='https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge' alt='@John_B_Edwards'/></a>
+-   [Brad Hill](https://x.com/bradisblogging)
+<a href='https://x.com/bradisblogging' target='blank'><img src='https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge' alt='@bradisblogging'/></a>
+
+## **Citation**
+
+To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R package in publications, use:
+
+BibTex Citation
+
+```bibtex
+@misc{cfbfastr,
+  author = {Saiem Gilani, Akshay Easwaran, Jared Lee, Eric Hess},
+  title = {cfbfastR: The SportsDataverse's R Package for College Football Data},
+  url = {https://cfbfastR.sportsdataverse.org/},
+  year = {2026}
+}
+```
+
+## **Related SportsDataverse packages**
+
+-   [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college football
+-   [**hoopR**](https://hoopR.sportsdataverse.org/) - men's basketball
+-   [**wehoop**](https://wehoop.sportsdataverse.org/) - women's basketball
+-   [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
+-   [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
+-   [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
+-   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+-   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
+-   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package
