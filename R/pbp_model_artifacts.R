@@ -732,3 +732,135 @@ NULL
   df$pass_oe <- ifelse(scrimmage & !is.na(pass), 100 * (pass - df$xpass), NA_real_)
   df
 }
+
+#' Two-point conversion feature contract
+#'
+#' Uses the ORDINAL era ([.cfb_era_ordinal()], cuts 2006/2013/2017), the same
+#' encoding `xpass_model` takes -- not the one-hot set the FG model uses.
+#'
+#' @keywords internal
+#' @noRd
+.TWO_PT_FEATURES <- c("posteam_spread", "posteam_total", "pos_score_diff", "era")
+
+#' Lazily load the bundled two-point conversion model
+#' @keywords internal
+#' @noRd
+.cfb_two_pt_model <- function() {
+  if (!is.null(.cfb_model_env$two_pt)) return(.cfb_model_env$two_pt)
+  if (!requireNamespace("xgboost", quietly = TRUE)) return(NULL)
+  f <- .cfb_model_file("two_pt_model.ubj")
+  if (is.null(f)) return(NULL)
+  b <- try(xgboost::xgb.load(f), silent = TRUE)
+  if (inherits(b, "try-error") || is.null(b)) return(NULL)
+  .cfb_model_env$two_pt <- b
+  b
+}
+
+#' Implied team total for the team in possession
+#'
+#' Not the game over/under: the market's expected points for THIS team, split
+#' out of the total using the spread. `(homeTeamSpread + overUnder) / 2` when
+#' the posteam is home, `(overUnder - homeTeamSpread) / 2` when away.
+#'
+#' `homeTeamSpread` is the negation of CFBD's `spread` -- CFBD is negative when
+#' the home team is favoured (verified over 83 games, see
+#' [.wp_pos_team_spread()]) while `homeTeamSpread` is positive then. Skipping
+#' that conversion silently swaps the two teams' implied totals.
+#'
+#' @keywords internal
+#' @noRd
+.cfb_posteam_total <- function(df) {
+  if (!all(c("spread", "over_under") %in% names(df))) return(NULL)
+  spread <- suppressWarnings(as.numeric(df$spread))
+  ou <- suppressWarnings(as.numeric(df$over_under))
+  if (all(is.na(spread)) || all(is.na(ou))) return(NULL)
+  home_spread <- -spread
+  is_home <- .wp_is_home(df) == 1
+  ifelse(is_home, (home_spread + ou) / 2, (ou - home_spread) / 2)
+}
+
+#' Score differential at the two-point decision, from the scoring team's view
+#'
+#' The PAT shares the touchdown's play row in this data (CFBD emits no separate
+#' extra-point rows), so `pos_score_diff_start` is the PRE-touchdown margin and
+#' the decision has to be scored at the POST-touchdown one: add 6.
+#'
+#' The `+6` applies to OFFENSIVE touchdowns only. `pass_td` also fires on
+#' pick-sixes, so it is ANDed with `offense_score_play`; without that a
+#' defensive return touchdown would push the possessing team's score frame the
+#' wrong way by six points.
+#'
+#' @keywords internal
+#' @noRd
+.two_pt_score_diff <- function(df) {
+  diff <- suppressWarnings(as.numeric(df$pos_score_diff_start))
+  tf <- function(nm) {
+    if (!nm %in% names(df)) return(rep(FALSE, nrow(df)))
+    v <- df[[nm]]
+    if (is.logical(v)) return(!is.na(v) & v)
+    suppressWarnings(as.numeric(v)) %in% 1
+  }
+  offensive_td <- (tf("pass_td") | tf("rush_td")) & tf("offense_score_play")
+  ifelse(offensive_td, diff + 6, diff)
+}
+
+#' Rows where a two-point decision is actually faced
+#'
+#' Offensive touchdowns. A defensive score is not the possessing team's
+#' decision, and a non-scoring play has no try to make.
+#'
+#' @keywords internal
+#' @noRd
+.two_pt_decision_rows <- function(df) {
+  tf <- function(nm) {
+    if (!nm %in% names(df)) return(rep(FALSE, nrow(df)))
+    v <- df[[nm]]
+    if (is.logical(v)) return(!is.na(v) & v)
+    suppressWarnings(as.numeric(v)) %in% 1
+  }
+  (tf("pass_td") | tf("rush_td")) & tf("offense_score_play")
+}
+
+#' Append the two-point conversion probability (`prob_2pt`)
+#'
+#' The bundled model's conversion probability on the rows where a team has just
+#' scored an offensive touchdown and must choose between the extra point and
+#' going for two. `NA` on every other row, and wherever the game has no
+#' pre-game line (the model reads the spread and the implied team total).
+#'
+#' This is the model-scoring half of the surface. The full cfb4th decision
+#' (`two_pt_wp` / `xp_wp` / `two_pt_recommendation`) additionally needs the
+#' opponent's ensuing-drive win probability scored for each try outcome, which
+#' is tracked separately.
+#'
+#' Never raises.
+#'
+#' @param season Season of the game, for the ordinal era feature.
+#' @keywords internal
+#' @noRd
+.pbp_add_two_pt_prob <- function(df, season = NULL) {
+  df$prob_2pt <- rep(NA_real_, nrow(df))
+  if (!nrow(df) || !"pos_score_diff_start" %in% names(df)) return(df)
+  if (is.null(season) || all(is.na(season))) return(df)
+  total <- .cfb_posteam_total(df)
+  spread <- .wp_pos_team_spread(df)
+  if (is.null(total) || is.null(spread)) return(df)
+  model <- .cfb_two_pt_model()
+  if (is.null(model)) return(df)
+
+  p <- try({
+    x <- cbind(
+      posteam_spread = spread,
+      posteam_total = total,
+      pos_score_diff = .two_pt_score_diff(df),
+      era = .cfb_era_ordinal(season, nrow(df))
+    )
+    colnames(x) <- .TWO_PT_FEATURES
+    as.numeric(stats::predict(model, x))
+  }, silent = TRUE)
+  if (inherits(p, "try-error") || length(p) != nrow(df)) return(df)
+
+  rows <- .two_pt_decision_rows(df)
+  df$prob_2pt <- ifelse(rows & !is.na(spread) & !is.na(total), p, NA_real_)
+  df
+}

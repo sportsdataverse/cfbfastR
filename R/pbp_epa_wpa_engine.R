@@ -117,7 +117,10 @@
     .pbp_add_cp_cpoe() |>
     # xpass needs the season for its ORDINAL era feature (2017 cut), which is
     # a different encoding from the FG model's one-hot era (2020 cut).
-    .pbp_add_xpass(season = season)
+    .pbp_add_xpass(season = season) |>
+    # Model-scoring half of the two-point surface; the WP-comparison decision
+    # columns need hypothetical ensuing-drive states and are tracked in #140.
+    .pbp_add_two_pt_prob(season = season)
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress
