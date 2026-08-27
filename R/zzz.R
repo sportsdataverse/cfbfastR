@@ -84,35 +84,107 @@
     }
   }
 }
-load_ep_model <- function(){
+#' Load the Expected Points model
+#'
+#' Fetches `ep_model.ubj` from the shared `cfb_model_artifacts` release -- the
+#' same artifact `sportsdataverse-py` scores with, so both libraries agree on
+#' EPA and a retrain updates both in one publish.
+#'
+#' Falls back to the retired `nnet::multinom` on `cfbfastR-data` when the
+#' bundle or `xgboost` is unavailable, so an offline session still returns a
+#' usable model. [`.ep_predict()`] accepts either generation. Note the legacy
+#' model aborts on mid-era CFBD data (issue #5); the bundled model does not.
+#'
+#' @keywords internal
+#' @noRd
+load_ep_model <- function() {
+  if (requireNamespace("xgboost", quietly = TRUE)) {
+    f <- .cfb_model_file("ep_model.ubj")
+    if (!is.null(f)) {
+      booster <- try(xgboost::xgb.load(f), silent = TRUE)
+      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
+    }
+  }
+  .load_legacy_ep_model()
+}
+
+#' Retired nnet EP model, kept as the offline/no-xgboost fallback
+#' @keywords internal
+#' @noRd
+.load_legacy_ep_model <- function() {
   ep_model <- NULL
   # load the model from GitHub because it is too large for the package
-  .url = url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/ep_model.Rdata")
+  .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/ep_model.Rdata")
   on.exit(close(.url))
   try(
     load(.url),
     silent = TRUE
   )
-  return (ep_model)
+  return(ep_model)
 }
-load_fg_model <- function(){
+#' Load the Field Goal model
+#'
+#' Prefers the era-aware `fg_model.ubj` from the shared `cfb_model_artifacts`
+#' release; falls back to the retired single-feature `mgcv::bam` when the
+#' bundle or `xgboost` is unavailable. [`.fg_make_prob()`] scores either.
+#'
+#' @keywords internal
+#' @noRd
+load_fg_model <- function() {
+  if (requireNamespace("xgboost", quietly = TRUE)) {
+    f <- .cfb_model_file("fg_model.ubj")
+    if (!is.null(f)) {
+      booster <- try(xgboost::xgb.load(f), silent = TRUE)
+      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
+    }
+  }
+  .load_legacy_fg_model()
+}
+
+#' Retired single-feature GAM FG model, kept as the offline fallback
+#' @keywords internal
+#' @noRd
+.load_legacy_fg_model <- function() {
   fg_model <- NULL
-  .url = url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/fg_model.Rdata")
+  .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/fg_model.Rdata")
   on.exit(close(.url))
   try(
     load(.url),
     silent = TRUE
   )
-  return (fg_model)
+  return(fg_model)
 }
-load_wp_model <- function(){
+#' Load the Win Probability model
+#'
+#' Prefers `wp_naive.ubj` from the shared `cfb_model_artifacts` release, the
+#' same artifact `sportsdataverse-py` scores with. Falls back to the retired
+#' `mgcv::bam` GAM on `cfbfastR-data` when the bundle or `xgboost` is
+#' unavailable; [`.wp_predict()`] accepts either generation.
+#'
+#' @keywords internal
+#' @noRd
+load_wp_model <- function() {
+  if (requireNamespace("xgboost", quietly = TRUE)) {
+    f <- .cfb_model_file("wp_naive.ubj")
+    if (!is.null(f)) {
+      booster <- try(xgboost::xgb.load(f), silent = TRUE)
+      if (!inherits(booster, "try-error") && !is.null(booster)) return(booster)
+    }
+  }
+  .load_legacy_wp_model()
+}
+
+#' Retired mgcv GAM WP model, kept as the offline/no-xgboost fallback
+#' @keywords internal
+#' @noRd
+.load_legacy_wp_model <- function() {
   wp_model <- NULL
-  .url = url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/wp_model.Rdata")
+  .url <- url("https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/models/wp_model.Rdata")
   on.exit(close(.url))
   try(
     load(.url),
     silent = TRUE
   )
-  return (wp_model)
+  return(wp_model)
 }
 

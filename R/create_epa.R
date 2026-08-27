@@ -7,6 +7,11 @@
 #' @param play_df (*data.frame* required): Clean PBP as input from [cfbd_pbp_data()]
 #' @param ep_model (*model* default `cfbfastR`'s `ep_model`): Expected Points (EP) Model
 #' @param fg_model (*model* default `cfbfastR`'s `fg_model`): Field Goal (FG) Model
+#' @param season (*numeric* optional): Season of the game. Required when the
+#'   loaded FG model is era-aware (the bundled `fg_model.ubj` takes one-hot
+#'   rule-era features); ignored by the retired single-feature GAM. Passing
+#'   `NULL` with an era-aware model is an error rather than a silent
+#'   all-zero era encoding.
 #' @details Code Description
 #' \describe{
 #'   \item{1. `pred_df`:}{Use select before play model variables -> Make predictions.}
@@ -30,7 +35,8 @@
 
 create_epa <- function(play_df,
                        ep_model,
-                       fg_model) {
+                       fg_model,
+                       season = NULL) {
   #----------------- Code Description--------
   ## 1) pred_df: Use select before play model variables -> Make predictions
   ## 2) epa_fg_probs: Update expected points predictions from before variables with FG make/miss probability weighted adjustment
@@ -94,9 +100,9 @@ create_epa <- function(play_df,
     dplyr::rename("yards_to_goal" = "yardline")
 
   # ep_start - make predictions on pred_df
-  ep_start <- as.data.frame(predict(ep_model, pred_df, type = "prob"))
-  # ep_start - rename next score type probability columns to ep_model$lev
-  colnames(ep_start) <- ep_model$lev
+  # .ep_predict() returns the seven next-score probabilities already named AND
+  # ordered by .EP_LEV whichever model generation is loaded.
+  ep_start <- .ep_predict(ep_model, pred_df)
 
   ## 2) epa_fg_probs FG model and missed FG weighted adjustment ----
   # ep_start_update - return FG model predictions and missed FG weighted adjustment
@@ -104,7 +110,8 @@ create_epa <- function(play_df,
     dat = clean_pbp,
     current_probs = ep_start,
     ep_model = ep_model,
-    fg_mod = fg_model
+    fg_mod = fg_model,
+    season = season
   )
   # append `_before` to next score type probability columns
   colnames(ep_start_update)[1:7] <- paste0(colnames(ep_start_update)[1:7], "_before")
@@ -116,9 +123,7 @@ create_epa <- function(play_df,
   })
   ## 3) pred_df_after prediction ----
   # ep_after - calculate post-play expected points
-  ep_end <- predict(ep_model, pred_df_after, type = "prob")
-  # ep_end - rename next score type probability columns to ep_model$lev
-  colnames(ep_end) <- ep_model$lev
+  ep_end <- .ep_predict(ep_model, pred_df_after)
   # append `_after` to next score type probability columns
   colnames(ep_end) <- paste0(colnames(ep_end), "_after")
   pred_df_after <- cbind(pred_df_after, ep_end)
@@ -227,7 +232,7 @@ create_epa <- function(play_df,
     new_kick["distance"] <- 10
     new_kick["yards_to_goal"] <- 75
     new_kick["log_ydstogo"] <- log(10)
-    ep_kickoffs <- as.data.frame(predict(ep_model, new_kick, type = "prob"))
+    ep_kickoffs <- .ep_predict(ep_model, new_kick)
     if (table(kickoff_ind)[2] > 1) {
       pred_df[kickoff_ind, "ep_before"] <- apply(ep_kickoffs, 1, function(row) {
         sum(row * weights)
@@ -476,6 +481,8 @@ create_epa <- function(play_df,
 #' @param current_probs (__data.frame__ required): Expected Points (EP) model raw probability outputs from initial prediction
 #' @param ep_model (__model__, default `cfbfastR`'s `ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #' @param fg_mod (__model__, default `cfbfastR`'s `fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
+#' @param season (*numeric* optional): Season of the game, required when the
+#'   loaded FG model is era-aware. See [create_epa()].
 #'
 #' @return Updated expected points probabilities with FG make/miss weighted adjustment
 #' @keywords internal
@@ -484,7 +491,8 @@ create_epa <- function(play_df,
 #' @importFrom dplyr mutate
 #' @export
 
-epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
+epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod,
+                         season = NULL) {
   fg_ind <- stringr::str_detect((dat$play_type), "Field Goal")
   ep_ind <- stringr::str_detect((dat$play_type), "Extra Point")
   inds <- fg_ind | ep_ind
@@ -495,7 +503,8 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
     end_game_ind <- which(dat$TimeSecsRem <= 0)
     current_probs[end_game_ind, ] <- 0
 
-    make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat, type = "response")
+    # (the FG make-probability is computed once, below, just before it is
+    # used -- a second call here would score the model twice per FG/XP play)
 
     missed_fg_dat <- fg_dat |>
       # Subtract 5.065401 from TimeSecs since average time for FG att:
@@ -507,8 +516,11 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
         Goal_To_Go = rep(FALSE, n()),
         # Now first down:
         down = rep("1", n()),
-        # 10 yards to go
+        # 10 yards to go. `log_ydstogo` served the retired nnet formula; the
+        # bundled model reads raw `distance`, which otherwise would have kept
+        # the REAL play's distance and quietly contradicted the hypothetical.
         log_ydstogo = rep(log(10), n()),
+        distance = rep(10, n()),
         # Create Under_TwoMinute_Warning indicator
         Under_two = ifelse(.data$TimeSecsRem < 120,
           TRUE, FALSE
@@ -516,16 +528,9 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
         pos_score_diff_start = -1 * .data$pos_score_diff_start
       ) |> as.data.frame()
 
-    missed_fg_ep_preds <- ep_model |>
-      predict(newdata = missed_fg_dat, type = "probs") |>
-      as.data.frame()
-
-    if (dim(missed_fg_ep_preds)[2] == 1) {
-      missed_fg_ep_preds <- t(missed_fg_ep_preds)
-    }
-
-
-    colnames(missed_fg_ep_preds) <- ep_model$lev
+    # .ep_predict() always returns an n x 7 lev-named frame, so the old
+    # single-row transpose special case is no longer needed.
+    missed_fg_ep_preds <- .ep_predict(ep_model, missed_fg_dat)
     # Find the rows where TimeSecsRem became 0 or negative and
     # make all the probs equal to 0:
     end_game_i <-
@@ -536,10 +541,7 @@ epa_fg_probs <- function(dat, current_probs, ep_model, fg_mod) {
     )
 
     # Get the probability of making the field goal:
-    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_mod,
-      newdata = fg_dat,
-      type = "response"
-    ))
+    make_fg_prob <- .fg_make_prob(fg_mod, fg_dat, season = season)
     # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
     missed_fg_ep_preds <-
       missed_fg_ep_preds * (1 - make_fg_prob)

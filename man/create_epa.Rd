@@ -5,9 +5,9 @@
 \alias{epa_fg_probs}
 \title{\strong{Create EPA}}
 \usage{
-create_epa(play_df, ep_model, fg_model)
+create_epa(play_df, ep_model, fg_model, season = NULL)
 
-epa_fg_probs(dat, current_probs, ep_model, fg_mod)
+epa_fg_probs(dat, current_probs, ep_model, fg_mod, season = NULL)
 }
 \arguments{
 \item{play_df}{(\emph{data.frame} required): Clean PBP as input from \code{\link[=cfbd_pbp_data]{cfbd_pbp_data()}}}
@@ -15,6 +15,9 @@ epa_fg_probs(dat, current_probs, ep_model, fg_mod)
 \item{ep_model}{(\strong{model}, default \code{cfbfastR}'s \code{ep_model}): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 
 \item{fg_model}{(\emph{model} default \code{cfbfastR}'s \code{fg_model}): Field Goal (FG) Model}
+
+\item{season}{(\emph{numeric} optional): Season of the game, required when the
+loaded FG model is era-aware. See \code{\link[=create_epa]{create_epa()}}.}
 
 \item{dat}{(\strong{data.frame} required): Clean Play-By-Play data.frame as can be pulled from \code{\link[=clean_pbp_dat]{clean_pbp_dat()}}}
 

@@ -65,7 +65,8 @@
                          wp_model,
                          clean_text = FALSE,
                          roster = NULL,
-                         participants = NULL) {
+                         participants = NULL,
+                         season = NULL) {
   if (isTRUE(clean_text)) {
     df <- clean_play_text(df)
   }
@@ -102,8 +103,24 @@
     # re-request the same two rosters for every game those teams played.
     .pbp_attach_player_ids(roster = roster) |>
     .pbp_prep_epa_df_after() |>
-    .pbp_create_epa(ep_model = ep_model, fg_model = fg_model) |>
-    .pbp_create_wpa_naive(wp_model = wp_model)
+    .pbp_create_epa(ep_model = ep_model, fg_model = fg_model,
+                    season = season) |>
+    # vegas_wp is scored BEFORE the WPA stage so that stage -- which already
+    # splits per game and orders the plays -- can difference it into vegas_wpa
+    # without a second grouping pass. A lead() across a game boundary would
+    # otherwise difference two different games.
+    .pbp_add_vegas_wp() |>
+    .pbp_create_wpa_naive(wp_model = wp_model) |>
+    # Additive and self-contained: CP/CPOE lazily loads its own bundled model
+    # and emits all-NA columns rather than raising when it or its inputs are
+    # unavailable, matching sdv-py `__process_cpoe`.
+    .pbp_add_cp_cpoe() |>
+    # xpass needs the season for its ORDINAL era feature (2017 cut), which is
+    # a different encoding from the FG model's one-hot era (2020 cut).
+    .pbp_add_xpass(season = season) |>
+    # Model-scoring half of the two-point surface; the WP-comparison decision
+    # columns need hypothetical ensuing-drive states and are tracked in #140.
+    .pbp_add_two_pt_prob(season = season)
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress
@@ -133,7 +150,8 @@
                                  clean_text = FALSE,
                                  min_plays = 20L,
                                  rosters = NULL,
-                                 participants = NULL) {
+                                 participants = NULL,
+                                 season = NULL) {
   # Slice a multi-game side frame down to one game, tolerating a frame that has
   # no game_id (a caller who already scoped it) and a game with no rows.
   warned_no_gid <- FALSE
@@ -179,7 +197,8 @@
       wp_model     = wp_model,
       clean_text   = clean_text,
       roster       = slice_for(rosters, gid),
-      participants = slice_for(participants, gid)
+      participants = slice_for(participants, gid),
+      season       = season
     )
     p(sprintf("game_id=%s", gid))
     modeled

@@ -6240,6 +6240,10 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
       # pickcenter <- raw_df[['pickcenter']]
 
       if (isTRUE(epa_wpa)) {
+        # Captured before the pipeline: the era-aware FG model needs a scalar
+        # season, and `season` is one of the columns the chain below renames
+        # away. Without it every FG/XP play aborts in .fg_make_prob().
+        .legacy_season <- suppressWarnings(as.numeric(plays_df$season[1]))
         plays_df <- plays_df |>
           dplyr::rename(
             "play_text" = "plays_text",
@@ -6299,7 +6303,8 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
           add_yardage() |>
           add_player_cols() |>
           prep_epa_df_after() |>
-          create_epa(ep_model = ep_model, fg_model = fg_model) |>
+          create_epa(ep_model = ep_model, fg_model = fg_model,
+                     season = .legacy_season) |>
           # create_wpa_betting() |>
           create_wpa_naive(wp_model = wp_model) |>
           dplyr::select(-"ppa") #drop placeholder column
@@ -6746,7 +6751,12 @@ espn_cfb_pbp_v2 <- function(game_id,
         fg_model     = fg_model,
         wp_model     = wp_model,
         roster       = roster_df,
-        participants = participants_df
+        participants = participants_df,
+        # The era-aware FG model needs the season. meta$season is NA when the
+        # event's week/season $ref could not be resolved, so fall back to
+        # deriving it from the game date -- otherwise FG scoring aborts and the
+        # outer handler hands back a silently unmodeled game.
+        season       = .cfb_season_or_date(meta$season, meta$game_date)
       ) |>
         dplyr::select(-dplyr::any_of("ppa"))   # drop the placeholder
 

@@ -1,3 +1,57 @@
+# **cfbfastR (development version)**
+
+### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
+
+The EP model is now the XGBoost artifact published in
+[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+— **the same artifact `sportsdataverse-py` scores with**, so both libraries
+agree on EPA for a given play and a retrain updates both from one publish
+([#138](https://github.com/sportsdataverse/cfbfastR/issues/138)).
+
+* **Fixes [#5](https://github.com/sportsdataverse/cfbfastR/issues/5)** — `epa_wpa = TRUE`
+  no longer aborts with `predict.nnet(): missing values in 'x'` on mid-era CFBD
+  data (seasons ~2006–2013), in either engine.
+* EP scoring is consolidated behind one internal helper, so the seven
+  next-score probability columns keep their historical names and order and no
+  downstream code changed. **The bundle's class order differs from the retired
+  model's** with no fixed point between them; the permutation is read from the
+  bundle's `MANIFEST.json` and asserted in tests, because getting it wrong
+  yields EP that is wrong yet plausible-looking.
+* Model artifacts are cached under the package cache dir and refreshed on the
+  `cfbfastR.cache_duration` TTL (default 24h), so a republished model is picked
+  up without a package update. An expired cached copy is still used if the
+  release is unreachable.
+* `xgboost` (Suggests) is now required to score EP and its floor moved to
+  `>= 1.7` for `.ubj` support. Without it — or offline with no cached copy —
+  the retired `nnet` model is loaded as a fallback and still works.
+* The **Win Probability** model moved to the bundle's `wp_naive.ubj` on the
+  same terms. Eleven of its twelve features already existed on the frame; only
+  `is_home` is derived.
+* The **Field Goal** model moved to the bundle's era-aware `fg_model.ubj`
+  (`yards_to_goal` + one-hot `era0..era3`). `season` is now threaded through
+  `.run_epa_wpa()` and the exported `create_epa()` / `epa_fg_probs()` gain a
+  `season` argument (defaulting to `NULL`). Scoring the era-aware model
+  without a season is an error rather than a silent all-zero one-hot.
+* **New: completion probability.** `cp` and `cpoe` columns are added on pass
+  plays, `cpoe` on the percentage-point scale `100 * (completion - cp)`,
+  matching `sportsdataverse-py`. The model loads lazily on first use and the
+  stage degrades to `NA` columns rather than failing.
+* **New: spread-aware win probability.** A `vegas_wp` column is added
+  alongside the unchanged naive `wp_before` — the same split nflfastR draws
+  between `wp` and `vegas_wp`. It is `NA` wherever the game has no pre-game
+  line (the ESPN path, and CFBD before 2013). Sign convention verified over 83
+  games: CFBD's `spread` is negative when the home team is favoured, and the
+  model reads positive `spread_time` as the team in possession being favoured.
+  `vegas_wpa` and `vegas_wp_after` are derived alongside it, using the same
+  turnover and half/period-end overlays as the naive `wpa`.
+* **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
+  scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
+  percentage-point scale `100 * (pass - xpass)`. Note this model uses an
+  *ordinal* rule-era feature cutting at 2006/2013/**2017**, which is a
+  different encoding from the FG model's one-hot `era0..era3` (2006/2013/2020).
+* Existing EPA/WPA values **will change**: this is a different model
+  generation. Rebuild rather than mixing old and new outputs in one dataset.
+
 # **cfbfastR v3.0.0**
 
 ### New release-dataset loaders (39 functions)
