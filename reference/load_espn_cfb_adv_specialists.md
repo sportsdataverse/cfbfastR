@@ -70,7 +70,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_specialists(2004))
 #> ── college football advanced specialists from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-27 15:30:57 UTC
+#> ℹ Data updated: 2026-08-27 16:44:34 UTC
 #> # A tibble: 5,184 × 14
 #>    pos_team_id pos_team             player_name   punts punts_yards kick_returns
 #>          <int> <chr>                <chr>         <int>       <int>        <int>

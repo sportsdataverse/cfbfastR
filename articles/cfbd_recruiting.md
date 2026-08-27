@@ -32,15 +32,19 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
-    ## Hit:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+
+    ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
-    ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+    ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+
+    ## Hit:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Reading package lists...
 
@@ -61,9 +65,9 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 27 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 45 not upgraded.
 
-    ## ✔ 4 pkgs + 72 deps: kept 71 [10.9s]
+    ## ✔ 4 pkgs + 72 deps: kept 71 [10.6s]
 
 ``` r
 
@@ -101,7 +105,7 @@ cfbd_recruiting_player(2018, team = "Texas")
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 15:35:32 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:13 UTC
 
     ## # A tibble: 28 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -128,7 +132,8 @@ cfbd_recruiting_player(2016, recruit_type = "JUCO")
 ```
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 15:35:32 UTC
+
+    ## ℹ Data updated: 2026-08-27 16:49:14 UTC
 
     ## # A tibble: 553 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -155,7 +160,8 @@ cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state
 ```
 
     ## ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 15:35:32 UTC
+
+    ## ℹ Data updated: 2026-08-27 16:49:15 UTC
 
     ## # A tibble: 29 × 19
     ##    id     athlete_id recruit_type  year ranking name         school committed_to
@@ -185,7 +191,7 @@ cfbd_recruiting_position(2018, team = "Texas")
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
 
-    ## ℹ Data updated: 2026-08-27 15:35:33 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:16 UTC
 
     ## # A tibble: 16 × 7
     ##    team  conference position_group avg_rating total_rating commits avg_stars    
@@ -213,7 +219,7 @@ cfbd_recruiting_position(2016, 2020, team = "Virginia")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
-    ## ℹ Data updated: 2026-08-27 15:35:33 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:16 UTC
 
     ## # A tibble: 16 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -241,7 +247,8 @@ cfbd_recruiting_position(2015, 2020, conference = "SEC")
 ```
 
     ## ── Recruiting position group info from CollegeFootballData.com ─────────────────
-    ## ℹ Data updated: 2026-08-27 15:35:33 UTC
+
+    ## ℹ Data updated: 2026-08-27 16:49:18 UTC
 
     ## # A tibble: 224 × 7
     ##    team     conference position_group avg_rating total_rating commits avg_stars 
@@ -267,7 +274,7 @@ cfbd_recruiting_team(2018, team = "Texas")
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 15:35:33 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:19 UTC
 
     ## # A tibble: 1 × 4
     ##    year team   rank points
@@ -280,8 +287,7 @@ cfbd_recruiting_team(2016, team = "Virginia")
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-
-    ## ℹ Data updated: 2026-08-27 15:35:34 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:19 UTC
 
     ## # A tibble: 1 × 4
     ##    year team      rank points
@@ -294,8 +300,7 @@ cfbd_recruiting_team(2016, team = "Texas A&M")
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-
-    ## ℹ Data updated: 2026-08-27 15:35:35 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:19 UTC
 
     ## # A tibble: 1 × 4
     ##    year team       rank points
@@ -308,7 +313,7 @@ cfbd_recruiting_team(2011)
 ```
 
     ## ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-08-27 15:35:35 UTC
+    ## ℹ Data updated: 2026-08-27 16:49:19 UTC
 
     ## # A tibble: 137 × 4
     ##     year team           rank points

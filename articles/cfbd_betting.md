@@ -32,17 +32,19 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
     ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
+    ## Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
 
-    ## Hit:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+    ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+
+    ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
-    ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
-
+    ## Fetched 3632 B in 1s (6059 B/s)
     ## Reading package lists...
 
     ## ℹ Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`
@@ -69,7 +71,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## libnode-dev libnode72
 
-    ## 0 upgraded, 2 newly installed, 0 to remove and 27 not upgraded.
+    ## 0 upgraded, 2 newly installed, 0 to remove and 45 not upgraded.
     ## Need to get 11.4 MB of archives.
     ## After this operation, 47.4 MB of additional disk space will be used.
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
@@ -78,7 +80,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 0s (54.5 MB/s)
+    ## Fetched 11.4 MB in 1s (20.7 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -101,7 +103,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## (Reading database ... 95%
 
-    ## (Reading database ... 100%(Reading database ... 309923 files and directories currently installed.)
+    ## (Reading database ... 100%(Reading database ... 309582 files and directories currently installed.)
 
     ## Preparing to unpack .../libnode72_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...
 
@@ -151,7 +153,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 4 pkgs + 72 deps: kept 71 [14.8s]
+    ## ✔ 4 pkgs + 72 deps: kept 71 [17.6s]
 
 ``` r
 
@@ -186,7 +188,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-08-27 15:34:53 UTC
+    ## ℹ Data updated: 2026-08-27 16:48:36 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -209,8 +211,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.0.0 ──
-
-    ## ℹ Data updated: 2026-08-27 15:34:54 UTC
+    ## ℹ Data updated: 2026-08-27 16:48:36 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

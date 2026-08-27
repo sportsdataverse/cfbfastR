@@ -91,7 +91,7 @@ Other CFBD Recruiting:
 # \donttest{
   try(cfbd_recruiting_player(2018, team = "Texas"))
 #> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 15:25:23 UTC
+#> ℹ Data updated: 2026-08-27 16:40:19 UTC
 #> # A tibble: 28 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
@@ -113,7 +113,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_player(2016, recruit_type = "JUCO"))
 #> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 15:25:23 UTC
+#> ℹ Data updated: 2026-08-27 16:40:20 UTC
 #> # A tibble: 553 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
@@ -135,7 +135,7 @@ Other CFBD Recruiting:
 
   try(cfbd_recruiting_player(2020, recruit_type = "HighSchool", position = "OT", state = "FL"))
 #> ── Player recruiting info from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 15:25:24 UTC
+#> ℹ Data updated: 2026-08-27 16:40:20 UTC
 #> # A tibble: 29 × 19
 #>    id     athlete_id recruit_type  year ranking name         school committed_to
 #>    <chr>  <chr>      <chr>        <int>   <int> <chr>        <chr>  <chr>       
