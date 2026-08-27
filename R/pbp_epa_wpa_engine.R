@@ -123,7 +123,12 @@
     .pbp_add_two_pt_prob(season = season) |>
     # Decision surface on top of the conversion probability: scores the
     # opponent's ensuing drive for each try outcome and compares.
-    .pbp_add_two_pt_decision(season = season)
+    .pbp_add_two_pt_decision(season = season) |>
+    # The fourth-down surface reuses the same state layer and the FG model the
+    # EPA stage already loaded, so it is threaded rather than re-fetched. Like
+    # the two-point surface it is additive and degrades to NA columns; it is
+    # last because nothing downstream reads its output.
+    .pbp_add_fourth_down(fg_model = fg_model, season = season)
 }
 
 #' Modular PBP -- per-game wrapper with min-plays skip and progress

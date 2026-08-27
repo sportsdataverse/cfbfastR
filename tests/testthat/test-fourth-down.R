@@ -89,3 +89,209 @@ test_that("go_wp is a probability-weighted average of its two outcomes", {
   # And a weighted average has to sit between the things it averages.
   expect_true(all(o$go_wp >= o$wp_fail & o$go_wp <= o$wp_succeed))
 })
+
+### ------------------------------------------------------------------ ###
+### Punt, field goal, and the combiner (#140).
+###
+### The three sign conventions pinned below were each found INVERTED in
+### sportsdataverse-py while porting. None of them crashes; each one produces a
+### confident, wrong recommendation in exactly the situations a fourth-down bot
+### exists to answer. cfb4th's `decision_functions.R` is the reference.
+### ------------------------------------------------------------------ ###
+
+mk_late <- function(distance = 10, yards_to_goal = 50, diff = 0, period = 4,
+                    adj = 60, pos_to = 0, def_to = 0) {
+  data.frame(
+    period = period, pos_team_receives_2H_kickoff = 0,
+    pos_team_timeouts_rem_before = pos_to, def_pos_team_timeouts_rem_before = def_to,
+    pos_score_diff_start = diff, pos_team_spread = 0, is_home = 1,
+    down = 4, distance = distance, yards_to_goal = yards_to_goal,
+    TimeSecsRem = adj, adj_TimeSecsRem = adj,
+    posteam_total = 27.5, season = 2021
+  )
+}
+
+test_that(".fd_kneel_clamp gates on the fourth quarter only when asked to", {
+  wp <- rep(0.5, 3)
+  lead <- rep(TRUE, 3)
+  adj <- rep(100, 3)
+  def_to <- rep(0, 3)
+  period <- c(2, 4, NA)
+  # The go-for-it branch of cfb4th has no period condition; end_game_fn does.
+  expect_equal(.fd_kneel_clamp(wp, lead, adj, def_to, 0), c(0, 0, 0))
+  expect_equal(.fd_kneel_clamp(wp, lead, adj, def_to, 0, period = period),
+               c(0.5, 0, 0.5))
+})
+
+test_that(".fourth_down_decision_rows keeps only scoreable fourth downs", {
+  df <- data.frame(
+    down = c(4, 3, 4, 4, 4, 4),
+    yards_to_goal = c(50, 50, 0, 50, 50, 50),
+    distance = c(5, 5, 5, 5, 5, 5),
+    TimeSecsRem = c(600, 600, 600, 600, 600, 600),
+    adj_TimeSecsRem = c(600, 600, 600, 20, 600, 600),
+    period = c(2, 2, 2, 2, 5, 4)
+  )
+  # kept: a real 4th down; dropped: 3rd down, a zero yardline, the dead final
+  # 30 seconds of a half, and overtime.
+  expect_equal(.fourth_down_decision_rows(df), c(TRUE, FALSE, FALSE, FALSE, FALSE, TRUE))
+})
+
+test_that(".fd_punt_wp and .fd_fg_wp degrade rather than raise", {
+  expect_equal(length(.fd_punt_wp(mk_late()[0, , drop = FALSE])), 0L)
+  expect_equal(nrow(.fd_fg_wp(mk_late()[0, , drop = FALSE])), 0L)
+  # No season means no valid era one-hot, and .fg_make_prob() aborts rather than
+  # zeroing it. The surface must catch that, not propagate it.
+  st <- mk_late(); st$season <- NA_real_
+  expect_true(all(is.na(.fd_fg_wp(st)$fg_wp)))
+})
+
+test_that(".pbp_add_fourth_down adds its columns even with nothing to score", {
+  df <- data.frame(down = 4, distance = 5, yards_to_goal = 50, period = 2,
+                   TimeSecsRem = 600, adj_TimeSecsRem = 2400)
+  out <- .pbp_add_fourth_down(df)
+  # No pre-game line -> no state -> NA columns, and crucially still columns.
+  expect_true(all(c(.FD_NUMERIC_COLS, "fourth_down_recommendation") %in% names(out)))
+  expect_true(all(is.na(out$go_wp)))
+  expect_identical(nrow(.pbp_add_fourth_down(df[0, , drop = FALSE])), 0L)
+})
+
+test_that("the punt distribution covers 31-99 and sums to one per yardline", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("arrow")
+  pd <- .cfb_punt_distribution()
+  skip_if(is.null(pd), "punt_distribution unavailable")
+  expect_setequal(names(pd), c("yards_to_goal", "yards_to_goal_end", "pct"))
+  expect_equal(range(pd$yards_to_goal), c(31, 99))
+  # Every yardline's distribution is a probability distribution; if it were not,
+  # punt_wp would silently stop being a win probability.
+  by_line <- tapply(pd$pct, pd$yards_to_goal, sum)
+  expect_true(all(abs(by_line - 1) < 1e-9))
+})
+
+test_that("punting has no distribution inside the 31, and cfb4th leaves it NA", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("arrow")
+  skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_punt_distribution()), "punt_distribution unavailable")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  st <- do.call(rbind, lapply(c(10, 25, 30, 31, 50), function(y) {
+    mk_late(yards_to_goal = y, period = 2, adj = 1800)
+  }))
+  p <- .fd_punt_wp(st)
+  expect_true(all(is.na(p[1:3])))          # inside the 31: no table, no number
+  expect_true(all(!is.na(p[4:5])))
+  expect_true(all(p[4:5] >= 0 & p[4:5] <= 1))
+})
+
+test_that("a punt while trailing late against a team that can kneel it out loses", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("arrow")
+  skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_punt_distribution()), "punt_distribution unavailable")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  # cfb4th reads end_game_fn off the RESULTING frame: the RECEIVING team leads
+  # and the PUNTING team is out of timeouts. sdv-py reads the punting team's own
+  # differential instead, which pins the WP to zero for the team that is AHEAD.
+  down_3 <- .fd_punt_wp(mk_late(diff = -3, pos_to = 0))
+  up_3 <- .fd_punt_wp(mk_late(diff = 3, pos_to = 0))
+  expect_lt(down_3, 0.01)     # you punt, they kneel, you lose
+  expect_gt(up_3, 0.5)        # you punt while ahead -- not the same situation
+  # With timeouts left it is a game again, in any quarter.
+  expect_gt(.fd_punt_wp(mk_late(diff = -3, pos_to = 3)), down_3)
+  expect_gt(.fd_punt_wp(mk_late(diff = -3, pos_to = 0, period = 2, adj = 1860)),
+            down_3)
+})
+
+test_that("turning it over on downs while LEADING is not an automatic loss", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_fd_model()), "bundled fd_model unavailable")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  # The clamp condition is read off the post-turnover frame, where the score
+  # differential has already been negated. Reading it as "the offence trails"
+  # inverts it and pins a LEADING team's failed-conversion WP to zero.
+  lead <- .fd_go_wp(mk_late(distance = 1, diff = 3, pos_to = 3, def_to = 0))
+  trail <- .fd_go_wp(mk_late(distance = 1, diff = -3, pos_to = 3, def_to = 0))
+  expect_gt(lead$wp_fail, 0.5)
+  expect_lt(trail$wp_fail, 0.1)
+})
+
+test_that("field-goal probability carries cfb4th's two policy clamps", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_fg_model_or_null()), "fg model unavailable")
+  st <- do.call(rbind, lapply(c(2, 20, 33, 34, 35, 42, 43, 60), function(y) {
+    mk_late(yards_to_goal = y, period = 2, adj = 1800)
+  }))
+  p <- .fd_fg_wp(st)$fg_make_prob
+  expect_true(all(p >= 0 & p <= 1))
+  # Decreasing with distance, but only to a tolerance: the bundled model is a
+  # tree ensemble and its step function has a ~0.004 bump between 33 and 34
+  # yards to goal. That is the model, not the port -- a real inversion would be
+  # an order of magnitude bigger.
+  expect_true(all(diff(p) <= 0.01))
+  expect_gt(p[1], 0.95)                        # a 19-yard chip shot
+  expect_gt(p[6], 0)                           # 42 is the last kick allowed
+  expect_equal(p[7], 0)                        # 43+ is zeroed outright
+  expect_equal(p[8], 0)
+  # The 0.9x shrink at 35 is a step, not part of the fitted curve. The fitted
+  # curve loses about a point per yard through this band; the clamp takes a
+  # tenth of the probability at once.
+  expect_gt(p[4] - p[5], 0.05)
+})
+
+test_that("a made field goal is worth more than a missed one", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("xgboost")
+  skip_if(is.null(.cfb_fg_model_or_null()), "fg model unavailable")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  st <- do.call(rbind, lapply(c(5, 15, 25, 35), function(y) {
+    mk_late(yards_to_goal = y, period = 2, adj = 1800)
+  }))
+  f <- .fd_fg_wp(st)
+  expect_true(all(f$make_fg_wp > f$miss_fg_wp))
+  # And the blend has to sit between the two things it blends.
+  expect_true(all(f$fg_wp >= f$miss_fg_wp & f$fg_wp <= f$make_fg_wp))
+  # The make state does not depend on where the kick came from -- it is always a
+  # kickoff from three points up.
+  expect_equal(length(unique(round(f$make_fg_wp, 10))), 1L)
+})
+
+test_that("the recommendation is the argmax and the diffs are measured from it", {
+  skip_on_cran(); skip_if_offline(); skip_if_not_installed("xgboost")
+  skip_if_not_installed("arrow")
+  skip_if(is.null(.cfb_fd_model()), "bundled fd_model unavailable")
+  skip_if(is.null(.cfb_wp_spread_model()), "wp_spread unavailable")
+  # Mid-second-quarter, tied, full timeouts -- the plain situations the
+  # conventional chart and the bot agree on.
+  situation <- function(distance, yards_to_goal) {
+    mk_late(distance = distance, yards_to_goal = yards_to_goal, period = 2,
+            adj = 1800, pos_to = 3, def_to = 3)
+  }
+  st <- do.call(rbind, list(
+    situation(1, 5), situation(1, 40), situation(10, 60), situation(8, 20)
+  ))
+  o <- .fd_probs(st)
+  expect_true(all(o$fourth_down_recommendation %in% c("go", "field_goal", "punt")))
+  opts <- cbind(go = o$go_wp, field_goal = o$fg_wp, punt = o$punt_wp)
+  chosen <- opts[cbind(seq_len(nrow(o)), match(o$fourth_down_recommendation,
+                                               colnames(opts)))]
+  expect_equal(chosen, pmax(o$go_wp, o$fg_wp, ifelse(is.na(o$punt_wp), -Inf, o$punt_wp)))
+  # The recommended option's own diff is zero; nothing beats it.
+  diffs <- cbind(o$go_wp_diff, o$fg_wp_diff, o$punt_wp_diff)
+  expect_true(all(diffs <= 1e-12, na.rm = TRUE))
+  expect_true(all(apply(diffs, 1, function(r) any(abs(r) < 1e-12, na.rm = TRUE))))
+  # go_boost is the headline number and must agree in sign with the choice.
+  expect_true(all((o$go_boost > 0) == (o$fourth_down_recommendation == "go")))
+
+  # Football reality: a yard to gain near the goal line is a go, and 4th and 10
+  # from your own 40 is a punt.
+  expect_equal(o$fourth_down_recommendation[1], "go")
+  expect_equal(o$fourth_down_recommendation[3], "punt")
+  expect_equal(o$fourth_down_recommendation[4], "field_goal")
+})
+
+test_that("the decision columns never overwrite a column the pbp frame ships", {
+  # `fg_make_prob` collides: the EPA path already publishes one, for the kick
+  # that was actually attempted. Initialising a same-named decision column nulls
+  # it on every play that is not a fourth down -- a shipped column quietly
+  # emptied, with nothing raised. Any future decision column has to clear the
+  # same check.
+  emitted <- c(.FD_NUMERIC_COLS, "fourth_down_recommendation")
+  expect_equal(intersect(emitted, .pbp_output_order), character(0))
+})
