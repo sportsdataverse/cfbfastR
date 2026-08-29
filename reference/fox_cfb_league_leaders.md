@@ -44,8 +44,8 @@ leaderboard headers plus `entity_id`.
 ``` r
 # \donttest{
   try(fox_cfb_league_leaders(category = "passing"))
-#> ── Statistical leaders from Fox Sports (Bifrost) ───────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:30:45 UTC
+#> ── Statistical leaders from Fox Sports (Bifrost) ──────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:16:39 UTC
 #> # A tibble: 0 × 0
 # }
 ```

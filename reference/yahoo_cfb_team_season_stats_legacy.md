@@ -59,8 +59,8 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_team_season_stats_legacy(season = 2024, category = "Rushing",
                                          sort_stat = "RUSHING_YARDS"))
-#> ── Legacy team season stats from Yahoo Sports (shangrila) ──── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:34:25 UTC
+#> ── Legacy team season stats from Yahoo Sports (shangrila) ──────────────────────
+#> ℹ Data updated: 2026-08-29 13:20:18 UTC
 #> # A tibble: 134 × 15
 #>    team           team_abbreviation games_rushing rushing_attempts rushing_yards
 #>    <chr>          <chr>             <chr>         <chr>            <chr>        

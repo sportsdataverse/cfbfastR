@@ -50,8 +50,8 @@ A `cfbfastR`-tagged tibble with one row per play:
 ``` r
 # \donttest{
   try(fox_cfb_pbp(game_id = "41616"))
-#> ── Play-by-play data from Fox Sports (Bifrost) ─────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:30:47 UTC
+#> ── Play-by-play data from Fox Sports (Bifrost) ────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:16:41 UTC
 #> # A tibble: 180 × 12
 #>    game_id quarter drive_id drive_result drive_summary drive_team play_id period
 #>    <chr>   <chr>   <chr>    <chr>        <chr>         <chr>      <chr>   <chr> 

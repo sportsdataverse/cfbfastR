@@ -75,8 +75,8 @@ Other CFBD Ratings and Rankings:
 ``` r
 # \donttest{
   try(cfbd_ratings_sp_conference(year = 2019))
-#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:07 UTC
+#> ── Conference SP+ data from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:12:27 UTC
 #> # A tibble: 11 × 25
 #>     year conference        rating second_order_wins sos   offense_rating
 #>    <int> <chr>              <dbl> <lgl>             <lgl>          <dbl>
@@ -100,8 +100,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_havoc_front_seven <lgl>, defense_havoc_db <lgl>, …
 
   try(cfbd_ratings_sp_conference(year = 2012, conference = "SEC"))
-#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:07 UTC
+#> ── Conference SP+ data from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:12:27 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>
@@ -115,8 +115,8 @@ Other CFBD Ratings and Rankings:
 #> #   defense_havoc_front_seven <dbl>, defense_havoc_db <dbl>, …
 
   try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
-#> ── Conference SP+ data from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:08 UTC
+#> ── Conference SP+ data from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:12:27 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>

@@ -149,8 +149,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_game_odds(game_id = 401628339))
-#> ── Game odds data from ESPN ────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:50 UTC
+#> ── Game odds data from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:44 UTC
 #> # A tibble: 2 × 19
 #>   game_id  provider_id provider_name provider_priority details over_under spread
 #>   <chr>    <chr>       <chr>                     <int> <chr>        <dbl>  <dbl>
@@ -161,8 +161,8 @@ Other ESPN CFB Functions:
 #> #   home_spread_odds <dbl>, away_spread_odds <dbl>, home_money_line <chr>,
 #> #   away_money_line <chr>, moneyline_winner <lgl>, spread_winner <lgl>
   try(espn_cfb_game_odds(game_id = 401628339, line_history = TRUE))
-#> ── Game odds line history data from ESPN ───────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:50 UTC
+#> ── Game odds line history data from ESPN ──────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:44 UTC
 #> # A tibble: 37 × 9
 #>    game_id   provider_id provider_name snapshot market      side  american value
 #>    <chr>     <chr>       <chr>         <chr>    <chr>       <chr> <chr>    <dbl>

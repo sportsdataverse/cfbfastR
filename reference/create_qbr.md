@@ -84,8 +84,8 @@ returns a zero-row frame carrying this schema.
     pbp <- cfbfastR::cfbd_pbp_data(2021, week = 6, team = "Texas", epa_wpa = TRUE)
     create_qbr(pbp)
   })
-#> ── QBR data ────────────────────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:15 UTC
+#> ── QBR data ───────────────────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:09 UTC
 #> # A tibble: 3 × 15
 #>   game_id pos_team athlete_name plays qbr_epa sack_epa pass_epa rush_epa pen_epa
 #>   <chr>   <chr>    <chr>        <int>   <dbl>    <dbl>    <dbl>    <dbl>   <dbl>

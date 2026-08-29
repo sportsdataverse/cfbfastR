@@ -156,8 +156,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_game_team_statistics(game_id = 401628339))
-#> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:28:35 UTC
+#> ── Game team statistics data from ESPN ────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:14:29 UTC
 #> # A tibble: 580 × 30
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -180,8 +180,8 @@ Other ESPN CFB Functions:
 #> #   category_abbreviation <chr>, category_summary <chr>, stat_name <chr>, …
   try(espn_cfb_game_team_statistics(game_id = 401628339,
                                     team_detail = FALSE))
-#> ── Game team statistics data from ESPN ─────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:28:36 UTC
+#> ── Game team statistics data from ESPN ────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:14:30 UTC
 #> # A tibble: 580 × 20
 #>    game_id   team_id home_away split_id split_name split_abbreviation
 #>    <chr>     <chr>   <chr>     <chr>    <chr>      <chr>             

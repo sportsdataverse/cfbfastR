@@ -62,7 +62,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_talent(2005))
 #> ── college football team talent composite from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-08-27 20:31:09 UTC
+#> ℹ Data updated: 2026-08-29 13:17:01 UTC
 #> # A tibble: 120 × 7
 #>    season team_id team   talent_composite talent_rank blue_chip_ratio n_recruits
 #>     <int> <chr>   <chr>             <dbl>       <int>           <dbl>      <int>

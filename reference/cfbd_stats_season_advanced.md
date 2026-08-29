@@ -149,8 +149,8 @@ Other CFBD Stats:
 ``` r
 # \donttest{
    try(cfbd_stats_season_advanced(2019, team = "LSU"))
-#> ── Advanced season stats from CollegeFootballData.com ──────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:28 UTC
+#> ── Advanced season stats from CollegeFootballData.com ─── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:12:51 UTC
 #> # A tibble: 1 × 82
 #>   season team  conference off_plays off_drives off_ppa off_total_ppa
 #>    <int> <chr> <chr>          <int>      <int>   <dbl>         <dbl>

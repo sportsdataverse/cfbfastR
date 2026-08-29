@@ -165,34 +165,34 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1))
-#> ── Players index from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:28:58 UTC
+#> ── Players index from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:14:53 UTC
 #> # A tibble: 100 × 6
 #>    season athlete_id athlete_ref                          page page_count  count
 #>     <int> <chr>      <chr>                               <int>      <int>  <int>
-#>  1   2024 2027901    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  2   2024 2488274    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  3   2024 2586732    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  4   2024 2586749    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  5   2024 2586765    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  6   2024 2586812    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  7   2024 2988219    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  8   2024 2988246    http://sports.core.api.espn.com/v2…     1       1036 103567
-#>  9   2024 539758     http://sports.core.api.espn.com/v2…     1       1036 103567
-#> 10   2024 3145545    http://sports.core.api.espn.com/v2…     1       1036 103567
+#>  1   2024 2027901    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  2   2024 2488274    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  3   2024 2586732    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  4   2024 2586749    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  5   2024 2586765    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  6   2024 2586812    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  7   2024 2988219    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  8   2024 2988246    http://sports.core.api.espn.com/v2…     1       1035 103494
+#>  9   2024 539758     http://sports.core.api.espn.com/v2…     1       1035 103494
+#> 10   2024 3145545    http://sports.core.api.espn.com/v2…     1       1035 103494
 #> # ℹ 90 more rows
   try(espn_cfb_players(year = 2024, page = 1, max_pages = 1, limit = 5,
                        athlete_detail = TRUE))
-#> ── Players index from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:28:58 UTC
+#> ── Players index from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:14:53 UTC
 #> # A tibble: 5 × 12
 #>   season athlete_id athlete_ref      page page_count  count athlete_display_name
 #>    <int> <chr>      <chr>           <int>      <int>  <int> <chr>               
-#> 1   2024 2027901    http://sports.…     1      20714 103567 NA                  
-#> 2   2024 2488274    http://sports.…     1      20714 103567 NA                  
-#> 3   2024 2586732    http://sports.…     1      20714 103567 NA                  
-#> 4   2024 2586749    http://sports.…     1      20714 103567 NA                  
-#> 5   2024 2586765    http://sports.…     1      20714 103567 NA                  
+#> 1   2024 2027901    http://sports.…     1      20699 103494 NA                  
+#> 2   2024 2488274    http://sports.…     1      20699 103494 NA                  
+#> 3   2024 2586732    http://sports.…     1      20699 103494 NA                  
+#> 4   2024 2586749    http://sports.…     1      20699 103494 NA                  
+#> 5   2024 2586765    http://sports.…     1      20699 103494 NA                  
 #> # ℹ 5 more variables: athlete_first_name <chr>, athlete_last_name <chr>,
 #> #   athlete_jersey <chr>, athlete_position <chr>,
 #> #   athlete_position_abbreviation <chr>

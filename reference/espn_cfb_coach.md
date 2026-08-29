@@ -147,8 +147,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_coach(coach_id = 5120149, year = 2024))
-#> ── Coach detail from ESPN ──────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:24 UTC
+#> ── Coach detail from ESPN ─────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:18 UTC
 #> # A tibble: 1 × 20
 #>   coach_id season first_name last_name uid   team_id team_name team_abbreviation
 #>   <chr>     <int> <chr>      <chr>     <chr> <chr>   <chr>     <chr>            
@@ -159,8 +159,8 @@ Other ESPN CFB Functions:
 #> #   team_logo_dark_href <chr>, n_career_records <int>, n_coach_seasons <int>,
 #> #   team_ref <chr>, person_ref <chr>
   try(espn_cfb_coach(coach_id = 5120149, year = 2024, team_detail = FALSE))
-#> ── Coach detail from ESPN ──────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:24 UTC
+#> ── Coach detail from ESPN ─────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:18 UTC
 #> # A tibble: 1 × 10
 #>   coach_id season first_name last_name uid              team_id n_career_records
 #>   <chr>     <int> <chr>      <chr>     <chr>            <chr>              <int>

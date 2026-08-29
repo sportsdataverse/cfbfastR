@@ -72,7 +72,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_rushing(2004))
 #> ── college football advanced rushing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-08-27 20:31:18 UTC
+#> ℹ Data updated: 2026-08-29 13:17:10 UTC
 #> # A tibble: 4,690 × 16
 #>    pos_team_id pos_team       rusher_player_name   Car   Yds Rush_TD   YPC   EPA
 #>          <int> <chr>          <chr>              <int> <dbl>   <int> <dbl> <dbl>

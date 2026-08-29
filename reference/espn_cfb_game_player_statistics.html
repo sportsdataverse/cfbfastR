@@ -9,7 +9,7 @@ game – one row per stat, in long format."><meta property="og:image" content="h
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -295,8 +295,8 @@ the five columns (and the catalog fetch) are skipped.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_player_statistics</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>,</span></span>
 <span class="r-in"><span>                                      athlete_id <span class="op">=</span> <span class="fl">4429105</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player statistics data from ESPN ───────────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 20:28:25 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player statistics data from ESPN ──────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-29 13:14:20 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 141 × 34</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   athlete_id team_id team_name team_abbreviation team_location</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
@@ -320,8 +320,8 @@ the five columns (and the catalog fetch) are skipped.</p>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_player_statistics</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>,</span></span>
 <span class="r-in"><span>                                      athlete_id <span class="op">=</span> <span class="fl">4429105</span>,</span></span>
 <span class="r-in"><span>                                      position_detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player statistics data from ESPN ───────────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 20:28:25 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player statistics data from ESPN ──────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-29 13:14:20 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 141 × 29</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   athlete_id team_id team_name team_abbreviation team_location</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
@@ -345,8 +345,8 @@ the five columns (and the catalog fetch) are skipped.</p>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_player_statistics</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>,</span></span>
 <span class="r-in"><span>                                      athlete_id <span class="op">=</span> <span class="fl">4429105</span>,</span></span>
 <span class="r-in"><span>                                      team_detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player statistics data from ESPN ───────────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 20:28:26 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game player statistics data from ESPN ──────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-29 13:14:20 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 141 × 24</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   athlete_id team_id athlete_display_name jersey starter did_not_play</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>       </span>

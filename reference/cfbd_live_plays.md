@@ -138,8 +138,8 @@ Other CFBD PBP:
 ``` r
 # \donttest{
   try(cfbd_live_plays(game_id=401520182))
-#> ── Live play-by-play data from CollegeFootballData.com ─────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:22:36 UTC
+#> ── Live play-by-play data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:08:36 UTC
 #> # A tibble: 164 × 98
 #>      game_id home_team_id home_team    away_team_id away_team play_id home_score
 #>        <int>        <int> <chr>               <int> <chr>     <chr>        <int>

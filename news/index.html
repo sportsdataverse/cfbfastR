@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,9 +134,10 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="cfbfastr-development-version"><strong>cfbfastR (development version)</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="3.0.0.9000" id="cfbfastr-3009000-development-version"><strong>cfbfastR 3.0.0.9000 (development version)</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-3009000-development-version"></a></h2>
+<p>The development version is numbered <strong>3.0.0.9000</strong> so it can be told apart from the CRAN <strong>3.0.0</strong> release, which ships the <em>previous</em> model generation. Until now both builds reported <code>3.0.0</code>, so <code>packageVersion("cfbfastR")</code> could not distinguish them — while producing different EPA/WPA for the same play. A four-component version means you are on the GitHub build. See the model note below before mixing outputs from the two.</p>
 <div class="section level4">
-<h4 id="expected-points-model-now-comes-from-the-shared-cfb_model_artifacts-bundle-development-version">Expected Points model now comes from the shared <code>cfb_model_artifacts</code> bundle<a class="anchor" aria-label="anchor" href="#expected-points-model-now-comes-from-the-shared-cfb_model_artifacts-bundle-development-version"></a></h4>
+<h4 id="expected-points-model-now-comes-from-the-shared-cfb_model_artifacts-bundle-3-0-0-9000">Expected Points model now comes from the shared <code>cfb_model_artifacts</code> bundle<a class="anchor" aria-label="anchor" href="#expected-points-model-now-comes-from-the-shared-cfb_model_artifacts-bundle-3-0-0-9000"></a></h4>
 <p>The EP model is now the XGBoost artifact published in <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts" class="external-link"><code>cfb_model_artifacts</code></a> — <strong>the same artifact <code>sportsdataverse-py</code> scores with</strong>, so both libraries agree on EPA for a given play and a retrain updates both from one publish (<a href="https://github.com/sportsdataverse/cfbfastR/issues/138" class="external-link">#138</a>).</p>
 <ul><li>
 <strong>Fixes <a href="https://github.com/sportsdataverse/cfbfastR/issues/5" class="external-link">#5</a></strong> — <code>epa_wpa = TRUE</code> no longer aborts with <code>predict.nnet(): missing values in 'x'</code> on mid-era CFBD data (seasons ~2006–2013), in either engine.</li>
@@ -155,7 +156,7 @@
 <li>Existing EPA/WPA values <strong>will change</strong>: this is a different model generation. Rebuild rather than mixing old and new outputs in one dataset.</li>
 </ul></div>
 <div class="section level4">
-<h4 id="decision-surfaces-and-qbr-from-the-same-bundle-development-version">Decision surfaces and QBR from the same bundle<a class="anchor" aria-label="anchor" href="#decision-surfaces-and-qbr-from-the-same-bundle-development-version"></a></h4>
+<h4 id="decision-surfaces-and-qbr-from-the-same-bundle-3-0-0-9000">Decision surfaces and QBR from the same bundle<a class="anchor" aria-label="anchor" href="#decision-surfaces-and-qbr-from-the-same-bundle-3-0-0-9000"></a></h4>
 <p>The three remaining <code>cfb_model_artifacts</code> artifacts are now used: the two-point, fourth-down and QBR models (<a href="https://github.com/sportsdataverse/cfbfastR/issues/140" class="external-link">#140</a>). Unlike the model columns above, these are analytic surfaces — they build the game state that WOULD follow a choice, score it, and compare. They are ports of <a href="https://github.com/sportsdataverse/cfb4th" class="external-link"><code>cfb4th</code></a> and degrade to <code>NA</code> columns rather than failing when a model, the punt table, <code>arrow</code>, or a pre-game line is missing.</p>
 <ul><li>
 <strong>New: the two-point decision.</strong> On offensive touchdowns, <code>two_pt_wp</code> / <code>xp_wp</code> / <code>two_pt_wp_diff</code> / <code>two_pt_recommendation</code> compare going for two against kicking, using the conversion probability <code>prob_2pt</code> and the opponent’s ensuing-drive win probability for each outcome. Verified bit-identical to <code>sportsdataverse-py</code> to eight decimals. Read <code>two_pt_wp_diff</code> rather than the bare recommendation: cfb4th’s rule has no margin, and the bundled model is optimistic about college conversion rates.</li>
@@ -170,7 +171,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="3.0.0" id="cfbfastr-v300"><strong>cfbfastR v3.0.0</strong><a class="anchor" aria-label="anchor" href="#cfbfastr-v300"></a></h2><p class="text-muted">CRAN release: 2026-08-24</p>
 <div class="section level4">
-<h4 id="new-release-dataset-loaders-functions-3-0-0">New release-dataset loaders (39 functions)<a class="anchor" aria-label="anchor" href="#new-release-dataset-loaders-functions-3-0-0"></a></h4>
+<h4 id="new-release-dataset-loaders-functions-3-0-0">New release-dataset loaders (48 functions)<a class="anchor" aria-label="anchor" href="#new-release-dataset-loaders-functions-3-0-0"></a></h4>
 <p><code>cfbfastR</code> now loads every published CFB dataset on the <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases" class="external-link">sportsdataverse-data</a> release repo, closing the gap with <code>sportsdataverse-py</code>’s loader surface. All loaders return <code>cfbfastR_data</code>-tagged tibbles, accept <code>seasons = TRUE</code> for the full published range, and support the <code>dbConnection</code>/<code>tablename</code> database write-through.</p>
 <ul><li>
 <code>load_espn_cfb_*()</code> — 27 loaders for the ESPN-derived family: <code>pbp</code>, <code>schedules</code>, <code>team_box</code>, <code>player_box</code>, <code>drives</code>, <code>game_rosters</code>, <code>linescores</code>, <code>betting</code>, <code>play_participants</code>, <code>power_index</code>, <code>percentiles</code>, <code>passing</code>, <code>rushing</code>, <code>receiving</code>, <code>team_summaries</code>, <code>model_pbp</code>, and the eleven <code>adv_*</code> advanced-stats datasets.</li>

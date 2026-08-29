@@ -116,9 +116,9 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_teams())
-#> ── Teams index from ESPN ───────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:30:37 UTC
-#> # A tibble: 759 × 15
+#> ── Teams index from ESPN ──────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:16:30 UTC
+#> # A tibble: 760 × 15
 #>    team_id uid          slug  abbreviation display_name short_display_name name 
 #>    <chr>   <chr>        <chr> <chr>        <chr>        <chr>              <chr>
 #>  1 2000    s:20~l:23~t… abil… ACU          Abilene Chr… Abilene Chrstn     Wild…
@@ -131,7 +131,7 @@ Other ESPN CFB Functions:
 #>  8 2011    s:20~l:23~t… alab… ALST         Alabama Sta… Alabama St         Horn…
 #>  9 2013    s:20~l:23~t… alba… ABSU         Albany Stat… Albany St          Gold…
 #> 10 2790    s:20~l:23~t… albi… ALBI         Albion Brit… Albion             Brit…
-#> # ℹ 749 more rows
+#> # ℹ 750 more rows
 #> # ℹ 8 more variables: nickname <chr>, location <chr>, color <chr>,
 #> #   alternate_color <chr>, is_active <lgl>, is_all_star <lgl>, logo_href <chr>,
 #> #   logo_dark_href <chr>

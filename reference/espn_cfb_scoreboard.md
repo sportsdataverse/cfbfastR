@@ -262,9 +262,9 @@ Unique variables when there are completed games
 ``` r
 # \donttest{
   try(espn_cfb_scoreboard())
-#> ── Live Scoreboard Data from ESPN ──────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:29:12 UTC
-#> # A tibble: 99 × 36
+#> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:15:07 UTC
+#> # A tibble: 99 × 59
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
 #>  1 North Carolina … UNC VS TCU      2026 regu… regu… 401856… s:20~l:… 2026-08-29
@@ -278,7 +278,7 @@ Unique variables when there are completed games
 #>  9 Massachusetts M… MASS @ RUTG     2026 regu… regu… 401858… s:20~l:… 2026-09-03
 #> 10 Bethune-Cookman… BCU @ UCF       2026 regu… regu… 401856… s:20~l:… 2026-09-03
 #> # ℹ 89 more rows
-#> # ℹ 28 more variables: attendance <int>, date_valid <lgl>,
+#> # ℹ 51 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
 #> #   home_team_abb <chr>, home_team_id <chr>, home_team_location <chr>,
 #> #   home_team_full <chr>, home_team_color <chr>, home_score <int>,
@@ -288,8 +288,8 @@ Unique variables when there are completed games
 
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
-#> ── Schedule Data from ESPN ─────────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:29:13 UTC
+#> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:15:07 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

@@ -151,8 +151,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_game_predictor(game_id = 401628339))
-#> ── Game predictor data from ESPN ───────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:28:27 UTC
+#> ── Game predictor data from ESPN ──────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:14:21 UTC
 #> # A tibble: 34 × 24
 #>    game_id   matchup_name     matchup_short_name last_modified team_side team_id
 #>    <chr>     <chr>            <chr>              <chr>         <chr>     <chr>  
@@ -174,8 +174,8 @@ Other ESPN CFB Functions:
 #> #   team_logo_dark_href <chr>, stat_name <chr>, abbreviation <chr>,
 #> #   display_name <chr>, short_display_name <chr>, value <dbl>, …
   try(espn_cfb_game_predictor(game_id = 401628339, team_detail = FALSE))
-#> ── Game predictor data from ESPN ───────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:28:27 UTC
+#> ── Game predictor data from ESPN ──────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:14:22 UTC
 #> # A tibble: 34 × 14
 #>    game_id   matchup_name     matchup_short_name last_modified team_side team_id
 #>    <chr>     <chr>            <chr>              <chr>         <chr>     <chr>  

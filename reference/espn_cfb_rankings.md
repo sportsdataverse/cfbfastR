@@ -118,8 +118,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_rankings(year = 2024))
-#> ── Ranking sources from ESPN ───────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:29:10 UTC
+#> ── Ranking sources from ESPN ──────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:15:04 UTC
 #> # A tibble: 7 × 7
 #>   season ranking_id name                short_name type  n_snapshots ranking_ref
 #>    <int> <chr>      <chr>               <chr>      <chr>       <int> <chr>      

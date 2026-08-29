@@ -1,6 +1,14 @@
 # Changelog
 
-## **cfbfastR (development version)**
+## **cfbfastR 3.0.0.9000 (development version)**
+
+The development version is numbered **3.0.0.9000** so it can be told
+apart from the CRAN **3.0.0** release, which ships the *previous* model
+generation. Until now both builds reported `3.0.0`, so
+`packageVersion("cfbfastR")` could not distinguish them — while
+producing different EPA/WPA for the same play. A four-component version
+means you are on the GitHub build. See the model note below before
+mixing outputs from the two.
 
 #### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
 
@@ -118,7 +126,7 @@ table, `arrow`, or a pre-game line is missing.
 
 CRAN release: 2026-08-24
 
-#### New release-dataset loaders (39 functions)
+#### New release-dataset loaders (48 functions)
 
 `cfbfastR` now loads every published CFB dataset on the
 [sportsdataverse-data](https://github.com/sportsdataverse/sportsdataverse-data/releases)

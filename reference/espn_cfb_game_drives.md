@@ -263,8 +263,8 @@ Other ESPN CFB Functions:
 ``` r
 # \donttest{
   try(espn_cfb_game_drives(game_id = 401628339))
-#> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:47 UTC
+#> ── Game drives data from ESPN ─────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:41 UTC
 #> # A tibble: 20 × 52
 #>    game_id   drive_id    sequence_number description           team_id team_name
 #>    <chr>     <chr>       <chr>           <chr>                 <chr>   <chr>    
@@ -296,8 +296,8 @@ Other ESPN CFB Functions:
 #> #   end_team_display_name <chr>, end_team_short_display_name <chr>,
 #> #   end_team_nickname <chr>, end_team_color <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, plays = "list"))
-#> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:48 UTC
+#> ── Game drives data from ESPN ─────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:42 UTC
 #> # A tibble: 20 × 53
 #>    game_id   drive_id    sequence_number description           team_id team_name
 #>    <chr>     <chr>       <chr>           <chr>                 <chr>   <chr>    
@@ -329,8 +329,8 @@ Other ESPN CFB Functions:
 #> #   end_team_display_name <chr>, end_team_short_display_name <chr>,
 #> #   end_team_nickname <chr>, end_team_color <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, plays = "expand"))
-#> ── Game drive plays (expanded) data from ESPN ──────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:49 UTC
+#> ── Game drive plays (expanded) data from ESPN ─────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:43 UTC
 #> # A tibble: 156 × 106
 #>    drive_game_id drive_drive_id drive_sequence_number drive_description     
 #>    <chr>         <chr>          <chr>                 <chr>                 
@@ -352,8 +352,8 @@ Other ESPN CFB Functions:
 #> #   drive_team_alternate_color <chr>, drive_team_logo_href <chr>,
 #> #   drive_team_logo_dark_href <chr>, drive_end_team_id <chr>, …
   try(espn_cfb_game_drives(game_id = 401628339, team_detail = FALSE))
-#> ── Game drives data from ESPN ──────────────────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:27:49 UTC
+#> ── Game drives data from ESPN ─────────────────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:13:43 UTC
 #> # A tibble: 20 × 32
 #>    game_id drive_id sequence_number description team_id end_team_id start_period
 #>    <chr>   <chr>    <chr>           <chr>       <chr>   <chr>              <int>

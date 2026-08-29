@@ -67,8 +67,8 @@ Other CFBD Ratings Functions:
 ``` r
 # \donttest{
   try(cfbd_ratings_srs_expanded(year = 2024))
-#> ── Get expanded SRS ratings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:09 UTC
+#> ── Get expanded SRS ratings from CollegeFootballData.com ───────────────────────
+#> ℹ Data updated: 2026-08-29 13:12:29 UTC
 #> # A tibble: 264 × 7
 #>     year team           classification conference       division ranking rating
 #>    <int> <chr>          <chr>          <chr>            <chr>      <int>  <dbl>

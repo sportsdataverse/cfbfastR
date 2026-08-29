@@ -11,7 +11,7 @@ available 2013-present."><meta property="og:image" content="https://github.com/s
 
     <a class="navbar-brand me-2" href="../index.html">cfbfastR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -198,28 +198,28 @@ available 2013-present.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">yahoo_cfb_player_season_stats</span><span class="op">(</span>season <span class="op">=</span> <span class="fl">2024</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player season stats from Yahoo Sports (shangrila) ───────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-27 20:33:15 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Player season stats from Yahoo Sports (shangrila) ──── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-08-29 13:19:05 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 191 × 88</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    player_id   display_name team  team_abbreviation qb_rating rushing_touchdowns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ncaaf.p.64… Trey Sanders TCU   TCU               <span style="color: #BB0000;">NA</span>        0                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ncaaf.p.17… Alexander D… Kenn… KENN              <span style="color: #BB0000;">NA</span>        0                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ncaaf.p.17… Carson Kent  Pitt… PITT              <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ncaaf.p.21… Eric Goins   Notr… ND                <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ncaaf.p.22… Rico Watson… Sout… S FLA             <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ncaaf.p.26… Cam McCormi… Miam… MIA               <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ncaaf.p.26… Danarius Jo… Kenn… KENN              <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ncaaf.p.27… Keenan Pili  Tenn… TENN              <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ncaaf.p.27… Spencer Cur… Hawa… HAW               <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ncaaf.p.27… Logan Lutui  BYU   BYU               <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    player_id  display_name team  team_abbreviation total_tackles passes_defended</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ncaaf.p.6… Trey Sanders TCU   TCU               <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ncaaf.p.1… Alexander D… Kenn… KENN              <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ncaaf.p.1… Carson Kent  Pitt… PITT              <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ncaaf.p.2… Eric Goins   Notr… ND                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ncaaf.p.2… Rico Watson… Sout… S FLA             28            0              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ncaaf.p.2… Cam McCormi… Miam… MIA               <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ncaaf.p.2… Danarius Jo… Kenn… KENN              6             0              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ncaaf.p.2… Keenan Pili  Tenn… TENN              27            0              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ncaaf.p.2… Spencer Cur… Hawa… HAW               <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ncaaf.p.2… Logan Lutui  BYU   BYU               11            0              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 181 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 82 more variables: kickoff_return_touchdowns &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longest_punt_return &lt;chr&gt;, forced_fumbles &lt;chr&gt;, sacks &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   games_kicking &lt;chr&gt;, kickoff_return_yards &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longest_kickoff_return &lt;chr&gt;, field_goal_attempts &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   total_tackles &lt;chr&gt;, punt_yards_per_punt &lt;chr&gt;, games_passing &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   punt_returns &lt;chr&gt;, field_goals_made_0_19 &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 82 more variables: field_goal_attempts_0_19 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   extra_point_attempts &lt;chr&gt;, sacks_yards_lost &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   rushing_attempts_per_game &lt;chr&gt;, receptions &lt;chr&gt;, field_goals_made &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   games_punting &lt;chr&gt;, forced_fumbles &lt;chr&gt;, points_scored_kicking &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   passing_touchdowns &lt;chr&gt;, longest_reception &lt;chr&gt;, games_rushing &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tackles_for_loss &lt;chr&gt;, extra_points_made &lt;chr&gt;, …</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

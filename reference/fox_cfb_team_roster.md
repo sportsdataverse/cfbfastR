@@ -44,8 +44,8 @@ A `cfbfastR`-tagged tibble with one row per player:
 ``` r
 # \donttest{
   try(fox_cfb_team_roster(team_id = "11"))
-#> ── Roster data from Fox Sports (Bifrost) ───────────────────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:30:49 UTC
+#> ── Roster data from Fox Sports (Bifrost) ──────────────── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:16:43 UTC
 #> # A tibble: 118 × 8
 #>    team_id position_group player             pos   cls   ht     wt    athlete_id
 #>    <chr>   <chr>          <chr>              <chr> <chr> <chr>  <chr> <chr>     

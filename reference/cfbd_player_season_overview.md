@@ -71,7 +71,7 @@ cfbd_player_season_overview(year, athlete_id, proxy = NULL)
 # \donttest{
   try(cfbd_player_season_overview(year = 2024, athlete_id = 4429105))
 #> ── Get a player season overview from CollegeFootballData.com ───────────────────
-#> ℹ Data updated: 2026-08-27 20:25:53 UTC
+#> ℹ Data updated: 2026-08-29 13:12:01 UTC
 #> # A tibble: 1 × 31
 #>   season id      name   position team  conference games usage_overall usage_pass
 #>    <int> <chr>   <chr>  <chr>    <chr> <chr>      <int>         <dbl>      <dbl>

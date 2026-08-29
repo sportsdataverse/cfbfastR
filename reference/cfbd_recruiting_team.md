@@ -45,32 +45,32 @@ Other CFBD Recruiting:
 ``` r
 # \donttest{
   try(cfbd_recruiting_team(2018, team = "Texas"))
-#> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:13 UTC
+#> ── Recruiting team rankings from CollegeFootballData.com ───────────────────────
+#> ℹ Data updated: 2026-08-29 13:12:33 UTC
 #> # A tibble: 1 × 4
 #>    year team   rank points
 #>   <int> <chr> <int>  <dbl>
 #> 1  2018 Texas     3   300.
 
   try(cfbd_recruiting_team(2016, team = "Virginia"))
-#> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:13 UTC
+#> ── Recruiting team rankings from CollegeFootballData.com ───────────────────────
+#> ℹ Data updated: 2026-08-29 13:12:33 UTC
 #> # A tibble: 1 × 4
 #>    year team      rank points
 #>   <int> <chr>    <int>  <dbl>
 #> 1  2016 Virginia    63   165.
 
   try(cfbd_recruiting_team(2016, team = "Texas A&M"))
-#> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:13 UTC
+#> ── Recruiting team rankings from CollegeFootballData.com ───────────────────────
+#> ℹ Data updated: 2026-08-29 13:12:33 UTC
 #> # A tibble: 1 × 4
 #>    year team       rank points
 #>   <int> <chr>     <int>  <dbl>
 #> 1  2016 Texas A&M    18   239.
 
   try(cfbd_recruiting_team(2011))
-#> ── Recruiting team rankings from CollegeFootballData.com ───── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:26:13 UTC
+#> ── Recruiting team rankings from CollegeFootballData.com ───────────────────────
+#> ℹ Data updated: 2026-08-29 13:12:33 UTC
 #> # A tibble: 137 × 4
 #>     year team           rank points
 #>    <int> <chr>         <int>  <dbl>

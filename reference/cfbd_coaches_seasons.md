@@ -133,8 +133,8 @@ Other CFBD Coaches Functions:
 ``` r
 # \donttest{
   try(cfbd_coaches_seasons(team = "Georgia"))
-#> ── Get coaching seasons from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
-#> ℹ Data updated: 2026-08-27 20:22:15 UTC
+#> ── Get coaching seasons from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
+#> ℹ Data updated: 2026-08-29 13:08:18 UTC
 #> # A tibble: 123 × 68
 #>     year games  wins losses  ties win_percentage preseason_rank postseason_rank
 #>    <int> <int> <int>  <int> <int>          <dbl>          <int>           <int>
