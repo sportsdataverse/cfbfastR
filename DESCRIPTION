@@ -1,6 +1,6 @@
 Package: cfbfastR
 Title: Access College Football Play by Play Data
-Version: 3.0.0
+Version: 3.0.0.9000
 Authors@R: c(
     person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-7194-9067")),
