@@ -93,7 +93,9 @@
   pos_abbr <- side_abbr(pos)
   def_abbr <- side_abbr(def)
 
-  end_ytg <- num(.attr_col(play_df, "end_yards_to_endzone", "yards_to_goal_end", "end.yardsToEndzone"))
+  # First end-yardline alias that actually carries values: an all-NA canonical
+  # column must not mask a populated legacy alias.
+  end_ytg <- num(.first_usable_col(play_df, "end_yards_to_endzone", "yards_to_goal_end", "end.yardsToEndzone"))
   gid <- .attr_col(play_df, "game_id", "gameId")
   gid <- if (is.null(gid)) rep(1L, n) else as.character(gid)
   gid[is.na(gid)] <- "<NA>"  # split() would silently drop NA groups
@@ -113,10 +115,12 @@
     side <- .spot_side_map(txt[ix], end_ytg[ix], pos[ix], def[ix])
     if (length(side)) catch_team[ix] <- unname(side[catch_key[ix]])
   }
+  # Compare like with like: the payload abbreviations get the same
+  # normalisation as the text token ("NC ST" -> "NCST", "BC." -> "BC").
   side_pos <- (!is.na(catch_team) & catch_team == pos) |
-    (is.na(catch_team) & .abbrev_compat(catch_key, pos_abbr))
+    (is.na(catch_team) & .abbrev_compat(catch_key, .spot_key(pos_abbr)))
   side_def <- (!is.na(catch_team) & catch_team == def) |
-    (is.na(catch_team) & .abbrev_compat(catch_key, def_abbr))
+    (is.na(catch_team) & .abbrev_compat(catch_key, .spot_key(def_abbr)))
 
   air_to_ez <- ifelse(
     is.na(catch_line), NA_integer_,
@@ -144,6 +148,15 @@
 .spot_token_re <- "(?:([A-Za-z][A-Za-z&.\\-]*(?: [A-Za-z][A-Za-z&.\\-]*)?)\\.? ?)?(\\d{1,2})\\b"
 .catch_spot_re <- paste0("(?:caught at|thrown to) (?:the )?", .spot_token_re)
 .end_spot_re <- paste0("to the ", .spot_token_re)
+
+# First of the named columns that is present AND carries at least one non-NA
+# value; NULL when none does. .attr_col() returns the first PRESENT column.
+.first_usable_col <- function(df, ...) {
+  for (nm in c(...)) {
+    if (nm %in% names(df) && any(!is.na(df[[nm]]))) return(df[[nm]])
+  }
+  NULL
+}
 
 # Normalise a text abbreviation for matching: upper-case, no spaces or dots.
 .spot_key <- function(x) {

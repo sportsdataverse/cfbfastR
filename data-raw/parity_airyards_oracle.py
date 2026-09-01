@@ -12,12 +12,19 @@ extra = [401752772, 401760418, 401761645, 401757293, 401864577]  # 2025 TA&M-SC,
 ids = ids + [g for g in extra if g not in ids]
 IN = ['id','text','start.yardsToEndzone','end.yardsToEndzone','pos_team','def_pos_team','homeTeamId','awayTeamId','homeTeamAbbrev','awayTeamAbbrev','statYardage','completion','pass']
 OUTC = ['air_yardsToEndzone','air_yards','yards_after_catch']
-frames = []; missing = []
+frames = []
+missing = []
 for gid in ids:
-    if not pathlib.Path(f'{RAW}/{gid}.json').exists(): missing.append(gid); continue
-    p = CFBPlayProcess(gameId=gid, path_to_json=RAW); p.join_participants = False; p.cfb_pbp_disk()
+    if not pathlib.Path(f'{RAW}/{gid}.json').exists():
+        missing.append(gid)
+        continue
+    p = CFBPlayProcess(gameId=gid, path_to_json=RAW)
+    p.join_participants = False
+    p.cfb_pbp_disk()
     plays = p.run_processing_pipeline()['plays']
-    if not plays: missing.append(gid); continue
+    if not plays:
+        missing.append(gid)
+        continue
     df = pl.DataFrame([{**{c: r.get(c) for c in IN}, **{f'{c}__out': r.get(c) for c in OUTC}} for r in plays], infer_schema_length=None)
     df = df.with_columns(pl.lit(gid, dtype=pl.Int64).alias('fixture_game_id'),
                          *[pl.col(c).cast(pl.Utf8) for c in ('id','pos_team','def_pos_team','homeTeamId','awayTeamId')],
