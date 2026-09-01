@@ -6258,6 +6258,8 @@ espn_cfb_pbp <- function(game_id, epa_wpa = FALSE, engine = NULL, output = "defa
             "yards_gained" = "plays_stat_yardage",
             "yard_line" = "plays_start_yard_line"
           ) |>
+          # end-of-play yardline for the air-yards side vote; absent on old payloads
+          dplyr::rename(dplyr::any_of(c(end_yards_to_endzone = "plays_end_yards_to_endzone"))) |>
           dplyr::mutate(
             game_id = game_id,
             clock_minutes = as.numeric(stringr::str_extract(.data$plays_clock_display_value,".*(?=:)")),
@@ -6697,6 +6699,9 @@ espn_cfb_pbp_v2 <- function(game_id,
           plays_period_number          = .data$period,
           plays_id                     = .data$play_id,
           plays_start_yards_to_endzone = .data$start_yards_to_endzone,
+          # ESPN's end-of-play yardline: the air-yards helper learns each game's
+          # text abbreviations from it (see .spot_side_map); nothing else reads it.
+          plays_end_yards_to_endzone   = .data$end_yards_to_endzone,
           plays_stat_yardage           = .data$stat_yardage,
           plays_start_yard_line        = .data$start_yard_line,
           plays_clock_display_value    = .data$clock,

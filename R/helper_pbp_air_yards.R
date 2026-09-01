@@ -11,11 +11,26 @@
 #'
 #'   * catch abbreviation on the possessing team's side -> `100 - yardline`
 #'   * catch abbreviation on the defending team's side  -> `yardline`
+#'   * a spot at the 50 -> `50` (no abbreviation needed)
 #'   * no catch text, or an abbreviation that resolves to neither -> `NA`
 #'
-#'   Sided with the same prefix-tolerant matcher the recovery and penalty teams
-#'   use, so ESPN's two-abbreviation-form inconsistency (`BUF` in the text,
-#'   `BUFF` in the payload) still resolves.
+#'   The 2025+ vendor text spots the catch with each school's **own**
+#'   abbreviation (`UHM`, `GSO`, `USC` for South Carolina, `Sac St`, `BC.`),
+#'   which is frequently not the payload's `home_team_abbreviation` /
+#'   `away_team_abbreviation` (`HAW`, `GASO`, `SC`) -- in 2025 that dropped one
+#'   whole team's plays in a quarter of new-template games. So the side is
+#'   resolved in this order, per game (sdv-py #418):
+#'
+#'   1. the game's own text: the **last** `"... to the ABC nn"` end spot of
+#'      every play is compared with the payload's `end_yards_to_endzone` and votes
+#'      for `ABC` being the possessing or the defending team; the majority per
+#'      abbreviation wins (at least two votes and 60% agreement, the 50 abstains);
+#'   2. the payload abbreviations through the same prefix-tolerant matcher the
+#'      recovery and penalty teams use (`BUF` / `BUFF` still resolves);
+#'   3. otherwise `NA` -- never a guess.
+#'
+#'   Abbreviations are compared upper-cased with spaces and dots removed, so
+#'   `Sac St10`, `NC ST19`, `UA 10` and `BC.41` all read as one token.
 #'
 #'   `yards_after_catch` is taken from `yards_gained` rather than
 #'   `yds_receiving`: the two are the same quantity, but the receiving-yards
@@ -26,11 +41,15 @@
 #'
 #' @param play_df (*data.frame* required): play frame carrying the play text,
 #'   `yards_to_goal`, the possessing/defending team ids, the home/away team ids
-#'   and abbreviations, `yards_gained` and `completion`.
+#'   and abbreviations, `yards_gained` and `completion`; `end_yards_to_endzone`
+#'   (the ESPN v2/summary adapters' end-of-play yardline; `yards_to_goal_end`
+#'   and sdv-py's `end.yardsToEndzone` are accepted too) enables the
+#'   game-learned siding and
+#'   `game_id` scopes it per game when the frame holds several.
 #' @return `play_df` with `air_yardsToEndzone`, `air_yards` and
 #'   `yards_after_catch` appended (integer, `NA` where undetermined).
 #' @keywords internal
-#' @importFrom stringr str_match
+#' @importFrom stringr str_match regex
 #' @noRd
 .pbp_add_air_yards_cols <- function(play_df) {
   n <- nrow(play_df)
@@ -74,24 +93,42 @@
   pos_abbr <- side_abbr(pos)
   def_abbr <- side_abbr(def)
 
-  # The optional "the " is not in sdv-py's pattern and is required here. sdv-py
-  # parses ESPN's CDN summary feed, which writes "caught at OU35"; cfbfastR's v2
-  # path parses core-v2, which writes "caught at the UGA20" for the same event.
-  # A verbatim port of the Python regex matches ZERO rows on cfbfastR's own
-  # feed. Accepting the article matches both forms, so the oracle stays at exact
-  # parity and the production path starts resolving.
-  m <- stringr::str_match(
-    txt,
-    stringr::regex("(?:caught at|thrown to) (?:the )?([A-Za-z]+)(\\d{1,2})",
-                   ignore_case = TRUE)
-  )
-  catch_abbr <- toupper(m[, 2])
+  # First end-yardline alias that actually carries values: an all-NA canonical
+  # column must not mask a populated legacy alias.
+  end_ytg <- num(.first_usable_col(play_df, "end_yards_to_endzone", "yards_to_goal_end", "end.yardsToEndzone"))
+  gid <- .attr_col(play_df, "game_id", "gameId")
+  gid <- if (is.null(gid)) rep(1L, n) else as.character(gid)
+  gid[is.na(gid)] <- "<NA>"  # split() would silently drop NA groups
+
+  # sdv-py's CDN summary feed writes "caught at OU35"; cfbfastR's core-v2 path
+  # writes "caught at the UGA20" for the same event. Both are accepted (as sdv-py
+  # does since #418), and the vendor token is read whole: "SDSU47", "UA 10",
+  # "Sac St10", "NC ST19", "BC.41", or a bare "50".
+  m <- stringr::str_match(txt, stringr::regex(.catch_spot_re, ignore_case = TRUE))
+  catch_key <- .spot_key(m[, 2])
   catch_line <- suppressWarnings(as.integer(m[, 3]))
 
+  # Learn this game's text abbreviations from its own end spots, then side the
+  # catch spot with that map first; the payload abbreviations are the fallback.
+  catch_team <- rep(NA_character_, n)
+  for (ix in split(seq_len(n), gid)) {
+    side <- .spot_side_map(txt[ix], end_ytg[ix], pos[ix], def[ix])
+    if (length(side)) catch_team[ix] <- unname(side[catch_key[ix]])
+  }
+  # Compare like with like: the payload abbreviations get the same
+  # normalisation as the text token ("NC ST" -> "NCST", "BC." -> "BC").
+  side_pos <- (!is.na(catch_team) & catch_team == pos) |
+    (is.na(catch_team) & .abbrev_compat(catch_key, .spot_key(pos_abbr)))
+  side_def <- (!is.na(catch_team) & catch_team == def) |
+    (is.na(catch_team) & .abbrev_compat(catch_key, .spot_key(def_abbr)))
+
   air_to_ez <- ifelse(
-    is.na(catch_abbr) | is.na(catch_line), NA_integer_,
-    ifelse(.abbrev_compat(catch_abbr, pos_abbr), 100L - catch_line,
-           ifelse(.abbrev_compat(catch_abbr, def_abbr), catch_line, NA_integer_)))
+    is.na(catch_line), NA_integer_,
+    # midfield is 50 from either endzone; the text often carries no abbreviation there
+    ifelse(catch_line == 50L, 50L,
+      ifelse(is.na(catch_key), NA_integer_,
+        ifelse(side_pos, 100L - catch_line,
+          ifelse(side_def, catch_line, NA_integer_)))))
 
   air_yards <- as.integer(ytg) - air_to_ez
   # Completions only: an incompletion has a catch point but no yards after it.
@@ -101,6 +138,62 @@
   play_df$air_yards <- as.integer(air_yards)
   play_df$yards_after_catch <- as.integer(yac)
   play_df
+}
+
+# A field-position token in the 2025+ vendor play text: a school abbreviation of
+# up to two words in any case ("SDSU", "Sac St", "NC ST", "Mizzou", "Wake F",
+# "BC."), an optional dot/space, then the 1-2 digit yardline. The abbreviation is
+# optional so a bare "50" (midfield) still yields the yardline. Mirrors sdv-py's
+# _SPOT_TOKEN_RE / _CATCH_SPOT_RE / _END_SPOT_RE (cfb_pbp.py, #418).
+.spot_token_re <- "(?:([A-Za-z][A-Za-z&.\\-]*(?: [A-Za-z][A-Za-z&.\\-]*)?)\\.? ?)?(\\d{1,2})\\b"
+.catch_spot_re <- paste0("(?:caught at|thrown to) (?:the )?", .spot_token_re)
+.end_spot_re <- paste0("to the ", .spot_token_re)
+
+# First of the named columns that is present AND carries at least one non-NA
+# value; NULL when none does. .attr_col() returns the first PRESENT column.
+.first_usable_col <- function(df, ...) {
+  for (nm in c(...)) {
+    if (nm %in% names(df) && any(!is.na(df[[nm]]))) return(df[[nm]])
+  }
+  NULL
+}
+
+# Normalise a text abbreviation for matching: upper-case, no spaces or dots.
+.spot_key <- function(x) {
+  out <- gsub("[ .]", "", toupper(x))
+  out[!is.na(out) & !nzchar(out)] <- NA_character_
+  out
+}
+
+# Learn which team each text abbreviation refers to, from one game's end spots.
+# Port of sdv-py's _spot_side_map: for every play whose text carries a
+# "... to the ABC nn" spot (the LAST one when there are several -- a fumble
+# return or a penalty restatement names two, and the payload's end yardline
+# describes the final one) and whose end_yards_to_endzone is known, the yardline is
+# either nn (ABC is the defending team's side) or 100 - nn (the possessing
+# team's side). Each such play votes; the majority per abbreviation wins, with a
+# floor of two votes and 60% agreement so one mis-stated spot cannot flip a
+# side. The 50 abstains (it votes for both). Returns a named character vector,
+# key -> team id, empty when nothing can be learned.
+.spot_side_map <- function(txt, end_ytg, pos, def) {
+  if (!length(txt) || all(is.na(end_ytg))) return(character())
+  # Greedy ".*" backs off to the LAST "to the <token>" in the (single-line) text.
+  m <- stringr::str_match(txt, stringr::regex(paste0(".*", .end_spot_re), ignore_case = TRUE))
+  key <- .spot_key(m[, 2])
+  yl <- suppressWarnings(as.integer(m[, 3]))
+  end_i <- suppressWarnings(as.integer(end_ytg))
+  team <- ifelse(!is.na(end_i) & !is.na(yl) & end_i == 100L - yl, pos,
+                 ifelse(!is.na(end_i) & !is.na(yl) & end_i == yl, def, NA_character_))
+  ok <- !is.na(key) & !is.na(yl) & yl != 50L & !is.na(team)
+  if (!any(ok)) return(character())
+  votes <- table(key[ok], team[ok])
+  out <- character()
+  for (k in rownames(votes)) {
+    v <- votes[k, ]
+    top <- which.max(v)
+    if (v[[top]] >= 2 && v[[top]] >= 0.6 * sum(v)) out[[k]] <- colnames(votes)[top]
+  }
+  out
 }
 
 #' @rdname helpers_pbp
