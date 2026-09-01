@@ -31,17 +31,17 @@ template.
 # \donttest{
   try(fox_cfb_standings(team_id = "11"))
 #> ── Standings data from Fox Sports (Bifrost) ───────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:16:41 UTC
+#> ℹ Data updated: 2026-09-01 11:28:18 UTC
 #> # A tibble: 17 × 12
 #>    team_id section    atlantic_coast v2      conf  w_l   home  away  pf    pa   
 #>    <chr>   <chr>      <chr>          <chr>   <chr> <chr> <chr> <chr> <chr> <chr>
-#>  1 11      CONFERENCE 1              Clemson 0-0   0-0   0-0   0-0   0     0    
-#>  2 11      CONFERENCE 2              Duke    0-0   0-0   0-0   0-0   0     0    
-#>  3 11      CONFERENCE 3              Florid… 0-0   0-0   0-0   0-0   0     0    
-#>  4 11      CONFERENCE 4              Georgi… 0-0   0-0   0-0   0-0   0     0    
-#>  5 11      CONFERENCE 5              North … 0-0   0-0   0-0   0-0   0     0    
-#>  6 11      CONFERENCE 6              NC Sta… 0-0   0-0   0-0   0-0   0     0    
-#>  7 11      CONFERENCE 7              Virgin… 0-0   0-0   0-0   0-0   0     0    
+#>  1 11      CONFERENCE 1              Virgin… 1-0   1-0   1-0   0-0   34    8    
+#>  2 11      CONFERENCE 2              Florid… 0-0   1-0   1-0   0-0   34    17   
+#>  3 11      CONFERENCE 3              North … 0-0   1-0   0-0   0-0   15    10   
+#>  4 11      CONFERENCE 4              Stanfo… 0-0   1-0   1-0   0-0   37    27   
+#>  5 11      CONFERENCE 5              Clemson 0-0   0-0   0-0   0-0   0     0    
+#>  6 11      CONFERENCE 6              Duke    0-0   0-0   0-0   0-0   0     0    
+#>  7 11      CONFERENCE 7              Georgi… 0-0   0-0   0-0   0-0   0     0    
 #>  8 11      CONFERENCE 8              Wake F… 0-0   0-0   0-0   0-0   0     0    
 #>  9 11      CONFERENCE 9              Boston… 0-0   0-0   0-0   0-0   0     0    
 #> 10 11      CONFERENCE 10             Miami … 0-0   0-0   0-0   0-0   0     0    
@@ -50,8 +50,8 @@ template.
 #> 13 11      CONFERENCE 13             Virgin… 0-0   0-0   0-0   0-0   0     0    
 #> 14 11      CONFERENCE 14             Louisv… 0-0   0-0   0-0   0-0   0     0    
 #> 15 11      CONFERENCE 15             Califo… 0-0   0-0   0-0   0-0   0     0    
-#> 16 11      CONFERENCE 16             Stanfo… 0-0   0-0   0-0   0-0   0     0    
-#> 17 11      CONFERENCE 17             SMU     0-0   0-0   0-0   0-0   0     0    
+#> 16 11      CONFERENCE 16             SMU     0-0   0-0   0-0   0-0   0     0    
+#> 17 11      CONFERENCE 17             NC Sta… 0-1   0-1   0-0   0-1   8     34   
 #> # ℹ 2 more variables: strk <chr>, entity_id <chr>
 # }
 ```

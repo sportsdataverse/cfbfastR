@@ -62,20 +62,20 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_returning_production(2005))
 #> ── college football returning production from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-29 13:16:52 UTC
+#> ℹ Data updated: 2026-09-01 11:28:26 UTC
 #> # A tibble: 161 × 6
 #>    season team_id off_returning def_returning overall_returning n_returning
 #>     <int> <chr>           <dbl>         <dbl>             <dbl>       <int>
-#>  1   2005 2460            1                NA             1               5
-#>  2   2005 113             1                NA             1               4
-#>  3   2005 2464            1                NA             1               4
-#>  4   2005 2026            1                NA             1               5
-#>  5   2005 2466            1                NA             1               5
-#>  6   2005 311             1                NA             1               6
-#>  7   2005 2502            1                NA             1               3
-#>  8   2005 2630            0.997            NA             0.997           6
-#>  9   2005 221             0.992            NA             0.992          14
-#> 10   2005 2546            0.986            NA             0.986           6
+#>  1   2005 2502            1                NA             1               3
+#>  2   2005 2464            1                NA             1               4
+#>  3   2005 2026            1                NA             1               5
+#>  4   2005 113             1                NA             1               4
+#>  5   2005 311             1                NA             1               6
+#>  6   2005 2460            1                NA             1               5
+#>  7   2005 2630            0.997            NA             0.997           6
+#>  8   2005 221             0.992            NA             0.992          14
+#>  9   2005 2710            0.982            NA             0.982           5
+#> 10   2005 16              0.982            NA             0.982           5
 #> # ℹ 151 more rows
 # }
 ```

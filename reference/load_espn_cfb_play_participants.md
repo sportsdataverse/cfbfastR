@@ -127,11 +127,27 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_play_participants(2014))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_play_participants/play_participants_2014.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_play_participants/play_participants_2014.rds>
 #> ── ESPN college football play participants from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-08-29 13:17:29 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-09-01 11:29:05 UTC
+#> # A tibble: 148,402 × 68
+#>      game_id play_id kicker_player_name returner_player_name passer_player_name
+#>        <int>   <dbl> <chr>              <chr>                <chr>             
+#>  1 400548403 4.01e17 Wil Lutz           De'Andre Brown       NA                
+#>  2 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#>  3 400548403 4.01e17 NA                 NA                   NA                
+#>  4 400548403 4.01e17 NA                 NA                   NA                
+#>  5 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#>  6 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#>  7 400548403 4.01e17 NA                 NA                   NA                
+#>  8 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#>  9 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#> 10 400548403 4.01e17 NA                 NA                   Parker McKenzie   
+#> # ℹ 148,392 more rows
+#> # ℹ 63 more variables: receiver_player_name <chr>, rusher_player_name <chr>,
+#> #   penalized_player_name <chr>, scorer_player_name <chr>,
+#> #   pass_defender_player_name <chr>, punter_player_name <chr>,
+#> #   pat_scorer_player_name <chr>, sacked_by_player_name <chr>,
+#> #   kicker_player_id <chr>, returner_player_id <chr>, passer_player_id <chr>,
+#> #   receiver_player_id <chr>, rusher_player_id <chr>, …
 # }
 ```

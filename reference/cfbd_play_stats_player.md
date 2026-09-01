@@ -153,7 +153,7 @@ Other CFBD PBP:
 # \donttest{
   try(cfbd_play_stats_player(game_id = 401628414))
 #> ── Play-level player data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:11:40 UTC
+#> ℹ Data updated: 2026-09-01 11:23:08 UTC
 #> # A tibble: 132 × 70
 #>      game_id season  week team     conference opponent team_score opponent_score
 #>        <int>  <int> <int> <chr>    <chr>      <chr>         <int>          <int>
@@ -176,8 +176,8 @@ Other CFBD PBP:
 #> #   rush_yds <int>, interception_player_id <chr>, interception_player <chr>, …
   try(cfbd_play_stats_player(year = 2025, week = 1))
 #> ── Play-level player data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:11:48 UTC
-#> # A tibble: 1,299 × 70
+#> ℹ Data updated: 2026-09-01 11:23:20 UTC
+#> # A tibble: 1,294 × 70
 #>      game_id season  week team    conference opponent  team_score opponent_score
 #>        <int>  <int> <int> <chr>   <chr>      <chr>          <int>          <int>
 #>  1 401752665   2025     1 Alabama SEC        Florida …          0              0
@@ -190,7 +190,7 @@ Other CFBD PBP:
 #>  8 401752665   2025     1 Alabama SEC        Florida …          0              0
 #>  9 401752665   2025     1 Alabama SEC        Florida …          0              0
 #> 10 401752665   2025     1 Alabama SEC        Florida …          0              0
-#> # ℹ 1,289 more rows
+#> # ℹ 1,284 more rows
 #> # ℹ 62 more variables: drive_id <chr>, play_id <chr>, period <int>,
 #> #   clock_minutes <int>, clock_seconds <int>, yards_to_goal <int>, down <int>,
 #> #   distance <int>, reception_player_id <chr>, reception_player <chr>,

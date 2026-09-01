@@ -132,11 +132,27 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_game_rosters(2004))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_game_rosters/game_rosters_2004.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_game_rosters/game_rosters_2004.rds>
 #> ── ESPN college football game rosters from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-08-29 13:17:18 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-09-01 11:28:54 UTC
+#> # A tibble: 43,010 × 72
+#>    athlete_id athlete_uid        athlete_guid  athlete_type first_name last_name
+#>         <int> <chr>              <chr>         <chr>        <chr>      <chr>    
+#>  1     101304 s:20~l:23~a:101304 8eca16e2-da8… football     Kevin      Lewis    
+#>  2     116150 s:20~l:23~a:116150 f60e5508-361… football     Eric       Green    
+#>  3     116152 s:20~l:23~a:116152 bb556416-79c… football     Vincent    Fuller   
+#>  4     116153 s:20~l:23~a:116153 bd2359a6-9d8… football     Richard    Johnson  
+#>  5     116157 s:20~l:23~a:116157 3f16ca2f-315… football     Vinnie     Burns    
+#>  6     116161 s:20~l:23~a:116161 e93576eb-b89… football     Brandon    Manning  
+#>  7     116164 s:20~l:23~a:116164 332f1091-b1e… football     Travis     Conway   
+#>  8     116168 s:20~l:23~a:116168 aaa00691-98d… football     Jared      Mazzetta 
+#>  9     116171 s:20~l:23~a:116171 f65bc797-f03… football     Jim        Davis    
+#> 10     116172 s:20~l:23~a:116172 32948407-a0b… football     James      Anderson 
+#> # ℹ 43,000 more rows
+#> # ℹ 66 more variables: full_name <chr>, athlete_display_name <chr>,
+#> #   short_name <chr>, weight <dbl>, display_weight <chr>, height <dbl>,
+#> #   display_height <chr>, age <dbl>, date_of_birth <chr>, slug <chr>,
+#> #   jersey <chr>, linked <lgl>, active <lgl>, alternate_ids_sdr <chr>,
+#> #   birth_place_city <chr>, birth_place_state <chr>, experience_years <dbl>,
+#> #   experience_display_value <chr>, experience_abbreviation <chr>, …
 # }
 ```

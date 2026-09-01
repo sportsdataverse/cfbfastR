@@ -115,11 +115,27 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_player_box(2004))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_player_box/player_box_2004.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_player_box/player_box_2004.rds>
 #> ── ESPN college football player box scores from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-08-29 13:17:30 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-09-01 11:29:06 UTC
+#> # A tibble: 23,981 × 46
+#>    completions/passingAttem…¹ passingYards yardsPerPassAttempt passingTouchdowns
+#>    <chr>                      <chr>        <chr>               <chr>            
+#>  1 19/29                      272          9.4                 3                
+#>  2 NA                         NA           NA                  NA               
+#>  3 NA                         NA           NA                  NA               
+#>  4 NA                         NA           NA                  NA               
+#>  5 NA                         NA           NA                  NA               
+#>  6 NA                         NA           NA                  NA               
+#>  7 NA                         NA           NA                  NA               
+#>  8 NA                         NA           NA                  NA               
+#>  9 NA                         NA           NA                  NA               
+#> 10 NA                         NA           NA                  NA               
+#> # ℹ 23,971 more rows
+#> # ℹ abbreviated name: ¹​`completions/passingAttempts`
+#> # ℹ 42 more variables: interceptions <chr>, adjQBR <chr>, category <chr>,
+#> #   athlete_id <int>, athlete_name <chr>, jersey <lgl>, team_id <int>,
+#> #   rushingAttempts <chr>, rushingYards <chr>, yardsPerRushAttempt <chr>,
+#> #   rushingTouchdowns <chr>, longRushing <chr>, receptions <chr>,
+#> #   receivingYards <chr>, yardsPerReception <chr>, receivingTouchdowns <chr>, …
 # }
 ```

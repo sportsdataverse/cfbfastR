@@ -64,11 +64,22 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_betting(2004))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_betting/betting_2004.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_betting/betting_2004.rds>
 #> ── ESPN college football betting lines from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-08-29 13:17:17 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-09-01 11:28:51 UTC
+#> # A tibble: 712 × 9
+#>      game_id season  week game_spread over_under home_favorite home_team_spread
+#>        <int>  <int> <int>       <dbl>      <dbl> <lgl>                    <dbl>
+#>  1 242410259   2004     1         2.5       55.5 TRUE                      -2.5
+#>  2 242410193   2004     1         2.5       55.5 TRUE                      -2.5
+#>  3 242460254   2004     2         2.5       55.5 TRUE                      -2.5
+#>  4 242462199   2004     2         2.5       55.5 TRUE                      -2.5
+#>  5 242462050   2004     2         2.5       55.5 TRUE                      -2.5
+#>  6 242462711   2004     2         2.5       55.5 TRUE                      -2.5
+#>  7 242462628   2004     2         2.5       55.5 TRUE                      -2.5
+#>  8 242460009   2004     2         2.5       55.5 TRUE                      -2.5
+#>  9 242470167   2004     2         2.5       55.5 TRUE                      -2.5
+#> 10 242480201   2004     2         2.5       55.5 TRUE                      -2.5
+#> # ℹ 702 more rows
+#> # ℹ 2 more variables: game_spread_available <lgl>, odds_source <chr>
 # }
 ```

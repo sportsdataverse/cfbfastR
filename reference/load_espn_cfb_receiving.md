@@ -87,21 +87,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-29 13:17:32 UTC
-#> # A tibble: 1,375 × 32
+#> ℹ Data updated: 2026-09-01 11:29:08 UTC
+#> # A tibble: 1,390 × 32
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 245     Texas A&M   fbs      Big 12       2004    138612 L'Tydrick Riley     
-#>  2 2509    Purdue      fbs      Big Ten      2004    161018 Dorien Bryant       
-#>  3 96      Kentucky    fbs      SEC          2004    161306 Rafael Little       
-#>  4 96      Kentucky    fbs      SEC          2004    156564 Scott Mitchell      
-#>  5 151     East Carol… fbs      Conferenc…   2004    136131 Kevin Roach         
-#>  6 70      Idaho       fbs      Sun Belt     2004    131448 Luke Smith-Anderson 
-#>  7 2306    Kansas Sta… fbs      Big 12       2004    145430 Jermaine Moreira    
-#>  8 145     Ole Miss    fbs      SEC          2004    117087 Mario Hill          
-#>  9 2572    Southern M… fbs      Conferenc…   2004    147896 Otho Graves         
-#> 10 254     Utah        fbs      Mountain …   2004    146933 Thomas Huff         
-#> # ℹ 1,365 more rows
+#>  1 2117    Central Mi… fbs      Mid-Ameri…   2004    114733 Tory Humphrey       
+#>  2 2116    UCF         fbs      Mid-Ameri…   2004    150050 Brooks Turner       
+#>  3 276     Marshall    fbs      Mid-Ameri…   2004    100888 Brad Bates          
+#>  4 328     Utah State  fbs      Sun Belt     2004    158254 Chris Forbes        
+#>  5 2653    Troy        fbs      Sun Belt     2004    105545 DeWhitt Betterson   
+#>  6 264     Washington  fbs      Pac-10       2004    179762 Bobby Whithorne     
+#>  7 2050    Ball State  fbs      Mid-Ameri…   2004    127692 Ryan Hahaj          
+#>  8 183     Syracuse    fbs      Big East     2004    146580 Jeremy Sellers      
+#>  9 2572    Southern M… fbs      Conferenc…   2004    155188 Bobby Weakley       
+#> 10 2633    Tennessee   fbs      SEC          2004    123452 Derrick Tinsley     
+#> # ℹ 1,380 more rows
 #> # ℹ 25 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,
 #> #   passing_td <dbl>, fumbles <dbl>, playsgame <dbl>, EPAgame <dbl>,

@@ -10,6 +10,26 @@ producing different EPA/WPA for the same play. A four-component version
 means you are on the GitHub build. See the model note below before
 mixing outputs from the two.
 
+#### Air yards side the catch spot by the game’s own text abbreviations
+
+The 2025+ ESPN vendor text spots the catch with each school’s own
+abbreviation (`UHM`, `GSO`, `USC` for South Carolina, `Sac St`, `BC.`),
+which is frequently not the payload’s `home_team_abbreviation` /
+`away_team_abbreviation`. The helper behind `air_yards`,
+`air_yardsToEndzone` and `yards_after_catch` now learns each game’s
+abbreviations from its own `"... to the ABC nn"` end spots against
+`yards_to_goal_end` (majority vote per abbreviation) before falling back
+to the payload abbreviations, reads every observed token shape (`UA 10`,
+`BC.41`, `Sac St10`, `NC ST19`) and resolves a spot at the 50 without
+one. On 2025 new-template games this lifts in-game air-yards coverage
+from 72% to 90% of pass plays; every spot-phrase play now resolves. Same
+logic as
+[sdv-py](https://github.com/sportsdataverse/sportsdataverse-py/pull/418)
+[\#418](https://github.com/sportsdataverse/cfbfastR/issues/418); the
+parity oracle was re-captured from sdv-py `9efee9f1` and extended with
+five affected 2025/26 games
+(`tests/testthat/fixtures/parity/README.md`).
+
 #### Expected Points model now comes from the shared `cfb_model_artifacts` bundle
 
 The EP model is now the XGBoost artifact published in

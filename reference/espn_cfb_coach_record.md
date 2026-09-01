@@ -136,7 +136,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_coach_record(coach_id = 5120149, year = 2024))
 #> ── Coach season record from ESPN ──────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:19 UTC
+#> ℹ Data updated: 2026-09-01 11:25:21 UTC
 #> # A tibble: 5 × 15
 #>   coach_id season season_type record_id record_name   record_type record_summary
 #>   <chr>     <int>       <int> <chr>     <chr>         <chr>       <chr>         

@@ -335,7 +335,7 @@ Saiem Gilani
 # \donttest{
   try(espn_cfb_team_stats(team_id = 52, year = 2020))
 #> ── CFB Team Season stats from ESPN.com ────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:16:29 UTC
+#> ℹ Data updated: 2026-09-01 11:28:07 UTC
 #> # A tibble: 1 × 378
 #>   season season_type team_id team_guid team_uid team_sdr team_slug team_location
 #>    <dbl> <chr>       <chr>   <chr>     <chr>    <chr>    <chr>     <chr>        

@@ -76,11 +76,26 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_schedules(2004))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_schedules/cfb_schedule_2004.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_schedules/cfb_schedule_2004.rds>
 #> ── ESPN college football schedules from the SportsDataverse data repo ──────────
-#> ℹ Data updated: 2026-08-29 13:17:34 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-09-01 11:29:10 UTC
+#> # A tibble: 712 × 20
+#>      game_id season  week season_type game_date         neutral_site
+#>        <int>  <int> <int>       <int> <chr>             <lgl>       
+#>  1 242410259   2004     1           2 2004-08-28T23:40Z FALSE       
+#>  2 242410193   2004     1           2 2004-08-28T23:00Z FALSE       
+#>  3 242460254   2004     2           2 2004-09-02T23:30Z FALSE       
+#>  4 242462199   2004     2           2 2004-09-02T23:00Z FALSE       
+#>  5 242462050   2004     2           2 2004-09-03T00:00Z FALSE       
+#>  6 242462711   2004     2           2 2004-09-03T00:00Z FALSE       
+#>  7 242462628   2004     2           2 2004-09-03T01:30Z FALSE       
+#>  8 242460009   2004     2           2 2004-09-03T02:00Z FALSE       
+#>  9 242470167   2004     2           2 2004-09-04T00:00Z FALSE       
+#> 10 242480201   2004     2           2 2004-09-04T16:00Z FALSE       
+#> # ℹ 702 more rows
+#> # ℹ 14 more variables: conference_competition <lgl>, home_id <int>,
+#> #   away_id <int>, home_team <chr>, away_team <chr>, home_abbreviation <chr>,
+#> #   away_abbreviation <chr>, home_score <int>, away_score <int>,
+#> #   home_winner <lgl>, away_winner <lgl>, venue <chr>, attendance <int>,
+#> #   status <chr>
 # }
 ```

@@ -322,7 +322,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_play(game_id = 401628339,
                          play_id = "401628339101927401"))
 #> ── Game play data from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:54 UTC
+#> ℹ Data updated: 2026-09-01 11:25:56 UTC
 #> # A tibble: 1 × 84
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>
@@ -338,7 +338,7 @@ Other ESPN CFB Functions:
                          play_id = "401628339101927401",
                          participants = "long"))
 #> ── Game play data from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:54 UTC
+#> ℹ Data updated: 2026-09-01 11:25:56 UTC
 #> # A tibble: 4 × 111
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>
@@ -358,7 +358,7 @@ Other ESPN CFB Functions:
                          participants = "wide",
                          participants_list = TRUE))
 #> ── Game play data from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:54 UTC
+#> ℹ Data updated: 2026-09-01 11:25:56 UTC
 #> # A tibble: 1 × 103
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>
@@ -375,7 +375,7 @@ Other ESPN CFB Functions:
                          team_participants = "wide",
                          team_participants_list = TRUE))
 #> ── Game play data from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:54 UTC
+#> ℹ Data updated: 2026-09-01 11:25:56 UTC
 #> # A tibble: 1 × 111
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>
@@ -391,7 +391,7 @@ Other ESPN CFB Functions:
                          play_id = "401628339101927401",
                          team_detail = FALSE))
 #> ── Game play data from ESPN ───────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:54 UTC
+#> ℹ Data updated: 2026-09-01 11:25:56 UTC
 #> # A tibble: 1 × 54
 #>   game_id   play_id    sequence_number type_id type_text type_abbreviation text 
 #>   <chr>     <chr>      <chr>           <chr>   <chr>     <chr>             <chr>

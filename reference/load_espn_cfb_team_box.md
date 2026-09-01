@@ -75,11 +75,27 @@ Saiem Gilani
 ``` r
 # \donttest{
   try(load_espn_cfb_team_box(2004))
-#> Warning: cannot open URL 'https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_team_box/team_box_2004.rds': HTTP status was '404 Not Found'
-#> Warning: Failed to readRDS from
-#> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_team_box/team_box_2004.rds>
 #> ── ESPN college football team box scores from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-29 13:17:35 UTC
-#> # A tibble: 0 × 0
+#> ℹ Data updated: 2026-09-01 11:29:11 UTC
+#> # A tibble: 1,424 × 21
+#>    firstDowns thirdDownEff fourthDownEff totalYards netPassingYards
+#>    <chr>      <chr>        <chr>         <chr>      <chr>          
+#>  1 16         6-14         0-1           373        284            
+#>  2 18         5-13         0-0           294        180            
+#>  3 12         0-0          0-0           204        137            
+#>  4 26         4-11         1-3           454        292            
+#>  5 17         3-16         1-4           437        292            
+#>  6 23         7-16         1-2           582        381            
+#>  7 NA         NA           NA            NA         NA             
+#>  8 NA         NA           NA            NA         NA             
+#>  9 17         6-14         0-2           340        140            
+#> 10 12         5-18         0-1           211        183            
+#> # ℹ 1,414 more rows
+#> # ℹ 16 more variables: completionAttempts <chr>, yardsPerPass <chr>,
+#> #   rushingYards <chr>, rushingAttempts <chr>, yardsPerRushAttempt <chr>,
+#> #   totalPenaltiesYards <chr>, turnovers <chr>, fumblesLost <chr>,
+#> #   interceptions <chr>, possessionTime <chr>, team_id <int>,
+#> #   team_abbreviation <chr>, team_name <chr>, home_away <chr>, game_id <int>,
+#> #   season <int>
 # }
 ```

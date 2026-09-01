@@ -67,7 +67,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_drives(2004))
 #> ── college football advanced drives from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-08-29 13:17:06 UTC
+#> ℹ Data updated: 2026-09-01 11:28:42 UTC
 #> # A tibble: 926 × 12
 #>    pos_team_id pos_team            drive_total_availabl…¹ drive_total_gained_y…²
 #>          <int> <chr>                                <dbl>                  <int>
@@ -75,12 +75,12 @@ Saiem Gilani
 #>  2         259 Virginia Tech Hoki…                   4722                   2106
 #>  3         245 Texas A&M Aggies                      4956                   2285
 #>  4         254 Utah Utes                             5404                   3290
-#>  5        2050 Ball State Cardina…                   4056                   1050
-#>  6         103 Boston College Eag…                   5759                   2162
-#>  7        2628 TCU Horned Frogs                      5261                   3272
-#>  8          77 Northwestern Wildc…                   6368                   4875
-#>  9        2638 UTEP Miners                           5329                   1477
-#> 10           9 Arizona State Sun …                   5412                   3262
+#>  5         103 Boston College Eag…                   5759                   2162
+#>  6        2050 Ball State Cardina…                   4056                   1050
+#>  7          77 Northwestern Wildc…                   6368                   4875
+#>  8        2628 TCU Horned Frogs                      5261                   3272
+#>  9           9 Arizona State Sun …                   5412                   3262
+#> 10        2638 UTEP Miners                           5329                   1477
 #> # ℹ 916 more rows
 #> # ℹ abbreviated names: ¹​drive_total_available_yards, ²​drive_total_gained_yards
 #> # ℹ 8 more variables: avg_field_position <dbl>, plays_per_drive <dbl>,

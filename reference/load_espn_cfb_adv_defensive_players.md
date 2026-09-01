@@ -70,22 +70,22 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_defensive_players(2004))
 #> ── college football advanced defensive players from the SportsDataverse data rep
-#> ℹ Data updated: 2026-08-29 13:17:05 UTC
-#> # A tibble: 926 × 8
-#>    def_pos_team_id def_pos_team             player_name        fumble_recoveries
-#>              <int> <chr>                    <chr>                          <int>
-#>  1              30 USC Trojans              Ronald Nunn                        1
-#>  2              30 USC Trojans              Alex Holmes (USC)…                 1
-#>  3              77 Northwestern Wildcats    Dominique Price                    1
-#>  4            2628 TCU Horned Frogs         Robert Merrill (T…                 1
-#>  5               9 Arizona State Sun Devils Josh Barrett                       1
-#>  6             265 Washington State Cougars Husain Abdullah                    1
-#>  7             201 Oklahoma Sooners         Adrian Peterson (…                 1
-#>  8             189 Bowling Green Falcons    Cole Magner (BGSU…                 1
-#>  9             189 Bowling Green Falcons    Omar Jacobs (BGSU…                 1
-#> 10             201 Oklahoma Sooners         Rufus Alexander                    1
-#> # ℹ 916 more rows
-#> # ℹ 4 more variables: fumble_recoveries_yards <int>, game_id <int>,
-#> #   season <int>, week <int>
+#> ℹ Data updated: 2026-09-01 11:28:40 UTC
+#> # A tibble: 1,590 × 10
+#>    def_pos_team_id def_pos_team    player_name interceptions interceptions_yards
+#>              <int> <chr>           <chr>               <int>               <int>
+#>  1              30 USC Trojans     Ronald Nunn             0                   0
+#>  2              30 USC Trojans     Lofa Tatupu             1                  32
+#>  3            2050 Ball State Car… Donta Smith             0                   0
+#>  4            2050 Ball State Car… David Gater             1                  29
+#>  5              77 Northwestern W… Dominique …             1                   0
+#>  6            2628 TCU Horned Fro… Marvin God…             1                  32
+#>  7               9 Arizona State … Emmanuel F…             2                  75
+#>  8               9 Arizona State … Mike Davis…             1                   8
+#>  9            2638 UTEP Miners     James Delg…             1                   0
+#> 10               9 Arizona State … Quency Dar…             1                   5
+#> # ℹ 1,580 more rows
+#> # ℹ 5 more variables: fumble_recoveries <int>, fumble_recoveries_yards <int>,
+#> #   game_id <int>, season <int>, week <int>
 # }
 ```

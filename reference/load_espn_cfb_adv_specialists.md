@@ -70,19 +70,19 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_specialists(2004))
 #> ── college football advanced specialists from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-08-29 13:17:12 UTC
+#> ℹ Data updated: 2026-09-01 11:28:47 UTC
 #> # A tibble: 5,184 × 14
 #>    pos_team_id pos_team             player_name   punts punts_yards kick_returns
 #>          <int> <chr>                <chr>         <int>       <int>        <int>
-#>  1          30 USC Trojans          Tom Malone  …     4           0            0
-#>  2         259 Virginia Tech Hokies Vinnie Burns…     1           0            0
-#>  3          30 USC Trojans          Tom Malone  y     1           0            0
+#>  1         259 Virginia Tech Hokies Vinnie Burns…     1           0            0
+#>  2          30 USC Trojans          Tom Malone  y     1           0            0
+#>  3         259 Virginia Tech Hokies Vinnie Burns…     2           0            0
 #>  4         259 Virginia Tech Hokies Vinnie Burns      2           0            0
-#>  5         259 Virginia Tech Hokies Vinnie Burns…     2           0            0
-#>  6          30 USC Trojans          Reggie Bush       0           0            3
-#>  7         259 Virginia Tech Hokies Eddie Royal       0           0            1
-#>  8         259 Virginia Tech Hokies Josh Hyman        0           0            1
-#>  9         259 Virginia Tech Hokies Hokies.           0           0            2
+#>  5          30 USC Trojans          Tom Malone  …     4           0            0
+#>  6         259 Virginia Tech Hokies Hokies.           0           0            2
+#>  7         259 Virginia Tech Hokies Josh Hyman        0           0            1
+#>  8          30 USC Trojans          Reggie Bush       0           0            3
+#>  9         259 Virginia Tech Hokies Eddie Royal       0           0            1
 #> 10          30 USC Trojans          Trojans.          0           0            0
 #> # ℹ 5,174 more rows
 #> # ℹ 8 more variables: kick_returns_yards <int>, punt_returns <int>,

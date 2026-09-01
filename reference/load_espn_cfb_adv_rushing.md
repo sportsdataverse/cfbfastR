@@ -72,7 +72,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_rushing(2004))
 #> ── college football advanced rushing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-08-29 13:17:10 UTC
+#> ℹ Data updated: 2026-09-01 11:28:45 UTC
 #> # A tibble: 4,690 × 16
 #>    pos_team_id pos_team       rusher_player_name   Car   Yds Rush_TD   YPC   EPA
 #>          <int> <chr>          <chr>              <int> <dbl>   <int> <dbl> <dbl>
@@ -84,8 +84,8 @@ Saiem Gilani
 #>  6          30 USC Trojans    Matt Leinart           2     9       0  4.5   1.72
 #>  7          30 USC Trojans    Steve Smith            1     0       0  0    -0.61
 #>  8         254 Utah Utes      Marty Johnson         20    80       0  4    -4.91
-#>  9         245 Texas A&M Agg… Reggie McNeal         12   104       2  8.67  5.29
-#> 10         254 Utah Utes      Alex Smith            12    88       2  7.33 -1.87
+#>  9         254 Utah Utes      Alex Smith            12    88       2  7.33 -1.87
+#> 10         245 Texas A&M Agg… Reggie McNeal         12   104       2  8.67  5.29
 #> # ℹ 4,680 more rows
 #> # ℹ 8 more variables: EPA_per_Play <dbl>, WPA <dbl>, SR <dbl>, Fum <int>,
 #> #   Fum_Lost <int>, game_id <int>, season <int>, week <int>

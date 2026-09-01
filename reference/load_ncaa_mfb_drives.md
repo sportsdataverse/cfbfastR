@@ -72,7 +72,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_drives(2013))
 #> ── NCAA men's football drives (stats.ncaa.org) from the SportsDataverse data rep
-#> ℹ Data updated: 2026-08-29 13:17:38 UTC
+#> ℹ Data updated: 2026-09-01 11:29:13 UTC
 #> # A tibble: 42,185 × 17
 #>    contest_id drive_number quarter period team  start_period start_how
 #>    <chr>             <int>   <int>  <int> <chr>        <int> <chr>    

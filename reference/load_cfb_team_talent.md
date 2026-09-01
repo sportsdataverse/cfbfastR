@@ -62,8 +62,8 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_talent(2005))
 #> ── college football team talent composite from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-08-29 13:17:01 UTC
-#> # A tibble: 120 × 7
+#> ℹ Data updated: 2026-09-01 11:28:37 UTC
+#> # A tibble: 121 × 7
 #>    season team_id team   talent_composite talent_rank blue_chip_ratio n_recruits
 #>     <int> <chr>   <chr>             <dbl>       <int>           <dbl>      <int>
 #>  1   2005 52      Flori…            1344.           1           0.632         87
@@ -76,6 +76,6 @@ Saiem Gilani
 #>  8   2005 99      LSU T…            1236.           8           0.517         89
 #>  9   2005 130     Michi…            1213.           9           0.525         80
 #> 10   2005 194     Ohio …            1212.          10           0.544         79
-#> # ℹ 110 more rows
+#> # ℹ 111 more rows
 # }
 ```

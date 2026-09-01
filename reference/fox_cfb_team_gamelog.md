@@ -44,7 +44,7 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:16:42 UTC
+#> ℹ Data updated: 2026-09-01 11:28:18 UTC
 #> # A tibble: 0 × 1
 #> # ℹ 1 variable: team_id <chr>
 # }

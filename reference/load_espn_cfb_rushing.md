@@ -84,21 +84,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-08-29 13:17:33 UTC
-#> # A tibble: 1,089 × 28
+#> ℹ Data updated: 2026-09-01 11:29:09 UTC
+#> # A tibble: 1,109 × 28
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 57      Florida       fbs      SEC          2004    146519 Chad Jackson      
-#>  2 277     West Virginia fbs      Big East     2004    159847 Pernell Williams  
-#>  3 2628    TCU           fbs      Conferenc…   2004    137493 Robert Merrill    
-#>  4 2641    Texas Tech    fbs      Big 12       2004    160411 Danny Amendola    
-#>  5 59      Georgia Tech  fbs      ACC          2004    113995 Damarius Bilbo    
-#>  6 66      Iowa State    fbs      Big 12       2004    145405 Milan Moses       
-#>  7 12      Arizona       fbs      Pac-10       2004    144904 Anthony Johnson   
-#>  8 36      Colorado Sta… fbs      Mountain …   2004    160031 Kyle Bell         
-#>  9 204     Oregon State  fbs      Pac-10       2004    145056 Ryan Gunderson    
-#> 10 2649    Toledo        fbs      Mid-Ameri…   2004    134298 Quinton Broussard 
-#> # ℹ 1,079 more rows
+#>  1 59      Georgia Tech  fbs      ACC          2004    114025 P.J. Daniels      
+#>  2 254     Utah          fbs      Mountain …   2004    146936 Matt Kovacevich   
+#>  3 12      Arizona       fbs      Pac-10       2004    144922 Syndric Steptoe   
+#>  4 58      South Florida fbs      Conferenc…   2004    157592 J.B. Garris       
+#>  5 30      USC           fbs      Pac-10       2004    123261 Andre Woodert     
+#>  6 135     Minnesota     fbs      Big Ten      2004    115810 Jared Ellerson    
+#>  7 265     Washington S… fbs      Pac-10       2004    115704 Josh Swogger      
+#>  8 24      Stanford      fbs      Pac-10       2004    145100 David Marrero     
+#>  9 5       UAB           fbs      Conferenc…   2004    115044 Darrell Hackney   
+#> 10 254     Utah          fbs      Mountain …   2004    120660 Marty Johnson     
+#> # ℹ 1,099 more rows
 #> # ℹ 21 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,
 #> #   playsgame <dbl>, EPAgame <dbl>, yardsplay <dbl>, yardsgame <dbl>,

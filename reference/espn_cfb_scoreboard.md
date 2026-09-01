@@ -263,12 +263,12 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:15:07 UTC
+#> ℹ Data updated: 2026-09-01 11:27:01 UTC
 #> # A tibble: 99 × 59
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 North Carolina … UNC VS TCU      2026 regu… regu… 401856… s:20~l:… 2026-08-29
-#>  2 San José State … SJSU @ USC      2026 regu… regu… 401864… s:20~l:… 2026-08-29
+#>  1 San José State … SJSU @ USC      2026 regu… regu… 401864… s:20~l:… 2026-08-29
+#>  2 North Carolina … UNC VS TCU      2026 regu… regu… 401856… s:20~l:… 2026-08-29
 #>  3 NC State Wolfpa… NCSU @ UVA      2026 regu… regu… 401858… s:20~l:… 2026-08-29
 #>  4 Jacksonville St… JVST @ NDSU     2026 regu… regu… 401864… s:20~l:… 2026-08-29
 #>  5 Sacramento Stat… SAC @ EMU       2026 regu… regu… 401866… s:20~l:… 2026-08-29
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:15:07 UTC
+#> ℹ Data updated: 2026-09-01 11:27:01 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

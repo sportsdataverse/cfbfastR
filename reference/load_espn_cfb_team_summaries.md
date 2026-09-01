@@ -439,20 +439,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_summaries(2004))
 #> ── college football team season summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-08-29 13:17:36 UTC
+#> ℹ Data updated: 2026-09-01 11:29:12 UTC
 #> # A tibble: 118 × 383
 #>    team_id pos_team       division conference     season plays_off passrate_off
 #>    <chr>   <chr>          <chr>    <chr>           <int>     <int>        <dbl>
-#>  1 103     Boston College fbs      Big East         2004       652        0.514
-#>  2 12      Arizona        fbs      Pac-10           2004       580        0.460
-#>  3 120     Maryland       fbs      ACC              2004       680        0.432
-#>  4 127     Michigan State fbs      Big Ten          2004       800        0.429
-#>  5 130     Michigan       fbs      Big Ten          2004       757        0.483
-#>  6 135     Minnesota      fbs      Big Ten          2004       637        0.334
-#>  7 142     Missouri       fbs      Big 12           2004       785        0.448
-#>  8 145     Ole Miss       fbs      SEC              2004       718        0.453
-#>  9 150     Duke           fbs      ACC              2004       529        0.484
-#> 10 151     East Carolina  fbs      Conference USA   2004       259        0.537
+#>  1 103     Boston College fbs      Big East         2004       736        0.511
+#>  2 12      Arizona        fbs      Pac-10           2004       591        0.470
+#>  3 120     Maryland       fbs      ACC              2004       693        0.443
+#>  4 127     Michigan State fbs      Big Ten          2004       816        0.440
+#>  5 130     Michigan       fbs      Big Ten          2004       769        0.492
+#>  6 135     Minnesota      fbs      Big Ten          2004       643        0.341
+#>  7 142     Missouri       fbs      Big 12           2004       794        0.455
+#>  8 145     Ole Miss       fbs      SEC              2004       731        0.462
+#>  9 150     Duke           fbs      ACC              2004       536        0.491
+#> 10 151     East Carolina  fbs      Conference USA   2004       268        0.552
 #> # ℹ 108 more rows
 #> # ℹ 376 more variables: rushrate_off <dbl>, havoc_off <dbl>,
 #> #   explosive_off <dbl>, TEPA_off <dbl>, EPAplay_off <dbl>, yards_off <int>,

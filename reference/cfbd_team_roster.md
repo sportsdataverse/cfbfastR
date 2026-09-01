@@ -63,7 +63,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_roster(year = 2013, team = "Florida State"))
 #> ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:13:02 UTC
+#> ℹ Data updated: 2026-09-01 11:24:58 UTC
 #> # A tibble: 134 × 17
 #>    athlete_id first_name last_name   team    weight height jersey  year position
 #>    <chr>      <chr>      <chr>       <chr>    <int>  <int>  <int> <int> <chr>   

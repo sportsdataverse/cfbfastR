@@ -47,26 +47,26 @@ Other Yahoo CFB Functions:
 # \donttest{
   try(yahoo_cfb_team_season_stats(season = 2024))
 #> ── Team season stats from Yahoo Sports (shangrila) ────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-08-29 13:20:11 UTC
+#> ℹ Data updated: 2026-09-01 11:30:57 UTC
 #> # A tibble: 134 × 101
-#>    team         team_abbreviation points_allowed passing_yards_per_attempt
-#>    <chr>        <chr>             <chr>          <chr>                    
-#>  1 Clemson      CLEM              328            7.3                      
-#>  2 Duke         DUKE              318            6.8                      
-#>  3 Florida St.  FSU               336            6.1                      
-#>  4 Georgia Tech GT                333            7.5                      
-#>  5 Maryland     UMD               365            6.7                      
-#>  6 N. Carolina  UNC               365            7.4                      
-#>  7 NC State     NCST              392            7.7                      
-#>  8 Virginia     UVA               345            6.9                      
-#>  9 Wake Forest  WAKE              390            7.1                      
-#> 10 Boston Coll. BC                309            7.9                      
+#>    team         team_abbreviation rushing_yards_per_game receiving_yards
+#>    <chr>        <chr>             <chr>                  <chr>          
+#>  1 Clemson      CLEM              173.4                  3908           
+#>  2 Duke         DUKE              92.5                   3180           
+#>  3 Florida St.  FSU               89.9                   2164           
+#>  4 Georgia Tech GT                187.0                  3088           
+#>  5 Maryland     UMD               110.4                  3320           
+#>  6 N. Carolina  UNC               182.3                  2919           
+#>  7 NC State     NCST              145.2                  3031           
+#>  8 Virginia     UVA               131.9                  2748           
+#>  9 Wake Forest  WAKE              130.6                  2881           
+#> 10 Boston Coll. BC                166.1                  2591           
 #> # ℹ 124 more rows
-#> # ℹ 97 more variables: passing_completions_allowed_per_game <chr>,
-#> #   rushing_touchdowns_allowed_per_game <chr>,
-#> #   rushing_yards_allowed_per_game <chr>,
-#> #   receiving_touchdowns_allowed_per_game <chr>, rushing_yards_rank <chr>,
-#> #   completion_percentage_allowed <chr>, rushing_attempts_per_game <chr>,
-#> #   passing_yards_allowed_per_game_rank <chr>, …
+#> # ℹ 97 more variables: receiving_touchdowns_allowed_per_game <chr>,
+#> #   rushing_yards_per_game_rank <chr>, rushing_yards <chr>,
+#> #   rushing_yards_allowed_per_attempt <chr>,
+#> #   receiving_first_downs_allowed <chr>, games_punting <chr>,
+#> #   points_allowed_rank <chr>, receptions_allowed_per_game <chr>,
+#> #   points_allowed_per_game <chr>, …
 # }
 ```

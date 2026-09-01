@@ -101,21 +101,21 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-08-29 13:17:22 UTC
-#> # A tibble: 349 × 45
+#> ℹ Data updated: 2026-09-01 11:28:57 UTC
+#> # A tibble: 364 × 45
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 242     Rice          fbs      Western A…   2004    149925 Joel Armstrong    
-#>  2 120     Maryland      fbs      ACC          2004    116034 Derrick Fenner    
-#>  3 59      Georgia Tech  fbs      ACC          2004    145781 Reggie Ball       
-#>  4 50      Florida A&M   fbs      FBS Indep…   2004    116652 Josh Driscoll     
-#>  5 2653    Troy          fbs      Sun Belt     2004    129586 Jason Samples     
-#>  6 252     BYU           fbs      Mountain …   2004    148066 John Beck         
-#>  7 38      Colorado      fbs      Big 12       2004    145302 Jarrad Jackson    
-#>  8 166     New Mexico S… fbs      Sun Belt     2004    112487 Paul Dombrowski   
-#>  9 2572    Southern Miss fbs      Conferenc…   2004    147910 Damion Carter     
-#> 10 2572    Southern Miss fbs      Conferenc…   2004    129234 Dustin Almond     
-#> # ℹ 339 more rows
+#>  1 333     Alabama       fbs      SEC          2004    133282 Marc Guillon      
+#>  2 96      Kentucky      fbs      SEC          2004    107632 Shane Boyd        
+#>  3 251     Texas         fbs      Big 12       2004    120213 Matt Nordgren     
+#>  4 2509    Purdue        fbs      Big Ten      2004    119358 Kyle Orton        
+#>  5 2653    Troy          fbs      Sun Belt     2004    164451 D.T. McDowell     
+#>  6 154     Wake Forest   fbs      ACC          2004    133990 Chris Barclay     
+#>  7 2348    Louisiana Te… fbs      Western A…   2004    120824 Matt Kubik        
+#>  8 254     Utah          fbs      Mountain …   2004    154097 John Madsen       
+#>  9 2348    Louisiana Te… fbs      Western A…   2004    150699 Donald Allen      
+#> 10 2032    Arkansas Sta… fbs      Sun Belt     2004    150641 Nick Noce         
+#> # ℹ 354 more rows
 #> # ℹ 38 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,
 #> #   comppct <dbl>, passing_td <dbl>, playsgame <dbl>, EPAgame <dbl>,
