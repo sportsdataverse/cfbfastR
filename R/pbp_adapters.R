@@ -63,6 +63,8 @@
       "yards_gained"  = "plays_stat_yardage",
       "yard_line"     = "plays_start_yard_line"
     ) |>
+    # end-of-play yardline for the air-yards side vote; tolerated absent
+    dplyr::rename(dplyr::any_of(c(end_yards_to_endzone = "plays_end_yards_to_endzone"))) |>
     dplyr::mutate(
       game_id = game_id,
       clock_minutes = as.numeric(stringr::str_extract(
