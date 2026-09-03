@@ -1,0 +1,316 @@
+---
+title: "What Is EPA in College Football? Expected Points Added Explained (Part IV)"
+description: "EPA (expected points added) is the change in expected points across a single play. How it is calculated, what a good EPA per play looks like, the sign conventions that trip people up, and how to compute it yourself with cfbfastR."
+author: "Saiem Gilani, Akshay Easwaran, Jared Lee"
+date: "2026-09-03"
+opengraph:
+  image:
+    src: "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"
+  twitter:
+    site: "@cfbfastR"
+    card: summary_large_image
+    creator: "@saiemgilani"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+**EPA — expected points added — is the change in expected points across a single
+play.** If a team's situation was worth 0.66 expected points before the snap and
+1.92 after it, the play was worth **+1.26 EPA**. It is the standard way to put a
+points value on one football play, and nearly every modern team and player
+metric is built by summing or averaging it.
+
+$$\mathrm{EPA} = \mathrm{EP}_{\text{after}} - \mathrm{EP}_{\text{before}}$$
+
+[Part I](college-football-expected-points-model-fundamentals-part-i.html) covers
+what expected points is and
+[Part II](college-football-expected-points-model-fundamentals-part-ii.html) how
+the model estimates it. This article is about turning that into per-play value.
+
+## Why EPA instead of yards
+
+Yards treat every situation as identical. EPA does not, and the difference is
+the entire point.
+
+A 3-yard gain on 3rd and 2 continues a drive. A 3-yard gain on 3rd and 8 ends
+one. Both are "3 yards". Their EPA differs by more than two points, because the
+model knows what happens next in each case.
+
+Start from a routine situation — 1st and 10 at your own 25, tied, thirty minutes
+left in the half — worth **+0.66** expected points. Here is what various outcomes
+of that single play are worth:
+
+| Play outcome | Resulting situation | EP after | **EPA** |
+|---|---|---|---|
+| Gain of 40 | 1st & 10, own 65 | +3.57 | **+2.90** |
+| Gain of 25 | 1st & 10, midfield | +2.61 | **+1.95** |
+| Gain of 15 | 1st & 10, own 40 | +1.92 | **+1.25** |
+| Gain of 8 | 2nd & 2, own 33 | +1.62 | **+0.95** |
+| Gain of 10 | 1st & 10, own 35 | +1.55 | **+0.89** |
+| Gain of 5 | 2nd & 5, own 30 | +0.96 | **+0.30** |
+| Gain of 3 | 2nd & 7, own 28 | +0.30 | **−0.36** |
+| Incompletion | 2nd & 10, own 25 | −0.02 | **−0.69** |
+| Sack for −7 | 2nd & 17, own 18 | −1.13 | **−1.79** |
+| Interception at the spot | Opponent 1st & 10 | −0.66 | **−1.33** |
+| Pick six risk: INT returned to your 10 | Opponent 1st & 10, your 10 | −4.96 | **−5.62** |
+
+Look at rows four and five. **A gain of 8 yards is worth more EPA than a gain of
+10.** Eight yards leaves 2nd and 2; ten yards leaves 1st and 10 five yards
+further downfield. The model prefers 2nd and 2, and it is right to — a 2nd and 2
+converts at a far higher rate than a fresh set of downs needing ten.
+
+That is not a quirk. It is the clearest possible demonstration that **down and
+distance carry more value than raw field position** in the middle of the field,
+and no yards-based statistic can express it.
+
+Notice also that a 3-yard gain on 1st and 10 is *negative*. Gaining yards is not
+automatically good. Gaining fewer than the situation demands is a loss.
+
+## The third-down case
+
+The same idea, sharper. 3rd and 3 at the opponent's 35 is worth **+2.75**:
+
+| Outcome | Resulting situation | EP after | **EPA** |
+|---|---|---|---|
+| Convert, gain of 5 | 1st & 10, opponent 30 | +3.98 | **+1.23** |
+| Stuffed for no gain | 4th & 3, opponent 35 | +0.88 | **−1.87** |
+| Turnover on downs | Opponent ball, their 35 | −1.55 | **−4.30** |
+
+A three-yard gain here is worth +1.23. A no-gain is worth −1.87. **The same
+three yards that were worth −0.36 on 1st and 10 are worth +1.23 on 3rd and 3.**
+
+## Sign conventions
+
+This is where most confusion lives, so it is worth being explicit.
+
+**EPA is always signed from the perspective of the team with the ball at the
+snap.** Positive EPA is good for that offense, negative is bad.
+
+Consequences that catch people out:
+
+- **Defensive EPA is the same number negated.** A defense that allows −0.15
+  EPA/play is *good*. When building defensive metrics you either flip the sign
+  or say "EPA allowed" and remember lower is better. `cfbfastR` reports the
+  offense-signed value; the flip is yours to make.
+- **On a turnover, expected points for the new offense is negated** before
+  differencing. That is why an interception at the spot costs −1.33 rather than
+  −0.66: you lose your own +0.66 *and* hand the opponent an equivalent
+  situation.
+- **Return men differ by play type.** On a kickoff the returning team is the
+  possession team, so returner EPA is positive-good. On a punt return the
+  punting team is the possession team at the snap, so the same raw column needs
+  negating for the returner. This is the single most common error in
+  player-level EPA aggregation.
+- **Penalties** are folded into the play they attach to, so a defensive holding
+  on an incompletion produces one net EPA, not two.
+
+## EPA, EPA per play, and total EPA
+
+Three different statistics that get called "EPA":
+
+| Statistic | What it measures | Use it for |
+|---|---|---|
+| **EPA** (one play) | value of a single play | play-level analysis |
+| **Total EPA** | sum over plays | volume — season value, workhorse backs |
+| **EPA per play** | mean over plays | efficiency — comparing teams and players fairly |
+
+A quarterback with 1,200 total EPA over 500 dropbacks (2.4 per play) is not
+comparable to one with 1,200 over 900 dropbacks. Per-play is almost always the
+right comparison; total EPA is the right way to credit workload.
+
+## What is a good EPA per play?
+
+For **teams**, from the 2025 FBS season as ranked on
+[Game on Paper](https://gameonpaper.com/year/2025/teams/offensive) (adjusted
+offensive EPA per play, 135 teams):
+
+| Rank | Team | Adj. EPA/play |
+|---|---|---|
+| 1 | Vanderbilt | +0.35 |
+| 4 | Ohio State | +0.26 |
+| 11 | Miami | +0.22 |
+| 21 | Georgia | +0.15 |
+| 51 | Pittsburgh | +0.04 |
+| 81 | Kennesaw State | −0.01 |
+| 135 | Ball State | −0.31 |
+
+So, as a rule of thumb for team offenses:
+
+- **above +0.25** — elite, top-five
+- **+0.10 to +0.25** — very good
+- **around 0.00** — average; the median FBS offense sits near zero by construction
+- **below −0.20** — among the worst in the country
+
+The full range across 135 FBS teams is roughly **−0.31 to +0.35**. That is a
+narrower spread than newcomers expect: the gap between the best and worst
+offense in the country is about two thirds of a point per snap.
+
+Note these are *adjusted* — corrected for opponent strength, home field and
+garbage time. Raw EPA per play runs wider and flatters teams with easy
+schedules, which is exactly why the adjustment exists.
+
+## Computing it yourself
+
+`cfbfastR` ships EPA on every play, so normally you just read it:
+
+```{r epa-columns, eval=FALSE}
+library(cfbfastR)
+library(dplyr)
+
+pbp <- cfbfastR::load_cfb_pbp(2025)
+
+pbp |>
+  dplyr::filter(!is.na(EPA)) |>
+  dplyr::select(pos_team, def_pos_team, down, distance, yards_to_goal,
+                play_text, ep_before, ep_after, EPA) |>
+  dplyr::slice_head(n = 10)
+```
+
+Team efficiency, offense and defense, from raw play data:
+
+```{r team-epa, eval=FALSE}
+offense <- pbp |>
+  dplyr::filter(!is.na(EPA)) |>
+  dplyr::group_by(team = pos_team) |>
+  dplyr::summarise(plays = dplyr::n(),
+                   epa_per_play = mean(EPA),
+                   total_epa = sum(EPA), .groups = "drop")
+
+defense <- pbp |>
+  dplyr::filter(!is.na(EPA)) |>
+  dplyr::group_by(team = def_pos_team) |>
+  dplyr::summarise(def_epa_per_play = mean(EPA), .groups = "drop")
+  # lower is better -- these are offense-signed
+
+offense |>
+  dplyr::inner_join(defense, by = "team") |>
+  dplyr::mutate(net = epa_per_play - def_epa_per_play) |>
+  dplyr::arrange(dplyr::desc(net)) |>
+  dplyr::filter(plays > 300)
+```
+
+Note the `plays > 300` filter. Per-play averages over small samples are noisy;
+a receiver with four targets and +2.0 EPA per target has told you nothing.
+
+And reproducing the worked table above, straight from the published model:
+
+```{r reproduce, eval=FALSE}
+# Self-contained: Part I defines ep_at() inside its own eval=FALSE chunk, so a
+# reader pasting this into a clean session would hit
+# "could not find function 'ep_at'". Both setup steps are repeated here.
+library(xgboost)
+base <- paste0(
+  "https://github.com/sportsdataverse/sportsdataverse-data/",
+  "releases/download/cfb_model_artifacts/"
+)
+f <- tempfile(fileext = ".ubj")
+download.file(paste0(base, "ep_model.ubj"), f, mode = "wb")
+ep_model <- xgboost::xgb.load(f)
+
+ep_at <- function(ytg, down = 1, dist = 10, secs = 1800, score_diff = 0) {
+  X <- cbind(
+    TimeSecsRem = secs, yards_to_goal = ytg, distance = pmin(dist, ytg),
+    down_1 = as.integer(down == 1), down_2 = as.integer(down == 2),
+    down_3 = as.integer(down == 3), down_4 = as.integer(down == 4),
+    pos_score_diff_start = score_diff
+  )
+  pred <- predict(ep_model, X)
+  # normalise: may be an n x 7 matrix or a flat row-major vector
+  p <- if (is.matrix(pred) && ncol(pred) == 7L) pred else matrix(pred, ncol = 7, byrow = TRUE)
+  as.vector(p %*% c(7, -7, 3, -3, 2, -2, 0))
+}
+
+before <- ep_at(75, down = 1, dist = 10)          # 1st & 10, own 25
+
+data.frame(
+  outcome = c("gain 8", "gain 10", "gain 15"),
+  ep_after = c(ep_at(67, down = 2, dist = 2),
+               ep_at(65, down = 1, dist = 10),
+               ep_at(60, down = 1, dist = 10))
+) |> transform(EPA = ep_after - before)
+```
+
+## What EPA does not do
+
+Stated plainly, because a metric is only useful if you know its edges:
+
+- **It is not opponent-adjusted.** Raw EPA credits a touchdown against a bad
+  defence exactly like one against a good defence.
+- **It has no team-quality input**, so score margin partly proxies for it — see
+  the caveat in
+  [Part II](college-football-expected-points-model-fundamentals-part-ii.html).
+- **It does not assign credit within a play.** A 40-yard completion produces one
+  EPA figure; how much belongs to the quarterback, the receiver, the line or the
+  coverage bust is a separate modelling problem.
+- **It is descriptive, not predictive.** High EPA per play describes what
+  happened. Predicting next week needs stability adjustments, because
+  explosiveness regresses harder than efficiency.
+- **Garbage time distorts it** unless you filter or weight for win probability.
+
+## Seeing it applied
+
+[Game on Paper](https://gameonpaper.com) computes all of this for every FBS game.
+Any game page shows EPA per play, success rate and a win probability chart, with
+a play-by-play listing `ep_before`, `ep_after` and EPA for every snap — the
+table at the top of this article, for a real game. Season leaderboards rank
+every team by [offensive](https://gameonpaper.com/year/2025/teams/offensive) and
+[defensive](https://gameonpaper.com/year/2025/teams/defensive) EPA per play, and
+players by [passing](https://gameonpaper.com/year/2025/players/passing),
+[rushing](https://gameonpaper.com/year/2025/players/rushing) and
+[receiving](https://gameonpaper.com/year/2025/players/receiving) EPA per play.
+
+## Frequently asked
+
+**Is a high EPA good?**
+For an offense, yes — positive EPA means the play improved its scoring
+expectation. For a defense the sign flips: you want the offense's EPA against
+you to be negative.
+
+**What is a good EPA per play?**
+For an FBS offense, above +0.25 is elite and around 0.00 is average. The full
+2025 range was roughly −0.31 to +0.35.
+
+**What is the difference between EPA and EPA per play?**
+EPA is one play's value; total EPA sums it (a volume measure); EPA per play
+averages it (an efficiency measure).
+
+**Can EPA be negative on a play that gained yards?**
+Yes, and often. A 3-yard gain on 1st and 10 is worth −0.36 EPA, because it
+leaves a worse down and distance than the offense started with.
+
+**Does EPA account for the opponent?**
+Not on its own. Adjusted versions correct for opponent, home field and garbage
+time on top of raw EPA.
+
+## Next
+
+Part V covers **win probability** — the same modelling idea applied to the
+outcome that actually matters, why `vegas_wp` exists alongside `wp`, and how
+WPA differs from EPA in late-game situations.
+
+## Data and artifacts
+
+- **Models** — [`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+- **Season play-by-play** — [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data)
+- **Source** — [`cfbfastR`](https://github.com/sportsdataverse/cfbfastR) · [`sportsdataverse-py`](https://github.com/sportsdataverse/sportsdataverse-py)
+- **Applied, live** — [Game on Paper](https://gameonpaper.com)
+- **Raw API** — [CollegeFootballData.com](https://collegefootballdata.com), courtesy of [@CFB_data](https://x.com/CFB_data)
+
+## Citation
+
+```
+Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
+Football Play by Play Data. R package version 3.0.0.9000.
+https://cfbfastr.sportsdataverse.org
+```
+
+Authors, contributors and related SportsDataverse packages are listed on the
+[package home page](../index.html).
+
+```{r cleanup, include=FALSE}
+options(old)
+```
