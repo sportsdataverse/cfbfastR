@@ -1,10 +1,11 @@
 ---
-title: "College Football Expected Points Model Fundamentals - Part I"
-description: "Expected points model definition - a model explainer"
-author: "Saiem Gilani, Akshay Easwaran, Jared Lee <br><a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a> <a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>"
+title: "Expected Points in College Football: How the Model Works (Part I)"
+description: "What expected points (EP) means in college football, the seven next-score outcomes the cfbfastR model predicts, and how to reproduce its field-position curve from the published model bundle."
+author: "Saiem Gilani, Akshay Easwaran, Jared Lee"
+date: "2026-09-03"
 opengraph:
   image:
-    src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
+    src: "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"
   twitter:
     site: "@cfbfastR"
     card: summary_large_image
@@ -17,173 +18,386 @@ knitr::opts_chunk$set(echo = TRUE)
 old <- options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
-In this tutorial, we are going to get more familiar with the Expected Points portion of College Football Expected Points Added model.
+**Expected points (EP) is the number of points a team can expect to score, net
+of what its opponent scores, before the next score of the half — given down,
+distance, field position and time.** A first-and-10 on your own 1-yard line is
+worth about −1.3 points. The same down and distance on your opponent's 20 is
+worth about +4. The difference between those two numbers is what makes a
+40-yard gain valuable, and *expected points added* (EPA) is simply the change in
+EP across a single play.
 
-We will be using these ideas as a tool for valuation of plays with the goal of contextualizing team and player performance relative to the average, given the situational factors at the start of the play.
+This article covers what the model predicts and how to reproduce its central
+result. [Part II](college-football-expected-points-model-fundamentals-part-ii.html)
+covers how the model is built and why it is a gradient-boosted classifier.
+[Part III](college-football-expected-points-model-fundamentals-part-iii.html)
+covers where the idea came from.
 
-Let’s dig in.
+## Which model are you running?
 
-## The Data
-We will be acquiring data from [CollegeFootballData.com](collegefootballdata.com), courtesy of \@[CFB\_data](https://twitter.com/CFB_data), using `cfbfastR`, created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay Easwaran](https://twitter.com/akeaswaran), [Jared Lee](https://twitter.com/JaredDLee) and [Eric Hess](https://twitter.com/arbitanalytics).
+This matters before anything else, because **two generations of the model are in
+circulation and they give different EPA for the same play.**
 
-# The Expected Points Model
-## Outcome (target) variables
-This model generates probabilities for the possible types of next scoring events within the same half. The 7 scoring possibilities are:
+| | CRAN `cfbfastR 3.0.0` | GitHub `3.0.0.9000` |
+|---|---|---|
+| EP estimator | `nnet::multinom` from `cfbfastR-data` | XGBoost, from the `cfb_model_artifacts` bundle |
+| Agrees with `sportsdataverse-py` | no | yes — same artifact |
+| Mid-era CFBD seasons (~2006–2013) | aborts ([#5](https://github.com/sportsdataverse/cfbfastR/issues/5)) | works |
 
- - Touchdown (7)
- - Field Goal (3)
- - Safety (2)
- - No Score (0)
- - Opponent Safety (-2)
- - Opponent Field Goal (-3)
- - Opponent Touchdown (-7)
-
-For each play, the multinomial logistic regression model calculates what the probability (\emph{p}) of each of those scoring outcomes is and the expected points can be calculated by multiplying each of the scoring event probabilities by their associated point values and summing the products, like so:
-
-<a href="https://imgur.com/sJTs6j6"><img src="https://i.imgur.com/sJTs6j6.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
-
-## Predictive variables
-The model is fit using the following variables and interactions:
-
-### Pure Distance Factors (24 variables)
- - Yards from opponent’s end zone (6)
- - log(yards to convert 1st/Goal) (6)
- - Indicator for goal-to-go situations (6)
- - Interaction between log(yards to convert 1st/Goal) and goal-to-go indicator (6)
-
-### Down Factors and Down Interactions (54 variables)
- - Down (18 since Down is a categorical factor)
- - Interaction between log(yards to convert 1st/Goal) and down (18)
- - Interaction between yards from opponent’s end zone and down (18)
-
-### Time Factors and Intercept (18 variables)
- - Seconds remaining in the current half (6)
- - Indicator for under two-minutes to the end of half/game (6)
- - Intercept for each next score type, used as the combined mean value for reference variables, in this case 1st Down, not a goal-to-go situation and outside of under two minutes left to the end of half or game. (6)
-
-You might be asking at this point, “how are there 96 variables, if there are only 10 bullet points here?” (skip to the next section if you didn’t ask.)  The answer is a little technical if answered completely, but to model this appropriately, one next score type is used as the reference target (we chose “No Score” as our reference) and the coefficients are fitted to the predictive variables for each of the remaining 6 target score types. This is why you see each factor comprising at least 6 variables.
-
-The additional complexity is that down must be treated as a categorical factor, meaning 1st down is treated as the reference and there are then 6 variables for 2nd down, 6 variables for 3rd down, and 6 variables for 4th down. The same logic would then also apply to each of the down interactions. The Boolean indicators for goal-to-go and under two-minutes are also factors that give relative coefficients to the ‘False’ case, but since there only two cases, only 6 additional variables are created for each.
-
-## Model Weights
-Observations are weighted by both score differential and difference in number of drives between play and the next score. The former weighting is intended to accomplish the goal of valuing plays where the score differential is higher less than possessions where the score differential is closer to zero.
-
-Additionally, the latter model weighting places more emphasis on plays on drives that occur closer to the next scoring drive more than plays on prior drives. An example would be if a game begins with 6 scoreless drives to start before one team scores, the plays of the first drive would have a weight of 1/7*, the plays of the second drive a 2/7 weighting, with the plays of the first scoring drive (i.e. the 7th possession) having a full 7/7 weighting.
-
-*Full disclosure: it would be 7 as the denominator if 6 scoreless drives was the largest distance between scoring drives for the entire season across all games (it could be 12 for the games across the entire season, in which case the values would have been 1/12, 2/12, ..., 7/12.)
-
-This way the model weighs all games with the same denominator and scales the weight of each scoring drive distance to a value between 0 and 1. This same caveat also applies for score differential. Score difference is scaled by largest score differential across all games in a given season. Both of the score differential and scoring drive distance weightings are combined to create a single scaled weighting for each play across each season.
-
-### Kicking, Kickoffs, and Punts
-Field goals and kickoffs are treated separately. The probability that a field goal is made is calculated using a general additive model using the (smoothed) distance of the kick as the predictor, calculated as the yard-line plus an additional 17 yards. Each field goal attempt’s expected points are weighted by the probability it is made (resulting in 3 expected points) and adjusted by the probability of a missed field goal (i.e. Pr(Missed FG) = 1 - Pr(Made FG)) and the resulting change in EPA due to changes in field position, down, etc. that would occur from the missed field goal.
-
-Touch-backs are considered the standard expected outcome for kickoffs and anything returned past the 25 would be a points added situation and vice versa for those not returned to at least the 25. considered
-
-PATs are not currently being treated separately, the extra point is treated as a given, which is less than ideal.
-
-Punts are not treated separately, since their primary effect lies mostly in the change in field position. It is a situation the expected points model is well suited to predict on.
-
-## Field Position and Expected Points
-The model was trained on non-overtime data from 2014-2019 using leave-one-season-out cross-validation. This means the model holds one season for test data validation and uses the remaining seasons as the training set, then uses the trained model to make predictions on the season held out. This process is then iterated for each season in the data.
-
-<a href="https://imgur.com/g5rSRUX"><img src="https://i.imgur.com/g5rSRUXl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
-
-This is the plot of expected points in relation to field position alone, grouped in 10 yard bins and labeled on the plot with the mean expected points for the bin. The point at the bottom left is roughly the expected points from having the ball at the offense’s own 1-yard line, -1.28 expected points. The observed mean expected value for receiving the ball from the offense’s own 21-30-yard line (or 70 to 79 yards from opponent’s end-zone) is 0.29 expected points.
-
-It should be no surprise that as offenses move closer to their opponent’s goal line, the expected points trend upward for the offense. Notice for the point representing the 30-39-yard line grouping, the expected points is right around the value of a field goal. This aligns with one of the common definitions of a scoring opportunity, giving support to the appropriateness of the definition.
-
-The observed average expected points in the red-zone are 4.05 in the 10-19-yard line bin and 5.17 inside the 10, with plays at the 1-yard line averaging 6.06 expected points. Note: There are some plays that were input as yard 0 that I interpreted as an “& inches” situation. There are 66 such plays (compared to 5.3k plays at the 1-yard line) and their observed mean expected points is 4.62.
-
-## Field Position and Expected Points by Down
-Recall that down and down interactions were three of the predictors in the model, so here is the field position view of expected points separated by down. The plot below demonstrates that your expected points are higher (on average) on 1st down than 2nd, and 2nd down than 3rd, etc at every point on the field, except possibly near the offense’s own goal line where there is risk of giving up a safety.
-
-<a href="https://imgur.com/S7etCxQ"><img src="https://i.imgur.com/S7etCxQl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani" /></a>
-
-This graph should be somewhat intuitive, but to understand what the relative expected points difference for each down at the same field position, we are interested in the vertical distance between each of the lines.
-
-## 1st and 2nd Down
-Noting that, we see that difference between 1st and 2nd down is steady across most of the field from left to right, starting wider near the offense’s own goal line and narrowing as the offense progresses toward the opponent’s end-zone.
-
-## 2nd and 3rd Down
-Examining the difference between the 2nd and 3rd down lines, the distance is much wider, doubling the relative difference between 1st and 2nd for most portions of the middle 60 yards of the field.
-
-## 3rd and 4th Down
-Further yet is the 4th down line, which has an interesting track, narrowing closest to the other down lines around the 25 yard line.
-
-Perhaps we should examine the next score probabilities underlying each of these down lines to see what drives these relative differences. More on that in Part 2, coming your way next.
-
-# **Our Authors**
--   [Saiem Gilani](https://x.com/saiemgilani)
-<a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a>
-<a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>
--   [Akshay Easwaran](https://x.com/akeaswaran)
-<a href='https://x.com/akeaswaran' target='blank'><img src='https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge' alt='@akeaswaran'/></a>
-<a href='https://github.com/akeaswaran' target='blank'><img src='https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@akeaswaran'/></a>
--   [Jared Lee](https://x.com/JaredDLee)
-<a href='https://x.com/JaredDLee' target='blank'><img src='https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge' alt='@JaredDLee'/></a>
-<a href='https://github.com/Kazink36' target='blank'><img src='https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Kazink36'/></a>
--   [Eric Hess](https://x.com/arbitanalytics)
-<a href='https://x.com/arbitanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge' alt='@arbitanalytics'/></a>
-<a href='https://github.com/ehess' target='blank'><img src='https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@ehess'/></a>
-
-## **Our Contributors**
--   [Michael Egle](https://x.com/deceptivespeed_)
-<a href='https://x.com/deceptivespeed_' target='blank'><img src='https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge' alt='@deceptivespeed_'/></a>
-<a href='https://github.com/michaelegle' target='blank'><img src='https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@michaelegle'/></a>
--   [Nate Manzo](https://x.com/cfbnate)
-<a href='https://x.com/cfbnate' target='blank'><img src='https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge' alt='@cfbnate'/></a>
-<a href='https://github.com/natemanzo' target='blank'><img src='https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@natemanzo'/></a>
--   [Jason DeLoach](https://x.com/CFBNumbers)
-<a href='https://x.com/CFBNumbers' target='blank'><img src='https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge' alt='@CFBNumbers'/></a>
-<a href='https://github.com/CFBNumbers' target='blank'><img src='https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@CFBNumbers'/></a>
--   [Tej Seth](https://x.com/tejfbanalytics)
-<a href='https://x.com/tejfbanalytics' target='blank'><img src='https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge' alt='@tejfbanalytics'/></a>
-<a href='https://github.com/tejseth' target='blank'><img src='https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@tejseth'/></a>
--   [Conor McQuiston](https://x.com/ConorMcQ5)
-<a href='https://x.com/ConorMcQ5' target='blank'><img src='https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge' alt='@ConorMcQ5'/></a>
-<a href='https://github.com/mcqconor' target='blank'><img src='https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@mcqconor'/></a>
--   [Tan Ho](https://x.com/_TanHo)
-<a href='https://x.com/_TanHo' target='blank'><img src='https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge' alt='@_TanHo'/></a>
-<a href='https://github.com/tanho63' target='blank'><img src='https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@tanho63'/></a>
--   [Keegan Abdoo](https://x.com/KeeganAbdoo)
-<a href='https://x.com/KeeganAbdoo' target='blank'><img src='https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge' alt='@KeeganAbdoo'/></a>
-<a href='https://github.com/keegan-abdoo' target='blank'><img src='https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@keegan-abdoo'/></a>
--   [Matt Spencer](https://x.com/Maatspencer)
-<a href='https://x.com/Maatspencer' target='blank'><img src='https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge' alt='@Maatspencer'/></a>
-<a href='https://github.com/Maatspencer' target='blank'><img src='https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@Maatspencer'/></a>
--   [Sebastian Carl](https://x.com/mrcaseb)
-<a href='https://x.com/mrcaseb' target='blank'><img src='https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge' alt='@mrcaseb'/></a>
-<a href='https://github.com/mrcaseb' target='blank'><img src='https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@mrcaseb'/></a>
--   [John Edwards](https://x.com/John_B_Edwards)
-<a href='https://x.com/John_B_Edwards' target='blank'><img src='https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge' alt='@John_B_Edwards'/></a>
-<a href='https://github.com/john-b-edwards' target='blank'><img src='https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@john-b-edwards'/></a>
--   [Brad Hill](https://x.com/bradisblogging)
-<a href='https://x.com/bradisblogging' target='blank'><img src='https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge' alt='@bradisblogging'/></a>
-<a href='https://github.com/bradisbrad' target='blank'><img src='https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@bradisbrad'/></a>
-
-## **Citation**
-
-To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R package in publications, use:
-
-BibTeX Citation
-
-```bibtex
-@misc{cfbfastr,
-  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
-  title = {cfbfastR: Access College Football Play by Play Data},
-  url = {https://cfbfastR.sportsdataverse.org/},
-  year = {2021}
-}
+```{r which-version, eval=FALSE}
+packageVersion("cfbfastR")
+# 3.0.0        -> CRAN build, previous model generation
+# 3.0.0.9000   -> GitHub build, shared bundle
 ```
 
-## **Related SportsDataverse packages**
+The four-component version exists precisely so this is answerable. If you are
+comparing EPA numbers with someone else, compare versions first.
 
--   [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college football
--   [**hoopR**](https://hoopR.sportsdataverse.org/) - men's basketball
--   [**wehoop**](https://wehoop.sportsdataverse.org/) - women's basketball
--   [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
--   [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
--   [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
--   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
--   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
--   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package
+Everything below describes the **current** generation.
+
+## How the model has evolved
+
+The series originally described a model that no longer ships. The change is
+worth understanding, because it is a real shift in modelling philosophy rather
+than a version bump.
+
+| | 2020 generation | 2026 generation (current) |
+|---|---|---|
+| Estimator | multinomial logistic regression (`nnet::multinom`) | XGBoost, `multi:softprob` |
+| Inputs | **96 model variables** — hand-built interactions and factor expansions | **8 features** |
+| Training data | non-overtime plays, 2014–2019 | 2004–2025, 2,219,971 plays |
+| Validation | leave-one-season-out CV | see the model card |
+| Published as | an `.rda` in `cfbfastR-data` | a versioned release asset both libraries read |
+| Field goals | GAM on smoothed kick distance | a separate gradient-boosted `fg_model` |
+
+The most interesting line is the feature count: **96 variables became 8.**
+
+That is not a loss of information. The old model needed those 96 columns because
+a linear model can only see an interaction if you build the interaction by hand
+— every `log(distance) × down`, every `yards_to_goal × down`, every factor level
+expanded against a reference class. Gradient-boosted trees learn interactions
+from splits, so the same structure is recovered from the raw eight:
+
+```{r ep-features, eval=FALSE}
+c("TimeSecsRem", "yards_to_goal", "distance",
+  "down_1", "down_2", "down_3", "down_4", "pos_score_diff_start")
+```
+
+Note also what is *new* in that list: `pos_score_diff_start`. The current model
+knows the score. The old one did not — it handled game state through observation
+weights instead.
+
+The second shift is organisational. The models are now published once, as the
+[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+release on
+[`sportsdataverse-data`](https://github.com/sportsdataverse/sportsdataverse-data),
+and read by **both `cfbfastR` and `sportsdataverse-py`**. One artifact, two
+languages, identical EPA for a given play. Retraining is a publish, not a
+release of either library ([#138](https://github.com/sportsdataverse/cfbfastR/issues/138)).
+
+## What the model predicts
+
+The model does not predict points directly. It predicts **which team scores
+next in this half, and how** — a seven-class problem:
+
+| Outcome | Points |
+|---|---|
+| Touchdown | 7 |
+| Field goal | 3 |
+| Safety | 2 |
+| No score | 0 |
+| Opponent safety | −2 |
+| Opponent field goal | −3 |
+| Opponent touchdown | −7 |
+
+Expected points is then the probability-weighted sum:
+
+$$\mathrm{EP} = \sum_{i=1}^{7} p_i \cdot v_i$$
+
+where $p_i$ is the model's probability for outcome $i$ and $v_i$ its point value.
+A play with a 40% touchdown probability, 30% field goal, 20% no score and 10%
+opponent touchdown is worth $0.4(7) + 0.3(3) + 0.2(0) + 0.1(-7) = 2.9$ expected
+points.
+
+Two details matter for anyone reproducing this:
+
+- **Point values are signed from the offense's perspective.** An opponent
+  touchdown is −7, not 7.
+- **The class order in the bundle is not `cfbfastR`'s historical order.** The
+  bundle emits `TD, Opp_TD, FG, Opp_FG, Safety, Opp_Safety, No_Score`;
+  `cfbfastR` reports `No_Score, FG, Opp_FG, Opp_Safety, Opp_TD, Safety, TD`.
+  The permutation between them is published in the manifest rather than
+  hard-coded, so an upstream reordering cannot silently corrupt EPA.
+
+## Reproducing this yourself
+
+The whole bundle is public and every asset is checksummed. Nothing below needs
+an API key.
+
+```{r bundle-manifest, eval=FALSE}
+library(jsonlite)
+
+base <- paste0(
+  "https://github.com/sportsdataverse/sportsdataverse-data/",
+  "releases/download/cfb_model_artifacts/"
+)
+
+manifest <- jsonlite::fromJSON(paste0(base, "MANIFEST.json"))
+
+manifest$model_version          # "2026.08.27"
+manifest$consumers              # "cfbfastR (R)", "sportsdataverse-py (Python)"
+manifest$ep_class_contract$class_order
+#> "TD" "Opp_TD" "FG" "Opp_FG" "Safety" "Opp_Safety" "No_Score"
+manifest$ep_class_contract$point_values
+#>  7 -7  3 -3  2 -2  0
+```
+
+Every model ships a card recording exactly how it was trained:
+
+```{r model-card, eval=FALSE}
+card <- jsonlite::fromJSON(paste0(base, "ep_model.card.json"))
+str(card)
+```
+
+which currently reports:
+
+| Field | Value |
+|---|---|
+| `objective` | `multi:softprob` |
+| `n_features` | 8 |
+| `training_seasons` | 2004–2025 |
+| `n_training_rows` | 2,219,971 |
+| `num_boost_round` | 525 |
+| `max_depth` / `eta` | 5 / 0.025 |
+| `xgboost_version` | 3.2.0 |
+| `trained_date` | 2026-08-02 |
+
+### Scoring a play by hand
+
+To show there is no magic in EP, score one situation directly against the
+downloaded booster:
+
+```{r score-by-hand, eval=FALSE}
+library(xgboost)
+
+f <- tempfile(fileext = ".ubj")
+download.file(paste0(base, "ep_model.ubj"), f, mode = "wb")
+ep_model <- xgboost::xgb.load(f)
+
+# 1st and 10 at your own 25, tied, 30 minutes left in the half
+x <- matrix(
+  c(1800, 75, 10, 1, 0, 0, 0, 0), nrow = 1,
+  dimnames = list(NULL, c("TimeSecsRem", "yards_to_goal", "distance",
+                          "down_1", "down_2", "down_3", "down_4",
+                          "pos_score_diff_start"))
+)
+
+p <- predict(ep_model, x)                       # 7 class probabilities
+sum(p * c(7, -7, 3, -3, 2, -2, 0))              # bundle class order -> EP
+#> [1] 0.6636
+```
+
+So a routine 1st and 10 after a touchback is worth about **two thirds of a
+point**. Every EPA figure in college football analytics is a difference of two
+numbers computed exactly this way.
+
+The point values must be applied in the **bundle's** order, which is why the
+manifest publishes both orders and the permutation between them.
+
+### Getting EPA on real plays
+
+In practice you never do the above — you ask `cfbfastR` for play-by-play with
+the models already applied:
+
+```{r real-plays, eval=FALSE}
+library(cfbfastR)
+library(dplyr)
+
+pbp <- cfbfastR::load_cfb_pbp(2025)
+
+pbp |>
+  dplyr::filter(!is.na(EPA)) |>
+  dplyr::select(game_id, pos_team, down, distance, yards_to_goal,
+                play_text, ep_before, ep_after, EPA) |>
+  dplyr::slice_head(n = 10)
+```
+
+`ep_before` is EP at the snap, `ep_after` is EP for the next play's situation,
+and `EPA` is the difference — signed so that positive is always good for the
+offense.
+
+## Field position and expected points
+
+The single most recognisable output of an EP model is the curve of expected
+points against field position. Scoring the booster across the field reproduces
+it:
+
+```{r field-position, eval=FALSE}
+library(ggplot2)
+
+ep_at <- function(ytg, down = 1, dist = 10, secs = 1800, score_diff = 0) {
+  X <- cbind(
+    TimeSecsRem = secs, yards_to_goal = ytg, distance = pmin(dist, ytg),
+    down_1 = as.integer(down == 1), down_2 = as.integer(down == 2),
+    down_3 = as.integer(down == 3), down_4 = as.integer(down == 4),
+    pos_score_diff_start = score_diff
+  )
+  p <- matrix(predict(ep_model, X), ncol = 7, byrow = TRUE)
+  as.vector(p %*% c(7, -7, 3, -3, 2, -2, 0))
+}
+
+fp <- data.frame(yards_to_goal = 1:99)
+fp$ep <- ep_at(fp$yards_to_goal)
+
+ggplot(fp, aes(x = yards_to_goal, y = ep)) +
+  geom_line(linewidth = 1) +
+  geom_hline(yintercept = c(0, 3), linetype = "dashed", alpha = 0.4) +
+  scale_x_reverse() +
+  labs(
+    x = "Yards to opponent's end zone", y = "Expected points",
+    title = "Expected points by field position",
+    subtitle = "1st & 10, tied, 30:00 left in the half | model_version 2026.08.27",
+    caption = "cfbfastR | @cfbfastR"
+  ) +
+  theme_minimal()
+```
+
+Values from that curve, on the current model:
+
+| Situation | `yards_to_goal` | EP |
+|---|---|---|
+| Own 1 | 99 | **−1.23** |
+| Own 10 | 90 | −0.30 |
+| Own 25 (touchback) | 75 | +0.66 |
+| Own 40 | 60 | +1.92 |
+| Midfield | 50 | +2.61 |
+| Opponent 40 | 40 | +3.33 |
+| Opponent 25 | 25 | +4.20 |
+| Opponent 10 | 10 | +4.96 |
+| Opponent 1 | 1 | +6.03 |
+
+The shape is the intuition behind every EP-based statistic:
+
+- Deep in your own territory EP is **negative** — the opponent is more likely to
+  score next than you are. At your own 1 it is −1.23.
+- **EP crosses zero at your own 15.** Inside that, possession is a liability.
+- It passes **+3, the value of a field goal, at the opponent's 44.** This is a
+  genuinely satisfying result: the common definition of a "scoring opportunity"
+  as reaching the opponent's 40 was chosen by eye, and the model — which has
+  never been told what a scoring opportunity is — puts the break-even four yards
+  away from it.
+- A touchback is worth about two thirds of a point.
+
+The bundle also ships `cfb_field_position_ep.parquet`, a 99-row
+`yardline_own`/`ep` lookup used elsewhere in the pipeline. Note it is *not* this
+curve — its values are positive across the whole field — so do not substitute
+one for the other.
+
+### By down
+
+Splitting the same curve by down shows what down is worth in points at every
+spot on the field:
+
+```{r by-down, eval=FALSE}
+grid <- expand.grid(yards_to_goal = 1:99, down = 1:4)
+grid$ep <- mapply(function(y, d) ep_at(y, down = d), grid$yards_to_goal, grid$down)
+
+ggplot(grid, aes(x = yards_to_goal, y = ep, colour = factor(down))) +
+  geom_line(linewidth = 1) +
+  scale_x_reverse() +
+  labs(x = "Yards to opponent's end zone", y = "Expected points",
+       colour = "Down",
+       title = "Expected points by field position and down",
+       subtitle = "distance = 10, tied game, 30:00 left in the half") +
+  theme_minimal()
+```
+
+Note the `byrow = TRUE` inside `ep_at()`. `multi:softprob` returns a flat
+row-major vector in some XGBoost versions and an n × 7 matrix in others;
+reshaping column-major silently interleaves plays with each other's
+probabilities. `cfbfastR` guards against this internally, and it is the single
+easiest way to get plausible-looking nonsense when scoring the model yourself.
+
+The vertical gaps between the lines are the interesting part — this is what a
+down is *worth*, in points:
+
+| Spot | 1st | 2nd | 3rd | 4th |
+|---|---|---|---|---|
+| Own 25 | +0.66 | −0.02 | −0.93 | −2.30 |
+| Own 40 | +1.92 | +1.27 | +0.31 | −1.25 |
+| Midfield | +2.61 | +1.95 | +0.85 | −0.88 |
+| Opponent 40 | +3.33 | +2.69 | +1.67 | −0.31 |
+| Opponent 25 | +4.20 | +3.65 | +2.90 | +1.50 |
+| Opponent 10 | +4.96 | +4.39 | +3.59 | +2.58 |
+
+Averaged across the middle 60 yards of the field:
+
+- **1st → 2nd down: 0.65 points.** A steady, modest gap.
+- **2nd → 3rd down: 0.93 points**, about 1.4× the first gap.
+- **3rd → 4th down: 1.59 points**, by far the largest — 4th down is where the
+  possession itself is at stake.
+
+Two things in that table are worth dwelling on. First, **a 4th and 10 is
+negative EP everywhere outside the opponent's 35** — at midfield it is −0.88,
+meaning the opponent is the favourite to score next. That is the whole reason
+punting exists, and the whole reason the fourth-down decision is interesting.
+
+Second, the 3rd → 4th gap is not constant: it peaks at **1.98 points at the
+opponent's 40** and falls steadily to **1.24 at the opponent's 15**. Inside
+field-goal range a 4th down still has value, because three points are reachable
+without converting; at the 40 it does not. The model was never told that field
+goals exist as a separate option in this feature set — it recovered the shape of
+field-goal range from eight columns and two million plays. That is the clearest
+single argument for why the gradient-boosted version needs no hand-specified
+`yards_to_goal × down` interaction term.
+
+## Seeing it applied
+
+[Game on Paper](https://gameonpaper.com) runs these models over every FBS game
+and renders the results: EPA per play, success rate and win probability for any
+game, with a full play-by-play showing `ep_before`, `ep_after` and EPA for each
+snap. Its [advanced stats glossary](https://gameonpaper.com/glossary) defines the
+derived metrics in the same terms used here, and the season leaderboards rank
+every team by [offensive](https://gameonpaper.com/year/2025/teams/offensive) and
+[defensive](https://gameonpaper.com/year/2025/teams/defensive) EPA per play.
+
+It is the fastest way to check your intuition about a number this article
+describes in the abstract.
+
+## Data and artifacts
+
+Everything referenced here is public:
+
+- **Models** —
+  [`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+  on `sportsdataverse-data`: nine boosters, a punt distribution, a field-position
+  EP table, per-model cards and a checksummed `MANIFEST.json`.
+- **Season play-by-play** —
+  [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data), which
+  `load_cfb_pbp()` reads.
+- **Package source** —
+  [`cfbfastR`](https://github.com/sportsdataverse/cfbfastR) and its Python twin
+  [`sportsdataverse-py`](https://github.com/sportsdataverse/sportsdataverse-py).
+- **Raw API data** — [CollegeFootballData.com](https://collegefootballdata.com),
+  courtesy of [@CFB_data](https://x.com/CFB_data).
+
+## Next
+
+[Part II](college-football-expected-points-model-fundamentals-part-ii.html) works
+through *why* this is a multiclass classifier and how the model got from linear
+regression to gradient boosting — including the regressions that do not work, and
+why they fail.
+
+## Citation
+
+```
+Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
+Football Play by Play Data. R package version 3.0.0.9000.
+https://cfbfastr.sportsdataverse.org
+```
+
+Authors, contributors and related SportsDataverse packages are listed on the
+[package home page](../index.html).
+
+```{r cleanup, include=FALSE}
+options(old)
+```
