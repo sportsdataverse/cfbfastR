@@ -184,12 +184,14 @@ navbar:
         href: articles/cfbd_teams.html
       - text: ESPN College Football Cookbook
         href: articles/cfbfastR-espn-cookbook.html
-      - text: College Football Expected Points Model Fundamentals - Part I
+      - text: "Expected Points: How the Model Works (Part I)"
         href: articles/college-football-expected-points-model-fundamentals-part-i.html
-      - text: College Football Expected Points Model Fundamentals - Part II
+      - text: "Expected Points: How the Model Is Built (Part II)"
         href: articles/college-football-expected-points-model-fundamentals-part-ii.html
-      - text: College Football Expected Points Model Fundamentals - Part III
+      - text: "Expected Points: A History (Part III)"
         href: articles/college-football-expected-points-model-fundamentals-part-iii.html
+      - text: "What Is EPA? Expected Points Added Explained (Part IV)"
+        href: articles/college-football-expected-points-model-fundamentals-part-iv.html
       - text: Creating Fourth Down Tendency Plots Using cfbfastR
         href: articles/fourth-down-plot-tutorial.html
       - text: Introduction to cfbfastR
@@ -502,6 +504,16 @@ reference:
       - '`csv_from_url`'
       - '`rds_from_url`'
 articles:
+  - title: "The Expected Points Model"
+    desc: >
+      How expected points and EPA work in college football, how the cfbfastR
+      model is built, where the idea came from, and how to reproduce it from
+      the published cfb_model_artifacts bundle.
+    contents:
+      - college-football-expected-points-model-fundamentals-part-i
+      - college-football-expected-points-model-fundamentals-part-ii
+      - college-football-expected-points-model-fundamentals-part-iii
+      - college-football-expected-points-model-fundamentals-part-iv
   - title: "Cookbooks & Guides"
     desc: "End-to-end recipes and reference guides."
     contents:
@@ -513,9 +525,6 @@ articles:
       - cfbd_stats
       - cfbd_teams
       - cfbfastR-espn-cookbook
-      - college-football-expected-points-model-fundamentals-part-i
-      - college-football-expected-points-model-fundamentals-part-ii
-      - college-football-expected-points-model-fundamentals-part-iii
       - fourth-down-plot-tutorial
       - intro
       - map-tutorial
