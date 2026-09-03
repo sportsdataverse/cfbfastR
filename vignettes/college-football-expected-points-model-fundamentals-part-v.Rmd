@@ -1,0 +1,338 @@
+---
+title: "Win Probability in College Football: wp, WPA and vegas_wp (Part V)"
+description: "How the cfbfastR win probability model works, why it takes expected points as an input, what WPA measures that EPA cannot, and how the spread-aware vegas_wp differs from the naive wp."
+author: "Saiem Gilani, Akshay Easwaran, Jared Lee"
+date: "2026-09-03"
+opengraph:
+  image:
+    src: "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"
+  twitter:
+    site: "@cfbfastR"
+    card: summary_large_image
+    creator: "@saiemgilani"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+**Win probability (WP) is the chance the team with the ball wins the game, given
+the score, time, field position, down, distance and timeouts.** Where
+[expected points](college-football-expected-points-model-fundamentals-part-i.html)
+asks "how many points is this situation worth", win probability asks the question
+that actually settles games — and the two can disagree sharply.
+
+**WPA — win probability added — is the change in WP across a play**, exactly
+parallel to
+[EPA](college-football-expected-points-model-fundamentals-part-iv.html):
+
+$$\mathrm{WPA} = \mathrm{WP}_{\text{after}} - \mathrm{WP}_{\text{before}}$$
+
+## Why not just use EPA?
+
+Because points and wins are the same thing only in the middle of a game.
+
+Down 3 with a minute left, a 12-yard completion to the opponent's 30 is worth
+modest EPA — a few tenths of a point. It is worth enormous WPA, because it moves
+a field goal from unlikely to routine. Conversely, a 60-yard touchdown while up
+28 in the fourth quarter is worth large EPA and almost exactly zero WPA. You had
+already won.
+
+The distinction matters whenever you rank *plays* or evaluate *decisions*. EPA
+is the better measure of performance, because it is not distorted by score and
+clock. WPA is the better measure of leverage, because it is.
+
+## What the model uses
+
+The naive model is a gradient-boosted binary classifier over twelve features:
+
+| Feature | What it carries |
+|---|---|
+| `pos_score_diff_start` | current score margin |
+| `ExpScoreDiff_Time_Ratio` | expected margin per second remaining |
+| `adj_TimeSecsRem` | seconds left **in the game** |
+| `TimeSecsRem` | seconds left in the half |
+| `is_home` | home field |
+| `pos_team_receives_2H_kickoff` | who gets the ball after halftime |
+| `down`, `distance`, `yards_to_goal` | the situation |
+| `pos_team_timeouts_rem_before`, `def_pos_team_timeouts_rem_before` | clock control |
+| `period` | quarter |
+
+Gain-based importance from the shipped booster:
+
+| Feature | Gain |
+|---|---|
+| `pos_score_diff_start` | 53.1% |
+| `ExpScoreDiff_Time_Ratio` | 25.6% |
+| `is_home` | 11.5% |
+| `pos_team_receives_2H_kickoff` | 3.5% |
+| `yards_to_goal` | 2.0% |
+| `adj_TimeSecsRem` | 1.5% |
+| everything else | < 1% each |
+
+Nearly 80% of the model is *score margin and score margin scaled by time*. That
+is the correct shape for the problem — football win probability is overwhelmingly
+about the lead and how long the opponent has to erase it — but it is worth
+knowing before you over-interpret a WP swing on a 2nd-and-7.
+
+### Expected points is an input to win probability
+
+The second-most important feature is built from EP:
+
+```{r expscorediff, eval=FALSE}
+adj_TimeSecsRem          <- ifelse(half == 1, 1800 + TimeSecsRem, TimeSecsRem)
+ExpScoreDiff             <- pos_score_diff_start + ep_before
+ExpScoreDiff_Time_Ratio  <- ExpScoreDiff / (adj_TimeSecsRem + 1)
+```
+
+`ExpScoreDiff` is **the current margin plus what the current drive is worth** —
+in effect, the score once this possession resolves. Dividing by time remaining
+turns it into "how big is the effective lead, relative to how long is left to do
+something about it."
+
+So the four articles before this one are not a detour. The EP model feeds the WP
+model directly: a better EP estimate is a better WP estimate.
+
+## What the numbers look like
+
+Scoring the naive model for a home team with all timeouts:
+
+| Situation | WP |
+|---|---|
+| 1st & 10 own 25, tied, opening drive | **0.573** |
+| 1st & 10 own 25, down 7, Q1 | 0.318 |
+| 1st & 10 own 25, up 7, Q1 | 0.792 |
+| 1st & 10 own 25, tied, Q4 5:00 | 0.648 |
+| 1st & 10 own 25, down 3, Q4 2:00 | 0.255 |
+| 4th & 2 opp 35, down 2, Q4 1:00 | 0.400 |
+| 1st & goal opp 5, down 4, Q4 0:30 | 0.846 |
+| 1st & 10 own 25, up 21, Q4 10:00 | 0.998 |
+
+Two of these are worth pausing on.
+
+**The opening drive is 0.573, not 0.500.** That is home-field advantage, and it
+is why `is_home` carries 11.5% of the model's gain. A tied game is not a coin
+flip if you are the home team.
+
+**1st and goal from the 5, trailing by 4, with thirty seconds left is 0.846.**
+Down by more than a field goal, needing a touchdown, with almost no time — and
+you are a heavy favourite, because you are five yards from the win with four
+downs to get there. No expected-points figure conveys that. This is precisely the
+kind of situation where EPA and WPA part company.
+
+```{r wp-columns, eval=FALSE}
+library(cfbfastR)
+library(dplyr)
+
+pbp <- cfbfastR::load_cfb_pbp(2025)
+
+pbp |>
+  dplyr::filter(!is.na(wpa)) |>
+  dplyr::select(pos_team, period, clock.minutes, pos_score_diff_start,
+                play_text, wp_before, wp_after, wpa, vegas_wp) |>
+  dplyr::arrange(dplyr::desc(abs(wpa))) |>
+  dplyr::slice_head(n = 10)
+```
+
+Sorting by `abs(wpa)` is the quickest way to find the plays that decided a
+season.
+
+## WPA and its edge cases
+
+`wp_after = wp_before + wpa`, and the defensive view is simply `1 - wp_after` —
+win probability is zero-sum in a way expected points is not.
+
+Two overlays are applied that a naive difference would get wrong:
+
+- **Turnovers.** Possession changes hands, so the raw model output is for the
+  *other* team. WPA is computed against the complement, the same way EPA negates
+  expected points across a change of possession.
+- **End of half and end of period.** A play that ends a half does not hand the
+  next situation to anyone in the usual sense; `wpa_half_end` handles the
+  transition so the last snap of a half is not credited with a phantom swing.
+
+These are the same two places EPA needs care, for the same reason.
+
+## `vegas_wp`: what the market knew
+
+The naive model treats both teams as anonymous. Kickoff between the best team in
+the country and the worst is 50/50 plus home field, because nothing in those
+twelve features says who is playing.
+
+That is a defensible choice — it measures *in-game* leverage without prejudice —
+but it is wrong as a forecast. So a second model adds one feature:
+
+```{r spread-time, eval=FALSE}
+elapsed_share <- pmax((3600 - adj_TimeSecsRem) / 3600, 0)
+spread_time   <- pos_team_spread * exp(-4 * elapsed_share)
+```
+
+`spread_time` is the pre-game line, **exponentially decayed as the game runs
+down**. The market's opinion should dominate before any football has been
+played, and count for less once sixty minutes of evidence exist. This is a
+faithful port of the `nflfastR` / `sportsdataverse-py` construction, decay
+constant included.
+
+| Game point | `adj_TimeSecsRem` | Elapsed | `spread_time` (7-point line) |
+|---|---|---|---|
+| Kickoff | 3600 | 0.00 | 7.00 |
+| End of Q1 | 2700 | 0.25 | 2.58 |
+| Halftime | 1800 | 0.50 | 0.95 |
+| End of Q3 | 900 | 0.75 | 0.35 |
+| 2:00 left | 120 | 0.97 | 0.15 |
+| Final gun | 0 | 1.00 | 0.13 |
+
+### The feature decays much faster than its influence
+
+It is tempting to read that table as "by halftime the spread counts for 13% of
+what it did at kickoff." **That is wrong, and it is worth understanding why.**
+
+`spread_time` is an *input*. What matters is the model's response to it, which is
+a learned, non-linear function — and a tree ensemble is free to react sharply to
+small values. Measuring the actual effect, as the gap between `vegas_wp` and the
+naive `wp` in an otherwise identical state, expressed as a share of the same gap
+at kickoff:
+
+| Line | Kickoff | Q1 end | Halftime | Q3 end | Q4 10:00 |
+|---|---|---|---|---|---|
+| +7 | 100% | 61% | 62% | 27% | −15% |
+| +10 | 100% | 70% | 55% | 28% | 16% |
+| +14 | 100% | 84% | 64% | 36% | 23% |
+| +21 | 100% | 85% | 67% | 43% | 31% |
+| −14 (underdog has ball) | 100% | 99% | 82% | 61% | 50% |
+
+**Roughly 55–80% of the spread's influence survives to halftime**, not 13%. The
+model compensates for the shrinking feature by responding to it more steeply. The
+exponential decay sets the *scale* the model trains against; it does not set the
+weight the model gives it.
+
+### Where this gets unreliable
+
+The same table shows a real limitation, and it is not one to paper over.
+
+The decay is **not monotonic**, and at small lines late in games it **changes
+sign**: a 7-point favourite is given *lower* `vegas_wp` than the naive model
+through the fourth quarter (−15% at 10:00, −20% at 5:00). A 3-point line is worse
+still — the effect is unstable from the end of the first quarter onward.
+
+This is tree-model behaviour in a thin region: by the fourth quarter
+`|spread_time|` for a modest line has decayed to a few tenths of a point, and the
+model has little training signal to separate 0.2 from −0.2. The artifact is
+largest exactly where the feature is smallest.
+
+Practical guidance:
+
+- `vegas_wp` is most trustworthy **early**, and for **large** lines — which is
+  also when it adds the most over the naive model.
+- Late in close games with a small spread, prefer `wp`. The scoreboard has told
+  you everything the line was going to, and `vegas_wp` is reading noise.
+- Do not difference `vegas_wp` and `wp` to "extract" the market's contribution.
+  That quantity is not stable enough to interpret.
+
+This is the same split `nflfastR` draws between `wp` and `vegas_wp`, and
+`cfbfastR` keeps `wp_before` **completely unchanged** — `vegas_wp` is added
+alongside rather than replacing it, with `vegas_wpa` and `vegas_wp_after`
+derived using the same turnover and half-end overlays.
+
+### Two sign conventions that must agree
+
+This is the sort of thing that produces a confidently backwards win probability
+chart:
+
+- CFBD's `spread` is **negative when the home team is favoured**.
+- The model reads **positive `spread_time` as the team in possession being
+  favoured**.
+
+Those are not the same convention, and the conversion depends on who has the
+ball. The mapping was verified across 83 games rather than assumed — worth
+knowing if you build `spread_time` yourself.
+
+### When is `vegas_wp` `NA`?
+
+Wherever the game has no pre-game line: the ESPN play-by-play path, and CFBD
+before 2013. The column is added as `NA` rather than the stage failing, so
+filter on it rather than assuming it is populated.
+
+```{r which-wp, eval=FALSE}
+# in-game leverage, team-agnostic -- use for play and decision evaluation
+pbp$wp_before
+
+# forecast that knows who is playing -- use for "should they have won?"
+pbp$vegas_wp
+```
+
+**Which should you use?** For evaluating a decision or a play's leverage, the
+naive `wp` is usually right: it asks what this situation is worth to anybody. For
+"how surprising was this result", `vegas_wp` is right, because a 14-point
+comeback against a 21-point favourite is a different event from the same comeback
+against an even opponent.
+
+## Limits
+
+- **Neither model knows anything about the teams beyond the spread.** The naive
+  model knows nothing at all; `vegas_wp` knows only the market's pre-game number.
+- **No injury, weather, or personnel information** enters either.
+- **Overtime is not modelled** in the same framing.
+- **The tails are the hardest part.** A model trained on 2.2 million plays sees
+  very few genuine 0.99 → 0.20 collapses, so extreme values are the least
+  well-estimated. Treat 0.997 and 0.999 as "almost certainly won", not as a
+  meaningful ordering.
+- **Timeouts are in the model but carry under 1% of gain**, which is probably an
+  underweight relative to how much late-game coaches agonise over them.
+
+## Seeing it applied
+
+Every game page on [Game on Paper](https://gameonpaper.com) renders the win
+probability chart for that game, with the play-by-play beneath it showing the WP
+swing on each snap — the plays with the largest `|wpa|` are the ones the chart's
+cliffs correspond to.
+
+## Frequently asked
+
+**What is a good WPA for a single play?**
+Anything above ±0.10 is a genuinely big play; ±0.30 is a game-turning one.
+Regular-season games are usually decided by a handful of plays above 0.15.
+
+**Why is win probability not 50% at kickoff?**
+Home-field advantage. The naive model puts the home team near 0.57 in a tied
+game on the opening drive. With `vegas_wp`, the spread moves it further.
+
+**What is the difference between `wp` and `vegas_wp`?**
+`wp` ignores who is playing; `vegas_wp` adds the pre-game spread, decayed as the
+game progresses. `vegas_wp` is `NA` when no line is available.
+
+**Can win probability be wrong?**
+It is a probability, not a prediction. A team at 0.95 loses one time in twenty,
+and over a season that will happen many times. The model is wrong only if teams
+at 0.95 fail to win about 95% of the time.
+
+## Next
+
+Part VI covers the derived surfaces built on these two models — completion
+probability and CPOE, expected pass rate (`xpass` / `pass_oe`), the field goal
+and two-point models, fourth-down decisions, and QBR.
+
+## Data and artifacts
+
+- **Models** — [`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts) (`wp_naive.ubj`, `wp_spread.ubj`)
+- **Season play-by-play** — [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data)
+- **Source** — [`cfbfastR`](https://github.com/sportsdataverse/cfbfastR) · [`sportsdataverse-py`](https://github.com/sportsdataverse/sportsdataverse-py)
+- **Applied, live** — [Game on Paper](https://gameonpaper.com)
+- **Raw API** — [CollegeFootballData.com](https://collegefootballdata.com), courtesy of [@CFB_data](https://x.com/CFB_data)
+
+## Citation
+
+```
+Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
+Football Play by Play Data. R package version 3.0.0.9000.
+https://cfbfastr.sportsdataverse.org
+```
+
+Authors, contributors and related SportsDataverse packages are listed on the
+[package home page](../index.html).
+
+```{r cleanup, include=FALSE}
+options(old)
+```

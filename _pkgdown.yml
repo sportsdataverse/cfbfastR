@@ -192,6 +192,10 @@ navbar:
         href: articles/college-football-expected-points-model-fundamentals-part-iii.html
       - text: "What Is EPA? Expected Points Added Explained (Part IV)"
         href: articles/college-football-expected-points-model-fundamentals-part-iv.html
+      - text: "Win Probability: wp, WPA and vegas_wp (Part V)"
+        href: articles/college-football-expected-points-model-fundamentals-part-v.html
+      - text: "CPOE, xpass, Field Goals and Fourth Downs (Part VI)"
+        href: articles/college-football-expected-points-model-fundamentals-part-vi.html
       - text: Creating Fourth Down Tendency Plots Using cfbfastR
         href: articles/fourth-down-plot-tutorial.html
       - text: Introduction to cfbfastR
@@ -514,6 +518,8 @@ articles:
       - college-football-expected-points-model-fundamentals-part-ii
       - college-football-expected-points-model-fundamentals-part-iii
       - college-football-expected-points-model-fundamentals-part-iv
+      - college-football-expected-points-model-fundamentals-part-v
+      - college-football-expected-points-model-fundamentals-part-vi
   - title: "Cookbooks & Guides"
     desc: "End-to-end recipes and reference guides."
     contents:
