@@ -123,12 +123,32 @@ Five features: `yards_to_goal` and the one-hot era. Kick distance is
 
 A 50-yarder is a coin flip, which is a useful number to carry around.
 
-**Note the tail.** The curve is flat at 0.366 from 60 yards out — the model
-returns the same probability for a 60-yard and a 65-yard attempt. There is
-almost no training data out there (nobody attempts 65-yarders except in
-desperation), so the model has nothing to distinguish them and extrapolates a
-constant. Treat anything beyond about 57 yards as "the model has run out of
-evidence" rather than a real estimate.
+**Era matters, and it is not a rounding effect.** Kicking has genuinely improved,
+and the model captures it — the same 42-yard attempt across the four eras:
+
+| Era | P(make), 42 yards |
+|---|---|
+| `era0` (pre-2006) | 0.556 |
+| `era1` (2006–2012) | 0.598 |
+| `era2` (2013–2019) | 0.612 |
+| `era3` (2020+) | 0.675 |
+
+Twelve percentage points from the oldest era to the current one. The era features
+carry about 20% of the model's gain between them, so scoring a historical kick
+with `era3` — or a modern one with `era0` — is a real error, not a nicety.
+
+**The tail runs out at 57 yards.** From `yards_to_goal` 40 outward the model
+returns a constant **0.3656** — a 57-yard and a 70-yard attempt get identical
+probabilities. Nobody attempts many 65-yarders except in desperation, so there is
+nothing to learn from and the model extrapolates flat. Treat anything past a
+57-yard kick as "the model has run out of evidence" rather than an estimate.
+
+**Two small monotonicity violations.** Across 58 steps the curve rises twice
+where it should fall: a 49-yard kick is rated 0.5882 against 0.5647 for a
+48-yarder, and 51 yards beats 50. Both are sub-3-point artifacts of tree
+splitting rather than anything meaningful, but if you are differencing adjacent
+yard lines — as the fourth-down surface does when it weighs a make against a miss
+— be aware the curve is not strictly monotone.
 
 The model also has **no kicker identity, weather or altitude input**. A kick in
 Laramie and a kick in a dome get the same number.
@@ -139,33 +159,49 @@ Four features: `posteam_spread`, `posteam_total`, `pos_score_diff`, `era`. It
 produces `prob_2pt`, which feeds the two-point decision surface —
 `two_pt_wp`, `xp_wp`, `two_pt_wp_diff` and `two_pt_recommendation`.
 
-Scoring it in an even game with a 55-point total returns **0.578, and does not
-move with the score margin**:
+This model does not work, and it is worth showing exactly how rather than
+gesturing at a caveat.
 
-| Score margin | `prob_2pt` |
-|---|---|
-| −2 | 0.578 |
-| −1 | 0.578 |
-| 0 | 0.578 |
-| +1 | 0.578 |
-| +2 | 0.578 |
+Sweeping each feature with the others held at realistic values:
 
-Two things follow, and both are documented rather than hidden.
+| Feature | Values swept | `prob_2pt` |
+|---|---|---|
+| `pos_score_diff` | −14 → +14 | 0.487 … **0.578** … 0.557 |
+| `posteam_spread` | −28 → +28 | 0.572 … 0.592 |
+| `posteam_total` | 35 → 75 | **0.578 at every value** |
+| `era` | 0 → 3 | **0.578 at every value** |
 
-First, **0.578 is optimistic.** Real college two-point conversion rates run
-closer to 45%. The `NEWS` entry says as much: the bundled model is optimistic
-about college conversion rates.
+The whole model moves between **0.487 and 0.592**. It is very nearly a constant.
 
-Second, because the recommendation compares win probabilities computed from that
-number, **read `two_pt_wp_diff` rather than `two_pt_recommendation`.** `cfb4th`'s
-rule has no margin — it will recommend going for two on a difference of 0.0001 —
-and with an optimistic conversion probability that tips too often toward the
-aggressive call. The magnitude tells you whether the decision is close; the bare
-recommendation does not.
+Three specific problems, from the tree dump:
 
-The surface itself is sound: it was verified **bit-identical to
-`sportsdataverse-py` to eight decimal places**. The caveat is about the input,
-not the arithmetic.
+1. **`era` is never split on.** It appears in the feature list and in no tree.
+   Two-point conversion rates have moved over twenty years; this model cannot
+   express that.
+2. **The `posteam_total` splits are at 21.375 and 31.875.** College football
+   game totals live between about 45 and 65. Every realistic game takes the same
+   branch, which is why sweeping the total from 35 to 75 changes nothing. Those
+   thresholds suggest the training feature was not the game total on the scale it
+   is scored with — a scaling or fill problem upstream, not a modelling choice.
+3. **The first split is `pos_score_diff < -6`.** Almost every genuine two-point
+   decision happens within a touchdown either way, so in the region that matters
+   the model is flat by construction.
+
+And the level is wrong: it centres on **0.578** where real college two-point
+conversion rates run closer to 45%. Note its own `base_score` is 0.4816 — the
+trees push the prediction *above* the base rate for every realistic input.
+
+**Practical consequence.** `prob_2pt` feeds `two_pt_wp`, so an optimistic and
+nearly-constant conversion probability biases the decision surface toward going
+for two, everywhere, regardless of situation. `cfb4th`'s rule has no margin — it
+will recommend two on a difference of 0.0001 — so **read `two_pt_wp_diff` and
+treat anything under a couple of percentage points as a coin flip**, or supply
+your own conversion probability.
+
+To be clear about where the fault lies: the surface's arithmetic is sound and was
+verified **bit-identical to `sportsdataverse-py` to eight decimal places**. The
+problem is entirely the input model. It is a retrain candidate, and until then
+the recommendation column should not be used on its own.
 
 ## The fourth-down decision
 
@@ -277,8 +313,15 @@ How much more often a team passes than its down, distance, score and clock
 suggest. It measures aggression, not effectiveness.
 
 **How accurate is the college field goal model?**
-It gives about 81% at 34 yards and 54% at 50. It has no kicker, weather or
-altitude input, and it flattens beyond roughly 57 yards where data runs out.
+In the modern era (`era3`, 2020+) it gives about 81% at 34 yards and 54% at 50.
+Older eras are materially lower — 42 yards is 0.68 in `era3` against 0.56 in
+`era0`. It has no kicker, weather or altitude input, and flattens beyond roughly
+57 yards where data runs out.
+
+**Should I trust `two_pt_recommendation`?**
+No, not on its own. The underlying `prob_2pt` model is nearly constant at about
+0.578, against real college rates closer to 45%, so the surface is biased toward
+going for two. Read `two_pt_wp_diff` and treat small margins as coin flips.
 
 **Should I trust `fourth_down_recommendation`?**
 Use `go_boost` instead. The recommendation has no margin, so it treats a

@@ -208,28 +208,53 @@ model compensates for the shrinking feature by responding to it more steeply. Th
 exponential decay sets the *scale* the model trains against; it does not set the
 weight the model gives it.
 
-### Where this gets unreliable
+### The two models do not share a baseline
 
-The same table shows a real limitation, and it is not one to paper over.
+That table has a trap in it, and it is worth being precise because the obvious
+reading is wrong.
 
-The decay is **not monotonic**, and at small lines late in games it **changes
-sign**: a 7-point favourite is given *lower* `vegas_wp` than the naive model
-through the fourth quarter (−15% at 10:00, −20% at 5:00). A 3-point line is worse
-still — the effect is unstable from the end of the first quarter onward.
+`wp_spread` is **well behaved in `spread_time`**. Sweeping the feature from −20
+to +20 with the state held fixed, win probability rises essentially
+monotonically at every point in the game — 0.11 to 0.91 at kickoff — with only a
+handful of tiny decreasing steps out of eighty. A bigger favourite does not get a
+lower win probability. There is no reversal.
 
-This is tree-model behaviour in a thin region: by the fourth quarter
-`|spread_time|` for a modest line has decayed to a few tenths of a point, and the
-model has little training signal to separate 0.2 from −0.2. The artifact is
-largest exactly where the feature is smallest.
+What actually happens is that the two models **disagree about the pick'em case**.
+Setting `spread_time` to exactly zero and comparing:
+
+| Game point | `wp` (naive) | `wp_spread` at `spread_time = 0` | Gap |
+|---|---|---|---|
+| Kickoff | 0.573 | 0.499 | −0.074 |
+| Halftime | 0.595 | 0.517 | −0.077 |
+| End of Q3 | 0.617 | 0.537 | −0.080 |
+| Q4 10:00 | 0.624 | 0.547 | −0.078 |
+| Q4 2:00 | 0.694 | 0.636 | −0.058 |
+
+A **constant offset of roughly −0.08**, present everywhere.
+
+This is not a bug — it is the two models answering different questions. A
+pick'em line for the *home* team means the market rates the visitor as the better
+side by about a field position's worth of home advantage. So `wp_spread` is right
+to say 0.50, and `wp` is right to say 0.573 for an *average* home team. They
+disagree because "no spread information" and "a spread of zero" are different
+statements.
+
+The consequence is the practical one:
+
+**`vegas_wp − wp` is not the market's contribution.** It is the market's
+contribution *plus* a −0.08 baseline difference between two separately-trained
+models. For a modest line late in a game, where the decayed `spread_time` is
+worth only a few hundredths, the offset dominates and the difference goes
+negative — which looks like the spread reversing sign and is nothing of the kind.
 
 Practical guidance:
 
-- `vegas_wp` is most trustworthy **early**, and for **large** lines — which is
-  also when it adds the most over the naive model.
-- Late in close games with a small spread, prefer `wp`. The scoreboard has told
-  you everything the line was going to, and `vegas_wp` is reading noise.
-- Do not difference `vegas_wp` and `wp` to "extract" the market's contribution.
-  That quantity is not stable enough to interpret.
+- Use `wp` **or** `vegas_wp` for a question, and stay in one of them. They are
+  two coherent models, not a model and an adjustment.
+- Do not difference them. The quantity that comes out is dominated by a baseline
+  offset, not by the spread.
+- `vegas_wp` adds the most where the line is large and the game is young, which
+  is exactly where you would want it.
 
 This is the same split `nflfastR` draws between `wp` and `vegas_wp`, and
 `cfbfastR` keeps `wp_before` **completely unchanged** — `vegas_wp` is added
