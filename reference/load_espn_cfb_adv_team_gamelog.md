@@ -146,7 +146,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team_gamelog(2004))
 #> ── college football advanced team gamelog from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-01 11:28:49 UTC
+#> ℹ Data updated: 2026-09-03 22:41:12 UTC
 #> # A tibble: 926 × 90
 #>    season  week season_type   game_id start_date       team_id team  opponent_id
 #>     <int> <int>       <int>     <int> <chr>              <int> <chr>       <int>

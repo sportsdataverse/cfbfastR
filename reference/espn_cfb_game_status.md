@@ -120,7 +120,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_status(game_id = 401628339))
 #> ── Game status data from ESPN ─────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:22 UTC
+#> ℹ Data updated: 2026-09-03 22:38:48 UTC
 #> # A tibble: 1 × 12
 #>   game_id   clock display_clock period status_id status_name  status_state
 #>   <chr>     <dbl> <chr>          <int> <chr>     <chr>        <chr>       

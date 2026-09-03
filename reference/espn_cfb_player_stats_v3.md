@@ -126,7 +126,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_player_stats_v3(athlete_id = 4431611, year = 2023))
 #> ── Player web-v3 statistics from ESPN ─────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:46 UTC
+#> ℹ Data updated: 2026-09-03 22:39:13 UTC
 #> # A tibble: 190 × 18
 #>    athlete_id season category category_display team_id team_slug     stat_season
 #>    <chr>       <int> <chr>    <chr>            <chr>   <chr>               <int>

@@ -60,7 +60,7 @@ Other Yahoo CFB Functions:
   try(yahoo_cfb_player_season_stats_legacy(season = 2024, category = "Rushing",
                                            sort_stat = "RUSHING_YARDS"))
 #> ── Legacy player season stats from Yahoo Sports (shangrila) ────────────────────
-#> ℹ Data updated: 2026-09-01 11:30:19 UTC
+#> ℹ Data updated: 2026-09-03 22:43:07 UTC
 #> # A tibble: 200 × 13
 #>    player_id display_name team  team_abbreviation games_rushing rushing_attempts
 #>    <chr>     <chr>        <chr> <chr>             <chr>         <chr>           

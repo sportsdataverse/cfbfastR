@@ -1,4 +1,4 @@
-# College Football Expected Points Model Fundamentals - Part III
+# A History of Expected Points Models in Football (Part III)
 
 Previously in part 1, we left off discussing field position and expected
 points, including a breakdown by down. Generally, what was presented
@@ -171,148 +171,85 @@ click one link to read more on, that is the paper you should look at.)
 **Figure 4**: Modeling Expected Points using situational factors to
 predict the probability of each Next Score type
 
-The current cfbfastR model is providing expected points using the same
-model fit to college football data and with very similar adjustments.
+The Carnegie Mellon model is the direct ancestor of everything
+`cfbfastR` has shipped. Through the 2020 generation, the college
+football model *was* that model — a multinomial logistic regression over
+the same seven next-score outcomes, fit to college data with very
+similar adjustments.
 
-Time to talk about the cfbfastR model, finally!
+That is no longer what the package ships, and the rest of this article
+is therefore history rather than documentation.
 
-Recall the following figure from part 2.
+### The 2020 generation (retired)
 
-[![Figure:
-@SaiemGilani](https://i.imgur.com/bGug8hpl.png "Figure: @SaiemGilani")](https://imgur.com/bGug8hp)
+For the record, since it is what the earlier versions of this series
+described and what CRAN `cfbfastR 3.0.0` still contains: six logistic
+regressions fitted simultaneously against “No Score” as the reference
+class, with down treated as a factor relative to 1st down. From four
+independent variables —
 
-**Figure 5**: Multinomial Logistic Regression Football Expected Points
-Model
+- Down (3 coefficients)
+- Distance, as `log(yards to convert 1st/Goal)` (1)
+- Yards to goal (1)
+- Time remaining in the half, in seconds (1)
 
-The college football expected points (EP) model is a multinomial
-logistic regression model which generates probabilities for our
-dependent (target) variable, the possible types of next score events
-within the same half.
+— plus two derived booleans (goal-to-go, under two minutes) and the
+interactions between them, the specification expanded to **96 fitted
+variables**, because a linear model can only see an interaction that
+someone built by hand.
 
-In our case, we build 6 logistic regression models fit to the next score
-types — Offense FG, Offense TD, Offense Safety, Opponent TD, Opponent
-FG, and Opponent Safety — all except for the class that is used as the
-base case (i.e. No Score), since that is accounted for in the intercept,
-as mentioned in part 1.
+### The 2026 generation
 
-Since down is a categorical variable, it must be treated as a factor
-variable, meaning coefficients of the model are given relative to the
-base case of 1st down.
+The current model answers the same seven-class question and computes
+expected points the same way, but estimates the probabilities with
+gradient-boosted trees instead — **eight raw features**, 2,219,971 plays
+from 2004 to 2025, and no hand-specified interactions at all. Trees find
+interactions by splitting, so the other 88 columns stopped being
+necessary. [Part
+II](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.md)
+covers that transition in detail.
 
-Thus, we have 2nd down, 3rd down, and 4th down coefficients, with the
-same reasoning applying to all other interaction variables which include
-down.
+The other change is organisational, and in the long run probably the
+more important one. The models are no longer fitted inside either
+library. They are published once as the
+[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+release on
+[`sportsdataverse-data`](https://github.com/sportsdataverse/sportsdataverse-data)
+and read by **both `cfbfastR` and `sportsdataverse-py`**, so R and
+Python report the same EPA for the same play and a retrain reaches both
+by publishing.
 
-The independent variables are (in parentheses are the number of
-coefficients fitted to the factor):
+Fifty-five years after Carter and his wife Judy hand-coded 8,373 plays
+from 56 games, the same question is answered from 2.2 million plays by
+an artifact two languages download at runtime. The question itself has
+not changed at all.
 
-- Down (3)
-- Distance (to convert 1st down or goal), transformed as log(yards to
-  convert 1st/Goal) (1)
-- Yards-to-goal (or field position, or yards to opponent goal line) (1)
-- Time remaining in half in seconds (1)
+### Next
 
-From these independent variables, we derive two other boolean variables:
+[Part
+IV](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iv.md)
+turns expected points into **expected points added** — how the change in
+EP across a play becomes the per-play value that team and player metrics
+are built from, and the sign conventions that trip people up. \## Data
+and artifacts
 
-- Goal-to-Go (1)
-- Under two minutes in half (1)
+- **Models** —
+  [`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+- **Season play-by-play** —
+  [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data)
+- **Source** — [`cfbfastR`](https://github.com/sportsdataverse/cfbfastR)
+  ·
+  [`sportsdataverse-py`](https://github.com/sportsdataverse/sportsdataverse-py)
+- **Applied, live** — [Game on Paper](https://gameonpaper.com)
+- **Raw API** —
+  [CollegeFootballData.com](https://collegefootballdata.com), courtesy
+  of [@CFB_data](https://x.com/CFB_data)
 
-We also include several interaction terms between our independent and
-derived variables:
+### Citation
 
-- Interaction between distance as log(yards to convert 1st/Goal) and
-  goal-to-go indicator (1)
-- Interaction between distance as log(yards to convert 1st/Goal) and
-  down (3)
-- Interaction between yards from opponent’s end zone and down (3)
+    Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
+    Football Play by Play Data. R package version 3.0.0.9000.
+    https://cfbfastr.sportsdataverse.org
 
-The model outputs the probability predictions of each next score type
-for every play before the play. Then using the play outcomes to adjust
-our four main independent variables, it then outputs the model
-probability predictions for all 7 types post-play.
-
-Next time will cover the underlying next score type probabilities and
-their influence on the change in expected points as the offense
-progresses down the field.
-
-## **Our Authors**
-
-- [Saiem Gilani](https://x.com/saiemgilani)
-  [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge)](https://x.com/saiemgilani)
-  [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
-- [Akshay Easwaran](https://x.com/akeaswaran)
-  [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
-  [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
-  [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
-- [Eric Hess](https://x.com/arbitanalytics)
-  [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
-  [![@ehess](https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge)](https://github.com/ehess)
-
-### **Our Contributors**
-
-- [Michael Egle](https://x.com/deceptivespeed_)
-  [![@deceptivespeed\_](https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=x&style=for-the-badge)](https://x.com/deceptivespeed_)
-  [![@michaelegle](https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge)](https://github.com/michaelegle)
-- [Nate Manzo](https://x.com/cfbnate)
-  [![@cfbnate](https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge)](https://x.com/cfbnate)
-  [![@natemanzo](https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge)](https://github.com/natemanzo)
-- [Jason DeLoach](https://x.com/CFBNumbers)
-  [![@CFBNumbers](https://img.shields.io/twitter/follow/CFBNumbers?color=blue&label=%40CFBNumbers&logo=x&style=for-the-badge)](https://x.com/CFBNumbers)
-  [![@CFBNumbers](https://img.shields.io/github/followers/CFBNumbers?color=eee&logo=Github&style=for-the-badge)](https://github.com/CFBNumbers)
-- [Tej Seth](https://x.com/tejfbanalytics)
-  [![@tejfbanalytics](https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&label=%40tejfbanalytics&logo=x&style=for-the-badge)](https://x.com/tejfbanalytics)
-  [![@tejseth](https://img.shields.io/github/followers/tejseth?color=eee&logo=Github&style=for-the-badge)](https://github.com/tejseth)
-- [Conor McQuiston](https://x.com/ConorMcQ5)
-  [![@ConorMcQ5](https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge)](https://x.com/ConorMcQ5)
-  [![@mcqconor](https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge)](https://github.com/mcqconor)
-- [Tan Ho](https://x.com/_TanHo)
-  [![@\_TanHo](https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=x&style=for-the-badge)](https://x.com/_TanHo)
-  [![@tanho63](https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge)](https://github.com/tanho63)
-- [Keegan Abdoo](https://x.com/KeeganAbdoo)
-  [![@KeeganAbdoo](https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=x&style=for-the-badge)](https://x.com/KeeganAbdoo)
-  [![@keegan-abdoo](https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge)](https://github.com/keegan-abdoo)
-- [Matt Spencer](https://x.com/Maatspencer)
-  [![@Maatspencer](https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=x&style=for-the-badge)](https://x.com/Maatspencer)
-  [![@Maatspencer](https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge)](https://github.com/Maatspencer)
-- [Sebastian Carl](https://x.com/mrcaseb)
-  [![@mrcaseb](https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=x&style=for-the-badge)](https://x.com/mrcaseb)
-  [![@mrcaseb](https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge)](https://github.com/mrcaseb)
-- [John Edwards](https://x.com/John_B_Edwards)
-  [![@John_B_Edwards](https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=x&style=for-the-badge)](https://x.com/John_B_Edwards)
-  [![@john-b-edwards](https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge)](https://github.com/john-b-edwards)
-- [Brad Hill](https://x.com/bradisblogging)
-  [![@bradisblogging](https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=x&style=for-the-badge)](https://x.com/bradisblogging)
-  [![@bradisbrad](https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge)](https://github.com/bradisbrad)
-
-### **Citation**
-
-To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R
-package in publications, use:
-
-BibTeX Citation
-
-``` bibtex
-@misc{cfbfastr,
-  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
-  title = {cfbfastR: Access College Football Play by Play Data},
-  url = {https://cfbfastR.sportsdataverse.org/},
-  year = {2021}
-}
-```
-
-### **Related SportsDataverse packages**
-
-- [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college
-  football
-- [**hoopR**](https://hoopR.sportsdataverse.org/) - men’s basketball
-- [**wehoop**](https://wehoop.sportsdataverse.org/) - women’s basketball
-- [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
-- [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
-- [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
-- [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
-  package
-- [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R
-  meta-package
+Authors, contributors and related SportsDataverse packages are listed on
+the [package home page](https://cfbfastR.sportsdataverse.org/index.md).

@@ -82,7 +82,7 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_team_season(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted team season PPA data from CollegeFootballData.com ─────────
-#> ℹ Data updated: 2026-09-01 11:20:58 UTC
+#> ℹ Data updated: 2026-09-03 22:33:44 UTC
 #> # A tibble: 1 × 26
 #>    year team_id team  conference explosiveness explosiveness_allowed epa_total
 #>   <int>   <int> <chr> <chr>              <dbl>                 <dbl>     <dbl>

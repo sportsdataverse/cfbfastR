@@ -263,20 +263,20 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:27:01 UTC
+#> ℹ Data updated: 2026-09-03 22:39:24 UTC
 #> # A tibble: 99 × 59
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 San José State … SJSU @ USC      2026 regu… regu… 401864… s:20~l:… 2026-08-29
-#>  2 North Carolina … UNC VS TCU      2026 regu… regu… 401856… s:20~l:… 2026-08-29
-#>  3 NC State Wolfpa… NCSU @ UVA      2026 regu… regu… 401858… s:20~l:… 2026-08-29
-#>  4 Jacksonville St… JVST @ NDSU     2026 regu… regu… 401864… s:20~l:… 2026-08-29
-#>  5 Sacramento Stat… SAC @ EMU       2026 regu… regu… 401866… s:20~l:… 2026-08-29
-#>  6 Hawai'i Rainbow… HAW @ STAN      2026 regu… regu… 401858… s:20~l:… 2026-08-29
-#>  7 New Mexico Stat… NMSU @ FSU      2026 regu… regu… 401864… s:20~l:… 2026-08-29
-#>  8 Memphis Tigers … MEM @ UNLV      2026 regu… regu… 401862… s:20~l:… 2026-08-29
-#>  9 Massachusetts M… MASS @ RUTG     2026 regu… regu… 401858… s:20~l:… 2026-09-03
-#> 10 Bethune-Cookman… BCU @ UCF       2026 regu… regu… 401856… s:20~l:… 2026-09-03
+#>  1 Massachusetts M… MASS @ RUTG     2026 regu… regu… 401858… s:20~l:… 2026-09-03
+#>  2 Bethune-Cookman… BCU @ UCF       2026 regu… regu… 401856… s:20~l:… 2026-09-03
+#>  3 Akron Zips at W… AKR @ WAKE      2026 regu… regu… 401858… s:20~l:… 2026-09-03
+#>  4 Merrimack Warri… MRMK @ DEL      2026 regu… regu… 401864… s:20~l:… 2026-09-03
+#>  5 West Georgia Wo… WES @ KENN      2026 regu… regu… 401864… s:20~l:… 2026-09-03
+#>  6 UAlbany Great D… ALB @ BUFF      2026 regu… regu… 401866… s:20~l:… 2026-09-03
+#>  7 Arkansas-Pine B… UAPB @ MIZ      2026 regu… regu… 401856… s:20~l:… 2026-09-03
+#>  8 Colorado Buffal… COLO @ GT       2026 regu… regu… 401856… s:20~l:… 2026-09-03
+#>  9 Eastern Illinoi… EIU @ MINN      2026 regu… regu… 401858… s:20~l:… 2026-09-03
+#> 10 Idaho Vandals a… IDHO @ UTAH     2026 regu… regu… 401856… s:20~l:… 2026-09-03
 #> # ℹ 89 more rows
 #> # ℹ 51 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:27:01 UTC
+#> ℹ Data updated: 2026-09-03 22:39:24 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

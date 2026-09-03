@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>College Football Expected Points Model Fundamentals - Part II • cfbfastR</title>
+<title>How the Expected Points Model Is Built (Part II) • cfbfastR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,10 +16,10 @@
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="College Football Expected Points Model Fundamentals - Part II">
-<meta name="description" content="Motivating the regression - I do bad regression to show that a multinomial logistic regression model is necessary">
-<meta property="og:description" content="Motivating the regression - I do bad regression to show that a multinomial logistic regression model is necessary">
-<meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true">
+<meta property="og:title" content="How the Expected Points Model Is Built (Part II)">
+<meta name="description" content="Why expected points is a multiclass problem, why linear and binary logistic regression fail at it, and how the cfbfastR EP model went from 96 hand-built regression variables to eight gradient-boosted features.">
+<meta property="og:description" content="Why expected points is a multiclass problem, why linear and binary logistic regression fail at it, and how the cfbfastR EP model went from 96 hand-built regression variables to eight gradient-boosted features.">
+<meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png">
 <meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@saiemgilani">
@@ -82,6 +82,14 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-book-reader"></span> Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/index.html">Vignettes</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Expected Points: How the Model Works (Part I)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">Expected Points: How the Model Is Built (Part II)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Expected Points: A History (Part III)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-iv.html">What Is EPA? Expected Points Added Explained (Part IV)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-v.html">Win Probability: wp, WPA and vegas_wp (Part V)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-vi.html">CPOE, xpass, Field Goals and Fourth Downs (Part VI)</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../articles/animated-wp-plotting.html">Making Animated Win Probability Charts with cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/cfbd_betting.html">CFB Data Betting Lines Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbd_games.html">CFB Data Games Examples</a></li>
@@ -90,9 +98,6 @@
     <li><a class="dropdown-item" href="../articles/cfbd_stats.html">CFB Data Stats Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbd_teams.html">CFB Data Teams Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbfastR-espn-cookbook.html">ESPN College Football Cookbook</a></li>
-    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-i.html">College Football Expected Points Model Fundamentals - Part I</a></li>
-    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">College Football Expected Points Model Fundamentals - Part II</a></li>
-    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">College Football Expected Points Model Fundamentals - Part III</a></li>
     <li><a class="dropdown-item" href="../articles/fourth-down-plot-tutorial.html">Creating Fourth Down Tendency Plots Using cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/intro.html">Introduction to cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
@@ -175,15 +180,11 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>College Football Expected Points Model Fundamentals - Part II</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>How the Expected Points Model Is Built (Part II)</h1>
                         <h4 data-toc-skip class="author">Saiem Gilani,
-Akshay Easwaran, Jared Lee
-<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
-<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
-<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
-<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
-</h4>
+Akshay Easwaran, Jared Lee</h4>
             
+            <h4 data-toc-skip class="date">2026-09-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/cfbfastR/blob/main/vignettes/college-football-expected-points-model-fundamentals-part-ii.Rmd" class="external-link"><code>vignettes/college-football-expected-points-model-fundamentals-part-ii.Rmd</code></a></small>
       <div class="d-none name"><code>college-football-expected-points-model-fundamentals-part-ii.Rmd</code></div>
@@ -191,336 +192,475 @@ Akshay Easwaran, Jared Lee
 
     
     
-<p>Previously in Part 1, we left off discussing field position and
-expected points, including a breakdown by down. Generally, what was
-presented could be considered the most top-level results discussion and
-model definition information without much depth into how we arrived at
-the model, or detail on how the predictions the model provides generate
-the expected points.</p>
-<p>In order to remedy that, I feel it necessary for us to cover some
-model building methods. This article will show you how we arrive at the
-model that we currently have from a modeling perspective. The entire
-purpose of this series of articles is to show you as transparently as I
-can how the Expected Points model works, how well it works, and how the
-model is limited.</p>
-<p>Additionally, and maybe most importantly, this research is
-reproducible. The following link contains an <a href="https://rpubs.com/saiemgilani/625433" class="external-link">R notebook</a> and
-supporting figures for the article which should be sufficient to work
-through (it is large, ~284Mb when unzipped). <a href="https://drive.google.com/file/d/1jJZBEUvqvEC9I_0-3TFtKQGww7qICVJ2/view?usp=sharing" class="external-link">Link</a></p>
-<div class="section level3">
-<h3 id="the-data">The Data<a class="anchor" aria-label="anchor" href="#the-data"></a>
-</h3>
-<p>We will be acquiring data from <a href="collegefootballdata.com">CollegeFootballData.com</a>, courtesy of
-@<a href="https://twitter.com/CFB_data" class="external-link">CFB_data</a>, using
-<code>cfbfastR</code>, created by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>, <a href="https://twitter.com/akeaswaran" class="external-link">Akshay Easwaran</a>, <a href="https://twitter.com/JaredDLee" class="external-link">Jared Lee</a> and <a href="https://twitter.com/arbitanalytics" class="external-link">Eric Hess</a>.</p>
-</div>
+<p><a href="college-football-expected-points-model-fundamentals-part-i.html">Part
+I</a> established what expected points is and showed the model’s output.
+This article is about <em>how you get there</em> — why the problem is
+shaped the way it is, why the obvious approaches fail, and how the
+shipped model works.</p>
+<p>The through-line: <strong>predicting expected points is not a
+regression problem.</strong> It looks like one, because the answer is a
+number. It is not, and understanding why explains every design decision
+that follows.</p>
 <div class="section level2">
-<h2 id="regression-methods">Regression Methods<a class="anchor" aria-label="anchor" href="#regression-methods"></a>
+<h2 id="the-problem-is-multiclass-not-continuous">The problem is multiclass, not continuous<a class="anchor" aria-label="anchor" href="#the-problem-is-multiclass-not-continuous"></a>
 </h2>
-<p><a href="https://imgur.com/rOjdyUC" class="external-link"><img src="https://i.imgur.com/rOjdyUCl.png" title="Figure: @ChrisAlbon" alt="Figure: @ChrisAlbon"></a></p>
-<p><strong>Figure 1</strong>: Regression | <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
-<p>Regression is a set of techniques for estimating relationships
-between multiple variables on a quantitative target variable, and our
-focus will be on one of the simplest types of relationships: linear.</p>
+<p>The naive framing is “predict how many points the offense scores
+next.” Try to fit that directly and the problems appear immediately.</p>
+<p>The target is not continuous. The next score in a half can only be
+one of seven things, and their values are −7, −3, −2, 0, 2, 3 or 7.
+There is no such thing as a 4.5-point outcome. A model that predicts 4.5
+is not making a claim any football game can satisfy — it is averaging
+over outcomes it should be enumerating.</p>
+<p>So the target is <em>categorical</em>, and expected points is a
+quantity you compute <strong>afterwards</strong>, from the class
+probabilities:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">P</mi></mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mn>7</mn></munderover><msub><mi>p</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>v</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\mathrm{EP} = \sum_{i=1}^{7} p_i \cdot v_i</annotation></semantics></math></p>
+<p>That single reframing is the whole conceptual step. Everything below
+is about estimating the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>p</mi><mi>i</mi></msub><annotation encoding="application/x-tex">p_i</annotation></semantics></math>
+well.</p>
 <div class="section level3">
-<h3 id="linear-regression">Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
+<h3 id="why-not-linear-regression">Why not linear regression<a class="anchor" aria-label="anchor" href="#why-not-linear-regression"></a>
 </h3>
-<p><a href="https://imgur.com/MegfSse" class="external-link"><img src="https://i.imgur.com/MegfSsel.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 2</strong>: Linear Regression Model</p>
-<div class="section level4">
-<h4 id="assumptions">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions"></a>
-</h4>
-<ul>
-<li>Dependent variable is continuous, unbounded, and measured on an
-interval or ratio scale</li>
-<li>Model has linear relation between independent and dependent
-variables</li>
-<li>No outliers present</li>
-<li>Independence Assumption: Sample observations are independent</li>
-<li>Absence of multicollinearity between the predictor variables</li>
-<li>Constant Variance Assumption (homoscedasticity)</li>
-<li>Normal Distribution of error terms</li>
-<li>Little or no auto-correlation in the residuals</li>
-</ul>
-<p>Since scores in football only happen in increments of 2, 3, and 6
-(+0, +1, +2), with the additional points in parentheses resulting from
-extra point attempts, the football scoring scheme is not continuous over
-an interval or ratio scale without transformation of the target
-variable.</p>
-<p>While pretending I was unaware of the continuous dependent variable
-assumption of linear regression, I took a look into producing a linear
-regression model using down, distance, and yards-to-goal as independent
-variables using a similarly treated college football dataset but
-excluding all 4th down plays. I tried to predict on either the next
-score in the half or points on the drive, and the one that demonstrated
-the highest adjusted R-squared at 0.5143, the others were quite low.</p>
-<p>Adjusted R-squared is a measure of the percentage of the dependent
-variable variation explained by the independent variables, in this case
-51.43%. Below is the model summary of this fitting with no
-intercept.</p>
-<p><a href="https://imgur.com/HjH1CFw" class="external-link"><img src="https://i.imgur.com/HjH1CFwl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 3</strong>: Linear Regression model summary | Expected
-Drive-Points model using Down, Distance, and Field Position as
-factors</p>
-<p>Additionally, the linear model indicates that all three factors are
-significant at a p=0.001 level, which is at least some evidence that our
-variables have a relationship with drive points. Here is a plot of the
-linear regression model fitting.</p>
-<p><a href="https://imgur.com/AZVRKf3" class="external-link"><img src="https://i.imgur.com/AZVRKf3l.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 4</strong>: Linear Regression model plots | Expected
-Drive-Points model using Down, Distance, and Field Position as
-factors</p>
-<p>In the plot on the top left, there are 4 distinct scoring types
-clearly visible and the model is trying to fire a shot through to fit
-all of them. The red line in the top-left would be relatively flat if
-the residuals of the model fit had constant variance. While there are
-two other non-zero scoring types, Field Goals and Opponent Field Goals,
-the data excluded 4th down, so they do not appear on the plot. For
-clarity, there are in fact 7 next score types when we include the
-absence of a score, i.e. “No Score”, since the absence of a scoring
-event is also a type of next score.</p>
-<p>Upon viewing these plots, I quickly realized that several assumptions
-of linear regression are being violated here, namely the constant
-variance assumption and normal distribution of error terms (see Figure
-4), at minimum. We need to keep adding to our regression toolbox, so let
-us now take a look at a type of regression that does not restrict us to
-these assumptions.</p>
-</div>
+<p>Linear regression assumes the dependent variable is continuous and
+unbounded, that the relationship between predictors and target is
+linear, that observations are independent, and that predictors are not
+collinear.</p>
+<p>Point values violate the first assumption outright. But even setting
+that aside, predictions are unbounded — a linear model will happily tell
+you a situation is worth 9.2 points, which no single scoring event can
+produce. And the relationship is emphatically not linear: expected
+points changes far faster near either goal line than it does at
+midfield.</p>
 </div>
 <div class="section level3">
-<h3 id="logistic-regression">Logistic Regression<a class="anchor" aria-label="anchor" href="#logistic-regression"></a>
+<h3 id="why-not-binary-logistic-regression">Why not binary logistic regression<a class="anchor" aria-label="anchor" href="#why-not-binary-logistic-regression"></a>
 </h3>
-<p>Suppose we have a binary output variable Y, let’s say Y is a variable
-that gives a response of 1 if the next score in the half is a TD for the
-offense and a 0 otherwise. If we wanted to predict the probability that
-the next score in the half is a TD for the offense, one of the prime
-candidate models would be logistic regression.</p>
-<p><a href="https://imgur.com/ZePALn7" class="external-link"><img src="https://i.imgur.com/ZePALn7l.png" title="Figure: @ChrisAlbon" alt="Figure: @ChrisAlbon"></a></p>
-<p><strong>Figure 5</strong>: Logistic Regression <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
-<p><a href="https://imgur.com/PJXbgfq" class="external-link"><img src="https://i.imgur.com/PJXbgfql.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 6</strong>: Logistic Regression Model</p>
-<div class="section level4">
-<h4 id="assumptions-1">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions-1"></a>
-</h4>
-<ul>
-<li>Binary logistic regression requires the dependent variable to be
-binary (i.e. 0/1)</li>
-<li>There is a linear relationship between the log-odds of the outcome
-and each of the predictor variables.</li>
-<li>No outliers present</li>
-<li>Independence Assumption: Sample observations are independent</li>
-<li>Absence of multicollinearity between the predictor variables</li>
-<li><del>Constant Variance Assumption (homoscedasticity)</del></li>
-<li><del>Normal Distribution of error terms</del></li>
-<li><del>Little or no auto-correlation in the residuals</del></li>
-</ul>
-<p>Now we are attempting to calculate the probability of the next
-scoring event directly, an essential component of an expected points
-model. Once we have a model capable of calculating the expectation of
-the scoring event, e.g. the probability of the next score being an
-offense touchdown, then we simply have to multiply the probability by
-the point value of the score to get the expected points.</p>
-<p><a href="https://imgur.com/xw3BvAd" class="external-link"><img src="https://i.imgur.com/xw3BvAdl.png" title="Figure: @ChrisAlbon" alt="Illustration comparing linear vs logistic regression decision boundaries"></a></p>
-<p><strong>Figure 7</strong>: Logistic vs. Linear Regression | <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
-<p>With that background, we can build our model equation with whatever
-independent variables we choose to include in the model as shown in
-Figure 8.</p>
-<p><a href="https://imgur.com/vVaOIZx" class="external-link"><img src="https://i.imgur.com/vVaOIZxl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 8</strong>: Offense Touchdown Logit Regression</p>
-<p>Below is a model fit to the next score offense touchdown variable
-using the independent variables yards-to-goal, down, distance, and the
-interaction between down and distance.</p>
-<p><a href="https://imgur.com/gRTGzMT" class="external-link"><img src="https://i.imgur.com/gRTGzMTl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 9</strong>: Offense Touchdown Logistic Regression
-model summary</p>
-<p>Once again we see that all variables in the model are fit are
-significant at the p &lt; 0.001 level. In figure 10 below, we can see
-the probability of the next score in half being a touchdown in relation
-to field position (yards-to-goal) as the offense progresses down the
-field.</p>
-<p><a href="https://imgur.com/VVsQ8lm" class="external-link"><img src="https://i.imgur.com/VVsQ8lml.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 10</strong>: Field Position and Offense TD probability
-- Logistic Regression</p>
-<p>You might be asking “Yeah, that’s great, but you’re still only
-predicting the probability of one scoring type relative to another.
-You’d need to do this like 6 times, right?” Well, fair point. How does
-one do logistic regression on a categorical variable that has more than
-one class?</p>
-</div>
+<p>Logistic regression fixes the boundedness problem. Model “does the
+offense score a touchdown next, yes or no”, and predictions live in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math>
+where probabilities belong.</p>
+<p>But we need seven probabilities that are <em>mutually exclusive and
+sum to one</em>. Seven separately-fitted binary models give you seven
+numbers that do not sum to anything in particular. You cannot form a
+valid expectation from them.</p>
 </div>
 <div class="section level3">
-<h3 id="multinomial-logistic-regression-or-softmax-regression">Multinomial Logistic Regression (or Softmax regression)<a class="anchor" aria-label="anchor" href="#multinomial-logistic-regression-or-softmax-regression"></a>
+<h3 id="multinomial-logistic-regression">Multinomial logistic regression<a class="anchor" aria-label="anchor" href="#multinomial-logistic-regression"></a>
 </h3>
-<p>A multinomial logistic regression model uses the independent
-(predictor) variables and target variable data from the training set to
-build relationships between the independent variables and each of the
-classes of the target variable.</p>
-<p><a href="https://imgur.com/c18pbOL" class="external-link"><img src="https://i.imgur.com/c18pbOLl.jpg" title="Figure: @ChrisAlbon" alt="Diagram of multinomial logistic regression and class probabilities"></a></p>
-<p><strong>Figure 11</strong>: Multinomial Logistic Regression <a href="https://machinelearningflashcards.com/" class="external-link">Chris Albon</a> (@<a href="https://twitter.com/chrisalbon?s=20" class="external-link">ChrisAlbon</a>)</p>
-<p>The primary difference between logistic and multinomial logistic
-regression is the use of the softmax function which re-weights the
-probabilities generated from each of the individual models so that in
-total they add to one as seen in Figure 12 below.</p>
-<p><a href="https://imgur.com/EyxYqaM" class="external-link"><img src="https://i.imgur.com/EyxYqaMm.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 12</strong>: Softmax function</p>
-<p>More specifically, a multinomial logistic regression model is an
-extension of the binomial logistic regression model because it is a
-series of logistic regression models estimated simultaneously with the
-same reference outcome.</p>
-<p><a href="https://imgur.com/bGug8hp" class="external-link"><img src="https://i.imgur.com/bGug8hpl.png" title="Figure: @SaiemGilani" alt="Figure: @SaiemGilani"></a></p>
-<p><strong>Figure 13</strong>: Multinomial Logistic Regression Football
-Expected Points Model</p>
-<p>The college football expected points (EP) model is a multinomial
-logistic regression model which generates probabilities for the possible
-types of next score events within the same half. In our case, we build 6
-logistic regression models fit to the next score types — Offense FG,
-Offense TD, Offense Safety, Opponent TD, Opponent FG, and Opponent
-Safety — all except for the class that is used as the base case (i.e. No
-Score), since that is accounted for in the intercept, as mentioned in
-Part 1. Ron Yurko, Sam Ventura, and Max Horowitz originally proposed the
-multinomial logistic regression expected points model for football in
-2017, which we will learn more about in Part 3.</p>
-<p>Additionally, now that we have a way to calculate the probabilities
-of scores, we can calculate the expected points. We will discuss this in
-Part 4.</p>
+<p>The classical fix is to fit the classes simultaneously against a
+reference class, and pass the results through a softmax so they are
+normalised to sum to one. Choose “No Score” as the reference, fit six
+sets of coefficients against it, and the seventh falls out.</p>
+<p>This is exactly what the 2020 model did — and what Yurko, Ventura and
+Horowitz proposed for football in 2017 (<a href="college-football-expected-points-model-fundamentals-part-iii.html">Part
+III</a> covers that lineage). It is a sound, interpretable and
+well-understood approach.</p>
+<p>It is also where the 96 variables came from.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="our-authors">
-<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+<h2 id="the-cost-of-linearity-96-variables">The cost of linearity: 96 variables<a class="anchor" aria-label="anchor" href="#the-cost-of-linearity-96-variables"></a>
+</h2>
+<p>A multinomial logit is linear in its predictors. It can only
+represent an interaction if you build that interaction by hand, as a
+column. Football is almost entirely interactions — 3rd and 2 is not “3rd
+down plus 2 yards to go”, it is its own situation — so the feature list
+grew to cover them:</p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th>Group</th>
+<th>Variables</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Distance factors (yards to goal, log distance, goal-to-go, and their
+interaction)</td>
+<td>24</td>
+</tr>
+<tr class="even">
+<td>Down, and down × distance, down × field position</td>
+<td>54</td>
+</tr>
+<tr class="odd">
+<td>Time factors, under-two-minute indicator, intercepts</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td><strong>96</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Each bullet is six variables because six classes are fitted against
+the reference. Every interaction anyone thought of had to be specified.
+Every interaction nobody thought of was invisible to the model.</p>
+<p>There were two further consequences worth naming:</p>
+<ul>
+<li>
+<strong>The model could not see the score.</strong> Game state was
+handled through observation <em>weights</em> — plays were weighted by
+score differential and by how many drives away the next score was —
+rather than as a feature.</li>
+<li>
+<strong>Field goals needed a separate model</strong>, a GAM on
+smoothed kick distance, because the main model had no way to represent
+“this is makeable.”</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="what-changed-gradient-boosting">What changed: gradient boosting<a class="anchor" aria-label="anchor" href="#what-changed-gradient-boosting"></a>
+</h2>
+<p>The current model is an XGBoost <code>multi:softprob</code>
+classifier. It answers the same seven-class question and produces
+probabilities the same way. What changes is how the structure is
+found.</p>
+<p>Boosted trees split on feature values, so an interaction is
+representable without being specified: a tree that splits on
+<code>down_3</code>, then on <code>distance</code>, then on
+<code>yards_to_goal</code> <em>is</em> a three-way interaction,
+discovered from the data. The hand-built columns become unnecessary.</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th></th>
+<th>2020</th>
+<th>2026</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Estimator</td>
+<td><code><a href="https://rdrr.io/pkg/nnet/man/multinom.html" class="external-link">nnet::multinom</a></code></td>
+<td>XGBoost <code>multi:softprob</code>
+</td>
+</tr>
+<tr class="even">
+<td>Inputs</td>
+<td>96 constructed variables</td>
+<td><strong>8 raw features</strong></td>
+</tr>
+<tr class="odd">
+<td>Sees the score</td>
+<td>no (weights only)</td>
+<td>yes (<code>pos_score_diff_start</code>)</td>
+</tr>
+<tr class="even">
+<td>Training rows</td>
+<td>2014–2019, non-overtime</td>
+<td><strong>2004–2025, 2,219,971 plays</strong></td>
+</tr>
+<tr class="odd">
+<td>Field goals</td>
+<td>separate GAM</td>
+<td>separate gradient-boosted <code>fg_model</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The eight features are simply:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TimeSecsRem"</span>, <span class="st">"yards_to_goal"</span>, <span class="st">"distance"</span>,</span>
+<span>  <span class="st">"down_1"</span>, <span class="st">"down_2"</span>, <span class="st">"down_3"</span>, <span class="st">"down_4"</span>, <span class="st">"pos_score_diff_start"</span><span class="op">)</span></span></code></pre></div>
+<p>Trained with <code>eta = 0.025</code>, <code>max_depth = 5</code> and
+525 boosting rounds — which, because there are seven classes, means the
+shipped booster contains <strong>3,675 trees</strong>. That is a useful
+sanity check when you load it:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># xgb.dump() returns one element per NODE line, so length() is far larger than the</span></span>
+<span><span class="co"># tree count. Each tree is introduced by a `booster[i]` header -- count those.</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^booster\\["</span>, <span class="fu">xgboost</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/xgboost/man/xgb.dump.html" class="external-link">xgb.dump</a></span><span class="op">(</span><span class="va">ep_model</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>   <span class="co"># 3675 = 525 rounds x 7 classes</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="what-the-model-actually-leans-on">What the model actually leans on<a class="anchor" aria-label="anchor" href="#what-the-model-actually-leans-on"></a>
+</h3>
+<p>Gain-based importance, computed from the shipped booster:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Feature</th>
+<th>Gain</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>TimeSecsRem</code></td>
+<td>30.9%</td>
+</tr>
+<tr class="even">
+<td><code>yards_to_goal</code></td>
+<td>21.9%</td>
+</tr>
+<tr class="odd">
+<td><code>down_4</code></td>
+<td>14.5%</td>
+</tr>
+<tr class="even">
+<td><code>down_3</code></td>
+<td>9.4%</td>
+</tr>
+<tr class="odd">
+<td><code>down_1</code></td>
+<td>7.9%</td>
+</tr>
+<tr class="even">
+<td><code>down_2</code></td>
+<td>6.9%</td>
+</tr>
+<tr class="odd">
+<td><code>pos_score_diff_start</code></td>
+<td>5.0%</td>
+</tr>
+<tr class="even">
+<td><code>distance</code></td>
+<td>3.6%</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">imp</span> <span class="op">&lt;-</span> <span class="fu">xgboost</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/xgboost/man/xgb.importance.html" class="external-link">xgb.importance</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">ep_model</span><span class="op">)</span></span>
+<span><span class="va">imp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">imp</span><span class="op">$</span><span class="va">Gain</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Feature"</span>, <span class="st">"Gain"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<p>Time is the largest single contributor, which is not obvious until
+you remember what the target is: <em>the next score in this half</em>.
+With thirty minutes left almost every drive has a successor; with thirty
+seconds left, “No Score” becomes the overwhelming favourite regardless
+of field position. The model spends most of its capacity on that.</p>
+<p>Note also that <code>down_4</code> carries more gain than the other
+three downs combined with each other — fourth down is where the
+possession itself is at risk, and the distribution shifts hardest.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="a-worked-example-end-to-end">A worked example, end to end<a class="anchor" aria-label="anchor" href="#a-worked-example-end-to-end"></a>
+</h2>
+<p>One situation, all the way through. First and 10 at your own 25,
+tied, thirty minutes left in the half:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1800</span>, <span class="fl">75</span>, <span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TimeSecsRem"</span>, <span class="st">"yards_to_goal"</span>, <span class="st">"distance"</span>,</span>
+<span>                          <span class="st">"down_1"</span>, <span class="st">"down_2"</span>, <span class="st">"down_3"</span>, <span class="st">"down_4"</span>,</span>
+<span>                          <span class="st">"pos_score_diff_start"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># as.numeric(): predict() may return a 1 x 7 matrix here, and handing a matrix to</span></span>
+<span><span class="co"># data.frame() below would create seven columns against a seven-ROW outcome vector.</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">ep_model</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  outcome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TD"</span>, <span class="st">"Opp_TD"</span>, <span class="st">"FG"</span>, <span class="st">"Opp_FG"</span>, <span class="st">"Safety"</span>, <span class="st">"Opp_Safety"</span>, <span class="st">"No_Score"</span><span class="op">)</span>,</span>
+<span>  prob    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">p</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>  value   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="op">-</span><span class="fl">7</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th>Outcome</th>
+<th>Probability</th>
+<th>Value</th>
+<th>Contribution</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Touchdown</td>
+<td>0.3965</td>
+<td>+7</td>
+<td>+2.7753</td>
+</tr>
+<tr class="even">
+<td>Opponent touchdown</td>
+<td>0.3182</td>
+<td>−7</td>
+<td>−2.2274</td>
+</tr>
+<tr class="odd">
+<td>Field goal</td>
+<td>0.1564</td>
+<td>+3</td>
+<td>+0.4691</td>
+</tr>
+<tr class="even">
+<td>Opponent field goal</td>
+<td>0.1185</td>
+<td>−3</td>
+<td>−0.3555</td>
+</tr>
+<tr class="odd">
+<td>Safety</td>
+<td>0.0034</td>
+<td>+2</td>
+<td>+0.0068</td>
+</tr>
+<tr class="even">
+<td>Opponent safety</td>
+<td>0.0024</td>
+<td>−2</td>
+<td>−0.0048</td>
+</tr>
+<tr class="odd">
+<td>No score</td>
+<td>0.0047</td>
+<td>0</td>
+<td>0.0000</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td><strong>EP = +0.6635</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Two thirds of a point, from a near-coin-flip between the two
+touchdown outcomes. That is what “expected points” means concretely: not
+a prediction that 0.66 points will be scored, but the average over seven
+futures, six of which are worth something.</p>
+<div class="section level3">
+<h3 id="the-score-margin-feature-and-a-caveat">The score-margin feature, and a caveat<a class="anchor" aria-label="anchor" href="#the-score-margin-feature-and-a-caveat"></a>
+</h3>
+<p>Because the current model sees the score, EP at a fixed spot varies
+with the margin:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Score margin</th>
+<th>EP at own 25</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>−21</td>
+<td>−1.38</td>
+</tr>
+<tr class="even">
+<td>−7</td>
+<td>−0.18</td>
+</tr>
+<tr class="odd">
+<td>Tied</td>
+<td>+0.66</td>
+</tr>
+<tr class="even">
+<td>+7</td>
+<td>+1.71</td>
+</tr>
+<tr class="odd">
+<td>+21</td>
+<td>+2.71</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read this carefully.</strong> It does not mean leading causes
+you to score more from your own 25. It means teams that are up 21 are,
+on average, better teams playing worse opponents — the margin is partly
+a proxy for team quality, and the model has no separate team-strength
+input to separate the two.</p>
+<p>This is a real limitation and worth stating plainly: <strong>EP is
+not opponent- or quality-adjusted.</strong> Any team-level metric built
+by summing EPA inherits that. Adjusted versions, like the ones on <a href="https://gameonpaper.com/year/2025/teams/offensive" class="external-link">Game on
+Paper</a>, apply opponent and garbage-time corrections <em>on top
+of</em> raw EPA precisely because the model itself does not.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="one-artifact-two-languages">One artifact, two languages<a class="anchor" aria-label="anchor" href="#one-artifact-two-languages"></a>
+</h2>
+<p>The largest structural change is not statistical. The models are
+published once as the <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts" class="external-link"><code>cfb_model_artifacts</code></a>
+release and read by <strong>both <code>cfbfastR</code> and
+<code>sportsdataverse-py</code></strong> (<a href="https://github.com/sportsdataverse/cfbfastR/issues/138" class="external-link">#138</a>).
+The same play gets the same EPA in R and in Python, and a retrain
+updates both by publishing, without a release of either package.</p>
+<p>Making that true required pinning down one thing that is easy to get
+wrong. XGBoost emits classes in <em>its</em> training order, which is
+not the order <code>cfbfastR</code> has always reported:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">manifest</span><span class="op">$</span><span class="va">ep_class_contract</span><span class="op">$</span><span class="va">class_order</span></span>
+<span><span class="co">#&gt; "TD" "Opp_TD" "FG" "Opp_FG" "Safety" "Opp_Safety" "No_Score"</span></span>
+<span></span>
+<span><span class="va">manifest</span><span class="op">$</span><span class="va">ep_class_contract</span><span class="op">$</span><span class="va">cfbfastR_lev_order</span></span>
+<span><span class="co">#&gt; "No_Score" "FG" "Opp_FG" "Opp_Safety" "Opp_TD" "Safety" "TD"</span></span>
+<span></span>
+<span><span class="va">manifest</span><span class="op">$</span><span class="va">ep_class_contract</span><span class="op">$</span><span class="va">permutation_to_cfbfastR_lev_1based</span></span>
+<span><span class="co">#&gt; 7 3 4 6 2 5 1</span></span></code></pre></div>
+<p>The permutation is <strong>published in the manifest and read at
+runtime</strong>, not hard-coded. <code>cfbfastR</code> keeps a fallback
+copy, and a test asserts the two agree — so if the bundle is ever
+retrained with a different class order, the build fails loudly instead
+of silently reporting a touchdown probability as a safety probability.
+There is no fixed point between the two orderings, which is to say every
+position moves, which is to say a mistake here would be catastrophic and
+completely invisible in the output.</p>
+<p>If you score the booster yourself, apply the point values in the
+<strong>bundle’s</strong> order, as in the worked example above.</p>
+</div>
+<div class="section level2">
+<h2 id="where-the-estimates-are-weakest">Where the estimates are weakest<a class="anchor" aria-label="anchor" href="#where-the-estimates-are-weakest"></a>
+</h2>
+<p>Being explicit about limits, since the point of this series is
+transparency:</p>
+<ul>
+<li>
+<strong>No team-quality input.</strong> See the score-margin caveat
+above.</li>
+<li>
+<strong>PATs are treated as given.</strong> The extra point is
+folded into the touchdown value of 7 rather than modelled.</li>
+<li>
+<strong>Kickoffs assume a touchback baseline;</strong> returns past
+the 25 are points added and shorter returns points lost.</li>
+<li>
+<strong>Punts are not modelled separately.</strong> Their effect is
+field position, which the EP model already handles well.</li>
+<li>
+<strong>Overtime</strong> is not represented in the
+next-score-in-half framing.</li>
+<li>
+<strong>Era effects</strong> are handled in the FG, two-point, QBR
+and fourth-down models through explicit
+<code>era0</code>–<code>era3</code> features, but the EP model itself
+has no era term — it pools 2004 through 2025.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="next">Next<a class="anchor" aria-label="anchor" href="#next"></a>
+</h2>
+<p><a href="college-football-expected-points-model-fundamentals-part-iii.html">Part
+III</a> traces where these ideas came from — Virgil Carter’s 1970 paper,
+the field position and down-distance models that followed, and the line
+that runs through <code>nflscrapR</code> and <code>cfbscrapR</code> to
+the shared bundle described here.</p>
+</div>
+<div class="section level2">
+<h2 id="data-and-artifacts">Data and artifacts<a class="anchor" aria-label="anchor" href="#data-and-artifacts"></a>
 </h2>
 <ul>
 <li>
-<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
-<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
-<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<strong>Models</strong> — <a href="https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts" class="external-link"><code>cfb_model_artifacts</code></a>
 </li>
 <li>
-<a href="https://x.com/akeaswaran" class="external-link">Akshay Easwaran</a>
-<a href="https://x.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/akeaswaran?color=blue&amp;label=%40akeaswaran&amp;logo=x&amp;style=for-the-badge" alt="@akeaswaran"></a>
-<a href="https://github.com/akeaswaran" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/akeaswaran?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@akeaswaran"></a>
+<strong>Season play-by-play</strong> — <a href="https://github.com/sportsdataverse/cfbfastR-data" class="external-link"><code>cfbfastR-data</code></a>
 </li>
 <li>
-<a href="https://x.com/JaredDLee" class="external-link">Jared Lee</a>
-<a href="https://x.com/JaredDLee" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/JaredDLee?color=blue&amp;label=%40JaredDLee&amp;logo=x&amp;style=for-the-badge" alt="@JaredDLee"></a>
-<a href="https://github.com/Kazink36" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Kazink36?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Kazink36"></a>
+<strong>Source</strong> — <a href="https://github.com/sportsdataverse/cfbfastR" class="external-link"><code>cfbfastR</code></a>
+· <a href="https://github.com/sportsdataverse/sportsdataverse-py" class="external-link"><code>sportsdataverse-py</code></a>
 </li>
 <li>
-<a href="https://x.com/arbitanalytics" class="external-link">Eric Hess</a>
-<a href="https://x.com/arbitanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/arbitanalytics?color=blue&amp;label=%40arbitanalytics&amp;logo=x&amp;style=for-the-badge" alt="@arbitanalytics"></a>
-<a href="https://github.com/ehess" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/ehess?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@ehess"></a>
-</li>
-</ul>
-<div class="section level3">
-<h3 id="our-contributors">
-<strong>Our Contributors</strong><a class="anchor" aria-label="anchor" href="#our-contributors"></a>
-</h3>
-<ul>
-<li>
-<a href="https://x.com/deceptivespeed_" class="external-link">Michael Egle</a>
-<a href="https://x.com/deceptivespeed_" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&amp;label=%40deceptivespeed_&amp;logo=x&amp;style=for-the-badge" alt="@deceptivespeed_"></a>
-<a href="https://github.com/michaelegle" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/michaelegle?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@michaelegle"></a>
+<strong>Applied, live</strong> — <a href="https://gameonpaper.com" class="external-link">Game on Paper</a>
 </li>
 <li>
-<a href="https://x.com/cfbnate" class="external-link">Nate Manzo</a>
-<a href="https://x.com/cfbnate" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/cfbnate?color=blue&amp;label=%40cfbnate&amp;logo=x&amp;style=for-the-badge" alt="@cfbnate"></a>
-<a href="https://github.com/natemanzo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/natemanzo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@natemanzo"></a>
-</li>
-<li>
-<a href="https://x.com/CFBNumbers" class="external-link">Jason DeLoach</a>
-<a href="https://x.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/CFBNumbers?color=blue&amp;label=%40CFBNumbers&amp;logo=x&amp;style=for-the-badge" alt="@CFBNumbers"></a>
-<a href="https://github.com/CFBNumbers" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/CFBNumbers?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@CFBNumbers"></a>
-</li>
-<li>
-<a href="https://x.com/tejfbanalytics" class="external-link">Tej Seth</a>
-<a href="https://x.com/tejfbanalytics" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&amp;label=%40tejfbanalytics&amp;logo=x&amp;style=for-the-badge" alt="@tejfbanalytics"></a>
-<a href="https://github.com/tejseth" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tejseth?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tejseth"></a>
-</li>
-<li>
-<a href="https://x.com/ConorMcQ5" class="external-link">Conor McQuiston</a>
-<a href="https://x.com/ConorMcQ5" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&amp;label=%40ConorMcQ5&amp;logo=x&amp;style=for-the-badge" alt="@ConorMcQ5"></a>
-<a href="https://github.com/mcqconor" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mcqconor?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mcqconor"></a>
-</li>
-<li>
-<a href="https://x.com/_TanHo" class="external-link">Tan Ho</a>
-<a href="https://x.com/_TanHo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/_TanHo?color=blue&amp;label=%40_TanHo&amp;logo=x&amp;style=for-the-badge" alt="@_TanHo"></a>
-<a href="https://github.com/tanho63" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/tanho63?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@tanho63"></a>
-</li>
-<li>
-<a href="https://x.com/KeeganAbdoo" class="external-link">Keegan Abdoo</a>
-<a href="https://x.com/KeeganAbdoo" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&amp;label=%40KeeganAbdoo&amp;logo=x&amp;style=for-the-badge" alt="@KeeganAbdoo"></a>
-<a href="https://github.com/keegan-abdoo" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/keegan-abdoo?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@keegan-abdoo"></a>
-</li>
-<li>
-<a href="https://x.com/Maatspencer" class="external-link">Matt Spencer</a>
-<a href="https://x.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/Maatspencer?color=blue&amp;label=%40Maatspencer&amp;logo=x&amp;style=for-the-badge" alt="@Maatspencer"></a>
-<a href="https://github.com/Maatspencer" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/Maatspencer?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@Maatspencer"></a>
-</li>
-<li>
-<a href="https://x.com/mrcaseb" class="external-link">Sebastian Carl</a>
-<a href="https://x.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/mrcaseb?color=blue&amp;label=%40mrcaseb&amp;logo=x&amp;style=for-the-badge" alt="@mrcaseb"></a>
-<a href="https://github.com/mrcaseb" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/mrcaseb?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@mrcaseb"></a>
-</li>
-<li>
-<a href="https://x.com/John_B_Edwards" class="external-link">John Edwards</a>
-<a href="https://x.com/John_B_Edwards" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&amp;label=%40John_B_Edwards&amp;logo=x&amp;style=for-the-badge" alt="@John_B_Edwards"></a>
-<a href="https://github.com/john-b-edwards" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/john-b-edwards?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@john-b-edwards"></a>
-</li>
-<li>
-<a href="https://x.com/bradisblogging" class="external-link">Brad Hill</a>
-<a href="https://x.com/bradisblogging" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/bradisblogging?color=blue&amp;label=%40bradisblogging&amp;logo=x&amp;style=for-the-badge" alt="@bradisblogging"></a>
-<a href="https://github.com/bradisbrad" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/bradisbrad?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@bradisbrad"></a>
+<strong>Raw API</strong> — <a href="https://collegefootballdata.com" class="external-link">CollegeFootballData.com</a>,
+courtesy of <a href="https://x.com/CFB_data" class="external-link"><span class="citation">@CFB_data</span></a>
 </li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="citation">
-<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
-</h3>
-<p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
-R package in publications, use:</p>
-<p>BibTeX Citation</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>}</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="related-sportsdataverse-packages">
-<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
-</h3>
-<ul>
-<li>
-<a href="https://cfbfastR.sportsdataverse.org/"><strong>cfbfastR</strong></a>
-- college football</li>
-<li>
-<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
-men’s basketball</li>
-<li>
-<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
-women’s basketball</li>
-<li>
-<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
-- baseball</li>
-<li>
-<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
-- hockey</li>
-<li>
-<a href="https://oddsapiR.sportsdataverse.org/" class="external-link"><strong>oddsapiR</strong></a>
-- betting odds</li>
-<li>
-<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
-- playing surfaces</li>
-<li>
-<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
-- the Python package</li>
-<li>
-<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
-- the R meta-package</li>
-</ul>
-</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<pre><code>Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
+Football Play by Play Data. R package version 3.0.0.9000.
+https://cfbfastr.sportsdataverse.org</code></pre>
+<p>Authors, contributors and related SportsDataverse packages are listed
+on the <a href="../index.html">package home page</a>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

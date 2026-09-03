@@ -76,7 +76,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_sp_conference(year = 2019))
 #> ── Conference SP+ data from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:23:40 UTC
+#> ℹ Data updated: 2026-09-03 22:36:57 UTC
 #> # A tibble: 11 × 25
 #>     year conference        rating second_order_wins sos   offense_rating
 #>    <int> <chr>              <dbl> <lgl>             <lgl>          <dbl>
@@ -101,7 +101,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp_conference(year = 2012, conference = "SEC"))
 #> ── Conference SP+ data from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:23:41 UTC
+#> ℹ Data updated: 2026-09-03 22:36:57 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>
@@ -116,7 +116,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_sp_conference(year = 2016, conference = "ACC"))
 #> ── Conference SP+ data from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:23:41 UTC
+#> ℹ Data updated: 2026-09-03 22:36:58 UTC
 #> # A tibble: 1 × 25
 #>    year conference rating second_order_wins   sos offense_rating offense_success
 #>   <int> <chr>       <dbl>             <dbl> <dbl>          <dbl>           <dbl>

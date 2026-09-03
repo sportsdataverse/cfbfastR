@@ -195,7 +195,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_player_box(game_id = 401628339))
 #> ── Game player box score data from ESPN ───────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:03 UTC
+#> ℹ Data updated: 2026-09-03 22:38:32 UTC
 #> # A tibble: 6,083 × 33
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -219,7 +219,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_box(game_id = 401628339,
                                position_detail = FALSE))
 #> ── Game player box score data from ESPN ───────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:10 UTC
+#> ℹ Data updated: 2026-09-03 22:38:38 UTC
 #> # A tibble: 6,083 × 28
 #>    game_id   team_id team_name team_abbreviation team_location team_display_name
 #>    <chr>     <chr>   <chr>     <chr>             <chr>         <chr>            
@@ -243,7 +243,7 @@ Other ESPN CFB Functions:
   try(espn_cfb_game_player_box(game_id = 401628339,
                                team_detail = FALSE))
 #> ── Game player box score data from ESPN ───────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:17 UTC
+#> ℹ Data updated: 2026-09-03 22:38:43 UTC
 #> # A tibble: 6,083 × 23
 #>    game_id   team_id home_away athlete_id athlete_name position_id category_name
 #>    <chr>     <chr>   <chr>     <chr>      <chr>        <chr>       <chr>        

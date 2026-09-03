@@ -152,7 +152,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_game_predictor(game_id = 401628339))
 #> ── Game predictor data from ESPN ──────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:19 UTC
+#> ℹ Data updated: 2026-09-03 22:38:46 UTC
 #> # A tibble: 34 × 24
 #>    game_id   matchup_name     matchup_short_name last_modified team_side team_id
 #>    <chr>     <chr>            <chr>              <chr>         <chr>     <chr>  
@@ -175,7 +175,7 @@ Other ESPN CFB Functions:
 #> #   display_name <chr>, short_display_name <chr>, value <dbl>, …
   try(espn_cfb_game_predictor(game_id = 401628339, team_detail = FALSE))
 #> ── Game predictor data from ESPN ──────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:19 UTC
+#> ℹ Data updated: 2026-09-03 22:38:46 UTC
 #> # A tibble: 34 × 14
 #>    game_id   matchup_name     matchup_short_name last_modified team_side team_id
 #>    <chr>     <chr>            <chr>              <chr>         <chr>     <chr>  

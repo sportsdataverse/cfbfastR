@@ -1,329 +1,323 @@
-# College Football Expected Points Model Fundamentals - Part II
+# How the Expected Points Model Is Built (Part II)
 
-Previously in Part 1, we left off discussing field position and expected
-points, including a breakdown by down. Generally, what was presented
-could be considered the most top-level results discussion and model
-definition information without much depth into how we arrived at the
-model, or detail on how the predictions the model provides generate the
-expected points.
+[Part
+I](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.md)
+established what expected points is and showed the model’s output. This
+article is about *how you get there* — why the problem is shaped the way
+it is, why the obvious approaches fail, and how the shipped model works.
 
-In order to remedy that, I feel it necessary for us to cover some model
-building methods. This article will show you how we arrive at the model
-that we currently have from a modeling perspective. The entire purpose
-of this series of articles is to show you as transparently as I can how
-the Expected Points model works, how well it works, and how the model is
-limited.
+The through-line: **predicting expected points is not a regression
+problem.** It looks like one, because the answer is a number. It is not,
+and understanding why explains every design decision that follows.
 
-Additionally, and maybe most importantly, this research is reproducible.
-The following link contains an [R
-notebook](https://rpubs.com/saiemgilani/625433) and supporting figures
-for the article which should be sufficient to work through (it is large,
-~284Mb when unzipped).
-[Link](https://drive.google.com/file/d/1jJZBEUvqvEC9I_0-3TFtKQGww7qICVJ2/view?usp=sharing)
+## The problem is multiclass, not continuous
 
-### The Data
+The naive framing is “predict how many points the offense scores next.”
+Try to fit that directly and the problems appear immediately.
 
-We will be acquiring data from
-[CollegeFootballData.com](https://cfbfastR.sportsdataverse.org/articles/collegefootballdata.com),
-courtesy of @[CFB_data](https://twitter.com/CFB_data), using `cfbfastR`,
-created by [Saiem Gilani](https://twitter.com/saiemgilani), [Akshay
-Easwaran](https://twitter.com/akeaswaran), [Jared
-Lee](https://twitter.com/JaredDLee) and [Eric
-Hess](https://twitter.com/arbitanalytics).
+The target is not continuous. The next score in a half can only be one
+of seven things, and their values are −7, −3, −2, 0, 2, 3 or 7. There is
+no such thing as a 4.5-point outcome. A model that predicts 4.5 is not
+making a claim any football game can satisfy — it is averaging over
+outcomes it should be enumerating.
 
-## Regression Methods
+So the target is *categorical*, and expected points is a quantity you
+compute **afterwards**, from the class probabilities:
 
-[![Figure:
-@ChrisAlbon](https://i.imgur.com/rOjdyUCl.png "Figure: @ChrisAlbon")](https://imgur.com/rOjdyUC)
-
-**Figure 1**: Regression \| [Chris
-Albon](https://machinelearningflashcards.com/)
-(@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
-
-Regression is a set of techniques for estimating relationships between
-multiple variables on a quantitative target variable, and our focus will
-be on one of the simplest types of relationships: linear.
-
-### Linear Regression
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/MegfSsel.png "Figure: @SaiemGilani")](https://imgur.com/MegfSse)
-
-**Figure 2**: Linear Regression Model
-
-#### Assumptions
-
-- Dependent variable is continuous, unbounded, and measured on an
-  interval or ratio scale
-- Model has linear relation between independent and dependent variables
-- No outliers present
-- Independence Assumption: Sample observations are independent
-- Absence of multicollinearity between the predictor variables
-- Constant Variance Assumption (homoscedasticity)
-- Normal Distribution of error terms
-- Little or no auto-correlation in the residuals
-
-Since scores in football only happen in increments of 2, 3, and 6 (+0,
-+1, +2), with the additional points in parentheses resulting from extra
-point attempts, the football scoring scheme is not continuous over an
-interval or ratio scale without transformation of the target variable.
-
-While pretending I was unaware of the continuous dependent variable
-assumption of linear regression, I took a look into producing a linear
-regression model using down, distance, and yards-to-goal as independent
-variables using a similarly treated college football dataset but
-excluding all 4th down plays. I tried to predict on either the next
-score in the half or points on the drive, and the one that demonstrated
-the highest adjusted R-squared at 0.5143, the others were quite low.
-
-Adjusted R-squared is a measure of the percentage of the dependent
-variable variation explained by the independent variables, in this case
-51.43%. Below is the model summary of this fitting with no intercept.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/HjH1CFwl.png "Figure: @SaiemGilani")](https://imgur.com/HjH1CFw)
-
-**Figure 3**: Linear Regression model summary \| Expected Drive-Points
-model using Down, Distance, and Field Position as factors
-
-Additionally, the linear model indicates that all three factors are
-significant at a p=0.001 level, which is at least some evidence that our
-variables have a relationship with drive points. Here is a plot of the
-linear regression model fitting.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/AZVRKf3l.png "Figure: @SaiemGilani")](https://imgur.com/AZVRKf3)
-
-**Figure 4**: Linear Regression model plots \| Expected Drive-Points
-model using Down, Distance, and Field Position as factors
-
-In the plot on the top left, there are 4 distinct scoring types clearly
-visible and the model is trying to fire a shot through to fit all of
-them. The red line in the top-left would be relatively flat if the
-residuals of the model fit had constant variance. While there are two
-other non-zero scoring types, Field Goals and Opponent Field Goals, the
-data excluded 4th down, so they do not appear on the plot. For clarity,
-there are in fact 7 next score types when we include the absence of a
-score, i.e. “No Score”, since the absence of a scoring event is also a
-type of next score.
-
-Upon viewing these plots, I quickly realized that several assumptions of
-linear regression are being violated here, namely the constant variance
-assumption and normal distribution of error terms (see Figure 4), at
-minimum. We need to keep adding to our regression toolbox, so let us now
-take a look at a type of regression that does not restrict us to these
-assumptions.
-
-### Logistic Regression
-
-Suppose we have a binary output variable Y, let’s say Y is a variable
-that gives a response of 1 if the next score in the half is a TD for the
-offense and a 0 otherwise. If we wanted to predict the probability that
-the next score in the half is a TD for the offense, one of the prime
-candidate models would be logistic regression.
-
-[![Figure:
-@ChrisAlbon](https://i.imgur.com/ZePALn7l.png "Figure: @ChrisAlbon")](https://imgur.com/ZePALn7)
-
-**Figure 5**: Logistic Regression [Chris
-Albon](https://machinelearningflashcards.com/)
-(@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/PJXbgfql.png "Figure: @SaiemGilani")](https://imgur.com/PJXbgfq)
-
-**Figure 6**: Logistic Regression Model
-
-#### Assumptions
-
-- Binary logistic regression requires the dependent variable to be
-  binary (i.e. 0/1)
-- There is a linear relationship between the log-odds of the outcome and
-  each of the predictor variables.
-- No outliers present
-- Independence Assumption: Sample observations are independent
-- Absence of multicollinearity between the predictor variables
-- ~~Constant Variance Assumption (homoscedasticity)~~
-- ~~Normal Distribution of error terms~~
-- ~~Little or no auto-correlation in the residuals~~
-
-Now we are attempting to calculate the probability of the next scoring
-event directly, an essential component of an expected points model. Once
-we have a model capable of calculating the expectation of the scoring
-event, e.g. the probability of the next score being an offense
-touchdown, then we simply have to multiply the probability by the point
-value of the score to get the expected points.
-
-[![Illustration comparing linear vs logistic regression decision
-boundaries](https://i.imgur.com/xw3BvAdl.png "Figure: @ChrisAlbon")](https://imgur.com/xw3BvAd)
-
-**Figure 7**: Logistic vs. Linear Regression \| [Chris
-Albon](https://machinelearningflashcards.com/)
-(@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
-
-With that background, we can build our model equation with whatever
-independent variables we choose to include in the model as shown in
-Figure 8.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/vVaOIZxl.png "Figure: @SaiemGilani")](https://imgur.com/vVaOIZx)
-
-**Figure 8**: Offense Touchdown Logit Regression
-
-Below is a model fit to the next score offense touchdown variable using
-the independent variables yards-to-goal, down, distance, and the
-interaction between down and distance.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/gRTGzMTl.png "Figure: @SaiemGilani")](https://imgur.com/gRTGzMT)
-
-**Figure 9**: Offense Touchdown Logistic Regression model summary
-
-Once again we see that all variables in the model are fit are
-significant at the p \< 0.001 level. In figure 10 below, we can see the
-probability of the next score in half being a touchdown in relation to
-field position (yards-to-goal) as the offense progresses down the field.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/VVsQ8lml.png "Figure: @SaiemGilani")](https://imgur.com/VVsQ8lm)
-
-**Figure 10**: Field Position and Offense TD probability - Logistic
-Regression
-
-You might be asking “Yeah, that’s great, but you’re still only
-predicting the probability of one scoring type relative to another.
-You’d need to do this like 6 times, right?” Well, fair point. How does
-one do logistic regression on a categorical variable that has more than
-one class?
-
-### Multinomial Logistic Regression (or Softmax regression)
-
-A multinomial logistic regression model uses the independent (predictor)
-variables and target variable data from the training set to build
-relationships between the independent variables and each of the classes
-of the target variable.
-
-[![Diagram of multinomial logistic regression and class
-probabilities](https://i.imgur.com/c18pbOLl.jpg "Figure: @ChrisAlbon")](https://imgur.com/c18pbOL)
-
-**Figure 11**: Multinomial Logistic Regression [Chris
-Albon](https://machinelearningflashcards.com/)
-(@[ChrisAlbon](https://twitter.com/chrisalbon?s=20))
-
-The primary difference between logistic and multinomial logistic
-regression is the use of the softmax function which re-weights the
-probabilities generated from each of the individual models so that in
-total they add to one as seen in Figure 12 below.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/EyxYqaMm.png "Figure: @SaiemGilani")](https://imgur.com/EyxYqaM)
-
-**Figure 12**: Softmax function
-
-More specifically, a multinomial logistic regression model is an
-extension of the binomial logistic regression model because it is a
-series of logistic regression models estimated simultaneously with the
-same reference outcome.
-
-[![Figure:
-@SaiemGilani](https://i.imgur.com/bGug8hpl.png "Figure: @SaiemGilani")](https://imgur.com/bGug8hp)
-
-**Figure 13**: Multinomial Logistic Regression Football Expected Points
-Model
-
-The college football expected points (EP) model is a multinomial
-logistic regression model which generates probabilities for the possible
-types of next score events within the same half. In our case, we build 6
-logistic regression models fit to the next score types — Offense FG,
-Offense TD, Offense Safety, Opponent TD, Opponent FG, and Opponent
-Safety — all except for the class that is used as the base case (i.e. No
-Score), since that is accounted for in the intercept, as mentioned in
-Part 1. Ron Yurko, Sam Ventura, and Max Horowitz originally proposed the
-multinomial logistic regression expected points model for football in
-2017, which we will learn more about in Part 3.
-
-Additionally, now that we have a way to calculate the probabilities of
-scores, we can calculate the expected points. We will discuss this in
-Part 4.
-
-## **Our Authors**
-
-- [Saiem Gilani](https://x.com/saiemgilani)
-  [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge)](https://x.com/saiemgilani)
-  [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
-- [Akshay Easwaran](https://x.com/akeaswaran)
-  [![@akeaswaran](https://img.shields.io/twitter/follow/akeaswaran?color=blue&label=%40akeaswaran&logo=x&style=for-the-badge)](https://x.com/akeaswaran)
-  [![@akeaswaran](https://img.shields.io/github/followers/akeaswaran?color=eee&logo=Github&style=for-the-badge)](https://github.com/akeaswaran)
-- [Jared Lee](https://x.com/JaredDLee)
-  [![@JaredDLee](https://img.shields.io/twitter/follow/JaredDLee?color=blue&label=%40JaredDLee&logo=x&style=for-the-badge)](https://x.com/JaredDLee)
-  [![@Kazink36](https://img.shields.io/github/followers/Kazink36?color=eee&logo=Github&style=for-the-badge)](https://github.com/Kazink36)
-- [Eric Hess](https://x.com/arbitanalytics)
-  [![@arbitanalytics](https://img.shields.io/twitter/follow/arbitanalytics?color=blue&label=%40arbitanalytics&logo=x&style=for-the-badge)](https://x.com/arbitanalytics)
-  [![@ehess](https://img.shields.io/github/followers/ehess?color=eee&logo=Github&style=for-the-badge)](https://github.com/ehess)
-
-### **Our Contributors**
-
-- [Michael Egle](https://x.com/deceptivespeed_)
-  [![@deceptivespeed\_](https://img.shields.io/twitter/follow/deceptivespeed_?color=blue&label=%40deceptivespeed_&logo=x&style=for-the-badge)](https://x.com/deceptivespeed_)
-  [![@michaelegle](https://img.shields.io/github/followers/michaelegle?color=eee&logo=Github&style=for-the-badge)](https://github.com/michaelegle)
-- [Nate Manzo](https://x.com/cfbnate)
-  [![@cfbnate](https://img.shields.io/twitter/follow/cfbnate?color=blue&label=%40cfbnate&logo=x&style=for-the-badge)](https://x.com/cfbnate)
-  [![@natemanzo](https://img.shields.io/github/followers/natemanzo?color=eee&logo=Github&style=for-the-badge)](https://github.com/natemanzo)
-- [Jason DeLoach](https://x.com/CFBNumbers)
-  [![@CFBNumbers](https://img.shields.io/twitter/follow/CFBNumbers?color=blue&label=%40CFBNumbers&logo=x&style=for-the-badge)](https://x.com/CFBNumbers)
-  [![@CFBNumbers](https://img.shields.io/github/followers/CFBNumbers?color=eee&logo=Github&style=for-the-badge)](https://github.com/CFBNumbers)
-- [Tej Seth](https://x.com/tejfbanalytics)
-  [![@tejfbanalytics](https://img.shields.io/twitter/follow/tejfbanalytics?color=blue&label=%40tejfbanalytics&logo=x&style=for-the-badge)](https://x.com/tejfbanalytics)
-  [![@tejseth](https://img.shields.io/github/followers/tejseth?color=eee&logo=Github&style=for-the-badge)](https://github.com/tejseth)
-- [Conor McQuiston](https://x.com/ConorMcQ5)
-  [![@ConorMcQ5](https://img.shields.io/twitter/follow/ConorMcQ5?color=blue&label=%40ConorMcQ5&logo=x&style=for-the-badge)](https://x.com/ConorMcQ5)
-  [![@mcqconor](https://img.shields.io/github/followers/mcqconor?color=eee&logo=Github&style=for-the-badge)](https://github.com/mcqconor)
-- [Tan Ho](https://x.com/_TanHo)
-  [![@\_TanHo](https://img.shields.io/twitter/follow/_TanHo?color=blue&label=%40_TanHo&logo=x&style=for-the-badge)](https://x.com/_TanHo)
-  [![@tanho63](https://img.shields.io/github/followers/tanho63?color=eee&logo=Github&style=for-the-badge)](https://github.com/tanho63)
-- [Keegan Abdoo](https://x.com/KeeganAbdoo)
-  [![@KeeganAbdoo](https://img.shields.io/twitter/follow/KeeganAbdoo?color=blue&label=%40KeeganAbdoo&logo=x&style=for-the-badge)](https://x.com/KeeganAbdoo)
-  [![@keegan-abdoo](https://img.shields.io/github/followers/keegan-abdoo?color=eee&logo=Github&style=for-the-badge)](https://github.com/keegan-abdoo)
-- [Matt Spencer](https://x.com/Maatspencer)
-  [![@Maatspencer](https://img.shields.io/twitter/follow/Maatspencer?color=blue&label=%40Maatspencer&logo=x&style=for-the-badge)](https://x.com/Maatspencer)
-  [![@Maatspencer](https://img.shields.io/github/followers/Maatspencer?color=eee&logo=Github&style=for-the-badge)](https://github.com/Maatspencer)
-- [Sebastian Carl](https://x.com/mrcaseb)
-  [![@mrcaseb](https://img.shields.io/twitter/follow/mrcaseb?color=blue&label=%40mrcaseb&logo=x&style=for-the-badge)](https://x.com/mrcaseb)
-  [![@mrcaseb](https://img.shields.io/github/followers/mrcaseb?color=eee&logo=Github&style=for-the-badge)](https://github.com/mrcaseb)
-- [John Edwards](https://x.com/John_B_Edwards)
-  [![@John_B_Edwards](https://img.shields.io/twitter/follow/John_B_Edwards?color=blue&label=%40John_B_Edwards&logo=x&style=for-the-badge)](https://x.com/John_B_Edwards)
-  [![@john-b-edwards](https://img.shields.io/github/followers/john-b-edwards?color=eee&logo=Github&style=for-the-badge)](https://github.com/john-b-edwards)
-- [Brad Hill](https://x.com/bradisblogging)
-  [![@bradisblogging](https://img.shields.io/twitter/follow/bradisblogging?color=blue&label=%40bradisblogging&logo=x&style=for-the-badge)](https://x.com/bradisblogging)
-  [![@bradisbrad](https://img.shields.io/github/followers/bradisbrad?color=eee&logo=Github&style=for-the-badge)](https://github.com/bradisbrad)
-
-### **Citation**
-
-To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R
-package in publications, use:
-
-BibTeX Citation
-
-``` bibtex
-@misc{cfbfastr,
-  author = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},
-  title = {cfbfastR: Access College Football Play by Play Data},
-  url = {https://cfbfastR.sportsdataverse.org/},
-  year = {2021}
-}
+``` math
+\mathrm{EP} = \sum_{i=1}^{7} p_i \cdot v_i
 ```
 
-### **Related SportsDataverse packages**
+That single reframing is the whole conceptual step. Everything below is
+about estimating the $`p_i`$ well.
 
-- [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college
-  football
-- [**hoopR**](https://hoopR.sportsdataverse.org/) - men’s basketball
-- [**wehoop**](https://wehoop.sportsdataverse.org/) - women’s basketball
-- [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
-- [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
-- [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
-- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
-- [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
-  package
-- [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R
-  meta-package
+### Why not linear regression
+
+Linear regression assumes the dependent variable is continuous and
+unbounded, that the relationship between predictors and target is
+linear, that observations are independent, and that predictors are not
+collinear.
+
+Point values violate the first assumption outright. But even setting
+that aside, predictions are unbounded — a linear model will happily tell
+you a situation is worth 9.2 points, which no single scoring event can
+produce. And the relationship is emphatically not linear: expected
+points changes far faster near either goal line than it does at
+midfield.
+
+### Why not binary logistic regression
+
+Logistic regression fixes the boundedness problem. Model “does the
+offense score a touchdown next, yes or no”, and predictions live in
+$`[0, 1]`$ where probabilities belong.
+
+But we need seven probabilities that are *mutually exclusive and sum to
+one*. Seven separately-fitted binary models give you seven numbers that
+do not sum to anything in particular. You cannot form a valid
+expectation from them.
+
+### Multinomial logistic regression
+
+The classical fix is to fit the classes simultaneously against a
+reference class, and pass the results through a softmax so they are
+normalised to sum to one. Choose “No Score” as the reference, fit six
+sets of coefficients against it, and the seventh falls out.
+
+This is exactly what the 2020 model did — and what Yurko, Ventura and
+Horowitz proposed for football in 2017 ([Part
+III](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md)
+covers that lineage). It is a sound, interpretable and well-understood
+approach.
+
+It is also where the 96 variables came from.
+
+## The cost of linearity: 96 variables
+
+A multinomial logit is linear in its predictors. It can only represent
+an interaction if you build that interaction by hand, as a column.
+Football is almost entirely interactions — 3rd and 2 is not “3rd down
+plus 2 yards to go”, it is its own situation — so the feature list grew
+to cover them:
+
+| Group | Variables |
+|----|----|
+| Distance factors (yards to goal, log distance, goal-to-go, and their interaction) | 24 |
+| Down, and down × distance, down × field position | 54 |
+| Time factors, under-two-minute indicator, intercepts | 18 |
+| **Total** | **96** |
+
+Each bullet is six variables because six classes are fitted against the
+reference. Every interaction anyone thought of had to be specified.
+Every interaction nobody thought of was invisible to the model.
+
+There were two further consequences worth naming:
+
+- **The model could not see the score.** Game state was handled through
+  observation *weights* — plays were weighted by score differential and
+  by how many drives away the next score was — rather than as a feature.
+- **Field goals needed a separate model**, a GAM on smoothed kick
+  distance, because the main model had no way to represent “this is
+  makeable.”
+
+## What changed: gradient boosting
+
+The current model is an XGBoost `multi:softprob` classifier. It answers
+the same seven-class question and produces probabilities the same way.
+What changes is how the structure is found.
+
+Boosted trees split on feature values, so an interaction is
+representable without being specified: a tree that splits on `down_3`,
+then on `distance`, then on `yards_to_goal` *is* a three-way
+interaction, discovered from the data. The hand-built columns become
+unnecessary.
+
+|  | 2020 | 2026 |
+|----|----|----|
+| Estimator | [`nnet::multinom`](https://rdrr.io/pkg/nnet/man/multinom.html) | XGBoost `multi:softprob` |
+| Inputs | 96 constructed variables | **8 raw features** |
+| Sees the score | no (weights only) | yes (`pos_score_diff_start`) |
+| Training rows | 2014–2019, non-overtime | **2004–2025, 2,219,971 plays** |
+| Field goals | separate GAM | separate gradient-boosted `fg_model` |
+
+The eight features are simply:
+
+``` r
+
+c("TimeSecsRem", "yards_to_goal", "distance",
+  "down_1", "down_2", "down_3", "down_4", "pos_score_diff_start")
+```
+
+Trained with `eta = 0.025`, `max_depth = 5` and 525 boosting rounds —
+which, because there are seven classes, means the shipped booster
+contains **3,675 trees**. That is a useful sanity check when you load
+it:
+
+``` r
+
+# xgb.dump() returns one element per NODE line, so length() is far larger than the
+# tree count. Each tree is introduced by a `booster[i]` header -- count those.
+sum(grepl("^booster\\[", xgboost::xgb.dump(ep_model)))   # 3675 = 525 rounds x 7 classes
+```
+
+### What the model actually leans on
+
+Gain-based importance, computed from the shipped booster:
+
+| Feature                | Gain  |
+|------------------------|-------|
+| `TimeSecsRem`          | 30.9% |
+| `yards_to_goal`        | 21.9% |
+| `down_4`               | 14.5% |
+| `down_3`               | 9.4%  |
+| `down_1`               | 7.9%  |
+| `down_2`               | 6.9%  |
+| `pos_score_diff_start` | 5.0%  |
+| `distance`             | 3.6%  |
+
+``` r
+
+imp <- xgboost::xgb.importance(model = ep_model)
+imp[order(-imp$Gain), c("Feature", "Gain")]
+```
+
+Time is the largest single contributor, which is not obvious until you
+remember what the target is: *the next score in this half*. With thirty
+minutes left almost every drive has a successor; with thirty seconds
+left, “No Score” becomes the overwhelming favourite regardless of field
+position. The model spends most of its capacity on that.
+
+Note also that `down_4` carries more gain than the other three downs
+combined with each other — fourth down is where the possession itself is
+at risk, and the distribution shifts hardest.
+
+## A worked example, end to end
+
+One situation, all the way through. First and 10 at your own 25, tied,
+thirty minutes left in the half:
+
+``` r
+
+x <- matrix(
+  c(1800, 75, 10, 1, 0, 0, 0, 0), nrow = 1,
+  dimnames = list(NULL, c("TimeSecsRem", "yards_to_goal", "distance",
+                          "down_1", "down_2", "down_3", "down_4",
+                          "pos_score_diff_start"))
+)
+# as.numeric(): predict() may return a 1 x 7 matrix here, and handing a matrix to
+# data.frame() below would create seven columns against a seven-ROW outcome vector.
+p <- as.numeric(predict(ep_model, x))
+data.frame(
+  outcome = c("TD", "Opp_TD", "FG", "Opp_FG", "Safety", "Opp_Safety", "No_Score"),
+  prob    = round(p, 4),
+  value   = c(7, -7, 3, -3, 2, -2, 0)
+)
+```
+
+| Outcome             | Probability | Value | Contribution     |
+|---------------------|-------------|-------|------------------|
+| Touchdown           | 0.3965      | +7    | +2.7753          |
+| Opponent touchdown  | 0.3182      | −7    | −2.2274          |
+| Field goal          | 0.1564      | +3    | +0.4691          |
+| Opponent field goal | 0.1185      | −3    | −0.3555          |
+| Safety              | 0.0034      | +2    | +0.0068          |
+| Opponent safety     | 0.0024      | −2    | −0.0048          |
+| No score            | 0.0047      | 0     | 0.0000           |
+|                     |             |       | **EP = +0.6635** |
+
+Two thirds of a point, from a near-coin-flip between the two touchdown
+outcomes. That is what “expected points” means concretely: not a
+prediction that 0.66 points will be scored, but the average over seven
+futures, six of which are worth something.
+
+### The score-margin feature, and a caveat
+
+Because the current model sees the score, EP at a fixed spot varies with
+the margin:
+
+| Score margin | EP at own 25 |
+|--------------|--------------|
+| −21          | −1.38        |
+| −7           | −0.18        |
+| Tied         | +0.66        |
+| +7           | +1.71        |
+| +21          | +2.71        |
+
+**Read this carefully.** It does not mean leading causes you to score
+more from your own 25. It means teams that are up 21 are, on average,
+better teams playing worse opponents — the margin is partly a proxy for
+team quality, and the model has no separate team-strength input to
+separate the two.
+
+This is a real limitation and worth stating plainly: **EP is not
+opponent- or quality-adjusted.** Any team-level metric built by summing
+EPA inherits that. Adjusted versions, like the ones on [Game on
+Paper](https://gameonpaper.com/year/2025/teams/offensive), apply
+opponent and garbage-time corrections *on top of* raw EPA precisely
+because the model itself does not.
+
+## One artifact, two languages
+
+The largest structural change is not statistical. The models are
+published once as the
+[`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+release and read by **both `cfbfastR` and `sportsdataverse-py`**
+([\#138](https://github.com/sportsdataverse/cfbfastR/issues/138)). The
+same play gets the same EPA in R and in Python, and a retrain updates
+both by publishing, without a release of either package.
+
+Making that true required pinning down one thing that is easy to get
+wrong. XGBoost emits classes in *its* training order, which is not the
+order `cfbfastR` has always reported:
+
+``` r
+
+manifest$ep_class_contract$class_order
+#> "TD" "Opp_TD" "FG" "Opp_FG" "Safety" "Opp_Safety" "No_Score"
+
+manifest$ep_class_contract$cfbfastR_lev_order
+#> "No_Score" "FG" "Opp_FG" "Opp_Safety" "Opp_TD" "Safety" "TD"
+
+manifest$ep_class_contract$permutation_to_cfbfastR_lev_1based
+#> 7 3 4 6 2 5 1
+```
+
+The permutation is **published in the manifest and read at runtime**,
+not hard-coded. `cfbfastR` keeps a fallback copy, and a test asserts the
+two agree — so if the bundle is ever retrained with a different class
+order, the build fails loudly instead of silently reporting a touchdown
+probability as a safety probability. There is no fixed point between the
+two orderings, which is to say every position moves, which is to say a
+mistake here would be catastrophic and completely invisible in the
+output.
+
+If you score the booster yourself, apply the point values in the
+**bundle’s** order, as in the worked example above.
+
+## Where the estimates are weakest
+
+Being explicit about limits, since the point of this series is
+transparency:
+
+- **No team-quality input.** See the score-margin caveat above.
+- **PATs are treated as given.** The extra point is folded into the
+  touchdown value of 7 rather than modelled.
+- **Kickoffs assume a touchback baseline;** returns past the 25 are
+  points added and shorter returns points lost.
+- **Punts are not modelled separately.** Their effect is field position,
+  which the EP model already handles well.
+- **Overtime** is not represented in the next-score-in-half framing.
+- **Era effects** are handled in the FG, two-point, QBR and fourth-down
+  models through explicit `era0`–`era3` features, but the EP model
+  itself has no era term — it pools 2004 through 2025.
+
+## Next
+
+[Part
+III](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md)
+traces where these ideas came from — Virgil Carter’s 1970 paper, the
+field position and down-distance models that followed, and the line that
+runs through `nflscrapR` and `cfbscrapR` to the shared bundle described
+here.
+
+## Data and artifacts
+
+- **Models** —
+  [`cfb_model_artifacts`](https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/cfb_model_artifacts)
+- **Season play-by-play** —
+  [`cfbfastR-data`](https://github.com/sportsdataverse/cfbfastR-data)
+- **Source** — [`cfbfastR`](https://github.com/sportsdataverse/cfbfastR)
+  ·
+  [`sportsdataverse-py`](https://github.com/sportsdataverse/sportsdataverse-py)
+- **Applied, live** — [Game on Paper](https://gameonpaper.com)
+- **Raw API** —
+  [CollegeFootballData.com](https://collegefootballdata.com), courtesy
+  of [@CFB_data](https://x.com/CFB_data)
+
+## Citation
+
+    Gilani, S., Easwaran, A., Lee, J., and Hess, E. (2026). cfbfastR: Access College
+    Football Play by Play Data. R package version 3.0.0.9000.
+    https://cfbfastr.sportsdataverse.org
+
+Authors, contributors and related SportsDataverse packages are listed on
+the [package home page](https://cfbfastR.sportsdataverse.org/index.md).

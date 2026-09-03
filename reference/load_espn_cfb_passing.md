@@ -101,7 +101,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-01 11:28:57 UTC
+#> ℹ Data updated: 2026-09-03 22:41:20 UTC
 #> # A tibble: 364 × 45
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             

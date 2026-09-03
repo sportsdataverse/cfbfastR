@@ -1,5 +1,58 @@
 # Articles
 
+### The Expected Points Model
+
+How expected points and EPA work in college football, how the cfbfastR
+model is built, where the idea came from, and how to reproduce it from
+the published cfb_model_artifacts bundle.
+
+- [Expected Points in College Football: How the Model Works (Part
+  I)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.md):
+
+  What expected points (EP) means in college football, the seven
+  next-score outcomes the cfbfastR model predicts, and how to reproduce
+  its field-position curve from the published model bundle.
+
+- [How the Expected Points Model Is Built (Part
+  II)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.md):
+
+  Why expected points is a multiclass problem, why linear and binary
+  logistic regression fail at it, and how the cfbfastR EP model went
+  from 96 hand-built regression variables to eight gradient-boosted
+  features.
+
+- [A History of Expected Points Models in Football (Part
+  III)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md):
+
+  How expected points models evolved in football: Virgil Carter’s 1970
+  paper, The Hidden Game of Football, Brian Burke’s LOESS models, the
+  Carnegie Mellon nflscrapR work, and the line that runs to the cfbfastR
+  model shipping today.
+
+- [What Is EPA in College Football? Expected Points Added Explained
+  (Part
+  IV)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iv.md):
+
+  EPA (expected points added) is the change in expected points across a
+  single play. How it is calculated, what a good EPA per play looks
+  like, the sign conventions that trip people up, and how to compute it
+  yourself with cfbfastR.
+
+- [Win Probability in College Football: wp, WPA and vegas_wp (Part
+  V)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-v.md):
+
+  How the cfbfastR win probability model works, why it takes expected
+  points as an input, what WPA measures that EPA cannot, and how the
+  spread-aware vegas_wp differs from the naive wp.
+
+- [CPOE, xpass, Field Goals and Fourth Downs: The Derived Models (Part
+  VI)](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-vi.md):
+
+  The six models cfbfastR builds on top of expected points and win
+  probability: completion probability and CPOE, expected pass rate,
+  field goals, two-point conversions, fourth-down decisions and QBR —
+  with their real outputs and their limits.
+
 ### Cookbooks & Guides
 
 End-to-end recipes and reference guides.
@@ -74,25 +127,6 @@ End-to-end recipes and reference guides.
 
   A recipe-driven tour of the `espn_cfb_*()` family in `cfbfastR` –
   teams, games, play-by-play, modeled EPA/WPA, and ratings.
-
-- [College Football Expected Points Model Fundamentals - Part
-  I](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-i.md):
-
-  Expected points model definition - a model explainer
-
-- [College Football Expected Points Model Fundamentals - Part
-  II](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-ii.md):
-
-  Motivating the regression - I do bad regression to show that a
-  multinomial logistic regression model is necessary
-
-- [College Football Expected Points Model Fundamentals - Part
-  III](https://cfbfastR.sportsdataverse.org/articles/college-football-expected-points-model-fundamentals-part-iii.md):
-
-  A brief history of expected points models. Learn about Virgil Carter’s
-  1970 paper and the origins of the nflscrapR expected points model
-  (which the cfbscrapR package used). The cfbfastR package includes
-  support for this model as well.
 
 - [Creating Fourth Down Tendency Plots Using
   cfbfastR](https://cfbfastR.sportsdataverse.org/articles/fourth-down-plot-tutorial.md):

@@ -53,6 +53,14 @@ Season overview for a single player."><meta property="og:image" content="https:/
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-book-reader"></span> Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/index.html">Vignettes</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Expected Points: How the Model Works (Part I)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">Expected Points: How the Model Is Built (Part II)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Expected Points: A History (Part III)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-iv.html">What Is EPA? Expected Points Added Explained (Part IV)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-v.html">Win Probability: wp, WPA and vegas_wp (Part V)</a></li>
+    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-vi.html">CPOE, xpass, Field Goals and Fourth Downs (Part VI)</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../articles/animated-wp-plotting.html">Making Animated Win Probability Charts with cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/cfbd_betting.html">CFB Data Betting Lines Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbd_games.html">CFB Data Games Examples</a></li>
@@ -61,9 +69,6 @@ Season overview for a single player."><meta property="og:image" content="https:/
     <li><a class="dropdown-item" href="../articles/cfbd_stats.html">CFB Data Stats Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbd_teams.html">CFB Data Teams Examples</a></li>
     <li><a class="dropdown-item" href="../articles/cfbfastR-espn-cookbook.html">ESPN College Football Cookbook</a></li>
-    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-i.html">College Football Expected Points Model Fundamentals - Part I</a></li>
-    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">College Football Expected Points Model Fundamentals - Part II</a></li>
-    <li><a class="dropdown-item" href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">College Football Expected Points Model Fundamentals - Part III</a></li>
     <li><a class="dropdown-item" href="../articles/fourth-down-plot-tutorial.html">Creating Fourth Down Tendency Plots Using cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/intro.html">Introduction to cfbfastR</a></li>
     <li><a class="dropdown-item" href="../articles/map-tutorial.html">Intro to Visualizing Recruiting Geography</a></li>
@@ -175,7 +180,7 @@ variables, so a caller can override the shared setting for one endpoint.</p></dd
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_player_season_overview</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, athlete_id <span class="op">=</span> <span class="fl">4429105</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Get a player season overview from CollegeFootballData.com ───────────────────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-01 11:23:26 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-03 22:36:45 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 31</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   season id      name   position team  conference games usage_overall usage_pass</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>

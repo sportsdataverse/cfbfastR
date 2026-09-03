@@ -183,7 +183,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_qbr(year = 2024))
 #> ── QBR data from ESPN ─────────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:53 UTC
+#> ℹ Data updated: 2026-09-03 22:39:20 UTC
 #> # A tibble: 129 × 26
 #>    season season_type group_id athlete_id team_id  qbpaa cwepa_passes_condensed
 #>     <int>       <int> <chr>    <chr>      <chr>    <dbl>                  <dbl>
@@ -206,7 +206,7 @@ Other ESPN CFB Functions:
 #> #   sched_adj_qbr <dbl>, unqualified_rank <dbl>, athlete_ref <chr>, …
   try(espn_cfb_qbr(year = 2024, athlete_detail = TRUE))
 #> ── QBR data from ESPN ─────────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-01 11:26:58 UTC
+#> ℹ Data updated: 2026-09-03 22:39:21 UTC
 #> # A tibble: 129 × 32
 #>    season season_type group_id athlete_id team_id  qbpaa cwepa_passes_condensed
 #>     <int>       <int> <chr>    <chr>      <chr>    <dbl>                  <dbl>

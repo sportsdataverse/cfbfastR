@@ -32,14 +32,14 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
-    ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+
+    ## Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
     ## Hit:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
-
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Hit:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease
@@ -63,9 +63,9 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 70 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 94 not upgraded.
 
-    ## ✔ 4 pkgs + 72 deps: kept 72 [7.9s]
+    ## ✔ 4 pkgs + 72 deps: kept 72 [10.5s]
 
 ``` r
 
@@ -132,7 +132,7 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-01 11:32:14 UTC
+    ## ℹ Data updated: 2026-09-03 22:45:46 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
@@ -162,7 +162,7 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 
     ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-01 11:32:15 UTC
+    ## ℹ Data updated: 2026-09-03 22:45:50 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
@@ -173,10 +173,10 @@ cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
     ##  4 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
     ##  5 332570052 Florida S… ACC        home      Nevada   Mountain West           62
     ##  6 332570052 Nevada     Mountain … away      Florida… ACC                      7
-    ##  7 332710103 Boston Co… ACC        home      Florida… ACC                     34
-    ##  8 332710103 Florida S… ACC        away      Boston … ACC                     48
-    ##  9 332780052 Florida S… ACC        home      Maryland ACC                     63
-    ## 10 332780052 Maryland   ACC        away      Florida… ACC                      0
+    ##  7 332990052 Florida S… ACC        home      NC State ACC                     49
+    ##  8 332990052 NC State   ACC        away      Florida… ACC                     17
+    ##  9 333060052 Florida S… ACC        home      Miami    ACC                     41
+    ## 10 333060052 Miami      ACC        away      Florida… ACC                     14
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
