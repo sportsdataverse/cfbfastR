@@ -139,7 +139,9 @@ because there are seven classes, means the shipped booster contains **3,675
 trees**. That is a useful sanity check when you load it:
 
 ```{r tree-count, eval=FALSE}
-length(xgboost::xgb.dump(ep_model))   # 3675 = 525 rounds x 7 classes
+# xgb.dump() returns one element per NODE line, so length() is far larger than the
+# tree count. Each tree is introduced by a `booster[i]` header -- count those.
+sum(grepl("^booster\\[", xgboost::xgb.dump(ep_model)))   # 3675 = 525 rounds x 7 classes
 ```
 
 ### What the model actually leans on
@@ -184,7 +186,9 @@ x <- matrix(
                           "down_1", "down_2", "down_3", "down_4",
                           "pos_score_diff_start"))
 )
-p <- predict(ep_model, x)
+# as.numeric(): on xgboost >= 1.7 this is a 1 x 7 matrix, and handing a matrix to
+# data.frame() below would create seven columns against a seven-ROW outcome vector.
+p <- as.numeric(predict(ep_model, x))
 data.frame(
   outcome = c("TD", "Opp_TD", "FG", "Opp_FG", "Safety", "Opp_Safety", "No_Score"),
   prob    = round(p, 4),

@@ -199,7 +199,30 @@ a receiver with four targets and +2.0 EPA per target has told you nothing.
 And reproducing the worked table above, straight from the published model:
 
 ```{r reproduce, eval=FALSE}
-# ep_at() as defined in Part I
+# Self-contained: Part I defines ep_at() inside its own eval=FALSE chunk, so a
+# reader pasting this into a clean session would hit
+# "could not find function 'ep_at'". Both setup steps are repeated here.
+library(xgboost)
+base <- paste0(
+  "https://github.com/sportsdataverse/sportsdataverse-data/",
+  "releases/download/cfb_model_artifacts/"
+)
+f <- tempfile(fileext = ".ubj")
+download.file(paste0(base, "ep_model.ubj"), f, mode = "wb")
+ep_model <- xgboost::xgb.load(f)
+
+ep_at <- function(ytg, down = 1, dist = 10, secs = 1800, score_diff = 0) {
+  X <- cbind(
+    TimeSecsRem = secs, yards_to_goal = ytg, distance = pmin(dist, ytg),
+    down_1 = as.integer(down == 1), down_2 = as.integer(down == 2),
+    down_3 = as.integer(down == 3), down_4 = as.integer(down == 4),
+    pos_score_diff_start = score_diff
+  )
+  pred <- predict(ep_model, X)
+  p <- if (is.matrix(pred) && ncol(pred) == 7L) pred else matrix(pred, ncol = 7, byrow = TRUE)
+  as.vector(p %*% c(7, -7, 3, -3, 2, -2, 0))
+}
+
 before <- ep_at(75, down = 1, dist = 10)          # 1st & 10, own 25
 
 data.frame(

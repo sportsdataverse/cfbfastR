@@ -241,7 +241,12 @@ ep_at <- function(ytg, down = 1, dist = 10, secs = 1800, score_diff = 0) {
     down_3 = as.integer(down == 3), down_4 = as.integer(down == 4),
     pos_score_diff_start = score_diff
   )
-  p <- matrix(predict(ep_model, X), ncol = 7, byrow = TRUE)
+  pred <- predict(ep_model, X)
+  # xgboost >= 1.7 already reshapes multi:softprob output to n x 7; older versions
+  # hand back a flat vector. Re-wrapping an existing matrix with byrow = TRUE reads
+  # it column-major and refills row-major, which silently scrambles the seven
+  # probabilities across rows -- so only reshape when it is not already a matrix.
+  p <- if (is.matrix(pred) && ncol(pred) == 7L) pred else matrix(pred, ncol = 7, byrow = TRUE)
   as.vector(p %*% c(7, -7, 3, -3, 2, -2, 0))
 }
 
