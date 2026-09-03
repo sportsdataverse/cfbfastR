@@ -279,3 +279,13 @@ small.nav-text {
 small.nav-text.text-muted {
   color: #EAEBEC !important;
 }
+
+/* Articles index: separate the Expected Points series from the rest.
+   pkgdown renders one <div class="section"> per `articles:` group. The series is
+   the first group, so a rule above every subsequent group divides it from the
+   standalone cookbooks without hard-coding a section id. */
+.template-article-index main .section + .section {
+  border-top: 1px solid rgba(128, 132, 128, 0.35);
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+}

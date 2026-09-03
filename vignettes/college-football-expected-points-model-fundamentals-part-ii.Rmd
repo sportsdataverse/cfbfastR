@@ -186,7 +186,7 @@ x <- matrix(
                           "down_1", "down_2", "down_3", "down_4",
                           "pos_score_diff_start"))
 )
-# as.numeric(): on xgboost >= 1.7 this is a 1 x 7 matrix, and handing a matrix to
+# as.numeric(): predict() may return a 1 x 7 matrix here, and handing a matrix to
 # data.frame() below would create seven columns against a seven-ROW outcome vector.
 p <- as.numeric(predict(ep_model, x))
 data.frame(

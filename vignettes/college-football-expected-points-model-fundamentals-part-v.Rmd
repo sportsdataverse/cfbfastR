@@ -42,7 +42,8 @@ already won.
 
 The distinction matters whenever you rank *plays* or evaluate *decisions*. EPA
 is the better measure of performance, because it is not distorted by score and
-clock. WPA is the better measure of leverage, because it is.
+clock. WPA is the better measure of leverage, precisely because it *is* — a play
+is worth more WPA exactly when the game state makes it matter more.
 
 ## What the model uses
 

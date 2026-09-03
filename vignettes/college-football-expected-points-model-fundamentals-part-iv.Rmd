@@ -219,6 +219,7 @@ ep_at <- function(ytg, down = 1, dist = 10, secs = 1800, score_diff = 0) {
     pos_score_diff_start = score_diff
   )
   pred <- predict(ep_model, X)
+  # normalise: may be an n x 7 matrix or a flat row-major vector
   p <- if (is.matrix(pred) && ncol(pred) == 7L) pred else matrix(pred, ncol = 7, byrow = TRUE)
   as.vector(p %*% c(7, -7, 3, -3, 2, -2, 0))
 }
