@@ -247,9 +247,14 @@ rbindlist_with_attrs <- function(dflist){
 }
 
 # Request Functions ----
+# build_req() is split out from get_req() so the retry/timeout policy can be
+# asserted in a test without performing a request (see
+# tests/testthat/test-utils_request_policy.R). get_req() remains the only entry
+# point callers use. Deliberately kept title-free so roxygen generates no .Rd
+# for an internal helper.
 #' @keywords Internal
 #' @importFrom httr2 request req_headers req_timeout req_retry req_error req_perform req_proxy
-get_req <- function(full_url, proxy = NULL) {
+build_req <- function(full_url, proxy = NULL) {
   req <- httr2::request(full_url) |>
     httr2::req_headers(Authorization = paste("Bearer", cfbd_key())) |>
     httr2::req_timeout(60)
@@ -280,13 +285,37 @@ get_req <- function(full_url, proxy = NULL) {
     }
   }
 
+  # Retry budget. httr2 retries 429/503 by default (`retry_is_transient`) and
+  # honours a `Retry-After` header when the server sends one, falling back to
+  # `backoff` when it does not.
+  #
+  # The previous budget -- 3 tries, ~1-9s of backoff -- is enough for an
+  # incidental 429 but not for sustained throttling, which is what a parallel
+  # caller produces. When it ran out, `req_error(is_error = ~FALSE)` handed the
+  # still-429 response back and `check_status()` turned it into a plain error,
+  # which every cfbd_*() tryCatch reports as "no data available". A throttle
+  # then looks exactly like an empty result. That is how cfbfastR_cfb_pbp
+  # published nothing from 2026-07-01 onward while its job stayed green:
+  # `cfbd_play_stats_player()` 429'd 63 times in one run, `sack_player_id`
+  # never materialised, and the downstream join aborted the whole script.
+  #
+  # `max_seconds` bounds the total wait so a hard-down API still fails in
+  # bounded time rather than hanging a caller for max_tries * backoff.
+  #
+  # Note this is the production path only -- tests already slow themselves via
+  # the `get_req()` wrapper in tests/testthat/setup-cfbd-throttle.R.
   req |>
     httr2::req_retry(
-      max_tries = 3,
-      backoff   = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
+      max_tries   = 6,
+      max_seconds = 120,
+      backoff     = function(i) stats::runif(1, 0.5, 1.5) * (2 ^ i)
     ) |>
-    httr2::req_error(is_error = function(resp) FALSE) |>
-    httr2::req_perform()
+    httr2::req_error(is_error = function(resp) FALSE)
+}
+
+#' @keywords Internal
+get_req <- function(full_url, proxy = NULL) {
+  httr2::req_perform(build_req(full_url, proxy = proxy))
 }
 
 #' Drop NULL entries from a list (internal)
