@@ -116,7 +116,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_player_box(2004))
 #> ── ESPN college football player box scores from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-09-07 02:13:40 UTC
+#> ℹ Data updated: 2026-09-07 06:38:57 UTC
 #> # A tibble: 23,981 × 46
 #>    completions/passingAttem…¹ passingYards yardsPerPassAttempt passingTouchdowns
 #>    <chr>                      <chr>        <chr>               <chr>            

@@ -81,15 +81,33 @@ situations a team found itself in. `pass_oe` removes that.
 
 ### An era-encoding trap
 
-The `xpass` model uses an **ordinal** `era` feature cutting at **2006 /
-2013 / 2017**. The FG, two-point and QBR models use **one-hot**
-`era0`–`era3` cutting at **2006 / 2013 / 2020**.
+The rule era enters these models two different ways, with **two
+different sets of cutpoints**:
 
-Different encodings *and* different cutpoints, in the same bundle. If
-you score these models by hand, build each one’s era feature from its
-own rule — reusing one for the other is silent and wrong. `cfbfastR`
-handles this internally; it is listed here because it is exactly the
-kind of thing that survives a code review and fails in production.
+| Models | Encoding | Cuts | Constant |
+|----|----|----|----|
+| `xpass`, `two_pt` | ordinal `era`, 0–3 | 2006 / 2013 / **2017** | `.XPASS_ERA_CUTS` |
+| `fg`, `qbr`, `fd` | one-hot `era0`–`era3` | 2006 / 2013 / **2020** | `.FG_ERA_CUTS` |
+
+Different encodings *and* different cutpoints, in the same bundle. A
+2019 play is ordinal `era = 3` but one-hot `era2`. If you score these by
+hand, build each model’s era feature from its own rule — reusing one for
+the other is silent and wrong. `cfbfastR` and `sportsdataverse-py` both
+handle this internally and agree with each other.
+
+**A caveat on the ordinal cut.** The trainer that produces the bundle
+(`cfbfastR-cfb-data`) derives *both* encodings from one constant,
+`ERA_BOUNDS = (2006, 2013, 2020)`. So the shipped `xpass_model` was
+trained with 2018–2020 in bucket 2, while both consumers score those
+seasons as bucket 3.
+
+`era` carries only ~1% of `xpass`’s gain, so the effect is small but not
+zero — across a grid of realistic situations the mismatch moves `xpass`
+by a mean of **0.9 percentage points** and at most **2.9**. It does not
+touch `prob_2pt` at all, since that model never splits on `era`. Worth
+knowing if you are comparing `pass_oe` across the 2017/2018 boundary;
+tracked in
+[cfbfastR-cfb-data#70](https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70).
 
 ## The field goal model
 
@@ -145,61 +163,66 @@ strictly monotone.
 The model also has **no kicker identity, weather or altitude input**. A
 kick in Laramie and a kick in a dome get the same number.
 
-## The two-point model, and an honest caveat
+## The two-point model
 
 Four features: `posteam_spread`, `posteam_total`, `pos_score_diff`,
 `era`. It produces `prob_2pt`, which feeds the two-point decision
 surface — `two_pt_wp`, `xp_wp`, `two_pt_wp_diff` and
 `two_pt_recommendation`.
 
-This model does not work, and it is worth showing exactly how rather
-than gesturing at a caveat.
+**`posteam_total` is not the game total.** It is the possessing team’s
+*implied team total*, built from the line and the over/under:
 
-Sweeping each feature with the others held at realistic values:
+``` r
 
-| Feature          | Values swept | `prob_2pt`                |
-|------------------|--------------|---------------------------|
-| `pos_score_diff` | −14 → +14    | 0.487 … **0.578** … 0.557 |
-| `posteam_spread` | −28 → +28    | 0.572 … 0.592             |
-| `posteam_total`  | 35 → 75      | **0.578 at every value**  |
-| `era`            | 0 → 3        | **0.578 at every value**  |
+home_total <- (homeTeamSpread + overUnder) / 2
+away_total <- (overUnder - homeTeamSpread) / 2
+```
 
-The whole model moves between **0.487 and 0.592**. It is very nearly a
-constant.
+A 55-point game with a 7-point spread gives roughly 24 and 31, so the
+feature lives around **14–42**, not 45–65. This matters if you score the
+model yourself: feed it a game total and every prediction lands off the
+end of the training support, where the model is flat and meaningless.
 
-Three specific problems, from the tree dump:
+Over the real support it is the model’s strongest input:
 
-1.  **`era` is never split on.** It appears in the feature list and in
-    no tree. Two-point conversion rates have moved over twenty years;
-    this model cannot express that.
-2.  **The `posteam_total` splits are at 21.375 and 31.875.** College
-    football game totals live between about 45 and 65. Every realistic
-    game takes the same branch, which is why sweeping the total from 35
-    to 75 changes nothing. Those thresholds suggest the training feature
-    was not the game total on the scale it is scored with — a scaling or
-    fill problem upstream, not a modelling choice.
-3.  **The first split is `pos_score_diff < -6`.** Almost every genuine
-    two-point decision happens within a touchdown either way, so in the
-    region that matters the model is flat by construction.
+| `posteam_total` | `prob_2pt` |
+|-----------------|------------|
+| 14              | 0.4521     |
+| 20              | 0.5024     |
+| 24              | 0.5213     |
+| 30              | 0.5100     |
+| 32              | 0.5774     |
+| 38              | 0.5780     |
 
-And the level is wrong: it centres on **0.578** where real college
-two-point conversion rates run closer to 45%. Note its own `base_score`
-is 0.4816 — the trees push the prediction *above* the base rate for
-every realistic input.
+Across a realistic grid — spread ±21, team total 16–40, score margin
+±10, all eras — the model runs **0.365 to 0.592**, mean **0.511**. Its
+`base_score` is **0.4816**, the observed success rate in training, so it
+sits about **3 percentage points above its own base rate**, which is
+what conditioning should do. Split counts back that up: `posteam_total`
+54, `pos_score_diff` 32, `posteam_spread` 20.
 
-**Practical consequence.** `prob_2pt` feeds `two_pt_wp`, so an
-optimistic and nearly-constant conversion probability biases the
-decision surface toward going for two, everywhere, regardless of
-situation. `cfb4th`’s rule has no margin — it will recommend two on a
-difference of 0.0001 — so **read `two_pt_wp_diff` and treat anything
-under a couple of percentage points as a coin flip**, or supply your own
-conversion probability.
+### The one real gap: `era` is never used
 
-To be clear about where the fault lies: the surface’s arithmetic is
-sound and was verified **bit-identical to `sportsdataverse-py` to eight
-decimal places**. The problem is entirely the input model. It is a
-retrain candidate, and until then the recommendation column should not
-be used on its own.
+`era` is in the feature list and in none of the 40 trees:
+
+``` r
+
+xgboost::xgb.importance(model = two_pt_model)$Feature
+#> "posteam_total"  "pos_score_diff"  "posteam_spread"     # no "era"
+```
+
+Sweeping era 0 → 3 with everything else fixed moves the prediction by
+**0.0000**. Two-point conversion rates have moved across 2004–2025 and
+this model cannot express that. With `max_depth = 2`,
+`min_child_weight = 40` and 40 rounds over a relatively small set of
+attempts, the other three features win every split.
+
+**Practical consequence.** The surface’s arithmetic is sound — verified
+**bit-identical to `sportsdataverse-py` to eight decimal places** — but
+`cfb4th`’s rule has no margin, and will recommend two on a difference of
+0.0001. **Read `two_pt_wp_diff` and treat anything under a couple of
+percentage points as a coin flip**, rather than the bare recommendation.
 
 ## The fourth-down decision
 
@@ -320,10 +343,11 @@ are materially lower — 42 yards is 0.68 in `era3` against 0.56 in
 `era0`. It has no kicker, weather or altitude input, and flattens beyond
 roughly 57 yards where data runs out.
 
-**Should I trust `two_pt_recommendation`?** No, not on its own. The
-underlying `prob_2pt` model is nearly constant at about 0.578, against
-real college rates closer to 45%, so the surface is biased toward going
-for two. Read `two_pt_wp_diff` and treat small margins as coin flips.
+**Should I trust `two_pt_recommendation`?** Not on its own — `cfb4th`’s
+rule has no margin and will recommend two on a difference of 0.0001.
+Read `two_pt_wp_diff` and treat small margins as coin flips. The
+underlying `prob_2pt` model is reasonable (mean 0.511 against a 0.4816
+base rate) but ignores `era`.
 
 **Should I trust `fourth_down_recommendation`?** Use `go_boost` instead.
 The recommendation has no margin, so it treats a 0.0001 edge as a

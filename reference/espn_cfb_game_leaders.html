@@ -3,7 +3,26 @@
 football game – one row per leader within each statistical category,
 both teams combined."><meta property="og:description" content="Get the per-game statistical leaders for a single college
 football game – one row per leader within each statistical category,
-both teams combined."><meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script></head><body>
+both teams combined."><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
+   "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
+   "description":"An R package for tidy college football play-by-play data with expected points added (EPA), win probability, CPOE, expected pass rate and fourth-down decision surfaces.",
+   "url":"https://cfbfastr.sportsdataverse.org/",
+   "codeRepository":"https://github.com/sportsdataverse/cfbfastR",
+   "programmingLanguage":{"@type":"ComputerLanguage","name":"R"},
+   "license":"https://opensource.org/licenses/MIT",
+   "runtimePlatform":"R (>= 4.1.0)",
+   "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
+   "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
+   "publisher":{"@id":"https://sportsdataverse.org/#org"}},
+  {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
+   "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
+  {"@type":"Organization","@id":"https://sportsdataverse.org/#org",
+   "name":"SportsDataverse","url":"https://sportsdataverse.org",
+   "sameAs":["https://github.com/sportsdataverse","https://x.com/sportsdataverse"]}
+]}
+</script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -268,7 +287,7 @@ A catalog failure degrades to <code>NA</code> rather than erroring the wrapper. 
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_leaders</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game leaders data from ESPN ────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 02:09:59 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:34:57 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 162 × 23</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   category_name category_display_name category_short_display_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span>
@@ -291,7 +310,7 @@ A catalog failure degrades to <code>NA</code> rather than erroring the wrapper. 
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   team_logo_dark_href &lt;chr&gt;, display_value &lt;chr&gt;, value &lt;dbl&gt;, …</span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_game_leaders</span><span class="op">(</span>game_id <span class="op">=</span> <span class="fl">401628339</span>, team_detail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game leaders data from ESPN ────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 02:09:59 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:34:58 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 162 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    game_id   category_name category_display_name category_short_display_name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span>

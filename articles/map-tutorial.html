@@ -24,7 +24,26 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@ConorMcQ5">
 <meta name="twitter:site" content="@cfbfastR">
-<script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script>
+<script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
+   "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
+   "description":"An R package for tidy college football play-by-play data with expected points added (EPA), win probability, CPOE, expected pass rate and fourth-down decision surfaces.",
+   "url":"https://cfbfastr.sportsdataverse.org/",
+   "codeRepository":"https://github.com/sportsdataverse/cfbfastR",
+   "programmingLanguage":{"@type":"ComputerLanguage","name":"R"},
+   "license":"https://opensource.org/licenses/MIT",
+   "runtimePlatform":"R (>= 4.1.0)",
+   "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
+   "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
+   "publisher":{"@id":"https://sportsdataverse.org/#org"}},
+  {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
+   "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
+  {"@type":"Organization","@id":"https://sportsdataverse.org/#org",
+   "name":"SportsDataverse","url":"https://sportsdataverse.org",
+   "sameAs":["https://github.com/sportsdataverse","https://x.com/sportsdataverse"]}
+]}
+</script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -236,26 +255,26 @@ rated player in a class! Let’s see what sort of data we get from it.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/cfbd_recruiting_player.html">cfbd_recruiting_player</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## cfbfstR_ [3,364 × 19] (S3: cfbfastR_data/tbl_df/tbl/data.table/data.frame)</span></span>
-<span><span class="co">##  $ id                     : chr [1:3364] "115742" "254930" "254944" "115743" ...</span></span>
-<span><span class="co">##  $ athlete_id             : chr [1:3364] NA NA NA "4431274" ...</span></span>
+<span><span class="co">##  $ id                     : chr [1:3364] "115742" "254930" "115743" "254944" ...</span></span>
+<span><span class="co">##  $ athlete_id             : chr [1:3364] NA NA "4431274" NA ...</span></span>
 <span><span class="co">##  $ recruit_type           : chr [1:3364] "HighSchool" "HighSchool" "HighSchool" "HighSchool" ...</span></span>
 <span><span class="co">##  $ year                   : int [1:3364] 2021 2021 2021 2021 2021 2021 2021 2021 2021 2021 ...</span></span>
 <span><span class="co">##  $ ranking                : int [1:3364] 1 1 2 2 3 3 4 5 5 6 ...</span></span>
-<span><span class="co">##  $ name                   : chr [1:3364] "Quinn Ewers" "Marques Buford Jr." "Lorenz Terry" "Korey Foreman" ...</span></span>
-<span><span class="co">##  $ school                 : chr [1:3364] "Southlake Carroll" "St. Thomas More (Prep)" "Fork Union Military Academy" "Corona Centennial" ...</span></span>
-<span><span class="co">##  $ committed_to           : chr [1:3364] "Ohio State" "Nebraska" "Virginia" "USC" ...</span></span>
+<span><span class="co">##  $ name                   : chr [1:3364] "Quinn Ewers" "Marques Buford Jr." "Korey Foreman" "Lorenz Terry" ...</span></span>
+<span><span class="co">##  $ school                 : chr [1:3364] "Southlake Carroll" "St. Thomas More (Prep)" "Corona Centennial" "Fork Union Military Academy" ...</span></span>
+<span><span class="co">##  $ committed_to           : chr [1:3364] "Ohio State" "Nebraska" "USC" "Virginia" ...</span></span>
 <span><span class="co">##  $ position               : chr [1:3364] "QB" "CB" "DL" "DL" ...</span></span>
-<span><span class="co">##  $ height                 : num [1:3364] 75 72 77 76 78 73 76.5 70 77 76 ...</span></span>
-<span><span class="co">##  $ weight                 : int [1:3364] 206 190 240 265 305 200 277 180 248 180 ...</span></span>
-<span><span class="co">##  $ stars                  : int [1:3364] 5 3 3 5 5 3 5 3 5 3 ...</span></span>
-<span><span class="co">##  $ rating                 : num [1:3364] 1 0.859 0.844 0.999 0.999 ...</span></span>
-<span><span class="co">##  $ city                   : chr [1:3364] "Southlake" "Oakdale" "Fork Union" "Corona" ...</span></span>
-<span><span class="co">##  $ state_province         : chr [1:3364] "TX" "CT" "VA" "CA" ...</span></span>
+<span><span class="co">##  $ height                 : num [1:3364] 75 72 76 77 73 78 76.5 77 70 76 ...</span></span>
+<span><span class="co">##  $ weight                 : int [1:3364] 206 190 265 240 200 305 277 248 180 180 ...</span></span>
+<span><span class="co">##  $ stars                  : int [1:3364] 5 3 5 3 3 5 5 5 3 3 ...</span></span>
+<span><span class="co">##  $ rating                 : num [1:3364] 1 0.859 0.999 0.844 0.838 ...</span></span>
+<span><span class="co">##  $ city                   : chr [1:3364] "Southlake" "Oakdale" "Corona" "Fork Union" ...</span></span>
+<span><span class="co">##  $ state_province         : chr [1:3364] "TX" "CT" "CA" "VA" ...</span></span>
 <span><span class="co">##  $ country                : chr [1:3364] "USA" "USA" "USA" "USA" ...</span></span>
-<span><span class="co">##  $ hometown_info_latitude : num [1:3364] 32.9 41.5 37.8 33.9 27.5 ...</span></span>
-<span><span class="co">##  $ hometown_info_longitude: num [1:3364] -97.1 -72.2 -78.3 -117.6 -82.6 ...</span></span>
-<span><span class="co">##  $ hometown_info_fips_code: chr [1:3364] "48439" "09011" "51065" "06065" ...</span></span>
-<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-09-07 02:23:47"</span></span>
+<span><span class="co">##  $ hometown_info_latitude : num [1:3364] 32.9 41.5 33.9 37.8 37.8 ...</span></span>
+<span><span class="co">##  $ hometown_info_longitude: num [1:3364] -97.1 -72.2 -117.6 -78.3 -78.3 ...</span></span>
+<span><span class="co">##  $ hometown_info_fips_code: chr [1:3364] "48439" "09011" "06065" "51065" ...</span></span>
+<span><span class="co">##  - attr(*, "cfbfastR_timestamp")= POSIXct[1:1], format: "2026-09-07 06:49:31"</span></span>
 <span><span class="co">##  - attr(*, "cfbfastR_type")= chr "Player recruiting info from CollegeFootballData.com"</span></span></code></pre>
 <p>There’s a lot here, but the basics are we get some IDs that we can
 merge on other <code>cfbfastR</code> datasets, basic information on each

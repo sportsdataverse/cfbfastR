@@ -24,7 +24,26 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@saiemgilani">
 <meta name="twitter:site" content="@cfbfastR">
-<script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script>
+<script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
+   "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
+   "description":"An R package for tidy college football play-by-play data with expected points added (EPA), win probability, CPOE, expected pass rate and fourth-down decision surfaces.",
+   "url":"https://cfbfastr.sportsdataverse.org/",
+   "codeRepository":"https://github.com/sportsdataverse/cfbfastR",
+   "programmingLanguage":{"@type":"ComputerLanguage","name":"R"},
+   "license":"https://opensource.org/licenses/MIT",
+   "runtimePlatform":"R (>= 4.1.0)",
+   "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
+   "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
+   "publisher":{"@id":"https://sportsdataverse.org/#org"}},
+  {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
+   "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
+  {"@type":"Organization","@id":"https://sportsdataverse.org/#org",
+   "name":"SportsDataverse","url":"https://sportsdataverse.org",
+   "sameAs":["https://github.com/sportsdataverse","https://x.com/sportsdataverse"]}
+]}
+</script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -378,17 +397,62 @@ that.</p>
 <div class="section level3">
 <h3 id="an-era-encoding-trap">An era-encoding trap<a class="anchor" aria-label="anchor" href="#an-era-encoding-trap"></a>
 </h3>
-<p>The <code>xpass</code> model uses an <strong>ordinal</strong>
-<code>era</code> feature cutting at <strong>2006 / 2013 / 2017</strong>.
-The FG, two-point and QBR models use <strong>one-hot</strong>
-<code>era0</code>–<code>era3</code> cutting at <strong>2006 / 2013 /
-2020</strong>.</p>
+<p>The rule era enters these models two different ways, with <strong>two
+different sets of cutpoints</strong>:</p>
+<table class="table">
+<colgroup>
+<col width="25%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th>Models</th>
+<th>Encoding</th>
+<th>Cuts</th>
+<th>Constant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>
+<code>xpass</code>, <code>two_pt</code>
+</td>
+<td>ordinal <code>era</code>, 0–3</td>
+<td>2006 / 2013 / <strong>2017</strong>
+</td>
+<td><code>.XPASS_ERA_CUTS</code></td>
+</tr>
+<tr class="even">
+<td>
+<code>fg</code>, <code>qbr</code>, <code>fd</code>
+</td>
+<td>one-hot <code>era0</code>–<code>era3</code>
+</td>
+<td>2006 / 2013 / <strong>2020</strong>
+</td>
+<td><code>.FG_ERA_CUTS</code></td>
+</tr>
+</tbody>
+</table>
 <p>Different encodings <em>and</em> different cutpoints, in the same
-bundle. If you score these models by hand, build each one’s era feature
-from its own rule — reusing one for the other is silent and wrong.
-<code>cfbfastR</code> handles this internally; it is listed here because
-it is exactly the kind of thing that survives a code review and fails in
-production.</p>
+bundle. A 2019 play is ordinal <code>era = 3</code> but one-hot
+<code>era2</code>. If you score these by hand, build each model’s era
+feature from its own rule — reusing one for the other is silent and
+wrong. <code>cfbfastR</code> and <code>sportsdataverse-py</code> both
+handle this internally and agree with each other.</p>
+<p><strong>A caveat on the ordinal cut.</strong> The trainer that
+produces the bundle (<code>cfbfastR-cfb-data</code>) derives
+<em>both</em> encodings from one constant,
+<code>ERA_BOUNDS = (2006, 2013, 2020)</code>. So the shipped
+<code>xpass_model</code> was trained with 2018–2020 in bucket 2, while
+both consumers score those seasons as bucket 3.</p>
+<p><code>era</code> carries only ~1% of <code>xpass</code>’s gain, so
+the effect is small but not zero — across a grid of realistic situations
+the mismatch moves <code>xpass</code> by a mean of <strong>0.9
+percentage points</strong> and at most <strong>2.9</strong>. It does not
+touch <code>prob_2pt</code> at all, since that model never splits on
+<code>era</code>. Worth knowing if you are comparing
+<code>pass_oe</code> across the 2017/2018 boundary; tracked in <a href="https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70" class="external-link">cfbfastR-cfb-data#70</a>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -511,83 +575,87 @@ input</strong>. A kick in Laramie and a kick in a dome get the same
 number.</p>
 </div>
 <div class="section level2">
-<h2 id="the-two-point-model-and-an-honest-caveat">The two-point model, and an honest caveat<a class="anchor" aria-label="anchor" href="#the-two-point-model-and-an-honest-caveat"></a>
+<h2 id="the-two-point-model">The two-point model<a class="anchor" aria-label="anchor" href="#the-two-point-model"></a>
 </h2>
 <p>Four features: <code>posteam_spread</code>,
 <code>posteam_total</code>, <code>pos_score_diff</code>,
 <code>era</code>. It produces <code>prob_2pt</code>, which feeds the
 two-point decision surface — <code>two_pt_wp</code>, <code>xp_wp</code>,
 <code>two_pt_wp_diff</code> and <code>two_pt_recommendation</code>.</p>
-<p>This model does not work, and it is worth showing exactly how rather
-than gesturing at a caveat.</p>
-<p>Sweeping each feature with the others held at realistic values:</p>
+<p><strong><code>posteam_total</code> is not the game total.</strong> It
+is the possessing team’s <em>implied team total</em>, built from the
+line and the over/under:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">home_total</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">homeTeamSpread</span> <span class="op">+</span> <span class="va">overUnder</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span></span>
+<span><span class="va">away_total</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">overUnder</span> <span class="op">-</span> <span class="va">homeTeamSpread</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span></span></code></pre></div>
+<p>A 55-point game with a 7-point spread gives roughly 24 and 31, so the
+feature lives around <strong>14–42</strong>, not 45–65. This matters if
+you score the model yourself: feed it a game total and every prediction
+lands off the end of the training support, where the model is flat and
+meaningless.</p>
+<p>Over the real support it is the model’s strongest input:</p>
 <table class="table">
 <thead><tr class="header">
-<th>Feature</th>
-<th>Values swept</th>
+<th><code>posteam_total</code></th>
 <th><code>prob_2pt</code></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>pos_score_diff</code></td>
-<td>−14 → +14</td>
-<td>0.487 … <strong>0.578</strong> … 0.557</td>
+<td>14</td>
+<td>0.4521</td>
 </tr>
 <tr class="even">
-<td><code>posteam_spread</code></td>
-<td>−28 → +28</td>
-<td>0.572 … 0.592</td>
+<td>20</td>
+<td>0.5024</td>
 </tr>
 <tr class="odd">
-<td><code>posteam_total</code></td>
-<td>35 → 75</td>
-<td><strong>0.578 at every value</strong></td>
+<td>24</td>
+<td>0.5213</td>
 </tr>
 <tr class="even">
-<td><code>era</code></td>
-<td>0 → 3</td>
-<td><strong>0.578 at every value</strong></td>
+<td>30</td>
+<td>0.5100</td>
+</tr>
+<tr class="odd">
+<td>32</td>
+<td>0.5774</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td>0.5780</td>
 </tr>
 </tbody>
 </table>
-<p>The whole model moves between <strong>0.487 and 0.592</strong>. It is
-very nearly a constant.</p>
-<p>Three specific problems, from the tree dump:</p>
-<ol style="list-style-type: decimal">
-<li>
-<strong><code>era</code> is never split on.</strong> It appears in
-the feature list and in no tree. Two-point conversion rates have moved
-over twenty years; this model cannot express that.</li>
-<li>
-<strong>The <code>posteam_total</code> splits are at 21.375 and
-31.875.</strong> College football game totals live between about 45 and
-65. Every realistic game takes the same branch, which is why sweeping
-the total from 35 to 75 changes nothing. Those thresholds suggest the
-training feature was not the game total on the scale it is scored with —
-a scaling or fill problem upstream, not a modelling choice.</li>
-<li>
-<strong>The first split is
-<code>pos_score_diff &lt; -6</code>.</strong> Almost every genuine
-two-point decision happens within a touchdown either way, so in the
-region that matters the model is flat by construction.</li>
-</ol>
-<p>And the level is wrong: it centres on <strong>0.578</strong> where
-real college two-point conversion rates run closer to 45%. Note its own
-<code>base_score</code> is 0.4816 — the trees push the prediction
-<em>above</em> the base rate for every realistic input.</p>
-<p><strong>Practical consequence.</strong> <code>prob_2pt</code> feeds
-<code>two_pt_wp</code>, so an optimistic and nearly-constant conversion
-probability biases the decision surface toward going for two,
-everywhere, regardless of situation. <code>cfb4th</code>’s rule has no
-margin — it will recommend two on a difference of 0.0001 — so
-<strong>read <code>two_pt_wp_diff</code> and treat anything under a
-couple of percentage points as a coin flip</strong>, or supply your own
-conversion probability.</p>
-<p>To be clear about where the fault lies: the surface’s arithmetic is
-sound and was verified <strong>bit-identical to
-<code>sportsdataverse-py</code> to eight decimal places</strong>. The
-problem is entirely the input model. It is a retrain candidate, and
-until then the recommendation column should not be used on its own.</p>
+<p>Across a realistic grid — spread ±21, team total 16–40, score margin
+±10, all eras — the model runs <strong>0.365 to 0.592</strong>, mean
+<strong>0.511</strong>. Its <code>base_score</code> is
+<strong>0.4816</strong>, the observed success rate in training, so it
+sits about <strong>3 percentage points above its own base rate</strong>,
+which is what conditioning should do. Split counts back that up:
+<code>posteam_total</code> 54, <code>pos_score_diff</code> 32,
+<code>posteam_spread</code> 20.</p>
+<div class="section level3">
+<h3 id="the-one-real-gap-era-is-never-used">The one real gap: <code>era</code> is never used<a class="anchor" aria-label="anchor" href="#the-one-real-gap-era-is-never-used"></a>
+</h3>
+<p><code>era</code> is in the feature list and in none of the 40
+trees:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">xgboost</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/xgboost/man/xgb.importance.html" class="external-link">xgb.importance</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">two_pt_model</span><span class="op">)</span><span class="op">$</span><span class="va">Feature</span></span>
+<span><span class="co">#&gt; "posteam_total"  "pos_score_diff"  "posteam_spread"     # no "era"</span></span></code></pre></div>
+<p>Sweeping era 0 → 3 with everything else fixed moves the prediction by
+<strong>0.0000</strong>. Two-point conversion rates have moved across
+2004–2025 and this model cannot express that. With
+<code>max_depth = 2</code>, <code>min_child_weight = 40</code> and 40
+rounds over a relatively small set of attempts, the other three features
+win every split.</p>
+<p><strong>Practical consequence.</strong> The surface’s arithmetic is
+sound — verified <strong>bit-identical to
+<code>sportsdataverse-py</code> to eight decimal places</strong> — but
+<code>cfb4th</code>’s rule has no margin, and will recommend two on a
+difference of 0.0001. <strong>Read <code>two_pt_wp_diff</code> and treat
+anything under a couple of percentage points as a coin flip</strong>,
+rather than the bare recommendation.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="the-fourth-down-decision">The fourth-down decision<a class="anchor" aria-label="anchor" href="#the-fourth-down-decision"></a>
@@ -659,7 +727,7 @@ field position each produces.</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
@@ -706,7 +774,7 @@ assuming a column is populated</strong> — particularly
 <code>vegas_wp</code> and the two decision surfaces, which need a
 spread. The upside is that a network problem degrades your play-by-play
 instead of destroying it.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pbp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">EPA</span>, <span class="va">wpa</span>, <span class="va">vegas_wp</span>, <span class="va">cpoe</span>, <span class="va">xpass</span>, <span class="va">go_boost</span><span class="op">)</span>,</span>
@@ -739,10 +807,11 @@ modern era (<code>era3</code>, 2020+) it gives about 81% at 34 yards and
 weather or altitude input, and flattens beyond roughly 57 yards where
 data runs out.</p>
 <p><strong>Should I trust <code>two_pt_recommendation</code>?</strong>
-No, not on its own. The underlying <code>prob_2pt</code> model is nearly
-constant at about 0.578, against real college rates closer to 45%, so
-the surface is biased toward going for two. Read
-<code>two_pt_wp_diff</code> and treat small margins as coin flips.</p>
+Not on its own — <code>cfb4th</code>’s rule has no margin and will
+recommend two on a difference of 0.0001. Read
+<code>two_pt_wp_diff</code> and treat small margins as coin flips. The
+underlying <code>prob_2pt</code> model is reasonable (mean 0.511 against
+a 0.4816 base rate) but ignores <code>era</code>.</p>
 <p><strong>Should I trust
 <code>fourth_down_recommendation</code>?</strong> Use
 <code>go_boost</code> instead. The recommendation has no margin, so it

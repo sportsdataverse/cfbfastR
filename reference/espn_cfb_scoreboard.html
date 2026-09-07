@@ -3,7 +3,26 @@
 Get live scoreboard data from ESPN or look up the college football schedule for a given season
 ESPN Schedule"><meta property="og:description" content="ESPN Scoreboard
 Get live scoreboard data from ESPN or look up the college football schedule for a given season
-ESPN Schedule"><meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script></head><body>
+ESPN Schedule"><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
+   "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
+   "description":"An R package for tidy college football play-by-play data with expected points added (EPA), win probability, CPOE, expected pass rate and fourth-down decision surfaces.",
+   "url":"https://cfbfastr.sportsdataverse.org/",
+   "codeRepository":"https://github.com/sportsdataverse/cfbfastR",
+   "programmingLanguage":{"@type":"ComputerLanguage","name":"R"},
+   "license":"https://opensource.org/licenses/MIT",
+   "runtimePlatform":"R (>= 4.1.0)",
+   "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
+   "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
+   "publisher":{"@id":"https://sportsdataverse.org/#org"}},
+  {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
+   "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
+  {"@type":"Organization","@id":"https://sportsdataverse.org/#org",
+   "name":"SportsDataverse","url":"https://sportsdataverse.org",
+   "sameAs":["https://github.com/sportsdataverse","https://x.com/sportsdataverse"]}
+]}
+</script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -291,20 +310,20 @@ shared variables</p><ul><li><p><code>matchup</code>: character.: Long matchup de
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_scoreboard</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Live Scoreboard Data from ESPN ─────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 02:11:18 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:36:25 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 99 × 59</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    matchup          matchup_short season type  slug  game_id game_uid game_date </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Wisconsin Badge… WIS VS ND       <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-09-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Louisville Card… LOU VS MISS     <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-09-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Washington Stat… WSU @ WASH      <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-09-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> San José State … SJSU @ USC      <span style="text-decoration: underline;">2</span>026 regu… regu… 401864… s:20~l:… 2026-08-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> North Carolina … UNC VS TCU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-08-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> NC State Wolfpa… NCSU @ UVA      <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-08-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Jacksonville St… JVST @ NDSU     <span style="text-decoration: underline;">2</span>026 regu… regu… 401864… s:20~l:… 2026-08-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Sacramento Stat… SAC @ EMU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401866… s:20~l:… 2026-08-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Hawai'i Rainbow… HAW @ STAN      <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-08-29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> New Mexico Stat… NMSU @ FSU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401864… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> SMU Mustangs at… SMU @ FSU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-09-07</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> San José State … SJSU @ USC      <span style="text-decoration: underline;">2</span>026 regu… regu… 401864… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> North Carolina … UNC VS TCU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> NC State Wolfpa… NCSU @ UVA      <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Jacksonville St… JVST @ NDSU     <span style="text-decoration: underline;">2</span>026 regu… regu… 401864… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Sacramento Stat… SAC @ EMU       <span style="text-decoration: underline;">2</span>026 regu… regu… 401866… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Hawai'i Rainbow… HAW @ STAN      <span style="text-decoration: underline;">2</span>026 regu… regu… 401858… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> New Mexico Stat… NMSU @ FSU      <span style="text-decoration: underline;">2</span>026 regu… regu… 401864… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Memphis Tigers … MEM @ UNLV      <span style="text-decoration: underline;">2</span>026 regu… regu… 401862… s:20~l:… 2026-08-29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Idaho Vandals a… IDHO @ UTAH     <span style="text-decoration: underline;">2</span>026 regu… regu… 401856… s:20~l:… 2026-09-03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 89 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 51 more variables: attendance &lt;int&gt;, date_valid &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   play_by_play_available &lt;lgl&gt;, home_team_name &lt;chr&gt;, home_team_logo &lt;chr&gt;,</span></span>
@@ -317,7 +336,7 @@ shared variables</p><ul><li><p><code>matchup</code>: character.: Long matchup de
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">espn_cfb_schedule</span><span class="op">(</span><span class="fl">2021</span>, week <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Schedule Data from ESPN ────────────────────────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 02:11:18 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:36:26 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 54 × 62</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season_type week    matchup matchup_short season type  slug  game_id game_uid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>

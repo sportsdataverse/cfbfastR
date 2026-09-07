@@ -9,7 +9,26 @@ disruption – the share of plays that end in a tackle for loss, a forced
 fumble, a pass defensed, or an interception – split into front-seven and
 defensive-back contributions. Each row carries both the team's own
 defensive havoc (def_*) and the havoc the team's offense allowed
-(off_*) in that game."><meta property="og:image" content="https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script></head><body>
+(off_*) in that game."><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
+   "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
+   "description":"An R package for tidy college football play-by-play data with expected points added (EPA), win probability, CPOE, expected pass rate and fourth-down decision surfaces.",
+   "url":"https://cfbfastr.sportsdataverse.org/",
+   "codeRepository":"https://github.com/sportsdataverse/cfbfastR",
+   "programmingLanguage":{"@type":"ComputerLanguage","name":"R"},
+   "license":"https://opensource.org/licenses/MIT",
+   "runtimePlatform":"R (>= 4.1.0)",
+   "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
+   "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
+   "publisher":{"@id":"https://sportsdataverse.org/#org"}},
+  {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
+   "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
+  {"@type":"Organization","@id":"https://sportsdataverse.org/#org",
+   "name":"SportsDataverse","url":"https://sportsdataverse.org",
+   "sameAs":["https://github.com/sportsdataverse","https://x.com/sportsdataverse"]}
+]}
+</script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -215,7 +234,7 @@ postseason, both, allstar, spring_regular, spring_postseason.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_game_havoc</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2023</span>, team <span class="op">=</span> <span class="st">"Georgia"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game havoc stats from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 02:08:56 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:33:33 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 22</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id season season_type  week team    conference opponent      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
@@ -243,7 +262,7 @@ postseason, both, allstar, spring_regular, spring_postseason.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">cfbd_stats_game_havoc</span><span class="op">(</span><span class="fl">2022</span>, week <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Game havoc stats from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 02:08:57 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:33:33 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 273 × 22</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      game_id season season_type  week team       conference opponent  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>

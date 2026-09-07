@@ -75,7 +75,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_drives(2004))
 #> ── ESPN college football drives from the SportsDataverse data repo ─────────────
-#> ℹ Data updated: 2026-09-07 02:13:24 UTC
+#> ℹ Data updated: 2026-09-07 06:38:41 UTC
 #> # A tibble: 16,414 × 20
 #>    drive_id team_id result display_result short_display_result description yards
 #>    <chr>      <int> <chr>  <chr>          <chr>                <chr>       <int>
