@@ -29,8 +29,8 @@ test_that("class 0 of the fourth-down model is a ten-yard LOSS", {
 })
 
 test_that("the fourth-down model uses the ONE-HOT era, not the ordinal one", {
-  # fd_model and fg_model take era0..era3 (cuts 2006/2013/2020); xpass and
-  # two_pt take a single ordinal era (2017 cut). 2018 separates them.
+  # fd_model and fg_model take era0..era3; xpass and two_pt take a single
+  # ordinal era. Same cuts (2006/2013/2020) since #70 -- different shape.
   expect_true(all(c("era0", "era1", "era2", "era3") %in% .FD_FEATURES))
   expect_equal(unname(.cfb_era_onehot(2018, 1)[1, ]), c(0, 0, 1, 0))
 })

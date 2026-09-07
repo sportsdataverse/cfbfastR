@@ -11,8 +11,9 @@
 test_that(".TWO_PT_FEATURES matches the bundle contract and uses ordinal era", {
   expect_identical(.TWO_PT_FEATURES,
                    c("posteam_spread", "posteam_total", "pos_score_diff", "era"))
-  # Ordinal era (2017 cut), like xpass -- not the FG model's one-hot set.
-  expect_equal(.cfb_era_ordinal(2018, 1), 3)
+  # A single ordinal era column, like xpass -- not the FG model's one-hot set.
+  # Same cuts as the one-hot set since #70; 2018 is bucket 2 under both.
+  expect_equal(.cfb_era_ordinal(2018, 1), 2)
 })
 
 test_that(".cfb_posteam_total splits the over/under by the spread", {
