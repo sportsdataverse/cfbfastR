@@ -504,10 +504,10 @@ NULL
 #' supply.
 #'
 #' **These cuts (2006/2013/2020) are the ONE-HOT `era0..era3` cuts used by
-#' `fg_model` and `fd_model`.** sdv-py also carries a distinct *ordinal* `era`
-#' with cuts 2006/2013/**2017** for `xpass_model` / `two_pt_model`. The two are
-#' not interchangeable; conflating them silently mis-labels the 2018-2020
-#' seasons.
+#' `fg_model` and `fd_model`.** [.XPASS_ERA_CUTS] is the *ordinal* `era` for
+#' `xpass_model` / `two_pt_model`. Both now carry the same cutpoints -- the
+#' producer derives them from one constant -- but they are NOT interchangeable
+#' as features: one is a single 0-3 column, the other four dummies.
 #'
 #' @keywords internal
 #' @noRd
@@ -691,14 +691,21 @@ NULL
 #' Expected-pass feature contract and the ORDINAL rule-era cuts
 #'
 #' `.XPASS_ERA_CUTS` is the **ordinal** `era` used by `xpass_model` and
-#' `two_pt_model` -- cuts 2006/2013/**2017**, encoded 0/1/2/3 in one column.
-#' It is NOT [.FG_ERA_CUTS], the one-hot `era0..era3` set used by
-#' `fg_model`/`fd_model`, whose third cut is **2020**. The two disagree over
-#' 2018-2020, so they are deliberately separate constants.
+#' `two_pt_model`, encoded 0/1/2/3 in one column. [.FG_ERA_CUTS] is the
+#' **one-hot** `era0..era3` set used by `fg_model`/`fd_model`. The ENCODINGS
+#' differ; the cutpoints do not.
+#'
+#' These were 2006/2013/**2017** until it was checked against the producer.
+#' `cfbfastR-cfb-data` derives both encodings from one
+#' `ERA_BOUNDS = (2006, 2013, 2020)`, and has never carried a 2017 cut -- so
+#' 2018-2020 were being scored as era 3 against models that trained them as
+#' era 2. The 2017 figure came from a stale docstring on sdv-py's
+#' `cfb_two_point.py::_era`, whose CODE already read the 2020 bounds.
+#' See sportsdataverse/cfbfastR-cfb-data#70.
 #'
 #' @keywords internal
 #' @noRd
-.XPASS_ERA_CUTS <- c(2006, 2013, 2017)
+.XPASS_ERA_CUTS <- c(2006, 2013, 2020)
 
 #' @keywords internal
 #' @noRd
@@ -709,7 +716,7 @@ NULL
 
 #' Ordinal CFB rule era from season
 #'
-#' @return 0 (<=2006), 1 (<=2013), 2 (<=2017), 3 (later).
+#' @return 0 (<=2006), 1 (<=2013), 2 (<=2020), 3 (later).
 #' @keywords internal
 #' @noRd
 .cfb_era_ordinal <- function(season, n) {

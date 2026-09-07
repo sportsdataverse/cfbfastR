@@ -93,8 +93,8 @@ test_that("create_qbr uses the ONE-HOT era, not the ordinal one", {
   expect_equal(unname(unlist(out[1, c("era0", "era1", "era2", "era3")])),
                c(0, 0, 0, 1))
   pbp <- mk_pbp(); pbp$season <- 2018
-  # 2018 is exactly the season that separates the two encodings: era2 one-hot
-  # (2020 cut) but the ordinal era's post-2017 bucket.
+  # 2018 is bucket 2 under both encodings; it only diverged while the ordinal
+  # cut was wrongly 2017 (see cfbfastR-cfb-data#70).
   out18 <- create_qbr(pbp, qbr_model = NA)
   expect_equal(unname(unlist(out18[1, c("era0", "era1", "era2", "era3")])),
                c(0, 0, 1, 0))

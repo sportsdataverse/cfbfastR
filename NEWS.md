@@ -66,6 +66,20 @@ agree on EPA for a given play and a retrain updates both from one publish
   model reads positive `spread_time` as the team in possession being favoured.
   `vegas_wpa` and `vegas_wp_after` are derived alongside it, using the same
   turnover and half/period-end overlays as the naive `wpa`.
+* **Fix: `xpass` / `two_pt` scored 2018-2020 in the wrong rule era.** The
+  ordinal `era` column was cut at 2006/2013/**2017**, but the producer
+  (`cfbfastR-cfb-data`) derives BOTH era encodings from one
+  `ERA_BOUNDS = (2006, 2013, 2020)` and has never carried a 2017 cut -- so those
+  three seasons were scored as era 3 against models that trained them as era 2.
+  `era` takes 251 splits and ~1.1% of gain in `xpass_model`: across 630
+  realistic situations the mismatch moved `xpass` by a mean of 0.9pp and at most
+  2.9pp, inherited by `pass_oe` as a step at the 2017/2018 boundary. `prob_2pt`
+  was unaffected -- that model never splits on `era`. The 2017 figure traces to a
+  stale docstring on sdv-py's `cfb_two_point.py::_era`, whose code already read
+  the 2020 bounds. `.XPASS_ERA_CUTS` now equals `.FG_ERA_CUTS`; the two remain
+  separate constants because the ENCODINGS differ (one ordinal column vs four
+  one-hot dummies). See
+  [cfbfastR-cfb-data#70](https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70).
 * **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
   scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
   percentage-point scale `100 * (pass - xpass)`. Note this model uses an

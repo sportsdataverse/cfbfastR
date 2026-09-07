@@ -3,8 +3,9 @@
 ### Two traps, both shared with models already in this PR:
 ###   * `pos_score_diff` is sourced from `pos_score_diff_start`, not the frame's
 ###     like-named column, which holds a different value.
-###   * the ORDINAL era here cuts at 2006/2013/2017, NOT the one-hot era0..era3
-###     cuts of 2006/2013/2020 used by the FG model.
+###   * the era here is a single ORDINAL 0-3 column, NOT the one-hot era0..era3
+###     set the FG model takes. Same cutpoints (2006/2013/2020, the producer
+###     derives both from one constant); different SHAPE.
 
 test_that(".XPASS_FEATURES matches the bundle contract", {
   expect_identical(
@@ -14,17 +15,20 @@ test_that(".XPASS_FEATURES matches the bundle contract", {
   )
 })
 
-test_that("the ordinal era is NOT the one-hot era set", {
-  expect_identical(.XPASS_ERA_CUTS, c(2006, 2013, 2017))
-  expect_false(identical(.XPASS_ERA_CUTS, .FG_ERA_CUTS))
-  # 2018-2020 is exactly where the two disagree: ordinal era 3, one-hot era2.
-  expect_equal(.cfb_era_ordinal(2018, 1), 3)
+test_that("the ordinal era shares the one-hot cutpoints but not its shape", {
+  # Both derive from the producer's single ERA_BOUNDS = (2006, 2013, 2020)
+  # (cfbfastR-cfb-data/model_training/constants.py), so the CUTS agree.
+  expect_identical(.XPASS_ERA_CUTS, c(2006, 2013, 2020))
+  expect_identical(.XPASS_ERA_CUTS, .FG_ERA_CUTS)
+  # 2018 was where a 2017 ordinal cut used to disagree: it scored era 3 against
+  # a model trained with it as era 2. Both encodings now put it in bucket 2.
+  expect_equal(.cfb_era_ordinal(2018, 1), 2)
   expect_equal(unname(.cfb_era_onehot(2018, 1)[1, ]), c(0, 0, 1, 0))
 })
 
 test_that(".cfb_era_ordinal maps every boundary", {
-  s <- c(2000, 2006, 2007, 2013, 2014, 2017, 2018, 2025)
-  expect_equal(.cfb_era_ordinal(s, length(s)), c(0, 0, 1, 1, 2, 2, 3, 3))
+  s <- c(2000, 2006, 2007, 2013, 2014, 2017, 2018, 2020, 2021, 2025)
+  expect_equal(.cfb_era_ordinal(s, length(s)), c(0, 0, 1, 1, 2, 2, 2, 2, 3, 3))
 })
 
 test_that(".cfb_era_ordinal recycles a scalar season", {

@@ -2,14 +2,14 @@
 ###
 ### Two traps here. (1) An absent season makes every era dummy 0 -- not a valid
 ### one-hot -- which shifts every field-goal probability without erroring.
-### (2) sdv-py carries TWO era definitions: the one-hot era0..era3 used by
-### fg_model/fd_model cuts at 2006/2013/2020, while the ORDINAL `era` used by
-### xpass/two_pt cuts at 2006/2013/2017. Conflating them mislabels 2018-2020.
+### (2) there are TWO era ENCODINGS: the one-hot era0..era3 used by
+### fg_model/fd_model, and the single ordinal `era` used by xpass/two_pt. Both
+### cut at 2006/2013/2020; conflating the SHAPES still mislabels every season.
 
 test_that("FG era cuts are the one-hot set, not the ordinal set", {
   expect_identical(.FG_ERA_CUTS, c(2006, 2013, 2020))
-  # 2018 is the season that distinguishes the two definitions: era2 under the
-  # one-hot cuts, but ordinal-era 3 under the 2017 cut.
+  # 2018 used to distinguish them, when the ordinal cut was wrongly 2017.
+  # It is bucket 2 under both now; the encodings still differ in shape.
   expect_equal(unname(.cfb_era_onehot(2018, 1)[1, ]), c(0, 0, 1, 0))
 })
 
