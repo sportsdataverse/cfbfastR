@@ -36,18 +36,20 @@ A `cfbfastR`-tagged tibble with one row per (category, leader):
 # \donttest{
   try(fox_cfb_team_stats(team_id = "11"))
 #> ── Team stat leaders from Fox Sports (Bifrost) ────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-03 22:40:42 UTC
-#> # A tibble: 9 × 6
-#>   team_id category   stat                 stat_abbreviation player value
-#>   <chr>   <chr>      <chr>                <chr>             <chr>  <chr>
-#> 1 11      TEAM STATS Passing Yards / Game PYDS/G            NA     -    
-#> 2 11      TEAM STATS Rushing Yards / Game RYDS/G            NA     -    
-#> 3 11      TEAM STATS Kicking Points       PTS               NA     0    
-#> 4 11      TEAM STATS Kick Return Avg      KR AVG            NA     -    
-#> 5 11      TEAM STATS Punt Return Avg      PR AVG            NA     -    
-#> 6 11      TEAM STATS Sacks                SCK               NA     0.0  
-#> 7 11      TEAM STATS Third Down Pct       3RD %             NA     -    
-#> 8 11      TEAM STATS Yards / Game         YDS/G             NA     -    
-#> 9 11      TEAM STATS Turnover Plus/Minus  +/-               NA     0    
+#> ℹ Data updated: 2026-09-07 02:12:49 UTC
+#> # A tibble: 23 × 6
+#>    team_id category     stat                    stat_abbreviation player   value
+#>    <chr>   <chr>        <chr>                   <chr>             <chr>    <chr>
+#>  1 11      PLAYER STATS Passing Yards           PYDS              Darian … 401  
+#>  2 11      PLAYER STATS Passing Touchdowns      PTD               Darian … 5    
+#>  3 11      PLAYER STATS Rushing Yards           RYDS              Mark Fl… 40   
+#>  4 11      PLAYER STATS Rushing Touchdowns      RTD               CharMar… 1    
+#>  5 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 234  
+#>  6 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 3    
+#>  7 11      PLAYER STATS Kicking Points          PTS               Jake We… 9    
+#>  8 11      PLAYER STATS Kick Return Yards       KR YDS            Javian … 23   
+#>  9 11      PLAYER STATS Punt Return Yards       PR YDS            Cooper … 0    
+#> 10 11      PLAYER STATS Defensive Interceptions DEF INT           Kamal B… 0    
+#> # ℹ 13 more rows
 # }
 ```

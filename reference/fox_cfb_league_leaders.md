@@ -45,20 +45,20 @@ leaderboard headers plus `entity_id`.
 # \donttest{
   try(fox_cfb_league_leaders(category = "passing"))
 #> ── Statistical leaders from Fox Sports (Bifrost) ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-03 22:40:37 UTC
-#> # A tibble: 57 × 7
-#>    players v2         comp  gp    entity_id patt  att_g
-#>    <chr>   <chr>      <chr> <chr> <chr>     <chr> <chr>
-#>  1 1       M. Alejado 31    1     222163    NA    NA   
-#>  2 2       N. Kim     27    1     177780    NA    NA   
-#>  3 3       T. Hedden  26    1     224744    NA    NA   
-#>  4 4       J. Maiava  25    1     196106    NA    NA   
-#>  5 5       J. Arnold  25    1     212936    NA    NA   
-#>  6 6       C. Conklin 25    1     213761    NA    NA   
-#>  7 7       D. Warren  22    1     190846    NA    NA   
-#>  8 8       L. Weaver  21    1     234098    NA    NA   
-#>  9 9       J. Craig   20    1     203006    NA    NA   
-#> 10 10      A. Daniels 17    1     197201    NA    NA   
-#> # ℹ 47 more rows
+#> ℹ Data updated: 2026-09-07 02:12:44 UTC
+#> # A tibble: 75 × 7
+#>    players v2          comp  gp    entity_id patt  att_g
+#>    <chr>   <chr>       <chr> <chr> <chr>     <chr> <chr>
+#>  1 1       N. Kim      51    2     177780    NA    NA   
+#>  2 2       J. Maiava   48    2     196106    NA    NA   
+#>  3 3       M. Alejado  48    2     222163    NA    NA   
+#>  4 4       L. Weaver   44    2     234098    NA    NA   
+#>  5 5       D. Warren   43    2     190846    NA    NA   
+#>  6 6       T. Hedden   37    2     224744    NA    NA   
+#>  7 7       C. Veltkamp 34    1     195564    NA    NA   
+#>  8 8       J. Arnold   33    2     212936    NA    NA   
+#>  9 9       C. Creel    33    2     216004    NA    NA   
+#> 10 10      N. Hayes    32    2     197934    NA    NA   
+#> # ℹ 65 more rows
 # }
 ```

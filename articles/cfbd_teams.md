@@ -34,16 +34,14 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
-    ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
-    ## Hit:6 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
+    ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
-    ## Hit:7 https://packages.microsoft.com/repos/azure-cli jammy InRelease
-
-    ## Hit:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
+    ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
 
     ## Reading package lists...
 
@@ -64,9 +62,9 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 94 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 34 not upgraded.
 
-    ## ✔ 4 pkgs + 72 deps: kept 72 [10.3s]
+    ## ✔ 4 pkgs + 72 deps: kept 71 [9.6s]
 
 ``` r
 
@@ -101,7 +99,7 @@ cfbd_team_info(conference = "SEC")
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-03 22:47:07 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:53 UTC
 
     ## # A tibble: 16 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -136,7 +134,7 @@ cfbd_team_info(conference = "Ind")
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-09-03 22:47:07 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:53 UTC
 
     ## # A tibble: 2 × 43
     ##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -157,8 +155,7 @@ cfbd_team_info(year = 2019)
 ```
 
     ## ── Team information from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
-
-    ## ℹ Data updated: 2026-09-03 22:47:08 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:53 UTC
 
     ## # A tibble: 130 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -190,7 +187,7 @@ cfbd_team_matchup_records("Texas", "Oklahoma")
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-03 22:47:09 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:54 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1 team1_wins team2    team2_wins  ties
@@ -203,7 +200,7 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup record from CollegeFootballData.com ────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-09-03 22:47:09 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:54 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1     team1_wins team2 team2_wins  ties
@@ -219,7 +216,7 @@ cfbd_team_matchup("Texas", "Oklahoma")
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-03 22:47:10 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:54 UTC
 
     ## # A tibble: 118 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -244,7 +241,7 @@ cfbd_team_matchup("Texas A&M", "TCU")
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-03 22:47:11 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:55 UTC
 
     ## # A tibble: 89 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -253,8 +250,8 @@ cfbd_team_matchup("Texas A&M", "TCU")
     ##  2   1903     5 regular     1903-10-10T… FALSE        NA    Texas A&M         11
     ##  3   1903    10 regular     1903-11-14T… FALSE        NA    Texas A&M         16
     ##  4   1904     6 regular     1904-10-22T… FALSE        NA    Texas A&M         29
-    ##  5   1905     8 regular     1905-11-04T… FALSE        NA    Texas A&M         24
-    ##  6   1905     3 regular     1905-09-30T… FALSE        NA    Texas A&M         20
+    ##  5   1905     3 regular     1905-09-30T… FALSE        NA    Texas A&M         20
+    ##  6   1905     8 regular     1905-11-04T… FALSE        NA    Texas A&M         24
     ##  7   1906     6 regular     1906-10-27T… FALSE        NA    Texas A&M         42
     ##  8   1906     8 regular     1906-11-10T… FALSE        NA    Texas A&M         22
     ##  9   1907     8 regular     1907-11-05T… FALSE        NA    Texas A&M         32
@@ -268,7 +265,7 @@ cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-09-03 22:47:11 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:55 UTC
 
     ## # A tibble: 22 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -292,7 +289,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ───────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-09-03 22:47:11 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:55 UTC
 
     ## # A tibble: 52 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -319,7 +316,7 @@ cfbd_team_roster(year = 2013, team = "Florida State")
 
     ## ── Team roster data from CollegeFootballData.com ───────────── cfbfastR 3.0.0 ──
 
-    ## ℹ Data updated: 2026-09-03 22:47:13 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:55 UTC
 
     ## # A tibble: 134 × 17
     ##    athlete_id first_name last_name   team    weight height jersey  year position
@@ -348,7 +345,7 @@ cfbd_team_talent()
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-09-03 22:47:14 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:58 UTC
 
     ## # A tibble: 138 × 3
     ##     year school     talent
@@ -371,7 +368,7 @@ cfbd_team_talent(year = 2018)
 ```
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-    ## ℹ Data updated: 2026-09-03 22:47:14 UTC
+    ## ℹ Data updated: 2026-09-07 02:18:58 UTC
 
     ## # A tibble: 236 × 3
     ##     year school        talent
