@@ -70,7 +70,8 @@ agree on EPA for a given play and a retrain updates both from one publish
   scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
   percentage-point scale `100 * (pass - xpass)`. Note this model uses an
   *ordinal* rule-era feature cutting at 2006/2013/**2017**, which is a
-  different encoding from the FG model's one-hot `era0..era3` (2006/2013/2020).
+  different encoding *and* different cutpoints from the FG model's one-hot
+  `era0..era3` (2006/2013/2020).
 * Existing EPA/WPA values **will change**: this is a different model
   generation. Rebuild rather than mixing old and new outputs in one dataset.
 

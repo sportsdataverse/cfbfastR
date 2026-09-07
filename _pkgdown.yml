@@ -10,6 +10,26 @@ template:
   includes:
     in_header: |
       <script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script>
+      <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[
+        {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
+         "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
+         "description":"An R package for tidy college football play-by-play data with expected points added (EPA), win probability, CPOE, expected pass rate and fourth-down decision surfaces.",
+         "url":"https://cfbfastr.sportsdataverse.org/",
+         "codeRepository":"https://github.com/sportsdataverse/cfbfastR",
+         "programmingLanguage":{"@type":"ComputerLanguage","name":"R"},
+         "license":"https://opensource.org/licenses/MIT",
+         "runtimePlatform":"R (>= 4.1.0)",
+         "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
+         "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
+         "publisher":{"@id":"https://sportsdataverse.org/#org"}},
+        {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
+         "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
+        {"@type":"Organization","@id":"https://sportsdataverse.org/#org",
+         "name":"SportsDataverse","url":"https://sportsdataverse.org",
+         "sameAs":["https://github.com/sportsdataverse","https://x.com/sportsdataverse"]}
+      ]}
+      </script>
   bslib:
     primary: "#222222"
     secondary: "#B7B9BB"
@@ -33,7 +53,7 @@ template:
     btn-border-radius: 0.25rem
   opengraph:
     image:
-      src: "https://github.com/sportsdataverse/cfbfastR-data/blob/main/themes/social_card_cfbfastR_final_quote.png?raw=true"
+      src: "https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"
       alt: "When you code good, you know good. When you know good, you win good. When you win good, they pay good."
     twitter:
       creator: "@saiemgilani"
