@@ -235,12 +235,12 @@ Akshay Easwaran, Jared Lee
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Installing system requirements</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y update`</span></span></code></pre>
 <pre><code><span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span>
-<span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span>
+<span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span>
+<span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
@@ -264,7 +264,7 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
 <pre><code><span><span class="co">## Get:2 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode72 amd64 12.22.9~dfsg-1ubuntu3.6 [10.8 MB]</span></span></code></pre>
 <pre><code><span><span class="co">## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]</span></span></code></pre>
-<pre><code><span><span class="co">## Fetched 11.4 MB in 5s (2119 kB/s)</span></span></code></pre>
+<pre><code><span><span class="co">## Fetched 11.4 MB in 0s (82.8 MB/s)</span></span></code></pre>
 <pre><code><span><span class="co">## Selecting previously unselected package libnode72:amd64.</span></span>
 <span><span class="co">## (Reading database ...</span></span></code></pre>
 <pre><code><span><span class="co">## (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%</span></span></code></pre>
@@ -291,10 +291,9 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## </span></span>
 <span><span class="co">## No containers need to be restarted.</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## No user sessions are running outdated binaries.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## No VM guests are running outdated hypervisor (qemu) binaries on this host.</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 4 pkgs + 72 deps: kept 72 <span style="color: #B2B2B2;">[19.3s]</span></span></span></code></pre>
+<span><span class="co">## No user sessions are running outdated binaries.</span></span></code></pre>
+<pre><code><span><span class="co">## No VM guests are running outdated hypervisor (qemu) binaries on this host.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 4 pkgs + 72 deps: kept 72 <span style="color: #B2B2B2;">[13.4s]</span></span></span></code></pre>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -318,7 +317,7 @@ Akshay Easwaran, Jared Lee
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_betting_lines.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">12</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:43:07 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 09:27:12 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 23</span></span></span>
 <span><span class="co">##     game_id season season_type  week start_date           home_team_id home_team</span></span>
 <span><span class="co">##       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
@@ -336,7 +335,7 @@ Akshay Easwaran, Jared Lee
 <code class="sourceCode R"><span><span class="co"># 7 OTs LSU at TAMU</span></span>
 <span><span class="fu"><a href="../reference/cfbd_betting_lines.html">cfbd_betting_lines</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span>, week <span class="op">=</span> <span class="fl">13</span>, team <span class="op">=</span> <span class="st">"Texas A&amp;M"</span>, conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Betting lines data from CollegeFootballData.com ─────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 06:43:07 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 09:27:12 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 23</span></span></span>
 <span><span class="co">##     game_id season season_type  week start_date           home_team_id home_team</span></span>
 <span><span class="co">##       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
