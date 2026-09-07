@@ -22,7 +22,7 @@ template:
          "runtimePlatform":"R (>= 4.1.0)",
          "keywords":["college football","EPA","expected points added","win probability","play-by-play","sports analytics","CFBD","ESPN"],
          "author":{"@id":"https://cfbfastr.sportsdataverse.org/#author"},
-         "isPartOf":{"@id":"https://sportsdataverse.org/#org"}},
+         "publisher":{"@id":"https://sportsdataverse.org/#org"}},
         {"@type":"Person","@id":"https://cfbfastr.sportsdataverse.org/#author",
          "name":"Saiem Gilani","url":"https://github.com/saiemgilani"},
         {"@type":"Organization","@id":"https://sportsdataverse.org/#org",

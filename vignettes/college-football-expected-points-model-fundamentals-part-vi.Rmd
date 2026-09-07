@@ -91,20 +91,33 @@ The spread is the point: 14% on 1st and goal from the 3, 78% on 3rd and 8. Any
 raw pass-rate statistic is mostly measuring which of these situations a team
 found itself in. `pass_oe` removes that.
 
-### Two era encodings, one set of cutpoints
+### An era-encoding trap
 
-The bundle carries the rule era two ways. `xpass` and the two-point model take an
-**ordinal** `era` column, 0–3; the FG and QBR models take **one-hot** `era0`–`era3`
-dummies.
+The rule era enters these models two different ways, with **two different sets of
+cutpoints**:
 
-The cutpoints are the same for all of them — a single shared constant,
-`ERA_BOUNDS = (2006, 2013, 2020)`, giving 2004–2006, 2007–2013, 2014–2020 and
-2021 on. Both encodings derive from it, so there is no divergence to trip over,
-only two shapes of the same fact.
+| Models | Encoding | Cuts | Constant |
+|---|---|---|---|
+| `xpass`, `two_pt` | ordinal `era`, 0–3 | 2006 / 2013 / **2017** | `.XPASS_ERA_CUTS` |
+| `fg`, `qbr`, `fd` | one-hot `era0`–`era3` | 2006 / 2013 / **2020** | `.FG_ERA_CUTS` |
 
-If you score these models by hand, match each one's encoding: an ordinal `3`
-where four dummy columns are expected does not fail loudly. `cfbfastR` handles it
-internally.
+Different encodings *and* different cutpoints, in the same bundle. A 2019 play is
+ordinal `era = 3` but one-hot `era2`. If you score these by hand, build each
+model's era feature from its own rule — reusing one for the other is silent and
+wrong. `cfbfastR` and `sportsdataverse-py` both handle this internally and agree
+with each other.
+
+**A caveat on the ordinal cut.** The trainer that produces the bundle
+(`cfbfastR-cfb-data`) derives *both* encodings from one constant,
+`ERA_BOUNDS = (2006, 2013, 2020)`. So the shipped `xpass_model` was trained with
+2018–2020 in bucket 2, while both consumers score those seasons as bucket 3.
+
+`era` carries only ~1% of `xpass`'s gain, so the effect is small but not zero —
+across a grid of realistic situations the mismatch moves `xpass` by a mean of
+**0.9 percentage points** and at most **2.9**. It does not touch `prob_2pt` at
+all, since that model never splits on `era`. Worth knowing if you are comparing
+`pass_oe` across the 2017/2018 boundary; tracked in
+[cfbfastR-cfb-data#70](https://github.com/sportsdataverse/cfbfastR-cfb-data/issues/70).
 
 ## The field goal model
 
