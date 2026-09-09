@@ -353,7 +353,11 @@ validate_year <- function(year = NULL){
       num_check = is.numeric(year),
       len_check = nchar(year) == 4
     )
-    if(!all(checks)){
+    # isTRUE, not `!all()`: nchar(NA_integer_) is NA, so `checks` carries an NA,
+    # `all()` returns NA and `if (!NA)` raises base R's "missing value where
+    # TRUE/FALSE needed" instead of the cli message this function exists to give.
+    # Hit via year = NA_integer_ or c(2025, NA) (CodeRabbit on #151).
+    if(!isTRUE(all(checks))){
       cli::cli_abort(glue::glue("Enter valid {deparse(substitute(year))} as a number (YYYY)"))
     }
   }

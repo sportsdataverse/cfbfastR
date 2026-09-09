@@ -1,0 +1,22 @@
+
+identity_cols <- c("game_id", "season", "week", "season_type",
+                   "team", "conference", "opponent")
+
+test_that("CFB Passing Teams Games", {
+  skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  x <- cfbd_passing_teams_games(year = 2025, week = 5)
+  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
+    skip("CFBD rate-limited or returned no rows")
+  }
+  expect_s3_class(x, "data.frame")
+  expect_true(all(identity_cols %in% colnames(x)))
+  expect_equal(length(grep("^offense_", colnames(x))), 184L)
+  expect_equal(length(grep("^defense_", colnames(x))), 184L)
+  expect_equal(ncol(x), 375L)
+})
+
+test_that("CFB Passing Teams Games requires a year", {
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  expect_error(cfbd_passing_teams_games(week = 5), regexp = "Missing required field: year")
+})

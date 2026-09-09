@@ -37,11 +37,32 @@ Five source-prefixed families; `R/` is grouped by prefix:
 
 | Prefix | Source | Auth | Notes |
 |---|---|---|---|
-| `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics |
+| `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics/passing/rushing |
 | `espn_cfb_*` / `espn_metrics_*` / `espn_ratings_*` | ESPN (`site.api.espn.com` + `sports.core.api.espn.com`) | none | ~75 wrappers (3.0.0 expanded ESPN from 8 → 73); core-v2 `$ref`-heavy payloads |
 | `fox_cfb_*` | `api.foxsports.com/bifrost/v1/cfb` | public web key | 8 wrappers (pbp/boxscore/odds/roster/stats/gamelog/standings/leaders); key overridable via `options(cfbfastR.fox_key=)` |
 | `yahoo_cfb_*` | Yahoo Sports | none | scoreboard/boxscore/player+team season stats |
 | `load_cfb_*` / `load_espn_cfb_*` / `load_ncaa_mfb_*` | release artifacts | none | 43 full-season loaders from `sportsdataverse-data` releases |
+
+**CFBD endpoint coverage:** all **84** paths in the CFBD spec (v5.27.1) are
+wrapped as of the `cfbd_passing_*` / `cfbd_rushing_*` additions. To re-audit, the
+spec is NOT at `/swagger/v1/swagger.json` (that serves the Swagger UI shell) —
+it is embedded in `https://api.collegefootballdata.com/swagger/swagger-ui-init.js`
+as `options.swaggerDoc`. When diffing coverage, match BOTH URL shapes: nearly
+every wrapper uses a full `https://api.collegefootballdata.com/...` literal, but
+`cfbd_metrics_fg_ep()` alone builds from `endpoint_path <- "metrics/fg/ep"`, and
+a grep for the literal will report it as a false gap.
+
+**Passing / rushing families (`R/cfbd_passing.R`, `R/cfbd_rushing.R`):** ten
+wrappers, **2025 onward only** — earlier seasons answer HTTP 200 with `[]`, so
+each guards the empty parse and returns a 0-row frame rather than letting
+`janitor::clean_names()` abort on absent dimnames. (The older `cfbd_metrics_wepa_*`
+functions do NOT guard this and still emit a `clean_names()` error out of
+coverage.) The frames are wide by construction: a 23-column passing production
+block repeats across 7 pass locations, doubled `offense_`/`defense_` on the team
+endpoints (371 columns); rushing repeats a 24/26-column block across 4 run
+directions. `?cfbd_passing` / `?cfbd_rushing` document the block and the naming
+scheme once instead of listing every column. `*_available` columns are
+denominators for the means, not statistics.
 
 **CFBD API key:** `register_cfbd()` saves `CFBD_API_KEY`; `cfbd_key()` / `has_cfbd_key()` /
 `cfbd_api_key_info()` inspect it. Register at <https://collegefootballdata.com/key>.
