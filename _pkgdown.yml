@@ -328,8 +328,10 @@ reference:
       - '`cfbd_coaches`'
       - '`cfbd_conferences`'
       - '`cfbd_drives`'
+      - '`cfbd_passing`'
       - '`cfbd_pbp`'
       - '`cfbd_pbp_v2`'
+      - '`cfbd_rushing`'
       - '`cfbd_venues`'
       - '`espn_cfb_catalog`'
       - '`espn_cfb_game`'
@@ -391,6 +393,16 @@ reference:
     contents:
       - '`cfbd_stats`'
       - starts_with("cfbd_stats")
+  - subtitle: Passing Data
+    desc: Functions exported by cfbfastR sourced from the passing endpoints of the CollegeFootballData API (2025 onward)
+    contents:
+      - '`cfbd_passing`'
+      - starts_with("cfbd_passing_")
+  - subtitle: Rushing Data
+    desc: Functions exported by cfbfastR sourced from the rushing endpoints of the CollegeFootballData API (2025 onward)
+    contents:
+      - '`cfbd_rushing`'
+      - starts_with("cfbd_rushing_")
   - subtitle: Rankings and Ratings Data
     desc: Functions exported by cfbfastR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:

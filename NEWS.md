@@ -7,6 +7,55 @@ distinguish them — while producing different EPA/WPA for the same play. A
 four-component version means you are on the GitHub build. See the model note
 below before mixing outputs from the two.
 
+## New: CFBD passing and rushing endpoint families
+
+Ten new `cfbd_*()` wrappers close the last gaps against the CollegeFootballData
+API (spec **v5.27.1**), taking coverage from 74 of 84 endpoints to **84 of 84**:
+
+| function | endpoint |
+|---|---|
+| `cfbd_passing_players_season()` | `/passing/players/season` |
+| `cfbd_passing_players_games()` | `/passing/players/games` |
+| `cfbd_passing_teams_season()` | `/passing/teams/season` |
+| `cfbd_passing_teams_games()` | `/passing/teams/games` |
+| `cfbd_passing_plays()` | `/passing/plays` |
+| `cfbd_rushing_players_season()` | `/rushing/players/season` |
+| `cfbd_rushing_players_games()` | `/rushing/players/games` |
+| `cfbd_rushing_teams_season()` | `/rushing/teams/season` |
+| `cfbd_rushing_teams_games()` | `/rushing/teams/games` |
+| `cfbd_rushing_plays()` | `/rushing/plays` |
+
+These carry the charting detail the older `cfbd_stats_*()` and `cfbd_metrics_*()`
+families do not: passing production split across seven pass locations (short and
+deep x left/middle/right, plus `unknown`), rushing production split across four
+run directions, and play-level frames with air yards, yards after catch, target
+ids, run direction and carrier attribution.
+
+The frames are wide by construction rather than by accident. One 23-column
+passing production block repeats per location, and the team endpoints repeat the
+whole thing for `offense_` and `defense_`, so `cfbd_passing_teams_season()` is
+3 + 2 x (23 + 7 x 23) = **371 columns**. Rather than a 371-row returns table,
+`?cfbd_passing` documents the production block and the bucket naming scheme once
+and every column follows from it; `?cfbd_rushing` does the same for the
+24/26-column rushing block and its four directions.
+
+Two things worth knowing before using them:
+
+* **They start in 2025.** Earlier seasons are not an error — CFBD answers
+  HTTP 200 with an empty array — so these functions return a 0-row data frame
+  for 2024 and before, silently rather than with a parse error.
+* **The `*_available` columns are denominators, not statistics.** CFBD parses
+  air yards, YAC, location and direction out of play text, so an attempt can be
+  counted while those stay unknown. Dividing by `attempts` instead of the
+  matching `*_available` column understates every mean. Play-level frames expose
+  the same caveat as `parse_status`, `location_analysis_eligible` and
+  `direction_analysis_eligible`. Check a column before building on it: as of
+  this writing CFBD has **not** populated play-level `air_yards`,
+  `yards_after_catch`, `pass_depth`/`pass_direction`/`pass_location` or
+  `rush_direction` at all — every value is `NA`, so R types them `logical` —
+  while `target` is populated (1,976 of 2,003 week-5 2025 completions) and the
+  *season* aggregates do carry air yards.
+
 ### Air yards side the catch spot by the game's own text abbreviations
 
 The 2025+ ESPN vendor text spots the catch with each school's own abbreviation

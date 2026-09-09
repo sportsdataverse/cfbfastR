@@ -72,6 +72,30 @@ All loaders accept a vector of seasons (or `seasons = TRUE` for everything
 published) and an optional `dbConnection` + `tablename` to write straight into
 a database instead of returning a tibble.
 
+## **CollegeFootballData API coverage**
+
+The `cfbd_*()` wrappers cover **all 84 endpoints** in the current CFBD
+specification (v5.27.1). The most recent additions are the passing and rushing
+families, which carry charting detail the older `cfbd_stats_*()` and
+`cfbd_metrics_*()` functions do not:
+
+```r
+# season passing production, split across seven pass locations
+cfbd_passing_players_season(year = 2025, team = "Texas")
+
+# every pass with air yards, YAC, target id and location
+cfbd_passing_plays(year = 2025, week = 5, outcome = "interception")
+
+# rushing production split across four run directions, offense and defense
+cfbd_rushing_teams_season(year = 2025, team = "Texas")
+```
+
+These endpoints begin in **2025**; earlier seasons return an empty data frame
+rather than an error. See `?cfbd_passing` and `?cfbd_rushing` — the frames are
+wide (up to 375 columns) because one production block repeats per location or
+direction, so the family topics document the block and the naming scheme once
+instead of listing every column.
+
 ## **Breaking Changes**
 
 [**Full News on Releases**](https://cfbfastR.sportsdataverse.org/news/index.html)

@@ -62,7 +62,7 @@ pkgdown::build_site()
 
 | Data Source                            | Prefix             | Example                                            |
 | -------------------------------------- | ------------------ | -------------------------------------------------- |
-| CollegeFootballData API                | `cfbd_`            | `cfbd_pbp_data()`, `cfbd_stats_game_havoc()`       |
+| CollegeFootballData API                | `cfbd_`            | `cfbd_pbp_data()`, `cfbd_stats_game_havoc()`, `cfbd_passing_plays()` |
 | ESPN College Football catalog          | `espn_cfb_`        | `espn_cfb_pbp()`, `espn_cfb_team()`                |
 | ESPN win-probability metrics           | `espn_metrics_`    | `espn_metrics_wp()`                                |
 | ESPN ratings                           | `espn_ratings_`    | `espn_ratings_fpi()`                               |
@@ -296,4 +296,7 @@ Types: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `style`, `perf`, `ci`
 - **`make_cfbfastR_data()` class order**: the class vector is `c("cfbfastR_data", "tbl_df", "tbl", "data.table", "data.frame")`. Apply `make_cfbfastR_data()` **after** the final dplyr transformation, since `dplyr` verbs strip class.
 - **Column drift**: ESPN and CFBD add columns over time -- use subset-direction column assertions (`expect_in(expected, actual)`) and `dplyr::any_of()` for transient-column drops/renames.
 - **Local dev artifacts**: `.vscode`, `.claude`, `.positai`, `.remember`, `tools/` can surface as `R CMD check` notes. Keep `.Rbuildignore` patterns for each.
+- **Empty CFBD responses**: an out-of-coverage season returns HTTP 200 with `[]`, which parses to a zero-length list; `janitor::clean_names()` then aborts on the absent dimnames and the caller sees a parse error instead of "no rows". Guard with `if (is.data.frame(parsed) && nrow(parsed) > 0)` before cleaning -- the `cfbd_passing_*` / `cfbd_rushing_*` wrappers do, because they only cover 2025 onward so the empty path is the common case, not an edge. (`cfbd_metrics_wepa_*` still has the unguarded behavior.)
+- **Auditing CFBD endpoint coverage**: the OpenAPI document is embedded in `https://api.collegefootballdata.com/swagger/swagger-ui-init.js` as `options.swaggerDoc`; `/swagger/v1/swagger.json` serves the Swagger UI shell, not the spec. Diff against BOTH URL shapes used in `R/` -- a full `https://api.collegefootballdata.com/...` literal (nearly every wrapper) and `endpoint_path <- "..."` (only `cfbd_metrics_fg_ep()`), or the latter reports as a false gap.
+- **Wide passing/rushing frames**: these are wide by construction (a production block repeated per pass location or run direction, doubled `offense_`/`defense_` on team endpoints -- up to 375 columns). Document the block and naming scheme once in the family topic rather than emitting a 371-row returns table, and remember `*_available` columns are the denominators for the means, not statistics.
 - **Never hand-edit `NAMESPACE` or files under `man/`**; regenerate with `devtools::document()`.

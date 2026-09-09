@@ -131,6 +131,93 @@ passing_df |> gt() |>
 
 ```
 
+### **Passing and rushing splits (2025 onward)**
+
+The `cfbd_passing_*()` and `cfbd_rushing_*()` families carry charting detail the
+season-stats endpoints above do not: passing production split across seven pass
+locations, rushing across four run directions, and play-level frames with air
+yards, yards after catch and carrier attribution.
+
+These frames are **wide by construction** — one 23-column passing production
+block repeats for every location, and the team endpoints repeat the whole thing
+for offense and defense, so `cfbd_passing_teams_season()` is 371 columns. Select
+what you need rather than printing them whole.
+
+```{r}
+tex_pass <- cfbd_passing_players_season(year = 2025, team = "Texas")
+
+tex_pass |>
+  dplyr::filter(attempts > 20) |>
+  dplyr::select(player, attempts, completion_rate, average_depth_of_target, ppa) |>
+  dplyr::arrange(dplyr::desc(attempts))
+```
+
+Where the splits earn their keep is comparing a passer by area of the field. The
+bucket columns are named `locations_<bucket>_<stat>`:
+
+```{r}
+buckets <- c("short_left", "short_middle", "short_right",
+             "deep_left", "deep_middle", "deep_right", "unknown")
+
+tex_pass |>
+  dplyr::filter(attempts == max(attempts)) |>
+  # name the seven buckets explicitly: a wildcard on `_attempts` would also
+  # sweep up `locations_<bucket>_successful_attempts`, which is a different
+  # statistic, and silently double the rows.
+  dplyr::select(player, paste0("locations_", buckets, "_attempts")) |>
+  tidyr::pivot_longer(
+    -player,
+    names_to = "location", values_to = "attempts",
+    names_pattern = "locations_(.*)_attempts"
+  ) |>
+  dplyr::arrange(dplyr::desc(attempts))
+```
+
+Note how large the `unknown` bucket is. Location is parsed from play text, so a
+sizeable share of attempts never get one — which is exactly why the next point
+matters.
+
+A caveat that matters for every mean you compute from these: the `*_available`
+columns are **denominators, not statistics**. CFBD parses air yards, YAC and
+location out of play text, so an attempt can be counted while those stay
+unknown. Divide by the matching `*_available` column, not by `attempts`:
+
+```{r}
+tex_pass |>
+  dplyr::filter(attempts > 20) |>
+  dplyr::transmute(
+    player,
+    attempts,
+    air_yards_parsed = air_yards_attempts_available,
+    # right: the denominator CFBD actually measured
+    adot_correct = total_air_yards / air_yards_attempts_available,
+    # wrong: silently understated wherever parsing was incomplete
+    adot_naive = total_air_yards / attempts
+  )
+```
+
+Play-level frames expose the same idea as parse flags. Filter on
+`location_analysis_eligible` (passing) or `direction_analysis_eligible`
+(rushing) before trusting a split column:
+
+```{r}
+cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
+  dplyr::filter(!is.na(target)) |>
+  dplyr::select(offense, defense, passer, target, total_yards, ppa, success) |>
+  head(10)
+```
+
+Check a column before you build on it. As of this writing CFBD populates
+`target` on the play frame (1,976 of 2,003 week-5 completions) but has **not**
+populated play-level `air_yards` or `yards_after_catch` at all — R types those
+`logical` because every value is `NA`. The *season* aggregates do carry air
+yards, which is why `total_air_yards` above is non-zero while the play column is
+empty. The same applies to `rush_direction` on `cfbd_rushing_plays()`.
+
+Earlier seasons are not an error — these endpoints begin in 2025, and CFBD
+answers a 2024 request with an empty array, so the functions return a zero-row
+data frame rather than failing.
+
 ### **College Football Mapping for Stats Categories**
 
 ```{r}

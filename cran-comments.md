@@ -10,6 +10,15 @@ executed.
 
 ## Release summary
 
+### Development additions since 3.0.0
+
+* Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
+  endpoint families, bringing coverage to all 84 endpoints in the current API
+  specification (v5.27.1). All ten are documented, exported, and covered by
+  tests that `skip_on_cran()` because they require a `CFBD_API_KEY` and a live
+  API; they run on the package's continuous integration on every push.
+
+
 This is a major release (2.2.0 -> 3.0.0; the 2.3.0 development version was renumbered and never published) that:
 
 * Adds a large new ESPN college-football API layer — 65 new `espn_cfb_*()`
