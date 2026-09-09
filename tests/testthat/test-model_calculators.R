@@ -112,3 +112,15 @@ test_that("normalization does not clobber an already-named column", {
   df <- data.frame(TimeSecsRem = 111, start.TimeSecsRem = 999)
   expect_equal(.cfb_normalize_pbp_columns(df, "xpass_model")$TimeSecsRem, 111)
 })
+
+test_that("a season_type column is not mistaken for season", {
+  # `$` partial-matches on data frames, so df$season on a pbp frame carrying
+  # season_type but no season returns "regular" and the era comparison runs
+  # against a season TYPE. Exact [["season"]] lookup is required.
+  local_mocked_bindings(cfb_card_era_contract = function(model) {
+    list(encoding = "ordinal", columns = "era", cuts = c(2006, 2013, 2020))
+  })
+  df <- data.frame(season_type = "regular", yards_to_goal = 30, stringsAsFactors = FALSE)
+  out <- cfb_add_era_columns(df, "xpass_model", season = 2018)
+  expect_equal(out$era, 2L)
+})
