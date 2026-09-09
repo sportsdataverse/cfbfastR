@@ -202,7 +202,7 @@ Play-level frames expose the same idea as parse flags. Filter on
 
 ```{r}
 cfbd_passing_plays(year = 2025, week = 5, outcome = "completion") |>
-  dplyr::filter(!is.na(target)) |>
+  dplyr::filter(location_analysis_eligible, !is.na(target)) |>
   dplyr::select(offense, defense, passer, target, total_yards, ppa, success) |>
   head(10)
 ```

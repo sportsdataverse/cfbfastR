@@ -33,7 +33,9 @@ Minimum value accepted: 2025}
 }
 
 
-plus TWO copies of the 26-column production block and its four \verb{directions_*} repeats: \verb{offense_*} (the team's own rushing) and \verb{defense_*} (rushing allowed).
+plus TWO copies of the 26-column production block, each with its four
+15-column \verb{directions_*} repeats: \verb{offense_*} (the team's own rushing) and
+\verb{defense_*} (rushing allowed). That is 3 + 2 x (26 + 4 x 15) = 175.
 See \link{cfbd_rushing}. So \code{offense_ppa} is PPA per carry run and
 \code{defense_ppa} is PPA per carry allowed -- a \emph{lower} \code{defense_ppa} is better.
 }

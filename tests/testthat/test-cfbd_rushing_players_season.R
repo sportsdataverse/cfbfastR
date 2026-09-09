@@ -3,6 +3,7 @@ identity_cols <- c("season", "player_id", "player", "team", "conference")
 
 test_that("CFB Rushing Players Season", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   x <- cfbd_rushing_players_season(year = 2025, team = "Texas")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
     skip("CFBD rate-limited or returned no rows")
@@ -23,6 +24,7 @@ test_that("CFB Rushing Players Season", {
 
 test_that("CFB Rushing Players Season returns empty out of coverage", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   # These endpoints carry 2025 onward. Earlier seasons answer HTTP 200 with an
   # empty array, which must surface as a 0-row frame and not a parse error.
   x <- cfbd_rushing_players_season(year = 2024, team = "Texas")

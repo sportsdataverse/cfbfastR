@@ -3,6 +3,7 @@ identity_cols <- c("season", "team", "conference")
 
 test_that("CFB Passing Teams Season", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   x <- cfbd_passing_teams_season(year = 2025, team = "Texas")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
     skip("CFBD rate-limited or returned no rows")

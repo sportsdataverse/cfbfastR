@@ -199,7 +199,7 @@ cfbd_rushing_players_season <- function(year = NULL,
 
 #' @title
 #' **Get player game rushing production, split by run direction**
-#' @param year (*Integer* required): Year, 4 digit format (*YYYY*) \cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) \cr
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_rushing_players_games', 'min_year']`
 #' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* optional): Season type - regular, postseason, both, allstar, spring_regular, spring_postseason
@@ -318,7 +318,9 @@ cfbd_rushing_players_games <- function(year = NULL,
 #'  |team            |character |Team name.                                                      |
 #'  |conference      |character |Team conference name.                                           |
 #'
-#' plus TWO copies of the 26-column production block and its four `directions_*` repeats: `offense_*` (the team's own rushing) and `defense_*` (rushing allowed).
+#' plus TWO copies of the 26-column production block, each with its four
+#' 15-column `directions_*` repeats: `offense_*` (the team's own rushing) and
+#' `defense_*` (rushing allowed). That is 3 + 2 x (26 + 4 x 15) = 175.
 #' See [cfbd_rushing]. So `offense_ppa` is PPA per carry run and
 #' `defense_ppa` is PPA per carry allowed -- a *lower* `defense_ppa` is better.
 #'
@@ -416,7 +418,8 @@ cfbd_rushing_teams_season <- function(year = NULL,
 #'  |conference      |character |Team conference name.                                           |
 #'  |opponent        |character |Opposing team name.                                             |
 #'
-#' plus the `offense_*` and `defense_*` production and `directions_*` blocks -- see
+#' plus the `offense_*` and `defense_*` production blocks with their four
+#' 15-column `directions_*` repeats -- 7 + 2 x (26 + 4 x 15) = 179. See
 #' [cfbd_rushing] and [cfbd_rushing_teams_season].
 #'
 #' @keywords Rushing Teams Games
@@ -442,6 +445,11 @@ cfbd_rushing_teams_games <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
+  # The API requires `year` on this endpoint. validate_year(NULL) is a no-op, so
+  # without this the call goes out without the parameter and comes back as an
+  # empty frame with a generic message -- the docs would be promising a contract
+  # nothing enforced (CodeRabbit on #151).
+  if (is.null(year)) cli::cli_abort("Missing required field: year")
   validate_year(year)
   validate_week(week)
   if (!is.null(season_type)) validate_season_type(season_type)

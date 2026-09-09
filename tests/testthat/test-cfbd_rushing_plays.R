@@ -14,6 +14,7 @@ cols <- c(
 
 test_that("CFB Rushing Plays", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   x <- cfbd_rushing_plays(year = 2025, week = 5)
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
     skip("CFBD rate-limited or returned no rows")
@@ -24,6 +25,18 @@ test_that("CFB Rushing Plays", {
 })
 
 test_that("CFB Rushing Plays rejects invalid enum arguments", {
-  expect_error(cfbd_rushing_plays(year = 2025, rush_direction = "sideways"))
-  expect_error(cfbd_rushing_plays(year = 2025, attribution_status = "guessed"))
+  # See the note in test-cfbd_passing_plays.R: without the key guard these pass
+  # on validate_api_key()'s error rather than on the enum validation.
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  expect_error(cfbd_rushing_plays(year = 2025, rush_direction = "sideways"),
+               regexp = "Enter valid rush_direction")
+  expect_error(cfbd_rushing_plays(year = 2025, attribution_status = "guessed"),
+               regexp = "Enter valid attribution_status")
+})
+
+test_that("CFB Rushing Plays does NOT require a year", {
+  # Unlike the passing plays endpoint, /rushing/plays does not mark year
+  # required in the spec, so a game-scoped call must remain valid.
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  expect_no_error(cfbd_rushing_plays(game_id = 401752717))
 })

@@ -33,8 +33,9 @@ Minimum value accepted: 2025}
 }
 
 
-plus TWO copies of the 23-column production block and its seven \verb{locations_*}
-repeats: \verb{offense_*} (the team's own passing) and \verb{defense_*} (passing allowed).
+plus TWO copies of the 23-column production block, each with its seven
+23-column \verb{locations_*} repeats: \verb{offense_*} (the team's own passing) and
+\verb{defense_*} (passing allowed). That is 3 + 2 x (23 + 7 x 23) = 371.
 See \link{cfbd_passing}. So \code{offense_ppa} is PPA per attempt thrown and
 \code{defense_ppa} is PPA per attempt allowed -- a \emph{lower} \code{defense_ppa} is better.
 }

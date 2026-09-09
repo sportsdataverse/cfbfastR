@@ -4,6 +4,7 @@ identity_cols <- c("game_id", "season", "week", "season_type",
 
 test_that("CFB Rushing Players Games", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   x <- cfbd_rushing_players_games(year = 2025, week = 5)
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
     skip("CFBD rate-limited or returned no rows")

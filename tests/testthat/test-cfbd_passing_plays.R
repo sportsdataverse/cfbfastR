@@ -14,6 +14,7 @@ cols <- c(
 
 test_that("CFB Passing Plays", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   x <- cfbd_passing_plays(year = 2025, week = 5)
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
     skip("CFBD rate-limited or returned no rows")
@@ -25,6 +26,7 @@ test_that("CFB Passing Plays", {
 
 test_that("CFB Passing Plays honours the outcome filter", {
   skip_on_cran()
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   x <- cfbd_passing_plays(year = 2025, week = 5, outcome = "interception")
   if (is.null(x) || !is.data.frame(x) || nrow(x) == 0L) {
     skip("CFBD rate-limited or returned no rows")
@@ -33,5 +35,18 @@ test_that("CFB Passing Plays honours the outcome filter", {
 })
 
 test_that("CFB Passing Plays rejects an invalid outcome", {
-  expect_error(cfbd_passing_plays(year = 2025, outcome = "touchdown"))
+  # The key guard AND the message matter: validate_api_key() runs first, so
+  # without a key this passes on the missing-key error and never exercises the
+  # outcome check it exists to cover (CodeRabbit on #151).
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  expect_error(cfbd_passing_plays(year = 2025, outcome = "touchdown"),
+               regexp = "Enter valid outcome")
+})
+
+test_that("CFB Passing Plays requires a year", {
+  # The API requires `year` here, but validate_year(NULL) is a no-op, so before
+  # this guard a yearless call went out without the parameter and came back as
+  # an empty frame -- the docs promised a contract nothing enforced.
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  expect_error(cfbd_passing_plays(week = 5), regexp = "Missing required field: year")
 })

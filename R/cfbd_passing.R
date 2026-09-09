@@ -245,6 +245,11 @@ cfbd_passing_players_games <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
+  # The API requires `year` on this endpoint. validate_year(NULL) is a no-op, so
+  # without this the call goes out without the parameter and comes back as an
+  # empty frame with a generic message -- the docs would be promising a contract
+  # nothing enforced (CodeRabbit on #151).
+  if (is.null(year)) cli::cli_abort("Missing required field: year")
   validate_year(year)
   validate_week(week)
   if (!is.null(season_type)) validate_season_type(season_type)
@@ -315,8 +320,9 @@ cfbd_passing_players_games <- function(year = NULL,
 #'  |team            |character |Team name.                                                      |
 #'  |conference      |character |Team conference name.                                           |
 #'
-#' plus TWO copies of the 23-column production block and its seven `locations_*`
-#' repeats: `offense_*` (the team's own passing) and `defense_*` (passing allowed).
+#' plus TWO copies of the 23-column production block, each with its seven
+#' 23-column `locations_*` repeats: `offense_*` (the team's own passing) and
+#' `defense_*` (passing allowed). That is 3 + 2 x (23 + 7 x 23) = 371.
 #' See [cfbd_passing]. So `offense_ppa` is PPA per attempt thrown and
 #' `defense_ppa` is PPA per attempt allowed -- a *lower* `defense_ppa` is better.
 #'
@@ -440,6 +446,11 @@ cfbd_passing_teams_games <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
+  # The API requires `year` on this endpoint. validate_year(NULL) is a no-op, so
+  # without this the call goes out without the parameter and comes back as an
+  # empty frame with a generic message -- the docs would be promising a contract
+  # nothing enforced (CodeRabbit on #151).
+  if (is.null(year)) cli::cli_abort("Missing required field: year")
   validate_year(year)
   validate_week(week)
   if (!is.null(season_type)) validate_season_type(season_type)
@@ -593,6 +604,11 @@ cfbd_passing_plays <- function(year = NULL,
 
   # Validation ----
   validate_api_key()
+  # The API requires `year` on this endpoint. validate_year(NULL) is a no-op, so
+  # without this the call goes out without the parameter and comes back as an
+  # empty frame with a generic message -- the docs would be promising a contract
+  # nothing enforced (CodeRabbit on #151).
+  if (is.null(year)) cli::cli_abort("Missing required field: year")
   validate_year(year)
   validate_week(week)
   validate_id(game_id)

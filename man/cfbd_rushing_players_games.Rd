@@ -15,7 +15,7 @@ cfbd_rushing_players_games(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY}) \cr
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) \cr
 Minimum value accepted: 2025}
 
 \item{week}{(\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}

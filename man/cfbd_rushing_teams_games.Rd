@@ -40,7 +40,8 @@ Minimum value accepted: 2025}
 }
 
 
-plus the \verb{offense_*} and \verb{defense_*} production and \verb{directions_*} blocks -- see
+plus the \verb{offense_*} and \verb{defense_*} production blocks with their four
+15-column \verb{directions_*} repeats -- 7 + 2 x (26 + 4 x 15) = 179. See
 \link{cfbd_rushing} and \link{cfbd_rushing_teams_season}.
 }
 \description{
