@@ -223,6 +223,17 @@ The resolution order is: explicit `proxy =` argument -> `getOption("cfbfastR.pro
 
 -   [Nick Tice](https://github.com/NickTice)
 
+<!-- cheatsheet-section -->
+## **Cheat sheet**
+
+A printable one-page reference for **`cfbfastR`** — the function families, the loaders, and what each one returns.
+
+📄 **[Download the cfbfastR cheat sheet (PDF)](https://sportsdataverse.org/cheatsheets/cfbfastR.pdf)**
+
+Free to download, print and hand out; light and dark, US Letter landscape.
+Every SportsDataverse package has one — browse them all at
+**[sportsdataverse.org/cheatsheets](https://sportsdataverse.org/cheatsheets)**.
+
 ## **Citations**
 
 To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R package in publications, use:

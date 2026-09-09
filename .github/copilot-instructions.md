@@ -300,3 +300,10 @@ Types: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `style`, `perf`, `ci`
 - **Auditing CFBD endpoint coverage**: the OpenAPI document is embedded in `https://api.collegefootballdata.com/swagger/swagger-ui-init.js` as `options.swaggerDoc`; `/swagger/v1/swagger.json` serves the Swagger UI shell, not the spec. Diff against BOTH URL shapes used in `R/` -- a full `https://api.collegefootballdata.com/...` literal (nearly every wrapper) and `endpoint_path <- "..."` (only `cfbd_metrics_fg_ep()`), or the latter reports as a false gap.
 - **Wide passing/rushing frames**: these are wide by construction (a production block repeated per pass location or run direction, doubled `offense_`/`defense_` on team endpoints -- up to 375 columns). Document the block and naming scheme once in the family topic rather than emitting a 371-row returns table, and remember `*_available` columns are the denominators for the means, not statistics.
 - **Never hand-edit `NAMESPACE` or files under `man/`**; regenerate with `devtools::document()`.
+
+## Cheat sheet
+
+There is a printable one-page reference for this package at
+<https://sportsdataverse.org/cheatsheets/cfbfastR.pdf>, one of [a set covering every SportsDataverse package](https://sportsdataverse.org/cheatsheets).
+Keep it in mind when adding or renaming an exported function: the sheet is a
+hand-built canvas, so a surface change means the sheet needs a revision too.

@@ -167,3 +167,10 @@ all cached endpoints; filesystem backend persists under `tools::R_user_dir("cfbf
 - **Never add AI co-author trailers (Claude/Copilot/etc.) to commits.** Conventional Commits
   (`feat:`/`fix:`/`docs:`/`test:`/`refactor:`/`chore:`/`ci:`), scope when useful (`fix(pbp): ...`).
 ```
+
+## Cheat sheet
+
+There is a printable one-page reference for this package at
+<https://sportsdataverse.org/cheatsheets/cfbfastR.pdf>, one of [a set covering every SportsDataverse package](https://sportsdataverse.org/cheatsheets).
+Keep it in mind when adding or renaming an exported function: the sheet is a
+hand-built canvas, so a surface change means the sheet needs a revision too.
