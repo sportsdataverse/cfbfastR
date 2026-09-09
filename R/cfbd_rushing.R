@@ -449,7 +449,7 @@ cfbd_rushing_teams_games <- function(year = NULL,
   # without this the call goes out without the parameter and comes back as an
   # empty frame with a generic message -- the docs would be promising a contract
   # nothing enforced (CodeRabbit on #151).
-  if (is.null(year)) cli::cli_abort("Missing required field: year")
+  if (is.null(year) || anyNA(year)) cli::cli_abort("Missing required field: year")
   validate_year(year)
   validate_week(week)
   if (!is.null(season_type)) validate_season_type(season_type)

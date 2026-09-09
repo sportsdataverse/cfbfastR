@@ -50,3 +50,14 @@ test_that("CFB Passing Plays requires a year", {
   skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
   expect_error(cfbd_passing_plays(week = 5), regexp = "Missing required field: year")
 })
+
+test_that("CFB Passing Plays rejects NA as a missing year", {
+  # NA slips past is.null(), and nchar(NA_integer_) is NA, so validate_year()'s
+  # `all(checks)` returned NA and `if (!NA)` raised base R's "missing value
+  # where TRUE/FALSE needed" rather than a cli message.
+  skip_if_not(has_cfbd_key(), "CFBD_API_KEY not set")
+  for (bad in list(NA, NA_integer_, NA_character_, c(2025, NA))) {
+    expect_error(cfbd_passing_plays(year = bad, week = 5),
+                 regexp = "Missing required field: year")
+  }
+})
