@@ -37,13 +37,31 @@
 #'   try(cfb_card_features("ep_model"))
 #' }
 cfb_model_card <- function(model) {
+  # Keyed on the BOOSTER's mtime, not just the model name. `.cfb_model_file()`
+  # re-downloads once an asset is older than `cfbfastR.cache_duration` (24h), so
+  # a long-running session can refresh <model>.ubj while an unkeyed card cache
+  # still holds the contract from before -- pairing a new booster with a feature
+  # list or era contract it no longer honours. The card is exactly what
+  # validates that booster's inputs, so those two must never disagree.
+  stamp <- .cfb_booster_stamp(model)
   cached <- .cfb_card_cache[[model]]
-  if (!is.null(cached)) {
+  if (!is.null(cached) && identical(attr(cached, "cfb_stamp"), stamp)) {
     return(cached)
   }
   card <- .read_card_json(model)
+  attr(card, "cfb_stamp") <- stamp
   assign(model, card, envir = .cfb_card_cache)
   card
+}
+
+.cfb_booster_stamp <- function(model) {
+  path <- file.path(
+    tools::R_user_dir("cfbfastR", which = "cache"), "models", paste0(model, ".ubj")
+  )
+  if (!file.exists(path)) {
+    return(NA_real_)
+  }
+  as.numeric(file.info(path)$mtime)
 }
 
 #: In-session cache. The card is read on every calculator call, so re-parsing it
