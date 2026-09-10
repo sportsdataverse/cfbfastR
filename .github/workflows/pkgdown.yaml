@@ -10,6 +10,12 @@ name: pkgdown
 jobs:
   pkgdown:
     runs-on: ubuntu-22.04
+    # deploy_to_branch() pushes the built site to gh-pages, so the job needs
+    # contents: write and nothing else. Declared explicitly rather than
+    # inherited: the repository default is currently write, but a default that
+    # flips to read-only would otherwise break the deploy with no change here.
+    permissions:
+      contents: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
@@ -51,6 +57,16 @@ jobs:
           pak::pkg_install("r-lib/pkgapi")
           pak::pkg_install("UrbanInstitute/urbnmapr")
         shell: Rscript {0}
+
+      # `local::.` above is a no-op whenever the restored dependency cache
+      # already holds cfbfastR at the same Version. DESCRIPTION has read
+      # 3.0.0.9000 across every dev commit, so pak treats the cached build as
+      # current and pkgdown renders the vignettes against a package that
+      # predates any newly added function -- which is what broke the docs
+      # build on `cfbd_passing_players_season` after #151, while R-CMD-check
+      # (source install every run) stayed green. Install unconditionally.
+      - name: Install cfbfastR from source
+        run: R CMD INSTALL --no-multiarch --with-keep.source .
 
       - name: Deploy package
         run: |
