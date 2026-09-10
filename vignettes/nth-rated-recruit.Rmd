@@ -24,9 +24,13 @@ We start by loading the packages we need. The ```cfbfastR``` package will provid
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("dplyr", "ggplot2", "cfbfastR"))
+pak::pak(c("dplyr", "ggplot2"))
 library(dplyr)
 library(ggplot2)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 

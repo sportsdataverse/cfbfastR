@@ -28,12 +28,16 @@ We're going to need several packages to generate the winning percentage plot: ``
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "animation", "glue", "zoo", "ggimage", "cfbfastR"))
+pak::pak(c("tidyverse", "animation", "glue", "zoo", "ggimage"))
 library(tidyverse)
 library(animation)
 library(glue)
 library(zoo)
 library(ggimage)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 
