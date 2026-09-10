@@ -112,6 +112,7 @@ lower divisions (2013+)."><meta property="og:image" content="https://raw.githubu
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--sdv" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-project-diagram"></span>  SDV</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--sdv"><li><a class="external-link dropdown-item" href="https://sportsdataverse.org/">SportsDataverse</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf">Cheat Sheet (PDF)</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>R Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://r.sportsdataverse.org/">sportsdataverse-R</a></li>
@@ -230,8 +231,8 @@ writes the season data into a database.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">load_espn_cfb_pbp</span><span class="op">(</span><span class="fl">2004</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── ESPN college football play-by-play from the SportsDataverse data repo ───────</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 09:23:13 UTC</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 83,210 × 489</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-10 05:50:00 UTC</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 83,350 × 489</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>   <span style="text-decoration: underline;">2</span>004 242<span style="text-decoration: underline;">410</span>259                1         259 Virginia Tech …              30</span>
@@ -244,7 +245,7 @@ writes the season data into a database.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>   <span style="text-decoration: underline;">2</span>004 242<span style="text-decoration: underline;">410</span>259                8         259 Virginia Tech …              30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>   <span style="text-decoration: underline;">2</span>004 242<span style="text-decoration: underline;">410</span>259                9         259 Virginia Tech …              30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">2</span>004 242<span style="text-decoration: underline;">410</span>259               10          30 USC Trojans                 259</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 83,200 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 83,340 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 483 more variables: def_pos_team &lt;chr&gt;, pos_team_score &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   def_pos_team_score &lt;int&gt;, half &lt;int&gt;, period &lt;int&gt;, down &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distance &lt;int&gt;, EPA &lt;dbl&gt;, wpa &lt;dbl&gt;, wp_before &lt;dbl&gt;, wp_after &lt;dbl&gt;,</span></span>

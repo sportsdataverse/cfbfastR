@@ -129,6 +129,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--sdv" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-project-diagram"></span>  SDV</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--sdv">
 <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/">SportsDataverse</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf">Cheat Sheet (PDF)</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>R Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://r.sportsdataverse.org/">sportsdataverse-R</a></li>
@@ -267,11 +268,15 @@ and follow the directions for installation.</li>
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"zoo"</span>, <span class="st">"ggimage"</span>, <span class="st">"gt"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"zoo"</span>, <span class="st">"ggimage"</span>, <span class="st">"gt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://zeileis.codeberg.page/zoo/" class="external-link">zoo</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/YuLab-SMU/ggimage" class="external-link">ggimage</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com" class="external-link">gt</a></span><span class="op">)</span></span>
+<span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
+<span><span class="co"># R CMD check render this vignette against the package being built, and</span></span>
+<span><span class="co"># installing from CRAN here would overwrite that dev build with the last</span></span>
+<span><span class="co"># release -- so any function added since it would vanish mid-render.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -313,7 +318,7 @@ far: <code><a href="../reference/espn_ratings_fpi.html">espn_ratings_fpi()</a></
 <p>However, there is only one data <em>provider</em> involved for most
 game data, ESPN’s data provider.</p>
 <p>As of <code>cfbfastR</code> version 3.0.0.9000, the package exports
-235 functions. The bulk (~77) of the functions within the package serve
+259 functions. The bulk (~87) of the functions within the package serve
 as the unofficial R API client for the <a href="https://collegefootballdata.com" class="external-link">College Football Data
 API</a>.</p>
 </div>
@@ -397,15 +402,15 @@ between 45-90 seconds to run.</p>
 <span>  <span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">cfbfastR</span><span class="fu">::</span><span class="fu"><a href="../reference/load_cfb_pbp.html">load_cfb_pbp</a></span><span class="op">(</span><span class="va">seasons</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## 71.796 sec elapsed</span></span></code></pre>
-<p>In the selected seasons, there are 13065 games for which the data
+<pre><code><span><span class="co">## 78.905 sec elapsed</span></span></code></pre>
+<p>In the selected seasons, there are 13066 games for which the data
 repository has play by play data. In the present term, the data
 repository supplies over a million rows of play by play data with 362
 columns of data. The most relevant play columns are kept to the left of
 the data frame for clarity, let’s take a look at the first 40 or so.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pbp</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Rows: 2,331,615</span></span>
+<pre><code><span><span class="co">## Rows: 2,331,798</span></span>
 <span><span class="co">## Columns: 40</span></span>
 <span><span class="co">## $ year               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>2014<span style="color: #949494;">, </span>201…</span></span>
 <span><span class="co">## $ week               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>1<span style="color: #949494;">, </span>…</span></span>

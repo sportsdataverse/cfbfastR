@@ -96,6 +96,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--sdv" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-project-diagram"></span>  SDV</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--sdv"><li><a class="external-link dropdown-item" href="https://sportsdataverse.org/">SportsDataverse</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf">Cheat Sheet (PDF)</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>R Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://r.sportsdataverse.org/">sportsdataverse-R</a></li>
@@ -218,7 +219,7 @@
 </tr></thead><tbody><tr><td>CollegeFootballData API</td>
 <td><code>cfbd_</code></td>
 <td>
-<code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code>, <code><a href="reference/cfbd_stats_game_havoc.html">cfbd_stats_game_havoc()</a></code>
+<code><a href="reference/cfbd_pbp_data.html">cfbd_pbp_data()</a></code>, <code><a href="reference/cfbd_stats_game_havoc.html">cfbd_stats_game_havoc()</a></code>, <code><a href="reference/cfbd_passing_plays.html">cfbd_passing_plays()</a></code>
 </td>
 </tr><tr><td>ESPN College Football catalog</td>
 <td><code>espn_cfb_</code></td>
@@ -463,8 +464,24 @@
 <li>
 <strong>Local dev artifacts</strong>: <code>.vscode</code>, <code>.claude</code>, <code>.positai</code>, <code>.remember</code>, <code>tools/</code> can surface as <code>R CMD check</code> notes. Keep <code>.Rbuildignore</code> patterns for each.</li>
 <li>
+<strong>Empty CFBD responses</strong>: an out-of-coverage season returns HTTP 200 with <code>[]</code>, which parses to a zero-length list; <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html" class="external-link">janitor::clean_names()</a></code> then aborts on the absent dimnames and the caller sees a parse error instead of “no rows”. Guard with <code>if (is.data.frame(parsed) &amp;&amp; nrow(parsed) &gt; 0)</code> before cleaning – the <code>cfbd_passing_*</code> / <code>cfbd_rushing_*</code> wrappers do, because they only cover 2025 onward so the empty path is the common case, not an edge. (<code>cfbd_metrics_wepa_*</code> still has the unguarded behavior.)</li>
+<li>
+<strong>Auditing CFBD endpoint coverage</strong>: the OpenAPI document is embedded in <code>https://api.collegefootballdata.com/swagger/swagger-ui-init.js</code> as <code>options.swaggerDoc</code>; <code>/swagger/v1/swagger.json</code> serves the Swagger UI shell, not the spec. Diff against BOTH URL shapes used in <code>R/</code> – a full <code>https://api.collegefootballdata.com/...</code> literal (nearly every wrapper) and <code>endpoint_path &lt;- "..."</code> (only <code><a href="reference/cfbd_metrics_fg_ep.html">cfbd_metrics_fg_ep()</a></code>), or the latter reports as a false gap.</li>
+<li>
+<strong>Wide passing/rushing frames</strong>: these are wide by construction (a production block repeated per pass location or run direction, doubled <code>offense_</code>/<code>defense_</code> on team endpoints – up to 375 columns). Document the block and naming scheme once in the family topic rather than emitting a 371-row returns table, and remember <code>*_available</code> columns are the denominators for the means, not statistics.</li>
+<li>
+<strong>Model cards are the feature contract</strong>: <code>calculate_*()</code> validates against <code>&lt;model&gt;.card.json</code> from the <code>cfb_model_artifacts</code> bundle, never a restated list, and reads era cutpoints from <code>era_contract</code>. Restating them is what caused cfbfastR-cfb-data#70. <code>.cfb_model_file()</code> fetches cards as well as boosters.</li>
+<li>
+<strong><code>df[["season"]]</code>, never <code>df$season</code></strong>: <code>$</code> partial-matches on data frames, so a pbp frame carrying <code>season_type</code> but no <code>season</code> returns <code>"regular"</code> and the era comparison silently runs against a season <em>type</em>.</li>
+<li>
+<strong>EP scoring goes through <code>.ep_predict()</code></strong>: R’s class order (<code>.EP_LEV</code>: <code>No_Score, FG, Opp_FG, ...</code>) is not sportsdataverse-py’s, and the bundle ships a permutation <code>.ep_predict()</code> applies. Reimplementing the reshape leaves every column present and every value mis-assigned.</li>
+<li>
 <strong>Never hand-edit <code>NAMESPACE</code> or files under <code>man/</code></strong>; regenerate with <code>devtools::document()</code>.</li>
 </ul></div>
+<div class="section level2">
+<h2 id="cheat-sheet">Cheat sheet<a class="anchor" aria-label="anchor" href="#cheat-sheet"></a></h2>
+<p>There is a printable one-page reference for this package at <a href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf" class="external-link uri">https://sportsdataverse.org/cheatsheets/cfbfastR.pdf</a>, one of <a href="https://sportsdataverse.org/cheatsheets" class="external-link">a set covering every SportsDataverse package</a>. Keep it in mind when adding or renaming an exported function: the sheet is a hand-built canvas, so a surface change means the sheet needs a revision too.</p>
+</div>
 </div>
 
 

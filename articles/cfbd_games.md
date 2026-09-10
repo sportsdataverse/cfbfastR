@@ -7,7 +7,7 @@
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
+pak::pak(c("dplyr", "tidyr", "gt"))
 ```
 
     ## ℹ Loading metadata database
@@ -36,10 +36,12 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
-    ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
+
+    ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
 
     ## Reading package lists...
 
@@ -60,9 +62,9 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 34 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 53 not upgraded.
 
-    ## ✔ 4 pkgs + 72 deps: kept 72 [10.1s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.2s]
 
 ``` r
 
@@ -84,6 +86,10 @@ library(dplyr)
 
 library(tidyr)
 library(gt)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 # pak::pak("sportsdataverse/cfbfastR")
 ```
@@ -127,9 +133,9 @@ cfbfastR::cfbd_game_box_advanced(game_id = 401114233)
 cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 ```
 
-    ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
+    ## ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-07 09:27:28 UTC
+    ## ℹ Data updated: 2026-09-10 05:54:26 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
@@ -157,22 +163,22 @@ cfbfastR::cfbd_game_team_stats(2019, team = "LSU")
 cfbfastR::cfbd_game_team_stats(2013, team = "Florida State")
 ```
 
-    ## ── Team stats data from CollegeFootballData.com ────────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-09-07 09:27:28 UTC
+    ## ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
+    ## ℹ Data updated: 2026-09-10 05:54:26 UTC
 
     ## # A tibble: 26 × 78
     ##      game_id school     conference home_away opponent opponent_conference points
     ##        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
     ##  1 332640052 Florida S… ACC        home      Bethune… MEAC                    54
     ##  2 332640052 Bethune-C… MEAC       away      Florida… ACC                      6
-    ##  3 332570052 Florida S… ACC        home      Nevada   Mountain West           62
-    ##  4 332570052 Nevada     Mountain … away      Florida… ACC                      7
-    ##  5 332710103 Boston Co… ACC        home      Florida… ACC                     34
-    ##  6 332710103 Florida S… ACC        away      Boston … ACC                     48
-    ##  7 332780052 Florida S… ACC        home      Maryland ACC                     63
-    ##  8 332780052 Maryland   ACC        away      Florida… ACC                      0
-    ##  9 333340057 Florida    SEC        home      Florida… ACC                      7
-    ## 10 333340057 Florida S… ACC        away      Florida  SEC                     37
+    ##  3 332450221 Pittsburgh ACC        home      Florida… ACC                     13
+    ##  4 332450221 Florida S… ACC        away      Pittsbu… ACC                     41
+    ##  5 332990052 Florida S… ACC        home      NC State ACC                     49
+    ##  6 332990052 NC State   ACC        away      Florida… ACC                     17
+    ##  7 333060052 Florida S… ACC        home      Miami    ACC                     41
+    ##  8 333060052 Miami      ACC        away      Florida… ACC                     14
+    ##  9 333410052 Florida S… ACC        home      Duke     ACC                     45
+    ## 10 333410052 Duke       ACC        away      Florida… ACC                      7
     ## # ℹ 16 more rows
     ## # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
     ## #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,

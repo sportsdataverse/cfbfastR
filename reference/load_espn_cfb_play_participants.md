@@ -128,7 +128,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_play_participants(2014))
 #> ── ESPN college football play participants from the SportsDataverse data repo ──
-#> ℹ Data updated: 2026-09-07 09:23:17 UTC
+#> ℹ Data updated: 2026-09-10 05:50:05 UTC
 #> # A tibble: 148,402 × 68
 #>      game_id play_id kicker_player_name returner_player_name passer_player_name
 #>        <int>   <dbl> <chr>              <chr>                <chr>             

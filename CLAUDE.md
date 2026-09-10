@@ -44,11 +44,62 @@ Five source-prefixed families; `R/` is grouped by prefix:
 
 | Prefix | Source | Auth | Notes |
 |----|----|----|----|
-| `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics |
+| `cfbd_*` | collegefootballdata.com | **`CFBD_API_KEY` bearer token** | games/plays/drives/teams/players/stats/ratings/recruiting/draft/betting/venues/coaches/conferences/metrics/passing/rushing |
 | `espn_cfb_*` / `espn_metrics_*` / `espn_ratings_*` | ESPN (`site.api.espn.com` + `sports.core.api.espn.com`) | none | ~75 wrappers (3.0.0 expanded ESPN from 8 → 73); core-v2 `$ref`-heavy payloads |
 | `fox_cfb_*` | `api.foxsports.com/bifrost/v1/cfb` | public web key | 8 wrappers (pbp/boxscore/odds/roster/stats/gamelog/standings/leaders); key overridable via `options(cfbfastR.fox_key=)` |
 | `yahoo_cfb_*` | Yahoo Sports | none | scoreboard/boxscore/player+team season stats |
 | `load_cfb_*` / `load_espn_cfb_*` / `load_ncaa_mfb_*` | release artifacts | none | 43 full-season loaders from `sportsdataverse-data` releases |
+
+**Model calculators (`R/model_calculators.R`, `R/model_cards.R`):** ten
+`calculate_*()` functions score a frame with the shipped models. They
+validate against each model’s **published card** (`<model>.card.json` in
+the `cfb_model_artifacts` bundle) rather than a feature list restated
+here, and read era cutpoints from the card’s `era_contract` — never
+restate `ERA_BOUNDS`, that duplication caused cfbfastR-cfb-data#70.
+`.cfb_model_file()` fetches cards as well as boosters, and the card
+cache is keyed on the booster’s mtime so a TTL refresh cannot pair a new
+model with a stale contract.
+
+Three traps the surface encodes, all found the hard way: -
+`df[["season"]]`, never `df$season` — `$` partial-matches, so a pbp
+frame carrying `season_type` returns “regular” and the era comparison
+runs on a season TYPE. - CP’s `score_diff` is fed from
+`pos_score_diff_start`; a pbp frame’s own `score_diff` is a different
+quantity and yields wrong-but-plausible values. -
+[`calculate_expected_points()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+must go through `.ep_predict()`. R’s class order (`.EP_LEV`) is NOT
+Python’s, and the bundle ships a permutation `.ep_predict()` applies;
+reimplementing the reshape mis-assigns every value.
+
+**CFBD endpoint coverage:** all **84** paths in the CFBD spec (v5.27.1)
+are wrapped as of the `cfbd_passing_*` / `cfbd_rushing_*` additions. To
+re-audit, the spec is NOT at `/swagger/v1/swagger.json` (that serves the
+Swagger UI shell) — it is embedded in
+`https://api.collegefootballdata.com/swagger/swagger-ui-init.js` as
+`options.swaggerDoc`. When diffing coverage, match BOTH URL shapes:
+nearly every wrapper uses a full
+`https://api.collegefootballdata.com/...` literal, but
+[`cfbd_metrics_fg_ep()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_fg_ep.md)
+alone builds from `endpoint_path <- "metrics/fg/ep"`, and a grep for the
+literal will report it as a false gap.
+
+**Passing / rushing families (`R/cfbd_passing.R`, `R/cfbd_rushing.R`):**
+ten wrappers, **2025 onward only** — earlier seasons answer HTTP 200
+with `[]`, so each guards the empty parse and returns a 0-row frame
+rather than letting
+[`janitor::clean_names()`](https://sfirke.github.io/janitor/reference/clean_names.html)
+abort on absent dimnames. (The older `cfbd_metrics_wepa_*` functions do
+NOT guard this and still emit a `clean_names()` error out of coverage.)
+The frames are wide by construction: a 23-column passing production
+block repeats across 7 pass locations, doubled `offense_`/`defense_` on
+the team endpoints (371 columns); rushing repeats a 24/26-column block
+across 4 run directions.
+[`?cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md)
+/
+[`?cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
+document the block and the naming scheme once instead of listing every
+column. `*_available` columns are denominators for the means, not
+statistics.
 
 **CFBD API key:**
 [`register_cfbd()`](https://cfbfastR.sportsdataverse.org/reference/register_cfbd.md)
@@ -208,3 +259,12 @@ cached** (pagination/date variation would return wrong rows).
   Conventional Commits
   (`feat:`/`fix:`/`docs:`/`test:`/`refactor:`/`chore:`/`ci:`), scope
   when useful (`fix(pbp): ...`). \`\`\`
+
+## Cheat sheet
+
+There is a printable one-page reference for this package at
+<https://sportsdataverse.org/cheatsheets/cfbfastR.pdf>, one of [a set
+covering every SportsDataverse
+package](https://sportsdataverse.org/cheatsheets). Keep it in mind when
+adding or renaming an exported function: the sheet is a hand-built
+canvas, so a surface change means the sheet needs a revision too.

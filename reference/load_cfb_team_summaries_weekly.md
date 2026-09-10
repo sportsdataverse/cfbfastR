@@ -440,7 +440,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_summaries_weekly(2004))
 #> ── college football weekly team summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-07 09:22:47 UTC
+#> ℹ Data updated: 2026-09-10 05:49:29 UTC
 #> # A tibble: 1,634 × 384
 #>    team_id pos_team       division conference     season plays_off passrate_off
 #>    <chr>   <chr>          <chr>    <chr>           <int>     <int>        <dbl>
@@ -448,12 +448,12 @@ Saiem Gilani
 #>  2 153     North Carolina fbs      ACC              2004        67        0.612
 #>  3 167     New Mexico     fbs      Mountain West    2004        60        0.383
 #>  4 183     Syracuse       fbs      Big East         2004        62        0.597
-#>  5 189     Bowling Green  fbs      Mid-American     2004        80        0.475
+#>  5 189     Bowling Green  fbs      Mid-American     2004        81        0.481
 #>  6 193     Miami (OH)     fbs      Mid-American     2004        62        0.694
 #>  7 194     Ohio State     fbs      Big Ten          2004        64        0.375
 #>  8 197     Oklahoma State fbs      Big 12           2004        62        0.581
 #>  9 204     Oregon State   fbs      Pac-10           2004        57        0.737
-#> 10 2132    Cincinnati     fbs      Conference USA   2004        83        0.470
+#> 10 2132    Cincinnati     fbs      Conference USA   2004        84        0.464
 #> # ℹ 1,624 more rows
 #> # ℹ 377 more variables: rushrate_off <dbl>, havoc_off <dbl>,
 #> #   explosive_off <dbl>, TEPA_off <dbl>, EPAplay_off <dbl>, yards_off <int>,

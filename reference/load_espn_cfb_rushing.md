@@ -84,26 +84,26 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-07 09:23:22 UTC
-#> # A tibble: 1,109 × 28
+#> ℹ Data updated: 2026-09-10 05:50:10 UTC
+#> # A tibble: 1,109 × 41
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 59      Georgia Tech  fbs      ACC          2004    114025 P.J. Daniels      
-#>  2 254     Utah          fbs      Mountain …   2004    146936 Matt Kovacevich   
-#>  3 12      Arizona       fbs      Pac-10       2004    144922 Syndric Steptoe   
-#>  4 58      South Florida fbs      Conferenc…   2004    157592 J.B. Garris       
-#>  5 30      USC           fbs      Pac-10       2004    123261 Andre Woodert     
-#>  6 135     Minnesota     fbs      Big Ten      2004    115810 Jared Ellerson    
-#>  7 265     Washington S… fbs      Pac-10       2004    115704 Josh Swogger      
-#>  8 24      Stanford      fbs      Pac-10       2004    145100 David Marrero     
-#>  9 5       UAB           fbs      Conferenc…   2004    115044 Darrell Hackney   
-#> 10 254     Utah          fbs      Mountain …   2004    120660 Marty Johnson     
+#>  1 2751    Wyoming       fbs      Mountain …   2004    116544 C.R. Davis        
+#>  2 59      Georgia Tech  fbs      ACC          2004    135938 Ajenavi Eziemefe  
+#>  3 2579    South Caroli… fbs      SEC          2004    134901 Troy Williamson   
+#>  4 2294    Iowa          fbs      Big Ten      2004    100560 Aaron Mickens     
+#>  5 158     Nebraska      fbs      Big 12       2004    107554 Willie Amos       
+#>  6 265     Washington S… fbs      Pac-10       2004    164335 Jerome Harrison   
+#>  7 2348    Louisiana Te… fbs      Western A…   2004    136415 Ryan Moats        
+#>  8 158     Nebraska      fbs      Big 12       2004    162707 Brandon Jackson   
+#>  9 9       Arizona State fbs      Pac-10       2004    127680 Chad Christensen  
+#> 10 152     NC State      fbs      ACC          2004    161912 Bobby Washington  
 #> # ℹ 1,099 more rows
-#> # ℹ 21 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 34 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,
 #> #   playsgame <dbl>, EPAgame <dbl>, yardsplay <dbl>, yardsgame <dbl>,
 #> #   TEPA_rank <dbl>, EPAgame_rank <dbl>, EPAplay_rank <dbl>,
-#> #   success_rank <dbl>, yards_rank <dbl>, yardsplay_rank <dbl>,
-#> #   yardsgame_rank <dbl>, fbs_class <chr>
+#> #   success_rank <dbl>, plays_rank <dbl>, yards_rank <dbl>,
+#> #   rushing_td_rank <dbl>, fumbles_rank <dbl>, yardsplay_rank <dbl>, …
 # }
 ```

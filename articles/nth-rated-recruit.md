@@ -21,9 +21,13 @@ results.
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("dplyr", "ggplot2", "cfbfastR"))
+pak::pak(c("dplyr", "ggplot2"))
 library(dplyr)
 library(ggplot2)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 
@@ -66,14 +70,14 @@ all.recruits <- purrr::map2_dfr(
 tictoc::toc()
 ```
 
-    ## 16.788 sec elapsed
+    ## 31.598 sec elapsed
 
 ``` r
 
 dplyr::glimpse(all.recruits)
 ```
 
-    ## Rows: 1,343
+    ## Rows: 1,651
     ## Columns: 19
     ## $ id                      <chr> "111475", "111594", "111626", "111964", "11207…
     ## $ athlete_id              <chr> "4870696", "4924137", "4870728", "5078909", "4…

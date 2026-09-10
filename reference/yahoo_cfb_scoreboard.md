@@ -44,7 +44,7 @@ Other Yahoo CFB Functions:
 ``` r
 # \donttest{
   try(yahoo_cfb_scoreboard(season = 2024, week = 1))
-#> 2026-09-07 09:25:04.602441: invalid arguments or no Yahoo scoreboard available!
+#> 2026-09-10 05:51:58.146231: invalid arguments or no Yahoo scoreboard available!
 #> [1] season week  
 #> <0 rows> (or 0-length row.names)
 # }

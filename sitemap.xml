@@ -29,6 +29,8 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/copilot-instructions.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/index.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/news/index.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_api_key.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_betting.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_betting_ats.html</loc></url>
@@ -71,6 +73,12 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wepa_team_season.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_metrics_wp_pregame.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_season.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_plays.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.html</loc></url>
@@ -103,6 +111,12 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_position.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_team.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_recruiting_transfer_portal.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_players_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_players_season.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_plays.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_games.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_season.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_categories.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_stats_game_advanced.html</loc></url>

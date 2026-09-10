@@ -96,6 +96,7 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--sdv" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-project-diagram"></span>  SDV</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--sdv"><li><a class="external-link dropdown-item" href="https://sportsdataverse.org/">SportsDataverse</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf">Cheat Sheet (PDF)</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>R Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://r.sportsdataverse.org/">sportsdataverse-R</a></li>
@@ -203,6 +204,13 @@
 
         <dt>
 
+          <code><a href="cfbd_passing.html">cfbd_passing</a></code>
+
+        </dt>
+        <dd><strong>CFBD Passing Endpoint Overview</strong></dd>
+
+        <dt>
+
           <code><a href="cfbd_pbp.html">cfbd_pbp</a></code> <code><a href="cfbd_pbp.html">play_by_play</a></code>
 
         </dt>
@@ -214,6 +222,13 @@
 
         </dt>
         <dd><strong>CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_rushing.html">cfbd_rushing</a></code>
+
+        </dt>
+        <dd><strong>CFBD Rushing Endpoint Overview</strong></dd>
 
         <dt>
 
@@ -1014,6 +1029,131 @@
 
         </dt>
         <dd><strong>Get season statistics by team</strong></dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="model-calculators">Model Calculators<a class="anchor" aria-label="anchor" href="#model-calculators"></a></h3>
+      <div class="section-desc"><p>Score a data frame with the shipped CFB models - pass a play-by-play frame or a hand-built row and get model output back</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="calculate_cfb_models.html">calculate_xpass()</a></code> <code><a href="calculate_cfb_models.html">calculate_field_goal_probability()</a></code> <code><a href="calculate_cfb_models.html">calculate_completion_probability()</a></code> <code><a href="calculate_cfb_models.html">calculate_two_point_probability()</a></code> <code><a href="calculate_cfb_models.html">calculate_fourth_down()</a></code> <code><a href="calculate_cfb_models.html">calculate_qbr()</a></code> <code><a href="calculate_cfb_models.html">calculate_expected_points()</a></code> <code><a href="calculate_cfb_models.html">calculate_win_probability()</a></code> <code><a href="calculate_cfb_models.html">calculate_epa()</a></code> <code><a href="calculate_cfb_models.html">calculate_wpa()</a></code>
+
+        </dt>
+        <dd><strong>Score a data frame with the shipped CFB models</strong></dd>
+
+        <dt>
+
+          <code><a href="cfb_model_card.html">cfb_model_card()</a></code> <code><a href="cfb_model_card.html">cfb_card_features()</a></code> <code><a href="cfb_model_card.html">cfb_card_era_contract()</a></code> <code><a href="cfb_model_card.html">cfb_card_reset_cache()</a></code>
+
+        </dt>
+        <dd><strong>Read the published contract for a CFB model</strong></dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="passing-data">Passing Data<a class="anchor" aria-label="anchor" href="#passing-data"></a></h3>
+      <div class="section-desc"><p>Functions exported by cfbfastR sourced from the passing endpoints of the CollegeFootballData API (2025 onward)</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="cfbd_passing.html">cfbd_passing</a></code>
+
+        </dt>
+        <dd><strong>CFBD Passing Endpoint Overview</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_passing_players_games.html">cfbd_passing_players_games()</a></code>
+
+        </dt>
+        <dd><strong>Get player game passing production, split by pass location</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_passing_players_season.html">cfbd_passing_players_season()</a></code>
+
+        </dt>
+        <dd><strong>Get player season passing production, split by pass location</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_passing_plays.html">cfbd_passing_plays()</a></code>
+
+        </dt>
+        <dd><strong>Get individual passing plays with air yards, YAC and location detail</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_passing_teams_games.html">cfbd_passing_teams_games()</a></code>
+
+        </dt>
+        <dd><strong>Get team game passing production for and against, split by pass location</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_passing_teams_season.html">cfbd_passing_teams_season()</a></code>
+
+        </dt>
+        <dd><strong>Get team season passing production for and against, split by pass location</strong></dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="rushing-data">Rushing Data<a class="anchor" aria-label="anchor" href="#rushing-data"></a></h3>
+      <div class="section-desc"><p>Functions exported by cfbfastR sourced from the rushing endpoints of the CollegeFootballData API (2025 onward)</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="cfbd_rushing.html">cfbd_rushing</a></code>
+
+        </dt>
+        <dd><strong>CFBD Rushing Endpoint Overview</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_rushing_players_games.html">cfbd_rushing_players_games()</a></code>
+
+        </dt>
+        <dd><strong>Get player game rushing production, split by run direction</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_rushing_players_season.html">cfbd_rushing_players_season()</a></code>
+
+        </dt>
+        <dd><strong>Get player season rushing production, split by run direction</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_rushing_plays.html">cfbd_rushing_plays()</a></code>
+
+        </dt>
+        <dd><strong>Get individual rushing plays with direction and attribution detail</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_rushing_teams_games.html">cfbd_rushing_teams_games()</a></code>
+
+        </dt>
+        <dd><strong>Get team game rushing production for and against, split by run direction</strong></dd>
+
+        <dt>
+
+          <code><a href="cfbd_rushing_teams_season.html">cfbd_rushing_teams_season()</a></code>
+
+        </dt>
+        <dd><strong>Get team season rushing production for and against, split by run direction</strong></dd>
       </dl></div><div class="section level2">
 
       <h3 id="rankings-and-ratings-data">Rankings and Ratings Data<a class="anchor" aria-label="anchor" href="#rankings-and-ratings-data"></a></h3>

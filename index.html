@@ -131,6 +131,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--sdv" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-project-diagram"></span>  SDV</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--sdv">
 <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/">SportsDataverse</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf">Cheat Sheet (PDF)</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>R Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://r.sportsdataverse.org/">sportsdataverse-R</a></li>
@@ -286,6 +287,22 @@
 <p>All loaders accept a vector of seasons (or <code>seasons = TRUE</code> for everything published) and an optional <code>dbConnection</code> + <code>tablename</code> to write straight into a database instead of returning a tibble.</p>
 </div>
 <div class="section level2">
+<h2 id="collegefootballdata-api-coverage">
+<strong>CollegeFootballData API coverage</strong><a class="anchor" aria-label="anchor" href="#collegefootballdata-api-coverage"></a>
+</h2>
+<p>The <code>cfbd_*()</code> wrappers cover <strong>all 84 endpoints</strong> in the current CFBD specification (v5.27.1). The most recent additions are the passing and rushing families, which carry charting detail the older <code>cfbd_stats_*()</code> and <code>cfbd_metrics_*()</code> functions do not:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># season passing production, split across seven pass locations</span></span>
+<span><span class="fu"><a href="reference/cfbd_passing_players_season.html">cfbd_passing_players_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># every pass with air yards, YAC, target id and location</span></span>
+<span><span class="fu"><a href="reference/cfbd_passing_plays.html">cfbd_passing_plays</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, week <span class="op">=</span> <span class="fl">5</span>, outcome <span class="op">=</span> <span class="st">"interception"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># rushing production split across four run directions, offense and defense</span></span>
+<span><span class="fu"><a href="reference/cfbd_rushing_teams_season.html">cfbd_rushing_teams_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span></code></pre></div>
+<p>These endpoints begin in <strong>2025</strong>; earlier seasons return an empty data frame rather than an error. See <code><a href="reference/cfbd_passing.html">?cfbd_passing</a></code> and <code><a href="reference/cfbd_rushing.html">?cfbd_rushing</a></code> — the frames are wide (up to 375 columns) because one production block repeats per location or direction, so the family topics document the block and the naming scheme once instead of listing every column.</p>
+</div>
+<div class="section level2">
 <h2 id="breaking-changes">
 <strong>Breaking Changes</strong><a class="anchor" aria-label="anchor" href="#breaking-changes"></a>
 </h2>
@@ -299,13 +316,13 @@
 <li><p>To get an API key, follow the directions here: <a href="https://collegefootballdata.com/key" class="external-link">College Football Data Key Registration.</a></p></li>
 <li><p>Using the key: You can save the key for consistent usage by adding <code>CFBD_API_KEY=YOUR-API-KEY-HERE</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</p></li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CFBD_API_KEY</span> <span class="op">=</span> <span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span></span></code></pre></div>
 <p>Save the script and restart your RStudio session, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the <code>cfbd_</code> functions without any other changes.</p>
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>CFBD_API_KEY</code> (with quotations) using a command like the following.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>CFBD_API_KEY <span class="op">=</span> <span class="st">"YOUR-API-KEY-HERE"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -314,7 +331,7 @@
 <strong>Proxy support</strong><a class="anchor" aria-label="anchor" href="#proxy-support"></a>
 </h2>
 <p>If you run <code>cfbfastR</code> from behind a corporate proxy, set it once per session and every <code>cfbd_*()</code> / <code>espn_cfb_*()</code> call routes through it:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>cfbfastR.proxy <span class="op">=</span> <span class="st">"http://proxy.host.example:8080"</span><span class="op">)</span></span>
 <span><span class="co"># or, for an authenticated proxy:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>cfbfastR.proxy <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -375,22 +392,30 @@
 <ul>
 <li><a href="https://github.com/NickTice" class="external-link">Nick Tice</a></li>
 </ul>
+<!-- cheatsheet-section --><div class="section level2">
+<h2 id="cheat-sheet">
+<strong>Cheat sheet</strong><a class="anchor" aria-label="anchor" href="#cheat-sheet"></a>
+</h2>
+<p>A printable one-page reference for <strong><code>cfbfastR</code></strong> — the function families, the loaders, and what each one returns.</p>
+<p>📄 <strong><a href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf" class="external-link">Download the cfbfastR cheat sheet (PDF)</a></strong></p>
+<p>Free to download, print and hand out; light and dark, US Letter landscape. Every SportsDataverse package has one — browse them all at <strong><a href="https://sportsdataverse.org/cheatsheets" class="external-link">sportsdataverse.org/cheatsheets</a></strong>.</p>
+</div>
 <div class="section level2">
 <h2 id="citations">
 <strong>Citations</strong><a class="anchor" aria-label="anchor" href="#citations"></a>
 </h2>
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a> R package in publications, use:</p>
 <p>BibTex Citation</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">gilani_et_al_2021_cfbfastr</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="dt">doi</span> = {10.32614/CRAN.package.cfbfastR},</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="dt">journal</span> = {CRAN: Contributed Packages},</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="dt">publisher</span> = {The R Foundation},</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">gilani_et_al_2021_cfbfastr</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="dt">doi</span> = {10.32614/CRAN.package.cfbfastR},</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="dt">journal</span> = {CRAN: Contributed Packages},</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="dt">publisher</span> = {The R Foundation},</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="dt">year</span> = {2026}</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 

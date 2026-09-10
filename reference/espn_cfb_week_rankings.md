@@ -168,7 +168,7 @@ Other ESPN CFB Functions:
 # \donttest{
   try(espn_cfb_week_rankings(year = 2024, week = 8))
 #> ── Weekly rankings from ESPN ──────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-07 09:22:23 UTC
+#> ℹ Data updated: 2026-09-10 05:49:01 UTC
 #> # A tibble: 210 × 26
 #>    season season_type  week ranking_id ranking_name ranking_type occurrence
 #>     <int>       <int> <int> <chr>      <chr>        <chr>        <chr>     
@@ -191,7 +191,7 @@ Other ESPN CFB Functions:
 #> #   team_alternate_color <chr>, team_logo_href <chr>, …
   try(espn_cfb_week_rankings(year = 2024, week = 8, team_detail = FALSE))
 #> ── Weekly rankings from ESPN ──────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-07 09:22:23 UTC
+#> ℹ Data updated: 2026-09-10 05:49:01 UTC
 #> # A tibble: 210 × 16
 #>    season season_type  week ranking_id ranking_name ranking_type occurrence
 #>     <int>       <int> <int> <chr>      <chr>        <chr>        <chr>     

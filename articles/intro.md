@@ -46,11 +46,15 @@ of the package.
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "zoo", "ggimage", "gt", "cfbfastR"))
+pak::pak(c("tidyverse", "zoo", "ggimage", "gt"))
 library(tidyverse)
 library(zoo)
 library(ggimage)
 library(gt)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 
@@ -87,8 +91,8 @@ accessed from this package:
 However, there is only one data *provider* involved for most game data,
 ESPN’s data provider.
 
-As of `cfbfastR` version 3.0.0.9000, the package exports 235 functions.
-The bulk (~77) of the functions within the package serve as the
+As of `cfbfastR` version 3.0.0.9000, the package exports 259 functions.
+The bulk (~87) of the functions within the package serve as the
 unofficial R API client for the [College Football Data
 API](https://collegefootballdata.com).
 
@@ -165,9 +169,9 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 71.796 sec elapsed
+    ## 78.905 sec elapsed
 
-In the selected seasons, there are 13065 games for which the data
+In the selected seasons, there are 13066 games for which the data
 repository has play by play data. In the present term, the data
 repository supplies over a million rows of play by play data with 362
 columns of data. The most relevant play columns are kept to the left of
@@ -178,7 +182,7 @@ the data frame for clarity, let’s take a look at the first 40 or so.
 glimpse(pbp[1:40])
 ```
 
-    ## Rows: 2,331,615
+    ## Rows: 2,331,798
     ## Columns: 40
     ## $ year               <int> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 201…
     ## $ week               <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …

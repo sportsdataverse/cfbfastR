@@ -87,7 +87,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-09-07 09:22:54 UTC
+#> ℹ Data updated: 2026-09-10 05:49:38 UTC
 #> # A tibble: 1,506 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>

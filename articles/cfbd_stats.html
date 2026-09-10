@@ -129,6 +129,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--sdv" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-project-diagram"></span>  SDV</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--sdv">
 <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/">SportsDataverse</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportsdataverse.org/cheatsheets/cfbfastR.pdf">Cheat Sheet (PDF)</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>R Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://r.sportsdataverse.org/">sportsdataverse-R</a></li>
@@ -223,7 +224,7 @@ Akshay Easwaran, Jared Lee
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"gt"</span>, <span class="st">"cfbfastR"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"gt"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Loading metadata database</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> Loading metadata database ... done</span></span></code></pre>
 <pre><code><span><span class="co">## </span></span></code></pre>
@@ -235,12 +236,12 @@ Akshay Easwaran, Jared Lee
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Installing system requirements</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y update`</span></span></code></pre>
 <pre><code><span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span>
+<span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
@@ -255,9 +256,9 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).</span></span>
 <span><span class="co">## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).</span></span>
 <span><span class="co">## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).</span></span>
-<span><span class="co">## 0 upgraded, 0 newly installed, 0 to remove and 34 not upgraded.</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 4 pkgs + 72 deps: kept 72 <span style="color: #B2B2B2;">[10.2s]</span></span></span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<span><span class="co">## 0 upgraded, 0 newly installed, 0 to remove and 53 not upgraded.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 3 pkgs + 56 deps: kept 59 <span style="color: #B2B2B2;">[9.4s]</span></span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
@@ -267,9 +268,13 @@ Akshay Easwaran, Jared Lee
 <pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com" class="external-link">gt</a></span><span class="op">)</span></span>
+<span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
+<span><span class="co"># R CMD check render this vignette against the package being built, and</span></span>
+<span><span class="co"># installing from CRAN here would overwrite that dev build with the last</span></span>
+<span><span class="co"># release -- so any function added since it would vanish mid-render.</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></span><span class="op">)</span></span>
 <span><span class="co"># pak::pak("sportsdataverse/cfbfastR")</span></span></code></pre></div>
 </div>
@@ -281,7 +286,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <h4 id="get-season-statistics-by-team">
 <strong>Get Season Statistics by Team</strong><a class="anchor" aria-label="anchor" href="#get-season-statistics-by-team"></a>
 </h4>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">team_season_stats</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,</span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_season_team.html">cfbd_stats_season_team</a></span><span class="op">(</span>year<span class="op">=</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
@@ -290,7 +295,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <span><span class="va">logos</span><span class="op">&lt;-</span> <span class="va">logos</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="st">"conference"</span><span class="op">)</span></span>
 <span><span class="va">df_team_season</span> <span class="op">&lt;-</span> <span class="va">team_season_stats</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">logos</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"team"</span><span class="op">=</span><span class="st">"school"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_team_season_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">df_team_season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df_team_season_long</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">df_team_season</span><span class="op">$</span><span class="va">team</span></span></code></pre></div>
 </div>
@@ -298,7 +303,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <h4 id="get-season-advanced-statistics-by-team">
 <strong>Get Season Advanced Statistics by Team</strong><a class="anchor" aria-label="anchor" href="#get-season-advanced-statistics-by-team"></a>
 </h4>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_team_season_adv</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_season_advanced.html">cfbd_stats_season_advanced</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,</span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_season_advanced.html">cfbd_stats_season_advanced</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
@@ -310,7 +315,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <h4 id="get-game-advanced-stats">
 <strong>Get Game Advanced Stats</strong><a class="anchor" aria-label="anchor" href="#get-game-advanced-stats"></a>
 </h4>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_team_game_adv</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_game_advanced.html">cfbd_stats_game_advanced</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span><span class="op">)</span>,</span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_game_advanced.html">cfbd_stats_game_advanced</a></span><span class="op">(</span><span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span>
@@ -322,7 +327,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <h4 id="get-season-statistics-by-player">
 <strong>Get Season Statistics by Player</strong><a class="anchor" aria-label="anchor" href="#get-season-statistics-by-player"></a>
 </h4>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/gt_theme_code_SG.R"</span><span class="op">)</span></span>
 <span><span class="va">passing_df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span></span>
 <span>   <span class="fu"><a href="../reference/cfbd_stats_season_player.html">cfbd_stats_season_player</a></span><span class="op">(</span><span class="fl">2019</span>, team <span class="op">=</span> <span class="st">"LSU"</span>, category <span class="op">=</span> <span class="st">"passing"</span><span class="op">)</span>,</span>
@@ -340,7 +345,7 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <span>                 <span class="va">passing_ypa</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">passing_yds</span><span class="op">)</span>, <span class="va">team</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Adding missing grouping variables: `team`</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">passing_df</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html" class="external-link">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Passing Summary"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://gt.rstudio.com/reference/cols_label.html" class="external-link">cols_label</a></span><span class="op">(</span>logo<span class="op">=</span><span class="st">""</span>,</span>
@@ -911,13 +916,133 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 </div>
 </div>
 <div class="section level4">
+<h4 id="passing-and-rushing-splits-2025-onward">
+<strong>Passing and rushing splits (2025 onward)</strong><a class="anchor" aria-label="anchor" href="#passing-and-rushing-splits-2025-onward"></a>
+</h4>
+<p>The <code>cfbd_passing_*()</code> and <code>cfbd_rushing_*()</code>
+families carry charting detail the season-stats endpoints above do not:
+passing production split across seven pass locations, rushing across
+four run directions, and play-level frames with air yards, yards after
+catch and carrier attribution.</p>
+<p>These frames are <strong>wide by construction</strong> — one
+23-column passing production block repeats for every location, and the
+team endpoints repeat the whole thing for offense and defense, so
+<code><a href="../reference/cfbd_passing_teams_season.html">cfbd_passing_teams_season()</a></code> is 371 columns. Select what you
+need rather than printing them whole.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tex_pass</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfbd_passing_players_season.html">cfbd_passing_players_season</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, team <span class="op">=</span> <span class="st">"Texas"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tex_pass</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">attempts</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">player</span>, <span class="va">attempts</span>, <span class="va">completion_rate</span>, <span class="va">average_depth_of_target</span>, <span class="va">ppa</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">attempts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Player season passing data from CollegeFootballData.com ─────────────────────</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-10 05:55:10 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
+<span><span class="co">##   player       attempts completion_rate average_depth_of_target   ppa</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> Arch Manning      399           0.607                     8.5 0.328</span></span></code></pre>
+<p>Where the splits earn their keep is comparing a passer by area of the
+field. The bucket columns are named
+<code>locations_&lt;bucket&gt;_&lt;stat&gt;</code>:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">buckets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"short_left"</span>, <span class="st">"short_middle"</span>, <span class="st">"short_right"</span>,</span>
+<span>             <span class="st">"deep_left"</span>, <span class="st">"deep_middle"</span>, <span class="st">"deep_right"</span>, <span class="st">"unknown"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tex_pass</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">attempts</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">attempts</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># name the seven buckets explicitly: a wildcard on `_attempts` would also</span></span>
+<span>  <span class="co"># sweep up `locations_&lt;bucket&gt;_successful_attempts`, which is a different</span></span>
+<span>  <span class="co"># statistic, and silently double the rows.</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">player</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"locations_"</span>, <span class="va">buckets</span>, <span class="st">"_attempts"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<span>    <span class="op">-</span><span class="va">player</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"location"</span>, values_to <span class="op">=</span> <span class="st">"attempts"</span>,</span>
+<span>    names_pattern <span class="op">=</span> <span class="st">"locations_(.*)_attempts"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">attempts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 7 × 3</span></span></span>
+<span><span class="co">##   player       location     attempts</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> Arch Manning unknown           189</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> Arch Manning short_right        74</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> Arch Manning short_left         71</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span> Arch Manning short_middle       41</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">5</span> Arch Manning deep_left          11</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">6</span> Arch Manning deep_right          7</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">7</span> Arch Manning deep_middle         5</span></span></code></pre>
+<p>Note how large the <code>unknown</code> bucket is. Location is parsed
+from play text, so a sizeable share of attempts never get one — which is
+exactly why the next point matters.</p>
+<p>A caveat that matters for every mean you compute from these: the
+<code>*_available</code> columns are <strong>denominators, not
+statistics</strong>. CFBD parses air yards, YAC and location out of play
+text, so an attempt can be counted while those stay unknown. Divide by
+the matching <code>*_available</code> column, not by
+<code>attempts</code>:</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tex_pass</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">attempts</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span></span>
+<span>    <span class="va">player</span>,</span>
+<span>    <span class="va">attempts</span>,</span>
+<span>    air_yards_parsed <span class="op">=</span> <span class="va">air_yards_attempts_available</span>,</span>
+<span>    <span class="co"># right: the denominator CFBD actually measured</span></span>
+<span>    adot_correct <span class="op">=</span> <span class="va">total_air_yards</span> <span class="op">/</span> <span class="va">air_yards_attempts_available</span>,</span>
+<span>    <span class="co"># wrong: silently understated wherever parsing was incomplete</span></span>
+<span>    adot_naive <span class="op">=</span> <span class="va">total_air_yards</span> <span class="op">/</span> <span class="va">attempts</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Player season passing data from CollegeFootballData.com ─────────────────────</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-10 05:55:10 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
+<span><span class="co">##   player       attempts air_yards_parsed adot_correct adot_naive</span></span>
+<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> Arch Manning      399              211         8.54       4.52</span></span></code></pre>
+<p>Play-level frames expose the same idea as parse flags. Filter on
+<code>location_analysis_eligible</code> (passing) or
+<code>direction_analysis_eligible</code> (rushing) before trusting a
+split column:</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_passing_plays.html">cfbd_passing_plays</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2025</span>, week <span class="op">=</span> <span class="fl">5</span>, outcome <span class="op">=</span> <span class="st">"completion"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">location_analysis_eligible</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">target</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">offense</span>, <span class="va">defense</span>, <span class="va">passer</span>, <span class="va">target</span>, <span class="va">total_yards</span>, <span class="va">ppa</span>, <span class="va">success</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## ── Passing plays data from CollegeFootballData.com ────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-10 05:55:11 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 7</span></span></span>
+<span><span class="co">##    offense    defense    passer       target         total_yards   ppa success</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> Notre Dame Arkansas   C.J. Carr    Eli Raridon             18 1.66  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> Arkansas   Notre Dame Taylen Green O'Mega Blake             8 0.910 TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> Notre Dame Arkansas   C.J. Carr    Will Pauling            22 1.89  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> Arkansas   Notre Dame Taylen Green O'Mega Blake            33 2.09  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> Notre Dame Arkansas   C.J. Carr    Malachi Fields          21 2.30  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> Arkansas   Notre Dame Taylen Green Andreas Paaske           8 0.752 TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> Notre Dame Arkansas   C.J. Carr    Jeremiyah Love          25 2.44  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> Notre Dame Arkansas   C.J. Carr    Jeremiyah Love           7 2.61  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> Arkansas   Notre Dame Taylen Green Jalen Brown             11 1.46  TRUE   </span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> Notre Dame Arkansas   C.J. Carr    Jordan Faison           10 0.504 TRUE</span></span></code></pre>
+<p>Check a column before you build on it. As of this writing CFBD
+populates <code>target</code> on the play frame (1,976 of 2,003 week-5
+completions) but has <strong>not</strong> populated play-level
+<code>air_yards</code> or <code>yards_after_catch</code> at all — R
+types those <code>logical</code> because every value is <code>NA</code>.
+The <em>season</em> aggregates do carry air yards, which is why
+<code>total_air_yards</code> above is non-zero while the play column is
+empty. The same applies to <code>rush_direction</code> on
+<code><a href="../reference/cfbd_rushing_plays.html">cfbd_rushing_plays()</a></code>.</p>
+<p>Earlier seasons are not an error — these endpoints begin in 2025, and
+CFBD answers a 2024 request with an empty array, so the functions return
+a zero-row data frame rather than failing.</p>
+</div>
+<div class="section level4">
 <h4 id="college-football-mapping-for-stats-categories">
 <strong>College Football Mapping for Stats Categories</strong><a class="anchor" aria-label="anchor" href="#college-football-mapping-for-stats-categories"></a>
 </h4>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Stat categories for CollegeFootballData.com ─────────────── <span style="font-style: italic;">cfbfastR 3.0.0</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-07 09:28:09 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Stat categories for CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-10 05:55:11 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 38 × 1</span></span></span>
 <span><span class="co">##    category          </span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>
@@ -1029,12 +1154,12 @@ State</strong> offense debates<a class="anchor" aria-label="anchor" href="#settl
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb56-5"><a href="#cb56-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb56-6"><a href="#cb56-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="related-sportsdataverse-packages">

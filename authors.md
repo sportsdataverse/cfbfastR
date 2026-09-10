@@ -40,7 +40,7 @@
 Source:
 [`inst/CITATION`](https://github.com/sportsdataverse/cfbfastR/blob/main/inst/CITATION)
 
-Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2021).
+Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2026).
 cfbfastR: Access College Football Play by Play Data. Retrieved from
 https://cfbfastR.sportsdataverse.org/ doi:
 10.32614/CRAN.package.cfbfastR
@@ -52,6 +52,6 @@ https://cfbfastR.sportsdataverse.org/ doi:
       doi = {10.32614/CRAN.package.cfbfastR},
       journal = {CRAN: Contributed Packages},
       publisher = {The R Foundation},
-      year = {2021},
+      year = {2026},
       note = {R package version 3.0.0.9000},
     }

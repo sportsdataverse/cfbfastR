@@ -64,6 +64,34 @@ All loaders accept a vector of seasons (or `seasons = TRUE` for
 everything published) and an optional `dbConnection` + `tablename` to
 write straight into a database instead of returning a tibble.
 
+## **CollegeFootballData API coverage**
+
+The `cfbd_*()` wrappers cover **all 84 endpoints** in the current CFBD
+specification (v5.27.1). The most recent additions are the passing and
+rushing families, which carry charting detail the older `cfbd_stats_*()`
+and `cfbd_metrics_*()` functions do not:
+
+``` r
+
+# season passing production, split across seven pass locations
+cfbd_passing_players_season(year = 2025, team = "Texas")
+
+# every pass with air yards, YAC, target id and location
+cfbd_passing_plays(year = 2025, week = 5, outcome = "interception")
+
+# rushing production split across four run directions, offense and defense
+cfbd_rushing_teams_season(year = 2025, team = "Texas")
+```
+
+These endpoints begin in **2025**; earlier seasons return an empty data
+frame rather than an error. See
+[`?cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md)
+and
+[`?cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
+— the frames are wide (up to 375 columns) because one production block
+repeats per location or direction, so the family topics document the
+block and the naming scheme once instead of listing every column.
+
 ## **Breaking Changes**
 
 [**Full News on
@@ -214,6 +242,18 @@ stars](https://img.shields.io/github/stars/sportsdataverse/cfbfastR.svg?color=ee
 
 - [Nick Tice](https://github.com/NickTice)
 
+## **Cheat sheet**
+
+A printable one-page reference for **`cfbfastR`** — the function
+families, the loaders, and what each one returns.
+
+📄 **[Download the cfbfastR cheat sheet
+(PDF)](https://sportsdataverse.org/cheatsheets/cfbfastR.pdf)**
+
+Free to download, print and hand out; light and dark, US Letter
+landscape. Every SportsDataverse package has one — browse them all at
+**[sportsdataverse.org/cheatsheets](https://sportsdataverse.org/cheatsheets)**.
+
 ## **Citations**
 
 To cite the [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/) R
@@ -230,6 +270,6 @@ BibTex Citation
   doi = {10.32614/CRAN.package.cfbfastR},
   journal = {CRAN: Contributed Packages},
   publisher = {The R Foundation},
-  year = {2021}
+  year = {2026}
 }
 ```

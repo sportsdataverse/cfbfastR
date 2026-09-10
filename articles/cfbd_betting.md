@@ -7,7 +7,7 @@
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
+pak::pak(c("dplyr", "tidyr", "gt"))
 ```
 
     ## ℹ Loading metadata database
@@ -37,9 +37,11 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
 
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
 
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
+
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
     ## Reading package lists...
@@ -68,7 +70,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## libnode-dev libnode72
 
-    ## 0 upgraded, 2 newly installed, 0 to remove and 34 not upgraded.
+    ## 0 upgraded, 2 newly installed, 0 to remove and 53 not upgraded.
     ## Need to get 11.4 MB of archives.
     ## After this operation, 47.4 MB of additional disk space will be used.
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
@@ -77,7 +79,7 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 0s (82.8 MB/s)
+    ## Fetched 11.4 MB in 1s (12.9 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -125,10 +127,10 @@ pak::pak(c("dplyr", "tidyr", "gt", "cfbfastR"))
     ## No containers need to be restarted.
     ## 
     ## No user sessions are running outdated binaries.
-
+    ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 4 pkgs + 72 deps: kept 72 [13.4s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [18.5s]
 
 ``` r
 
@@ -150,6 +152,10 @@ library(dplyr)
 
 library(tidyr)
 library(gt)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 # pak::pak("sportsdataverse/cfbfastR")
 ```
@@ -161,9 +167,9 @@ library(cfbfastR)
 cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 ```
 
-    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.0.0 ──
+    ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-07 09:27:12 UTC
+    ## ℹ Data updated: 2026-09-10 05:54:11 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -185,8 +191,8 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC")
 ```
 
-    ## ── Betting lines data from CollegeFootballData.com ─────────── cfbfastR 3.0.0 ──
-    ## ℹ Data updated: 2026-09-07 09:27:12 UTC
+    ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
+    ## ℹ Data updated: 2026-09-10 05:54:11 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

@@ -8,6 +8,10 @@ the function names, as we go.
 
 ``` r
 
+# Do not add an install step for cfbfastR here. pkgdown and R CMD check
+# render this vignette against the package being built; installing the
+# CRAN release would overwrite that dev build, and any function added
+# since the last release would vanish mid-render.
 library(cfbfastR)
 library(dplyr)
 ```

@@ -33,6 +33,11 @@ One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
 
   **CFBD Drives Endpoint Overview**
 
+- [`cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md)
+  :
+
+  **CFBD Passing Endpoint Overview**
+
 - [`cfbd_pbp`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp.md)
   [`play_by_play`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp.md)
   :
@@ -46,6 +51,11 @@ One-page summaries of the cfbd\_\* and espn_cfb\_\* function families.
   :
 
   **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
+
+- [`cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
+  :
+
+  **CFBD Rushing Endpoint Overview**
 
 - [`cfbd_venues()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_venues.md)
   :
@@ -658,6 +668,108 @@ CollegeFootballData API
   :
 
   **Get season statistics by team**
+
+### Model Calculators
+
+Score a data frame with the shipped CFB models - pass a play-by-play
+frame or a hand-built row and get model output back
+
+- [`calculate_xpass()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_field_goal_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_completion_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_two_point_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_fourth_down()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_qbr()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_expected_points()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_win_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_epa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  [`calculate_wpa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+  :
+
+  **Score a data frame with the shipped CFB models**
+
+- [`cfb_model_card()`](https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.md)
+  [`cfb_card_features()`](https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.md)
+  [`cfb_card_era_contract()`](https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.md)
+  [`cfb_card_reset_cache()`](https://cfbfastR.sportsdataverse.org/reference/cfb_model_card.md)
+  :
+
+  **Read the published contract for a CFB model**
+
+### Passing Data
+
+Functions exported by cfbfastR sourced from the passing endpoints of the
+CollegeFootballData API (2025 onward)
+
+- [`cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md)
+  :
+
+  **CFBD Passing Endpoint Overview**
+
+- [`cfbd_passing_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_games.md)
+  :
+
+  **Get player game passing production, split by pass location**
+
+- [`cfbd_passing_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_season.md)
+  :
+
+  **Get player season passing production, split by pass location**
+
+- [`cfbd_passing_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_plays.md)
+  :
+
+  **Get individual passing plays with air yards, YAC and location
+  detail**
+
+- [`cfbd_passing_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_games.md)
+  :
+
+  **Get team game passing production for and against, split by pass
+  location**
+
+- [`cfbd_passing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.md)
+  :
+
+  **Get team season passing production for and against, split by pass
+  location**
+
+### Rushing Data
+
+Functions exported by cfbfastR sourced from the rushing endpoints of the
+CollegeFootballData API (2025 onward)
+
+- [`cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
+  :
+
+  **CFBD Rushing Endpoint Overview**
+
+- [`cfbd_rushing_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_players_games.md)
+  :
+
+  **Get player game rushing production, split by run direction**
+
+- [`cfbd_rushing_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_players_season.md)
+  :
+
+  **Get player season rushing production, split by run direction**
+
+- [`cfbd_rushing_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_plays.md)
+  :
+
+  **Get individual rushing plays with direction and attribution detail**
+
+- [`cfbd_rushing_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_games.md)
+  :
+
+  **Get team game rushing production for and against, split by run
+  direction**
+
+- [`cfbd_rushing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_season.md)
+  :
+
+  **Get team season rushing production for and against, split by run
+  direction**
 
 ### Rankings and Ratings Data
 

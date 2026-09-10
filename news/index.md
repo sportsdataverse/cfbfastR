@@ -10,6 +10,124 @@ producing different EPA/WPA for the same play. A four-component version
 means you are on the GitHub build. See the model note below before
 mixing outputs from the two.
 
+### New: user-facing model calculators
+
+Ten `calculate_*()` functions score a data frame with the models
+cfbfastR already ships — hand them play-by-play or a row you typed to
+ask a hypothetical:
+
+``` r
+
+calculate_expected_points(pbp)
+calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25))
+calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
+  yards_to_goal = 45, posteam_total = 52, posteam_spread = -3))
+```
+
+[`calculate_expected_points()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_win_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_epa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_wpa()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_field_goal_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_completion_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_xpass()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_two_point_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md),
+[`calculate_fourth_down()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+and
+[`calculate_qbr()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md).
+
+[`create_epa()`](https://cfbfastR.sportsdataverse.org/reference/create_epa.md)
+and
+[`create_wpa_naive()`](https://cfbfastR.sportsdataverse.org/reference/create_wpa.md)
+remain as the low-level layer these wrap. They stay useful to callers
+who already hold booster objects — but they require you to obtain those
+objects from an internal loader, which is why an exported function was
+still unusable by an ordinary user.
+
+**Every calculator validates against the model’s own published card.**
+Each model in the `cfb_model_artifacts` bundle ships a
+`<model>.card.json` declaring the ordered features it was trained with,
+and where relevant an `era_contract`. Feature lists and era cutpoints
+are now read from those cards rather than restated in this package — the
+duplication that caused cfbfastR-cfb-data#70, where both cfbfastR and
+sportsdataverse-py kept a private copy of the era boundary, both drifted
+to a 2017 cut the trainer never used, and 2018-2020 scored an era off
+the models trained with them.
+
+A missing column names every absent column and the model that wanted it,
+rather than failing inside xgboost. Play-by-play column names are
+normalized automatically, so a frame carrying `start.TimeSecsRem` is
+accepted as-is, and every input column is preserved so chaining two
+calculators is lossless.
+
+[`calculate_field_goal_probability()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+returns **`fg_make_prob`**, not `fg_prob`:
+[`calculate_expected_points()`](https://cfbfastR.sportsdataverse.org/reference/calculate_cfb_models.md)
+uses `FG` for the probability the *next score* is a field goal, which is
+a different quantity from the probability a kick is made.
+
+A committed fixture pins these against `sportsdataverse-py`’s
+equivalents across all four rule eras — 20 output columns, agreeing to
+1e-5.
+
+### New: CFBD passing and rushing endpoint families
+
+Ten new `cfbd_*()` wrappers close the last gaps against the
+CollegeFootballData API (spec **v5.27.1**), taking coverage from 74 of
+84 endpoints to **84 of 84**:
+
+| function | endpoint |
+|----|----|
+| [`cfbd_passing_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_season.md) | `/passing/players/season` |
+| [`cfbd_passing_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_players_games.md) | `/passing/players/games` |
+| [`cfbd_passing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.md) | `/passing/teams/season` |
+| [`cfbd_passing_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_games.md) | `/passing/teams/games` |
+| [`cfbd_passing_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_plays.md) | `/passing/plays` |
+| [`cfbd_rushing_players_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_players_season.md) | `/rushing/players/season` |
+| [`cfbd_rushing_players_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_players_games.md) | `/rushing/players/games` |
+| [`cfbd_rushing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_season.md) | `/rushing/teams/season` |
+| [`cfbd_rushing_teams_games()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_teams_games.md) | `/rushing/teams/games` |
+| [`cfbd_rushing_plays()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing_plays.md) | `/rushing/plays` |
+
+These carry the charting detail the older `cfbd_stats_*()` and
+`cfbd_metrics_*()` families do not: passing production split across
+seven pass locations (short and deep x left/middle/right, plus
+`unknown`), rushing production split across four run directions, and
+play-level frames with air yards, yards after catch, target ids, run
+direction and carrier attribution.
+
+The frames are wide by construction rather than by accident. One
+23-column passing production block repeats per location, and the team
+endpoints repeat the whole thing for `offense_` and `defense_`, so
+[`cfbd_passing_teams_season()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing_teams_season.md)
+is 3 + 2 x (23 + 7 x 23) = **371 columns**. Rather than a 371-row
+returns table,
+[`?cfbd_passing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_passing.md)
+documents the production block and the bucket naming scheme once and
+every column follows from it;
+[`?cfbd_rushing`](https://cfbfastR.sportsdataverse.org/reference/cfbd_rushing.md)
+does the same for the 24/26-column rushing block and its four
+directions.
+
+Two things worth knowing before using them:
+
+- **They start in 2025.** Earlier seasons are not an error — CFBD
+  answers HTTP 200 with an empty array — so these functions return a
+  0-row data frame for 2024 and before, silently rather than with a
+  parse error.
+- **The `*_available` columns are denominators, not statistics.** CFBD
+  parses air yards, YAC, location and direction out of play text, so an
+  attempt can be counted while those stay unknown. Dividing by
+  `attempts` instead of the matching `*_available` column understates
+  every mean. Play-level frames expose the same caveat as
+  `parse_status`, `location_analysis_eligible` and
+  `direction_analysis_eligible`. Check a column before building on it:
+  as of this writing CFBD has **not** populated play-level `air_yards`,
+  `yards_after_catch`, `pass_depth`/`pass_direction`/`pass_location` or
+  `rush_direction` at all — every value is `NA`, so R types them
+  `logical` — while `target` is populated (1,976 of 2,003 week-5 2025
+  completions) and the *season* aggregates do carry air yards.
+
 #### Air yards side the catch spot by the game’s own text abbreviations
 
 The 2025+ ESPN vendor text spots the catch with each school’s own
@@ -102,9 +220,10 @@ one publish
 - **New: expected pass rate.** `xpass` and `pass_oe` columns are added
   on scrimmage plays (nflfastR’s `xpass` / `pass_oe`), `pass_oe` on the
   percentage-point scale `100 * (pass - xpass)`. Note this model uses an
-  *ordinal* rule-era feature cutting at 2006/2013/**2017**, which is a
-  different encoding *and* different cutpoints from the FG model’s
-  one-hot `era0..era3` (2006/2013/2020).
+  *ordinal* rule-era feature, a different **encoding** from the FG
+  model’s one-hot `era0..era3` – but the same cutpoints: both cut at
+  2006/2013/2020. (An earlier build of this release cut `xpass` at 2017;
+  see the fix above.)
 - Existing EPA/WPA values **will change**: this is a different model
   generation. Rebuild rather than mixing old and new outputs in one
   dataset.

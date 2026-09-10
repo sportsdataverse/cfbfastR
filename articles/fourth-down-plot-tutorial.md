@@ -16,8 +16,12 @@ and download the package.
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "cfbfastR"))
+pak::pak(c("tidyverse"))
 library(tidyverse)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 
@@ -36,7 +40,7 @@ progressr::with_progress({
 tictoc::toc()
 ```
 
-    ## 34.693 sec elapsed
+    ## 39.004 sec elapsed
 
 Next, we’ll need to get the coaching information, so we’ll use the
 `cfbd_coaches` function:

@@ -87,26 +87,26 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-07 09:23:21 UTC
-#> # A tibble: 1,390 × 32
+#> ℹ Data updated: 2026-09-10 05:50:09 UTC
+#> # A tibble: 1,390 × 48
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 2117    Central Mi… fbs      Mid-Ameri…   2004    114733 Tory Humphrey       
-#>  2 2116    UCF         fbs      Mid-Ameri…   2004    150050 Brooks Turner       
-#>  3 276     Marshall    fbs      Mid-Ameri…   2004    100888 Brad Bates          
-#>  4 328     Utah State  fbs      Sun Belt     2004    158254 Chris Forbes        
-#>  5 2653    Troy        fbs      Sun Belt     2004    105545 DeWhitt Betterson   
-#>  6 264     Washington  fbs      Pac-10       2004    179762 Bobby Whithorne     
-#>  7 2050    Ball State  fbs      Mid-Ameri…   2004    127692 Ryan Hahaj          
-#>  8 183     Syracuse    fbs      Big East     2004    146580 Jeremy Sellers      
-#>  9 2572    Southern M… fbs      Conferenc…   2004    155188 Bobby Weakley       
-#> 10 2633    Tennessee   fbs      SEC          2004    123452 Derrick Tinsley     
+#>  1 166     New Mexico… fbs      Sun Belt     2004    149612 Brandon Allen       
+#>  2 2       Auburn      fbs      SEC          2004    134986 Ben Obomanu         
+#>  3 2751    Wyoming     fbs      Mountain …   2004    116544 C.R. Davis          
+#>  4 258     Virginia    fbs      ACC          2004    145917 Emmanuel Byers      
+#>  5 2633    Tennessee   fbs      SEC          2004    146890 Robert Meachem      
+#>  6 189     Bowling Gr… fbs      Mid-Ameri…   2004    134257 P.J. Pope           
+#>  7 189     Bowling Gr… fbs      Mid-Ameri…   2004    127948 B.J. Lane           
+#>  8 154     Wake Forest fbs      ACC          2004    146035 Kevin Marion        
+#>  9 277     West Virgi… fbs      Big East     2004    136528 Eddie Jackson       
+#> 10 228     Clemson     fbs      ACC          2004    135797 Duane Coleman       
 #> # ℹ 1,380 more rows
-#> # ℹ 25 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 41 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,
 #> #   passing_td <dbl>, fumbles <dbl>, playsgame <dbl>, EPAgame <dbl>,
 #> #   yardsplay <dbl>, yardsgame <dbl>, catchpct <dbl>, TEPA_rank <dbl>,
 #> #   EPAgame_rank <dbl>, EPAplay_rank <dbl>, success_rank <dbl>,
-#> #   catchpct_rank <dbl>, yards_rank <dbl>, yardsplay_rank <dbl>, …
+#> #   comp_rank <dbl>, targets_rank <dbl>, catchpct_rank <dbl>, …
 # }
 ```
