@@ -208,9 +208,14 @@ calculate_xpass <- function(df, season = NULL) {
 #' @rdname calculate_cfb_models
 #' @return [calculate_field_goal_probability()] - `df` with one column appended:
 #'
-#'  |col_name |types   |description                        |
-#'  |:--------|:-------|:----------------------------------|
-#'  |fg_prob  |numeric |Field-goal make probability (0-1). |
+#'  |col_name     |types   |description                            |
+#'  |:------------|:-------|:--------------------------------------|
+#'  |fg_make_prob |numeric |Probability the field goal is made (0-1). |
+#'
+#' Named `fg_make_prob`, not `fg_prob`: [calculate_expected_points()] emits
+#' `FG` for the probability the NEXT SCORE is a field goal, a different
+#' quantity, and the Python sibling uses `fg_prob` for that class. Keeping the
+#' names distinct makes chaining the two lossless in both languages.
 #'
 #' @export
 #' @examples
@@ -218,7 +223,7 @@ calculate_xpass <- function(df, season = NULL) {
 #'   try(calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25)))
 #' }
 calculate_field_goal_probability <- function(df, season = NULL) {
-  .cfb_calculate(df, "fg_model", "fg_prob", season = season)
+  .cfb_calculate(df, "fg_model", "fg_make_prob", season = season)
 }
 
 #' @rdname calculate_cfb_models

@@ -132,7 +132,7 @@ test_that("a season_type column is not mistaken for season", {
 test_that("a hand-built row scores without any pbp machinery", {
   skip_on_cran()
   out <- calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25))
-  expect_true(out$fg_prob >= 0 && out$fg_prob <= 1)
+  expect_true(out$fg_make_prob >= 0 && out$fg_make_prob <= 1)
 })
 
 test_that("field goal probability moves with the era", {
@@ -141,7 +141,7 @@ test_that("field goal probability moves with the era", {
   # 2024 -- if it does, the era columns are being ignored.
   skip_on_cran()
   fg <- function(y) {
-    calculate_field_goal_probability(data.frame(season = y, yards_to_goal = 25))$fg_prob
+    calculate_field_goal_probability(data.frame(season = y, yards_to_goal = 25))$fg_make_prob
   }
   expect_lt(fg(2005), fg(2024))
 })

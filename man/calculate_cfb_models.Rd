@@ -51,8 +51,14 @@ A data frame: \code{df} with the model's output column(s) appended.
 
 \code{\link[=calculate_field_goal_probability]{calculate_field_goal_probability()}} - \code{df} with one column appended:\tabular{lll}{
    col_name \tab types \tab description \cr
-   fg_prob \tab numeric \tab Field-goal make probability (0-1). \cr
+   fg_make_prob \tab numeric \tab Probability the field goal is made (0-1). \cr
 }
+
+
+Named \code{fg_make_prob}, not \code{fg_prob}: \code{\link[=calculate_expected_points]{calculate_expected_points()}} emits
+\code{FG} for the probability the NEXT SCORE is a field goal, a different
+quantity, and the Python sibling uses \code{fg_prob} for that class. Keeping the
+names distinct makes chaining the two lossless in both languages.
 
 \code{\link[=calculate_completion_probability]{calculate_completion_probability()}} - \code{df} with one column appended:\tabular{lll}{
    col_name \tab types \tab description \cr
