@@ -248,7 +248,7 @@ BibTex Citation
   doi = {10.32614/CRAN.package.cfbfastR},
   journal = {CRAN: Contributed Packages},
   publisher = {The R Foundation},
-  year = {2021}
+  year = {2026}
 }
 
 ```

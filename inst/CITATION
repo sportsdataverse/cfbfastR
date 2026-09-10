@@ -15,10 +15,10 @@ bibentry(
   doi       = "10.32614/CRAN.package.cfbfastR",
   journal   = "CRAN: Contributed Packages",
   publisher = "The R Foundation",
-  year      = 2021,
+  year      = 2026,
   note      = note,
   textVersion = paste(
-    "Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2021).",
+    "Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess (2026).",
     "cfbfastR: Access College Football Play by Play Data.",
     "Retrieved from https://cfbfastR.sportsdataverse.org/",
     "doi: 10.32614/CRAN.package.cfbfastR"
