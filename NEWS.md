@@ -176,9 +176,9 @@ agree on EPA for a given play and a retrain updates both from one publish
 * **New: expected pass rate.** `xpass` and `pass_oe` columns are added on
   scrimmage plays (nflfastR's `xpass` / `pass_oe`), `pass_oe` on the
   percentage-point scale `100 * (pass - xpass)`. Note this model uses an
-  *ordinal* rule-era feature cutting at 2006/2013/**2017**, which is a
-  different encoding *and* different cutpoints from the FG model's one-hot
-  `era0..era3` (2006/2013/2020).
+  *ordinal* rule-era feature, a different **encoding** from the FG model's
+  one-hot `era0..era3` -- but the same cutpoints: both cut at 2006/2013/2020.
+  (An earlier build of this release cut `xpass` at 2017; see the fix above.)
 * Existing EPA/WPA values **will change**: this is a different model
   generation. Rebuild rather than mixing old and new outputs in one dataset.
 
