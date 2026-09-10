@@ -60,6 +60,10 @@ them.
   try(cfb_card_features("ep_model"))
 }
 }
+\seealso{
+Other CFB Model Calculators:
+\code{\link{calculate_cfb_models}}
+}
 \concept{CFB Model Calculators}
 \keyword{CFB}
 \keyword{Card}

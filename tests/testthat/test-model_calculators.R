@@ -124,3 +124,95 @@ test_that("a season_type column is not mistaken for season", {
   out <- cfb_add_era_columns(df, "xpass_model", season = 2018)
   expect_equal(out$era, 2L)
 })
+
+# ---------------------------------------------------------------------------
+# The ten public calculators, against the real packaged models.
+# ---------------------------------------------------------------------------
+
+test_that("a hand-built row scores without any pbp machinery", {
+  skip_on_cran()
+  out <- calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25))
+  expect_true(out$fg_prob >= 0 && out$fg_prob <= 1)
+})
+
+test_that("field goal probability moves with the era", {
+  # The era one-hot must actually reach the model. Kickers improved over the
+  # covered seasons, so a fixed distance must not score identically in 2005 and
+  # 2024 -- if it does, the era columns are being ignored.
+  skip_on_cran()
+  fg <- function(y) {
+    calculate_field_goal_probability(data.frame(season = y, yards_to_goal = 25))$fg_prob
+  }
+  expect_lt(fg(2005), fg(2024))
+})
+
+test_that("calculators preserve every input column", {
+  # Chaining two calculators must be lossless.
+  skip_on_cran()
+  out <- calculate_field_goal_probability(
+    data.frame(season = 2024, yards_to_goal = 25, marker = "keep", stringsAsFactors = FALSE)
+  )
+  expect_equal(out$marker, "keep")
+})
+
+test_that("a missing column names what is absent", {
+  skip_on_cran()
+  expect_error(
+    calculate_field_goal_probability(data.frame(season = 2024)),
+    regexp = "yards_to_goal"
+  )
+})
+
+test_that("expected points emits class probabilities summing to one", {
+  skip_on_cran()
+  out <- calculate_expected_points(data.frame(
+    TimeSecsRem = 1800, yards_to_goal = 75, distance = 10,
+    down_1 = 1, down_2 = 0, down_3 = 0, down_4 = 0, pos_score_diff_start = 0
+  ))
+  expect_true(all(.EP_LEV %in% names(out)))
+  expect_equal(sum(unlist(out[1, .EP_LEV])), 1, tolerance = 1e-4)
+  expect_true(out$ep >= -10 && out$ep <= 10)
+})
+
+test_that("expected points scores a raw pbp frame", {
+  # R's .ep_feature_matrix() takes a plain `down` and builds the indicators
+  # itself, so the card's post-one-hot list is the wrong contract to validate.
+  skip_on_cran()
+  pbp <- data.frame(
+    season = 2024, start.TimeSecsRem = 900, start.yardsToEndzone = 75,
+    start.distance = 10, start.down = 1, pos_score_diff_start = 0
+  )
+  expect_true(is.finite(calculate_expected_points(pbp)$ep))
+})
+
+test_that("epa and wpa require the after-play value", {
+  # EPA is a difference; these score rows, not sequences. Inventing ep_end would
+  # produce a number that looks like EPA and is not.
+  expect_error(calculate_epa(data.frame(yards_to_goal = 75)), regexp = "ep_end")
+  expect_error(calculate_wpa(data.frame(down = 1)), regexp = "wp_end")
+})
+
+test_that("epa is the difference and reuses an existing ep", {
+  # An ep already present must not be recomputed -- that would fight a pbp frame
+  # whose ep came from the pipeline.
+  expect_equal(calculate_epa(data.frame(ep = 2, ep_end = 5))$epa, 3)
+  expect_equal(calculate_wpa(data.frame(wp = 0.4, wp_end = 0.6))$wpa, 0.2, tolerance = 1e-9)
+})
+
+test_that("cp score_diff comes from the model's source, not the like-named column", {
+  # The CP model's score_diff is fed from pos_score_diff_start. A pbp frame also
+  # carries its own score_diff, which is a different quantity; taking it yields
+  # completion probabilities that are wrong yet entirely plausible.
+  local_mocked_bindings(
+    cfb_card_features = function(model) c("score_diff", "down")
+  )
+  df <- data.frame(pos_score_diff_start = -4, score_diff = 99, down = 3)
+  expect_equal(.cfb_normalize_pbp_columns(df, "cfb_cp_model")$score_diff, -4)
+})
+
+test_that("a hand-built frame keeps its own score_diff", {
+  # No pos_score_diff_start means it is not a pbp frame, so nothing overrides.
+  local_mocked_bindings(cfb_card_features = function(model) c("score_diff", "down"))
+  df <- data.frame(score_diff = 7, down = 1)
+  expect_equal(.cfb_normalize_pbp_columns(df, "cfb_cp_model")$score_diff, 7)
+})
