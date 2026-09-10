@@ -25,7 +25,15 @@ test_that("ESPN CFB Team Roster", {
 
   y <- espn_cfb_team_roster(team_id = 61, year = 2023)
 
-  if (is.null(x) || !is.data.frame(x) || nrow(x) == 0) {
+  # team_detail = FALSE / position_detail = FALSE reproduce the base output.
+  z <- espn_cfb_team_roster(team_id = 61, year = 2024,
+                            position_detail = FALSE, team_detail = FALSE)
+
+  # Guard every fetch, not just the first. ESPN can serve one season and not
+  # another, and an unguarded frame then reaches expect_in() with no columns --
+  # which is how this test reddened main while the guarded `x` sailed through.
+  have_roster <- function(d) !is.null(d) && is.data.frame(d) && nrow(d) > 0
+  if (!have_roster(x) || !have_roster(y) || !have_roster(z)) {
     skip("No ESPN team roster data returned at test time")
   }
 
@@ -38,9 +46,6 @@ test_that("ESPN CFB Team Roster", {
   expect_in(team_detail_cols, colnames(x))
   expect_in(position_detail_cols, colnames(x))
 
-  # team_detail = FALSE / position_detail = FALSE reproduce the base output.
-  z <- espn_cfb_team_roster(team_id = 61, year = 2024,
-                            position_detail = FALSE, team_detail = FALSE)
   expect_in(cols, colnames(z))
   expect_false(any(team_detail_cols %in% colnames(z)))
   expect_false(any(position_detail_cols %in% colnames(z)))
