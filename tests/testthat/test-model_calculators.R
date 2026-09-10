@@ -216,3 +216,31 @@ test_that("a hand-built frame keeps its own score_diff", {
   df <- data.frame(score_diff = 7, down = 1)
   expect_equal(.cfb_normalize_pbp_columns(df, "cfb_cp_model")$score_diff, 7)
 })
+
+test_that("fourth down emits scalars in range, not a scrambled distribution", {
+  # fd_model is a 76-class yards-gained distribution, not a probability. An
+  # earlier reshape flattened xgboost's n x 76 matrix with as.numeric() and
+  # rebuilt it byrow, reassembling column-major and producing a "probability"
+  # of 1.75. Bounds are what caught it -- assert them.
+  skip_on_cran()
+  df <- data.frame(
+    season = c(2024, 2024), down = c(4, 4), distance = c(1, 15),
+    yards_to_goal = c(45, 45), posteam_total = c(52, 52), posteam_spread = c(-3, -3)
+  )
+  out <- calculate_fourth_down(df)
+  expect_true(all(out$fd_conversion_prob >= 0 & out$fd_conversion_prob <= 1))
+  # a short distance must convert more often than a long one
+  expect_gt(out$fd_conversion_prob[1], out$fd_conversion_prob[2])
+  expect_true(all(is.finite(out$fd_expected_yards)))
+})
+
+test_that("fourth down needs distance for the conversion probability", {
+  skip_on_cran()
+  expect_error(
+    calculate_fourth_down(data.frame(
+      season = 2024, down = 4, yards_to_goal = 45,
+      posteam_total = 52, posteam_spread = -3
+    )),
+    regexp = "distance"
+  )
+})

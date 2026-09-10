@@ -257,11 +257,17 @@ calculate_two_point_probability <- function(df, season = NULL) {
 }
 
 #' @rdname calculate_cfb_models
-#' @return [calculate_fourth_down()] - `df` with one column appended:
+#' @return [calculate_fourth_down()] - `df` with two columns appended:
 #'
-#'  |col_name |types   |description                       |
-#'  |:--------|:-------|:---------------------------------|
-#'  |fd_prob  |numeric |Fourth-down model output.         |
+#'  |col_name           |types   |description                                          |
+#'  |:------------------|:-------|:----------------------------------------------------|
+#'  |fd_conversion_prob |numeric |Probability the gain reaches `distance` (0-1).       |
+#'  |fd_expected_yards  |numeric |Expected yards gained on the play.                   |
+#'
+#' `fd_model` is a 76-class yards-gained distribution (class *k* is a gain of
+#' *k* - 10 yards), not a probability, so these are derived from it rather than
+#' returned raw -- an array column could not be written to CSV and is not a
+#' usable public surface.
 #'
 #' @export
 #' @examples
@@ -270,7 +276,35 @@ calculate_two_point_probability <- function(df, season = NULL) {
 #'     yards_to_goal = 45, posteam_total = 52, posteam_spread = -3)))
 #' }
 calculate_fourth_down <- function(df, season = NULL) {
-  .cfb_calculate(df, "fd_model", "fd_prob", season = season)
+  prepared <- cfb_add_era_columns(
+    .cfb_normalize_pbp_columns(df, "fd_model"), "fd_model",
+    season = season
+  )
+  if (!"distance" %in% names(prepared)) {
+    cli::cli_abort(
+      "{.fn calculate_fourth_down} needs a {.code distance} column to compute conversion probability."
+    )
+  }
+  probs <- .cfb_predict_from_card(prepared, "fd_model", .cfb_booster_for("fd_model"))
+  n <- nrow(prepared)
+  # Class k is a gain of k - 10 yards, spanning -10..65 (76 classes).
+  n_class <- 76L
+  # xgboost returns an n x 76 matrix here already. Flattening with as.numeric()
+  # and rebuilding byrow reassembles it column-major and silently scrambles the
+  # classes -- it produced a "probability" of 1.75. Only reshape a flat vector,
+  # the same guard .ep_predict() applies.
+  m <- if (is.matrix(probs) && ncol(probs) == n_class) {
+    probs
+  } else {
+    matrix(as.numeric(probs), nrow = n, ncol = n_class, byrow = TRUE)
+  }
+  gains <- seq_len(n_class) - 11L
+  prepared[["fd_expected_yards"]] <- as.numeric(m %*% gains)
+  need <- as.numeric(prepared[["distance"]])
+  prepared[["fd_conversion_prob"]] <- vapply(
+    seq_len(n), function(i) sum(m[i, gains >= need[i]]), numeric(1)
+  )
+  prepared
 }
 
 #' @rdname calculate_cfb_models

@@ -64,10 +64,17 @@ A data frame: \code{df} with the model's output column(s) appended.
    two_pt_prob \tab numeric \tab Two-point conversion probability (0-1). \cr
 }
 
-\code{\link[=calculate_fourth_down]{calculate_fourth_down()}} - \code{df} with one column appended:\tabular{lll}{
+\code{\link[=calculate_fourth_down]{calculate_fourth_down()}} - \code{df} with two columns appended:\tabular{lll}{
    col_name \tab types \tab description \cr
-   fd_prob \tab numeric \tab Fourth-down model output. \cr
+   fd_conversion_prob \tab numeric \tab Probability the gain reaches \code{distance} (0-1). \cr
+   fd_expected_yards \tab numeric \tab Expected yards gained on the play. \cr
 }
+
+
+\code{fd_model} is a 76-class yards-gained distribution (class \emph{k} is a gain of
+\emph{k} - 10 yards), not a probability, so these are derived from it rather than
+returned raw -- an array column could not be written to CSV and is not a
+usable public surface.
 
 \code{\link[=calculate_qbr]{calculate_qbr()}} - \code{df} with one column appended:\tabular{lll}{
    col_name \tab types \tab description \cr
