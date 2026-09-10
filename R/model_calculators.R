@@ -343,7 +343,7 @@ calculate_qbr <- function(df, season = NULL) {
 #'  |TD           |numeric |Probability the next score is a touchdown.              |
 #'  |ep           |numeric |Expected points: the class probabilities weighted by their point values. |
 #'
-#' Class order follows [.EP_LEV], which is **not** the ordering
+#' Class order follows `.EP_LEV`, which is **not** the ordering
 #' `sportsdataverse-py` uses. Scoring goes through `.ep_predict()`, which applies
 #' the bundle's own class permutation -- reimplementing the reshape here would
 #' produce every column present and every value mis-assigned.

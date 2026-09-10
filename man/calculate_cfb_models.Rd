@@ -100,7 +100,7 @@ usable public surface.
 }
 
 
-Class order follows \link{.EP_LEV}, which is \strong{not} the ordering
+Class order follows \code{.EP_LEV}, which is \strong{not} the ordering
 \code{sportsdataverse-py} uses. Scoring goes through \code{.ep_predict()}, which applies
 the bundle's own class permutation -- reimplementing the reshape here would
 produce every column present and every value mis-assigned.
