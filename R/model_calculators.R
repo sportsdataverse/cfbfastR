@@ -145,8 +145,14 @@ cfb_add_era_columns <- function(df, model, season = NULL) {
 #' @keywords internal
 #' @noRd
 .cfb_calculate <- function(df, model, out_col, season = NULL) {
+  # Resolve the booster FIRST. Normalization and era derivation both read the
+  # card, so resolving the booster afterwards let a stale card pass the stamp
+  # check and only THEN triggered .cfb_model_file()'s TTL refresh of the .ubj --
+  # pairing a new booster with the old contract, which is the exact skew the
+  # mtime keying exists to prevent.
+  booster <- .cfb_booster_for(model)
   prepared <- cfb_add_era_columns(.cfb_normalize_pbp_columns(df, model), model, season = season)
-  prepared[[out_col]] <- .cfb_predict_from_card(prepared, model, .cfb_booster_for(model))
+  prepared[[out_col]] <- .cfb_predict_from_card(prepared, model, booster)
   prepared
 }
 
@@ -368,13 +374,33 @@ calculate_expected_points <- function(df, season = NULL) {
   if (!"down" %in% names(prepared)) {
     onehots <- intersect(.CFB_DOWN_ONE_HOTS, names(prepared))
     if (length(onehots) > 0L) {
-      # recover `down` from indicators, so a frame shaped for the Python
-      # calculators is accepted here too
-      idx <- as.integer(sub("^down_", "", onehots))
-      prepared[["down"]] <- Reduce(
-        function(a, b) a + b,
-        Map(function(col, i) as.integer(prepared[[col]] == 1L) * i, onehots, idx)
-      )
+      # Require the COMPLETE set and exactly one active indicator per row. A
+      # partial set silently maps unmatched rows to down = 0, and two active
+      # indicators sum to a plausible-looking down that is simply wrong -- both
+      # produce a frame that scores clean and means something else.
+      if (!setequal(onehots, .CFB_DOWN_ONE_HOTS)) {
+        # cli parses a brace expression starting with a dot as inline markup
+        # ({.cls text}), so {.val {.CFB_DOWN_ONE_HOTS}} makes the abort itself
+        # throw. Bind to a dot-free local first.
+        required <- .CFB_DOWN_ONE_HOTS
+        cli::cli_abort(c(
+          "Down indicators are incomplete.",
+          "x" = "Found {.val {onehots}}; all of {.val {required}} are required.",
+          "i" = "Supply a plain {.code down} column instead."
+        ))
+      }
+      mat <- as.matrix(prepared[, .CFB_DOWN_ONE_HOTS, drop = FALSE])
+      if (!all(mat %in% c(0L, 1L, 0, 1))) {
+        cli::cli_abort("Down indicators must be 0/1.")
+      }
+      active <- rowSums(mat)
+      if (!all(active == 1L)) {
+        cli::cli_abort(c(
+          "Every row needs exactly one active down indicator.",
+          "x" = "{sum(active != 1L)} row{?s} had {.val {unique(active[active != 1L])}}."
+        ))
+      }
+      prepared[["down"]] <- as.integer(mat %*% seq_along(.CFB_DOWN_ONE_HOTS))
     }
   }
   need <- c("TimeSecsRem", "yards_to_goal", "distance", "down", "pos_score_diff_start")

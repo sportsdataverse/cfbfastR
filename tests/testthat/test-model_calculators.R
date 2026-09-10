@@ -1,10 +1,35 @@
 fake_booster <- function(features) {
-  X <- matrix(0, nrow = 4, ncol = length(features), dimnames = list(NULL, features))
+  # Must actually DISCRIMINATE on its features. Training on an all-zero matrix
+  # gives a booster that returns 0.5 for every input, which made the
+  # column-ordering test unable to fail: a scrambled frame scored identically to
+  # a correct one because every frame scored identically.
+  set.seed(42)
+  n <- 200L
+  X <- matrix(stats::runif(n * length(features), 0, 50), nrow = n,
+              dimnames = list(NULL, features))
+  # label depends on the FIRST feature, so a permuted column order changes the
+  # prediction and the ordering assertion has something to catch
+  y <- as.integer(X[, 1] > 25)
   xgboost::xgb.train(
-    params = list(objective = "binary:logistic", max_depth = 1),
-    data = xgboost::xgb.DMatrix(X, label = c(0, 1, 0, 1)), nrounds = 1
+    params = list(objective = "binary:logistic", max_depth = 3),
+    data = xgboost::xgb.DMatrix(X, label = y), nrounds = 10, verbose = 0
   )
 }
+
+test_that("the test booster actually discriminates", {
+  # Guards the guard: if this ever returns a constant again, every ordering and
+  # validation test below silently stops testing anything.
+  feats <- c("down", "distance", "yards_to_goal")
+  local_mocked_bindings(cfb_card_features = function(model) feats)
+  b <- fake_booster(feats)
+  lo <- .cfb_predict_from_card(
+    data.frame(down = 1, distance = 1, yards_to_goal = 1), "xpass_model", b
+  )
+  hi <- .cfb_predict_from_card(
+    data.frame(down = 49, distance = 49, yards_to_goal = 49), "xpass_model", b
+  )
+  expect_gt(abs(hi - lo), 0.1)
+})
 
 test_that("missing columns are all named in one error", {
   # The failure this surface exists to remove is a caller unable to tell what
@@ -243,4 +268,69 @@ test_that("fourth down needs distance for the conversion probability", {
     )),
     regexp = "distance"
   )
+})
+
+test_that("incomplete down indicators are rejected, not silently mapped to 0", {
+  # A partial set silently maps unmatched rows to down = 0 -- a frame that
+  # scores clean and means something else.
+  df <- data.frame(TimeSecsRem = 900, yards_to_goal = 75, distance = 10,
+                   pos_score_diff_start = 0, down_1 = 1, down_2 = 0)
+  expect_error(calculate_expected_points(df), regexp = "incomplete")
+})
+
+test_that("non-binary down indicators are rejected", {
+  df <- data.frame(TimeSecsRem = 900, yards_to_goal = 75, distance = 10,
+                   pos_score_diff_start = 0,
+                   down_1 = 2, down_2 = 0, down_3 = 0, down_4 = 0)
+  expect_error(calculate_expected_points(df), regexp = "0/1")
+})
+
+test_that("two active down indicators are rejected", {
+  # Two actives sum to a plausible-looking down that is simply wrong.
+  df <- data.frame(TimeSecsRem = 900, yards_to_goal = 75, distance = 10,
+                   pos_score_diff_start = 0,
+                   down_1 = 1, down_2 = 1, down_3 = 0, down_4 = 0)
+  expect_error(calculate_expected_points(df), regexp = "exactly one")
+})
+
+test_that("no active down indicator is rejected", {
+  df <- data.frame(TimeSecsRem = 900, yards_to_goal = 75, distance = 10,
+                   pos_score_diff_start = 0,
+                   down_1 = 0, down_2 = 0, down_3 = 0, down_4 = 0)
+  expect_error(calculate_expected_points(df), regexp = "exactly one")
+})
+
+test_that("a complete valid indicator set reconstructs down", {
+  # Omit the other required columns so the abort lands on the missing-column
+  # check: `down` absent from that list proves reconstruction ran, without
+  # needing the bundled booster.
+  df <- data.frame(down_1 = c(1, 0, 0, 0), down_2 = c(0, 1, 0, 0),
+                   down_3 = c(0, 0, 1, 0), down_4 = c(0, 0, 0, 1))
+  err <- tryCatch(calculate_expected_points(df), error = function(e) e)
+  expect_s3_class(err, "error")
+  # 4 missing, not 5: `down` was rebuilt from the indicators. (The trailing
+  # hint line names every required column, so a bare grep for "down" would
+  # match whether reconstruction ran or not.)
+  expect_match(conditionMessage(err), "needs 4 columns")
+})
+
+test_that("the booster is resolved before anything reads the card", {
+  # Normalization and era derivation both read the card. Resolving the booster
+  # afterwards let a stale card pass the mtime stamp check and only THEN
+  # triggered the .ubj TTL refresh -- pairing a new booster with the old
+  # contract, the exact skew the stamp keying exists to prevent.
+  order <- character(0)
+  local_mocked_bindings(
+    .cfb_booster_for = function(model) {
+      order <<- c(order, "booster")
+      fake_booster(c("down", "distance"))
+    },
+    cfb_card_features = function(model) {
+      order <<- c(order, "card")
+      c("down", "distance")
+    },
+    cfb_card_era_contract = function(model) NULL
+  )
+  .cfb_calculate(data.frame(down = 1, distance = 10), "xpass_model", "xpass")
+  expect_equal(order[1], "booster")
 })
