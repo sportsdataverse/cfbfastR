@@ -10,6 +10,12 @@ name: pkgdown
 jobs:
   pkgdown:
     runs-on: ubuntu-22.04
+    # deploy_to_branch() pushes the built site to gh-pages, so the job needs
+    # contents: write and nothing else. Declared explicitly rather than
+    # inherited: the repository default is currently write, but a default that
+    # flips to read-only would otherwise break the deploy with no change here.
+    permissions:
+      contents: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
