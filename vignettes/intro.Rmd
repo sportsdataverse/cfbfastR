@@ -51,11 +51,15 @@ Welcome to the football analytics community! I'm Saiem Gilani, one of the [autho
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "zoo", "ggimage", "gt", "cfbfastR"))
+pak::pak(c("tidyverse", "zoo", "ggimage", "gt"))
 library(tidyverse)
 library(zoo)
 library(ggimage)
 library(gt)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 

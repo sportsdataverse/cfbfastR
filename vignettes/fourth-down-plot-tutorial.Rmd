@@ -24,8 +24,12 @@ Hey everyone, my name is Michael and over the summer I worked on a daily series 
 if (!requireNamespace('pak', quietly = TRUE)){
   install.packages('pak')
 }
-pak::pak(c("tidyverse", "cfbfastR"))
+pak::pak(c("tidyverse"))
 library(tidyverse)
+# cfbfastR is deliberately NOT in the pak() list above. pkgdown and
+# R CMD check render this vignette against the package being built, and
+# installing from CRAN here would overwrite that dev build with the last
+# release -- so any function added since it would vanish mid-render.
 library(cfbfastR)
 ```
 
