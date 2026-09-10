@@ -43,6 +43,25 @@ Five source-prefixed families; `R/` is grouped by prefix:
 | `yahoo_cfb_*` | Yahoo Sports | none | scoreboard/boxscore/player+team season stats |
 | `load_cfb_*` / `load_espn_cfb_*` / `load_ncaa_mfb_*` | release artifacts | none | 43 full-season loaders from `sportsdataverse-data` releases |
 
+**Model calculators (`R/model_calculators.R`, `R/model_cards.R`):** ten
+`calculate_*()` functions score a frame with the shipped models. They validate
+against each model's **published card** (`<model>.card.json` in the
+`cfb_model_artifacts` bundle) rather than a feature list restated here, and read
+era cutpoints from the card's `era_contract` — never restate `ERA_BOUNDS`, that
+duplication caused cfbfastR-cfb-data#70. `.cfb_model_file()` fetches cards as
+well as boosters, and the card cache is keyed on the booster's mtime so a TTL
+refresh cannot pair a new model with a stale contract.
+
+Three traps the surface encodes, all found the hard way:
+- `df[["season"]]`, never `df$season` — `$` partial-matches, so a pbp frame
+  carrying `season_type` returns "regular" and the era comparison runs on a
+  season TYPE.
+- CP's `score_diff` is fed from `pos_score_diff_start`; a pbp frame's own
+  `score_diff` is a different quantity and yields wrong-but-plausible values.
+- `calculate_expected_points()` must go through `.ep_predict()`. R's class order
+  (`.EP_LEV`) is NOT Python's, and the bundle ships a permutation `.ep_predict()`
+  applies; reimplementing the reshape mis-assigns every value.
+
 **CFBD endpoint coverage:** all **84** paths in the CFBD spec (v5.27.1) are
 wrapped as of the `cfbd_passing_*` / `cfbd_rushing_*` additions. To re-audit, the
 spec is NOT at `/swagger/v1/swagger.json` (that serves the Swagger UI shell) —

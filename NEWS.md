@@ -7,6 +7,50 @@ distinguish them — while producing different EPA/WPA for the same play. A
 four-component version means you are on the GitHub build. See the model note
 below before mixing outputs from the two.
 
+## New: user-facing model calculators
+
+Ten `calculate_*()` functions score a data frame with the models cfbfastR already
+ships — hand them play-by-play or a row you typed to ask a hypothetical:
+
+```r
+calculate_expected_points(pbp)
+calculate_field_goal_probability(data.frame(season = 2024, yards_to_goal = 25))
+calculate_fourth_down(data.frame(season = 2024, down = 4, distance = 2,
+  yards_to_goal = 45, posteam_total = 52, posteam_spread = -3))
+```
+
+`calculate_expected_points()`, `calculate_win_probability()`, `calculate_epa()`,
+`calculate_wpa()`, `calculate_field_goal_probability()`,
+`calculate_completion_probability()`, `calculate_xpass()`,
+`calculate_two_point_probability()`, `calculate_fourth_down()` and
+`calculate_qbr()`.
+
+`create_epa()` and `create_wpa_naive()` remain as the low-level layer these wrap.
+They stay useful to callers who already hold booster objects — but they require
+you to obtain those objects from an internal loader, which is why an exported
+function was still unusable by an ordinary user.
+
+**Every calculator validates against the model's own published card.** Each model
+in the `cfb_model_artifacts` bundle ships a `<model>.card.json` declaring the
+ordered features it was trained with, and where relevant an `era_contract`. Feature
+lists and era cutpoints are now read from those cards rather than restated in this
+package — the duplication that caused cfbfastR-cfb-data#70, where both cfbfastR and
+sportsdataverse-py kept a private copy of the era boundary, both drifted to a 2017
+cut the trainer never used, and 2018-2020 scored an era off the models trained with
+them.
+
+A missing column names every absent column and the model that wanted it, rather
+than failing inside xgboost. Play-by-play column names are normalized
+automatically, so a frame carrying `start.TimeSecsRem` is accepted as-is, and
+every input column is preserved so chaining two calculators is lossless.
+
+`calculate_field_goal_probability()` returns **`fg_make_prob`**, not `fg_prob`:
+`calculate_expected_points()` uses `FG` for the probability the *next score* is a
+field goal, which is a different quantity from the probability a kick is made.
+
+A committed fixture pins these against `sportsdataverse-py`'s equivalents across
+all four rule eras — 20 output columns, agreeing to 1e-5.
+
 ## New: CFBD passing and rushing endpoint families
 
 Ten new `cfbd_*()` wrappers close the last gaps against the CollegeFootballData

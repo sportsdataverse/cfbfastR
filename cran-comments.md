@@ -12,6 +12,11 @@ executed.
 
 ### Development additions since 3.0.0
 
+* Adds ten `calculate_*()` model-calculator wrappers scoring the CFB models the
+  package already ships. All are documented and exported; their tests
+  `skip_on_cran()` because they require the model bundle to be downloaded, and
+  run on the package's continuous integration on every push.
+
 * Adds ten `cfbd_*()` wrappers for the CollegeFootballData passing and rushing
   endpoint families, bringing coverage to all 84 endpoints in the current API
   specification (v5.27.1). All ten are documented, exported, and covered by

@@ -393,6 +393,12 @@ reference:
     contents:
       - '`cfbd_stats`'
       - starts_with("cfbd_stats")
+  - subtitle: Model Calculators
+    desc: Score a data frame with the shipped CFB models - pass a play-by-play frame or a hand-built row and get model output back
+    contents:
+      - '`calculate_cfb_models`'
+      - starts_with("calculate_")
+      - '`cfb_model_card`'
   - subtitle: Passing Data
     desc: Functions exported by cfbfastR sourced from the passing endpoints of the CollegeFootballData API (2025 onward)
     contents:
