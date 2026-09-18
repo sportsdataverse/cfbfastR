@@ -45,7 +45,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    start.distance \tab integer \tab Yards the offense needs for a first down at the snap, carried through from ESPN without correction. \cr
    start.yardsToEndzone \tab integer \tab Distance in yards from the offense's spot at the snap to the opponent's end zone, ranging 0 to 100. \cr
    pos_score_diff_start \tab integer \tab  \cr
-   start.TimeSecsRem \tab integer \tab Seconds remaining in the half at the snap, so it tops out at 1800 rather than counting down from a full game. \cr
+   start.TimeSecsRem \tab integer \tab Seconds remaining in the half from ESPN's clock stamp for this play -- the end-of-play time in 2005 and 2007+, the snap time in 2004 and most of 2006; tops out at 1800. \cr
    start.is_home \tab logical \tab True when the team holding possession at the snap is the home team. \cr
    passing_down \tab logical \tab True on second and eight or longer, third and five or longer, or fourth and five or longer, the standard obvious-passing-situation flag. \cr
    pass \tab logical \tab  \cr
