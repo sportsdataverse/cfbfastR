@@ -234,8 +234,8 @@ NULL
 #'    |clock.seconds                           |integer   |Seconds component of the game clock at the play. |
 #'    |lag_half                                |integer   |Value of half on the previous play, used for sequence-aware derivations. |
 #'    |lead_half                               |integer   |Value of half on the next play, used for sequence-aware derivations. |
-#'    |start.TimeSecsRem                       |integer   |ESPN's `TimeSecsRem` value for the play state at the start of the play. |
-#'    |start.adj_TimeSecsRem                   |integer   |ESPN's `adj_TimeSecsRem` value for the play state at the start of the play. |
+#'    |start.TimeSecsRem                       |integer   |Seconds remaining in the half from ESPN's clock stamp for this play -- the end-of-play time in 2005 and 2007+, the snap time in 2004 and most of 2006; tops out at 1800. |
+#'    |start.adj_TimeSecsRem                   |integer   |`start.TimeSecsRem` adjusted to seconds remaining in the game (EPA/WP model input); same clock stamp, so the same per-era meaning. |
 #'    |lead_text                               |character |Value of text on the next play, used for sequence-aware derivations. |
 #'    |lead_start_team                         |character |Value of start_team on the next play, used for sequence-aware derivations. |
 #'    |lead_start_yardsToEndzone               |integer   |Value of start_yardsToEndzone on the next play, used for sequence-aware derivations. |
@@ -260,8 +260,8 @@ NULL
 #'    |end.awayTeamTimeouts                    |integer   |ESPN's `awayTeamTimeouts` value for the play state at the end of the play. |
 #'    |start.homeTeamTimeouts                  |integer   |ESPN's `homeTeamTimeouts` value for the play state at the start of the play. |
 #'    |start.awayTeamTimeouts                  |integer   |ESPN's `awayTeamTimeouts` value for the play state at the start of the play. |
-#'    |end.TimeSecsRem                         |integer   |ESPN's `TimeSecsRem` value for the play state at the end of the play. |
-#'    |end.adj_TimeSecsRem                     |integer   |ESPN's `adj_TimeSecsRem` value for the play state at the end of the play. |
+#'    |end.TimeSecsRem                         |integer   |Seconds remaining in the half carried as this play's end state; currently the preceding row's clock stamp. |
+#'    |end.adj_TimeSecsRem                     |integer   |`end.TimeSecsRem` adjusted to seconds remaining in the game; same caveat -- currently the preceding row's clock stamp. |
 #'    |start.posTeamTimeouts                   |integer   |ESPN's `posTeamTimeouts` value for the play state at the start of the play. |
 #'    |start.defPosTeamTimeouts                |integer   |ESPN's `defPosTeamTimeouts` value for the play state at the start of the play. |
 #'    |end.posTeamTimeouts                     |integer   |ESPN's `posTeamTimeouts` value for the play state at the end of the play. |
@@ -2278,7 +2278,7 @@ NULL
 #'    |start.distance       |integer   |Yards the offense needs for a first down at the snap, carried through from ESPN without correction. |
 #'    |start.yardsToEndzone |integer   |Distance in yards from the offense's spot at the snap to the opponent's end zone, ranging 0 to 100. |
 #'    |pos_score_diff_start |integer   | |
-#'    |start.TimeSecsRem    |integer   |Seconds remaining in the half at the snap, so it tops out at 1800 rather than counting down from a full game. |
+#'    |start.TimeSecsRem    |integer   |Seconds remaining in the half from ESPN's clock stamp for this play -- the end-of-play time in 2005 and 2007+, the snap time in 2004 and most of 2006; tops out at 1800. |
 #'    |start.is_home        |logical   |True when the team holding possession at the snap is the home team. |
 #'    |passing_down         |logical   |True on second and eight or longer, third and five or longer, or fourth and five or longer, the standard obvious-passing-situation flag. |
 #'    |pass                 |logical   | |

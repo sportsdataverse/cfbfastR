@@ -226,8 +226,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    clock.seconds \tab integer \tab Seconds component of the game clock at the play. \cr
    lag_half \tab integer \tab Value of half on the previous play, used for sequence-aware derivations. \cr
    lead_half \tab integer \tab Value of half on the next play, used for sequence-aware derivations. \cr
-   start.TimeSecsRem \tab integer \tab ESPN's \code{TimeSecsRem} value for the play state at the start of the play. \cr
-   start.adj_TimeSecsRem \tab integer \tab ESPN's \code{adj_TimeSecsRem} value for the play state at the start of the play. \cr
+   start.TimeSecsRem \tab integer \tab Seconds remaining in the half from ESPN's clock stamp for this play -- the end-of-play time in 2005 and 2007+, the snap time in 2004 and most of 2006; tops out at 1800. \cr
+   start.adj_TimeSecsRem \tab integer \tab \code{start.TimeSecsRem} adjusted to seconds remaining in the game (EPA/WP model input); same clock stamp, so the same per-era meaning. \cr
    lead_text \tab character \tab Value of text on the next play, used for sequence-aware derivations. \cr
    lead_start_team \tab character \tab Value of start_team on the next play, used for sequence-aware derivations. \cr
    lead_start_yardsToEndzone \tab integer \tab Value of start_yardsToEndzone on the next play, used for sequence-aware derivations. \cr
@@ -252,8 +252,8 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    end.awayTeamTimeouts \tab integer \tab ESPN's \code{awayTeamTimeouts} value for the play state at the end of the play. \cr
    start.homeTeamTimeouts \tab integer \tab ESPN's \code{homeTeamTimeouts} value for the play state at the start of the play. \cr
    start.awayTeamTimeouts \tab integer \tab ESPN's \code{awayTeamTimeouts} value for the play state at the start of the play. \cr
-   end.TimeSecsRem \tab integer \tab ESPN's \code{TimeSecsRem} value for the play state at the end of the play. \cr
-   end.adj_TimeSecsRem \tab integer \tab ESPN's \code{adj_TimeSecsRem} value for the play state at the end of the play. \cr
+   end.TimeSecsRem \tab integer \tab Seconds remaining in the half carried as this play's end state; currently the preceding row's clock stamp. \cr
+   end.adj_TimeSecsRem \tab integer \tab \code{end.TimeSecsRem} adjusted to seconds remaining in the game; same caveat -- currently the preceding row's clock stamp. \cr
    start.posTeamTimeouts \tab integer \tab ESPN's \code{posTeamTimeouts} value for the play state at the start of the play. \cr
    start.defPosTeamTimeouts \tab integer \tab ESPN's \code{defPosTeamTimeouts} value for the play state at the start of the play. \cr
    end.posTeamTimeouts \tab integer \tab ESPN's \code{posTeamTimeouts} value for the play state at the end of the play. \cr
