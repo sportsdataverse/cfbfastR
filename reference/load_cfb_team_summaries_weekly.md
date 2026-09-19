@@ -440,7 +440,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_summaries_weekly(2004))
 #> ── college football weekly team summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-10 05:49:29 UTC
+#> ℹ Data updated: 2026-09-19 03:01:42 UTC
 #> # A tibble: 1,634 × 384
 #>    team_id pos_team       division conference     season plays_off passrate_off
 #>    <chr>   <chr>          <chr>    <chr>           <int>     <int>        <dbl>

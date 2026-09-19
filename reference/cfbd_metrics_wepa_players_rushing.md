@@ -80,12 +80,12 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_wepa_players_rushing(year = 2019, team = "TCU"))
 #> ── Opponent-adjusted players rushing PPA data from CollegeFootballData.com ─────
-#> ℹ Data updated: 2026-09-10 05:40:49 UTC
+#> ℹ Data updated: 2026-09-19 02:53:08 UTC
 #> # A tibble: 3 × 8
 #>    year athlete_id athlete_name    position team  conference  wepa plays
 #>   <int> <chr>      <chr>           <chr>    <chr> <chr>      <dbl> <int>
-#> 1  2019 4038533    Darius Anderson RB       TCU   Big 12      0.24   151
-#> 2  2019 4038539    Sewo Olonilua   RB       TCU   Big 12      0.31   131
-#> 3  2019 4427105    Max Duggan      QB       TCU   Big 12      0.49   109
+#> 1  2019 4038533    Darius Anderson RB       TCU   Big 12      0.17   151
+#> 2  2019 4038539    Sewo Olonilua   RB       TCU   Big 12      0.19   133
+#> 3  2019 4427105    Max Duggan      QB       TCU   Big 12      0.33   112
 # }
 ```

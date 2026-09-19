@@ -136,12 +136,12 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team(2004))
 #> ── college football advanced team from the SportsDataverse data repo ───────────
-#> ℹ Data updated: 2026-09-10 05:49:45 UTC
+#> ℹ Data updated: 2026-09-19 03:01:57 UTC
 #> # A tibble: 926 × 80
 #>    pos_team_id pos_team       rushing_highlight_ya…¹ total_pen_yards EPA_penalty
 #>          <int> <chr>                           <dbl>           <int>       <dbl>
-#>  1         259 Virginia Tech…                   5.17               5        1.86
-#>  2          30 USC Trojans                      4.2               -5       -0.56
+#>  1          30 USC Trojans                      4.2               -5       -0.56
+#>  2         259 Virginia Tech…                   5.17               5        1.86
 #>  3         245 Texas A&M Agg…                   7.27             -40       -5.99
 #>  4         254 Utah Utes                        4.47             -75       -5.97
 #>  5         103 Boston Colleg…                   4.71             -16       -0.69

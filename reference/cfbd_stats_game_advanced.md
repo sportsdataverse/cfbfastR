@@ -129,11 +129,11 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_game_advanced(year = 2018, week = 12, team = "Texas A&M"))
 #> ── Advanced game stats from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:44:35 UTC
+#> ℹ Data updated: 2026-09-19 02:56:49 UTC
 #> # A tibble: 1 × 62
 #>     game_id season season_type  week team  opponent off_plays off_drives off_ppa
 #>       <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>   <dbl>
-#> 1 401012347   2018 regular        12 Texa… UAB             56         11   0.408
+#> 1 401012347   2018 regular        12 Texa… UAB             56         11   0.328
 #> # ℹ 53 more variables: off_total_ppa <dbl>, off_success_rate <dbl>,
 #> #   off_explosiveness <dbl>, off_power_success <dbl>, off_stuff_rate <dbl>,
 #> #   off_line_yds <dbl>, off_line_yds_total <int>, off_second_lvl_yds <dbl>,
@@ -144,21 +144,21 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_advanced(2019, team = "LSU"))
 #> ── Advanced game stats from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:44:35 UTC
+#> ℹ Data updated: 2026-09-19 02:56:49 UTC
 #> # A tibble: 15 × 62
 #>     game_id season season_type  week team  opponent off_plays off_drives off_ppa
 #>       <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>   <dbl>
 #>  1   4.01e8   2019 regular         1 LSU   Georgia…        73         13   0.377
-#>  2   4.01e8   2019 regular         2 LSU   Texas           70         12   0.484
-#>  3   4.01e8   2019 regular         3 LSU   Northwe…        69         12   0.598
+#>  2   4.01e8   2019 regular         2 LSU   Texas           70         12   0.409
+#>  3   4.01e8   2019 regular         3 LSU   Northwe…        69         12   0.534
 #>  4   4.01e8   2019 regular         4 LSU   Vanderb…        74         17   0.286
-#>  5   4.01e8   2019 regular         6 LSU   Utah St…        90         13   0.331
+#>  5   4.01e8   2019 regular         6 LSU   Utah St…        90         13   0.252
 #>  6   4.01e8   2019 regular         7 LSU   Florida         48         11   0.736
 #>  7   4.01e8   2019 regular         8 LSU   Mississ…        63         13   0.215
-#>  8   4.01e8   2019 regular         9 LSU   Auburn          88         15   0.119
+#>  8   4.01e8   2019 regular         9 LSU   Auburn          88         15   0.104
 #>  9   4.01e8   2019 regular        11 LSU   Alabama         82         14   0.285
-#> 10   4.01e8   2019 regular        12 LSU   Ole Miss        83         14   0.493
-#> 11   4.01e8   2019 regular        13 LSU   Arkansas        48         12   0.796
+#> 10   4.01e8   2019 regular        12 LSU   Ole Miss        83         14   0.439
+#> 11   4.01e8   2019 regular        13 LSU   Arkansas        48         12   0.745
 #> 12   4.01e8   2019 regular        14 LSU   Texas A…        77         13   0.422
 #> 13   4.01e8   2019 regular        15 LSU   Georgia         77         11   0.323
 #> 14   4.01e8   2019 postseason      1 LSU   Oklahoma        73         12   0.632
@@ -173,7 +173,7 @@ Other CFBD Stats:
 
    try(cfbd_stats_game_advanced(2013, team = "Florida State"))
 #> ── Advanced game stats from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:44:36 UTC
+#> ℹ Data updated: 2026-09-19 02:56:49 UTC
 #> # A tibble: 14 × 62
 #>    game_id season season_type  week team  opponent off_plays off_drives  off_ppa
 #>      <int>  <int> <chr>       <int> <chr> <chr>        <int>      <int>    <dbl>

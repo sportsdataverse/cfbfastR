@@ -150,11 +150,11 @@ Other CFBD Stats:
 # \donttest{
    try(cfbd_stats_season_advanced(2019, team = "LSU"))
 #> ── Advanced season stats from CollegeFootballData.com ─── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:44:48 UTC
+#> ℹ Data updated: 2026-09-19 02:57:07 UTC
 #> # A tibble: 1 × 82
 #>   season team  conference off_plays off_drives off_ppa off_total_ppa
 #>    <int> <chr> <chr>          <int>      <int>   <dbl>         <dbl>
-#> 1   2019 LSU   SEC             1095        197   0.414          453.
+#> 1   2019 LSU   SEC             1095        197   0.391          428.
 #> # ℹ 75 more variables: off_success_rate <dbl>, off_explosiveness <dbl>,
 #> #   off_power_success <dbl>, off_stuff_rate <dbl>, off_line_yds <dbl>,
 #> #   off_line_yds_total <int>, off_second_lvl_yds <dbl>,

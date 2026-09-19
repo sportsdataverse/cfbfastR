@@ -87,12 +87,12 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_passing(2004))
 #> ── college football advanced passing from the SportsDataverse data repo ────────
-#> ℹ Data updated: 2026-09-10 05:49:38 UTC
+#> ℹ Data updated: 2026-09-19 03:01:51 UTC
 #> # A tibble: 1,506 × 37
 #>    pos_team_id pos_team passer_player_name  Comp   Att xComp   Yds Pass_TD   Int
 #>          <int> <chr>    <chr>              <int> <int> <dbl> <dbl>   <int> <int>
-#>  1         259 Virgini… Bryan Randall         12    27 18.1    102       1     1
-#>  2          30 USC Tro… Matt Leinart          17    27 16.6     96       3     0
+#>  1          30 USC Tro… Matt Leinart          17    27 16.6     96       3     0
+#>  2         259 Virgini… Bryan Randall         12    27 18.1    102       1     1
 #>  3         245 Texas A… Reggie McNeal         11    32 16.9    154       0     0
 #>  4         254 Utah Ut… Alex Smith            20    28 17.2    218       3     0
 #>  5         245 Texas A… Ty Branyon             4     6  2.91    34       0     0

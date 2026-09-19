@@ -146,12 +146,12 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_team_gamelog(2004))
 #> ── college football advanced team gamelog from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-10 05:49:46 UTC
+#> ℹ Data updated: 2026-09-19 03:01:58 UTC
 #> # A tibble: 926 × 90
 #>    season  week season_type   game_id start_date       team_id team  opponent_id
 #>     <int> <int>       <int>     <int> <chr>              <int> <chr>       <int>
-#>  1   2004     1           2 242410259 2004-08-28T23:4…     259 Virg…          30
-#>  2   2004     1           2 242410259 2004-08-28T23:4…      30 USC …         259
+#>  1   2004     1           2 242410259 2004-08-28T23:4…      30 USC …         259
+#>  2   2004     1           2 242410259 2004-08-28T23:4…     259 Virg…          30
 #>  3   2004     2           2 242460254 2004-09-02T23:3…     245 Texa…         254
 #>  4   2004     2           2 242460254 2004-09-02T23:3…     254 Utah…         245
 #>  5   2004     2           2 242462050 2004-09-03T00:0…     103 Bost…        2050

@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-10 05:50:09 UTC
+#> ℹ Data updated: 2026-09-19 03:02:21 UTC
 #> # A tibble: 1,390 × 48
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 166     New Mexico… fbs      Sun Belt     2004    149612 Brandon Allen       
-#>  2 2       Auburn      fbs      SEC          2004    134986 Ben Obomanu         
-#>  3 2751    Wyoming     fbs      Mountain …   2004    116544 C.R. Davis          
-#>  4 258     Virginia    fbs      ACC          2004    145917 Emmanuel Byers      
-#>  5 2633    Tennessee   fbs      SEC          2004    146890 Robert Meachem      
-#>  6 189     Bowling Gr… fbs      Mid-Ameri…   2004    134257 P.J. Pope           
-#>  7 189     Bowling Gr… fbs      Mid-Ameri…   2004    127948 B.J. Lane           
-#>  8 154     Wake Forest fbs      ACC          2004    146035 Kevin Marion        
-#>  9 277     West Virgi… fbs      Big East     2004    136528 Eddie Jackson       
-#> 10 228     Clemson     fbs      ACC          2004    135797 Duane Coleman       
+#>  1 151     East Carol… fbs      Conferenc…   2004    136100 Bryson Bowling      
+#>  2 2294    Iowa        fbs      Big Ten      2004    145995 Champ Davis         
+#>  3 2459    Northern I… fbs      Mid-Ameri…   2004    102559 Brad Cieslak        
+#>  4 252     BYU         fbs      Mountain …   2004    135219 Curtis Brown        
+#>  5 328     Utah State  fbs      Sun Belt     2004    149379 Jimmy Bohm          
+#>  6 68      Boise State fbs      Western A…   2004    134783 Jeff Carpenter      
+#>  7 2393    Middle Ten… fbs      Sun Belt     2004    133319 Eugene Gross        
+#>  8 66      Iowa State  fbs      Big 12       2004    113849 Terrance Highsmith  
+#>  9 96      Kentucky    fbs      SEC          2004    161306 Rafael Little       
+#> 10 333     Alabama     fbs      SEC          2004    146683 Tyrone Prothro      
 #> # ℹ 1,380 more rows
 #> # ℹ 41 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,

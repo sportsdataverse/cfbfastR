@@ -102,22 +102,22 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_games(year = 2019, team = "TCU"))
 #> ── PPA data from CollegeFootballData.com ──────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:40:42 UTC
+#> ℹ Data updated: 2026-09-19 02:52:57 UTC
 #> # A tibble: 12 × 19
 #>      game_id season  week season_type team  conference opponent      off_overall
 #>        <int>  <int> <int> <chr>       <chr> <chr>      <chr>               <dbl>
 #>  1 401112129   2019     1 regular     TCU   Big 12     Arkansas-Pin…        0.07
-#>  2 401112130   2019     3 regular     TCU   Big 12     Purdue               0.08
-#>  3 401112131   2019     4 regular     TCU   Big 12     SMU                  0.13
+#>  2 401112130   2019     3 regular     TCU   Big 12     Purdue               0.03
+#>  3 401112131   2019     4 regular     TCU   Big 12     SMU                 -0.02
 #>  4 401112100   2019     5 regular     TCU   Big 12     Kansas               0.39
 #>  5 401112088   2019     6 regular     TCU   Big 12     Iowa State           0.23
-#>  6 401112109   2019     8 regular     TCU   Big 12     Kansas State         0.16
+#>  6 401112109   2019     8 regular     TCU   Big 12     Kansas State         0.14
 #>  7 401112132   2019     9 regular     TCU   Big 12     Texas                0.21
-#>  8 401112127   2019    10 regular     TCU   Big 12     Oklahoma Sta…        0.12
-#>  9 401112081   2019    11 regular     TCU   Big 12     Baylor              -0.06
+#>  8 401112127   2019    10 regular     TCU   Big 12     Oklahoma Sta…        0.05
+#>  9 401112081   2019    11 regular     TCU   Big 12     Baylor              -0.12
 #> 10 401112133   2019    12 regular     TCU   Big 12     Texas Tech           0.2 
-#> 11 401112120   2019    13 regular     TCU   Big 12     Oklahoma            -0.03
-#> 12 401112134   2019    14 regular     TCU   Big 12     West Virginia        0.01
+#> 11 401112120   2019    13 regular     TCU   Big 12     Oklahoma            -0.06
+#> 12 401112134   2019    14 regular     TCU   Big 12     West Virginia       -0.2 
 #> # ℹ 11 more variables: off_passing <dbl>, off_rushing <dbl>,
 #> #   off_first_down <dbl>, off_second_down <dbl>, off_third_down <dbl>,
 #> #   def_overall <dbl>, def_passing <dbl>, def_rushing <dbl>,

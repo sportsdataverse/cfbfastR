@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:49:10 UTC
-#> # A tibble: 68 × 8
+#> ℹ Data updated: 2026-09-19 03:01:22 UTC
+#> # A tibble: 136 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  42938   9/4       @STAN    comp     30   
-#>  2 11      REGULAR SEASON passing  42938   9/4       @STAN    att      35   
-#>  3 11      REGULAR SEASON passing  42938   9/4       @STAN    pct      85.7 
-#>  4 11      REGULAR SEASON passing  42938   9/4       @STAN    yds      428  
-#>  5 11      REGULAR SEASON passing  42938   9/4       @STAN    pyds_att 15.7 
-#>  6 11      REGULAR SEASON passing  42938   9/4       @STAN    td       5    
-#>  7 11      REGULAR SEASON passing  42938   9/4       @STAN    int      1    
-#>  8 11      REGULAR SEASON passing  42938   9/4       @STAN    sck      0    
-#>  9 11      REGULAR SEASON passing  42938   9/4       @STAN    yds_2    0    
-#> 10 11      REGULAR SEASON passing  42938   9/4       @STAN    qbr      229.9
-#> # ℹ 58 more rows
+#>  1 11      REGULAR SEASON passing  43046   9/10      FAMU     comp     27   
+#>  2 11      REGULAR SEASON passing  43046   9/10      FAMU     att      29   
+#>  3 11      REGULAR SEASON passing  43046   9/10      FAMU     pct      93.1 
+#>  4 11      REGULAR SEASON passing  43046   9/10      FAMU     yds      426  
+#>  5 11      REGULAR SEASON passing  43046   9/10      FAMU     pyds_att 29.5 
+#>  6 11      REGULAR SEASON passing  43046   9/10      FAMU     td       6    
+#>  7 11      REGULAR SEASON passing  43046   9/10      FAMU     int      0    
+#>  8 11      REGULAR SEASON passing  43046   9/10      FAMU     sck      0    
+#>  9 11      REGULAR SEASON passing  43046   9/10      FAMU     yds_2    0    
+#> 10 11      REGULAR SEASON passing  43046   9/10      FAMU     qbr      284.8
+#> # ℹ 126 more rows
 # }
 ```

@@ -36,20 +36,20 @@ A `cfbfastR`-tagged tibble with one row per (category, leader):
 # \donttest{
   try(fox_cfb_team_stats(team_id = "11"))
 #> ── Team stat leaders from Fox Sports (Bifrost) ────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:49:11 UTC
+#> ℹ Data updated: 2026-09-19 03:01:23 UTC
 #> # A tibble: 23 × 6
 #>    team_id category     stat                    stat_abbreviation player   value
 #>    <chr>   <chr>        <chr>                   <chr>             <chr>    <chr>
-#>  1 11      PLAYER STATS Passing Yards           PYDS              Darian … 401  
-#>  2 11      PLAYER STATS Passing Touchdowns      PTD               Darian … 5    
-#>  3 11      PLAYER STATS Rushing Yards           RYDS              Mark Fl… 40   
-#>  4 11      PLAYER STATS Rushing Touchdowns      RTD               CharMar… 1    
-#>  5 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 234  
-#>  6 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 3    
-#>  7 11      PLAYER STATS Kicking Points          PTS               Jake We… 9    
+#>  1 11      PLAYER STATS Passing Yards           PYDS              Darian … 653  
+#>  2 11      PLAYER STATS Passing Touchdowns      PTD               Darian … 8    
+#>  3 11      PLAYER STATS Rushing Yards           RYDS              Javian … 173  
+#>  4 11      PLAYER STATS Rushing Touchdowns      RTD               Mark Fl… 2    
+#>  5 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 330  
+#>  6 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 4    
+#>  7 11      PLAYER STATS Kicking Points          PTS               Jake We… 14   
 #>  8 11      PLAYER STATS Kick Return Yards       KR YDS            Javian … 23   
-#>  9 11      PLAYER STATS Punt Return Yards       PR YDS            Cooper … 0    
-#> 10 11      PLAYER STATS Defensive Interceptions DEF INT           Kamal B… 0    
+#>  9 11      PLAYER STATS Punt Return Yards       PR YDS            Malachi… 22   
+#> 10 11      PLAYER STATS Defensive Interceptions DEF INT           Mohamed… 0    
 #> # ℹ 13 more rows
 # }
 ```

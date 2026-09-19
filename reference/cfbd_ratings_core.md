@@ -60,20 +60,20 @@ Other CFBD Ratings Functions:
 # \donttest{
   try(cfbd_ratings_core(year = 2024))
 #> ── Get core team ratings from CollegeFootballData.com ─── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:44:14 UTC
+#> ℹ Data updated: 2026-09-19 02:56:28 UTC
 #> # A tibble: 134 × 11
 #>     year through_season_type through_week team        conference overall offense
 #>    <int> <chr>                      <int> <chr>       <chr>        <dbl>   <dbl>
-#>  1  2024 postseason                     1 Ohio State  Big Ten       37.2   22.0 
-#>  2  2024 postseason                     1 Notre Dame  FBS Indep…    28.5   10.6 
-#>  3  2024 postseason                     1 Penn State  Big Ten       25.4   12.9 
-#>  4  2024 postseason                     1 Texas       SEC           22.7    6.58
-#>  5  2024 postseason                     1 Ole Miss    SEC           22.0    9.43
-#>  6  2024 postseason                     1 Miami       ACC           20.6   18.2 
-#>  7  2024 postseason                     1 Indiana     Big Ten       20.1   12.4 
-#>  8  2024 postseason                     1 Kansas Sta… Big 12        19.4   10.8 
-#>  9  2024 postseason                     1 Oregon      Big Ten       18.9   14.2 
-#> 10  2024 postseason                     1 SMU         ACC           17.2    4.38
+#>  1  2024 postseason                     1 Ohio State  Big Ten       39.0   24.7 
+#>  2  2024 postseason                     1 Notre Dame  FBS Indep…    35.4   12.0 
+#>  3  2024 postseason                     1 Texas       SEC           27.4    7.05
+#>  4  2024 postseason                     1 Penn State  Big Ten       27.2   14.5 
+#>  5  2024 postseason                     1 Ole Miss    SEC           26.1   12.0 
+#>  6  2024 postseason                     1 Indiana     Big Ten       25.9   13.7 
+#>  7  2024 postseason                     1 Miami       ACC           25.0   20.7 
+#>  8  2024 postseason                     1 Oregon      Big Ten       22.3   17.2 
+#>  9  2024 postseason                     1 SMU         ACC           19.2    3.99
+#> 10  2024 postseason                     1 Kansas Sta… Big 12        19.0    9.05
 #> # ℹ 124 more rows
 #> # ℹ 4 more variables: defense <dbl>, offense_plays <int>, defense_plays <int>,
 #> #   model_version <chr>

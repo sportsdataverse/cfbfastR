@@ -116,11 +116,11 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_box_advanced(game_id = 401114233))
 #> ── Advanced box score data from CollegeFootballData.com ────────────────────────
-#> ℹ Data updated: 2026-09-10 05:40:30 UTC
+#> ℹ Data updated: 2026-09-19 02:52:45 UTC
 #> # A tibble: 2 × 69
 #>   team     ppa_plays ppa_overall_total ppa_overall_quarter1 ppa_overall_quarter2
 #>   <chr>        <dbl>             <dbl>                <dbl>                <dbl>
-#> 1 Eastern…        45            -0.201               -0.569                0.122
+#> 1 Eastern…        45            -0.272               -0.745                0.122
 #> 2 Washing…        56             0.999                1.08                 0.741
 #> # ℹ 64 more variables: ppa_overall_quarter3 <dbl>, ppa_overall_quarter4 <dbl>,
 #> #   ppa_passing_total <dbl>, ppa_passing_quarter1 <dbl>,

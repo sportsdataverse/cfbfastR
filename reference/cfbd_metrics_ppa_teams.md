@@ -93,16 +93,16 @@ Other CFBD Metrics:
 # \donttest{
   try(cfbd_metrics_ppa_teams(year = 2019, team = "TCU"))
 #> ── Team PPA data from CollegeFootballData.com ─────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:40:46 UTC
+#> ℹ Data updated: 2026-09-19 02:53:04 UTC
 #> # A tibble: 1 × 21
 #>   season conference team  off_overall off_passing off_rushing off_first_down
 #>    <int> <chr>      <chr>       <dbl>       <dbl>       <dbl>          <dbl>
-#> 1   2019 Big 12     TCU          0.13        0.06        0.23           0.01
+#> 1   2019 Big 12     TCU          0.08       -0.03        0.21          -0.02
 #> # ℹ 14 more variables: off_second_down <dbl>, off_third_down <dbl>,
 #> #   off_cumulative_total <dbl>, off_cumulative_passing <dbl>,
 #> #   off_cumulative_rushing <dbl>, def_overall <dbl>, def_passing <dbl>,
 #> #   def_rushing <dbl>, def_first_down <dbl>, def_second_down <dbl>,
 #> #   def_third_down <dbl>, def_cumulative_total <dbl>,
-#> #   def_cumulative_passing <int>, def_cumulative_rushing <dbl>
+#> #   def_cumulative_passing <dbl>, def_cumulative_rushing <dbl>
 # }
 ```

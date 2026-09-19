@@ -84,20 +84,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-10 05:50:10 UTC
+#> ℹ Data updated: 2026-09-19 03:02:22 UTC
 #> # A tibble: 1,109 × 41
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 2751    Wyoming       fbs      Mountain …   2004    116544 C.R. Davis        
-#>  2 59      Georgia Tech  fbs      ACC          2004    135938 Ajenavi Eziemefe  
-#>  3 2579    South Caroli… fbs      SEC          2004    134901 Troy Williamson   
-#>  4 2294    Iowa          fbs      Big Ten      2004    100560 Aaron Mickens     
-#>  5 158     Nebraska      fbs      Big 12       2004    107554 Willie Amos       
-#>  6 265     Washington S… fbs      Pac-10       2004    164335 Jerome Harrison   
-#>  7 2348    Louisiana Te… fbs      Western A…   2004    136415 Ryan Moats        
-#>  8 158     Nebraska      fbs      Big 12       2004    162707 Brandon Jackson   
-#>  9 9       Arizona State fbs      Pac-10       2004    127680 Chad Christensen  
-#> 10 152     NC State      fbs      ACC          2004    161912 Bobby Washington  
+#>  1 2572    Southern Miss fbs      Conferenc…   2004    140694 Antwon Courington 
+#>  2 26      UCLA          fbs      Pac-10       2004    145137 Michael Pitre     
+#>  3 276     Marshall      fbs      Mid-Ameri…   2004    149492 Bernard Morris    
+#>  4 87      Notre Dame    fbs      FBS Indep…   2004    150281 Chase Anastasio   
+#>  5 52      Florida State fbs      ACC          2004    136616 Lorenzo Booker    
+#>  6 275     Wisconsin     fbs      Big Ten      2004    160489 Jamil Walker      
+#>  7 2641    Texas Tech    fbs      Big 12       2004    135873 Jarrett Hicks     
+#>  8 251     Texas         fbs      Big 12       2004    108241 Tony Jeffery      
+#>  9 2641    Texas Tech    fbs      Big 12       2004    118233 Taurean Henderson 
+#> 10 195     Ohio          fbs      Mid-Ameri…   2004    150728 Austin Everson    
 #> # ℹ 1,099 more rows
 #> # ℹ 34 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,

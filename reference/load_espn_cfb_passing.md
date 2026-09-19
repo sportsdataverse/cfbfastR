@@ -101,20 +101,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-10 05:49:55 UTC
+#> ℹ Data updated: 2026-09-19 03:02:07 UTC
 #> # A tibble: 364 × 63
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 38      Colorado      fbs      Big 12       2004    145313 Brian White       
-#>  2 38      Colorado      fbs      Big 12       2004    145302 Jarrad Jackson    
-#>  3 57      Florida       fbs      SEC          2004    134512 Gavin Dickey      
-#>  4 58      South Florida fbs      Conferenc…   2004    110628 Ronnie Banks      
-#>  5 127     Michigan Sta… fbs      Big Ten      2004    133795 Drew Stanton      
-#>  6 30      USC           fbs      Pac-10       2004    101042 Matt Cassel       
-#>  7 57      Florida       fbs      SEC          2004    146507 Andre Caldwell    
-#>  8 276     Marshall      fbs      Mid-Ameri…   2004    149492 Bernard Morris    
-#>  9 158     Nebraska      fbs      Big 12       2004    123191 Kellen Huston     
-#> 10 2633    Tennessee     fbs      SEC          2004    161062 Erik Ainge        
+#>  1 36      Colorado Sta… fbs      Mountain …   2004    116481 Justin Holland    
+#>  2 151     East Carolina fbs      Conferenc…   2004    136098 Will Bland        
+#>  3 2306    Kansas State  fbs      Big 12       2004    133724 Allen Webb        
+#>  4 2005    Air Force     fbs      Mountain …   2004    147734 Adam Fitch        
+#>  5 154     Wake Forest   fbs      ACC          2004    116872 Cory Randolph     
+#>  6 25      California    fbs      Pac-10       2004    144994 Aaron Rodgers     
+#>  7 195     Ohio          fbs      Mid-Ameri…   2004    162712 Brooks Rossman    
+#>  8 38      Colorado      fbs      Big 12       2004    144289 Joel Klatt        
+#>  9 218     Temple        fbs      Big East     2004    152491 Walter Washington 
+#> 10 2579    South Caroli… fbs      SEC          2004    107316 Dondrial Pinkins  
 #> # ℹ 354 more rows
 #> # ℹ 56 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,

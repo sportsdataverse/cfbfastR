@@ -73,7 +73,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_receiving(2004))
 #> ── college football advanced receiving from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-10 05:49:39 UTC
+#> ℹ Data updated: 2026-09-19 03:01:52 UTC
 #> # A tibble: 6,936 × 22
 #>    pos_team_id pos_team      receiver_player_name   Rec   Tar   Yds Rec_TD   YPT
 #>          <int> <chr>         <chr>                <int> <int> <dbl>  <int> <dbl>
@@ -82,11 +82,11 @@ Saiem Gilani
 #>  3          30 USC Trojans   Reggie Bush              5     5    10      3  2   
 #>  4          30 USC Trojans   David Kirtman            3     3    32      0 10.7 
 #>  5          30 USC Trojans   Steve Smith              3     3    22      0  7.33
-#>  6         259 Virginia Tec… Richard Johnson          3     3    27      0  9   
-#>  7         259 Virginia Tec… Jeff King                3     3    48      0 16   
-#>  8          30 USC Trojans   Chris McFoy              2     2    11      0  5.5 
-#>  9         259 Virginia Tec… Cedric Humes             2     2     8      0  4   
-#> 10          30 USC Trojans   Alex Holmes              2     2    11      0  5.5 
+#>  6         259 Virginia Tec… Jeff King                3     3    48      0 16   
+#>  7         259 Virginia Tec… Richard Johnson          3     3    27      0  9   
+#>  8          30 USC Trojans   Alex Holmes              2     2    11      0  5.5 
+#>  9          30 USC Trojans   Chris McFoy              2     2    11      0  5.5 
+#> 10          30 USC Trojans   Dwayne Jarrett           2     2    10      0  5   
 #> # ℹ 6,926 more rows
 #> # ℹ 14 more variables: EPA <dbl>, EPA_per_Play <dbl>, WPA <dbl>, SR <dbl>,
 #> #   Fum <int>, Fum_Lost <int>, AirYds <lgl>, aDOT <lgl>, CompAirYds <lgl>,

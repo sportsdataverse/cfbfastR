@@ -62,20 +62,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_returning_production(2005))
 #> ── college football returning production from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-10 05:49:21 UTC
-#> # A tibble: 161 × 6
+#> ℹ Data updated: 2026-09-19 03:01:32 UTC
+#> # A tibble: 161 × 7
 #>    season team_id off_returning def_returning overall_returning n_returning
 #>     <int> <chr>           <dbl>         <dbl>             <dbl>       <int>
-#>  1   2005 2502            1                NA             1               3
+#>  1   2005 2466            1                NA             1               5
 #>  2   2005 2026            1                NA             1               5
-#>  3   2005 311             1                NA             1               6
+#>  3   2005 113             1                NA             1               4
 #>  4   2005 2464            1                NA             1               4
-#>  5   2005 2466            1                NA             1               5
-#>  6   2005 113             1                NA             1               4
-#>  7   2005 2460            1                NA             1               5
+#>  5   2005 2460            1                NA             1               5
+#>  6   2005 311             1                NA             1               6
+#>  7   2005 2502            1                NA             1               3
 #>  8   2005 2630            0.997            NA             0.997           6
 #>  9   2005 221             0.992            NA             0.992          14
 #> 10   2005 2546            0.986            NA             0.986           6
 #> # ℹ 151 more rows
+#> # ℹ 1 more variable: is_estimated <lgl>
 # }
 ```

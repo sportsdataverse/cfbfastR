@@ -32,13 +32,14 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 
+    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
+
     ## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
-    ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
     ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
 
@@ -61,9 +62,9 @@ pak::pak(c("dplyr", "tidyr", "gt"))
     ## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).
     ## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).
     ## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).
-    ## 0 upgraded, 0 newly installed, 0 to remove and 53 not upgraded.
+    ## 0 upgraded, 0 newly installed, 0 to remove and 86 not upgraded.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [9.4s]
+    ## ✔ 3 pkgs + 56 deps: kept 59 [9.9s]
 
 ``` r
 
@@ -102,7 +103,7 @@ cfbd_team_info(conference = "SEC")
 
     ## ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-10 05:55:26 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:55 UTC
 
     ## # A tibble: 16 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -137,8 +138,7 @@ cfbd_team_info(conference = "Ind")
 ```
 
     ## ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-
-    ## ℹ Data updated: 2026-09-10 05:55:27 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:55 UTC
 
     ## # A tibble: 2 × 43
     ##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -159,7 +159,7 @@ cfbd_team_info(year = 2019)
 ```
 
     ## ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-09-10 05:55:27 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:55 UTC
 
     ## # A tibble: 130 × 43
     ##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
@@ -191,7 +191,7 @@ cfbd_team_matchup_records("Texas", "Oklahoma")
 
     ## ── Team matchup record from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-10 05:55:27 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:56 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1 team1_wins team2    team2_wins  ties
@@ -204,8 +204,7 @@ cfbd_team_matchup_records("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup record from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-
-    ## ℹ Data updated: 2026-09-10 05:55:28 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:56 UTC
 
     ## # A tibble: 1 × 7
     ##   start_year end_year team1     team1_wins team2 team2_wins  ties
@@ -221,7 +220,7 @@ cfbd_team_matchup("Texas", "Oklahoma")
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-10 05:55:28 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:56 UTC
 
     ## # A tibble: 118 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -245,14 +244,14 @@ cfbd_team_matchup("Texas A&M", "TCU")
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-09-10 05:55:28 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:56 UTC
 
     ## # A tibble: 89 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
     ##     <int> <int> <chr>       <chr>        <lgl>        <lgl> <chr>          <int>
-    ##  1   1903     5 regular     1903-10-10T… FALSE        NA    Texas A&M         11
-    ##  2   1903    10 regular     1903-11-14T… FALSE        NA    Texas A&M         16
-    ##  3   1903    12 regular     1903-11-28T… FALSE        NA    Texas A&M         14
+    ##  1   1903    12 regular     1903-11-28T… FALSE        NA    Texas A&M         14
+    ##  2   1903     5 regular     1903-10-10T… FALSE        NA    Texas A&M         11
+    ##  3   1903    10 regular     1903-11-14T… FALSE        NA    Texas A&M         16
     ##  4   1904     6 regular     1904-10-22T… FALSE        NA    Texas A&M         29
     ##  5   1905     3 regular     1905-09-30T… FALSE        NA    Texas A&M         20
     ##  6   1905     8 regular     1905-11-04T… FALSE        NA    Texas A&M         24
@@ -269,7 +268,8 @@ cfbd_team_matchup("Texas A&M", "TCU", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-09-10 05:55:28 UTC
+
+    ## ℹ Data updated: 2026-09-19 03:07:57 UTC
 
     ## # A tibble: 22 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -293,8 +293,7 @@ cfbd_team_matchup("Florida State", "Florida", min_year = 1975)
 ```
 
     ## ── Team matchup history from CollegeFootballData.com ──── cfbfastR 3.0.0.9000 ──
-
-    ## ℹ Data updated: 2026-09-10 05:55:29 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:57 UTC
 
     ## # A tibble: 52 × 11
     ##    season  week season_type date         neutral_site venue home_team home_score
@@ -321,25 +320,25 @@ cfbd_team_roster(year = 2013, team = "Florida State")
 
     ## ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-10 05:55:29 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:57 UTC
 
-    ## # A tibble: 134 × 17
+    ## # A tibble: 134 × 18
     ##    athlete_id first_name last_name   team    weight height jersey  year position
     ##    <chr>      <chr>      <chr>       <chr>    <int>  <int>  <int> <int> <chr>   
-    ##  1 -1011031   Colton     Woodall     Florid…    190     75     49  2013 DB      
-    ##  2 -1011030   James      Wilder, Jr. Florid…    229     74     32  2013 RB      
-    ##  3 -1011029   Levonte    Whitfield   Florid…    178     67      7  2013 WR      
-    ##  4 -1011028   Jermaine   Washington  Florid…    194     68     36  2013 WR      
-    ##  5 -1011027   Jonathan   Wallace     Florid…    295     79     74  2013 OL      
-    ##  6 -1011026   Donovan    Todd        Florid…    205     71     39  2013 DB      
-    ##  7 -1011025   Bryan      Stork       Florid…    300     76     52  2013 OL      
-    ##  8 -1011024   Nathan     Slater      Florid…    223     74     45  2013 LB      
-    ##  9 -1011023   Garrett    Scott       Florid…    275     75     69  2013 OL      
-    ## 10 -1011022   Michael    Scheerhorn  Florid…    240     76     79  2013 OL      
+    ##  1 -1011031   Colton     Woodall     Florid…    190     75     49    NA DB      
+    ##  2 -1011030   James      Wilder, Jr. Florid…    229     74     32    NA RB      
+    ##  3 -1011029   Levonte    Whitfield   Florid…    178     67      7    NA WR      
+    ##  4 -1011028   Jermaine   Washington  Florid…    194     68     36    NA WR      
+    ##  5 -1011027   Jonathan   Wallace     Florid…    295     79     74    NA OL      
+    ##  6 -1011026   Donovan    Todd        Florid…    205     71     39    NA DB      
+    ##  7 -1011025   Bryan      Stork       Florid…    300     76     52    NA OL      
+    ##  8 -1011024   Nathan     Slater      Florid…    223     74     45    NA LB      
+    ##  9 -1011023   Garrett    Scott       Florid…    275     75     69    NA OL      
+    ## 10 -1011022   Michael    Scheerhorn  Florid…    240     76     79    NA OL      
     ## # ℹ 124 more rows
-    ## # ℹ 8 more variables: home_city <chr>, home_state <chr>, home_country <chr>,
+    ## # ℹ 9 more variables: home_city <chr>, home_state <chr>, home_country <chr>,
     ## #   home_latitude <dbl>, home_longitude <dbl>, home_county_fips <chr>,
-    ## #   recruit_ids <list>, headshot_url <chr>
+    ## #   recruit_ids <list>, headshot_url <chr>, season <int>
 
 #### **Get Team Talent**
 
@@ -350,7 +349,7 @@ cfbd_team_talent()
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
 
-    ## ℹ Data updated: 2026-09-10 05:55:29 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:57 UTC
 
     ## # A tibble: 138 × 3
     ##     year school     talent
@@ -373,7 +372,7 @@ cfbd_team_talent(year = 2018)
 ```
 
     ## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-    ## ℹ Data updated: 2026-09-10 05:55:29 UTC
+    ## ℹ Data updated: 2026-09-19 03:07:57 UTC
 
     ## # A tibble: 236 × 3
     ##     year school        talent

@@ -20,11 +20,37 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## → Package library at /home/runner/work/_temp/Library.
 
+    ## → Will install 7 packages.
+
+    ## → All 7 packages (0 B) are cached.
+
+    ## + bigD         0.3.1 
+    ## + bitops       1.1-0 
+    ## + gt           1.3.0 
+    ## + juicyjuice   0.1.0 
+    ## + reactable    0.4.5 
+    ## + reactR       0.6.1 
+    ## + V8           8.2.0  + ✖ libnode-dev
+
     ## → Will install 1 system package:
 
     ## + libnode-dev  - V8
 
-    ## ℹ No downloads are needed
+    ## ℹ No downloads are needed, 7 pkgs are cached
+
+    ## ✔ Got bitops 1.1-0 (x86_64-pc-linux-gnu-ubuntu-22.04) (27.82 kB)
+
+    ## ✔ Got reactR 0.6.1 (x86_64-pc-linux-gnu-ubuntu-22.04) (614.52 kB)
+
+    ## ✔ Got juicyjuice 0.1.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (1.13 MB)
+
+    ## ✔ Got reactable 0.4.5 (x86_64-pc-linux-gnu-ubuntu-22.04) (1.06 MB)
+
+    ## ✔ Got bigD 0.3.1 (x86_64-pc-linux-gnu-ubuntu-22.04) (1.17 MB)
+
+    ## ✔ Got gt 1.3.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (6.35 MB)
+
+    ## ✔ Got V8 8.2.0 (x86_64-pc-linux-gnu-ubuntu-22.04) (12.16 MB)
 
     ## ℹ Installing system requirements
 
@@ -34,8 +60,6 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease
 
-    ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
-
     ## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
 
     ## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease
@@ -44,9 +68,11 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease
 
+    ## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease
+
     ## Reading package lists...
 
-    ## ℹ Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`
+    ## ℹ Executing `sudo sh -c apt-get -y install libnode-dev libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libxml2-dev`
 
     ## Reading package lists...
 
@@ -70,7 +96,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## libnode-dev libnode72
 
-    ## 0 upgraded, 2 newly installed, 0 to remove and 53 not upgraded.
+    ## 0 upgraded, 2 newly installed, 0 to remove and 86 not upgraded.
     ## Need to get 11.4 MB of archives.
     ## After this operation, 47.4 MB of additional disk space will be used.
     ## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
@@ -79,7 +105,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 libnode-dev amd64 12.22.9~dfsg-1ubuntu3.6 [609 kB]
 
-    ## Fetched 11.4 MB in 1s (12.9 MB/s)
+    ## Fetched 11.4 MB in 0s (66.7 MB/s)
 
     ## Selecting previously unselected package libnode72:amd64.
     ## (Reading database ...
@@ -102,7 +128,7 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## (Reading database ... 95%
 
-    ## (Reading database ... 100%(Reading database ... 308163 files and directories currently installed.)
+    ## (Reading database ... 100%(Reading database ... 308302 files and directories currently installed.)
 
     ## Preparing to unpack .../libnode72_12.22.9~dfsg-1ubuntu3.6_amd64.deb ...
 
@@ -122,15 +148,33 @@ pak::pak(c("dplyr", "tidyr", "gt"))
 
     ## Running kernel seems to be up-to-date.
     ## 
-    ## No services need to be restarted.
-    ## 
+    ## Services to be restarted:
+
+    ## systemctl restart packagekit.service
+
+    ## systemctl restart php8.1-fpm.service
+
     ## No containers need to be restarted.
     ## 
     ## No user sessions are running outdated binaries.
     ## 
     ## No VM guests are running outdated hypervisor (qemu) binaries on this host.
 
-    ## ✔ 3 pkgs + 56 deps: kept 59 [18.5s]
+    ## ✔ Installed bigD 0.3.1  (114ms)
+
+    ## ✔ Installed bitops 1.1-0  (122ms)
+
+    ## ✔ Installed gt 1.3.0  (162ms)
+
+    ## ✔ Installed juicyjuice 0.1.0  (175ms)
+
+    ## ✔ Installed reactable 0.4.5  (107ms)
+
+    ## ✔ Installed reactR 0.6.1  (85ms)
+
+    ## ✔ Installed V8 8.2.0  (262ms)
+
+    ## ✔ 3 pkgs + 56 deps: kept 52, added 7, dld 7 (22.52 MB) [17.1s]
 
 ``` r
 
@@ -169,7 +213,7 @@ cfbd_betting_lines(year = 2018, week = 12, team = "Florida State")
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
 
-    ## ℹ Data updated: 2026-09-10 05:54:11 UTC
+    ## ℹ Data updated: 2026-09-19 03:06:30 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team
@@ -192,7 +236,7 @@ cfbd_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = "SEC
 ```
 
     ## ── Betting lines data from CollegeFootballData.com ────── cfbfastR 3.0.0.9000 ──
-    ## ℹ Data updated: 2026-09-10 05:54:11 UTC
+    ## ℹ Data updated: 2026-09-19 03:06:30 UTC
 
     ## # A tibble: 4 × 23
     ##     game_id season season_type  week start_date           home_team_id home_team

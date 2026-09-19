@@ -86,7 +86,7 @@ Other CFBD Passing:
 # \donttest{
   try(cfbd_passing_players_games(year = 2025, week = 5))
 #> ── Player game passing data from CollegeFootballData.com ───────────────────────
-#> ℹ Data updated: 2026-09-10 05:40:54 UTC
+#> ℹ Data updated: 2026-09-19 02:53:12 UTC
 #> # A tibble: 183 × 193
 #>      game_id season  week season_type player_id player team  conference opponent
 #>        <int>  <int> <int> <chr>       <chr>     <chr>  <chr> <chr>      <chr>   

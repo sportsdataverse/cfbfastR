@@ -130,12 +130,12 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_situational(2004))
 #> ── college football advanced situational from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-10 05:49:42 UTC
+#> ℹ Data updated: 2026-09-19 03:01:54 UTC
 #> # A tibble: 926 × 74
 #>    pos_team_id pos_team            EPA_success EPA_success_rate EPA_success_pass
 #>          <int> <chr>                     <int>            <dbl>            <int>
-#>  1         259 Virginia Tech Hoki…          17            0.279                9
-#>  2          30 USC Trojans                  23            0.404               12
+#>  1          30 USC Trojans                  23            0.404               12
+#>  2         259 Virginia Tech Hoki…          17            0.279                9
 #>  3         245 Texas A&M Aggies             20            0.299                9
 #>  4         254 Utah Utes                    35            0.461               19
 #>  5         103 Boston College Eag…          24            0.343                8

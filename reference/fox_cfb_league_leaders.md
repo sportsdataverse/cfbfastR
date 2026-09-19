@@ -45,20 +45,20 @@ leaderboard headers plus `entity_id`.
 # \donttest{
   try(fox_cfb_league_leaders(category = "passing"))
 #> ── Statistical leaders from Fox Sports (Bifrost) ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-10 05:49:05 UTC
+#> ℹ Data updated: 2026-09-19 03:01:18 UTC
 #> # A tibble: 75 × 7
-#>    players v2          comp  gp    entity_id patt  att_g
-#>    <chr>   <chr>       <chr> <chr> <chr>     <chr> <chr>
-#>  1 1       N. Kim      51    2     177780    NA    NA   
-#>  2 2       J. Maiava   48    2     196106    NA    NA   
-#>  3 3       M. Alejado  48    2     222163    NA    NA   
-#>  4 4       L. Weaver   44    2     234098    NA    NA   
-#>  5 5       D. Warren   43    2     190846    NA    NA   
-#>  6 6       T. Hedden   37    2     224744    NA    NA   
-#>  7 7       C. Veltkamp 34    1     195564    NA    NA   
-#>  8 8       J. Arnold   33    2     212936    NA    NA   
-#>  9 9       C. Creel    33    2     216004    NA    NA   
-#> 10 10      N. Hayes    32    2     197934    NA    NA   
+#>    players v2            comp  gp    entity_id patt  att_g
+#>    <chr>   <chr>         <chr> <chr> <chr>     <chr> <chr>
+#>  1 1       M. Alejado    81    3     222163    NA    NA   
+#>  2 2       N. Kim        67    3     177780    NA    NA   
+#>  3 3       J. Maiava     67    3     196106    NA    NA   
+#>  4 4       L. Weaver     66    3     234098    NA    NA   
+#>  5 5       C. Veltkamp   61    2     195564    NA    NA   
+#>  6 6       B. Atkinson   60    2     236148    NA    NA   
+#>  7 7       M. Heintschel 59    3     233501    NA    NA   
+#>  8 8       S. Angeli     57    3     196426    NA    NA   
+#>  9 9       T. Hedden     56    3     224744    NA    NA   
+#> 10 10      M. Johnson    55    2     179185    NA    NA   
 #> # ℹ 65 more rows
 # }
 ```
