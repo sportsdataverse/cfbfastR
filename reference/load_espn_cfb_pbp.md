@@ -254,8 +254,8 @@ Returns a `cfbfastR_data` tibble.
 | clock.seconds | integer | Seconds component of the game clock at the play. |
 | lag_half | integer | Value of half on the previous play, used for sequence-aware derivations. |
 | lead_half | integer | Value of half on the next play, used for sequence-aware derivations. |
-| start.TimeSecsRem | integer | ESPN's `TimeSecsRem` value for the play state at the start of the play. |
-| start.adj_TimeSecsRem | integer | ESPN's `adj_TimeSecsRem` value for the play state at the start of the play. |
+| start.TimeSecsRem | integer | Seconds remaining in the half from ESPN's clock stamp for this play – the end-of-play time in 2005 and 2007+, the snap time in 2004 and most of 2006; tops out at 1800. |
+| start.adj_TimeSecsRem | integer | `start.TimeSecsRem` adjusted to seconds remaining in the game (EPA/WP model input); same clock stamp, so the same per-era meaning. |
 | lead_text | character | Value of text on the next play, used for sequence-aware derivations. |
 | lead_start_team | character | Value of start_team on the next play, used for sequence-aware derivations. |
 | lead_start_yardsToEndzone | integer | Value of start_yardsToEndzone on the next play, used for sequence-aware derivations. |
@@ -280,8 +280,8 @@ Returns a `cfbfastR_data` tibble.
 | end.awayTeamTimeouts | integer | ESPN's `awayTeamTimeouts` value for the play state at the end of the play. |
 | start.homeTeamTimeouts | integer | ESPN's `homeTeamTimeouts` value for the play state at the start of the play. |
 | start.awayTeamTimeouts | integer | ESPN's `awayTeamTimeouts` value for the play state at the start of the play. |
-| end.TimeSecsRem | integer | ESPN's `TimeSecsRem` value for the play state at the end of the play. |
-| end.adj_TimeSecsRem | integer | ESPN's `adj_TimeSecsRem` value for the play state at the end of the play. |
+| end.TimeSecsRem | integer | Seconds remaining in the half carried as this play's end state; currently the preceding row's clock stamp. |
+| end.adj_TimeSecsRem | integer | `end.TimeSecsRem` adjusted to seconds remaining in the game; same caveat – currently the preceding row's clock stamp. |
 | start.posTeamTimeouts | integer | ESPN's `posTeamTimeouts` value for the play state at the start of the play. |
 | start.defPosTeamTimeouts | integer | ESPN's `defPosTeamTimeouts` value for the play state at the start of the play. |
 | end.posTeamTimeouts | integer | ESPN's `posTeamTimeouts` value for the play state at the end of the play. |
@@ -538,7 +538,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_pbp(2004))
 #> ── ESPN college football play-by-play from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-09-19 03:02:12 UTC
+#> ℹ Data updated: 2026-09-19 04:14:09 UTC
 #> # A tibble: 83,350 × 491
 #>    season   game_id game_play_number pos_team_id pos_team        def_pos_team_id
 #>     <int>     <int>            <int>       <int> <chr>                     <int>

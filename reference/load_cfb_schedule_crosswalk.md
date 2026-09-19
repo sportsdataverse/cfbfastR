@@ -66,7 +66,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_schedule_crosswalk(2014))
 #> ── college football schedule id crosswalk from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-19 03:01:40 UTC
+#> ℹ Data updated: 2026-09-19 04:13:38 UTC
 #> # A tibble: 1,629 × 11
 #>    matchup_key       espn_game_id fox_game_id yahoo_game_id yahoo_global_game_id
 #>    <chr>                    <int> <chr>       <chr>         <chr>               

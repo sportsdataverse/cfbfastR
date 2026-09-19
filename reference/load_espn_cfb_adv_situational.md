@@ -130,7 +130,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_situational(2004))
 #> ── college football advanced situational from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-19 03:01:54 UTC
+#> ℹ Data updated: 2026-09-19 04:13:52 UTC
 #> # A tibble: 926 × 74
 #>    pos_team_id pos_team            EPA_success EPA_success_rate EPA_success_pass
 #>          <int> <chr>                     <int>            <dbl>            <int>

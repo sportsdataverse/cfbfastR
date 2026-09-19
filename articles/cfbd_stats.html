@@ -236,12 +236,12 @@ Akshay Easwaran, Jared Lee
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Installing system requirements</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y update`</span></span></code></pre>
 <pre><code><span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span>
-<span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span>
+<span><span class="co">## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span>
 <span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
@@ -257,7 +257,7 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).</span></span>
 <span><span class="co">## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).</span></span>
 <span><span class="co">## 0 upgraded, 0 newly installed, 0 to remove and 86 not upgraded.</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 3 pkgs + 56 deps: kept 59 <span style="color: #B2B2B2;">[9.4s]</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 3 pkgs + 56 deps: kept 59 <span style="color: #B2B2B2;">[9.1s]</span></span></span></code></pre>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -937,7 +937,7 @@ need rather than printing them whole.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">player</span>, <span class="va">attempts</span>, <span class="va">completion_rate</span>, <span class="va">average_depth_of_target</span>, <span class="va">ppa</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">attempts</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Player season passing data from CollegeFootballData.com ─────────────────────</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 03:07:37 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:02 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
 <span><span class="co">##   player       attempts completion_rate average_depth_of_target   ppa</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -993,7 +993,7 @@ the matching <code>*_available</code> column, not by
 <span>    adot_naive <span class="op">=</span> <span class="va">total_air_yards</span> <span class="op">/</span> <span class="va">attempts</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Player season passing data from CollegeFootballData.com ─────────────────────</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 03:07:37 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:02 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
 <span><span class="co">##   player       attempts air_yards_parsed adot_correct adot_naive</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -1008,7 +1008,7 @@ split column:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">offense</span>, <span class="va">defense</span>, <span class="va">passer</span>, <span class="va">target</span>, <span class="va">total_yards</span>, <span class="va">ppa</span>, <span class="va">success</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Passing plays data from CollegeFootballData.com ────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 03:07:38 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:04 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 10 × 7</span></span></span>
 <span><span class="co">##    offense    defense    passer       target         total_yards   ppa success</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
@@ -1042,7 +1042,7 @@ a zero-row data frame rather than failing.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_stats_categories.html">cfbd_stats_categories</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Stat categories for CollegeFootballData.com ────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 03:07:39 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:04 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 38 × 1</span></span></span>
 <span><span class="co">##    category          </span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>

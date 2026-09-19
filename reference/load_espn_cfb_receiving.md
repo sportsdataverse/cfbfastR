@@ -87,7 +87,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-19 03:02:21 UTC
+#> ℹ Data updated: 2026-09-19 04:14:17 UTC
 #> # A tibble: 1,390 × 48
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               

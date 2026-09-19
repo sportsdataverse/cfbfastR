@@ -66,7 +66,7 @@ Returns a `cfbfastR_data` tibble.
 | start.distance | integer | Yards the offense needs for a first down at the snap, carried through from ESPN without correction. |
 | start.yardsToEndzone | integer | Distance in yards from the offense's spot at the snap to the opponent's end zone, ranging 0 to 100. |
 | pos_score_diff_start | integer |  |
-| start.TimeSecsRem | integer | Seconds remaining in the half at the snap, so it tops out at 1800 rather than counting down from a full game. |
+| start.TimeSecsRem | integer | Seconds remaining in the half from ESPN's clock stamp for this play – the end-of-play time in 2005 and 2007+, the snap time in 2004 and most of 2006; tops out at 1800. |
 | start.is_home | logical | True when the team holding possession at the snap is the home team. |
 | passing_down | logical | True on second and eight or longer, third and five or longer, or fourth and five or longer, the standard obvious-passing-situation flag. |
 | pass | logical |  |
@@ -102,7 +102,7 @@ Saiem Gilani
 #> Warning: Failed to readRDS from
 #> <https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_model_pbp/model_pbp_2004.rds>
 #> ── college football model-enriched play-by-play from the SportsDataverse data re
-#> ℹ Data updated: 2026-09-19 03:02:06 UTC
+#> ℹ Data updated: 2026-09-19 04:14:03 UTC
 #> # A tibble: 0 × 0
 # }
 ```

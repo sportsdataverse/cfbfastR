@@ -62,7 +62,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_returning_production(2005))
 #> ── college football returning production from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-19 03:01:32 UTC
+#> ℹ Data updated: 2026-09-19 04:13:32 UTC
 #> # A tibble: 161 × 7
 #>    season team_id off_returning def_returning overall_returning n_returning
 #>     <int> <chr>           <dbl>         <dbl>             <dbl>       <int>

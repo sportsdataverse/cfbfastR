@@ -263,20 +263,20 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-19 02:59:36 UTC
+#> ℹ Data updated: 2026-09-19 04:11:47 UTC
 #> # A tibble: 75 × 59
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Miami Hurricane… MIA @ WAKE      2026 regu… regu… 401858… s:20~l:… 2026-09-18
-#>  2 Houston Cougars… HOU @ TTU       2026 regu… regu… 401856… s:20~l:… 2026-09-18
-#>  3 Portland State … PRST @ ORE      2026 regu… regu… 401858… s:20~l:… 2026-09-18
-#>  4 Syracuse Orange… SYR @ PITT      2026 regu… regu… 401858… s:20~l:… 2026-09-17
-#>  5 Coastal Carolin… CCU @ DEL       2026 regu… regu… 401869… s:20~l:… 2026-09-19
-#>  6 Georgia Bulldog… UGA @ ARK       2026 regu… regu… 401856… s:20~l:… 2026-09-19
-#>  7 Kent State Gold… KENT @ OSU      2026 regu… regu… 401858… s:20~l:… 2026-09-19
-#>  8 Buffalo Bulls a… BUFF @ PSU      2026 regu… regu… 401858… s:20~l:… 2026-09-19
-#>  9 Tulane Green Wa… TULN @ KSU      2026 regu… regu… 401856… s:20~l:… 2026-09-19
-#> 10 Bowling Green F… BGSU @ ISU      2026 regu… regu… 401856… s:20~l:… 2026-09-19
+#>  1 Portland State … PRST @ ORE      2026 regu… regu… 401858… s:20~l:… 2026-09-18
+#>  2 Coastal Carolin… CCU @ DEL       2026 regu… regu… 401869… s:20~l:… 2026-09-19
+#>  3 Georgia Bulldog… UGA @ ARK       2026 regu… regu… 401856… s:20~l:… 2026-09-19
+#>  4 Kent State Gold… KENT @ OSU      2026 regu… regu… 401858… s:20~l:… 2026-09-19
+#>  5 Buffalo Bulls a… BUFF @ PSU      2026 regu… regu… 401858… s:20~l:… 2026-09-19
+#>  6 Tulane Green Wa… TULN @ KSU      2026 regu… regu… 401856… s:20~l:… 2026-09-19
+#>  7 Bowling Green F… BGSU @ ISU      2026 regu… regu… 401856… s:20~l:… 2026-09-19
+#>  8 Arizona State S… ASU VS KU       2026 regu… regu… 401856… s:20~l:… 2026-09-19
+#>  9 Mercer Bears at… MER @ GT        2026 regu… regu… 401858… s:20~l:… 2026-09-19
+#> 10 North Carolina … UNC @ CLEM      2026 regu… regu… 401858… s:20~l:… 2026-09-19
 #> # ℹ 65 more rows
 #> # ℹ 51 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-19 02:59:37 UTC
+#> ℹ Data updated: 2026-09-19 04:11:48 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

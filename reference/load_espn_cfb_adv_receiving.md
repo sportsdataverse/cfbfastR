@@ -73,7 +73,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_adv_receiving(2004))
 #> ── college football advanced receiving from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-19 03:01:52 UTC
+#> ℹ Data updated: 2026-09-19 04:13:49 UTC
 #> # A tibble: 6,936 × 22
 #>    pos_team_id pos_team      receiver_player_name   Rec   Tar   Yds Rec_TD   YPT
 #>          <int> <chr>         <chr>                <int> <int> <dbl>  <int> <dbl>

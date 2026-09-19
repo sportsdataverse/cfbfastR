@@ -106,7 +106,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_fpi_weekly(2005))
 #> ── college football weekly ESPN FPI ratings from the SportsDataverse data repo ─
-#> ℹ Data updated: 2026-09-19 03:01:25 UTC
+#> ℹ Data updated: 2026-09-19 04:13:26 UTC
 #> # A tibble: 2,023 × 51
 #>    season season_type  week team_id last_updated      run_date_time_key
 #>     <int>       <int> <int>   <int> <chr>                         <dbl>

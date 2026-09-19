@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-19 03:01:22 UTC
-#> # A tibble: 136 × 8
+#> ℹ Data updated: 2026-09-19 04:13:23 UTC
+#> # A tibble: 204 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43046   9/10      FAMU     comp     27   
-#>  2 11      REGULAR SEASON passing  43046   9/10      FAMU     att      29   
-#>  3 11      REGULAR SEASON passing  43046   9/10      FAMU     pct      93.1 
-#>  4 11      REGULAR SEASON passing  43046   9/10      FAMU     yds      426  
-#>  5 11      REGULAR SEASON passing  43046   9/10      FAMU     pyds_att 29.5 
-#>  6 11      REGULAR SEASON passing  43046   9/10      FAMU     td       6    
-#>  7 11      REGULAR SEASON passing  43046   9/10      FAMU     int      0    
-#>  8 11      REGULAR SEASON passing  43046   9/10      FAMU     sck      0    
-#>  9 11      REGULAR SEASON passing  43046   9/10      FAMU     yds_2    0    
-#> 10 11      REGULAR SEASON passing  43046   9/10      FAMU     qbr      284.8
-#> # ℹ 126 more rows
+#>  1 11      REGULAR SEASON passing  43177   9/18      @WAKE    comp     30   
+#>  2 11      REGULAR SEASON passing  43177   9/18      @WAKE    att      34   
+#>  3 11      REGULAR SEASON passing  43177   9/18      @WAKE    pct      88.2 
+#>  4 11      REGULAR SEASON passing  43177   9/18      @WAKE    yds      220  
+#>  5 11      REGULAR SEASON passing  43177   9/18      @WAKE    pyds_att 11.1 
+#>  6 11      REGULAR SEASON passing  43177   9/18      @WAKE    td       3    
+#>  7 11      REGULAR SEASON passing  43177   9/18      @WAKE    int      0    
+#>  8 11      REGULAR SEASON passing  43177   9/18      @WAKE    sck      1    
+#>  9 11      REGULAR SEASON passing  43177   9/18      @WAKE    yds_2    1    
+#> 10 11      REGULAR SEASON passing  43177   9/18      @WAKE    qbr      171.7
+#> # ℹ 194 more rows
 # }
 ```
