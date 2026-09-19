@@ -28,4 +28,14 @@ test_that("CFB Team Roster", {
   expect_s3_class(x, "data.frame")
   expect_s3_class(y, "data.frame")
   expect_s3_class(z, "data.frame")
+
+  # season is the requested year; year is a class year (1-8) or NA where CFBD
+  # returned the season instead (cfbfastR-data#14) -- never a 4-digit value.
+  expect_true(all(x$season == 2019L))
+  expect_true(all(y$season == 2018L))
+  expect_true(all(z$season == 2017L))
+  for (d in list(x, y, z)) {
+    expect_type(d$year, "integer")
+    expect_true(all(is.na(d$year) | (d$year >= 1L & d$year <= 8L)))
+  }
 })
