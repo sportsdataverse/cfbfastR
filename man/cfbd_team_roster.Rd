@@ -15,7 +15,7 @@ Minimum value accepted: 2004}
 \item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
 }
 \value{
-\code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 16 variables:\tabular{lll}{
+\code{\link[=cfbd_team_roster]{cfbd_team_roster()}} - A data frame with 18 variables:\tabular{lll}{
    col_name \tab types \tab description \cr
    athlete_id \tab character \tab Referencing athlete id. \cr
    first_name \tab character \tab Athlete first name. \cr
@@ -24,6 +24,7 @@ Minimum value accepted: 2004}
    weight \tab integer \tab Athlete weight (lbs). \cr
    height \tab integer \tab Athlete height (inches). \cr
    jersey \tab integer \tab Athlete jersey number. \cr
+   season \tab integer \tab Season the roster was requested for (the \code{year} argument). \cr
    year \tab integer \tab Athlete class year (1-8). \code{NA} where CFBD returned the season instead of a class year (all pre-2014 rosters, most 2014-2019); use \code{season} for the roster year. \cr
    position \tab character \tab Athlete position. \cr
    home_city \tab character \tab Hometown of the athlete. \cr
@@ -33,6 +34,7 @@ Minimum value accepted: 2004}
    home_longitude \tab numeric \tab Hometown longitude. \cr
    home_county_fips \tab integer \tab Hometown FIPS code. \cr
    headshot_url \tab character \tab Player ESPN headshot url. \cr
+   recruit_ids \tab list \tab 247Sports recruit ids (integer(0) when none). \cr
 }
 }
 \description{

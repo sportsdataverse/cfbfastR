@@ -432,7 +432,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #' @param team (*String* optional): Team, select a valid team in D-I football
 #'
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
-#' @return [cfbd_team_roster()] - A data frame with 16 variables:
+#' @return [cfbd_team_roster()] - A data frame with 18 variables:
 #'
 #'    |col_name         |types     |description                       |
 #'    |:----------------|:---------|:---------------------------------|
@@ -443,6 +443,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'    |weight           |integer   |Athlete weight (lbs).             |
 #'    |height           |integer   |Athlete height (inches).          |
 #'    |jersey           |integer   |Athlete jersey number.            |
+#'    |season           |integer   |Season the roster was requested for (the `year` argument). |
 #'    |year             |integer   |Athlete class year (1-8). `NA` where CFBD returned the season instead of a class year (all pre-2014 rosters, most 2014-2019); use `season` for the roster year. |
 #'    |position         |character |Athlete position.                 |
 #'    |home_city        |character |Hometown of the athlete.          |
@@ -452,6 +453,7 @@ cfbd_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 #'    |home_longitude   |numeric   |Hometown longitude.               |
 #'    |home_county_fips |integer   |Hometown FIPS code.               |
 #'    |headshot_url     |character |Player ESPN headshot url.         |
+#'    |recruit_ids      |list      |247Sports recruit ids (integer(0) when none). |
 #'
 #' @keywords Team Roster
 #' @importFrom dplyr rename mutate
@@ -506,6 +508,7 @@ cfbd_team_roster <- function(year, team = NULL,
           # year is 1-8 (redshirts, waivers); anything larger is the season leaking
           # through, so it is nulled here rather than passed to callers (#14 in
           # cfbfastR-data). Use `season` for the year the roster was observed.
+          season = as.integer(.env$year),
           year = dplyr::if_else(.data$year > 8, NA_integer_, as.integer(.data$year))) |>
         as.data.frame()
       df$recruitIds <- lapply(df$recruitIds, function(y){
