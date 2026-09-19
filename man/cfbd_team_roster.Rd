@@ -25,7 +25,7 @@ Minimum value accepted: 2004}
    height \tab integer \tab Athlete height (inches). \cr
    jersey \tab integer \tab Athlete jersey number. \cr
    season \tab integer \tab Season the roster was requested for (the \code{year} argument). \cr
-   year \tab integer \tab Athlete class year (1-8). \code{NA} where CFBD returned the season instead of a class year (all pre-2014 rosters, most 2014-2019); use \code{season} for the roster year. \cr
+   year \tab integer \tab Athlete class year (0-8; 0 = unknown). \code{NA} where CFBD returned the season instead of a class year (all pre-2014 rosters, most 2014-2019); use \code{season} for the roster year. \cr
    position \tab character \tab Athlete position. \cr
    home_city \tab character \tab Hometown of the athlete. \cr
    home_state \tab character \tab Hometown state of the athlete. \cr
