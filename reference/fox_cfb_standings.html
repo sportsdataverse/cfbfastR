@@ -3,7 +3,10 @@
 the given team's conference). Note: the league-wide league/standings
 endpoint returns header-only tables, so this is keyed by team."><meta property="og:description" content="Flattens the Bifrost team/{id}/standings conference table (the standings of
 the given team's conference). Note: the league-wide league/standings
-endpoint returns header-only tables, so this is keyed by team."><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+endpoint returns header-only tables, so this is keyed by team."><meta property="og:image" content="https://raw.githubusercontent.com/sportsdataverse/cfbfastR-data/main/themes/social_card_cfbfastR_final_quote.png"><meta property="og:image:alt" content="When you code good, you know good. When you know good, you win good. When you win good, they pay good."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@saiemgilani"><meta name="twitter:site" content="@cfbfastR"><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-ZFDwSnsNQXnprFDxKtvpE.js"></script><script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script><script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
   {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
    "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
@@ -195,27 +198,27 @@ columns are the standings headers (rank, team, <code>conf</code>, <code>w_l</cod
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">fox_cfb_standings</span><span class="op">(</span>team_id <span class="op">=</span> <span class="st">"11"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Standings data from Fox Sports (Bifrost) ───────────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:13:22 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:51:36 UTC</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    team_id section    atlantic_coast v2      conf  w_l   home  away  pf    pa   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 11      CONFERENCE 1              Miami … 2-0   3-0   1-0   2-0   155   33   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 11      CONFERENCE 2              Pittsb… 1-0   3-0   3-0   0-0   98    34   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 11      CONFERENCE 3              Virgin… 1-0   2-0   2-0   0-0   93    11   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 11      CONFERENCE 4              SMU     1-0   2-0   1-0   1-0   83    34   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 11      CONFERENCE 5              Califo… 1-0   1-1   0-1   1-0   45    63   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 11      CONFERENCE 6              Duke    0-0   2-0   1-0   1-0   48    30   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 11      CONFERENCE 7              North … 0-0   2-0   1-0   0-0   50    13   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 11      CONFERENCE 8              Virgin… 0-0   2-0   2-0   0-0   117   24   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 11      CONFERENCE 9              Clemson 0-0   1-1   1-0   0-1   32    58   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 11      CONFERENCE 10             Boston… 0-0   1-1   1-0   0-1   43    55   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 11      CONFERENCE 11             Louisv… 0-0   1-1   1-0   0-0   97    54   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 11      CONFERENCE 12             Georgi… 0-0   0-2   0-2   0-0   37    59   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 11      CONFERENCE 2              Clemson 2-0   2-1   2-0   1-1   84    88   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 11      CONFERENCE 3              Duke    1-0   3-0   2-0   1-0   83    37   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 11      CONFERENCE 4              Pittsb… 1-0   3-0   3-0   0-0   98    34   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 11      CONFERENCE 5              Louisv… 1-0   2-1   2-0   0-0   138   85   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 11      CONFERENCE 6              Virgin… 1-0   2-1   2-0   0-0   120   49   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 11      CONFERENCE 7              SMU     1-1   2-1   1-0   1-1   114   75   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 11      CONFERENCE 8              Califo… 1-1   2-1   1-2   1-0   104   94   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 11      CONFERENCE 9              Virgin… 0-0   3-0   2-0   1-0   152   50   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 11      CONFERENCE 10             Boston… 0-0   2-1   2-0   0-1   65    71   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 11      CONFERENCE 11             Georgi… 0-0   1-2   1-2   0-0   81    70   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 11      CONFERENCE 12             North … 0-1   2-1   1-0   0-1   70    41   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 11      CONFERENCE 13             Wake F… 0-1   2-1   1-1   1-0   96    85   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 11      CONFERENCE 14             Florid… 0-1   1-1   1-1   0-0   58    44   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 11      CONFERENCE 15             NC Sta… 0-1   1-1   1-0   0-1   81    34   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 11      CONFERENCE 16             Stanfo… 0-1   1-1   1-1   0-0   43    72   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 11      CONFERENCE 17             Syracu… 0-2   1-2   1-1   0-1   97    51   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 11      CONFERENCE 14             Florid… 0-1   1-2   1-1   0-1   94    94   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 11      CONFERENCE 15             NC Sta… 0-1   1-2   1-0   0-2   112   69   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 11      CONFERENCE 16             Syracu… 0-2   1-2   1-1   0-1   97    51   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 11      CONFERENCE 17             Stanfo… 0-2   1-2   1-1   0-1   50    107  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: strk &lt;chr&gt;, entity_id &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>

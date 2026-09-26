@@ -24,7 +24,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@saiemgilani">
 <meta name="twitter:site" content="@cfbfastR">
-<script defer data-domain="cfbfastr.sportsdataverse.org" src="https://plausible.io/js/plausible.js"></script><script type="application/ld+json">
+<!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-ZFDwSnsNQXnprFDxKtvpE.js"></script><script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script><script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
   {"@type":"SoftwareSourceCode","@id":"https://cfbfastr.sportsdataverse.org/#package",
    "name":"cfbfastR","alternateName":"cfbfastR: Access College Football Play by Play Data",
@@ -236,12 +239,11 @@ Akshay Easwaran, Jared Lee
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Installing system requirements</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y update`</span></span></code></pre>
 <pre><code><span><span class="co">## Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span>
-<span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Hit:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease</span></span>
-<span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
-<pre><code><span><span class="co">## Hit:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease</span></span></code></pre>
+<span><span class="co">## Hit:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease</span></span>
+<span><span class="co">## Hit:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease</span></span></code></pre>
+<pre><code><span><span class="co">## Hit:6 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Executing `sudo sh -c apt-get -y install libicu-dev libcurl4-openssl-dev libssl-dev cmake make libuv1-dev pandoc libnode-dev libxml2-dev`</span></span></code></pre>
 <pre><code><span><span class="co">## Reading package lists...</span></span></code></pre>
@@ -251,14 +253,14 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## make is already the newest version (4.3-4.1build1).</span></span>
 <span><span class="co">## pandoc is already the newest version (2.9.2.1-3ubuntu2).</span></span>
 <span><span class="co">## cmake is already the newest version (3.22.1-1ubuntu1.22.04.2).</span></span>
-<span><span class="co">## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.27).</span></span>
+<span><span class="co">## libcurl4-openssl-dev is already the newest version (7.81.0-1ubuntu1.29).</span></span>
 <span><span class="co">## libssl-dev is already the newest version (3.0.2-0ubuntu1.29).</span></span>
 <span><span class="co">## libuv1-dev is already the newest version (1.43.0-1ubuntu0.1).</span></span>
-<span><span class="co">## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.12).</span></span>
+<span><span class="co">## libxml2-dev is already the newest version (2.9.13+dfsg-1ubuntu0.13).</span></span>
 <span><span class="co">## libnode-dev is already the newest version (12.22.9~dfsg-1ubuntu3.6).</span></span>
-<span><span class="co">## 0 upgraded, 0 newly installed, 0 to remove and 86 not upgraded.</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 3 pkgs + 56 deps: kept 59 <span style="color: #B2B2B2;">[9s]</span></span></span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<span><span class="co">## 0 upgraded, 0 newly installed, 0 to remove and 25 not upgraded.</span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BB00;">✔</span> 3 pkgs + 56 deps: kept 59 <span style="color: #B2B2B2;">[5.8s]</span></span></span></code></pre>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
@@ -268,7 +270,7 @@ Akshay Easwaran, Jared Lee
 <pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com" class="external-link">gt</a></span><span class="op">)</span></span>
 <span><span class="co"># cfbfastR is deliberately NOT in the pak() list above. pkgdown and</span></span>
@@ -282,10 +284,10 @@ Akshay Easwaran, Jared Lee
 <h4 id="get-team-info">
 <strong>Get Team Info</strong><a class="anchor" aria-label="anchor" href="#get-team-info"></a>
 </h4>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"SEC"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:18 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:25 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 16 × 43</span></span></span>
 <span><span class="co">##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span></span>
 <span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -312,10 +314,10 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## <span style="color: #949494;">#   logos_14 &lt;chr&gt;, logos_15 &lt;chr&gt;, logos_16 &lt;chr&gt;, twitter &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, …</span></span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>conference <span class="op">=</span> <span class="st">"Ind"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:19 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:25 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 43</span></span></span>
 <span><span class="co">##   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -328,10 +330,10 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## <span style="color: #949494;">#   logos_14 &lt;chr&gt;, logos_15 &lt;chr&gt;, logos_16 &lt;chr&gt;, twitter &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   venue_id &lt;int&gt;, venue_name &lt;chr&gt;, city &lt;chr&gt;, state &lt;chr&gt;, zip &lt;chr&gt;,</span></span></span>
 <span><span class="co">## <span style="color: #949494;">#   country_code &lt;chr&gt;, timezone &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, …</span></span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_info.html">cfbd_team_info</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team information from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:19 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:25 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 130 × 43</span></span></span>
 <span><span class="co">##    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference</span></span>
 <span><span class="co">##      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
@@ -357,18 +359,18 @@ Akshay Easwaran, Jared Lee
 <h4 id="get-team-matchup-history-total-record">
 <strong>Get Team Matchup History (Total Record)</strong><a class="anchor" aria-label="anchor" href="#get-team-matchup-history-total-record"></a>
 </h4>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup record from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:20 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:25 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
 <span><span class="co">##   start_year end_year team1 team1_wins team2    team2_wins  ties</span></span>
 <span><span class="co">##        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span>       <span style="text-decoration: underline;">1</span>902     <span style="text-decoration: underline;">2</span>025 Texas         62 Oklahoma         51     5</span></span></code></pre>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup_records.html">cfbd_team_matchup_records</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup record from CollegeFootballData.com ───── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:20 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:25 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
 <span><span class="co">##   start_year end_year team1     team1_wins team2 team2_wins  ties</span></span>
 <span><span class="co">##        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -378,10 +380,10 @@ Akshay Easwaran, Jared Lee
 <h4 id="get-team-matchup-history">
 <strong>Get Team Matchup History</strong><a class="anchor" aria-label="anchor" href="#get-team-matchup-history"></a>
 </h4>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas"</span>, <span class="st">"Oklahoma"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ──── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:20 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:26 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 118 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -397,10 +399,10 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">1</span>910    11 regular     1910-11-24T… FALSE        <span style="color: #BB0000;">NA</span>    Texas              0</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 108 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ──── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:20 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:26 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 89 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -416,10 +418,10 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">1</span>908     7 regular     1908-10-31T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         13</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 79 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Texas A&amp;M"</span>, <span class="st">"TCU"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ──── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:21 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ──── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:26 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 22 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -435,10 +437,10 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>   <span style="text-decoration: underline;">1</span>984    14 regular     1984-11-24T… FALSE        <span style="color: #BB0000;">NA</span>    Texas A&amp;M         35</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 12 more rows</span></span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 3 more variables: away_team &lt;chr&gt;, away_score &lt;int&gt;, winner &lt;chr&gt;</span></span></span></code></pre>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_matchup.html">cfbd_team_matchup</a></span><span class="op">(</span><span class="st">"Florida State"</span>, <span class="st">"Florida"</span>, min_year <span class="op">=</span> <span class="fl">1975</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team matchup history from CollegeFootballData.com ──── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:21 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:26 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 52 × 11</span></span></span>
 <span><span class="co">##    season  week season_type date         neutral_site venue home_team home_score</span></span>
 <span><span class="co">##     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -459,10 +461,10 @@ Akshay Easwaran, Jared Lee
 <h4 id="get-team-rosters">
 <strong>Get Team Rosters</strong><a class="anchor" aria-label="anchor" href="#get-team-rosters"></a>
 </h4>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_roster.html">cfbd_team_roster</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2013</span>, team <span class="op">=</span> <span class="st">"Florida State"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── Team roster data from CollegeFootballData.com ──────── <span style="font-style: italic;">cfbfastR 3.0.0.9000</span> ──</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:21 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:26 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 134 × 18</span></span></span>
 <span><span class="co">##    athlete_id first_name last_name   team    weight height jersey  year position</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
@@ -485,10 +487,10 @@ Akshay Easwaran, Jared Lee
 <h4 id="get-team-talent">
 <strong>Get Team Talent</strong><a class="anchor" aria-label="anchor" href="#get-team-talent"></a>
 </h4>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:21 UTC</span></span></span></code></pre>
+<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:27 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 138 × 3</span></span></span>
 <span><span class="co">##     year school     talent</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -503,10 +505,10 @@ Akshay Easwaran, Jared Lee
 <span><span class="co">## <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">2</span>026 USC          899 </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">2</span>026 Florida      891.</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ 128 more rows</span></span></span></code></pre>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cfbd_team_talent.html">cfbd_team_talent</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## ── 247sports team talent ratings from CollegeFootballData.com ──────────────────</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-19 04:19:21 UTC</span></span></span></code></pre>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:55:27 UTC</span></span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 236 × 3</span></span></span>
 <span><span class="co">##     year school        talent</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -617,12 +619,12 @@ Akshay Easwaran, Jared Lee
 <p>To cite the <a href="https://cfbfastR.sportsdataverse.org/"><strong><code>cfbfastR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTeX Citation</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
-<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
-<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
-<span id="cb72-4"><a href="#cb72-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
-<span id="cb72-5"><a href="#cb72-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
-<span id="cb72-6"><a href="#cb72-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">cfbfastr</span>,</span>
+<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani and Akshay Easwaran and Jared Lee and Eric Hess},</span>
+<span id="cb69-3"><a href="#cb69-3" tabindex="-1"></a>  <span class="dt">title</span> = {cfbfastR: Access College Football Play by Play Data},</span>
+<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://cfbfastR.sportsdataverse.org/},</span>
+<span id="cb69-5"><a href="#cb69-5" tabindex="-1"></a>  <span class="dt">year</span> = {2021}</span>
+<span id="cb69-6"><a href="#cb69-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="related-sportsdataverse-packages">

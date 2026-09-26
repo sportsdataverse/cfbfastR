@@ -439,7 +439,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_summaries(2004))
 #> ── college football team season summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-19 04:14:22 UTC
+#> ℹ Data updated: 2026-09-26 06:52:18 UTC
 #> # A tibble: 118 × 383
 #>    team_id pos_team       division conference     season plays_off passrate_off
 #>    <chr>   <chr>          <chr>    <chr>           <int>     <int>        <dbl>

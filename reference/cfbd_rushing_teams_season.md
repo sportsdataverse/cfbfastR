@@ -74,7 +74,7 @@ Other CFBD Rushing:
 # \donttest{
   try(cfbd_rushing_teams_season(year = 2025, team = "Texas"))
 #> ── Team season rushing data from CollegeFootballData.com ───────────────────────
-#> ℹ Data updated: 2026-09-19 04:08:40 UTC
+#> ℹ Data updated: 2026-09-26 06:48:13 UTC
 #> # A tibble: 1 × 175
 #>   season team  conference offense_attempts offense_rushing_yards_available
 #>    <int> <chr> <chr>                 <int>                           <int>

@@ -105,7 +105,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_player_stats(2013))
 #> ── NCAA men's football player stats (stats.ncaa.org) from the SportsDataverse da
-#> ℹ Data updated: 2026-09-19 04:14:34 UTC
+#> ℹ Data updated: 2026-09-26 06:52:27 UTC
 #> # A tibble: 53,479 × 8
 #>    contest_id team_id number name          position category espn_game_id season
 #>    <chr>      <chr>   <chr>  <chr>         <chr>    <chr>    <chr>         <int>
