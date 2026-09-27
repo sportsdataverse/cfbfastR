@@ -34,10 +34,11 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Loads the roster-level id crosswalk linking CFBD athlete ids to ESPN
-athlete ids across seasons. Single cumulative file (not season-
-partitioned). Published to the \code{cfb_crosswalk} release tag on the
-sportsdataverse-data repo.
+Loads the roster-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+Sports athlete ids. A single snapshot of current rosters, not a
+per-season series: the providers' roster endpoints only expose the
+current roster. It carries no CFBD athlete id. Published to the
+\code{cfb_crosswalk} release tag on the sportsdataverse-data repo.
 }
 \examples{
 \donttest{

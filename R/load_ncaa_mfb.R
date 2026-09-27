@@ -857,9 +857,11 @@ NULL
 #' @rdname load_ncaa_mfb_teams
 #' @author Saiem Gilani
 #' @description
-#'   Loads season-level NCAA men's football team directories from
-#'   stats.ncaa.org, with division/conference alignment; one row per team-
-#'   season. Published to the `ncaa_mfb_teams` release tag on the
+#'   Loads the stats.ncaa.org men's football team list for each season: one
+#'   row per team-season with the stats.ncaa.org team id, the team name, and
+#'   the NCAA division (FBS or FCS). The table has no conference column; for
+#'   conference membership by season use [load_cfb_team_group_seasons()].
+#'   Published to the `ncaa_mfb_teams` release tag on the
 #'   sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2013 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2013)
 #' @param ... Additional arguments passed to an underlying function that
@@ -870,11 +872,11 @@ NULL
 #'
 #'    |col_name      |types     |description |
 #'    |--------------|----------|:-----------|
-#'    |team_id       |character | |
-#'    |team_name     |character | |
-#'    |academic_year |integer   | |
-#'    |division      |integer   | |
-#'    |season        |integer   | |
+#'    |team_id       |character |stats.ncaa.org team id. It is issued per season, so a school's id changes from year to year. |
+#'    |team_name     |character |School name as stats.ncaa.org lists it, without the mascot. |
+#'    |academic_year |integer   |Academic year the record covers, the ENDING year (`season + 1`). |
+#'    |division      |integer   |stats.ncaa.org division code: `11` = FBS, `12` = FCS. |
+#'    |season        |integer   |Season (fall year; 2025 = fall 2025). |
 #'
 #' @examples
 #' \donttest{

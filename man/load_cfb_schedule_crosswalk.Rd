@@ -38,8 +38,9 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Loads the game-level id crosswalk linking CFBD game ids to ESPN event
-ids -- one row per game-season. Published to the
+Loads the game-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+Sports game ids -- one row per game in each season's file. The files
+carry no \code{season} column and no CFBD game id. Published to the
 \code{cfb_crosswalk} release tag on the sportsdataverse-data repo.
 }
 \examples{

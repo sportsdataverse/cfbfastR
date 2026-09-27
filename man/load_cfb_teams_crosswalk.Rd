@@ -27,7 +27,7 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
    norm_key \tab character \tab Shared join key across providers: the team name lowercased, ASCII-folded, stripped of punctuation, whitespace-collapsed, and alias-mapped. \cr
    espn_team_id \tab integer \tab ESPN team id for the crosswalk row. \cr
    espn_team \tab character \tab ESPN's full team display name, school plus mascot, null when the row was anchored on a non-ESPN provider. \cr
-   espn_abbreviation \tab character \tab  \cr
+   espn_abbreviation \tab character \tab ESPN's short team code for the school. \cr
    fox_team_id \tab character \tab Fox Sports team id for the same team. \cr
    fox_team \tab character \tab Fox Sports' team name, which that feed ships in all capitals. \cr
    fox_abbreviation \tab character \tab Fox Sports' short team code, which frequently differs from the ESPN abbreviation for the same school. \cr
@@ -38,8 +38,10 @@ Returns a \code{cfbfastR_data} tibble.\tabular{lll}{
 }
 }
 \description{
-Loads the team-level id crosswalk linking CFBD team ids to ESPN team
-ids -- one row per team-season. Published to the
+Loads the team-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+Sports team ids, matched on a normalized team name (\code{norm_key}). One row
+per team in each season's file, including teams below FCS. The files
+carry no \code{season} column and no CFBD team id. Published to the
 \code{cfb_crosswalk} release tag on the sportsdataverse-data repo.
 }
 \examples{
