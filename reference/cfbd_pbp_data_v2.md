@@ -1,4 +1,4 @@
-# **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+# **Get college football play-by-play data – modular EPA/WPA pipeline (v2)**
 
 Returns CFBD play-by-play data with optional Expected Points Added (EPA)
 and Win Probability Added (WPA) modeling. The modular successor to
@@ -19,7 +19,13 @@ cfbd_pbp_data_v2(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  output = "default"
+  output = "default",
+  offense = NULL,
+  defense = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL,
+  conference = NULL,
+  division = NULL
 )
 ```
 
@@ -32,7 +38,7 @@ cfbd_pbp_data_v2(
 
 - season_type:
 
-  (*Character*): Season type — `"regular"` (default), `"postseason"`,
+  (*Character*): Season type – `"regular"` (default), `"postseason"`,
   `"both"`, `"allstar"`, `"spring_regular"`, `"spring_postseason"`.
 
 - week:
@@ -77,6 +83,32 @@ cfbd_pbp_data_v2(
   - `"full"` – legacy behavior, drops only the player-name aliases. For
     sequential modeling that consumes pre-computed lag/lead shifts or
     the per-branch WPA decomposition.
+
+- offense:
+
+  (*Character*): Optional offensive team filter.
+
+- defense:
+
+  (*Character*): Optional defensive team filter.
+
+- offense_conference:
+
+  (*Character*): Optional offensive team conference filter.
+
+- defense_conference:
+
+  (*Character*): Optional defensive team conference filter.
+
+- conference:
+
+  (*Character*): Optional conference filter (either team).
+
+- division:
+
+  (*Character*): Optional division/classification filter of either team
+  – `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as
+  `classification`.
 
 ## Value
 

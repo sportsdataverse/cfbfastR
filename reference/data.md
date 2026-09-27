@@ -38,7 +38,7 @@ A data frame with 11 rows and 4 variables:
 
 - `abbreviation`: Conference abbreviation
 
-A data frame with 85 rows and 4 variables:
+A data frame with 111 rows and 4 variables:
 
 - `function_name`: Exported cfbfastR function taking a `year` argument
 

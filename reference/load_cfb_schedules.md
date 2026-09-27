@@ -41,7 +41,7 @@ Other loaders:
 # \donttest{
   try(load_cfb_schedules(2024))
 #> ── Games and schedules from CollegeFootballData.com ───── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:22:19 UTC
+#> ℹ Data updated: 2026-09-27 07:47:16 UTC
 #> # A tibble: 920 × 32
 #>      game_id season  week season_type start_date        start_time_tbd completed
 #>        <int>  <int> <int> <chr>       <chr>             <lgl>          <lgl>    

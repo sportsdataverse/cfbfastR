@@ -79,7 +79,10 @@ Other CFBD Games:
 [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md),
 [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md),
 [`cfbd_game_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.md),
+[`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md),
+[`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md),
 [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md),
+[`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md),
 [`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md),
 [`cfbd_game_weather()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.md)
 
@@ -89,7 +92,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_live_scoreboard(division='fbs', conference = "B12"))
 #> ── Live Scoreboard information from CollegeFootballData.com ────────────────────
-#> ℹ Data updated: 2026-09-27 07:13:24 UTC
+#> ℹ Data updated: 2026-09-27 07:37:41 UTC
 #> # A tibble: 8 × 43
 #>     game_id start_date  start_time_tbd tv    neutral_site conference_game status
 #>       <int> <chr>       <lgl>          <chr> <lgl>        <lgl>           <chr> 

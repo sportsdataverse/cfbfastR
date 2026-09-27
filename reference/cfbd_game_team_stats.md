@@ -160,7 +160,10 @@ Other CFBD Games:
 [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md),
 [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md),
 [`cfbd_game_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.md),
+[`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md),
+[`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md),
 [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md),
+[`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md),
 [`cfbd_game_weather()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.md),
 [`cfbd_live_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.md)
 
@@ -170,7 +173,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:13:20 UTC
+#> ℹ Data updated: 2026-09-27 07:37:37 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
@@ -178,12 +181,12 @@ Other CFBD Games:
 #>  2 401403923 Ole Miss   SEC        away      LSU      SEC                     20
 #>  3 401403939 Arkansas   SEC        home      LSU      SEC                     10
 #>  4 401403939 LSU        SEC        away      Arkansas SEC                     13
-#>  5 401403873 Southern   SWAC       away      LSU      SEC                     17
-#>  6 401403873 LSU        SEC        home      Southern SWAC                    65
-#>  7 401403963 Texas A&M  SEC        home      LSU      SEC                     38
-#>  8 401403963 LSU        SEC        away      Texas A… SEC                     23
-#>  9 401403885 LSU        SEC        home      Mississ… SEC                     31
-#> 10 401403885 Mississip… SEC        away      LSU      SEC                     16
+#>  5 401403963 Texas A&M  SEC        home      LSU      SEC                     38
+#>  6 401403963 LSU        SEC        away      Texas A… SEC                     23
+#>  7 401403934 Alabama    SEC        away      LSU      SEC                     31
+#>  8 401403934 LSU        SEC        home      Alabama  SEC                     32
+#>  9 401403885 Mississip… SEC        away      LSU      SEC                     16
+#> 10 401403885 LSU        SEC        home      Mississ… SEC                     31
 #> # ℹ 16 more rows
 #> # ℹ 71 more variables: total_yards <chr>, net_passing_yards <chr>,
 #> #   completion_attempts <chr>, passing_tds <chr>, yards_per_pass <chr>,
@@ -194,7 +197,7 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:13:20 UTC
+#> ℹ Data updated: 2026-09-27 07:37:37 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>

@@ -29,6 +29,15 @@ Get results, statistics and information for games
 - [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md):
   Get game media information (TV, radio, etc).
 
+- [`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md):
+  Get the active or next game schedule slate.
+
+- [`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md):
+  Get a pregame preview for a game.
+
+- [`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md):
+  Get an adjusted-metrics pregame preview for a game.
+
 ## Details
 
 ### **Get game advanced box score information.**

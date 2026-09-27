@@ -180,6 +180,14 @@
 <p>A committed fixture pins these against <code>sportsdataverse-py</code>’s equivalents across all four rule eras — 20 output columns, agreeing to 1e-5.</p>
 </div>
 <div class="section level3">
+<h3 id="new-cfbd-schedule-preview-and-team-overview-endpoints-3-0-0-9000">New: CFBD 5.31.1 schedule, preview and team-overview endpoints<a class="anchor" aria-label="anchor" href="#new-cfbd-schedule-preview-and-team-overview-endpoints-3-0-0-9000"></a></h3>
+<ul><li>Added <code><a href="../reference/cfbd_game_schedule.html">cfbd_game_schedule()</a></code> (CFBD <code>/games/schedule</code>, upstream v5.31.1).</li>
+<li>Added <code><a href="../reference/cfbd_game_preview.html">cfbd_game_preview()</a></code> (CFBD <code>/games/{gameId}/preview</code>, upstream v5.31.1).</li>
+<li>Added <code><a href="../reference/cfbd_game_preview_adjusted.html">cfbd_game_preview_adjusted()</a></code> (CFBD <code>/games/{gameId}/preview/adjusted</code>, upstream v5.31.1; Patreon Tier 1).</li>
+<li>Added <code><a href="../reference/cfbd_team_season_overview.html">cfbd_team_season_overview()</a></code> (CFBD <code>/teams/season/overview</code>, upstream v5.31.1).</li>
+<li>New upstream query params on existing wrappers (upstream v5.31.1): <code>cfbd_game_weather(game_id =)</code>, <code>cfbd_ratings_elo(preseason =)</code>, <code>cfbd_pbp_data(offense =)</code> and, on <code><a href="../reference/cfbd_pbp_data_v2.html">cfbd_pbp_data_v2()</a></code>, <code>offense</code>, <code>defense</code>, <code>offense_conference</code>, <code>defense_conference</code>, <code>conference</code> and <code>division</code>.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="new-cfbd-passing-and-rushing-endpoint-families-3-0-0-9000">New: CFBD passing and rushing endpoint families<a class="anchor" aria-label="anchor" href="#new-cfbd-passing-and-rushing-endpoint-families-3-0-0-9000"></a></h3>
 <p>Ten new <code>cfbd_*()</code> wrappers close the last gaps against the CollegeFootballData API (spec <strong>v5.27.1</strong>), taking coverage from 74 of 84 endpoints to <strong>84 of 84</strong>:</p>
 <table class="table"><thead><tr><th>function</th>

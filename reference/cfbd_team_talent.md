@@ -32,7 +32,8 @@ Other CFBD Teams:
 [`cfbd_team_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.md),
 [`cfbd_team_matchup()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.md),
 [`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md),
-[`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md)
+[`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md),
+[`cfbd_team_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.md)
 
 ## Examples
 
@@ -40,7 +41,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_talent())
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-09-27 07:18:04 UTC
+#> ℹ Data updated: 2026-09-27 07:42:10 UTC
 #> # A tibble: 138 × 3
 #>     year school     talent
 #>    <int> <chr>       <dbl>
@@ -58,7 +59,7 @@ Other CFBD Teams:
 
   try(cfbd_team_talent(year = 2018))
 #> ── 247sports team talent ratings from CollegeFootballData.com ──────────────────
-#> ℹ Data updated: 2026-09-27 07:18:04 UTC
+#> ℹ Data updated: 2026-09-27 07:42:10 UTC
 #> # A tibble: 236 × 3
 #>     year school        talent
 #>    <int> <chr>          <dbl>

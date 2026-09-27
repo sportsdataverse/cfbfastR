@@ -6,12 +6,13 @@
 
 ``` r
 cfbd_game_weather(
-  year,
+  year = NULL,
   week = NULL,
   season_type = "regular",
   team = NULL,
   conference = NULL,
-  division = NULL
+  division = NULL,
+  game_id = NULL
 )
 ```
 
@@ -19,7 +20,8 @@ cfbd_game_weather(
 
 - year:
 
-  (*Integer* required): Year, 4 digit format(*YYYY*)  
+  (*Integer* required unless `game_id` is supplied): Year, 4 digit
+  format(*YYYY*)  
   Minimum value accepted: 2001
 
 - week:
@@ -47,6 +49,11 @@ cfbd_game_weather(
 
   (*String* optional): Division/classification filter – one of `fbs`,
   `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
+
+- game_id:
+
+  (*Integer* optional): Game ID. When specified, returns weather for
+  that game.
 
 ## Value
 
@@ -87,6 +94,9 @@ Other CFBD Games:
 [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md),
 [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md),
 [`cfbd_game_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.md),
+[`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md),
+[`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md),
 [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md),
+[`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md),
 [`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md),
 [`cfbd_live_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.md)

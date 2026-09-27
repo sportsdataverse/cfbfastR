@@ -11,7 +11,8 @@ cfbd_ratings_elo(
   week = NULL,
   season_type = "both",
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  preseason = NULL
 )
 ```
 
@@ -42,6 +43,13 @@ cfbd_ratings_elo(
   Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind,
   SBC, AAC
 
+- preseason:
+
+  (*Logical* optional): Return initial ratings from each team's opening
+  regular-season game. Missing opening ratings are omitted. Cannot be
+  combined with `week`; `season_type` must be regular or both when
+  specified. CFBD defaults to `FALSE`.
+
 ## Value
 
 `cfbd_ratings_elo()` - A data frame with 4 variables:
@@ -69,7 +77,7 @@ Other CFBD Ratings and Rankings:
 # \donttest{
   try(cfbd_ratings_elo(year = 2019, team = "Texas"))
 #> ── Elo ratings from CollegeFootballData.com ───────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:16:50 UTC
+#> ℹ Data updated: 2026-09-27 07:41:11 UTC
 #> # A tibble: 1 × 4
 #>    year team  conference   elo
 #>   <int> <chr> <chr>      <dbl>
@@ -77,7 +85,7 @@ Other CFBD Ratings and Rankings:
 
   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #> ── Elo ratings from CollegeFootballData.com ───────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:16:51 UTC
+#> ℹ Data updated: 2026-09-27 07:41:11 UTC
 #> # A tibble: 14 × 4
 #>     year team              conference   elo
 #>    <int> <chr>             <chr>      <dbl>

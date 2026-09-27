@@ -1,7 +1,7 @@
 # **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
 
 - [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md):
-  Get college football play-by-play data — modular EPA/WPA pipeline
+  Get college football play-by-play data – modular EPA/WPA pipeline
   (v2). Thin orchestrator over the shared EPA/WPA engine
   `.run_epa_wpa()`, the canonical play-type taxonomy
   `.pbp_play_types()`, and the canonical output schema
@@ -23,7 +23,7 @@ lag/lead intermediates and per-branch WPA scratchpad columns because
 those are mechanically rebuildable from the surviving canonical columns;
 the harness only enforces equality on user-facing values.
 
-### **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+### **Get college football play-by-play data – modular EPA/WPA pipeline (v2)**
 
     cfbd_pbp_data_v2(
       year = 2024, week = 1, season_type = "regular",

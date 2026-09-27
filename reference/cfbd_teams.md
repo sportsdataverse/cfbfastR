@@ -18,6 +18,9 @@
 - [`cfbd_teams_fbs()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_teams_fbs.md):
   Get every FBS team for a season.
 
+- [`cfbd_team_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.md):
+  Get a full-season team overview.
+
 ### **Team info lookup**
 
 Lists all teams in conference or all D-I teams if conference is left

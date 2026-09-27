@@ -731,7 +731,7 @@ Probability model outputs.
 - [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md)
   :
 
-  **Get college football play-by-play data — modular EPA/WPA pipeline
+  **Get college football play-by-play data – modular EPA/WPA pipeline
   (v2)**
 
 ## College Football Data API
@@ -778,10 +778,25 @@ CollegeFootballData API
 
   **Get player statistics by game**
 
+- [`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md)
+  :
+
+  **Get a pregame preview for a game**
+
+- [`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md)
+  :
+
+  **Get an adjusted-metrics pregame preview for a game**
+
 - [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md)
   :
 
   **Get team records by year**
+
+- [`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md)
+  :
+
+  **Get the active or next game schedule slate**
 
 - [`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md)
   :
@@ -877,6 +892,11 @@ CollegeFootballData API
   :
 
   **Get team rosters**
+
+- [`cfbd_team_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.md)
+  :
+
+  **Get a full-season team overview**
 
 - [`cfbd_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.md)
   :

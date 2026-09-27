@@ -70,6 +70,28 @@ A committed fixture pins these against `sportsdataverse-py`’s
 equivalents across all four rule eras — 20 output columns, agreeing to
 1e-5.
 
+### New: CFBD 5.31.1 schedule, preview and team-overview endpoints
+
+- Added
+  [`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md)
+  (CFBD `/games/schedule`, upstream v5.31.1).
+- Added
+  [`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md)
+  (CFBD `/games/{gameId}/preview`, upstream v5.31.1).
+- Added
+  [`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md)
+  (CFBD `/games/{gameId}/preview/adjusted`, upstream v5.31.1; Patreon
+  Tier 1).
+- Added
+  [`cfbd_team_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.md)
+  (CFBD `/teams/season/overview`, upstream v5.31.1).
+- New upstream query params on existing wrappers (upstream v5.31.1):
+  `cfbd_game_weather(game_id =)`, `cfbd_ratings_elo(preseason =)`,
+  `cfbd_pbp_data(offense =)` and, on
+  [`cfbd_pbp_data_v2()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data_v2.md),
+  `offense`, `defense`, `offense_conference`, `defense_conference`,
+  `conference` and `division`.
+
 ### New: CFBD passing and rushing endpoint families
 
 Ten new `cfbd_*()` wrappers close the last gaps against the

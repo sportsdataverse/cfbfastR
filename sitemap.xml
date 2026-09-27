@@ -52,7 +52,10 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_games.html</loc></url>
@@ -130,6 +133,7 @@
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.html</loc></url>
+<url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_teams.html</loc></url>
 <url><loc>https://cfbfastR.sportsdataverse.org/reference/cfbd_teams_fbs.html</loc></url>

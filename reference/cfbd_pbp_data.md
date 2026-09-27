@@ -18,7 +18,8 @@ cfbd_pbp_data(
   offense_conference = NULL,
   defense_conference = NULL,
   conference = NULL,
-  division = NULL
+  division = NULL,
+  offense = NULL
 )
 ```
 
@@ -90,6 +91,10 @@ cfbd_pbp_data(
 
   (*String* optional): Division/classification filter – `fbs`, `fcs`,
   `ii`, `ii/iii`, `iii`.
+
+- offense:
+
+  (*String* optional): Offensive team filter.
 
 ## Value
 

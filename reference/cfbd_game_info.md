@@ -128,7 +128,10 @@ Other CFBD Games:
 [`cfbd_game_box_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.md),
 [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md),
 [`cfbd_game_player_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_player_stats.md),
+[`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md),
+[`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md),
 [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md),
+[`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md),
 [`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md),
 [`cfbd_game_weather()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.md),
 [`cfbd_live_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.md)
@@ -139,7 +142,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_info(2018, week = 7, conference = "Ind"))
 #> ── Game information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:13:16 UTC
+#> ℹ Data updated: 2026-09-27 07:37:30 UTC
 #> # A tibble: 5 × 32
 #>     game_id season  week season_type start_date         start_time_tbd completed
 #>       <int>  <int> <int> <chr>       <chr>              <lgl>          <lgl>    

@@ -76,6 +76,7 @@ Other CFBD Teams:
 [`cfbd_team_matchup()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.md),
 [`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md),
 [`cfbd_team_roster()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_roster.md),
+[`cfbd_team_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.md),
 [`cfbd_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.md)
 
 ## Examples
@@ -84,7 +85,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_info(conference = "SEC"))
 #> ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:17:58 UTC
+#> ℹ Data updated: 2026-09-27 07:42:00 UTC
 #> # A tibble: 16 × 43
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
@@ -114,7 +115,7 @@ Other CFBD Teams:
 
   try(cfbd_team_info(conference = "Ind"))
 #> ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:17:59 UTC
+#> ℹ Data updated: 2026-09-27 07:42:01 UTC
 #> # A tibble: 2 × 43
 #>   team_id school    mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>     <int> <chr>     <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     
@@ -130,7 +131,7 @@ Other CFBD Teams:
 
   try(cfbd_team_info(year = 2019))
 #> ── Team information from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:17:59 UTC
+#> ℹ Data updated: 2026-09-27 07:42:02 UTC
 #> # A tibble: 130 × 43
 #>    team_id school   mascot abbreviation alt_name1 alt_name2 alt_name3 conference
 #>      <int> <chr>    <chr>  <chr>        <chr>     <chr>     <chr>     <chr>     

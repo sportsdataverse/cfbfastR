@@ -138,7 +138,10 @@ Other CFBD Games:
 [`cfbd_game_box_advanced()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_box_advanced.md),
 [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md),
 [`cfbd_game_media()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_media.md),
+[`cfbd_game_preview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview.md),
+[`cfbd_game_preview_adjusted()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_preview_adjusted.md),
 [`cfbd_game_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_records.md),
+[`cfbd_game_schedule()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_schedule.md),
 [`cfbd_game_team_stats()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_team_stats.md),
 [`cfbd_game_weather()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_weather.md),
 [`cfbd_live_scoreboard()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_live_scoreboard.md)
@@ -149,7 +152,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama"))
 #> ── Game player stats data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:13:17 UTC
+#> ℹ Data updated: 2026-09-27 07:37:32 UTC
 #> # A tibble: 48 × 60
 #>      game_id team     conference home_away team_points athlete_id athlete_name  
 #>        <int> <chr>    <chr>      <chr>           <int>      <int> <chr>         
@@ -173,7 +176,7 @@ Other CFBD Games:
 
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
 #> ── Game player stats data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:13:18 UTC
+#> ℹ Data updated: 2026-09-27 07:37:32 UTC
 #> # A tibble: 3 × 60
 #>     game_id team        conference home_away team_points athlete_id athlete_name
 #>       <int> <chr>       <chr>      <chr>           <int>      <int> <chr>       

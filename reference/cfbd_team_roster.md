@@ -57,6 +57,7 @@ Other CFBD Teams:
 [`cfbd_team_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_info.md),
 [`cfbd_team_matchup()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup.md),
 [`cfbd_team_matchup_records()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_matchup_records.md),
+[`cfbd_team_season_overview()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_season_overview.md),
 [`cfbd_team_talent()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_team_talent.md)
 
 ## Examples
@@ -65,7 +66,7 @@ Other CFBD Teams:
 # \donttest{
   try(cfbd_team_roster(year = 2013, team = "Florida State"))
 #> ── Team roster data from CollegeFootballData.com ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:18:03 UTC
+#> ℹ Data updated: 2026-09-27 07:42:08 UTC
 #> # A tibble: 134 × 18
 #>    athlete_id first_name last_name   team    weight height jersey  year position
 #>    <chr>      <chr>      <chr>       <chr>    <int>  <int>  <int> <int> <chr>   
