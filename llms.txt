@@ -387,6 +387,24 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
   **Load college football weekly ESPN FPI ratings from the
   SportsDataverse data repo**
 
+- [`load_cfb_group_aliases()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_group_aliases.md)
+  :
+
+  **Load college football conference and division aliases from the
+  SportsDataverse data repo**
+
+- [`load_cfb_group_seasons()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_group_seasons.md)
+  :
+
+  **Load college football conference and division names by season from
+  the SportsDataverse data repo**
+
+- [`load_cfb_groups()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_groups.md)
+  :
+
+  **Load college football conference and division lineages from the
+  SportsDataverse data repo**
+
 - [`load_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_pbp.md)
   :
 
@@ -439,6 +457,12 @@ Functions exported by cfbfastR which load full seasons of cfbfastR data
 
 - [`load_cfb_schedules()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_schedules.md)
   : Load CFB Game/Schedule Data from data repo
+
+- [`load_cfb_team_group_seasons()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_group_seasons.md)
+  :
+
+  **Load college football team conference membership by season from the
+  SportsDataverse data repo**
 
 - [`load_cfb_team_summaries_weekly()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_summaries_weekly.md)
   :

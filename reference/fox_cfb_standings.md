@@ -31,7 +31,7 @@ template.
 # \donttest{
   try(fox_cfb_standings(team_id = "11"))
 #> ── Standings data from Fox Sports (Bifrost) ───────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 03:46:43 UTC
+#> ℹ Data updated: 2026-09-27 05:31:16 UTC
 #> # A tibble: 17 × 12
 #>    team_id section    atlantic_coast v2      conf  w_l   home  away  pf    pa   
 #>    <chr>   <chr>      <chr>          <chr>   <chr> <chr> <chr> <chr> <chr> <chr>
@@ -41,8 +41,8 @@ template.
 #>  4 11      CONFERENCE 4              Pittsb… 1-0   4-0   4-0   0-0   157   34   
 #>  5 11      CONFERENCE 5              Virgin… 1-0   4-0   2-0   2-0   173   64   
 #>  6 11      CONFERENCE 6              Virgin… 1-0   3-1   3-0   0-0   162   52   
-#>  7 11      CONFERENCE 7              Wake F… 1-1   3-1   1-1   2-0   126   112  
-#>  8 11      CONFERENCE 8              SMU     1-1   2-1   1-0   1-1   114   75   
+#>  7 11      CONFERENCE 7              SMU     1-1   3-1   2-0   1-1   148   99   
+#>  8 11      CONFERENCE 8              Wake F… 1-1   3-1   1-1   2-0   126   112  
 #>  9 11      CONFERENCE 9              Louisv… 1-1   2-2   2-1   0-0   165   115  
 #> 10 11      CONFERENCE 10             Califo… 1-1   2-2   1-2   1-0   104   94   
 #> 11 11      CONFERENCE 11             Georgi… 0-0   1-2   1-2   0-0   81    70   
