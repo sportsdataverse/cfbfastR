@@ -92,7 +92,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_live_scoreboard(division='fbs', conference = "B12"))
 #> ── Live Scoreboard information from CollegeFootballData.com ────────────────────
-#> ℹ Data updated: 2026-09-27 07:37:41 UTC
+#> ℹ Data updated: 2026-09-27 10:58:14 UTC
 #> # A tibble: 8 × 43
 #>     game_id start_date  start_time_tbd tv    neutral_site conference_game status
 #>       <int> <chr>       <lgl>          <chr> <lgl>        <lgl>           <chr> 

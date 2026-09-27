@@ -6,7 +6,7 @@
 
 ``` r
 cfbd_game_player_stats(
-  year,
+  year = NULL,
   week = NULL,
   season_type = "regular",
   team = NULL,
@@ -21,7 +21,8 @@ cfbd_game_player_stats(
 
 - year:
 
-  (*Integer* required): Year, 4 digit format(*YYYY*)  
+  (*Integer* required unless `game_id` is supplied): Year, 4 digit
+  format(*YYYY*)  
   Minimum value accepted: 2004
 
 - week:
@@ -53,8 +54,10 @@ cfbd_game_player_stats(
 
 - game_id:
 
-  (*Integer* optional): Game ID filter for querying a single game Can be
-  found using the
+  (*Integer* optional): Game ID filter for querying a single game. When
+  supplied it is sent alone as `id`; `year`, `week`, `season_type`,
+  `team` and `conference` are omitted (CFBD rejects them alongside
+  `id`). Can be found using the
   [`cfbd_game_info()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_game_info.md)
   function
 
@@ -152,7 +155,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_player_stats(year = 2020, week = 15, team = "Alabama"))
 #> ── Game player stats data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:32 UTC
+#> ℹ Data updated: 2026-09-27 10:58:05 UTC
 #> # A tibble: 48 × 60
 #>      game_id team     conference home_away team_points athlete_id athlete_name  
 #>        <int> <chr>    <chr>      <chr>           <int>      <int> <chr>         
@@ -176,7 +179,7 @@ Other CFBD Games:
 
   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
 #> ── Game player stats data from CollegeFootballData.com ── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:32 UTC
+#> ℹ Data updated: 2026-09-27 10:58:05 UTC
 #> # A tibble: 3 × 60
 #>     game_id team        conference home_away team_points athlete_id athlete_name
 #>       <int> <chr>       <chr>      <chr>           <int>      <int> <chr>       

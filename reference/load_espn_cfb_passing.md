@@ -101,20 +101,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-27 07:47:44 UTC
+#> ℹ Data updated: 2026-09-27 11:09:02 UTC
 #> # A tibble: 364 × 73
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 276     Marshall      fbs      Mid-Ameri…   2004    149492 Bernard Morris    
-#>  2 228     Clemson       fbs      ACC          2004    135822 Chansi Stuckey    
-#>  3 201     Oklahoma      fbs      Big 12       2004    145525 Tommy Grady       
-#>  4 59      Georgia Tech  fbs      ACC          2004    113995 Damarius Bilbo    
-#>  5 2199    Eastern Mich… fbs      Mid-Ameri…   2004    116236 Matt Bohnet       
-#>  6 2050    Ball State    fbs      Mid-Ameri…   2004    147371 Casey Gillin      
-#>  7 61      Georgia       fbs      SEC          2004    103585 Reggie Brown      
-#>  8 245     Texas A&M     fbs      Big 12       2004    138625 Ty Branyon        
-#>  9 2638    UTEP          fbs      Western A…   2004    107933 Omar Duarte       
-#> 10 2655    Tulane        fbs      Conferenc…   2004    150090 Richard Irvin     
+#>  1 66      Iowa State    fbs      Big 12       2004    145404 Bret Meyer        
+#>  2 25      California    fbs      Pac-10       2004    116589 Terrell Williams  
+#>  3 120     Maryland      fbs      ACC          2004    145825 Ryan Mitch        
+#>  4 245     Texas A&M     fbs      Big 12       2004    138593 Chad Schroeder    
+#>  5 254     Utah          fbs      Mountain …   2004    105399 Paris Warren      
+#>  6 2459    Northern Ill… fbs      Mid-Ameri…   2004    138204 Phil Horvath      
+#>  7 202     Tulsa         fbs      Western A…   2004    105974 James Kilian      
+#>  8 135     Minnesota     fbs      Big Ten      2004    133808 Bryan Cupito      
+#>  9 59      Georgia Tech  fbs      ACC          2004    145781 Reggie Ball       
+#> 10 2426    Navy          fbs      FBS Indep…   2004    136727 Frank Divis       
 #> # ℹ 354 more rows
 #> # ℹ 66 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,

@@ -112,21 +112,27 @@ Other CFBD Coaches Functions:
 # \donttest{
   try(cfbd_coaches(first = "Nick", last = "Saban", team = "alabama"))
 #> ── Coaches data from CollegeFootballData.com ──────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:18 UTC
-#> # A tibble: 126 × 19
-#>       id first_name last_name   hire_date team_id school  conference  year games
-#>    <int> <chr>      <chr>       <chr>       <int> <chr>   <chr>      <int> <int>
-#>  1   600 M.         Griffin     NA            333 Alabama SIAA        1900     5
-#>  2   601 G.H.       Harvey      NA            333 Alabama SIAA        1901     5
-#>  3   602 Eli        Abbott      NA            333 Alabama SIAA        1902     8
-#>  4   603 J.O.       Heyworth    NA            333 Alabama SIAA        1902     8
-#>  5   604 W.B.       Blount      NA            333 Alabama SIAA        1903     7
-#>  6   604 W.B.       Blount      NA            333 Alabama SIAA        1904    10
-#>  7   605 Jack       Leavenworth NA            333 Alabama SIAA        1905    10
-#>  8   606 J.W.H.     Pollard     NA            333 Alabama SIAA        1906     6
-#>  9   606 J.W.H.     Pollard     NA            333 Alabama SIAA        1907     8
-#> 10   606 J.W.H.     Pollard     NA            333 Alabama SIAA        1908     8
-#> # ℹ 116 more rows
+#> ℹ Data updated: 2026-09-27 10:57:52 UTC
+#> # A tibble: 17 × 19
+#>       id first_name last_name hire_date    team_id school conference  year games
+#>    <int> <chr>      <chr>     <chr>          <int> <chr>  <chr>      <int> <int>
+#>  1   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2007    13
+#>  2   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2008    14
+#>  3   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2009    14
+#>  4   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2010    13
+#>  5   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2011    13
+#>  6   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2012    14
+#>  7   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2013    13
+#>  8   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2014    14
+#>  9   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2015    15
+#> 10   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2016    15
+#> 11   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2017    14
+#> 12   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2018    15
+#> 13   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2019    13
+#> 14   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2020    13
+#> 15   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2021    15
+#> 16   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2022    13
+#> 17   406 Nick       Saban     2007-01-03T…     333 Alaba… SEC         2023    14
 #> # ℹ 10 more variables: wins <int>, losses <int>, ties <int>,
 #> #   win_percentage <dbl>, preseason_rank <int>, postseason_rank <int>,
 #> #   srs <dbl>, sp_overall <dbl>, sp_offense <dbl>, sp_defense <dbl>

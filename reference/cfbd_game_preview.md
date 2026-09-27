@@ -141,11 +141,11 @@ Other CFBD Games:
   try(cfbd_game_preview(game_id = 401114233))
 #> $game
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 1 × 30
 #>     game_id season  week season_type status    status_checked_at      start_date
 #>       <int>  <int> <int> <chr>       <chr>     <chr>                  <chr>     
-#> 1 401114233   2019     1 regular     completed 2026-09-27T07:37:33.1… 2019-08-3…
+#> 1 401114233   2019     1 regular     completed 2026-09-27T10:58:00.4… 2019-08-3…
 #> # ℹ 23 more variables: start_time_tbd <lgl>, neutral_site <lgl>,
 #> #   conference_game <lgl>, home_team_id <int>, home_team_name <chr>,
 #> #   home_team_conference <chr>, home_team_conference_abbreviation <chr>,
@@ -156,37 +156,37 @@ Other CFBD Games:
 #> 
 #> $broadcasts
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $odds
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $teams
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $key_players
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $recent_results
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $series
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 #> $series_meetings
 #> ── Game preview data from CollegeFootballData.com ─────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:37:33 UTC
+#> ℹ Data updated: 2026-09-27 10:58:06 UTC
 #> # A tibble: 0 × 0
 #> 
 # }

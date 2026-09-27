@@ -84,20 +84,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-27 07:47:59 UTC
+#> ℹ Data updated: 2026-09-27 11:09:17 UTC
 #> # A tibble: 1,109 × 47
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 158     Nebraska      fbs      Big 12       2004    137483 David Horne       
-#>  2 25      California    fbs      Pac-10       2004    138516 Byron Storer      
-#>  3 249     North Texas   fbs      Sun Belt     2004    160402 Jamario Thomas    
-#>  4 23      San Jose Sta… fbs      Western A…   2004    148370 Adam Tafralis     
-#>  5 59      Georgia Tech  fbs      ACC          2004    161197 Calvin Johnson    
-#>  6 12      Arizona       fbs      Pac-10       2004    136732 Gilbert Harris    
-#>  7 25      California    fbs      Pac-10       2004    138323 Steve Levy        
-#>  8 68      Boise State   fbs      Western A…   2004    103357 Michael Sanford   
-#>  9 8       Arkansas      fbs      SEC          2004    115512 Kyle Dickerson    
-#> 10 328     Utah State    fbs      Sun Belt     2004    241084 Leon Jackson III  
+#>  1 77      Northwestern  fbs      Big Ten      2004    146149 Chris Malleo      
+#>  2 127     Michigan Sta… fbs      Big Ten      2004    133795 Drew Stanton      
+#>  3 70      Idaho         fbs      Sun Belt     2004    150917 Brian Nooy        
+#>  4 309     Louisiana     fbs      Sun Belt     2004    136229 Jerry Babb        
+#>  5 151     East Carolina fbs      Conferenc…   2004    106007 Desmond Robinson  
+#>  6 251     Texas         fbs      Big 12       2004    108250 Will Matthews     
+#>  7 2483    Oregon        fbs      Pac-10       2004    134038 Chris Vincent     
+#>  8 2572    Southern Miss fbs      Conferenc…   2004    129244 Anthony Harris    
+#>  9 2440    Nevada        fbs      Western A…   2004    147768 Talib Wise        
+#> 10 2433    Louisiana Mo… fbs      Sun Belt     2004    150245 Jesse Blair       
 #> # ℹ 1,099 more rows
 #> # ℹ 40 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,

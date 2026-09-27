@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-27 07:47:57 UTC
+#> ℹ Data updated: 2026-09-27 11:09:16 UTC
 #> # A tibble: 1,390 × 55
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 62      Hawai'i     fbs      Western A…   2004    107773 Michael Brewster    
-#>  2 2116    UCF         fbs      Mid-Ameri…   2004    100339 Luther Huggins      
-#>  3 23      San Jose S… fbs      Western A…   2004    147034 Tyson Thompson      
-#>  4 58      South Flor… fbs      Conferenc…   2004    148398 Pat Julmiste        
-#>  5 248     Houston     fbs      Conferenc…   2004    120418 Matt Schirmer       
-#>  6 2509    Purdue      fbs      Big Ten      2004    133852 Andre Chattams      
-#>  7 193     Miami (OH)  fbs      Mid-Ameri…   2004    116400 Martin Nance        
-#>  8 2390    Miami       fbs      ACC          2004    120157 Kevin Everett       
-#>  9 30      USC         fbs      Pac-10       2004    120528 John Walker         
-#> 10 213     Penn State  fbs      Big Ten      2004    156820 Terrell Golden      
+#>  1 2006    Akron       fbs      Mid-Ameri…   2004    135759 Mark Tetzel         
+#>  2 70      Idaho       fbs      Sun Belt     2004    138545 Wendell Octave      
+#>  3 2390    Miami       fbs      ACC          2004    120144 Quadtrine Hill      
+#>  4 158     Nebraska    fbs      Big 12       2004    137496 Mark LeFlore        
+#>  5 265     Washington… fbs      Pac-10       2004    123378 Allen Thompson      
+#>  6 2628    TCU         fbs      Conferenc…   2004    137467 Michael DePriest    
+#>  7 276     Marshall    fbs      Mid-Ameri…   2004    162097 Ahmad Bradshaw      
+#>  8 97      Louisville  fbs      Conferenc…   2004    112529 Adam McCauley       
+#>  9 2579    South Caro… fbs      SEC          2004    134875 Andy Boyd           
+#> 10 2628    TCU         fbs      Conferenc…   2004    104811 Reggie Harrell      
 #> # ℹ 1,380 more rows
 #> # ℹ 48 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,

@@ -440,21 +440,21 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_summaries_weekly(2004))
 #> ── college football weekly team summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-27 07:47:19 UTC
-#> # A tibble: 1,634 × 524
+#> ℹ Data updated: 2026-09-27 11:08:39 UTC
+#> # A tibble: 1,585 × 524
 #>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
 #>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
-#>  1 103     Boston Coll… fbs      Big East     2004             75             75
-#>  2 153     North Carol… fbs      ACC          2004             67             67
-#>  3 167     New Mexico   fbs      Mountain …   2004             60             60
-#>  4 183     Syracuse     fbs      Big East     2004             62             62
-#>  5 189     Bowling Gre… fbs      Mid-Ameri…   2004             81             81
-#>  6 193     Miami (OH)   fbs      Mid-Ameri…   2004             62             62
-#>  7 194     Ohio State   fbs      Big Ten      2004             64             64
-#>  8 197     Oklahoma St… fbs      Big 12       2004             62             62
-#>  9 204     Oregon State fbs      Pac-10       2004             57             57
-#> 10 2132    Cincinnati   fbs      Conferenc…   2004             84             84
-#> # ℹ 1,624 more rows
+#>  1 259     Virginia Te… fbs      ACC          2004             58             58
+#>  2 30      USC          fbs      Pac-10       2004             55             55
+#>  3 103     Boston Coll… fbs      Big East     2004             63             63
+#>  4 120     Maryland     fbs      ACC          2004             59             59
+#>  5 127     Michigan St… fbs      Big Ten      2004             56             56
+#>  6 130     Michigan     fbs      Big Ten      2004             67             67
+#>  7 135     Minnesota    fbs      Big Ten      2004             74             74
+#>  8 142     Missouri     fbs      Big 12       2004             54             54
+#>  9 145     Ole Miss     fbs      SEC          2004             55             55
+#> 10 150     Duke         fbs      ACC          2004             60             60
+#> # ℹ 1,575 more rows
 #> # ℹ 517 more variables: havoc_off_n <int>, explosive_off_n <int>,
 #> #   EPAplay_off_n <int>, yardsplay_off_n <int>, play_stuffed_off_n <int>,
 #> #   success_off_n <int>, red_zone_success_off_n <int>,

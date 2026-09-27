@@ -36,19 +36,19 @@ A `cfbfastR`-tagged tibble with one row per (category, leader):
 # \donttest{
   try(fox_cfb_team_stats(team_id = "11"))
 #> ── Team stat leaders from Fox Sports (Bifrost) ────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:46:55 UTC
+#> ℹ Data updated: 2026-09-27 11:08:18 UTC
 #> # A tibble: 23 × 6
 #>    team_id category     stat                    stat_abbreviation player   value
 #>    <chr>   <chr>        <chr>                   <chr>             <chr>    <chr>
-#>  1 11      PLAYER STATS Passing Yards           PYDS              Darian … 873  
-#>  2 11      PLAYER STATS Passing Touchdowns      PTD               Darian … 11   
+#>  1 11      PLAYER STATS Passing Yards           PYDS              Darian … 1,211
+#>  2 11      PLAYER STATS Passing Touchdowns      PTD               Darian … 14   
 #>  3 11      PLAYER STATS Rushing Yards           RYDS              Mark Fl… 230  
 #>  4 11      PLAYER STATS Rushing Touchdowns      RTD               Mark Fl… 3    
-#>  5 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 444  
-#>  6 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 5    
-#>  7 11      PLAYER STATS Kicking Points          PTS               Jake We… 21   
+#>  5 11      PLAYER STATS Receiving Yards         RECYDS            Malachi… 564  
+#>  6 11      PLAYER STATS Receiving Touchdowns    RECTD             Malachi… 6    
+#>  7 11      PLAYER STATS Kicking Points          PTS               Jake We… 30   
 #>  8 11      PLAYER STATS Kick Return Yards       KR YDS            Girard … 89   
-#>  9 11      PLAYER STATS Punt Return Yards       PR YDS            Malachi… 22   
+#>  9 11      PLAYER STATS Punt Return Yards       PR YDS            Somouri… 50   
 #> 10 11      PLAYER STATS Defensive Interceptions DEF INT           Ethan O… 1    
 #> # ℹ 13 more rows
 # }

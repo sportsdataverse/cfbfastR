@@ -45,20 +45,20 @@ leaderboard headers plus `entity_id`.
 # \donttest{
   try(fox_cfb_league_leaders(category = "passing"))
 #> ── Statistical leaders from Fox Sports (Bifrost) ──────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 07:46:50 UTC
+#> ℹ Data updated: 2026-09-27 11:08:13 UTC
 #> # A tibble: 75 × 7
-#>    players v2              comp  gp    entity_id patt  att_g
-#>    <chr>   <chr>           <chr> <chr> <chr>     <chr> <chr>
-#>  1 1       J. Sagapolutele 88    4     233429    NA    NA   
-#>  2 2       J. Maiava       87    4     196106    NA    NA   
-#>  3 3       L. Weaver       87    4     234098    NA    NA   
-#>  4 4       C. Veltkamp     85    3     195564    NA    NA   
-#>  5 5       N. Kim          83    4     177780    NA    NA   
-#>  6 6       M. Washington   83    3     234856    NA    NA   
-#>  7 7       B. Atkinson     82    3     236148    NA    NA   
-#>  8 8       M. Alejado      81    3     222163    NA    NA   
-#>  9 9       T. Jackson      79    3     196773    NA    NA   
-#> 10 10      E. Grunkemeyer  79    3     223282    NA    NA   
+#>    players v2             comp  gp    entity_id patt  att_g
+#>    <chr>   <chr>          <chr> <chr> <chr>     <chr> <chr>
+#>  1 1       C. Veltkamp    115   4     195564    NA    NA   
+#>  2 2       J. Maiava      110   5     196106    NA    NA   
+#>  3 3       M. Alejado     109   4     222163    NA    NA   
+#>  4 4       N. Kim         106   5     177780    NA    NA   
+#>  5 5       B. Atkinson    106   4     236148    NA    NA   
+#>  6 6       M. Johnson     104   4     179185    NA    NA   
+#>  7 7       T. Chambliss   102   4     238651    NA    NA   
+#>  8 8       E. Grunkemeyer 101   4     223282    NA    NA   
+#>  9 9       M. Washington  101   4     234856    NA    NA   
+#> 10 10      N. Fifita      99    4     197318    NA    NA   
 #> # ℹ 65 more rows
 # }
 ```
