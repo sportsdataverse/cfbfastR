@@ -15,6 +15,7 @@
 #' * `cfbd_game_media()`: Get game media information (TV, radio, etc).
 #' * `cfbd_game_schedule()`: Get the active or next game schedule slate.
 #' * `cfbd_game_preview()`: Get a pregame preview for a game.
+#' * `cfbd_game_preview_adjusted()`: Get an adjusted-metrics pregame preview for a game.
 #'
 #' @details
 #' ### **Get game advanced box score information.**
@@ -2023,6 +2024,122 @@ cfbd_game_preview <- function(game_id, proxy = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no game preview data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get an adjusted-metrics pregame preview for a game**
+#' @description
+#' **Returns stored adjusted team and player metrics until game completion.**
+#' Requires a CFBD Patreon Tier 1 key; other keys receive an error and an empty
+#' list. Team metrics may use the previous season; players remain current-season.
+#' @param game_id (*Integer* required): Game ID filter for querying a single game.
+#' Can be found using the [cfbd_game_info()] or [cfbd_game_schedule()] functions.
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables.
+#' @return [cfbd_game_preview_adjusted()] - A named list of tibbles: `game`,
+#' `team_metrics`, `passing`, `rushing`, `kicking`. A section CFBD did not fill
+#' is a 0-column tibble.
+#'
+#' **game** - one row, the same columns as the `game` section of [cfbd_game_preview()].
+#'
+#' **team_metrics** - one row per side (`side` = home or away): `team_id`,
+#' `season` (integer), `metrics_status`, `metrics_reason`,
+#' `metrics_assembled_at`, `metrics_source_updated_at` (character),
+#' `metrics_data_season` (integer), `metrics_data_is_previous_season` (logical)
+#' and `metrics_data_metrics_*`: `year`, `team_id`, `team`, `conference`,
+#' `epa_*` and `epa_allowed_*` (`total`, `passing`, `rushing`),
+#' `success_rate_*` and `success_rate_allowed_*` (`total`, `standard_downs`,
+#' `passing_downs`), `rushing_*` and `rushing_allowed_*` (`line_yards`,
+#' `second_level_yards`, `open_field_yards`, `highlight_yards`),
+#' `explosiveness`, `explosiveness_allowed` (numeric; see
+#' [cfbd_metrics_wepa_team_season()] for the adjusted metrics).
+#'
+#' **passing**, **rushing** - one row per player:
+#'
+#'   |col_name     |types     |description                                  |
+#'   |:------------|:---------|:--------------------------------------------|
+#'   |side         |character |home or away.                                |
+#'   |team         |character |Team name.                                   |
+#'   |year         |integer   |Season.                                      |
+#'   |athlete_id   |character |Player id.                                   |
+#'   |athlete_name |character |Player name.                                 |
+#'   |position     |character |Player position.                             |
+#'   |conference   |character |Conference.                                  |
+#'   |wepa         |numeric   |Opponent-adjusted EPA per play.              |
+#'   |plays        |integer   |Plays.                                       |
+#'
+#' **kicking** - one row per kicker: `side`, `team`, `year`, `athlete_id`,
+#' `athlete_name`, `conference`, `paar` (numeric, points added above
+#' replacement), `attempts` (integer).
+#'
+#' @keywords Game Preview
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string
+#' @importFrom glue glue
+#' @importFrom dplyr rename any_of
+#' @family CFBD Games
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_game_preview_adjusted(game_id = 401114233))
+#' }
+cfbd_game_preview_adjusted <- function(game_id, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_id(game_id)
+
+  # Query API ----
+  full_url <- paste0("https://api.collegefootballdata.com/games/", game_id, "/preview/adjusted")
+
+  df <- list()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      parsed <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      sides <- Filter(Negate(is.null), list(home = parsed$analysis$home, away = parsed$analysis$away))
+      player_section <- function(name) {
+        .cfbd_bind_sides(lapply(sides, function(s) .cfbd_section_tbl(s[[name]]$data)))
+      }
+
+      df <- list(
+        game = .cfbd_section_tbl(c(
+          parsed$game,
+          list(
+            availability = parsed$availability,
+            reason = parsed$reason,
+            assembledAt = parsed$assembledAt
+          )
+        )) |>
+          dplyr::rename(dplyr::any_of(c("game_id" = "id"))),
+        team_metrics = .cfbd_bind_sides(lapply(sides, function(s) {
+          .cfbd_section_tbl(c(s[c("teamId", "season")], list(metrics = s$teamMetrics)))
+        })),
+        passing = player_section("passing"),
+        rushing = player_section("rushing"),
+        kicking = player_section("kicking")
+      )
+
+      df <- lapply(df, make_cfbfastR_data,
+                   type = "Adjusted game preview data from CollegeFootballData.com",
+                   timestamp = Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no adjusted game preview data available! {conditionMessage(e)}"))
     },
     finally = {
     }

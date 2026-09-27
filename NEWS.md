@@ -55,6 +55,7 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
 
 * Added `cfbd_game_schedule()` (CFBD `/games/schedule`, upstream v5.31.1).
 * Added `cfbd_game_preview()` (CFBD `/games/{gameId}/preview`, upstream v5.31.1).
+* Added `cfbd_game_preview_adjusted()` (CFBD `/games/{gameId}/preview/adjusted`, upstream v5.31.1; Patreon Tier 1).
 * New upstream query params on existing wrappers (upstream v5.31.1):
   `cfbd_game_weather(game_id =)`, `cfbd_ratings_elo(preseason =)`,
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
