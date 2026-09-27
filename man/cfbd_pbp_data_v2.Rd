@@ -11,7 +11,13 @@ cfbd_pbp_data_v2(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  output = "default"
+  output = "default",
+  offense = NULL,
+  defense = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL,
+  conference = NULL,
+  division = NULL
 )
 }
 \arguments{
@@ -53,6 +59,20 @@ computation scratchpad. For dashboards / leaderboards / game logs.
 aliases. For sequential modeling that consumes pre-computed lag/lead
 shifts or the per-branch WPA decomposition.
 }}
+
+\item{offense}{(\emph{Character}): Optional offensive team filter.}
+
+\item{defense}{(\emph{Character}): Optional defensive team filter.}
+
+\item{offense_conference}{(\emph{Character}): Optional offensive team conference filter.}
+
+\item{defense_conference}{(\emph{Character}): Optional defensive team conference filter.}
+
+\item{conference}{(\emph{Character}): Optional conference filter (either team).}
+
+\item{division}{(\emph{Character}): Optional division/classification filter of
+either team -- \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as
+\code{classification}.}
 }
 \value{
 A \code{cfbfastR_data} tibble. The \code{epa_wpa = TRUE} output matches the

@@ -71,6 +71,7 @@ Other CFBD Teams:
 \code{\link[=cfbd_team_matchup]{cfbd_team_matchup()}},
 \code{\link[=cfbd_team_matchup_records]{cfbd_team_matchup_records()}},
 \code{\link[=cfbd_team_roster]{cfbd_team_roster()}},
+\code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}},
 \code{\link[=cfbd_team_talent]{cfbd_team_talent()}}
 }
 \concept{CFBD Teams}

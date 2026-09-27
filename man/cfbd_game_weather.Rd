@@ -10,7 +10,8 @@ cfbd_game_weather(
   season_type = "regular",
   team = NULL,
   conference = NULL,
-  division = NULL
+  division = NULL,
+  game_id = NULL
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 
 \item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
+
+\item{game_id}{(\emph{Integer} optional): Game ID. When specified, returns weather for that game.}
 }
 \value{
 \code{\link[=cfbd_game_weather]{cfbd_game_weather()}} - A data frame with 23 variables:\tabular{lll}{
@@ -67,7 +70,10 @@ Other CFBD Games:
 \code{\link[=cfbd_game_info]{cfbd_game_info()}},
 \code{\link[=cfbd_game_media]{cfbd_game_media()}},
 \code{\link[=cfbd_game_player_stats]{cfbd_game_player_stats()}},
+\code{\link[=cfbd_game_preview]{cfbd_game_preview()}},
+\code{\link[=cfbd_game_preview_adjusted]{cfbd_game_preview_adjusted()}},
 \code{\link[=cfbd_game_records]{cfbd_game_records()}},
+\code{\link[=cfbd_game_schedule]{cfbd_game_schedule()}},
 \code{\link[=cfbd_game_team_stats]{cfbd_game_team_stats()}},
 \code{\link[=cfbd_live_scoreboard]{cfbd_live_scoreboard()}}
 }
