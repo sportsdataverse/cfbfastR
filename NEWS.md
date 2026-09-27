@@ -57,6 +57,13 @@ all four rule eras — 20 output columns, agreeing to 1e-5.
 * Added `cfbd_game_preview()` (CFBD `/games/{gameId}/preview`, upstream v5.31.1).
 * Added `cfbd_game_preview_adjusted()` (CFBD `/games/{gameId}/preview/adjusted`, upstream v5.31.1; Patreon Tier 1).
 * Added `cfbd_team_season_overview()` (CFBD `/teams/season/overview`, upstream v5.31.1).
+* Query keys aligned with CFBD 5.31.1: `cfbd_coaches()` now sends `firstName` / `lastName`
+  (the API silently ignored `first` / `last`, so the name filter returned every coach),
+  `cfbd_game_player_stats()` and `cfbd_game_team_stats()` send the game filter as `id`
+  (was `gameId`, which the API ignored, so `year` and a week/team were still demanded);
+  `id` must travel alone, so `year` is now optional in both and the season filters are
+  omitted when `game_id` is supplied. `cfbd_plays()` finally sends its `conference`
+  argument. Argument names are unchanged.
 * New upstream query params on existing wrappers (upstream v5.31.1):
   `cfbd_game_weather(game_id =)`, `cfbd_ratings_elo(preseason =)`,
   `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,

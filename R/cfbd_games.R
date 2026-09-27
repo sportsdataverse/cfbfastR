@@ -783,7 +783,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 
 #' @title
 #' **Get player statistics by game**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' @param year (*Integer* required unless `game_id` is supplied): Year, 4 digit format(*YYYY*) \cr
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_player_stats', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
@@ -795,7 +795,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param game_id (*Integer* optional): Game ID filter for querying a single game
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game. When supplied it is sent alone as `id`; `year`, `week`, `season_type`, `team` and `conference` are omitted (CFBD rejects them alongside `id`).
 #' Can be found using the [cfbd_game_info()] function
 #'
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
@@ -883,7 +883,7 @@ cfbd_game_box_advanced <- function(game_id, long = FALSE) {
 #'   try(cfbd_game_player_stats(2013, week = 1, team = "Florida State", category = "passing"))
 #' }
 
-cfbd_game_player_stats <- function(year,
+cfbd_game_player_stats <- function(year = NULL,
                                    week = NULL,
                                    season_type = "regular",
                                    team = NULL,
@@ -909,6 +909,15 @@ cfbd_game_player_stats <- function(year,
   validate_season_type(season_type)
   validate_id(game_id)
   validate_list(category, stat_categories)
+  # CFBD 5.31.1: `id` selects one game and must travel alone -- the API rejects
+  # `year` alongside it ("either week, team, or conference are required") --
+  # while without `id`, `year` is required.
+  if (is.null(year) && is.null(game_id)) {
+    cli::cli_abort("Supply {.arg year}, or {.arg game_id} for a single game.")
+  }
+  if (!is.null(game_id)) {
+    year <- week <- season_type <- team <- conference <- category <- NULL
+  }
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -922,7 +931,7 @@ cfbd_game_player_stats <- function(year,
     "team" = team,
     "conference" = conference,
     "category" = category,
-    "gameId" = game_id,
+    "id" = game_id,
     "classification" = division
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
@@ -1278,7 +1287,7 @@ cfbd_game_records <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' Required if `week` and `team` not specified.
 #' @param division (*String* optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii
-#' @param game_id (*Integer* optional): Game ID filter for querying a single game
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game. When supplied it is sent alone as `id`; `year`, `week`, `season_type`, `team` and `conference` are omitted (CFBD rejects them alongside `id`).
 #' Can be found using the [cfbd_game_info()] function
 #' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
@@ -1384,7 +1393,7 @@ cfbd_game_records <- function(year,
 #'   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #' }
 
-cfbd_game_team_stats <- function(year,
+cfbd_game_team_stats <- function(year = NULL,
                                  week = NULL,
                                  season_type = "regular",
                                  team = NULL,
@@ -1400,6 +1409,15 @@ cfbd_game_team_stats <- function(year,
   validate_season_type(season_type)
   validate_id(game_id)
   validate_list(rows_per_team, c(1,2))
+  # CFBD 5.31.1: `id` selects one game and must travel alone -- the API rejects
+  # `year` alongside it ("either week, team, or conference are required") --
+  # while without `id`, `year` is required.
+  if (is.null(year) && is.null(game_id)) {
+    cli::cli_abort("Supply {.arg year}, or {.arg game_id} for a single game.")
+  }
+  if (!is.null(game_id)) {
+    year <- week <- season_type <- team <- conference <- NULL
+  }
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -1413,7 +1431,7 @@ cfbd_game_team_stats <- function(year,
     "team" = team,
     "conference" = conference,
     "classification" = division,
-    "gameId" = game_id
+    "id" = game_id
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
