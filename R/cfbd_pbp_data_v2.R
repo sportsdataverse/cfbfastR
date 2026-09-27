@@ -157,6 +157,8 @@ cfbd_pbp_data_v2 <- function(year,
     pt_abb <- NULL
   }
   team <- handle_accents(team)
+  offense <- handle_accents(offense)
+  defense <- handle_accents(defense)
 
   # --- raw plays --------------------------------------------------------
   play_base_url <- "https://api.collegefootballdata.com/plays"

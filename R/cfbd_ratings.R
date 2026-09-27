@@ -589,6 +589,12 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
   validate_week(week)
   validate_season_type(season_type)
   validate_list(preseason, c(TRUE, FALSE))
+  if (isTRUE(preseason) && !is.null(week)) {
+    cli::cli_abort("{.arg week} cannot be combined with {.code preseason = TRUE}.")
+  }
+  if (isTRUE(preseason) && !season_type %in% c("regular", "both")) {
+    cli::cli_abort("When {.code preseason = TRUE}, {.arg season_type} must be {.val regular} or {.val both}.")
+  }
 
   # Team Name Handling ----
   team <- handle_accents(team)

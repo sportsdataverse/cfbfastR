@@ -1815,6 +1815,10 @@ cfbd_game_schedule <- function(year = NULL,
   validate_week(week)
   validate_list(season_type, c("regular", "postseason"))
   validate_list(division, c("fbs", "fcs"))
+  window_args <- c(!is.null(year), !is.null(season_type), !is.null(week))
+  if (any(window_args) && !all(window_args)) {
+    cli::cli_abort("{.arg year}, {.arg season_type} and {.arg week} must be supplied together, or all left {.code NULL}.")
+  }
 
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/games/schedule"

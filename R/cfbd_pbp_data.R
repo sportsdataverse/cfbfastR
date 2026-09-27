@@ -455,7 +455,7 @@ cfbd_pbp_data <- function(year,
     dots <- list(...)
     return(do.call(cfbd_pbp_data_v2, c(
       list(year = year, season_type = season_type, week = week, team = team,
-           play_type = play_type, epa_wpa = epa_wpa),
+           play_type = play_type, epa_wpa = epa_wpa, offense = offense),
       dots[intersect(names(dots), "output")]
     )))
   }
@@ -495,6 +495,7 @@ cfbd_pbp_data <- function(year,
 
   # Team Name Handling ----
   team <- handle_accents(team)
+  offense <- handle_accents(offense)
 
   # Query API ----
   play_base_url <- "https://api.collegefootballdata.com/plays"

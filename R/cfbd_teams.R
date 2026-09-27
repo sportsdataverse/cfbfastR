@@ -829,7 +829,7 @@ cfbd_team_season_overview <- function(year, team, proxy = NULL) {
       df <- list(
         overview = .cfbd_section_tbl(parsed[c("season", "teamId", "team")]),
         record = .cfbd_section_tbl(parsed$record),
-        ratings = .cfbd_section_tbl(parsed$ratings),
+        ratings = .cfbd_ratings_tbl(parsed$ratings),
         advanced = .cfbd_section_tbl(parsed$advanced),
         passing = .cfbd_section_tbl(parsed$passing),
         rushing = .cfbd_section_tbl(parsed$rushing),
@@ -847,4 +847,48 @@ cfbd_team_season_overview <- function(year, team, proxy = NULL) {
     }
   )
   return(df)
+}
+
+#' Ratings section of a team season overview, with a stable column set
+#'
+#' @description CFBD sends `null` for a rating system it has no value for, and
+#'   flattening turns that into a single `NA` placeholder column (`sp`) instead
+#'   of the documented `sp_<unit>_rating` / `sp_<unit>_rank` pair. This drops
+#'   the placeholders and adds every documented column that is absent as a
+#'   typed `NA`, so the same columns can be selected in every season.
+#' @param x The parsed `ratings` object.
+#' @return A tibble; 0 columns when `x` is empty.
+#' @keywords internal
+#' @noRd
+.cfbd_ratings_tbl <- function(x) {
+  if (is.null(x) || !length(x)) {
+    return(dplyr::tibble())
+  }
+  # Always one record: `.cfbd_section_tbl()` would read an object whose
+  # systems are all `null` as an empty group of arrays and return 0 columns.
+  df <- janitor::clean_names(dplyr::as_tibble(
+    as.data.frame(.cfbd_flatten_scalars(x), stringsAsFactors = FALSE)
+  ))
+  units <- list(
+    srs = "",
+    sp = c("overall", "offense", "defense", "special_teams"),
+    fpi = c("overall", "offense", "defense", "special_teams"),
+    core = c("overall", "offense", "defense")
+  )
+  prefixes <- unlist(lapply(names(units), function(s) {
+    u <- units[[s]]
+    c(s, paste(s, u[nzchar(u)], sep = "_"))
+  }))
+  stems <- unlist(lapply(names(units), function(s) {
+    u <- units[[s]]
+    ifelse(nzchar(u), paste(s, u, sep = "_"), s)
+  }))
+  expected <- c("elo", as.vector(rbind(paste0(stems, "_rating"), paste0(stems, "_rank"))))
+  df <- df[, !names(df) %in% setdiff(prefixes, expected), drop = FALSE]
+  for (col in expected) {
+    if (!col %in% names(df) || (is.logical(df[[col]]) && all(is.na(df[[col]])))) {
+      df[[col]] <- if (endsWith(col, "_rank")) NA_integer_ else NA_real_
+    }
+  }
+  df
 }
