@@ -53,3 +53,26 @@ test_that("both legacy entry points accept the engine argument", {
   # cannot get at the tier selector without renaming their call.
   expect_true("output" %in% names(formals(espn_cfb_pbp)))
 })
+
+test_that("the v2 delegation forwards every filter cfbd_pbp_data() accepts", {
+  # cfbd_pbp_data() declares defense / offense_conference / defense_conference /
+  # conference / division / offense; on the v2 engine each must reach
+  # cfbd_pbp_data_v2(), not fall into `...` and vanish.
+  seen <- NULL
+  local_mocked_bindings(
+    validate_api_key = function() invisible(TRUE),
+    cfbd_pbp_data_v2 = function(...) { seen <<- list(...); data.frame() }
+  )
+  cfbd_pbp_data(
+    2024, week = 2, engine = "v2",
+    offense = "Texas", defense = "Georgia",
+    offense_conference = "SEC", defense_conference = "SEC",
+    conference = "SEC", division = "fbs"
+  )
+  expect_equal(seen$offense, "Texas")
+  expect_equal(seen$defense, "Georgia")
+  expect_equal(seen$offense_conference, "SEC")
+  expect_equal(seen$defense_conference, "SEC")
+  expect_equal(seen$conference, "SEC")
+  expect_equal(seen$division, "fbs")
+})

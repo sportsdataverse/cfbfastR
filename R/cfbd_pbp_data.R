@@ -455,7 +455,10 @@ cfbd_pbp_data <- function(year,
     dots <- list(...)
     return(do.call(cfbd_pbp_data_v2, c(
       list(year = year, season_type = season_type, week = week, team = team,
-           play_type = play_type, epa_wpa = epa_wpa, offense = offense),
+           play_type = play_type, epa_wpa = epa_wpa, offense = offense,
+           defense = defense, offense_conference = offense_conference,
+           defense_conference = defense_conference, conference = conference,
+           division = division),
       dots[intersect(names(dots), "output")]
     )))
   }
