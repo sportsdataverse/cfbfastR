@@ -1,0 +1,25 @@
+name: api-sync
+# Daily: is cfbfastR's cfbd_* surface behind the CFBD OpenAPI spec? Opens/refreshes one
+# `api-sync` issue; never commits. Logic lives in sportsdataverse/.github (api-spec-sync.yml).
+on:
+  schedule:
+    - cron: "0 11 * * *"   # 07:00 America/New_York (EDT)
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Re-diff even if the upstream version is unchanged
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  issues: write
+jobs:
+  sync:
+    uses: sportsdataverse/.github/.github/workflows/api-spec-sync.yml@main
+    with:
+      upstream_repo: CFBD/cfb-api-v2
+      spec_url_template: https://apinext.collegefootballdata.com/api/{version}/cfbd-openapi.json
+      host: api.collegefootballdata.com
+      fn_prefix: cfbd
+      force: ${{ inputs.force || false }}
+    secrets: inherit
