@@ -7,6 +7,10 @@ test_that("CFBD - Elo preseason rejects the combinations the API documents", {
   )
   expect_error(cfbd_ratings_elo(year = 2024, week = 1, preseason = TRUE), "cannot be combined")
   expect_error(cfbd_ratings_elo(year = 2024, season_type = "postseason", preseason = TRUE), "must be")
+  # a truthy non-logical used to slip past validate_list() and reach the API as a 400
+  expect_error(cfbd_ratings_elo(year = 2024, week = 1, preseason = "TRUE"), "single")
+  expect_error(cfbd_ratings_elo(year = 2024, preseason = 1), "single")
+  expect_error(cfbd_ratings_elo(year = 2024, preseason = c(TRUE, FALSE)), "single")
 })
 
 test_that("CFBD - Elo preseason returns opening ratings", {

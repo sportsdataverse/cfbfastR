@@ -890,6 +890,11 @@ cfbd_team_season_overview <- function(year, team, proxy = NULL) {
     if (!col %in% names(df) || (is.logical(df[[col]]) && all(is.na(df[[col]])))) {
       df[[col]] <- if (endsWith(col, "_rank")) NA_integer_ else NA_real_
     }
+    # A whole-number rating parses as integer; pin the documented types so the
+    # same column has the same class in every season.
+    df[[col]] <- if (endsWith(col, "_rank")) as.integer(df[[col]]) else as.numeric(df[[col]])
   }
-  df
+  # Documented order (elo, then each system's rating/rank pairs), then anything
+  # extra CFBD adds later.
+  df[, c(expected, setdiff(names(df), expected)), drop = FALSE]
 }

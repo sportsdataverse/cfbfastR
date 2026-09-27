@@ -5,7 +5,7 @@
 \title{\strong{Get weather from games.}}
 \usage{
 cfbd_game_weather(
-  year,
+  year = NULL,
   week = NULL,
   season_type = "regular",
   team = NULL,
@@ -15,7 +15,7 @@ cfbd_game_weather(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY}) \cr
+\item{year}{(\emph{Integer} required unless \code{game_id} is supplied): Year, 4 digit format(\emph{YYYY}) \cr
 Minimum value accepted: 2001}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}

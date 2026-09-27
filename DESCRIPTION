@@ -67,7 +67,7 @@ Suggests:
     RSQLite,
     stats,
     stringi,
-    testthat,
+    testthat (>= 3.1.9),
     usethis (>= 1.6.0),
     withr,
     xgboost (>= 1.7)

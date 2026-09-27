@@ -78,6 +78,15 @@ test_that("CFBD - Game Preview parses a pregame analysis payload", {
   expect_equal(nrow(x$teams), 2L)
   expect_equal(sort(x$teams$side), c("away", "home"))
   expect_in(c("team_id", "record_data_wins", "ratings_data_srs_rating"), colnames(x$teams))
+  # ratings are padded and typed like the overview's: the `sp: null` system
+  # still yields its rating/rank pair, ranks integer, ratings double, no
+  # raw placeholder column
+  expect_in(c("ratings_data_elo", "ratings_data_sp_overall_rating",
+              "ratings_data_sp_overall_rank", "ratings_data_srs_rank"), colnames(x$teams))
+  expect_false("ratings_data_sp" %in% colnames(x$teams))
+  expect_type(x$teams$ratings_data_sp_overall_rank, "integer")
+  expect_type(x$teams$ratings_data_elo, "double")
+  expect_equal(x$teams$ratings_data_srs_rank, c(5L, 5L))
   # only the home side has a key player; the away side's empty arrays are dropped
   expect_equal(nrow(x$key_players), 1L)
   expect_equal(x$key_players$side, "home")

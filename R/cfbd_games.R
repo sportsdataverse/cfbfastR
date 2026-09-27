@@ -258,7 +258,7 @@ cfbd_game_info <- function(year,
 
 #' @title
 #' **Get weather from games.**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' @param year (*Integer* required unless `game_id` is supplied): Year, 4 digit format(*YYYY*) \cr
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_weather', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
@@ -306,7 +306,7 @@ cfbd_game_info <- function(year,
 #' @import tidyr
 #' @family CFBD Games
 #' @export
-cfbd_game_weather <- function(year,
+cfbd_game_weather <- function(year = NULL,
                               week = NULL,
                               season_type = "regular",
                               team = NULL,
@@ -321,6 +321,10 @@ cfbd_game_weather <- function(year,
   validate_week(week)
   validate_season_type(season_type)
   validate_id(game_id)
+  # CFBD: `year` is required unless `gameId` is specified.
+  if (is.null(year) && is.null(game_id)) {
+    cli::cli_abort("Supply {.arg year}, or {.arg game_id} for a single game.")
+  }
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -1923,10 +1927,9 @@ cfbd_game_schedule <- function(year = NULL,
 #' `statistics` sections contributes `<section>_status`, `<section>_reason`,
 #' `<section>_assembled_at`, `<section>_source_updated_at` and its payload as
 #' `<section>_data_*`: `record_data_*` carries the `record` section of
-#' [cfbd_team_season_overview()]; `ratings_data_*` carries the same rating
-#' systems (`elo`, `srs`, `sp_*`, `fpi_*`, `core_*`) flattened as sent, so a
-#' system CFBD omits for that season arrives as one `NA` column (`ratings_data_sp`)
-#' rather than the padded `_rating` / `_rank` pairs the overview returns;
+#' [cfbd_team_season_overview()]; `ratings_data_*` is that function's padded
+#' `ratings` section (`elo`, then `<system>_<unit>_rating` / `_rank` for `srs`,
+#' `sp`, `fpi`, `core`), typed and present even when CFBD omits a system;
 #' `statistics_data_*` holds `season`, `is_previous_season`,
 #' `advanced_*` (the `advanced` section of [cfbd_team_season_overview()]),
 #' `passing_*` (the passing production block of [cfbd_passing_teams_season()],
@@ -2009,7 +2012,15 @@ cfbd_game_preview <- function(game_id, proxy = NULL) {
         broadcasts = .cfbd_section_tbl(analysis$broadcasts$data),
         odds = .cfbd_section_tbl(analysis$odds$data),
         teams = .cfbd_bind_sides(lapply(sides, function(s) {
-          .cfbd_section_tbl(s[setdiff(names(s), c("keyPlayers", "recentResults"))])
+          # ratings.data goes through the same padding/typing as the overview's
+          # ratings section, so ratings_data_* is a fixed, typed column set
+          # whether or not CFBD has every system for that team.
+          rest <- s[setdiff(names(s), c("keyPlayers", "recentResults", "ratings"))]
+          ratings_meta <- s$ratings[setdiff(names(s$ratings), "data")]
+          base <- .cfbd_section_tbl(c(rest, list(ratings = ratings_meta)))
+          rt <- .cfbd_ratings_tbl(s$ratings$data)
+          if (ncol(rt)) names(rt) <- paste0("ratings_data_", names(rt))
+          dplyr::bind_cols(base, rt)
         })),
         key_players = .cfbd_bind_sides(lapply(sides, function(s) {
           kp <- s$keyPlayers

@@ -588,7 +588,13 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
-  validate_list(preseason, c(TRUE, FALSE))
+  # A strict logical check: validate_list() would let "TRUE" or 1 through via
+  # %in% coercion, isTRUE() would then skip the cross-checks below, and CFBD
+  # would answer 400 that the wrapper reports only as "no data".
+  if (!is.null(preseason) &&
+      (!is.logical(preseason) || length(preseason) != 1L || is.na(preseason))) {
+    cli::cli_abort("{.arg preseason} must be a single {.code TRUE} or {.code FALSE}.")
+  }
   if (isTRUE(preseason) && !is.null(week)) {
     cli::cli_abort("{.arg week} cannot be combined with {.code preseason = TRUE}.")
   }
