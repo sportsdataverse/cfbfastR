@@ -13,7 +13,17 @@ get_returned_rows <- function(...) {
   for (attempt in 1:4) {
     out <- tryCatch(tf(...), error = function(e) NULL)
     if (!is.null(out)) {
-      n <- dplyr::coalesce(nrow(out$result), 0L)
+      res <- out$result
+      # A wrapper may return a named list of tibbles (cfbd_team_season_overview,
+      # cfbd_game_preview*); count rows across its data-frame members.
+      n <- if (is.data.frame(res)) {
+        nrow(res)
+      } else if (is.list(res)) {
+        sum(vapply(res, function(el) if (is.data.frame(el)) nrow(el) else 0L, integer(1)))
+      } else {
+        0L
+      }
+      n <- dplyr::coalesce(n, 0L)
       if (n > 0) {
         return(n)
       }
@@ -72,6 +82,17 @@ espn_team_func <- c()
 for (func in all_objs) {
   if ('team_id' %in% formal_names(func) & substr(func, 1, 4) == 'espn') {
     espn_team_func <- append(espn_team_func, func)
+  }
+}
+
+# Wrappers whose `team` has no default (e.g. cfbd_team_season_overview) cannot
+# be probed with `year` alone: the call errors, reads as 0 rows, and the walk
+# stops at the current season -- a wrong minimum written into the docs.
+func_with_required_team <- c()
+for (func in all_objs) {
+  fm <- formals(getExportedValue("cfbfastR", func))
+  if ('team' %in% names(fm) && identical(fm[['team']], quote(expr = ))) {
+    func_with_required_team <- append(func_with_required_team, func)
   }
 }
 
@@ -134,8 +155,16 @@ for (i in seq_along(min_year_map)) {
     min_year <- min_year - 1
     if (func_name %in% espn_team_func) {
       returned_rows <- get_returned_rows(year = min_year, team_id = 2633)
+    } else if (func_name %in% func_with_required_team) {
+      returned_rows <- get_returned_rows(year = min_year, team = "Texas")
     } else if (func_name %in% func_with_week) {
-      returned_rows <- get_returned_rows(year = min_year, week = 5)
+      # cfbd_game_schedule() requires year, season_type and week together; the
+      # other week-taking wrappers accept season_type and default to regular.
+      if ('season_type' %in% formal_names(func_name)) {
+        returned_rows <- get_returned_rows(year = min_year, week = 5, season_type = "regular")
+      } else {
+        returned_rows <- get_returned_rows(year = min_year, week = 5)
+      }
     } else {
       returned_rows <- get_returned_rows(year = min_year)
     }

@@ -34,7 +34,7 @@ NULL
 #' earliest season returning rows. Values are surfaced in each function's
 #' `@param year` documentation, so they are only as current as the last
 #' `devtools::document()` run following an update of this table.
-#' @format A data frame with 85 rows and 4 variables:
+#' @format A data frame with 111 rows and 4 variables:
 #'
 #' * `function_name`: Exported cfbfastR function taking a `year` argument
 #' * `min_year`: Earliest season the endpoint returns data for

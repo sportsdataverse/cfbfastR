@@ -724,6 +724,7 @@ cfbd_teams_fbs <- function(year = NULL, proxy = NULL) {
 #' @description
 #' **Returns a stored full-season team overview, including postseason and garbage time.**
 #' @param year (*Integer* required): Season year, 4 digit format (*YYYY*).
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_team_season_overview', 'min_year']`
 #' @param team (*String* required): Team name.
 #' @param proxy (*List* optional): Per-call proxy override passed to
 #'   `get_req()`. `NULL` (default) falls back to

@@ -7,7 +7,8 @@
 cfbd_team_season_overview(year, team, proxy = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Season year, 4 digit format (\emph{YYYY}).}
+\item{year}{(\emph{Integer} required): Season year, 4 digit format (\emph{YYYY}).
+Minimum value accepted: 2014}
 
 \item{team}{(\emph{String} required): Team name.}
 
