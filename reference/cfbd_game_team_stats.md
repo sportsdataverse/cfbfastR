@@ -170,7 +170,7 @@ Other CFBD Games:
 # \donttest{
   try(cfbd_game_team_stats(2022, team = "LSU"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 05:23:01 UTC
+#> ℹ Data updated: 2026-09-27 07:13:20 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>
@@ -194,7 +194,7 @@ Other CFBD Games:
 
   try(cfbd_game_team_stats(2013, team = "Florida State"))
 #> ── Team stats data from CollegeFootballData.com ───────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 05:23:02 UTC
+#> ℹ Data updated: 2026-09-27 07:13:20 UTC
 #> # A tibble: 26 × 78
 #>      game_id school     conference home_away opponent opponent_conference points
 #>        <int> <chr>      <chr>      <chr>     <chr>    <chr>                <int>

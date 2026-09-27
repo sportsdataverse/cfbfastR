@@ -1,8 +1,11 @@
 # **Load NCAA men's football teams (stats.ncaa.org) from the SportsDataverse data repo**
 
-Loads season-level NCAA men's football team directories from
-stats.ncaa.org, with division/conference alignment; one row per team-
-season. Published to the `ncaa_mfb_teams` release tag on the
+Loads the stats.ncaa.org men's football team list for each season: one
+row per team-season with the stats.ncaa.org team id, the team name, and
+the NCAA division (FBS or FCS). The table has no conference column; for
+conference membership by season use
+[`load_cfb_team_group_seasons()`](https://cfbfastR.sportsdataverse.org/reference/load_cfb_team_group_seasons.md).
+Published to the `ncaa_mfb_teams` release tag on the
 sportsdataverse-data repo.
 
 ## Usage
@@ -42,14 +45,14 @@ load_ncaa_mfb_teams(
 
 Returns a `cfbfastR_data` tibble.
 
-|               |           |             |
-|---------------|-----------|-------------|
-| col_name      | types     | description |
-| team_id       | character |             |
-| team_name     | character |             |
-| academic_year | integer   |             |
-| division      | integer   |             |
-| season        | integer   |             |
+|  |  |  |
+|----|----|----|
+| col_name | types | description |
+| team_id | character | stats.ncaa.org team id. It is issued per season, so a school's id changes from year to year. |
+| team_name | character | School name as stats.ncaa.org lists it, without the mascot. |
+| academic_year | integer | Academic year the record covers, the ENDING year (`season + 1`). |
+| division | integer | stats.ncaa.org division code: `11` = FBS, `12` = FCS. |
+| season | integer | Season (fall year; 2025 = fall 2025). |
 
 ## Author
 
@@ -61,7 +64,7 @@ Saiem Gilani
 # \donttest{
   try(load_ncaa_mfb_teams(2013))
 #> ── NCAA men's football teams (stats.ncaa.org) from the SportsDataverse data repo
-#> ℹ Data updated: 2026-09-27 05:32:31 UTC
+#> ℹ Data updated: 2026-09-27 07:23:16 UTC
 #> # A tibble: 252 × 5
 #>    team_id team_name       academic_year division season
 #>    <chr>   <chr>                   <int>    <int>  <int>

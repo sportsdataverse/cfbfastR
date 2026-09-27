@@ -1,8 +1,9 @@
 # **Load college football schedule id crosswalk from the SportsDataverse data repo**
 
-Loads the game-level id crosswalk linking CFBD game ids to ESPN event
-ids – one row per game-season. Published to the `cfb_crosswalk` release
-tag on the sportsdataverse-data repo.
+Loads the game-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+Sports game ids – one row per game in each season's file. The files
+carry no `season` column and no CFBD game id. Published to the
+`cfb_crosswalk` release tag on the sportsdataverse-data repo.
 
 ## Usage
 
@@ -66,7 +67,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_schedule_crosswalk(2014))
 #> ── college football schedule id crosswalk from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-27 05:31:36 UTC
+#> ℹ Data updated: 2026-09-27 07:22:18 UTC
 #> # A tibble: 1,629 × 11
 #>    matchup_key       espn_game_id fox_game_id yahoo_game_id yahoo_global_game_id
 #>    <chr>                    <int> <chr>       <chr>         <chr>               

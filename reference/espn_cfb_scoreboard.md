@@ -263,20 +263,20 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_scoreboard())
 #> ── Live Scoreboard Data from ESPN ─────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 05:29:54 UTC
+#> ℹ Data updated: 2026-09-27 07:20:17 UTC
 #> # A tibble: 71 × 60
 #>    matchup          matchup_short season type  slug  game_id game_uid game_date 
 #>    <chr>            <chr>          <int> <chr> <chr> <chr>   <chr>    <date>    
-#>  1 Rice Owls at Fr… RICE @ FRES     2026 regu… regu… 401860… s:20~l:… 2026-09-26
-#>  2 Georgia Tech Ye… GT @ STAN       2026 regu… regu… 401858… s:20~l:… 2026-09-26
-#>  3 Air Force Falco… AFA @ NEV       2026 regu… regu… 401864… s:20~l:… 2026-09-26
-#>  4 Minnesota Golde… MINN @ WASH     2026 regu… regu… 401858… s:20~l:… 2026-09-26
-#>  5 Liberty Flames … LIB @ CCU       2026 regu… regu… 401869… s:20~l:… 2026-09-24
-#>  6 Northwestern Wi… NU @ IU         2026 regu… regu… 401858… s:20~l:… 2026-09-25
-#>  7 Army Black Knig… ARMY @ TEM      2026 regu… regu… 401862… s:20~l:… 2026-09-25
-#>  8 Howard Bison at… HOW @ RUTG      2026 regu… regu… 401858… s:20~l:… 2026-09-25
-#>  9 Navy Midshipmen… NAVY @ UAB      2026 regu… regu… 401862… s:20~l:… 2026-09-25
-#> 10 Clemson Tigers … CLEM @ CAL      2026 regu… regu… 401858… s:20~l:… 2026-09-25
+#>  1 Liberty Flames … LIB @ CCU       2026 regu… regu… 401869… s:20~l:… 2026-09-24
+#>  2 Northwestern Wi… NU @ IU         2026 regu… regu… 401858… s:20~l:… 2026-09-25
+#>  3 Army Black Knig… ARMY @ TEM      2026 regu… regu… 401862… s:20~l:… 2026-09-25
+#>  4 Howard Bison at… HOW @ RUTG      2026 regu… regu… 401858… s:20~l:… 2026-09-25
+#>  5 Navy Midshipmen… NAVY @ UAB      2026 regu… regu… 401862… s:20~l:… 2026-09-25
+#>  6 Clemson Tigers … CLEM @ CAL      2026 regu… regu… 401858… s:20~l:… 2026-09-25
+#>  7 Texas Longhorns… TEX @ TENN      2026 regu… regu… 401856… s:20~l:… 2026-09-26
+#>  8 Oklahoma Sooner… OU @ UGA        2026 regu… regu… 401856… s:20~l:… 2026-09-26
+#>  9 Notre Dame Figh… ND @ PUR        2026 regu… regu… 401858… s:20~l:… 2026-09-26
+#> 10 Ole Miss Rebels… MISS @ FLA      2026 regu… regu… 401856… s:20~l:… 2026-09-26
 #> # ℹ 61 more rows
 #> # ℹ 52 more variables: attendance <int>, date_valid <lgl>,
 #> #   play_by_play_available <lgl>, home_team_name <chr>, home_team_logo <chr>,
@@ -289,7 +289,7 @@ Unique variables when there are completed games
 # \donttest{
   try(espn_cfb_schedule(2021, week = 8))
 #> ── Schedule Data from ESPN ────────────────────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-27 05:29:55 UTC
+#> ℹ Data updated: 2026-09-27 07:20:17 UTC
 #> # A tibble: 54 × 62
 #>    season_type week    matchup matchup_short season type  slug  game_id game_uid
 #>    <chr>       <chr>   <chr>   <chr>          <int> <chr> <chr> <chr>   <chr>   

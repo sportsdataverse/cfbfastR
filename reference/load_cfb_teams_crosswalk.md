@@ -1,8 +1,10 @@
 # **Load college football team id crosswalk from the SportsDataverse data repo**
 
-Loads the team-level id crosswalk linking CFBD team ids to ESPN team ids
-– one row per team-season. Published to the `cfb_crosswalk` release tag
-on the sportsdataverse-data repo.
+Loads the team-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+Sports team ids, matched on a normalized team name (`norm_key`). One row
+per team in each season's file, including teams below FCS. The files
+carry no `season` column and no CFBD team id. Published to the
+`cfb_crosswalk` release tag on the sportsdataverse-data repo.
 
 ## Usage
 
@@ -47,7 +49,7 @@ Returns a `cfbfastR_data` tibble.
 | norm_key | character | Shared join key across providers: the team name lowercased, ASCII-folded, stripped of punctuation, whitespace-collapsed, and alias-mapped. |
 | espn_team_id | integer | ESPN team id for the crosswalk row. |
 | espn_team | character | ESPN's full team display name, school plus mascot, null when the row was anchored on a non-ESPN provider. |
-| espn_abbreviation | character |  |
+| espn_abbreviation | character | ESPN's short team code for the school. |
 | fox_team_id | character | Fox Sports team id for the same team. |
 | fox_team | character | Fox Sports' team name, which that feed ships in all capitals. |
 | fox_abbreviation | character | Fox Sports' short team code, which frequently differs from the ESPN abbreviation for the same school. |
@@ -66,7 +68,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_teams_crosswalk(2014))
 #> ── college football team id crosswalk from the SportsDataverse data repo ───────
-#> ℹ Data updated: 2026-09-27 05:31:42 UTC
+#> ℹ Data updated: 2026-09-27 07:22:24 UTC
 #> # A tibble: 828 × 11
 #>    norm_key        espn_team_id espn_team espn_abbreviation fox_team_id fox_team
 #>    <chr>                  <int> <chr>     <chr>             <chr>       <chr>   

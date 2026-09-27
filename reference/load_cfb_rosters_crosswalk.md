@@ -1,9 +1,10 @@
 # **Load college football roster id crosswalk from the SportsDataverse data repo**
 
-Loads the roster-level id crosswalk linking CFBD athlete ids to ESPN
-athlete ids across seasons. Single cumulative file (not season-
-partitioned). Published to the `cfb_crosswalk` release tag on the
-sportsdataverse-data repo.
+Loads the roster-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+Sports athlete ids. A single snapshot of current rosters, not a
+per-season series: the providers' roster endpoints only expose the
+current roster. It carries no CFBD athlete id. Published to the
+`cfb_crosswalk` release tag on the sportsdataverse-data repo.
 
 ## Usage
 
@@ -59,7 +60,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_rosters_crosswalk())
 #> ── college football roster id crosswalk from the SportsDataverse data repo ─────
-#> ℹ Data updated: 2026-09-27 05:31:35 UTC
+#> ℹ Data updated: 2026-09-27 07:22:17 UTC
 #> # A tibble: 37,740 × 14
 #>    espn_team_id fox_team_id person_key       espn_athlete_id fox_athlete_id
 #>           <int> <chr>       <chr>                      <int> <chr>         
