@@ -219,8 +219,9 @@ load_cfb_team_group_seasons <- function(seasons = most_recent_cfb_season(), ...,
     files <- "cfb_team_group_seasons"
   } else {
     stopifnot(is.numeric(seasons),
-              all(seasons >= 1869))
-    files <- paste0("cfb_team_group_seasons_", seasons)
+              all(seasons >= 1869),
+              all(seasons == trunc(seasons)))
+    files <- paste0("cfb_team_group_seasons_", unique(seasons))
   }
 
   urls <- paste0("https://github.com/sportsdataverse/sportsdataverse-data/releases/download/",

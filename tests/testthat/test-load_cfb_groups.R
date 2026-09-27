@@ -23,11 +23,16 @@ test_that("group loaders read the cfb_groups release assets (offline)", {
   urls <- character()
   load_cfb_team_group_seasons(TRUE)
   expect_equal(basename(urls), "cfb_team_group_seasons.parquet")
+
+  urls <- character()
+  load_cfb_team_group_seasons(c(2024, 2024))
+  expect_equal(basename(urls), "cfb_team_group_seasons_2024.parquet")
 })
 
 test_that("load_cfb_team_group_seasons validates the seasons argument", {
   expect_error(load_cfb_team_group_seasons(1868))
   expect_error(load_cfb_team_group_seasons("2024"))
+  expect_error(load_cfb_team_group_seasons(2024.5))
 })
 
 test_that("group loaders return the published cfb_groups tables", {
@@ -36,7 +41,7 @@ test_that("group loaders return the published cfb_groups tables", {
   skip_if_not_installed("arrow")
 
   x <- load_cfb_team_group_seasons(2024)
-  if (nrow(x) == 0) skip("No rows returned from the release at test time")
+  expect_gt(nrow(x), 0)
 
   expect_s3_class(x, "cfbfastR_data")
   expect_in(c("season", "team_id", "team_name", "conference_id", "sources_agree"), colnames(x))
