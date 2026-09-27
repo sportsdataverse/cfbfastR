@@ -87,22 +87,22 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-26 06:52:15 UTC
-#> # A tibble: 1,390 × 48
+#> ℹ Data updated: 2026-09-27 03:47:40 UTC
+#> # A tibble: 1,390 × 55
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 151     East Carol… fbs      Conferenc…   2004    136100 Bryson Bowling      
-#>  2 2294    Iowa        fbs      Big Ten      2004    145995 Champ Davis         
-#>  3 2459    Northern I… fbs      Mid-Ameri…   2004    102559 Brad Cieslak        
-#>  4 252     BYU         fbs      Mountain …   2004    135219 Curtis Brown        
-#>  5 328     Utah State  fbs      Sun Belt     2004    149379 Jimmy Bohm          
-#>  6 68      Boise State fbs      Western A…   2004    134783 Jeff Carpenter      
-#>  7 2393    Middle Ten… fbs      Sun Belt     2004    133319 Eugene Gross        
-#>  8 66      Iowa State  fbs      Big 12       2004    113849 Terrance Highsmith  
-#>  9 96      Kentucky    fbs      SEC          2004    161306 Rafael Little       
-#> 10 333     Alabama     fbs      SEC          2004    146683 Tyrone Prothro      
+#>  1 62      Hawai'i     fbs      Western A…   2004    107773 Michael Brewster    
+#>  2 2116    UCF         fbs      Mid-Ameri…   2004    100339 Luther Huggins      
+#>  3 23      San Jose S… fbs      Western A…   2004    147034 Tyson Thompson      
+#>  4 58      South Flor… fbs      Conferenc…   2004    148398 Pat Julmiste        
+#>  5 248     Houston     fbs      Conferenc…   2004    120418 Matt Schirmer       
+#>  6 2509    Purdue      fbs      Big Ten      2004    133852 Andre Chattams      
+#>  7 193     Miami (OH)  fbs      Mid-Ameri…   2004    116400 Martin Nance        
+#>  8 2390    Miami       fbs      ACC          2004    120157 Kevin Everett       
+#>  9 30      USC         fbs      Pac-10       2004    120528 John Walker         
+#> 10 213     Penn State  fbs      Big Ten      2004    156820 Terrell Golden      
 #> # ℹ 1,380 more rows
-#> # ℹ 41 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 48 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,
 #> #   passing_td <dbl>, fumbles <dbl>, playsgame <dbl>, EPAgame <dbl>,
 #> #   yardsplay <dbl>, yardsgame <dbl>, catchpct <dbl>, TEPA_rank <dbl>,

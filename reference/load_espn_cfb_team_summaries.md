@@ -439,26 +439,26 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_summaries(2004))
 #> ── college football team season summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-26 06:52:18 UTC
-#> # A tibble: 118 × 383
-#>    team_id pos_team       division conference     season plays_off passrate_off
-#>    <chr>   <chr>          <chr>    <chr>           <int>     <int>        <dbl>
-#>  1 103     Boston College fbs      Big East         2004       737        0.512
-#>  2 12      Arizona        fbs      Pac-10           2004       595        0.471
-#>  3 120     Maryland       fbs      ACC              2004       694        0.444
-#>  4 127     Michigan State fbs      Big Ten          2004       819        0.440
-#>  5 130     Michigan       fbs      Big Ten          2004       769        0.492
-#>  6 135     Minnesota      fbs      Big Ten          2004       643        0.341
-#>  7 142     Missouri       fbs      Big 12           2004       795        0.454
-#>  8 145     Ole Miss       fbs      SEC              2004       734        0.465
-#>  9 150     Duke           fbs      ACC              2004       537        0.490
-#> 10 151     East Carolina  fbs      Conference USA   2004       270        0.552
+#> ℹ Data updated: 2026-09-27 03:47:45 UTC
+#> # A tibble: 118 × 523
+#>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
+#>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
+#>  1 103     Boston Coll… fbs      Big East     2004            737            737
+#>  2 12      Arizona      fbs      Pac-10       2004            595            595
+#>  3 120     Maryland     fbs      ACC          2004            694            694
+#>  4 127     Michigan St… fbs      Big Ten      2004            819            819
+#>  5 130     Michigan     fbs      Big Ten      2004            769            769
+#>  6 135     Minnesota    fbs      Big Ten      2004            643            643
+#>  7 142     Missouri     fbs      Big 12       2004            795            795
+#>  8 145     Ole Miss     fbs      SEC          2004            734            734
+#>  9 150     Duke         fbs      ACC          2004            537            537
+#> 10 151     East Caroli… fbs      Conferenc…   2004            270            270
 #> # ℹ 108 more rows
-#> # ℹ 376 more variables: rushrate_off <dbl>, havoc_off <dbl>,
-#> #   explosive_off <dbl>, TEPA_off <dbl>, EPAplay_off <dbl>, yards_off <int>,
-#> #   yardsplay_off <dbl>, play_stuffed_off <dbl>, success_off <dbl>,
-#> #   red_zone_success_off <dbl>, third_down_success_off <dbl>,
-#> #   third_down_distance_off <dbl>, late_down_success_off <dbl>,
-#> #   early_down_EPA_off <dbl>, start_position_off <dbl>, …
+#> # ℹ 516 more variables: havoc_off_n <int>, explosive_off_n <int>,
+#> #   EPAplay_off_n <int>, yardsplay_off_n <int>, play_stuffed_off_n <int>,
+#> #   success_off_n <int>, red_zone_success_off_n <int>,
+#> #   third_down_success_off_n <int>, third_down_distance_off_n <int>,
+#> #   late_down_success_off_n <int>, early_down_EPA_off_n <int>,
+#> #   start_position_off_n <int>, nonExplosiveEpaPerPlay_off_n <int>, …
 # }
 ```

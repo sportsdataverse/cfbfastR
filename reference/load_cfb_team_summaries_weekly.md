@@ -440,26 +440,26 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_team_summaries_weekly(2004))
 #> ── college football weekly team summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-26 06:51:48 UTC
-#> # A tibble: 1,634 × 384
-#>    team_id pos_team       division conference     season plays_off passrate_off
-#>    <chr>   <chr>          <chr>    <chr>           <int>     <int>        <dbl>
-#>  1 103     Boston College fbs      Big East         2004        75        0.427
-#>  2 153     North Carolina fbs      ACC              2004        67        0.612
-#>  3 167     New Mexico     fbs      Mountain West    2004        60        0.383
-#>  4 183     Syracuse       fbs      Big East         2004        62        0.597
-#>  5 189     Bowling Green  fbs      Mid-American     2004        81        0.481
-#>  6 193     Miami (OH)     fbs      Mid-American     2004        62        0.694
-#>  7 194     Ohio State     fbs      Big Ten          2004        64        0.375
-#>  8 197     Oklahoma State fbs      Big 12           2004        62        0.581
-#>  9 204     Oregon State   fbs      Pac-10           2004        57        0.737
-#> 10 2132    Cincinnati     fbs      Conference USA   2004        84        0.464
+#> ℹ Data updated: 2026-09-27 03:47:02 UTC
+#> # A tibble: 1,634 × 524
+#>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
+#>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
+#>  1 103     Boston Coll… fbs      Big East     2004             75             75
+#>  2 153     North Carol… fbs      ACC          2004             67             67
+#>  3 167     New Mexico   fbs      Mountain …   2004             60             60
+#>  4 183     Syracuse     fbs      Big East     2004             62             62
+#>  5 189     Bowling Gre… fbs      Mid-Ameri…   2004             81             81
+#>  6 193     Miami (OH)   fbs      Mid-Ameri…   2004             62             62
+#>  7 194     Ohio State   fbs      Big Ten      2004             64             64
+#>  8 197     Oklahoma St… fbs      Big 12       2004             62             62
+#>  9 204     Oregon State fbs      Pac-10       2004             57             57
+#> 10 2132    Cincinnati   fbs      Conferenc…   2004             84             84
 #> # ℹ 1,624 more rows
-#> # ℹ 377 more variables: rushrate_off <dbl>, havoc_off <dbl>,
-#> #   explosive_off <dbl>, TEPA_off <dbl>, EPAplay_off <dbl>, yards_off <int>,
-#> #   yardsplay_off <dbl>, play_stuffed_off <dbl>, success_off <dbl>,
-#> #   red_zone_success_off <dbl>, third_down_success_off <dbl>,
-#> #   third_down_distance_off <dbl>, late_down_success_off <dbl>,
-#> #   early_down_EPA_off <dbl>, start_position_off <dbl>, …
+#> # ℹ 517 more variables: havoc_off_n <int>, explosive_off_n <int>,
+#> #   EPAplay_off_n <int>, yardsplay_off_n <int>, play_stuffed_off_n <int>,
+#> #   success_off_n <int>, red_zone_success_off_n <int>,
+#> #   third_down_success_off_n <int>, third_down_distance_off_n <int>,
+#> #   late_down_success_off_n <int>, early_down_EPA_off_n <int>,
+#> #   start_position_off_n <int>, nonExplosiveEpaPerPlay_off_n <int>, …
 # }
 ```

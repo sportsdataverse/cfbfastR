@@ -60,7 +60,7 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_linescores(2004))
 #> ── ESPN college football linescores from the SportsDataverse data repo ─────────
-#> ℹ Data updated: 2026-09-26 06:52:04 UTC
+#> ℹ Data updated: 2026-09-27 03:47:24 UTC
 #> # A tibble: 5,720 × 5
 #>    team_id period value   game_id season
 #>      <int>  <int> <chr>     <int>  <int>

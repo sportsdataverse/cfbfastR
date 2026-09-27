@@ -44,20 +44,20 @@ A `cfbfastR`-tagged tibble with one row per (game, stat):
 # \donttest{
   try(fox_cfb_team_gamelog(team_id = "11"))
 #> ── Team game log from Fox Sports (Bifrost) ────────────── cfbfastR 3.0.0.9000 ──
-#> ℹ Data updated: 2026-09-26 06:51:36 UTC
-#> # A tibble: 204 × 8
+#> ℹ Data updated: 2026-09-27 03:46:44 UTC
+#> # A tibble: 272 × 8
 #>    team_id season_type    category game_id game_date opponent stat     value
 #>    <chr>   <chr>          <chr>    <chr>   <chr>     <chr>    <chr>    <chr>
-#>  1 11      REGULAR SEASON passing  43177   9/18      @WAKE    comp     30   
-#>  2 11      REGULAR SEASON passing  43177   9/18      @WAKE    att      34   
-#>  3 11      REGULAR SEASON passing  43177   9/18      @WAKE    pct      88.2 
-#>  4 11      REGULAR SEASON passing  43177   9/18      @WAKE    yds      220  
-#>  5 11      REGULAR SEASON passing  43177   9/18      @WAKE    pyds_att 11.1 
-#>  6 11      REGULAR SEASON passing  43177   9/18      @WAKE    td       3    
-#>  7 11      REGULAR SEASON passing  43177   9/18      @WAKE    int      0    
-#>  8 11      REGULAR SEASON passing  43177   9/18      @WAKE    sck      1    
-#>  9 11      REGULAR SEASON passing  43177   9/18      @WAKE    yds_2    1    
-#> 10 11      REGULAR SEASON passing  43177   9/18      @WAKE    qbr      171.7
-#> # ℹ 194 more rows
+#>  1 11      REGULAR SEASON passing  43397   9/26      CMU      comp     27   
+#>  2 11      REGULAR SEASON passing  43397   9/26      CMU      att      34   
+#>  3 11      REGULAR SEASON passing  43397   9/26      CMU      pct      79.4 
+#>  4 11      REGULAR SEASON passing  43397   9/26      CMU      yds      371  
+#>  5 11      REGULAR SEASON passing  43397   9/26      CMU      pyds_att 16.8 
+#>  6 11      REGULAR SEASON passing  43397   9/26      CMU      td       3    
+#>  7 11      REGULAR SEASON passing  43397   9/26      CMU      int      0    
+#>  8 11      REGULAR SEASON passing  43397   9/26      CMU      sck      2    
+#>  9 11      REGULAR SEASON passing  43397   9/26      CMU      yds_2    18   
+#> 10 11      REGULAR SEASON passing  43397   9/26      CMU      qbr      200.2
+#> # ℹ 262 more rows
 # }
 ```

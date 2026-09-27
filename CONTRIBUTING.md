@@ -447,7 +447,7 @@ Secrets used:
 When filing a bug report, please include:
 
 1.  A minimal **reprex** (reproducible example) using
-    `reprex::reprex()`.
+    [`reprex::reprex()`](https://reprex.tidyverse.org/reference/reprex.html).
 2.  The **endpoint** and **parameters** used (year, week, team, game_id,
     etc.).
 3.  Your [`sessionInfo()`](https://rdrr.io/r/utils/sessionInfo.html)

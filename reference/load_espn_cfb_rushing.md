@@ -84,22 +84,22 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_rushing(2004))
 #> ── college football rushing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-26 06:52:16 UTC
-#> # A tibble: 1,109 × 41
+#> ℹ Data updated: 2026-09-27 03:47:41 UTC
+#> # A tibble: 1,109 × 47
 #>    team_id pos_team      division conference season player_id rusher_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 2572    Southern Miss fbs      Conferenc…   2004    140694 Antwon Courington 
-#>  2 26      UCLA          fbs      Pac-10       2004    145137 Michael Pitre     
-#>  3 276     Marshall      fbs      Mid-Ameri…   2004    149492 Bernard Morris    
-#>  4 87      Notre Dame    fbs      FBS Indep…   2004    150281 Chase Anastasio   
-#>  5 52      Florida State fbs      ACC          2004    136616 Lorenzo Booker    
-#>  6 275     Wisconsin     fbs      Big Ten      2004    160489 Jamil Walker      
-#>  7 2641    Texas Tech    fbs      Big 12       2004    135873 Jarrett Hicks     
-#>  8 251     Texas         fbs      Big 12       2004    108241 Tony Jeffery      
-#>  9 2641    Texas Tech    fbs      Big 12       2004    118233 Taurean Henderson 
-#> 10 195     Ohio          fbs      Mid-Ameri…   2004    150728 Austin Everson    
+#>  1 158     Nebraska      fbs      Big 12       2004    137483 David Horne       
+#>  2 25      California    fbs      Pac-10       2004    138516 Byron Storer      
+#>  3 249     North Texas   fbs      Sun Belt     2004    160402 Jamario Thomas    
+#>  4 23      San Jose Sta… fbs      Western A…   2004    148370 Adam Tafralis     
+#>  5 59      Georgia Tech  fbs      ACC          2004    161197 Calvin Johnson    
+#>  6 12      Arizona       fbs      Pac-10       2004    136732 Gilbert Harris    
+#>  7 25      California    fbs      Pac-10       2004    138323 Steve Levy        
+#>  8 68      Boise State   fbs      Western A…   2004    103357 Michael Sanford   
+#>  9 8       Arkansas      fbs      SEC          2004    115512 Kyle Dickerson    
+#> 10 328     Utah State    fbs      Sun Belt     2004    241084 Leon Jackson III  
 #> # ℹ 1,099 more rows
-#> # ℹ 34 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 40 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, rushing_td <dbl>, fumbles <dbl>,
 #> #   playsgame <dbl>, EPAgame <dbl>, yardsplay <dbl>, yardsgame <dbl>,
 #> #   TEPA_rank <dbl>, EPAgame_rank <dbl>, EPAplay_rank <dbl>,

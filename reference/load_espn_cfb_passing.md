@@ -101,22 +101,22 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-26 06:52:05 UTC
-#> # A tibble: 364 × 63
+#> ℹ Data updated: 2026-09-27 03:47:26 UTC
+#> # A tibble: 364 × 73
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 36      Colorado Sta… fbs      Mountain …   2004    116481 Justin Holland    
-#>  2 151     East Carolina fbs      Conferenc…   2004    136098 Will Bland        
-#>  3 2306    Kansas State  fbs      Big 12       2004    133724 Allen Webb        
-#>  4 2005    Air Force     fbs      Mountain …   2004    147734 Adam Fitch        
-#>  5 154     Wake Forest   fbs      ACC          2004    116872 Cory Randolph     
-#>  6 25      California    fbs      Pac-10       2004    144994 Aaron Rodgers     
-#>  7 195     Ohio          fbs      Mid-Ameri…   2004    162712 Brooks Rossman    
-#>  8 38      Colorado      fbs      Big 12       2004    144289 Joel Klatt        
-#>  9 218     Temple        fbs      Big East     2004    152491 Walter Washington 
-#> 10 2579    South Caroli… fbs      SEC          2004    107316 Dondrial Pinkins  
+#>  1 276     Marshall      fbs      Mid-Ameri…   2004    149492 Bernard Morris    
+#>  2 228     Clemson       fbs      ACC          2004    135822 Chansi Stuckey    
+#>  3 201     Oklahoma      fbs      Big 12       2004    145525 Tommy Grady       
+#>  4 59      Georgia Tech  fbs      ACC          2004    113995 Damarius Bilbo    
+#>  5 2199    Eastern Mich… fbs      Mid-Ameri…   2004    116236 Matt Bohnet       
+#>  6 2050    Ball State    fbs      Mid-Ameri…   2004    147371 Casey Gillin      
+#>  7 61      Georgia       fbs      SEC          2004    103585 Reggie Brown      
+#>  8 245     Texas A&M     fbs      Big 12       2004    138625 Ty Branyon        
+#>  9 2638    UTEP          fbs      Western A…   2004    107933 Omar Duarte       
+#> 10 2655    Tulane        fbs      Conferenc…   2004    150090 Richard Irvin     
 #> # ℹ 354 more rows
-#> # ℹ 56 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
+#> # ℹ 66 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,
 #> #   comppct <dbl>, passing_td <dbl>, playsgame <dbl>, EPAgame <dbl>,
 #> #   yardsplay <dbl>, yardsgame <dbl>, sacked <int>, sack_yds <int>,
