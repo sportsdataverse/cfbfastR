@@ -23,6 +23,13 @@ executed.
   tests that `skip_on_cran()` because they require a `CFBD_API_KEY` and a live
   API; they run on the package's continuous integration on every push.
 
+* Adds four loaders (`load_cfb_groups()`, `load_cfb_group_seasons()`,
+  `load_cfb_group_aliases()`, `load_cfb_team_group_seasons()`) for
+  season-by-season conference and division membership from the
+  sportsdataverse-data GitHub releases. Their
+  examples are wrapped in `\donttest{try(...)}`, a download failure degrades to
+  a zero-row table with a warning, and the tests that download skip on CRAN.
+
 
 This is a major release (2.2.0 -> 3.0.0; the 2.3.0 development version was renumbered and never published) that:
 
