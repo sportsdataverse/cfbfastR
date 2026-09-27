@@ -100,6 +100,27 @@ Two things worth knowing before using them:
   while `target` is populated (1,976 of 2,003 week-5 2025 completions) and the
   *season* aggregates do carry air yards.
 
+## New: conference and division group loaders
+
+Four loaders read the new `cfb_groups` release on sportsdataverse-data, which
+records conference membership as it was each season rather than back-applying
+today's alignment:
+
+* `load_cfb_groups()`: one row per subdivision, conference or division
+  lineage. A lineage keeps one `group_id` (`cfb:pac-12`, `cfb:sec`) across
+  renames that keep continuity.
+* `load_cfb_group_seasons()`: each group's name, abbreviation, parent group
+  and member count as of each season.
+* `load_cfb_group_aliases()`: the names and ids ESPN and CFBD use for each
+  group, with the seasons each is valid, for mapping a source's conference id
+  onto `group_id`.
+* `load_cfb_team_group_seasons(seasons)`: one row per team per season, with
+  subdivision, conference and division ids, 1869 onward. `team_id` is
+  character: the ESPN id where ESPN covers the team, otherwise the CFBD id.
+
+The loaders read the tag's parquet files, not its csv copies, so ids stay
+character instead of being parsed as integers.
+
 ### Air yards side the catch spot by the game's own text abbreviations
 
 The 2025+ ESPN vendor text spots the catch with each school's own abbreviation
