@@ -265,6 +265,7 @@ cfbd_game_info <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
+#' @param game_id (*Integer* optional): Game ID. When specified, returns weather for that game.
 #' @return [cfbd_game_weather()] - A data frame with 23 variables:
 #'
 #'   |col_name               |types     |description                                                          |
@@ -307,7 +308,8 @@ cfbd_game_weather <- function(year,
                               season_type = "regular",
                               team = NULL,
                               conference = NULL,
-                              division = NULL) {
+                              division = NULL,
+                              game_id = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -315,6 +317,7 @@ cfbd_game_weather <- function(year,
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
+  validate_id(game_id)
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -327,7 +330,8 @@ cfbd_game_weather <- function(year,
     "seasonType" = season_type,
     "team" = team,
     "conference" = conference,
-    "classification" = division
+    "classification" = division,
+    "gameId" = game_id
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 

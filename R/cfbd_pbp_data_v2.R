@@ -75,6 +75,14 @@ NULL
 #'   * `"full"` -- legacy behavior, drops only the player-name
 #'     aliases. For sequential modeling that consumes pre-computed lag/lead
 #'     shifts or the per-branch WPA decomposition.
+#' @param offense (*Character*): Optional offensive team filter.
+#' @param defense (*Character*): Optional defensive team filter.
+#' @param offense_conference (*Character*): Optional offensive team conference filter.
+#' @param defense_conference (*Character*): Optional defensive team conference filter.
+#' @param conference (*Character*): Optional conference filter (either team).
+#' @param division (*Character*): Optional division/classification filter of
+#'   either team -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as
+#'   `classification`.
 #' @return A `cfbfastR_data` tibble. The `epa_wpa = TRUE` output matches the
 #'   legacy [cfbd_pbp_data()] pipeline-canonical column set on every column
 #'   it carries; the `output` argument controls which intermediate columns
@@ -104,7 +112,13 @@ cfbd_pbp_data_v2 <- function(year,
                              team        = NULL,
                              play_type   = NULL,
                              epa_wpa     = FALSE,
-                             output      = "default") {
+                             output      = "default",
+                             offense     = NULL,
+                             defense     = NULL,
+                             offense_conference = NULL,
+                             defense_conference = NULL,
+                             conference  = NULL,
+                             division    = NULL) {
   if (!is.character(output) || length(output) != 1L ||
       !output %in% c("default", "lean", "full")) {
     cli::cli_abort(c(
@@ -125,6 +139,7 @@ cfbd_pbp_data_v2 <- function(year,
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
+  validate_division(division)
 
   pt_abb_exists <- TRUE
   if (!is.null(play_type)) {
@@ -150,7 +165,13 @@ cfbd_pbp_data_v2 <- function(year,
     "year"       = year,
     "week"       = week,
     "team"       = team,
-    "playType"   = pt_abb
+    "playType"   = pt_abb,
+    "offense"    = offense,
+    "defense"    = defense,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::req_url_query(
     httr2::request(play_base_url), !!!.compact(query_params)

@@ -430,6 +430,7 @@ NULL
 #' @param defense_conference (*String* optional): Defensive team conference filter.
 #' @param conference (*String* optional): Conference filter (either side of the ball).
 #' @param division (*String* optional): Division/classification filter -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`.
+#' @param offense (*String* optional): Offensive team filter.
 #' @export
 
 cfbd_pbp_data <- function(year,
@@ -444,7 +445,8 @@ cfbd_pbp_data <- function(year,
                           offense_conference = NULL,
                           defense_conference = NULL,
                           conference = NULL,
-                          division = NULL) {
+                          division = NULL,
+                          offense = NULL) {
   # Upgrade path. `engine = "v2"` (or options(cfbfastR.pbp_engine = "v2"))
   # delegates to the modular engine, which is where new parsing work lands.
   # The leading arguments are identical to cfbd_pbp_data_v2()'s by design, so
@@ -506,7 +508,8 @@ cfbd_pbp_data <- function(year,
     "offenseConference" = offense_conference,
     "defenseConference" = defense_conference,
     "conference" = conference,
-    "classification" = division
+    "classification" = division,
+    "offense" = offense
   )
   full_url <- httr2::url_modify(play_base_url, query = .compact(query_params))
 

@@ -555,6 +555,8 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #' @param conference (*String* optional): Conference abbreviation - Elo information by conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param preseason (*Logical* optional): Return initial ratings from each team's opening regular-season game.
+#' Missing opening ratings are omitted. Cannot be combined with `week`; `season_type` must be regular or both when specified. CFBD defaults to `FALSE`.
 #'
 #' @return [cfbd_ratings_elo()] - A data frame with 4 variables:
 #'
@@ -579,13 +581,14 @@ cfbd_ratings_srs <- function(year = NULL, team = NULL, conference = NULL) {
 #'   try(cfbd_ratings_elo(year = 2018, conference = "SEC"))
 #' }
 #'
-cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", team = NULL, conference = NULL) {
+cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", team = NULL, conference = NULL, preseason = NULL) {
 
   # Validation ----
   validate_api_key()
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
+  validate_list(preseason, c(TRUE, FALSE))
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -597,7 +600,8 @@ cfbd_ratings_elo <- function(year = NULL, week = NULL, season_type = "both", tea
     "week" = week,
     "seasonType" = season_type,
     "team" = team,
-    "conference" = conference
+    "conference" = conference,
+    "preseason" = preseason
   )
   full_url <- httr2::url_modify(base_url, query = .compact(query_params))
 

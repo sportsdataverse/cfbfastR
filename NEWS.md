@@ -51,6 +51,13 @@ field goal, which is a different quantity from the probability a kick is made.
 A committed fixture pins these against `sportsdataverse-py`'s equivalents across
 all four rule eras — 20 output columns, agreeing to 1e-5.
 
+## New: CFBD 5.31.1 schedule, preview and team-overview endpoints
+
+* New upstream query params on existing wrappers (upstream v5.31.1):
+  `cfbd_game_weather(game_id =)`, `cfbd_ratings_elo(preseason =)`,
+  `cfbd_pbp_data(offense =)` and, on `cfbd_pbp_data_v2()`, `offense`, `defense`,
+  `offense_conference`, `defense_conference`, `conference` and `division`.
+
 ## New: CFBD passing and rushing endpoint families
 
 Ten new `cfbd_*()` wrappers close the last gaps against the CollegeFootballData
