@@ -9,6 +9,7 @@
 #' * `cfbd_team_matchup_records()`: Get matchup history records between two teams.
 #' * `cfbd_team_matchup()`: Get matchup history between two teams.
 #' * `cfbd_teams_fbs()`: Get every FBS team for a season.
+#' * `cfbd_team_season_overview()`: Get a full-season team overview.
 #'
 #' ## **Team info lookup**
 #'
@@ -711,6 +712,136 @@ cfbd_teams_fbs <- function(year = NULL, proxy = NULL) {
     },
     error = function(e) {
       message(glue::glue("{Sys.time()}: Invalid arguments or no teams data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get a full-season team overview**
+#' @description
+#' **Returns a stored full-season team overview, including postseason and garbage time.**
+#' @param year (*Integer* required): Season year, 4 digit format (*YYYY*).
+#' @param team (*String* required): Team name.
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables.
+#' @return [cfbd_team_season_overview()] - A named list of tibbles:
+#' `overview`, `record`, `ratings`, `advanced`, `passing`, `rushing`,
+#' `players`. Nested objects are flattened into prefixed columns. A section CFBD
+#' did not fill (`passing` and `rushing` start in 2025) is a 0-column tibble.
+#'
+#' **overview** - one row: `season` (integer), `team_id` (integer), `team` (character).
+#'
+#' **record** - one row: completed games for the requested season, including
+#' postseason: `games`, `wins`, `losses`, `ties` (integer).
+#'
+#' **ratings** - one row: current available ratings for the requested season;
+#' unavailable systems are `NA`. `elo` (numeric, latest postgame Elo from a
+#' completed game this season), then a `<system>_<unit>_rating` (numeric,
+#' rounded to two decimals) and `<system>_<unit>_rank` (integer, rank within
+#' the season and division) pair for `srs` (no unit), `sp_*` and `fpi_*`
+#' (`overall`, `offense`, `defense`, `special_teams`; FPI values are
+#' efficiencies, higher is better) and `core_*` (`overall`, `offense`, `defense`).
+#'
+#' **advanced** - one row: `season` (integer), `team`, `conference`
+#' (character), then for each of `offense_` and `defense_`:
+#'
+#'   |col_name (after the side prefix)          |types   |
+#'   |:-----------------------------------------|:-------|
+#'   |plays, drives                             |integer |
+#'   |ppa, total_ppa, success_rate, explosiveness |numeric |
+#'   |power_success, stuff_rate                 |numeric |
+#'   |line_yards, line_yards_total              |numeric, integer |
+#'   |second_level_yards, second_level_yards_total |numeric, integer |
+#'   |open_field_yards, open_field_yards_total  |numeric, integer |
+#'   |total_opportunies, points_per_opportunity |integer, numeric (upstream spelling kept) |
+#'   |field_position_average_start, field_position_average_predicted_points |numeric |
+#'   |havoc_total, havoc_front_seven, havoc_db  |numeric |
+#'   |`standard_downs_*`, `passing_downs_*` |numeric: `rate`, `ppa`, `success_rate`, `explosiveness` (`total_ppa` too on defense passing downs) |
+#'   |`passing_plays_*`, `rushing_plays_*` |numeric: `rate`, `ppa`, `total_ppa`, `success_rate`, `explosiveness` |
+#'
+#' **passing** - one row: `season` (integer), `team`, `conference`
+#' (character), then `offense_*` and `defense_*`, each the passing production
+#' block (with `locations_<bucket>_*`) documented in [cfbd_passing_teams_season()].
+#'
+#' **rushing** - one row: `season` (integer), `team`, `conference`
+#' (character), then `offense_*` and `defense_*`, each the rushing production
+#' block (with `directions_<direction>_*`) documented in [cfbd_rushing_teams_season()].
+#'
+#' **players** - one row per player per `category` (`usage` or `ppa`):
+#'
+#'   |col_name       |types     |description                                                          |
+#'   |:--------------|:---------|:--------------------------------------------------------------------|
+#'   |category       |character |usage or ppa: which player list the row comes from.                  |
+#'   |season         |integer   |Season.                                                              |
+#'   |id             |character |Player id.                                                           |
+#'   |name           |character |Player name.                                                         |
+#'   |position       |character |Player position.                                                     |
+#'   |team           |character |Team name.                                                           |
+#'   |conference     |character |Conference.                                                          |
+#'   |usage_*        |numeric   |Usage rows: `overall`, `pass`, `rush`, `first_down`, `second_down`, `third_down`, `standard_downs`, `passing_downs`. |
+#'   |average_ppa_*  |numeric   |PPA rows: average PPA for `all`, `pass`, `rush`, `first_down`, `second_down`, `third_down`, `standard_downs`, `passing_downs`. |
+#'   |total_ppa_*    |numeric   |PPA rows: total PPA for the same splits.                             |
+#'
+#' @keywords Team Season Overview
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 url_modify resp_body_string
+#' @importFrom glue glue
+#' @family CFBD Teams
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_team_season_overview(year = 2024, team = "Texas"))
+#' }
+cfbd_team_season_overview <- function(year, team, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+
+  # Team Name Handling ----
+  team <- handle_accents(team)
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/teams/season/overview"
+  query_params <- list(
+    "year" = year,
+    "team" = team
+  )
+  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+
+  df <- list()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      parsed <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      df <- list(
+        overview = .cfbd_section_tbl(parsed[c("season", "teamId", "team")]),
+        record = .cfbd_section_tbl(parsed$record),
+        ratings = .cfbd_section_tbl(parsed$ratings),
+        advanced = .cfbd_section_tbl(parsed$advanced),
+        passing = .cfbd_section_tbl(parsed$passing),
+        rushing = .cfbd_section_tbl(parsed$rushing),
+        players = .cfbd_section_tbl(parsed$players)
+      )
+
+      df <- lapply(df, make_cfbfastR_data,
+                   type = "Team season overview data from CollegeFootballData.com",
+                   timestamp = Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no team season overview data available! {conditionMessage(e)}"))
     },
     finally = {
     }
