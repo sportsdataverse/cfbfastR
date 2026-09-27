@@ -103,8 +103,8 @@ cfbd_coaches <- function(first = NULL,
   # Query API ----
   base_url <- "https://api.collegefootballdata.com/coaches"
   query_params <- list(
-    "first" = first,
-    "last" = last,
+    "firstName" = first,
+    "lastName" = last,
     "team" = team,
     "year" = year,
     "minYear" = min_year,

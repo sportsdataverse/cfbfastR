@@ -5,7 +5,7 @@
 \title{\strong{Get team statistics by game}}
 \usage{
 cfbd_game_team_stats(
-  year,
+  year = NULL,
   week = NULL,
   season_type = "regular",
   team = NULL,
@@ -30,7 +30,7 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 Required if \code{week} and \code{team} not specified.}
 
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game. When supplied it is sent alone as \code{id}; \code{year}, \code{week}, \code{season_type}, \code{team} and \code{conference} are omitted (CFBD rejects them alongside \code{id}).
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{division}{(\emph{String} optional): Division abbreviation - Select a valid division: fbs/fcs/ii/iii}

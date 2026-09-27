@@ -146,6 +146,7 @@ cfbd_plays <- function(year = 2020,
     "defense" = defense,
     "offenseConference" = offense_conference,
     "defenseConference" = defense_conference,
+    "conference" = conference,
     "seasonType" = season_type,
     "playType" = play_type,
     "classification" = division

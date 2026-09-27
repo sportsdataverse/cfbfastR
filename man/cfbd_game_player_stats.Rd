@@ -5,7 +5,7 @@
 \title{\strong{Get player statistics by game}}
 \usage{
 cfbd_game_player_stats(
-  year,
+  year = NULL,
   week = NULL,
   season_type = "regular",
   team = NULL,
@@ -16,7 +16,7 @@ cfbd_game_player_stats(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY}) \cr
+\item{year}{(\emph{Integer} required unless \code{game_id} is supplied): Year, 4 digit format(\emph{YYYY}) \cr
 Minimum value accepted: 2004}
 
 \item{week}{(\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)}
@@ -34,7 +34,7 @@ Offense: passing, receiving, rushing
 Defense: defensive, fumbles, interceptions
 Special Teams: punting, puntReturns, kicking, kickReturns}
 
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game. When supplied it is sent alone as \code{id}; \code{year}, \code{week}, \code{season_type}, \code{team} and \code{conference} are omitted (CFBD rejects them alongside \code{id}).
 Can be found using the \code{\link[=cfbd_game_info]{cfbd_game_info()}} function}
 
 \item{division}{(\emph{String} optional): Division/classification filter -- one of \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as \code{classification}.}
