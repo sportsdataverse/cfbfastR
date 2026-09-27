@@ -23,7 +23,7 @@ A data frame with 11 rows and 4 variables:
 \item \code{abbreviation}: Conference abbreviation
 }
 
-A data frame with 85 rows and 4 variables:
+A data frame with 111 rows and 4 variables:
 \itemize{
 \item \code{function_name}: Exported cfbfastR function taking a \code{year} argument
 \item \code{min_year}: Earliest season the endpoint returns data for

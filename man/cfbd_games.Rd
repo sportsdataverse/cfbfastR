@@ -15,6 +15,9 @@ Get results, statistics and information for games
 \item \code{cfbd_game_records()}: Get team records by year.
 \item \code{cfbd_calendar()}: Get calendar of weeks by season.
 \item \code{cfbd_game_media()}: Get game media information (TV, radio, etc).
+\item \code{cfbd_game_schedule()}: Get the active or next game schedule slate.
+\item \code{cfbd_game_preview()}: Get a pregame preview for a game.
+\item \code{cfbd_game_preview_adjusted()}: Get an adjusted-metrics pregame preview for a game.
 }
 }
 \details{

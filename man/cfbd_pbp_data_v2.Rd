@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_pbp_data_v2.R
 \name{cfbd_pbp_data_v2}
 \alias{cfbd_pbp_data_v2}
-\title{\strong{Get college football play-by-play data — modular EPA/WPA pipeline (v2)}}
+\title{\strong{Get college football play-by-play data -- modular EPA/WPA pipeline (v2)}}
 \usage{
 cfbd_pbp_data_v2(
   year,
@@ -11,14 +11,20 @@ cfbd_pbp_data_v2(
   team = NULL,
   play_type = NULL,
   epa_wpa = FALSE,
-  output = "default"
+  output = "default",
+  offense = NULL,
+  defense = NULL,
+  offense_conference = NULL,
+  defense_conference = NULL,
+  conference = NULL,
+  division = NULL
 )
 }
 \arguments{
 \item{year}{(\emph{Numeric} required): Season year (e.g. \code{2024}). \cr
 Minimum value accepted: 2001}
 
-\item{season_type}{(\emph{Character}): Season type — \code{"regular"} (default),
+\item{season_type}{(\emph{Character}): Season type -- \code{"regular"} (default),
 \code{"postseason"}, \code{"both"}, \code{"allstar"}, \code{"spring_regular"},
 \code{"spring_postseason"}.}
 
@@ -53,6 +59,20 @@ computation scratchpad. For dashboards / leaderboards / game logs.
 aliases. For sequential modeling that consumes pre-computed lag/lead
 shifts or the per-branch WPA decomposition.
 }}
+
+\item{offense}{(\emph{Character}): Optional offensive team filter.}
+
+\item{defense}{(\emph{Character}): Optional defensive team filter.}
+
+\item{offense_conference}{(\emph{Character}): Optional offensive team conference filter.}
+
+\item{defense_conference}{(\emph{Character}): Optional defensive team conference filter.}
+
+\item{conference}{(\emph{Character}): Optional conference filter (either team).}
+
+\item{division}{(\emph{Character}): Optional division/classification filter of
+either team -- \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}. Sent to CFBD as
+\code{classification}.}
 }
 \value{
 A \code{cfbfastR_data} tibble. The \code{epa_wpa = TRUE} output matches the

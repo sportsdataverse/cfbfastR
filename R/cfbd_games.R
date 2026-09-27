@@ -13,6 +13,9 @@
 #' * `cfbd_game_records()`: Get team records by year.
 #' * `cfbd_calendar()`: Get calendar of weeks by season.
 #' * `cfbd_game_media()`: Get game media information (TV, radio, etc).
+#' * `cfbd_game_schedule()`: Get the active or next game schedule slate.
+#' * `cfbd_game_preview()`: Get a pregame preview for a game.
+#' * `cfbd_game_preview_adjusted()`: Get an adjusted-metrics pregame preview for a game.
 #'
 #' @details
 #' ### **Get game advanced box score information.**
@@ -255,7 +258,7 @@ cfbd_game_info <- function(year,
 
 #' @title
 #' **Get weather from games.**
-#' @param year (*Integer* required): Year, 4 digit format(*YYYY*) \cr
+#' @param year (*Integer* required unless `game_id` is supplied): Year, 4 digit format(*YYYY*) \cr
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_weather', 'min_year']`
 #' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (*String* default regular): Select Season Type: regular, postseason, both, allstar, spring_regular, spring_postseason
@@ -265,6 +268,7 @@ cfbd_game_info <- function(year,
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @param division (*String* optional): Division/classification filter -- one of `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as `classification`.
+#' @param game_id (*Integer* optional): Game ID. When specified, returns weather for that game.
 #' @return [cfbd_game_weather()] - A data frame with 23 variables:
 #'
 #'   |col_name               |types     |description                                                          |
@@ -302,12 +306,13 @@ cfbd_game_info <- function(year,
 #' @import tidyr
 #' @family CFBD Games
 #' @export
-cfbd_game_weather <- function(year,
+cfbd_game_weather <- function(year = NULL,
                               week = NULL,
                               season_type = "regular",
                               team = NULL,
                               conference = NULL,
-                              division = NULL) {
+                              division = NULL,
+                              game_id = NULL) {
 
   # Validation ----
   validate_api_key()
@@ -315,6 +320,11 @@ cfbd_game_weather <- function(year,
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
+  validate_id(game_id)
+  # CFBD: `year` is required unless `gameId` is specified.
+  if (is.null(year) && is.null(game_id)) {
+    cli::cli_abort("Supply {.arg year}, or {.arg game_id} for a single game.")
+  }
 
   # Team Name Handling ----
   team <- handle_accents(team)
@@ -327,7 +337,8 @@ cfbd_game_weather <- function(year,
     "seasonType" = season_type,
     "team" = team,
     "conference" = conference,
-    "classification" = division
+    "classification" = division,
+    "gameId" = game_id
   )
   full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
@@ -1707,3 +1718,450 @@ cfbd_live_scoreboard <- function(division = 'fbs',
   return(df)
 }
 
+
+#' @title
+#' **Get the active or next game schedule slate**
+#' @description
+#' **Returns the active or next calendar slate, including completed games.**
+#' Explicit windows require `year`, `season_type`, and `week` together; with none
+#' of them CFBD picks the slate itself and says which in the `selection` attribute.
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Explicit windows require `year`, `season_type`, and `week` together.
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_schedule', 'min_year']`
+#' @param season_type (*String* optional): Season type: regular or postseason.
+#' @param week (*Integer* optional): Week.
+#' @param division (*String* optional): Division of either participant: fbs or fcs. CFBD defaults to fbs. Sent to CFBD as `classification`.
+#' @param conference (*String* optional): Conference abbreviation of either participant.
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables.
+#' @return [cfbd_game_schedule()] - A data frame with one row per game in the
+#' slate. The slate-level fields of the response are carried as attributes:
+#' `attr(x, "selection")` (active, next, explicit or none), `attr(x, "window")`
+#' and `attr(x, "following_window")` (each a list of `year`, `seasonType`,
+#' `week`, `startDate`, `endDate`), `attr(x, "filters")` and
+#' `attr(x, "assembled_at")`. Nested blocks (`venue`, `playoff`, `odds`) are
+#' flattened into prefixed columns when at least one game in the slate carries them.
+#'
+#'   |col_name                          |types     |description                                                       |
+#'   |:---------------------------------|:---------|:-----------------------------------------------------------------|
+#'   |game_id                           |integer   |Referencing game id.                                              |
+#'   |season                            |integer   |Season of the game.                                               |
+#'   |week                              |integer   |Game week.                                                        |
+#'   |season_type                       |character |Season type of the game.                                          |
+#'   |start_date                        |character |Game start date-time (ISO 8601, UTC).                             |
+#'   |start_time_tbd                    |logical   |TRUE if the start time is still to be determined.                |
+#'   |status                            |character |Game status.                                                      |
+#'   |status_checked_at                 |character |When CFBD last checked the game status.                           |
+#'   |neutral_site                      |logical   |TRUE if the game is at a neutral site.                            |
+#'   |conference_game                   |logical   |TRUE if the game is a conference game.                            |
+#'   |venue_id                          |integer   |Referencing venue id.                                             |
+#'   |venue_name                        |character |Venue name.                                                       |
+#'   |venue_city                        |character |Venue city.                                                       |
+#'   |venue_state                       |character |Venue state.                                                      |
+#'   |home_team_id                      |integer   |Home team id.                                                     |
+#'   |home_team_name                    |character |Home team name.                                                   |
+#'   |home_team_conference              |character |Home team conference.                                             |
+#'   |home_team_conference_abbreviation |character |Home team conference abbreviation.                                |
+#'   |home_team_classification          |character |Home team division classification.                                |
+#'   |home_team_points                  |integer   |Home team points.                                                 |
+#'   |away_team_id                      |integer   |Away team id.                                                     |
+#'   |away_team_name                    |character |Away team name.                                                   |
+#'   |away_team_conference              |character |Away team conference.                                             |
+#'   |away_team_conference_abbreviation |character |Away team conference abbreviation.                                |
+#'   |away_team_classification          |character |Away team division classification.                                |
+#'   |away_team_points                  |integer   |Away team points.                                                 |
+#'   |playoff_competition               |character |Playoff competition.                                              |
+#'   |playoff_format                    |character |Playoff format.                                                   |
+#'   |playoff_round                     |character |Playoff round.                                                    |
+#'   |playoff_round_name                |character |Playoff round name.                                               |
+#'   |playoff_bracket_slot              |character |Playoff bracket slot.                                             |
+#'   |playoff_home_seed                 |integer   |Home team playoff seed.                                           |
+#'   |playoff_away_seed                 |integer   |Away team playoff seed.                                           |
+#'   |playoff_bowl_name                 |character |Bowl name.                                                        |
+#'   |broadcasts_status                 |character |Broadcast section status: available, no_data or unavailable.      |
+#'   |broadcasts_reason                 |character |Why the broadcast section is not available.                       |
+#'   |broadcasts_assembled_at           |character |When the broadcast section was assembled.                         |
+#'   |broadcasts_source_updated_at      |character |Broadcast snapshot publication time.                              |
+#'   |broadcasts_data                   |list      |Broadcasts: one data frame of `mediaType`, `outlet` per game.     |
+#'   |odds_status                       |character |Odds section status: available, no_data or unavailable.           |
+#'   |odds_reason                       |character |Why the odds section is not available.                            |
+#'   |odds_assembled_at                 |character |When the odds section was assembled.                              |
+#'   |odds_source_updated_at            |character |Odds snapshot publication time.                                   |
+#'   |odds_data_provider_id             |integer   |Odds provider id.                                                 |
+#'   |odds_data_provider                |character |Odds provider (DraftKings, Bovada).                               |
+#'   |odds_data_spread                  |numeric   |Home-relative spread; negative favors home.                       |
+#'   |odds_data_over_under              |numeric   |Over/under.                                                       |
+#'   |odds_data_home_moneyline          |numeric   |Home team moneyline.                                              |
+#'   |odds_data_away_moneyline          |numeric   |Away team moneyline.                                              |
+#'
+#' @keywords Game Schedule
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 url_modify resp_body_string
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
+#' @importFrom dplyr rename any_of
+#' @family CFBD Games
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_game_schedule(year = 2025, season_type = "regular", week = 1))
+#' }
+cfbd_game_schedule <- function(year = NULL,
+                               season_type = NULL,
+                               week = NULL,
+                               division = NULL,
+                               conference = NULL,
+                               proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_year(year)
+  validate_week(week)
+  validate_list(season_type, c("regular", "postseason"))
+  validate_list(division, c("fbs", "fcs"))
+  window_args <- c(!is.null(year), !is.null(season_type), !is.null(week))
+  if (any(window_args) && !all(window_args)) {
+    cli::cli_abort("{.arg year}, {.arg season_type} and {.arg week} must be supplied together, or all left {.code NULL}.")
+  }
+
+  # Query API ----
+  base_url <- "https://api.collegefootballdata.com/games/schedule"
+  query_params <- list(
+    "year" = year,
+    "seasonType" = season_type,
+    "week" = week,
+    "classification" = division,
+    "conference" = conference
+  )
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
+
+  df <- data.frame()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      # One object per slate: the games array plus slate-level scalars.
+      parsed <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      df <- .cfbd_section_tbl(parsed$games) |>
+        dplyr::rename(dplyr::any_of(c("game_id" = "id")))
+
+      df <- df |>
+        make_cfbfastR_data("Game schedule data from CollegeFootballData.com", Sys.time())
+
+      attr(df, "selection") <- parsed$selection
+      attr(df, "window") <- parsed$window
+      attr(df, "following_window") <- parsed$followingWindow
+      attr(df, "filters") <- parsed$filters
+      attr(df, "assembled_at") <- parsed$assembledAt
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game schedule data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get a pregame preview for a game**
+#' @description
+#' **Returns pregame team comparisons and key players.**
+#' Analysis remains available until the game is completed. Team statistics may
+#' use the previous season; players and context stay in the game season.
+#' @param game_id (*Integer* required): Game ID filter for querying a single game.
+#' Can be found using the [cfbd_game_info()] or [cfbd_game_schedule()] functions.
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables.
+#' @return [cfbd_game_preview()] - A named list of tibbles: `game`,
+#' `broadcasts`, `odds`, `teams`, `key_players`, `recent_results`, `series`,
+#' `series_meetings`. The sections have different row grains, so they are not
+#' joined. A section CFBD did not fill (for example every analysis section once
+#' `availability` is `metadata_only`) is a 0-column tibble. Nested objects are
+#' flattened into prefixed columns.
+#'
+#' **game** - one row:
+#'
+#'   |col_name                          |types     |description                                              |
+#'   |:---------------------------------|:---------|:--------------------------------------------------------|
+#'   |game_id                           |integer   |Referencing game id.                                     |
+#'   |season                            |integer   |Season of the game.                                      |
+#'   |week                              |integer   |Game week.                                               |
+#'   |season_type                       |character |Season type of the game.                                 |
+#'   |start_date                        |character |Game start date-time (ISO 8601, UTC).                    |
+#'   |start_time_tbd                    |logical   |TRUE if the start time is still to be determined.       |
+#'   |status                            |character |Game status.                                             |
+#'   |status_checked_at                 |character |When CFBD last checked the game status.                  |
+#'   |neutral_site                      |logical   |TRUE if the game is at a neutral site.                   |
+#'   |conference_game                   |logical   |TRUE if the game is a conference game.                   |
+#'   |venue_id, venue_name, venue_city, venue_state |mixed |Venue (a single `venue` NA column when absent). |
+#'   |home_team_id                      |integer   |Home team id.                                            |
+#'   |home_team_name                    |character |Home team name.                                          |
+#'   |home_team_conference              |character |Home team conference.                                    |
+#'   |home_team_conference_abbreviation |character |Home team conference abbreviation.                       |
+#'   |home_team_classification          |character |Home team division classification.                       |
+#'   |home_team_points                  |integer   |Home team points.                                        |
+#'   |away_team_*                       |mixed     |The same six columns for the away team.                  |
+#'   |playoff_*                         |mixed     |`competition`, `format`, `round`, `round_name`, `bracket_slot`, `home_seed`, `away_seed`, `bowl_name` (a single `playoff` NA column when absent). |
+#'   |availability                      |character |pregame or metadata_only.                                |
+#'   |reason                            |character |Why analysis is not available.                           |
+#'   |assembled_at                      |character |When the preview was assembled.                          |
+#'
+#' **broadcasts** - one row per broadcast: `media_type` (character), `outlet` (character).
+#'
+#' **odds** - one row: `provider_id` (integer), `provider` (character),
+#' `spread` (numeric, home-relative; negative favors home), `over_under`,
+#' `home_moneyline`, `away_moneyline` (numeric).
+#'
+#' **teams** - one row per side (`side` = home or away), then `team_id`
+#' (integer) and `season` (integer). Each of the `record`, `ratings` and
+#' `statistics` sections contributes `<section>_status`, `<section>_reason`,
+#' `<section>_assembled_at`, `<section>_source_updated_at` and its payload as
+#' `<section>_data_*`: `record_data_*` carries the `record` section of
+#' [cfbd_team_season_overview()]; `ratings_data_*` is that function's padded
+#' `ratings` section (`elo`, then `<system>_<unit>_rating` / `_rank` for `srs`,
+#' `sp`, `fpi`, `core`), typed and present even when CFBD omits a system;
+#' `statistics_data_*` holds `season`, `is_previous_season`,
+#' `advanced_*` (the `advanced` section of [cfbd_team_season_overview()]),
+#' `passing_*` (the passing production block of [cfbd_passing_teams_season()],
+#' per side of the ball, including `locations_<bucket>_*`) and `rushing_*` (the
+#' rushing production block of [cfbd_rushing_teams_season()]).
+#'
+#' **key_players** - one row per player:
+#'
+#'   |col_name    |types     |description                                           |
+#'   |:-----------|:---------|:-----------------------------------------------------|
+#'   |side        |character |home or away.                                         |
+#'   |category    |character |passing, rushing or receiving.                        |
+#'   |athlete_id  |character |Player id.                                            |
+#'   |name        |character |Player name.                                          |
+#'   |position    |character |Player position.                                      |
+#'   |usage       |numeric   |Pass/rush involvement, not receiving target share.    |
+#'   |average_ppa |numeric   |Average predicted points added.                       |
+#'   |total_ppa   |numeric   |Total predicted points added.                         |
+#'
+#' **recent_results** - one row per recent game: `side`, `game_id`, `season`,
+#' `start_date`, `opponent_id`, `opponent_name`, `home_away` (home, away), `neutral_site`,
+#' `venue_*`, `team_points`, `opponent_points`, `result` (win, loss, tie, unknown).
+#'
+#' **series** - one row: `home_team_id`, `away_team_id`, `meetings`,
+#' `known_results`, `unknown_results`, `home_wins`, `away_wins`, `ties`,
+#' `first_season`, `last_season` (integer), `latest_meeting_*` (the columns of
+#' `series_meetings`) and `streak_team_id`, `streak_wins`.
+#'
+#' **series_meetings** - one row per recent meeting: `game_id`, `season`,
+#' `start_date`, `home_team_id`, `home_team`, `away_team_id`, `away_team`,
+#' `neutral_site`, `venue_*`, `home_points`, `away_points`, `winner_team_id`,
+#' `result` (win, tie, unknown).
+#'
+#' @keywords Game Preview
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string
+#' @importFrom glue glue
+#' @importFrom dplyr rename any_of
+#' @family CFBD Games
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_game_preview(game_id = 401114233))
+#' }
+cfbd_game_preview <- function(game_id, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_id(game_id)
+
+  # Query API ----
+  full_url <- paste0("https://api.collegefootballdata.com/games/", game_id, "/preview")
+
+  df <- list()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      parsed <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      analysis <- parsed$analysis
+      sides <- Filter(Negate(is.null), list(home = analysis$home, away = analysis$away))
+      series <- analysis$series$data
+
+      df <- list(
+        game = .cfbd_section_tbl(c(
+          parsed$game,
+          list(
+            availability = parsed$availability,
+            reason = parsed$reason,
+            assembledAt = parsed$assembledAt
+          )
+        )) |>
+          dplyr::rename(dplyr::any_of(c("game_id" = "id"))),
+        broadcasts = .cfbd_section_tbl(analysis$broadcasts$data),
+        odds = .cfbd_section_tbl(analysis$odds$data),
+        teams = .cfbd_bind_sides(lapply(sides, function(s) {
+          # ratings.data goes through the same padding/typing as the overview's
+          # ratings section, so ratings_data_* is a fixed, typed column set
+          # whether or not CFBD has every system for that team.
+          rest <- s[setdiff(names(s), c("keyPlayers", "recentResults", "ratings"))]
+          ratings_meta <- s$ratings[setdiff(names(s$ratings), "data")]
+          base <- .cfbd_section_tbl(c(rest, list(ratings = ratings_meta)))
+          rt <- .cfbd_ratings_tbl(s$ratings$data)
+          if (ncol(rt)) names(rt) <- paste0("ratings_data_", names(rt))
+          dplyr::bind_cols(base, rt)
+        })),
+        key_players = .cfbd_bind_sides(lapply(sides, function(s) {
+          kp <- s$keyPlayers
+          .cfbd_section_tbl(list(
+            passing = kp$passing$data,
+            rushing = kp$rushing$data,
+            receiving = kp$receiving$data
+          ))
+        })),
+        recent_results = .cfbd_bind_sides(lapply(sides, function(s) {
+          .cfbd_section_tbl(s$recentResults$data)
+        })),
+        series = .cfbd_section_tbl(series[setdiff(names(series), "recentMeetings")]),
+        series_meetings = .cfbd_section_tbl(series$recentMeetings)
+      )
+
+      df <- lapply(df, make_cfbfastR_data,
+                   type = "Game preview data from CollegeFootballData.com",
+                   timestamp = Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game preview data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}
+
+#' @title
+#' **Get an adjusted-metrics pregame preview for a game**
+#' @description
+#' **Returns stored adjusted team and player metrics until game completion.**
+#' Requires a CFBD Patreon Tier 1 key; other keys receive an error and an empty
+#' list. Team metrics may use the previous season; players remain current-season.
+#' @param game_id (*Integer* required): Game ID filter for querying a single game.
+#' Can be found using the [cfbd_game_info()] or [cfbd_game_schedule()] functions.
+#' @param proxy (*List* optional): Per-call proxy override passed to
+#'   `get_req()`. `NULL` (default) falls back to
+#'   `getOption("cfbfastR.proxy")` and then the `http(s)_proxy` environment
+#'   variables.
+#' @return [cfbd_game_preview_adjusted()] - A named list of tibbles: `game`,
+#' `team_metrics`, `passing`, `rushing`, `kicking`. A section CFBD did not fill
+#' is a 0-column tibble.
+#'
+#' **game** - one row, the same columns as the `game` section of [cfbd_game_preview()].
+#'
+#' **team_metrics** - one row per side (`side` = home or away): `team_id`,
+#' `season` (integer), `metrics_status`, `metrics_reason`,
+#' `metrics_assembled_at`, `metrics_source_updated_at` (character),
+#' `metrics_data_season` (integer), `metrics_data_is_previous_season` (logical)
+#' and `metrics_data_metrics_*`: `year`, `team_id`, `team`, `conference`,
+#' `epa_*` and `epa_allowed_*` (`total`, `passing`, `rushing`),
+#' `success_rate_*` and `success_rate_allowed_*` (`total`, `standard_downs`,
+#' `passing_downs`), `rushing_*` and `rushing_allowed_*` (`line_yards`,
+#' `second_level_yards`, `open_field_yards`, `highlight_yards`),
+#' `explosiveness`, `explosiveness_allowed` (numeric; see
+#' [cfbd_metrics_wepa_team_season()] for the adjusted metrics).
+#'
+#' **passing**, **rushing** - one row per player:
+#'
+#'   |col_name     |types     |description                                  |
+#'   |:------------|:---------|:--------------------------------------------|
+#'   |side         |character |home or away.                                |
+#'   |team         |character |Team name.                                   |
+#'   |year         |integer   |Season.                                      |
+#'   |athlete_id   |character |Player id.                                   |
+#'   |athlete_name |character |Player name.                                 |
+#'   |position     |character |Player position.                             |
+#'   |conference   |character |Conference.                                  |
+#'   |wepa         |numeric   |Opponent-adjusted EPA per play.              |
+#'   |plays        |integer   |Plays.                                       |
+#'
+#' **kicking** - one row per kicker: `side`, `team`, `year`, `athlete_id`,
+#' `athlete_name`, `conference`, `paar` (numeric, points added above
+#' replacement), `attempts` (integer).
+#'
+#' @keywords Game Preview
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr2 resp_body_string
+#' @importFrom glue glue
+#' @importFrom dplyr rename any_of
+#' @family CFBD Games
+#' @export
+#' @examples
+#' \donttest{
+#'   try(cfbd_game_preview_adjusted(game_id = 401114233))
+#' }
+cfbd_game_preview_adjusted <- function(game_id, proxy = NULL) {
+
+  # Validation ----
+  validate_api_key()
+  validate_id(game_id)
+
+  # Query API ----
+  full_url <- paste0("https://api.collegefootballdata.com/games/", game_id, "/preview/adjusted")
+
+  df <- list()
+  tryCatch(
+    expr = {
+
+      # Create the GET request and set response as res
+      res <- get_req(full_url, proxy = proxy)
+      check_status(res)
+
+      parsed <- res |>
+        httr2::resp_body_string(encoding = "UTF-8") |>
+        jsonlite::fromJSON(flatten = TRUE)
+
+      sides <- Filter(Negate(is.null), list(home = parsed$analysis$home, away = parsed$analysis$away))
+      player_section <- function(name) {
+        .cfbd_bind_sides(lapply(sides, function(s) .cfbd_section_tbl(s[[name]]$data)))
+      }
+
+      df <- list(
+        game = .cfbd_section_tbl(c(
+          parsed$game,
+          list(
+            availability = parsed$availability,
+            reason = parsed$reason,
+            assembledAt = parsed$assembledAt
+          )
+        )) |>
+          dplyr::rename(dplyr::any_of(c("game_id" = "id"))),
+        team_metrics = .cfbd_bind_sides(lapply(sides, function(s) {
+          .cfbd_section_tbl(c(s[c("teamId", "season")], list(metrics = s$teamMetrics)))
+        })),
+        passing = player_section("passing"),
+        rushing = player_section("rushing"),
+        kicking = player_section("kicking")
+      )
+
+      df <- lapply(df, make_cfbfastR_data,
+                   type = "Adjusted game preview data from CollegeFootballData.com",
+                   timestamp = Sys.time())
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no adjusted game preview data available! {conditionMessage(e)}"))
+    },
+    finally = {
+    }
+  )
+  return(df)
+}

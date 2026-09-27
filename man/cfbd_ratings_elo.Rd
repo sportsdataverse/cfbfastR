@@ -9,7 +9,8 @@ cfbd_ratings_elo(
   week = NULL,
   season_type = "both",
   team = NULL,
-  conference = NULL
+  conference = NULL,
+  preseason = NULL
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ Minimum value accepted: 1890}
 \item{conference}{(\emph{String} optional): Conference abbreviation - Elo information by conference
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+
+\item{preseason}{(\emph{Logical} optional): Return initial ratings from each team's opening regular-season game.
+Missing opening ratings are omitted. Cannot be combined with \code{week}; \code{season_type} must be regular or both when specified. CFBD defaults to \code{FALSE}.}
 }
 \value{
 \code{\link[=cfbd_ratings_elo]{cfbd_ratings_elo()}} - A data frame with 4 variables:\tabular{lll}{

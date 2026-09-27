@@ -434,6 +434,59 @@ validate_list <- function(var = NULL, allowable = NULL){
   out
 }
 
+#' Turn one section of a nested CFBD object into a tibble
+#'
+#' @description The preview and overview endpoints return one object built from
+#'   sections of different row grain: a single record, an array of rows, or a
+#'   named group of arrays. This reads whichever shape arrives.
+#'
+#' @details A data frame comes back flattened, as it is. A named list whose
+#'   members are all data frames (or empty) is stacked with `bind_rows()`, the
+#'   member name kept in an `id` column. Anything else is read as one record
+#'   and flattened to a single row with [.cfbd_flatten_scalars()]. An empty or
+#'   `NULL` section returns a 0-column tibble rather than failing, so a caller
+#'   can always pass the result on to `make_cfbfastR_data()`.
+#'
+#' @param x One parsed section.
+#' @param id Column that holds member names when `x` is a group of arrays.
+#' @return A tibble with cleaned names.
+#' @keywords internal
+#' @noRd
+.cfbd_section_tbl <- function(x, id = "category") {
+  is_rows <- function(v) is.data.frame(v) || is.null(v) || !length(v)
+  if (is.null(x) || !length(x)) {
+    return(dplyr::tibble())
+  }
+  if (is.data.frame(x)) {
+    df <- jsonlite::flatten(x)
+  } else if (is.list(x) && !is.null(names(x)) && all(vapply(x, is_rows, logical(1)))) {
+    x <- Filter(is.data.frame, x)
+    df <- dplyr::bind_rows(lapply(x, jsonlite::flatten), .id = id)
+  } else if (is.list(x)) {
+    df <- as.data.frame(.cfbd_flatten_scalars(x), stringsAsFactors = FALSE)
+  } else {
+    return(dplyr::tibble())
+  }
+  if (!ncol(df)) {
+    return(dplyr::tibble())
+  }
+  janitor::clean_names(dplyr::as_tibble(df))
+}
+
+#' Stack home and away sections with a leading `side` column
+#'
+#' @param sides A named list (`home`, `away`) of tibbles.
+#' @return One tibble; sides with no columns are dropped.
+#' @keywords internal
+#' @noRd
+.cfbd_bind_sides <- function(sides) {
+  sides <- Filter(function(s) ncol(s) > 0L, sides)
+  if (!length(sides)) {
+    return(dplyr::tibble())
+  }
+  dplyr::bind_rows(sides, .id = "side")
+}
+
 #' Validate a CFBD division / classification value
 #'
 #' @description CFBD calls this filter `classification` on the wire; cfbfastR

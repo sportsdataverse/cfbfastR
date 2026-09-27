@@ -11,6 +11,7 @@
 \item \code{cfbd_team_matchup_records()}: Get matchup history records between two teams.
 \item \code{cfbd_team_matchup()}: Get matchup history between two teams.
 \item \code{cfbd_teams_fbs()}: Get every FBS team for a season.
+\item \code{cfbd_team_season_overview()}: Get a full-season team overview.
 }
 \subsection{\strong{Team info lookup}}{
 

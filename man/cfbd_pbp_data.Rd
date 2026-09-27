@@ -17,7 +17,8 @@ cfbd_pbp_data(
   offense_conference = NULL,
   defense_conference = NULL,
   conference = NULL,
-  division = NULL
+  division = NULL,
+  offense = NULL
 )
 }
 \arguments{
@@ -54,6 +55,8 @@ column-set selector. Ignored on the legacy path.}
 \item{conference}{(\emph{String} optional): Conference filter (either side of the ball).}
 
 \item{division}{(\emph{String} optional): Division/classification filter -- \code{fbs}, \code{fcs}, \code{ii}, \code{ii/iii}, \code{iii}.}
+
+\item{offense}{(\emph{String} optional): Offensive team filter.}
 }
 \value{
 A data frame with 368 variables:\tabular{lll}{

@@ -4,7 +4,7 @@
 #' **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
 #' @description
 #'
-#' * `cfbd_pbp_data_v2()`: Get college football play-by-play data — modular
+#' * `cfbd_pbp_data_v2()`: Get college football play-by-play data -- modular
 #'   EPA/WPA pipeline (v2). Thin orchestrator over the shared EPA/WPA engine
 #'   `.run_epa_wpa()`, the canonical play-type taxonomy `.pbp_play_types()`,
 #'   and the canonical output schema `.pbp_output_order`. Runs side-by-side
@@ -24,7 +24,7 @@
 #' those are mechanically rebuildable from the surviving canonical
 #' columns; the harness only enforces equality on user-facing values.
 #'
-#' ## **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+#' ## **Get college football play-by-play data -- modular EPA/WPA pipeline (v2)**
 #'
 #' ```r
 #' cfbd_pbp_data_v2(
@@ -36,7 +36,7 @@
 NULL
 
 #' @title
-#' **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+#' **Get college football play-by-play data -- modular EPA/WPA pipeline (v2)**
 #' @description Returns CFBD play-by-play data with optional Expected Points
 #' Added (EPA) and Win Probability Added (WPA) modeling. The modular
 #' successor to [cfbd_pbp_data()]: a thin orchestrator over the shared
@@ -46,7 +46,7 @@ NULL
 #' equivalence harness proves the new path matches.
 #' @param year (*Numeric* required): Season year (e.g. `2024`). \cr
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_pbp_data_v2', 'min_year']`
-#' @param season_type (*Character*): Season type — `"regular"` (default),
+#' @param season_type (*Character*): Season type -- `"regular"` (default),
 #'   `"postseason"`, `"both"`, `"allstar"`, `"spring_regular"`,
 #'   `"spring_postseason"`.
 #' @param week (*Numeric*): Week number.
@@ -75,6 +75,14 @@ NULL
 #'   * `"full"` -- legacy behavior, drops only the player-name
 #'     aliases. For sequential modeling that consumes pre-computed lag/lead
 #'     shifts or the per-branch WPA decomposition.
+#' @param offense (*Character*): Optional offensive team filter.
+#' @param defense (*Character*): Optional defensive team filter.
+#' @param offense_conference (*Character*): Optional offensive team conference filter.
+#' @param defense_conference (*Character*): Optional defensive team conference filter.
+#' @param conference (*Character*): Optional conference filter (either team).
+#' @param division (*Character*): Optional division/classification filter of
+#'   either team -- `fbs`, `fcs`, `ii`, `ii/iii`, `iii`. Sent to CFBD as
+#'   `classification`.
 #' @return A `cfbfastR_data` tibble. The `epa_wpa = TRUE` output matches the
 #'   legacy [cfbd_pbp_data()] pipeline-canonical column set on every column
 #'   it carries; the `output` argument controls which intermediate columns
@@ -104,7 +112,13 @@ cfbd_pbp_data_v2 <- function(year,
                              team        = NULL,
                              play_type   = NULL,
                              epa_wpa     = FALSE,
-                             output      = "default") {
+                             output      = "default",
+                             offense     = NULL,
+                             defense     = NULL,
+                             offense_conference = NULL,
+                             defense_conference = NULL,
+                             conference  = NULL,
+                             division    = NULL) {
   if (!is.character(output) || length(output) != 1L ||
       !output %in% c("default", "lean", "full")) {
     cli::cli_abort(c(
@@ -125,6 +139,7 @@ cfbd_pbp_data_v2 <- function(year,
   validate_year(year)
   validate_week(week)
   validate_season_type(season_type)
+  validate_division(division)
 
   pt_abb_exists <- TRUE
   if (!is.null(play_type)) {
@@ -142,6 +157,8 @@ cfbd_pbp_data_v2 <- function(year,
     pt_abb <- NULL
   }
   team <- handle_accents(team)
+  offense <- handle_accents(offense)
+  defense <- handle_accents(defense)
 
   # --- raw plays --------------------------------------------------------
   play_base_url <- "https://api.collegefootballdata.com/plays"
@@ -150,7 +167,13 @@ cfbd_pbp_data_v2 <- function(year,
     "year"       = year,
     "week"       = week,
     "team"       = team,
-    "playType"   = pt_abb
+    "playType"   = pt_abb,
+    "offense"    = offense,
+    "defense"    = defense,
+    "offenseConference" = offense_conference,
+    "defenseConference" = defense_conference,
+    "conference" = conference,
+    "classification" = division
   )
   full_url <- httr2::req_url_query(
     httr2::request(play_base_url), !!!.compact(query_params)
