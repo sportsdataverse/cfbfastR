@@ -1006,8 +1006,9 @@ NULL
 #' @rdname load_cfb_schedule_crosswalk
 #' @author Saiem Gilani
 #' @description
-#'   Loads the game-level id crosswalk linking CFBD game ids to ESPN event
-#'   ids -- one row per game-season. Published to the
+#'   Loads the game-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+#'   Sports game ids -- one row per game in each season's file. The files
+#'   carry no `season` column and no CFBD game id. Published to the
 #'   `cfb_crosswalk` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2014 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2014)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1079,8 +1080,10 @@ NULL
 #' @rdname load_cfb_teams_crosswalk
 #' @author Saiem Gilani
 #' @description
-#'   Loads the team-level id crosswalk linking CFBD team ids to ESPN team
-#'   ids -- one row per team-season. Published to the
+#'   Loads the team-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+#'   Sports team ids, matched on a normalized team name (`norm_key`). One row
+#'   per team in each season's file, including teams below FCS. The files
+#'   carry no `season` column and no CFBD team id. Published to the
 #'   `cfb_crosswalk` release tag on the sportsdataverse-data repo.
 #' @param seasons A vector of 4-digit years associated with given college football seasons. Published coverage runs 2014 through the most recent season. Pass `seasons = TRUE` for every published season. (Min: 2014)
 #' @param ... Additional arguments passed to an underlying function that
@@ -1094,7 +1097,7 @@ NULL
 #'    |norm_key           |character |Shared join key across providers: the team name lowercased, ASCII-folded, stripped of punctuation, whitespace-collapsed, and alias-mapped. |
 #'    |espn_team_id       |integer   |ESPN team id for the crosswalk row. |
 #'    |espn_team          |character |ESPN's full team display name, school plus mascot, null when the row was anchored on a non-ESPN provider. |
-#'    |espn_abbreviation  |character | |
+#'    |espn_abbreviation  |character |ESPN's short team code for the school. |
 #'    |fox_team_id        |character |Fox Sports team id for the same team. |
 #'    |fox_team           |character |Fox Sports' team name, which that feed ships in all capitals. |
 #'    |fox_abbreviation   |character |Fox Sports' short team code, which frequently differs from the ESPN abbreviation for the same school. |
@@ -1152,10 +1155,11 @@ NULL
 #' @rdname load_cfb_rosters_crosswalk
 #' @author Saiem Gilani
 #' @description
-#'   Loads the roster-level id crosswalk linking CFBD athlete ids to ESPN
-#'   athlete ids across seasons. Single cumulative file (not season-
-#'   partitioned). Published to the `cfb_crosswalk` release tag on the
-#'   sportsdataverse-data repo.
+#'   Loads the roster-level id crosswalk linking ESPN, Fox Sports, and Yahoo
+#'   Sports athlete ids. A single snapshot of current rosters, not a
+#'   per-season series: the providers' roster endpoints only expose the
+#'   current roster. It carries no CFBD athlete id. Published to the
+#'   `cfb_crosswalk` release tag on the sportsdataverse-data repo.
 #' @param ... Additional arguments passed to an underlying function that
 #'   writes the season data into a database.
 #' @param dbConnection A `DBIConnection` object, as returned by [DBI::dbConnect()]
