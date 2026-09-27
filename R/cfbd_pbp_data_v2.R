@@ -4,7 +4,7 @@
 #' **CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview**
 #' @description
 #'
-#' * `cfbd_pbp_data_v2()`: Get college football play-by-play data — modular
+#' * `cfbd_pbp_data_v2()`: Get college football play-by-play data -- modular
 #'   EPA/WPA pipeline (v2). Thin orchestrator over the shared EPA/WPA engine
 #'   `.run_epa_wpa()`, the canonical play-type taxonomy `.pbp_play_types()`,
 #'   and the canonical output schema `.pbp_output_order`. Runs side-by-side
@@ -24,7 +24,7 @@
 #' those are mechanically rebuildable from the surviving canonical
 #' columns; the harness only enforces equality on user-facing values.
 #'
-#' ## **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+#' ## **Get college football play-by-play data -- modular EPA/WPA pipeline (v2)**
 #'
 #' ```r
 #' cfbd_pbp_data_v2(
@@ -36,7 +36,7 @@
 NULL
 
 #' @title
-#' **Get college football play-by-play data — modular EPA/WPA pipeline (v2)**
+#' **Get college football play-by-play data -- modular EPA/WPA pipeline (v2)**
 #' @description Returns CFBD play-by-play data with optional Expected Points
 #' Added (EPA) and Win Probability Added (WPA) modeling. The modular
 #' successor to [cfbd_pbp_data()]: a thin orchestrator over the shared
@@ -46,7 +46,7 @@ NULL
 #' equivalence harness proves the new path matches.
 #' @param year (*Numeric* required): Season year (e.g. `2024`). \cr
 #' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_pbp_data_v2', 'min_year']`
-#' @param season_type (*Character*): Season type — `"regular"` (default),
+#' @param season_type (*Character*): Season type -- `"regular"` (default),
 #'   `"postseason"`, `"both"`, `"allstar"`, `"spring_regular"`,
 #'   `"spring_postseason"`.
 #' @param week (*Numeric*): Week number.

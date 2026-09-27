@@ -2,7 +2,7 @@
 % Please edit documentation in R/cfbd_pbp_data_v2.R
 \name{cfbd_pbp_data_v2}
 \alias{cfbd_pbp_data_v2}
-\title{\strong{Get college football play-by-play data — modular EPA/WPA pipeline (v2)}}
+\title{\strong{Get college football play-by-play data -- modular EPA/WPA pipeline (v2)}}
 \usage{
 cfbd_pbp_data_v2(
   year,
@@ -24,7 +24,7 @@ cfbd_pbp_data_v2(
 \item{year}{(\emph{Numeric} required): Season year (e.g. \code{2024}). \cr
 Minimum value accepted: 2001}
 
-\item{season_type}{(\emph{Character}): Season type — \code{"regular"} (default),
+\item{season_type}{(\emph{Character}): Season type -- \code{"regular"} (default),
 \code{"postseason"}, \code{"both"}, \code{"allstar"}, \code{"spring_regular"},
 \code{"spring_postseason"}.}
 

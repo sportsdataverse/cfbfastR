@@ -8,7 +8,7 @@
 \title{\strong{CFBD Play-by-Play (v2 Modular EPA/WPA Pipeline) Overview}}
 \description{
 \itemize{
-\item \code{cfbd_pbp_data_v2()}: Get college football play-by-play data — modular
+\item \code{cfbd_pbp_data_v2()}: Get college football play-by-play data -- modular
 EPA/WPA pipeline (v2). Thin orchestrator over the shared EPA/WPA engine
 \code{.run_epa_wpa()}, the canonical play-type taxonomy \code{.pbp_play_types()},
 and the canonical output schema \code{.pbp_output_order}. Runs side-by-side
@@ -28,7 +28,7 @@ equivalence-harness allow-list is intentionally permissive about
 lag/lead intermediates and per-branch WPA scratchpad columns because
 those are mechanically rebuildable from the surviving canonical
 columns; the harness only enforces equality on user-facing values.
-\subsection{\strong{Get college football play-by-play data — modular EPA/WPA pipeline (v2)}}{
+\subsection{\strong{Get college football play-by-play data -- modular EPA/WPA pipeline (v2)}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{cfbd_pbp_data_v2(
   year = 2024, week = 1, season_type = "regular",

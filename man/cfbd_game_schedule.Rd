@@ -14,7 +14,8 @@ cfbd_game_schedule(
 )
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Explicit windows require \code{year}, \code{season_type}, and \code{week} together.}
+\item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Explicit windows require \code{year}, \code{season_type}, and \code{week} together.
+Minimum value accepted: 2002}
 
 \item{season_type}{(\emph{String} optional): Season type: regular or postseason.}
 

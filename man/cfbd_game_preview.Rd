@@ -60,8 +60,11 @@ flattened into prefixed columns.
 (integer) and \code{season} (integer). Each of the \code{record}, \code{ratings} and
 \code{statistics} sections contributes \verb{<section>_status}, \verb{<section>_reason},
 \verb{<section>_assembled_at}, \verb{<section>_source_updated_at} and its payload as
-\verb{<section>_data_*}: \verb{record_data_*} and \verb{ratings_data_*} are the \code{record}
-and \code{ratings} sections of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}};
+\verb{<section>_data_*}: \verb{record_data_*} carries the \code{record} section of
+\code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}; \verb{ratings_data_*} carries the same rating
+systems (\code{elo}, \code{srs}, \verb{sp_*}, \verb{fpi_*}, \verb{core_*}) flattened as sent, so a
+system CFBD omits for that season arrives as one \code{NA} column (\code{ratings_data_sp})
+rather than the padded \verb{_rating} / \verb{_rank} pairs the overview returns;
 \verb{statistics_data_*} holds \code{season}, \code{is_previous_season},
 \verb{advanced_*} (the \code{advanced} section of \code{\link[=cfbd_team_season_overview]{cfbd_team_season_overview()}}),
 \verb{passing_*} (the passing production block of \code{\link[=cfbd_passing_teams_season]{cfbd_passing_teams_season()}},

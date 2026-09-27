@@ -1,5 +1,6 @@
 test_that("CFBD - Team Season Overview", {
   skip_on_cran()
+  skip_if(!has_cfbd_key(), "CFBD API key not available")
   x <- cfbd_team_season_overview(year = 2024, team = "Texas")
   if (is.null(x) || !is.list(x) || length(x) == 0L || nrow(x$overview) == 0L) skip("CFBD rate-limited or returned no rows")
   expect_type(x, "list")

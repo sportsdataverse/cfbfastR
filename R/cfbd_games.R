@@ -1722,6 +1722,7 @@ cfbd_live_scoreboard <- function(division = 'fbs',
 #' Explicit windows require `year`, `season_type`, and `week` together; with none
 #' of them CFBD picks the slate itself and says which in the `selection` attribute.
 #' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Explicit windows require `year`, `season_type`, and `week` together.
+#' Minimum value accepted: `r min_year_map_df[min_year_map_df$function_name == 'cfbd_game_schedule', 'min_year']`
 #' @param season_type (*String* optional): Season type: regular or postseason.
 #' @param week (*Integer* optional): Week.
 #' @param division (*String* optional): Division of either participant: fbs or fcs. CFBD defaults to fbs. Sent to CFBD as `classification`.
@@ -1829,7 +1830,7 @@ cfbd_game_schedule <- function(year = NULL,
     "classification" = division,
     "conference" = conference
   )
-  full_url <- httr2::url_modify(base_url, query = .compact(query_params))
+  full_url <- httr2::url_modify_query(base_url, !!!.compact(query_params))
 
   df <- data.frame()
   tryCatch(
@@ -1921,8 +1922,11 @@ cfbd_game_schedule <- function(year = NULL,
 #' (integer) and `season` (integer). Each of the `record`, `ratings` and
 #' `statistics` sections contributes `<section>_status`, `<section>_reason`,
 #' `<section>_assembled_at`, `<section>_source_updated_at` and its payload as
-#' `<section>_data_*`: `record_data_*` and `ratings_data_*` are the `record`
-#' and `ratings` sections of [cfbd_team_season_overview()];
+#' `<section>_data_*`: `record_data_*` carries the `record` section of
+#' [cfbd_team_season_overview()]; `ratings_data_*` carries the same rating
+#' systems (`elo`, `srs`, `sp_*`, `fpi_*`, `core_*`) flattened as sent, so a
+#' system CFBD omits for that season arrives as one `NA` column (`ratings_data_sp`)
+#' rather than the padded `_rating` / `_rank` pairs the overview returns;
 #' `statistics_data_*` holds `season`, `is_previous_season`,
 #' `advanced_*` (the `advanced` section of [cfbd_team_season_overview()]),
 #' `passing_*` (the passing production block of [cfbd_passing_teams_season()],
