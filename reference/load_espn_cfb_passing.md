@@ -101,20 +101,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_passing(2004))
 #> ── college football passing EPA splits from the SportsDataverse data repo ──────
-#> ℹ Data updated: 2026-09-30 11:14:27 UTC
+#> ℹ Data updated: 2026-09-30 13:20:42 UTC
 #> # A tibble: 373 × 73
 #>    team_id pos_team      division conference season player_id passer_player_name
 #>    <chr>   <chr>         <chr>    <chr>       <int>     <int> <chr>             
-#>  1 2628    TCU           fbs      Conferenc…   2004    113659 Tye Gunn          
-#>  2 151     East Carolina fbs      Conferenc…   2004    136126 James Pinkney     
-#>  3 8       Arkansas      fbs      SEC          2004    148627 Robert Johnson    
-#>  4 2751    Wyoming       fbs      Mountain …   2004    116533 J.J. Raterink     
-#>  5 2393    Middle Tenne… fbs      Sun Belt     2004    133319 Eugene Gross      
-#>  6 145     Ole Miss      fbs      SEC          2004    146810 Robert Lane       
-#>  7 23      San Jose Sta… fbs      Western A…   2004    148370 Adam Tafralis     
-#>  8 2309    Kent State    fbs      Mid-Ameri…   2004    147152 Tom Sitko         
-#>  9 239     Baylor        fbs      Big 12       2004    145265 Terrance Parks    
-#> 10 62      Hawai'i       fbs      Western A…   2004    122359 Kainoa Akina      
+#>  1 52      Florida State fbs      ACC          2004    100622 Chris Rix         
+#>  2 70      Idaho         fbs      Sun Belt     2004    150917 Brian Nooy        
+#>  3 2711    Western Mich… fbs      Mid-Ameri…   2004    115823 Ryan Cubit        
+#>  4 2390    Miami         fbs      ACC          2004    100223 Brock Berlin      
+#>  5 264     Washington    fbs      Pac-10       2004    119010 Casey Paus        
+#>  6 97      Louisville    fbs      Conferenc…   2004    112516 Stefan LeFors     
+#>  7 2426    Navy          fbs      FBS Indep…   2004    136727 Frank Divis       
+#>  8 197     Oklahoma Sta… fbs      Big 12       2004    145776 Al Pena           
+#>  9 2655    Tulane        fbs      Conferenc…   2004    134032 Lester Ricard     
+#> 10 2440    Nevada        fbs      Western A…   2004    120993 Andy Heiser       
 #> # ℹ 363 more rows
 #> # ℹ 66 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <dbl>, success <dbl>, comp <dbl>, att <dbl>,

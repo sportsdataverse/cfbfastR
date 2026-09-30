@@ -152,6 +152,19 @@ equivalents across all four rule eras — 20 output columns, agreeing to
   instead of one per call.
   [`espn_cfb_clear_cache()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_clear_cache.md)
   refetches them.
+- Goal-to-go downs that the feed sends with `distance = 0` (ESPN “1st &
+  Goal” downs in some games, and occasionally CFBD) are now modeled at
+  the yards to the goal line on every engine of
+  [`espn_cfb_pbp()`](https://cfbfastR.sportsdataverse.org/reference/espn_cfb_pbp.md)
+  and
+  [`cfbd_pbp_data()`](https://cfbfastR.sportsdataverse.org/reference/cfbd_pbp_data.md),
+  the same rule sdv-py applied to the EP model’s training data. Scored
+  at 0 they skewed EPA on those plays and on the play before each: on
+  2025 LSU at Clemson the CFBD and ESPN paths now agree on 166 of 168
+  plays’ EPA (was 159). The other two are ESPN “2nd & 0 at” rows, which
+  ESPN also writes for a plain missing distance and the model learned at
+  0, so they stay as sent. Raw (`epa_wpa = FALSE`) output keeps the
+  feed’s value.
 
 ### Documentation: CFBD return tables
 

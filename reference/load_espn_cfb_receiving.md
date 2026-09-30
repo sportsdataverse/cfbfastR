@@ -87,20 +87,20 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_receiving(2004))
 #> ── college football receiving EPA splits from the SportsDataverse data repo ────
-#> ℹ Data updated: 2026-09-30 11:14:41 UTC
+#> ℹ Data updated: 2026-09-30 13:20:53 UTC
 #> # A tibble: 1,418 × 55
 #>    team_id pos_team    division conference season player_id receiver_player_name
 #>    <chr>   <chr>       <chr>    <chr>       <int>     <int> <chr>               
-#>  1 2483    Oregon      fbs      Pac-10       2004    120706 Terrence Whitehead  
-#>  2 96      Kentucky    fbs      SEC          2004    146704 John Logan          
-#>  3 57      Florida     fbs      SEC          2004    134548 Kenneth Tookes      
-#>  4 221     Pittsburgh  fbs      Big East     2004    163206 Derek Kinder        
-#>  5 2649    Toledo      fbs      Mid-Ameri…   2004    162026 Chris Hopkins       
-#>  6 153     North Caro… fbs      ACC          2004    145834 Ronnie McGill       
-#>  7 2390    Miami       fbs      ACC          2004    133197 Talib Humphrey      
-#>  8 202     Tulsa       fbs      Western A…   2004    106000 Montiese Culton     
-#>  9 2440    Nevada      fbs      Western A…   2004    133567 Anthony Pudewell    
-#> 10 52      Florida St… fbs      ACC          2004    145745 James Coleman       
+#>  1 154     Wake Forest fbs      ACC          2004    116873 Cornelius Birgs     
+#>  2 2509    Purdue      fbs      Big Ten      2004    119366 Jerod Void          
+#>  3 356     Illinois    fbs      Big Ten      2004    125169 Ade Adeyemo         
+#>  4 59      Georgia Te… fbs      ACC          2004    100610 Darius Williams     
+#>  5 41      Connecticut fbs      Big East     2004    103324 Keron Henry         
+#>  6 26      UCLA        fbs      Pac-10       2004    137177 Marcedes Lewis      
+#>  7 26      UCLA        fbs      Pac-10       2004    159806 Marcus Everett      
+#>  8 228     Clemson     fbs      ACC          2004    116343 Charlie Whitehurst  
+#>  9 50      Florida A&M fbs      FBS Indep…   2004    140683 Rashard Pompey      
+#> 10 2711    Western Mi… fbs      Mid-Ameri…   2004    115461 Greg Jennings       
 #> # ℹ 1,408 more rows
 #> # ℹ 48 more variables: plays <int>, games <int>, team_games <int>, TEPA <dbl>,
 #> #   EPAplay <dbl>, yards <int>, success <dbl>, comp <int>, targets <int>,

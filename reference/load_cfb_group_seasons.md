@@ -54,7 +54,7 @@ Saiem Gilani
 # \donttest{
   try(load_cfb_group_seasons())
 #> ── college football conference and division names by season from the SportsDatav
-#> ℹ Data updated: 2026-09-30 11:13:45 UTC
+#> ℹ Data updated: 2026-09-30 13:20:08 UTC
 #> # A tibble: 5,550 × 9
 #>    league group_id season level    name  short_name abbreviation parent_group_id
 #>    <chr>  <chr>     <int> <chr>    <chr> <chr>      <chr>        <chr>          

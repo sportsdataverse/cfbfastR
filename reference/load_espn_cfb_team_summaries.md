@@ -439,8 +439,8 @@ Saiem Gilani
 # \donttest{
   try(load_espn_cfb_team_summaries(2004))
 #> ── college football team season summaries from the SportsDataverse data repo ───
-#> ℹ Data updated: 2026-09-30 11:14:47 UTC
-#> # A tibble: 118 × 551
+#> ℹ Data updated: 2026-09-30 13:20:57 UTC
+#> # A tibble: 118 × 577
 #>    team_id pos_team     division conference season passrate_off_n rushrate_off_n
 #>    <chr>   <chr>        <chr>    <chr>       <int>          <int>          <int>
 #>  1 103     Boston Coll… fbs      Big East     2004            785            785
@@ -454,11 +454,11 @@ Saiem Gilani
 #>  9 150     Duke         fbs      ACC          2004            559            559
 #> 10 151     East Caroli… fbs      Conferenc…   2004            280            280
 #> # ℹ 108 more rows
-#> # ℹ 544 more variables: havoc_off_n <int>, explosive_off_n <int>,
+#> # ℹ 570 more variables: havoc_off_n <int>, explosive_off_n <int>,
 #> #   EPAplay_off_n <int>, yardsplay_off_n <int>, play_stuffed_off_n <int>,
 #> #   success_off_n <int>, red_zone_success_off_n <int>,
 #> #   third_down_success_off_n <int>, third_down_distance_off_n <int>,
 #> #   late_down_success_off_n <int>, early_down_EPA_off_n <int>,
-#> #   start_position_off_n <int>, nonExplosiveEpaPerPlay_off_n <int>, …
+#> #   nonExplosiveEpaPerPlay_off_n <int>, line_yards_off_n <int>, …
 # }
 ```
