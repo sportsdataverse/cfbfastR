@@ -80,7 +80,8 @@ table are returned, in CFBD order (\code{yards_to_goal}, \code{down}, \code{dist
 \code{drive_start_offense_score}, \code{drive_start_defense_score}, \code{drive_end_offense_score},
 \code{drive_end_defense_score}, \code{drive_time_minutes_start}, \code{drive_time_seconds_start},
 \code{drive_time_minutes_end}, \code{drive_time_seconds_end}, \code{drive_time_minutes_elapsed},
-\code{drive_time_seconds_elapsed}, \code{drive_pts}, \code{season}, \code{wk}.
+\code{drive_time_seconds_elapsed}, \code{drive_pts}, \code{season}, \code{wk}. As on the modeled path, \code{provider},
+\code{spread}, \code{formatted_spread} and \code{over_under} are absent when betting lines are not joined.
 \code{engine = "legacy"} returns the older pre-v2 frame, which these tables do not describe.
 
 \strong{Default columns} - one row per play (\code{epa_wpa = TRUE}, \code{output = "default"}):\tabular{lll}{

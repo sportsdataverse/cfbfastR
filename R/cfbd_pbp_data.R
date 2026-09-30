@@ -52,7 +52,8 @@ NULL
 #' `drive_start_offense_score`, `drive_start_defense_score`, `drive_end_offense_score`,
 #' `drive_end_defense_score`, `drive_time_minutes_start`, `drive_time_seconds_start`,
 #' `drive_time_minutes_end`, `drive_time_seconds_end`, `drive_time_minutes_elapsed`,
-#' `drive_time_seconds_elapsed`, `drive_pts`, `season`, `wk`.
+#' `drive_time_seconds_elapsed`, `drive_pts`, `season`, `wk`. As on the modeled path, `provider`,
+#' `spread`, `formatted_spread` and `over_under` are absent when betting lines are not joined.
 #' `engine = "legacy"` returns the older pre-v2 frame, which these tables do not describe.
 #'
 #' **Default columns** - one row per play (`epa_wpa = TRUE`, `output = "default"`):
