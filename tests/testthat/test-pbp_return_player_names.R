@@ -21,3 +21,16 @@ test_that("add_player_cols() fills the canonical return-player name columns", {
   expect_identical(x$punt_returner_player_name, x$punt_return_player_name)
   expect_identical(x$kickoff_returner_player_name, x$kickoff_return_player_name)
 })
+
+test_that("add_player_cols() names the player on a kneel-down", {
+  # Real kneels from game 401752677; the text has no "run", so the rusher came
+  # back NA on every text-parsed path while ESPN's participants named him.
+  plays <- data.frame(
+    play_type = c("Rush", "Rush"),
+    play_text = c("J. Sayin takes a knee", "Julian Sayin run for 1 yd to the OSU 4"),
+    pass = 0, rush = 1, sack = 0, fumble_vec = 0,
+    stringsAsFactors = FALSE
+  )
+  x <- add_player_cols(plays)
+  expect_identical(x$rusher_player_name, c("J. Sayin", "Julian Sayin"))
+})

@@ -82,9 +82,10 @@ add_player_cols <- function(pbp) {
   pbp <- pbp |>
     dplyr::mutate(
       rush_player = ifelse(.data$rush == 1,
-        stringr::str_extract(.data$play_text, "(.{0,25} )run |(.{0,25} )\\d{0,2} Yd Run"), NA_character_
+        stringr::str_extract(.data$play_text, "(.{0,25} )run |(.{0,25} )\\d{0,2} Yd Run|(.{0,25} )takes a knee"), NA_character_
       ),
-      rush_player = stringr::str_remove(.data$rush_player, " run | \\d+ Yd Run")
+      # "J. Sayin takes a knee": a kneel is a rush with no "run" in its text.
+      rush_player = stringr::str_remove(.data$rush_player, " run | \\d+ Yd Run| takes a knee")
     )
   # QB names
   pbp <- pbp |>
