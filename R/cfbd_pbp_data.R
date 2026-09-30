@@ -369,7 +369,7 @@ NULL
 #'  |first_by_penalty |double |Binary flag for a first down earned by penalty on the play. |
 #'  |first_by_yards |double |Binary flag for a first down earned by yards on the play. |
 #'  |play_after_turnover |double |Binary flag indicating the play immediately following a turnover. |
-#'  |play_number |integer |CFBD-supplied play number within the game. |
+#'  |play_number |integer |CFBD-supplied play number within the drive (1-indexed); `game_play_number` is the game-level sequence. |
 #'  |wallclock |character |ISO 8601 wall-clock timestamp from CFBD for the play. |
 #'  |provider |character |Sportsbook provider used for spread/over_under joined onto the play. Present only when `year >= 2013`. |
 #'  |spread |double |Pre-game point spread from the selected provider (negative when the home team is favored). Present only when `year >= 2013`; NA when no line was found. |
