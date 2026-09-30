@@ -354,6 +354,8 @@
     df <- df |> dplyr::select(-dplyr::any_of(.pbp_drop_wpa_scratch))
   }
 
+  # the engine's sort key (.pbp_ensure_play_order) never reaches the output
+  df <- df[, setdiff(colnames(df), "play_order"), drop = FALSE]
   known   <- intersect(.pbp_output_order, colnames(df))
   unknown <- setdiff(colnames(df), known)
   df[, c(known, unknown), drop = FALSE]

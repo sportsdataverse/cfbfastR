@@ -1,5 +1,5 @@
 """Re-capture cfbfastR's air-yards parity oracle from sdv-py (offline, raw payloads on disk)."""
-import datetime, json, os, pathlib, subprocess, sys
+import datetime, json, os, pathlib, re, subprocess, sys
 import polars as pl
 SDV_PY = os.environ.get('SDV_PY_ROOT', '/mnt/sdv_repos/sportsdataverse-py')  # sdv-py checkout (or leave importable)
 sys.path.insert(0, SDV_PY)
@@ -35,9 +35,7 @@ oracle.write_parquet(OUT / 'airyards_oracle.parquet')
 sha = subprocess.check_output(['git','-C',SDV_PY,'rev-parse','--short','HEAD']).decode().strip()
 spot = oracle.filter(pl.col('text').str.contains(r'(?i)caught at|thrown to'))
 print('games', oracle['fixture_game_id'].n_unique(), 'rows', oracle.height, 'spot-phrase rows', spot.height, 'resolved', spot['air_yards__out'].is_not_null().sum(), 'missing raw', missing, 'sdv-py', sha)
-(OUT / 'README.md').write_text(f"""# Parity oracles
-
-`airyards_oracle.parquet` — captured {datetime.date.today()} from sportsdataverse-py `{sha}`
+section = f"""`airyards_oracle.parquet` — captured {datetime.date.today()} from sportsdataverse-py `{sha}`
 (`CFBPlayProcess.run_processing_pipeline()` run offline on the ESPN summary payloads banked in
 cfbfastR-cfb-raw `cfb/json/raw/`, `join_participants = False`). One row per play; every column
 `__add_air_yards_cols` reads is an input, every column it writes is suffixed `__out`;
@@ -49,5 +47,9 @@ whose vendor text abbreviation differs from ESPN's (`TA&M-SC` 401752772, `UNLV-H
 `CCU-GAST` 401761645, `LIB-DEL` 401757293, `NDSU-JVST` 401864577) — the case sdv-py #418 fixed.
 
 Re-capture: `python data-raw/parity_airyards_oracle.py` (env `SDV_PY_ROOT`, `CFB_RAW_JSON` override the
-default droplet paths); do not hand-edit the parquet.
-""")
+default droplet paths); do not hand-edit the parquet."""
+# replace only this oracle's section; the README also documents the other oracles
+readme = OUT / 'README.md'
+text = readme.read_text(encoding='utf-8') if readme.exists() else '# Parity oracles\n\n'
+pat = re.compile(r'`airyards_oracle\.parquet` — .*?(?=\n\n`[\w.]+` — |\Z)', re.S)
+readme.write_text(pat.sub(lambda _: section, text, count=1) if pat.search(text) else text.rstrip('\n') + '\n\n' + section + '\n', encoding='utf-8')

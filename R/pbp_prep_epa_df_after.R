@@ -48,7 +48,7 @@
   dat <- dat |>
     dplyr::ungroup() |>
     dplyr::group_by(.data$game_id, .data$half) |>
-    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
+    dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     dplyr::mutate(
       turnover_indicator =
         ifelse(
@@ -235,7 +235,7 @@
   dat <- dat |>
     dplyr::mutate_at(c("new_TimeSecsRem"), ~ tidyr::replace_na(., 0)) |>
     dplyr::group_by(.data$game_id, .data$half, .data$drive_id) |>
-    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
+    dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     dplyr::mutate(
       # TODO - Add these variables to the documentation and select outputs
       firstD_by_kickoff = ifelse(.data$kickoff_play == 1 & .data$down == 1, 1, 0),
@@ -294,7 +294,7 @@
       new_id = .data$id_play
     ) |>
     dplyr::ungroup() |>
-    dplyr::arrange(.data$new_id, .by_group = TRUE) |>
+    dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) |>
     dplyr::mutate(
       new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, 75, .data$new_yardline),
@@ -356,7 +356,7 @@
   dat$missing_yard_flag[missing_yd_line] <- TRUE
 
   dat <- dat |>
-    dplyr::arrange(.data$id_play) |>
+    dplyr::arrange(.data$play_order) |>
     dplyr::mutate(
       new_yardline = ifelse(.data$end_of_half == 1 & is.na(.data$new_yardline), 100, .data$new_yardline),
       new_id = gsub(pattern = unique(.data$game_id), "", x = .data$new_id),

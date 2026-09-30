@@ -70,6 +70,9 @@
   if (isTRUE(clean_text)) {
     df <- clean_play_text(df)
   }
+  # Every engine sort keys on play_order -- sdv-py's order for ESPN plays,
+  # id order otherwise -- so each lead/lag reads the neighbour sdv-py's does.
+  df <- .pbp_ensure_play_order(df)
   df |>
     penalty_detection() |>
     # Enforcement resolution runs immediately after detection and before

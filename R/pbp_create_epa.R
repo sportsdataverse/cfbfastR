@@ -49,6 +49,7 @@
       "id_play",
       "drive_id",
       "game_id",
+      "play_order",
       "play_type",
       "TimeSecsRem",
       "down",
@@ -68,6 +69,7 @@
       "id_play",
       "drive_id",
       "game_id",
+      "play_order",
       "play_type",
       "turnover",
       "new_TimeSecsRem",
@@ -190,7 +192,7 @@
   # insert before lags here
   pred_df <- pred_df |>
     dplyr::group_by(.data$game_id) |>
-    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
+    dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     dplyr::mutate(
       lag_ep_before3 = dplyr::lag(.data$ep_before, 3),
       lag_ep_before2 = dplyr::lag(.data$ep_before, 2),
@@ -203,7 +205,7 @@
   # insert after lags here
   pred_df_after <- pred_df_after |>
     dplyr::group_by(.data$game_id) |>
-    dplyr::arrange(.data$id_play, .by_group = TRUE) |>
+    dplyr::arrange(.data$play_order, .by_group = TRUE) |>
     dplyr::mutate(
       lag_ep_after = dplyr::lag(.data$ep_after, 1),
       lag_ep_after2 = dplyr::lag(.data$ep_after, 2),
@@ -220,7 +222,7 @@
   pred_df <- play_df |>
     dplyr::left_join(
       pred_df_after |>
-        dplyr::select(-"play_type", -"turnover"),
+        dplyr::select(-"play_type", -"turnover", -"play_order"),
       by = c("game_id", "drive_id", "id_play")
     ) |>
     dplyr::left_join(
@@ -248,7 +250,7 @@
     )
 
   pred_df <- pred_df |>
-    dplyr::arrange(.data$game_id, .data$id_play) |>
+    dplyr::arrange(.data$game_id, .data$play_order) |>
     dplyr::mutate(
       ep_after = ifelse(.data$downs_turnover == 1, -1 * .data$lead_ep_before, .data$ep_after),
       ep_after = ifelse(stringr::str_detect(.data$play_text, regex("safety", ignore_case = TRUE)) &
